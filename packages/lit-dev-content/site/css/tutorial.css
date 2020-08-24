@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+code-sample-editor {
+  flex: 1;
+  height: 100%;
+}
+
+div.tutorial {
+  display: flex;
+  flex: 1;
+}
+
+div.contents {
+  flex: 0 0 300px
+}

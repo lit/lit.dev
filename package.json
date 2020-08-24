@@ -1,0 +1,15 @@
+{
+  "name": "lit.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
