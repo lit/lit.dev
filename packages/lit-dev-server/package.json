@@ -12,15 +12,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@koa/router": "^9.3.1",
-    "@types/koa": "^2.11.3",
-    "@types/koa-mount": "^4.0.0",
-    "@types/koa-static": "^4.0.1",
-    "@types/koa__router": "^8.0.2",
     "@types/serve-handler": "^6.1.0",
-    "koa": "^2.13.0",
-    "koa-mount": "^4.0.0",
-    "koa-static": "^5.0.0",
     "lit-dev-content": "^0.0.0",
     "serve": "^11.3.0",
     "serve-handler": "^6.1.3"
