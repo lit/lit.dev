@@ -24,6 +24,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPassthroughCopy('site/css');
   eleventyConfig.addPassthroughCopy('site/images/**/*');
+  eleventyConfig.addPassthroughCopy('site/samples/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
 
   const md = markdownIt({ html: true, breaks: true, linkify: true })
@@ -48,6 +49,30 @@ module.exports = function (eleventyConfig) {
       // .filter((f) => !f.data.slug?.includes('/'))
       .sort(function (a, b) {
         if (a.fileSlug == 'guide') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
+  });
+
+  eleventyConfig.addCollection('tutorial', function (collection) {
+    // Order the 'tutorial' collection by filename, which includes a number prefix.
+    // We could also order by a frontmatter property
+    // console.log(
+    //   'guide',
+    //   collection.getFilteredByGlob('site/guide/**')
+    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
+
+    return collection.getFilteredByGlob('site/tutorial/**')
+      // .filter((f) => !f.data.slug?.includes('/'))
+      .sort(function (a, b) {
+        if (a.fileSlug == 'tutorial') {
           return -1;
         }
         if (a.fileSlug < b.fileSlug) {

@@ -15,5 +15,10 @@ div.tutorial {
 }
 
 div.contents {
-  flex: 0 0 300px
+  flex: 0 0 300px;
+  padding: 10px;
+}
+
+div.contents h1 {
+  font-size: 1.4em;
 }

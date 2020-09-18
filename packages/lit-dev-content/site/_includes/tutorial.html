@@ -1,0 +1,34 @@
+{% extends 'default.html' %}
+{% include 'topnav.html' %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{site.baseurl}}/css/tutorial.css">
+{% endblock %}
+
+{% block content %}
+  <div class="tutorial">
+    <div class="contents">
+      <h1>{{ title }}</h1>
+      {{ content | safe }}
+      <button data-url="{{site.baseurl}}/{{startingSrc}}" id="reset">Reset</button>
+      <button data-url="{{site.baseurl}}/{{finishedSrc}}" id="finish">Show finished</button>
+    </div>
+
+    <code-sample-editor project-src="{{site.baseurl}}/{{startingSrc}}">
+    </code-sample-editor>
+    
+  </div>
+  <script>
+    // bad code alert
+    const resetButton = document.querySelector('button#reset');
+    const finishButton = document.querySelector('button#finish');
+    const editor = document.querySelector('code-sample-editor');
+    const listener = (e) => {
+      let url = e.target.dataset.url;
+      editor.projectSrc = url;
+    }
+    [resetButton, finishButton].forEach((button) => {
+      button.addEventListener('click', listener)
+    })
+  </script>
+{% endblock %}
