@@ -25,6 +25,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('site/css');
   eleventyConfig.addPassthroughCopy('site/images/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
+  eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
   eleventyConfig.addPassthroughCopy({'node_modules/code-sample-editor/typescript-worker.js': './typescript-worker.js'});
   eleventyConfig.addPassthroughCopy({'node_modules/code-sample-editor/service-worker.js': './service-worker.js'});
 
