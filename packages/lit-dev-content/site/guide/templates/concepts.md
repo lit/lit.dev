@@ -3,8 +3,10 @@ title: Concepts
 eleventyNavigation:
   key: Concepts
   parent: Templates
-  order: 3
+  order: 99
 ---
+
+TODO: This section probably doesn't belong under Templates at all. But where does it belong?
 
 lit-html utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.
 

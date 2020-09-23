@@ -3,7 +3,7 @@ title: Lifecycle
 eleventyNavigation:
   key: Lifecycle
   parent: Components
-  order: 5
+  order: 7
 ---
 
 ## Overview

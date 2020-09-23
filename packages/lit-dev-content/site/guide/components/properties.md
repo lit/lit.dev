@@ -1,9 +1,9 @@
 ---
-title: Properties
+title: Reactive properties
 eleventyNavigation:
-  key: Properties
+  key: Reactive properties
   parent: Components
-  order: 4
+  order: 3
 ---
 
 ## Overview {#overview}

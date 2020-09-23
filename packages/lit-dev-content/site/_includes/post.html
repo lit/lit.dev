@@ -11,13 +11,14 @@
     <div class="side">
       <side-nav>
         {%- set navSections = collections.guide | eleventyNavigation -%}
+        {# Uncomment to use prebuilt nav
         {{ navSections | eleventyNavigationToHtml | safe }}
-        {# Uncomment to render one section at a time
+        #}
         <ul>
         {%- for entry in navSections %}
           <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
-            <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-            {% if entry.key ==  eleventyNavigation.key %}
+            {%- if entry.children | length %}
+              <span class="sectionHead">{{ entry.title }}</span>
               {% set navPages = entry.children %}
               <ul>
               {%- for entry in navPages %}
@@ -25,12 +26,13 @@
                   <a href="{{ entry.url | url }}">{{ entry.title }}</a>
                 </li>
               {%- endfor %}
-              </ul>
-            {% endif %}
+              </ul>  
+            {%- else %}
+              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+            {%- endif %}
           </li>
         {%- endfor %}
         </ul>
-        #}
       </side-nav>
     </div>
 
