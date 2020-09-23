@@ -3,7 +3,7 @@ title: Styles
 eleventyNavigation:
   key: Styles
   parent: Components
-  order: 3
+  order: 5
 ---
 
 This page describes how to add styles to your component.
