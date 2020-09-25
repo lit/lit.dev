@@ -1,0 +1,20 @@
+{
+  "name": "lit-dev-server",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Justin Fagnani <justinfagnani@google.com>",
+  "homepage": "",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@types/serve-handler": "^6.1.0",
+    "lit-dev-content": "^0.0.0",
+    "serve": "^11.3.0",
+    "serve-handler": "^6.1.3"
+  }
+}

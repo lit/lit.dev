@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "lit-dev-content",
+			"path": "packages/lit-dev-content"
+		},
+		{
+			"name": "lit-dev-server",
+			"path": "packages/lit-dev-server"
+		},
+		{
+			"name": "lit.dev",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
