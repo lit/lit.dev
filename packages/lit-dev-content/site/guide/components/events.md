@@ -3,7 +3,7 @@ title: Events
 eleventyNavigation:
   key: Events
   parent: Components
-  order: 8
+  order: 7
 ---
 
 ## Where to add your event listeners
