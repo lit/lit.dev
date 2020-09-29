@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="{{site.baseurl}}/css/theme.css">
     {# This is a hack so I can read the pages.
        ToDo: add some kind of user-visible theme switch. #}
-    {%- if project.theme == 'light' %}
-    <link rel="stylesheet" href="{{site.baseurl}}/css/prism-material-light.css">
-    {%- else %}
+    {%- if project.theme == 'dark' %}
     <link rel="stylesheet" href="{{site.baseurl}}/css/prism-okaidia-a11y.css">
+    {%- else %}
+    <link rel="stylesheet" href="{{site.baseurl}}/css/prism-material-light.css">
     {%- endif %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <script type="module" src="/js/main.bundled.js"></script>
