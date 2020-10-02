@@ -1,9 +1,9 @@
 ---
 title: Creating directives
 eleventyNavigation:
-  key: Directives
+  key: Creating directives
   parent: Templates
-  order: 3
+  order: 2
 ---
 
 Directives are functions that can customize how lit-html renders values. Template authors can use directives in their templates like other functions:
