@@ -7,6 +7,7 @@ const slugifyLib = require('slugify');
 const path = require('path');
 const loadLanguages = require('prismjs/components/');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const fs = require('fs/promises');
 
 // This Prism langauge supports HTML and CSS in tagged template literals
 loadLanguages(['js-templates']);
@@ -34,9 +35,22 @@ module.exports = function (eleventyConfig) {
     .use(markdownItAnchor, { slugify, permalink: false });
   eleventyConfig.setLibrary('md', md);
 
-  eleventyConfig.addFilter("removeExtension", function (url) {
+  eleventyConfig.addFilter('removeExtension', function (url) {
     const extension = path.extname(url);
     return url.substring(0, url.length - extension.length);
+  });
+
+  eleventyConfig.addShortcode('sample', async (manifestPath, fileName) => {
+    console.log('SAMPLE');
+    const {highlight} = await import('./util/highlight.js');
+    const resolvedManifestPath = path.resolve('./site/_includes/projects', manifestPath);
+    // TODO: we can validate the manifest too:
+    // const projectManifest = JSON.parse(await fs.readFile(resolvedManifestPath, 'utf-8'));
+    const filePath = path.resolve(path.dirname(resolvedManifestPath), fileName);
+    const contents = await fs.readFile(filePath, 'utf-8');
+    console.log(fileName, '\n', contents);
+    const result = highlight(contents, 'ts');
+    console.log('result', '\n', result);
   });
 
   eleventyConfig.addCollection('guide', function (collection) {

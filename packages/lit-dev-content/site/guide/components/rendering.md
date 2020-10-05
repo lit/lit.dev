@@ -26,6 +26,8 @@ uses the [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/pack
 
 To define a template for a LitElement component, write a `render` function for your element class:
 
+{% sample "docs/templates/define/project.json" "my-element.ts" %}
+
 ```js
 import { LitElement, html } from 'lit-element';
 
