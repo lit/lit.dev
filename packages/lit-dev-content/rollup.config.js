@@ -27,7 +27,7 @@ export default {
   },
   plugins: [
     resolve({
-      dedupe: ['@material/mwc-icon']
+      dedupe: ['@material/mwc-icon'],
     }),
-  ]
-}
+  ],
+};
