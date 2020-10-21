@@ -6,12 +6,14 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
-    "start": "cd packages/lit-dev-server && npm start"
+    "start": "cd packages/lit-dev-server && npm start",
+    "format": "prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "author": "",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "lerna": "^3.22.1",
+    "prettier": "^2.1.2",
     "typescript": "^4.0.2"
   }
 }
