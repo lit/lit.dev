@@ -1,5 +1,6 @@
 {
   "name": "lit-dev-server",
+  "private": true,
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Justin Fagnani <justinfagnani@google.com>",
@@ -9,7 +10,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node index.js"
+    "start": "node index.js",
+    "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
     "@types/serve-handler": "^6.1.0",

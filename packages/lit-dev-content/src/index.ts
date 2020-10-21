@@ -2,4 +2,4 @@
 
 console.log('lit-dev');
 
-export {}
+export {};

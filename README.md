@@ -4,24 +4,25 @@ New site, new repo.
 
 This is a Lerna monorepo
 
-* Install dependencies:
+- Install dependencies:
 
   ```sh
   npm i && npm run bootstrap
   ```
-* Build all:
+
+- Build all:
 
   ```sh
   npm run build
   ```
 
-* Start server
+- Start server
 
   ```sh
   npm start
   ```
 
-* Build site content:
+- Build site content:
 
   ```sh
   cd packages/lit-dev-content
@@ -32,13 +33,13 @@ This is a Lerna monorepo
 
   _Note, we could probably hook up es-dev-server to auto-refresh the page too_
 
-* Build Cloud Run Docker image:
+- Build Cloud Run Docker image:
 
   ```sh
   gcloud builds submit --tag gcr.io/{project}/{service}
   ```
 
-* Deploy Cloud Run service
+- Deploy Cloud Run service
 
   ```sh
   gcloud run deploy --image gcr.io/{project}/{service} --platform managed
