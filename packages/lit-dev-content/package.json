@@ -1,5 +1,6 @@
 {
   "name": "lit-dev-content",
+  "private": true,
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Justin Fagnani <justinfagnani@google.com>",
