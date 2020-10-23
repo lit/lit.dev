@@ -25,6 +25,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin);
   eleventyConfig.addPassthroughCopy('site/css');
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/codemirror/lib/codemirror.css': './css/codemirror.css',
+  });
   eleventyConfig.addPassthroughCopy('site/images/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
   eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
