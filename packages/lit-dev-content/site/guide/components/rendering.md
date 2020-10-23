@@ -26,7 +26,7 @@ uses the [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/pack
 
 To define a template for a LitElement component, write a `render` function for your element class:
 
-```js
+{% playground-highlight "js" %}
 import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
@@ -34,7 +34,7 @@ class MyElement extends LitElement {
     return html`<p>template content</p>`;
   }
 }
-```
+{% endplayground-highlight %}
 
 *   Write your template in HTML inside a JavaScript [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) by enclosing the raw HTML in back-ticks
     (<code>``</code>).
@@ -97,25 +97,27 @@ We can improve the template by declaring the message as a property, and binding 
 
 _update-properties.js_
 
-```js
-static get properties() {
-  return {
-    message: {type: String}
+{% playground-highlight "js" %}
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      message: {type: String}
+    }
+  }
+
+  constructor() {
+    super();
+    this.message = 'Loading';
+    this.addEventListener('stuff-loaded', (e) => { this.message = e.detail } );
+    this.loadStuff();
+  }
+  render() {
+    return html`
+      <p>${this.message}</p>
+    `;
   }
 }
-
-constructor() {
-  super();
-  this.message = 'Loading';
-  this.addEventListener('stuff-loaded', (e) => { this.message = e.detail } );
-  this.loadStuff();
-}
-render() {
-  return html`
-    <p>${this.message}</p>
-  `;
-}
-```
+{% endplayground-highlight %}
 
 <code-sample project-src="/samples/docs/templates/design/project.json"></code-sample>
 
@@ -123,9 +125,9 @@ The following sections discuss different types of property bindings. See [Proper
 
 ## Compose a template from other templates
 
-You can compose Lit templates from other  templates. In the following example, we compose a template for an element called `<my-page>` from smaller templates for the page's header, footer, and main content:
+You can compose Lit templates from other templates. In the following example, we compose a template for an element called `<my-page>` from smaller templates for the page's header, footer, and main content:
 
-```js
+{% playground-highlight "js" %}
   function headerTemplate(title) {
     return html`<header>${title}</header>`;
   }
@@ -146,13 +148,13 @@ class MyPage extends LitElement {
     `;
   }
 }
-```
+{% endplayground-highlight %}
 
 <code-sample project-src="/samples/docs/templates/compose/project.json"></code-sample>
 
 You can also compose templates by importing other elements and using them in your template:
 
-```js
+{% playground-highlight "js" %}
 import './my-header.js';
 import './my-article.js';
 import './my-footer.js';
@@ -166,7 +168,7 @@ class MyPage extends LitElement {
     `;
   }
 }
-```
+{% endplayground-highlight %}
 
 <code-sample project-src="/samples/docs/templates/composeimports/project.json"></code-sample>
 
