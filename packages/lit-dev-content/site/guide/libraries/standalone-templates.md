@@ -2,11 +2,11 @@
 title: Using lit-html standalone
 eleventyNavigation:
   key: Standalone lit-html
-  parent: Templates
-  order: 4
+  parent: Related libraries
+  order: 99
 ---
 
-TODO: expand this into a full section on standalone lit-html use. Current content is from the lit-html "rendering templates" and "styling templates" guides.
+<!-- TODO: expand this into a full section on standalone lit-html use. Current content is from the lit-html "rendering templates" and "styling templates" guides. -->
 
 ## Rendering lit-html templates
 
@@ -15,12 +15,34 @@ A lit-html template expression does not cause any DOM to be created or updated. 
 ```js
 import {html, render} from 'lit-html';
 
-const sayHi = (name) => html`<h1>Hello ${name}</h1>`;
-render(sayHi('Amy'), document.body);
-
-// subsequent renders will update the DOM
-render(sayHi('Zoe'), document.body);
+const name = Amy;
+const sayHi = html`<h1>Hello ${name}</h1>`;
+render(sayHi, document.body);
 ```
+
+## Render dynamic data
+
+To make your template dynamic, you can create a _template function_. Call the template function any time your data changes.
+
+```js
+import {html, render} from 'lit-html';
+
+// Define a template function
+const myTemplate = (name) => html`<div>Hello ${name}</div>`;
+
+// Render the template with some data
+render(myTemplate('world'), document.body);
+
+// ... Later on ... 
+// Render the template with different data
+render(myTemplate('lit-html'), document.body);
+```
+
+When you call the template function, lit-html captures the current expression values. The template function doesn't create any DOM nodes, so it's fast and cheap.
+
+The template function returns a `TemplateResult` that's a function of the input data. This is one of the main principles behind using lit-html: **creating UI as a _function_ of state**. 
+
+When you call `render`, **lit-html only updates the parts of the template that have changed since the last render.** This makes lit-html updates very fast.
 
 ### Render Options
 
@@ -47,6 +69,19 @@ class MyComponent extends HTMLElement {
 ```
 
 Render options should *not* change between subsequent `render` calls. 
+
+## Event handlers
+
+<!-- TODO move this somewhere, expand this section, or get rid of it.
+
+-->
+
+<div class="alert alert-info">
+
+**Event listener objects.** When you specify a listener using an event listener object,
+the listener object itself is set as the event context (`this` value).
+
+</div>
 
 ## Styles and lit-html templates
 

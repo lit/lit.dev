@@ -1,8 +1,8 @@
 ---
-title: Concepts
+title: Platform concepts
 eleventyNavigation:
-  key: Concepts
-  parent: Templates
+  key: Platform concepts
+  parent: Concepts
   order: 99
 ---
 
