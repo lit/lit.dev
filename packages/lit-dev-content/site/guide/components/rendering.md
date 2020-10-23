@@ -48,8 +48,8 @@ class MyElement extends LitElement {
 
 Example
 
-<code-sample-editor project-src="/samples/docs/templates/define/project.json">
-</code-sample-editor>
+<code-sample project-src="/samples/docs/templates/define/project.json">
+</code-sample>
 
 lit-html templates can include _bindings_ that can contain any JavaScript expression. You can use bindings to set text content, attributes, properties, and event listeners.
 
@@ -117,7 +117,7 @@ render() {
 }
 ```
 
-<code-sample-editor project-src="/samples/docs/templates/design/project.json"></code-sample-editor>
+<code-sample project-src="/samples/docs/templates/design/project.json"></code-sample>
 
 The following sections discuss different types of property bindings. See [Properties](properties) for information on declaring properties.
 
@@ -148,7 +148,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample-editor project-src="/samples/docs/templates/compose/project.json"></code-sample-editor>
+<code-sample project-src="/samples/docs/templates/compose/project.json"></code-sample>
 
 You can also compose templates by importing other elements and using them in your template:
 
@@ -168,7 +168,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample-editor project-src="/samples/docs/templates/composeimports/project.json"></code-sample-editor>
+<code-sample project-src="/samples/docs/templates/composeimports/project.json"></code-sample>
 
 
 ## Resources
