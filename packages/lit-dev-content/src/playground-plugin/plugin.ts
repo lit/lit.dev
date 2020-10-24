@@ -24,11 +24,19 @@ interface EleventyConfig {
 }
 
 /**
- * Adds the "playground-highlight" paired-shortcode. Example usage:
+ * Adds syntax highlighters using playground-elements.
  *
- *   {% playground-highlight "js" %}
- *     console.log("Hello");
- *   {% playground-highlight %}
+ * Markdown fences:
+ *
+ *   ```js
+ *   console.log("Hello")
+ *   ```
+ *
+ * Paired shortcode:
+ *
+ *   {% highlight "js" %}
+ *   console.log("Hello");
+ *   {% highlight %}
  */
 export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
@@ -68,11 +76,6 @@ export const playgroundPlugin = (
 
   eleventyConfig.addPairedShortcode(
     'highlight',
-    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
-  );
-
-  eleventyConfig.addPairedShortcode(
-    'playground-highlight',
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 

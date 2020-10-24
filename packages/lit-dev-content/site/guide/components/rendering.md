@@ -127,7 +127,7 @@ The following sections discuss different types of property bindings. See [Proper
 
 You can compose Lit templates from other templates. In the following example, we compose a template for an element called `<my-page>` from smaller templates for the page's header, footer, and main content:
 
-{% playground-highlight "js" %}
+```js
   function headerTemplate(title) {
     return html`<header>${title}</header>`;
   }
@@ -148,13 +148,13 @@ class MyPage extends LitElement {
     `;
   }
 }
-{% endplayground-highlight %}
+```
 
 <code-sample project-src="/samples/docs/templates/compose/project.json"></code-sample>
 
 You can also compose templates by importing other elements and using them in your template:
 
-{% playground-highlight "js" %}
+```js
 import './my-header.js';
 import './my-article.js';
 import './my-footer.js';
@@ -168,7 +168,7 @@ class MyPage extends LitElement {
     `;
   }
 }
-{% endplayground-highlight %}
+```
 
 <code-sample project-src="/samples/docs/templates/composeimports/project.json"></code-sample>
 
