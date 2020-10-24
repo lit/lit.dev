@@ -34,20 +34,22 @@ export class Renderer {
 
   static async start(): Promise<Renderer> {
     return new Promise(async (resolve) => {
+      const serverPromise = RendererServer.start();
+
       const browser = await playwright.chromium.launch();
       const context = await browser.newContext();
       const page = await context.newPage();
-      const server = await RendererServer.start();
 
       const body = `
-      <!doctype html>
-      <script type="module">
-        import "/node_modules/code-sample-editor/lib/codemirror-editor.js";
-        window.editor = document.createElement('codemirror-editor');
-        document.body.appendChild(window.editor);
-      </script>
-    `;
-      const url = server.serveOnce(body);
+        <!doctype html>
+        <script type="module">
+          import "/node_modules/code-sample-editor/lib/codemirror-editor.js";
+          window.editor = document.createElement('codemirror-editor');
+          document.body.appendChild(window.editor);
+        </script>
+      `;
+      const server = await serverPromise;
+      const url = await server.serveOnce(body);
       await page.goto(url);
 
       resolve(new Renderer(server, browser, page));
