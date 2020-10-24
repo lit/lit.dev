@@ -423,3 +423,8 @@ footer .social-links img {
   width: 24px;
   height: 24px;
 }
+
+.CodeMirror {
+  /** The default CodeMirror stylesheet fixes height to 300px. */
+  height: unset !important;
+}

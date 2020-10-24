@@ -7,6 +7,7 @@ const slugifyLib = require('slugify');
 const path = require('path');
 const loadLanguages = require('prismjs/components/');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
+const {playgroundPlugin} = require('./playground-plugin/plugin.js');
 
 // This Prism langauge supports HTML and CSS in tagged template literals
 loadLanguages(['js-templates']);
@@ -22,7 +23,11 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(playgroundPlugin);
   eleventyConfig.addPassthroughCopy('site/css');
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/codemirror/lib/codemirror.css': './css/codemirror.css',
+  });
   eleventyConfig.addPassthroughCopy('site/images/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
   eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
