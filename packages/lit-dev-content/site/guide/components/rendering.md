@@ -26,7 +26,7 @@ uses the [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/pack
 
 To define a template for a LitElement component, write a `render` function for your element class:
 
-{% playground-highlight "js" %}
+```js
 import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
@@ -34,7 +34,7 @@ class MyElement extends LitElement {
     return html`<p>template content</p>`;
   }
 }
-{% endplayground-highlight %}
+```
 
 *   Write your template in HTML inside a JavaScript [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) by enclosing the raw HTML in back-ticks
     (<code>``</code>).
@@ -97,7 +97,7 @@ We can improve the template by declaring the message as a property, and binding 
 
 _update-properties.js_
 
-{% playground-highlight "js" %}
+```js
 class MyElement extends LitElement {
   static get properties() {
     return {
@@ -117,7 +117,7 @@ class MyElement extends LitElement {
     `;
   }
 }
-{% endplayground-highlight %}
+```
 
 <code-sample project-src="/samples/docs/templates/design/project.json"></code-sample>
 

@@ -8,8 +8,9 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import {Renderer} from './renderer.js';
+import {BlockingRenderer} from './blocking-renderer.js';
 import {Reaper} from './reaper.js';
+import {outdent} from 'outdent';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
@@ -17,8 +18,9 @@ import {Reaper} from './reaper.js';
 interface EleventyConfig {
   addPairedShortcode(
     name: string,
-    shortcode: (content: string, ...args: any[]) => string | Promise<string>
+    shortcode: (content: string, ...args: any[]) => string
   ): void;
+  addMarkdownHighlighter(fn: (content: string, lang: any) => string): void;
 }
 
 /**
@@ -32,13 +34,13 @@ export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
   _pluginOptions?: {}
 ) => {
-  let rendererPromise: Promise<Renderer> | undefined;
+  let renderer: BlockingRenderer | undefined;
 
   const getRenderer = () => {
-    if (rendererPromise === undefined) {
-      rendererPromise = Renderer.start();
+    if (renderer === undefined) {
+      renderer = new BlockingRenderer();
     }
-    return rendererPromise;
+    return renderer;
   };
 
   // We want to share one Playwright browser and HTTP server across code
@@ -47,25 +49,34 @@ export const playgroundPlugin = (
   // needed, and shutdown if there haven't been any calls within some time
   // window (and startup again if another render happens later).
   const reaper = new Reaper(async () => {
-    if (rendererPromise !== undefined) {
-      const p = rendererPromise;
-      rendererPromise = undefined;
-      const renderer = await p;
-      await renderer.stop();
+    if (renderer !== undefined) {
+      const r = renderer;
+      renderer = undefined;
+      await r.stop();
     }
   }, 500);
 
+  const render = (code: string, lang: 'js' | 'ts' | 'html' | 'css') => {
+    const done = reaper.keepAlive();
+    try {
+      const {html} = getRenderer().render(lang, outdent`${code}`);
+      return html;
+    } finally {
+      done();
+    }
+  };
+
+  eleventyConfig.addPairedShortcode(
+    'highlight',
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+  );
+
   eleventyConfig.addPairedShortcode(
     'playground-highlight',
-    async (content: string, type: 'js' | 'ts' | 'html' | 'css') => {
-      const done = reaper.keepAlive();
-      try {
-        const renderer = await getRenderer();
-        const {html} = await renderer.render(type, content);
-        return html;
-      } finally {
-        done();
-      }
-    }
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+  );
+
+  eleventyConfig.addMarkdownHighlighter(
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 };

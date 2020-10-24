@@ -1,16 +1,11 @@
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const markdownIt = require('markdown-it');
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require('markdown-it-attrs');
 const slugifyLib = require('slugify');
 const path = require('path');
-const loadLanguages = require('prismjs/components/');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const {playgroundPlugin} = require('./playground-plugin/plugin.js');
-
-// This Prism langauge supports HTML and CSS in tagged template literals
-loadLanguages(['js-templates']);
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -21,7 +16,6 @@ module.exports = function (eleventyConfig) {
     tags: ['h2', 'h3'],
     wrapper: 'div',
   });
-  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin);
   eleventyConfig.addPassthroughCopy('site/css');

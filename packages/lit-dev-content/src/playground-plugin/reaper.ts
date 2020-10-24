@@ -37,7 +37,7 @@ export class Reaper {
 
   private endKeepAlive() {
     this.pending--;
-    if (this.pending == 0) {
+    if (this.pending === 0) {
       this.timerId = setTimeout(this.fn, this.timeout);
     }
   }
