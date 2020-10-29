@@ -1,7 +1,7 @@
 ---
-title: Composition & Code Resuse
+title: Composition & Code Reuse
 eleventyNavigation:
-  title: Code Resuse
+  title: Code Reuse
   key: Composition
   order: 4
 ---
