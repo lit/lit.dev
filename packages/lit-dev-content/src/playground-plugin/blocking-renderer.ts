@@ -11,12 +11,18 @@
 import * as workerthreads from 'worker_threads';
 import * as pathlib from 'path';
 
-export type WorkerMessage = Handshake | Render | Shutdown;
+export type WorkerMessage = HandshakeMessage | Render | Shutdown;
 
-export interface Handshake {
+export interface HandshakeMessage {
   type: 'handshake';
-  html: Uint8Array;
-  length: Int32Array;
+  /** UTF-8 rendered HTML. */
+  htmlBuffer: Uint8Array;
+  /** The length of htmlBuffer in bytes, stored at array index 0. */
+  htmlBufferLength: Int32Array;
+  /**
+   * The worker will awaken the thread waiting on index 0 of this array when
+   * each render is done, and the value will always be 0.
+   */
   notify: Int32Array;
 }
 
@@ -31,6 +37,7 @@ export interface Shutdown {
 }
 
 export class BlockingRenderer {
+  /** Worker that performs rendering. */
   private worker: workerthreads.Worker;
   /** Shared memory that the worker will write render results into. */
   private sharedHtml: Uint8Array;
@@ -63,8 +70,8 @@ export class BlockingRenderer {
     });
     this.workerPost({
       type: 'handshake',
-      length: this.sharedLength,
-      html: this.sharedHtml,
+      htmlBufferLength: this.sharedLength,
+      htmlBuffer: this.sharedHtml,
       notify: this.sharedNotify,
     });
   }

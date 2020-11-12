@@ -9,7 +9,6 @@
  */
 
 import {BlockingRenderer} from './blocking-renderer.js';
-import {Reaper} from './reaper.js';
 import {outdent} from 'outdent';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
@@ -21,6 +20,7 @@ interface EleventyConfig {
     shortcode: (content: string, ...args: any[]) => string
   ): void;
   addMarkdownHighlighter(fn: (content: string, lang: any) => string): void;
+  on(name: string, fn: () => void): void;
 }
 
 /**
@@ -44,34 +44,27 @@ export const playgroundPlugin = (
 ) => {
   let renderer: BlockingRenderer | undefined;
 
-  const getRenderer = () => {
-    if (renderer === undefined) {
-      renderer = new BlockingRenderer();
-    }
-    return renderer;
-  };
+  eleventyConfig.on('beforeBuild', () => {
+    renderer = new BlockingRenderer();
+  });
 
-  // We want to share one Playwright browser and HTTP server across code
-  // renders, but there doesn't appear to be any "startup" and "shutdown" hooks
-  // for an Eleventy plugin. So we instead just startup the first time we are
-  // needed, and shutdown if there haven't been any calls within some time
-  // window (and startup again if another render happens later).
-  const reaper = new Reaper(async () => {
-    if (renderer !== undefined) {
-      const r = renderer;
+  eleventyConfig.on('afterBuild', async () => {
+    if (renderer) {
+      const old = renderer;
       renderer = undefined;
-      await r.stop();
+      await old.stop();
     }
-  }, 500);
+  });
 
   const render = (code: string, lang: 'js' | 'ts' | 'html' | 'css') => {
-    const done = reaper.keepAlive();
-    try {
-      const {html} = getRenderer().render(lang, outdent`${code}`);
-      return html;
-    } finally {
-      done();
+    if (!renderer) {
+      throw new Error(
+        'Internal error: expected Playground renderer to have been ' +
+          'initialized in "beforeBuild" event.'
+      );
     }
+    const {html} = renderer.render(lang, outdent`${code}`);
+    return html;
   };
 
   eleventyConfig.addPairedShortcode(

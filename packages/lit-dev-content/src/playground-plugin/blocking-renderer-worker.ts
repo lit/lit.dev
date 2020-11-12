@@ -12,7 +12,7 @@ import * as workerthreads from 'worker_threads';
 import {Renderer} from './renderer.js';
 import {
   WorkerMessage,
-  Handshake,
+  HandshakeMessage,
   Render,
   Shutdown,
 } from './blocking-renderer.js';
@@ -25,8 +25,8 @@ const rendererPromise = Renderer.start();
 const encoder = new TextEncoder();
 let shuttingDown = false;
 
-let sharedDataResolve: (value: Handshake) => void;
-let sharedDataPromise = new Promise<Handshake>((resolve) => {
+let sharedDataResolve: (value: HandshakeMessage) => void;
+let sharedDataPromise = new Promise<HandshakeMessage>((resolve) => {
   sharedDataResolve = resolve;
 });
 
@@ -48,7 +48,7 @@ workerthreads.parentPort.on('message', (msg: WorkerMessage) => {
   }
 });
 
-const onHandshake = (msg: Handshake) => {
+const onHandshake = (msg: HandshakeMessage) => {
   sharedDataResolve(msg);
 };
 
@@ -57,14 +57,14 @@ const onRender = async (msg: Render) => {
   const {html} = await renderer.render(msg.lang, msg.code);
   const shared = await sharedDataPromise;
   const length = html.length;
-  if (length > shared.html.length) {
+  if (length > shared.htmlBuffer.length) {
     throw new Error(
       `Shared HTML buffer was too short ` +
-        `(${shared.html.length} < ${html.length} bytes)`
+        `(${shared.htmlBuffer.length} < ${html.length} bytes)`
     );
   }
-  shared.length[0] = length;
-  encoder.encodeInto(html, shared.html);
+  shared.htmlBufferLength[0] = length;
+  encoder.encodeInto(html, shared.htmlBuffer);
   Atomics.notify(shared.notify, 0);
 };
 
