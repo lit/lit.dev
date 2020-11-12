@@ -16,7 +16,7 @@ A complete component defintion typically consists of a few parts:
  * Lifecycle callbacks
  * Event handlers
 
-{% highlight js %}
+```js
 import { LitElement, css, html, property, customElement } from 'lit-element';
 
 @customElement('simple-greeting')
@@ -37,4 +37,4 @@ export class SimpleGreeting extends LitElement {
     return html`<p>Hello, ${this.name}!</p>`;
   }
 }
-{% endhighlight %}
+```

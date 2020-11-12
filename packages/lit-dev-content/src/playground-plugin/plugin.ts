@@ -8,8 +8,8 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import {Renderer} from './renderer.js';
-import {Reaper} from './reaper.js';
+import {BlockingRenderer} from './blocking-renderer.js';
+import {outdent} from 'outdent';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
@@ -17,55 +17,62 @@ import {Reaper} from './reaper.js';
 interface EleventyConfig {
   addPairedShortcode(
     name: string,
-    shortcode: (content: string, ...args: any[]) => string | Promise<string>
+    shortcode: (content: string, ...args: any[]) => string
   ): void;
+  addMarkdownHighlighter(fn: (content: string, lang: any) => string): void;
+  on(name: string, fn: () => void): void;
 }
 
 /**
- * Adds the "playground-highlight" paired-shortcode. Example usage:
+ * Adds syntax highlighters using playground-elements.
  *
- *   {% playground-highlight "js" %}
- *     console.log("Hello");
- *   {% playground-highlight %}
+ * Markdown fences:
+ *
+ *   ```js
+ *   console.log("Hello")
+ *   ```
+ *
+ * Paired shortcode:
+ *
+ *   {% highlight "js" %}
+ *   console.log("Hello");
+ *   {% highlight %}
  */
 export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
   _pluginOptions?: {}
 ) => {
-  let rendererPromise: Promise<Renderer> | undefined;
+  let renderer: BlockingRenderer | undefined;
 
-  const getRenderer = () => {
-    if (rendererPromise === undefined) {
-      rendererPromise = Renderer.start();
+  eleventyConfig.on('beforeBuild', () => {
+    renderer = new BlockingRenderer();
+  });
+
+  eleventyConfig.on('afterBuild', async () => {
+    if (renderer) {
+      const old = renderer;
+      renderer = undefined;
+      await old.stop();
     }
-    return rendererPromise;
+  });
+
+  const render = (code: string, lang: 'js' | 'ts' | 'html' | 'css') => {
+    if (!renderer) {
+      throw new Error(
+        'Internal error: expected Playground renderer to have been ' +
+          'initialized in "beforeBuild" event.'
+      );
+    }
+    const {html} = renderer.render(lang, outdent`${code}`);
+    return html;
   };
 
-  // We want to share one Playwright browser and HTTP server across code
-  // renders, but there doesn't appear to be any "startup" and "shutdown" hooks
-  // for an Eleventy plugin. So we instead just startup the first time we are
-  // needed, and shutdown if there haven't been any calls within some time
-  // window (and startup again if another render happens later).
-  const reaper = new Reaper(async () => {
-    if (rendererPromise !== undefined) {
-      const p = rendererPromise;
-      rendererPromise = undefined;
-      const renderer = await p;
-      await renderer.stop();
-    }
-  }, 500);
-
   eleventyConfig.addPairedShortcode(
-    'playground-highlight',
-    async (content: string, type: 'js' | 'ts' | 'html' | 'css') => {
-      const done = reaper.keepAlive();
-      try {
-        const renderer = await getRenderer();
-        const {html} = await renderer.render(type, content);
-        return html;
-      } finally {
-        done();
-      }
-    }
+    'highlight',
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+  );
+
+  eleventyConfig.addMarkdownHighlighter(
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 };
