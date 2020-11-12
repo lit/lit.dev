@@ -12,7 +12,6 @@ import * as playwright from 'playwright';
 import * as pathlib from 'path';
 import {startDevServer} from '@web/dev-server';
 import {DevServer} from '@web/dev-server-core';
-import {outdent} from 'outdent';
 
 /**
  * Playwright-based renderer for playground-elements.
@@ -20,48 +19,116 @@ import {outdent} from 'outdent';
 export class Renderer {
   private server: RendererServer;
   private browser: playwright.Browser;
+  private page: playwright.Page;
+  private stopped = false;
 
-  private constructor(server: RendererServer, browser: playwright.Browser) {
+  private constructor(
+    server: RendererServer,
+    browser: playwright.Browser,
+    page: playwright.Page
+  ) {
     this.server = server;
     this.browser = browser;
+    this.page = page;
   }
 
   static async start(): Promise<Renderer> {
     return new Promise(async (resolve) => {
-      const browser = playwright.chromium.launch();
-      const server = RendererServer.start();
-      resolve(new Renderer(await server, await browser));
+      const serverPromise = RendererServer.start();
+
+      const browser = await playwright.chromium.launch();
+      const context = await browser.newContext();
+      const page = await context.newPage();
+
+      const body = `
+        <!doctype html>
+        <script type="module">
+          import "/node_modules/code-sample-editor/lib/codemirror-editor.js";
+          window.editor = document.createElement('codemirror-editor');
+          document.body.appendChild(window.editor);
+        </script>
+      `;
+      const server = await serverPromise;
+      const url = await server.serveOnce(body);
+      await page.goto(url);
+
+      resolve(new Renderer(server, browser, page));
     });
   }
 
   async stop() {
+    if (this.stopped) {
+      return;
+    }
+    this.stopped = true;
     await Promise.all([this.server.stop(), this.browser.close()]);
   }
 
   async render(
-    type: 'html' | 'css' | 'js' | 'ts',
+    lang: 'html' | 'css' | 'js' | 'ts',
     code: string
   ): Promise<{html: string}> {
-    const body = `
-      <!doctype html>
-      <script type="module">
-        import "/node_modules/code-sample-editor/lib/code-sample.js";
-      </script>
+    if (this.stopped) {
+      throw new Error('Renderer has already stopped');
+    }
 
-      <code-sample>
-        <script type="sample/${type}" filename="file.${type}">
-${outdent`${code}`}
-        </script>
-      </code-sample-project>
-    `;
-    const url = this.server.serveOnce(body);
-    const context = await this.browser.newContext();
-    const page = await context.newPage();
-    await page.goto(url);
-    // Note playwright pierces shadow roots automatically.
-    const cm = await page.waitForSelector('.CodeMirror-code');
-    const html = `<div class="CodeMirror cm-s-default">${await cm.innerHTML()}</div>`;
-    return {html};
+    // We're re-using a single element on a single page across all renders, to
+    // maximize render speed, because there is a very signifigant startup cost.
+    // So because this is an async interface, we need to serialize render
+    // requests to ensure they don't interfere. In the future we could introduce
+    // a pool of browsers to take advantage of concurrent rendering.
+    await this.getPageLock();
+
+    try {
+      type WindowWithEditor = typeof window & {
+        editor: {
+          shadowRoot: ShadowRoot;
+          updateComplete: Promise<void>;
+          type: string;
+          value: string;
+        };
+      };
+      const codemirrorHtml = await this.page.evaluate(
+        async ([lang, code]) => {
+          const editor = (window as WindowWithEditor).editor;
+          editor.type = lang;
+          editor.value = code;
+          await editor.updateComplete;
+          const cm = editor.shadowRoot.querySelector('.CodeMirror-code');
+          if (cm === null) {
+            throw new Error(
+              '<codemirror-editor> did not render a ".CodeMirror-code" element'
+            );
+          }
+          return cm.innerHTML;
+        },
+        [lang, code]
+      );
+      const html = `<div class="CodeMirror cm-s-default">${codemirrorHtml}</div>`;
+      return {html};
+    } finally {
+      this.releasePageLock();
+    }
+  }
+
+  private numLockWaiters = 0;
+  private lockWaiterResolves: Array<() => void> = [];
+
+  private getPageLock(): void | Promise<void> {
+    this.numLockWaiters++;
+    if (this.numLockWaiters > 1) {
+      return new Promise((resolve) => {
+        this.lockWaiterResolves.push(resolve);
+      });
+    }
+  }
+
+  private releasePageLock(): void {
+    this.numLockWaiters--;
+    if (this.numLockWaiters > 0) {
+      const resolve = this.lockWaiterResolves.shift()!;
+      resolve();
+    }
   }
 }
 
@@ -81,6 +148,9 @@ class RendererServer {
   static async start(): Promise<RendererServer> {
     const bodyMap = new Map<string, string>();
     return new Promise(async (resolve) => {
+      // Stop Web Dev Server from taking over the whole terminal.
+      const realWrite = process.stdout.write;
+      process.stdout.write = (() => {}) as any;
       const wds = await startDevServer({
         config: {
           rootDir: pathlib.resolve(__dirname, '..'),
@@ -106,6 +176,7 @@ class RendererServer {
           ],
         },
       });
+      process.stdout.write = realWrite;
       resolve(new RendererServer(wds, bodyMap));
     });
   }
