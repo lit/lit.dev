@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
+    "build": "lerna run build --stream",
     "start": "cd packages/lit-dev-server && npm start",
     "format": "prettier \"**/*.{ts,js,json,html,css,md}\" --write",
     "nuke": "rm -rf node_modules package-lock.json packages/*/node_modules packages/*/package-lock.json && npm install && npm run bootstrap"
