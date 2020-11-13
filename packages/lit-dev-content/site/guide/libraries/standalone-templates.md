@@ -15,7 +15,7 @@ A lit-html template expression does not cause any DOM to be created or updated. 
 ```js
 import {html, render} from 'lit-html';
 
-const name = Amy;
+const name = 'world';
 const sayHi = html`<h1>Hello ${name}</h1>`;
 render(sayHi, document.body);
 ```
@@ -40,7 +40,7 @@ render(myTemplate('lit-html'), document.body);
 
 When you call the template function, lit-html captures the current expression values. The template function doesn't create any DOM nodes, so it's fast and cheap.
 
-The template function returns a `TemplateResult` that's a function of the input data. This is one of the main principles behind using lit-html: **creating UI as a _function_ of state**. 
+The template function returns a `TemplateResult` that contains the template and the input data. This is one of the main principles behind using lit-html: **creating UI as a _function_ of state**. 
 
 When you call `render`, **lit-html only updates the parts of the template that have changed since the last render.** This makes lit-html updates very fast.
 

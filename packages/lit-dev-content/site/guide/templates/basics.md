@@ -201,7 +201,7 @@ const clickHandler = {
 };
 ```
 
-## Introducing directives
+## Directives
 
 Lit provides some special functions, called _directives_, that you can use in binding expressions. Directives can customize the way a binding expression renders.
 
