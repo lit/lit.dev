@@ -14,7 +14,7 @@ Lit templates are written using JavaScript template literals tagged with the `ht
 html`<h1>Hello World</h1>`
 ```
 
-You can add dynamic content to your templates with **Binding expressions**. Binding expressions are denoted with the standard JavaScript syntax for template literals:
+You can add dynamic content to your templates with **binding expressions**. Binding expressions are denoted with the standard JavaScript syntax for template literals:
 
 ```js
 html`<h1>Hello ${name}</h1>`
@@ -33,7 +33,7 @@ class MyElement extends LitElement {
   name = 'World;
 
   render() {
-    return html`<div>Hello, ${this.name}`;
+    return html`<div>Hello, ${this.name}</div>`;
   }
 }
 ```
@@ -84,7 +84,10 @@ There are several types of bindings:
     html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
     ```
 
-There's one additional binding type. An _element_ binding is a special  binding that binds to the element itself, instead of a single property or attribute. You can use an element binding to set multiple properties dynamically, or to retrieve a reference to the element. See [Element bindings](syntax#element-bindings) for more information.
+  * Element binding:
+    ```js
+    html`<input ${ref(buttonRef)}`>
+    ```
 
 ## Bind to text content
 
@@ -157,7 +160,7 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 
 ## Bind to properties
 
-You can also bind to a node's JavaScript properties using the `.` prefix and the property name:
+You can also bind to a JavaScript property of an element using the `.` prefix and the property name:
 
 ```js
 html`<input .value=${this.itemCount}></input>`;
@@ -169,7 +172,7 @@ You can use property bindings to pass complex data down the tree to subcomponent
 html`<my-list .listItems=${this.items}></my-list>`;
 ```
 
-Note that the property name in this example—`listItems`—is mixed case. Although HTML attributes are case-insensitive, Lit preserves the case when it processes the template.
+Note that the property name in this example—`listItems`—is mixed case. Although HTML attributes are case-insensitive, Lit preserves the case for property bindings when it processes the template.
 
 ## Add event listeners
 
@@ -203,7 +206,7 @@ const clickHandler = {
 
 ## Introducing directives
 
-Lit provides some special functions, called _directives_, that you can use in binding expressions. Directives can customize the way a binding expression renders.
+Lit allows special functions, called _directives_, to customize the way a binding expression is processed and rendered. Lit provides some built-in directives, or you can write your own.
 
 For example, you can use the `until` directive to render placeholder content while you load data asynchronously. 
 
@@ -217,4 +220,3 @@ html`${until(content, html`<span>Loading...</span>`)}`
 ```
 
 For a list of directives provided with Lit, see [Built-in directives](directives). 
-

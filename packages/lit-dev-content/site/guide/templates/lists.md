@@ -14,7 +14,7 @@ Lit also provides some special functions, called _directives_, for use in templa
 
 ##  Repeating templates with Array.map
 
-To render lists, you can use `Array.map` to transform a list of data into a list of templates:
+To render lists, you can use `map` to transform a list of data into a list of templates:
 
 ```js
 html`
@@ -47,7 +47,7 @@ html`
 
 ## Repeating templates with the repeat directive
 
-In most cases, using loops or `Array.map` is an efficient way to build repeating templates. However, if you want to reorder a large list, or mutate it by adding and removing individual entries, this approach can involve recreating a large number of DOM nodes. 
+In most cases, using loops or `map` is an efficient way to build repeating templates. However, if you want to reorder a large list, or mutate it by adding and removing individual entries, this approach can involve recreating a large number of DOM nodes. 
 
 The `repeat` directive can help here. Directives are special functions that provide extra control over rendering. Lit comes with some built-in directives like `repeat`. 
 
@@ -57,7 +57,7 @@ The repeat directive performs efficient updates of lists based on user-supplied 
 
 Where:
 
-*   `items` is an Array or iterable.
+*   `items` is an array or iterable.
 *   `keyFunction` is a function that takes a single item as an argument and returns a guaranteed unique key for that item.
 *   `itemTemplate` is a template function that takes the item and its current index as arguments, and returns a `TemplateResult`.
 
@@ -80,10 +80,10 @@ If you re-sort the `employees` array, the `repeat` directive reorders the existi
 
 To compare this to Lit's default handling for lists, consider reversing a large list of names:
 
-*   For a list created using `Array.map`, Lit maintains the DOM nodes for the list items, but reassigns the values. 
+*   For a list created using `map`, Lit maintains the DOM nodes for the list items, but reassigns the values. 
 *   For a list created using `repeat`, the `repeat` directive reorders the _existing_ DOM nodes, so the nodes representing the first list item move to the last position.
 
-Which repeat is more efficient depends on your use case: if updating the DOM nodes is more expensive than moving them, use the repeat directive. Otherwise, use `Array.map` or looping statements.
+Which repeat is more efficient depends on your use case: if updating the DOM nodes is more expensive than moving them, use the repeat directive. Otherwise, use `map` or looping statements.
 
 ## When to use Array.map or repeat
 
