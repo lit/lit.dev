@@ -12,7 +12,7 @@ You can use standard JavaScript constructs to create repeating templates.
 
 Lit also provides some special functions, called _directives_, for use in templates. You can use the  `repeat` directive to build certain kinds of dynamic lists more efficiently.
 
-##  Repeating templates with Array.map
+##  Repeating templates with map
 
 To render lists, you can use `Array.map` to transform a list of data into a list of templates:
 
@@ -45,11 +45,11 @@ html`
 `;
 ```
 
-## Repeating templates with the repeat directive
+## The repeat directive
 
-In most cases, using loops or `Array.map` is an efficient way to build repeating templates. However, if you want to reorder a large list, or mutate it by adding and removing individual entries, this approach can involve recreating a large number of DOM nodes. 
+In most cases, using loops or `Array.map` is an efficient way to build repeating templates. However, if you want to reorder a large list, or mutate it by adding and removing individual entries, this approach can involve updating a large number of DOM nodes. 
 
-The `repeat` directive can help here. Directives are special functions that provide extra control over rendering. Lit comes with some built-in directives like `repeat`. 
+The `repeat` directive can help here. 
 
 The repeat directive performs efficient updates of lists based on user-supplied keys:
 

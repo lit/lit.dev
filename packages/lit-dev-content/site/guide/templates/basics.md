@@ -42,13 +42,16 @@ As shown in the example, you can use `this` inside a binding expression to acces
 
 <div class="alert alert-info">
 
-**Standalone templates**. You can also use lit-html for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/guides/libraries/standalone-templates).
+**Efficient updates.** The template syntax might look like you're just doing string interpolation. But with tagged template literals, the browser passes the tag function an array of strings (the static portions of the template) and an array of expressions (the dynamic portions). Lit uses this to build an efficient representation of your template, so it can re-render only the parts of template that have changed.
 
 </div>
 
+You can also use lit-html for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/guides/libraries/standalone-templates).
+
+
 ## Binding expressions
 
-A binding inserts dynamic content into the template. The binding can contain any JavaScript expression, which is evaluated whenever the template renders. In a Lit component, this means whenever the `render` method gets called.
+A binding is a placeholder for dynamic content in the template. The binding can contain any JavaScript expression, which is evaluated whenever the template renders. In a Lit component, this means whenever the `render` method gets called.
 
 There are several types of bindings:
 
@@ -57,8 +60,6 @@ There are several types of bindings:
     ```js
     html`<h1>Hello ${name}</h1>`
     ```
-
-    Text bindings can occur anywhere in the text content of an element.
 
   * Attribute:
 
@@ -124,13 +125,10 @@ This means you can use plain JavaScript to create conditional templates, repeati
 
 ```js
 html`
-  <div>
-    ${if (this.user.name) {
-      return html`Hello, ${this.user.name}`;
-    } else {
-      return html`<button>Sign in</button>`;
-    }}
-  </div>
+  ${this.user.isloggedIn
+      ? html`Welcome ${this.user.name}`
+      : html`Please log in`
+  }
 `;
 ```
 
@@ -148,6 +146,13 @@ html`<div class=${this.textClass}>Stylish text.</div>`;
 ```
 
 Since attribute values are always strings, the expression should return a value that can be converted into a string.
+
+If the binding makes up the entire attribute value, you can leave off the quotes. If the binding makes up only part of the attribute value, you need to quote the entire value:
+
+```js
+//
+html`<img src="/images/${this.image}">`;
+```
 
 Use the `?` prefix for a boolean attribute binding. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
 

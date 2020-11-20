@@ -133,11 +133,7 @@ An _element binding_ is a special binding that binds to an element instance, ins
 html`<div ${myDirective}></div>`
 ```
 
-Element bindings are special in a couple of ways:
-
-*   They only work with directives. You can't use any other kind of value with an element binding.
-
-*   A given element can only have a single element binding.
+Element bindings currently only work with directives. You can't use any other kind of value with an element binding.
 
 There are a few of built-in directives that can be used in element bindings. One example is the `ref` directive, which provides a reference to the rendered element. 
 
