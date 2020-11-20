@@ -52,7 +52,7 @@ ${this.user.isAdmin
   }
 ```
 
-In some cases, you want to render nothing at all. In these cases, you can use the `nothing` value provided by lit-html.
+In some cases, you want to clear the DOM instead of rendering an empty text node. In these cases, you can use the `nothing` value provided by lit-html.
 
 <!-- TODO check if this is the correct import for nothing? -->
 ```js

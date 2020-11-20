@@ -107,7 +107,7 @@ There are a few types of bindings:
   * Element:
 
     ```js
-    html`<div ${elementBinding}></div>
+    html`<div ${elementBinding}></div>`
     ```
 
 ### Event Listeners
@@ -135,7 +135,7 @@ html`<div ${myDirective}></div>`
 
 Element bindings currently only work with directives. You can't use any other kind of value with an element binding.
 
-There are a few of built-in directives that can be used in element bindings. One example is the `ref` directive, which provides a reference to the rendered element. 
+There are a few built-in directives that can be used in element bindings. One example is the `ref` directive, which provides a reference to the rendered element. 
 
 ```js
 import {LitElement, html} from 'lit-element';
@@ -184,7 +184,7 @@ Text content bindings accept a large range of value types:
 *   Primitive values.
 *   TemplateResult objects.
 *   DOM nodes.
-*   Arrays or iterables.
+*   Arrays or iterables of these types.
 
 #### Primitive Values: String, Number, Boolean, null, undefined
 
@@ -232,4 +232,3 @@ const items = {
 };
 const list = () => html`items = ${Object.entries(items)}`;
 ```
-
