@@ -22,7 +22,11 @@ html`<h1>Hello ${name}</h1>`
 
 Lit templates must be well-formed HTML, and bindings can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated. 
 
-**No warnings.** Most cases of malformed templates are not detectable by Lit, so you won't see any warnings—just templates that don't behave as you expect—so take extra care to structure templates properly. 
+<div class="alert alert-info">
+
+**Finding malformed templates.** Most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. Fortunately, there are <a href="TODO LINK">linting tools</a> and <a href="TODO LINK">IDE plugins</a> that you can use to find issues in your templates during development. 
+
+</div>
 
 Follow these rules for well-formed templates:
 

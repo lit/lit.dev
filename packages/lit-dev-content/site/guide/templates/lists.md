@@ -10,7 +10,7 @@ eleventyNavigation:
 
 You can use standard JavaScript constructs to create repeating templates. 
 
-Lit also provides some special functions, called _directives_, for use in templates. You can use the  `repeat` directive to build certain kinds of dynamic lists more efficiently.
+Lit also provides a `repeat` directive to build certain kinds of dynamic lists more efficiently.
 
 ##  Repeating templates with map
 
@@ -83,8 +83,27 @@ To compare this to Lit's default handling for lists, consider reversing a large 
 *   For a list created using `map`, Lit maintains the DOM nodes for the list items, but reassigns the values. 
 *   For a list created using `repeat`, the `repeat` directive reorders the _existing_ DOM nodes, so the nodes representing the first list item move to the last position.
 
-Which repeat is more efficient depends on your use case: if updating the DOM nodes is more expensive than moving them, use the repeat directive. Otherwise, use `map` or looping statements.
 
-## When to use map or repeat
+### When to use map or repeat
 
-<!-- TODO -->
+Which repeat is more efficient depends on your use case: 
+
+*   If updating the DOM nodes is more expensive than moving them, use the `repeat` directive.
+
+*   If the DOM nodes have state that _isn't_ controlled by a template expression, use the `repeat` directive. 
+
+    For example, consider this list:
+
+    ```js
+    html`${this.users.map((user) =>
+      html`
+      <div><input type="checkbox"> ${user.name}</div>    
+    }`
+    ```
+
+    The checkbox has a checked or unchecked state, but it isn't controlled by a template expression. 
+
+    If  you reorder the list after the user has checked one or more checkboxes, Lit would update the names associated with the checkboxes, but not the state of the checkboxes.
+
+ If neither of these situations apply, use `map` or looping statements.
+

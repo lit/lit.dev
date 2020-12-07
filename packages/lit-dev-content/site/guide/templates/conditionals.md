@@ -8,11 +8,13 @@ eleventyNavigation:
 
 <!-- TODO: check all import paths. Runnable samples? -->
 
-Lit templates have no built-in control-flow constructs. Instead you use normal JavaScript expressions and statements.
+Since Lit leverages normal Javascript expressions, you don't need to use custom control-flow constructs. Instead you use standard JavaScript, like like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements. 
 
-## Conditionals with ternary operators
+JavaScript conditionals let you combine nested template expressions. You can even store template results in variables to use elsewhere.
 
-Ternary expressions are a great way to add inline conditionals:
+## Conditionals with the conditional (ternary) operator 
+
+Ternary expressions with the conditional operator, `?`, are a great way to add inline conditionals:
 
 ```js
 html`
@@ -43,6 +45,7 @@ html`
 ```
 
 ## Rendering nothing
+
 Sometimes, you may want to render nothing at all. The values `undefined`, `null` and the empty string (`''`) in a text binding all render an empty text node. In most cases, that's exactly what you want:
 
 ```js
@@ -66,7 +69,7 @@ ${this.user.isAdmin
 
 In this case, when `user.isAdmin` is false, no text node is rendered.
 
-#### nothing and the slot fallback content
+### nothing and the slot fallback content
 
 One specific use case where an empty text node causes issues is when you're using a `<slot>` element inside a shadow root. 
 
