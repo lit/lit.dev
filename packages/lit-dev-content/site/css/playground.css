@@ -4,6 +4,6 @@ html, body {
   flex-direction: column;
 }
 
-code-sample-editor {
+code-sample {
   flex: 1;
 }

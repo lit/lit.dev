@@ -48,8 +48,8 @@ class MyElement extends LitElement {
 
 Example
 
-<code-sample-editor project-src="/samples/docs/templates/define/project.json">
-</code-sample-editor>
+<code-sample project-src="/samples/docs/templates/define/project.json">
+</code-sample>
 
 lit-html templates can include _bindings_ that can contain any JavaScript expression. You can use bindings to set text content, attributes, properties, and event listeners.
 
@@ -98,32 +98,34 @@ We can improve the template by declaring the message as a property, and binding 
 _update-properties.js_
 
 ```js
-static get properties() {
-  return {
-    message: {type: String}
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      message: {type: String}
+    }
   }
-}
 
-constructor() {
-  super();
-  this.message = 'Loading';
-  this.addEventListener('stuff-loaded', (e) => { this.message = e.detail } );
-  this.loadStuff();
-}
-render() {
-  return html`
-    <p>${this.message}</p>
-  `;
+  constructor() {
+    super();
+    this.message = 'Loading';
+    this.addEventListener('stuff-loaded', (e) => { this.message = e.detail } );
+    this.loadStuff();
+  }
+  render() {
+    return html`
+      <p>${this.message}</p>
+    `;
+  }
 }
 ```
 
-<code-sample-editor project-src="/samples/docs/templates/design/project.json"></code-sample-editor>
+<code-sample project-src="/samples/docs/templates/design/project.json"></code-sample>
 
 The following sections discuss different types of property bindings. See [Properties](properties) for information on declaring properties.
 
 ## Compose a template from other templates
 
-You can compose Lit templates from other  templates. In the following example, we compose a template for an element called `<my-page>` from smaller templates for the page's header, footer, and main content:
+You can compose Lit templates from other templates. In the following example, we compose a template for an element called `<my-page>` from smaller templates for the page's header, footer, and main content:
 
 ```js
   function headerTemplate(title) {
@@ -148,7 +150,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample-editor project-src="/samples/docs/templates/compose/project.json"></code-sample-editor>
+<code-sample project-src="/samples/docs/templates/compose/project.json"></code-sample>
 
 You can also compose templates by importing other elements and using them in your template:
 
@@ -168,7 +170,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample-editor project-src="/samples/docs/templates/composeimports/project.json"></code-sample-editor>
+<code-sample project-src="/samples/docs/templates/composeimports/project.json"></code-sample>
 
 
 ## Resources

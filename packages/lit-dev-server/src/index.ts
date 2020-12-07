@@ -1,4 +1,4 @@
-import { createRequire } from 'module';
+import {createRequire} from 'module';
 import * as path from 'path';
 import * as http from 'http';
 import serve from 'serve-handler';

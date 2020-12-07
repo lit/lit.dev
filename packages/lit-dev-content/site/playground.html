@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<code-sample-editor>
+<code-sample>
   <script type="sample/html" filename="index.html">
 <!doctype html>
 <html>
@@ -18,7 +18,7 @@
     <div>Element is not upgraded</div>
   </my-element>
 </body>
-</html>      
+</html>
   </script>
   <script type="sample/ts" filename="my-element.ts">
 import { LitElement, html, property, customElement } from 'lit-element';
@@ -36,7 +36,7 @@ render() {
     <my-second-element></my-second-element>
   `;
 }
-}      
+}
   </script>
   <script type="sample/ts" filename="my-second-element.ts">
 import { LitElement, html, customElement } from 'lit-element';
@@ -50,5 +50,5 @@ render() {
 }
 }
   </script>
-</code-sample-editor>
+</code-sample>
 {% endblock %}

@@ -9,3 +9,6 @@ packages/*/index.d.ts
 packages/*/index.d.ts.map
 
 packages/lit-dev-content/_site
+packages/lit-dev-content/playground-plugin
+
+*.tsbuildinfo
