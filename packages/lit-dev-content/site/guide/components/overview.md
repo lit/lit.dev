@@ -85,7 +85,7 @@ Specificially, `LitElement` inherits from `UpdatingElement`, which implements re
 
 ## Rendering, templates and styles
 
-A Lit component's `render` method defines a *template* for the component. The template can contain *binding expressions* that are updated when the component renders:
+A Lit component's `render` method defines a *template* for the component. The template can contain *expressions* that are updated when the component renders:
 
 ```js
 render() {
