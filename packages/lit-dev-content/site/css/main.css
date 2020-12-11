@@ -52,8 +52,8 @@ h1 {
 }
 
 .main-nav .nav-title {
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 34px;
+  font-weight: 400;
   /* font-style: italic; */
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
@@ -106,20 +106,27 @@ h1 {
   transition: transform 0.2s;
 }
 
+/** Main content */
+
+main {
+  padding: 24px;
+}
+
 /** Hero */
 
 .hero {
   margin: 100px auto;
   max-width: 800px;
+  text-align: center;
 }
 
 .hero-title {
   position: relative;
   margin-bottom: -14px;
-  padding-right: 5%;
   font-size: 60px;
   font-weight: 400;
   line-height: 1.3em;
+  color: #1e88e5;
 }
 
 .hero-title::after {
@@ -132,31 +139,27 @@ h1 {
 }
 
 .hero-caption {
-  max-width: 640px;
-  padding-right: 10%;
-  line-height: 38px;
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 300;
+  color: #808080;
 }
 
 /** Main Example */
 
-.wrapper.example pre {
-  max-width: 800px;
+.wrapper.example {
+  max-width: 660px;
   margin: 48px auto;
 }
 
-/** Use Cases */
-
-.wrapper.use-cases {
-  /* max-width: 800px; */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 24px;
-  /* color: white; */
-  padding: 48px 24px;
+.example .CodeMirror {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 0 20px;
+  overflow-y: auto !important;
+  margin-bottom: 20px;
 }
+
+/** Use Cases */
 
 .use-case-card {
   display: flex;
@@ -164,6 +167,26 @@ h1 {
   background: linear-gradient(135deg, #a5d3ff 0%,#69b6ff 100%);
   border-radius: 8px;
   padding: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 900px) {
+  #use-cases {
+    margin: 0 -24px;
+  }
+  .wrapper.use-cases {
+    /* max-width: 800px; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 24px;
+    /* color: white; */
+    padding: 48px 24px;
+    margin: 0 auto;
+  }
+  .use-case-card {
+    margin: 0;
+  }
 }
 
 .use-case-card h3 {
@@ -172,6 +195,8 @@ h1 {
   font-size: 1.25em;
   letter-spacing: .5px;
   margin-top: 0;
+  color: #002e5a;
+  font-weight: 400;
 }
 
 .use-case-card > p {
@@ -201,29 +226,18 @@ h1 {
 section#features {
   background: #1e88e5;
   color: white;
-  padding: 48px 12px;
-}
-
-.wrapper.features {
-  background: #1e88e5;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 12px;
-  color: white;
-  padding: 48px 12px;
+  column-width: 400px;
+  column-gap: 48px;
+  padding: 24px;
+  margin: 0 -24px;
 }
 
 
 .feature-card {
   display: flex;
   line-height: 1.4;
-}
-
-.feature-card.main {
-  display: flex;
-  grid-column: 3;
-  grid-row: 1 / 3;
+  padding-bottom: 24px;
+  break-inside: avoid;
 }
 
 .feature-card-icon {
@@ -233,7 +247,7 @@ section#features {
   --mdc-icon-font: 'Material Icons Outlined';
   border-radius: 50%;
   padding: 8px;
-  margin-right: 12px;
+  margin-right: 24px;
 }
 
 .feature-card-text h3 {
@@ -245,25 +259,30 @@ section#features {
 
 /** Used By */
 
-#used-by {
-  padding: 48px 0;
-  margin-bottom: 100px;
-}
-
 .used-by-logos {
-  display: flex;
-  overflow-y: hidden;
+  text-align: center;
 }
 
 .used-by {
+  display: inline-block;
   filter: grayscale(100%);
   opacity: 70%;
   margin: 24px;
+  zoom: 50%;
+  vertical-align: middle;
 }
 
 .used-by:hover {
   filter: none;
   opacity: unset;
+}
+
+#used-by h2 {
+  text-align: center;
+  font-weight: 400;
+  margin-top: 48px;
+  color: #4c4c4c;
+  font-size: 28px;
 }
 
 /** Guide */
@@ -384,6 +403,7 @@ main > nav.toc > div.toc > ol a:hover {
 footer {
   background: #f5f5f5;
   margin-top: 32px;
+  text-align: center;
 }
 
 footer .wrapper {
@@ -402,6 +422,7 @@ footer .group {
 }
 
 footer .attribution {
+  text-align: center;
   display: inline-block;
   vertical-align: top;
   font-size: 14px;
@@ -424,7 +445,23 @@ footer .social-links img {
   height: 24px;
 }
 
+.wrapper.example {
+  overflow-x: auto;
+}
+.wrapper.example .CodeMirror {
+   overflow: unset;
+}
+
 .CodeMirror {
   /** The default CodeMirror stylesheet fixes height to 300px. */
   height: unset !important;
+}
+
+.CodeMirror {
+   font-family: "Roboto Mono", monospace !important;
+   font-size: 13px !important;
+}
+
+.CodeMirror-line {
+  white-space: pre-wrap !important;
 }
