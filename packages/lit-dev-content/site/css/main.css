@@ -34,7 +34,7 @@ h1 {
   box-shadow: 0 0 2px rgba(0,0,0,.2);
   display: flex;
   padding-left: 36px;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
   font-weight: 500;
@@ -104,6 +104,32 @@ h1 {
   transform: translate3d(0, 0, 0);
   transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+}
+
+#nav-hamburger {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  #nav-items.closed {
+    display: none;
+  }
+  #nav-hamburger {
+    display: inline;
+  }
+  #nav-items {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: inherit;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .main-nav .nav-item {
+    display: block;
+    text-align: right;
+    padding: 14px 32px;
+  }
 }
 
 /** Main content */
