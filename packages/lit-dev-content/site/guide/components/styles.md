@@ -8,14 +8,14 @@ eleventyNavigation:
 
 This page describes how to add styles to your component.
 
-Your component's template is rendered to its shadow DOM tree. The styles you add to your component are automatically _scoped_ to the shadow tree, so they don't leak out and affect other elements. 
+Your component's template is rendered to its shadow DOM tree. The styles you add to your component are automatically _scoped_ to the shadow tree, so they don't leak out and affect other elements.
 
 
 ## Add styles to your component {#add-styles}
 
-For optimal performance, define scoped styles in a static `styles` property. 
+For optimal performance, define scoped styles in a static `styles` property.
 
-Define styles in a tagged template literal, using the `css` tag function:  
+Define styles in a tagged template literal, using the `css` tag function:
 
 ```js
 import { LitElement, css, html } from 'lit-element';
@@ -26,9 +26,9 @@ class MyElement extends LitElement {
       div { color: red; }
     `;
   }
-  render() { 
+  render() {
     return html`
-      <div>I'm styled!</div> 
+      <div>I'm styled!</div>
     `;
   }
 }
@@ -37,13 +37,13 @@ class MyElement extends LitElement {
 The styles you add to your component are _scoped_ using shadow DOM. For a quick overview of shadow DOM styling, see [Shadow DOM styling overview](#shadow-dom).
 
 The value of the static `styles` property can be:
-    
+
 *   A single tagged template literal.
-    
+
     ```js
     static get styles() {
       return css`...`;
-    } 
+    }
     ```
 
 *   An array of tagged template literals.
@@ -54,13 +54,13 @@ The value of the static `styles` property can be:
     }
     ```
 
-The static `styles` property is _usually_ the best way to add styles to your component, but 
+The static `styles` property is _usually_ the best way to add styles to your component, but
 there are some use cases you can't handle this way—for example, linking to an external style sheet.
 For alternate ways to add styles, see [Define scoped styles in the template](#styles-in-the-template).
 
 ### Expressions in static styles {#expressions}
 
-Static styles apply to all instances of a component. Any expressions in CSS are evaluated **once**, then reused for all instances. 
+Static styles apply to all instances of a component. Any expressions in CSS are evaluated **once**, then reused for all instances.
 
 To allow for theming or per-instance style customization, use CSS variables and custom properties to create [configurable styles](#configurable).
 
@@ -202,13 +202,13 @@ To create default styles for the host element, use the `:host` CSS pseudo-class 
 static get styles() {
   return css`
     /* Selects the host element */
-    :host { 
-      display: block; 
+    :host {
+      display: block;
     }
 
     /* Selects the host element if it is hidden */
-    :host([hidden]) { 
-      display: none; 
+    :host([hidden]) {
+      display: none;
     }
   `;
 }
@@ -216,7 +216,7 @@ static get styles() {
 
 {% include project.html folder="style/host" openFile="my-element.js" %}
 
-Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider 
+Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider
 the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
 
 ```css
@@ -229,7 +229,7 @@ my-element {
 
 Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](templates#slots).
 
-The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed. For example: 
+The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed. For example:
 
 ```js
 class MyElement extends LitElement {
@@ -265,7 +265,7 @@ Use the `::slotted()` CSS pseudo-element to select children that are included in
 
 {% include project.html folder="style/slottedselector" openFile="my-element.js" %}
 
-Note that **only direct slotted children** can be styled with `::slotted()`. 
+Note that **only direct slotted children** can be styled with `::slotted()`.
 
 ```html
 <my-element>
@@ -277,7 +277,7 @@ Note that **only direct slotted children** can be styled with `::slotted()`.
 </my-element>
 ```
 
-Also, children can 
+Also, children can
 be styled from outside the shadow tree, so you should regard your `::slotted()` styles as
 default styles that can be overridden.
 
@@ -291,7 +291,7 @@ my-element div {
 {:.alert .alert-info}
 <div>
 
-**Watch out for limitations in the Shady CSS polyfill around slotted content!** See the [Shady CSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for details on how to use the `::slotted()` syntax in a polyfill-friendly way. 
+**Watch out for limitations in the Shady CSS polyfill around slotted content!** See the [Shady CSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for details on how to use the `::slotted()` syntax in a polyfill-friendly way.
 
 </div>
 
@@ -304,19 +304,19 @@ static get styles() {
   return css`
     :host { color: var(--themeColor); }
   `;
-} 
+}
 ```
 
 ```html
 <style>
-  html { 
+  html {
     --themeColor: #123456;
   }
 </style>
 <my-element></my-element>
 ```
 
-See the section on [CSS custom properties](#customprops) for more information. 
+See the section on [CSS custom properties](#customprops) for more information.
 
 
 
@@ -359,7 +359,7 @@ render() {
       :host {
         /* Warning: this approach has limitations & performance issues! */
         color: ${myColor}
-      } 
+      }
     </style>
     <div>template content</div>
   `;
@@ -368,7 +368,7 @@ render() {
 
 Expressions inside a `<style>` element won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. See the [ShadyCSS readme](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) for more information.
 
-Additionally, evaluating an expression inside a `<style>` element is inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work. 
+Additionally, evaluating an expression inside a `<style>` element is inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work.
 
 If you need to evaluate expressions inside a `<style>` element, use the following strategy to avoid creating performance problems:
 
@@ -406,7 +406,7 @@ There are some important caveats though:
 
 One way to make styles dynamic is to add bindings to the `class` or `style` attributes in your template.
 
-The lit-html library offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates. 
+The lit-html library offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
 
 For more information on these and other lit-html directives, see the documentation on [lit-html built-in directives](https://lit-html.polymer-project.org/guide/template-reference#built-in-directives).
 
@@ -459,7 +459,7 @@ To use `styleMap` and/or `classMap`:
   border: '1px solid black'
 })}>A button</button>
 
-<!-- Equivalent: 
+<!-- Equivalent:
   <button style="
     background-color:blue;
     border: 1px solid black;
@@ -469,7 +469,7 @@ To use `styleMap` and/or `classMap`:
 
 {% include project.html folder="style/stylemap" openFile="my-button.js" %}
 
-To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`). 
+To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`).
 
 To refer to custom CSS properties such as `--custom-color`, place the whole property name in quotes (`'--custom-color'`).
 
@@ -485,7 +485,7 @@ To refer to custom CSS properties such as `--custom-color`, place the whole prop
 
 Inline style syntax:
 
-```html 
+```html
 <div style="
   background-color:blue;
   font-family:Roboto;
@@ -507,7 +507,7 @@ div {
 
 Equivalent `styleMap` syntax:
 
-```js 
+```js
 html`
   <div style=${styleMap({
     'background-color': 'blue',
@@ -579,7 +579,7 @@ You can use CSS inheritance to set styles on an ancestor element that are inheri
 
 ```html
 <style>
-html { 
+html {
   font-family: Roboto;
 }
 </style>
@@ -588,7 +588,7 @@ html {
 </div>
 ```
 
-Similarly, host elements pass down inheritable CSS properties to their shadow trees. 
+Similarly, host elements pass down inheritable CSS properties to their shadow trees.
 
 You can use the host element's type selector to style it:
 
@@ -601,8 +601,8 @@ You can use the host element's type selector to style it:
 
 ```js
 class MyElement extends LitElement {
-  render() { 
-    return html`<p>Uses Roboto</p>`; 
+  render() {
+    return html`<p>Uses Roboto</p>`;
   }
 }
 ```
@@ -644,7 +644,7 @@ An element type selector has higher specificity than the `:host` pseudo-class se
 
 ```js
 class MyElement extends LitElement {
-  static get styles() { 
+  static get styles() {
     return css`:host { font-family: Roboto; }`
   }
   render() {
@@ -659,16 +659,16 @@ class MyElement extends LitElement {
 
 ### CSS custom properties {#customprops}
 
-All CSS custom properties (<code>--<var>custom-property-name</var></code>) inherit. You can use this to make your component's styles configurable from outside. 
+All CSS custom properties (<code>--<var>custom-property-name</var></code>) inherit. You can use this to make your component's styles configurable from outside.
 
 The following component sets its background color to a CSS variable. The CSS variable uses the value of `--my-background` if it's available, and otherwise defaults to `yellow`:
 
 ```js
 class MyElement extends LitElement {
-  static get styles() { 
+  static get styles() {
     return css`
-      :host { 
-        background-color: var(--my-background, yellow); 
+      :host {
+        background-color: var(--my-background, yellow);
       }
     `;
   }
@@ -727,5 +727,3 @@ _my-element.js_
 ```js
 {% include projects/style/theming/my-element.js %}
 ```
-
-{% include project.html folder="style/theming" openFile="theme.css" %}

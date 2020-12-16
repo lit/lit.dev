@@ -12,9 +12,11 @@ const {playgroundPlugin} = require('./playground-plugin/plugin.js');
 const slugify = (s) => slugifyLib(s, {lower: true});
 
 module.exports = function (eleventyConfig) {
+  // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ['h2', 'h3'],
     wrapper: 'div',
+    wrapperClass: '',
   });
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin);

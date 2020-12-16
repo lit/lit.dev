@@ -1,0 +1,21 @@
+{% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
+{%- set navSections = collections.guide | eleventyNavigation -%}
+
+{%- for entry in navSections %}
+  <li>
+    {%- if entry.children | length %}
+      <span class="sectionHead{% if entry.url == page.url %} active{% endif %}">
+        {{ entry.title }}</span>
+      {% set navPages = entry.children %}
+      <ol>
+      {%- for entry in navPages %}
+        <li{% if entry.url == page.url %} class="active"{% endif %}>
+          <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+        </li>
+      {%- endfor %}
+      </ol>
+    {%- else %}
+      <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+    {%- endif %}
+  </li>
+{%- endfor %}
