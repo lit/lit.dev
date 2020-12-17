@@ -8,7 +8,7 @@ eleventyNavigation:
 
 ## Where to add your event listeners
 
-You need to add event listeners in a method that is guaranteed to fire before the event occurs. However, for optimal loading performance, you should add your event listener as late as possible.  
+You need to add event listeners in a method that is guaranteed to fire before the event occurs. However, for optimal loading performance, you should add your event listener as late as possible.
 
 The most common ways to add an event listener:
 
@@ -20,7 +20,7 @@ The most common ways to add an event listener:
 
 ### Add declarative event listeners
 
-You can use lit-html `@event` bindings in your template to add event listeners to your component. 
+You can use `@event` expressions in your template to add event listeners to your component.
 
 **Example**
 
@@ -34,7 +34,7 @@ Declarative event listeners are added when the template is rendered. This is usu
 
 ### Add event listeners in the constructor
 
-If you need to listen for an event that might occur before your component has been added to DOM, you might need to add the event listener in your component's constructor. 
+If you need to listen for an event that might occur before your component has been added to DOM, you might need to add the event listener in your component's constructor.
 
 The component constructor is a good place to add event listeners on the host element itself.
 
@@ -53,7 +53,7 @@ constructor() {
 
 If your component adds an event listener to anything except itself or its children–for example, to `Window`, `Document`, or some element in the main DOM–you should add the listener in `connectedCallback` and remove it in `disconnectedCallback`.
 
-*   Removing the event listener in `disconnectedCallback` ensures that any memory allocated by your component will be cleaned up when your component is destroyed or disconnected from the page. 
+*   Removing the event listener in `disconnectedCallback` ensures that any memory allocated by your component will be cleaned up when your component is destroyed or disconnected from the page.
 
 *   Adding the event listener in `connectedCallback` (instead of, for example, the constructor or `firstUpdated`) ensures that your component will re-create its event listener if it is disconnected and subsequently reconnected to DOM.
 
@@ -85,7 +85,7 @@ async firstUpdated() {
 ```
 
 `firstUpdated` fires after the first time your component has been updated and called its `render` method, but **before the browser has had a chance to paint**. The `Promise`/`setTimeout` line yields to the browser
-    
+
 See [firstUpdated](/guide/lifecycle#firstupdated) in the Lifecycle documentation for more information.
 
 
@@ -144,7 +144,7 @@ import {LitElement, html, eventOptions} from 'lit-element';
 @eventOptions({passive: true})
 private _handleTouchStart() { ... }
 
-render() { 
+render() {
   return html`
     <div @touchstart=${this._handleTouchStart}><div>
   `;
@@ -226,11 +226,11 @@ myElement.addEventListener('my-event', (e) => {console.log(e)});
 
 ## Working with events and shadow DOM
 
-When working with events and shadow DOM, there are a few things you need to know about. 
+When working with events and shadow DOM, there are a few things you need to know about.
 
 ### Event bubbling
 
-Some events bubble up through the DOM tree, so that they are detectable by any element on the page. 
+Some events bubble up through the DOM tree, so that they are detectable by any element on the page.
 
 Whether or not an event bubbles depends on the value of its `bubbles` property. To check if a particular event bubbles:
 
@@ -244,7 +244,7 @@ See the MDN documentation on the [Event interface](https://developer.mozilla.org
 
 ### Event retargeting
 
-Bubbling events fired from within shadow DOM are retargeted so that, to any listener external to your component, they appear to come from your component itself. 
+Bubbling events fired from within shadow DOM are retargeted so that, to any listener external to your component, they appear to come from your component itself.
 
 **Example**
 
@@ -271,15 +271,15 @@ handleMyEvent(event) {
 
 ### Custom events
 
-By default, a bubbling custom event fired inside shadow DOM will stop bubbling when it reaches the shadow root. 
+By default, a bubbling custom event fired inside shadow DOM will stop bubbling when it reaches the shadow root.
 
 To make a custom event pass through shadow DOM boundaries, you must set both the `composed` and `bubbles` flags to `true`:
 
 ```js
 firstUpdated(changedProperties) {
-  let myEvent = new CustomEvent('my-event', { 
+  let myEvent = new CustomEvent('my-event', {
     detail: { message: 'my-event happened.' },
-    bubbles: true, 
+    bubbles: true,
     composed: true });
   this.dispatchEvent(myEvent);
 }

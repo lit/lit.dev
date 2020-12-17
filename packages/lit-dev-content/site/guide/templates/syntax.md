@@ -1,5 +1,5 @@
 ---
-title: Template syntax 
+title: Template syntax
 eleventyNavigation:
   key: Syntax
   parent: Templates
@@ -12,7 +12,7 @@ lit-html templates are written using JavaScript template literals tagged with th
 html`<h1>Hello World</h1>`
 ```
 
-**Bindings** or expressions are denoted with the standard JavaScript syntax for template literals:
+Expressions are denoted with the standard JavaScript syntax for template literals:
 
 ```js
 html`<h1>Hello ${name}</h1>`
@@ -20,11 +20,11 @@ html`<h1>Hello ${name}</h1>`
 
 ## Template Structure
 
-Lit templates must be well-formed HTML, and bindings can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated. 
+Lit templates must be well-formed HTML, and expressions can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated.
 
 <div class="alert alert-info">
 
-**Finding malformed templates.** Most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. Fortunately, there are <a href="TODO LINK">linting tools</a> and <a href="TODO LINK">IDE plugins</a> that you can use to find issues in your templates during development. 
+**Finding malformed templates.** Most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. Fortunately, there are <a href="TODO LINK">linting tools</a> and <a href="TODO LINK">IDE plugins</a> that you can use to find issues in your templates during development.
 
 </div>
 
@@ -32,30 +32,32 @@ Follow these rules for well-formed templates:
 
  *  Templates must be well-formed HTML when all expressions are replaced by empty values.
 
- *  Standard bindings **_can only occur_** in attribute-value and text-content positions.
+ *  Standard expressions **_can only occur_** in attribute-value and child content positions.
 
     ```html
-    <!-- attribute value -->
-    <div label="${label}"></div>
+    <!-- attribute-value position -->
+    <div label=${label}></div>
+    <button ?disabled=${isDisabled}>Click me!</button>
+    <input .value=${currentValue}>
+    <button @click=${this.handleClick()}>
 
-    <!-- text content -->
+    <!-- child content position -->
     <div>${textContent}</div>
     ```
 
-  * The special element binding can occur where an attribute would appear:
+  * The special element expression occurs inside the opening tag after the tag name:
 
     ```html
-    <!-- ERROR --> 
-    <div ${elementBinding}></div>
+    <div ${ref(elementReference)}></div>
     ```
 
- *  Bindings **_cannot_** appear where tag or attribute names would appear.
-    
-    ```html
-    <!-- ERROR --> 
-    <${tagName}></${tagName}> 
+ *  Expressions **_cannot_** appear where tag or attribute names would appear.
 
-    <!-- ERROR --> 
+    ```html
+    <!-- ERROR -->
+    <${tagName}></${tagName}>
+
+    <!-- ERROR -->
     <div ${attrName}=true></div>
     ```
 
@@ -71,19 +73,19 @@ Follow these rules for well-formed templates:
     const template2 = html`${template1} more text. </div>`;
     ```
 
-## Binding Types
+## Expression types
 
-Binding expressions can occur in text content or in attribute value positions. One special type of binding, the element binding, takes the place of an attribute.
+Expressions can occur in text content or in attribute value positions. One special type of expression, the element expression, takes the place of an attribute.
 
-There are a few types of bindings:
+There are a few types of expressions:
 
-  * Text:
+  * Child:
 
     ```js
     html`<h1>Hello ${name}</h1>`
     ```
 
-    Text bindings can occur anywhere in the text content of an element.
+    These expressions can occur anywhere between the opening and closing tags of an element.
 
   * Attribute:
 
@@ -111,7 +113,7 @@ There are a few types of bindings:
   * Element:
 
     ```js
-    html`<div ${elementBinding}></div>`
+    html`<div ${elementExpression}></div>`
     ```
 
 ### Event Listeners
@@ -129,17 +131,17 @@ const listener = {
 html`<button @click=${listener}>Click Me</button>`
 ```
 
-### Element bindings
+### Element expressions
 
-An _element binding_ is a special binding that binds to an element instance, instead of a single property or attribute on an element.
+An _element expression_ is a special expression that accesses an element instance, instead of a single property or attribute on an element.
 
 ```js
 html`<div ${myDirective}></div>`
 ```
 
-Element bindings currently only work with directives. You can't use any other kind of value with an element binding.
+Element expressions currently only work with directives. You can't use any other kind of value with an element expression.
 
-There are a few built-in directives that can be used in element bindings. One example is the `ref` directive, which provides a reference to the rendered element. 
+There are a few built-in directives that can be used in element expressions. One example is the `ref` directive, which provides a reference to the rendered element.
 
 ```js
 import {LitElement, html} from 'lit-element';
@@ -167,23 +169,23 @@ class InputElement extends LitElement {
 
 ## Supported data types
 
-Each binding type supports different types of values:
+Each expression type supports different types of values:
 
- * Text content bindings: Many types, see [Supported data types for text bindings](#supported-data-types-for-text-bindings).
+ * Child expressions: Many types, see [Supported data types for child expressions](#supported-data-types-for-child-expressions).
 
- * Attribute bindings: All values are converted to strings.
+ * Attribute expressions: All values are converted to strings.
 
- * Boolean attribute bindings: All values evaluated for truthiness.
+ * Boolean attribute expressions: All values are evaluated for truthiness.
 
- * Property bindings: Any type of value.
+ * Property expressions: Any type of value.
 
- * Event handler bindings: Event handler functions or objects only.
+ * Event handler expressions: Event handler functions or objects only.
 
- * Element bindings: Directives only.
+ * Element expressions: Directives only.
 
-### Supported data types for text bindings
+### Supported data types for child expressions
 
-Text content bindings accept a large range of value types:
+Child expressions accept many types of values:
 
 *   Primitive values.
 *   TemplateResult objects.

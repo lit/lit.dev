@@ -33,14 +33,14 @@ const myTemplate = (name) => html`<div>Hello ${name}</div>`;
 // Render the template with some data
 render(myTemplate('world'), document.body);
 
-// ... Later on ... 
+// ... Later on ...
 // Render the template with different data
 render(myTemplate('lit-html'), document.body);
 ```
 
 When you call the template function, lit-html captures the current expression values. The template function doesn't create any DOM nodes, so it's fast and cheap.
 
-The template function returns a `TemplateResult` that contains the template and the input data. This is one of the main principles behind using lit-html: **creating UI as a _function_ of state**. 
+The template function returns a `TemplateResult` that contains the template and the input data. This is one of the main principles behind using lit-html: **creating UI as a _function_ of state**.
 
 When you call `render`, **lit-html only updates the parts of the template that have changed since the last render.** This makes lit-html updates very fast.
 
@@ -52,7 +52,7 @@ The `render` method also takes an `options` argument that allows you to specify 
 
 *   `templateFactory`: The `TemplateFactory` to use. This is an advanced option. A `TemplateFactory` creates a template element from a `TemplateResult`, typically caching templates based on their static content. Users won't usually supply their own `TemplateFactory`, but libraries that use lit-html may implement custom template factories to customize template handling.
 
-    The `shady-render` module provides its own template factory, which it uses to preprocess templates to integrate with the shadow DOM polyfills (shadyDOM and shadyCSS). 
+    The `shady-render` module provides its own template factory, which it uses to preprocess templates to integrate with the shadow DOM polyfills (shadyDOM and shadyCSS).
 
 For example, if you're creating a component class, you might use render options like this:
 
@@ -68,7 +68,7 @@ class MyComponent extends HTMLElement {
 
 ```
 
-Render options should *not* change between subsequent `render` calls. 
+Render options should *not* change between subsequent `render` calls.
 
 ## Event handlers
 
@@ -141,25 +141,25 @@ More information: see See [styleMap](template-reference#stylemap) in the Templat
 
 ### Rendering in shadow DOM
 
-When rendering into a shadow root, you usually want to add a style sheet inside the shadow root to the template, to you can style the contents of the shadow root. 
+When rendering into a shadow root, you usually want to add a style sheet inside the shadow root to the template, to you can style the contents of the shadow root.
 
 ```js
 html`
   <style>
-    :host { ... } 
+    :host { ... }
     .test { ... }
-  </style> 
-  <div class="test">...</div> 
+  </style>
+  <div class="test">...</div>
 `;
 ```
 
-This pattern may seem inefficient, since the same style sheet is reproduced in a each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once. 
+This pattern may seem inefficient, since the same style sheet is reproduced in a each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once.
 
-A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](https://lit-element.polymer-project.org/guide/styles#define-styles-in-a-static-styles-property). 
+A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](https://lit-element.polymer-project.org/guide/styles#define-styles-in-a-static-styles-property).
 
-#### Bindings in style sheets 
+#### Expressions in style sheets
 
-Binding to values in the style sheet is an antipattern, because it defeats the browser's style sheet optimizations. It's also not supported by the ShadyCSS polyfill.
+Using expressions  in the style sheet is an antipattern, because it defeats the browser's style sheet optimizations. It's also not supported by the ShadyCSS polyfill.
 
 ```js
 // DON'T DO THIS
@@ -172,19 +172,19 @@ html`
 `;
 ```
 
-Alternatives to using bindings in a style sheet:
+Alternatives to using expressions in a style sheet:
 
 *   Use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) to pass values down the tree.
-*   Use bindings in the `class` and `style` attributes to control the styling of child elements.
+*   Use expressions in the `class` and `style` attributes to control the styling of child elements.
 
-See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap](#classmap) for examples of binding to the `style` and `class` attributes.
+See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap](#classmap) for examples of using expressions with the `style` and `class` attributes.
 
 
 #### Polyfilled shadow DOM: ShadyDOM and ShadyCSS
 
-If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. [ShadyDOM](https://github.com/webcomponents/shadydom) and [ShadyCSS](https://github.com/webcomponents/shadycss) are polyfills, or shims, that emulate shadow DOM isolation and style scoping. 
+If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. [ShadyDOM](https://github.com/webcomponents/shadydom) and [ShadyCSS](https://github.com/webcomponents/shadycss) are polyfills, or shims, that emulate shadow DOM isolation and style scoping.
 
-The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own. 
+The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own.
 
 The [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) provides some directions for using shady CSS. When using it with `lit-html`:
 
@@ -200,7 +200,7 @@ The [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) provides 
 
       _update() {
         render(this.myTemplate(), this.shadowRoot, { scopeName: this.tagName.toLowerCase() });
-      } 
+      }
     }
     ```
 
@@ -208,7 +208,7 @@ The [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) provides 
 
 *   You **do** need to call `ShadyCSS.styleElement` when the element is connected to the DOM, and in case of any dynamic changes that might affect custom property values.
 
-	For example, consider a set of rules like this: 
+	For example, consider a set of rules like this:
     ```js
     my-element { --theme-color: blue; }
 	main my-element { --theme-color: red; }

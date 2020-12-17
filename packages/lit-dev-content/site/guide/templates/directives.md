@@ -1,12 +1,12 @@
 ---
-title: Built-in directives 
+title: Built-in directives
 eleventyNavigation:
   key: Built-in directives
   parent: Templates
   order: 6
 ---
 
-Directives are functions that can extend Lit by customizing the way a binding renders.
+Directives are functions that can extend Lit by customizing the way an expression renders.
 
 Lit includes a few built-in directives.
 
@@ -28,7 +28,7 @@ Lit includes a few built-in directives.
 `asyncAppend(asyncIterable)`<br>
 `asyncReplace(asyncIterable)`
 
-Location: text bindings
+Location: child expression
 
 JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
 
@@ -80,34 +80,34 @@ render(html`π is: ${asyncAppend(streamingResponse)}`, document.body);
 
 `cache(conditionalTemplate)`
 
-Location: text bindings
+Location: child expression
 
 Caches the rendered DOM nodes for templates when they're not in use. The `conditionalTemplate` argument is an expression that can return one of several templates. `cache` renders the current
-value of `conditionalTemplate`. When the template changes, the directive caches the _current_ DOM nodes before switching to the new value. 
+value of `conditionalTemplate`. When the template changes, the directive caches the _current_ DOM nodes before switching to the new value.
 
 Example:
 
 ```js
 import {cache} from 'lit-html/directives/cache.js';
 
-const detailView = (data) => html`<div>...</div>`; 
+const detailView = (data) => html`<div>...</div>`;
 const summaryView = (data) => html`<div>...</div>`;
 
 html`${cache(data.showDetails
-  ? detailView(data) 
+  ? detailView(data)
   : summaryView(data)
 )}`
 ```
 
-When lit-html re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, lit-html needs to remove the old DOM and render a new DOM tree. 
+When lit-html re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, lit-html needs to remove the old DOM and render a new DOM tree.
 
-The `cache` directive caches the generated DOM for a given binding and input template. In the example above, it would cache the DOM for both the `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and and update it with the latest data.
+The `cache` directive caches the generated DOM for a given expression and input template. In the example above, it would cache the DOM for both the `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and and update it with the latest data.
 
 ## classMap
 
 `class=${classMap(classObj)}`
 
-Location: attribute bindings (must be the only binding in the `class` attribute)
+Location: attribute expression (must be the only expression in the `class` attribute)
 
 Sets a list of classes based on an object. Each key in the object is treated as a class name, and if the value associated with the key is truthy, that class is added to the element.
 
@@ -120,7 +120,7 @@ html`<div class=${classMap(classes)}>Classy text</div>`;
 // renders as <div class="highlight enabled">Classy text</div>
 ```
 
-The `classMap` must be the only binding in the `class` attribute, but it can 
+The `classMap` must be the only expression in the `class` attribute, but it can
 be combined with static values:
 
 ```js
@@ -131,7 +131,7 @@ html`<div class="my-widget ${classMap(dynamicClasses)}">Static and dynamic</div>
 
 `ifDefined(value)`
 
-Location: attribute bindings
+Location: attribute expressions
 
 For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined.
 
@@ -153,12 +153,12 @@ const myTemplate = () => html`
 
 Location: any
 
-Renders the value returned by `valueFn`. Only re-evaluates `valueFn` when one of the 
-dependencies changes identity. 
+Renders the value returned by `valueFn`. Only re-evaluates `valueFn` when one of the
+dependencies changes identity.
 
 Where:
 
--   `dependencies` is an array of values to monitor for changes. (For backwards compatibility, 
+-   `dependencies` is an array of values to monitor for changes. (For backwards compatibility,
      `dependencies` can be a single, non-array value.)
 -   `valueFn` is a function that returns a renderable value.
 
@@ -183,18 +183,16 @@ In this case, the `immutableItems` array is mapped over only when the array refe
 
 `attr=${live(value)}`
 
-Location: attribute or property bindings
+Location: attribute or property expressions
 
-Checks binding value against the _live_ DOM value, instead of the previously
+Checks expression value against the _live_ DOM value, instead of the previously
 bound value, when determining whether to update the value.
 
-This is useful for cases where the DOM value may change from outside of
-lit-html. For example, when binding to an `<input>` element's `value` property,
+This is useful for cases where the DOM value may change from outside of Lit. For example, when using an expression to set an `<input>` element's `value` property,
 a content editable element's text, or to a custom element that changes its
 own properties or attributes.
 
-In these cases if the DOM value changes, but the value set through lit-html
-bindings hasn't, lit-html won't know to update the DOM value and will leave
+In these cases if the DOM value changes, but the value set through Lit expression hasn't, Lit won't know to update the DOM value and will leave
 it alone. If this is not what you want—if you want to overwrite the DOM
 value with the bound value no matter what—use the `live()` directive.
 
@@ -206,17 +204,17 @@ html`<input .value=${live(x)}>`
 
 `live()` performs a strict equality check agains the live DOM value, and if
 the new value is equal to the live value, does nothing. This means that
-`live()` should not be used when the binding will cause a type conversion. If
-you use `live()` with an attribute binding, make sure that only strings are
-passed in, or the binding will update every render.
+`live()` should not be used when the expression will cause a type conversion. If
+you use `live()` with an attribute expression, make sure that only strings are
+passed in, or the expression will update every render.
 
 
-## repeat 
+## repeat
 
 `repeat(items, keyfn, template)`<br>
 `repeat(items, template)`
 
-Location: text bindings
+Location: child expression
 
 Repeats a series of values (usually `TemplateResults`) generated from an
 iterable, and updates those items efficiently when the iterable changes. When
@@ -241,13 +239,13 @@ If no `keyFn` is provided, `repeat` will perform similar to a simple map of
 items to values, and DOM will be reused against potentially different items.
 
 See [Repeating templates with the repeat directive](writing-templates#repeating-templates-with-the-repeat-directive) for a discussion
-of when to use `repeat` and when to use standard JavaScript flow control. 
+of when to use `repeat` and when to use standard JavaScript flow control.
 
 ## styleMap
 
 `style=${styleMap(styles)}`
 
-Location: attribute bindings (must be the only binding in the `style` attribute)
+Location: attribute expressions (must be the only expression in the `style` attribute)
 
 The `styleMap` directive sets styles on an element based on an object, where each key in the object is treated as a style property, and the value is treated as the value for that property. For example:
 
@@ -265,7 +263,7 @@ For CSS properties that contain dashes, you can either use the camel-case equiva
 { 'font-family': 'roboto' }
 ```
 
-The `styleMap` must be the only binding in the `style` attribute, but it can 
+The `styleMap` must be the only expression in the `style` attribute, but it can
 be combined with static values:
 
 ```js
@@ -276,10 +274,10 @@ html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 
 `templateContent(templateElement)`
 
-Location: text bindings
+Location: child expression
 
  Renders the content of a `<template>` element as HTML.
- 
+
 Note, the template contents should be developer controlled and not
 user controlled. User controlled templates rendered with this directive
 could lead to cross-site scripting (XSS) vulnerabilities.
@@ -302,7 +300,7 @@ const template = html`
 
 `unsafeHTML(html)`
 
-Location: text bindings
+Location: child expression
 
 Renders the argument as HTML, rather than text.
 
@@ -325,7 +323,7 @@ const template = html`
 
 `unsafeSVG(svg)`
 
-Location: text bindings
+Location: child expression
 
 Renders the argument as SVG, rather than text.
 
@@ -353,10 +351,10 @@ const template = html`
 
 Location: any
 
-Renders placeholder content until the final content is available. 
+Renders placeholder content until the final content is available.
 
-Takes a series of values, including Promises. Values are rendered in priority order, 
- with the first argument having the highest priority and the last argument having the 
+Takes a series of values, including Promises. Values are rendered in priority order,
+ with the first argument having the highest priority and the last argument having the
  lowest priority. If a value is a Promise, a lower-priority value will be rendered until it resolves.
 
 The priority of values can be used to create placeholder content for async

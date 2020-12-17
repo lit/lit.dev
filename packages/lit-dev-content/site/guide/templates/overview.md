@@ -20,7 +20,7 @@ You can add dynamic content to your templates with **expressions**. Expressions 
 html`<h1>Hello ${name}</h1>`
 ```
 
-The `html` tag function returns a `TemplateResult` object—a lightweight object that represents a template that Lit can render. 
+The `html` tag function returns a `TemplateResult` object—a lightweight object that represents a template that Lit can render.
 
 You can define a Lit component's template inside its `render` function:
 
@@ -53,31 +53,57 @@ You can also use the lit-html library for standalone templating, outside of a Li
 
 An expression is a placeholder for dynamic content in the template. The expression can be any JavaScript expression, and it's evaluated whenever the template renders. In a Lit component, this means whenever the `render` method gets called.
 
-How an expression is interpreted depends on where it appears in the template:
+How an expression is interpreted depends on where it appears in the template.
+
+**Child nodes**
+
+Expressions can specify child nodes, including text.
 
 ```js
 html`
-  <!-- expressions can specify child nodes, including text -->
-  <h1>Hello ${name}</h1>
-  <ul>
-    ${listItems}
-  </ul>
-
-  <!-- expressions can set attributes -->
-  <div class=${highlightClass}></div>
-
-  <!-- expressions can set boolean attributes -->
-  <div ?hidden=${!show}></div>
-  
-  <!-- expressions can set properties -->
-  <input .value=${value}>
-  
-  <!-- expressions can specify event listeners -->
-  <button @click=${(e) => console.log('clicked')}>Click Me</button>
-
-  <!-- expressions can access an reference to the element -->
-  <input ${ref(inputRef)}>
+<h1>Hello ${name}</h1>
+<ul>
+  ${listItems}
+</ul>
 ```
+
+**Attribute values**
+
+Expressions can set attribute values.
+
+```js
+<div class=${highlightClass}></div>
+```
+
+Expressions can also set boolean attributes.
+
+```js
+<div ?hidden=${!show}></div>
+```
+
+**Properties**
+
+Expressions can also properties.
+
+```js
+<input .value=${value}>
+```
+
+**Event listeners**
+
+Expressions can specify event listeners.
+
+```js
+<button @click=${(e) => console.log('clicked')}>Click Me</button>
+```
+
+**Element references**
+
+A special type of expression can be used to access the element itself.
+
+```js<input ${ref(inputRef)}>
+```
+
 
 ## Add child nodes
 
@@ -93,7 +119,7 @@ Or:
 html`<main>${bodyText}</main>`
 ```
 
-Expressions in the child position can take many kinds of values: 
+Expressions in the child position can take many kinds of values:
 
 * Primitive values
 * `TemplateResult` objects
@@ -102,7 +128,7 @@ Expressions in the child position can take many kinds of values:
 
 ### Expressions can return templates
 
-Since an expression in the child position can return a `TemplateResult` you can nest and compose templates: 
+Since an expression in the child position can return a `TemplateResult` you can nest and compose templates:
 
 ```js
 const nav = html`<nav>...</nav>`;
@@ -125,7 +151,7 @@ html`
 
 For more on conditionals, see [Conditional templates](conditionals). For more on using JavaScript to create repeating templates, see [Lists & repeating templates](lists).
 
-## Set attributes 
+## Set attributes
 
 In addition to using expressions to add child nodes, you can use them to set an elements's attribute and property values, too.
 
@@ -153,19 +179,19 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 
 ## Set properties
 
-You can also bind to a JavaScript property of an element using the `.` prefix and the property name:
+You can set a JavaScript property on an element using the `.` prefix and the property name:
 
 ```js
 html`<input .value=${this.itemCount}></input>`;
 ```
 
-You can use property bindings to pass complex data down the tree to subcomponents. For example, if you have a `my-list` component with a `listItems` property, you could pass it an array of objects:
+You can use this syntax to pass complex data down the tree to subcomponents. For example, if you have a `my-list` component with a `listItems` property, you could pass it an array of objects:
 
 ```js
 html`<my-list .listItems=${this.items}></my-list>`;
 ```
 
-Note that the property name in this example—`listItems`—is mixed case. Although HTML attributes are case-insensitive, Lit preserves the case for property bindings when it processes the template.
+Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
 ## Add event listeners
 
@@ -178,7 +204,7 @@ Templates can also include declarative event listeners. Adding event listeners i
 html`<button @click=${this.clickHandler}>Click Me!</button>`;
 ```
 
-This is similar to calling `addEventListener('click', this.clickHandler)` on the button element. 
+This is similar to calling `addEventListener('click', this.clickHandler)` on the button element.
 The event listener can be either a plain function, or an object with a `handleEvent` method——the same as the `listener` argument to the standard [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method.
 
 In a Lit component, the event listener is automatically bound to the component, so you can use the `this` value inside the handler to refer to the component instance.
@@ -191,7 +217,7 @@ clickHandler() {
 
 ## Directives
 
-Lit allows special functions, called _directives_, to customize the way a binding expression is processed and rendered. Lit provides some built-in directives, or you can write your own.
+Lit allows special functions, called _directives_, to customize the way an expression is processed and rendered. Lit provides some built-in directives, or you can write your own.
 
 For example, the `classMap` directive lets you specify a set of CSS classes in a single expression:
 
@@ -201,7 +227,7 @@ import {html} from 'lit-element';
 import {classMap} from 'lit-element/directives/classMap.js';
 ...
 render() {
-  const classes = { 
+  const classes = {
     active: true,
     highlighted: true,
     error: false
@@ -217,4 +243,5 @@ The `classMap` directive takes an object as input and sets a class for each prop
 <div class="active highlighted">...</div>
 ```
 
-For a list of directives provided with Lit, see [Built-in directives](directives). 
+For a list of directives provided with Lit, see [Built-in directives](directives).
+
