@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 5
 ---
 
-lit-html templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
+Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
 
 ```js
 html`<h1>Hello World</h1>`

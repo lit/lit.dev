@@ -6,8 +6,6 @@ eleventyNavigation:
   order: 1
 ---
 
-Lit includes a fast and lightweight templating library called lit-html.
-
 Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
 
 ```js
@@ -46,7 +44,7 @@ As shown in the example, you can use `this` inside an expression to access insta
 
 </div>
 
-You can also use the lit-html library for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/guides/libraries/standalone-templates).
+You can also use Lit's templating library for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/guides/libraries/standalone-templates).
 
 
 ## Expressions
