@@ -227,7 +227,7 @@ my-element {
 
 ### Style the component's children
 
-Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](templates#slots).
+Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](/guide/templates/shadow-dom#slots).
 
 The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed. For example:
 

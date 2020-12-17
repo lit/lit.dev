@@ -94,8 +94,8 @@ In general, how you style HTML will depend on whether you're using shadow DOM:
 
 To help with dynamic styling, lit-html provides two directives for manipulating an element's `class` and `style` attributes:
 
-*   [`classMap`](template-reference#classmap) sets classes on an element based on the properties of an object.
-*   [`styleMap`](template-reference#stylemap) sets the styles on an element based on a map of style properties and values.
+*   [`classMap`](/guide/templates/directives#classmap) sets classes on an element based on the properties of an object.
+*   [`styleMap`](/guide/templates/directives#stylemap) sets the styles on an element based on a map of style properties and values.
 
 ### Setting classes with classMap {#classmap}
 
