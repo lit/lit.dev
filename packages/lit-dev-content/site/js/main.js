@@ -15,11 +15,10 @@ narrowLayoutMatcher.addEventListener('change', (event) => {
 window.addEventListener('load', () => {
   unhideDrawerAfterUpgrade();
   enableDrawerMenuButton();
-  scrollNavIntoView();
-  autoExpandAndCollapseToc();
+  scrollActiveSiteNavPageIntoView();
   observeActiveTocSection();
-  maintainMaxTocHeightForFooter();
-
+  maintainMaxHeightsAboveFooter();
+  snapRhsTocToArticle();
 });
 
 /**
@@ -35,11 +34,11 @@ const unhideDrawerAfterUpgrade = () => {
 };
 
 /**
- * Trigger the LHS drawer when the hamburger icon is clicked.
+ * Open the LHS drawer when the hamburger icon is clicked.
  */
 const enableDrawerMenuButton = () => {
-  const button = document.getElementById('nav-menu-button');
-  const drawer = document.getElementById('nav-drawer');
+  const button = document.querySelector('.menu-button');
+  const drawer = document.querySelector('mwc-drawer');
   button.addEventListener('click', () => {
     drawer.open = !drawer.open;
   });
@@ -48,39 +47,23 @@ const enableDrawerMenuButton = () => {
 /**
  * On initial load, scroll the link for the currently page into view.
  */
-const scrollNavIntoView = () => {
-  for (const active of document.querySelectorAll('.hierarchical-nav .active')) {
+const scrollActiveSiteNavPageIntoView = () => {
+  for (const active of document.querySelectorAll('.site-nav .active')) {
     active.scrollIntoView({block: 'center'});
   }
 }
 
-/**
- * Automatically expand or collapse the TOC based on the view.
- */
-const autoExpandAndCollapseToc = () => {
-  const tocDetails = document.querySelector('.toc details');
-  if (!tocDetails) {
-    return;
-  }
-  // Initial load.
-  tocDetails.open = !narrowLayout;
-  // Resize.
-  narrowLayoutMatcher.addEventListener('change', (event) => {
-    tocDetails.open = !narrowLayout;
-  });
-};
-
 let activeTocLink;
 
 /**
- * Maintain the TOC active section (e.g. so that it can be rendered bold) by
+ * Maintain the active TOC section so that it can be visually highlighted, by
  * observing section headings move in and out of view.
  */
 const observeActiveTocSection = () => {
   if (!window.IntersectionObserver) {
     return;
   }
-  const toc = document.querySelector('.toc');
+  const toc = document.querySelector('.rhs-toc');
   if (!toc) {
     return;
   }
@@ -90,7 +73,7 @@ const observeActiveTocSection = () => {
   }
 
   const tocHeadings = new Map();
-  for (const link of document.querySelectorAll('.toc [href]')) {
+  for (const link of document.querySelectorAll('.rhs-toc [href]')) {
     const href = link.getAttribute('href');
     if (!href.startsWith('#')) {
       continue;
@@ -159,11 +142,15 @@ const observeActiveTocSection = () => {
  * If the footer is visible, set the max-height of the TOC so that it doesn't
  * overlap with the footer.
  */
-const maintainMaxTocHeightForFooter = () => {
+const maintainMaxHeightsAboveFooter = () => {
   if (!window.IntersectionObserver) {
     return;
   }
-  const toc = document.querySelector('.toc');
+  const lhsNav = document.querySelector('.lhs-nav');
+  if (!lhsNav) {
+    return;
+  }
+  const toc = document.querySelector('.rhs-toc');
   if (!toc) {
     return;
   }
@@ -181,7 +168,7 @@ const maintainMaxTocHeightForFooter = () => {
   const headerHeight = 60;
 
   let rafId;
-  const resizeToc = (event) => {
+  const resizeToc = () => {
     if (rafId !== undefined) {
       // Debounce in case more than one scroll event fires per frame.
       cancelAnimationFrame(rafId);
@@ -189,6 +176,7 @@ const maintainMaxTocHeightForFooter = () => {
     rafId = requestAnimationFrame(() => {
       const maxHeight = footer.getBoundingClientRect().top - headerHeight;
       toc.style.maxHeight = `${maxHeight}px`;
+      lhsNav.style.maxHeight = `${maxHeight}px`;
       if (!narrowLayout && activeTocLink !== undefined) {
         activeTocLink.scrollIntoView();
       }
@@ -202,13 +190,42 @@ const maintainMaxTocHeightForFooter = () => {
     }
     const [entry] = entries;
     if (entry.isIntersecting) {
-      main.addEventListener('scroll', resizeToc);
+      resizeToc();
+      window.addEventListener('scroll', resizeToc);
       window.addEventListener('resize', resizeToc);
     } else {
-      main.removeEventListener('scroll', resizeToc);
+      window.removeEventListener('scroll', resizeToc);
       window.removeEventListener('resize', resizeToc);
-      toc.removeAttribute('style');
+      toc.style.maxHeight = '';
+      lhsNav.style.maxHeight = '';
     }
   });
   observer.observe(footer);
+}
+
+/**
+ * Snap the TOC to the RHS of the article.
+ *
+ * TODO(aomarks) There hopefully is a way to do this with pure CSS, although I
+ * tried quite a few ideas already.
+ */
+const snapRhsTocToArticle = () => {
+  const article = document.querySelector('article');
+  if (!article) {
+    return;
+  }
+  const rhsToc = document.querySelector('.rhs-toc');
+  if (!rhsToc) {
+    return;
+  }
+  const snap = () => {
+    const articleRight = article.getBoundingClientRect().right;
+    rhsToc.style.left = `${articleRight}px`;
+  };
+  window.addEventListener('resize', snap);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      snap();
+    });
+  });
 }

@@ -1,21 +1,23 @@
 {% extends 'default.html' %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css">
+{% endblock %}
+
 {% block drawer %}
   {% include 'eleventy-nav.html' %}
 {% endblock %}
 
-{% block leftcol %}
-  <nav id="left-col" class="hierarchical-nav">
+{% block content %}
+  <nav class="site-nav lhs-nav">
     <ol>{% include 'eleventy-nav.html' %}</ol>
   </nav>
-{% endblock %}
 
-{% block content %}
   <article>
     <h1>{{ title }}</h1>
 
-    <nav class="toc">
-      <details open>
+    <nav class="inline-toc">
+      <details>
         <summary><h2>Contents</h2></summary>
         {{ content | toc | safe }}
       </details>
@@ -23,4 +25,9 @@
 
     {{ content | safe }}
   </article>
+
+  <nav class="rhs-toc">
+    <h2>Contents</h2>
+    {{ content | toc | safe }}
+  </nav>
 {% endblock %}

@@ -1,4 +1,4 @@
-#content {
+main {
   padding: 24px;
 }
 
@@ -42,12 +42,9 @@
 }
 
 .example .CodeMirror {
-  border: 1px solid #dedede;
-  border-radius: 5px;
   padding: 0 20px;
   overflow-y: auto !important;
   margin-bottom: 20px;
-  background-color: inherit !important;
 }
 
 /** Use Cases */
@@ -118,7 +115,7 @@ section#features {
   column-width: 400px;
   column-gap: 48px;
   padding: 24px;
-  margin: 0 -24px;
+  border-radius: 8px;
 }
 
 section#features h3 {
