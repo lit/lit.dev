@@ -21,7 +21,7 @@ h1 {
 
 a {
   text-decoration: none;
-  color: #1e88e5;
+  color: #1879cd;
 }
 
 article a:hover {
@@ -52,6 +52,10 @@ footer {
   text-align: center;
   font-size: 14px;
   line-height: 1.9em;
+}
+
+footer a {
+  color: #11538d;
 }
 
 footer .social-links a {
@@ -90,7 +94,7 @@ header > nav {
 header .title {
   font-size: 34px;
   font-weight: 400;
-  color: #1e88e5;
+  color: #1879cd;
   margin-left: 24px;
 }
 
@@ -116,7 +120,7 @@ header .top-nav a {
 }
 
 header .top-nav .active a {
-  border-color: #1e88e5;
+  border-color: #1879cd;
 }
 
 header .top-nav a:hover {
@@ -252,6 +256,12 @@ body {
   font-family: inherit;
   padding: 0 4px;
   margin: 0;
+}
+
+.cm-error {
+  /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
+     theme, that is both nicer looking and satisfies a11y contrast metrics. */
+  color: #b30000 !important;
 }
 
 code:not([class]) {

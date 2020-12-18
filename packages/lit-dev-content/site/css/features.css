@@ -16,7 +16,7 @@ main {
   font-size: 60px;
   font-weight: 400;
   line-height: 1.3em;
-  color: #1e88e5;
+  color: #1879cd;
 }
 
 .hero-title::after {
@@ -110,7 +110,7 @@ main {
 /** Features */
 
 section#features {
-  background: #1e88e5;
+  background: #1879cd;
   color: white;
   column-width: 400px;
   column-gap: 48px;
