@@ -225,6 +225,7 @@ const snapRhsTocToArticle = () => {
   window.addEventListener('resize', snap);
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
+      rhsToc.classList.remove('hidden');
       snap();
     });
   });

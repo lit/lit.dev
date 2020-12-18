@@ -111,14 +111,14 @@ article p {
   border-left: 3px solid #eee;
 }
 
-.rhs-toc a.active {
-  border-color: #1e88e5;
-  font-weight: 500;
-}
-
 .rhs-toc a:hover {
   color: black;
   border-color: #9a9a9a;
+}
+
+.rhs-toc a.active {
+  border-color: #1e88e5;
+  font-weight: 500;
 }
 
 /* Slightly narrow layout (hide RHS TOC) */
