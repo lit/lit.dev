@@ -7,13 +7,12 @@
     <meta name="description" content="{{ site.description }}">
     <title>{% if page.title %}{{ page.title }} &ndash;{% endif %} {{ site.name }}</title>
     <meta name="theme-color" content="#FF2F2F">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
     <link rel="stylesheet" href="{{site.baseurl}}/css/codemirror.css">
     {# This is a hack so I can read the pages.
        ToDo: add some kind of user-visible theme switch. #}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <script type="module">{% include 'js/light.js' %}</script>
     <script type="module" src="/js/main.bundled.js"></script>
     {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
