@@ -73,6 +73,11 @@ header {
   display: flex;
 }
 
+header .menu-button-and-title {
+  display: flex;
+  align-items: center;
+}
+
 header > nav {
   width: 100%;
   max-width: var(--main-max-width);
@@ -141,7 +146,12 @@ header .menu-button {
 
 @media (max-width: 699px) {
   header .menu-button {
-    display: initial;
+    display: flex;
+  }
+
+  /* Eliminate sizing FOUC before menu button upgrades. */
+  header mwc-icon-button:not(:defined) {
+    padding: 12px;
   }
 
   header .title {
