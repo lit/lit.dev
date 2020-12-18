@@ -258,11 +258,9 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 Fallback content for the default slot won't appear if the element has any child nodes at all—even an empty text node.
 
-Because Lit renders an empty text node for values like `null`, `undefined`, or the empty string, this can cause issues if you're
-using an element in your template that includes a default slot with fallback content. In this case, you can use Lit's `nothing` value instead of `undefined` or the empty string.
+Because Lit renders an empty text node for values like `null`, `undefined`, or the empty string, this can cause issues if you're using an element in your template that includes a default slot with fallback content. In this case, you can use Lit's `nothing` value instead of `undefined` or the empty string.
 
-Imagine you have a custom element, `example-element`, that has a slot in
-its shadow DOM:
+Imagine you have a custom element, `example-element`, that has a slot in its shadow DOM:
 
 ```js
 html`<slot> I am fallback content</slot>`;
