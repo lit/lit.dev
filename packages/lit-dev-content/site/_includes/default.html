@@ -14,8 +14,8 @@
     <link rel="preload" href="{{site.baseurl}}/css/codemirror.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="">
 
-    <script type="module" src="/js/main.bundled.js"></script>
     <script type="module">{% include 'js/light.js' %}</script>
+    <script type="module" src="/js/main.bundled.js"></script>
     {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
     {% block head %}{% endblock %}
   </head>
