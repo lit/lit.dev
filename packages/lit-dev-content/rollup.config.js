@@ -13,21 +13,44 @@
  */
 
 import resolve from '@rollup/plugin-node-resolve';
+import summary from 'rollup-plugin-summary';
+import {terser} from 'rollup-plugin-terser';
 
-export default {
-  input: 'site/js/main.js',
+const terserOptions = {
+  warnings: true,
+  ecma: 2020,
+  compress: {
+    unsafe: true,
+    passes: 2,
+  },
   output: {
-    file: '_site/js/main.bundled.js',
-    format: 'esm',
+    // "some" preserves @license and @preserve comments
+    comments: 'some',
+    inline_script: false,
   },
-  onwarn(warning) {
-    if (warning.code !== 'CIRCULAR_DEPENDENCY') {
-      console.error(`(!) ${warning.message}`);
-    }
+  mangle: {
+    properties: false,
   },
-  plugins: [
-    resolve({
-      dedupe: ['@material/mwc-icon'],
-    }),
-  ],
 };
+
+export default [
+  {
+    input: 'site/js/main.js',
+    output: {
+      file: '_site/js/main.bundled.js',
+      format: 'esm',
+    },
+    onwarn(warning) {
+      if (warning.code !== 'CIRCULAR_DEPENDENCY') {
+        console.error(`(!) ${warning.message}`);
+      }
+    },
+    plugins: [
+      resolve({
+        dedupe: ['@material/mwc-icon'],
+      }),
+      terser(terserOptions),
+      summary(),
+    ],
+  },
+];
