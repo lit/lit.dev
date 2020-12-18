@@ -239,6 +239,19 @@ body {
   font-size: 13px !important;
   border: 1px solid #dedede;
   border-radius: 6px;
+  padding: 12px 12px 0 12px;
+  /* The default CodeMirror stylesheet fixes height to 300px. */
+  height: unset !important;
+}
+
+.CodeMirror-line {
+  white-space: pre-wrap !important;
+  /* These are already included in codemirror.css, but we don't block rendering
+     on that stylesheet, so we include them here too so that sizing is already
+     correct, and it's just colors that load in. */
+  font-family: inherit;
+  padding: 0 4px;
+  margin: 0;
 }
 
 code:not([class]) {
@@ -247,14 +260,4 @@ code:not([class]) {
 
 pre.highlight {
   padding: 12px;
-}
-
-.CodeMirror {
-  /* The default CodeMirror stylesheet fixes height to 300px. */
-  height: unset !important;
-  padding: 12px 12px 0 12px;
-}
-
-.CodeMirror-line {
-  white-space: pre-wrap !important;
 }
