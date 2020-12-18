@@ -6,6 +6,7 @@ const slugifyLib = require('slugify');
 const path = require('path');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const {playgroundPlugin} = require('./playground-plugin/plugin.js');
+const htmlMinifier = require('html-minifier');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -70,6 +71,18 @@ module.exports = function (eleventyConfig) {
           return 0;
         })
     );
+  });
+
+  eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
+    if (!outputPath.endsWith('.html')) {
+      return content;
+    }
+    const minified = htmlMinifier.minify(content, {
+      useShortDoctype: true,
+      removeComments: true,
+      collapseWhitespace: true,
+    });
+    return minified;
   });
 
   return {
