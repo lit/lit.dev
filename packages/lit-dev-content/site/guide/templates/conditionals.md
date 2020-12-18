@@ -27,6 +27,14 @@ render() {
 }
 ```
 
+### Rendering nothing
+
+Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
+
+In a few cases, you want to clear the DOM instead of rendering an empty text node. In these cases, you can use the `nothing` value provided by Lit.
+
+This is particularly useful when working with elements that use shadow DOM and slots. See [Templating and slot fallback content](/guide/components/shadow-dom#templating-and-slot-fallback-content) for an example using `nothing`.
+
 ## Conditionals with if statements
 
 You can express conditional logic with if statements outside of a template to compute values to use inside of the template:
@@ -59,48 +67,8 @@ render() {
 }
 ```
 
-## Rendering nothing
 
-Sometimes, you may want to render nothing at all. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
 
-In some cases, you want to clear the DOM instead of rendering an empty text node. In these cases, you can use the `nothing` value provided by lit-html.
-
-### nothing and the slot fallback content
-
-One specific use case where an empty text node causes issues is when you're using a `<slot>` element inside a shadow root. This use case is very specific to [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM).
-
-Imagine you have a custom element, `example-element`, that has a slot in
-its shadow DOM:
-
-```js
-html`<slot>Sorry, no content available. I am just fallback content</slot>`;
-```
-
-The slot defines fallback content for when there is no content defined to be put in the slot.
-
-So, extending the previous example:
-
-```js
-import {LitElement, html, nothing} from 'lit-element';
-  ...
-
-UserElement extends LitElement {
-  render() {
-    html`
-      <example-element>${this.user.isAdmin
-        ? html`<button>DELETE</button>`
-        : nothing
-      }</example-element>
-    `;
-  }
-}
-```
-
-If the user is logged in, the Delete button is rendered. If the user is not logged in, nothing is rendered inside of `example-element`. This means the slot is empty and its fallback content "Sorry, no content available. I am just fallback content" is rendered.
-
-Replacing `nothing` in this example with the empty string causes an empty text node to be rendered inside `example-element`, suppressing the fallback content.
-
-For the example to work, the expression inside `<example-element>` must take up the entire space between the opening and closing tags for `<example-element>`. Any whitespace (including line breaks) _outside_ of the expression delimiters (`${}`) adds static text nodes to the template, suppressing the fallback content. However, whitespace _inside_ the expression delimiters is fine.
 
 ## Caching template results: the cache directive
 
