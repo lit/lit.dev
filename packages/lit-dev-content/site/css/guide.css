@@ -28,22 +28,15 @@ article {
 }
 
 article [id] {
-  /* Adjust scroll margins of all article headers to account for sticky header.
-     Otherwise, we'll scroll the header underneath the header. Add a little bit
-     more too, since that gives some more breathing room. */
+  /* Adjust scroll margins of all article headings to account for sticky header.
+     Otherwise, we'll scroll headings underneath the header. Add a little bit
+     more too, for some extra breathing room. */
   scroll-margin-top: calc(var(--header-height) + 12px);
-}
-
-article h2:first-of-type {
-  /* Additional scroll margin for the first scrollable heading (the h1 doesn't
-     count), so that we scroll to the very top in that case, instead of slightly
-     below it. */
-  scroll-margin-top: calc(var(--header-height) + 100px);
 }
 
 article > h1:first-of-type {
   /* The default margin of the first heading extends above the article, which
-     complicates layout a bit. We have top-padding on the article itself. */
+     complicates layout a bit. We have padding-top on the article itself. */
   margin-top: 0;
 }
 

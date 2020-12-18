@@ -225,6 +225,7 @@ const snapRhsTocToArticle = () => {
   window.addEventListener('resize', snap);
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
+      // TOC is initially hidden, to remove jank before this script runs.
       rhsToc.classList.remove('hidden');
       snap();
     });
