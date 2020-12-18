@@ -5,24 +5,12 @@ narrowLayoutMatcher.addEventListener('change', (event) => {
 });
 
 const main = () => {
-  enableDrawerMenuButton();
   scrollActiveSiteNavPageIntoView();
   observeActiveTocSection();
   maintainMaxHeightsAboveFooter();
   snapRhsTocToArticle();
 };
 window.addEventListener('load', main);
-
-/**
- * Open the LHS drawer when the hamburger icon is clicked.
- */
-const enableDrawerMenuButton = () => {
-  const button = document.querySelector('.menu-button');
-  const drawer = document.querySelector('mwc-drawer');
-  button.addEventListener('click', () => {
-    drawer.open = !drawer.open;
-  });
-};
 
 /**
  * On initial load, scroll the link for the currently page into view.

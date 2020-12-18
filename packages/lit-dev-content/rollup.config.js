@@ -35,9 +35,9 @@ const terserOptions = {
 
 export default [
   {
-    input: 'site/js/light.js',
+    input: 'site/js/guide.js',
     output: {
-      file: 'site/_includes/js/light.js',
+      file: 'site/_includes/js/guide.js',
       format: 'esm',
     },
     onwarn(warning) {
