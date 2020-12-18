@@ -3,7 +3,7 @@ title: Conditional templates
 eleventyNavigation:
   key: Conditional templates
   parent: Templates
-  order: 2
+  order: 3
 ---
 
 <!-- TODO: check all import paths. Runnable samples? -->

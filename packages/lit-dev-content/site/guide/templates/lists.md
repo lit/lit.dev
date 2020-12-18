@@ -3,7 +3,7 @@ title: Lists & repeating templates
 eleventyNavigation:
   key: Lists & repeating templates
   parent: Templates
-  order: 3
+  order: 4
 ---
 
 <!-- TODO: check all import paths. Runnable samples? -->
