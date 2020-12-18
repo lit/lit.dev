@@ -197,6 +197,11 @@ header .menu-button {
   margin: 8px 0 12px 0;
 }
 
+/* Don't render drawer slotted children before it upgrades. */
+mwc-drawer:not(:defined) {
+  display: none;
+}
+
 mwc-drawer .site-nav > ol {
   padding: 0 24px;
 }

@@ -16,12 +16,13 @@
     {# This is a hack so I can read the pages.
        ToDo: add some kind of user-visible theme switch. #}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script type="module">{% include 'js/light.js' %}</script>
     <script type="module" src="/js/main.bundled.js"></script>
     {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
     {% block head %}{% endblock %}
   </head>
   <body>
-    <mwc-drawer type="modal" id="nav-drawer" class="hidden">
+    <mwc-drawer type="modal" id="nav-drawer">
       <nav class="site-nav">
         <ol>
           <li>

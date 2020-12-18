@@ -35,6 +35,19 @@ const terserOptions = {
 
 export default [
   {
+    input: 'site/js/light.js',
+    output: {
+      file: 'site/_includes/js/light.js',
+      format: 'esm',
+    },
+    onwarn(warning) {
+      if (warning.code !== 'CIRCULAR_DEPENDENCY') {
+        console.error(`(!) ${warning.message}`);
+      }
+    },
+    plugins: [terser(terserOptions), summary()],
+  },
+  {
     input: 'site/js/main.js',
     output: {
       file: '_site/js/main.bundled.js',
