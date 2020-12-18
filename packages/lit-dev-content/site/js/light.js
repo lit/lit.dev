@@ -11,6 +11,7 @@ const main = () => {
   maintainMaxHeightsAboveFooter();
   snapRhsTocToArticle();
 };
+window.addEventListener('load', main);
 
 /**
  * Open the LHS drawer when the hamburger icon is clicked.
@@ -27,7 +28,8 @@ const enableDrawerMenuButton = () => {
  * On initial load, scroll the link for the currently page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
-  for (const active of document.querySelectorAll('.site-nav .active')) {
+  const active = document.querySelector('.lhs-nav .active')
+  if (active) {
     active.scrollIntoView({block: 'center'});
   }
 }
@@ -210,5 +212,3 @@ const snapRhsTocToArticle = () => {
     });
   });
 }
-
-main();
