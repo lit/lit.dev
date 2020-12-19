@@ -7,6 +7,7 @@ const path = require('path');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const {playgroundPlugin} = require('./playground-plugin/plugin.js');
 const htmlMinifier = require('html-minifier');
+const CleanCSS = require('clean-css');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -83,6 +84,13 @@ module.exports = function (eleventyConfig) {
       collapseWhitespace: true,
     });
     return minified;
+  });
+
+  // https://www.11ty.dev/docs/quicktips/inline-css/
+  eleventyConfig.addFilter('cssmin', function (code) {
+    const result = new CleanCSS({}).minify(code);
+    console.log({result});
+    return result.styles;
   });
 
   return {

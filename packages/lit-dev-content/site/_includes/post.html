@@ -1,7 +1,10 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css">
+  <style>
+    {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
+    {{ guidecss | cssmin | safe }}
+  </style>
   <script type="module">{% include 'js/guide.js' %}</script>
 {% endblock %}
 
