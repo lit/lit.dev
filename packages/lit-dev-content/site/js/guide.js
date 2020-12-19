@@ -22,8 +22,6 @@ const scrollActiveSiteNavPageIntoView = () => {
   }
 }
 
-let activeTocLink;
-
 /**
  * Maintain the active TOC section so that it can be visually highlighted, by
  * observing section headings move in and out of view.
@@ -86,7 +84,6 @@ const observeActiveTocSection = () => {
       if (!foundFirstVisible && visibleHeadings.has(id)) {
         foundFirstVisible = true;
         link.classList.add('active');
-        activeTocLink = link;
         if (!narrowLayout && Element.prototype.scrollIntoViewIfNeeded) {
           // If the TOC is especially long, and/or the window is especially
           // short (but still wide enough to have a RHS TOC), then the TOC
