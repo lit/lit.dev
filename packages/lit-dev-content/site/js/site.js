@@ -2,9 +2,6 @@ import '@material/mwc-icon';
 import '@material/mwc-icon-button';
 import '@material/mwc-drawer';
 
-// TODO(aomarks) Lazy load this.
-import 'code-sample-editor/lib/code-sample.js';
-
 /**
  * Open the LHS drawer when the hamburger icon is clicked.
  */
@@ -16,4 +13,4 @@ const enableDrawerMenuButton = () => {
   });
 };
 
-window.addEventListener('load', enableDrawerMenuButton);
+window.addEventListener('DOMContentLoaded', enableDrawerMenuButton);
