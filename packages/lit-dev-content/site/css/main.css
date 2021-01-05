@@ -1,3 +1,45 @@
+/* Fonts */
+
+/* https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap */
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap */
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/robotomono/v12/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_ROW4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* General */
 
 body {
@@ -21,7 +63,7 @@ h1 {
 
 a {
   text-decoration: none;
-  color: #1e88e5;
+  color: #1879cd;
 }
 
 article a:hover {
@@ -54,6 +96,10 @@ footer {
   line-height: 1.9em;
 }
 
+footer a {
+  color: #11538d;
+}
+
 footer .social-links a {
   padding: 10px 6px;
   display: inline-flex;
@@ -73,6 +119,11 @@ header {
   display: flex;
 }
 
+header .menu-button-and-title {
+  display: flex;
+  align-items: center;
+}
+
 header > nav {
   width: 100%;
   max-width: var(--main-max-width);
@@ -85,7 +136,7 @@ header > nav {
 header .title {
   font-size: 34px;
   font-weight: 400;
-  color: #1e88e5;
+  color: #1879cd;
   margin-left: 24px;
 }
 
@@ -111,7 +162,7 @@ header .top-nav a {
 }
 
 header .top-nav .active a {
-  border-color: #1e88e5;
+  border-color: #1879cd;
 }
 
 header .top-nav a:hover {
@@ -141,7 +192,12 @@ header .menu-button {
 
 @media (max-width: 699px) {
   header .menu-button {
-    display: initial;
+    display: flex;
+  }
+
+  /* Eliminate sizing FOUC before menu button upgrades. */
+  header mwc-icon-button:not(:defined) {
+    padding: 12px;
   }
 
   header .title {
@@ -197,6 +253,11 @@ header .menu-button {
   margin: 8px 0 12px 0;
 }
 
+/* Don't render drawer slotted children before it upgrades. */
+mwc-drawer:not(:defined) {
+  display: none;
+}
+
 mwc-drawer .site-nav > ol {
   padding: 0 24px;
 }
@@ -224,6 +285,25 @@ body {
   font-size: 13px !important;
   border: 1px solid #dedede;
   border-radius: 6px;
+  padding: 12px 12px 0 12px;
+  /* The default CodeMirror stylesheet fixes height to 300px. */
+  height: unset !important;
+}
+
+.CodeMirror-line {
+  white-space: pre-wrap !important;
+  /* These are already included in codemirror.css, but we don't block rendering
+     on that stylesheet, so we include them here too so that sizing is already
+     correct, and it's just colors that load in. */
+  font-family: inherit;
+  padding: 0 4px;
+  margin: 0;
+}
+
+.cm-error {
+  /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
+     theme, that is both nicer looking and satisfies a11y contrast metrics. */
+  color: #b30000 !important;
 }
 
 code:not([class]) {
@@ -232,14 +312,4 @@ code:not([class]) {
 
 pre.highlight {
   padding: 12px;
-}
-
-.CodeMirror {
-  /* The default CodeMirror stylesheet fixes height to 300px. */
-  height: unset !important;
-  padding: 12px 12px 0 12px;
-}
-
-.CodeMirror-line {
-  white-space: pre-wrap !important;
 }

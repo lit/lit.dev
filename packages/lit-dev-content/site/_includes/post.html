@@ -1,7 +1,11 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css">
+  <style>
+    {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
+    {{ guidecss | cssmin | safe }}
+  </style>
+  <script type="module">{% include 'js/guide.js' %}</script>
 {% endblock %}
 
 {% block drawer %}
@@ -9,9 +13,18 @@
 {% endblock %}
 
 {% block content %}
-  <nav class="site-nav lhs-nav">
-    <ol>{% include 'eleventy-nav.html' %}</ol>
-  </nav>
+  <div class="lhs-nav-wrapper">
+    <nav class="site-nav lhs-nav">
+      <ol>{% include 'eleventy-nav.html' %}</ol>
+    </nav>
+  </div>
+
+  <div class="rhs-toc-wrapper">
+    <nav class="rhs-toc">
+      <h2>Contents</h2>
+      {{ content | toc | safe }}
+    </nav>
+  </div>
 
   <article>
     <h1>{{ title }}</h1>
@@ -25,9 +38,4 @@
 
     {{ content | safe }}
   </article>
-
-  <nav class="rhs-toc hidden">
-    <h2>Contents</h2>
-    {{ content | toc | safe }}
-  </nav>
 {% endblock %}

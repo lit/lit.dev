@@ -7,10 +7,18 @@ body {
 
 /* LHS nav */
 
-.lhs-nav {
-  position: fixed;
-  top: var(--header-height);
+main {
+  display: flex;
+}
+
+.lhs-nav-wrapper {
   width: var(--lhs-nav-width);
+  flex-shrink: 0;
+}
+
+.lhs-nav {
+  position: sticky;
+  top: var(--header-height);
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
   padding: 20px 20px 0 0;
@@ -20,11 +28,11 @@ body {
 /* Article */
 
 article {
-  margin-left: var(--lhs-nav-width);
-  margin-right: var(--rhs-toc-width);
+  flex-grow: 1;
+  overflow-x: auto;
   padding: 32px 24px;
   line-height: 1.5em;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 article [id] {
@@ -57,16 +65,23 @@ article p {
 }
 
 /* RHS TOC */
-.rhs-toc {
-  position: fixed;
-  top: var(--header-height);
-  right: 0;
+.rhs-toc-wrapper {
   width: var(--rhs-toc-width);
-  height: calc(100vh - var(--header-height));
+  flex-shrink: 0;
+  /* For some reason, when the natural DOM order is article > TOC, there is a
+     layout flash (easier to see with CPU throttling on). If we switch the
+     natural order to TOC > article, then change it here with CSS order, the
+     flash goes away. This order is probably better for screen-readers anyway.
+     */
+  order: 2;
+}
+
+.rhs-toc {
+  position: sticky;
+  top: calc(var(--header-height) + 60px);
+  height: calc(100vh - var(--header-height) - 60px);
   overflow-y: auto;
   font-size: 12px;
-  box-sizing: border-box;
-  padding: 60px 24px 0 24px;
 }
 
 .rhs-toc > h2 {
@@ -110,7 +125,7 @@ article p {
 }
 
 .rhs-toc a.active {
-  border-color: #1e88e5;
+  border-color: #1879cd;
   font-weight: 500;
 }
 
@@ -125,10 +140,7 @@ article p {
     align-items: center;
     cursor: pointer;
   }
-  article {
-    margin-right: 0;
-  }
-  .rhs-toc {
+  .rhs-toc-wrapper {
     display: none;
   }
 }
@@ -136,10 +148,7 @@ article p {
 /* Very narrow layout (hide LHS nav) */
 
 @media (max-width: 699px) {
-  .lhs-nav {
+  .lhs-nav-wrapper {
     display: none;
-  }
-  article {
-    margin-left: 0;
   }
 }
