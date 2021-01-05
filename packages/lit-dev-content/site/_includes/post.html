@@ -1,52 +1,33 @@
 {% extends 'default.html' %}
-{% include 'topnav.html' %}
 
 {% block head %}
   <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css">
 {% endblock %}
 
+{% block drawer %}
+  {% include 'eleventy-nav.html' %}
+{% endblock %}
+
 {% block content %}
-  {% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
-  <main class="wrapper">
-    <div class="side">
-      <side-nav>
-        {%- set navSections = collections.guide | eleventyNavigation -%}
-        {# Uncomment to use prebuilt nav
-        {{ navSections | eleventyNavigationToHtml | safe }}
-        #}
-        <ul>
-        {%- for entry in navSections %}
-          <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
-            {%- if entry.children | length %}
-              <span class="sectionHead">{{ entry.title }}</span>
-              {% set navPages = entry.children %}
-              <ul>
-              {%- for entry in navPages %}
-                <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
-                  <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-                </li>
-              {%- endfor %}
-              </ul>
-            {%- else %}
-              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-            {%- endif %}
-          </li>
-        {%- endfor %}
-        </ul>
-      </side-nav>
-    </div>
+  <nav class="site-nav lhs-nav">
+    <ol>{% include 'eleventy-nav.html' %}</ol>
+  </nav>
 
-    <article>
-      <h1>{{ title }}</h1>
-      {{ content | safe }}
-    </article>
+  <article>
+    <h1>{{ title }}</h1>
 
-    <div class="side">
-      <nav class="toc">
-        <h2>Contents</h2>
+    <nav class="inline-toc">
+      <details>
+        <summary><h2>Contents</h2></summary>
         {{ content | toc | safe }}
-      </nav>
-    </div>
+      </details>
+    </nav>
 
-  </main>
+    {{ content | safe }}
+  </article>
+
+  <nav class="rhs-toc hidden">
+    <h2>Contents</h2>
+    {{ content | toc | safe }}
+  </nav>
 {% endblock %}
