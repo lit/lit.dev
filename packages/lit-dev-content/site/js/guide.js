@@ -25,6 +25,8 @@ const scrollActiveSiteNavPageIntoView = () => {
 /**
  * Maintain the active TOC section so that it can be visually highlighted, by
  * observing section headings move in and out of view.
+ *
+ * TODO(aomarks) Convert to a custom element.
  */
 const observeActiveTocSection = () => {
   if (!window.IntersectionObserver) {
