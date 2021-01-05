@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', main);
  * On initial load, scroll the link for the currently page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
-  const active = document.querySelector('.lhs-nav .active')
+  const active = document.querySelector('.lhs-nav .active');
   if (active && Element.prototype.scrollIntoViewIfNeeded) {
     // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
     // also scroll the window. scrollIntoViewIfNeeded works fine, though.
