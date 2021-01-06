@@ -1,430 +1,315 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Open Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  color: #222222;
-  /* background: #eceff1; */
-  background: white;
-  line-height: 1.8;
+/* Fonts */
 
-  --top-bar-height: 60px;
+/* https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap */
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap */
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: url(https://fonts.gstatic.com/s/robotomono/v12/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_ROW4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* General */
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #3e3e3e;
+  --header-height: 60px;
+  --footer-height: 180px;
+  --toc-width: 300px;
+  --main-max-width: 1200px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+  color: black;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 32px;
 }
 
-.wrapper {
+a {
+  text-decoration: none;
+  color: #1879cd;
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  max-width: var(--main-max-width);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
   margin: auto;
-  max-width: 1200px;
-}
-
-/* Top nav */
-.main-nav {
-  height: var(--top-bar-height);
-  position: sticky;
-  left: 0;
-  top: 0;
-  right: 0;
-  box-shadow: 0 0 2px rgba(0,0,0,.2);
-  display: flex;
-  padding-left: 36px;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  font-weight: 500;
-  z-index: 1000;
-  background: inherit;
-}
-
-.main-nav a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.main-nav a:hover {
-  text-decoration: underline;
-}
-
-.main-nav .nav-title {
-  font-size: 40px;
-  font-weight: bold;
-  /* font-style: italic; */
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  color: #1e88e5;
-}
-
-.main-nav .flex {
-  flex: 1;
-}
-
-.main-nav .nav-item {
-  /* font-size: 14px; */
-  padding: 18px 12px;
-  align-self: stretch;
-}
-
-.main-nav .nav-item.active {
-  color: #1e88e5;
-  border-bottom: solid 2px #1e88e5;
-}
-
-.main-nav .icon {
-  padding: 0 12px;
-  width: 24px;
-  height: 24px;
-  background-size: cover;
-}
-
-.main-nav .search-box {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0 12px;
-  font-size: 16px;
-  border: none;
-  box-sizing: border-box;
-  -webkit-transform: translate3d(0, -100%, 0);
-  transform: translate3d(0, -100%, 0);
-  -webkit-appearance: none;
-}
-
-.main-nav .search-box:focus {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  transition: -webkit-transform 0.2s;
-  transition: transform 0.2s;
-}
-
-/** Hero */
-
-.hero {
-  margin: 100px auto;
-  max-width: 800px;
-}
-
-.hero-title {
-  position: relative;
-  margin-bottom: -14px;
-  padding-right: 5%;
-  font-size: 60px;
-  font-weight: 400;
-  line-height: 1.3em;
-}
-
-.hero-title::after {
-  position: absolute;
-  left: 0;
-  bottom: 0px;
-  height: 2px;
-  width: 48px;
-  content: "";
-}
-
-.hero-caption {
-  max-width: 640px;
-  padding-right: 10%;
-  line-height: 38px;
-  font-size: 28px;
-  font-weight: 400;
-}
-
-/** Main Example */
-
-.wrapper.example pre {
-  max-width: 800px;
-  margin: 48px auto;
-}
-
-/** Use Cases */
-
-.wrapper.use-cases {
-  /* max-width: 800px; */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 24px;
-  /* color: white; */
-  padding: 48px 24px;
-}
-
-.use-case-card {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #a5d3ff 0%,#69b6ff 100%);
-  border-radius: 8px;
-  padding: 16px;
-}
-
-.use-case-card h3 {
-  flex: 0;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.25em;
-  letter-spacing: .5px;
-  margin-top: 0;
-}
-
-.use-case-card > p {
-  flex: auto;
-  margin-top: 0;
-}
-
-.learn-more {
-  flex: 0;
-  text-align: right;
-}
-
-.learn-more > a {
-  color: inherit;
-  text-decoration: none;
-  border: solid 1px #00000044;
-  padding: 4px 8px;
-  border-radius: 5px;
-}
-
-.learn-more > a:hover {
-  text-decoration: underline;
-}
-
-/** Features */
-
-section#features {
-  background: #1e88e5;
-  color: white;
-  padding: 48px 12px;
-}
-
-.wrapper.features {
-  background: #1e88e5;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-gap: 12px;
-  color: white;
-  padding: 48px 12px;
-}
-
-
-.feature-card {
-  display: flex;
-  line-height: 1.4;
-}
-
-.feature-card.main {
-  display: flex;
-  grid-column: 3;
-  grid-row: 1 / 3;
-}
-
-.feature-card-icon {
-  align-self: baseline;
-  background: #69b6ff88;
-  --mdc-icon-size: 48px;
-  --mdc-icon-font: 'Material Icons Outlined';
-  border-radius: 50%;
-  padding: 8px;
-  margin-right: 12px;
-}
-
-.feature-card-text h3 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.25em;
-  letter-spacing: .5px;
-  margin-top: 0;
-}
-
-/** Used By */
-
-#used-by {
-  padding: 48px 0;
-  margin-bottom: 100px;
-}
-
-.used-by-logos {
-  display: flex;
-  overflow-y: hidden;
-}
-
-.used-by {
-  filter: grayscale(100%);
-  opacity: 70%;
-  margin: 24px;
-}
-
-.used-by:hover {
-  filter: none;
-  opacity: unset;
-}
-
-/** Guide */
-
-.alert {
-  position: relative;
-  margin: 24px 0;
-  padding: 1px 20px 1px 56px;
-  box-shadow: 0 0 2px #ccc;
-  border-radius: 2px;
   box-sizing: border-box;
 }
 
-.alert::before {
-  position: absolute;
-  top: 17px;
-  left: 17px;
-}
-
-.alert.alert-info::before {
-  content: url(/images/alerts/info.svg);
-}
-
-.alert.alert-warning::before {
-  content: url(/images/alerts/warning.svg);
-}
-
-main.wrapper {
-  display: flex;
-}
-
-.side {
-  flex: 0 0 280px;
-}
-
-.side > nav,
-.side > side-nav {
-  font-family: 'Roboto';
-  position: sticky;
-  top: var(--top-bar-height);
-  padding: 16px;
-}
-
-.side > nav.toc {
-  font-size: .9em;
-  color: #444;
-}
-
-div.toc {
-  padding-left: 16px;
-  border-left: solid 2px #eee;
-}
-
-.side > nav > ul,
-.side > side-nav > ul {
-  padding: 0;
-}
-
-/** First level of side-nave is large */
-.side > nav > ul > li,
-.side > side-nav > ul > li {
-  font-size: 1.1em;
-  font-weight: 500;
-}
-
-/** Second level is small */
-.side > nav > ul > li > ul,
-.side > side-nav > ul > li > ul {
-  font-size: .9rem;
-  font-weight: 400;
-  margin-left: 4px;
-  padding-left: 16px;
-  border-left: solid 2px #eee;
-}
-
-.side > nav li,
-.side > side-nav li,
-.side > nav.toc li {
-  margin: 6px 0;
-}
-
-.side > nav a,
-.side > side-nav a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.side a:hover {
-  border-bottom: solid 2px #1e88e5;
-}
-
-.side > nav li,
-.side > side-nav li {
-  list-style: none;
-}
-
-.side > nav.toc > h2 {
-  /* text-transform: uppercase; */
-  font-size: 1.1rem;
-}
-
-.side > nav.toc > div.toc > ol {
-  padding-left: 0;
-  list-style: none;
-}
-
-main > nav.toc > div.toc > ol a {
-  color: inherit;
-  text-decoration: none;
-}
-
-main > nav.toc > div.toc > ol a:hover {
-  color: blue;
-  /* text-decoration: underline; */
-}
-
-/* Footer */
 footer {
+  display: flex;
+  flex-direction: column;;
+  align-items: center;
+  justify-content: center;
   background: #f5f5f5;
-  margin-top: 32px;
-}
-
-footer .wrapper {
-  padding-top: 24px;
-  /* No spacing between child elements. */
-  font-size: 0px;
-}
-
-footer .group {
-  display: inline-block;
-  vertical-align: top;
-  width: 240px;
+  padding: 24px;
+  height: var(--footer-height);
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  text-align: center;
   font-size: 14px;
-  line-height: 24px;
-  margin: 0 40px 24px 0;
+  line-height: 1.9em;
 }
 
-footer .attribution {
-  display: inline-block;
-  vertical-align: top;
-  font-size: 14px;
-  line-height: 24px;
-  margin-bottom: 24px;
-  color: #999;
-}
-
-footer .social-links {
-  margin: -8px 0 24px -8px;
+footer a {
+  color: #11538d;
 }
 
 footer .social-links a {
-  display: inline-block;
-  padding: 8px;
+  padding: 10px 6px;
+  display: inline-flex;
 }
 
-footer .social-links img {
-  width: 24px;
-  height: 24px;
+/* Header */
+
+header {
+  position: sticky;
+  top: 0;
+  height: var(--header-height);
+  /* CodeMirrors have a very high z-index for some reason. */
+  z-index: 4;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
 }
 
+header .menu-button-and-title {
+  display: flex;
+  align-items: center;
+}
+
+header > nav {
+  width: 100%;
+  max-width: var(--main-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title {
+  font-size: 34px;
+  font-weight: 400;
+  color: #1879cd;
+  margin-left: 24px;
+}
+
+header .top-nav {
+  height: 100%;
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+header .top-nav li {
+  height: 100%;
+}
+
+header .top-nav a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 2px transparent;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+header .top-nav .active a {
+  border-color: #1879cd;
+}
+
+header .top-nav a:hover {
+  border-color: #d4d4d4;
+}
+
+header .action-buttons {
+  display: flex;
+}
+
+header a {
+  color: inherit;
+}
+
+header .icon {
+  padding: 12px;
+  display: flex;
+}
+
+header .menu-button {
+  display: none;
+}
+
+.search-box {
+  display: none;
+}
+
+@media (max-width: 699px) {
+  header .menu-button {
+    display: flex;
+  }
+
+  /* Eliminate sizing FOUC before menu button upgrades. */
+  header mwc-icon-button:not(:defined) {
+    padding: 12px;
+  }
+
+  header .title {
+    margin-left: 0;
+  }
+
+  header .top-nav {
+    display: none;
+  }
+}
+
+/* Navigation (can either be in drawer or LHS column) */
+
+.site-nav {
+  font-size: 14px;
+}
+
+.site-nav > ol {
+  padding-left: 29px;
+}
+
+.site-nav li {
+  list-style: none;
+}
+
+.site-nav .section-head {
+  color: black;
+  padding: 2px 14px;
+  margin-left: -17px;
+  font-weight: 500;
+}
+
+.site-nav a {
+  display: block;
+  color: inherit;
+  margin-bottom: 3px;
+  padding: 3px 12px;
+}
+
+.site-nav .active {
+  color: #005ad6;
+  background-color:#e8f0fe;
+  border-radius: 10px;
+}
+
+.site-nav a:hover {
+  background-color:#f1f3f4;
+  border-radius: 10px;
+}
+
+.site-nav ol ol {
+  padding-left: 8px;
+  margin: 8px 0 12px 0;
+}
+
+/* Don't render drawer slotted children before it upgrades. */
+mwc-drawer:not(:defined) {
+  display: none;
+}
+
+mwc-drawer .site-nav > ol {
+  padding: 0 24px;
+}
+
+/* The first section in the narrow-layout drawer is top-level site pages, and
+   underneath is e.g. the guide sub-pages. Visually separate these a bit. */
+mwc-drawer .site-nav > ol > li:nth-child(2) {
+  margin-top: 18px;
+  border-top: 1px solid #ccc;
+  padding-top: 24px;
+}
+
+/* Code style */
+
+body {
+  --playground-code-font-family: "Roboto Mono", monospace;
+  --playground-code-font-size: 13px;
+}
+
+/* inline code fragments */ code:not([class]),
+/* eleventy markdown pre */ pre.highlight,
 .CodeMirror {
-  /** The default CodeMirror stylesheet fixes height to 300px. */
+  font-family: "Roboto Mono", monospace !important;
+  border-radius: 6px;
+  font-size: 13px !important;
+  border: 1px solid #dedede;
+  border-radius: 6px;
+  padding: 12px 12px 0 12px;
+  /* The default CodeMirror stylesheet fixes height to 300px. */
   height: unset !important;
+}
+
+.CodeMirror-line {
+  white-space: pre-wrap !important;
+  /* These are already included in codemirror.css, but we don't block rendering
+     on that stylesheet, so we include them here too so that sizing is already
+     correct, and it's just colors that load in. */
+  font-family: inherit;
+  padding: 0 4px;
+  margin: 0;
+}
+
+.cm-error {
+  /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
+     theme, that is both nicer looking and satisfies a11y contrast metrics. */
+  color: #b30000 !important;
+}
+
+code:not([class]) {
+  padding: 0 6px;
+}
+
+pre.highlight {
+  padding: 12px;
 }

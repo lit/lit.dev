@@ -727,5 +727,3 @@ _my-element.js_
 ```js
 {% include projects/style/theming/my-element.js %}
 ```
-
-{% include project.html folder="style/theming" openFile="theme.css" %}
