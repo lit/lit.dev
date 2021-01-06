@@ -227,7 +227,7 @@ my-element {
 
 ### Style the component's children
 
-Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](templates#slots).
+Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](/guide/templates/shadow-dom#slots).
 
 The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed. For example:
 
@@ -404,11 +404,11 @@ There are some important caveats though:
 
 ## Dynamic classes and styles
 
-One way to make styles dynamic is to add bindings to the `class` or `style` attributes in your template.
+One way to make styles dynamic is to add expressions to the `class` or `style` attributes in your template.
 
-The lit-html library offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
+Lit offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
 
-For more information on these and other lit-html directives, see the documentation on [lit-html built-in directives](https://lit-html.polymer-project.org/guide/template-reference#built-in-directives).
+For more information on these and other directives, see the documentation on [built-in directives](/guide/templates/directives).
 
 To use `styleMap` and/or `classMap`:
 

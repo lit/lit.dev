@@ -1,8 +1,8 @@
 ---
-title: Concepts
+title: Platform concepts
 eleventyNavigation:
-  key: Concepts
-  parent: Templates
+  key: Platform concepts
+  parent: Concepts
   order: 99
 ---
 
@@ -71,7 +71,7 @@ lit-html keeps an auxillary table of where the expressions were:
 
 `render()` takes a `TemplateResult` and renders it to a DOM container. On the initial render it clones the template, then walks it using the remembered placeholder positions, to create `Part` objects.
 
-A `Part` is a "hole" in the DOM where values can be injected. lit-html has subclasses of `Part` for each type of binding: `NodePart` for text content bindings, `AttributePart` for attribute bindings, and so on. The `Part` objects, container, and the template they were created from are grouped together in an object called a `TemplateInstance`.
+A `Part` is a "hole" in the DOM where values can be injected. lit-html has subclasses of `Part` for each type of expression: `ChildPart` for child expressions, `AttributePart` for attribute expressions, and so on. The `Part` objects, container, and the template they were created from are grouped together in an object called a `TemplateInstance`.
 
 ## Thinking functionally
 
