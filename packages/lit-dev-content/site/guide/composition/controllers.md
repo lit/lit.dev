@@ -3,5 +3,5 @@ title: Controllers
 eleventyNavigation:
   parent: Composition
   key: Controllers
-  order: 3
+  order: 4
 ---

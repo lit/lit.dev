@@ -3,7 +3,10 @@ title: Applications
 eleventyNavigation:
   key: Applications
   order: 6
+  headingOnly: true
 ---
+
+This page exists only to create a heading.
 
 * Communicating with events
   * Implementing Context w/ Events

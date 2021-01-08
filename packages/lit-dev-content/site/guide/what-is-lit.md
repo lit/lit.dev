@@ -1,21 +1,15 @@
 ---
-title: Introduction
+title: What is Lit?
 eleventyNavigation:
-  key: Introduction
+  key: What is Lit
+  parent: Introduction
   order: 1
-  headingOnly: true
 ---
-
-This section should not exist, please ignore it.
-
-## What is Lit?
-
+<!-- TODO: This is placeholder content, need to decide what exactly we want to say here.
+-->
 At its core, Lit is two small and fast libraries that help you build web components. lit-html - a declarative template system that leads the pack in size, speed, and expressiveness, and LitElement - a web component base class that combines lit-html with boilerplate-killing reactive state, scoped styles, and a flexible rendering lifecycle.
 
-
-
-
-Lit is a collection of libraries and tools that help you build web components adn design systems.
+Lit is a collection of libraries and tools that help you build web components and d esign systems.
 
 Lit's main library is lit-element, which provides the LitElement base class and several utilities for writing declarative, reactive, and encapsulated web components.
 
@@ -74,6 +68,15 @@ Ready to try it yourself? Head over to [Getting Started](/guide/getting-started)
 LitElement is a simple base class for creating fast, lightweight web components that work in any web page with any framework.
 
 LitElement uses [lit-html](https://lit-html.polymer-project.org/) to render into shadow DOM, and adds API to manage properties and attributes. Properties are observed by default, and elements update asynchronously when their properties change.
+
+## What are web components?
+
+<!-- TODO: Flesh out section -->
+
+  * Brief overview
+  * Links to MDN or webcomponents.org
+* Why are web components good?
+* Why should you consider web components?
 
 ## Next steps
 

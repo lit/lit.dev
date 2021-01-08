@@ -4,5 +4,5 @@ eleventyNavigation:
   parent: Composition
   title: Directives
   key: Directives2
-  order: 1
+  order: 2
 ---

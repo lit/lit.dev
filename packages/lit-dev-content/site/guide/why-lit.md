@@ -4,9 +4,16 @@ eleventyNavigation:
   title: Why Lit?
   key: Why Lit
   parent: Introduction
-  order: 4
+  order: 2
 ---
 
+<!--
+
+TODO: Decide if this content goes here or on the main landing page.
+
+     Write content.
+
+-->
 Here's where we talk about:
 
 * Why Did we make Lit?

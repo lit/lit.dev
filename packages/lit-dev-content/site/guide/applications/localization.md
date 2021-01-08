@@ -3,9 +3,7 @@ title: Localization
 eleventyNavigation:
   key: Localization
   parent: Applications
-  order: 6
+  order: 2
 ---
 
-## Using Event for Coordination
-
-## Async / Pending Work
+TODO: document Lit-localize here.

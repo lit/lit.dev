@@ -4,4 +4,5 @@ eleventyNavigation:
   title: Code Reuse
   key: Composition
   order: 4
+  headingOnly: true
 ---
