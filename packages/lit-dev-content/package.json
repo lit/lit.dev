@@ -38,11 +38,13 @@
     "typedoc": "^0.19.2"
   },
   "dependencies": {
+    "@material/mwc-button": "^0.20.0",
     "@material/mwc-drawer": "^0.20.0",
     "@material/mwc-icon": "^0.20.0",
     "@material/mwc-icon-button": "^0.20.0",
+    "@material/mwc-select": "^0.20.0",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "playground-elements": "^0.3.6"
+    "playground-elements": "^0.3.7"
   }
 }

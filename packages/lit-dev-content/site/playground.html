@@ -2,53 +2,44 @@
 
 {% block head %}
   <link rel="stylesheet" href="{{site.baseurl}}/css/playground.css">
+  <script type="module">{% include 'js/playground.js' %}</script>
 {% endblock %}
 
 {% block content %}
-<playground-ide>
+<div class="playground-bar">
+  <mwc-button label="Save URL" class="save-button">
+    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentcolor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+  </mwc-button>
+
+  <input class="playground-url-input hidden"></input>
+</div>
+
+<playground-ide resizable line-numbers add-remove>
+  <script type="sample/ts" filename="my-greeter.ts">
+import { LitElement, html, property, customElement } from 'lit-element';
+
+@customElement('my-greeter')
+export class MyGreeter extends LitElement {
+  @property({ type: String })
+  who?: string;
+
+  render() {
+    return html`
+      <p>Hello ${this.who}!</p>
+    `;
+  }
+}
+  </script>
   <script type="sample/html" filename="index.html">
 <!doctype html>
 <html>
 <head>
-  <script type="module" src="./my-element.js">&lt;/script>
+  <script type="module" src="./my-greeter.js">&lt;/script>
 </head>
 <body>
-  <div>Here are the contents:</div>
-  <my-element myNumber="5">
-    <div>Element is not upgraded</div>
-  </my-element>
+  <my-greeter who="World"></my-greeter>
 </body>
 </html>
-  </script>
-  <script type="sample/ts" filename="my-element.ts">
-import { LitElement, html, property, customElement } from 'lit-element';
-import './my-second-element.js';
-
-@customElement('my-element')
-export class MyElement extends LitElement {
-@property({ type: Number })
-myNumber?: number;
-
-render() {
-  return html`
-    <div>Here is ${this.myNumber}</div>
-    <div>And here is my second element:</div>
-    <my-second-element></my-second-element>
-  `;
-}
-}
-  </script>
-  <script type="sample/ts" filename="my-second-element.ts">
-import { LitElement, html, customElement } from 'lit-element';
-
-@customElement('my-second-element')
-export class MySecondElement extends LitElement {
-render() {
-  return html`
-    <div>This is inside the shadow dom of my-second-element</div>
-  `;
-}
-}
   </script>
 </playground-ide>
 {% endblock %}

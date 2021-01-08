@@ -1,9 +1,46 @@
-html, body {
-  height: 100%;
+main {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  max-width: none;
+}
+
+.playground-bar {
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  --mdc-theme-primary: currentcolor;
+}
+
+.playground-url-input {
+  width: 300px;
+  margin: 0 10px;
+  padding: 8px;
+  border: 2px solid #1879cd;
+  border-radius: 5px;
+  background: white;
+  font-family: Roboto;
+  font-size: 13px;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.playground-url-input:focus {
+  /* We have a border with radius instead */
+  outline: none;
+}
+
+.playground-url-input.hidden {
+  opacity: 0;
+  display: initial;
 }
 
 playground-ide {
   flex: 1;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  min-height: 350px;
+  --playground-highlight-color: #1879cd;
 }
