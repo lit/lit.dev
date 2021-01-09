@@ -53,6 +53,31 @@ article p {
   margin-block-end: 1.5em;
 }
 
+/* Alert styles for notes and warnings */
+
+.alert {
+  position: relative;
+  margin: 24px 0;
+  padding: 1px 20px 1px 56px;
+  box-shadow: 0 0 2px #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.alert::before {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+}
+
+.alert.alert-info::before {
+  content: url(/images/alerts/info.svg);
+}
+
+.alert.alert-warning::before {
+  content: url(/images/alerts/warning.svg);
+}
+
 /* Inline TOC */
 
 .inline-toc {
