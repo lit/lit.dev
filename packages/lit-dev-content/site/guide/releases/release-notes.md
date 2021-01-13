@@ -10,7 +10,7 @@ eleventyNavigation:
 
 - Replace release notes with correct version for Lit 2.
 
-{% todo %}
+{% endtodo %}
 
 <ul>
 {%- for release in collections.release -%}
