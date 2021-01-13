@@ -6,6 +6,14 @@ eleventyNavigation:
   order: 2
 ---
 
+{% todo %}
+
+-  Add intro and "when components render." [#1157](https://github.com/Polymer/internal/issues/1157).
+-  Edit and make sure language is consistent.
+-  Make samples runnable?
+
+{% endtodo %}
+
 Add a template to your component to define internal DOM to implement your component.
 
 To encapsulate the templated DOM LitElement uses

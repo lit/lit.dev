@@ -6,6 +6,15 @@ eleventyNavigation:
   order: 7
 ---
 
+{% todo %}
+
+- Edit for consistency.
+- Add interactive examples.
+- Add proper intro.
+- Write "React to user" events section per outline.
+
+{% endtodo %}
+
 ## Where to add your event listeners
 
 You need to add event listeners in a method that is guaranteed to fire before the event occurs. However, for optimal loading performance, you should add your event listener as late as possible.

@@ -6,4 +6,8 @@ eleventyNavigation:
   order: 3
 ---
 
-TODO: document SSR.
+{% todo %}
+
+- Document SSR.
+
+{% endtodo %}

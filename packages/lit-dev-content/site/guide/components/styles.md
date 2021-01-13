@@ -6,6 +6,14 @@ eleventyNavigation:
   order: 5
 ---
 
+{% todo %}
+
+- Add interactive examples.
+- Edit for consistency.
+
+{% endtodo %}
+
+
 This page describes how to add styles to your component.
 
 Your component's template is rendered to its shadow DOM tree. The styles you add to your component are automatically _scoped_ to the shadow tree, so they don't leak out and affect other elements.

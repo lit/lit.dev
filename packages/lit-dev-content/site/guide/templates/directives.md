@@ -6,6 +6,15 @@ eleventyNavigation:
   order: 6
 ---
 
+{% todo %}
+
+  - Update list for Lit 2
+  - Edit for consistency.
+  - Update to use Lit samples.
+  - Add interactive examples?
+
+{% endtodo %}
+
 Directives are functions that can extend Lit by customizing the way an expression renders.
 
 Lit includes a few built-in directives.

@@ -6,7 +6,14 @@ eleventyNavigation:
   order: 2
 ---
 
-TODO: Rough content from lit-html docs follows. Update & edit this content for Lit. Add content on Using TypeScript?
+{% todo %}
+
+- Rough content from lit-html docs follows. Update & edit this content for Lit.
+- ES dev server => web-dev-server
+- Add content on Using TypeScript?
+
+{% endtodo %}
+
 
 During the development phase, you might want the following tools:
 

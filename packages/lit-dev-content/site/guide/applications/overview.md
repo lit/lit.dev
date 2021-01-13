@@ -6,7 +6,11 @@ eleventyNavigation:
   order: 1
 ---
 
-TODO: write overview
+{% todo %}
+
+Write overview
+
+{% endtodo %}
 
 TL;DR: Lit isn't a framework, it's a library for building components. This section describes some patterns and libraries that work well when building apps with Lit components.
 

@@ -6,8 +6,8 @@ eleventyNavigation:
   order: 1
 ---
 
-<div class="alert alert-warning">
+{% todo %}
 
 TODO: write tools overview. [#1195](https://github.com/Polymer/internal/issues/1195)
 
-</div>
+{% endtodo %}

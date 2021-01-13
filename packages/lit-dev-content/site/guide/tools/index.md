@@ -1,10 +1,17 @@
 ---
-title: Tools
+title: Tools and workflows
 eleventyNavigation:
+  title: Tools and workflows
   key: Tools
   order: 7
   headingOnly: true
 ---
+
+{% todo %}
+
+- This file should not appear at all.
+
+{% endtodo %}
 
 lit-html is available from the npm registry. If you're already using npm to manage dependencies, you can use lit-html much like any other JavaScript library you install from npm. This section describes some additional tools or plugins you might want to add to your workflow to make it easier to work with lit-html.
 
@@ -40,14 +47,6 @@ The simplest way to add lit-html to a project is to install it from the npm regi
 
 ## Testing
 
-lit-html doesn't have many special testing requirements. If you already have a testing setup, it should work fine as long as it supports working with JavaScript modules (and node-style module specifiers, if you use them).
-
-Web Component Tester (WCT) is an end-to-end testing environment that supports node-style module specifiers. works with the Mocha testing framework and (optionally) the Chai assertion library. There are two ways to add WCT to your project:
-
-* [web-component-tester](https://www.npmjs.com/package/web-component-tester).  Installing the full WCT package gives you Mocha and Chai, as well as some other add-ons.
-* [wct-mocha](https://www.npmjs.com/package/wct-mocha). Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
-
-Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a [Karma setup](https://open-wc.org/testing/testing-karma.html#browser-testing) that resolves module dependencies by bundling with webpack before running tests.
 
 ## Build
 

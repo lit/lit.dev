@@ -2,7 +2,8 @@
 title: Community
 eleventyNavigation:
   key: Community
-  order: 8
+  parent: Resources
+  order: 1
 ---
 
 There are many great resources and locations to learn about lit-html and LitElement,

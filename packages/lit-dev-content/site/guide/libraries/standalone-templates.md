@@ -3,7 +3,7 @@ title: Using lit-html standalone
 eleventyNavigation:
   key: Standalone lit-html
   parent: Related libraries
-  order: 99
+  order: 3
 ---
 
 <!-- TODO: expand this into a full section on standalone lit-html use. Current content is from the lit-html "rendering templates" and "styling templates" guides. -->

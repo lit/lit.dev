@@ -7,13 +7,14 @@ eleventyNavigation:
   order: 2
 ---
 
-<!--
 
-TODO: Decide if this content goes here or on the main landing page.
+{% todo %}
 
-     Write content.
+- Decide if this content goes here or on the main landing page. Conclusion: probably OK to go here. Even if it covers similar ground, it'll be in a different form.
+- Write content.
 
--->
+{% endtodo %}
+
 Here's where we talk about:
 
 * Why Did we make Lit?

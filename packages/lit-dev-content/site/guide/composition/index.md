@@ -1,8 +1,8 @@
 ---
-title: Composition & Code Reuse
+title: Code factoring and reuse
 eleventyNavigation:
   title: Code Reuse
   key: Composition
-  order: 4
+  order: 7
   headingOnly: true
 ---

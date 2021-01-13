@@ -6,4 +6,8 @@ eleventyNavigation:
   order: 2
 ---
 
-TODO: document Lit-localize here.
+{% todo %}
+
+- Document Lit-localize here. [#1199](https://github.com/Polymer/internal/issues/1199)
+
+{% endtodo %}

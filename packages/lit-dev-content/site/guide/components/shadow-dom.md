@@ -6,6 +6,14 @@ eleventyNavigation:
   order: 4
 ---
 
+{% todo %}
+
+- Edit for consistency.
+- Update createRenderRoot/etc. section for Lit.
+- Add interactive examples.
+
+{% endtodo %}
+
 By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their templated DOM.
 
 Shadow DOM provides three benefits:

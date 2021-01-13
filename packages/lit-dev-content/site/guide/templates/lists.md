@@ -6,7 +6,12 @@ eleventyNavigation:
   order: 4
 ---
 
-<!-- TODO: check all import paths. Runnable samples? -->
+{% todo %}
+
+-  Check all import paths.
+-  Add interactive examples.
+
+{% endtodo %}
 
 You can use standard JavaScript constructs to create repeating templates.
 

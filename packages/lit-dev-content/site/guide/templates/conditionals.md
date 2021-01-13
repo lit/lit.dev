@@ -6,7 +6,12 @@ eleventyNavigation:
   order: 3
 ---
 
-<!-- TODO: check all import paths. Runnable samples? -->
+{% todo %}
+
+- Check all import paths.
+- Add interactive examples.
+
+{% endtodo %}
 
 Since Lit leverages normal Javascript expressions, you don't need to use custom control-flow constructs. Instead you use standard JavaScript, like like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements.
 

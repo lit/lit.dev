@@ -6,7 +6,15 @@ eleventyNavigation:
   order: 3
 ---
 
-## Overview {#overview}
+{% todo %}
+
+-  Rewrite intro, add sections on how property updates work and/or link to lifecycle sections. [#1158](https://github.com/Polymer/internal/issues/1158).
+-  Restructure to place TypeScript/decorators examples first, show JavaScript as an option.
+-  Edit for consistency.
+- Add interactive examples.
+
+
+{% endtodo %}
 
 LitElement manages your declared properties and their corresponding attributes. By default, LitElement will:
 

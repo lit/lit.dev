@@ -5,8 +5,13 @@ eleventyNavigation:
   parent: Introduction
   order: 1
 ---
-<!-- TODO: This is placeholder content, need to decide what exactly we want to say here.
--->
+
+{% todo %}
+
+This is placeholder content, need to decide what exactly we want to say here.
+
+{% endtodo %}
+
 At its core, Lit is two small and fast libraries that help you build web components. lit-html - a declarative template system that leads the pack in size, speed, and expressiveness, and LitElement - a web component base class that combines lit-html with boilerplate-killing reactive state, scoped styles, and a flexible rendering lifecycle.
 
 Lit is a collection of libraries and tools that help you build web components and d esign systems.
