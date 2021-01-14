@@ -1,8 +1,8 @@
 ---
-title: Related libraries
+title: Releases
 eleventyNavigation:
-  key: Related libraries
-  order: 9
+  key: Releases
+  order: 5
   headingOnly: true
 ---
 

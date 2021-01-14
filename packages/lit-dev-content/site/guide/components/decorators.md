@@ -6,6 +6,13 @@ eleventyNavigation:
   order: 8
 ---
 
+{% todo %}
+
+- Review list & usage of decorators for Lit.
+- Edit for consistency.
+
+{% endtodo %}
+
 Decorators are special expressions that can alter the behavior of class, class method, and class field declarations. LitElement supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component.
 
 For example, the `@customElement` and `@property` decorators make a basic element definition more compact:
@@ -78,7 +85,7 @@ Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding  the following plugins:
 
-*   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators). 
+*   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators).
 *   [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
 
 To enable the plugins, you'd add code like this to your Babel configuration:
@@ -98,7 +105,7 @@ LitElement provides the following decorators:
 *   [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions). Add event listener options for a declarative event listener.
 *   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property) and [`internalProperty`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Define properties.
 *   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query), [`queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll), and [`queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Create a property getter that returns specific elements from your component's render root.
-*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Create a property getter that returns the children assigned to a specific slot. 
+*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Create a property getter that returns the children assigned to a specific slot.
 
 
 All of the decorators can be imported directly from the <code>lit-element</code> module.

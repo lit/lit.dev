@@ -1,7 +1,14 @@
 ---
-title: Composition & Code Reuse
+title: Code organization & reuse
 eleventyNavigation:
-  title: Code Reuse
+  title: Code organization & reuse
   key: Composition
-  order: 4
+  order: 7
+  headingOnly: true
 ---
+
+{% todo %}
+
+Figure out what to do with these empty sections.
+
+{% endtodo %}

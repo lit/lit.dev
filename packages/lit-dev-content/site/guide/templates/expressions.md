@@ -6,6 +6,13 @@ eleventyNavigation:
   order: 2
 ---
 
+{% todo %}
+
+- Correct directive import paths.
+- Correct cross-references.
+
+{% endtodo %}
+
 An expression is a placeholder for dynamic content in the template. The expression can be any JavaScript expression, and it's evaluated whenever the template renders. In a Lit component, this means whenever the `render` method gets called.
 
 How an expression is interpreted depends on where it appears in the template.

@@ -6,7 +6,16 @@ eleventyNavigation:
   order: 6
 ---
 
-## Overview
+{% todo %}
+
+- Edit intro.
+- Engineering review/update lifecycle methods for Lit 3.
+- Stretch goal: expand use case section from bulleted list to actual section.
+- Edit for consistency.
+- Add interactive examples.
+
+{% endtodo %}
+
 
 LitElement-based components update asynchronously in response to observed property changes. Property changes are batched—if more properties change after an update is requested, but before the update starts, all of the changes are captured in the same update.
 
@@ -45,11 +54,11 @@ LitElement also inherits the default [lifecycle callbacks](https://developer.moz
 
 <div class="alert alert-info">
 
-**Be aware that adoptedCallback is not polyfilled.** 
+**Be aware that adoptedCallback is not polyfilled.**
 
 </div>
 
-**All lifecycle methods need to call the super method.** 
+**All lifecycle methods need to call the super method.**
 
 Example:
 

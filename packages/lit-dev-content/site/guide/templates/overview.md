@@ -6,6 +6,12 @@ eleventyNavigation:
   order: 1
 ---
 
+{% todo %}
+
+If time permits, add new page on working with inputs, per outline.
+
+{% endtodo %}
+
 Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
 
 ```js

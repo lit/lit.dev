@@ -6,6 +6,12 @@ eleventyNavigation:
   order: 1
 ---
 
+{% todo %}
+
+TODO: Rework this section. Already in progress in a [separate PR](https://github.com/PolymerLabs/lit.dev/pull/25).
+
+{% endtodo %}
+
 A LitElement component definition is a class that extends from the `LitElement` base class.
 
 A complete component defintion typically consists of a few parts:

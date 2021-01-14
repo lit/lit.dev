@@ -3,9 +3,11 @@ title: Localization
 eleventyNavigation:
   key: Localization
   parent: Applications
-  order: 6
+  order: 2
 ---
 
-## Using Event for Coordination
+{% todo %}
 
-## Async / Pending Work
+- Document Lit-localize here. [#1199](https://github.com/Polymer/internal/issues/1199)
+
+{% endtodo %}

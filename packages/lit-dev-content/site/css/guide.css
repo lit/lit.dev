@@ -78,6 +78,14 @@ article p {
   content: url(/images/alerts/warning.svg);
 }
 
+.alert.alert-todo {
+  box-shadow: 0 0 2px #c00;
+}
+
+.alert.alert-todo h3 {
+  color: red;
+}
+
 /* Inline TOC */
 
 .inline-toc {

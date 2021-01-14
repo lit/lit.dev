@@ -13,6 +13,8 @@ const CleanCSS = require('clean-css');
 // and preserves the existing URL fragments
 const slugify = (s) => slugifyLib(s, {lower: true});
 
+
+
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
   eleventyConfig.addPlugin(pluginTOC, {
@@ -35,6 +37,20 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPassthroughCopy({
     'node_modules/code-sample-editor/service-worker.js': './service-worker.js',
+  });
+
+  // Placeholder shortcode for TODOs
+  // Formatting is intentional: outdenting the HTML causes the
+  // markdown processor to quote it.
+  eleventyConfig.addPairedShortcode("todo", function(content) {
+    console.warn(`TODO item in ${this.page.url}`);
+    return `
+<div class="alert alert-todo">
+<h3>TO DO</h3>
+
+${content}
+
+</div>`;
   });
 
   const md = markdownIt({html: true, breaks: true, linkify: true})

@@ -1,8 +1,8 @@
 ---
-title: Related libraries
+title: Platform support
 eleventyNavigation:
-  key: Related libraries
-  order: 9
+  key: Platform support
+  order: 4
   headingOnly: true
 ---
 
