@@ -3,7 +3,7 @@ title: Tools and workflows
 eleventyNavigation:
   title: Tools and workflows
   key: Tools
-  order: 7
+  order: 6
   headingOnly: true
 ---
 

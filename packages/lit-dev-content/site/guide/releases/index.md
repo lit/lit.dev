@@ -2,7 +2,7 @@
 title: Releases
 eleventyNavigation:
   key: Releases
-  order: 5
+  order: 7
   headingOnly: true
 ---
 
