@@ -43,7 +43,7 @@ module.exports = function (eleventyConfig) {
   // Formatting is intentional: outdenting the HTML causes the
   // markdown processor to quote it.
   eleventyConfig.addPairedShortcode("todo", function(content) {
-    console.log(`TODO item in ${this.page.url}`);
+    console.warn(`TODO item in ${this.page.url}`);
     return `
 <div class="alert alert-todo">
 <h3>TO DO</h3>
