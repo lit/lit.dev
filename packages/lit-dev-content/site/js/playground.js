@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const decoded = JSON.parse(atob(project));
     // TODO(aomarks) We really need a second origin now that it is trivial for
     // somebody to share a link that executes arbitrary code.
+    // https://github.com/PolymerLabs/lit.dev/issues/26
     ide.files = decoded;
   }
 
