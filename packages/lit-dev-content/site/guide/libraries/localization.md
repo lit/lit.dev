@@ -2,7 +2,7 @@
 title: Localization
 eleventyNavigation:
   key: Localization
-  parent: Applications
+  parent: Related libraries
   order: 2
 ---
 

@@ -3,7 +3,7 @@ title: Code organization & reuse
 eleventyNavigation:
   title: Code organization & reuse
   key: Composition
-  order: 7
+  order: 4
   headingOnly: true
 ---
 
