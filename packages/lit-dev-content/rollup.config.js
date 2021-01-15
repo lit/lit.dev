@@ -40,18 +40,15 @@ export default [
       file: 'site/_includes/js/guide.js',
       format: 'esm',
     },
-    onwarn(warning) {
-      if (warning.code !== 'CIRCULAR_DEPENDENCY') {
-        console.error(`(!) ${warning.message}`);
-      }
+    plugins: [resolve(), terser(terserOptions), summary()],
+  },
+  {
+    input: 'site/js/playground.js',
+    output: {
+      file: 'site/_includes/js/playground.js',
+      format: 'esm',
     },
-    plugins: [
-      resolve({
-        dedupe: ['@material/mwc-icon'],
-      }),
-      terser(terserOptions),
-      summary(),
-    ],
+    plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
     input: ['site/js/site.js', 'site/js/playground-elements.js'],
@@ -79,7 +76,7 @@ export default [
     },
     plugins: [
       resolve({
-        dedupe: ['@material/mwc-icon'],
+        dedupe: () => true,
       }),
       terser(terserOptions),
       summary(),

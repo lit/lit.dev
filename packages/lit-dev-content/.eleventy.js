@@ -32,11 +32,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('api/**/*');
   eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
   eleventyConfig.addPassthroughCopy({
-    'node_modules/code-sample-editor/typescript-worker.js':
-      './typescript-worker.js',
+    'node_modules/playground-elements/playground-typescript-worker.js':
+      './js/playground-typescript-worker.js',
   });
   eleventyConfig.addPassthroughCopy({
-    'node_modules/code-sample-editor/service-worker.js': './service-worker.js',
+    'node_modules/playground-elements/playground-service-worker.js':
+      './js/playground-service-worker.js',
+  });
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/playground-elements/playground-service-worker-proxy.html':
+      './js/playground-service-worker-proxy.html',
   });
 
   // Placeholder shortcode for TODOs

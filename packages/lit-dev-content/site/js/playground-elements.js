@@ -1,1 +1,1 @@
-import 'code-sample-editor/lib/code-sample.js';
+import 'playground-elements/playground-ide.js';

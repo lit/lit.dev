@@ -43,8 +43,8 @@ export class Renderer {
       const body = `
         <!doctype html>
         <script type="module">
-          import "/node_modules/code-sample-editor/lib/codemirror-editor.js";
-          window.editor = document.createElement('codemirror-editor');
+          import "/node_modules/playground-elements/playground-code-editor.js";
+          window.editor = document.createElement('playground-code-editor');
           document.body.appendChild(window.editor);
         </script>
       `;

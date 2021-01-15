@@ -2,53 +2,48 @@
 
 {% block head %}
   <link rel="stylesheet" href="{{site.baseurl}}/css/playground.css">
+  <script type="module">{% include 'js/playground.js' %}</script>
 {% endblock %}
 
 {% block content %}
-<code-sample>
+<div class="playground-bar">
+  <mwc-button label="Share" class="save-button" title="Copy URL to clipboard">
+    <!-- Source: https://material.io/resources/icons/?icon=share&style=baseline -->
+    <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
+      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+    </svg>
+  </mwc-button>
+
+  <mwc-snackbar class="copy-snackbar" labelText="URL copied to clipboard">
+  </mac-snackbar>
+</div>
+
+<playground-ide resizable line-numbers editable-file-system>
+  <script type="sample/ts" filename="my-greeter.ts">
+import { LitElement, html, property, customElement } from 'lit-element';
+
+@customElement('my-greeter')
+export class MyGreeter extends LitElement {
+  @property({ type: String })
+  who?: string;
+
+  render() {
+    return html`
+      <p>Hello ${this.who}!</p>
+    `;
+  }
+}
+  </script>
   <script type="sample/html" filename="index.html">
 <!doctype html>
 <html>
 <head>
-  <script type="module" src="./my-element.js">&lt;/script>
+  <script type="module" src="./my-greeter.js">&lt;/script>
 </head>
 <body>
-  <div>Here are the contents:</div>
-  <my-element myNumber="5">
-    <div>Element is not upgraded</div>
-  </my-element>
+  <my-greeter who="World"></my-greeter>
 </body>
 </html>
   </script>
-  <script type="sample/ts" filename="my-element.ts">
-import { LitElement, html, property, customElement } from 'lit-element';
-import './my-second-element.js';
-
-@customElement('my-element')
-export class MyElement extends LitElement {
-@property({ type: Number })
-myNumber?: number;
-
-render() {
-  return html`
-    <div>Here is ${this.myNumber}</div>
-    <div>And here is my second element:</div>
-    <my-second-element></my-second-element>
-  `;
-}
-}
-  </script>
-  <script type="sample/ts" filename="my-second-element.ts">
-import { LitElement, html, customElement } from 'lit-element';
-
-@customElement('my-second-element')
-export class MySecondElement extends LitElement {
-render() {
-  return html`
-    <div>This is inside the shadow dom of my-second-element</div>
-  `;
-}
-}
-  </script>
-</code-sample>
+</playground-ide>
 {% endblock %}
