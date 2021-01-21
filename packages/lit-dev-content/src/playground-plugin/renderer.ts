@@ -100,6 +100,13 @@ export class Renderer {
               '<codemirror-editor> did not render a ".CodeMirror-code" element'
             );
           }
+          // The final line is sometimes (always?) an empty line containing just
+          // a zero width space. Remove any final line that's only whitespace.
+          // Note that RegExp "\s" doesn't include zero width spaces.
+          const lastLine = cm.querySelector('.CodeMirror-line:last-of-type');
+          if (lastLine?.textContent?.match(/^[\s\u200B]*$/)) {
+            lastLine.remove();
+          }
           return cm.innerHTML;
         },
         [lang, code]
