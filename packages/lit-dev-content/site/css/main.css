@@ -310,21 +310,3 @@ playground-file-editor {
      theme, that is both nicer looking and satisfies a11y contrast metrics. */
   color: #b30000 !important;
 }
-
-.playground-example playground-file-editor {
-  height: 300px;
-  margin-bottom: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.playground-example playground-preview {
-  height: 100px;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.playground-example playground-preview::part(preview-toolbar) {
-  display: none;
-}
