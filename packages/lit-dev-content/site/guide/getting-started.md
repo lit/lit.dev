@@ -323,9 +323,19 @@ If you already have a dev server that works with your build system, it should wo
 
 ### Supporting older browsers
 
-To support older browsers that don't support ES6 and the web components specifications, you'll need to take a few extra steps to produce code that will run on the older browsers.
+For older browsers like Internet Explorer 11 that don't support ES6 and the web components specifications, you'll need to take a couple extra steps to produce code that will run.
 
-See [Build for production](build) for more information.
+First you'll need to build the code to ES5. See [Building](../tools/building) for detailed information.
+
+Next you'll need to include the web components polyfills. You can load the polyfills as follows:
+
+```html
+<script src="node_modules/lit/polyfill-support.js"></script>
+<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<!-- Load application code here -->
+```
+
+See [Supporting older browsers](../tools/browsers) for more detailed information.
 
 ### Next steps
 
