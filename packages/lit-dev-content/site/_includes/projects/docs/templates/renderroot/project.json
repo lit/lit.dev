@@ -2,7 +2,6 @@
   "files": {
     "default-root.js": {},
     "light-dom.js": {},
-    "index.html": {},
-    "index.ts": {}
+    "index.html": {}
   }
 }

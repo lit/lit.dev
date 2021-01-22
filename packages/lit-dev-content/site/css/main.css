@@ -277,15 +277,20 @@ body {
   --playground-code-font-size: 13px;
 }
 
-/* inline code fragments */ code:not([class]),
-/* eleventy markdown pre */ pre.highlight,
-.CodeMirror {
-  font-family: "Roboto Mono", monospace !important;
-  border-radius: 6px;
-  font-size: 13px !important;
+.CodeMirror, playground-file-editor, playground-preview {
   border: 1px solid #dedede;
   border-radius: 6px;
-  padding: 12px 12px 0 12px;
+  margin-bottom: 16px;
+}
+
+playground-file-editor {
+  --playground-code-background: transparent;
+}
+
+.CodeMirror {
+  font-family: "Roboto Mono", monospace !important;
+  font-size: 13px !important;
+  padding: 12px;
   /* The default CodeMirror stylesheet fixes height to 300px. */
   height: unset !important;
 }
@@ -306,10 +311,20 @@ body {
   color: #b30000 !important;
 }
 
-code:not([class]) {
-  padding: 0 6px;
+.playground-example playground-file-editor {
+  height: 300px;
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-pre.highlight {
-  padding: 12px;
+.playground-example playground-preview {
+  height: 100px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.playground-example playground-preview::part(preview-toolbar) {
+  display: none;
 }
