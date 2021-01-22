@@ -13,7 +13,7 @@ jobs:
       # https://stackoverflow.com/a/59819441
       - name: Generate URL
         id: gen-url
-        run: echo "::set-output name=url::https://pr${{ github.event.number }}-$(echo $GITHUB_SHA | cut -c1-8)---lit-dev-bvxw3ycs6q-uw.a.run.app/"
+        run: echo "::set-output name=url::https://pr${{ github.event.number }}-${echo ${{ github.event.pull_request.head.sha }} | cut -c1-8)---lit-dev-bvxw3ycs6q-uw.a.run.app/"
 
       # https://github.com/peter-evans/find-comment
       - name: Find existing comment
