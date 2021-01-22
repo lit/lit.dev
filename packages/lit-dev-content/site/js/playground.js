@@ -14,13 +14,14 @@ window.addEventListener('DOMContentLoaded', () => {
     // somebody to share a link that executes arbitrary code.
     // https://github.com/PolymerLabs/lit.dev/issues/26
     ide.files = decoded;
-  } else if (projectName?.match(/^[a-zA-Z0-9_-]+$/)) {
-    ide.projectSrc = `/samples/docs/templates/${projectName}/project.json`;
+  } else if (projectName?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
+    ide.projectSrc = `/samples/${projectName}/project.json`;
   }
 
   saveButton.addEventListener('click', async () => {
     const project = btoa(JSON.stringify(ide.files));
     url.searchParams.set('project', project);
+    url.searchParams.delete('project-name');
     window.history.replaceState(null, '', url.toString());
     await navigator.clipboard.writeText(url.toString());
     snackbar.show();

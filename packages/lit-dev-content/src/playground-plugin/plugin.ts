@@ -81,7 +81,7 @@ export const playgroundPlugin = (
     return `
       <playground-ide
         line-numbers resizable editable-file-system
-        project-src="/samples/docs/templates/${project}/project.json">
+        project-src="/samples/${project}/project.json">
       </playground-ide>
     `.trim();
   });
@@ -96,7 +96,7 @@ export const playgroundPlugin = (
     (project: string, filename: string) => {
       return `
       <litdev-example
-        class="playground-example playground-example-${project}"
+        class="playground-example"
         project=${project}
         filename=${filename}>
       </litdev-example>

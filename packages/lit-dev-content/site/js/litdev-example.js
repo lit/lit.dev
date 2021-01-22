@@ -75,7 +75,7 @@ export class LitDevExample extends LitElement {
   static get properties() {
     return {
       /**
-       * Name of the project from `site/_includes/projects/NAME/project.json`.
+       * Path to the project dir from `site/_includes/projects/PATH/project.json`.
        */
       project: {},
 
@@ -92,17 +92,17 @@ export class LitDevExample extends LitElement {
     }
     return html`
       <playground-project
-        id="playground-${this.project}"
-        project-src="/samples/docs/templates/${this.project}/project.json">
+        id="project"
+        project-src="/samples/${this.project}/project.json">
       </playground-project>
 
       <playground-file-editor
-        project="playground-${this.project}"
+        project="project"
         filename="${this.filename}">
       </playground-file-editor>
 
       <playground-preview
-        project="playground-${this.project}">
+        project="project">
       </playground-preview>
 
       <a class="openInPlayground"
