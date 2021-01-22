@@ -280,6 +280,11 @@ body {
 .CodeMirror, playground-file-editor, playground-preview {
   border: 1px solid #dedede;
   border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+playground-file-editor {
+  --playground-code-background: transparent;
 }
 
 .CodeMirror {
@@ -304,4 +309,22 @@ body {
   /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
      theme, that is both nicer looking and satisfies a11y contrast metrics. */
   color: #b30000 !important;
+}
+
+.playground-example playground-file-editor {
+  height: 300px;
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.playground-example playground-preview {
+  height: 100px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.playground-example playground-preview::part(preview-toolbar) {
+  display: none;
 }
