@@ -1,4 +1,4 @@
-# GitHub Action that creates a comment displaying the lit.dev preview URL on
+# GitHub Action that creates a comment displaying the lit.dev preview URL for
 # each PR, and updates the comment on each push.
 name: Preview URL Comment
 
