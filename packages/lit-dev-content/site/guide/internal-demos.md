@@ -22,29 +22,29 @@ html`<h1>Hello ${name}</h1>`
 
 ## Single file example
 
-One editable file from a project, with a preview right below. Gets CSS classes
-`"playground-example playground-example-NAME"`
+One editable file from a project, with a preview right below. Gets CSS class
+`"playground-example"`.
 
 Arguments:
-1. Name of the project from `site/_includes/projects/NAME/project.json`.
+1. Path of the project dir from `site/_includes/projects/PATH/project.json`.
 2. Filename from project to show.
 
 ```
-{% raw %}{% playground-example "define" "my-element.js" %}{% endraw %}
+{% raw %}{% playground-example "docs/templates/define" "my-element.js" %}{% endraw %}
 ```
 
-{% playground-example "define" "my-element.js" %}
+{% playground-example "docs/templates/define" "my-element.js" %}
 
 ## Full IDE
 
 Fully editable playground project, with preview to the side.
 
 Arguments:
-1. Name of the project from `site/_includes/projects/<name>/project.json`.
+1. Path of the project dir from `site/_includes/projects/PATH/project.json`.
 2. Filename from project that is editable
 
 ```
-{% raw %}{% playground-ide "define" %}{% endraw %}
+{% raw %}{% playground-ide "docs/templates/define" %}{% endraw %}
 ```
 
-{% playground-ide "define" %}
+{% playground-ide "docs/templates/define" %}

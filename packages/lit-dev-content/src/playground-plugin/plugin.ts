@@ -81,13 +81,12 @@ export const playgroundPlugin = (
     return `
       <playground-ide
         line-numbers resizable editable-file-system
-        project-src="/samples/docs/templates/${project}/project.json">
+        project-src="/samples/${project}/project.json">
       </playground-ide>
     `.trim();
   });
 
   // TODO(aomarks)
-  // - Layout could be a custom element.
   // - Pre-render highlighted code and preview. Slots are already available.
   // - Add a "load in playground" button.
   // - Support "masking out" parts of the code, so that only some bits are
@@ -96,19 +95,11 @@ export const playgroundPlugin = (
     'playground-example',
     (project: string, filename: string) => {
       return `
-      <div class="playground-example playground-example-${project}">
-        <playground-project
-          id="playground-${project}"
-          project-src="/samples/docs/templates/${project}/project.json">
-        </playground-project>
-        <playground-file-editor
-          project="playground-${project}"
-          filename="${filename}">
-        </playground-file-editor>
-        <playground-preview
-          project="playground-${project}">
-        </playground-preview>
-      </div>
+      <litdev-example
+        class="playground-example"
+        project=${project}
+        filename=${filename}>
+      </litdev-example>
     `.trim();
     }
   );
