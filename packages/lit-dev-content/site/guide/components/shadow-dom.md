@@ -6,6 +6,14 @@ eleventyNavigation:
   order: 4
 ---
 
+{% todo %}
+
+- Edit for consistency.
+- Update createRenderRoot/etc. section for Lit.
+- Add interactive examples.
+
+{% endtodo %}
+
 By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their templated DOM.
 
 Shadow DOM provides three benefits:
@@ -245,6 +253,50 @@ _index.html_
 ```
 
 {% include project.html folder="docs/templates/slotid" openFile="my-element.js" %}
+
+## Slot fallback content
+
+You can specify fallback content for a slot. The fallback content is shown when no child is assigned to the slot.
+
+```html
+<slot>I am fallback content</slot>
+```
+
+### Templating and slot fallback content
+
+Fallback content for the default slot won't appear if the element has any child nodes at all—even an empty text node.
+
+Because Lit renders an empty text node for values like `null`, `undefined`, or the empty string, this can cause issues if you're using an element in your template that includes a default slot with fallback content. In this case, you can use Lit's `nothing` value instead of `undefined` or the empty string.
+
+Imagine you have a custom element, `example-element`, that has a slot in its shadow DOM:
+
+```js
+html`<slot> I am fallback content</slot>`;
+```
+
+If you use it in your template:
+
+```js
+import {LitElement, html, nothing} from 'lit-element';
+  ...
+
+UserElement extends LitElement {
+  render() {
+    html`
+      <example-element>${this.user.isAdmin
+        ? html`<button>DELETE</button>`
+        : nothing
+      }</example-element>
+    `;
+  }
+}
+```
+
+If the user is logged in, the Delete button is rendered. If the user is not logged in, nothing is rendered inside of `example-element`. This means the slot is empty and its fallback content is rendered.
+
+Replacing `nothing` in this example with the empty string causes an empty text node to be rendered inside `example-element`, suppressing the fallback content.
+
+For the example to work, the expression inside `<example-element>` must take up the entire space between the opening and closing tags for `<example-element>`. Any whitespace (including line breaks) _outside_ of the expression delimiters (`${}`) adds static text nodes to the template, suppressing the fallback content. However, whitespace _inside_ the expression delimiters is fine.
 
 ## Accessing slotted children
 

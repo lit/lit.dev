@@ -1,9 +1,14 @@
 {% extends 'default.html' %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{site.baseurl}}/css/features.css">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined&display=block" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
   <div class="wrapper hero">
-    <h1 class="hero-title">LitX</h1>
-    <h1 class="hero-caption">Simple, fast, and lightweight web components and design systems</h1>
+    <h1 class="hero-title">Lit</h1>
+    <h1 class="hero-caption">Simple, fast, lightweight web components</h1>
   </div>
 
   <section id="example">
@@ -214,7 +219,7 @@ export class SimpleGreeting extends LitElement {
     <div class="wrapper">
       <h3>Example 1</h3>
       <p>Just do this, then that...</p>
-      <code-sample>
+      <playground-ide>
         <script type="sample/html" filename="index.html">
       <!doctype html>
       <html>
@@ -259,11 +264,11 @@ export class SimpleGreeting extends LitElement {
       }
       }
         </script>
-      </code-sample>
+      </playground-ide>
 
       <h3>Example 2</h3>
       <p>Just do this, then that...</p>
-      <code-sample>
+      <playground-ide>
         <script type="sample/html" filename="index.html">
       <!doctype html>
       <html>
@@ -308,7 +313,7 @@ export class SimpleGreeting extends LitElement {
       }
       }
         </script>
-      </code-sample>
+      </playground-ide>
     </div>
   </section>
 {% endblock %}

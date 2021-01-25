@@ -6,4 +6,8 @@ eleventyNavigation:
   headingOnly: true
 ---
 
-This section should not exist, please ignore it.
+{% todo %}
+
+Figure out what to do with these empty sections.
+
+{% endtodo %}

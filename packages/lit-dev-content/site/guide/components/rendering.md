@@ -6,6 +6,14 @@ eleventyNavigation:
   order: 2
 ---
 
+{% todo %}
+
+-  Add intro and "when components render." [#1157](https://github.com/Polymer/internal/issues/1157).
+-  Edit and make sure language is consistent.
+-  Make samples runnable?
+
+{% endtodo %}
+
 Add a template to your component to define internal DOM to implement your component.
 
 To encapsulate the templated DOM LitElement uses
@@ -43,18 +51,17 @@ class MyElement extends LitElement {
 *   Tag your template literal with the [`html`](https://lit-html.polymer-project.org/api/modules/lit_html.html#html)
     tag function.
 
-*   The component's `render` method can return anything that lit-html can render. Typically, it
+*   The component's `render` method can return anything that Lit can render. Typically, it
     returns a single `TemplateResult` object (the same type returned by the `html` tag function).
 
 Example
 
-<code-sample project-src="/samples/docs/templates/define/project.json">
-</code-sample>
+<playground-ide project-src="/samples/docs/templates/define/project.json">
+</playground-ide>
 
-lit-html templates can include _bindings_ that can contain any JavaScript expression. You can use bindings to set text content, attributes, properties, and event listeners.
+Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners.
 
-See [Writing templates](/guide/templates/writing-templates)
-and the [Template syntax reference](/guide/templates/template-reference) for complete details.
+See the template [overview](/guide/templates/overview) for more information.
 
 ### Design a performant template
 
@@ -92,7 +99,7 @@ render() {
 }
 ```
 
-We can improve the template by declaring the message as a property, and binding the property into the template. Declaring a property tells your component to re-render its template when the property changes.
+We can improve the template by declaring the message as a _reactive property_, and set the property using an expression. Declaring a reactive property tells your component to re-render its template when the property changes.
 
 
 _update-properties.js_
@@ -119,9 +126,9 @@ class MyElement extends LitElement {
 }
 ```
 
-<code-sample project-src="/samples/docs/templates/design/project.json"></code-sample>
+<playground-ide project-src="/samples/docs/templates/design/project.json"></playground-ide>
 
-The following sections discuss different types of property bindings. See [Properties](properties) for information on declaring properties.
+See [Reactive properties](/guide/components/properties) for information on declaring reactive properties.
 
 ## Compose a template from other templates
 
@@ -150,7 +157,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample project-src="/samples/docs/templates/compose/project.json"></code-sample>
+<playground-ide project-src="/samples/docs/templates/compose/project.json"></playground-ide>
 
 You can also compose templates by importing other elements and using them in your template:
 
@@ -170,13 +177,13 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample project-src="/samples/docs/templates/composeimports/project.json"></code-sample>
+<playground-ide project-src="/samples/docs/templates/composeimports/project.json"></playground-ide>
 
 
 ## Resources
 
-For more information on lit-html templates:
+For more information on Lit templates:
 
-* [Writing templates](/guide/templates/writing-templates)
-* [Template syntax reference](/guide/templates/template-reference)
+* [Template overview](/guide/templates/overview)
+
 

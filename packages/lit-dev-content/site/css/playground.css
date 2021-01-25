@@ -1,9 +1,28 @@
-html, body {
-  height: 100%;
+main {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  max-width: none;
 }
 
-code-sample {
+.playground-bar {
+  height: 36px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  --mdc-theme-primary: currentcolor;
+}
+
+playground-ide {
   flex: 1;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  min-height: 350px;
+  --playground-highlight-color: #1879cd;
+}
+
+mwc-button:not(:defined) {
+  display: none;
 }

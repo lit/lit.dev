@@ -6,15 +6,21 @@ const slugifyLib = require('slugify');
 const path = require('path');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const {playgroundPlugin} = require('./playground-plugin/plugin.js');
+const htmlMinifier = require('html-minifier');
+const CleanCSS = require('clean-css');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
 const slugify = (s) => slugifyLib(s, {lower: true});
 
+
+
 module.exports = function (eleventyConfig) {
+  // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ['h2', 'h3'],
     wrapper: 'div',
+    wrapperClass: '',
   });
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin);
@@ -26,11 +32,30 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('api/**/*');
   eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
   eleventyConfig.addPassthroughCopy({
-    'node_modules/code-sample-editor/typescript-worker.js':
-      './typescript-worker.js',
+    'node_modules/playground-elements/playground-typescript-worker.js':
+      './js/playground-typescript-worker.js',
   });
   eleventyConfig.addPassthroughCopy({
-    'node_modules/code-sample-editor/service-worker.js': './service-worker.js',
+    'node_modules/playground-elements/playground-service-worker.js':
+      './js/playground-service-worker.js',
+  });
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/playground-elements/playground-service-worker-proxy.html':
+      './js/playground-service-worker-proxy.html',
+  });
+
+  // Placeholder shortcode for TODOs
+  // Formatting is intentional: outdenting the HTML causes the
+  // markdown processor to quote it.
+  eleventyConfig.addPairedShortcode("todo", function(content) {
+    console.warn(`TODO item in ${this.page.url}`);
+    return `
+<div class="alert alert-todo">
+<h3>TO DO</h3>
+
+${content}
+
+</div>`;
   });
 
   const md = markdownIt({html: true, breaks: true, linkify: true})
@@ -68,6 +93,24 @@ module.exports = function (eleventyConfig) {
           return 0;
         })
     );
+  });
+
+  eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
+    if (!outputPath.endsWith('.html')) {
+      return content;
+    }
+    const minified = htmlMinifier.minify(content, {
+      useShortDoctype: true,
+      removeComments: true,
+      collapseWhitespace: true,
+    });
+    return minified;
+  });
+
+  // https://www.11ty.dev/docs/quicktips/inline-css/
+  eleventyConfig.addFilter('cssmin', function (code) {
+    const result = new CleanCSS({}).minify(code);
+    return result.styles;
   });
 
   return {
