@@ -6,15 +6,9 @@ eleventyNavigation:
   order: 4
 ---
 
-{% todo %}
-
-- Edit for consistency.
-- Update createRenderRoot/etc. section for Lit.
-- Add interactive examples.
-
-{% endtodo %}
-
 By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their templated DOM.
+
+{% playground-ide "docs/templates/shadowroot/" %}
 
 Shadow DOM provides three benefits:
 
@@ -24,21 +18,73 @@ Shadow DOM provides three benefits:
   affect the rest of the DOM tree.
 * Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your templated DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
 
-Where native shadow DOM isn't available, LitElement
-uses the [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill.
+<div class="alert alert-info">
 
-To customize the shadow root used by your Lit component, or to render _without_ shadow DOM, see [Specify the render root](#renderroot).
+**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [browser support](../tools/browsers) for details.
+
+</div>
+
+## Customizing the render root {#renderroot}
+
+The node into which your component's template will render is called its **render root** and is accessible via the `renderRoot` property.
+
+By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
+
+```html
+<my-element>
+  #shadow-root
+    <p>child 1</p>
+    <p>child 2</p>
+```
+
+There are two ways to customize the render root use by LitElement:
+
+* setting `shadowRootOptions`
+* implementing the `createRenderRoot` method
+
+### Setting `shadowRootOptions`
+
+The `shadowRootOptions` property is a `static` property which, in the default implementation of `createRenderRoot`, is passed as the options argument to `attachShadow` when creating the element's shadow root. It can be set to easily customize any options allowed in the [ShadowRootInit](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters) dictionary, for example `mode` and `delegatesFocus`.
+
+```js
+class DelagatesFocus extends LitElement {
+  static shadowRootOptions = {...super.shadowRootOptions, delegatesFocus: true};
+}
+```
+
+More information:
+
+*   [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) on MDN.
+
+### Implementing `createRenderRoot`
+
+The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` property. For more information on styling see the [Styles](../styles) documentation.
+
+To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
+
+For example, to render the template into the main DOM tree as your element's children, implement `createRenderRoot` and return `this`.
+
+<div class="alert alert-info">
+
+**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its rendered DOM.
+
+</div>
+
+{% playground-ide "docs/templates/renderroot/" %}
 
 ## Accessing nodes in the shadow DOM
 
-The `render()` method result is usually rendered into shadow DOM, so the nodes are not direct children of the component. Use `this.shadowRoot.querySelector()` or `this.shadowRoot.querySelectorAll()` to find nodes in the
-shadow DOM.
+The `render()` method result is usually rendered into shadow DOM, so the nodes are not direct children of the component. To find nodes in shadow DOM, you can use `this.shadowRoot.querySelector()` or `this.shadowRoot.querySelectorAll()`. Note, because LitElement renders into a customizable `renderRoot` property, it is typically better to use `this.renderRoot.querySelector()` to find nodes in element DOM.
 
-You can query the templated DOM after its initial render (for example, in `firstUpdated`), or use a getter pattern, like this:
+You can query the templated DOM after its initial render (for example, in `firstUpdated`), or use a getter pattern:
 
 ```js
+firstUpdated() {
+  this.staticNode = this.renderRoot.querySelector('#static-node');
+}
+
 get _closeButton() {
-  return this.shadowRoot.querySelector('#close-button');
+  return this.renderRoot.querySelector('#close-button');
 }
 ```
 
@@ -51,20 +97,19 @@ More information:
 
 ### @query, @queryAll, and @queryAsync decorators
 
-The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient way to access nodes in the component's shadow root.
+The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient way to access nodes in the component's rendered DOM.
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](../decorators) for details.
 
 </div>
 
-The `@query` decorator modifies a class property, turning it into a getter that returns a node from the render root. The optional second argument is a cache flag which when true performs the DOM query only once and caches the result. This can be used as a performance optimization in cases when the node being queried is not expectd to change.
-
+The `@query` decorator modifies a class property, turning it into a getter that returns a node from the render root. The optional second argument when true performs the DOM query only once and caches the result. This can be used as a performance optimization in cases when the node being queried will not change.
 
 ```js
-import {LitElement, html} from 'lit-element';
-import {query} from 'lit-element/lib/decorators.js';
+import {LitElement, html} from 'lit';
+import {query} from 'lit/decorators/query.js';
 
 class MyElement extends LitElement {
   @query('#first')
@@ -89,16 +134,15 @@ get first() {
 
 <div class="alert alert-info">
 
-**shadowRoot and renderRoot**. The [`renderRoot`](/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Specify the render root](#renderroot)
+**shadowRoot and renderRoot.** The [`renderRoot`](/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Customizing the render root](#renderroot)
 
 </div>
 
 The `@queryAll` decorator is identical to `query` except that it returns all matching nodes, instead of a single node. It's the equivalent of calling `querySelectorAll`.
 
-
 ```js
-import {LitElement, html} from 'lit-element';
-import {queryAll} from 'lit-element/lib/decorators.js';
+import {LitElement, html} from 'lit';
+import {queryAll} from 'lit/decorators/queryAll.js';
 
 class MyElement extends LitElement {
   @queryAll('div')
@@ -113,7 +157,7 @@ class MyElement extends LitElement {
 }
 ```
 
-Here, `divs` would return both `<div>` elements in the template. For TypeScript, the typing of a `@queryAll` property is `NodeListOf<HTMLElement>`. If you know exactly what kind of nodes you'll retrieve, the typing can be more specific:
+Here, `_divs` would return both `<div>` elements in the template. For TypeScript, the typing of a `@queryAll` property is `NodeListOf<HTMLElement>`. If you know exactly what kind of nodes you'll retrieve, the typing can be more specific:
 
 ```js
 @queryAll('button')
@@ -122,11 +166,11 @@ _buttons!: NodeListOf<HTMLButtonElement>
 
 The exclamation point (`!`) after `buttons` is TypeScript's [non-null assertion operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator). It tells the compiler to treat `buttons` as always being defined, never `null` or `undefined`.
 
-Finally, `@queryAsync` works like `@query`, except that instead of returning a node directly, it returns a `Promise` that resolves to that node. Code can use this instead of waiting for the `updateComplete` promise.
+Finally, `@queryAsync` works like `@query`, except that instead of returning a node directly, it returns a `Promise` that resolves to that node after any pending element render is completed. Code can use this instead of waiting for the `updateComplete` promise.
 
 This is useful, for example, if the node returned by `@queryAsync` can change as a result of another property change.
 
-## Render children with the slot element {#slots}
+## Composing element children with the slot element {#slots}
 
 Your component may accept children (like a `<ul>` element can have `<li>` children).
 
@@ -145,63 +189,15 @@ To render children, your template needs to include one or more [`<slot>` element
 
 </div>
 
-### Use the slot element
+### Using the slot element
 
-To render an element's children, create a `<slot>` for them in the element's template. For example:
+To render an element's children, create a `<slot>` for them in the element's template. The children aren't _moved_ in the DOM tree, but they're rendered _as if_ they were children of the `<slot>`. For example:
 
-```js
-render(){
-  return html`
-    <div>
-      <slot></slot>
-    </div>
-  `;
-}
-```
+{% playground-ide "docs/templates/slots/" %}
 
-Children will now render in the `<slot>`:
-
-```html
-<my-element>
-  <p>Render me</p>
-</my-element>
-```
-
-The children aren't _moved_ in the DOM tree, but they're rendered _as if_ they were children of the `<slot>`.
-
-Arbitrarily many children can populate a single slot:
-
-```html
-<my-element>
-  <p>Render me</p>
-  <p>Me too</p>
-  <p>Me three</p>
-</my-element>
-```
-
-{% include project.html folder="docs/templates/slots" openFile="my-element.js" %}
-
-### Use named slots
+### Using named slots
 
 To assign a child to a specific slot, ensure that the child's `slot` attribute matches the slot's `name` attribute:
-
-```js
-render(){
-  return html`
-    <div>
-      <slot name="one"></slot>
-    </div>
-  `;
-}
-```
-
-_index.html_
-
-```html
-<my-element>
-  <p slot="one">Include me in slot "one".</p>
-</my-element>
-```
 
 * **Named slots only accept children with a matching `slot` attribute.**
 
@@ -211,50 +207,9 @@ _index.html_
 
   For example, `<p slot="one">...</p>` will only be placed in `<slot name="one"></slot>`.
 
-**Examples**
+{% playground-ide "docs/templates/namedslots/" %}
 
-_my-element.js_
-
-```js
-{% include projects/docs/templates/namedslots/my-element.js %}
-```
-
-_index.html_
-
-```html
-{% include projects/docs/templates/namedslots/index.html %}
-```
-
-{% include project.html folder="docs/templates/namedslots" openFile="my-element.js" %}
-
-**Use `name`, not `id`, to select slots.**
-
-Note that a `slot`'s `id` attribute has no effect!
-
-_my-element.js_
-
-```js
-render(){
-  return html`
-    <div>
-      <slot id="one"></slot>
-    </div>
-  `;
-}
-```
-
-_index.html_
-
-```html
-<my-element>
-  <p slot="one">nope.</p>
-  <p>ohai..</p>
-</my-element>
-```
-
-{% include project.html folder="docs/templates/slotid" openFile="my-element.js" %}
-
-## Slot fallback content
+### Specifying slot fallback content
 
 You can specify fallback content for a slot. The fallback content is shown when no child is assigned to the slot.
 
@@ -262,41 +217,11 @@ You can specify fallback content for a slot. The fallback content is shown when 
 <slot>I am fallback content</slot>
 ```
 
-### Templating and slot fallback content
+<div class="alert alert-info">
 
-Fallback content for the default slot won't appear if the element has any child nodes at all—even an empty text node.
+**Rendering fallback content.** If a slot distributes any child, fallback content will not render. A default slot with no name accepts any child and will not render fallback content even if it distributes only whitespace inside an element, for example `<div> </div>`.
 
-Because Lit renders an empty text node for values like `null`, `undefined`, or the empty string, this can cause issues if you're using an element in your template that includes a default slot with fallback content. In this case, you can use Lit's `nothing` value instead of `undefined` or the empty string.
-
-Imagine you have a custom element, `example-element`, that has a slot in its shadow DOM:
-
-```js
-html`<slot> I am fallback content</slot>`;
-```
-
-If you use it in your template:
-
-```js
-import {LitElement, html, nothing} from 'lit-element';
-  ...
-
-UserElement extends LitElement {
-  render() {
-    html`
-      <example-element>${this.user.isAdmin
-        ? html`<button>DELETE</button>`
-        : nothing
-      }</example-element>
-    `;
-  }
-}
-```
-
-If the user is logged in, the Delete button is rendered. If the user is not logged in, nothing is rendered inside of `example-element`. This means the slot is empty and its fallback content is rendered.
-
-Replacing `nothing` in this example with the empty string causes an empty text node to be rendered inside `example-element`, suppressing the fallback content.
-
-For the example to work, the expression inside `<example-element>` must take up the entire space between the opening and closing tags for `<example-element>`. Any whitespace (including line breaks) _outside_ of the expression delimiters (`${}`) adds static text nodes to the template, suppressing the fallback content. However, whitespace _inside_ the expression delimiters is fine.
+</div>
 
 ## Accessing slotted children
 
@@ -339,7 +264,7 @@ The `@queryAssignedNodes` decorator converts a class property into a getter that
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](../decorators) for details.
 
 </div>
 
@@ -364,50 +289,6 @@ get headerNodes() {
 ```
 
 For TypeScript, the typing of a `queryAssignedNodes` property is `NodeListOf<HTMLElement>`.
-
-## Specify the render root {#renderroot}
-
-The node into which your component's template will render is called its **render root**.
-
-By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
-
-```text
-<my-element>
-  #shadow-root
-    <p>child 1</p>
-    <p>child 2</p>
-```
-
-To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
-
-For example, to render the template into the main DOM tree as your element's children:
-
-```text
-<my-element>
-  <p>child 1</p>
-  <p>child 2</p>
-```
-
-Implement `createRenderRoot` and return `this`:
-
-```js
-class LightDom extends LitElement {
-  render() {
-    return html`
-      <p>This template renders without shadow DOM.</p>
-    `;
-  }
-  createRenderRoot() {
-  /**
-   * Render template without shadow DOM. Note that shadow DOM features like
-   * encapsulated CSS and slots are unavailable.
-   */
-    return this;
-  }
-}
-```
-
-{% include project.html folder="docs/templates/renderroot" openFile="my-element.js" %}
 
 ## Resources
 

@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="module" src="./my-element.js"></script>
-  <title>lit-element code sample</title>
-</head>
-<body>
-  <p>Use the <code>slot</code> element to render children</p>
-  <my-element>
-    <p>Render me</p>
-  </my-element>
-  <p>Arbitarily many  children may populate a single slot</p>
-  <my-element>
-    <p>Render me</p>
-    <p>Me too</p>
-    <p>Me three</p>
-  </my-element>
-</body>
-</html>
+<script type="module" src="./my-element.js"></script>
+
+<p>Use the <code>slot</code> element to render children</p>
+<my-element>
+  <p>Render me</p>
+</my-element>
+<hr>
+
+<p>Many children may populate a single slot</p>
+<my-element>
+  <p>Render me</p>
+  <p>Me too</p>
+  <p>Me three</p>
+</my-element>
