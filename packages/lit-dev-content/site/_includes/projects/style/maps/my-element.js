@@ -3,18 +3,14 @@ import { classMap } from 'lit-html/directives/class-map';
 import { styleMap } from 'lit-html/directives/style-map';
 
 class MyElement extends LitElement {
-  static get properties() {
-    return {
-      classes: { type: Object },
-      styles: { type: Object }
-    }
-  }
-  static get styles() {
-    return css`
-      .mydiv { background-color: blue; }
-      .someclass { border: 1px solid red; }
-    `
-  }
+  static properties = {
+    classes: { type: Object },
+    styles: { type: Object }
+  };
+  static styles = css`
+    .mydiv { background-color: blue; }
+    .someclass { border: 1px solid red; }
+  `;
   constructor() {
     super();
     this.classes = { mydiv: true, someclass: true };
@@ -28,5 +24,4 @@ class MyElement extends LitElement {
     `;
   }
 }
-
 customElements.define('my-element', MyElement);

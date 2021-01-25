@@ -23,5 +23,4 @@ export class Div3 extends LitElement {
     </div>`;
   }
 }
-
 customElements.define('div-3', Div3);

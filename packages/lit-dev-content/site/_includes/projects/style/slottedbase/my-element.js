@@ -5,5 +5,4 @@ class MyElement extends LitElement {
     return html`<slot></slot>`;
   }
 }
-
 customElements.define('my-element', MyElement);
