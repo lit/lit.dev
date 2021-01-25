@@ -6,7 +6,13 @@ eleventyNavigation:
   order: 1
 ---
 
-A Lit component is a reusable piece of UI. You can think of a Lit component as a container that has some state and that displays its state to the user. It may also react to user input, fire events—anything you'd expect a UI component to do.
+{% todo %}
+
+- Add correct xref for @customElement decorator.
+
+{% endtodo %}
+
+A Lit component is a reusable piece of UI. You can think of a Lit component as a container that has some state and that displays a UI based on its state. It can also react to user input, fire events—anything you'd expect a UI component to do. And a Lit component is an HTML element, so it has all of the standard element APIs.
 
  Almost all Lit components include:
 
@@ -14,34 +20,15 @@ A Lit component is a reusable piece of UI. You can think of a Lit component as a
 
 *   A *render method* that's called to render the components' contents. In the render method, you define a *template* for the component.
 
-Lit also provides a set of lifecycle methods that you can override to hook into the lifecycle (for example, to run code whenever the component updates).
+Lit also provides a set of lifecycle methods that you can override to hook into the component's lifecycle (for example, to run code whenever the component updates).
 
-To define a Lit component, you create a class that extends from the `LitElement` base class.
+To define a Lit component, you create a class that extends the `LitElement` base class.
 
 Here's a sample component:
 
-{% highlight js %}
-import { LitElement, css, html, property, customElement } from 'lit-element';
+{% playground-example docs/components/overview/simple-greeting simple-greeting.ts %}
 
-@customElement('simple-greeting')
-export class SimpleGreeting extends LitElement {
-  // Define scoped styles right with your component, in plain CSS
-  static styles = css`
-    :host {
-      border: solid 1px blue;
-    }
-  `;
-
-  // Declare reactive properties
-  @property()
-  name = 'World';
-
-  // Render the UI as a function of component state
-  render() {
-    return html`<p>Hello, ${this.name}!</p>`;
-  }
-}
-{% endhighlight %}
+{% playground-ide docs/components/overview/simple-greeting %}
 
 <div class="alert alert-info">
 
@@ -49,9 +36,9 @@ export class SimpleGreeting extends LitElement {
 
 </div>
 
-## A Lit component is a custom element
+## A Lit component is an HTML element
 
-When you define a Lit component, you're defining a [custom element](TODO-ADD-HREF).
+When you define a Lit component, you're defining a [custom HTML element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
 
 ```ts
 @customElement('simple-greeting')
@@ -65,7 +52,9 @@ export class SimpleGreeting extends LitElement { ... }
 customElements.define('simple-greeting', SimpleGreeting);
 ```
 
-The `@customElement` decorator is shorthand for calling `customElements.define`, which registers a custom element class with the browser and associates it with an element name (in this case, `simple-greeting`). So you can use the new element like you'd use any built-in element:
+The [`@customElement`](TODO LINK) decorator is shorthand for calling [`customElements.define`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define), which registers a custom element class with the browser and associates it with an element name (in this case, `simple-greeting`).
+
+So you can use the new element like you'd use any built-in element:
 
 ```html
 <simple-greeting name="Markup"></simple-greeting>
@@ -79,9 +68,9 @@ document.body.appendChild(greeting);
 
 The `LitElement` base class is a subclass of `HTMLElement`, so a Lit component inherits all of the standard `HTMLElement` properties and methods.
 
-Specificially, `LitElement` inherits from `UpdatingElement`, which implements reactive properties, and in turn inherits from `HTMLElement`.
+Specificially, `LitElement` inherits from `ReactiveElement`, which implements reactive properties, and in turn inherits from `HTMLElement`.
 
-![Inheritance diagram showing LitElement inheriting from UpdatingElement, which in turn inherits from HTMLElement. LitElement is responsible for templating; UpdatingElement is responsible for managing reactive properties and attributes; HTMLElement is the standard DOM interface shared by all native HTML elements and custom elements.](/images/guide/components/lit-element-inheritance.png)
+![Inheritance diagram showing LitElement inheriting from ReactiveElement, which in turn inherits from HTMLElement. LitElement is responsible for templating; ReactiveElement is responsible for managing reactive properties and attributes; HTMLElement is the standard DOM interface shared by all native HTML elements and custom elements.](/images/guide/components/lit-element-inheritance.png)
 
 ## Rendering, templates and styles
 
@@ -93,35 +82,41 @@ render() {
 }
 ```
 
-By default the rendered DOM is encapsulated using [shadow DOM](TODO-ADD-HREF). This has two main benefits:
+By default the rendered DOM is encapsulated using [shadow DOM](/guide/components/shadow-dom/). This has three main benefits:
 
-*   *Style encapsulation* means that you scope styles to your component, and prevent outside CSS styles from leaking in.
+*   *DOM composition* means that users can provide child nodes without interfering with the component's rendered template. The component author decides where or if user-provided child nodes render.
 
 *   *DOM encapsulation* means that outside code (like `document.querySelector`) won't accidentally select elements in your component's shadow DOM.
+
+*   *Style encapsulation* means that you scope styles to your component, and prevent outside CSS styles from leaking in.
 
 You can specify encapsulated styles for your component using the static `styles` property:
 
 ```ts
-static styles = css`
-  /* Style the component itself */
-  :host {
-    border: solid 1px blue;
-  }
-  /* Style an element in the shadow DOM */
-  p {
-    color: blue;
-  }
-`;
+class MyElement extends LitElement {
+  static styles = css`/* your CSS here */`;
+}
 ```
+
+These styles are applied to every instance of your component.
 
 Read more:
 
-*   [Rendering](/guide/components/rendering)
-*   [Template overview](/guide/templates/overview)
+*   [Rendering](/guide/components/rendering/)
+*   [Template overview](/guide/templates/overview/)
+*   [Styles](/guide/components/styles/)
 
 ## Reactive properties
 
-You can define any number of properties on your component as *reactive properties*. Changing the value of a reactive property triggers an *update cycle*. (The update cycle is asynchronous, so setting multiple properties at the same time only triggers one update.)
+You can define any number of properties on your component as *reactive properties*:
+
+```ts
+class MyElement extends LitElement {
+  @property() message;
+}
+```
+
+Changing the value of a reactive property triggers an *update cycle*. (The update cycle is asynchronous, so setting multiple properties at the same time only triggers one update.)
 
  The following things happen during an update cycle:
 
