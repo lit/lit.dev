@@ -26,9 +26,7 @@ To define a Lit component, you create a class that extends the `LitElement` base
 
 Here's a sample component:
 
-{% playground-example docs/components/overview/simple-greeting simple-greeting.ts %}
-
-{% playground-ide docs/components/overview/simple-greeting %}
+{% playground-example "docs/components/overview/simple-greeting" "simple-greeting.ts" %}
 
 <div class="alert alert-info">
 
@@ -118,13 +116,9 @@ class MyElement extends LitElement {
 
 Changing the value of a reactive property triggers an *update cycle*. (The update cycle is asynchronous, so setting multiple properties at the same time only triggers one update.)
 
- The following things happen during an update cycle:
+During the update cycle, a series of update related callbacks are called. As part of the cycle, the component's `render()` method is called and its UI updated.
 
-*   The element's template is re-rendered with any updated values.
-
-*   Update related callbacks are called.
-
-In addition, a property can be set to *reflect* to an attribute. This means a corresponding attribute is set on the component when the property value changes. (Or in the case of a boolean property, the attribute is added when the property is true, and removed when the property is false.) Attribute reflection also happens during the update cycle.
+A reactive property can be set to *reflect* to an attribute. This means a corresponding attribute is set on the component when the property value changes. (Or in the case of a boolean property, the attribute is added when the property is true, and removed when the property is false.) Attribute reflection also happens during the update cycle.
 
 Read more:
 

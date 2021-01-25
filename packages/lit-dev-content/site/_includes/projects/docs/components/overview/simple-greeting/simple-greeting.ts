@@ -5,7 +5,7 @@ export class SimpleGreeting extends LitElement {
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     :host {
-      border: solid 1px blue;
+      color: blue;
     }
   `;
 
