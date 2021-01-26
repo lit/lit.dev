@@ -1,3 +1,5 @@
+import Tar from 'tarts';
+
 window.addEventListener('DOMContentLoaded', () => {
   /**
    * Encode the given string to base64url, with support for all UTF-16 code
@@ -70,6 +72,16 @@ window.addEventListener('DOMContentLoaded', () => {
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
     shareSnackbar.show();
+  });
+
+  const downloadButton = $('.download-button');
+  downloadButton.addEventListener('click', () => {
+    const tarFiles = ide.files.map(({name, content}) => ({name, content}));
+    const tar = Tar(tarFiles);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([tar], {type: 'application/tar'}));
+    a.download = 'lit-playground.tar';
+    a.click();
   });
 
   const syncStateFromUrlHash = () => {
