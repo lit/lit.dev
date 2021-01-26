@@ -1,0 +1,33 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  <style>
+    {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
+    {{ guidecss | cssmin | safe }}
+  </style>
+{% endblock %}
+
+
+{% block content %}
+  <main class="wrapper">
+    <div class="side">
+      <side-nav>
+        {%- set recent = collections.blog.slice(0,9) -%}
+        <h4>RECENT POSTS</h4>
+        <ul>
+        {%- for entry in recent %}
+          <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
+            <a href="{{ entry.url | url }}">{{ entry.data.title }}</a>
+          </li>
+        {%- endfor %}
+        </ul>
+        <a href="/blog/">All posts</a>
+      </side-nav>
+    </div>
+
+    <article>
+      <h1>{{ title }}</h1>
+      {{ content | safe }}
+    </article>
+  </main>
+{% endblock %}

@@ -95,6 +95,27 @@ ${content}
     );
   });
 
+  eleventyConfig.addCollection('blog', function (collection) {
+    // Order the 'blog' collection by date, most recent first.
+    return (
+      collection
+        .getFilteredByGlob('site/blog/**')
+        // .filter((f) => !f.data.slug?.includes('/'))
+        .sort(function (a, b) {
+          if (a.fileSlug == 'blog') {
+            return -1;
+          }
+          if (a.data.date > b.data.date) {
+            return -1;
+          }
+          if (b.data.date > a.data.date) {
+            return 1;
+          }
+          return 0;
+        })
+    );
+  });
+
   eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
     if (!outputPath.endsWith('.html')) {
       return content;
