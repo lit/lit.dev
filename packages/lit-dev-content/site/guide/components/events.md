@@ -12,6 +12,12 @@ eleventyNavigation:
 - Add interactive examples.
 - Add proper intro.
 - Write "React to user" events section per outline.
+  - Fire notifying event in event handler, or in updated(), for example.
+  - In event handler: synchronous events, for example, if you want the parent component to be able to call preventDefault before updating state.
+  - In updated: async, so if parent element wants to roll back or prevent a change, you need to track what happened.
+- Working with repeating templates.
+- Dispatch Events (super short)
+- Event scoping
 
 {% endtodo %}
 
