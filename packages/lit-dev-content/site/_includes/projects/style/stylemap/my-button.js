@@ -5,8 +5,8 @@ class MyButton extends LitElement {
   render() {
     return html`
       <button style=${styleMap({
-        backgroundColor: 'blue',
-        border: '1px solid black'
+        backgroundColor: 'lightgreen',
+        padding: '8px'
       })}>A button</button>
     `;
   }

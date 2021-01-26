@@ -8,13 +8,13 @@ class MyElement extends LitElement {
     styles: { type: Object }
   };
   static styles = css`
-    .mydiv { background-color: blue; }
-    .someclass { border: 1px solid red; }
+    .someclass { border: 1px solid red; padding: 4px; }
+    .anotherclass { background-color: navy; }
   `;
   constructor() {
     super();
-    this.classes = { mydiv: true, someclass: true };
-    this.styles = { color: 'green', fontFamily: 'Roboto' };
+    this.classes = { someclass: true, anotherclass: true };
+    this.styles = { color: 'lightgreen', fontFamily: 'Roboto' };
   }
   render() {
     return html`

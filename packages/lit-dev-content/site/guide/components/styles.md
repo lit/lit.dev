@@ -22,24 +22,23 @@ The value of the static `styles` property can be:
 
 *   A single tagged template literal.
 
-    ```ts
+    ```js
     static styles = css`...`;
     ```
 
 *   An array of tagged template literals.
 
-    ```ts
+    ```js
     static styles = [ css`...`, css`...`];
     ```
 
-The static `styles` property is _usually_ the best way to add styles to your component, but
-there are some use cases you can't handle this way—for example, linking to an external style sheet. For alternate ways to add styles, see [Define scoped styles in the template](#styles-in-the-template).
+The static `styles` property is _usually_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
 
 ### Using expressions in static styles {#expressions}
 
 Static styles apply to all instances of a component. Any expressions in CSS are evaluated **once**, then reused for all instances.
 
-To allow for theming or per-instance style customization, use CSS variables and custom properties to create [configurable styles](#configurable).
+For tree-based or per-instance style customization, use CSS custom properties to allow elements to be [themed](#theming).
 
 To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
 
@@ -51,14 +50,13 @@ If you must use an expression in a `css` literal that is not itself a `css` lite
 
 {% playground-ide "style/unsafecss" %}
 
-<div class="alert alert-warning">
+<div class="alert alert-info">
 
-**Only use the `unsafeCSS` tag with trusted input.** Injecting unsanitized CSS is a security risk. For example,
-malicious CSS can "phone home" by adding an image URL that points to a third-party server.
+**Only use the `unsafeCSS` tag with trusted input.** Injecting unsanitized CSS is a security risk. For example, malicious CSS can "phone home" by adding an image URL that points to a third-party server.
 
 </div>
 
-### Inheriting styles
+### Inheriting styles from a superclass
 
 Using an array of tagged template literals, a component can inherit the styles from a LitElement superclass, and add its own styles:
 
@@ -66,8 +64,7 @@ Using an array of tagged template literals, a component can inherit the styles f
 
 ### Sharing styles
 
-You can share styles between components by creating a module that exports tagged
-styles:
+You can share styles between components by creating a module that exports tagged styles:
 
 ```js
 import { css } from 'lit-element';
@@ -98,17 +95,15 @@ class MyElement extends LitElement {
 }
 ```
 
-You can also import an external style sheet by adding a `<link>` element to your template, but this has a number of limitations. For details, see [Import an external stylesheet](#external-stylesheet).
-
 ## Shadow DOM styling overview {#shadow-dom}
 
 This section gives a brief overview of shadow DOM styling.
 
 Styles you add to a component can affect:
 
-* The shadow tree (your component's rendered template).
-* The component itself.
-* The component's children.
+* [The shadow tree](#shadowroot) (your component's rendered template).
+* [The component itself](#host).
+* [The component's children](#slotted).
 
 
 ### Styling the shadow tree {#shadowroot}
@@ -119,20 +114,18 @@ When you use standard CSS selectors, they only match elements in your component'
 
 {% playground-ide "style/styleatemplate" %}
 
-### Styling the component itself
+### Styling the component itself {#host}
 
 You can style the component itself using special `:host` selectors. (The element that owns, or "hosts" a shadow tree is called the _host element_.)
 
 To create default styles for the host element, use the `:host` CSS pseudo-class and `:host()` CSS pseudo-class function.
 
 *   `:host` selects the host element.
-
 *   <code>:host(<var>selector</var>)</code> selects the host element, but only if the host element matches _selector_.
 
 {% playground-ide "style/host" %}
 
-Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider
-the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
+Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
 
 ```css
 my-element {
@@ -140,7 +133,7 @@ my-element {
 }
 ```
 
-### Styling the component's children
+### Styling the component's children {#slotted}
 
 Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](../shadow-dom#slots).
 
@@ -149,9 +142,7 @@ The `<slot>` element acts as a placeholder in a shadow tree where the host eleme
 Use the `::slotted()` CSS pseudo-element to select children that are included in your template via `<slot>`s.
 
 *   `::slotted(*)` matches all slotted elements.
-
 *   `::slotted(p)` matches slotted paragraphs.
-
 *   `p ::slotted(*)` matches slotted elements where the `<slot>` is a descendant of a paragraph element.
 
 {% playground-ide "style/slottedselector" %}
@@ -168,13 +159,11 @@ Note that **only direct slotted children** can be styled with `::slotted()`.
 </my-element>
 ```
 
-Also, children can
-be styled from outside the shadow tree, so you should regard your `::slotted()` styles as
-default styles that can be overridden.
+Also, children can be styled from outside the shadow tree, so you should regard your `::slotted()` styles as default styles that can be overridden.
 
 ```css
-my-element div {
-  // Outside style targetting a slotted child can override ::slotted() styles
+my-element > div {
+  /* Outside style targetting a slotted child can override ::slotted() styles */
 }
 ```
 
@@ -184,42 +173,18 @@ my-element div {
 
 </div>
 
-### Configuring styles with custom properties {#configurable}
-
-Static styles are evaluated once per class. Use CSS variables and custom properties to make styles that can be configured at runtime:
-
-```js
-static styles = css`
-  :host { color: var(--themeColor); }
-`;
-```
-
-```html
-<style>
-  html {
-    --themeColor: #123456;
-  }
-</style>
-<my-element></my-element>
-```
-
-See the section on [CSS custom properties](#customprops) for more information.
-
 ## Defining scoped styles in the template {#styles-in-the-template}
 
-We recommend using static styles for optimal performance.  However, sometimes you may want to
-define styles in the LitElement template. There are two ways to add scoped styles in the template:
+We recommend using the static `styles` property for optimal performance.  However, sometimes you may want to define styles in the LitElement template. There are two ways to add scoped styles in the template:
 
-*   Add styles using a `<style>` element.
-*   Add styles using an external style sheet.
+*   Add styles using a [`<style>` element](#style-element).
+*   Add styles using an [external style sheet](#external-stylesheet) (not recommended).
 
 Each of these techniques has its own set of advantages and drawbacks.
 
-### In a style element
+### In a style element {#style-element}
 
-We recommend defining styles using the static `styles` property for optimal performance. However, static styles are evaluated **once per class**. Sometimes, you might need to evaluate styles per instance.
-
-For this, we recommend using CSS properties to create [customizable styles](#customizable). However, you can also include `<style>` elements in a LitElement template. These are updated per instance.
+We recommend placing your styles in a static `styles` property for optimal performance; however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a LitElement template. These are updated per instance.
 
 ```js
 render() {
@@ -240,10 +205,9 @@ render() {
 
 #### Expressions and style elements
 
-The most intuitive way to evaluate per-instance styles has some important limitations and performance issues. We consider the example below to be an anti-pattern:
+Using expressions inside style elements has some important limitations and performance issues.
 
 ```js
-// Anti-pattern!
 render() {
   return html`
     <style>
@@ -259,35 +223,30 @@ render() {
 
 <div class="alert alert-info">
 
-**Limitations in the ShadyCSS polyfill around expressions.** Expressions in `<style>` elements won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. See the [ShadyCSS readme](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) for more information.
+**Limitations in the ShadyCSS polyfill around expressions.** Expressions in `<style>` elements won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. See the [ShadyCSS limitations](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) for more information.
 
 </div>
 
-Additionally, evaluating an expression inside a `<style>` element is extremely inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work.
+Evaluating an expression inside a `<style>` element is extremely inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work.
 
-If you need to evaluate expressions inside a `<style>` element, use the following strategy to avoid creating performance problems:
+To mitigate this cost, use the following strategy:
 
 *   Separate styles that require per-instance evaluation from those that don't.
-
 *   Evaluate per-instance CSS properties by creating an expression that captures that property inside a complete `<style>` block. Include it in your template.
 
 
 {% playground-ide "style/perinstanceexpressions" %}
 
-### Import an external stylesheet {#external-stylesheet}
+### Import an external stylesheet (not recommended) {#external-stylesheet}
 
-We recommend placing your styles in a static `styles` property for optimal performance. However, you can include an external style sheet in your template with a `<link>`:
-
-{% playground-ide "style/where" %}
+We recommend placing your styles in a static `styles` property for optimal performance. While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach.
 
 <div class="alert alert-info">
 
 **External stylesheet caveats.**
 
 *  The [ShadyCSS polyfill](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) doesn't support external style sheets.
-
 *   External styles can cause a flash-of-unstyled-content (FOUC) while they load.
-
 *   The URL in the `href` attribute is relative to the **main document**. This is okay if you're building an app and your asset URLs are well-known, but avoid using external style sheets when building a reusable element.
 
 </div>
@@ -329,56 +288,20 @@ To refer to hyphenated properties such as `font-family`, use the camelCase equiv
 
 To refer to custom CSS properties such as `--custom-color`, place the whole property name in quotes (`'--custom-color'`).
 
-|**Inline style or CSS**|**styleMap equivalent**|
-|----|----|
-| `background-color: blue;` <br/> | `backgroundColor: 'blue'` <br/><br/> or <br/><br/>`'background-color': 'blue'`|
-| `font-family: Roboto, Arial, sans-serif;` <br/> | `fontFamily: 'Roboto, Arial, sans-serif'` <br/><br/> or <br/><br/>`'font-family': 'Roboto, Arial, sans-serif'`|
+|Inline style or CSS|styleMap equivalent|
+|:----------------------|:----------------------|
+| `background-color: blue;`| `backgroundColor: 'blue'` or<br>`'background-color': 'blue'`|
+| `font-family: Roboto;` | `fontFamily: 'Roboto'` or<br>`'font-family': 'Roboto'`|
 |`--custom-color: #FFFABC;`|`'--custom-color': '#FFFABC;'`|
-|`--otherCustomColor: #FFFABC;`|`'--otherCustomColor': '#FFFABC;'`|
-|`color: var(--customprop, blue);`|`color: 'var(--customprop, blue)'`|
+|`--otherColor: #FFFABC;`|`'--otherColor': '#FFFABC;'`|
 
 {% playground-ide "style/stylemap2" %}
 
-## Theming
+## Theming {#theming}
 
-*   Use [**CSS inheritance**](#inheritance) to propagate style information to LitElement components and their rendered templates.
+By using [CSS inheritance](#inheritance) and [CSS variables and custom properties](#customprops) together, it's easy to create themable elements. By applying css selectors to customize CSS custom properties, tree-based and per-instance theming is straightforward to apply. Here's an example:
 
-    ```html
-    <style>
-      html {
-        --themeColor: #123456;
-        font-family: Roboto;
-      }
-    </style>
-
-    <!-- host inherits `--themeColor` and `font-family` and
-         passes these properties to its rendered template -->
-    <my-element></my-element>
-    ```
-
-*   Use [**CSS variables and custom properties**](#customprops) to configure styles per-instance.
-
-    ```html
-    <style>
-      html {
-        --my-element-background-color: /* some color */;
-      }
-      .stuff {
-        --my-element-background-color: /* some other color */;
-      }
-    </style>
-    <my-element></my-element>
-    <my-element class="stuff"></my-element>
-    ```
-
-    ```js
-    // MyElement's static styles
-    static styles = css`
-      :host {
-        background-color: var(--my-element-background-color);
-      }
-    `;
-    ```
+{% playground-ide "style/theming" %}
 
 ### CSS inheritance {#inheritance}
 
@@ -397,35 +320,20 @@ You can use CSS inheritance to set styles on an ancestor element that are inheri
 ```html
 <style>
 html {
-  font-family: Roboto;
+  color: green;
 }
 </style>
-<div>
-  <p>Uses Roboto</p>
-</div>
+<my-element>
+  #shadow-root
+    Will be green
+</my-element>
 ```
-
-Similarly, host elements pass down inheritable CSS properties to their shadow trees.
-
-You can use the host element's type selector to style it:
-
-{% playground-ide "style/inherited3" %}
-
-You can also use the `:host` CSS pseudo-class to style the host from inside its own template:
-
-{% playground-ide "style/inherited" %}
-
-#### Type selectors have higher specificity than :host{#specificity}
-
-An element type selector has higher specificity than the `:host` pseudo-class selector. Styles set for a custom element tag will override styles set with `:host` and `:host()`:
-
-{% playground-ide "style/specificity" %}
 
 ### CSS custom properties {#customprops}
 
 All CSS custom properties (<code>--<var>custom-property-name</var></code>) inherit. You can use this to make your component's styles configurable from outside.
 
-The following component sets its background color to a CSS variable. The CSS variable uses the value of `--my-background` if it's available, and otherwise defaults to `yellow`:
+The following component sets its background color to a CSS variable. The CSS variable uses the value of `--my-background` if it's been set by a selector matching an ancestor in the DOM tree, and otherwise defaults to `yellow`:
 
 ```js
 class MyElement extends LitElement {
@@ -466,12 +374,4 @@ Users of this component can set the value of `--my-background`, using the `my-el
 <my-element class="stuff"></my-element>
 ```
 
-If a component user has an existing app theme, they can easily set the host's configurable properties to use theme properties:
-
-{% playground-ide "style/customproperties" %}
-
 See [CSS Custom Properties on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) for more information.
-
-### A simple example theme {#example-theme}
-
-{% playground-ide "style/theming" %}

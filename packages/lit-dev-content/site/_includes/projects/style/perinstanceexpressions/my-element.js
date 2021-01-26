@@ -9,19 +9,14 @@ const redText = html`
 `;
 
 class MyElement extends LitElement {
-  // Per-class styles
   static styles = css`
-    :host {
-      display: block;
-      font-family: Roboto;
-      font-size: 14px;
+    div {
+      margin: 8px;
     }
   `;
-
   static properties = {
     red: {type: Boolean}
   }
-
   _toggleColor() {
     this.red = !this.red;
   }

@@ -2,18 +2,18 @@ import { LitElement, html, css } from 'lit-element';
 
 class MyElement extends LitElement {
   static styles = css`
-    * { color: red; }
+    * { color: green; padding: 8px; }
     p { font-family: sans-serif; }
-    .myclass { margin: 100px; }
-    #main { padding: 30px; }
-    h1 { font-size: 4em; }
+    .myclass { border: 1px dashed gray; }
+    #main { border: 2px double steelblue; }
+    h4 { border: 1px solid tomato; }
   `;
   render() {
     return html`
       <p>Hello World</p>
       <p class="myclass">Hello World</p>
       <p id="main">Hello World</p>
-      <h1>Hello World</h1>
+      <h4>Hello World</h4>
     `;
   }
 }

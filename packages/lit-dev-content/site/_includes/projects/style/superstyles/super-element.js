@@ -3,12 +3,15 @@ import { LitElement, html, css } from 'lit-element';
 export class SuperElement extends LitElement {
   static get styles() {
     return css`
-      button { width: 200px; }
+      div {
+        border: 1px solid gray;
+        padding: 8px;
+      }
     `;
   }
   render() {
     return html`
-      <button>click</button>
+      <div>Content</div>
     `;
   }
 }

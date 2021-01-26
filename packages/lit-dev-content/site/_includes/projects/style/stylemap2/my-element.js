@@ -1,26 +1,25 @@
 import { styleMap } from 'lit-html/directives/style-map';
 import { LitElement, html } from 'lit-element';
 
-export const div3styles = {
-  'background-color': 'blue',
+export const styles = {
+  'background-color': 'whitesmoke',
   fontFamily: 'Roboto',
   '--custom-color': '#e26dd2',
-  '--otherCustomColor': '#77e26d'
+  '--otherColor': '#77e26d'
 };
 
-export class Div3 extends LitElement {
+export class MyElement extends LitElement {
   render() {
     return html`
-    <div style=${styleMap(div3styles)}>
-      <h3>Div 3</h3>
+    <div style=${styleMap(styles)}>
       <p>Styled with styleMap</p>
       <p style=${styleMap({
         color: 'var(--custom-color)'
       })}>A paragraph using <code>--custom-color</code></p>
       <p style=${styleMap({
-        color: 'var(--otherCustomColor)'
-      })}>A paragraph using <code>--otherCustomColor</code></p>
+        color: 'var(--otherColor)'
+      })}>A paragraph using <code>--otherColor</code></p>
     </div>`;
   }
 }
-customElements.define('div-3', Div3);
+customElements.define('my-element', MyElement);
