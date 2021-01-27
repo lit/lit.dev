@@ -8,36 +8,32 @@ eleventyNavigation:
 
 Events are the standard way that elements communicate changes. These changes typically occur due to user interaction. For example, a button dispatches a click event when a user clicks on it; an input dispatches a change event when the user enters a value in it.
 
-In addition to these standard events that are automatically dispatched, Lit elements can dispatch custom events. For example, a menu element might dispatch an event when the selected item changes; a popup element might dispatch an event when the popup opens or closes.
+In addition to these standard events that are automatically dispatched, Lit elements can dispatch custom events. For example, a menu element might dispatch an event to indicate the selected item changed; a popup element might dispatch an event when the popup opens or closes.
 
-Any Javascript code, including Lit elements themselves, can listen for and take action based on events. For example, a toolbar Lit element might filter a list when a menu item is selected; a login Lit element might process a login when it handles a click on the login button.
+Any Javascript code, including Lit elements themselves, can listen for and take action based on events. For example, a toolbar element might filter a list when a menu item is selected; a login element might process a login when it handles a click on the login button.
 
 ## Listening to events
 
-**TODO:** better intro
-
-In plain HTML and JavaScript, this would be the `addEventListener` API:
+All DOM nodes can dispatch and listen for events. The standard API for listening to events is the `addEventListener` method. In any JavaScript code, you can call `addEventListener` as follows by specifying the event type and a listener function.
 
 ```js
 const myElement = document.querySelector('my-element');
 myElement.addEventListener('my-event', (e) => {console.log(e)});
 ```
 
-When you add an event listener imperatively, using `addEventListener`, you can specify various event listener options. For example, to use a passive event listener in plain JavaScript you'd do something like this:
+In addition to the type and listener, there is an optional third argument for specifying event options. See [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on MDN for a full description these options.
 
 ```js
 someElement.addEventListener('touchstart', this._handleTouchStart, {passive: true});
 ```
 
-You need to add event listeners in a method that is guaranteed to fire before the event occurs.
-
-More information:
-
-*   [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on MDN for a description of the event listener options.
+It may seem obvious, but it's important to recognize that events are fired at discrete times, and to receive an event, your listener must be added before it is dispatched.
 
 ### Adding event listeners in the element template
 
-You can use `@` expressions in your template to add event listeners to your component.
+You can use `@` expressions in your template to add event listeners to element's in your component template. Declarative event listeners are added when the template is rendered.
+
+**TODO:** Add sample
 
 ```js
 render() {
@@ -45,26 +41,16 @@ render() {
 }
 ```
 
-Declarative event listeners are added when the template is rendered. This is usually the best way to add listeners to elements in your templated DOM.
-
-**TODO:** below is redundant... incorporate or remove
-
-If you want to listen to an event fired from a LitElement-based component from within another LitElement or from a lit-html template, you can use the lit-html declarative event syntax:
-
-```html
-<my-element @my-event="${(e) => { console.log(e.detail.message) }}"></my-element>
-```
-
 #### Using the `@eventOptions` decorator
 
-The `@eventOptions` decorator allows you to add event listener options to a listener that's added declaratively in your template. The object passed to `@eventOptions` is used as the `options` parameter to `addEventListener`.
+You can use the `@eventOptions` decorator to specify options for a declarative listener used in the component template. The object passed to `@eventOptions` is passed as the `options` parameter to `addEventListener`.
 
 ```js
 import {LitElement, html, eventOptions} from 'lit-element';
 ...
 
 @eventOptions({passive: true})
-private _handleTouchStart() { ... }
+private _handleTouchStart(e) { console.log(e.type) }
 
 render() {
   return html`
@@ -75,43 +61,42 @@ render() {
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](../decorators) for details.
 
 </div>
 
-### Adding event listeners to the element or render root
+### Adding event listeners to the component or its shadow root
 
-To be notified of an event dispatched from the element's slotted children as well as children rendered into shadow DOM via the element template, you can add a listener to the element itself.
+To be notified of an event dispatched from the component's slotted children as well as children rendered into shadow DOM via the component template, you can add a listener to the component itself.
 
-**TODO:** see delegation
-
-The component constructor is a good place to add event listeners on the host element itself.
+The component constructor is a good place to add event listeners on the component.
 
 ```js
 constructor() {
   super();
-  this.addEventListener('focus', this._handleFocus);
+  this.addEventListener('focus', (e) => console.log(e.type, e.target.localName)));
 }
 ```
 
-See [Working with events in shadow DOM](#shadowdom) to see how retargeting affects events dispatched from elements in the shadow DOM.
+Adding event listeners to the component itself is a form of event delegation and can be done to reduce code or improve performance. See [event delegation](#event-delegation) for details. Typically when this is done, the event's `target` property is used to take action based on which element fired the event.
 
-Adding event listeners to the element's render root can be done in the `createRenderRoot` method.
+However, events fired from the component's shadow DOM are retargeted when heard by an event listener on the component. This means the event target is the component itself. See [Working with events in shadow DOM](#shadowdom) for more information.
 
-**TODO:** why do this
+Retargeting can interfere with event delegation, and to avoid it, event listeners can be added to the component's shadow root itself. This can be done in the `createRenderRoot` method as follows. Please note that it's important to make sure to return the shadow root from the `createRenderRoot` method.
 
 ```js
 createRenderRoot() {
-  const renderRoot = super.createRenderRoot();
-  renderRoot.addEventListener('click', this._handleClick);
+  const shadowRoot = super.createRenderRoot();
+  shadowRoot.addEventListener('click', (e) => console.log(e.type, e.target.localName)));
+  return shadowRoot;
 }
 ```
 
+**TODO:** add example
+
 ### Adding event listeners to other elements
 
-`connectedCallback` is a lifecycle callback in the custom elements API. `connectedCallback` fires each time a custom element is appended into a document-connected element. See [the MDN documentation on using custom elements lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) for more information.
-
-If your component adds an event listener to anything except itself or its children–for example, to `Window`, `Document`, or some element in the main DOM–you should add the listener in `connectedCallback` and remove it in `disconnectedCallback`.
+If your component adds an event listener to anything except itself or its templated DOM – for example, to `Window`, `Document`, or some element in the main DOM – you should add the listener in `connectedCallback` and remove it in `disconnectedCallback`.
 
 *   Removing the event listener in `disconnectedCallback` ensures that any memory allocated by your component will be cleaned up when your component is destroyed or disconnected from the page.
 
@@ -128,13 +113,19 @@ disconnectedCallback() {
 }
 ```
 
+See [the MDN documentation on using custom elements lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) for more information on `connectedCallback` and `disconnectedCallback`.
+
 ### Optimizing for performance
 
-#### Asynchronously adding event listeners
+Adding event listeners is extremely fast and typically not a performance concern. However, for components that are used in high frequency and need a lot of event listeners, you can optimize first render performance by reducing the number of listeners used via [event delegation](#event-delegation) and adding listeners [asynchronously](#async-events) after rendering.
 
-Sometimes, you may want to defer adding an event listener until after first paint—for example, if you're adding a lot of listeners and first paint performance is critical.
+#### Asynchronously adding event listeners { #async-events }
 
-LitElement doesn't have a specific lifecycle callback called after first paint, but you can use this pattern with the `firstUpdated` lifecycle callback:
+To add an event listener after rendering, use the `firstUpdated` method. This is a Lit lifecycle callback which runs after the component first updates and renders its templated DOM.
+
+The `firstUpdated` callback fires after the first time your component has been updated and called its `render` method, but **before the browser has had a chance to paint**. See [firstUpdated](../lifecycle#firstupdated) in the Lifecycle documentation for more information.
+
+To ensure the listener is added after the user can see the component, you can await a Promise that resolves after the browser paints.
 
 ```js
 async firstUpdated() {
@@ -144,11 +135,11 @@ async firstUpdated() {
 }
 ```
 
-`firstUpdated` fires after the first time your component has been updated and called its `render` method, but **before the browser has had a chance to paint**. The `Promise`/`setTimeout` line yields to the browser
+#### Event delegation { #event-delegation }
 
-See [firstUpdated](/guide/lifecycle#firstupdated) in the Lifecycle documentation for more information.
+Using event delegation can reduce the number of event listeners used and therefore improve performance. It is also sometimes convenient to centralize event handling to reduce code. Event delegation can only be use to handle events that `bubble`. See [Dispatching events](#dispatching-events) for details on bubbling. Bubbling events can be heard on any ancestor element in the DOM. You can take advantage of this by adding a single event listener on an ancestor component to be notified of a bubbling event dispatched by any of its descendants in the DOM. Use the event's `target` property to take specific action based on the element that dispatched the event.
 
-#### Event delegation
+**TODO:** add example
 
 ### Understanding `this` in event listeners
 
@@ -167,14 +158,9 @@ class MyElement extends LitElement {
 }
 ```
 
-When adding listeners imperatively with `addEventListener`, you'll need to bind the event listener yourself if you need a reference to the component instance. For example:
+When adding listeners imperatively with `addEventListener`, you'll need to bind the event listener yourself if you need a reference to the component instance. Do this using an arrow function or the `bind` method as follows:
 
-```js
-this.boundResizeHandler = this.handleResize.bind(this);
-window.addEventListener('resize', this.boundResizeHandler);
-```
-
-Or use an arrow function as a class field:
+Use an arrow function:
 
 ```ts
 export class MyElement extends LitElement {
@@ -186,50 +172,83 @@ export class MyElement extends LitElement {
 }
 ```
 
+Or use the `bind` method:
+
+```js
+this.boundResizeHandler = this.handleResize.bind(this);
+window.addEventListener('resize', this.boundResizeHandler);
+```
+
 See the [documentation for `this` on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) for more information.
 
 ### Listening to events fired from repeated templates
 
-## Dispatching events
+When listening to events on repeated items, it's often convenient to use [event delegation](#event-delegation) if the event bubbles. When an event does not bubble, a listener can be added on the repeated elements. Here's an example of both methods:
 
-**TODO:** describe dispatch options, especially bubbling and add note about composed
+**TODO:** add example
+
+## Dispatching events { #dispatching-events }
+
+All DOM nodes can dispatch events using the `dispatchEvent` method. First, create an event instance, specifying the event type and options. Then pass it to `dispatchEvent` as follows:
+
+```js
+const myElement = document.querySelector('my-element');
+const event = new Event('my-event', {bubbles: true, composed: true});
+myElement.dispatchEvent(event);
+```
+
+The `bubbles` option allows the event to flow up the DOM tree to ancestors of the dispatching element. It's important to set this flag if you want the event to be able to participate in [event delegation](#event-delegation).
+
+The `composed` option is useful to set to allow the event to be dispatched above the shadow DOM tree in which the element exists. See [Working with events in shadow DOM](#shadowdom) for more information.
+
+See [EventTarget.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent) on MDN for a full description of dispatching events.
 
 ### When to dispatch an event
 
-### Dispatching events based on state changes
+Events should be dispatched in response to user interaction. They should generally **not** be dispatched in response to imperative changes made in code or autonomous state changes. This is generally how native web platform elements work.
+
+For example, when a user types a value into an `input` element a `change` event is dispatched, but if code sets the `input`'s `value` property, a `change` event is **not** dispatched.
+
+Similarly, a menu component should dispatch an event when the user selects a menu item, but it should not dispatch an event if, for example, the menu's `selectedItem` property is set.
+
+This typically means that a component should dispatch an event in response to another event to which it is listening.
+
+**TODO:** add example
+
+### Dispatching events after an element updates
+
+For advanced use cases, sometimes an event should be fired only after an element updates and renders. This might be necessary if an event is intended to communicate a change in rendered state based on user interaction. In this case, the component's `updateComplete` Promise can be used and the event dispatched after it resolves.
+
+**TODO:** add example
 
 ### Using standard or custom events
 
-Fire a custom event:
+Events can be dispatched either using by constructing an `Event` instance or a `CustomEvent` instance. Either is a reasonable approach. When using a `CustomEvent`,any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+
+#### Firing a custom event:
 
 ```js
-class MyElement extends LitElement {
-  render() {
-    return html`<div>Hello World</div>`;
+const event = new CustomEvent('my-event', {
+  detail: {
+    message: 'Something important happened'
   }
-  firstUpdated(changedProperties) {
-    let event = new CustomEvent('my-event', {
-      detail: {
-        message: 'Something important happened'
-      }
-    });
-    this.dispatchEvent(event);
-  }
-}
+});
+this.dispatchEvent(event);
 ```
 
-Fire a standard event:
+#### Firing a standard event:
 
 ```js
-class MyElement extends LitElement {
-  render() {
-    return html`<div>Hello World</div>`;
-  }
-  updated(changedProperties) {
-    let click = new Event('click');
-    this.dispatchEvent(click);
+class MyEvent extends Event {
+  constructor(message) {
+    super();
+    this.type = 'my-event';
+    this.message = message;
   }
 }
+
+const event = new MyEvent('Something important happened');
+this.dispatchEvent(event);
 ```
 
 ## Working with events in shadow DOM {#shadowdom}
