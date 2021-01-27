@@ -6,7 +6,11 @@ eleventyNavigation:
   order: 7
 ---
 
-Events are the standard way that elements communicate changes to elements above them in the DOM. These changes typically occur due to user interaction. For example, a button dispatches a click event when a user clicks on it; an input dispatches a change event when the user enters a value in it. In addition to these standard events that are automatically dispatched, Lit elements can dispatch custom events. For example, a menu element might dispatch an event when the selected item changes; a popup element might dispatch an event when the popup opens or closes. This section describes best practices for listening to and firing events, as well as shadow DOM specific details for dealing with events.
+Events are the standard way that elements communicate changes. These changes typically occur due to user interaction. For example, a button dispatches a click event when a user clicks on it; an input dispatches a change event when the user enters a value in it.
+
+In addition to these standard events that are automatically dispatched, Lit elements can dispatch custom events. For example, a menu element might dispatch an event when the selected item changes; a popup element might dispatch an event when the popup opens or closes.
+
+Any Javascript code, including Lit elements themselves, can listen for and take action based on events. For example, a toolbar Lit element might filter a list when a menu item is selected; a login Lit element might process a login when it handles a click on the login button.
 
 ## Listening to events
 
