@@ -81,7 +81,7 @@ render() {
 
 ### Adding event listeners to the element or render root
 
-To be notified of an event dispatched from the element's slotted children as well as children rendered into shadow DOM via the element template, you can add a listener to the element itself. See [Working with events in shadow DOM](#shadowdom) to see how retargeting affects events dispatched from elements in the shadow DOM.
+To be notified of an event dispatched from the element's slotted children as well as children rendered into shadow DOM via the element template, you can add a listener to the element itself.
 
 **TODO:** see delegation
 
@@ -93,6 +93,8 @@ constructor() {
   this.addEventListener('focus', this._handleFocus);
 }
 ```
+
+See [Working with events in shadow DOM](#shadowdom) to see how retargeting affects events dispatched from elements in the shadow DOM.
 
 Adding event listeners to the element's render root can be done in the `createRenderRoot` method.
 
@@ -125,6 +127,28 @@ disconnectedCallback() {
   super.disconnectedCallback();
 }
 ```
+
+### Optimizing for performance
+
+#### Asynchronously adding event listeners
+
+Sometimes, you may want to defer adding an event listener until after first paint—for example, if you're adding a lot of listeners and first paint performance is critical.
+
+LitElement doesn't have a specific lifecycle callback called after first paint, but you can use this pattern with the `firstUpdated` lifecycle callback:
+
+```js
+async firstUpdated() {
+  // Give the browser a chance to paint
+  await new Promise((r) => setTimeout(r, 0));
+  this.addEventListener('click', this._handleClick);
+}
+```
+
+`firstUpdated` fires after the first time your component has been updated and called its `render` method, but **before the browser has had a chance to paint**. The `Promise`/`setTimeout` line yields to the browser
+
+See [firstUpdated](/guide/lifecycle#firstupdated) in the Lifecycle documentation for more information.
+
+#### Event delegation
 
 ### Understanding `this` in event listeners
 
@@ -164,33 +188,15 @@ export class MyElement extends LitElement {
 
 See the [documentation for `this` on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) for more information.
 
-### Optimizing for performance
-
-#### Asynchronously adding event listeners
-
-Sometimes, you may want to defer adding an event listener until after first paint—for example, if you're adding a lot of listeners and first paint performance is critical.
-
-LitElement doesn't have a specific lifecycle callback called after first paint, but you can use this pattern with the `firstUpdated` lifecycle callback:
-
-```js
-async firstUpdated() {
-  // Give the browser a chance to paint
-  await new Promise((r) => setTimeout(r, 0));
-  this.addEventListener('click', this._handleClick);
-}
-```
-
-`firstUpdated` fires after the first time your component has been updated and called its `render` method, but **before the browser has had a chance to paint**. The `Promise`/`setTimeout` line yields to the browser
-
-See [firstUpdated](/guide/lifecycle#firstupdated) in the Lifecycle documentation for more information.
-
-#### Event delegation
-
 ### Listening to events fired from repeated templates
 
 ## Dispatching events
 
 **TODO:** describe dispatch options, especially bubbling and add note about composed
+
+### When to dispatch an event
+
+### Dispatching events based on state changes
 
 ### Using standard or custom events
 
@@ -225,10 +231,6 @@ class MyElement extends LitElement {
   }
 }
 ```
-
-### When to dispatch an event
-
-### Dispatching events based on state changes
 
 ## Working with events in shadow DOM {#shadowdom}
 
@@ -278,3 +280,5 @@ firstUpdated(changedProperties) {
 See the [MDN documentation on custom events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) for more information.
 
 ## Communicating between the event dispatcher and listener
+
+**TODO:** Describe how the listener can pass info back to the dispatcher by (1) calling API on the event, (2) calling `preventDefault()`
