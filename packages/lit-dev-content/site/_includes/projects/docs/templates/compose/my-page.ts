@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element';
+import {LitElement, html, customElement, property} from 'lit-element';
 
 function headerTemplate(title) {
   return html`<header>${title}</header>`;
@@ -10,29 +10,20 @@ function footerTemplate() {
   return html`<footer>Your footer here.</footer>`;
 }
 
+@customElement('my-page')
 class MyPage extends LitElement {
-  static get properties() {
-    return {
-      article: {
-        attribute: false,
-      },
-    };
-  }
 
-  constructor() {
-    super();
-    this.article = {
+  @property({attribute: false})
+  article: string = {
       title: 'My Nifty Article',
       text: 'Some witty text.',
-    };
-  }
+    }
 
   render() {
     return html`
       ${headerTemplate(this.article.title)}
-      ${articleTemplate(this.article.text)} 
+      ${articleTemplate(this.article.text)}
       ${footerTemplate()}
     `;
   }
 }
-customElements.define('my-page', MyPage);

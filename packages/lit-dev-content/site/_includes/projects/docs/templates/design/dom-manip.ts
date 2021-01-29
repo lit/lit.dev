@@ -1,7 +1,7 @@
-import { LitElement, html } from 'lit-element';
+import {LitElement, html, customElement} from 'lit-element';
 
 // Anti-pattern. Avoid!
-
+@customElement('dom-manip')
 class DomManip extends LitElement {
   constructor() {
     super();
@@ -24,4 +24,3 @@ class DomManip extends LitElement {
     }, 3000);
   }
 }
-customElements.define('dom-manip', DomManip);

@@ -1,5 +1,6 @@
-import { LitElement, html } from 'lit-element';
+import {LitElement, html, customElement} from 'lit-element';
 
+@customElement('my-article')
 class MyArticle extends LitElement {
   render() {
     return html`
@@ -7,4 +8,3 @@ class MyArticle extends LitElement {
     `;
   }
 }
-customElements.define('my-article', MyArticle);

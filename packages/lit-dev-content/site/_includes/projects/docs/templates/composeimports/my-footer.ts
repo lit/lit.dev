@@ -1,5 +1,6 @@
-import { LitElement, html } from 'lit-element';
+import {LitElement, html, customElement} from 'lit-element';
 
+@customElement('my-footer')
 class MyFooter extends LitElement {
   render() {
     return html`
@@ -7,4 +8,3 @@ class MyFooter extends LitElement {
     `;
   }
 }
-customElements.define('my-footer', MyFooter);

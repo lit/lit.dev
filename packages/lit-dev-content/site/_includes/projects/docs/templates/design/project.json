@@ -1,7 +1,7 @@
 {
   "files": {
     "dom-manip.js": {},
-    "update-properties.js": {},
+    "update-properties.ts": {},
     "index.html": {}
   }
 }
