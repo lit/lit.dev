@@ -1,0 +1,9 @@
+{
+  "title": "Basic templating concepts",
+  "description": "Use properties, arrays, and conditionals in a template.",
+  "section": "Rendering & Templating",
+  "files": {
+    "my-element.js": {},
+    "index.html": {}
+  }
+}
