@@ -298,15 +298,8 @@ playground-file-editor {
   --playground-code-background: transparent;
 }
 
-litdev-example {
-  --litdev-example-editor-height: 300px;
-  --litdev-example-preview-height: 100px;
-  box-sizing: border-box;
-}
-
 litdev-example:not(:defined) {
   display: block;
-  height: calc(var(--litdev-example-editor-height) + var(--litdev-example-preview-height));
   border: 1px solid #ccc;
   border-radius: 6px;
 }

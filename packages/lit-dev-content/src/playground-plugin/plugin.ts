@@ -75,7 +75,7 @@ export const playgroundPlugin = (
 
   const readProjectConfig = async (
     project: string
-  ): Promise<ProjectManifest> => {
+  ): Promise<LitProjectConfig> => {
     const path = `site/_includes/projects/${project}/project.json`;
 
     let json;
@@ -108,7 +108,7 @@ export const playgroundPlugin = (
       }
     }
 
-    return parsed as ProjectManifest;
+    return parsed as LitProjectConfig;
   };
 
   eleventyConfig.addPairedShortcode(
@@ -136,6 +136,11 @@ export const playgroundPlugin = (
     `.trim();
   });
 
+  type LitProjectConfig = ProjectManifest & {
+    editorHeight?: string;
+    previewHeight?: string;
+  };
+
   // TODO(aomarks)
   // - Pre-render highlighted code and preview. Slots are already available.
   // - Add a "load in playground" button.
@@ -150,17 +155,26 @@ export const playgroundPlugin = (
             `Usage {% playground-example "project/dir" "filename.js" %}`
         );
       }
+
       const config = await readProjectConfig(project);
       if (!config.files?.[filename]) {
         throw new Error(
           `Could not find file "${filename}" in playground project "${project}"`
         );
       }
+
+      // Note we explicitly set "height" here so that the pre-upgrade height is
+      // correct, to prevent layout shift.
+      const editorHeight = config.editorHeight ?? '300px';
+      const previewHeight = config.previewHeight ?? '120px';
       return `
       <litdev-example
-        class="playground-example"
+        style="height:calc(${editorHeight} + ${previewHeight});
+               --litdev-example-editor-height:${editorHeight};
+               --litdev-example-preview-height:${previewHeight}"
         project=${project}
-        filename=${filename}>
+        filename=${filename}
+      >
       </litdev-example>
     `.trim();
     }

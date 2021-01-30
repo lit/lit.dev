@@ -34,6 +34,7 @@ export class LitDevExample extends LitElement {
     playground-file-editor, playground-preview {
       border: 1px solid #ccc;
       border-radius: 6px;
+      box-sizing: border-box;
     }
 
     playground-file-editor {
