@@ -48,3 +48,19 @@ Arguments:
 ```
 
 {% playground-ide "docs/templates/define" %}
+
+## Package versions
+
+Use `importMap.imports` in your `project.json` file to control the resolution of
+bare module specifiers.
+
+```json
+{
+  "importMap": {
+    "imports": {
+      "lit-element": "https://cdn.skypack.dev/lit-element@next-major",
+      "lit-html": "https://cdn.skypack.dev/lit-html@next-major"
+    }
+  }
+}
+```
