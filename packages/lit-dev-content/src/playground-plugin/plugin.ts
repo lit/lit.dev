@@ -10,15 +10,20 @@
 
 import {BlockingRenderer} from './blocking-renderer.js';
 import {outdent} from 'outdent';
+import * as fs from 'fs/promises';
+import {ProjectManifest} from 'playground-elements/shared/worker-api.js';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
 // https://github.com/chriskrycho/v5.chriskrycho.com/blob/master/types/eleventy.d.ts
 interface EleventyConfig {
-  addShortcode(name: string, shortcode: (...args: any[]) => string): void;
+  addShortcode(
+    name: string,
+    shortcode: (...args: any[]) => string | Promise<string>
+  ): void | Promise<string>;
   addPairedShortcode(
     name: string,
-    shortcode: (content: string, ...args: any[]) => string
+    shortcode: (content: string, ...args: any[]) => string | Promise<string>
   ): void;
   addMarkdownHighlighter(fn: (content: string, lang: any) => string): void;
   on(name: string, fn: () => void): void;
@@ -68,6 +73,44 @@ export const playgroundPlugin = (
     return html;
   };
 
+  const readProjectConfig = async (
+    project: string
+  ): Promise<ProjectManifest> => {
+    const path = `site/_includes/projects/${project}/project.json`;
+
+    let json;
+    try {
+      json = await fs.readFile(path, 'utf8');
+    } catch (e) {
+      throw new Error(
+        `Invalid playground project "${project}". ` +
+          `Could not read file "${path}": ${e}`
+      );
+    }
+
+    let parsed;
+    try {
+      parsed = JSON.parse(json);
+    } catch (e) {
+      throw new Error(
+        `Invalid JSON in playground project config "${path}": ${e}`
+      );
+    }
+
+    for (const filename of Object.keys(parsed.files || {})) {
+      const filepath = `site/_includes/projects/${project}/${filename}`;
+      try {
+        await fs.readFile(filepath, 'utf8');
+      } catch (e) {
+        throw new Error(
+          `Missing playground file "${filename}" in project "${project}": ${e}`
+        );
+      }
+    }
+
+    return parsed as ProjectManifest;
+  };
+
   eleventyConfig.addPairedShortcode(
     'highlight',
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
@@ -77,7 +120,14 @@ export const playgroundPlugin = (
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 
-  eleventyConfig.addShortcode('playground-ide', (project: string) => {
+  eleventyConfig.addShortcode('playground-ide', async (project: string) => {
+    if (!project) {
+      throw new Error(
+        `Invalid playground-ide invocation.` +
+          `Usage {% playground-ide "path/to/project" %}`
+      );
+    }
+    readProjectConfig(project);
     return `
       <playground-ide
         line-numbers resizable editable-file-system
@@ -93,7 +143,19 @@ export const playgroundPlugin = (
   //   visible and editable (e.g. just the contents of a lit template).
   eleventyConfig.addShortcode(
     'playground-example',
-    (project: string, filename: string) => {
+    async (project: string, filename: string) => {
+      if (!project || !filename) {
+        throw new Error(
+          `Invalid playground-example invocation.` +
+            `Usage {% playground-example "project/dir" "filename.js" %}`
+        );
+      }
+      const config = await readProjectConfig(project);
+      if (!config.files?.[filename]) {
+        throw new Error(
+          `Could not find file "${filename}" in playground project "${project}"`
+        );
+      }
       return `
       <litdev-example
         class="playground-example"
