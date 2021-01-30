@@ -298,9 +298,12 @@ playground-file-editor {
   --playground-code-background: transparent;
 }
 
-litdev-example {
+html {
   --litdev-example-editor-height: 300px;
   --litdev-example-preview-height: 100px;
+}
+
+litdev-example {
   box-sizing: border-box;
 }
 
