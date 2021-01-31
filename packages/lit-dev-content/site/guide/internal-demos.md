@@ -61,7 +61,9 @@ bare module specifiers.
   "importMap": {
     "imports": {
       "lit-element": "https://cdn.skypack.dev/lit-element@next-major",
-      "lit-html": "https://cdn.skypack.dev/lit-html@next-major"
+      "lit-element/": "https://cdn.skypack.dev/lit-element@next-major/",
+      "lit-html": "https://cdn.skypack.dev/lit-html@next-major",
+      "lit-html/": "https://cdn.skypack.dev/lit-html@next-major/"
     }
   }
 }
