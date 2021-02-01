@@ -6,33 +6,21 @@ eleventyNavigation:
   order: 8
 ---
 
-{% todo %}
+Decorators are special expressions that can alter the behavior of class, class method, and class field declarations.
 
-- Review list & usage of decorators for Lit.
-- Edit for consistency.
+Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet.
 
-{% endtodo %}
+Compilers like Babel and TypeScript provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
 
-Decorators are special expressions that can alter the behavior of class, class method, and class field declarations. LitElement supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component.
+See the [Enabling decorators](#enabling-decorators) section for more information.
+
+## Lit decorators
+
+LitElement supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component.
 
 For example, the `@customElement` and `@property` decorators make a basic element definition more compact:
 
-```js
-import {LitElement, html, customElement, property} from 'lit-element';
-
-@customElement('my-element')
-class MyElement extends LitElement {
-
- // Declare observed properties
- @property()
- adjective = 'awesome';
-
- // Define the element's template
- render() {
-   return html`<p>your ${this.adjective} template here</p>`;
- }
-}
-```
+{% playground-example "docs/decorators/basic/" "my-element.ts" %}
 
 The `@customElement` decorator defines a custom element, equivalent to calling:
 
@@ -44,34 +32,49 @@ The `@property` decorator declares a reactive property. The lines:
 
 ```js
  @property()
- adjective = 'awesome';
+ greeting = 'Welcome';
 ```
 
 Are equivalent to:
 
 ```js
-static get properties() {
-  return {
-    adjective: {}
-  };
-}
+static properties = {
+  greeting: {}
+};
 
 constructor() {
-  this.adjective = awesome;
+  super();
+  this.greeting = 'Welcome';
 }
 ```
 
-## Enabling decorators
+### List of decorators
 
-To use decorators, you need to use a compiler such as Babel or the TypeScript compiler.
+*   [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement). Defines a custom element.
+*   [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions). Adds event listener options for a declarative event listener.
+*   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property). Defines a public property.
+*   [`@state`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Defines a private state property.
+*   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query). Defines a property that returns an element in the component template.
+*   [`queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll). Defines a property that returns a list of elements in the component template.
+*   [`queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Defines a property that returns a promise that resolves to an element in the component template after any pending update cycle.
+*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Defines a property that returns the children assigned to a specific slot.
 
-<div class="alert alert-info">
+### Importing decorators
 
-**The decorators proposal**. Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like Babel and TypeScript provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
+To reduce the amount of code needed to run the component, decorators should be imported individually into component code. All decorators are available at `lit/decorators/<decorator-name>`. For example,
 
-</div>
+```js
+import {customElement} from 'lit/decorators/custom-element';
+import {eventOptions} from 'lit/decorators/event-options';
+```
 
-### To use decorators with TypeScript
+## Enabling decorators { #enabling-decorators }
+
+To use decorators, you need to build your code with a compiler such as [TypeScript](#decorators-typescript) or [Babel](#decorators-babel).
+
+In the future when decorators become a native web platform feature, this should no no longer be necessary.
+
+### Using decorators with TypeScript { #decorators-typescript }
 
 To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html), enable the `experimentalDecorators` compiler option.
 
@@ -81,35 +84,20 @@ To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook
 
 Enabling `emitDecoratorMetadata` is not required and not recommended.
 
-### To use decorators with Babel
+### Using decorators with Babel  { #decorators-babel }
 
-If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding  the following plugins:
+If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins:
 
 *   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators).
 *   [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
 
-To enable the plugins, you'd add code like this to your Babel configuration:
+To enable the plugins, add code like this to your Babel configuration:
 
 ```js
 plugins = [
-  '@babel/plugin-proposal-class-properties',
   ['@babel/plugin-proposal-decorators', {decoratorsBeforeExport: true}],
+  '@babel/plugin-proposal-class-properties',
 ];
 ```
 
-## LitElement decorators
-
-LitElement provides the following decorators:
-
-*   [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement). Define a custom element.
-*   [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions). Add event listener options for a declarative event listener.
-*   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property) and [`internalProperty`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Define properties.
-*   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query), [`queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll), and [`queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Create a property getter that returns specific elements from your component's render root.
-*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Create a property getter that returns the children assigned to a specific slot.
-
-
-All of the decorators can be imported directly from the <code>lit-element</code> module.
-
-```js
-import {eventOptions} from 'lit-element';
-```
+See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy) if you want to enable the older "legacy" decorators version.
