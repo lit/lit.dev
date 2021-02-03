@@ -100,4 +100,55 @@ plugins = [
 ];
 ```
 
-See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy) if you want to enable the older "legacy" decorators version.
+<div class="alert alert-info">
+Currently the older `legacy` mode of Babel decorators is not supported, but this may change as Babel evolves. See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy) if you want to experiment.
+</div>
+
+### Avoiding issues with class fields
+
+Class fields are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. They currently have a problematic interaction with the decorators proposal in some circumstances.
+
+There are generally no issues when using TypeScript. However, it's important to ensure that the `useDefineForClassFields` setting in your `tsconfig` is set to false. This is currently the default setting.
+
+When using Babel, class fields should only be used for properties that are defined with a decorator. Using the `static properties` syntax along with class fields is not supported.
+
+The following is ok:
+
+```js
+@property()
+foo = 'bar';
+```
+
+but this should be avoided:
+
+```js
+static properties = { foo: {} };
+foo = 'bar';
+```
+
+### Using TypeScript with Babel
+
+When using TypeScript with Babel, it's important to order the TypeScript transform before the decorators transform in your Babel config as follows:
+
+```js
+{
+  "plugins":[
+    ["@babel/plugin-transform-typescript", {"allowDeclareFields": true}],
+    ["@babel/plugin-proposal-decorators", {"decoratorsBeforeExport": true}],
+    "@babel/plugin-proposal-class-properties",
+  ]
+}
+```
+
+The `allowDeclareFields` setting is generally not needed, but it can be useful if you want to define a reactive property without using a decorator. For example,
+
+```ts
+static properties = { foo: {} };
+
+declare foo: string;
+
+constructor() {
+  super();
+  this.foo = 'bar';
+}
+```
