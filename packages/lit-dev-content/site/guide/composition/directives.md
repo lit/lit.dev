@@ -29,7 +29,7 @@ import {Directive, directive} from 'lit-html/directive.js';
 
 // Define directive
 class HelloDirective extends Directive {
-  render(value: number, minValue = 0) {
+  render() {
     return `Hello!`;
   }
 }
