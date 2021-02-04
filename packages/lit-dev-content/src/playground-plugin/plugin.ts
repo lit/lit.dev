@@ -15,6 +15,7 @@ import {outdent} from 'outdent';
 // some, but they're not in DefinitelyTyped:
 // https://github.com/chriskrycho/v5.chriskrycho.com/blob/master/types/eleventy.d.ts
 interface EleventyConfig {
+  addShortcode(name: string, shortcode: (...args: any[]) => string): void;
   addPairedShortcode(
     name: string,
     shortcode: (content: string, ...args: any[]) => string
@@ -74,5 +75,32 @@ export const playgroundPlugin = (
 
   eleventyConfig.addMarkdownHighlighter(
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+  );
+
+  eleventyConfig.addShortcode('playground-ide', (project: string) => {
+    return `
+      <playground-ide
+        line-numbers resizable editable-file-system
+        project-src="/samples/${project}/project.json">
+      </playground-ide>
+    `.trim();
+  });
+
+  // TODO(aomarks)
+  // - Pre-render highlighted code and preview. Slots are already available.
+  // - Add a "load in playground" button.
+  // - Support "masking out" parts of the code, so that only some bits are
+  //   visible and editable (e.g. just the contents of a lit template).
+  eleventyConfig.addShortcode(
+    'playground-example',
+    (project: string, filename: string) => {
+      return `
+      <litdev-example
+        class="playground-example"
+        project=${project}
+        filename=${filename}>
+      </litdev-example>
+    `.trim();
+    }
   );
 };

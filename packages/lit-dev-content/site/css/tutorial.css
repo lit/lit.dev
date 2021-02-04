@@ -4,7 +4,7 @@ html, body {
   flex-direction: column;
 }
 
-code-sample {
+playground-ide {
   flex: 1;
   height: 100%;
 }

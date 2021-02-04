@@ -277,15 +277,44 @@ body {
   --playground-code-font-size: 13px;
 }
 
-/* inline code fragments */ code:not([class]),
-/* eleventy markdown pre */ pre.highlight,
-.CodeMirror {
-  font-family: "Roboto Mono", monospace !important;
-  border-radius: 6px;
-  font-size: 13px !important;
+.CodeMirror, playground-file-editor, playground-preview {
   border: 1px solid #dedede;
   border-radius: 6px;
-  padding: 12px 12px 0 12px;
+  margin-bottom: 16px;
+}
+
+playground-ide {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+playground-ide:not(:defined) {
+  display: block;
+  height: 350px;
+}
+
+playground-file-editor {
+  --playground-code-background: transparent;
+}
+
+litdev-example {
+  --litdev-example-editor-height: 300px;
+  --litdev-example-preview-height: 100px;
+  box-sizing: border-box;
+}
+
+litdev-example:not(:defined) {
+  display: block;
+  height: calc(var(--litdev-example-editor-height) + var(--litdev-example-preview-height));
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.CodeMirror {
+  font-family: "Roboto Mono", monospace !important;
+  font-size: 13px !important;
+  padding: 12px;
   /* The default CodeMirror stylesheet fixes height to 300px. */
   height: unset !important;
 }
@@ -304,12 +333,4 @@ body {
   /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
      theme, that is both nicer looking and satisfies a11y contrast metrics. */
   color: #b30000 !important;
-}
-
-code:not([class]) {
-  padding: 0 6px;
-}
-
-pre.highlight {
-  padding: 12px;
 }

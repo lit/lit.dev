@@ -56,8 +56,8 @@ class MyElement extends LitElement {
 
 Example
 
-<code-sample project-src="/samples/docs/templates/define/project.json">
-</code-sample>
+<playground-ide project-src="/samples/docs/templates/define/project.json">
+</playground-ide>
 
 Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners.
 
@@ -126,7 +126,7 @@ class MyElement extends LitElement {
 }
 ```
 
-<code-sample project-src="/samples/docs/templates/design/project.json"></code-sample>
+<playground-ide project-src="/samples/docs/templates/design/project.json"></playground-ide>
 
 See [Reactive properties](/guide/components/properties) for information on declaring reactive properties.
 
@@ -157,7 +157,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample project-src="/samples/docs/templates/compose/project.json"></code-sample>
+<playground-ide project-src="/samples/docs/templates/compose/project.json"></playground-ide>
 
 You can also compose templates by importing other elements and using them in your template:
 
@@ -177,7 +177,7 @@ class MyPage extends LitElement {
 }
 ```
 
-<code-sample project-src="/samples/docs/templates/composeimports/project.json"></code-sample>
+<playground-ide project-src="/samples/docs/templates/composeimports/project.json"></playground-ide>
 
 
 ## Resources

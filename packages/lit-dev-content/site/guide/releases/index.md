@@ -2,8 +2,12 @@
 title: Releases
 eleventyNavigation:
   key: Releases
-  order: 5
+  order: 7
   headingOnly: true
 ---
 
-This is a placeholder for the releases section.
+{% todo %}
+
+Figure out what to do with these empty sections.
+
+{% endtodo %}

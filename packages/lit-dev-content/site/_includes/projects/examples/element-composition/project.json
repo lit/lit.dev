@@ -1,0 +1,12 @@
+{
+  "title": "Element composition",
+  "description": "Compose a template from other custom elements.",
+  "section": "Rendering & Templating",
+  "files": {
+    "my-page.js": {},
+    "my-article.js": {},
+    "my-footer.js": {},
+    "my-header.js": {},
+    "index.html": {}
+  }
+}
