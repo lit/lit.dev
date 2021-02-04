@@ -19,7 +19,10 @@ html`<div>
 
 However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression, and is persisted across multiple renders so it can be stateful. A directive can also be notified when it is disconnected or reconnected.
 
-While Lit ships with a number of built-in directives like `repeat` and `cache`, users can author their own custom directives. This is accomplished by extending the `Directive` class and passing it to the `directive` factory to create a directive function that can be used in Lit template expressions:
+While Lit ships with a number of built-in directives like `repeat` and `cache`, users can author their own custom directives. To create a directive:
+
+*   Implement the directive as a class that extends the `Directive` class.
+*.  Pass your class to the `directive` factory to create a directive function that can be used in Lit template expressions.
 
 ```js
 import {Directive, directive} from 'lit-html/directive.js';
@@ -36,13 +39,13 @@ const hello = directive(HelloDirective);
 const template = html`<div>${hello()}</div>`;
 ```
 
-When a template is evaluated, directive functions return `DirectiveResult`s which instruct lit-html to create or update instances of the `Directive` class. lit-html then calls `update()`/`render()` methods on the class instance (see below) which determine how the DOM is updated.
+When this template is evaluated, the directive function  (`hello`) returns a `DirectiveResult` which instructs Lit to create or update an instance of the `Directive` class (`HelloDirective`). Lit then calls methods on the class instance to update the  DOM.
 
 ## Lifecycle
 
-### One-time setup: `constructor()`
+### One-time setup: constructor()
 
-When lit-html encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the `Directive` class, causing its constructor and any class field initializers to run:
+When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class, causing its constructor and any class field initializers to run:
 
 ```js
 class MaxDirective extends Directive {
@@ -59,13 +62,13 @@ class MaxDirective extends Directive {
 }
 ```
 
-As long as the same directive function is used in the same expression each render, the previous instance will be reused and any state stored on the instance will persist between renders.
+As long as the same directive function is used in the same expression each render, the previous instance will be reused, thus the state of the instance will persist between renders.
 
-The lone argument to the constructor is a `PartInfo` object which provides metadata about the expression position the directive was used in. This may be useful for providing error checking in cases where directives are designed to be used only in specific types of expressions (see [below]()).
+The constructor receives a single `PartInfo` object, which provides metadata about the expression the directive was used in. This can be useful for providing error checking in cases where directives are designed to be used only in specific types of expressions (see [below]()).
 
-### Declarative rendering: `render()`
+### Declarative rendering: render()
 
-The `render()` method should be implemented to return a value for lit-html to render into the expression's position in the DOM.  It can return any renderable value, including another `DirectiveResult`.
+The `render()` method should return the value to render into the DOM. It can return any renderable value, including another `DirectiveResult`.
 
 In addition to referring to state on the class instance, the `render()` method may also accept arbitrary arguments passed in from the template to calculate its return value. Any arguments defined for the `render()` method will determine the function signature of the directive itself:
 
@@ -84,7 +87,7 @@ const max = directive(MaxDirective);
 const template = html`<div>${myDirective(someNumber, 0)}</div>`;
 ```
 
-### Imperative DOM manipulation: `update()`
+### Imperative DOM manipulation: update()
 
 In more advanced use cases, the directive may need to access the underlying DOM and imperatively read from or mutate it. This can be achieved by overriding the `update()` lifecycle.
 
@@ -118,13 +121,13 @@ In addition, the `directive-helpers.js` module includes a number of helper funct
 
 ### Differences between `update()` and `render()`
 
-While the `update()` lifecycle is strictly more powerful than the `render()` lifecycle, there is an important distinction: When the `@lit/ssr` module is rendering directives, _only_ the `render()` method will be called on the server. As such, directives should endeavor to return values declaratively from `render()` when possible.
+While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When usingthe `@lit/ssr` package for server-side rendering, _only_ the `render()` method will be called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for imperative logic.
 
-## Limiting a directive to one binding type
+## Limiting a directive to one expression type
 
 Some directives are only useful in one context, such as an attribute expression or a child expression. If placed in the wrong context, the directive should throw an appropriate error.
 
-For example, the `classMap` directive validates that it is only used in an `AttributePart` and only for the `attribute` class:
+For example, the `classMap` directive validates that it is only used in an `AttributePart` and only for the `class` attribute`:
 
 ```js
 class ClassMap extends Directive {
@@ -143,13 +146,13 @@ class ClassMap extends Directive {
 
 ## Asynchronous directives
 
-The previous example directives are synchronous: they return values synchronously to their `render()`/`update()` lifecycle, so their results are written to the DOM during `lit-html`'s the `render` call.
+The previous example directives are synchronous: they return values synchronously to their `render()`/`update()` lifecycle, so their results are written to the DOM during the component's `update()` callback.
 
 Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
-When a directive sets a value asynchronously, it needs to extend the `DisconnectableDirective` base class, which provides a `setValue` API for asynchronously setting the value.
+To set a value asynchronously, a directive needs to extend the `DisconnectableDirective` base class, which provides a `setValue()` API.
 
-Here's a trivial example of an asynchronous directive:
+Here's an example of a simple asynchronous directive that renders a Promise value:
 
 ```js
 class ResolvePromise extends DisconnectableDirective {
@@ -167,12 +170,12 @@ const resolvePromise = directive(ResolvePromise);
 
 Here, the rendered template shows "Waiting for promise to resolve," followed by the resolved value of the promise, whenever it resolves.
 
-Asynchronous directives often need to subscribe to external resources. To prevent memory leaks it is common for asynchronous directives to need to unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `DisconnectableDirective` provides the following extra lifecycle:
+Asynchronous directives often need to subscribe to external resources. To prevent memory leaks it is common for asynchronous directives to need to unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `DisconnectableDirective` provides the following extra lifecycle callbacks:
 
 * `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected when the value of a given expression no longer resolves to the same directive, or if the subtree the directive was contained in was removed from the DOM.
-* `reconneccted()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later when e.g. DOM is moved or for optimizations like DOM caching, a disconnected directive may need to react to being re-connected. As such, the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
+* `reconnected()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later (for example, when DOM is moved) a disconnected directive may need to react to being re-connected. As such, the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
 
-Below is an example of a directive that subscribes to an `Observable` and handles disconnecction and reconnection appropriately:
+Below is an example of a directive that subscribes to an `Observable` and handles disconnection and reconnection appropriately:
 
 ```js
 class ObserveDirective extends DisconnectableDirective {
