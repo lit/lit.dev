@@ -6,78 +6,44 @@ eleventyNavigation:
   order: 2
 ---
 
-{% todo %}
+During the development phase of your projects when you're writing Lit components, the following tools can help boost your productivity:
 
-- Rough content from lit-html docs follows. Update & edit this content for Lit.
-- ES dev server => web-dev-server
-- Add content on Using TypeScript?
-
-{% endtodo %}
-
-
-During the development phase, you might want the following tools:
-
-* IDE plugins, for linting and code highlighting.
-* Linter plugins, for checking lit-html templates.
 * A dev server, for previewing code without a build step.
+* Using TypeScript to write type checked code.
+* IDE plugins, for linting and code highlighting.
+* Linter plugins, for checking Lit templates.
 
+## Using a dev server
 
-## IDE plugins
-
-There are a number of IDE plugins that may be useful when developing with lit-html. In particular, we recommend using a code highlighter that works with lit-html style templates. In addition, we recommend using a linter like ESLint that supports modern JavaScript.
-
-The following VS Code and TypeScript plugins check lit-html templates for errors:
-
-* [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
-
-* [TypeScript plugin (works with Sublime and Atom)](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin)
-
-More plugins
-
-The [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo lists other IDE plugins.
-
-
-## Linting
-
-ESLint is recommended for linting lit-html code.  The following ESLint plugin can be added to check for some common issues in lit-html templates:
-
-* [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
-
-Another alternative is to use the `lit-analyzer` CLI alongside ESLint to detect issues in your lit-html templates:
-
-* [https://github.com/runem/lit-analyzer/tree/master/packages/lit-analyzer](https://github.com/runem/lit-analyzer/tree/master/packages/lit-analyzer)
-
-`lit-analyzer` uses the same backend as the VS Code and TypeScript plugins listed in [IDE plugins](#ide-plugins).
-
-## Dev server
-
-lit-html is packaged as JavaScript modules. Many developers prefer to import modules using bare module specifiers:
+Lit is packaged as JavaScript modules, and it uses bare module specifiers that are not yet natively supported in most browsers. Bare specifiers are commonly used, and you may want to use them in your own code as well. For example:
 
 ```js
-import {html, render} from 'lit-html';
+import {LitElement, html, css} from 'lit';
 ```
 
-To run in the browser, the bare identifier ('lit-html') needs to be transformed to a path or URL that the browser can load (such as '/node_modules/lit-html/lit-html.js'). [ES dev server](https://open-wc.org/developing/es-dev-server.html) is an open-source dev server that handles this and other transforms.
+To run this code in the browser, the bare specifier ('lit') needs to be transformed to a URL that the browser can load (such as '/node_modules/lit/lit.js').
 
-You can also use the Polymer CLI dev server, if you already have it installed. For new projects, we recommend the ES dev server.
+There are many development servers that can deal with module specifiers. If you already have a dev server that does this and integrates with your build process, that should be sufficient.
 
-If you already have a dev server that integrates with your build process, you can use that, instead.
+If you need a dev server, we recommend [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/).
 
-### ES Dev Server
+### Web Dev Server
 
-The ES dev server enables a build-free development process. It handles rewriting bare module specifiers to valid paths or URLs, as required by the browser. For IE11, ES dev server also transforms JavaScript modules to use the backwards-compatible SystemJS module loader.
+[Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) is an open-source dev server that enables a build-free development process.
 
-Install ES dev server:
+It handles rewriting bare module specifiers to valid URLs, as required by browsers. For older browsers like IE11, Web Dev Server transforms JavaScript modules to use the backwards-compatible SystemJS module loader, and it automatically serves the web components polyfills.
+
+Install Web Dev Server:
 
 ```bash
-npm i -D es-dev-server
+npm i @web/dev-server --save-dev
 ```
 
 Add a command to your `package.json` file:
 
 ```json
 "scripts": {
-  "start": "es-dev-server --app-index index.html --node-resolve --watch --open"
+  "start": "web-dev-server --node-resolve --app-index index.html --open --watch --esbuild-target auto"
 }
 ```
 
@@ -87,8 +53,60 @@ Run the dev server:
 npm run start
 ```
 
-For full installation and usage instructions, see the [open-wc website](https://open-wc.org/developing/es-dev-server.html).
+For full installation and usage instructions, see the [Web Dev Server documentation](https://modern-web.dev/docs/dev-server/overview/).
 
 ## Using TypeScript
 
-TODO
+TypeScript extends the Javascript language by adding support for types. Types are useful for catching errors early and making code more readable and understandable.
+
+To install TypeScript in your project:
+
+```bash
+npm install typescript --save-dev
+```
+
+To build the code:
+
+```bash
+npx tsc --watch
+```
+
+For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
+
+## Using IDE plugins
+
+There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
+
+The following VS Code and TypeScript plugins highlight Lit templates and check them for errors:
+
+* [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
+
+* [TypeScript plugin (works with Sublime and Atom)](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin)
+
+See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
+
+
+## Setting up linting
+
+Linting is an invaluable tool for helping to catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
+
+To install ESLint in your project:
+
+```bash
+npm install eslint --save-dev
+npx eslint --init
+```
+
+To invoke it:
+
+```bash
+npx eslint yourfile.js
+```
+
+For full installation and usage instructions, see the [ESLint documentation](https://eslint.org/docs/user-guide/getting-started).
+
+### Using Linting plugins
+
+Integrating linting into your IDE workflow can help catch errors as early as possible, right when you're typing out your code. The following ESLint plugin can be added to check for some common issues in Lit templates:
+
+* [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
