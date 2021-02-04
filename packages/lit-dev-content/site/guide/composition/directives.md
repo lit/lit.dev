@@ -17,7 +17,7 @@ html`<div>
   </div>`
 ```
 
-However, instead of simply _returning_ a value to render as a pure function of its arguments, directives can persist state across multiple renders, as well as access the underlying DOM associated with its expression position.
+However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression, and is persisted across multiple renders so it can be stateful. A directive can also be notified when it is disconnected or reconnected.
 
 While Lit ships with a number of built-in directives like `repeat` and `cache`, users can author their own custom directives. This is accomplished by extending the `Directive` class and passing it to the `directive` factory to create a directive function that can be used in Lit template expressions:
 
