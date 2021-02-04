@@ -9,7 +9,7 @@ eleventyNavigation:
 
 ## Overview
 
-Directives are functions that can customize how lit-html renders values. Template authors can use directives in their templates like other functions:
+Directives are objects that can customize how Lit renders expressions. Using a directive in your template is like calling a function:
 
 ```js
 html`<div>
