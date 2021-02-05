@@ -128,11 +128,12 @@ server, while `update` will not be.
 
 |                                              | Previous API                                                                                           | New API                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Code idiom for directive                     | function that takes directive arguments, and returns function that takes `part` and returns value | class with `update` & `render` methods which accept directive arguments |
-| Where to do declarative rendering            | pass value to `part.setValue()`                                                                   | return value from `render()` method                                     |
-| Where to do imperative DOM/part manipulation | directive function                                                                                | `update()` method                                                       |
-| Where state is stored between renders        | `WeakMap` keyed on `part`                                                                         | class instance fields                                                   |
+| Code idiom for directive                     | Function that takes directive arguments, and returns function that takes `part` and returns value | Class that extends `Directive` with `update` & `render` methods which accept directive arguments |
+| Where to do declarative rendering            | Pass value to `part.setValue()`                                                                   | Return value from `render()` method                                     |
+| Where to do imperative DOM/part manipulation | Directive function                                                                                | `update()` method                                                       |
+| Where state is stored between renders        | `WeakMap` keyed on `part`                                                                         | Class instance fields                                                   |
 | How part validation is done                  | `instanceof` check on `part` in every render                                                      | `part.type` check in constructor                                        |
+| How to update a directive's value asynchronously | `part.setValue(v);`<br>`part.commit();` | Extend `AsyncDirective` instead of `Directive` and call `this.setValue(v)` |
 
 ### Example directive migration
 
