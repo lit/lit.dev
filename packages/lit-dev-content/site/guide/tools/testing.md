@@ -10,8 +10,11 @@ eleventyNavigation:
 
 - Write this section. The content below is from the existing lit-html guide.
 - I think it should be refererring to @web/test-runner now.
+- starter kit
+- mention karma, jest?
 
 {% endtodo %}
+
 
 lit-html doesn't have many special testing requirements. If you already have a testing setup, it should work fine as long as it supports working with JavaScript modules (and node-style module specifiers, if you use them).
 
