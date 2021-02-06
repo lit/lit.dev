@@ -12,6 +12,9 @@ During the development phase of your projects when you're writing Lit components
 * Using TypeScript to write type checked code.
 * IDE plugins, for linting and code highlighting.
 * Linter plugins, for checking Lit templates.
+* Code formatters, for making code readable.
+
+Check out the [Getting Started](../../getting-started) documentation to easily setup a development environment with all of these features pre-configured.
 
 ## Using a dev server
 
@@ -83,8 +86,17 @@ The following VS Code and TypeScript plugins highlight Lit templates and check t
 
 * [TypeScript plugin (works with Sublime and Atom)](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin)
 
-See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
+These plugins provide:
 
+- Syntax highlighting
+- Type-checking
+- Code completion
+- Hover-over docs
+- Jump to definition
+- Linting
+- Quick Fixes
+
+See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
 
 ## Setting up linting
 
@@ -110,3 +122,13 @@ For full installation and usage instructions, see the [ESLint documentation](htt
 Integrating linting into your IDE workflow can help catch errors as early as possible, right when you're typing out your code. The following ESLint plugin can be added to check for some common issues in Lit templates:
 
 * [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
+
+## Setting up formatting
+
+Using a code formatter can help ensure code is consistent and readable. Integrating your formatter of choice with your IDE ensures your code is always clean and tidy.
+
+A few popular options include:
+
+* [Prettier](https://prettier.io/): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+* [Beautifier](https://beautifier.io/): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
+* [Clang](https://www.npmjs.com/package/clang-format): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
