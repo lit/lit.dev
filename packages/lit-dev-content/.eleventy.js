@@ -5,15 +5,15 @@ const markdownItAttrs = require('markdown-it-attrs');
 const slugifyLib = require('slugify');
 const path = require('path');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
-const {playgroundPlugin} = require('./playground-plugin/plugin.js');
+const {
+  playgroundPlugin,
+} = require('lit-dev-tools/lib/playground-plugin/plugin.js');
 const htmlMinifier = require('html-minifier');
 const CleanCSS = require('clean-css');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
 const slugify = (s) => slugifyLib(s, {lower: true});
-
-
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
@@ -47,7 +47,7 @@ module.exports = function (eleventyConfig) {
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
   // markdown processor to quote it.
-  eleventyConfig.addPairedShortcode("todo", function(content) {
+  eleventyConfig.addPairedShortcode('todo', function (content) {
     console.warn(`TODO item in ${this.page.url}`);
     return `
 <div class="alert alert-todo">
