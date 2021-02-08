@@ -47,7 +47,8 @@ steps:
       - '--no-traffic'
       - '--tag=master-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
-      # --max-old-space-size in ./Dockerfile
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-pr.yaml
       - '--memory=1Gi'
       - '--cpu=1'
       - '--concurrency=40'
