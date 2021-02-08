@@ -1,4 +1,6 @@
 import Tar from 'tarts';
+import {Snackbar} from '@material/mwc-snackbar';
+import {PlaygroundIde} from 'playground-elements/playground-ide.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   /**
@@ -16,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
    * TODO(aomarks) Make this a method on <playground-project>? It's likely to be
    * needed by other projects too.
    */
-  const encodeSafeBase64 = (str) => {
+  const encodeSafeBase64 = (str: string) => {
     // Adapted from suggestions in https://stackoverflow.com/a/30106551
     //
     // Example:
@@ -37,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
     return padIdx >= 0 ? base64url.slice(0, padIdx) : base64url;
   };
 
-  const decodeSafeBase64 = (base64url) => {
+  const decodeSafeBase64 = (base64url: string) => {
     const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
     const utf8 = atob(base64);
     const percentEscaped = utf8
@@ -49,10 +51,10 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   const $ = document.body.querySelector.bind(document.body);
-  const ide = $('playground-ide');
+  const ide = $('playground-ide')! as PlaygroundIde;
 
-  const examplesButton = $('.examples-button');
-  const examplesDrawer = $('.examples-drawer');
+  const examplesButton = $('.examples-button')!;
+  const examplesDrawer = $('.examples-drawer')!;
   examplesButton.addEventListener('click', () => {
     examplesDrawer.classList.toggle('open');
     examplesDrawer.classList.add('transitioning');
@@ -63,20 +65,23 @@ window.addEventListener('DOMContentLoaded', () => {
     examplesDrawer.classList.remove('transitioning');
   });
 
-  const shareButton = $('.share-button');
-  const shareSnackbar = $('.share-snackbar');
+  const shareButton = $('.share-button')!;
+  const shareSnackbar = $('.share-snackbar')! as Snackbar;
   shareButton.addEventListener('click', async () => {
     // No need to include contentType (inferred) or undefined label (unused).
-    const files = ide.files.map(({content, name}) => ({content, name}));
+    const files = (ide.files ?? []).map(({content, name}) => ({content, name}));
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
     shareSnackbar.show();
   });
 
-  const downloadButton = $('.download-button');
+  const downloadButton = $('.download-button')!;
   downloadButton.addEventListener('click', () => {
-    const tarFiles = ide.files.map(({name, content}) => ({name, content}));
+    const tarFiles = (ide.files ?? []).map(({name, content}) => ({
+      name,
+      content,
+    }));
     const tar = Tar(tarFiles);
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([tar], {type: 'application/tar'}));
@@ -110,7 +115,6 @@ window.addEventListener('DOMContentLoaded', () => {
       // somebody to share a link that executes arbitrary code.
       // https://github.com/PolymerLabs/lit.dev/issues/26
       ide.files = urlFiles;
-
     } else {
       let sample = 'examples/hello-world-typescript';
       let openExamplesDrawer = false;

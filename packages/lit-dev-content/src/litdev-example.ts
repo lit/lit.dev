@@ -12,14 +12,12 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {LitElement, html, css} from 'lit-element';
+import {LitElement, html, css, property} from 'lit-element';
 import {nothing} from 'lit-html';
 import 'playground-elements/playground-ide.js';
 
 /**
  * Embedded playground code example in vertical layout.
- *
- * TODO(aomarks) Convert to TypeScript (needs some project layout changes).
  */
 export class LitDevExample extends LitElement {
   static styles = css`
@@ -31,7 +29,8 @@ export class LitDevExample extends LitElement {
       --litdev-example-preview-height: 100px;
     }
 
-    playground-file-editor, playground-preview {
+    playground-file-editor,
+    playground-preview {
       border: 1px solid #ccc;
       border-radius: 6px;
       box-sizing: border-box;
@@ -73,19 +72,17 @@ export class LitDevExample extends LitElement {
     }
   `;
 
-  static get properties() {
-    return {
-      /**
-       * Path to the project dir from `site/_includes/projects/PATH/project.json`.
-       */
-      project: {},
+  /**
+   * Path to the project dir from `site/_includes/projects/PATH/project.json`.
+   */
+  @property()
+  project?: string;
 
-      /**
-       * Name of file in project to display.
-       */
-      filename: {},
-    }
-  }
+  /**
+   * Name of file in project to display.
+   */
+  @property()
+  filename?: string;
 
   render() {
     if (!this.project || !this.filename) {
@@ -94,25 +91,26 @@ export class LitDevExample extends LitElement {
     return html`
       <playground-project
         id="project"
-        project-src="/samples/${this.project}/project.json">
+        project-src="/samples/${this.project}/project.json"
+      >
       </playground-project>
 
-      <playground-file-editor
-        project="project"
-        filename="${this.filename}">
+      <playground-file-editor project="project" filename="${this.filename}">
       </playground-file-editor>
 
-      <playground-preview
-        project="project">
-      </playground-preview>
+      <playground-preview project="project"> </playground-preview>
 
-      <a class="openInPlayground"
-         title="Open this example in the playground"
-         target="_blank"
-         href="/playground/#sample=${this.project}">
+      <a
+        class="openInPlayground"
+        title="Open this example in the playground"
+        target="_blank"
+        href="/playground/#sample=${this.project}"
+      >
         <!-- Source: https://material.io/resources/icons/?icon=launch&style=baseline -->
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
-          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+          <path
+            d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+          />
         </svg>
       </a>
     `;
