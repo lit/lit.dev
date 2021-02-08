@@ -31,4 +31,16 @@ COPY . ./
 RUN npm run build
 
 # Run the web service on container startup.
-CMD [ "node", "packages/lit-dev-server/index.js" ]
+#
+# IMPORTANT: Keep --max-old-space-size in sync with the --memory flag in
+# ./cloudbuild-main.yaml. The flag here should be set a little lower than
+# --memory (e.g. 75%) to give headroom for other uses [0].
+#
+# (Node isn't aware of Docker memory limits, so if we don't set this flag we're
+# at higher risk for termination and restart. This value determines when V8
+# decides to perform garbage collection. Node uses sysinfo totalram as the
+# default limit [1], which will be higher than our Docker memory limit.)
+#
+# [0] https://nodejs.org/api/cli.html#cli_max_old_space_size_size_in_megabytes
+# [1] https://github.com/nodejs/node/pull/25576
+CMD [ "node", "--max-old-space-size=768", "packages/lit-dev-server/index.js" ]
