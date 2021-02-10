@@ -335,7 +335,7 @@ Next you'll need to include the web components polyfills. You can load the polyf
 <!-- Load application code here -->
 ```
 
-See [Supporting older browsers](../tools/browsers) for more detailed information.
+See [Supporting older browsers](/guide/tools/browsers/) for more detailed information.
 
 ### Next steps
 
