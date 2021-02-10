@@ -219,7 +219,7 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 <div class="alert alert-info">
 
-**Rendering fallback content.** If a slot distributes any child, fallback content will not render. A default slot with no name accepts any child and will not render fallback content even if it distributes only whitespace inside an element, for example `<div> </div>`.
+**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`.
 
 </div>
 
