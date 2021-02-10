@@ -264,7 +264,7 @@ The `@queryAssignedNodes` decorator converts a class property into a getter that
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](../decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/guide/components/decorators/) for details.
 
 </div>
 
