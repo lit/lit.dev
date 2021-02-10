@@ -29,25 +29,18 @@ export class LitDevExample extends LitElement {
 
     playground-file-editor,
     playground-preview {
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      border: 1px solid var(--color-medium-gray);
       box-sizing: border-box;
     }
 
     playground-file-editor {
       height: var(--litdev-example-editor-height, 300px);
       margin-bottom: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      /* Border radius is masked by default white background otherwise. */
-      --playground-code-background: transparent;
     }
 
     playground-preview {
       height: var(--litdev-example-preview-height, 100px);
       border-top: none;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
     }
 
     playground-preview::part(preview-toolbar) {

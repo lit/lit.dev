@@ -1,0 +1,122 @@
+@import url('./fonts/manrope.css');
+@import url('./fonts/roboto-mono.css');
+@import url('./colors.css');
+@import url('./code.css');
+@import url('./header.css');
+@import url('./footer.css');
+@import url('./scrollbar.css');
+
+/* General */
+
+html {
+  /**
+   * This font-size value controls the scale of the entire application. A
+   * font-size of 25px corresponds to the scale of the original mocks.
+   */
+  font-size: 18px;
+
+  --header-footer-max-width: var(--main-max-width);
+  --header-footer-justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  --toc-width: 12em;
+}
+
+h1 {
+  font-size: 1.28em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-blue);
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  max-width: var(--main-max-width);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin: auto;
+  box-sizing: border-box;
+}
+
+/* Navigation (can either be in drawer or LHS column) */
+
+.site-nav {
+  font-size: 1em;
+}
+
+.site-nav > ol {
+  padding-left: 1.16em;
+}
+
+.site-nav li {
+  list-style: none;
+}
+
+.site-nav .section-head {
+  color: black;
+  padding: 0.08em 0.56em;
+  margin-left: -0.68em;
+  font-weight: 500;
+}
+
+.site-nav a {
+  display: block;
+  color: inherit;
+  margin-bottom: 0.12em;
+  padding: 0.12em 0.48em;
+}
+
+.site-nav ol ol {
+  padding-left: 0.32em;
+  margin: 0.32em 0 0.48em 0;
+}
+
+/* Don't render drawer slotted children before it upgrades. */
+mwc-drawer:not(:defined) {
+  display: none;
+}
+
+mwc-drawer .site-nav > ol {
+  padding: 0 0.96em;
+}
+
+mwc-icon-button:not(:defined) {
+  visibility: hidden;
+}
+mwc-icon-button-toggle:not(:defined) {
+  visibility: hidden;
+}
+
+/* The first section in the narrow-layout drawer is top-level site pages, and
+   underneath is e.g. the guide sub-pages. Visually separate these a bit. */
+mwc-drawer .site-nav > ol > li:nth-child(2) {
+  margin-top: 0.72em;
+  border-top: 0.04em solid #ccc;
+  padding-top: 0.96em;
+}
+
+/* "Speckly" texture applied on top of some backgrounds */
+
+.speckles {
+  background: url('/images/texture-white.png');
+  opacity: 30%;
+  width: 100%;
+  height: 100%;
+}

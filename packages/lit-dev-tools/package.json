@@ -10,8 +10,10 @@
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
+    "@types/glob": "^7.1.3",
     "@web/dev-server": "^0.1.6",
     "@web/dev-server-core": "^0.3.5",
+    "glob": "^7.1.6",
     "outdent": "^0.8.0",
     "playground-elements": "^0.5.0",
     "playwright": "^1.8.0"

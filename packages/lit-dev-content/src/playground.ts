@@ -53,8 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const $ = document.body.querySelector.bind(document.body);
   const ide = $('playground-ide')! as PlaygroundIde;
 
-  const examplesButton = $('.examples-button')!;
-  const examplesDrawer = $('.examples-drawer')!;
+  const examplesButton = $('.playground-examples-button')!;
+  const examplesDrawer = $('.playground-examples')!;
   examplesButton.addEventListener('click', () => {
     examplesDrawer.classList.toggle('open');
     examplesDrawer.classList.add('transitioning');
@@ -65,8 +65,8 @@ window.addEventListener('DOMContentLoaded', () => {
     examplesDrawer.classList.remove('transitioning');
   });
 
-  const shareButton = $('.share-button')!;
-  const shareSnackbar = $('.share-snackbar')! as Snackbar;
+  const shareButton = $('.playground-share-button')!;
+  const shareSnackbar = $('.playground-share-snackbar')! as Snackbar;
   shareButton.addEventListener('click', async () => {
     // No need to include contentType (inferred) or undefined label (unused).
     const files = (ide.files ?? []).map(({content, name}) => ({content, name}));
@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
     shareSnackbar.show();
   });
 
-  const downloadButton = $('.download-button')!;
+  const downloadButton = $('.playground-download-button')!;
   downloadButton.addEventListener('click', () => {
     const tarFiles = (ide.files ?? []).map(({name, content}) => ({
       name,
@@ -89,7 +89,7 @@ window.addEventListener('DOMContentLoaded', () => {
     a.click();
   });
 
-  const syncStateFromUrlHash = () => {
+  const syncStateFromUrlHash = (animate: boolean) => {
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(1));
 
@@ -138,10 +138,17 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       if (openExamplesDrawer) {
         examplesDrawer.classList.add('open');
+        if (!animate) {
+          examplesDrawer.classList.add('no-animate');
+          requestAnimationFrame(() => {
+            examplesDrawer.classList.remove('no-animate');
+          });
+        }
       }
     }
   };
 
-  syncStateFromUrlHash();
-  window.addEventListener('hashchange', syncStateFromUrlHash);
+  // Don't animate the examples drawer on initial load.
+  syncStateFromUrlHash(false);
+  window.addEventListener('hashchange', () => syncStateFromUrlHash(true));
 });

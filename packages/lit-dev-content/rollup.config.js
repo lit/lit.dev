@@ -35,9 +35,17 @@ const terserOptions = {
 
 export default [
   {
-    input: 'lib/guide.js',
+    input: 'lib/docs.js',
     output: {
-      file: 'site/_includes/js/guide.js',
+      file: 'site/_includes/js/docs.js',
+      format: 'esm',
+    },
+    plugins: [resolve(), terser(terserOptions), summary()],
+  },
+  {
+    input: 'lib/home.js',
+    output: {
+      file: 'site/_includes/js/home.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],

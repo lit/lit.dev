@@ -10,7 +10,7 @@ eleventyNavigation:
 
 {% todo %}
 
-- Decide if this content goes here or on the main landing page. Conclusion: probably OK to go here. Even if it covers similar ground, it'll be in a different form.
+- Decide if this content goes here or on the main home page. Conclusion: probably OK to go here. Even if it covers similar ground, it'll be in a different form.
 - Write content.
 
 {% endtodo %}

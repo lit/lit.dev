@@ -1,0 +1,108 @@
+@import url('./home/1-splash.css');
+@import url('./home/2-uses.css');
+@import url('./home/3-simplicity.css');
+@import url('./home/4-advantages.css');
+@import url('./home/5-who-uses.css');
+@import url('./home/6-get-started.css');
+@import url('./home/7-connect.css');
+
+body {
+  --home-max-width: 70rem;
+  --home-side-margin: 2rem;
+}
+
+main {
+  font-size: 0.9em;
+}
+
+/* Fading lit-logo (see home.js) */
+
+.menu-button-and-logo {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+body.splash-logo-scrolled .menu-button-and-logo {
+  opacity: 1;
+}
+
+/* "Speckly" texture applied on top of some backgrounds */
+
+.speckles {
+  background: url('/images/texture-white.png');
+  opacity: 30%;
+  width: 100%;
+  height: 100%;
+}
+
+/* Bold uppercase links */
+
+.home-bold-link {
+  text-transform: uppercase;
+  color: black;
+  font-weight: 800;
+  padding: 1em 0;
+  font-size: 0.8em;
+  border-bottom: 2px solid var(--color-blue);
+}
+
+.home-bold-link:hover {
+  color: white;
+  background: black;
+  padding: 1em 0.5em;
+  margin: 0 -0.5em;
+}
+
+/* Large section headings with blue underline */
+
+.home-section-heading {
+  font-size: 1.8em;
+  border-bottom: 2px solid var(--color-blue);
+  padding: 0.96em 0;
+  margin-bottom: 2.2em;
+  font-weight: 500;
+}
+
+/* Example code snippets */
+
+.home-example {
+  background: white;
+}
+
+.home-example h4 {
+  background: var(--color-blue);
+  color: white;
+  margin: 0;
+  font-size: 1.24em;
+  font-weight: 500;
+  padding: 0.88em 1.8em;
+  height: 1.68em;
+  display: flex;
+  align-items: center;
+}
+
+.home-example .CodeMirror {
+  margin: 0;
+  padding: 2.08em 1.76em;
+  border: none;
+}
+
+.home-example .divider {
+  border-bottom: 0.08em solid #dfdfdf;
+  margin: 0 1.76em;
+  height: 0;
+}
+
+@media (max-width: 1000px) {
+  body {
+    --home-max-width: 500px;
+    --home-side-margin: 2rem;
+  }
+  .CodeMirror {
+    font-size: 0.9em !important;
+  }
+  .home-example h4 {
+    font-size: 1.4em;
+    padding: 0.3em 0 0.3em 1em;
+  }
+}

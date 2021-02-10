@@ -1,0 +1,24 @@
+.custom-scroll {
+  --scrollbar-width: 6px;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: transparent;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.custom-scroll:hover {
+  --scrollbar-thumb: rgba(255, 255, 255, 0.5);
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 20px;
+}

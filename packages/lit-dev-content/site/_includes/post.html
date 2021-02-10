@@ -1,29 +1,26 @@
-{% extends 'default.html' %}
+{% extends 'default.html' %} {% block head %} {% inlinecss "docs.css" %} {% if
+dev %}
+<script type="module" src="{{site.baseurl}}/lib/docs.js"></script>
+{% else %}
+<script type="module">
+  {% include 'js/docs.js' %}
+</script>
+{% endif %}
+<link
+  href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+  rel="stylesheet"
+/>
+{% endblock %} {% block drawer %} {% include 'eleventy-nav.html' %} {% endblock
+%} {% block content %}
+<div class="lhs-nav-wrapper">
+  <nav class="lhs-nav custom-scroll">
+    <ol>
+      {% include 'eleventy-nav.html' %}
+    </ol>
+  </nav>
+</div>
 
-{% block head %}
-  {% if dev %}
-    <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css"></link>
-    <script type="module" src="{{site.baseurl}}/lib/guide.js"></script>
-  {% else %}
-    <style>
-      {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
-      {{ guidecss | cssmin | safe }}
-    </style>
-    <script type="module">{% include 'js/guide.js' %}</script>
-  {% endif %}
-{% endblock %}
-
-{% block drawer %}
-  {% include 'eleventy-nav.html' %}
-{% endblock %}
-
-{% block content %}
-  <div class="lhs-nav-wrapper">
-    <nav class="site-nav lhs-nav">
-      <ol>{% include 'eleventy-nav.html' %}</ol>
-    </nav>
-  </div>
-
+<div class="content">
   <div class="rhs-toc-wrapper">
     <nav class="rhs-toc">
       <h2>Contents</h2>
@@ -43,4 +40,5 @@
 
     {{ content | safe }}
   </article>
+</div>
 {% endblock %}

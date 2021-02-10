@@ -1,0 +1,44 @@
+.get-started .content {
+  max-width: var(--home-max-width);
+  padding: var(--home-side-margin) 1.92em;
+  margin: auto;
+}
+
+.get-started-items {
+  display: flex;
+  margin-bottom: 5.6em;
+  justify-content: space-between;
+}
+
+.get-started-items div {
+  max-width: 19.2em;
+}
+
+.get-started-items div:last-child {
+  margin-right: 0;
+}
+
+.get-started h4 {
+  color: var(--color-blue);
+  font-size: 1.44em;
+  font-weight: 500;
+}
+
+@media (max-width: 1000px) {
+  .get-started h3 {
+    margin-top: 0;
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+  }
+  .get-started h4 {
+    margin-bottom: 0.6em;
+    line-height: 1.7em;
+  }
+  .get-started-items {
+    display: block;
+    margin: 0;
+  }
+  .get-started-items > div {
+    margin-bottom: 3em;
+  }
+}

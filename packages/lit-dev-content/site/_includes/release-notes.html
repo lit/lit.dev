@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 {% include 'header.html' %}
 
 <main class="wrapper">
@@ -8,9 +9,11 @@ layout: default
     <button id="toggleNavButton">Menu</button>
     <ul>
       {% for guide in collections.guide %}
-        <li class="{% if page.url == guide.url %}active{% endif %}">
-          <a href="{{site.baseurl}}{{ guide.url | removeExtension }}">{{guide.data.title}}</a>
-        </li>
+      <li class="{% if page.url == guide.url %}active{% endif %}">
+        <a href="{{site.baseurl}}{{ guide.url | removeExtension }}"
+          >{{guide.data.title}}</a
+        >
+      </li>
       {% endfor %}
     </ul>
   </nav>
@@ -23,7 +26,7 @@ layout: default
 </main>
 
 <script>
-  toggleNavButton.addEventListener('click', function(event) {
+  toggleNavButton.addEventListener('click', function (event) {
     const nav = event.target.parentElement;
     nav.classList.toggle('open');
   });

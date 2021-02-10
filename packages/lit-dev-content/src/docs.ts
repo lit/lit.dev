@@ -14,10 +14,10 @@ window.addEventListener('DOMContentLoaded', main);
  * On initial load, scroll the link for the current page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
-  const active = document.querySelector('.lhs-nav .active');
+  //const active = document.querySelector('.lhs-nav .active');
   // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
   // also scroll the window. scrollIntoViewIfNeeded works fine, though.
-  active?.scrollIntoViewIfNeeded?.();
+  //active?.scrollIntoViewIfNeeded?.();
 };
 
 /**
@@ -39,7 +39,7 @@ const observeActiveTocSection = () => {
     return;
   }
 
-  const tocHeadings = new Map();
+  const tocHeadings = new Map<string, Element>();
   for (const link of document.querySelectorAll('.rhs-toc [href]')) {
     const href = link.getAttribute('href');
     if (!href?.startsWith('#')) {
@@ -49,7 +49,7 @@ const observeActiveTocSection = () => {
     tocHeadings.set(id, link);
   }
 
-  const visibleHeadings = new Set();
+  const visibleHeadings = new Set<string>();
   const observer = new IntersectionObserver((entries) => {
     let changed = false;
     for (const entry of entries) {
@@ -92,7 +92,7 @@ const observeActiveTocSection = () => {
           //
           // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
           // also scroll the window. scrollIntoViewIfNeeded works fine, though.
-          link.scrollIntoViewIfNeeded();
+          //link.scrollIntoViewIfNeeded?.();
         }
       } else {
         link.classList.remove('active');

@@ -1,0 +1,116 @@
+body {
+  --playground-code-font-family: 'Roboto Mono', monospace;
+  --playground-code-font-size: 0.8em;
+  --playground-highlight-color: var(--color-blue);
+}
+
+.CodeMirror,
+playground-file-editor,
+playground-preview {
+  border: 1px solid var(--color-medium-gray);
+  margin-bottom: 0.64em;
+  border-radius: none;
+}
+
+playground-ide {
+  border: 1px solid var(--color-medium-gray);
+  box-sizing: border-box;
+}
+
+pre.highlight {
+  border: 1px solid var(--color-medium-gray);
+  padding: 1em;
+  font-size: 0.8em;
+}
+
+playground-ide:not(:defined) {
+  display: block;
+  height: 14em;
+}
+
+playground-file-editor {
+  --playground-code-background: transparent;
+}
+
+litdev-example:not(:defined) {
+  display: block;
+  border: 1px solid var(--color-medium-gray);
+}
+
+.CodeMirror {
+  font-family: 'Roboto Mono', monospace !important;
+  font-size: var(--playground-code-font-size) !important;
+  padding: 0.48em;
+  /* The default CodeMirror stylesheet fixes height to 12em. */
+  height: unset !important;
+}
+
+.CodeMirror-line {
+  white-space: pre-wrap !important;
+  /* These are already included in codemirror.css, but we don't block rendering
+     on that stylesheet, so we include them here too so that sizing is already
+     correct, and it's just colors that load in. */
+  font-family: inherit;
+  padding: 0 0.16em;
+  margin: 0;
+}
+
+.cm-error {
+  /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
+     theme, that is both nicer looking and satisfies a11y contrast metrics. */
+  color: #b30000 !important;
+}
+
+/* TODO(aomarks) Move these syntax highlighting styles to a common location, and
+   refactor to use custom properties. The issue is that we import the raw
+   CodeMirror default stylesheet, instead of the Playground-upgraded one that
+   adds custom properties, so custom properties don't apply to static rendering
+   yet. */
+body {
+  --playground-code-comment-color: var(--color-medium-gray);
+  --playground-code-def-color: var(--color-blue);
+  --playground-code-attribute-color: var(--color-blue);
+  --playground-code-atom-color: #762df3;
+  --playground-code-property-color: var(--color-blue);
+  --playground-code-type-color: #00a761;
+  --playground-code-variable-3-color: #00a761;
+  --playground-code-string-color: #ff4914;
+  --playground-code-string-2-color: #e39604;
+  --playground-code-keyword-color: #762df3;
+  --playground-code-tag-color: #00a761;
+  --playground-code-number-color: #00a761;
+}
+
+.CodeMirror .cm-comment {
+  color: var(--playground-code-comment-color) !important;
+}
+.CodeMirror .cm-def {
+  color: var(--playground-code-def-color) !important;
+}
+.CodeMirror .cm-attribute {
+  color: var(--playground-code-attribute-color) !important;
+}
+.CodeMirror .cm-atom {
+  color: var(--playground-code-atom-color) !important;
+}
+.CodeMirror .cm-property {
+  color: var(--playground-code-property-color) !important;
+}
+.CodeMirror .cm-type {
+  color: var(--playground-code-type-color) !important;
+}
+.CodeMirror .cm-variable-3 {
+  color: var(--playground-code-variable-3-color) !important;
+}
+.CodeMirror .cm-string {
+  color: var(--playground-code-string-color) !important;
+}
+.CodeMirror .cm-keyword {
+  color: var(--playground-code-keyword-color) !important;
+}
+.CodeMirror .cm-tag {
+  color: var(--playground-code-tag-color) !important;
+}
+.CodeMirror .cm-number {
+  color: var(--playground-code-number-color) !important;
+}

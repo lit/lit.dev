@@ -1,142 +1,183 @@
+/**
+ * Undo main content centering/max-width.
+ *
+ * TODO(aomarks) Probably better to make these opt-in instead of opt-out, so we
+ * wouldn't this here.
+ */
 main {
-  display: flex;
   margin: 0;
   max-width: none;
-  /* Remove space usually allotted to the footer. */
-  min-height: calc(100vh - var(--header-height));
-  --examples-drawer-width: 300px;
 }
 
+/**
+ * Hide the footer. On this page, we really need the full height, and any
+ * vertical scrolling is awkward.
+ *
+ * TODO(aomarks) Don't even render the footer.
+ */
+body {
+  --playground-footer-height: 0;
+}
 footer {
-  /* The footer is a big pain on this page, because we want all the vertical
-  real-estate. */
   display: none;
 }
 
-.playground-bar-and-ide {
+main {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  /* Prevent flex layout problems when typing long lines in CodeMirror. */
-  min-width: 0;
+  height: calc(100vh - var(--header-height));
 }
 
-.playground-bar {
-  height: 52px;
-  box-sizing: border-box;
-  background: #f5f5f5;
+.playground-examples-and-ide {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  --mdc-theme-primary: currentcolor;
-  border-bottom: 1px solid #ccc;
+  flex-direction: row;
 }
+
+/* Bar */
+
+.playground-bar {
+  height: 3.44em;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--playground-header-color);
+  color: white;
+}
+
+.playground-bar-prompt {
+  padding-left: 0.96em;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.playground-bar-buttons {
+  --mdc-theme-primary: currentcolor;
+  --mdc-icon-size: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.playground-bar-buttons > * {
+  margin-left: 1.36em;
+}
+
+.playground-run-button {
+  border: 0.08em solid white;
+  height: 2em;
+  background: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.playground-run-button:before {
+  content: '▷';
+  margin: 0 0.48em 0 0.16em;
+  font-weight: 600;
+}
+
+.playground-run-button:hover {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  cursor: pointer;
+}
+
+/* Examples layout */
+
+.playground-examples {
+  --examples-closed-width: 3.17em;
+  --examples-open-width: 12em;
+  width: var(--examples-closed-width);
+  --mdc-icon-size: 1em;
+  transition: width 200ms;
+  background: var(--color-dark-gray);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.playground-examples.open {
+  width: var(--examples-open-width);
+}
+
+.playground-examples-button {
+  color: inherit;
+  transition: transform 200ms;
+  margin-left: 0.2em;
+  margin-top: 0.2em;
+}
+
+.playground-examples.open .playground-examples-button {
+  transform: translateX(
+    calc(var(--examples-open-width) - var(--examples-closed-width))
+  );
+}
+
+.playground-examples-content {
+  /* The inner content always has the full width, so that it doesn't reflow as
+     the parent width transitions, and we translate it so that the slide-in
+     animation matches. */
+  width: var(--examples-open-width);
+  transform: translateX(calc(-1 * var(--examples-open-width)));
+  transition: transform 200ms;
+  flex: 1 0 0;
+}
+
+.playground-examples.open .playground-examples-content {
+  transform: translateX(0);
+}
+
+.playground-examples:not(.open):not(.transitioning)
+  .playground-examples-content {
+  /* For a11y. Don't read out hidden examples. */
+  visibility: hidden;
+}
+
+.playground-examples.no-animate,
+.playground-examples.no-animate .playground-examples-button,
+.playground-examples.no-animate .playground-examples-content {
+  transition: none;
+}
+
+/* Examples content list */
+
+.playground-examples-content {
+  padding: 0 1.28em;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.playground-examples-content h3 {
+  color: inherit;
+  display: none; /* TODO */
+}
+
+.playground-examples-content ul {
+  padding-left: 0;
+}
+
+.playground-examples-content li {
+  list-style-type: none;
+  font-size: 0.8em;
+  margin-bottom: 0.88em;
+  font-weight: 500;
+}
+
+.playground-examples-content a {
+  color: inherit;
+}
+
+.playground-examples-content a:hover {
+  color: #00e8ff;
+}
+
+/* IDE */
 
 playground-ide {
   flex: 1;
   height: unset;
   border: none;
-  border-radius: 0;
-  --playground-highlight-color: #1879cd;
-  transition: width 200ms;
+  --playground-code-font-size: 0.8em;
 }
-
-mwc-button:not(:defined) {
-  visibility: hidden;
-}
-
-.examples-drawer {
-  width: 0;
-  transition: width 200ms;
-  background: white;
-  border-right: 1px solid #ccc;
-  /* TODO(aomarks) We shouldn't need this max height, right? */
-  max-height: calc(100vh - var(--header-height));
-  flex-shrink: 0;
-  box-sizing: border-box;
-}
-
-.examples-drawer.open {
-  width: var(--examples-drawer-width);
-}
-
-.examples-drawer:not(.open):not(.transitioning) {
-  /* For a11y. */
-  visibility: hidden;
-}
-
-.examples-drawer-contents {
-  width: var(--examples-drawer-width);
-  transform: translateX(calc(-1 * var(--examples-drawer-width)));
-  transition: transform 200ms;
-  --lit-playground-bar-height: 52px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  height: 100%;
-}
-
-.examples-drawer.open .examples-drawer-contents {
-  visibility: visible;
-  transform: translateX(0);
-}
-
-.examples-drawer-contents h3 {
-  font-size: 18px;
-  color: #212121;
-  padding-left: 24px;
-  margin: 12px 0;
-}
-
-.examples-drawer-section {
-  padding: 20px 0;
-}
-
-.examples-drawer-section:not(:last-of-type) {
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.examples-drawer-contents ul {
-  padding-left: 0;
-}
-
-.examples-drawer-contents li {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.examples-drawer-contents a {
-  color: #616161;
-  scroll-margin: 16px;
-  font-size: 14px;
-  padding: 12px 24px;
-  margin-right: 1px;
-}
-
-.examples-drawer-contents a.active {
-  background: #f1f3f4;
-}
-
-.examples-drawer-contents a:hover {
-  color: black;
-}
-
-.examples-drawer .description {
-  display: none;
-  color: #3e3e3e;
-  font-size: 14px;
-  line-height: 24px;
-  margin: 8px 0 0 0;
-}
-
-/*
-.examples-drawer-contents > h2 {
-  position: sticky;
-  top: 0;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-  height: var(--lit-playground-bar-height);
-  box-sizing: border-box;
-  margin: 0;
-}
-*/

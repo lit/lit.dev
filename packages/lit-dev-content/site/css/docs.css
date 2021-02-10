@@ -1,0 +1,364 @@
+/* Variables */
+
+body {
+  --lhs-nav-width: 9em;
+  --rhs-toc-width: 14em;
+  --docs-total-max-width: unset;
+  --docs-content-max-width: 50em;
+  --docs-justify-content: flex-start;
+  --docs-outside-background: rgb(0, 0, 0);
+  --docs-outside-flex: 0 0 0;
+  --speckles-opacity: 20%;
+  --header-footer-max-width: unset;
+  --header-footer-justify-content: center;
+}
+
+.speckles {
+  opacity: var(--speckles-opacity);
+}
+
+.colorblock {
+  background: var(--docs-outside-background);
+  flex: var(--docs-outside-flex);
+}
+
+.colorblockend {
+  background: var(--docs-outside-background);
+  flex: var(--docs-outside-flex);
+  order: 2;
+}
+
+/* LHS nav */
+
+main {
+  display: flex;
+  justify-content: var(--docs-justify-content);
+  max-width: var(--docs-total-max-width);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.lhs-nav-wrapper {
+  width: var(--lhs-nav-width);
+  flex-shrink: 0;
+  /* Scaled up vs spec. */
+  font-size: 1.7em;
+}
+
+.lhs-nav {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  box-sizing: border-box;
+  background: var(--docs-nav-background);
+  color: var(--docs-nav-inactive-color);
+  padding: 1em 1em 1em 1em;
+}
+
+.lhs-nav .active {
+  color: var(--docs-nav-active-color);
+}
+
+.lhs-nav ol {
+  padding: 0;
+  margin: 0;
+}
+
+.lhs-nav ol ol {
+  padding-top: 0.2em;
+  padding-left: 0.6em;
+  margin-bottom: 0.4em;
+}
+
+.lhs-nav ol ol li {
+  padding-left: 0.48em;
+}
+
+.lhs-nav li {
+  font-size: 0.88em;
+  list-style: none;
+  margin-bottom: 0.32em;
+}
+
+.lhs-nav a {
+  color: inherit;
+}
+
+.lhs-nav a:hover {
+  color: rgb(31, 136, 255);
+}
+
+.lhs-nav ol ol li {
+  font-size: 0.5856em;
+}
+
+.lhs-nav li li.active {
+  list-style: '◆';
+}
+
+.lhs-nav .section-head {
+  font-size: 0.7em;
+}
+
+/* Article */
+
+article {
+  flex-grow: 1;
+  overflow-x: auto;
+  padding: 1.28em 3em 1.28em 1em;
+  max-width: var(--docs-content-max-width);
+  margin-left: 2em;
+  font-size: 0.88889em;
+  line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+}
+
+article h2 {
+  margin-top: 1.5em;
+}
+
+.inline-toc h2 {
+  margin: 1em 0.5em;
+}
+
+.inline-toc summary {
+  line-height: 1em;
+}
+
+article h3 {
+  font-weight: 600;
+}
+
+h4 {
+  color: #6a6a6a;
+  font-weight: 600;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+article [id] {
+  /* Adjust scroll margins of all article headings to account for sticky header.
+     Otherwise, we'll scroll headings underneath the header. Add a little bit
+     more too, for some extra breathing room. */
+  scroll-margin-top: calc(var(--header-height) + 0.48em);
+}
+
+article > h1:first-of-type {
+  /* The default margin of the first heading extends above the article, which
+     complicates layout a bit. We have padding-top on the article itself. */
+  margin-top: 0;
+}
+
+article h1 {
+  padding-bottom: 0.5em;
+  margin-bottom: 1.28em;
+  border-bottom: 0.08em solid var(--color-blue);
+  font-size: 1.8em;
+}
+
+article h2 {
+  color: var(--color-blue);
+  font-size: 1.36em;
+}
+
+article p {
+  margin-block-start: 1.5em;
+  margin-block-end: 1.5em;
+  font-size: 1em;
+}
+
+/* Alert styles for notes and warnings */
+
+.alert {
+  position: relative;
+  margin: 1em 0;
+  padding-left: 24px;
+  border: 1px solid var(--color-medium-gray);
+}
+
+.alert > p {
+  margin: 0;
+  padding: 1em 1em 1em 2em;
+}
+
+.alert::before {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+.alert.alert-info::before {
+  content: url(/images/alerts/info.svg);
+}
+
+.alert.alert-warning::before {
+  content: url(/images/alerts/warning.svg);
+}
+
+.alert-todo {
+  display: none;
+}
+
+.alert.alert-todo h3 {
+  color: red;
+}
+
+/* Inline TOC */
+
+.inline-toc {
+  /* Only visible in narrow layout. */
+  display: none;
+}
+
+.inline-toc ol {
+  list-style: disc;
+}
+
+/* RHS TOC */
+.rhs-toc-wrapper {
+  width: var(--rhs-toc-width);
+  flex-shrink: 0;
+  /* For some reason, when the natural DOM order is article > TOC, there is a
+     layout flash (easier to see with CPU throttling on). If we switch the
+     natural order to TOC > article, then change it here with CSS order, the
+     flash goes away. This order is probably better for screen-readers anyway.
+     */
+  order: 1;
+  padding-right: 1em;
+}
+
+.rhs-toc {
+  position: sticky;
+  top: calc(var(--header-height) + 3.7em);
+  height: calc(100vh - var(--header-height) - 2.4em);
+  overflow-y: auto;
+}
+
+.rhs-toc h2 {
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.rhs-toc li {
+  margin-top: 0.56em;
+  font-weight: 500;
+}
+
+.rhs-toc ol {
+  list-style-type: none;
+  padding-left: 1.2em;
+}
+
+.rhs-toc ol ol li {
+  margin-top: 0.56em;
+}
+
+.rhs-toc ol ol {
+  padding-left: 1em;
+}
+
+.rhs-toc a {
+  color: #898989;
+  font-size: 0.8em;
+}
+
+.rhs-toc a.active,
+.rhs-toc a:hover {
+  color: black;
+}
+
+.rhs-toc a.active:before {
+  content: '◆';
+  color: var(--color-blue);
+  position: absolute;
+  left: 0;
+  font-size: 0.8em;
+  line-height: 2.4em;
+  pointer-events: none;
+}
+
+/* Slightly narrow layout (hide RHS TOC) */
+
+@media (max-width: 1280px) {
+  .inline-toc {
+    display: initial;
+  }
+  .inline-toc summary {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .rhs-toc-wrapper {
+    display: none;
+  }
+}
+
+/* Very narrow layout (hide LHS nav) */
+
+@media (max-width: 800px) {
+  .lhs-nav-wrapper {
+    display: none;
+  }
+  article {
+    margin-left: 0;
+  }
+}
+
+footer {
+  border-top: 0.04em solid var(--color-blue);
+}
+
+code {
+  background: var(--color-light-gray);
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+}
+
+pre > code {
+  background-color: initial;
+  font-size: initial;
+  padding: initial;
+  border-radius: initial;
+}
+
+.CodeMirror {
+  padding: 1em;
+  border: none;
+  background: var(--docs-code-background);
+  font-size: 0.85em !important;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #eaeaea;
+}
+
+th {
+  background: var(--color-blue);
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #f6f8fa;
+}
+
+tr {
+  border-bottom: 1px solid #eaeaea;
+}
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top; 
+}
