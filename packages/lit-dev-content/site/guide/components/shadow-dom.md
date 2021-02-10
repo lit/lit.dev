@@ -58,7 +58,7 @@ More information:
 
 ### Implementing `createRenderRoot`
 
-The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` property. For more information on styling see the [Styles](../styles) documentation.
+The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` property. For more information on styling see [Styles](/guide/components/styles/).
 
 To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
 
