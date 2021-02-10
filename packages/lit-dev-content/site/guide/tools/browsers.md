@@ -28,7 +28,7 @@ To work on older browsers like Internet Explorer 11, there are 2 basic steps to 
 
 ## Building Javascript
 
-Lit uses modern Javascript features like modules, classes, and other recent syntax additions. All of these features can be transpiled into ES5 code which runs on older browsers. See [Building](./building) for more information about how to build application and Lit component code into ES5.
+Lit uses modern Javascript features like modules, classes, and other recent syntax additions. All of these features can be transpiled into ES5 code which runs on older browsers. See [Building](/guide/tools/building/) for more information about how to build application and Lit component code into ES5.
 
 When compiling code to ES5, browsers with native web components require a small polyfill, the`custom-elements-es5-adapter.js`. Using a single ES5 build for all browsers is useful in static serving environments. Important note: the ES5 adapter must come before the web components polyfills, if any.
 
