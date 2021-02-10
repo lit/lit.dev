@@ -26,7 +26,7 @@ Shadow DOM provides three benefits:
 
 ## Customizing the render root {#renderroot}
 
-The node into which your component's template will render is called its **render root** and is accessible via the `renderRoot` property.
+Each Lit component has a **render root**—a DOM node that serves as a container for its internal DOM. 
 
 By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
 
