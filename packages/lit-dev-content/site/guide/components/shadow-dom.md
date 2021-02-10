@@ -40,7 +40,7 @@ By default, LitElement creates an open `shadowRoot` and renders inside it, produ
 There are two ways to customize the render root use by LitElement:
 
 * Setting `shadowRootOptions`.
-* implementing the `createRenderRoot` method
+* Implementing the `createRenderRoot` method.
 
 ### Setting `shadowRootOptions`
 
