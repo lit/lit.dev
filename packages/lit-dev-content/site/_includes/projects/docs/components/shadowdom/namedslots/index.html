@@ -1,15 +1,11 @@
 <script type="module" src="./my-element.js"></script>
 
-<!-- Assign child to a specific slot -->
 <my-element>
   <p slot="two">Include me in slot "two".</p>
 </my-element>
 
 <hr>
-<!--
-  Named slots only accept children with a matching `slot` attribute.
-  Children with a `slot` attribute can only go into a slot with a matching name.
--->
+
 <my-element>
   <p slot="one">Include me in slot "one".</p>
   <p slot="nope">This one will not render at all.</p>
