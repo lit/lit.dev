@@ -72,7 +72,7 @@ For example, to render the template into the main DOM tree as your element's chi
 
 ## Accessing nodes in the shadow DOM
 
-The `render()` method result is usually rendered into shadow DOM, so the nodes are not direct children of the component. To find nodes in shadow DOM, you can use `this.shadowRoot.querySelector()` or `this.shadowRoot.querySelectorAll()`. Note, because LitElement renders into a customizable `renderRoot` property, it is typically better to use `this.renderRoot.querySelector()` to find nodes in element DOM.
+To find nodes relative to the render root, use `this.renderRoot.querySelector()` or `this.renderRoot.querySelectorAll()`. Since Lit renders into shadow DOM by default, `this.shadowRoot.querySelector()` could be used; however, because this is customizable, it's safer to use `this.renderRoot` to find nodes in your component DOM.
 
 You can query the component DOM after its initial render (for example, in `firstUpdated`), or use a getter pattern:
 
