@@ -2,7 +2,7 @@ import { LitElement, html, customElement, property } from '@polymer/lit-element'
 @customElement('my-element')
 class MyElement extends LitElement {
   @property() clicked = '';
-  render() {
+  protected render() {
     return html`
       <div @click="${this._clickHandler}">
         <p><button>Item 1</button></p>
@@ -12,7 +12,7 @@ class MyElement extends LitElement {
       <p>Clicked: ${this.clicked}</p>
     `;
   }
-  _clickHandler(e) {
+  private _clickHandler(e: Event) {
     this.clicked = e.target === e.currentTarget ? 'container' : e.target.textContent;
   }
 }

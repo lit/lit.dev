@@ -4,7 +4,7 @@ class MyElement extends LitElement {
   @property() clicked = '';
   @property() focused = '';
   data = [1, 2, 3];
-  render() {
+  protected render() {
     return html`
       <div key="container" @click=${this._clickHandler}>
         ${this.data.map(i => html`<p><button key=${i} @focus=${this._focusHandler}>Item ${i}</button></p>`)}
@@ -13,10 +13,10 @@ class MyElement extends LitElement {
       <p>Focused: ${this.focused}</p>
     `;
   }
-  _clickHandler(e) {
-    this.clicked = e.target.getAttribute('key');
+  private _clickHandler(e: Event) {
+    this.clicked = (e.target as Element).getAttribute('key');
   }
-  _focusHandler(e) {
-    this.focused = e.target.textContent;
+  private _focusHandler(e: Event) {
+    this.focused = (e.target as Element).textContent;
   }
 }

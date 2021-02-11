@@ -35,7 +35,7 @@ It may seem obvious, but it's important to recognize that events are fired at di
 
 You can use `@` expressions in your template to add event listeners to element's in your component template. Declarative event listeners are added when the template is rendered.
 
-{% playground-example "docs/events/child/" "my-element.ts" %}
+{% playground-example "docs/components/events/child/" "my-element.ts" %}
 
 #### Using the `@eventOptions` decorator
 
@@ -75,9 +75,7 @@ See [Working with events in shadow DOM](#shadowdom) for more information.
 
 Retargeting can interfere with event delegation, and to avoid it, event listeners can be added to the component's shadow root itself. This can be done in the `createRenderRoot` method as follows. Please note that it's important to make sure to return the shadow root from the `createRenderRoot` method.
 
-<div style="--litdev-example-preview-height: 120px">
-{% playground-example "docs/events/host/" "my-element.ts" %}
-</div>
+{% playground-example "docs/components/events/host/" "my-element.ts" %}
 
 ### Adding event listeners to other elements
 
@@ -130,9 +128,7 @@ See [Dispatching events](#dispatching-events) for details on bubbling.
 
 Bubbling events can be heard on any ancestor element in the DOM. You can take advantage of this by adding a single event listener on an ancestor component to be notified of a bubbling event dispatched by any of its descendants in the DOM. Use the event's `target` property to take specific action based on the element that dispatched the event.
 
-<div style="--litdev-example-preview-height: 160px">
-{% playground-example "docs/events/delegation/" "my-element.ts" %}
-</div>
+{% playground-example "docs/components/events/delegation/" "my-element.ts" %}
 
 ### Understanding `this` in event listeners
 
@@ -178,9 +174,7 @@ See the [documentation for `this` on MDN](https://developer.mozilla.org/en-US/do
 
 When listening to events on repeated items, it's often convenient to use [event delegation](#event-delegation) if the event bubbles. When an event does not bubble, a listener can be added on the repeated elements. Here's an example of both methods:
 
-<div style="--litdev-example-preview-height: 190px">
-{% playground-example "docs/events/list/" "my-element.ts" %}
-</div>
+{% playground-example "docs/components/events/list/" "my-element.ts" %}
 
 ## Dispatching events { #dispatching-events }
 
@@ -210,13 +204,13 @@ Similarly, a menu component should dispatch an event when the user selects a men
 
 This typically means that a component should dispatch an event in response to another event to which it is listening.
 
-{% playground-ide "docs/events/dispatch/" "my-dispatcher.ts" %}
+{% playground-ide "docs/components/events/dispatch/" "my-dispatcher.ts" %}
 
 ### Dispatching events after an element updates
 
 For advanced use cases, sometimes an event should be fired only after an element updates and renders. This might be necessary if an event is intended to communicate a change in rendered state based on user interaction. In this case, the component's `updateComplete` Promise can be used and the event dispatched after it resolves.
 
-{% playground-ide "docs/events/update/" "my-dispatcher.ts" %}
+{% playground-ide "docs/components/events/update/" "my-dispatcher.ts" %}
 
 ### Using standard or custom events { #standard-custom-events }
 
@@ -312,4 +306,4 @@ When `preventDefault()` is called, the event's `defaultPrevented` property is se
 
 You can also expose additional API on events which listeners can use to customize component behavior. For example, a user could set a property on a custom event's detail property which the component uses.
 
-{% playground-ide "docs/events/comm/" "my-listener.ts" %}
+{% playground-ide "docs/components/events/comm/" "my-listener.ts" %}

@@ -2,5 +2,6 @@
   "files": {
     "my-element.ts": {},
     "index.html": {}
-  }
+  },
+  "previewHeight": "190px"
 }

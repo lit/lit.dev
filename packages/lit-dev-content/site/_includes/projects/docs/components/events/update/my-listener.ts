@@ -3,15 +3,15 @@ import { LitElement, html, property, customElement } from '@polymer/lit-element'
 @customElement('my-listener')
 class MyListener extends LitElement {
   @property({type: String}) height: string|null = null;
-  render() {
+  protected render() {
     return html`
-      <p @opened=${this._Listener} @closed=${this._Listener}><slot></slot></p>
+      <p @opened=${this._listener} @closed=${this._listener}><slot></slot></p>
       <p>Height: ${this.height}px</p>`;
   }
-  _Listener(e: Event) {
+  private _listener() {
     this.height = null;
   }
-  updated() {
+  protected updated() {
     if (this.height === null) {
       requestAnimationFrame(() => this.height = this.getBoundingClientRect().height);
     }

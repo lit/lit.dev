@@ -7,12 +7,12 @@ class MyElement extends LitElement {
     super();
     this.addEventListener('click', (e: Event) => this.hostName = e.target.localName);
   }
-  createRenderRoot() {
+  protected createRenderRoot() {
     const root = super.createRenderRoot();
     root.addEventListener('click', (e: Event) => this.shadowName = e.target.localName);
     return root;
   }
-  render() {
+  protected render() {
     return html`
       <p><button>Click Me!</button></p>
       <p>Component target: ${this.hostName}</p>

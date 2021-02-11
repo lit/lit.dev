@@ -2,13 +2,13 @@ import { LitElement, html, customElement, query } from '@polymer/lit-element';
 @customElement('my-dispatcher')
 class MyDispatcher extends LitElement {
   @query('input', true) _input!: HTMLInputElement;
-  render() {
+  protected render() {
     return html`
       <p>Name: <input></p>
       <p><button @click=${this._dispatchLogin}>Login</button></p>
     `;
   }
-  _dispatchLogin() {
+  private _dispatchLogin() {
     const name = this._input.value.trim();
     if (name) {
       const options = {
