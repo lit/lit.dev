@@ -6,9 +6,7 @@ eleventyNavigation:
   order: 4
 ---
 
-By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their templated DOM.
-
-{% playground-ide "docs/templates/shadowroot/" %}
+By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM.
 
 Shadow DOM provides three benefits:
 
@@ -16,7 +14,7 @@ Shadow DOM provides three benefits:
   component's shadow DOM, so it's harder for global scripts to accidentally break your component.
 * Style scoping. You can write encapsulated styles for your shadow DOM that don't
   affect the rest of the DOM tree.
-* Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your templated DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
+* Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your component DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
 
 <div class="alert alert-info">
 
@@ -26,7 +24,7 @@ Shadow DOM provides three benefits:
 
 ## Customizing the render root {#renderroot}
 
-Each Lit component has a **render root**—a DOM node that serves as a container for its internal DOM. 
+Each Lit component has a **render root**—a DOM node that serves as a container for its component DOM.
 
 By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
 
@@ -66,7 +64,7 @@ For example, to render the template into the main DOM tree as your element's chi
 
 <div class="alert alert-info">
 
-**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its rendered DOM.
+**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its component DOM.
 
 </div>
 
@@ -76,7 +74,7 @@ For example, to render the template into the main DOM tree as your element's chi
 
 The `render()` method result is usually rendered into shadow DOM, so the nodes are not direct children of the component. To find nodes in shadow DOM, you can use `this.shadowRoot.querySelector()` or `this.shadowRoot.querySelectorAll()`. Note, because LitElement renders into a customizable `renderRoot` property, it is typically better to use `this.renderRoot.querySelector()` to find nodes in element DOM.
 
-You can query the templated DOM after its initial render (for example, in `firstUpdated`), or use a getter pattern:
+You can query the component DOM after its initial render (for example, in `firstUpdated`), or use a getter pattern:
 
 ```js
 firstUpdated() {
@@ -97,7 +95,7 @@ More information:
 
 ### @query, @queryAll, and @queryAsync decorators
 
-The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient way to access nodes in the component's rendered DOM.
+The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient way to access nodes in the component's DOM.
 
 <div class="alert alert-info">
 
