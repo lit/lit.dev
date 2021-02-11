@@ -42,13 +42,13 @@ For tree-based or per-instance style customization, use CSS custom properties to
 
 To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
 
-{% playground-ide "style/nestedcss" %}
+{% playground-ide "docs/components/style/nestedcss" %}
 
 This restriction exists to protect applications from security vulnerabilities whereby malicious styles, or even malicious code, can be injected from untrusted sources such as URL parameters or database values.
 
 If you must use an expression in a `css` literal that is not itself a `css` literal, **and** you are confident that the expression is from a fully trusted source such as a constant defined in your own code, then you can wrap the expression with the `unsafeCSS` function:
 
-{% playground-ide "style/unsafecss" %}
+{% playground-ide "docs/components/style/unsafecss" %}
 
 <div class="alert alert-info">
 
@@ -60,7 +60,7 @@ If you must use an expression in a `css` literal that is not itself a `css` lite
 
 Using an array of tagged template literals, a component can inherit the styles from a LitElement superclass, and add its own styles:
 
-{% playground-ide "style/superstyles" %}
+{% playground-ide "docs/components/style/superstyles" %}
 
 ### Sharing styles
 
@@ -112,7 +112,7 @@ LitElement templates are rendered into a shadow tree by default. Styles scoped t
 
 When you use standard CSS selectors, they only match elements in your component's shadow tree.
 
-{% playground-ide "style/styleatemplate" %}
+{% playground-ide "docs/components/style/styleatemplate" %}
 
 ### Styling the component itself {#host}
 
@@ -123,7 +123,7 @@ To create default styles for the host element, use the `:host` CSS pseudo-class 
 *   `:host` selects the host element.
 *   <code>:host(<var>selector</var>)</code> selects the host element, but only if the host element matches _selector_.
 
-{% playground-ide "style/host" %}
+{% playground-ide "docs/components/style/host" %}
 
 Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
 
@@ -145,7 +145,7 @@ Use the `::slotted()` CSS pseudo-element to select children that are included in
 *   `::slotted(p)` matches slotted paragraphs.
 *   `p ::slotted(*)` matches slotted elements where the `<slot>` is a descendant of a paragraph element.
 
-{% playground-ide "style/slottedselector" %}
+{% playground-ide "docs/components/style/slottedselector" %}
 
 Note that **only direct slotted children** can be styled with `::slotted()`.
 
@@ -235,7 +235,7 @@ To mitigate this cost, use the following strategy:
 *   Evaluate per-instance CSS properties by creating an expression that captures that property inside a complete `<style>` block. Include it in your template.
 
 
-{% playground-ide "style/perinstanceexpressions" %}
+{% playground-ide "docs/components/style/perinstanceexpressions" %}
 
 ### Import an external stylesheet (not recommended) {#external-stylesheet}
 
@@ -270,19 +270,19 @@ To use `styleMap` and/or `classMap`:
 
 2.  Use `classMap` and/or `styleMap` in your element template:
 
-{% playground-ide "style/maps" %}
+{% playground-ide "docs/components/style/maps" %}
 
 ### classMap syntax {#classmap}
 
 `classMap` applies a set of classes to an HTML element:
 
-{% playground-ide "style/classmap" %}
+{% playground-ide "docs/components/style/classmap" %}
 
 ### styleMap syntax {#stylemap}
 
 `styleMap` applies a set of CSS rules to an HTML element:
 
-{% playground-ide "style/stylemap" %}
+{% playground-ide "docs/components/style/stylemap" %}
 
 To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`).
 
@@ -295,13 +295,13 @@ To refer to custom CSS properties such as `--custom-color`, place the whole prop
 |`--custom-color: #FFFABC;`|`'--custom-color': '#FFFABC;'`|
 |`--otherColor: #FFFABC;`|`'--otherColor': '#FFFABC;'`|
 
-{% playground-ide "style/stylemap2" %}
+{% playground-ide "docs/components/style/stylemap2" %}
 
 ## Theming {#theming}
 
 By using [CSS inheritance](#inheritance) and [CSS variables and custom properties](#customprops) together, it's easy to create themable elements. By applying css selectors to customize CSS custom properties, tree-based and per-instance theming is straightforward to apply. Here's an example:
 
-{% playground-ide "style/theming" %}
+{% playground-ide "docs/components/style/theming" %}
 
 ### CSS inheritance {#inheritance}
 
