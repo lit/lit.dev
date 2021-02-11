@@ -1,0 +1,9 @@
+{
+  "title": "Template composition",
+  "description": "Compose a template from other templates by calling methods in a template expression.",
+  "section": "Rendering & Templating",
+  "files": {
+    "my-page.js": {},
+    "index.html": {}
+  }
+}

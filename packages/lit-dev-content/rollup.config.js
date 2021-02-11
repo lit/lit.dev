@@ -35,7 +35,7 @@ const terserOptions = {
 
 export default [
   {
-    input: 'site/js/guide.js',
+    input: 'lib/guide.js',
     output: {
       file: 'site/_includes/js/guide.js',
       format: 'esm',
@@ -43,7 +43,7 @@ export default [
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: 'site/js/playground.js',
+    input: 'lib/playground.js',
     output: {
       file: 'site/_includes/js/playground.js',
       format: 'esm',
@@ -51,7 +51,7 @@ export default [
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: ['site/js/site.js', 'site/js/playground-elements.js'],
+    input: ['lib/site.js', 'lib/playground-elements.js'],
     output: {
       dir: '_site/js/',
       format: 'esm',

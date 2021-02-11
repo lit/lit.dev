@@ -1,0 +1,9 @@
+{
+  "title": "Hello World (JavaScript)",
+  "description": "LitElement can be authored in vanilla JS as well.",
+  "section": "Basic Templates",
+  "files": {
+    "my-element.js": {},
+    "index.html": {}
+  }
+}
