@@ -2,7 +2,11 @@
 
 {% block head %}
   <link rel="stylesheet" href="{{site.baseurl}}/css/playground.css">
-  <script type="module">{% include 'js/playground.js' %}</script>
+  {% if dev %}
+    <script type="module" src="{{site.baseurl}}/lib/playground.js"></script>
+  {% else %}
+    <script type="module">{% include 'js/playground.js' %}</script>
+  {% endif %}
 {% endblock %}
 
 {% block content %}

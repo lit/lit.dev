@@ -2,45 +2,76 @@
 
 New site, new repo.
 
-This is a Lerna monorepo
+## Packages
 
-- Install dependencies:
+This is a Lerna monorepo.
 
-  ```sh
-  npm i && npm run bootstrap
-  ```
+- lit-dev-content: Main content of lit.dev
+- lit-dev-server: Production web server for lit.dev
+- lit-dev-tools: Eleventy plugins and other internal tools
 
-- Build all:
+## Developing
 
-  ```sh
-  npm run build
-  ```
+### Install dependencies
 
-- Start server
+```sh
+npm i && npm run bootstrap
+```
 
-  ```sh
-  npm start
-  ```
+### Build all
 
-- Build site content:
+```sh
+npm run build
+```
 
-  ```sh
-  cd packages/lit-dev-content
-  npm run build:site
-  # or, to watch:
-  npm run build:site:watch
-  ```
+### Develop site content
 
-  _Note, we could probably hook up es-dev-server to auto-refresh the page too_
+```sh
+npm run dev
+```
 
-- Build Cloud Run Docker image:
+Serves at [`http://localhost:8000`](http://localhost:8000) (port may be incremented if not available, see console output).
 
-  ```sh
-  gcloud builds submit --tag gcr.io/{project}/{service}
-  ```
+You may also prefer to run each dev script in its own terminal:
 
-- Deploy Cloud Run service
+```sh
+cd packages/lit-dev-content
 
-  ```sh
-  gcloud run deploy --image gcr.io/{project}/{service} --platform managed
-  ```
+npm run build:ts:watch       # TypeScript
+npm run dev:build:site:watch # Eleventy
+npm run dev:serve            # @web/dev-server
+```
+
+Dev mode is different to production in these ways:
+
+- Browser auto-reload.
+- CSS is not inlined or minified. CSS changes are reflected immediately.
+- JS is not inlined, bundled, bare-module transformed, or minified. JS changes
+  are reflected immediately after `tsc` compile.
+- HTML is not minified.
+
+If needed, you can check for dev mode from an Eleventy template using the `dev`
+global:
+
+```
+{% if dev %}
+  <p>Dev mode</p>
+{% else %}
+  <p>Prod mode</p>
+{% endif %}
+```
+
+### Start production server locally
+
+```sh
+npm start
+```
+
+Serves at [`http://localhost:8080`](http://localhost:8080)
+
+### Start production Docker environment locally
+
+```sh
+docker build -t litdev .
+docker run --rm --name litdev -p 8080:8080 litdev
+```
