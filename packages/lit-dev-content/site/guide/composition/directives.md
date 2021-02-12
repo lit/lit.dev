@@ -113,13 +113,16 @@ The default implementation of `update()` simply calls and returns the value from
 In addition to the part-specific metadata contained in `PartInfo`, all `Part` types provide access to the DOM `element` associated with the expression (or `parentNode`, in the case of `ChildPart`), which may be directly accessed in `update()`. For example:
 
 ```ts
+// Renders attribute names of parent element to textContent
 class AttributeLogger extends Directive {
-  update(part: Part) {
-    // Renders attribute names of parent element to text
-    return part.parentNode.getAttributeNames().join(' ');
+  attributeNames = '';
+  update(part: ChildPart) {
+    this.attributeNames = part.parentNode.getAttributeNames().join(' ');
+    return this.render();
   }
-  // Unused; value is returned from update directly
-  render() { return nothing; }
+  render() { 
+    this.attributeNames;
+  }
 }
 const attributeLogger = directive(AttributeLogger);
 
@@ -136,10 +139,11 @@ The `render()` arguments are passed into `update()` as an array. If you're imple
 ```ts
 class MyDirective extends Directive {
   update(part: Part, [fish, bananas]: DirectiveParameters<this>) {
-    ...
-    return render(fish, bananas);
+    // ...
+    return this.render(fish, bananas);
   }
   render(fish: number, bananas: number) { ... }
+}
 ```
 
 ### Differences between update() and render()
