@@ -1,6 +1,7 @@
 {
   "files": {
-    "my-element.js": {},
+    "my-element.ts": {},
     "index.html": {}
-  }
+  },
+  "previewHeight": "140px"
 }
