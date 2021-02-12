@@ -1,7 +1,7 @@
 {
   "files": {
-    "my-element.js": {},
-    "super-element.js": {},
+    "my-element.ts": {},
+    "super-element.ts": {},
     "index.html": {}
 
   }

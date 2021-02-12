@@ -1,7 +1,8 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, customElement } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 
-class MyElement extends LitElement {
+@customElement('my-element')
+export class MyElement extends LitElement {
   static styles = css`
     .alert {
       padding: 16px;
@@ -11,10 +12,9 @@ class MyElement extends LitElement {
       color: blue;
     }
   `;
-  render() {
+  protected render() {
     return html`
       <div class=${classMap({alert:true,info:true})}>Content.</div>
     `;
   }
 }
-customElements.define('my-element', MyElement);

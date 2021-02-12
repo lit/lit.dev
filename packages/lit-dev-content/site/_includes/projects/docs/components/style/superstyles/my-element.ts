@@ -1,7 +1,8 @@
-import { css } from 'lit-element';
+import { css, customElement } from 'lit-element';
 import { SuperElement } from './super-element.js';
 
-class MyElement extends SuperElement {
+@customElement('my-element')
+export class MyElement extends SuperElement {
   static get styles() {
     return [
       super.styles,
@@ -11,4 +12,3 @@ class MyElement extends SuperElement {
     ];
   }
 }
-customElements.define('my-element', MyElement);

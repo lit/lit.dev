@@ -1,6 +1,7 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, customElement } from 'lit-element';
 
-class MyElement extends LitElement {
+@customElement('my-element')
+export class MyElement extends LitElement {
   static styles = css`
     :host {
       color: var(--my-element-text-color, black);
@@ -11,8 +12,7 @@ class MyElement extends LitElement {
       margin: 8px;
     }
   `;
-  render() {
+  protected render() {
     return html`<div>Hello World</div>`;
   }
 }
-customElements.define('my-element', MyElement);

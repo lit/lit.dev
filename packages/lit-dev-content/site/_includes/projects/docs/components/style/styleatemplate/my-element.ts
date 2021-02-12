@@ -1,6 +1,7 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, customElement } from 'lit-element';
 
-class MyElement extends LitElement {
+@customElement('my-element')
+export class MyElement extends LitElement {
   static styles = css`
     * { color: green; padding: 8px; }
     p { font-family: sans-serif; }
@@ -8,7 +9,7 @@ class MyElement extends LitElement {
     #main { border: 2px double steelblue; }
     h4 { border: 1px solid tomato; }
   `;
-  render() {
+  protected render() {
     return html`
       <p>Hello World</p>
       <p class="myclass">Hello World</p>
@@ -17,4 +18,3 @@ class MyElement extends LitElement {
     `;
   }
 }
-customElements.define('my-element', MyElement);

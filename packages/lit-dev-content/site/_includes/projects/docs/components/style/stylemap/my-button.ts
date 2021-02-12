@@ -1,8 +1,9 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, customElement } from 'lit-element';
 import { styleMap } from 'lit-html/directives/style-map';
 
-class MyButton extends LitElement {
-  render() {
+@customElement('my-button')
+export class MyButton extends LitElement {
+  protected render() {
     return html`
       <button style=${styleMap({
         backgroundColor: 'lightgreen',
@@ -11,4 +12,3 @@ class MyButton extends LitElement {
     `;
   }
 }
-customElements.define('my-button', MyButton);

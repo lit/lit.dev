@@ -1,5 +1,5 @@
 import { styleMap } from 'lit-html/directives/style-map';
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, customElement } from 'lit-element';
 
 export const styles = {
   'background-color': 'whitesmoke',
@@ -7,9 +7,9 @@ export const styles = {
   '--custom-color': '#e26dd2',
   '--otherColor': '#77e26d'
 };
-
+@customElement('my-element')
 export class MyElement extends LitElement {
-  render() {
+  protected render() {
     return html`
     <div style=${styleMap(styles)}>
       <p>Styled with styleMap</p>
@@ -22,4 +22,3 @@ export class MyElement extends LitElement {
     </div>`;
   }
 }
-customElements.define('my-element', MyElement);
