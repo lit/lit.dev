@@ -16,7 +16,7 @@ During the development phase of your projects when you're writing Lit components
 
 Check out the [Getting Started](../../getting-started) documentation to easily setup a development environment with all of these features pre-configured.
 
-## Using a dev server
+## Using a dev server { #devserver }
 
 Lit is packaged as JavaScript modules, and it uses bare module specifiers that are not yet natively supported in most browsers. Bare specifiers are commonly used, and you may want to use them in your own code as well. For example:
 
@@ -58,7 +58,7 @@ npm run start
 
 For full installation and usage instructions, see the [Web Dev Server documentation](https://modern-web.dev/docs/dev-server/overview/).
 
-## Using TypeScript
+## Using TypeScript { #typescript }
 
 TypeScript extends the Javascript language by adding support for types. Types are useful for catching errors early and making code more readable and understandable.
 
@@ -76,7 +76,7 @@ npx tsc --watch
 
 For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
 
-## Using IDE plugins
+## Using IDE plugins { #ide-plugins }
 
 There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
 
@@ -98,7 +98,7 @@ These plugins provide:
 
 See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
 
-## Setting up linting
+## Setting up linting { #linting }
 
 Linting is an invaluable tool for helping to catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
 
@@ -123,7 +123,7 @@ Integrating linting into your IDE workflow can help catch errors as early as pos
 
 * [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
 
-## Setting up formatting
+## Setting up formatting { #formatting }
 
 Using a code formatter can help ensure code is consistent and readable. Integrating your formatter of choice with your IDE ensures your code is always clean and tidy.
 
