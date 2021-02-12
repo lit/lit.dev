@@ -84,8 +84,8 @@ In this case, you can use the `cache` _directive_. Directives are special functi
 <!-- TODO: Check import paths -->
 
 ```js
-import {html} from 'lit-element';
-import {cache} from 'lit-html/directives/cache.js';
+import {html} from 'lit';
+import {cache} from 'lit/directives/cache.js';
 
 const detailView = (data) => html`<div>...</div>`;
 const summaryView = (data) => html`<div>...</div>`;
