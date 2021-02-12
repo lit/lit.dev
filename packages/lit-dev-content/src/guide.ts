@@ -11,16 +11,14 @@ const main = () => {
 window.addEventListener('DOMContentLoaded', main);
 
 /**
- * On initial load, scroll the link for the currently page into view.
+ * On initial load, scroll the link for the current page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
   const active = document.querySelector('.lhs-nav .active');
-  if (active && Element.prototype.scrollIntoViewIfNeeded) {
-    // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
-    // also scroll the window. scrollIntoViewIfNeeded works fine, though.
-    active.scrollIntoViewIfNeeded();
-  }
-}
+  // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
+  // also scroll the window. scrollIntoViewIfNeeded works fine, though.
+  active?.scrollIntoViewIfNeeded?.();
+};
 
 /**
  * Maintain the active TOC section so that it can be visually highlighted, by
@@ -44,7 +42,7 @@ const observeActiveTocSection = () => {
   const tocHeadings = new Map();
   for (const link of document.querySelectorAll('.rhs-toc [href]')) {
     const href = link.getAttribute('href');
-    if (!href.startsWith('#')) {
+    if (!href?.startsWith('#')) {
       continue;
     }
     const id = href.slice(1);
@@ -107,4 +105,4 @@ const observeActiveTocSection = () => {
   for (const heading of article.querySelectorAll('h2[id],h3[id]')) {
     observer.observe(heading);
   }
-}
+};

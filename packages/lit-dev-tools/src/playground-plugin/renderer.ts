@@ -160,7 +160,7 @@ class RendererServer {
       process.stdout.write = (() => {}) as any;
       const wds = await startDevServer({
         config: {
-          rootDir: pathlib.resolve(__dirname, '..'),
+          rootDir: pathlib.resolve(__dirname, '..', '..'),
           preserveSymlinks: true, // Needed when a dependency is NPM linked
           nodeResolve: true,
           middleware: [

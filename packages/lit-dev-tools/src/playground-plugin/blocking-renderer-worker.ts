@@ -18,7 +18,7 @@ import {
 } from './blocking-renderer.js';
 
 if (workerthreads.isMainThread || !workerthreads.parentPort) {
-  throw new Error('BlockingRenderer worker must be spawed in a worker thread');
+  throw new Error('BlockingRenderer worker must be spawned in a worker thread');
 }
 
 const rendererPromise = Renderer.start();
