@@ -80,7 +80,7 @@ html`<main>${bodyText}</main>`
 Expressions in the child position can take many kinds of values:
 
 * Primitive values likes strings, numbers, and booleans
-* `TemplateResult` objects, the output of ```js html`...` ```
+* `TemplateResult` objects, the output of the `html` function.
 * DOM nodes
 * Arrays or iterables of any of the supported types
 
