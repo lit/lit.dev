@@ -70,7 +70,20 @@ bare module specifiers.
   }
 }
 ```
-## Text styles
+
+## Headings—this is an h2
+
+Always followed by a paragraph.
+
+### And an h3
+
+Always followed by a paragraph.
+
+#### H4 is the lowest level we use.
+
+Always followed by a paragraph. H4s don't show up in the TOC.
+
+## Formats
 
 We don't do a lot of fancy styles. We do use code font for when we're using code in text:
 
