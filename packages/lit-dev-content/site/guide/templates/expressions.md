@@ -225,7 +225,7 @@ For a list of directives provided with Lit, see [Built-in directives](directives
 You can also add an expression that accesses an element instance, instead of a single property or attribute on an element:
 
 ```js
-html`<div ${myDirective}></div>`
+html`<div ${myDirective()}></div>`
 ```
 
 Element expressions only work with directives. You can't use any other kind of value with an element expression.
@@ -252,7 +252,7 @@ Follow these rules for well-formed templates:
 
  *  Templates must be well-formed HTML when all expressions are replaced by empty values.
 
- *  Standard expressions **_can only occur_** where you can place in attribute values and child elements in HTML.
+ *  Standard expressions **_can only occur_** where you can place attribute values and child elements in HTML.
 
     ```html
     <!-- attribute values -->
