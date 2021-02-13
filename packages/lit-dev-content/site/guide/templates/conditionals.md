@@ -8,7 +8,6 @@ eleventyNavigation:
 
 {% todo %}
 
-- Check all import paths.
 - Add interactive examples.
 
 {% endtodo %}
@@ -72,16 +71,11 @@ render() {
 }
 ```
 
-
-
-
 ## Caching template results: the cache directive
 
 In most cases, JavaScript conditionals are all you need for conditional templates. However, if you're switching between large, complicated templates, you might want to save the cost of recreating DOM on each switch.
 
 In this case, you can use the `cache` _directive_. Directives are special functions that provide extra control over rendering. The cache directive caches DOM for templates that aren't being rendered currently.
-
-<!-- TODO: Check import paths -->
 
 ```js
 import {html} from 'lit';
@@ -90,7 +84,7 @@ import {cache} from 'lit/directives/cache.js';
 const detailView = (data) => html`<div>...</div>`;
 const summaryView = (data) => html`<div>...</div>`;
 
-  ...
+//  ...
 
 html`${cache(this.data.showDetails
   ? detailView(this.data)
