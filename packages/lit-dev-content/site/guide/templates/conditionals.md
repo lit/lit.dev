@@ -14,7 +14,7 @@ eleventyNavigation:
 
 Since Lit leverages normal Javascript expressions, you can use standard Javascript control flow constructs like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements to render conditional content.
 
-JavaScript conditionals also let you combine nested template expressions. You can even store template results in variables to use elsewhere.
+JavaScript conditionals also let you combine nested template expressions, and you can even store template results in variables to use elsewhere.
 
 ## Conditionals with the conditional (ternary) operator
 
@@ -30,14 +30,6 @@ render() {
   `;
 }
 ```
-
-### Rendering nothing
-
-Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
-
-In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.
-
-See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
 
 ## Conditionals with if statements
 
@@ -71,11 +63,21 @@ render() {
 }
 ```
 
+## Rendering nothing
+
+Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
+
+In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.
+
+See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
+
 ## Caching template results: the cache directive
 
 In most cases, JavaScript conditionals are all you need for conditional templates. However, if you're switching between large, complicated templates, you might want to save the cost of recreating DOM on each switch.
 
-In this case, you can use the `cache` _directive_. Directives are special functions that provide extra control over rendering. The cache directive caches DOM for templates that aren't being rendered currently.
+In this case, you can use the `cache` _directive_. The cache directive caches DOM for templates that aren't being rendered currently.
+
+See [Directives](guide/templates/directives) for more information about directives.
 
 ```js
 import {html} from 'lit';
