@@ -20,56 +20,17 @@ JavaScript conditionals also let you combine nested template expressions, and yo
 
 Ternary expressions with the conditional operator, `?`, are a great way to add inline conditionals:
 
-```js
-render() {
-  return html`
-    ${this.user.isloggedIn
-        ? html`Welcome ${this.user.name}`
-        : html`Please log in`
-    }
-  `;
-}
-```
+{% playground-example "docs/templates/conditionals/ternary" "my-element.ts" %}
 
 ## Conditionals with if statements
 
 You can express conditional logic with if statements outside of a template to compute values to use inside of the template:
 
-```js
-render() {
-  let message;
-  if (this.user.isloggedIn) {
-    message = html`<p>Welcome ${this.user.name}</p>`;
-  } else {
-    message = html`<p>Please log in</p>`;
-  }
-  return html`<div class="message">${message}</div>`;
-}
-```
+{% playground-example "docs/templates/conditionals/if" "my-element.ts" %}
 
 Alternately, you can factor logic into a separate function to simplify your template:
 
-```js
-getUserMessage() {
-  if (this.user.isloggedIn) {
-    return html`<p>Welcome ${this.user.name}</p>`;
-  } else {
-    return html`<p>Please log in</p>`;
-  }
-}
-
-render() {
-  return html`<div class="message">${getUserMessage()}</div>`;
-}
-```
-
-## Rendering nothing
-
-Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
-
-In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.
-
-See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
+{% playground-example "docs/templates/conditionals/if-function" "my-element.ts" %}
 
 ## Caching template results: the cache directive
 
@@ -79,21 +40,16 @@ In this case, you can use the `cache` _directive_. The cache directive caches DO
 
 See [Directives](guide/templates/directives) for more information about directives.
 
-```js
-import {html} from 'lit';
-import {cache} from 'lit/directives/cache.js';
-
-const detailView = (data) => html`<div>...</div>`;
-const summaryView = (data) => html`<div>...</div>`;
-
-//  ...
-
-html`${cache(this.data.showDetails
-  ? detailView(this.data)
-  : summaryView(this.data)
-)}`
-```
+{% playground-example "docs/templates/conditionals/cache" "my-element.ts" %}
 
 When Lit re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, Lit needs to remove the old DOM and render a new DOM tree.
 
 The `cache` directive caches the generated DOM for a given expression and input template. In the example above, it would cache the DOM for both the  `summaryView` and `detailView` templates. When you switch from one view to another, Lit just needs to swap in the cached version of the new view, and update it with the latest data.
+
+## Rendering nothing
+
+Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
+
+In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.
+
+See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
