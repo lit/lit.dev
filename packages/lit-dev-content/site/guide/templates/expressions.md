@@ -159,6 +159,23 @@ To set a boolean attribute, use the `?` prefix with the attribute name. The attr
 html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 ```
 
+
+Sometimes you want to set an attribute value only if a data value or set of values is available. For example, consider:
+
+```js
+html`<img src="/images/${this.image}">`;
+```
+
+If `this.image` is not defined, the `src` attribute should not be set or an invalid network request will occur.
+
+You can use the `ifDefined` function to avoid this issue:
+
+```js
+html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
+```
+
+In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
+
 ## Setting properties
 
 You can set a JavaScript property on an element using the `.` prefix and the property name:
