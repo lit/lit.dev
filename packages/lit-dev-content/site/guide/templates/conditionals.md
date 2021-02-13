@@ -12,9 +12,9 @@ eleventyNavigation:
 
 {% endtodo %}
 
-Since Lit leverages normal Javascript expressions, you don't need to use custom control-flow constructs. Instead you use standard JavaScript, like like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements.
+Since Lit leverages normal Javascript expressions, you can use standard Javascript control flow constructs like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements to render conditional content.
 
-JavaScript conditionals let you combine nested template expressions. You can even store template results in variables to use elsewhere.
+JavaScript conditionals also let you combine nested template expressions. You can even store template results in variables to use elsewhere.
 
 ## Conditionals with the conditional (ternary) operator
 
@@ -35,9 +35,9 @@ render() {
 
 Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
 
-In a few cases, you want to clear the DOM instead of rendering an empty text node. In these cases, you can use the `nothing` value provided by Lit.
+In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.
 
-This is particularly useful when working with elements that use shadow DOM and slots. See [Templating and slot fallback content](/guide/components/shadow-dom#templating-and-slot-fallback-content) for an example using `nothing`.
+See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
 
 ## Conditionals with if statements
 
