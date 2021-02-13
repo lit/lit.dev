@@ -1,0 +1,13 @@
+<script type="module" src="./my-element.js"></script>
+
+<my-element>
+  <p slot="two">Include me in slot "two".</p>
+</my-element>
+
+<hr>
+
+<my-element>
+  <p slot="one">Include me in slot "one".</p>
+  <p slot="nope">This one will not render at all.</p>
+  <p>No default slot, so this one won't render either.</p>
+</my-element>
