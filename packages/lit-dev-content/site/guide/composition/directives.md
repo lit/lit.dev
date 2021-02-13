@@ -17,7 +17,7 @@ html`<div>
 
 However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression. And a directive instance is persisted across multiple renders so it can maintain state. A directive can even update the DOM asynchronously, outside of the main update process.
 
-While Lit ships with a number of built-in directives like `repeat` and `cache`, users can author their own custom directives. To create a directive:
+While Lit ships with a number of built-in directives like [`repeat()`](TODO_XREF) and [`cache()`](TODO_XREF), users can author their own custom directives. To create a directive:
 
 *   Implement the directive as a class that extends the `Directive` class.
 *   Pass your class to the `directive` factory to create a directive function that can be used in Lit template expressions.
@@ -37,7 +37,7 @@ const hello = directive(HelloDirective);
 const template = html`<div>${hello()}</div>`;
 ```
 
-When this template is evaluated, the directive _function_  (`hello`) returns a `DirectiveResult` which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the class instance to update the  DOM.
+When this template is evaluated, the directive _function_  (`hello()`) returns a `DirectiveResult` which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the class instance to update the  DOM.
 
 ## Lifecycle of a directive
 
@@ -144,7 +144,33 @@ class MyDirective extends Directive {
 
 ### Differences between update() and render()
 
-While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit/ssr` package for server-side rendering, _only_ the `render()` method will be called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for imperative logic.
+While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit/ssr` package for server-side rendering, _only_ the `render()` method is called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for imperative logic.
+
+## Signaling no change
+
+Sometimes a directive may have nothing new for Lit to render. You can do this by returning `noChange` from the `update()` or `render()` method. This is different from returning `undefined`, which causes Lit to clear the `Part` associated with the directive. Returning `noChange` leaves the previously rendered value in place.
+
+For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return the special `noChange` value to signal that the directive's output doesn't need to be rendered.
+
+```ts
+import {Directive, Part, DirectiveParameters} from 'lit-html/directive.js';
+import {noChange} from 'lit-html';
+class CalculateDiff extends Directive {
+  a?: string;
+  b?: string;
+  render(a: string, b: string) {
+    if (this.a !== a || this.b !== b) {
+      this.a = a;
+      this.b = b;
+      // Expensive & fancy text diffing algorithm
+      return calculateDiff(a, b);
+    }
+    return noChange;
+  }
+}
+```
+
+Async directives can also return `noChange` when there's no value available to render synchronously.
 
 ## Limiting a directive to one expression type
 
