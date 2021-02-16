@@ -45,7 +45,9 @@ The directive class has a few built-in lifecycle methods:
 
 *  The class constructor, for one-time initialization.
 *  `render()`, for declarative rendering.
-*  `update()`, for imperative DOM manipulation.
+*  `update()`, for imperative DOM access.
+
+You must implement the `render()` callback for all directives. Implementing `update()` is optional. The default implementation of `update()` calls and returns the value from `render()`.
 
 ### One-time setup: constructor()
 
@@ -97,13 +99,23 @@ const max = directive(MaxDirective);
 const template = html`<div>${max(someNumber, 0)}</div>`;
 ```
 
-### Imperative DOM manipulation: update()
+### Imperative DOM access: update()
 
-In more advanced use cases, the directive may need to access the underlying DOM and imperatively read from or mutate it. This can be achieved by overriding the `update()` callback.
+In more advanced use cases, your directive may need to access the underlying DOM and imperatively read from or mutate it. You can achieve this by overriding the `update()` callback.
 
-The default implementation of `update()` simply calls and returns the value from `render()`. When you override `update()`, you can either call `render()`
+The `update()` callback receives two arguments:
 
-In addition to the render arguments, `update()` also receives a `part` argument with an API for directly managing the DOM associated with expressions.  Each expression position has its own specific `Part` object:
+*   A `Part` object with an API for directly managing the DOM associated with the expression.
+*   An array containing the `render()` arguments.
+
+Your `update()` method should return something Lit can render, or the special value `noChange` if no re-rendering is required. The `update()` callback is quite flexible, but typical uses include:
+
+- Reading data from the DOM, and using it to generate a value to render.
+- Imperatively updating the DOM using the `element` or `parentNode` reference on the `Part` object. In this case, `update()` usually returns `noChange`, indicating that Lit doesn't need to take any further action to render the directive.
+
+#### Parts
+
+Each expression position has its own specific `Part` object:
 
 *   [`ChildPart`](/api/classes/_lit_html_.childpart.html) for expressions in HTML child position.
 *   [`AttributePart`](/api/classes/_lit_html_.attributepart.html) for expressions in HTML attribute value position.
@@ -132,11 +144,13 @@ const template = html`<div a b>${attributeLogger()}</div>`;
 // Renders: `<div a b>a b</div>`
 ```
 
-In addition, the `directive-helpers.js` module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
+In addition, the [`directive-helpers.js`](TODO_HREF) module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
 
-#### Render arguments
+#### Calling render() from update()
 
-The `render()` arguments are passed into `update()` as an array. If you're implementing `update()` and using render arguments, you can pass them on like this:
+The default implementation of `update()` simply calls and returns the value from `render()`. If you override `update()` and still want to call `render()` to generate a value, you need to call `render()` explicitly.
+
+The `render()` arguments are passed into `update()` as an array. You can pass the arguments to `render()` like this:
 
 ```ts
 class MyDirective extends Directive {
@@ -150,7 +164,7 @@ class MyDirective extends Directive {
 
 ### Differences between update() and render()
 
-While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit/ssr` package for server-side rendering, _only_ the `render()` method is called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for imperative logic.
+While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit/ssr` package for server-side rendering, _only_ the `render()` method is called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for logic that requires access to the DOM.
 
 ## Signaling no change
 
@@ -159,7 +173,7 @@ Sometimes a directive may have nothing new for Lit to render. You signal this by
 There are several common reasons for returning `noChange`:
 
 *   Based on the input values, there's nothing new to render.
-*   The `update` method updated the DOM imperatively.
+*   The `update()` method updated the DOM imperatively.
 *   In an async directive, a call to `update()` or `render()` may return `noChange` because there's nothing to render _yet_.
 
 For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return `noChange`  to signal that the directive's output doesn't need to be re-rendered.
@@ -270,22 +284,3 @@ class ObserveDirective extends AsyncDirective {
 }
 export const observe = directive(ObserveDirective);
 ```
-
-
-## Rendering multiple values in child expressions
-
-Sometimes a directive may need to render multiple values. For example, a directive that renders a list of items (like `repeat()`) might create a nested `Part` for each item. Keeping separate parts lets you manipulate them efficiently: for example, you can change the value of a single part without re-rendering the entire list.
-
-<div class="alert alert-info">
-
-**Advanced content.** You should only need to manipulate nested parts if you're implementing your own list or or data table directive. If you are, reading the [source code of the `repeat()` directive](TODO_HREF) may provide you with a starting point.
-
-</div>
-
-The `directive-helpers.js` module contains helper methods for manipulating nested `ChildPart` objects:
-
-* `insertPart(containerPart, refPart, part?)` - Inserts a `ChildPart` into the given container's DOM, either at the end of the container, or before the optional `refPart`. If `part` is not supplied, a new `ChildPart` is created.
-* `removePart(part)` - Removes a `ChildPart` from the DOM, including any of its content.
-* `clearPart(part)` - Clears any DOM rendered within the `ChildPart`.
-* `setChildPartValue(value)` - Renders the given `value` into the `ChildPart`.
-
