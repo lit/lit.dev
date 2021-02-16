@@ -37,7 +37,7 @@ const hello = directive(HelloDirective);
 const template = html`<div>${hello()}</div>`;
 ```
 
-When this template is evaluated, the directive _function_  (`hello()`) returns a `DirectiveResult` which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the class instance to update the  DOM.
+When this template is evaluated, the directive _function_  (`hello()`) returns a `DirectiveResult` object, which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the class instance to run its update logic.
 
 ## Lifecycle of a directive
 
@@ -49,7 +49,7 @@ The directive class has a few built-in lifecycle methods:
 
 ### One-time setup: constructor()
 
-When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class, causing its constructor and any class field initializers to run:
+When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class (causing the directive's constructor and any class field initializers to run):
 
 ```ts
 class MaxDirective extends Directive {
@@ -99,9 +99,11 @@ const template = html`<div>${max(someNumber, 0)}</div>`;
 
 ### Imperative DOM manipulation: update()
 
-In more advanced use cases, the directive may need to access the underlying DOM and imperatively read from or mutate it. This can be achieved by overriding the `update()` lifecycle.
+In more advanced use cases, the directive may need to access the underlying DOM and imperatively read from or mutate it. This can be achieved by overriding the `update()` callback.
 
-The default implementation of `update()` simply calls and returns the value from `render()`. However, in addition to the render arguments, `update()` also receives a `part` argument with an API for directly managing the DOM associated with expressions.  Each expression position has its own specific `Part` object:
+The default implementation of `update()` simply calls and returns the value from `render()`. When you override `update()`, you can either call `render()`
+
+In addition to the render arguments, `update()` also receives a `part` argument with an API for directly managing the DOM associated with expressions.  Each expression position has its own specific `Part` object:
 
 *   [`ChildPart`](/api/classes/_lit_html_.childpart.html) for expressions in HTML child position.
 *   [`AttributePart`](/api/classes/_lit_html_.attributepart.html) for expressions in HTML attribute value position.
@@ -117,11 +119,11 @@ In addition to the part-specific metadata contained in `PartInfo`, all `Part` ty
 class AttributeLogger extends Directive {
   attributeNames = '';
   update(part: ChildPart) {
-    this.attributeNames = part.parentNode.getAttributeNames().join(' ');
+    this.attributeNames = (part.parentNode as Element).getAttributeNames?.().join(' ');
     return this.render();
   }
-  render() { 
-    this.attributeNames;
+  render() {
+    return this.attributeNames;
   }
 }
 const attributeLogger = directive(AttributeLogger);
@@ -152,12 +154,18 @@ While the `update()` callback is more powerful than the `render()` callback, the
 
 ## Signaling no change
 
-Sometimes a directive may have nothing new for Lit to render. You can do this by returning `noChange` from the `update()` or `render()` method. This is different from returning `undefined`, which causes Lit to clear the `Part` associated with the directive. Returning `noChange` leaves the previously rendered value in place.
+Sometimes a directive may have nothing new for Lit to render. You signal this by returning `noChange` from the `update()` or `render()` method. This is different from returning `undefined`, which causes Lit to clear the `Part` associated with the directive. Returning `noChange` leaves the previously rendered value in place.
 
-For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return the special `noChange` value to signal that the directive's output doesn't need to be rendered.
+There are several common reasons for returning `noChange`:
+
+*   Based on the input values, there's nothing new to render.
+*   The `update` method updated the DOM imperatively.
+*   In an async directive, a call to `update()` or `render()` may return `noChange` because there's nothing to render _yet_.
+
+For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return `noChange`  to signal that the directive's output doesn't need to be re-rendered.
 
 ```ts
-import {Directive, Part, DirectiveParameters} from 'lit-html/directive.js';
+import {Directive} from 'lit-html/directive.js';
 import {noChange} from 'lit-html';
 class CalculateDiff extends Directive {
   a?: string;
@@ -173,8 +181,6 @@ class CalculateDiff extends Directive {
   }
 }
 ```
-
-Async directives can also return `noChange` when there's no value available to render synchronously.
 
 ## Limiting a directive to one expression type
 
@@ -268,7 +274,13 @@ export const observe = directive(ObserveDirective);
 
 ## Rendering multiple values in child expressions
 
-Sometimes a directive may need to render multiple values. For example, a directive that renders a list of items (like `repeat`) might create a nested `Part` for each item. Keeping separate parts lets you manipulate them efficiently: for example, you can change the value of a single part without re-rendering the entire list.
+Sometimes a directive may need to render multiple values. For example, a directive that renders a list of items (like `repeat()`) might create a nested `Part` for each item. Keeping separate parts lets you manipulate them efficiently: for example, you can change the value of a single part without re-rendering the entire list.
+
+<div class="alert alert-info">
+
+**Advanced content.** You should only need to manipulate nested parts if you're implementing your own list or or data table directive. If you are, reading the [source code of the `repeat()` directive](TODO_HREF) may provide you with a starting point.
+
+</div>
 
 The `directive-helpers.js` module contains helper methods for manipulating nested `ChildPart` objects:
 
@@ -277,51 +289,3 @@ The `directive-helpers.js` module contains helper methods for manipulating neste
 * `clearPart(part)` - Clears any DOM rendered within the `ChildPart`.
 * `setChildPartValue(value)` - Renders the given `value` into the `ChildPart`.
 
-Putting it all together—the following example directive takes a value and inserts it into the DOM _twice_ by creating two nested parts, which are stored as state on the directive instance.
-
-```ts
-// Import lit-html APIs
-import {html, render} from 'lit-html';
-import {directive, Directive, PartInfo} from 'lit-html/directive.js';
-import {insertPart, clearPart, setChildPartValue} from 'lit-html/directive-helpers.js';
-
-// Directive that takes a single value, and renders it in the DOM twice
-class Duplicate extends Directive {
-  lastValue: unknown = undefined;
-  parts: ChildPart[] | undefined = undefined;
-
-  constructor(partInfo: PartInfo) {
-    super(partInfo);
-    // Validate that the directive is only used in child node position
-    if (partInfo !== PartType.CHILD) {
-      throw new Error('duplicate directive can only be used in child expressions');
-    }
-  }
-
-  // On the client, use nested parts (for demonstration purposes)
-  update(part: Part, [value: unknown]) {
-    // Create parts once ever
-    if (this.parts === undefined) {
-      clearPart(containerPart);
-      this.parts = [
-        insertPart(containerPart),
-        insertPart(containerPart)
-      ];
-    }
-    //
-    if (this.lastValue !== value) {
-      setChildPartValue(this.parts[0], value);
-      setChildPartValue(this.parts[1], value);
-      this.lastValue = value;
-    }
-    return noChange;
-  }
-
-  // Only called during SSR; fallback to rendering an interable
-  render(value: unknown) {
-    return [value, value];
-  }
-
-};
-export const duplicate = directive(Duplicate);
-```
