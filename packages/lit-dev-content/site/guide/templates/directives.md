@@ -419,7 +419,7 @@ html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 
 ## templateContent
 
-Renders the content of a <template> element.
+Renders the content of a `<template>` element.
 
 | | |
 |-|-|
