@@ -30,8 +30,8 @@ class HelloDirective extends Directive {
   render() {
     return `Hello!`;
   }
-// Create the directive function
 }
+// Create the directive function
 const hello = directive(HelloDirective);
 
 // Use directive
