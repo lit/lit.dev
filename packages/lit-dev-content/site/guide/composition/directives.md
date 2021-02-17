@@ -23,13 +23,14 @@ While Lit ships with a number of built-in directives like [`repeat()`](TODO_XREF
 *   Pass your class to the `directive` factory to create a directive function that can be used in Lit template expressions.
 
 ```js
-import {Directive, directive} from 'lit-html/directive.js';
+import {Directive, directive} from 'lit/directive.js';
 
 // Define directive
 class HelloDirective extends Directive {
   render() {
     return `Hello!`;
   }
+// Create the directive function
 }
 const hello = directive(HelloDirective);
 
@@ -82,13 +83,13 @@ In addition to referring to state on the class instance, the `render()` method c
 const template = html`<div>${myDirective(name, rank)}</div>`
 ```
 
-The arguments defined for the `render()` method determine the signature of the directive function:
+The parameters defined for the `render()` method determine the signature of the directive function:
 
 ```ts
 class MaxDirective extends Directive {
-  maxValue = 0;
-  // Define a render method, which may optionally accept arguments:
-  render(value: unknown, minValue = 0) {
+  maxValue = Number.MIN_VALUE;
+  // Define a render method, which may accept arguments:
+  render(value: number, minValue = Number.MIN_VALUE) {
     this.maxValue = Math.max(value, this.maxValue, minValue);
     return this.maxValue;
   }
@@ -179,8 +180,8 @@ There are several common reasons for returning `noChange`:
 For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return `noChange`  to signal that the directive's output doesn't need to be re-rendered.
 
 ```ts
-import {Directive} from 'lit-html/directive.js';
-import {noChange} from 'lit-html';
+import {Directive} from 'lit/directive.js';
+import {noChange} from 'lit';
 class CalculateDiff extends Directive {
   a?: string;
   b?: string;
