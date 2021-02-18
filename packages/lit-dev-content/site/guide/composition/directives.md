@@ -1,8 +1,8 @@
 ---
-title: Creating directives
+title: Custom directives
 eleventyNavigation:
   parent: Composition
-  title: Creating directives
+  title: Custom directives
   key: Directives
   order: 2
 ---
@@ -15,7 +15,7 @@ html`<div>
   </div>`
 ```
 
-However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression. And a directive instance is persisted across multiple renders so it can maintain state. A directive can even update the DOM asynchronously, outside of the main update process.
+However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression. And a directive instance is persisted across multiple renders so it can maintain state. A directive can even update the DOM asynchronously, outside of the main update cycle.
 
 While Lit ships with a number of built-in directives like [`repeat()`](/guide/templates/directives/#repeat) and [`cache()`](/guide/templates/directives/#cache), users can author their own custom directives. To create a directive:
 
@@ -38,7 +38,9 @@ const hello = directive(HelloDirective);
 const template = html`<div>${hello()}</div>`;
 ```
 
-When this template is evaluated, the directive _function_  (`hello()`) returns a `DirectiveResult` object, which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the class instance to run its update logic.
+When this template is evaluated, the directive _function_  (`hello()`) returns a `DirectiveResult` object, which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the directive instance to run its update logic.
+
+Some directives need to update the DOM asynchronously, outside of the normal update cycle. To create an _async directive_, extend the `AsyncDirective` base class instead of `Directive`. See [Async directives](#async-directives) for details.
 
 ## Lifecycle of a directive
 
@@ -50,11 +52,7 @@ The directive class has a few built-in lifecycle methods:
 
 You must implement the `render()` callback for all directives. Implementing `update()` is optional. The default implementation of `update()` calls and returns the value from `render()`.
 
-<div class="alert alert-info">
-
-**Async lifecycle.** _Async directives_ can update the DOM outside of the normal update process. They extend the `AsyncDirective` base class, which provides some additional lifecycle callbacks. See [Async directives](#async-directives) for details.
-
-</div>
+Async directives, which can update the DOM outside of the normal update cycle, use some additional lifecycle callbacks. See [Async directives](#async-directives) for details.
 
 ### One-time setup: constructor()
 
@@ -83,7 +81,7 @@ The constructor receives a single `PartInfo` object, which provides metadata abo
 
 The `render()` method should return the value to render into the DOM. It can return any renderable value, including another `DirectiveResult`.
 
-In addition to referring to state on the class instance, the `render()` method can also accept arbitrary arguments passed in to the directive function:
+In addition to referring to state on the directive instance, the `render()` method can also accept arbitrary arguments passed in to the directive function:
 
 ```js
 const template = html`<div>${myDirective(name, rank)}</div>`
@@ -151,7 +149,7 @@ const template = html`<div a b>${attributeLogger()}</div>`;
 // Renders: `<div a b>a b</div>`
 ```
 
-In addition, the [`directive-helpers.js`](TODO_HREF) module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
+In addition, the [`directive-helpers.js`](/api/TODO_API_HREF) module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
 
 #### Calling render() from update()
 
@@ -250,7 +248,7 @@ export const resolvePromise = directive(ResolvePromise);
 
 Here, the rendered template shows "Waiting for promise to resolve," followed by the resolved value of the promise, whenever it resolves.
 
-Async directives often need to subscribe to external resources. To prevent memory leaks it is common for async directives to need to unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks:
+Async directives often need to subscribe to external resources. To prevent memory leaks async directives often need to unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks:
 
 * `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected when the value of a given expression no longer resolves to the same directive, or if the subtree the directive was contained in was removed from the DOM.
 * `reconnected()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later (for example, when DOM is moved or cached for later use) a disconnected directive may need to react to being re-connected. So the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
