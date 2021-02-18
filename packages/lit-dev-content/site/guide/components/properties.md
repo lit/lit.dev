@@ -16,24 +16,41 @@ eleventyNavigation:
 
 {% endtodo %}
 
+*Reactive properties* define the state of the component. Changing one or more of the components' reactive properties triggers a reactive update cycle, re-rendering the component.
+
+*Internal reactive state* refers to reactive properties that are  not part of the component's public API.
+
 LitElement manages your declared properties and their corresponding attributes. By default, LitElement will:
 
 * Ensure that an element update is scheduled when any declared property changes.
-* Capture instance values for declared properties. Apply any property values that are set before the browser registers a custom element definition.
 * Set up an observed (not reflected) attribute with the lowercased name of each property.
 * Handle attribute conversion for properties declared as type `String`, `Number`, `Boolean`, `Array`, and `Object`.
 * Use direct comparison (`oldValue !== newValue`) to test for property changes.
 * Apply any property options and accessors declared by a superclass.
+* Handle upgrading elements, capturing instance values for reactive properties, and applying any property values that are set before the browser registers a custom element definition.
 
-<div class="alert alert-info">
 
-**Remember to declare all of the properties that you want LitElement to manage.** For the property features above to be applied, you must [declare the property](#declare).
 
+
+## Declare reactive properties {#declare}
+
+Declare your element's properties using decorators or the static `properties` field:
+
+_Decorator (requires TypeScript or Babel)_
+
+<div class="language-ts">
+<pre class="highlight">
+export class MyElement extends LitElement {
+  // Reactive property
+  @property(<var>options</var>)
+  <var>propertyName</var>;
+
+  // Internal reactive state
+  @state(<var>options</var>)
+  <var>PropertyName</var>
+</pre>
 </div>
 
-## Declare properties {#declare}
-
-Declare your element's properties using a static `properties` field, or using decorators:
 
 _Properties field_
 
@@ -47,15 +64,6 @@ static get properties() {
 </pre>
 </div>
 
-_Decorator (requires TypeScript or Babel)_
-
-<div class="language-ts">
-<pre class="highlight">
-export class MyElement extends LitElement {
-  @property(<var>options</var>)
-  <var>propertyName</var>;
-</pre>
-</div>
 
 In either case, you can pass an options object to configure features for the property.
 
@@ -116,6 +124,16 @@ Whether property value is reflected back to the associated attribute. Default: f
 </dd>
 <dt>
 
+`state`
+
+</dt>
+<dd>
+
+Set to true to declare the property as _internal reactive state_. Internal reactive state triggers updates like public reactive properties, but Lit doesn't generate an attribute for it, and users shouldn't access it from outside the component. Equivalent to using the `@state` decorator.
+
+</dd>
+<dt>
+
 `type`
 
 </dt>
@@ -132,6 +150,44 @@ An empty options object is equivalent to specifying the default value for all op
 **An options object by another name.** This guide uses the descriptive term "options object." In practice the options object is an instance of `PropertyDeclaration`, so you'll see that name if you're using an IDE, or looking at the API reference. By either name, it's an object that defines a set of options.
 
 </div>
+
+### Declare properties with decorators {#declare-with-decorators}
+
+Use the `@property` decorator with a class field declaration to  .
+
+```ts
+@property({type: String})
+mode;
+
+@property()
+data = {};
+```
+
+
+The argument to the `@property`  decorators is an [options object](#property-options). Omitting the argument is equivalent to specifying the default value for all options.
+
+<div class="alert alert-info">
+
+**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](decorators) for details.
+
+</div>
+
+Use the `@state` decorator to declare internal reactive state:
+
+```ts
+@state()
+protected _active = false;
+```
+
+ Properties declared with `@state` shouldn't be referenced from outside the component. In TypeScript, these properties should be marked as private or protected. We also recommend using a convention like a leading underscore (`_`)
+
+The `@state` decorator automatically sets `attribute` to false; **the only option you can specify for internal reactive state is the `hasChanged` function.**
+
+The `@state` decorator can serve as a hint to a code minifier that the property name can be changed during minification.
+
+**Example: Declare properties with decorators**
+
+{% playground-example "properties/declaretypescript" "my-element.ts" %}
 
 ### Declare properties in a static properties field
 
@@ -163,46 +219,9 @@ Declared properties are initialized like standard class fields—either in the c
 
 {% include project.html folder="properties/declare" openFile="my-element.js" %}
 
-### Declare properties with decorators {#declare-with-decorators}
 
-Use the `@property` decorator to declare properties (instead of the static `properties` field).
 
-```js
-@property({type: String})
-mode = 'auto';
-
-@property()
-data = {};
-```
-
-The argument to the `@property` decorator is an [options object](#property-options). Omitting the argument is equivalent to specifying the default value for all options.
-
-<div class="alert alert-info">
-
-**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](decorators) for details.
-
-</div>
-
-There is also an `@internalProperty` decorator for private or protected properties that should trigger an update cycle. Properties declared with `@internalProperty` shouldn't be referenced from outside the component.
-
-```ts
-@internalProperty()
-protected active = false;
-```
-
-The `@internalProperty` decorator automatically sets `attribute` to false; **the only option you can specify for an internal property is the `hasChanged` function.**
-
-The `@internalProperty` decorator can serve as a hint to a code minifier that the property name can be changed during minification.
-
-**Example: Declare properties with decorators**
-
-```js
-{% include projects/properties/declaretypescript/my-element.ts %}
-```
-
-{% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
-
-## What happens when properties change
+## What happens when properties change {#when-properties-change}
 
 A property change can trigger an asynchronous update cycle, which causes the component to re-render its template.
 
@@ -213,16 +232,28 @@ When a property changes, the following sequence occurs:
 1.  If `hasChanged` returns true, the setter calls `requestUpdate` to schedule an update. The update itself happens asynchronously, so if several properties are updated at once, they only trigger a single update.
 1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
 
-There are many ways to hook into and modify the update lifecycle. For more information, see [Lifecycle](lifecycle).
-
+There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/guide/components/lifecycle/#reactive-update-cycle).
 
 ## Initialize property values {#initialize}
 
 Typically, you initialize property values in the element constructor.
 
-When using decorators, you can initialize the property value as part of the declaration (equivalent to setting the value in the constructor).
+When using decorators, you can initialize the property value using a class field initializer (equivalent to setting the value in the constructor).
 
 You may want to defer initializing a property if the value is expensive to compute and is not not required for the initial render of your component. This is a fairly rare case.
+
+### Initialize property values when using decorators
+
+When using the `@property` decorator, you can initialize the property using a class field initializer:
+
+```ts
+@property()
+greeting: string = 'Hello';
+```
+
+**Example: Initialize property values when using decorators**
+
+{% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
 
 ### Initialize property values in the element constructor {#initialize-constructor}
 
@@ -250,18 +281,6 @@ Remember to call `super()` first in your constructor, or your element won't rend
 
 {% include project.html folder="properties/declare" openFile="my-element.js" %}
 
-### Initialize property values when using decorators
-
-When using the `@property` decorator, you can initialize a property as part of the declaration:
-
-```ts
-@property({type : String})
-greeting = 'Hello';
-```
-
-**Example: Initialize property values when using decorators**
-
-{% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
 
 
 
@@ -468,7 +487,7 @@ See [observed attributes](#observed-attributes) and [converting between properti
 
 <div class="alert alert-info">
 
-**Attributes versus properties.** Setting a static attribute value is not the same as using an expression to set a property. See [Set properties](/guide/templates/overview#set-properties).
+**Attributes versus properties.** Setting a static attribute value is not the same as using an expression to set a property. See [Set properties](/guide/templates/expressions/#set-properties).
 
 </div>
 
@@ -562,7 +581,7 @@ You don't need to set `noAccessor` when defining your own accessors.
 
 All declared properties have a function, `hasChanged`, which is called when the property is set.
 
-`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update if one is not already scheduled. See the [Element update lifecycle documentation](lifecycle) for more information on how updates work.
+`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update if one is not already scheduled. See the [Component update lifecycle documentation](/guide/components/lifecycle/) for more information on how updates work.
 
 By default:
 
