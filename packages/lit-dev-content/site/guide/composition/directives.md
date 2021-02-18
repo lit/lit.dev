@@ -17,7 +17,7 @@ html`<div>
 
 However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression. And a directive instance is persisted across multiple renders so it can maintain state. A directive can even update the DOM asynchronously, outside of the main update process.
 
-While Lit ships with a number of built-in directives like [`repeat()`](TODO_XREF) and [`cache()`](TODO_XREF), users can author their own custom directives. To create a directive:
+While Lit ships with a number of built-in directives like [`repeat()`](/guide/templates/directives/#repeat) and [`cache()`](/guide/templates/directives/#cache), users can author their own custom directives. To create a directive:
 
 *   Implement the directive as a class that extends the `Directive` class.
 *   Pass your class to the `directive` factory to create a directive function that can be used in Lit template expressions.
@@ -49,6 +49,12 @@ The directive class has a few built-in lifecycle methods:
 *  `update()`, for imperative DOM access.
 
 You must implement the `render()` callback for all directives. Implementing `update()` is optional. The default implementation of `update()` calls and returns the value from `render()`.
+
+<div class="alert alert-info">
+
+**Async lifecycle.** _Async directives_ can update the DOM outside of the normal update process. They extend the `AsyncDirective` base class, which provides some additional lifecycle callbacks. See [Async directives](#async-directives) for details.
+
+</div>
 
 ### One-time setup: constructor()
 
@@ -220,7 +226,7 @@ class ClassMap extends Directive {
 
 ## Async directives
 
-The previous example directives are synchronous: they return values synchronously to their `render()`/`update()` lifecycle, so their results are written to the DOM during the component's `update()` callback.
+The previous example directives are synchronous: they return values synchronously from their `render()`/`update()` lifecycle callbacks, so their results are written to the DOM during the component's `update()` callback.
 
 Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
@@ -285,3 +291,4 @@ class ObserveDirective extends AsyncDirective {
 }
 export const observe = directive(ObserveDirective);
 ```
+
