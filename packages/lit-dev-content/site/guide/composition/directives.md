@@ -61,15 +61,15 @@ You must implement the `render()` callback for all directives. Implementing `upd
 When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class (causing the directive's constructor and any class field initializers to run):
 
 ```ts
-class MaxDirective extends Directive {
+class MyDirective extends Directive {
   // Class fields will be initialized once and can be used to persist
   // state between renders
-  maxValue = 0;
+  value = 0;
   // Constructor is only run the first time a given directive is used
   // in an expression
   constructor(partInfo: PartInfo) {
     super(partInfo);
-    console.log('MaxDirective created');
+    console.log('MyDirective created');
   }
   ...
 }
@@ -215,7 +215,7 @@ class ClassMap extends Directive {
     super(partInfo);
     if (
       partInfo.type !== PartType.ATTRIBUTE ||
-      partInfo.name !== 'class')
+      partInfo.name !== 'class'
     ) {
       throw new Error('The `classMap` directive must be used in the `class` attribute');
     }
@@ -253,19 +253,19 @@ Here, the rendered template shows "Waiting for promise to resolve," followed by 
 Async directives often need to subscribe to external resources. To prevent memory leaks it is common for async directives to need to unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks:
 
 * `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected when the value of a given expression no longer resolves to the same directive, or if the subtree the directive was contained in was removed from the DOM.
-* `reconnected()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later (for example, when DOM is moved) a disconnected directive may need to react to being re-connected. So the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
+* `reconnected()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later (for example, when DOM is moved or cached for later use) a disconnected directive may need to react to being re-connected. So the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
 
 Below is an example of a directive that subscribes to an `Observable` and handles disconnection and reconnection appropriately:
 
 ```ts
 class ObserveDirective extends AsyncDirective {
   observable: Observable<unknown> | undefined;
-  unsubscribe: () => void | undefined;
+  unsubscribe: (() => void) | undefined;
   // When the observable changes, unsubscribe to the old one and
   // subscribe to the new one
   render(observable: Observable<unknown>) {
     if (this.observable !== observable) {
-      this.unsubscribe?();
+      this.unsubscribe?.();
       this.observable = observable
       this.subscribe(observable);
     }
@@ -286,9 +286,8 @@ class ObserveDirective extends AsyncDirective {
   // If the subtree the directive is in was disconneted and subsequently
   // re-connected, re-subscribe to make the directive operable again
   reconnected() {
-    this.subscribe(this.observable);
+    this.subscribe(this.observable!);
   }
 }
 export const observe = directive(ObserveDirective);
 ```
-
