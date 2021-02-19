@@ -23,8 +23,8 @@ Lit includes a few built-in directives.
 *   [`asyncReplace`](#asyncreplace) - renders the latest value from an `AsyncInterable` into the DOM as it is yielded
 *   [`cache`](#cache) - caches rendered DOM when changing templates rather than discarding the DOM
 *   [`classMap`](#classmap) - sets a list of classes to an element based on an object
-*   [`ifDefined`](#ifdefined) - sets an attribute if the value is defined and removes the attribute if undefined
 *   [`guard`](#guard) - only re-evaluates the template when one of its dependencies changes
+*   [`ifDefined`](#ifdefined) - sets an attribute if the value is defined and removes the attribute if undefined
 *   [`live`](#live) - sets an attribute or property if it differs from the live DOM value rather than the last-rendered value
 *   [`repeat`](#repeat) - renders values from an interable into the DOM, with optional keying
 *   [`styleMap`](#stylemap) - sets a list of style properties to an element based on an object
@@ -43,37 +43,34 @@ Appends values from an `AsyncInterable` into the DOM as they are yielded.
 | Signature | `asyncAppend(iterable: AsyncInterable)`|
 | Usable location  | child expression |
 
-JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
+JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready. Note that async generators also implement the async iterable protocol, and thus can be consumed by `asyncAppend`.
 
 `asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), appending each new value after the previous.
 
-Example:
-
-<div class="alert alert-info">
-
-In the near [future](https://github.com/whatwg/streams/issues/778#issuecomment-461341033), `ReadableStream`s will be async iterables, enabling streaming `fetch()` directly into a template.
-
-</div>
-
 ```ts
-import {LitElement, html, customElement, state} from 'lit';
-import {asyncAppend} from 'lit/directives/async-append.js';
+import {LitElement, html} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
+import {asyncAppend} from 'lit/directives/async-replace.js';
+
+async function *tossCoins() {
+  while (true) {
+    yield Math.random() > 0.5 ? 'Heads' : 'Tails';
+  }
+};
 
 @customElement('my-element')
 class MyElement extends LitElement {
 
   @state()
-  private streamingResponse = (async() => {
-    // Endpoint that returns a billion digits of PI, streamed.
-    const response = await fetch('http://.../pi-billion.txt');
-    return response.body.getReader();
-  }();
+  private tosses = tossCoins();
 
   render() {
-    reutrn html`The value of π is: ${asyncAppend(this.streamingResponse)}`;
+    return html`
+      <ul>${asyncAppend(this.tosses, (v: string) => html`<li>${v}</li>`)}</ul>`;
   }
 }
 ```
+Explore `asyncReplace` more in the [playground](/playground/#sample=examples/directive-async-replace).
 
 ## asyncReplace
 
@@ -87,16 +84,15 @@ Renders the latest value from an `AsyncInterable` into the DOM as it is yielded.
 
 Similar to [`asyncAppend`](#asyncappend), `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), replacing the previous value with each new value.
 
-Example:
-
 ```ts
-import {LitElement, html, customElement, state} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 import {asyncReplace} from 'lit/directives/async-replace.js';
 
-async function *countUp() {
+async function *timeNow() {
   let i = 0;
   while (true) {
-    yield i++;
+    yield new Date().toString();
     await new Promise((r) => setTimeout(r, 1000));
   }
 };
@@ -105,13 +101,14 @@ async function *countUp() {
 class MyElement extends LitElement {
 
   @state()
-  private count = countUp();
+  private time = timeNow();
 
   render() {
-    reutrn html`  Count: <span>${asyncReplace(this.count)}</span>.`;
+    return html`Time now: <span>${asyncReplace(this.time)}</span>.`;
   }
 }
 ```
+Explore `asyncAppend` more in the [playground](/playground/#sample=examples/directive-async-append).
 
 ## cache
 
@@ -129,11 +126,11 @@ When the template changes, the directive caches the _current_ DOM nodes before
 switching to the new value, and restores them from the cache when switching back
 to a previously-rendered value, rather than creating the DOM nodes anew.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement, property} from 'lit';
-import {asyncReplace} from 'lit/directives/async-replace.js';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
+import {cache} from 'lit/directives/cache.js';
 
 const detailView = (data) => html`<div>...</div>`;
 const summaryView = (data) => html`<div>...</div>`;
@@ -142,10 +139,10 @@ const summaryView = (data) => html`<div>...</div>`;
 class MyElement extends LitElement {
 
   @property()
-  data: AppData;
+  data = {showDetails: true, /*...*/ };
 
   render() {
-    reutrn html`${cache(this.data.showDetails
+    return html`${cache(this.data.showDetails
       ? detailView(this.data)
       : summaryView(this.data)
     )}`;
@@ -156,6 +153,8 @@ class MyElement extends LitElement {
 When Lit re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, Lit needs to remove the old DOM and render a new DOM tree.
 
 The `cache` directive caches the generated DOM for a given expression and input template. In the example above, it would cache the DOM for both the `summaryView` and `detailView` templates. When you switch from one view to another, Lit just needs to swap in the cached version of the new view, and and update it with the latest data.
+
+Explore `cache` more in the [playground](/playground/#sample=examples/directive-cache).
 
 ## classMap
 
@@ -169,10 +168,10 @@ Sets a list of classes to an element based on an object.
 
 Sets a list of classes based on an object. Each key in the object is treated as a class name, and if the value associated with the key is truthy, that class is added to the element.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement, property} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 
 @customElement('my-element')
@@ -183,7 +182,7 @@ class MyElement extends LitElement {
 
   render() {
     const classes = { enabled: this.enabled, hidden: false };
-    reutrn html`<div class=${classMap(classes)}>Classy text</div>`;
+    return html`<div class=${classMap(classes)}>Classy text</div>`;
   }
 }
 ```
@@ -195,51 +194,7 @@ be combined with static values:
 html`<div class="my-widget ${classMap(dynamicClasses)}">Static and dynamic</div>`;
 ```
 
-## ifDefined
-
-Sets an attribute if the value is defined and removes the attribute if undefined.
-
-| | |
-|-|-|
-| Import | `import {ifDefined} from 'lit/directives/if-defined.js';`|
-| Signature | `ifDefined(value: unknown)`|
-| Usable location | Attribute expression |
-
-For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined (`undefined` or `null`). For other part types, this directive is a no-op.
-
-When more than one expression exists in a single attribute value, the attribute will be removed if _any_ expression uses `ifDefined` and evaluates to `undefined`/`null`. This is especially useful for setting URL attributes, when the attribute should not be set if required parts of the URL are not defined, to prevent 404's.
-
-Example:
-
-```ts
-import {LitElement, html, customElement, property} from 'lit';
-import {ifDefined} from 'lit/directives/if-defined.js';
-
-@customElement('my-element')
-class MyElement extends LitElement {
-
-  @property()
-  filename: string | undefined = undefined;
-
-  @property()
-  size: string | undefined = undefined;
-
-  render() {
-    // src attribute not rendered if either size or filename are undefined
-    reutrn html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
-  }
-}
-```
-
-Note that as of Lit 2.0, rendering `nothing` to any expression in an attribute value will remove the entire attribute, similar to `ifDefined`. Thus `value ?? nothing` has identical semantics to `ifDefined(value)` in an attribute expression, making the following code equivalent to the example above:
-
-```ts
-render() {
-  reutrn html`<img src="/images/${this.size ?? nothing}/${this.filename ?? nothing}">`;
-}
-```
-
-Nevertheless, `ifDefined` remains for backward-compatibility.
+Explore `classMap` more in the [playground](/playground/#sample=examples/directive-class-map).
 
 ## guard
 
@@ -262,10 +217,10 @@ Where:
 `guard` is useful with immutable data patterns, by preventing expensive work
 until data updates.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement, property} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {guard} from 'lit/directives/guard.js';
 
 @customElement('my-element')
@@ -282,8 +237,57 @@ class MyElement extends LitElement {
   }
 }
 ```
-
 In this case, the expesive `calculateSHA` function is only run when the `value` property changes.
+
+Explore `guard` more in the [playground](/playground/#sample=examples/directive-guard).
+
+## ifDefined
+
+Sets an attribute if the value is defined and removes the attribute if undefined.
+
+| | |
+|-|-|
+| Import | `import {ifDefined} from 'lit/directives/if-defined.js';`|
+| Signature | `ifDefined(value: unknown)`|
+| Usable location | Attribute expression |
+
+For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined (`undefined` or `null`). For other part types, this directive is a no-op.
+
+When more than one expression exists in a single attribute value, the attribute will be removed if _any_ expression uses `ifDefined` and evaluates to `undefined`/`null`. This is especially useful for setting URL attributes, when the attribute should not be set if required parts of the URL are not defined, to prevent 404's.
+
+
+```ts
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
+import {ifDefined} from 'lit/directives/if-defined.js';
+
+@customElement('my-element')
+class MyElement extends LitElement {
+
+  @property()
+  filename: string | undefined = undefined;
+
+  @property()
+  size: string | undefined = undefined;
+
+  render() {
+    // src attribute not rendered if either size or filename are undefined
+    return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
+  }
+}
+```
+
+Note that as of Lit 2.0, rendering `nothing` to any expression in an attribute value will remove the entire attribute, similar to `ifDefined`. Thus `value ?? nothing` has identical semantics to `ifDefined(value)` in an attribute expression, making the following code equivalent to the example above:
+
+```ts
+render() {
+  return html`<img src="/images/${this.size ?? nothing}/${this.filename ?? nothing}">`;
+}
+```
+
+Nevertheless, `ifDefined` remains for backward-compatibility.
+
+Explore `ifDefined` more in the [playground](/playground/#sample=examples/directive-if-defined).
 
 ## live
 
@@ -305,20 +309,20 @@ In these cases if the DOM value changes, but the value set through Lit expressio
 it alone. If this is not what you want—if you want to overwrite the DOM
 value with the bound value no matter what—use the `live()` directive.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement, property} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {live} from 'lit/directives/live.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
 
   @property()
-  value: string = '';
+  data = {value: 'test'};
 
   render() {
-    return html`<input .value=${live(this.value)}>`;
+    return html`<input .value=${live(this.data.value)}>`;
   }
 }
 ```
@@ -328,6 +332,8 @@ the new value is equal to the live value, does nothing. This means that
 `live()` should not be used when the expression will cause a type conversion. If
 you use `live()` with an attribute expression, make sure that only strings are
 passed in, or the expression will update every render.
+
+Explore `live` more in the [playground](/playground/#sample=examples/directive-live).
 
 ## repeat
 
@@ -345,10 +351,10 @@ the `keyFn` is provided, key-to-DOM association is maintained between updates by
 moving DOM when required, and is generally the most efficient way to use
 `repeat` since it performs minimum unnecessary work for insertions and removals.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement, property} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 
 @customElement('my-element')
@@ -374,6 +380,8 @@ items to values, and DOM will be reused against potentially different items.
 See [Repeating templates with the repeat directive](writing-templates#repeating-templates-with-the-repeat-directive) for a discussion
 of when to use `repeat` and when to use standard JavaScript flow control.
 
+Explore `repeat` more in the [playground](/playground/#sample=examples/directive-repeat).
+
 ## styleMap
 
 Sets a list of style properties to an element based on an object.
@@ -384,10 +392,11 @@ Sets a list of style properties to an element based on an object.
 | Signature | `styleMap(styleInfo: {[name: string]: string})` |
 | Usable location | `style` attribute expression (must be the only expression in the `style` attribute) |
 
-The `styleMap` directive sets styles on an element based on an object, where each key in the object is treated as a style property, and the value is treated as the value for that property. For example:
+The `styleMap` directive sets styles on an element based on an object, where each key in the object is treated as a style property, and the value is treated as the value for that property.
 
 ```ts
-import {LitElement, html, customElement, property} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {styleMap} from 'lit/directives/style-map.js';
 
 @customElement('my-element')
@@ -398,7 +407,7 @@ class MyElement extends LitElement {
 
   render() {
     const styles = { backgroundColor: this.enabled ? 'blue' : 'gray', color: 'white' };
-    reutrn html`<p style=${styleMap(styles)}>Hello style!</p>`;
+    return html`<p style=${styleMap(styles)}>Hello style!</p>`;
   }
 }
 ```
@@ -417,6 +426,8 @@ be combined with static values:
 html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 ```
 
+Explore `styleMap` more in the [playground](/playground/#sample=examples/directive-style-map).
+
 ## templateContent
 
 Renders the content of a `<template>` element.
@@ -431,13 +442,13 @@ Note, the template contents should be developer controlled and not
 user controlled. User controlled templates rendered with this directive
 could lead to cross-site scripting (XSS) vulnerabilities.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import {templateContent} from 'lit/directives/template-content.js';
 
-const templateEl = document.querySelector('template#myContent');
+const templateEl = document.querySelector('template#myContent') as HTMLTemplateElement;
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -449,6 +460,7 @@ class MyElement extends LitElement {
   }
 }
 ```
+Explore `templateContent` more in the [playground](/playground/#sample=examples/directive-template-content).
 
 ## unsafeHTML
 
@@ -463,13 +475,13 @@ Renders a string as HTML rather than text.
 Note, this is unsafe to use with any user-provided input that hasn't been
 sanitized or escaped, as it may lead to cross-site scripting (XSS) vulnerabilities.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
-const markup = '<div>Some HTML to render.</div>';
+const markup = '<h3>Some HTML to render.</h3>';
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -482,6 +494,7 @@ class MyElement extends LitElement {
   }
 }
 ```
+Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/directive-unsafe-html).
 
 ## unsafeSVG
 
@@ -496,10 +509,10 @@ Renders a string as SVG rather than text.
 Note, this is unsafe to use with any user-provided input that hasn't been
 sanitized or escaped, as it may lead to cross-site-scripting vulnerabilities.
 
-Example:
 
 ```ts
-import {LitElement, html, customElement} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
 
 const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
@@ -517,6 +530,7 @@ class MyElement extends LitElement {
   }
 }
 ```
+Explore `unsafeSVG` more in the [playground](/playground/#sample=examples/directive-unsafe-svg).
 
 ## until
 
@@ -539,10 +553,9 @@ be used as the second (lower-priority) argument. The loading indicator
 renders immediately, and the primary content will render when the Promise
 resolves.
 
-Example:
-
 ```ts
-import {LitElement, html, customElement, state} from 'lit';
+import {LitElement, html} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 import {until} from 'lit/directives/until.js';
 
 @customElement('my-element')
@@ -556,3 +569,4 @@ class MyElement extends LitElement {
   }
 }
 ```
+Explore `until` more in the [playground](/playground/#sample=examples/directive-until).
