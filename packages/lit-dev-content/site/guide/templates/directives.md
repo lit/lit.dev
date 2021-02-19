@@ -43,9 +43,9 @@ Appends values from an `AsyncInterable` into the DOM as they are yielded.
 | Signature | `asyncAppend(iterable: AsyncInterable)`|
 | Usable location  | child expression |
 
-JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready. Note that async generators also implement the async iterable protocol, and thus can be consumed by `asyncAppend`.
+JavaScript asynchronous iterators provide a generic interface for asynchronous sequential access to data. Much like an iterator, a consumer requests the next data item with a call to `next()`, but with asynchronous iterators `next()` returns a `Promise`, allowing the iterator to provide the item when it's ready.
 
-`asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), appending each new value after the previous.
+`asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), appending each new value after the previous. Note that async generators also implement the async iterable protocol, and thus can be consumed by `asyncAppend`.
 
 ```ts
 import {LitElement, html} from 'lit';
@@ -55,6 +55,7 @@ import {asyncAppend} from 'lit/directives/async-replace.js';
 async function *tossCoins() {
   while (true) {
     yield Math.random() > 0.5 ? 'Heads' : 'Tails';
+    await new Promise((r) => setTimeout(r, 1000));
   }
 };
 

@@ -5,6 +5,7 @@ import {asyncAppend} from 'lit/directives/async-replace.js';
 async function *tossCoins() {
   while (true) {
     yield Math.random() > 0.5 ? 'Heads' : 'Tails';
+    await new Promise((r) => setTimeout(r, 1000));
   }
 };
 
