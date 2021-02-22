@@ -14,7 +14,7 @@ How an expression is interpreted depends on where it appears in the template.
 
 **Child nodes**
 
-Expressions can specify child nodes, including text.
+These expressions set nodes or text in the DOM.
 
 ```js
 html`
@@ -26,13 +26,13 @@ html`
 
 **Attribute values**
 
-Expressions can set attribute values.
+These expressions set attributes.
 
 ```js
 html`<div class=${highlightClass}></div>`
 ```
 
-Expressions can also set boolean attributes.
+These expressions set boolean attributes.
 
 ```js
 html`<div ?hidden=${!show}></div>`
@@ -40,7 +40,7 @@ html`<div ?hidden=${!show}></div>`
 
 **Properties**
 
-Expressions can also set properties.
+These expressions set properties.
 
 ```js
 html`<input .value=${value}>`
@@ -48,7 +48,7 @@ html`<input .value=${value}>`
 
 **Event listeners**
 
-Expressions can specify event listeners.
+These expressions set event listeners.
 
 ```js
 html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
@@ -56,7 +56,7 @@ html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
 
 **Element references**
 
-A special type of expression can be used to access the element itself.
+These expressions must be directives, and they can be used, for example, to access the element itself.
 
 ```js
 html`<input ${ref(inputRef)}>`
@@ -117,7 +117,7 @@ For more on using JavaScript to create repeating templates, see [Lists & repeati
 
 ### DOM nodes
 
-Any DOM Node can be passed to a child expression. The node is attached to the DOM tree at that point, and so removed from any current parent:
+Any DOM node can be passed to a child expression. Typically DOM nodes should be rendered by specifying a template using `html`, but a DOM node can be directly rendered like this when needed. The node is attached to the DOM tree at that point, and so removed from any current parent:
 
 ```js
 const div = document.createElement('div');
