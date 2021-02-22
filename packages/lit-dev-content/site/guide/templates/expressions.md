@@ -221,7 +221,7 @@ For example, the `classMap` directive lets you specify a set of CSS classes base
 
 ```js
 import {html} from 'lit';
-import {classMap} from 'lit/directives/classMap.js';
+import {classMap} from 'lit/directives/class-map.js';
 // ...
 render() {
   const classes = {
