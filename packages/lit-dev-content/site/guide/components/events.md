@@ -289,7 +289,7 @@ render() {
 }
 ```
 
-When handling such an event, you can find where it originated from with `event.composedPath()`. This method returns an array of all the nodes traversed by the event dispatch.
+In advanced cases where it is required to determine the origin of an event, use the `event.composedPath()` API. This method returns an array of all the nodes traversed by the event dispatch, including those within shadow roots. Because this breaks encapsulation, care should be taken to avoid relying on implementation details that may be exposed.  Common use cases include determining if the element clicked was an anchor tag, for purposes of client-side routing.
 
 ```js
 handleMyEvent(event) {
