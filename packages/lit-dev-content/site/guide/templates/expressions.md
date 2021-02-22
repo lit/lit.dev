@@ -217,7 +217,7 @@ clickHandler() {
 
 Lit allows special functions, called _directives_, to customize the way an expression is processed and rendered. Lit provides some built-in directives, or you can write your own.
 
-For example, the `classMap` directive lets you specify a set of CSS classes in a single expression:
+For example, the `classMap` directive lets you specify a set of CSS classes based on the keys and values of a Javascript object:
 
 ```js
 import {html} from 'lit';
