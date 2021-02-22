@@ -246,7 +246,7 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with directives. You can't use any other kind of value with an element expression.
+Element expressions only work with directives. Any other value types in an element expression are ignored.
 
 There are a few built-in directives that can be used in element expressions. One example is the `ref` directive, which provides a reference to the rendered element.
 
