@@ -196,7 +196,7 @@ See [EventTarget.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/A
 
 ### When to dispatch an event
 
-Events should be dispatched in response to user interaction. They should generally **not** be dispatched in response to imperative changes made in code or autonomous state changes. This is generally how native web platform elements work.
+Events should be dispatched in response to user interaction or asynchronous changes in the component's state. They should generally **not** be dispatched in response to state changes made by the owner of the component via its property or attribute APIs. This is generally how native web platform elements work.
 
 For example, when a user types a value into an `input` element a `change` event is dispatched, but if code sets the `input`'s `value` property, a `change` event is **not** dispatched.
 
