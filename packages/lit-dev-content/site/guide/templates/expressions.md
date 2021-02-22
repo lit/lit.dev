@@ -164,10 +164,10 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 Sometimes you want to set an attribute value only if a data value or set of values is available. For example, consider:
 
 ```js
-html`<img src="/images/${this.image}">`;
+html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 ```
 
-If `this.image` is not defined, the `src` attribute should not be set or an invalid network request will occur.
+If `this.image` or `this.imagePath` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
 You can use the `ifDefined` function to avoid this issue:
 
@@ -298,6 +298,8 @@ Follow these rules for well-formed templates:
     <!-- ERROR -->
     <div ${attrName}=true></div>
     ```
+
+    See the [unsafeHTML() directive](./directives/#unsafehtml) for information about rendering static html in templates.
 
  *  Templates can have multiple top-level elements and text.
 
