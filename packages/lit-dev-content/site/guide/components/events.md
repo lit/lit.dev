@@ -39,7 +39,7 @@ You can use `@` expressions in your template to add event listeners to element's
 
 #### Using the `@eventOptions` decorator
 
-You can use the `@eventOptions` decorator to specify options for a declarative listener used in the component template. The object passed to `@eventOptions` is passed as the `options` parameter to `addEventListener`.
+If you need to customize the event options used for a declarative event listener (like `passive` or `capture`), you can specify these on the listener using the `@eventOptions` decorator. The object passed to `@eventOptions` is passed as the `options` parameter to `addEventListener`.
 
 ```js
 import {LitElement, html, eventOptions} from 'lit-element';
