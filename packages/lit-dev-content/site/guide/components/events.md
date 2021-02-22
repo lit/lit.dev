@@ -208,7 +208,7 @@ This typically means that a component should dispatch an event in response to an
 
 ### Dispatching events after an element updates
 
-For advanced use cases, sometimes an event should be fired only after an element updates and renders. This might be necessary if an event is intended to communicate a change in rendered state based on user interaction. In this case, the component's `updateComplete` Promise can be used and the event dispatched after it resolves.
+Often, an event should be fired only after an element updates and renders. This might be necessary if an event is intended to communicate a change in rendered state based on user interaction. In this case, the component's `updateComplete` Promise can be awaited after changing state, but before dispatching the event.
 
 {% playground-ide "docs/components/events/update/" "my-dispatcher.ts" %}
 
