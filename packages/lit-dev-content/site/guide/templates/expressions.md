@@ -137,7 +137,7 @@ For examples, see see [Lists & repeating templates](lists).
 
 ## Setting attributes
 
-In addition to using expressions to add child nodes, you can use them to set an elements's attribute and properties, too.
+In addition to using expressions to add child nodes, you can use them to set an elements's attributes and properties, too.
 
 By default, an expression in the value of an attribute sets the attribute:
 
