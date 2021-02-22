@@ -248,7 +248,9 @@ this.dispatchEvent(event);
 
 When using shadow DOM there are a few modifications to the standard event system that are important to understand. Shadow DOM exists primarily to provide a scoping mechanism in the DOM that encapsulates details about these "shadow" elements. As such, events in shadow DOM encapsulate certain details from outside DOM elements.
 
-Events not dispatched with the [composed](#shadowdom-composed) option stop at the shadow DOM boundary, and events are [retargeted](#shadowdom-retargeting) to appear as if they were dispatched from the element hosting the shadow root.
+Only events dispatched with the [composed](#shadowdom-composed) are are visible outside of a shadow root. Non-composed events may only be listened for within the shadow root in which they are dispatched.
+
+In addition, `composed` events are [retargeted](#shadowdom-retargeting) to appear as if they were dispatched from the element hosting the shadow root.
 
 ### Understanding composed event dispatching {#shadowdom-composed}
 
