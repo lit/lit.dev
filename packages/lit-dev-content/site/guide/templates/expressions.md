@@ -236,7 +236,7 @@ render() {
 
 See [classMap](directives#classmap) for more information.
 
-For a list of directives provided with Lit, see [Built-in directives](directives).
+For a list of directives provided with Lit including `classMap` shown above, see [Built-in directives](directives). For information on writing custom directives, see [Custom directives](../composition/directives).
 
 ## Element expressions
 
