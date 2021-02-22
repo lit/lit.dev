@@ -262,7 +262,7 @@ Lit templates must be well-formed HTML, and expressions can only occur in certai
 
 <div class="alert alert-info">
 
-**Finding malformed templates.** Most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. Fortunately, there are <a href="/guide/tools/development/#linting">linting tools</a> and <a href="/guide/tools/development/#ide-plugins">IDE plugins</a> that you can use to find issues in your templates during development.
+**Finding malformed templates.** Because the browser's built-in parser is very lenient, most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. We recommend using <a href="/guide/tools/development/#linting">linting tools</a> and <a href="/guide/tools/development/#ide-plugins">IDE plugins</a> to find issues in your templates during development.
 
 </div>
 
