@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "Misc tools for the lit.dev",
-  "author": "Polymer Project Authors",
+  "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
     "build": "../../node_modules/.bin/tsc",

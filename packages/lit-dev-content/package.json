@@ -2,10 +2,9 @@
   "name": "lit-dev-content",
   "private": true,
   "version": "0.0.0",
-  "description": "> TODO: description",
-  "author": "Justin Fagnani <justinfagnani@google.com>",
-  "homepage": "",
-  "license": "ISC",
+  "description": "lit.dev site content",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
   "main": "_site/index.html",
   "scripts": {
     "build": "npm run build:ts && npm run build:js && npm run build:site",
