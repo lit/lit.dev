@@ -1,11 +1,7 @@
-import { LitElement, html, css, customElement, property } from 'lit-element';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
+import { property } from 'lit/decorators/property';
 
-const blueText = html`
-  <style> :host { color: blue; } </style>
-`;
-const redText = html`
-  <style> :host { color: red; } </style>
-`;
 @customElement('my-element')
 export class MyElement extends LitElement {
   static styles = css`
@@ -19,6 +15,12 @@ export class MyElement extends LitElement {
     this.red = !this.red;
   }
   protected render() {
+    const blueText = html`
+      <style> :host { color: blue; } </style>
+    `;
+    const redText = html`
+      <style> :host { color: red; } </style>
+    `;
     return html`
       <button @click=${this._toggleColor}>Toggle color</button>
       ${this.red ? redText : blueText}

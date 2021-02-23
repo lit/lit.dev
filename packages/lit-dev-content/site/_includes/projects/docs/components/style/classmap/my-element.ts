@@ -1,11 +1,11 @@
-import { LitElement, html, css, customElement } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
+import { classMap } from 'lit/directives/class-map';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
   static styles = css`
     .alert {
-      padding: 16px;
       background-color: whitesmoke;
     }
     .info {

@@ -1,4 +1,5 @@
-import { LitElement, html, css, unsafeCSS, customElement } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
 
 @customElement('my-element')
 export class MyElement extends LitElement {

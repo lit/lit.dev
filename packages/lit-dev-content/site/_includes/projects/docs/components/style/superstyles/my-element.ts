@@ -1,4 +1,5 @@
-import { css, customElement } from 'lit-element';
+import { css } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
 import { SuperElement } from './super-element.js';
 
 @customElement('my-element')

@@ -10,9 +10,7 @@ Your component's template is rendered to its shadow DOM tree. The styles you add
 
 ## Adding styles to your component {#add-styles}
 
-For optimal performance, define scoped styles in a static `styles` property.
-
-Define styles in a tagged template literal, using the `css` tag function:
+You define scoped styles in the static `styles` property using the tagged template literal `css` function. Defining styles this way results in the most optimal performance:
 
 {% playground-example "docs/components/style/basic" "my-element.ts" %}
 
@@ -32,7 +30,7 @@ The value of the static `styles` property can be:
     static styles = [ css`...`, css`...`];
     ```
 
-The static `styles` property is _usually_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
+The static `styles` property is _almost always_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
 
 ### Using expressions in static styles {#expressions}
 
@@ -175,7 +173,7 @@ my-element > div {
 
 ## Defining scoped styles in the template {#styles-in-the-template}
 
-We recommend using the static `styles` property for optimal performance.  However, sometimes you may want to define styles in the LitElement template. There are two ways to add scoped styles in the template:
+We recommend using the [static `styles` property](#add-styles) for optimal performance.  However, sometimes you may want to define styles in the LitElement template. There are two ways to add scoped styles in the template:
 
 *   Add styles using a [`<style>` element](#style-element).
 *   Add styles using an [external style sheet](#external-stylesheet) (not recommended).
@@ -184,7 +182,7 @@ Each of these techniques has its own set of advantages and drawbacks.
 
 ### In a style element {#style-element}
 
-We recommend placing your styles in a static `styles` property for optimal performance; however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a LitElement template. These are updated per instance.
+Typically, styles are placed in the [static `styles` property](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a LitElement template. These are updated per instance.
 
 ```js
 render() {
@@ -229,17 +227,13 @@ render() {
 
 Evaluating an expression inside a `<style>` element is extremely inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work.
 
-To mitigate this cost, use the following strategy:
-
-*   Separate styles that require per-instance evaluation from those that don't.
-*   Evaluate per-instance CSS properties by creating an expression that captures that property inside a complete `<style>` block. Include it in your template.
-
+To mitigate this cost, separate styles that require per-instance evaluation from those that don't.
 
 {% playground-example "docs/components/style/perinstanceexpressions" "my-element.ts" %}
 
 ### Import an external stylesheet (not recommended) {#external-stylesheet}
 
-We recommend placing your styles in a static `styles` property for optimal performance. While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach.
+While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach. Instead, styles should be placed in the [static `styles` property](#add-styles).
 
 <div class="alert alert-info">
 

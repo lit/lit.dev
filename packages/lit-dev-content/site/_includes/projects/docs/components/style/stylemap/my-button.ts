@@ -1,5 +1,6 @@
-import { LitElement, html, customElement } from 'lit-element';
-import { styleMap } from 'lit-html/directives/style-map';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
+import { styleMap } from 'lit/directives/style-map';
 
 @customElement('my-button')
 export class MyButton extends LitElement {

@@ -1,5 +1,6 @@
-import { styleMap } from 'lit-html/directives/style-map';
-import { LitElement, html, customElement } from 'lit-element';
+import { LitElement, html } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
+import { styleMap } from 'lit/directives/style-map';
 
 export const styles = {
   'background-color': 'whitesmoke',

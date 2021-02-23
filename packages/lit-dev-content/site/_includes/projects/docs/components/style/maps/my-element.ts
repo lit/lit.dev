@@ -1,6 +1,8 @@
-import { LitElement, html, css, customElement, property } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
-import { styleMap } from 'lit-html/directives/style-map';
+import { LitElement, html, css } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
+import { property } from 'lit/decorators/property';
+import { classMap } from 'lit/directives/class-map';
+import { styleMap } from 'lit/directives/style-map';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
