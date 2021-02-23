@@ -77,10 +77,6 @@ header .menu-button {
   display: none;
 }
 
-.search-box {
-  display: none;
-}
-
 @media (max-width: 699px) {
   header .menu-button {
     display: flex;
