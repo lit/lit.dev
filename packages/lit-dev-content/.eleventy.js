@@ -11,6 +11,7 @@ const {
 const htmlMinifier = require('html-minifier');
 const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
+const fsSync = require('fs');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -119,14 +120,44 @@ ${content}
     return minified;
   });
 
-  // https://www.11ty.dev/docs/quicktips/inline-css/
-  eleventyConfig.addFilter('cssmin', function (code) {
+  /**
+   * Bundle, minify, and inline a CSS file. Path is relative to ./site/css/.
+   *
+   * In dev mode, instead import the CSS file directly.
+   */
+  eleventyConfig.addShortcode('inlinecss', (path) => {
     if (DEV) {
-      return code;
+      return `<link rel="stylesheet" href="/css/${path}">`;
     }
-    const result = new CleanCSS({}).minify(code);
-    return result.styles;
+    const result = new CleanCSS({inline: ['local']}).minify([
+      `./site/css/${path}`,
+    ]);
+    if (result.errors.length > 0 || result.warnings.length > 0) {
+      throw new Error(
+        `CleanCSS errors/warnings on file ${path}:\n\n${[
+          ...result.errors,
+          ...result.warnings,
+        ].join('\n')}`
+      );
+    }
+    return `<style>${result.styles}</style>`;
   });
+
+  /**
+   * Inline the Rollup-bundled version of a JavaScript module. Path is relative
+   * to ./site/_includes/js/ directory (which is where Rollup output goes).
+   *
+   * In dev mode, instead directly import the module relative from ./lib/ (which
+   * is where TypeScript output goes).
+   */
+  eleventyConfig.addShortcode('inlinejs', (path) => {
+    if (DEV) {
+      return `<script type="module" src="/lib/${path}"></script>`;
+    }
+    const script = fsSync.readFileSync(`site/_includes/js/${path}`, 'utf8');
+    return `<script type="module">${script}</script>`;
+  });
+
   if (DEV) {
     eleventyConfig.on('afterBuild', async () => {
       await Promise.all([

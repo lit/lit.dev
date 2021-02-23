@@ -1,16 +1,8 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  {% if dev %}
-    <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css"></link>
-    <script type="module" src="{{site.baseurl}}/lib/guide.js"></script>
-  {% else %}
-    <style>
-      {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
-      {{ guidecss | cssmin | safe }}
-    </style>
-    <script type="module">{% include 'js/guide.js' %}</script>
-  {% endif %}
+  {% inlinecss "guide.css" %}
+  {% inlinejs "guide.js" %}
 {% endblock %}
 
 {% block drawer %}
