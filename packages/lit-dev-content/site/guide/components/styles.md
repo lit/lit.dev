@@ -40,13 +40,27 @@ For tree-based or per-instance style customization, use CSS custom properties to
 
 To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
 
-{% playground-example "docs/components/style/nestedcss" "my-element.ts" %}
+```js
+static get styles() {
+  const mainColor = css`red`;
+  return css`
+    div { color: ${mainColor} }
+  `;
+}
+```
 
 This restriction exists to protect applications from security vulnerabilities whereby malicious styles, or even malicious code, can be injected from untrusted sources such as URL parameters or database values.
 
 If you must use an expression in a `css` literal that is not itself a `css` literal, **and** you are confident that the expression is from a fully trusted source such as a constant defined in your own code, then you can wrap the expression with the `unsafeCSS` function:
 
-{% playground-example "docs/components/style/unsafecss" "my-element.ts" %}
+```js
+static get styles() {
+  const mainColor = 'red';
+  return css`
+    div { color: ${unsafeCSS(mainColor)} }
+  `;
+}
+```
 
 <div class="alert alert-info">
 
@@ -65,8 +79,6 @@ Using an array of tagged template literals, a component can inherit the styles f
 You can share styles between components by creating a module that exports tagged styles:
 
 ```js
-import { css } from 'lit-element';
-
 export const buttonStyles = css`
   .blue-button {
     color: white;
@@ -108,9 +120,7 @@ Styles you add to a component can affect:
 
 LitElement templates are rendered into a shadow tree by default. Styles scoped to an element's shadow tree don't affect the main document or other shadow trees. Similarly, with the exception of [inherited CSS properties](#inheritance), document-level styles don't affect the contents of a shadow tree.
 
-When you use standard CSS selectors, they only match elements in your component's shadow tree.
-
-{% playground-example "docs/components/style/styleatemplate" "my-element.ts" %}
+When you use standard CSS selectors, they only match elements in your component's shadow tree. This means you can often use very simple selectors since you don't have to worry about them accidentally styling other parts of the page; for example: `input`, `*`, or `#my-element`.
 
 ### Styling the component itself {#host}
 
@@ -229,7 +239,13 @@ Evaluating an expression inside a `<style>` element is extremely inefficient. Wh
 
 To mitigate this cost, separate styles that require per-instance evaluation from those that don't.
 
-{% playground-example "docs/components/style/perinstanceexpressions" "my-element.ts" %}
+```js
+  static styles = css`/* ... */`;
+  render() {
+    const redStyle = html`<style> :host { color: red; } </style>`;
+    return html`${this.red ? redStyle : ''}`
+
+```
 
 ### Import an external stylesheet (not recommended) {#external-stylesheet}
 
@@ -258,8 +274,8 @@ To use `styleMap` and/or `classMap`:
 1.  Import `classMap` and/or `styleMap`:
 
     ```js
-    import { classMap } from 'lit-html/directives/class-map';
-    import { styleMap } from 'lit-html/directives/style-map';
+    import { classMap } from 'lit/directives/class-map';
+    import { styleMap } from 'lit/directives/style-map';
     ```
 
 2.  Use `classMap` and/or `styleMap` in your element template:
@@ -270,13 +286,9 @@ To use `styleMap` and/or `classMap`:
 
 `classMap` applies a set of classes to an HTML element:
 
-{% playground-example "docs/components/style/classmap" "my-element.ts" %}
-
 ### styleMap syntax {#stylemap}
 
 `styleMap` applies a set of CSS rules to an HTML element:
-
-{% playground-example "docs/components/style/stylemap" "my-button.ts" %}
 
 To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`).
 
@@ -288,8 +300,6 @@ To refer to custom CSS properties such as `--custom-color`, place the whole prop
 | `font-family: Roboto;` | `fontFamily: 'Roboto'` or<br>`'font-family': 'Roboto'`|
 |`--custom-color: #FFFABC;`|`'--custom-color': '#FFFABC;'`|
 |`--otherColor: #FFFABC;`|`'--otherColor': '#FFFABC;'`|
-
-{% playground-example "docs/components/style/stylemap2" "my-element.ts" %}
 
 ## Theming {#theming}
 
