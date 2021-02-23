@@ -14,22 +14,7 @@ Any Javascript code, including Lit elements themselves, can listen for and take 
 
 ## Listening to events
 
-All DOM nodes can dispatch and listen for events. The standard API for listening to events is the `addEventListener` method. In any JavaScript code, you can call `addEventListener` as follows by specifying the event type and a listener function.
-
-```js
-const myElement = document.querySelector('my-element');
-myElement.addEventListener('my-event', (e) => {console.log(e)});
-```
-
-In addition to the type and listener, there is an optional third argument for specifying event options.
-
-
-
-```js
-someElement.addEventListener('touchstart', this._handleTouchStart, {passive: true});
-```
-
-It may seem obvious, but it's important to recognize that events are fired at discrete times, and to receive an event, your listener must be added before it is dispatched.
+In addition to the standard `addEventListener` API, Lit introduces a declarative way to add event listeners.
 
 ### Adding event listeners in the element template
 
@@ -289,10 +274,12 @@ See the [MDN documentation on composedPath](https://developer.mozilla.org/en-US/
 
 Events exist primarily to communicate changes from the event dispatcher to the event listener, but events can also be used to communicate information from the listener back to the dispatcher.
 
-The `preventDefault()` method can be called to indicate the event's standard action should not occur. For example, calling `preventDefault()` in a listener for the click event of a checkbox prevents the checkbox from becoming checked when clicked.
+One way you can do this is to expose API on events which listeners can use to customize component behavior. For example, a listener can set a property on a custom event's detail property which the dispatching component then uses to customize behavior.
 
-When `preventDefault()` is called, the event's `defaultPrevented` property is set to true. When implementing custom events, you can customize behavior by checking the `defaultPrevented` property on the event.
+Another way to communicate between the dispatcher and listener is via the `preventDefault()` method. It can be called to indicate the event's standard action should not occur. When the listener calls `preventDefault()`, the event's `defaultPrevented` property becomes true. This flag can then be used by the listener to customize behavior.
 
-You can also expose additional API on events which listeners can use to customize component behavior. For example, a user could set a property on a custom event's detail property which the component uses.
+Both of these techniques are used in the following example:
 
 {% playground-ide "docs/components/events/comm/" "my-listener.ts" %}
+
+
