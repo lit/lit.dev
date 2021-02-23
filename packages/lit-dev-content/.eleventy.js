@@ -12,12 +12,14 @@ const htmlMinifier = require('html-minifier');
 const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
 const fsSync = require('fs');
+const fastGlob = require('fast-glob');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
 const slugify = (s) => slugifyLib(s, {lower: true});
 
 const DEV = process.env.ELEVENTY_ENV === 'dev';
+const OUTPUT_DIR = DEV ? '_dev' : '_site';
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
@@ -158,28 +160,38 @@ ${content}
     return `<script type="module">${script}</script>`;
   });
 
-  if (DEV) {
-    eleventyConfig.on('afterBuild', async () => {
-      await Promise.all([
-        // Symlink site/css -> _dev/css. We do this in dev mode instead of
-        // addPassthroughCopy() so that changes are reflected immediately,
-        // instead of triggering an Eleventy build.
-        symlinkForce(
-          path.join(__dirname, 'site', 'css'),
-          path.join(__dirname, '_dev', 'css')
-        ),
-        // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs
-        // in dev mode, instead of the Rollup bundles we use for production.
-        symlinkForce(
-          path.join(__dirname, 'lib'),
-          path.join(__dirname, '_dev', 'lib')
-        ),
-      ]);
-    });
-  }
+  eleventyConfig.on('afterBuild', async () => {
+    // The eleventyNavigation plugin requires that each section heading in our
+    // docs has its own actual markdown file. But we don't actually use these
+    // for content, they only exist to generate sections. Delete the HTML files
+    // generated from them so that users can't somehow navigate to some
+    // "index.html" and see a weird empty page.
+    const emptyDocsIndexFiles = await fastGlob([
+      OUTPUT_DIR + '/guide/introduction.html',
+      OUTPUT_DIR + '/guide/*/index.html',
+    ]);
+    await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
+
+    if (DEV) {
+      // Symlink site/css -> _dev/css. We do this in dev mode instead of
+      // addPassthroughCopy() so that changes are reflected immediately, instead
+      // of triggering an Eleventy build.
+      await symlinkForce(
+        path.join(__dirname, 'site', 'css'),
+        path.join(__dirname, '_dev', 'css')
+      );
+
+      // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs in
+      // dev mode, instead of the Rollup bundles we use for production.
+      await symlinkForce(
+        path.join(__dirname, 'lib'),
+        path.join(__dirname, '_dev', 'lib')
+      );
+    }
+  });
 
   return {
-    dir: {input: 'site', output: DEV ? '_dev' : '_site'},
+    dir: {input: 'site', output: OUTPUT_DIR},
     htmlTemplateEngine: 'njk',
   };
 };
