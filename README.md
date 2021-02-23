@@ -61,10 +61,22 @@ global:
 {% endif %}
 ```
 
-### Start production server locally
+### Serve production mode
 
 ```sh
+npm run build
 npm start
+```
+
+### Watch production mode
+
+```sh
+npm start # production server
+
+cd packages/lit-dev-content
+npm run build:ts:watch     # TypeScript
+npm run build:rollup:watch # Rollup
+npm run build:site:watch   # Eleventy
 ```
 
 Serves at [`http://localhost:8080`](http://localhost:8080)

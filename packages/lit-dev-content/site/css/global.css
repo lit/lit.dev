@@ -1,0 +1,47 @@
+@import url('./fonts/roboto.css');
+@import url('./fonts/roboto-mono.css');
+@import url('./header.css');
+@import url('./footer.css');
+@import url('./mobile-nav.css');
+@import url('./code.css');
+
+/* General */
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  color: #3e3e3e;
+  --header-height: 60px;
+  --footer-height: 180px;
+  --toc-width: 300px;
+  --main-max-width: 1200px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+  color: black;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+a {
+  text-decoration: none;
+  color: #1879cd;
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  max-width: var(--main-max-width);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin: auto;
+  box-sizing: border-box;
+}

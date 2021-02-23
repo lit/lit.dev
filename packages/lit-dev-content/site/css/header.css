@@ -1,0 +1,97 @@
+header {
+  position: sticky;
+  top: 0;
+  height: var(--header-height);
+  /* CodeMirrors have a very high z-index for some reason. */
+  z-index: 4;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+}
+
+header .menu-button-and-title {
+  display: flex;
+  align-items: center;
+}
+
+header > nav {
+  width: 100%;
+  max-width: var(--main-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title {
+  font-size: 34px;
+  font-weight: 400;
+  color: #1879cd;
+  margin-left: 24px;
+}
+
+header .top-nav {
+  height: 100%;
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+header .top-nav li {
+  height: 100%;
+}
+
+header .top-nav a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 2px transparent;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+header .top-nav .active a {
+  border-color: #1879cd;
+}
+
+header .top-nav a:hover {
+  border-color: #d4d4d4;
+}
+
+header .action-buttons {
+  display: flex;
+}
+
+header a {
+  color: inherit;
+}
+
+header .icon {
+  padding: 12px;
+  display: flex;
+}
+
+header .menu-button {
+  display: none;
+}
+
+@media (max-width: 699px) {
+  header .menu-button {
+    display: flex;
+  }
+
+  /* Eliminate sizing FOUC before menu button upgrades. */
+  header mwc-icon-button:not(:defined) {
+    padding: 12px;
+  }
+
+  header .title {
+    margin-left: 0;
+  }
+
+  header .top-nav {
+    display: none;
+  }
+}
