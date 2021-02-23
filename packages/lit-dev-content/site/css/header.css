@@ -1,97 +1,72 @@
 header {
+  /* TODO(aomarks) Move these font properties to global.css once the rest of the
+     site is adapted to it. */
+  font-size: 18px;
+  font-family: Manrope, sans-serif;
+
   position: sticky;
   top: 0;
   height: var(--header-height);
   /* CodeMirrors have a very high z-index for some reason. */
   z-index: 4;
-  background: white;
-  border-bottom: 1px solid #ccc;
-  box-sizing: border-box;
+  background: var(--color-light-gray);
   display: flex;
+  padding: 0 1.5em;
+  justify-content: stretch;
 }
 
-header .menu-button-and-title {
-  display: flex;
-  align-items: center;
+#headerLogo {
+  height: 2em;
+  padding: 0.1em 0.5em;
 }
 
 header > nav {
-  width: 100%;
-  max-width: var(--main-max-width);
-  margin: 0 auto;
+  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-header .title {
-  font-size: 34px;
-  font-weight: 400;
-  color: #1879cd;
-  margin-left: 24px;
-}
-
-header .top-nav {
-  height: 100%;
+#desktopNav {
   display: flex;
+  align-items: center;
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-header .top-nav li {
-  height: 100%;
+#desktopNav > .navItem > a {
+  color: var(--color-medium-gray);
+  font-weight: 700;
+  padding: 0.3em 0.5em;
+  margin-left: 0.5em;
+  font-size: 0.9em;
 }
 
-header .top-nav a {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  border-bottom: solid 2px transparent;
-  padding: 0 12px;
-  box-sizing: border-box;
+#desktopNav > .navItem > a:hover,
+#desktopNav > .navItem.active > a {
+  color: black;
 }
 
-header .top-nav .active a {
-  border-color: #1879cd;
-}
-
-header .top-nav a:hover {
-  border-color: #d4d4d4;
-}
-
-header .action-buttons {
-  display: flex;
-}
-
-header a {
-  color: inherit;
-}
-
-header .icon {
-  padding: 12px;
-  display: flex;
-}
-
-header .menu-button {
+#mobileMenuButton {
   display: none;
 }
 
 @media (max-width: 699px) {
-  header .menu-button {
+  #desktopNav {
+    display: none;
+  }
+
+ #mobileMenuButton{
     display: flex;
+  }
+
+  header {
+    padding: 0 0.5em;
   }
 
   /* Eliminate sizing FOUC before menu button upgrades. */
   header mwc-icon-button:not(:defined) {
     padding: 12px;
-  }
-
-  header .title {
-    margin-left: 0;
-  }
-
-  header .top-nav {
-    display: none;
   }
 }

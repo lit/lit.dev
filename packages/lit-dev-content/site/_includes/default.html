@@ -46,9 +46,7 @@
       </nav>
     </mwc-drawer>
 
-    <header>
-      {% include 'header.html' %}
-    </header>
+    {% include 'header.html' %}
 
     <main>
       {% block content %}{{ content | safe }}{% endblock %}
