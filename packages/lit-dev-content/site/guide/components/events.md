@@ -245,7 +245,7 @@ In addition, `composed` events are [retargeted](#shadowdom-retargeting) to appea
 
 By default, a bubbling [custom event](#standard-custom-events) dispatched inside shadow DOM will stop bubbling when it reaches the shadow root.
 
-To make a custom event pass through shadow DOM boundaries, you must set both the `composed` to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can hear the event:
+To make a custom event pass through shadow DOM boundaries, you must set the `composed` flag to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can hear the event:
 
 ```js
 _dispatchMyEvent() {
