@@ -12,13 +12,13 @@
          error for now. -->
     <link rel="icon" href="data:,"></link>
 
-    {% inlinecss "main.css" %}
+    {% inlinecss "global.css" %}
 
     {% if dev %}
-      <script type="module" async src="/lib/site.js"></script>
+      <script type="module" async src="/lib/global.js"></script>
       <script type="module" async src="/lib/playground-elements.js"></script>
     {% else %}
-      <script type="module" async src="/js/site.js"></script>
+      <script type="module" async src="/js/global.js"></script>
       <script type="module" async src="/js/playground-elements.js"></script>
 
       <!-- Note it would be more correct to <link rel="modulepreload"> this common
