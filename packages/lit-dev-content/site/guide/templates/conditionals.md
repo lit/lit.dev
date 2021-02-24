@@ -38,7 +38,7 @@ In most cases, JavaScript conditionals are all you need for conditional template
 
 In this case, you can use the `cache` _directive_. The cache directive caches DOM for templates that aren't being rendered currently.
 
-See [Directives](guide/templates/directives) for more information about directives.
+See the [cache directive](guide/templates/directives/#cache) for more information.
 
 {% playground-example "docs/templates/conditionals/cache" "my-element.ts" %}
 
