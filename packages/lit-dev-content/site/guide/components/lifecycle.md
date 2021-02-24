@@ -192,7 +192,6 @@ This method controls whether or not the rest of the reactive update cycle should
 You can implement `shouldUpdate` to specify which property changes should cause updates. You can use the map of `changedProperties` to compare current and previous values.
 
 ```js
-
 shouldUpdate(changedProperties) {
   // Only update element if prop1 changed.
   return changedProperties.has('prop1');
