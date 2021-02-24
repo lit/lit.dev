@@ -14,10 +14,10 @@ window.addEventListener('DOMContentLoaded', main);
  * On initial load, scroll the link for the current page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
-  const active = document.querySelector('.lhs-nav .active');
-  // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
-  // also scroll the window. scrollIntoViewIfNeeded works fine, though.
-  active?.scrollIntoViewIfNeeded?.();
+  // TODO(aomarks) Disabled because it also scrolls the whole window.
+  // An effect of display:sticky. Look into alternatives.
+  //const active = document.querySelector('.lhs-nav .active');
+  //active?.scrollIntoViewIfNeeded?.();
 };
 
 /**
@@ -90,9 +90,9 @@ const observeActiveTocSection = () => {
           // itself can have a scrollbar. Keep the active section in view as we
           // scroll.
           //
-          // TODO(aomarks) scrollIntoView when the scrolling parent is sticky, will
-          // also scroll the window. scrollIntoViewIfNeeded works fine, though.
-          link.scrollIntoViewIfNeeded();
+          // TODO(aomarks) Disabled because it also scrolls the whole window.
+          // An effect of display:sticky. Look into alternatives.
+          //link.scrollIntoView();
         }
       } else {
         link.classList.remove('active');
