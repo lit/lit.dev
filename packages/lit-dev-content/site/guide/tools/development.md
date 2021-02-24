@@ -76,7 +76,7 @@ npx tsc --watch
 
 For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
 
-## Using IDE plugins { #ide-plugins }
+## Using Lit-specific IDE plugins { #ide-plugins }
 
 There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
 
