@@ -1,0 +1,9 @@
+{
+  "title": "Hello World (TypeScript)",
+  "description": "Basic example of the key features of LitElement.",
+  "section": "Basic Templates",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}

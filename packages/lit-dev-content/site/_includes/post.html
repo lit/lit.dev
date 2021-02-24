@@ -1,11 +1,8 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  <style>
-    {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
-    {{ guidecss | cssmin | safe }}
-  </style>
-  <script type="module">{% include 'js/guide.js' %}</script>
+  {% inlinecss "docs.css" %}
+  {% inlinejs "docs.js" %}
 {% endblock %}
 
 {% block drawer %}

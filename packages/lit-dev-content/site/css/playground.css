@@ -1,28 +1,142 @@
 main {
   display: flex;
-  flex-direction: column;
   margin: 0;
   max-width: none;
+  /* Remove space usually allotted to the footer. */
+  min-height: calc(100vh - var(--header-height));
+  --examples-drawer-width: 300px;
+}
+
+footer {
+  /* The footer is a big pain on this page, because we want all the vertical
+  real-estate. */
+  display: none;
+}
+
+.playground-bar-and-ide {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* Prevent flex layout problems when typing long lines in CodeMirror. */
+  min-width: 0;
 }
 
 .playground-bar {
-  height: 36px;
-  background-color: #f5f5f5;
+  height: 52px;
+  box-sizing: border-box;
+  background: #f5f5f5;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   padding: 8px;
   --mdc-theme-primary: currentcolor;
+  border-bottom: 1px solid #ccc;
 }
 
 playground-ide {
   flex: 1;
-  border: 1px solid #ccc;
-  border-left: none;
-  border-right: none;
-  min-height: 350px;
+  height: unset;
+  border: none;
+  border-radius: 0;
   --playground-highlight-color: #1879cd;
+  transition: width 200ms;
 }
 
 mwc-button:not(:defined) {
-  display: none;
+  visibility: hidden;
 }
+
+.examples-drawer {
+  width: 0;
+  transition: width 200ms;
+  background: white;
+  border-right: 1px solid #ccc;
+  /* TODO(aomarks) We shouldn't need this max height, right? */
+  max-height: calc(100vh - var(--header-height));
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.examples-drawer.open {
+  width: var(--examples-drawer-width);
+}
+
+.examples-drawer:not(.open):not(.transitioning) {
+  /* For a11y. */
+  visibility: hidden;
+}
+
+.examples-drawer-contents {
+  width: var(--examples-drawer-width);
+  transform: translateX(calc(-1 * var(--examples-drawer-width)));
+  transition: transform 200ms;
+  --lit-playground-bar-height: 52px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.examples-drawer.open .examples-drawer-contents {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.examples-drawer-contents h3 {
+  font-size: 18px;
+  color: #212121;
+  padding-left: 24px;
+  margin: 12px 0;
+}
+
+.examples-drawer-section {
+  padding: 20px 0;
+}
+
+.examples-drawer-section:not(:last-of-type) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.examples-drawer-contents ul {
+  padding-left: 0;
+}
+
+.examples-drawer-contents li {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.examples-drawer-contents a {
+  color: #616161;
+  scroll-margin: 16px;
+  font-size: 14px;
+  padding: 12px 24px;
+  margin-right: 1px;
+}
+
+.examples-drawer-contents a.active {
+  background: #f1f3f4;
+}
+
+.examples-drawer-contents a:hover {
+  color: black;
+}
+
+.examples-drawer .description {
+  display: none;
+  color: #3e3e3e;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 8px 0 0 0;
+}
+
+/*
+.examples-drawer-contents > h2 {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  height: var(--lit-playground-bar-height);
+  box-sizing: border-box;
+  margin: 0;
+}
+*/

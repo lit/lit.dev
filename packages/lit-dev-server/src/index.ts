@@ -30,5 +30,20 @@ app.use(koaCompress());
 app.use(koaStatic(contentDir));
 
 const port = process.env.PORT || 8080;
-app.listen(port);
+const server = app.listen(port);
 console.log(`server listening on port ${port}`);
+
+// Node only automatically exits on SIGINT when the PID is not 1 (e.g. launched
+// as the child of a shell process). When the Node PID is 1 (e.g. launched with
+// Docker `CMD ["node", ...]`) then it's our responsibility.
+let shuttingDown = false;
+process.on('SIGINT', () => {
+  if (!shuttingDown) {
+    // First signal: try graceful shutdown and let Node exit normally.
+    server.close();
+    shuttingDown = true;
+  } else {
+    // Second signal: somebody really wants to exit.
+    process.exit(1);
+  }
+});
