@@ -170,7 +170,7 @@ Optionally, you can pass a property name and a previous value when calling `requ
   this.requestUpdate(‘state’, this._previousState);
 ```
 
-See [Properties](/guide/components/properties) for more information about implementing custom getters and setters.
+See [Reactive properties](/guide/components/properties/) for more information about implementing custom getters and setters.
 
 ### Performing an update { %reactive-update-cycle-performing }
 
