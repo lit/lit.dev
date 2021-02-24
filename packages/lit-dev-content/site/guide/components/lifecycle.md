@@ -279,7 +279,7 @@ firstUpdated() {
 }
 ```
 
-#### updated() { %updated }
+#### updated() {#updated}
 
 | | |
 |-|-|
