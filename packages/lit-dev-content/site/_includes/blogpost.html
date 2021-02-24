@@ -1,33 +1,40 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  <style>
-    {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
-    {{ guidecss | cssmin | safe }}
-  </style>
+  {% inlinecss "docs.css" %}
+  {% inlinejs "docs.js" %}
 {% endblock %}
 
+{% block drawer %}
+  {% include 'eleventy-nav.html' %}
+{% endblock %}
 
 {% block content %}
-  <main class="wrapper">
-    <div class="side">
-      <side-nav>
-        {%- set recent = collections.blog.slice(0,9) -%}
-        <h4>RECENT POSTS</h4>
-        <ul>
-        {%- for entry in recent %}
-          <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
-            <a href="{{ entry.url | url }}">{{ entry.data.title }}</a>
-          </li>
-        {%- endfor %}
-        </ul>
-        <a href="/blog/">All posts</a>
-      </side-nav>
-    </div>
+  <div class="lhs-nav-wrapper">
+    <nav class="site-nav lhs-nav">
 
-    <article>
-      <h1>{{ title }}</h1>
-      {{ content | safe }}
-    </article>
-  </main>
+    </nav>
+  </div>
+
+  <div class="rhs-toc-wrapper">
+    <nav class="rhs-toc">
+      <h2>Contents</h2>
+      {{ content | toc | safe }}
+
+      <p><a href="/blog/">[All posts]</a></p>
+    </nav>
+  </div>
+
+  <article>
+    <h1>{{ title }}</h1>
+
+    <nav class="inline-toc">
+      <details>
+        <summary><h2>Contents</h2></summary>
+        {{ content | toc | safe }}
+      </details>
+    </nav>
+
+    {{ content | safe }}
+  </article>
 {% endblock %}

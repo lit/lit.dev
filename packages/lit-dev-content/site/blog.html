@@ -1,0 +1,27 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "docs.css" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="lhs-nav-wrapper">
+  <nav class="site-nav lhs-nav">
+  </nav>
+</div>
+
+<div class="rhs-toc-wrapper">
+  <nav class="rhs-toc">
+  </nav>
+</div>
+
+<article>
+<h1>Posts</h1>
+
+{%- for post in collections.blog -%}
+<p><a href="{{ post.url }}">{{ post.data.title }}</a></p>
+{%- endfor -%}
+
+</article>
+{% endblock %}
