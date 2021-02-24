@@ -98,7 +98,7 @@ These plugins provide:
 
 See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
 
-## Setting up linting { #linting }
+## Setting up Javascript linting { #linting }
 
 Linting can help catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
 
