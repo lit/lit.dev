@@ -38,7 +38,7 @@ Static styles apply to all instances of a component. Any expressions in CSS are 
 
 For tree-based or per-instance style customization, use CSS custom properties to allow elements to be [themed](#theming).
 
-To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
+To prevent Lit components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
 
 ```js
 static get styles() {
