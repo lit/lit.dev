@@ -10,9 +10,9 @@ During the development phase of your projects when you're writing Lit components
 
 * A dev server, for previewing code without a build step.
 * TypeScript, for writing type-checked code.
-* Lit-specific IDE plugins, for linting and syntax-highlighting Lit templates.
 * A linter, for catching Javascript errors.
 * A code formatter, for consistently formatting code.
+* Lit-specific IDE plugins, for linting and syntax-highlighting Lit templates.
 
 Check out the [Getting Started](../../getting-started) documentation to easily setup a development environment with all of these features pre-configured.
 
@@ -34,7 +34,7 @@ If you need a dev server, we recommend [Web Dev Server](https://modern-web.dev/d
 
 [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) is an open-source dev server that enables a build-free development process.
 
-It handles rewriting bare module specifiers to valid URLs, as required by browsers. For older browsers like IE11, Web Dev Server can transform JavaScript modules to use the backwards-compatible SystemJS module loader, and automatically serve the web components polyfills.
+It handles rewriting bare module specifiers to valid URLs, as required by browsers.
 
 Install Web Dev Server:
 
@@ -54,6 +54,41 @@ Run the dev server:
 
 ```bash
 npm run start
+```
+
+For older browsers like IE11, Web Dev Server can transform JavaScript modules to use the backwards-compatible SystemJS module loader, and automatically serve the web components polyfills. You'll need to configure the `@web/dev-server-legacy` package to support older browsers.
+
+Install the Web Dev Server legacy package:
+
+```bash
+npm i @web/dev-server-legacy --save-dev
+```
+
+Configure `web-dev-server.config.js`:
+
+```js
+import { legacyPlugin } from '@web/dev-server-legacy';
+
+export default {
+  plugins: [
+    // make sure this plugin is always last
+    legacyPlugin({
+      polyfills: {
+        webcomponents: true,
+        // Inject lit's polyfill-support module into test files, which is required
+        // for interfacing with the webcomponents polyfills
+        custom: [
+          {
+            name: 'lit-polyfill-support',
+            path: 'node_modules/lit/polyfill-support.js',
+            test: "!('attachShadow' in Element.prototype)",
+            module: false,
+          },
+        ],
+      },
+    }),
+  ],
+};
 ```
 
 For full installation and usage instructions, see the [Web Dev Server documentation](https://modern-web.dev/docs/dev-server/overview/).
@@ -76,28 +111,6 @@ npx tsc --watch
 
 For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
 
-## Using Lit-specific IDE plugins { #ide-plugins }
-
-There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
-
-The following VS Code and TypeScript plugins highlight Lit templates and check them for errors:
-
-* [`lit-plugin` for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
-
-* [`ts-lit-plugin` for TypeScript](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) (works with Sublime and Atom)
-
-These plugins provide:
-
-- Syntax highlighting
-- Type-checking
-- Code completion
-- Hover-over docs
-- Jump to definition
-- Linting
-- Quick Fixes
-
-See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
-
 ## Setting up Javascript linting { #linting }
 
 Linting can help catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
@@ -117,11 +130,7 @@ npx eslint yourfile.js
 
 For full installation and usage instructions, see the [ESLint documentation](https://eslint.org/docs/user-guide/getting-started).
 
-### Using Linting plugins
-
-Integrating linting into your IDE workflow can help catch errors as early as possible, right when you're typing out your code. The following ESLint plugin can be added to check for some common issues in Lit templates:
-
-* [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
+Integrating linting into your IDE workflow can help catch errors as early as possible. See [Lit-specific IDE plugins](#ide-plugins) to configure linting specifically for Lit.
 
 ## Setting up formatting { #formatting }
 
@@ -132,3 +141,28 @@ A few popular options include:
 * [Prettier](https://prettier.io/): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [Beautifier](https://beautifier.io/): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)
 * [Clang](https://www.npmjs.com/package/clang-format): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
+
+
+## Using Lit-specific IDE plugins { #ide-plugins }
+
+There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
+
+The following plugins highlight Lit templates and check them for errors:
+
+* [`lit-plugin` for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
+
+* [`ts-lit-plugin` for TypeScript](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) (works with Sublime and Atom)
+
+* [`eslint-plugin-lit` for ESLint](https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
+
+These plugins provide:
+
+- Syntax highlighting
+- Type-checking
+- Code completion
+- Hover-over docs
+- Jump to definition
+- Linting
+- Quick Fixes
+
+See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
