@@ -183,7 +183,7 @@ my-element > div {
 
 ## Defining scoped styles in the template {#styles-in-the-template}
 
-We recommend using the [static `styles` property](#add-styles) for optimal performance.  However, sometimes you may want to define styles in the LitElement template. There are two ways to add scoped styles in the template:
+We recommend using the [static `styles` property](#add-styles) for optimal performance.  However, sometimes you may want to define styles in the Lit template. There are two ways to add scoped styles in the template:
 
 *   Add styles using a [`<style>` element](#style-element).
 *   Add styles using an [external style sheet](#external-stylesheet) (not recommended).
