@@ -319,7 +319,7 @@ It is a good practice to dispatch events from components after rendering has com
   }
   ```
 
-### Implementing additional customization { %reactive-update-cycle-customizing }
+### Implementing additional customization {#reactive-update-cycle-customizing}
 
 #### performUpdate()  {% performUpdate }
 
