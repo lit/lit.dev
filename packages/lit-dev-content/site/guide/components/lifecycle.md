@@ -178,7 +178,7 @@ When an update is performed, the `performUpdate()` method is called. This method
 
 Any changes that would normally trigger an update which occur **while** a component is updating do **not schedule a new update**. This is done so that property values can be computed during the update process.
 
-#### shouldUpdate() { %shouldUpdate }
+#### shouldUpdate() {#shouldupdate}
 
 | | |
 |-|-|
