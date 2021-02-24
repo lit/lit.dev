@@ -82,7 +82,7 @@ There are a number of IDE plugins that may be useful when developing with Lit. I
 
 The following VS Code and TypeScript plugins highlight Lit templates and check them for errors:
 
-* [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
+* [`lit-plugin` for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
 
 * [TypeScript plugin (works with Sublime and Atom)](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin)
 
