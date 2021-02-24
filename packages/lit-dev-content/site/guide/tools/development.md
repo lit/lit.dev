@@ -100,7 +100,7 @@ See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-p
 
 ## Setting up linting { #linting }
 
-Linting is an invaluable tool for helping to catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
+Linting can help catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
 
 To install ESLint in your project:
 
