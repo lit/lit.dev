@@ -340,7 +340,7 @@ In this example, the update is performed after paint. This technique can be used
 
 See [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
 
-#### hasUpdated  {% hasUpdated }
+#### hasUpdated  {#hasupdated}
 
 The `hasUpdated` property returns true if the component has updated at least once.
 
