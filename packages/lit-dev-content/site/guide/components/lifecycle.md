@@ -245,7 +245,7 @@ Generally, you should not need to implement this method.
 | Call super? | Not necessary. |
 | Called on server? | Yes. |
 
-The `render` method is called by `update` and should be implemented to return a `TemplateResult` used to render the element template.
+Called by `update()` and should be implemented to return a renderable result (such as a `TemplateResult`) used to render the component's DOM.
 
 The `render` method has no arguments, but typically it references component properties.
 
