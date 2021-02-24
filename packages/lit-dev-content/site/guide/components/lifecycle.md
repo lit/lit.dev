@@ -13,7 +13,7 @@ Lit components are standard custom elements and inherit the custom element lifec
 
 Note, if you need to customize any of the standard lifecycle methods, make sure to call the super implementation (e.g. `super.connectedCallback()`) so the standard Lit functionality is maintained.
 
-### constructor() { %constructor }
+### constructor() {#constructor}
 
 Called when an element is created. Also, it’s invoked when an existing element is upgraded, which happens when the definition for a custom element is loaded after the element is already in the DOM.
 
