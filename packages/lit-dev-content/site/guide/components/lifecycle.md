@@ -120,7 +120,7 @@ In addition to the standard custom element lifecycle, Lit components also implem
 **Post-Update**
 <img class="centered-image" src="/images/guide/components/update-4.jpg">
 
-The reactive update cycle is triggered when a reactive property changes or when the `requestUpdate` method is explicitly called. The update proceeds at microtask timing, before the browser paints.
+The reactive update cycle is triggered when a reactive property changes or when the `requestUpdate()` method is explicitly called. The update proceeds at microtask timing, before the browser paints.
 
 Lit performs updates asynchronously so property changes are batched—if more properties change after an update is requested, but before the update starts, all of the changes are captured in the same update.
 
