@@ -77,7 +77,6 @@ main {
 
 .use-case-card h3 {
   flex: 0;
-  font-family: 'Roboto', sans-serif;
   font-size: 1.25em;
   letter-spacing: .5px;
   margin-top: 0;
@@ -140,7 +139,6 @@ section#features h3 {
 }
 
 .feature-card-text h3 {
-  font-family: 'Roboto', sans-serif;
   font-size: 1.25em;
   letter-spacing: .5px;
   margin-top: 0;

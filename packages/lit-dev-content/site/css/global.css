@@ -1,9 +1,16 @@
-@import url('./fonts/roboto.css');
+@import url('./fonts/manrope.css');
 @import url('./fonts/roboto-mono.css');
 @import url('./header.css');
 @import url('./footer.css');
 @import url('./mobile-nav.css');
 @import url('./code.css');
+@import url('./colors.css');
+
+/* Params */
+
+html {
+  --header-height: 3.33em;
+}
 
 /* General */
 
@@ -11,7 +18,6 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   color: #3e3e3e;
-  --header-height: 60px;
   --footer-height: 180px;
   --toc-width: 300px;
   --main-max-width: 1200px;

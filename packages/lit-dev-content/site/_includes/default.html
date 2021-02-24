@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>{% if page.title %}{{ page.title }} &ndash;{% endif %} {{ site.name }}</title>
     <meta name="description" content="{{ site.description }}">
-    <meta name="theme-color" content="#FF2F2F">
-
-    <!-- TODO An actual favicon, but this removes an unneccessary fetch/console
-         error for now. -->
-    <link rel="icon" href="data:,"></link>
+    <meta name="theme-color" content="#324fff">
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-flat.svg"></link>
+    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-flat.svg" color="#324fff">
 
     {% inlinecss "global.css" %}
 
@@ -49,9 +47,7 @@
       </nav>
     </mwc-drawer>
 
-    <header>
-      {% include 'header.html' %}
-    </header>
+    {% include 'header.html' %}
 
     <main>
       {% block content %}{{ content | safe }}{% endblock %}
