@@ -174,7 +174,7 @@ See [Reactive properties](/guide/components/properties/) for more information ab
 
 ### Performing an update {#reactive-update-cycle-performing}
 
-When an update is performed, the `performUpdate` method is called. This method calls a number of other lifecycle methods.
+When an update is performed, the `performUpdate()` method is called. This method calls a number of other lifecycle methods.
 
 Any changes that would normally trigger an update which occur **while** a component is updating do **not schedule a new update**. This is done so that property values can be computed during the update process.
 
