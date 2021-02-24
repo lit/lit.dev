@@ -34,7 +34,7 @@ If you need a dev server, we recommend [Web Dev Server](https://modern-web.dev/d
 
 [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) is an open-source dev server that enables a build-free development process.
 
-It handles rewriting bare module specifiers to valid URLs, as required by browsers. For older browsers like IE11, Web Dev Server transforms JavaScript modules to use the backwards-compatible SystemJS module loader, and it automatically serves the web components polyfills.
+It handles rewriting bare module specifiers to valid URLs, as required by browsers. For older browsers like IE11, Web Dev Server can transform JavaScript modules to use the backwards-compatible SystemJS module loader, and automatically serve the web components polyfills.
 
 Install Web Dev Server:
 
