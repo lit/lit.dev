@@ -70,7 +70,7 @@ static get styles() {
 
 ### Inheriting styles from a superclass
 
-Using an array of tagged template literals, a component can inherit the styles from a LitElement superclass, and add its own styles:
+Using an array of tagged template literals, a component can inherit the styles from a superclass, and add its own styles:
 
 {% playground-ide "docs/components/style/superstyles" %}
 

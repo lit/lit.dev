@@ -1,6 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators/custom-element';
-import { property } from 'lit/decorators/property';
+import { customElement, property } from 'lit/decorators';
 import { classMap } from 'lit/directives/class-map';
 import { styleMap } from 'lit/directives/style-map';
 
