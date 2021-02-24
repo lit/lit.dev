@@ -364,7 +364,7 @@ It's recommended to override the `getUpdateComplete()` method instead of the `up
   }
   ```
 
-## Server-side reactive update cycle { %server-reactive-update-cycle }
+## Server-side reactive update cycle {#server-reactive-update-cycle}
 
 <div class="alert alert-info">
 Lit’s server-side rendering code is currently in an experimental stage so the following information is subject to change.
