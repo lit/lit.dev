@@ -54,7 +54,7 @@ connectedCallback() {
   addEventListener(‘keydown’, this._handleKeydown);
 }
 ```
-### disconnectedCallback() { %disconnectedCallback }
+### disconnectedCallback() {#disconnectedcallback}
 
 Invoked when a component is removed from the document's DOM.
 
