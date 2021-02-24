@@ -323,7 +323,7 @@ It is a good practice to dispatch events from components after rendering has com
 
 #### performUpdate()  {#performupdate}
 
-The `performUpdate()` method implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
+Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
 You can call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
 
