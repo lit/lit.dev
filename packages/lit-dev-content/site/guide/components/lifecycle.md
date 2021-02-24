@@ -313,6 +313,7 @@ It is a good practice to dispatch events from components after rendering has com
   ```js
   async _loginClickHandler() {
     this.loggedIn = true;
+    // Wait for `loggedIn` state to be rendered to the DOM
     await this.updateComplete;
     this.dispatchEvent(new Event(‘login’));
   }
