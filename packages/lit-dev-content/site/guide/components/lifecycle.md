@@ -34,7 +34,7 @@ constructor() {
   this.bar = ‘bar’;
 }
 ```
-### connectedCallback() { %connectedCallback }
+### connectedCallback() {#connectedcallback}
 
 Invoked when a component is added to the document's DOM.
 
