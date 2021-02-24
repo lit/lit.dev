@@ -321,7 +321,7 @@ It is a good practice to dispatch events from components after rendering has com
 
 ### Implementing additional customization {#reactive-update-cycle-customizing}
 
-#### performUpdate()  {% performUpdate }
+#### performUpdate()  {#performupdate}
 
 The `performUpdate()` method implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
