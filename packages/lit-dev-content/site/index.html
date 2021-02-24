@@ -1,9 +1,14 @@
 {% extends 'default.html' %}
 
+{% block head %}
+  {% inlinecss "home.css" %}
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined&display=block" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
   <div class="wrapper hero">
-    <h1 class="hero-title">LitX</h1>
-    <h1 class="hero-caption">Simple, fast, and lightweight web components and design systems</h1>
+    <h1 class="hero-title">Lit</h1>
+    <h1 class="hero-caption">Simple, fast, lightweight web components</h1>
   </div>
 
   <section id="example">
@@ -113,8 +118,8 @@ export class SimpleGreeting extends LitElement {
           <h3>Fast and light</h3>
           <p>
             Whether your end users are in emerging markets or Silicon Valley, they’ll appreciate that LitElement is extremely fast.
-          <p>
           </p>
+          <p>
             LitElement uses lit-html to define and render HTML templates. DOM updates are lightning-fast, because lit-html only re-renders the dynamic parts of your UI – no diffing required.
           </p>
         </div>
@@ -155,12 +160,12 @@ export class SimpleGreeting extends LitElement {
           <h3>TypeScript or JavaScript</h3>
           <p>
             Write your components in plain JavaScript or TypeScript.
-            
+
             TypeScript users enjoy full type definitions for Lit libraries,
             type-checking and linting for lit-html templates, and convenient decorators
             for reactive properties and more.
-          <p>
           </p>
+          <p>
             JavaScript users don't need any build pipeline at all. In fact, you can
             write Lit components right in DevTools!
           </p>
@@ -214,7 +219,7 @@ export class SimpleGreeting extends LitElement {
     <div class="wrapper">
       <h3>Example 1</h3>
       <p>Just do this, then that...</p>
-      <code-sample-editor>
+      <playground-ide>
         <script type="sample/html" filename="index.html">
       <!doctype html>
       <html>
@@ -227,17 +232,17 @@ export class SimpleGreeting extends LitElement {
           <div>Element is not upgraded</div>
         </my-element>
       </body>
-      </html>      
+      </html>
         </script>
         <script type="sample/ts" filename="my-element.ts">
       import { LitElement, html, property, customElement } from 'lit-element';
       import './my-second-element.js';
-    
+
       @customElement('my-element')
       export class MyElement extends LitElement {
       @property({ type: Number })
       myNumber?: number;
-    
+
       render() {
         return html`
           <div>Here is ${this.myNumber}</div>
@@ -245,11 +250,11 @@ export class SimpleGreeting extends LitElement {
           <my-second-element></my-second-element>
         `;
       }
-      }      
+      }
         </script>
         <script type="sample/ts" filename="my-second-element.ts">
       import { LitElement, html, customElement } from 'lit-element';
-    
+
       @customElement('my-second-element')
       export class MySecondElement extends LitElement {
       render() {
@@ -259,11 +264,11 @@ export class SimpleGreeting extends LitElement {
       }
       }
         </script>
-      </code-sample-editor>
+      </playground-ide>
 
       <h3>Example 2</h3>
       <p>Just do this, then that...</p>
-      <code-sample-editor>
+      <playground-ide>
         <script type="sample/html" filename="index.html">
       <!doctype html>
       <html>
@@ -276,17 +281,17 @@ export class SimpleGreeting extends LitElement {
           <div>Element is not upgraded</div>
         </my-element>
       </body>
-      </html>      
+      </html>
         </script>
         <script type="sample/ts" filename="my-element.ts">
       import { LitElement, html, property, customElement } from 'lit-element';
       import './my-second-element.js';
-    
+
       @customElement('my-element')
       export class MyElement extends LitElement {
       @property({ type: Number })
       myNumber?: number;
-    
+
       render() {
         return html`
           <div>Here is ${this.myNumber}</div>
@@ -294,11 +299,11 @@ export class SimpleGreeting extends LitElement {
           <my-second-element></my-second-element>
         `;
       }
-      }      
+      }
         </script>
         <script type="sample/ts" filename="my-second-element.ts">
       import { LitElement, html, customElement } from 'lit-element';
-    
+
       @customElement('my-second-element')
       export class MySecondElement extends LitElement {
       render() {
@@ -308,7 +313,7 @@ export class SimpleGreeting extends LitElement {
       }
       }
         </script>
-      </code-sample-editor>
+      </playground-ide>
     </div>
   </section>
 {% endblock %}

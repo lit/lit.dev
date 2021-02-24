@@ -1,40 +1,49 @@
-import { createRequire } from 'module';
-import * as path from 'path';
-import * as http from 'http';
+/**
+ * @license
+ * Copyright (c) 2020 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ */
 
-// import Koa from 'koa';
-// import Router from '@koa/router';
-// import mount from 'koa-mount';
-import serve from 'serve-handler';
+import Koa from 'koa';
+import koaCompress from 'koa-compress';
+import koaStatic from 'koa-static';
+import koaConditionalGet from 'koa-conditional-get';
+import koaEtag from 'koa-etag';
+import {createRequire} from 'module';
+import * as path from 'path';
 
 const require = createRequire(import.meta.url);
-
-console.log('serve', serve);
-
 const contentPackage = require.resolve('lit-dev-content');
-console.log('contentPackage', contentPackage);
 const contentDir = path.dirname(contentPackage);
+
+console.log('contentPackage', contentPackage);
 console.log('contentDir', contentDir);
 
-// const app = new Koa();
-// app.use(async (context, _) => {
-//   console.log('A', context.path);
-//   await serve(context.req, context.res, {
-//     // public: '/Users/justinfagnani/Projects/Lit/2.0/lit.dev/packages/lit-dev-content/',
-//     // directoryListing: false,
-//   });
-//   console.log('B');
-//   context.res.end();
-// });
+const app = new Koa();
+app.use(koaConditionalGet()); // Needed for etag
+app.use(koaEtag());
+app.use(koaCompress());
+app.use(koaStatic(contentDir));
 
-// const port = 3000;
-// app.listen(port);
-// console.log(`server listening on port ${port}`);
+const port = process.env.PORT || 8080;
+const server = app.listen(port);
+console.log(`server listening on port ${port}`);
 
-const server = http.createServer((req, res) => {
-  serve(req, res, {
-    public: '/Users/justinfagnani/Projects/Lit/2.0/lit.dev/packages/lit-dev-content/_site',
-    directoryListing: false,
-  });
+// Node only automatically exits on SIGINT when the PID is not 1 (e.g. launched
+// as the child of a shell process). When the Node PID is 1 (e.g. launched with
+// Docker `CMD ["node", ...]`) then it's our responsibility.
+let shuttingDown = false;
+process.on('SIGINT', () => {
+  if (!shuttingDown) {
+    // First signal: try graceful shutdown and let Node exit normally.
+    server.close();
+    shuttingDown = true;
+  } else {
+    // Second signal: somebody really wants to exit.
+    process.exit(1);
+  }
 });
-server.listen(3000);

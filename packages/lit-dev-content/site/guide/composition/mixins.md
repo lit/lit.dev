@@ -3,5 +3,11 @@ title: Mixins
 eleventyNavigation:
   parent: Composition
   key: Mixins
-  order: 2
+  order: 3
 ---
+
+{% todo %}
+
+- Write section.
+
+{% endtodo %}

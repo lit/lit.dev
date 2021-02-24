@@ -1,28 +1,30 @@
 {
   "name": "lit-dev-server",
+  "private": true,
   "version": "0.0.0",
-  "description": "> TODO: description",
-  "author": "Justin Fagnani <justinfagnani@google.com>",
-  "homepage": "",
+  "description": "lit.dev production server",
+  "author": "Google LLC",
   "license": "BSD-3-Clause",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node index.js"
+    "build": "../../node_modules/.bin/tsc",
+    "start": "node index.js",
+    "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
-    "@koa/router": "^9.3.1",
-    "@types/koa": "^2.11.3",
-    "@types/koa-mount": "^4.0.0",
-    "@types/koa-static": "^4.0.1",
-    "@types/koa__router": "^8.0.2",
-    "@types/serve-handler": "^6.1.0",
     "koa": "^2.13.0",
-    "koa-mount": "^4.0.0",
+    "koa-compress": "^5.0.1",
+    "koa-conditional-get": "^3.0.0",
+    "koa-etag": "^4.0.0",
     "koa-static": "^5.0.0",
-    "lit-dev-content": "^0.0.0",
-    "serve": "^11.3.0",
-    "serve-handler": "^6.1.3"
+    "lit-dev-content": "^0.0.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.6",
+    "@types/koa-compress": "^4.0.1",
+    "@types/koa-conditional-get": "^2.0.0",
+    "@types/koa-etag": "^3.0.0",
+    "@types/koa-static": "^4.0.1"
   }
 }

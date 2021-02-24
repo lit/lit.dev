@@ -1,50 +1,38 @@
 {% extends 'default.html' %}
-{% include 'topnav.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css">
+  {% inlinecss "docs.css" %}
+  {% inlinejs "docs.js" %}
+{% endblock %}
+
+{% block drawer %}
+  {% include 'eleventy-nav.html' %}
 {% endblock %}
 
 {% block content %}
-  {% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
-  <main class="wrapper">
-    <div class="side">
-      <side-nav>
-        {%- set navSections = collections.guide | eleventyNavigation -%}
-        {{ navSections | eleventyNavigationToHtml | safe }}
-        {# Uncomment to render one section at a time
-        <ul>
-        {%- for entry in navSections %}
-          <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
-            <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-            {% if entry.key ==  eleventyNavigation.key %}
-              {% set navPages = entry.children %}
-              <ul>
-              {%- for entry in navPages %}
-                <li{% if entry.url == page.url %} class="my-active-class"{% endif %}>
-                  <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-                </li>
-              {%- endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {%- endfor %}
-        </ul>
-        #}
-      </side-nav>
-    </div>
+  <div class="lhs-nav-wrapper">
+    <nav class="site-nav lhs-nav">
+      <ol>{% include 'eleventy-nav.html' %}</ol>
+    </nav>
+  </div>
 
-    <article>
-      <h1>{{ title }}</h1>
-      {{ content | safe }}
-    </article>
+  <div class="rhs-toc-wrapper">
+    <nav class="rhs-toc">
+      <h2>Contents</h2>
+      {{ content | toc | safe }}
+    </nav>
+  </div>
 
-    <div class="side">
-      <nav class="toc">
-        <h2>Contents</h2>
+  <article>
+    <h1>{{ title }}</h1>
+
+    <nav class="inline-toc">
+      <details>
+        <summary><h2>Contents</h2></summary>
         {{ content | toc | safe }}
-      </nav>
-    </div>
+      </details>
+    </nav>
 
-  </main>
+    {{ content | safe }}
+  </article>
 {% endblock %}
