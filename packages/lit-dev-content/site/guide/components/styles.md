@@ -192,7 +192,7 @@ Each of these techniques has its own set of advantages and drawbacks.
 
 ### In a style element {#style-element}
 
-Typically, styles are placed in the [static `styles` property](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a LitElement template. These are updated per instance.
+Typically, styles are placed in the [static `styles` property](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a Lit template. These are updated per instance.
 
 ```js
 render() {
