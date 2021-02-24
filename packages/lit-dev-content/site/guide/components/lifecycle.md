@@ -247,7 +247,7 @@ Generally, you should not need to implement this method.
 
 Called by `update()` and should be implemented to return a renderable result (such as a `TemplateResult`) used to render the component's DOM.
 
-The `render` method has no arguments, but typically it references component properties.
+The `render()` method has no arguments, but typically it references component properties.
 
 ```js
 render() {
