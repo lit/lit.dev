@@ -257,7 +257,7 @@ render() {
 }
 ```
 
-See [Rendering](/guide/components/rendering) for more information.
+See [Rendering](/guide/components/rendering/) for more information.
 
 ### Completing an update { %reactive-update-cycle-completing }
 
