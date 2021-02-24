@@ -231,7 +231,7 @@ render() {
 | Call super? | Yes. Without a super call, the element’s attributes and template will not update. |
 | Called on server? | No. |
 
-The `update` method reflects property values to attributes and calls `render` to update the component’s internal DOM.
+Reflects property values to attributes and calls `render()` to update the component’s internal DOM.
 
 Generally, you should not need to implement this method.
 
