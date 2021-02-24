@@ -136,7 +136,7 @@ At a high level, the reactive update cycle is:
     1. The component’s render method is called to update its internal DOM.
 1. The update is completed and the `updateComplete` promise is resolved.
 
-### Triggering an update { %reactive-update-cycle-triggering }
+### Triggering an update {#reactive-update-cycle-triggering}
 
 An update is triggered when a reactive property changes or the `requestUpdate` method is called. Since updates are performed asynchronously, any and all changes that occur before the update is performed result in only a **single update**.
 
