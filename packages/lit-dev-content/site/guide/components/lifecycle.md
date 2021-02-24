@@ -140,7 +140,7 @@ At a high level, the reactive update cycle is:
 
 An update is triggered when a reactive property changes or the `requestUpdate()` method is called. Since updates are performed asynchronously, any and all changes that occur before the update is performed result in only a **single update**.
 
-#### hasChanged() { %hasChanged }
+#### hasChanged() {#haschanged}
 
 All declared properties have a function, `hasChanged()`, which is called whenever the property is set. By default this does a strict equality check and if it returns `true`, an update is scheduled.
 
