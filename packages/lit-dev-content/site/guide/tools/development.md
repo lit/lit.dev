@@ -9,10 +9,10 @@ eleventyNavigation:
 During the development phase of your projects when you're writing Lit components, the following tools can help boost your productivity:
 
 * A dev server, for previewing code without a build step.
-* Using TypeScript to write type checked code.
-* IDE plugins, for linting and code highlighting.
-* Linter plugins, for checking Lit templates.
-* Code formatters, for making code readable.
+* TypeScript, for writing type-checked code.
+* Lit-specific IDE plugins, for linting and syntax-highlighting Lit templates.
+* A linter, for catching Javascript errors.
+* A code formatter, for consistently formatting code.
 
 Check out the [Getting Started](../../getting-started) documentation to easily setup a development environment with all of these features pre-configured.
 
