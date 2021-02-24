@@ -90,7 +90,7 @@ Lit uses this callback to sync changes in attributes to reactive properties. Spe
 
 You rarely need to implement this callback.
 
-### adoptedCallback() { %adoptedCallback }
+### adoptedCallback() {#adoptedcallback}
 
 Invoked when a component is moved to a new document.
 
