@@ -269,7 +269,7 @@ See [Rendering](/guide/components/rendering/) for more information.
 | Call super? | Not necessary. |
 | Called on server? | No. |
 
-The `firstUpdated` method is called after the element's DOM has been updated the first time, immediately before [`updated`](#updated) is called.
+Called after the component's DOM has been updated the first time, immediately before [`updated()`](#updated) is called.
 
 You can implement `firstUpdated()` to perform one-time work after the component's DOM has been created.
 
