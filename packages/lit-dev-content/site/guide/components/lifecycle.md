@@ -222,7 +222,7 @@ render() {
 }
 ```
 
-#### update() { %update }
+#### update() {#update}
 
 | | |
 |-|-|
