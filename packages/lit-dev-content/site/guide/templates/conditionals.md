@@ -50,6 +50,4 @@ The `cache` directive caches the generated DOM for a given expression and input 
 
 Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
 
-In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.
-
-See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
+In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.  See [Setting values only if data is defined](/guide/templates/expressions#ifDefined) to handle this.
