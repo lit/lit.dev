@@ -146,7 +146,7 @@ All reactive properties have a function, `hasChanged()`, which is called wheneve
 
 See [configuring `hasChanged()`](/guide/components/properties#haschanged) for more information.
 
-#### requestUpdate() { %requestUpdate }
+#### requestUpdate() {#requestUpdate}
 
 You can also schedule an explicit update by calling the `requestUpdate()` method. This can be useful if you need the element to update and render when something not related to a property changes. For example, a timer component might call `requestUpdate()` every second.
 
