@@ -260,7 +260,7 @@ See [Rendering](/guide/components/rendering/) for more information.
 
 ### Completing an update {#reactive-update-cycle-completing}
 
-#### firstUpdated() { %firstUpdated }
+#### firstUpdated() {#firstupdated}
 
 | | |
 |-|-|
