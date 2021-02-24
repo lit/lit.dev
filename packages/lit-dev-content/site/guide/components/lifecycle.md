@@ -142,7 +142,7 @@ An update is triggered when a reactive property changes or the `requestUpdate()`
 
 #### hasChanged() {#haschanged}
 
-All declared properties have a function, `hasChanged()`, which is called whenever the property is set. By default this does a strict equality check and if it returns `true`, an update is scheduled.
+All reactive properties have a function, `hasChanged()`, which is called whenever the property is set. By default this does a strict equality check and if it returns `true`, an update is scheduled.
 
 See [configuring `hasChanged()`](/guide/components/properties#haschanged) for more information.
 
