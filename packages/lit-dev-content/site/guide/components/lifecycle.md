@@ -327,7 +327,7 @@ The `performUpdate()` method implements the reactive update cycle, calling the o
 
 You can call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
 
-You can also implement `performUpdate` to customize the timing of the update cycle. If `performUpdate` returns a Promise, it will be awaited before the rest of the update is processed. This can be useful for implementing custom scheduling.
+You can also implement `performUpdate()` to customize the timing of the update cycle. If `performUpdate()` returns a Promise, it will be awaited before the rest of the update is processed. This can be useful for implementing custom scheduling.
 
 ```js
 async performUpdate() {
