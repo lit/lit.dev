@@ -218,7 +218,7 @@ willUpdate(changedProperties) {
 }
 
 render() {
-  return html`Sha updated: ${this.sha}`;
+  return html`SHA: ${this.sha}`;
 }
 ```
 
