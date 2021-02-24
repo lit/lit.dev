@@ -347,7 +347,7 @@ The `hasUpdated` property returns true if the component has updated at least onc
 You can use `hasUpdated` in any of the lifecycle methods to perform work only if the component has not yet updated.
 
 
-#### getUpdateComplete() {% getUpdateComplete }
+#### getUpdateComplete() {#getUpdateComplete}
 
 To await additional conditions state before fulfilling the `updateComplete` promise, override the `getUpdateComplete` method. For example, it may be useful to await the update of a child element here. First await `super.getUpdateComplete()`, then any subsequent state.
 
