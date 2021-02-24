@@ -236,7 +236,7 @@ The `update` method reflects property values to attributes and calls `render` to
 
 Generally, you should not need to implement this method.
 
-#### render() { %render }
+#### render() {#render}
 
 | | |
 |-|-|
