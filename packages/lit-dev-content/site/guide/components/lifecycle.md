@@ -288,7 +288,7 @@ firstUpdated() {
 | Call super? | Not necessary. |
 | Called on server? | No. |
 
-The `updated` method is called whenever the component’s update finishes and the element's DOM has been updated and rendered.
+Called whenever the component’s update finishes and the element's DOM has been updated and rendered.
 
 You can implement `updated` to perform tasks that use element DOM after an update. For example, code that performs animation may need to measure the element DOM.
 
