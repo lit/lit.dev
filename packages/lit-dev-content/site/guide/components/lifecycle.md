@@ -172,7 +172,7 @@ Optionally, you can pass a property name and a previous value when calling `requ
 
 See [Reactive properties](/guide/components/properties/) for more information about implementing custom getters and setters.
 
-### Performing an update { %reactive-update-cycle-performing }
+### Performing an update {#reactive-update-cycle-performing}
 
 When an update is performed, the `performUpdate` method is called. This method calls a number of other lifecycle methods.
 
