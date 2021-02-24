@@ -308,7 +308,7 @@ Use `updateComplete` to wait for an update. The resolved value is a Boolean indi
 
 When writing tests, you can await the `updateComplete` Promise before making assertions about the component’s internal DOM.
 
-If you have an event that may depend on the state of the component’s internal DOM, you can await the `updateComplete` Promise before firing an event.
+It is a good practice to dispatch events from components after rendering has completed, so that the event's listeners see the fully rendered state of the component. To do so, you can await the `updateComplete` Promise before firing the event.
 
   ```js
   async _loginClickHandler() {
