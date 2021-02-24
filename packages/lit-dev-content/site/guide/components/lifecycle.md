@@ -349,7 +349,7 @@ You can use `hasUpdated` in any of the lifecycle methods to perform work only if
 
 #### getUpdateComplete() {#getUpdateComplete}
 
-To await additional conditions state before fulfilling the `updateComplete` promise, override the `getUpdateComplete` method. For example, it may be useful to await the update of a child element here. First await `super.getUpdateComplete()`, then any subsequent state.
+To await additional conditions before fulfilling the `updateComplete` promise, override the `getUpdateComplete()` method. For example, it may be useful to await the update of a child element here. First await `super.getUpdateComplete()`, then any subsequent state.
 
 <div class="alert alert-info">
 It's recommended to override the `getUpdateComplete` method instead of the `updateComplete` getter to ensure compatibility with users who are using TypeScript's ES5 output (see [TypeScript#338](https://github.com/microsoft/TypeScript/issues/338)).
