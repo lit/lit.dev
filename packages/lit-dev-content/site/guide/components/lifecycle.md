@@ -300,7 +300,7 @@ updated(changedProperties) {
 }
 ```
 
-#### updateComplete { %updateComplete }
+#### updateComplete {#updatecomplete}
 
 The `updateComplete` Promise resolves when the element has finished updating.
 
