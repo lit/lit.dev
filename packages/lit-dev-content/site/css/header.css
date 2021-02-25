@@ -1,9 +1,4 @@
 header {
-  /* TODO(aomarks) Move these font properties to global.css once the rest of the
-     site is adapted to it. */
-  font-size: 18px;
-  font-family: Manrope, sans-serif;
-
   position: sticky;
   top: 0;
   height: var(--header-height);
