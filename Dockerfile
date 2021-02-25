@@ -1,6 +1,6 @@
-# Use the official lightweight Node.js 14 image.
+# Use the official lightweight Node.js 15 image.
 # https://hub.docker.com/_/node
-FROM node:14-slim
+FROM node:15-slim
 
 # Dependencies of Playwright Chromium.
 RUN apt-get update && apt-get install -y --no-install-recommends \
