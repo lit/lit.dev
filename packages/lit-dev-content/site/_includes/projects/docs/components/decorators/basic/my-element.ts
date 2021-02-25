@@ -1,7 +1,9 @@
-// TODO: update with Lit2 import location
-import { LitElement, html, customElement, property } from '@polymer/lit-element';
+import { LitElement, html } from 'lit';
+import { customElement } from 'lit/decorators/custom-element';
+import { property } from 'lit/decorators/property';
+
 @customElement('my-element')
-class MyElement extends LitElement {
+export class MyElement extends LitElement {
   @property() greeting = "Welcome";
   @property() name = "Sally";
   @property({type: Boolean}) emphatic = true;

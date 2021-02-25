@@ -6,21 +6,21 @@ eleventyNavigation:
   order: 8
 ---
 
-Decorators are special expressions that can alter the behavior of class, class method, and class field declarations.
+{% todo %}
 
-Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet.
+* The decorators list links are currently to the API docs in the existing site. This need to be updated to the new API docs when they are ready.
 
-Compilers like Babel and TypeScript provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
+{% endtodo %}
+
+Decorators are special expressions that can alter the behavior of class, class method, and class field declarations Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
 
 See the [Enabling decorators](#enabling-decorators) section for more information.
 
 ## Lit decorators
 
-LitElement supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component.
+Lit supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component. For example, the `@customElement` and `@property` decorators make a basic element definition more compact:
 
-For example, the `@customElement` and `@property` decorators make a basic element definition more compact:
-
-{% playground-example "docs/decorators/basic/" "my-element.ts" %}
+{% playground-example "docs/components/decorators/basic/" "my-element.ts" %}
 
 The `@customElement` decorator defines a custom element, equivalent to calling:
 
@@ -48,6 +48,8 @@ constructor() {
 }
 ```
 
+See [Reactive properties](/guide/components/properties) for more information about configuring properties.
+
 ### List of decorators
 
 *   [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement). Defines a custom element.
@@ -55,8 +57,8 @@ constructor() {
 *   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property). Defines a public property.
 *   [`@state`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Defines a private state property.
 *   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query). Defines a property that returns an element in the component template.
-*   [`queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll). Defines a property that returns a list of elements in the component template.
-*   [`queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Defines a property that returns a promise that resolves to an element in the component template after any pending update cycle.
+*   [`@queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll). Defines a property that returns a list of elements in the component template.
+*   [`@queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Defines a property that returns a promise that resolves to an element in the component template after any pending update cycle.
 *   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Defines a property that returns the children assigned to a specific slot.
 
 ### Importing decorators
@@ -66,6 +68,12 @@ To reduce the amount of code needed to run the component, decorators should be i
 ```js
 import {customElement} from 'lit/decorators/custom-element';
 import {eventOptions} from 'lit/decorators/event-options';
+```
+
+For convenience, you can also import all the lit decorators via:
+
+```js
+import {customElement, property, eventOptions, query} from 'lit/decorators';
 ```
 
 ## Enabling decorators { #enabling-decorators }
@@ -110,7 +118,11 @@ Class fields are a [stage 3 proposal](https://github.com/tc39/proposal-decorator
 
 There are generally no issues when using TypeScript. However, it's important to ensure that the `useDefineForClassFields` setting in your `tsconfig` is set to false. This is currently the default setting.
 
-When using Babel, class fields should only be used for properties that are defined with a decorator. Using the `static properties` syntax along with class fields is not supported.
+When using Babel, class fields should only be used for properties that are defined with a decorator.
+
+<div class="alert alert-info">
+Using the `static properties` syntax along with class fields is not supported.
+</div>
 
 The following is ok:
 
@@ -119,7 +131,7 @@ The following is ok:
 foo = 'bar';
 ```
 
-but this should be avoided:
+but this is **not supported**:
 
 ```js
 static properties = { foo: {} };
