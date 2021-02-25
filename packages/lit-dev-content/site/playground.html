@@ -1,12 +1,8 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{site.baseurl}}/css/playground.css">
-  {% if dev %}
-    <script type="module" src="{{site.baseurl}}/lib/playground.js"></script>
-  {% else %}
-    <script type="module">{% include 'js/playground.js' %}</script>
-  {% endif %}
+  {% inlinecss "playground.css" %}
+  {% inlinejs "playground.js" %}
 {% endblock %}
 
 {% block content %}
