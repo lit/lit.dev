@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', main);
 const scrollActiveSiteNavPageIntoView = () => {
   // TODO(aomarks) Disabled because it also scrolls the whole window.
   // An effect of display:sticky. Look into alternatives.
+  // https://github.com/PolymerLabs/lit.dev/issues/176
   //const active = document.querySelector('.lhs-nav .active');
   //active?.scrollIntoViewIfNeeded?.();
 };
