@@ -133,7 +133,7 @@ An expression can also return an array or iterable of any of the supported types
 
 You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see see [Lists & repeating templates](lists).
 
-## Setting attributes
+## Attribute expressions
 
 In addition to using expressions to add child nodes, you can use them to set an elements's attributes and properties, too.
 
