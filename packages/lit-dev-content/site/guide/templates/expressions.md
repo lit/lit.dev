@@ -191,7 +191,7 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-## Adding event listeners
+## Event listener expressions
 
 Templates can also include declarative event listeners. Use the prefix `@` followed by the event name. The expression should evaluate to an event listener.
 
