@@ -6,15 +6,15 @@ eleventyNavigation:
   order: 2
 ---
 
-A template expression is a way to embed dynamic values into a template. An expression can be any JavaScript expression. The expression is evaluated whenever the template is, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
+A template expression is a way to embed dynamic values into a template. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
 
 {% playground-example "docs/templates/expressions/" "my-element.ts" %}
 
-How an expression is interpreted depends on where it appears in the template.
+How an expression is interpreted depends on where it appears in the template. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
-**Child nodes**
+Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Directives](/guide/templates/directives) for more information.
 
-These expressions render nodes or text in the DOM.
+**[Child nodes](#child-expressions)**
 
 ```js
 html`
@@ -24,46 +24,37 @@ html`
 </ul>`
 ```
 
-**Attribute values**
-
-These expressions set attributes.
+**[Attributes](#attribute-expressions)**
 
 ```js
 html`<div class=${highlightClass}></div>`
 ```
 
-These expressions set boolean attributes.
+**[Boolean Attributes](#boolean-attribute-expressions)**
 
 ```js
 html`<div ?hidden=${!show}></div>`
 ```
 
-**Properties**
-
-These expressions set properties.
+**[Properties](#property-expressions)**
 
 ```js
 html`<input .value=${value}>`
 ```
 
-**Event listeners**
-
-These expressions set event listeners.
+**[Event listeners](#event-listener-expressions)**
 
 ```js
 html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
 ```
 
-**Element references**
-
-These expressions must be directives, and they can be used, for example, to access the element itself.
+**[Element directives](#element-expressions)**
 
 ```js
 html`<input ${ref(inputRef)}>`
 ```
 
-
-## Child expressions
+## Child expressions { #child-expressions }
 
 An expression that occurs between the start and end tags of an element can add child nodes to the element. For example:
 
@@ -133,7 +124,7 @@ An expression can also return an array or iterable of any of the supported types
 
 You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see see [Lists & repeating templates](lists).
 
-## Attribute expressions
+## Attribute expressions {#attribute-expressions }
 
 In addition to using expressions to add child nodes, you can use them to set an elements's attributes and properties, too.
 
@@ -150,6 +141,8 @@ If the expression makes up the entire attribute value, you can leave off the quo
 ```js
 html`<img src="/images/${this.image}">`;
 ```
+
+### Setting boolean attributes {#boolean-attribute-expressions }
 
 To set a boolean attribute, use the `?` prefix with the attribute name. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
 
@@ -175,7 +168,7 @@ html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}
 
 In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
 
-## Property expressions
+## Property expressions {#property-expressions}
 
 You can set a JavaScript property on an element using the `.` prefix and the property name:
 
@@ -191,7 +184,9 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-## Event listener expressions
+For more information about component properties, see [Reactive Properties](/guide/components/properties).
+
+## Event listener expressions {#event-listener-expressions}
 
 Templates can also include declarative event listeners. Use the prefix `@` followed by the event name. The expression should evaluate to an event listener.
 
@@ -205,36 +200,15 @@ The event listener can be either a plain function, or an object with a `handleEv
 
 In a Lit component, the event listener is automatically bound to the component, so you can use the `this` value inside the handler to refer to the component instance.
 
+For more information about component events, see [Events](/guide/components/events).
+
 ```js
 clickHandler() {
   this.clickCount++;
 }
 ```
 
-## Using Directives
-
-Lit allows special functions, called _directives_, to customize the way an expression is processed and rendered. Lit provides some built-in directives, or you can write your own.
-
-For example, the `classMap` directive lets you specify a set of CSS classes based on the keys and values of a Javascript object:
-
-```js
-import {html} from 'lit';
-import {classMap} from 'lit/directives/class-map.js';
-// ...
-render() {
-  const classes = {
-    active: true,
-    highlighted: true,
-    error: false
-  };
-
-  return html`<div class=${classMap(classes)}>...</div>`;
-}
-```
-
-For a list of directives provided with Lit including [`classMap`](directives#classmap) shown above, see [Built-in directives](directives). For information on writing custom directives, see [Custom directives](../composition/directives).
-
-## Element expressions
+## Element expressions {#element-expressions}
 
 You can also add an expression that accesses an element instance, instead of a single property or attribute on an element:
 
@@ -242,9 +216,9 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with directives. Any other value types in an element expression are ignored.
+Element expressions only work with [directives](/guide/templates/directives). Any other value types in an element expression are ignored.
 
-There are a few built-in directives that can be used in element expressions. One example is the `ref` directive, which provides a reference to the rendered element.
+One built-in directive that can be used in an element expressions is the `ref` directive. It provides a reference to the rendered element.
 
 ```js
 html`<button ${ref(this.myRef)}`;

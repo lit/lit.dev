@@ -18,7 +18,7 @@ Lit templates are written using JavaScript template literals tagged with the `ht
 html`<h1>Hello World</h1>`
 ```
 
-You can add dynamic content to your templates with **expressions**. Expressions are denoted with the standard JavaScript syntax for expressions in template literals:
+You can add dynamic content to your templates with [expressions](/guide/templates/expressions). Expressions are denoted with the standard JavaScript syntax for expressions in template literals:
 
 ```js
 html`<h1>Hello ${name}</h1>`
