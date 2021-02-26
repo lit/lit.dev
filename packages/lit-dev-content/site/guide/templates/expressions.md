@@ -175,7 +175,7 @@ html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}
 
 In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
 
-## Setting properties
+## Property expressions
 
 You can set a JavaScript property on an element using the `.` prefix and the property name:
 
