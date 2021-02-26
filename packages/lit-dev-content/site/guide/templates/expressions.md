@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 2
 ---
 
-An expression is a placeholder for dynamic content in the template. The expression can be any JavaScript expression, and it's evaluated whenever the template renders. In a Lit component, this means whenever the `render` method gets called.
+A template expression is a way to embed dynamic values into a template. An expression can be any JavaScript expression. The expression is evaluated whenever the template is, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
 
 {% playground-example "docs/templates/expressions/" "my-element.ts" %}
 
