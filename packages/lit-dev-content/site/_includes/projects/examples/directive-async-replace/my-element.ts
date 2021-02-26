@@ -2,24 +2,20 @@ import {LitElement, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
 import {asyncReplace} from 'lit/directives/async-replace.js';
 
-async function *timeNow() {
-  let i = 0;
-  while (true) {
-    yield new Date().toString();
+async function *countDown(count: number) {
+  while (count > 0) {
+    yield count--;
     await new Promise((r) => setTimeout(r, 1000));
   }
-};
+}
 
 @customElement('my-element')
 class MyElement extends LitElement {
 
   @state()
-  private time = timeNow();
+  private timer = countDown(10);
 
   render() {
-    return html`
-      <h3>asyncRepeat directive example</h3>
-      Time now: <span>${asyncReplace(this.time)}</span>.
-    `;
+    return html`Timer: <span>${asyncReplace(this.timer)}</span>.`;
   }
 }
