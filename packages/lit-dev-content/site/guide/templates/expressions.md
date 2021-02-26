@@ -159,7 +159,7 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 
 ### Setting values only if data is defined { #ifDefined }
 
-Sometimes you want to set an attribute value only if a data value or set of values is available. For example, consider:
+Sometimes you want to set an attribute only if a value or set of values is available, and otherwise remove the attribute. For example, consider:
 
 ```js
 html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
