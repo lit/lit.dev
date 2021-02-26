@@ -186,14 +186,14 @@ expressions that make them dynamic. If you have a static HTML `<template>` that
 you need to include in your Lit template, you can use the `templateContent`
 directive to clone the template content and include it in your Lit template. As
 long as the template element reference does not change between renders,
-subsequent renders will modify the content.
+subsequent renders will no-op.
 
 <div class="alert alert-warning">
 
-Note, the template content should be developer-controlled and must not include
-untrusted content. Examples of untrusted content include query string parameters
-and values from user inputs. Untrusted content rendered with this directive
-could lead to cross-site scripting (XSS) vulnerabilities.
+Note, the template content should be developer-controlled and must not be
+created using an untrusted string. Examples of untrusted content include query
+string parameters and values from user inputs. Untrusted templates rendered with
+this directive could lead to cross-site scripting (XSS) vulnerabilities.
 
 </div>
 
@@ -498,7 +498,7 @@ class MyElement extends LitElement {
     return html`<input ${ref(this.inputRef)}>`;
   }
 
-  updated() {
+  firstUpdated() {
     const input = this.inputRef.value;
     input.focus();
   }
@@ -526,6 +526,9 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+Explore `ref` more in the [playground](/playground/#sample=examples/directive-ref).
+
 
 ## until
 
