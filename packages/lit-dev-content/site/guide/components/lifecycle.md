@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Lit components use the standard custom element lifecycle methods. In addition Lit introduces a reactive update cycle that renders changes to DOM when reactive properties change.
 
-## Standard custom element lifecycle {% custom-element-lifecycle }
+## Standard custom element lifecycle { #custom-element-lifecycle }
 Lit components are standard custom elements and inherit the custom element lifecycle methods. For information about the custom element lifecycle, see [Using the lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) on MDN.
 
 Note, if you need to customize any of the standard lifecycle methods, make sure to call the super implementation (e.g. `super.connectedCallback()`) so the standard Lit functionality is maintained.
@@ -46,7 +46,7 @@ Note, component updates proceed only when the component is connected. They are p
 
 #### Use cases
 
-In `connectedCallback()` you should perform any tasks that should be undone when the element is disconnected. The most common of these is adding event listeners to nodes external to the element, like a keydown event handler added to the window.
+In `connectedCallback()` you should setup tasks that should only occur when the element is connected to the document. The most common of these is adding event listeners to nodes external to the element, like a keydown event handler added to the window. Typically, anything done in `connectedCallback()` should be undone when the element is disconnected — for example, removing event listeners on window to prevent memory leaks.
 
 ```js
 connectedCallback() {
@@ -64,11 +64,11 @@ Pauses the [reactive update cycle](#reactive-update-cycle). It is resumed when t
 
 #### Use cases
 
-In `disconnectedCallback()` you typically undo any task that should only be enabled while the element is connected; for example, remove event listeners to nodes external to the element, like a keydown event handler added to the window.
+This callback is the main signal to the element that it may no longer be used; as such, `disconnectedCallback()` should ensure that nothing is holding a reference to the element (such as event listeners added to nodes external to the element), so that it is free to be garbage collected. Because elements may be re-connected after being disconnected, as in the case of an element moving in the DOM or caching, any such references or listeners may need to be re-established via `connectedCallback()` so that the element continues functioning as expected in these scenarios. For example, remove event listeners to nodes external to the element, like a keydown event handler added to the window.
 
 ```js
-connectedCallback() {
-  super.connectedCallback()
+disconnectedCallback() {
+  super.disconnectedCallback()
   window.removeEventListener(‘keydown’, this._handleKeydown);
 }
 ```
@@ -76,6 +76,7 @@ connectedCallback() {
 <div class="alert alert-info">
 
 **No need to remove internal event listeners.** You don't need to remove event listeners added on the component's own DOM—including those added declaratively in your template. Unlike external event listeners, these won't prevent the component from being garbage collected.
+
 </div>
 
 ### attributeChangedCallback() { %attributeChangedCallback }
@@ -95,7 +96,9 @@ You rarely need to implement this callback.
 Invoked when a component is moved to a new document.
 
 <div class="alert alert-info">
+
 Be aware that `adoptedCallback` is not polyfilled.
+
 </div>
 
 #### Lit behavior
@@ -110,23 +113,9 @@ This callback should only be used for advanced use cases when the element behavi
 
 In addition to the standard custom element lifecycle, Lit components also implement a reactive update cycle.
 
-**Pre-Update**
-<img class="centered-image" src="/images/guide/components/update-1.jpg">
-<img class="centered-image" src="/images/guide/components/update-2.jpg">
+The reactive update cycle is triggered when a reactive property changes or when the `requestUpdate()` method is explicitly called. Lit performs updates asynchronously so property changes are batched — if more properties change after an update is requested, but before the update starts, all of the changes are captured in the same update.
 
-**Update**
-<img class="centered-image" src="/images/guide/components/update-3.jpg">
-
-**Post-Update**
-<img class="centered-image" src="/images/guide/components/update-4.jpg">
-
-The reactive update cycle is triggered when a reactive property changes or when the `requestUpdate()` method is explicitly called. The update proceeds at microtask timing, before the browser paints.
-
-Lit performs updates asynchronously so property changes are batched—if more properties change after an update is requested, but before the update starts, all of the changes are captured in the same update.
-
-Updates happen at microtask timing, which means they occur before the browser paints the next frame to the screen.
-
-See [Jake Archibald's article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) on microtasks for more information about browser timing.
+Updates happen at microtask timing, which means they occur before the browser paints the next frame to the screen. See [Jake Archibald's article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) on microtasks for more information about browser timing.
 
 At a high level, the reactive update cycle is:
 
@@ -136,19 +125,33 @@ At a high level, the reactive update cycle is:
     1. The component’s render method is called to update its internal DOM.
 1. The update is completed and the `updateComplete` promise is resolved.
 
+In more detail, it looks like this:
+
+**Pre-Update**
+
+<img class="centered-image" src="/images/guide/components/update-1.jpg">
+
+<p><img class="centered-image" src="/images/guide/components/update-2.jpg"></p>
+
+**Update**
+
+<img class="centered-image" src="/images/guide/components/update-3.jpg">
+
+**Post-Update**
+
+<img class="centered-image" src="/images/guide/components/update-4.jpg">
+
 ### Triggering an update {#reactive-update-cycle-triggering}
 
 An update is triggered when a reactive property changes or the `requestUpdate()` method is called. Since updates are performed asynchronously, any and all changes that occur before the update is performed result in only a **single update**.
 
 #### hasChanged() {#haschanged}
 
-All reactive properties have a function, `hasChanged()`, which is called whenever the property is set. By default this does a strict equality check and if it returns `true`, an update is scheduled.
-
-See [configuring `hasChanged()`](/guide/components/properties#haschanged) for more information.
+Called when a reactive property is set. By default `hasChanged()` does a strict equality check and if it returns `true`, an update is scheduled. See [configuring `hasChanged()`](/guide/components/properties#haschanged) for more information.
 
 #### requestUpdate() {#requestUpdate}
 
-You can also schedule an explicit update by calling the `requestUpdate()` method. This can be useful if you need the element to update and render when something not related to a property changes. For example, a timer component might call `requestUpdate()` every second.
+Call `requestUpdate()` to schedule an explicit update. This can be useful if you need the element to update and render when something not related to a property changes. For example, a timer component might call `requestUpdate()` every second.
 
 ```js
 connectedCallback() {
@@ -164,13 +167,11 @@ disconnectedCallback() {
 
 The list of properties that have changed is stored in a Map that’s passed to all the subsequent lifecycle methods. The Map keys are the property names and its values are the previous property values.
 
-Optionally, you can pass a property name and a previous value when calling `requestUpdate()`, which will be stored in the `changedProperties` map. This can be useful if you implement a custom getter and setter for a property.
+Optionally, you can pass a property name and a previous value when calling `requestUpdate()`, which will be stored in the `changedProperties` map. This can be useful if you implement a custom getter and setter for a property. See [Reactive properties](/guide/components/properties/) for more information about implementing custom getters and setters.
 
 ```js
   this.requestUpdate(‘state’, this._previousState);
 ```
-
-See [Reactive properties](/guide/components/properties/) for more information about implementing custom getters and setters.
 
 ### Performing an update {#reactive-update-cycle-performing}
 
@@ -180,6 +181,8 @@ Any changes that would normally trigger an update which occur **while** a compon
 
 #### shouldUpdate() {#shouldupdate}
 
+Called to determine whether an update cycle is required.
+
 | | |
 |-|-|
 | Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
@@ -187,9 +190,9 @@ Any changes that would normally trigger an update which occur **while** a compon
 | Call super? | Not necessary. |
 | Called on server? | No. |
 
-This method controls whether or not the rest of the reactive update cycle should be processed. If it returns `true`, which it does by default, then the update proceeds normally. If it returns `false`, the rest of the update cycle will not be called but the `updateComplete` Promise is still resolved.
+If `shouldUpdate()` returns `true`, which it does by default, then the update proceeds normally. If it returns `false`, the rest of the update cycle will not be called but the `updateComplete` Promise is still resolved.
 
-You can implement `shouldUpdate` to specify which property changes should cause updates. You can use the map of `changedProperties` to compare current and previous values.
+You can implement `shouldUpdate()` to specify which property changes should cause updates. Use the map of `changedProperties` to compare current and previous values.
 
 ```js
 shouldUpdate(changedProperties) {
@@ -200,6 +203,8 @@ shouldUpdate(changedProperties) {
 
 #### willUpdate() {#willupdate}
 
+Called before `update()` to compute values needed during the update.
+
 | | |
 |-|-|
 | Arguments |  `changedProperties`: `Map` with keys that are the names of changed properties and values that are the corresponding previous values. |
@@ -207,7 +212,7 @@ shouldUpdate(changedProperties) {
 | Call super? | Not necessary. |
 | Called on server? | Yes. |
 
-This method can be used to compute property values that depend on other properties and are used in the rest of the update process.
+Implement `willUpdate()` to compute property values that depend on other properties and are used in the rest of the update process.
 
 ```js
 willUpdate(changedProperties) {
@@ -224,6 +229,8 @@ render() {
 
 #### update() {#update}
 
+Called to update the component's DOM.
+
 | | |
 |-|-|
 | Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
@@ -237,6 +244,8 @@ Generally, you should not need to implement this method.
 
 #### render() {#render}
 
+Called by `update()` and should be implemented to return a renderable result (such as a `TemplateResult`) used to render the component's DOM.
+
 | | |
 |-|-|
 | Arguments | None. |
@@ -244,9 +253,7 @@ Generally, you should not need to implement this method.
 | Call super? | Not necessary. |
 | Called on server? | Yes. |
 
-Called by `update()` and should be implemented to return a renderable result (such as a `TemplateResult`) used to render the component's DOM.
-
-The `render()` method has no arguments, but typically it references component properties.
+The `render()` method has no arguments, but typically it references component properties. See [Rendering](/guide/components/rendering/) for more information.
 
 ```js
 render() {
@@ -256,11 +263,13 @@ render() {
 }
 ```
 
-See [Rendering](/guide/components/rendering/) for more information.
-
 ### Completing an update {#reactive-update-cycle-completing}
 
+After `update()` is called to render changes to the component's DOM, you can perform actions on the component's DOM using these methods.
+
 #### firstUpdated() {#firstupdated}
+
+Called after the component's DOM has been updated the first time, immediately before [`updated()`](#updated) is called.
 
 | | |
 |-|-|
@@ -269,9 +278,7 @@ See [Rendering](/guide/components/rendering/) for more information.
 | Call super? | Not necessary. |
 | Called on server? | No. |
 
-Called after the component's DOM has been updated the first time, immediately before [`updated()`](#updated) is called.
-
-You can implement `firstUpdated()` to perform one-time work after the component's DOM has been created.
+Implement `firstUpdated()` to perform one-time work after the component's DOM has been created. Some examples might include focusing a particular rendered element or adding a [ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) to an element.
 
 ```js
 firstUpdated() {
@@ -281,6 +288,8 @@ firstUpdated() {
 
 #### updated() {#updated}
 
+Called whenever the component’s update finishes and the element's DOM has been updated and rendered.
+
 | | |
 |-|-|
 | Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
@@ -288,9 +297,7 @@ firstUpdated() {
 | Call super? | Not necessary. |
 | Called on server? | No. |
 
-Called whenever the component’s update finishes and the element's DOM has been updated and rendered.
-
-You can implement `updated` to perform tasks that use element DOM after an update. For example, code that performs animation may need to measure the element DOM.
+Implement `updated()` to perform tasks that use element DOM after an update. For example, code that performs animation may need to measure the element DOM.
 
 ```js
 updated(changedProperties) {
@@ -302,22 +309,20 @@ updated(changedProperties) {
 
 #### updateComplete {#updatecomplete}
 
-The `updateComplete` Promise resolves when the element has finished updating.
-
-Use `updateComplete` to wait for an update. The resolved value is a Boolean indicating if the element has finished updating. It will be `true` if there are no pending updates after the update cycle has finished.
-
-When writing tests, you can await the `updateComplete` Promise before making assertions about the component’s internal DOM.
+The `updateComplete` Promise resolves when the element has finished updating. Use `updateComplete` to wait for an update. The resolved value is a Boolean indicating if the element has finished updating. It will be `true` if there are no pending updates after the update cycle has finished.
 
 It is a good practice to dispatch events from components after rendering has completed, so that the event's listeners see the fully rendered state of the component. To do so, you can await the `updateComplete` Promise before firing the event.
 
-  ```js
-  async _loginClickHandler() {
-    this.loggedIn = true;
-    // Wait for `loggedIn` state to be rendered to the DOM
-    await this.updateComplete;
-    this.dispatchEvent(new Event(‘login’));
-  }
-  ```
+```js
+async _loginClickHandler() {
+  this.loggedIn = true;
+  // Wait for `loggedIn` state to be rendered to the DOM
+  await this.updateComplete;
+  this.dispatchEvent(new Event(‘login’));
+}
+```
+
+Also, when writing tests you can await the `updateComplete` Promise before making assertions about the component’s DOM.
 
 ### Implementing additional customization {#reactive-update-cycle-customizing}
 
@@ -325,49 +330,49 @@ It is a good practice to dispatch events from components after rendering has com
 
 Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
-You can call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
+Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
 
-You can also implement `performUpdate()` to customize the timing of the update cycle. If `performUpdate()` returns a Promise, it will be awaited before the rest of the update is processed. This can be useful for implementing custom scheduling.
+Implement `performUpdate()` to customize the timing of the update cycle. This can be useful for implementing custom scheduling. Note, if `performUpdate()` returns a Promise, the `updateComplete` Promise will await it.
 
 ```js
 async performUpdate() {
    await new Promise((resolve) => setTimeout(() => resolve()));
-   super.performUpdate();
+   return super.performUpdate();
 }
 ```
 
-In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread.
-
-See [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
+In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread. See [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
 
 #### hasUpdated  {#hasupdated}
 
-The `hasUpdated` property returns true if the component has updated at least once.
-
-You can use `hasUpdated` in any of the lifecycle methods to perform work only if the component has not yet updated.
+The `hasUpdated` property returns true if the component has updated at least once. You can use `hasUpdated` in any of the lifecycle methods to perform work only if the component has not yet updated.
 
 
 #### getUpdateComplete() {#getUpdateComplete}
 
-To await additional conditions before fulfilling the `updateComplete` promise, override the `getUpdateComplete()` method. For example, it may be useful to await the update of a child element here. First await `super.getUpdateComplete()`, then any subsequent state.
+To await additional conditions before fulfilling the `updateComplete` promise, override the `getUpdateComplete()` method. For example, it may be useful to await the update of a child element. First await `super.getUpdateComplete()`, then any subsequent state.
 
 <div class="alert alert-info">
+
 It's recommended to override the `getUpdateComplete()` method instead of the `updateComplete` getter to ensure compatibility with users who are using TypeScript's ES5 output (see [TypeScript#338](https://github.com/microsoft/TypeScript/issues/338)).
+
 </div>
 
-  ```js
-  class MyElement extends LitElement {
-    async getUpdateComplete() {
-      await super.getUpdateComplete();
-      await this._myChild.updateComplete;
-    }
+```js
+class MyElement extends LitElement {
+  async getUpdateComplete() {
+    await super.getUpdateComplete();
+    await this._myChild.updateComplete;
   }
-  ```
+}
+```
 
 ## Server-side reactive update cycle {#server-reactive-update-cycle}
 
 <div class="alert alert-info">
+
 Lit’s server-side rendering code is currently in an experimental stage so the following information is subject to change.
+
 </div>
 
 Not all of the update cycle is called when rendering Lit on the server. The following methods are called on the server.
