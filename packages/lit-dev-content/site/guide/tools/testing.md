@@ -26,7 +26,7 @@ While it's possible to test without a browser by shimming DOM calls, we don't re
 
 ### Supporting modern Javascript
 
-The test environment you use must have support for using modern Javascript, including using modules with bare module specifiers. See the [Browser Support](../browser-support) documentation for more details.
+The test environment you use must have support for using modern Javascript, including using modules with bare module specifiers, or else down-leveling modern Javascript appropriately. See the [Browser Support](../browser-support) documentation for more details.
 
 ### Using polyfills
 
@@ -71,5 +71,4 @@ export default {
   ],
 };
 ```
-
 
