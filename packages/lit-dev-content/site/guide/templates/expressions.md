@@ -63,7 +63,7 @@ html`<input ${ref(inputRef)}>`
 ```
 
 
-## Adding child nodes
+## Child expressions
 
 An expression that occurs between the start and end tags of an element can add child nodes to the element. For example:
 
