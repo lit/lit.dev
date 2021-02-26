@@ -14,7 +14,7 @@ How an expression is interpreted depends on where it appears in the template.
 
 **Child nodes**
 
-These expressions set nodes or text in the DOM.
+These expressions render nodes or text in the DOM.
 
 ```js
 html`
