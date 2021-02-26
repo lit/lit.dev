@@ -165,7 +165,7 @@ Sometimes you want to set an attribute only if a value or set of values is avail
 html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 ```
 
-If `this.image` or `this.imagePath` is not defined, the `src` attribute should not be set or an invalid network request will occur.
+If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
 You can use the `ifDefined` function to avoid this issue:
 
