@@ -185,3 +185,8 @@ article p {
     display: none;
   }
 }
+
+.centered-image {
+  display: block;
+  margin: auto;
+}
