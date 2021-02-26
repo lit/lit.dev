@@ -80,7 +80,7 @@ import {customElement, property, eventOptions, query} from 'lit/decorators';
 
 To use decorators, you need to build your code with a compiler such as [TypeScript](#decorators-typescript) or [Babel](#decorators-babel).
 
-In the future when decorators become a native web platform feature, this may no no longer be necessary.
+In the future when decorators become a native web platform feature, this may no longer be necessary.
 
 ### Using decorators with TypeScript { #decorators-typescript }
 
