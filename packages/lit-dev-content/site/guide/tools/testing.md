@@ -6,18 +6,69 @@ eleventyNavigation:
   order: 3
 ---
 
-{% todo %}
+Testing ensures your code functions as you intend and saves you from tedious debugging.
 
-- Write this section. The content below is from the existing lit-html guide.
-- I think it should be refererring to @web/test-runner now.
+See the [Getting Started](/guide/getting-started) documentation for an easy to use setup with a fully pre-configured testing environment that works great for testing Lit components.
 
-{% endtodo %}
+## Selecting a test framework
 
-lit-html doesn't have many special testing requirements. If you already have a testing setup, it should work fine as long as it supports working with JavaScript modules (and node-style module specifiers, if you use them).
+Lit is a standard modern Javascript library, and you can use virtually any Javascript testing framework to test your Lit code. There are many popular options, including [Jest](https://jestjs.io/), [Karma](https://karma-runner.github.io/), [Mocha](https://mochajs.org/), [Jasmine](https://jasmine.github.io/), and [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/).
 
-Web Component Tester (WCT) is an end-to-end testing environment that supports node-style module specifiers. works with the Mocha testing framework and (optionally) the Chai assertion library. There are two ways to add WCT to your project:
+There are a few things you'll want to make sure your testing environment supports to effectively test your Lit code.
 
-* [web-component-tester](https://www.npmjs.com/package/web-component-tester).  Installing the full WCT package gives you Mocha and Chai, as well as some other add-ons.
-* [wct-mocha](https://www.npmjs.com/package/wct-mocha). Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
+### Testing in the browser
 
-Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a [Karma setup](https://open-wc.org/testing/testing-karma.html#browser-testing) that resolves module dependencies by bundling with webpack before running tests.
+Lit components are designed to run in the browser so testing should be conducted in a browser environment. Tools specifically focusing on testing [node](https://nodejs.org/) code may not be a good fit.
+
+<div class="alert alert-info">
+While it's possible to test without a browser by shimming DOM calls, we don't recommend this approach since it won't test the code in the way your users experience it.
+</div>
+
+### Supporting modern Javascript
+
+The test environment you use must have support for using modern Javascript, including using modules with bare module specifiers, or else down-leveling modern Javascript appropriately. See the [Browser Support](../browser-support) documentation for more details.
+
+### Using polyfills
+
+To test on older browsers, your test environment will need to load some polyfills, including the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) and Lit's `polyfill-support` module. See the [Browser Support](../browser-support) documentation for more details.
+
+## Using Web Test Runner
+
+We recommend using [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) since it is specifically designed to test modern web libraries like Lit using modern web features like custom elements and shadow DOM. See the [Getting Started](https://modern-web.dev/guides/test-runner/getting-started) documentation for Web Test Runner.
+
+In order to support older browsers, you need to configure Web Test Runner as follows:
+
+Install `@web/dev-server-legacy`:
+
+```bash
+npm i @web/dev-server-legacy --save-dev
+```
+
+Setup  `web-test-runner.config.js`:
+
+```js
+import { legacyPlugin } from '@web/dev-server-legacy';
+
+export default {
+  /* ... */
+  plugins: [
+    // make sure this plugin is always last
+    legacyPlugin({
+      polyfills: {
+        webcomponents: true,
+        // Inject lit's polyfill-support module into test files, which is required
+        // for interfacing with the webcomponents polyfills
+        custom: [
+          {
+            name: 'lit-polyfill-support',
+            path: 'node_modules/lit/polyfill-support.js',
+            test: "!('attachShadow' in Element.prototype)",
+            module: false,
+          },
+        ],
+      },
+    }),
+  ],
+};
+```
+
