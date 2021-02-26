@@ -153,7 +153,7 @@ The following plugins highlight Lit templates and check them for errors:
 
 * [`ts-lit-plugin` for TypeScript](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) (works with Sublime and Atom)
 
-* [`eslint-plugin-lit` for ESLint](https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
+* [`eslint-plugin-lit` for ESLint](https://github.com/43081j/eslint-plugin-lit)
 
 These plugins provide:
 
