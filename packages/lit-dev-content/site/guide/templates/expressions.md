@@ -157,7 +157,7 @@ To set a boolean attribute, use the `?` prefix with the attribute name. The attr
 html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 ```
 
-### Setting values only if data is defined { #ifDefined }
+### Setting attributes only if data is defined { #ifDefined }
 
 Sometimes you want to set an attribute only if a value or set of values is available, and otherwise remove the attribute. For example, consider:
 
