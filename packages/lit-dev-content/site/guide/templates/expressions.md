@@ -21,7 +21,7 @@ html`
 <h1>Hello ${name}</h1>
 <ul>
   ${listItems}
-</ul>
+</ul>`
 ```
 
 **Attribute values**
@@ -131,9 +131,7 @@ const page = html`
 
 An expression can also return an array or iterable of any of the supported types, in any combination.
 
-You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists.
-
-For examples, see see [Lists & repeating templates](lists).
+You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see see [Lists & repeating templates](lists).
 
 ## Setting attributes
 
@@ -234,9 +232,7 @@ render() {
 }
 ```
 
-See [classMap](directives#classmap) for more information.
-
-For a list of directives provided with Lit including `classMap` shown above, see [Built-in directives](directives). For information on writing custom directives, see [Custom directives](../composition/directives).
+For a list of directives provided with Lit including [`classMap`](directives#classmap) shown above, see [Built-in directives](directives). For information on writing custom directives, see [Custom directives](../composition/directives).
 
 ## Element expressions
 
@@ -299,7 +295,7 @@ Follow these rules for well-formed templates:
     <div ${attrName}=true></div>
     ```
 
-    See the [unsafeHTML() directive](./directives/#unsafehtml) for information about rendering static html in templates.
+    See [unsafeStatic()](/guide/templates/static) for information about rendering static html in templates.
 
  *  Templates can have multiple top-level elements and text.
 
