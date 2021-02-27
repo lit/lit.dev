@@ -44,7 +44,7 @@ Although the `lit-element@^3` and `lit-html@^2` packages should be largely backw
 
 ### Update decorator imports
 
-The previous version of `lit-element` exported all TypeScript decorators from the main module. In Lit 2.0, these have been moved to individual modules, to enable smaller bundle sizes when the decorators are unused.
+The previous version of `lit-element` exported all TypeScript decorators from the main module. In Lit 2.0, these have been moved to a separate module, to enable smaller bundle sizes when the decorators are unused.
 
 From:
 ```js
@@ -52,8 +52,7 @@ import {property, customElement} from `lit-element`;
 ```
 To:
 ```js
-import {property} from `lit/decorators/property.js`;
-import {customElement} from `lit/decorators/custom-element.js`;
+import {property, customElement} from `lit/decorators.js`;
 ```
 
 ### Update directive imports
@@ -128,12 +127,12 @@ server, while `update` will not be.
 
 |                                              | Previous API                                                                                           | New API                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Code idiom for directive                     | Function that takes directive arguments, and returns function that takes `part` and returns value | Class that extends `Directive` with `update` & `render` methods which accept directive arguments |
-| Where to do declarative rendering            | Pass value to `part.setValue()`                                                                   | Return value from `render()` method                                     |
-| Where to do imperative DOM/part manipulation | Directive function                                                                                | `update()` method                                                       |
-| Where state is stored between renders        | `WeakMap` keyed on `part`                                                                         | Class instance fields                                                   |
-| How part validation is done                  | `instanceof` check on `part` in every render                                                      | `part.type` check in constructor                                        |
-| How to update a directive's value asynchronously | `part.setValue(v);`<br>`part.commit();` | Extend `AsyncDirective` instead of `Directive` and call `this.setValue(v)` |
+| Code&nbsp;idiom | Function that takes directive arguments, and returns function that takes `part` and returns value | Class that extends `Directive` with `update` & `render` methods which accept directive arguments |
+| Declarative&nbsp;rendering | Pass value to `part.setValue()` | Return value from `render()` method |
+| DOM&nbsp;manipulation | Implement in directive function | Implement in `update()` method |
+| State | Stored in `WeakMap` keyed on `part` | Stored in class instance fields |
+| Part&nbsp;validation | `instanceof` check on `part` in every render | `part.type` check in constructor |
+| Async&nbsp;updates | `part.setValue(v);`<br>`part.commit();` | Extend `AsyncDirective` instead of `Directive` and call `this.setValue(v)` |
 
 ### Example directive migration
 
@@ -143,13 +142,13 @@ new API:
 1.x Directive API:
 
 ```js
-import {directive, NodePart, html} from 'lit-html';
+import {html, directive, Part, NodePart} from 'lit-html';
 
 // State stored in WeakMap
-const previousState = new WeakMap();
+const previousState: WeakMap<Part, number> = new WeakMap();
 
 // Functional-based directive API
-export const renderCounter = directive((initialValue) => (part) => {
+export const renderCounter = directive((initialValue: number) => (part: Part) => {
   // When necessary, validate part type each render using `instanceof`
   if (!(part instanceof NodePart)) {
     throw new Error('renderCounter only supports NodePart');
@@ -157,7 +156,7 @@ export const renderCounter = directive((initialValue) => (part) => {
   // Retrieve value from previous state
   let value = previousState.get(part);
   // Update state
-  if (previous === undefined) {
+  if (value === undefined) {
     value = initialValue;
   } else {
     value++;
@@ -172,37 +171,37 @@ export const renderCounter = directive((initialValue) => (part) => {
 2.0 Directive API:
 
 ```js
-import {html} from 'lit-html';
-import {directive, Directive, PartType} from 'lit-html/directive.js';
+import {html} from 'lit';
+import {directive, Directive, Part, PartInfo, PartType} from 'lit/directive.js';
 
 // Class-based directive API
-export const renderCounter = directive(
-  class extends Directive {
-    // State stored in class field
-    value = undefined;
-    constructor(partInfo: PartInfo, index?: number) {
-      super(partInfo, index);
-      // When necessary, validate part in constructor using `part.type`
-      if (partInfo.type !== PartType.CHILD) {
-        throw new Error('renderCounter only supports child expressions');
-      }
-    }
-    // Any imperative updates to DOM/parts would go here
-    update(part, [initialValue]) {
-      // ...
-    }
-    // Do SSR-compatible rendering (arguments are passed from call site)
-    render(initialValue) {
-      // Previous state available on class field
-      if (this.value === undefined) {
-        this.value = initialValue;
-      } else {
-        this.value++;
-      }
-      return html`<p>${this.value}</p>`;
+export class RenderCounter extends Directive {
+  // State stored in class field
+  value: number | undefined;
+  constructor(partInfo: PartInfo) {
+    super(partInfo);
+    // When necessary, validate part in constructor using `part.type`
+    if (partInfo.type !== PartType.CHILD) {
+      throw new Error('renderCounter only supports child expressions');
     }
   }
-);
+  // Optional: override update to perform any direct DOM manipulation
+  update(part: Part, [initialValue]: DirectiveParameters<this>) {
+    /* Any imperative updates to DOM/parts would go here */
+    return this.render(initialValue);
+  }
+  // Do SSR-compatible rendering (arguments are passed from call site)
+  render(initialValue: number) {
+    // Previous state available on class field
+    if (this.value === undefined) {
+      this.value = initialValue;
+    } else {
+      this.value++;
+    }
+    return html`<p>${this.value}</p>`;
+  }
+}
+export const renderCounter = directive(RenderCounter);
 ```
 
 ## Adapt to minor breaking changes
