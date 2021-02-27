@@ -166,10 +166,16 @@ ${content}
     // for content, they only exist to generate sections. Delete the HTML files
     // generated from them so that users can't somehow navigate to some
     // "index.html" and see a weird empty page.
-    const emptyDocsIndexFiles = await fastGlob([
-      OUTPUT_DIR + '/guide/introduction.html',
-      OUTPUT_DIR + '/guide/*/index.html',
-    ]);
+    const emptyDocsIndexFiles = (
+      await fastGlob([
+        OUTPUT_DIR + '/guide/introduction.html',
+        OUTPUT_DIR + '/guide/*/index.html',
+      ])
+    ).filter(
+      // TODO(aomarks) This is brittle, we need a way to annotate inside an md
+      // file that a page shouldn't be generated.
+      (file) => !file.includes('why-lit') && !file.includes('getting-started')
+    );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
     if (DEV) {
