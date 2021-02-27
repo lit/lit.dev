@@ -206,7 +206,9 @@ export const renderCounter = directive(RenderCounter);
 
 ## Adapt to minor breaking changes
 
-The following is a list of minor but notable breaking changes that you may need to adapt your code to.
+For completeness, the following is a list of minor but notable breaking changes
+that you may need to adapt your code to. We expect these changes to affect
+relatively few users.
 
 ### `LitElement`
 * The `update` and `render` callbacks will only be called when the element is
