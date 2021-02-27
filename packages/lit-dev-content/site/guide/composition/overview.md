@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 1
 ---
 
-There are several strategies you can use to factor Lit code into reusable modules:
+There are several strategies you can use to make your Lit code reusable:
 
 *   Composition
 *   Directives
@@ -21,9 +21,9 @@ _Reactive controllers_ are objects that can hook into the update lifecycle of a 
 
 _Class mixins_ let you write reusable partial component definitions and "mix them in" to a component's inheritance chain.
 
-Both mixins and reactive controllers let you group code related to a feature into a reusable unit. However, they're applied in different ways.
+Directives are useful for code that needs to customize rendering in some fashion; while they have some similarities to components, it's best to think of these as rendering helpers, and not a full-fledged component model.  On the other hand, both mixins and reactive controllers let you factor component logic related to a given feature into a reusable unit. However, they're applied in different ways.
 
-A reactive controller is a separate object connected to a component. The controller can access methods and fields on the component, and the component can access methods and fields on the controller. But the controller can't (easily) be accessed by someone using the component, unless the component exposes a public API to it. The controller's lifecycle methods are called _before_ the corresponding lifecycle method on the component.
+A reactive controller is a separate object owned by a component. The controller can access methods and fields on the component, and the component can access methods and fields on the controller. But the controller can't (easily) be accessed by someone using the component, unless the component exposes a public API to it. The controller's lifecycle methods are called _before_ the corresponding lifecycle method on the component.
 
 A mixin, on the other hand, becomes part of the component's prototype chain. Any public fields or methods defined by the mixin are part of the component's API. And because a mixin is part of the prototype chain, your component has some control of when the mixin's lifecycle callbacks are called.
 
