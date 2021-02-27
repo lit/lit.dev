@@ -127,12 +127,12 @@ server, while `update` will not be.
 
 |                                              | Previous API                                                                                           | New API                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Code&nbsp;idiom | Function that takes directive arguments, and returns function that takes `part` and returns value | Class that extends `Directive` with `update` & `render` methods which accept directive arguments |
-| Declarative&nbsp;rendering | Pass value to `part.setValue()` | Return value from `render()` method |
-| DOM&nbsp;manipulation | Implement in directive function | Implement in `update()` method |
-| State | Stored in `WeakMap` keyed on `part` | Stored in class instance fields |
-| Part&nbsp;validation | `instanceof` check on `part` in every render | `part.type` check in constructor |
-| Async&nbsp;updates | `part.setValue(v);`<br>`part.commit();` | Extend `AsyncDirective` instead of `Directive` and call `this.setValue(v)` |
+| **Code&nbsp;idiom** | Function that takes directive arguments, and returns function that takes `part` and returns value | Class that extends `Directive` with `update` & `render` methods which accept directive arguments |
+| **Declarative&nbsp;rendering** | Pass value to `part.setValue()` | Return value from `render()` method |
+| **DOM&nbsp;manipulation** | Implement in directive function | Implement in `update()` method |
+| **State** | Stored in `WeakMap` keyed on `part` | Stored in class instance fields |
+| **Part&nbsp;validation** | `instanceof` check on `part` in every render | `part.type` check in constructor |
+| **Async&nbsp;updates** | `part.setValue(v);`<br>`part.commit();` | Extend `AsyncDirective` instead of `Directive` and call `this.setValue(v)` |
 
 ### Example directive migration
 
