@@ -40,7 +40,6 @@ module.exports = function (eleventyConfig) {
     'node_modules/codemirror/lib/codemirror.css': './codemirror.css',
   });
   eleventyConfig.addPassthroughCopy('site/images/**/*');
-  eleventyConfig.addPassthroughCopy('site/samples/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
   eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
   eleventyConfig.addPassthroughCopy({

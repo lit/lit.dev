@@ -1,17 +1,17 @@
 ---
-title: Introduction
+title: Define a component
 eleventyNavigation:
-  key: Introduction
+  key: Define
   order: 1
 startingSrc: samples/try/create/before/project.json
 finishedSrc: samples/try/create/after/project.json
 ---
 
-In this step, you'll fill in the gaps in the starting code to create an element class with a basic HTML template. The sample already includes the code for defining a Lit component, but it doesn't render anything yet.
+In Lit, most things start with defining a component. Complete this component definition by adding a `render()` method that defines the component's internal DOM.
 
-In `my-element.js`, replace the existing class definition with the following code:
+In `my-element.ts`, replace the existing class definition with the following code:
 
-```js
+```ts
 class MyElement extends LitElement {
   render() {
     return html`
@@ -21,12 +21,12 @@ class MyElement extends LitElement {
 }
 ```
 
-The `render` method defines your component's template. You must implement `render` for every Lit component.
+The `render()` method defines your component's template. You must implement `render()` for every Lit component.
 
-Your code sample should be working now. LitElement components are added to a page with simple HTML tags, like this:
+Your code sample should be working now. Lit components are added to a page with simple HTML tags, like this:
 
 ```html
 <my-element></my-element>
 ```
 
-[Next: 2. Properties](properties)
+[Next: Reactive properties](properties)

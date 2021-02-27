@@ -1,28 +1,39 @@
 {% extends 'default.html' %}
-{% include 'topnav.html' %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{site.baseurl}}/css/tutorial.css">
+  {% inlinecss "tutorial.css" %}
+  {% inlinejs "docs.js" %}
+{% endblock %}
+
+{% block drawer %}
+  {% include 'eleventy-nav.html' %}
 {% endblock %}
 
 {% block content %}
   <div class="tutorial">
-    <div class="contents">
+    <div class="tutorial-text">
       <h1>{{ title }}</h1>
       {{ content | safe }}
-      <button data-url="{{site.baseurl}}/{{startingSrc}}" id="reset">Reset</button>
-      <button data-url="{{site.baseurl}}/{{finishedSrc}}" id="finish">Show finished</button>
+      <div class="internal-nav">
+        <button data-url="{{site.baseurl}}/{{startingSrc}}" id="reset">Reset</button>
+        <button data-url="{{site.baseurl}}/{{finishedSrc}}" id="finish">Show finished</button>
+      </div>
     </div>
 
-    <code-sample-editor project-src="{{site.baseurl}}/{{startingSrc}}">
-    </code-sample-editor>
-    
+  <playground-ide
+    project-src="{{site.baseurl}}/{{startingSrc}}"
+    resizable
+    line-numbers
+    editable-file-system>
+  </playground-ide>
+
+
   </div>
   <script>
     // bad code alert
     const resetButton = document.querySelector('button#reset');
     const finishButton = document.querySelector('button#finish');
-    const editor = document.querySelector('code-sample-editor');
+    const editor = document.querySelector('playground-ide');
     const listener = (e) => {
       let url = e.target.dataset.url;
       editor.projectSrc = url;
