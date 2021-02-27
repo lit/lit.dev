@@ -16,17 +16,21 @@ eleventyNavigation:
 
 Lit 2 introduces a new concept for code reuse and composition called "Reactive Controllers".
 
-A reactive controller is an object that can hook into a component's update lifecycle, allowing it to bundle state and behavior related to a feature, and reuse it across multiple component definitions.
+A reactive controller is an object that can hook into a component's reactive update cycle. Controllers can bundle state and behavior related to a feature, and reuse it across multiple component definitions.
 
 You can use controllers to implement features that require their own state and access to the component's lifecycle, such as:
 
-* Handling global events like mouse events.
-* Managing asynchronous tasks like fetching data over the network.
-* Running animations.
+* Handling global events like mouse events
+* Managing asynchronous tasks like fetching data over the network
+* Running animations
 
 Reactive controllers can be thought of as partial reusable component definitions, with their own identity and state. They allow you to build components by composing smaller pieces that aren't themselves components.
 
 Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers vs Mixins](#controllers-vs-mixins) for more details.
+
+### Example
+
+{% playground-ide "docs/controllers/overview" "my-element.ts" %}
 
 ## Using a Controller
 
@@ -34,7 +38,7 @@ Each controller has its own creation API, but typically you will create an insta
 
 ```ts
 class MyElement extends LitElement {
-  _clock = new ClockController(this, 1000);
+  private clock = new ClockController(this, 1000);
 }
 ```
 
@@ -44,69 +48,66 @@ A controller will typically expose some functionality to be used in the host's `
 
 ```ts
 class MyElement extends LitElement {
-  _clock = new ClockController(this, 1000);
+  private clock = new ClockController(this, 1000);
 
   render() {
-    html`
-      <div>Current time: ${this._clock.time}</div>
+    return html`
+      <div>Current time: ${this.clock.time}</div>
     `;
   }
 }
 ```
 
+Since each controller has it's own API, refer to specific controller documentation on how to use them.
+
 ## Writing a Controller
 
 Reactive controllers can be implemented with JavaScript classes.
 
-A controller needs a reference to its host component so that it can register itself and interact with the component later:
+A controller needs a reference to its host component so that it can register itself and interact with the component later. This should be done in the constructor:
 
 ```ts
 import {ReactiveController, ReactiveControllerHost} from 'lit';
 
 class ClockController implements ReactiveController {
-  host: ReactiveControllerHost;
-  delay: number;
-  time: Date;
-  _intervalID?: number;
+  private host: ReactiveControllerHost;
+
+  constructor(host: ReactiveControllerHost) {
+    this.host = host;
+    host.addController(this);
+  }
+```
+
+You can add other constructor parameters for one-time configuration.
+
+```ts
+class ClockController implements ReactiveController {
+  private host: ReactiveControllerHost;
+  delay: number
 
   constructor(host: ReactiveControllerHost, delay: number) {
     this.host = host;
     this.delay = delay;
-    this.time = new Date();
     host.addController(this);
   }
-
-  _onTick = () => {
-    this.time = new Date();
-    this.host.requestUpdate();
-  };
-
-  hostConnected() {
-    this._intervalID = setInterval(this._onTick, this.delay);
-  }
-
-  hostDisconnected() {
-    clearInterval(this._intervalID);
-  }
-}
 ```
 
-You can add class fields and methods to the controller to implement its specific state and behavior.
+Once your controller is registered with the host component, you can all lifecycle callbacks and other class fields and methods to the controller to implement the desired state and behavior.
 
 ### Lifecycle
 
-The reactive controller lifecycle closely matches the LitElement (ReactiveElement) lifecycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional, if a controller implements them, they are called.
+The reactive controller lifecycle is a subset of the reactive update cycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional, if a controller implements them, they are called.
 
-* `hostConnected()`: Called from connectedCallback, after creating the renderRoot, so a shadow root will exist at this point.
+* `hostConnected()`: Called from `connectedCallback()`, after creating the renderRoot, so a shadow root will exist at this point.
 Set up event listeners, observers, etc.
 Not called in server environments.
-* `hostUpdate()`: Called before the host's update() and render() methods.
+* `hostUpdate()`: Called before the host's `update()` and `render()` methods.
 Useful for reading DOM before it's modified (for example, for animations).
 Not called in server environments.
-* `hostUpdated()`: Called before the host's updated() method.
+* `hostUpdated()`: Called before the host's `updated()` method.
 Useful for reading DOM after it's modified (for example, for animations).
 Not called in server environments.
-* `hostDisconnected()`: Called from host's disconnectedCallback.
+* `hostDisconnected()`: Called from host's `disconnectedCallback()`.
 Clean up event listeners, observers, etc.
 Not called in server environments.
 
@@ -123,11 +124,22 @@ This is the minimum API needed for a controller host, but you can also create co
 
 ### Using other controllers
 
-{% todo %}
+Controller can be composed of other controllers as well. To do this create a child controller and forward the host to it.
 
-- Describe composition
+```ts
+class DualClockController implements ReactiveController {
+  private clock1: ClockController;
+  private clock2: ClockController;
 
-{% endtodo %}
+  constructor(host: ReactiveControllerHost, delay1: number, delay2: number) {
+    clock1 = new ClockController(host, delay1);
+    clock2 = new ClockController(host, delay2);
+  }
+
+  get time1() { return this.clock1.time; }
+  get time2() { return this.clock2.time; }
+}
+```
 
 ### Controllers and Directives
 
