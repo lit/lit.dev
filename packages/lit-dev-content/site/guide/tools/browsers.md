@@ -6,7 +6,11 @@ eleventyNavigation:
   order: 7
 ---
 
-Lit works on modern browsers, including Chrome, Firefox, Edge, and Safari as well as any browsers based on the Webkit, Gecko, or Blink rendering engines. Lit uses modern Javascript features like bare module specifiers, classes, and modules, as well as web platform features like web components. The library guarantees support for at least the last 2 major versions of modern browsers.
+Lit works and is supported on the last-two major versions of Chrome, Firefox, Edge, and Safari, and other browsers based on those rendering engines. Lit is also supported on IE11 and "classic" Edge.
+
+Lit uses modern JavaScript and web platform features like web components, JavaScript modules, bare module specifiers, and classes.
+
+Lit supports modern browsers natively, and older browsers like IE11 via compilers and polyfills.
 
 The following table lists browser versions that support the features on which Lit relies. For the browsers not supporting these features natively, they are supported either via polyfills or by producing a compatible build.
 
