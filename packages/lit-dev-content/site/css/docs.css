@@ -190,3 +190,13 @@ article p {
   display: block;
   margin: auto;
 }
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top;
+}
+
+th:empty {
+  padding: 1px;
+}
