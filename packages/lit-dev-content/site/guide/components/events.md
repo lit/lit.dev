@@ -22,7 +22,7 @@ You can use `@` expressions in your template to add event listeners to element's
 
 {% playground-example "docs/components/events/child/" "my-element.ts" %}
 
-#### Customizing event listener options
+#### Customizing event listener options {#event-options-decorator}
 
 If you need to customize the event options used for a declarative event listener (like `passive` or `capture`), you can specify these on the listener using the `@eventOptions` decorator. The object passed to `@eventOptions` is passed as the `options` parameter to `addEventListener`.
 

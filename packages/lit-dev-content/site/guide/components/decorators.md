@@ -1,14 +1,14 @@
 ---
-title: Using decorators
+title: Decorators
 eleventyNavigation:
-  key: Using decorators
+  key: Decorators
   parent: Components
   order: 8
 ---
 
 {% todo %}
 
-* The decorators list links are currently to the API docs in the existing site. This need to be updated to the new API docs when they are ready.
+* See [#175](https://github.com/PolymerLabs/lit.dev/issues/175)
 
 {% endtodo %}
 
@@ -18,11 +18,18 @@ Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators)
 
 See the [Enabling decorators](#enabling-decorators) section for more information.
 
-## Lit decorators
-
 Lit supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component. For example, the `@customElement` and `@property` decorators make a basic element definition more compact:
 
-{% playground-example "docs/components/decorators/basic/" "my-element.ts" %}
+```ts
+@customElement('my-element')
+export class MyElement extends LitElement {
+  @property() greeting = "Welcome";
+  @property() name = "Sally";
+  @property({type: Boolean}) emphatic = true;
+  //...
+}
+```
+{#custom-element}
 
 The `@customElement` decorator defines a custom element, equivalent to calling:
 
@@ -30,52 +37,36 @@ The `@customElement` decorator defines a custom element, equivalent to calling:
 customElements.define('my-element', MyElement);
 ```
 
-The `@property` decorator declares a reactive property. The lines:
-
-```js
- @property()
- greeting = 'Welcome';
-```
-
-Are equivalent to:
-
-```js
-static properties = {
-  greeting: {}
-};
-
-constructor() {
-  super();
-  this.greeting = 'Welcome';
-}
-```
+The `@property` decorator declares a reactive property.
 
 See [Reactive properties](/guide/components/properties) for more information about configuring properties.
 
-### List of decorators
+## Built-in decorators
 
-*   [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement). Defines a custom element.
-*   [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions). Adds event listener options for a declarative event listener.
-*   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property). Defines a public property.
-*   [`@state`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Defines a private state property.
-*   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query). Defines a property that returns an element in the component template.
-*   [`@queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll). Defines a property that returns a list of elements in the component template.
-*   [`@queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Defines a property that returns a promise that resolves to an element in the component template after any pending update cycle.
-*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Defines a property that returns the children assigned to a specific slot.
+| Decorator | Summary | More Info |
+|-----------|---------|--------------|
+| [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement) | Defines a custom element | [Above](#custom-element) |
+| [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions) | Adds event listener options. | [Events](/guide/components/events#event-options-decorator) |
+| [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property) | Defines a public property. | [Properties](/guide/components/properties#declare-with-decorators) |
+| [`@state`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty) | Defines a private state property | [Properties](/guide/components/properties#declare-with-decorators) |
+| [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query) | Defines a property that returns an element in the component template. | [Shadow DOM](/guide/components/shadow-dom#query) |
+| [`@queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll) | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/guide/components/shadow-dom#query-all) |
+| [`@queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync) | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/guide/components/shadow-dom#query-async) |
+| [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes) | Defines a property that returns the children assigned to a specific slot. | [Shadow DOM](/guide/components/shadow-dom#query-assigned-nodes) |
 
-### Importing decorators
+## Importing decorators
 
-To reduce the amount of code needed to run the component, decorators should be imported individually into component code. All decorators are available at `lit/decorators/<decorator-name>`. For example,
+You can import all the lit decorators via the `lit/decorators.js` module:
 
 ```js
-import {customElement} from 'lit/decorators/custom-element';
-import {eventOptions} from 'lit/decorators/event-options';
+import {customElement, property, eventOptions, query} from 'lit/decorators.js';
 ```
 
-For convenience, you can also import all the lit decorators via:
+To reduce the amount of code needed to run the component, decorators can be imported individually into component code. All decorators are available at `lit/decorators/<decorator-name>`. For example,
 
 ```js
-import {customElement, property, eventOptions, query} from 'lit/decorators';
+import {customElement} from 'lit/decorators/custom-element.js';
+import {eventOptions} from 'lit/decorators/event-options.js';
 ```
 
 ## Enabling decorators { #enabling-decorators }
@@ -106,7 +97,7 @@ To enable the plugins, add code like this to your Babel configuration:
 ```js
 plugins = [
   ['@babel/plugin-proposal-decorators', {decoratorsBeforeExport: true}],
-  '@babel/plugin-proposal-class-properties',
+  ["@babel/plugin-proposal-class-properties", {"loose": true}],
 ];
 ```
 
@@ -149,7 +140,7 @@ When using TypeScript with Babel, it's important to order the TypeScript transfo
   "plugins":[
     ["@babel/plugin-transform-typescript", {"allowDeclareFields": true}],
     ["@babel/plugin-proposal-decorators", {"decoratorsBeforeExport": true}],
-    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-class-properties", {"loose": true}],
   ]
 }
 ```
