@@ -11,10 +11,10 @@ eleventyNavigation:
 Lit 2.0 is designed to work with most code written for LitElement 2.x and lit-html 1.x. There are a small number of changes required to migrate your code to Lit 2.0. The high-level changes required include:
 
 1. Updating npm packages and import paths.
-1. Loading `platform-support` script when loading the webcomponents polyfills.
+1. Loading `polyfill-support` script when loading the webcomponents polyfills.
 1. Updating any custom directive implementations to use new class-based API and associated helpers
 1. Updating code to renamed APIs.
-1. Noting a number of minor breaking changes and adapt code as appropriate.
+1. Adapting to minor breaking changes, mostly in uncommon cases.
 
 The following sections will go through each of these changes in detail.
 
@@ -40,7 +40,7 @@ To:
 import {LitElement, html} from `lit`;
 ```
 
-Although the `lit-element@^3` and `lit-html@^2` packages should be largely backward-compatible, we recommend updating to the `lit` package as this will be preferred and well-documented way to use Lit going forward.
+Although the `lit-element@^3` and `lit-html@^2` packages should be largely backward-compatible, we recommend updating to the `lit` package as the other packages are moving towards eventual deprecation.
 
 ### Update decorator imports
 
@@ -69,11 +69,11 @@ To:
 import {repeat} from `lit/decorators/repeat.js`;
 ```
 
-## Load `platform-support` when using webcomponents polyfills
+## Load `polyfill-support` when using webcomponents polyfills
 
-Lit 2.0 still supports the same browsers down to IE11. However, given the broad adoption of Web Components APIs in modern browsers, we have taken the opportunity to move over 1kb of code required for interfacing with the `webcomponents` polyfills out of the core libraries and into an opt-in support file, so that the tax for supporting older browsers is only paid when required.
+Lit 2.0 still supports the same browsers down to IE11. However, given the broad adoption of Web Components APIs in modern browsers, we have taken the opportunity to move all of the code required for interfacing with the `webcomponents` polyfills out of the core libraries and into an opt-in support file, so that the tax for supporting older browsers is only paid when required.
 
-In general, any time you use the `webcomponents` polyfills, you should also load the `lit/platform-support.js` support file once on the page, similar to a polyfill. For example:
+In general, any time you use the `webcomponents` polyfills, you should also load the `lit/polyfill-support.js` support file once on the page, similar to a polyfill. For example:
 
 ```html
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js">
@@ -217,7 +217,7 @@ update callbacks will be called if/when the element is re-connected.
 * For simplicity, `requestUpdate` no longer returns a Promise. Instead await the `updateComplete` Promise.
 * Errors that occur during the update cycle were previously squelched to allow subsequent updates to proceed normally. Now errors are re-fired asynchronously so they can be detected. Errors can be observed via an `unhandledrejection` event handler on window.
 * Creation of `shadowRoot` via `createRenderRoot` and support for applying `static styles` to the `shadowRoot` has moved from `LitElement` to `ReactiveElement`.
-* The `createRenderRoot` method is now called just before the first update rather than in the constructor. Element code can not assume the `renderRoot` exists before the element `hasUpdated`. This change was made for compatibility with SSR.
+* The `createRenderRoot` method is now called just before the first update rather than in the constructor. Element code can not assume the `renderRoot` exists before the element `hasUpdated`. This change was made for compatibility with server-side rendering.
 * `ReactiveElement`'s `initialize` method has been removed. This work is now done in the element constructor.
 * The _static_ `render` method on the `LitElement` base class has been removed. This was primarily used for implementing ShadyDOM integration, and was not intended as a user-overridable method. ShadyDOM integration is now achieved via the `polyfill-support` module.
 * When a property declaration is `reflect: true` and its `toAttribute` function returns `undefined` the attribute is now removed where previously it was left unchanged ([#872](https://github.com/Polymer/lit-element/issues/872)).
