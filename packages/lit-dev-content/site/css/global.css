@@ -1,10 +1,11 @@
 @import url('./fonts/manrope.css');
 @import url('./fonts/roboto-mono.css');
+@import url('./fonts/open-sans.css');
 @import url('./header.css');
 @import url('./footer.css');
 @import url('./mobile-nav.css');
-@import url('./code.css');
 @import url('./colors.css');
+@import url('./codemirror.css');
 
 /* Params */
 
@@ -15,7 +16,7 @@ html {
   --footer-bottom-height: 6rem;
 }
 
-@media (max-width: 699px) {
+@media (max-width: 882px) {
   html {
     --footer-top-height: 20rem;
   }
@@ -33,7 +34,6 @@ body {
 
 main {
   /* TODO(aomarks) Remove when rest of site adapted to new font/size */
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
 

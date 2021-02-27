@@ -31,7 +31,7 @@ const observeActiveTocSection = () => {
   if (!window.IntersectionObserver) {
     return;
   }
-  const toc = document.querySelector('.rhs-toc');
+  const toc = document.querySelector('#rhsToc');
   if (!toc) {
     return;
   }
@@ -41,7 +41,7 @@ const observeActiveTocSection = () => {
   }
 
   const tocHeadings = new Map();
-  for (const link of document.querySelectorAll('.rhs-toc [href]')) {
+  for (const link of document.querySelectorAll('#rhsToc [href]')) {
     const href = link.getAttribute('href');
     if (!href?.startsWith('#')) {
       continue;

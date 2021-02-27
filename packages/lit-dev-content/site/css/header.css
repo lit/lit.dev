@@ -32,7 +32,7 @@ header > nav {
 
 #desktopNav > .navItem > a {
   color: var(--color-medium-gray);
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.3em 0.5em;
   margin-left: 0.5em;
   font-size: 0.9em;
@@ -40,19 +40,19 @@ header > nav {
 
 #desktopNav > .navItem > a:hover,
 #desktopNav > .navItem.active > a {
-  color: black;
+  color: var(--color-blue);
 }
 
 #mobileMenuButton {
   display: none;
 }
 
-@media (max-width: 699px) {
+@media (max-width: 882px) {
   #desktopNav {
     display: none;
   }
 
- #mobileMenuButton{
+  #mobileMenuButton {
     display: flex;
   }
 

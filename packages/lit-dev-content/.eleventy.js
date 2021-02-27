@@ -34,11 +34,6 @@ module.exports = function (eleventyConfig) {
     // In dev mode, we symlink directly to the source CSS.
     eleventyConfig.addPassthroughCopy('site/css');
   }
-  // Note we don't want codemirror.css in css/ because in dev mode it's a
-  // symlink, and we don't want to accidentally copy this file into site/css.
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/codemirror/lib/codemirror.css': './codemirror.css',
-  });
   eleventyConfig.addPassthroughCopy('site/images/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
   eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});

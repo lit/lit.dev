@@ -13,7 +13,7 @@
 
   <li{% if sectionActive %} class="activeSection"{% endif %}>
     {%- if section.children | length %}
-      <span class="section-head{% if section.url == page.url %} active{% endif %}">
+      <span class="sectionHead{% if section.url == page.url %} active{% endif %}">
         {{ section.title }}</span>
       <ol>
       {%- for child in section.children %}
