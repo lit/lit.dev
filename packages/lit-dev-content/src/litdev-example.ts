@@ -25,8 +25,6 @@ export class LitDevExample extends LitElement {
       display: block;
       /* For absolute positioning of openInPlayground button. */
       position: relative;
-      --litdev-example-editor-height: 300px;
-      --litdev-example-preview-height: 100px;
     }
 
     playground-file-editor,
@@ -37,7 +35,7 @@ export class LitDevExample extends LitElement {
     }
 
     playground-file-editor {
-      height: var(--litdev-example-editor-height);
+      height: var(--litdev-example-editor-height, 300px);
       margin-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -46,7 +44,7 @@ export class LitDevExample extends LitElement {
     }
 
     playground-preview {
-      height: var(--litdev-example-preview-height);
+      height: var(--litdev-example-preview-height, 100px);
       border-top: none;
       border-top-left-radius: 0;
       border-top-right-radius: 0;

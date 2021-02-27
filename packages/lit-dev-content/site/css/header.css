@@ -1,0 +1,67 @@
+header {
+  position: sticky;
+  top: 0;
+  height: var(--header-height);
+  /* CodeMirrors have a very high z-index for some reason. */
+  z-index: 4;
+  background: var(--color-light-gray);
+  display: flex;
+  padding: 0 1.5em;
+  justify-content: stretch;
+}
+
+#headerLogo {
+  height: 2em;
+  padding: 0.1em 0.5em;
+}
+
+header > nav {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#desktopNav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#desktopNav > .navItem > a {
+  color: var(--color-medium-gray);
+  font-weight: 700;
+  padding: 0.3em 0.5em;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+}
+
+#desktopNav > .navItem > a:hover,
+#desktopNav > .navItem.active > a {
+  color: black;
+}
+
+#mobileMenuButton {
+  display: none;
+}
+
+@media (max-width: 699px) {
+  #desktopNav {
+    display: none;
+  }
+
+ #mobileMenuButton{
+    display: flex;
+  }
+
+  header {
+    padding: 0 0.5em;
+  }
+
+  /* Eliminate sizing FOUC before menu button upgrades. */
+  header mwc-icon-button:not(:defined) {
+    padding: 12px;
+  }
+}
