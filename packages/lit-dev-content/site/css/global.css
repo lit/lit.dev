@@ -6,6 +6,7 @@
 @import url('./mobile-nav.css');
 @import url('./colors.css');
 @import url('./codemirror.css');
+@import url('./code.css');
 
 html {
   font-size: 18px;

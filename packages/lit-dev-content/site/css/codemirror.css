@@ -1,5 +1,7 @@
+/* TODO(aomarks) This should be published by playground-elements. It
+   externalizes the styles that are shared between scoped and SSR playgrounds */
+
 .CodeMirror {
-  font-family: var(--playground-code-font-family, monospace);
   font-size: var(--playground-code-font-size, inherit);
   color: var(--playground-code-default-color, #000);
   background: var(--playground-code-background, #fff);
@@ -8,6 +10,7 @@
 
 .CodeMirror pre.CodeMirror-line {
   padding: 0 4px;
+  font-family: var(--playground-code-font-family, monospace);
 }
 
 .cm-keyword {

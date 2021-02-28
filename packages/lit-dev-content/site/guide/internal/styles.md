@@ -37,12 +37,6 @@ This is **bold**.
 This is *italic*.
 This is ***bold italic***.
 
-## Inline code
-
-The component's `render` method can return anything that Lit can render.
-Typically, it returns a single `TemplateResult` object (the same type returned
-by the `html` tag function).
-
 ## Ordered list
 
 1. This is the first item
@@ -89,6 +83,17 @@ the surrounding text.
 ## Figures
 
 ![Inheritance diagram showing LitElement inheriting from ReactiveElement, which in turn inherits from HTMLElement. LitElement is responsible for templating; ReactiveElement is responsible for managing reactive properties and attributes; HTMLElement is the standard DOM interface shared by all native HTML elements and custom elements.](/images/guide/components/lit-element-inheritance.png)
+
+## Inline code
+
+The component's `render` method can return anything that Lit can render.
+Typically, it returns a single `TemplateResult` object (the same type returned
+by the `html` tag function).
+
+## Non-highlighted code snippet
+```
+I'm just some code
+```
 
 ## Highlighted code snippet
 
