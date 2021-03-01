@@ -25,6 +25,7 @@ export class LitDevExample extends LitElement {
       display: block;
       /* For absolute positioning of openInPlayground button. */
       position: relative;
+      border-radius: none;
     }
 
     playground-file-editor,
@@ -39,8 +40,7 @@ export class LitDevExample extends LitElement {
       margin-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      /* Border radius is masked by default white background otherwise. */
-      --playground-code-background: transparent;
+      background: var(--playground-code-background);
     }
 
     playground-preview {

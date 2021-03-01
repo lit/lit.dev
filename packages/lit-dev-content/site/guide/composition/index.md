@@ -1,7 +1,7 @@
 ---
-title: Code organization & reuse
+title: Code organization
 eleventyNavigation:
-  title: Code organization & reuse
+  title: Code organization
   key: Composition
   order: 4
 ---
