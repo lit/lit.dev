@@ -1,0 +1,73 @@
+#simplicityWrapper {
+  background: #eaeaea;
+}
+
+#simplicity {
+  max-width: var(--content-max-width);
+  margin: auto;
+  display: flex;
+  padding: 4em var(--home-side-margin);
+}
+
+#simplicity > .prose > h2 {
+  margin-bottom: 2em;
+  font-size: 1.7em;
+  padding-top: 0;
+}
+
+#simplicity > .prose {
+  padding-right: 4em;
+}
+
+#simplicity > .prose > p {
+  line-height: 2.1em;
+}
+
+#simplicity > .prose > p:last-of-type {
+  color: var(--color-blue);
+}
+
+/* ------------------------------------
+ * Above/below when narrow
+ * ------------------------------------ */
+
+ @media (max-width: 1260px) {
+   #simplicity {
+     display: block;
+   }
+
+   #simplicity > .prose {
+    max-width: 47em;
+    margin: auto;
+    padding-right: 0;
+    margin-bottom: 3em
+   }
+
+   #simplicity > .homeExample {
+    max-width: 47em;
+    margin: auto;
+   }
+
+   #simplicity > .homeExample > .code {
+     overflow-y: auto;
+   }
+ }
+
+/* ------------------------------------
+ * Shrink code when very narrow
+ * ------------------------------------ */
+
+ @media (max-width: 700px) {
+  #simplicity > .homeExample {
+    max-width: unset;
+    margin: 0 calc(-1 * var(--home-side-margin)) 0 calc(-1 * var(--home-side-margin));
+  }
+
+  #simplicity > .homeExample > .code {
+    font-size: 0.66em;
+  }
+
+  #simplicity > .homeExample > .code > .CodeMirror {
+    padding: 2em 0.5em 2em 0.5em;
+  }
+}
