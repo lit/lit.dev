@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block content %}
-  <div class="lhs-nav-wrapper">
-    <nav class="site-nav lhs-nav">
+  <div id="docsNavWrapper">
+    <nav id="docsNav">
       <ol>{% include 'eleventy-nav.html' %}</ol>
     </nav>
   </div>
 
-  <div class="rhs-toc-wrapper">
-    <nav class="rhs-toc">
+  <div id="rhsTocWrapper">
+    <nav id="rhsToc">
       <h2>Contents</h2>
       {{ content | toc | safe }}
     </nav>
@@ -26,7 +26,7 @@
   <article>
     <h1>{{ title }}</h1>
 
-    <nav class="inline-toc">
+    <nav id="inlineToc">
       <details>
         <summary><h2>Contents</h2></summary>
         {{ content | toc | safe }}
