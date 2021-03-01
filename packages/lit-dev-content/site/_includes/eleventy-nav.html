@@ -1,21 +1,29 @@
 {% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
 {%- set navSections = collections.guide | eleventyNavigation -%}
 
-{%- for entry in navSections %}
-  <li>
-    {%- if entry.children | length %}
-      <span class="section-head{% if entry.url == page.url %} active{% endif %}">
-        {{ entry.title }}</span>
-      {% set navPages = entry.children %}
+{%- for section in navSections %}
+
+  {# Are any children in this section active? #}
+  {% set sectionActive = false %}
+  {%- for child in section.children %}
+    {% if child.url == page.url %}
+      {% set sectionActive = true %}
+    {% endif %}
+  {%- endfor %}
+
+  <li{% if sectionActive %} class="activeSection"{% endif %}>
+    {%- if section.children | length %}
+      <span class="sectionHead{% if section.url == page.url %} active{% endif %}">
+        {{ section.title }}</span>
       <ol>
-      {%- for entry in navPages %}
-        <li{% if entry.url == page.url %} class="active"{% endif %}>
-          <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+      {%- for child in section.children %}
+        <li{% if child.url == page.url %} class="active"{% endif %}>
+          <a href="{{ child.url | url }}">{{ child.title }}</a>
         </li>
       {%- endfor %}
       </ol>
     {%- else %}
-      <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+      <a href="{{ section.url | url }}">{{ section.title }}</a>
     {%- endif %}
   </li>
 {%- endfor %}

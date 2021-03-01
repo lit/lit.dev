@@ -1,0 +1,67 @@
+@import url('./fonts/manrope.css');
+@import url('./fonts/roboto-mono.css');
+@import url('./fonts/open-sans.css');
+@import url('./header.css');
+@import url('./footer.css');
+@import url('./mobile-nav.css');
+@import url('./colors.css');
+@import url('./codemirror.css');
+
+/* Params */
+
+html {
+  font-size: 18px;
+  --header-height: 3.33rem;
+  --footer-top-height: 12rem;
+  --footer-bottom-height: 6rem;
+}
+
+@media (max-width: 864px) {
+  html {
+    --footer-top-height: 20rem;
+  }
+}
+
+/* General */
+
+body {
+  margin: 0;
+  font-family: Manrope, sans-serif;
+  color: #3e3e3e;
+  --toc-width: 300px;
+  --main-max-width: 1200px;
+}
+
+main {
+  /* TODO(aomarks) Remove when rest of site adapted to new font/size */
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 400;
+  color: black;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+a {
+  text-decoration: none;
+  color: #1879cd;
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+  max-width: var(--main-max-width);
+  min-height: calc(100vh - var(--header-height) - var(--footer-top-height) - var(--footer-bottom-height));
+  margin: auto;
+  box-sizing: border-box;
+}

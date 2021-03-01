@@ -1,0 +1,9 @@
+{
+  "title": "Slotting children",
+  "description": "Render children with the <slot> element.",
+  "section": "Rendering & Templating",
+  "files": {
+    "my-element.js": {},
+    "index.html": {}
+  }
+}

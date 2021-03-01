@@ -35,15 +35,23 @@ const terserOptions = {
 
 export default [
   {
-    input: 'site/js/guide.js',
+    input: 'lib/mods.js',
     output: {
-      file: 'site/_includes/js/guide.js',
+      file: 'site/_includes/js/mods.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: 'site/js/playground.js',
+    input: 'lib/docs.js',
+    output: {
+      file: 'site/_includes/js/docs.js',
+      format: 'esm',
+    },
+    plugins: [resolve(), terser(terserOptions), summary()],
+  },
+  {
+    input: 'lib/playground.js',
     output: {
       file: 'site/_includes/js/playground.js',
       format: 'esm',
@@ -51,7 +59,7 @@ export default [
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: ['site/js/site.js', 'site/js/playground-elements.js'],
+    input: ['lib/global.js', 'lib/playground-elements.js'],
     output: {
       dir: '_site/js/',
       format: 'esm',
