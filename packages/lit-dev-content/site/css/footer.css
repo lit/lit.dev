@@ -64,7 +64,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 882px) {
+@media (max-width: 864px) {
   #footerTop {
     flex-direction: column;
     justify-content: space-around;

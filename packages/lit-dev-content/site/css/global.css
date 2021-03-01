@@ -16,7 +16,7 @@ html {
   --footer-bottom-height: 6rem;
 }
 
-@media (max-width: 882px) {
+@media (max-width: 864px) {
   html {
     --footer-top-height: 20rem;
   }

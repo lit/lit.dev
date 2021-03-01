@@ -47,7 +47,7 @@ header > nav {
   display: none;
 }
 
-@media (max-width: 882px) {
+@media (max-width: 864px) {
   #desktopNav {
     display: none;
   }
