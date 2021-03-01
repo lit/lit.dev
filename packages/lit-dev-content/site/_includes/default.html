@@ -12,6 +12,9 @@
 
     {% inlinecss "global.css" %}
 
+    {% inlinejs "mods.js" %}
+    {% inlinecss "mods.css" %}
+
     {% if dev %}
       <script type="module" async src="/lib/global.js"></script>
       <script type="module" async src="/lib/playground-elements.js"></script>
@@ -26,8 +29,6 @@
       <script type="module" async src="/js/common.js"></script>
     {% endif %}
 
-    <link rel="preload" href="{{site.baseurl}}/codemirror.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     {% block head %}{% endblock %}
@@ -35,11 +36,11 @@
     {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
   </head>
   <body>
-    <mwc-drawer type="modal" id="nav-drawer">
-      <nav class="site-nav">
+    <mwc-drawer type="modal" id="mobileDrawer">
+      <nav id="mobileNav">
         <ol>
           <li>
-            <span class="section-head">Site</span>
+            <span class="sectionHead">Site</span>
             <ol>{% include 'nav-items.html' %}</ol>
           </li>
           {% block drawer %}{{ content | safe }}{% endblock %}

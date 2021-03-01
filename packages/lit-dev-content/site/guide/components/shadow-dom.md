@@ -16,6 +16,12 @@ Shadow DOM provides three benefits:
   affect the rest of the DOM tree.
 * Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your component DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
 
+For more information on shadow DOM:
+
+* [Shadow DOM v1: Self-Contained Web Components](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
+* [Using shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) on MDN.
+
+
 <div class="alert alert-info">
 
 **Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [browser support](../tools/browsers) for details.
@@ -95,7 +101,7 @@ More information:
 
 ### @query, @queryAll, and @queryAsync decorators
 
-The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient way to access nodes in the component's DOM.
+The `@query`, `@queryAll`, `@queryAsync`, and `@queryAssignedNoes` decorators all provide a convenient way to access nodes in the component's DOM.
 
 <div class="alert alert-info">
 
@@ -103,7 +109,9 @@ The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient
 
 </div>
 
-The `@query` decorator modifies a class property, turning it into a getter that returns a node from the render root. The optional second argument when true performs the DOM query only once and caches the result. This can be used as a performance optimization in cases when the node being queried will not change.
+#### @query { #query }
+
+Modifies a class property, turning it into a getter that returns a node from the render root. The optional second argument when true performs the DOM query only once and caches the result. This can be used as a performance optimization in cases when the node being queried will not change.
 
 ```js
 import {LitElement, html} from 'lit';
@@ -136,7 +144,9 @@ get first() {
 
 </div>
 
-The `@queryAll` decorator is identical to `query` except that it returns all matching nodes, instead of a single node. It's the equivalent of calling `querySelectorAll`.
+#### @queryAll { #query-all }
+
+Identical to `query` except that it returns all matching nodes, instead of a single node. It's the equivalent of calling `querySelectorAll`.
 
 ```js
 import {LitElement, html} from 'lit';
@@ -164,7 +174,9 @@ _buttons!: NodeListOf<HTMLButtonElement>
 
 The exclamation point (`!`) after `buttons` is TypeScript's [non-null assertion operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator). It tells the compiler to treat `buttons` as always being defined, never `null` or `undefined`.
 
-Finally, `@queryAsync` works like `@query`, except that instead of returning a node directly, it returns a `Promise` that resolves to that node after any pending element render is completed. Code can use this instead of waiting for the `updateComplete` promise.
+#### @queryAsync { #query-async }
+
+Similar to `@query`, except that instead of returning a node directly, it returns a `Promise` that resolves to that node after any pending element render is completed. Code can use this instead of waiting for the `updateComplete` promise.
 
 This is useful, for example, if the node returned by `@queryAsync` can change as a result of another property change.
 
@@ -221,7 +233,7 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 </div>
 
-## Accessing slotted children
+## Accessing slotted children { #accessing-slotted-children }
 
 To access children assigned to slots in your shadow root, you can use the standard `slot.assignedNodes` method and the `slotchange` event.
 
@@ -256,7 +268,7 @@ More information:
 *   [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
 
 
-### @queryAssignedNodes decorator
+### @queryAssignedNodes decorator { #query-assigned-nodes }
 
 The `@queryAssignedNodes` decorator converts a class property into a getter that returns all of the assigned nodes for a given slot in the component's shadow tree. The optional second boolean argument when true flattens the assigned nodes, meaning any assigned nodes that are slot elements are replaced with their assigned nodes. The optional third argument is a css selector which filters the results to matching elements.
 
@@ -287,10 +299,3 @@ get headerNodes() {
 ```
 
 For TypeScript, the typing of a `queryAssignedNodes` property is `NodeListOf<HTMLElement>`.
-
-## Resources
-
-For more information on shadow DOM:
-
-* [Shadow DOM v1: Self-Contained Web Components](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
-* [Using shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) on MDN.
