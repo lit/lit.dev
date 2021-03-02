@@ -3,7 +3,7 @@ title: Directives
 eleventyNavigation:
   key: Directives
   parent: Templates
-  order: 6
+  order: 5
 ---
 
 Directives are functions that can extend Lit by customizing the way an expression renders.

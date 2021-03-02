@@ -3,7 +3,7 @@ title: Conditionals
 eleventyNavigation:
   key: Conditionals
   parent: Templates
-  order: 4
+  order: 3
 ---
 
 Since Lit leverages normal Javascript expressions, you can use standard Javascript control flow constructs like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements to render conditional content.

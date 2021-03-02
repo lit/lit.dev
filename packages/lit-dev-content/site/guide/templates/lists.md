@@ -3,7 +3,7 @@ title: Lists
 eleventyNavigation:
   key: Lists
   parent: Templates
-  order: 5
+  order: 4
 ---
 
 {% todo %}
