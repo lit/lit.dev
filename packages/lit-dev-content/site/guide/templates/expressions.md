@@ -3,10 +3,10 @@ title: Expressions
 eleventyNavigation:
   key: Expressions
   parent: Templates
-  order: 2
+  order: 3
 ---
 
-A template expression is a way to embed dynamic values into a template. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
+In addition to static [HTML](/guide/templates/html), Lit templates can include dynamic values called expressions. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
 
 {% playground-example "docs/templates/expressions/" "my-element.ts" %}
 
@@ -225,59 +225,3 @@ html`<button ${ref(this.myRef)}`;
 ```
 
 See [ref](directives#ref) for more information.
-
-## Well-formed templates
-
-Lit templates must be well-formed HTML, and expressions can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated.
-
-<div class="alert alert-info">
-
-**Finding malformed templates.** Because the browser's built-in parser is very lenient, most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. We recommend using <a href="/guide/tools/development/#linting">linting tools</a> and <a href="/guide/tools/development/#ide-plugins">IDE plugins</a> to find issues in your templates during development.
-
-</div>
-
-Follow these rules for well-formed templates:
-
- *  Templates must be well-formed HTML when all expressions are replaced by empty values.
-
- *  Standard expressions **_can only occur_** where you can place attribute values and child elements in HTML.
-
-    ```html
-    <!-- attribute values -->
-    <div label=${label}></div>
-    <button ?disabled=${isDisabled}>Click me!</button>
-    <input .value=${currentValue}>
-    <button @click=${this.handleClick()}>
-
-    <!-- child content -->
-    <div>${textContent}</div>
-    ```
-
-  * Element expressions can occur inside the opening tag after the tag name:
-
-    ```html
-    <div ${ref(elementReference)}></div>
-    ```
-
- *  Expressions **_cannot_** appear where tag or attribute names would appear.
-
-    ```html
-    <!-- ERROR -->
-    <${tagName}></${tagName}>
-
-    <!-- ERROR -->
-    <div ${attrName}=true></div>
-    ```
-
-    See [unsafeStatic()](/guide/templates/static) for information about rendering static html in templates.
-
- *  Templates can have multiple top-level elements and text.
-
- *  Templates **_should not contain_** unclosed elements—they will be closed by the HTML parser.
-
-    ```js
-    // HTML parser closes this div after "Some text"
-    const template1 = html`<div class="broken-div">Some text`;
-    // When joined, "more text" does not end up in .broken-div
-    const template2 = html`${template1} more text. </div>`;
-    ```

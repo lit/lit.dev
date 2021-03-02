@@ -1,9 +1,9 @@
 ---
-title: Lists & repeating templates
+title: Lists
 eleventyNavigation:
-  key: Lists & repeating templates
+  key: Lists
   parent: Templates
-  order: 4
+  order: 5
 ---
 
 {% todo %}

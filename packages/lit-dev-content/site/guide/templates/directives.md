@@ -1,7 +1,7 @@
 ---
-title: Built-in directives
+title: Directives
 eleventyNavigation:
-  key: Built-in directives
+  key: Directives
   parent: Templates
   order: 6
 ---

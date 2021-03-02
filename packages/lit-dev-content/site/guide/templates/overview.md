@@ -12,13 +12,13 @@ If time permits, add new page on working with inputs, per outline.
 
 {% endtodo %}
 
-Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
+Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, [HTML](/guide/templates/html):
 
 ```js
 html`<h1>Hello World</h1>`
 ```
 
-You can add dynamic content to your templates with [expressions](/guide/templates/expressions). Expressions are denoted with the standard JavaScript syntax for expressions in template literals:
+The static string content of a template must be [well-formed HTML](/guide/templates/html#well-formed). You can add dynamic content to your templates with [expressions](/guide/templates/expressions). Expressions are denoted with the standard JavaScript syntax for expressions in template literals:
 
 ```js
 html`<h1>Hello ${name}</h1>`
