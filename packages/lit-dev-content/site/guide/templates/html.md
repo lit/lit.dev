@@ -66,6 +66,8 @@ Expressions **_cannot_** appear where tag or attribute names would appear; howev
 
 Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be [well-formed HTML](#well-formed-html).
 
+You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with a normal expression. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because (1) setting is unlikely to change and (2) customizing an HTML tag cannot be done with a normal expression.
+
 To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
 
 <div class="alert alert-info">
