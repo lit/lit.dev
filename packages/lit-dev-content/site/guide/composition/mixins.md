@@ -81,8 +81,18 @@ const LoggingMixin = (superClass) => class extends superClass {
 }
 ```
 
-Mixins can also add reactive properties, styles, and and API to the subclassed
-element.
+Note that a mixin should always super to the standard custom elmeent lifecycle
+methods implemented by `LitElement`. When overriding a reactive update lifecycle
+callback, it is good practice to call the super method if it already exists on
+the superclass (as shown above with the optional-chaining call to
+`super.updated.?()`).
+
+Also note that mixins can choose to do work either before or after the base
+implementation of the standard lifecycle callbacks via its choice of when to
+make the super call.
+
+Mixins can also add [reactive properties](../../components/properties/),
+[styles](../../components/styles/), and and API to the subclassed element.
 
 The mixin in the example below adds a reactive property `highlight` to the
 element and a `renderHighlight` method that the user can call to wrap some
@@ -174,6 +184,19 @@ export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
 
 As a current limitation of the type system, TypeScript does not support adding
 class members with `private` or `protected` access modifiers via a mixin.
+
+Not supported:
+```ts
+export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
+  class MyMixinClass extends superClass {
+    @state()
+    // ❌ Typescript does not support private access modifiers in mixins
+    private wasClicked = false;
+    /* ... */
+  }
+  return MyMixinClass;
+}
+```
 
 As an alternative, we recommend using symbols for hiding private fields/methods
 referenced internally by the mixin when necessary. This can also serve to help
