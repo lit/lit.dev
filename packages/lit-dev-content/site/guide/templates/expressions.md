@@ -115,7 +115,7 @@ html`<button @click=${(e) => console.log('clicked')}>Click Me</button>`
 
 This basic example shows a variety of different kinds of expressions.
 
-{% playground-example "docs/templates/expressions/" "my-element.ts" %}
+{% playground-example "docs/templates/expressions/basic" "my-element.ts" %}
 
 ## Child expressions { #child-expressions }
 
@@ -359,7 +359,7 @@ Note the use of "unsafe" in `unsafeStatic()`. Creating static expressions should
 
 In the following example, the values defined with `unsafeStatic()` are not reactive and do not cause the template to update.
 
-{% playground-example "docs/templates/html/" "my-element.ts" %}
+{% playground-example "docs/templates/expressions/static" "my-element.ts" %}
 
 ### Updating static expressions
 
