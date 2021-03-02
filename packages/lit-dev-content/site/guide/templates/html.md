@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 2
 ---
 
-Lit templates describe HTML that is rendered by the browser into the DOM. You can combine static strings of HTML with dynamic [expressions](/guide/templates/expressions). The static portions of the template must describe [well-formed HTML](#well-formed-html), and expressions are only valid at specific [locations](#expression-locations) in the template. However, Lit also supports a special type of [static expression](#static-expressions) which can be used in any location in the template and is a one-time interpolation that is not intended to be updated.
+Lit templates describe HTML that is rendered by the browser into the DOM. You can combine static strings of HTML with dynamic [expressions](/guide/templates/expressions). The static portions of the template must describe [well-formed HTML](#well-formed-html), and expressions are only valid at specific [locations](#expression-locations) in the template. Lit also supports a special type of [static expression](#static-expressions) which can be used in any location in the template and is a one-time interpolation not intended to be updated.
 
 ## Well-formed HTML { #well-formed-html }
 
@@ -64,9 +64,9 @@ Expressions **_cannot_** appear where tag or attribute names would appear; howev
 
  ## Static expressions { #static-expressions }
 
-Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the static HTML of the template, they can exist anywhere in the template; however, when the static content is iterpolated into the template, the template must be [well-formed HTML](#well-formed-html).
+Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be [well-formed HTML](#well-formed-html).
 
-To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. The `unsafeStatic()` function should be used to create static expressions.
+To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
 
 <div class="alert alert-info">
 
