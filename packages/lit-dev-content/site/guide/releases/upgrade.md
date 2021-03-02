@@ -125,7 +125,7 @@ server, while `update` will not be.
 
 ### Overview of directive API changes
 
-|                                              | Previous API                                                                                           | New API                                                                 |
+| Concept | Previous API | New API |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **Code&nbsp;idiom** | Function that takes directive arguments, and returns function that takes `part` and returns value | Class that extends `Directive` with `update` & `render` methods which accept directive arguments |
 | **Declarative&nbsp;rendering** | Pass value to `part.setValue()` | Return value from `render()` method |
