@@ -16,14 +16,13 @@ export class ClockController implements ReactiveController {
     // Start a timer when the host is connected
     this._timerID = setInterval(() => {
       this.value = new Date();
-      // Update the host on new values
+      // Update the host with new value
       this.host.requestUpdate();
     });
   }
 
   hostDisconnected() {
     // Clear the timer when the host is disconnected
-    // so we don't have memory leaks or wasted work
     clearInterval(this._timerID);
     this._timerID = undefined;
   }

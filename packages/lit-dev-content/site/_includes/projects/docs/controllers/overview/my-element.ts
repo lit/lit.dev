@@ -1,22 +1,16 @@
 import {LitElement, html} from 'lit';
-import {property, customElement} from 'lit/decorators.js';
+import {customElement} from 'lit/decorators.js';
 import {ClockController} from './clock-controller.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-
   // Create the controller and store it
-  private _clock = new ClockController(this, 100);
+  private clock = new ClockController(this, 100);
 
+  // Use the controller in render()
   render() {
-    // Use the controller in render()
-    const formattedTime = timeFormat.format(this._clock.value);
-    return html`
-      <p>
-        The current time is:<br>
-        ${formattedTime}
-      </p>
-    `;
+    const formattedTime = timeFormat.format(this.clock.value);
+    return html`Current time: ${formattedTime}`;
   }
 }
 
