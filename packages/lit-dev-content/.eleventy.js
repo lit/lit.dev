@@ -13,6 +13,9 @@ const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
 const fsSync = require('fs');
 const fastGlob = require('fast-glob');
+const {
+  inlinePlaygroundFilesIntoManifests,
+} = require('../lit-dev-tools/lib/playground-inline.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
@@ -198,6 +201,12 @@ ${content}
         path.join(__dirname, '_dev', 'lib')
       );
     } else {
+      // Inline all Playground project files directly into their manifests, to
+      // cut down on requests per project.
+      await inlinePlaygroundFilesIntoManifests(
+        `${OUTPUT_DIR}/samples/**/project.json`
+      );
+
       // Pre-compress all outputs as .br and .gz files so the server can read
       // them directly instead of spending its own cycles. Note this adds ~4
       // seconds to the build, but it's disabled during dev.
