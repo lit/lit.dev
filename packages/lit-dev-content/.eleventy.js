@@ -13,6 +13,9 @@ const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
 const fsSync = require('fs');
 const fastGlob = require('fast-glob');
+const {
+  inlinePlaygroundFilesIntoManifests,
+} = require('../lit-dev-tools/lib/playground-inline.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -187,6 +190,12 @@ ${content}
       await symlinkForce(
         path.join(__dirname, 'lib'),
         path.join(__dirname, '_dev', 'lib')
+      );
+    } else {
+      // Inline all Playground project files directly into their manifests, to
+      // cut down on requests per project.
+      await inlinePlaygroundFilesIntoManifests(
+        `${OUTPUT_DIR}/samples/**/project.json`
       );
     }
   });
