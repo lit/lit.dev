@@ -13,6 +13,7 @@ const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
 const fsSync = require('fs');
 const fastGlob = require('fast-glob');
+const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -196,6 +197,11 @@ ${content}
         path.join(__dirname, 'lib'),
         path.join(__dirname, '_dev', 'lib')
       );
+    } else {
+      // Pre-compress all outputs as .br and .gz files so the server can read
+      // them directly instead of spending its own cycles. Note this adds ~4
+      // seconds to the build, but it's disabled during dev.
+      await preCompress({glob: `${OUTPUT_DIR}/**/*`});
     }
   });
 
