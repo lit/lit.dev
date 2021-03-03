@@ -347,20 +347,29 @@ Expressions **_cannot_** appear where tag or attribute names would appear; howev
 
 Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be [well-formed HTML](#well-formed-html).
 
-You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with a normal expression. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because (1) setting is unlikely to change and (2) customizing an HTML tag cannot be done with a normal expression.
-
 To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
 
 <div class="alert alert-info">
 
-Note the use of "unsafe" in `unsafeStatic()`. Creating static expressions should be considered "unsafe" from a security perspective, and therefore used with caution. To avoid potential [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting) security issues, never allow user content to be used as an argument to `unsafeStatic()` .
+Note the use of _unsafe_ in `unsafeStatic()`. Creating static expressions should be considered unsafe from a security perspective, and therefore used with caution. To avoid potential [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting) security issues, never allow user content to be an argument to `unsafeStatic()`.
 
 </div>
 
-In the following example, the values defined with `unsafeStatic()` are not reactive and do not cause the template to update.
+You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you [cannot](#expression-locations) with normal expressions. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because the setting is unlikely to change and customizing an HTML tag cannot be done with a normal expression.
 
-{% playground-example "docs/templates/expressions/static" "my-element.ts" %}
+```ts
+tag = 'button';
+activeAttribute = 'active';
+@property() caption = 'Go';
+@property({type: Boolean}) active = false;
+protected render() {
+  return html`
+    <${unsafeStatic(this.tag)} ${unsafeStatic(this.activeAttribute)}?=${this.active}>
+      <p>${this.caption}</p>
+    </${unsafeStatic(this.tag)}>`;
+}
+```
 
-### Updating static expressions
+The values passed to `unsafeStatic()` should not change frequently. In the example above, if the template re-renders and `this.caption` or `this.active` change, the template will update in the typical, [efficient Lit pattern](/guide/templates/overview#efficient-updates). However, if `this.tag` or `this.activeAttribute` change, since they are arguments to `unsafeStatic()`, an entirely new template will be created and the update will be inefficient since the DOM is completely re-rendered. In addition, changing values passed to `unsafeStatic()` increases memory use since each unique template is kept in memory.
 
-Note, it _is_ possible to update the values of static expressions by changing them and manually re-rendering the template, for example by calling `this.requestUpdate()` in your component. However, mutating the values passed to `unsafeStatic()` is generally not a good idea since instead of doing a normal, efficient Lit update, this will cause the template to completely re-render.
+For these reasons, it's a good idea keep changes to arguments to `unsafeStatic()` to a minimum and avoid using [reactive properties](/guide/components/properties) as arguments since they are intended to change.

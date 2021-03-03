@@ -44,7 +44,7 @@ class MyElement extends LitElement {
 
 As shown in the example, you can use `this` inside an expression to access instance properties and methods on your component.
 
-## Efficient updates
+## Efficient updates { #efficient-updates }
 
 The template syntax might look like you're just doing string interpolation. But with tagged template literals, the browser passes the tag function an array of strings (the static portions of the template) and an array of expressions (the dynamic portions). Lit uses this to build an efficient representation of your template, so it can re-render only the parts of template that have changed.
 
