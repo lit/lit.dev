@@ -28,10 +28,21 @@
 }
 
 /* ------------------------------------
+ * Adjustments before major layout change
+ * ------------------------------------ */
+
+/* Scale everything down a bit */
+@media (max-width: 1095px) {
+  #simplicity {
+    font-size: 0.9em;
+  }
+}
+
+/* ------------------------------------
  * Above/below when narrow
  * ------------------------------------ */
 
- @media (max-width: 1260px) {
+ @media (max-width: 1000px) {
    #simplicity {
      display: block;
    }
@@ -57,17 +68,18 @@
  * Shrink code when very narrow
  * ------------------------------------ */
 
- @media (max-width: 700px) {
+ @media (max-width: 688px) {
   #simplicity > .homeExample {
     max-width: unset;
     margin: 0 calc(-1 * var(--home-side-margin)) 0 calc(-1 * var(--home-side-margin));
   }
 
-  #simplicity > .homeExample > .code {
-    font-size: 0.66em;
+  #simplicity .CodeMirror {
+    padding: 1em;
   }
 
-  #simplicity > .homeExample > .code > .CodeMirror {
-    padding: 2em 0.5em 2em 0.5em;
+  #simplicity > .homeExample > .code {
+    /* In proportion to view width so it always fits. */
+    font-size: calc(1vw * 3);
   }
 }
