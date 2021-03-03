@@ -31,12 +31,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin);
   if (!DEV) {
-    // In dev mode, we symlink directly to the source CSS.
+    // In dev mode, we symlink these directly to source.
     eleventyConfig.addPassthroughCopy('site/css');
+    eleventyConfig.addPassthroughCopy('site/images');
+    eleventyConfig.addPassthroughCopy('samples');
   }
-  eleventyConfig.addPassthroughCopy('site/images/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
-  eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
   eleventyConfig.addPassthroughCopy({
     'node_modules/playground-elements/playground-typescript-worker.js':
       './js/playground-typescript-worker.js',
@@ -174,12 +174,20 @@ ${content}
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
     if (DEV) {
-      // Symlink site/css -> _dev/css. We do this in dev mode instead of
-      // addPassthroughCopy() so that changes are reflected immediately, instead
-      // of triggering an Eleventy build.
+      // Symlink css, images, and playground projects. We do this in dev mode
+      // instead of addPassthroughCopy() so that changes are reflected
+      // immediately, instead of triggering an Eleventy build.
       await symlinkForce(
         path.join(__dirname, 'site', 'css'),
         path.join(__dirname, '_dev', 'css')
+      );
+      await symlinkForce(
+        path.join(__dirname, 'site', 'images'),
+        path.join(__dirname, '_dev', 'images')
+      );
+      await symlinkForce(
+        path.join(__dirname, 'samples'),
+        path.join(__dirname, '_dev', 'samples')
       );
 
       // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs in
