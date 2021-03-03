@@ -176,7 +176,7 @@ body.roboto {
 }
 
 .headerNarrow header > nav {
-  max-width: 76rem;
+  max-width: var(--content-max-width);
 }
 
 /* ------------------------------------
@@ -184,11 +184,11 @@ body.roboto {
  * ------------------------------------ */
 
 .footerNarrow #footerTop {
-  max-width: 76rem;
+  max-width: var(--content-max-width);
   margin: auto;
 }
 
 .footerNarrow footer > nav {
-  max-width: 76rem;
+  max-width: var(--content-max-width);
   margin: auto;
 }
