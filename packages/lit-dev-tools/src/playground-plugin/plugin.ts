@@ -76,7 +76,7 @@ export const playgroundPlugin = (
   const readProjectConfig = async (
     project: string
   ): Promise<LitProjectConfig> => {
-    const path = `site/_includes/projects/${project}/project.json`;
+    const path = `samples/${project}/project.json`;
 
     let json;
     try {
@@ -98,7 +98,7 @@ export const playgroundPlugin = (
     }
 
     for (const filename of Object.keys(parsed.files || {})) {
-      const filepath = `site/_includes/projects/${project}/${filename}`;
+      const filepath = `samples/${project}/${filename}`;
       try {
         await fs.readFile(filepath, 'utf8');
       } catch (e) {

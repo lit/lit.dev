@@ -9,7 +9,6 @@
  */
 
 import Koa from 'koa';
-import koaCompress from 'koa-compress';
 import koaStatic from 'koa-static';
 import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
@@ -26,8 +25,13 @@ console.log('contentDir', contentDir);
 const app = new Koa();
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
-app.use(koaCompress());
-app.use(koaStatic(contentDir));
+app.use(
+  koaStatic(contentDir, {
+    // Serve pre-compressed .br and .gz files if available.
+    brotli: true,
+    gzip: true,
+  })
+);
 
 const port = process.env.PORT || 8080;
 const server = app.listen(port);

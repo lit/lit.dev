@@ -1,0 +1,154 @@
+/* ------------------------------------
+ * Left/right when wide
+ * ------------------------------------ */
+
+#splashWrapper {
+  /* Ignore when gray background stretches outside viewport */
+  overflow: hidden;
+}
+
+#splash {
+  display: flex;
+  margin: auto;
+  max-width: var(--content-max-width);
+}
+
+/* ------------------------------------
+ * Intro
+ * ------------------------------------ */
+
+#intro {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 3em 3em 3em var(--home-side-margin);
+}
+
+#splashLogo > img {
+  height: 5em;
+  margin-bottom: 0;
+}
+
+#splashLogoHeaderOffset {
+  margin-top: calc(-1 * var(--header-height));
+  position: absolute;
+}
+
+#intro > h2 {
+  border-top: 2px solid var(--color-blue);
+  margin: 2em 0 1em 0;
+}
+
+#intro > p {
+  color: black;
+  margin-bottom: 2em;
+}
+
+#intro > a {
+  /* Don't take up the full width */
+  align-self: flex-start;
+}
+
+/* ------------------------------------
+ * Hello World
+ * ------------------------------------ */
+
+#helloWorld {
+  width: 60%;
+  background: #454545;
+  padding: 4em var(--home-side-margin) 4em 4em;
+  position: relative;
+}
+
+/* Stretch the gray background all the way to right */
+#helloWorld::after {
+  content: '';
+  background: inherit;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* ------------------------------------
+ * Adjustments before major layout change
+ * ------------------------------------ */
+
+/* Shrink left/right margin */
+@media (max-width: 1435px) {
+  #intro {
+    padding-right: var(--home-side-margin);
+  }
+  #helloWorld {
+    padding-left: var(--home-side-margin);
+  }
+}
+
+/* Scale everything down a bit */
+@media (max-width: 1095px) {
+  #splash {
+    font-size: 0.9em;
+  }
+}
+
+/* ------------------------------------
+ * Above/below when narrow
+ * ------------------------------------ */
+
+ @media (max-width: 1000px) {
+  #splash {
+    display: block;
+    /* Undo down-scaling from above */
+    font-size: 1em;
+  }
+
+  #intro {
+    width: unset;
+    max-width: 35em;
+    margin: auto;
+    padding-right: var(--home-side-margin);
+  }
+
+  #helloWorld {
+    width: unset;
+    padding: 3em var(--home-side-margin);
+  }
+
+  #helloWorld > .homeExample {
+    max-width: 35em;
+    margin: auto;
+  }
+
+  #helloWorld > .homeExample > .code {
+    overflow-y: auto;
+  }
+}
+
+/* ------------------------------------
+ * Shrink code when very narrow
+ * ------------------------------------ */
+
+@media (max-width: 688px) {
+  #helloWorld {
+    padding: 0;
+  }
+
+  #helloWorld > .homeExample {
+    max-width: unset;
+  }
+
+  #helloWorld .CodeMirror {
+    padding: 1em;
+  }
+
+  #helloWorld .divider {
+    margin: 0 1em;
+  }
+
+  #helloWorld .code {
+    /* In proportion to view width so it always fits. */
+    font-size: calc(1vw * 3);
+  }
+}

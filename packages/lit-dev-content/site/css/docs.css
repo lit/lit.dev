@@ -3,9 +3,6 @@
  * ------------------------------------ */
 
 main {
-  /* TODO(aomarks) Remove when rest of site updated */
-  font-size: 18px;
-
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
   --docs-nav-min-width: 15em;
@@ -34,6 +31,7 @@ article {
     var(--docs-article-margin-horizontal);
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
+  color: #3e3e3e;
 }
 
 /* ------------------------------------

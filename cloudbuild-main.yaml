@@ -79,3 +79,5 @@ images:
 tags:
   - lit-dev
   - cloudbuild-main
+
+timeout: 30m
