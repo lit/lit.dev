@@ -167,9 +167,9 @@ html`
 `;
 ```
 
-For more on conditionals, see [Conditional templates](conditionals).
+For more on conditionals, see [Conditionals](/guide/templates/conditionals).
 
-For more on using JavaScript to create repeating templates, see [Lists & repeating templates](lists).
+For more on using JavaScript to create repeating templates, see [Lists](/guide/templates/lists).
 
 ### DOM nodes
 
@@ -185,9 +185,7 @@ const page = html`
 
 ### Arrays and iterables
 
-An expression can also return an array or iterable of any of the supported types, in any combination.
-
-You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see see [Lists & repeating templates](lists).
+An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/guide/templates/lists).
 
 ## Attribute expressions {#attribute-expressions }
 
@@ -205,14 +203,6 @@ If the expression makes up the entire attribute value, you can leave off the quo
 
 ```js
 html`<img src="/images/${this.image}">`;
-```
-
-## Boolean attributes {#boolean-attribute-expressions }
-
-To set a boolean attribute, use the `?` prefix with the attribute name. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
-
-```js
-html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 ```
 
 ### Setting attributes if data is defined { #ifDefined }
@@ -233,6 +223,14 @@ html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}
 
 In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
 
+## Boolean attributes {#boolean-attribute-expressions }
+
+To set a boolean attribute, use the `?` prefix with the attribute name. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
+
+```js
+html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
+```
+
 ## Property expressions {#property-expressions}
 
 You can set a JavaScript property on an element using the `.` prefix and the property name:
@@ -249,7 +247,7 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-For more information about component properties, see [Reactive Properties](/guide/components/properties).
+For more information about component properties, see [Reactive properties](/guide/components/properties).
 
 ## Event listener expressions {#event-listener-expressions}
 
@@ -261,17 +259,17 @@ html`<button @click=${this.clickHandler}>Click Me!</button>`;
 
 This is similar to calling `addEventListener('click', this.clickHandler)` on the button element.
 
-The event listener can be either a plain function, or an object with a `handleEvent` method——the same as the `listener` argument to the standard [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method.
+The event listener can be either a plain function, or an object with a `handleEvent` method — the same as the `listener` argument to the standard [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method.
 
 In a Lit component, the event listener is automatically bound to the component, so you can use the `this` value inside the handler to refer to the component instance.
-
-For more information about component events, see [Events](/guide/components/events).
 
 ```js
 clickHandler() {
   this.clickCount++;
 }
 ```
+
+For more information about component events, see [Events](/guide/components/events).
 
 ## Element expressions {#element-expressions}
 
@@ -281,15 +279,15 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with [directives](/guide/templates/directives). Any other value types in an element expression are ignored.
+Element expressions only work with [directives](/guide/templates/directives). Any other value type in an element expression is ignored.
 
-One built-in directive that can be used in an element expressions is the `ref` directive. It provides a reference to the rendered element.
+One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
 ```js
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](directives#ref) for more information.
+See [ref](/guide/templates/directives#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 
@@ -347,7 +345,7 @@ Expressions **_cannot_** appear where tag or attribute names would appear; howev
 
  ## Static expressions { #static-expressions }
 
-Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be [well-formed HTML](#well-formed-html).
+Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be well-formed; see the [Well-formed HTML](#well-formed-html) section for more information.
 
 To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
 
@@ -357,7 +355,7 @@ Note the use of _unsafe_ in `unsafeStatic()`. Creating static expressions should
 
 </div>
 
-You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you [cannot](#expression-locations) with normal expressions. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because the setting is unlikely to change and customizing an HTML tag cannot be done with a normal expression.
+You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because the setting is unlikely to change and customizing an HTML tag cannot be done with a normal expression.
 
 ```ts
 tag = 'button';
