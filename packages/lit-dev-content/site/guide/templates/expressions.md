@@ -117,6 +117,7 @@ This basic example shows a variety of different kinds of expressions.
 
 {% playground-example "docs/templates/expressions" "my-element.ts" %}
 
+The following sections describe each kind of expression in more detail. For more information about the structure of templates, see [Well-formed HTML](#well-formed-html) and [Valid expression locations](#expression-locations).
 ## Child expressions { #child-expressions }
 
 An expression that occurs between the start and end tags of an element can add child nodes to the element. For example:
