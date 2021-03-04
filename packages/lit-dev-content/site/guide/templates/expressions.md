@@ -370,6 +370,6 @@ protected render() {
 }
 ```
 
-The values passed to `unsafeStatic()` should not change frequently. In the example above, if the template re-renders and `this.caption` or `this.active` change, the template will update in the typical, [efficient Lit pattern](/guide/templates/overview#efficient-updates). However, if `this.tag` or `this.activeAttribute` change, since they are arguments to `unsafeStatic()`, an entirely new template will be created and the update will be inefficient since the DOM is completely re-rendered. In addition, changing values passed to `unsafeStatic()` increases memory use since each unique template is kept in memory.
+The values passed to `unsafeStatic()` should not change frequently. In the example above, if the template re-renders and `this.caption` or `this.active` change, Lit updates the template efficiently, only changing the affected expressions. However, if `this.tag` or `this.activeAttribute` change, since they are arguments to `unsafeStatic()`, an entirely new template is created; the update is inefficient since the DOM is completely re-rendered. In addition, changing values passed to `unsafeStatic()` increases memory use since each unique template is kept in memory.
 
 For these reasons, it's a good idea keep changes to arguments to `unsafeStatic()` to a minimum and avoid using [reactive properties](/guide/components/properties) as arguments since they are intended to change.
