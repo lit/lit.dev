@@ -115,7 +115,7 @@ html`<button @click=${this._clickHandler}>Go</button>`
 
 This basic example shows a variety of different kinds of expressions.
 
-{% playground-example "docs/templates/expressions/basic" "my-element.ts" %}
+{% playground-example "docs/templates/expressions" "my-element.ts" %}
 
 ## Child expressions { #child-expressions }
 
