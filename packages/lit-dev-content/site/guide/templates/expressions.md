@@ -8,7 +8,7 @@ eleventyNavigation:
 
 In addition to static [HTML](#well-formed-html), Lit templates can include dynamic values called expressions. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
 
-Expressions can only be placed in [specific locations](#expression-locations) in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
+Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
 Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Directives](/guide/templates/directives) for more information.
 
