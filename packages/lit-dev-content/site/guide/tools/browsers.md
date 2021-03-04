@@ -42,7 +42,7 @@ For testing and development, we recommend using the tools from the [Modern Web](
 
 ## Building Javascript
 
-Lit uses modern Javascript features like modules, classes, and other recent syntax additions. All of these features can be transpiled into ES5 code which runs on older browsers. See [Building](/guide/tools/building/) for more information about how to build application and Lit component code into ES5.
+Lit's use of ES2020 JavaScript is supported by modern browsers and Lit can be transpiled into ES5 code to run on older browsers. See [Building](/guide/tools/building/) for more information about how to build application and Lit component code into ES5.
 
 Two extra scripts should be loaded:
 
