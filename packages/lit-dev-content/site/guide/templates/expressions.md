@@ -6,69 +6,120 @@ eleventyNavigation:
   order: 2
 ---
 
-{% todo %}
+Lit templates can include dynamic values called expressions. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
 
-- Correct directive import paths.
-- Correct cross-references.
+Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
-{% endtodo %}
+Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Directives](/guide/templates/directives) for more information.
 
-An expression is a placeholder for dynamic content in the template. The expression can be any JavaScript expression, and it's evaluated whenever the template renders. In a Lit component, this means whenever the `render` method gets called.
+Here's a quick reference followed by more detailed information about each expression type.
 
-How an expression is interpreted depends on where it appears in the template.
+<table class="wide-table">
+<thead>
+<tr>
+<th class="no-wrap-cell">Type</th>
+<th class="wide-cell">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell">
 
-**Child nodes**
+[Child nodes](#child-expressions)
 
-Expressions can specify child nodes, including text.
+</td>
+<td>
 
 ```js
 html`
 <h1>Hello ${name}</h1>
 <ul>
   ${listItems}
-</ul>
+</ul>`
 ```
 
-**Attribute values**
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell">
 
-Expressions can set attribute values.
+[Attributes](#attribute-expressions)
+
+</td>
+<td>
 
 ```js
-<div class=${highlightClass}></div>
+html`<div class=${highlightClass}></div>`
 ```
 
-Expressions can also set boolean attributes.
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell">
+
+[Boolean Attributes](#boolean-attribute-expressions)
+
+</td>
+<td>
 
 ```js
-<div ?hidden=${!show}></div>
+html`<div ?hidden=${!show}></div>`
 ```
 
-**Properties**
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell">
 
-Expressions can also properties.
+[Properties](#property-expressions)
+
+</td>
+<td>
 
 ```js
-<input .value=${value}>
+html`<input .value=${value}>`
 ```
 
-**Event listeners**
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell">
 
-Expressions can specify event listeners.
+[Event listeners](#event-listener-expressions)
+
+</td>
+<td>
 
 ```js
-<button @click=${(e) => console.log('clicked')}>Click Me</button>
+html`<button @click=${this._clickHandler}>Go</button>`
 ```
 
-**Element references**
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell">
 
-A special type of expression can be used to access the element itself.
+[Element directives](#element-expressions)
 
-```js
-<input ${ref(inputRef)}>
-```
+</td>
+<td>
 
+  ```js
+  html`<input ${ref(inputRef)}>`
+  ```
 
-## Add child nodes
+</td>
+</tr>
+</tbody>
+</table>
+
+This basic example shows a variety of different kinds of expressions.
+
+{% playground-example "docs/templates/expressions" "my-element.ts" %}
+
+The following sections describe each kind of expression in more detail. For more information about the structure of templates, see [Well-formed HTML](#well-formed-html) and [Valid expression locations](#expression-locations).
+
+## Child expressions { #child-expressions }
 
 An expression that occurs between the start and end tags of an element can add child nodes to the element. For example:
 
@@ -84,16 +135,14 @@ html`<main>${bodyText}</main>`
 
 Expressions in the child position can take many kinds of values:
 
-* Primitive values
-* `TemplateResult` objects
+* Primitive values likes strings, numbers, and booleans
+* `TemplateResult` objects created with the `html` function.
 * DOM nodes
 * Arrays or iterables of any of the supported types
 
-The following sections describe how these values are handled.
+### Primitive values
 
-### Primitive values: String, Number, Boolean, null, undefined
-
-Primitives values are converted to strings when interpolated into text content or attribute values. They are checked for equality to the previous value so that the DOM is not updated if the value hasn't changed.
+Primitives values like strings, numbers, booleans, null, and undefined are converted to strings when interpolated into text content or attribute values. They are checked for equality with the previous value so the DOM is not updated if the value hasn't changed.
 
 ### Templates
 
@@ -118,11 +167,13 @@ html`
 `;
 ```
 
-For more on conditionals, see [Conditional templates](conditionals). For more on using JavaScript to create repeating templates, see [Lists & repeating templates](lists).
+For more on conditionals, see [Conditionals](/guide/templates/conditionals).
+
+For more on using JavaScript to create repeating templates, see [Lists](/guide/templates/lists).
 
 ### DOM nodes
 
-Any DOM Node can be passed to a child position expression. The node is attached to the DOM tree at that point, and so removed from any current parent:
+Any DOM node can be passed to a child expression. Typically DOM nodes should be rendered by specifying a template using `html`, but a DOM node can be directly rendered like this when needed. The node is attached to the DOM tree at that point, and so removed from any current parent:
 
 ```js
 const div = document.createElement('div');
@@ -134,18 +185,15 @@ const page = html`
 
 ### Arrays and iterables
 
-An expression can also return an array or iterable of any of the supported types, in any combination.
+An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/guide/templates/lists).
 
-You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see see [Lists & repeating templates](lists).
+## Attribute expressions {#attribute-expressions }
 
-## Set attributes
-
-In addition to using expressions to add child nodes, you can use them to set an elements's attribute and property values, too.
+In addition to using expressions to add child nodes, you can use them to set an elements's attributes and properties, too.
 
 By default, an expression in the value of an attribute sets the attribute:
 
 ```js
-// set the class attribute
 html`<div class=${this.textClass}>Stylish text.</div>`;
 ```
 
@@ -154,9 +202,28 @@ Since attribute values are always strings, the expression should return a value 
 If the expression makes up the entire attribute value, you can leave off the quotes. If the expression makes up only part of the attribute value, you need to quote the entire value:
 
 ```js
-//
 html`<img src="/images/${this.image}">`;
 ```
+
+### Setting attributes if data is defined { #ifDefined }
+
+Sometimes you want to set an attribute only if a value or set of values is available, and otherwise remove the attribute. For example, consider:
+
+```js
+html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
+```
+
+If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
+
+You can use the `ifDefined` function to avoid this issue:
+
+```js
+html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
+```
+
+In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
+
+## Boolean attributes {#boolean-attribute-expressions }
 
 To set a boolean attribute, use the `?` prefix with the attribute name. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
 
@@ -164,7 +231,7 @@ To set a boolean attribute, use the `?` prefix with the attribute name. The attr
 html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 ```
 
-## Set properties
+## Property expressions {#property-expressions}
 
 You can set a JavaScript property on an element using the `.` prefix and the property name:
 
@@ -180,19 +247,19 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-## Add event listeners
+For more information about component properties, see [Reactive properties](/guide/components/properties).
 
-Templates can also include declarative event listeners. Adding event listeners is like setting an attribute or property:
+## Event listener expressions {#event-listener-expressions}
 
-*   Use the prefix `@` followed by the event name in place of an attribute name.
-*   The expression should evaluate to an event listener.
+Templates can also include declarative event listeners. Use the prefix `@` followed by the event name. The expression should evaluate to an event listener.
 
 ```js
 html`<button @click=${this.clickHandler}>Click Me!</button>`;
 ```
 
 This is similar to calling `addEventListener('click', this.clickHandler)` on the button element.
-The event listener can be either a plain function, or an object with a `handleEvent` method——the same as the `listener` argument to the standard [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method.
+
+The event listener can be either a plain function, or an object with a `handleEvent` method — the same as the `listener` argument to the standard [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) method.
 
 In a Lit component, the event listener is automatically bound to the component, so you can use the `this` value inside the handler to refer to the component instance.
 
@@ -202,119 +269,35 @@ clickHandler() {
 }
 ```
 
-## Directives
+For more information about component events, see [Events](/guide/components/events).
 
-Lit allows special functions, called _directives_, to customize the way an expression is processed and rendered. Lit provides some built-in directives, or you can write your own.
-
-For example, the `classMap` directive lets you specify a set of CSS classes in a single expression:
-
-<!-- TODO correct directive import path -->
-```js
-import {html} from 'lit-element';
-import {classMap} from 'lit-element/directives/classMap.js';
-...
-render() {
-  const classes = {
-    active: true,
-    highlighted: true,
-    error: false
-  };
-
-  return html`<div class=${classMap(classes)}>...</div>`;
-}
-```
-
-The `classMap` directive takes an object as input and sets a class for each property with a truthy value. For example, the above example would render:
-
-```html
-<div class="active highlighted">...</div>
-```
-
-For a list of directives provided with Lit, see [Built-in directives](directives).
-
-## Element-level expressions
+## Element expressions {#element-expressions}
 
 You can also add an expression that accesses an element instance, instead of a single property or attribute on an element:
 
 ```js
-html`<div ${myDirective}></div>`
+html`<div ${myDirective()}></div>`
 ```
 
-Element-level expressions currently only work with directives. You can't use any other kind of value with an element expression. You can think of these expressions as a low-level mechanism you can use to build other expression types that aren't yet supported by Lit.
+Element expressions only work with [directives](/guide/templates/directives). Any other value type in an element expression is ignored.
 
-There are a few built-in directives that can be used in element expressions. One example is the `ref` directive, which provides a reference to the rendered element.
+One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
 ```js
-import {LitElement, html} from 'lit-element';
-import {ref, Ref} from 'lit-html/directives/ref.js';
-
-class InputElement extends LitElement {
-  constructor() {
-    super();
-    // Ref is a container for the element reference
-    this.inputRef = new Ref();
-  }
-
-  render() {
-    return html`
-      <input ${ref(inputRef)}>
-      <button @click=${this.focusInput}>Focus</button>
-      `;
-  }
-
-  focusInput() {
-    this.inputRef.value.focus();
-  }
-}
+html`<button ${ref(this.myRef)}`;
 ```
 
-## Well-formed templates
+See [ref](/guide/templates/directives#ref) for more information.
 
-Lit templates must be well-formed HTML, and expressions can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated.
+## Well-formed HTML { #well-formed-html }
 
-<div class="alert alert-info">
-
-**Finding malformed templates.** Most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. Fortunately, there are <a href="TODO LINK">linting tools</a> and <a href="TODO LINK">IDE plugins</a> that you can use to find issues in your templates during development.
-
-</div>
-
-Follow these rules for well-formed templates:
+Lit templates must be well-formed HTML. The templates are parsed by the browser's built-in HTML parser before any values are interpolated. Follow these rules for well-formed templates:
 
  *  Templates must be well-formed HTML when all expressions are replaced by empty values.
 
- *  Standard expressions **_can only occur_** in attribute-value and child content positions.
-
-    ```html
-    <!-- attribute-value position -->
-    <div label=${label}></div>
-    <button ?disabled=${isDisabled}>Click me!</button>
-    <input .value=${currentValue}>
-    <button @click=${this.handleClick()}>
-
-    <!-- child content position -->
-    <div>${textContent}</div>
-    ```
-
-  * The special element-level expression occurs inside the opening tag after the tag name:
-
-    ```html
-    <div ${ref(elementReference)}></div>
-    ```
-
- *  Expressions **_cannot_** appear where tag or attribute names would appear.
-
-    ```html
-    <!-- ERROR -->
-    <${tagName}></${tagName}>
-
-    <!-- ERROR -->
-    <div ${attrName}=true></div>
-    ```
-
-
  *  Templates can have multiple top-level elements and text.
 
- *  Templates **_should not contain_** unclosed elements—they will be closed by the HTML parser.
+ *  Templates _should not contain_ unclosed elements—they will be closed by the HTML parser.
 
     ```js
     // HTML parser closes this div after "Some text"
@@ -322,3 +305,71 @@ Follow these rules for well-formed templates:
     // When joined, "more text" does not end up in .broken-div
     const template2 = html`${template1} more text. </div>`;
     ```
+
+<div class="alert alert-info">
+
+Because the browser's built-in parser is very lenient, most cases of malformed templates are not detectable at runtime, so you won't see  warnings—just templates that don't behave as you expect. We recommend using <a href="/guide/tools/development/#linting">linting tools</a> and <a href="/guide/tools/development/#ide-plugins">IDE plugins</a> to find issues in your templates during development.
+
+</div>
+
+## Valid expression locations { #expression-locations }
+
+Expressions **_can only occur_** where you can place attribute values and child elements in HTML.
+
+```html
+<!-- attribute values -->
+<div label=${label}></div>
+<button ?disabled=${isDisabled}>Click me!</button>
+<input .value=${currentValue}>
+<button @click=${this.handleClick()}>
+
+<!-- child content -->
+<div>${textContent}</div>
+```
+
+Element expressions can occur inside the opening tag after the tag name:
+
+```html
+<div ${ref(elementReference)}></div>
+```
+
+Expressions **_cannot_** appear where tag or attribute names would appear; however [static expressions](#static-expressions) can.
+
+```html
+<!-- ERROR -->
+<${tagName}></${tagName}>
+
+<!-- ERROR -->
+<div ${attrName}=true></div>
+```
+
+ ## Static expressions { #static-expressions }
+
+Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be well-formed; see the [Well-formed HTML](#well-formed-html) section for more information.
+
+To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
+
+<div class="alert alert-info">
+
+Note the use of _unsafe_ in `unsafeStatic()`. Creating static expressions should be considered unsafe from a security perspective, and therefore used with caution. To avoid potential [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting) security issues, never allow user content to be an argument to `unsafeStatic()`.
+
+</div>
+
+You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because the setting is unlikely to change and customizing an HTML tag cannot be done with a normal expression.
+
+```ts
+tag = 'button';
+activeAttribute = 'active';
+@property() caption = 'Go';
+@property({type: Boolean}) active = false;
+protected render() {
+  return html`
+    <${unsafeStatic(this.tag)} ${unsafeStatic(this.activeAttribute)}?=${this.active}>
+      <p>${this.caption}</p>
+    </${unsafeStatic(this.tag)}>`;
+}
+```
+
+The values passed to `unsafeStatic()` should not change frequently. In the example above, if the template re-renders and `this.caption` or `this.active` change, Lit updates the template efficiently, only changing the affected expressions. However, if `this.tag` or `this.activeAttribute` change, since they are arguments to `unsafeStatic()`, an entirely new template is created; the update is inefficient since the DOM is completely re-rendered. In addition, changing values passed to `unsafeStatic()` increases memory use since each unique template is kept in memory.
+
+For these reasons, it's a good idea keep changes to arguments to `unsafeStatic()` to a minimum and avoid using reactive properties as arguments since they are intended to change.

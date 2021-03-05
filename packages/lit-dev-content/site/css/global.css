@@ -1,53 +1,32 @@
 @import url('./fonts/manrope.css');
 @import url('./fonts/roboto-mono.css');
+@import url('./fonts/open-sans.css');
 @import url('./header.css');
 @import url('./footer.css');
 @import url('./mobile-nav.css');
-@import url('./code.css');
 @import url('./colors.css');
-
-/* Params */
+@import url('./codemirror.css');
 
 html {
-  --header-height: 3.33em;
+  font-size: 18px;
+  --header-height: 3.33rem;
+  --footer-top-height: 12rem;
+  --footer-bottom-height: 6rem;
+  --content-max-width: 76rem;
 }
 
-/* General */
+@media (max-width: 864px) {
+  html {
+    --footer-top-height: 20rem;
+  }
+}
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
-  color: #3e3e3e;
-  --footer-height: 180px;
-  --toc-width: 300px;
-  --main-max-width: 1200px;
-}
-
-h1, h2, h3, h4, h5 {
-  font-weight: 400;
-  color: black;
-}
-
-h1 {
-  font-size: 32px;
+  font-family: Manrope, sans-serif;
 }
 
 a {
   text-decoration: none;
   color: #1879cd;
-}
-
-article a:hover {
-  text-decoration: underline;
-}
-
-.hidden {
-  display: none;
-}
-
-main {
-  max-width: var(--main-max-width);
-  min-height: calc(100vh - var(--header-height) - var(--footer-height));
-  margin: auto;
-  box-sizing: border-box;
 }

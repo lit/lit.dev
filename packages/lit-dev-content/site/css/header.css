@@ -1,9 +1,4 @@
 header {
-  /* TODO(aomarks) Move these font properties to global.css once the rest of the
-     site is adapted to it. */
-  font-size: 18px;
-  font-family: Manrope, sans-serif;
-
   position: sticky;
   top: 0;
   height: var(--header-height);
@@ -37,7 +32,7 @@ header > nav {
 
 #desktopNav > .navItem > a {
   color: var(--color-medium-gray);
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.3em 0.5em;
   margin-left: 0.5em;
   font-size: 0.9em;
@@ -45,19 +40,19 @@ header > nav {
 
 #desktopNav > .navItem > a:hover,
 #desktopNav > .navItem.active > a {
-  color: black;
+  color: var(--color-blue);
 }
 
 #mobileMenuButton {
   display: none;
 }
 
-@media (max-width: 699px) {
+@media (max-width: 864px) {
   #desktopNav {
     display: none;
   }
 
- #mobileMenuButton{
+  #mobileMenuButton {
     display: flex;
   }
 

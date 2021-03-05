@@ -1,19 +1,76 @@
-<div class="social-links">
-  <a target="_blank" href="https://github.com/Polymer/lit-html" rel="noopener" aria-label="Github">
-    <img src="/images/logos/logo_github.svg" width="24" height="24" alt="Github logo"></a>
+<footer>
+  <div id="footerTop">
+    <div id="footerNameAndLogo">
+      <img id="footerName" src="{{ site.baseurl }}/images/logo.svg#name" />
+      <img id="footerFlame" src="{{ site.baseurl }}/images/logo.svg#flame" />
+    </div>
 
-  <a target="_blank" href="https://twitter.com/polymer" rel="noopener" aria-label="Twitter">
-    <img src="/images/logos/logo_twitter.svg" width="24" height="24" alt="Twitter logo"></a>
+    <!-- TODO(aomarks) Combine SVG symbols into a single sprite sheet at prod
+         build time. -->
 
-  <a target="_blank" href="https://www.polymer-project.org/slack-invite" rel="noopener" aria-label="Slack">
-    <img src="/images/logos/logo_slack.svg" width="24" height="24" alt="Slack logo"></a>
-</div>
+    <div id="footerSocialLinks">
+      <a
+        href="https://www.polymer-project.org/slack-invite"
+        target="_blank"
+        rel="noopener"
+        title="Slack"
+        aria-label="Slack"
+      >
+        <svg>
+          <use
+            xlink:href="{{ site.baseurl }}/images/social/slack.svg#slack"
+          ></use>
+        </svg>
+      </a>
 
-<div class="attribution">
-  Brought to you by <a href="https://www.polymer-project.org">The Polymer Project</a>.
-  <br>Copyright 2017–2020 The Polymer Project Authors.
-  <br>Code licensed under the
-    <a target="_blank" href="http://polymer.github.io/LICENSE.txt" rel="noopener">BSD License</a>.
-    Documentation licensed under
-    <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/" rel="noopener">CC BY 3.0</a>.
-</div>
+      <a
+        href="https://twitter.com/polymer"
+        target="_blank"
+        rel="noopener"
+        title="Twitter"
+        aria-label="Twitter"
+      >
+        <svg>
+          <use
+            xlink:href="{{ site.baseurl }}/images/social/twitter.svg#twitter"
+          ></use>
+        </svg>
+      </a>
+
+      <a
+        href="https://github.com/Polymer/lit-html/"
+        target="_blank"
+        rel="noopener"
+        title="GitHub"
+        aria-label="GitHub"
+        ><svg>
+          <use
+            xlink:href="{{ site.baseurl }}/images/social/github.svg#github"
+          ></use>
+        </svg>
+      </a>
+
+      <a
+        href="https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element"
+        target="_blank"
+        rel="noopener"
+        title="Stack Overflow"
+        aria-label="Stack Overflow"
+        ><svg>
+          <use
+            xlink:href="{{ site.baseurl }}/images/social/stackoverflow.svg#stackoverflow"
+          ></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div id="footerBottom">
+    <p>
+      Copyright Google LLC. Code licensed under
+      <a href="https://spdx.org/licenses/BSD-3-Clause.html">BSD-3-Clause</a>.
+      Documentation licensed under
+      <a href="https://spdx.org/licenses/CC-BY-3.0">CC-BY-3.0</a>.
+    </p>
+  </div>
+</footer>

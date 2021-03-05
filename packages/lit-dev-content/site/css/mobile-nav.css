@@ -1,41 +1,41 @@
-.site-nav {
+#mobileNav {
   font-size: 14px;
 }
 
-.site-nav > ol {
+#mobileNav > ol {
   padding-left: 29px;
 }
 
-.site-nav li {
+#mobileNav li {
   list-style: none;
 }
 
-.site-nav .section-head {
+#mobileNav .sectionHead {
   color: black;
   padding: 2px 14px;
   margin-left: -17px;
   font-weight: 500;
 }
 
-.site-nav a {
+#mobileNav a {
   display: block;
   color: inherit;
   margin-bottom: 3px;
   padding: 3px 12px;
 }
 
-.site-nav .active {
+#mobileNav .active {
   color: #005ad6;
   background-color:#e8f0fe;
   border-radius: 10px;
 }
 
-.site-nav a:hover {
+#mobileNav a:hover {
   background-color:#f1f3f4;
   border-radius: 10px;
 }
 
-.site-nav ol ol {
+#mobileNav ol ol {
   padding-left: 8px;
   margin: 8px 0 12px 0;
 }
@@ -45,13 +45,13 @@ mwc-drawer:not(:defined) {
   display: none;
 }
 
-mwc-drawer .site-nav > ol {
+mwc-drawer #mobileNav > ol {
   padding: 0 24px;
 }
 
 /* The first section in the narrow-layout drawer is top-level site pages, and
    underneath is e.g. the guide sub-pages. Visually separate these a bit. */
-mwc-drawer .site-nav > ol > li:nth-child(2) {
+mwc-drawer #mobileNav > ol > li:nth-child(2) {
   margin-top: 18px;
   border-top: 1px solid #ccc;
   padding-top: 24px;

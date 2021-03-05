@@ -22,14 +22,14 @@ const fs = require('fs/promises');
 // See https://www.11ty.dev/docs/data-global/
 // and https://www.11ty.dev/docs/data-js/
 module.exports = async () => {
-  const paths = await glob('site/_includes/projects/examples/**/project.json');
+  const paths = await glob('samples/examples/**/project.json');
   const sections = new Map();
   const jsons = await Promise.all(
     paths.map(async (path) => {
       const json = await fs.readFile(path, {encoding: 'utf8'});
       const project = JSON.parse(json);
       const shortPath = path.replace(
-        /^site\/_includes\/projects\/(.+)\/project.json$/,
+        /^samples\/(.+)\/project.json$/,
         '$1'
       );
       const file = {
