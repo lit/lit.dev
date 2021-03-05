@@ -7,9 +7,13 @@ eleventyNavigation:
 ---
 
 Javascript class mixins are a stadard Javascript code pattern for sharing code
-between classes. Mixins can be useful for adding behavior to Lit component
-classes by adding to or overriding their lifecycle callbacks and adding API to
-the class.
+between classes. As opposed to "has-a" composition patterns like [reactive
+controllers](../controllers/), where a class can _own_ a controller to add
+behavior, mixins implement "is-a" composition, where the mixins causes the class
+itself to _be_ an instance of the behavior being shared.
+
+Mixins can be useful for adding behavior to Lit component classes by adding to
+or overriding their lifecycle callbacks and adding API to the class.
 
 ## Mixin basics
 
@@ -52,6 +56,8 @@ class MyElement extends MyMixin(LitElement) {
   /* user code */
 }
 ```
+
+For more reading on the standard mixin code pattern, [see below](#for-more-reading).
 
 ## Creating mixins for LitElement
 
@@ -131,8 +137,9 @@ export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
 This ensures that the class being passed to the mixin extends from `LitElement`,
 so that your mixin can rely on callabcks and other API provided by Lit.
 
-To constrain your mixin to an arbitrary class (for example, a base class of your
-own making), you can use a generic `Constructor` type helper:
+If your mixin depends on extending some other class (for example, a base class
+of your own making), you can use a generic `Constructor` type helper to
+constrain the `superClass` type to any class you choose:
 
 ```ts
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -242,4 +249,4 @@ code reuse. Here are a few good references:
   and how to use a deduping library to avoid it.
 * [Mixin conventions](https://component.kitchen/elix/mixins) followed by Elix
   web component library. While not Lit-speciic, contains thoughtful suggestions
-  around applying conventions when defining mixins.
+  around applying conventions when defining mixins for web components.
