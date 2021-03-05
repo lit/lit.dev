@@ -1,9 +1,9 @@
 ---
-title: Built-in directives
+title: Directives
 eleventyNavigation:
-  key: Built-in directives
+  key: Directives
   parent: Templates
-  order: 6
+  order: 5
 ---
 
 Directives are functions that can extend Lit by customizing the way an expression renders.

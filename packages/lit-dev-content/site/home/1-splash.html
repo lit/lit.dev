@@ -1,0 +1,40 @@
+<div id="splashWrapper">
+  <div id="splash">
+    <section id="intro">
+      <div id="splashLogo">
+        <img src="{{site.baseurl}}/images/logo.svg" />
+        <!-- Trick for detecting when the logo has scrolled under the header.
+            See src/home.ts -->
+        <div id="splashLogoHeaderOffset"></div>
+      </div>
+
+      <h2 class="homeSectionHeading">
+        Simple. Fast. Lightweight.<br />Web components.
+      </h2>
+
+      <p>
+        Lit is a library for building fast, lightweight web components. Based on
+        web standards, Lit components work wherever you use HTML–with any
+        framework, or without one. Use Lit to create shareable components, design
+        systems, or apps.
+      </p>
+
+      <a class="homeBoldLink" href="#">Get started with the lit tutorial</a>
+    </section>
+
+    <section id="helloWorld">
+      <div class="homeExample">
+        <h4>Hello World</h4>
+        <div class="code">
+          {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight
+          %}
+
+          <div class="divider"></div>
+
+          {% highlight 'html' %}{% include './1-splash-example.html' %}{%
+          endhighlight %}
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

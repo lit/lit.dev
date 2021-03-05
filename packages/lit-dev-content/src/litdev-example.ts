@@ -71,7 +71,7 @@ export class LitDevExample extends LitElement {
   `;
 
   /**
-   * Path to the project dir from `site/_includes/projects/PATH/project.json`.
+   * Path to the project dir from `samples/PATH/project.json`.
    */
   @property()
   project?: string;
