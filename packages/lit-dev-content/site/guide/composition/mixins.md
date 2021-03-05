@@ -7,7 +7,7 @@ eleventyNavigation:
 ---
 
 Javascript class mixins are a stadard Javascript code pattern for sharing code
-between classes. Mixins can be useful for adding behavior to `LitElement`
+between classes. Mixins can be useful for adding behavior to Lit component
 classes by adding to or overriding their lifecycle callbacks and adding API to
 the class.
 
@@ -16,7 +16,7 @@ the class.
 Mixins can be thought of as "subclass factories" that override the class they
 are applied to and return a subclass, extended with the behavior in the mixin.
 Because mixins are implemented using standard Javascript class expressions, they
-can use all of the idioms available to standard subclassing, such as adding new
+can use all of the idioms available to subclassing, such as adding new
 fields/methods, overriding existing superclass methods, and using `super`.
 
 <div class="alert alert-info">
@@ -27,7 +27,7 @@ typing of mixins in TypeScript.
 
 </div>
 
-The basic pattern for writing a mixin is to define a function that takes a
+To define a mixin, write a function that takes a
 `superClass`, and returns a new class that extends it, adding fields & methods
 as needed:
 
@@ -101,7 +101,7 @@ content will be styled yellow when the `highlight` property/attribute is set.
 {% playground-ide "docs/mixins/highlightable/" "highlightable.ts" %}
 
 Note in the example above, the user of the mixin is expected to call the
-`renderHighlight` method from its `render` method, as well as take care to add
+`renderHighlight` method from their `render` method, as well as take care to add
 the `static styles` defined by the mixin to the subclass styles. The nature of
 this contract between mixin and user is up to the mixin definition and should be
 documented by the mixin author.
