@@ -3,7 +3,7 @@ import { customElement } from 'lit/decorators';
 import { Highlightable } from './highlightable.js'
 
 @customElement('element-two')
-class ElementTwo extends Highlightable(LitElement) {
+export class ElementTwo extends Highlightable(LitElement) {
   static get styles() {
     return [
       super.styles,
