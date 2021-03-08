@@ -15,6 +15,14 @@ body.roboto {
 }
 
 /* ------------------------------------
+ * manrope docs
+ * ------------------------------------ */
+
+body.docsManrope article {
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* ------------------------------------
  * headerWhite
  * ------------------------------------ */
 
