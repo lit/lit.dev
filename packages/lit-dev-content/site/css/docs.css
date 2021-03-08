@@ -3,6 +3,15 @@
  * ------------------------------------ */
 
 main {
+    /* Colors */
+    --docs-h1-underline-color: var(--color-blue);
+    --docs-h2-color: #384861;
+    --docs-h3-color: #5d6c86;
+    --docs-rule-color: #d1d1d1;
+    --docs-table-header-background: #e4e4e4;
+    --docs-table-header-color: rgb(73, 73, 73);
+    --playground-code-background-color: #f0f0f0;
+
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
   --docs-nav-min-width: 15em;
@@ -32,11 +41,19 @@ article {
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
   color: #3e3e3e;
+
+  /* Open Sans is more readable than Manrope, so we prefer it for content that
+     users will spend a lot of time reading. */
+  font-family: "Open Sans", sans-serif;
 }
 
 /* ------------------------------------
  * Body text
  * ------------------------------------ */
+
+ article {
+   color: #3E3E3E;
+ }
 
 article p {
   margin-block-start: 1.5em;
@@ -47,9 +64,17 @@ article a {
   color: var(--color-blue);
 }
 
+article a:hover {
+  text-decoration: underline;
+}
+
 article li {
   /* Slightly more space between list items */
-  margin-bottom: 0.2em;
+  margin-bottom: 0.8em;
+}
+
+article li > p {
+  margin: 0;
 }
 
 /* ------------------------------------
@@ -64,10 +89,16 @@ article code:not([class]) {
   font-family: var(--playground-code-font-family, monospace);
 }
 
+/* Non-highlighted code block */
+article pre > code:not([class]) {
+  background: none;
+  padding: 0;
+}
+
 /* Static code snippets */
 .CodeMirror {
-  padding: 0.5em 1em;
   --playground-code-background: #f5f5f5;
+  color: #3c3c3c;
 }
 
 /* Playground examples */
@@ -95,19 +126,36 @@ playground-ide {
  * ------------------------------------ */
 
 article h1 {
-  padding-bottom: 0.5em;
-  margin-bottom: 1.28em;
-  border-bottom: 0.08em solid var(--color-blue);
-  font-size: 1.8em;
+  padding: 0.3em 0 0.8em 0;
+  margin-bottom: 1.3em;
+  border-bottom: 2px solid var(--docs-h1-underline-color);
+  font-size: 2.2em;
+  font-weight: 400;
 }
 
 article h2 {
-  color: var(--color-blue);
-  font-size: 1.36em;
+  color: var(--docs-h2-color);
+  font-size: 1.8em;
+  font-weight: 600;
+  position: relative;
+  margin-top: 1.5em;
+  padding: 1.5em 0 0.5em 0;
+}
+
+article h2 {
+  border-top: 1px solid var(--docs-rule-color);
 }
 
 article h3 {
+  color: var(--docs-h3-color);
+  font-size: 1.2em;
   font-weight: 600;
+  position: relative;
+  padding-top: 1em;
+}
+
+article h3 {
+  margin-top: 2.2em;
 }
 
 article h4 {
@@ -129,6 +177,14 @@ article > h1:first-of-type {
 }
 
 /* ------------------------------------
+ * Lists
+ * ------------------------------------ */
+
+ article li {
+   padding-inline: 0.5em 10%;
+ }
+
+/* ------------------------------------
  * Tables
  * ------------------------------------ */
 
@@ -138,8 +194,9 @@ table {
 }
 
 th {
-  background: var(--color-blue);
-  color: white;
+  color: var(--docs-table-header-color);
+  background: var(--docs-table-header-background);
+  text-align: left;
   font-weight: 600;
 }
 
@@ -172,18 +229,17 @@ td {
 .alert {
   position: relative;
   margin: 1em 0;
-  padding-left: 24px;
+  padding: 1em 1em 1em 3.5em;
   border: 1px solid #ccc;
 }
 
 .alert > p {
   margin: 0;
-  padding: 1em 1em 1em 2em;
 }
 
 .alert::before {
   position: absolute;
-  top: 1em;
+  top: 1.15em;
   left: 1em;
 }
 
@@ -304,6 +360,11 @@ td {
   display: none;
 }
 
+#inlineToc h2 {
+  font-size: 1.5em;
+  border-top: none;
+}
+
 #inlineToc ol {
   list-style: disc;
 }
@@ -353,7 +414,7 @@ td {
 
 #rhsToc > div > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
-  margin-top: 1em;
+  margin-top: 0.2em;
 }
 
 /* Second level */
@@ -379,11 +440,12 @@ td {
   color: black;
   opacity: 0.5;
   font-size: 0.8em;
+  position: relative;
 }
 
-#rhsToc a.active {
+#rhsToc a.active,
+#rhsToc a:hover {
   opacity: 1;
-  position: relative;
 }
 
 /* Active section bullet */
@@ -418,9 +480,11 @@ td {
   main {
     --docs-article-margin-horizontal: 2.5em;
   }
+
   #rhsTocWrapper {
     display: none;
   }
+
   article {
     grid-column: 2 / -1;
   }
@@ -428,10 +492,33 @@ td {
   #inlineToc {
     display: initial;
   }
+  #inlineToc > details {
+    margin-bottom: 2em;
+  }
   #inlineToc summary {
-    display: flex;
-    align-items: center;
     cursor: pointer;
+    padding: 0.2em 0;
+  }
+  #inlineToc summary::marker {
+    color: var(--docs-h2-color);
+    font-size: 1.25em;
+  }
+  #inlineToc h2 {
+    padding: 0;
+    margin: 0;
+    display: inline;
+    font-size: 1.25em;
+  }
+  #inlineToc > details[open] {
+    border-bottom: 1px solid var(--docs-rule-color);
+    padding-bottom: 1em;
+  }
+  #inlineToc div {
+    font-size: 0.9em;
+  }
+  #inlineToc li {
+    margin-bottom: 0;
+    padding-inline: initial;
   }
 }
 

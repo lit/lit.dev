@@ -1,56 +1,26 @@
-
-body {
+html {
   --playground-code-font-family: "Roboto Mono", monospace;
   --playground-code-font-size: 13px;
-}
-
-.CodeMirror, playground-file-editor, playground-preview {
-  border: 1px solid #dedede;
-  border-radius: 6px;
-  margin-bottom: 16px;
-}
-
-playground-ide {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-playground-ide:not(:defined) {
-  display: block;
-  height: 350px;
-}
-
-playground-file-editor {
-  --playground-code-background: transparent;
-}
-
-litdev-example:not(:defined) {
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-.CodeMirror {
-  font-family: "Roboto Mono", monospace !important;
-  font-size: 13px !important;
-  padding: 12px;
-  /* The default CodeMirror stylesheet fixes height to 300px. */
-  height: unset !important;
-}
-
-.CodeMirror-line {
-  white-space: pre-wrap !important;
-  /* These are already included in codemirror.css, but we don't block rendering
-     on that stylesheet, so we include them here too so that sizing is already
-     correct, and it's just colors that load in. */
-  font-family: inherit;
-  padding: 0 4px;
-  margin: 0;
-}
-
-.cm-error {
-  /* Higher contrast red. TODO(aomarks) Replace with entirely new CodeMirror
-     theme, that is both nicer looking and satisfies a11y contrast metrics. */
-  color: #b30000 !important;
+  --playground-code-line-height: 1.8em;
+  --playground-code-padding: 0.5em 0 0.5em 1em;
+  --playground-highlight-color: #005cc5;
+  --playground-code-keyword-color: #d73a49;
+  --playground-code-atom-color: #005cc5;
+  --playground-code-number-color: #005cc5;
+  --playground-code-def-color: #6f42c1;
+  --playground-code-variable-color: #6f42c1;
+  --playground-code-property-color: #e36209;
+  --playground-code-operator-color: #d73a49;
+  --playground-code-variable-2-color: #000000;
+  --playground-code-variable-3-color: #000000;
+  --playground-code-type-color: #005cc5;
+  --playground-code-comment-color: #6a737d;
+  --playground-code-string-color: #032f62;
+  --playground-code-string-2-color: #032f62;
+  --playground-code-meta-color: #000000;
+  --playground-code-qualifier-color: #6f42c1;
+  --playground-code-builtin-color: #6f42c1;
+  --playground-code-tag-color: #032f62;
+  --playground-code-attribute-color: #6f42c1;
+  --playground-code-callee-color: #005cc5;
 }

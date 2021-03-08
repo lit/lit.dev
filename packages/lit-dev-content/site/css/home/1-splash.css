@@ -149,6 +149,6 @@
 
   #helloWorld .code {
     /* In proportion to view width so it always fits. */
-    font-size: calc(1vw * 3);
+    font-size: calc(1vw * 2.9);
   }
 }
