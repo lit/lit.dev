@@ -124,3 +124,7 @@ class MyElement extends LitElement {
 ## Interactive code snippet
 
 {% playground-example "docs/templates/define" "my-element.js" %}
+
+## Full IDE
+
+{% playground-ide "docs/templates/define" %}

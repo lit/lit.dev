@@ -1,6 +1,8 @@
 html {
   --playground-code-font-family: "Roboto Mono", monospace;
   --playground-code-font-size: 13px;
+  --playground-code-line-height: 1.8em;
+  --playground-code-padding: 0.5em 0 0.5em 1em;
   --playground-highlight-color: #005cc5;
   --playground-code-keyword-color: #d73a49;
   --playground-code-atom-color: #005cc5;

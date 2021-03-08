@@ -70,7 +70,11 @@ article a:hover {
 
 article li {
   /* Slightly more space between list items */
-  margin-bottom: 0.2em;
+  margin-bottom: 0.8em;
+}
+
+article li > p {
+  margin: 0;
 }
 
 /* ------------------------------------
@@ -93,7 +97,6 @@ article pre > code:not([class]) {
 
 /* Static code snippets */
 .CodeMirror {
-  padding: 0.5em 1em;
   --playground-code-background: #f5f5f5;
   color: #3c3c3c;
 }
