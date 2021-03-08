@@ -121,6 +121,12 @@ playground-ide {
   background: var(--playground-code-background);
 }
 
+figure {
+  /* We put code snippets in figures for improved a11y semantics, but they come
+     with a default left margin. */
+  margin-left: 0;
+}
+
 /* ------------------------------------
  * Headings
  * ------------------------------------ */

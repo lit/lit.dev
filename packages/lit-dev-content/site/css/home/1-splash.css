@@ -34,7 +34,7 @@
   position: absolute;
 }
 
-#intro > h2 {
+#intro > .homeSectionHeading {
   border-top: 2px solid var(--color-blue);
   margin: 2em 0 1em 0;
 }

@@ -111,7 +111,7 @@ export class Renderer {
         },
         [lang, code]
       );
-      const html = `<div class="CodeMirror cm-s-default">${codemirrorHtml}</div>`;
+      const html = `<figure class="CodeMirror cm-s-default">${codemirrorHtml}</figure>`;
       return {html};
     } finally {
       this.releasePageLock();

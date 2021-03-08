@@ -61,7 +61,7 @@ p {
   background: white;
 }
 
-.homeExample > h4 {
+.homeExample > figcaption {
   background: var(--color-blue);
   color: white;
   margin: 0;
