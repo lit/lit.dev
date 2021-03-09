@@ -146,10 +146,15 @@ article h2 {
   position: relative;
   margin-top: 1.5em;
   padding: 1.5em 0 0.5em 0;
+  border-top: 1px solid var(--docs-rule-color);
 }
 
-article h2 {
-  border-top: 1px solid var(--docs-rule-color);
+/* If a page has no introductory content before the first h2, remove the section
+   delineation. */
+article #inlineToc + h2 {
+  border-top: none !important;
+  margin-top: 0;
+  padding-top: 0.5em;
 }
 
 article h3 {
