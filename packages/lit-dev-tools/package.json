@@ -6,7 +6,10 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "../../node_modules/.bin/tsc",
+    "build": "npm run build:ts && npm run submodule:init",
+    "build:ts": "../../node_modules/.bin/tsc",
+    "submodule:init": "git submodule init lit-monorepo-submodule && git submodule update lit-monorepo-submodule",
+    "submodule:pull": "git submodule update --remote lit-monorepo-submodule",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {

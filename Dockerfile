@@ -2,11 +2,15 @@
 # https://hub.docker.com/_/node
 FROM node:15-slim
 
-# Dependencies of Playwright Chromium.
 RUN apt-get update && apt-get install -y --no-install-recommends \
+  # Dependencies of Playwright Chromium for Playground SSR
   libgtk-3-0 \
   libnss3 \
-  libasound2
+  libasound2 \
+  # Git needed for API docs generation via submodule
+  git \
+  # Certificates needed for Git HTTPS
+  ca-certificates
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
