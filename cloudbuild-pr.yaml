@@ -66,4 +66,4 @@ tags:
   - lit-dev
   - cloudbuild-pr
 
-timeout: 30m
+timeout: 45m
