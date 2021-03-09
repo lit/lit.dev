@@ -61,6 +61,34 @@ global:
 {% endif %}
 ```
 
+### Update generated API docs
+
+First run `npm run dev` as shown above, and then in another terminal:
+
+```sh
+cd packages/lit-dev-tools
+npm run build:api:watch
+```
+
+You can now edit the comments in any `.ts` file in the `lit-monorepo-submodule`
+directory, and after the automatic rebuild, the dev site will refresh.
+
+```sh
+code packages/lit-dev-tools/lit-monorepo-submodule/
+```
+
+The `lit-monorepo-submodule` directory is a [Git
+submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules), so you can make
+changes directly here, and push PRs from it as normal.
+
+The submodule is configured to track the `lit-next` branch, but Git submodules
+are always pinned to a particular commit. To update the current commit, run:
+
+```sh
+cd packages/lit-dev-tools
+npm run submodule:pull
+```
+
 ### Serve production mode
 
 ```sh
