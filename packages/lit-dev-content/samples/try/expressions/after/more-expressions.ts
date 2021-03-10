@@ -6,12 +6,14 @@ class MoreExpressions extends LitElement {
   @property()
   checked: boolean = false;
 
+  @property()
+  text: string = 'Hello there.';
+
   render() {
     return html`
       <label><input type="checkbox" @change=${this.setChecked}> Enable editing</label>
       <div>
-        <p ?hidden=${this.checked}>Click checkbox to edit text.</p>
-        <input .disabled=${!this.checked} value="Hello there">
+        <input ?disabled=${!this.checked} .value="${this.text}">
       </div>
     `;
   }

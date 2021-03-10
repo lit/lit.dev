@@ -29,4 +29,4 @@ Your code sample should be working now. Lit components are added to a page with 
 <my-element></my-element>
 ```
 
-[Next: Reactive properties](properties)
+[Next: Reactive properties](/try/properties/)

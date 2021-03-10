@@ -23,6 +23,8 @@ In this step you'll add an input element and an event handler to a component.
     <input @change=${this.changeName} placeholder="Enter your name">
     ```
 
+    <code>@<var>eventName</var></code> is a special syntax for adding an event handler using an expression.
+
 2. **Add the event handler.**
 
     Next, add the event handler that's called when the input value changes.
@@ -35,4 +37,8 @@ In this step you'll add an input element and an event handler to a component.
     }
     ```
 
-[Next: More expressions](expressions)
+Now try it out!
+
+For more information about declarative event handlers, see [Events](/guide/components/events/).
+
+[Next: More expressions](/try/expressions/)

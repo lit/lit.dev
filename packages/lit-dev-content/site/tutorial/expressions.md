@@ -7,32 +7,29 @@ startingSrc: samples/try/expressions/before/project.json
 finishedSrc: samples/try/expressions/after/project.json
 ---
 
-To add interactivity to your components, you'll probably want to add some event handlers. Lit makes it easy to add a _declarative event handler_ in the template, using an expression like this:
+On the previous pages you used expressions to add text content (child nodes) and add an event listener. You can also use expressions to set attributes or properties:
 
-```html
-<button @click=${this.handleClick}>Click me!</button>
+```js
+<!-- Attribute -->
+<div class=${this.myTheme}></div>
+<!-- Boolean attribute -->
+<p ?hidden=${this.isHidden}>I may be in hiding.</p>
+<!-- Property -->
+<input .value=${this.value}>
 ```
 
-In this step you'll add an input element and an event handler to a component.
+In this step you'll add an input element with some bindings.
 
 1. **Add an input element.**
 
     Add an input element to your component:
 
     ```html
-    <input @change=${this.changeName} placeholder="Enter your name">
+    <input ?disabled=${!this.checked} .value=${this.text}>
     ```
 
-2. **Add the event handler.**
+The `disabled` attribute is toggled when the checkbox state changes, and the `value` property is set based on the component's `text` property.
 
-    Next, add the event handler that's called when the input value changes.
+For more information, see [Expressions](/guide/templates/expressions/).
 
-    ```ts
-    changeName(event: Event) {
-      const input = event.target as HTMLInputElement;
-      this.name = input.value;
-      input.value = '';
-    }
-    ```
-
-[Next: More expressions](expressions)
+[Next: Template logic](/try/template-logic/)

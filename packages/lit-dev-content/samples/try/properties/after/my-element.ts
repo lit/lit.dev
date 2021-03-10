@@ -3,11 +3,12 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-// TODO: Add a reactive property
+  @property()
+  message: string = 'Hello world! From my-element';
 
   render() {
     return html`
-      <p>TODO: Add an expression</p>
+      <p>${this.message}</p>
     `;
   }
 }

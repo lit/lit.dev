@@ -35,8 +35,10 @@
     const finishButton = document.querySelector('button#finish');
     const editor = document.querySelector('playground-ide');
     const listener = (e) => {
-      let url = e.target.dataset.url;
-      editor.projectSrc = url;
+      // Set src to empty string first, so the URL always appears to
+      // the editor as a "new" project.
+      editor.projectSrc = '';
+      editor.projectSrc = e.target.dataset.url;
     }
     [resetButton, finishButton].forEach((button) => {
       button.addEventListener('click', listener)
