@@ -17,7 +17,11 @@ import * as fs from 'fs/promises';
 import * as pathlib from 'path';
 import * as sourceMap from 'source-map';
 
-const litMonorepoPath = pathlib.join(__dirname, '..', 'lit-monorepo-submodule');
+const litMonorepoPath = pathlib.resolve(
+  __dirname,
+  '..',
+  'lit-monorepo-submodule'
+);
 
 /**
  * Entrypoint TypeScript modules for TypeDoc to analyze.
@@ -32,15 +36,15 @@ const litMonorepoPath = pathlib.join(__dirname, '..', 'lit-monorepo-submodule');
  * If a directory, all .ts files within it are included.
  */
 const entrypointModules = [
-  pathlib.join(litMonorepoPath, 'packages', 'lit', 'src', 'index.ts'),
-  pathlib.join(litMonorepoPath, 'packages', 'lit', 'src', 'decorators.ts'),
-  pathlib.join(litMonorepoPath, 'packages', 'lit', 'src', 'directives'), // directory
+  pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src', 'index.ts'),
+  pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src', 'decorators.ts'),
+  pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src', 'directives'), // directory
 ];
 
 /**
  * Path to the tsconfig.json that owns the entrypoint modules.
  */
-const tsConfigPath = pathlib.join(
+const tsConfigPath = pathlib.resolve(
   litMonorepoPath,
   'packages',
   'lit',
@@ -50,12 +54,12 @@ const tsConfigPath = pathlib.join(
 /**
  * Where to write the API data that is consumed by our Eleventy template.
  */
-const pagesOutPath = pathlib.join(__dirname, '..', 'api-data', 'pages.json');
+const pagesOutPath = pathlib.resolve(__dirname, '..', 'api-data', 'pages.json');
 
 /**
  * Where to write the index from $symbol to location object.
  */
-const symbolsOutPath = pathlib.join(
+const symbolsOutPath = pathlib.resolve(
   __dirname,
   '..',
   'api-data',
@@ -206,6 +210,9 @@ class Transformer {
         (node as ExtendedDeclarationReflection).entrypointSources =
           entrypoint.sources;
         this.reflectionById.set(node.id, node);
+        node.children = (node.children ?? []).filter((child) =>
+          this.filter(child)
+        );
         ancestry.push(node);
         for (const child of node.children ?? []) {
           firstPassVisit(child);
@@ -219,6 +226,7 @@ class Transformer {
     // generate cross-references.
     const secondPassVisit = async (node: DeclarationReflection) => {
       this.promoteVariableFunctions(node);
+      this.promoteSignatureComments(node);
       this.expandTransitiveHeritage(node);
       this.addLocationsForAllIds(node);
       this.linkifySymbolsInComments(node);
@@ -227,10 +235,8 @@ class Transformer {
         this.setGithubUrl(source);
         this.setImportModuleSpecifier(source);
       }
-      node.children = (node.children ?? []).filter((child) =>
-        this.filter(child)
-      );
-      for (const child of node.children) {
+
+      for (const child of node.children ?? []) {
         await secondPassVisit(child);
       }
     };
@@ -251,10 +257,6 @@ class Transformer {
     return !(
       node.flags?.isPrivate ||
       node.flags?.isExternal ||
-      // TODO(aomarks) This is here to remove ReactiveElement.disableWarning and
-      // other internal statics. We should actually handle statics, and mark
-      // internal statics as @internal.
-      node.flags?.isStatic ||
       node.inheritedFrom ||
       node.overwrites ||
       node.name.startsWith('_')
@@ -337,6 +339,17 @@ class Transformer {
   }
 
   /**
+   * For functions, TypeDoc put comments inside the signatures property, instead
+   * of directly in the function node. Hoist these comments up so that we can
+   * treat comments uniformly
+   */
+  private promoteSignatureComments(node: DeclarationReflection) {
+    if (!node.comment?.shortText && node.signatures?.[0]?.comment?.shortText) {
+      node.comment = node.signatures[0].comment;
+    }
+  }
+
+  /**
    * Adds a "heritage" property that's similar to the existing "extendedTypes"
    * property, but adds transitive heritage (e.g. adds HTMLElement to
    * [LitElement -> ReactiveElement -> HTMLElement]), and adds page/anchor
@@ -414,13 +427,14 @@ class Transformer {
     const replace = (comment: string) =>
       // TODO(aomarks) Maybe we also/instead support @link syntax?
       comment.replace(
-        /\[\[`?(.+?)`?\]\]/g,
-        (_: string, symbol: string): string => {
+        /\[\[[\s`]*(.+?)(?:[\s`]*\|[\s`]*(.+?))?[\s`]*\]\]/g,
+        (_: string, symbol: string, label: string): string => {
           const context =
             (node as ExtendedDeclarationReflection).location?.anchor?.split(
               '.'
             ) ?? [];
           let results;
+
           // If this node is "foo.bar", and we saw "[[ baz ]]", then look for a
           // match from closest to furthest:
           //
@@ -435,9 +449,9 @@ class Transformer {
             }
           }
           if (results && results.length === 1) {
-            return `[${symbol}](${locationToUrl(results[0])})`;
+            return `[\`${label || symbol}\`](${locationToUrl(results[0])})`;
           }
-          return symbol;
+          return '`' + (label || symbol) + '`';
         }
       );
 
@@ -460,7 +474,7 @@ class Transformer {
       if (!source.fileName.endsWith('.d.ts')) {
         return;
       }
-      const mapFilename = pathlib.join(
+      const mapFilename = pathlib.resolve(
         litMonorepoPath,
         source.fileName.replace(/^lit\//, '') + '.map'
       );
@@ -483,7 +497,7 @@ class Transformer {
     // TODO(aomarks) Compute correctly.
     source.fileName = pathlib.relative(
       'lit',
-      pathlib.join(source.fileName, pos.source ?? '')
+      pathlib.resolve(source.fileName, pos.source ?? '')
     );
     source.line = pos.line ?? 0;
     source.character = pos.column ?? 0;

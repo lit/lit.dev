@@ -140,6 +140,27 @@ ${content}
 
   /**
    * Generate a hyperlink to the given API symbol.
+   *
+   * The first parameter is the link display text, and if there is no second
+   * parameter it is also the symbol to look up. If there is a second parameter,
+   * then that will be used for the symbol look up instead of the first
+   * parameter.
+   *
+   * Symbols are indexed in both concise and disambiguated forms. If a symbol is
+   * ambiguous, an error will be thrown during Eleventy build, with
+   * disambiguation suggestions.
+   *
+   * Examples:
+   *
+   *   renderRoot .............................. OK (not ambiguous)
+   *   ReactiveElement.renderRoot .............. OK
+   *
+   *   updateComplete .......................... ERROR (ambiguous)
+   *   ReactiveElement.updateComplete .......... OK
+   *   ReactiveControllerHost.updateComplete ... OK
+   *
+   *   render .................................. OK (top-level function)
+   *   LitElement.render ....................... OK (method)
    */
   eleventyConfig.addShortcode('api', (name, symbol) => {
     symbol = symbol ?? name;

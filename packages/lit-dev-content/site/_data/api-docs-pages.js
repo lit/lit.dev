@@ -19,7 +19,7 @@ module.exports = async () =>
   // Don't use require() because of Node caching in watch mode.
   JSON.parse(
     await fs.readFile(
-      pathlib.join(
+      pathlib.resolve(
         __dirname,
         '..',
         '..',

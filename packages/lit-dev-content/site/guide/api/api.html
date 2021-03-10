@@ -19,8 +19,5 @@ eleventyComputed:
     {{ export.name }}
   </h2>
 
-  <p>
-    {{ export.comment.shortText | markdown | safe }}
-    {{ export.signatures[0].comment.shortText | markdown | safe }}
-  </p>
+  <p>{{ export.comment.shortText | markdown | safe }}</p>
 {% endfor %}
