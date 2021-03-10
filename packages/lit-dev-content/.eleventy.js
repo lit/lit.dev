@@ -54,6 +54,8 @@ module.exports = function (eleventyConfig) {
       './js/playground-service-worker-proxy.html',
   });
 
+  eleventyConfig.addWatchTarget('../lit-dev-tools/api-data');
+
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
   // markdown processor to quote it.
@@ -119,6 +121,82 @@ ${content}
       collapseWhitespace: true,
     });
     return minified;
+  });
+
+  /**
+   * Render the given content as markdown.
+   */
+  eleventyConfig.addFilter('markdown', (content) => {
+    if (!content) {
+      return '';
+    }
+    return md.render(content);
+  });
+
+  // Don't use require() because of Node caching in watch mode.
+  const apiSymbolMap = JSON.parse(
+    fsSync.readFileSync('../lit-dev-tools/api-data/symbols.json', 'utf8')
+  );
+
+  /**
+   * Generate a hyperlink to the given API symbol.
+   *
+   * The first parameter is the link display text, and if there is no second
+   * parameter it is also the symbol to look up. If there is a second parameter,
+   * then that will be used for the symbol look up instead of the first
+   * parameter.
+   *
+   * Symbols are indexed in both concise and disambiguated forms. If a symbol is
+   * ambiguous, an error will be thrown during Eleventy build, with
+   * disambiguation suggestions.
+   *
+   * Examples:
+   *
+   *   renderRoot .............................. OK (not ambiguous)
+   *   ReactiveElement.renderRoot .............. OK
+   *
+   *   updateComplete .......................... ERROR (ambiguous)
+   *   ReactiveElement.updateComplete .......... OK
+   *   ReactiveControllerHost.updateComplete ... OK
+   *
+   *   render .................................. OK (top-level function)
+   *   LitElement.render ....................... OK (method)
+   */
+  eleventyConfig.addShortcode('api', (name, symbol) => {
+    symbol = symbol ?? name;
+    const locations = apiSymbolMap['$' + symbol];
+    if (!locations) {
+      throw new Error(`Could not find API link for symbol ${symbol}`);
+    }
+
+    let location;
+    if (locations.length === 1) {
+      // Unambiguous match
+      location = locations[0];
+    } else {
+      for (const option of locations) {
+        // Exact match.
+
+        // TODO(aomarks) It could be safer to always fail when ambiguous, but we
+        // currently don't have an unambiguous reference for the top-level
+        // "render" function. Maybe we could use the filename, e.g.
+        // "lit-html.render".
+        if (option.anchor === symbol) {
+          location = option;
+          break;
+        }
+      }
+    }
+
+    if (location === undefined) {
+      throw new Error(
+        `Ambiguous symbol ${symbol}. ` +
+          `Options: ${locations.map((l) => l.anchor).join(', ')}`
+      );
+    }
+
+    const {page, anchor} = location;
+    return `<a href="/guide/api/${page}#${anchor}">${name}</a>`;
   });
 
   /**

@@ -3,6 +3,9 @@
 {% block head %}
   {% inlinecss "docs.css" %}
   {% inlinejs "docs.js" %}
+  {% if '/api/' in page.url %}
+    {% inlinecss "docs-api.css" %}
+  {% endif %}
 {% endblock %}
 
 {% block drawer %}

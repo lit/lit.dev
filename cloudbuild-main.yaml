@@ -80,4 +80,4 @@ tags:
   - lit-dev
   - cloudbuild-main
 
-timeout: 30m
+timeout: 45m
