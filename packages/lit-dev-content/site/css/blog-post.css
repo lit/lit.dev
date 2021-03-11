@@ -49,6 +49,7 @@
 #content {
   padding: var(--blog-top-padding) 3em;
   font-family: "Open Sans", sans-serif;
+  font-size: 0.88889em;
 }
 
 #content > :first-child {
