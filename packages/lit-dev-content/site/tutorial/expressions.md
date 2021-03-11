@@ -2,9 +2,11 @@
 title: More expressions
 eleventyNavigation:
   key: More expressions
-  order: 4
+  order: 5
 startingSrc: samples/try/expressions/before/project.json
 finishedSrc: samples/try/expressions/after/project.json
+next: tutorial/template-logic/
+prev: tutorial/events/
 ---
 
 On the previous pages you used expressions to add text content (child nodes) and add an event listener. You can also use expressions to set attributes or properties:
@@ -32,4 +34,4 @@ The `disabled` attribute is toggled when the checkbox state changes, and the `va
 
 For more information, see [Expressions](/guide/templates/expressions/).
 
-[Next: Template logic](/try/template-logic/)
+[Next: Template logic](/tutorial/template-logic/)

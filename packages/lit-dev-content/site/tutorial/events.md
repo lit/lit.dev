@@ -2,9 +2,11 @@
 title: Declarative event handlers
 eleventyNavigation:
   key: Declarative event handlers
-  order: 3
+  order: 4
 startingSrc: samples/try/events/before/project.json
 finishedSrc: samples/try/events/after/project.json
+next: tutorial/expressions/
+prev: tutorial/properties/
 ---
 
 To add interactivity to your components, you'll probably want to add some event handlers. Lit makes it easy to add a _declarative event handler_ in the template, using an expression like this:
@@ -41,4 +43,4 @@ Now try it out!
 
 For more information about declarative event handlers, see [Events](/guide/components/events/).
 
-[Next: More expressions](/try/expressions/)
+[Next: More expressions](/tutorial/expressions/)

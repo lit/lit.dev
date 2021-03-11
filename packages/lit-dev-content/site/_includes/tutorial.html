@@ -15,8 +15,11 @@
       <h1>{{ title }}</h1>
       {{ content | safe }}
       <div class="internal-nav">
+        <a href="{{site.baseurl}}/{{prev}}"><button  {{"disabled" if not prev}}>Prev</button></a>
+        <a href="{{site.baseurl}}/{{next}}""><button  {{"disabled" if not next}}>Next</button></a>
+
         <button data-url="{{site.baseurl}}/{{startingSrc}}" id="reset">Reset</button>
-        <button data-url="{{site.baseurl}}/{{finishedSrc}}" id="finish">Show finished</button>
+        <button data-url="{{site.baseurl}}/{{finishedSrc}}" id="finish">Show completed</button>
       </div>
     </div>
 

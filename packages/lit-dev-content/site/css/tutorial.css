@@ -4,7 +4,7 @@ main {
   max-width: none;
   /* Remove space usually allotted to the footer. */
   min-height: calc(100vh - var(--header-height));
-  --tutorial-text-width: 400px;
+  --tutorial-text-width: 50%;
   overflow: hidden;
 }
 

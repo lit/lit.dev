@@ -2,9 +2,11 @@
 title: Reactive properties
 eleventyNavigation:
   key: Reactive properties
-  order: 2
+  order: 3
 startingSrc: samples/try/properties/before/project.json
 finishedSrc: samples/try/properties/after/project.json
+next: tutorial/events/
+prev: tutorial/define/
 ---
 
 Lit components can have _reactive properties_. Changing a reactive property triggers the component to update. In this step you'll declare a reactive property and use it in an _expression_ in the component's template.
@@ -36,4 +38,4 @@ Lit components can have _reactive properties_. Changing a reactive property trig
 
 Now you should see the property value in your output. To see how a reactive property works in practice, you'll need a way to update the value. In the next step, you'll add an event handler to do just that.
 
-[Next: Declarative event handlers](events)
+[Next: Declarative event handlers](/tutorial/events/)

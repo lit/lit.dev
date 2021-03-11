@@ -1,32 +1,17 @@
 ---
-title: Define a component
+title: Lit tutorial
 eleventyNavigation:
-  key: Define
+  key: Introduction
   order: 1
-startingSrc: samples/try/create/before/project.json
-finishedSrc: samples/try/create/after/project.json
+startingSrc: samples/try/intro/before/project.json
+finishedSrc: samples/try/intro/after/project.json
+next: tutorial/define/
 ---
 
-In Lit, most things start with defining a component. Complete this component definition by adding a `render()` method that defines the component's internal DOM.
+This interactive tutorial will help you get started with Lit and see how simple it is to build fast, lightweight web components.
 
-In `my-element.ts`, replace the existing class definition with the following code:
+If you get stuck on a step, click **Show completed** to see the finished code, or click **Reset** to return to the starting code.
 
-```ts
-class MyElement extends LitElement {
-  render() {
-    return html`
-      <p>Hello world! From my-element</p>
-    `;
-  }
-}
-```
+For a primer on web components, or if you'd like a more traditional tutorial, check out our [codelab](https://codelabs.developers.google.com/codelabs/the-lit-path). You can also review our documentation for more information as you go along.
 
-The `render()` method defines your component's template. You must implement `render()` for every Lit component.
-
-Your code sample should be working now. Lit components are added to a page with simple HTML tags, like this:
-
-```html
-<my-element></my-element>
-```
-
-[Next: Reactive properties](/try/properties/)
+[Start](/tutorial/define/)
