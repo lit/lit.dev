@@ -27,6 +27,14 @@ body {
   font-family: Manrope, sans-serif;
 }
 
+main {
+  /* Ensures that the footer never floats above the bottom of the viewport on
+     short pages. */
+  min-height: calc(100vh - var(--header-height) - var(--footer-top-height) -
+    var(--footer-bottom-height)
+  );
+}
+
 a {
   text-decoration: none;
   color: #1879cd;

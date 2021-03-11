@@ -17,6 +17,7 @@ const {
   inlinePlaygroundFilesIntoManifests,
 } = require('../lit-dev-tools/lib/playground-inline.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
+const luxon = require('luxon');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -235,6 +236,20 @@ ${content}
     }
     const script = fsSync.readFileSync(`site/_includes/js/${path}`, 'utf8');
     return `<script type="module">${script}</script>`;
+  });
+
+  // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
+  eleventyConfig.addFilter('readableDate', (dateObj) => {
+    return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
+      'LLL d, yyyy'
+    );
+  });
+
+  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
+  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
+    return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
+      'yyyy-LL-dd'
+    );
   });
 
   eleventyConfig.on('afterBuild', async () => {

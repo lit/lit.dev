@@ -1,0 +1,52 @@
+---
+author: Lit Team
+authorLink: https://twitter.com/polymer
+authorImage: logo.svg#flame
+---
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "blog-post.css" %}
+{% endblock %}
+
+{% block drawer %}
+{% endblock %}
+
+{% block content %}
+  <article>
+    <div id="frontMatter">
+      <h1>{{ title }}</h1>
+
+      <p>{{ summary }}</p>
+
+      <div id="imageNameDate">
+        {% if authorImage == "logo.svg#flame" %}
+          <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ authorImage }}">
+        {% else %}
+          <img alt="Portrait of {{ author }}" src="{{ site.baseurl }}/images/{{ authorImage }}">
+        {% endif %}
+
+        <div id="nameDate">
+          <p>
+            {% if authorLink %}
+              <a id="authorName" href="{{ authorLink }}" target="_blank" rel="noopener">
+                {{ author }}
+              </a>
+            {% else %}
+              <span id="authorName">{{ author }}</span>
+            {% endif %}
+          </p>
+
+          <time datetime="{{ date | htmlDateString }}">
+            {{ date | readableDate }}
+          </time>
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      {{ content | safe }}
+    </div>
+  </article>
+{% endblock %}
