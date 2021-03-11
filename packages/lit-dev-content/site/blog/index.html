@@ -1,0 +1,54 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "blog-index.css" %}
+{% endblock %}
+
+{% block content %}
+  <article>
+    <div id="frontMatter">
+      <h1>
+        <img alt="" class="flame" src="{{ site.baseurl }}/images/logo.svg#flame">
+        Blog
+      </h1>
+
+      <p>Hear from our team on the latest with Lit and the community. Our blog covers
+         major release announcements and showcases cool stuff being built with Lit.</p>
+
+      <p>Have an idea for an article?</p>
+      <a id="suggestLink" target="_blank" rel="noopener"
+         href="https://twitter.com/intent/tweet?text=Hey+@polymer+I'd+like+to+see+a+blog+post+about"
+         >Suggest it!</a>
+    </div>
+
+    <div id="content">
+      {% for post in collections.blogPosts | reverse %}
+        <div class="post">
+          <h2 class="date">
+            <time datetime="{{ post.data.date | htmlDateString }}">
+              {{ post.data.date | readableDate }}
+            </time>
+          </h2>
+
+          <div class="details">
+            <h3 class="title">
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+            </h3>
+
+            <p>{{ post.data.summary }}</p>
+
+            <p class="author">
+              {% if post.data.authorImage == "logo.svg#flame" %}
+                <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
+              {% else %}
+                <img alt="Portrait of {{ author }}" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
+              {% endif %}
+              {{ post.data.author }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </article>
+{% endblock %}
+

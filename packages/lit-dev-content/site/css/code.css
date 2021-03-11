@@ -24,3 +24,7 @@ html {
   --playground-code-attribute-color: #6f42c1;
   --playground-code-callee-color: #005cc5;
 }
+
+.CodeMirror {
+  overflow-y: auto;
+}
