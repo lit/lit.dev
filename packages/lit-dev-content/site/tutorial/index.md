@@ -3,8 +3,8 @@ title: Lit tutorial
 eleventyNavigation:
   key: Introduction
   order: 1
-startingSrc: samples/try/intro/before/project.json
-finishedSrc: samples/try/intro/after/project.json
+startingSrc: samples/tutorial/intro/before/project.json
+finishedSrc: samples/tutorial/intro/after/project.json
 next: tutorial/define/
 ---
 

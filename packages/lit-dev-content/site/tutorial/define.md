@@ -3,8 +3,8 @@ title: Define a component
 eleventyNavigation:
   key: Define
   order: 2
-startingSrc: samples/try/create/before/project.json
-finishedSrc: samples/try/create/after/project.json
+startingSrc: samples/tutorial/create/before/project.json
+finishedSrc: samples/tutorial/create/after/project.json
 next: tutorial/properties/
 prev: tutorial/
 ---

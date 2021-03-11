@@ -3,8 +3,8 @@ title: Reactive properties
 eleventyNavigation:
   key: Reactive properties
   order: 3
-startingSrc: samples/try/properties/before/project.json
-finishedSrc: samples/try/properties/after/project.json
+startingSrc: samples/tutorial/properties/before/project.json
+finishedSrc: samples/tutorial/properties/after/project.json
 next: tutorial/events/
 prev: tutorial/define/
 ---

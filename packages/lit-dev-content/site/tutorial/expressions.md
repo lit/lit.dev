@@ -3,8 +3,8 @@ title: More expressions
 eleventyNavigation:
   key: More expressions
   order: 5
-startingSrc: samples/try/expressions/before/project.json
-finishedSrc: samples/try/expressions/after/project.json
+startingSrc: samples/tutorial/expressions/before/project.json
+finishedSrc: samples/tutorial/expressions/after/project.json
 next: tutorial/template-logic/
 prev: tutorial/events/
 ---

@@ -3,8 +3,8 @@ title: Template logic
 eleventyNavigation:
   key: Template logic
   order: 6
-startingSrc: samples/try/template-logic/before/project.json
-finishedSrc: samples/try/template-logic/after/project.json
+startingSrc: samples/tutorial/template-logic/before/project.json
+finishedSrc: samples/tutorial/template-logic/after/project.json
 prev: tutorial/expressions/
 ---
 

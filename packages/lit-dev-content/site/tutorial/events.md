@@ -3,8 +3,8 @@ title: Declarative event handlers
 eleventyNavigation:
   key: Declarative event handlers
   order: 4
-startingSrc: samples/try/events/before/project.json
-finishedSrc: samples/try/events/after/project.json
+startingSrc: samples/tutorial/events/before/project.json
+finishedSrc: samples/tutorial/events/after/project.json
 next: tutorial/expressions/
 prev: tutorial/properties/
 ---
