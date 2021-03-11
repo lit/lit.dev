@@ -8,9 +8,9 @@ eleventyNavigation:
 
 When building an app that includes Lit components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/) to prepare your source code and dependencies for serving in a production environment.
 
-We recommend Rollup because it's designed to work with the standard ES module format. To jump directly to a sample build configuration for building an app with Rollup, see [Building with Rollup](#building-with-rollup).
+The sections below describe the general requirements for configuring one of these tools to build and optimize an application that includes Lit components.
 
-If you're interested in building with a different tool, or integrating Lit into an existing build system, continue on to [Build requirements](#build-requirements) below.
+We recommend Rollup because it's designed to work with the standard ES module format. To jump directly to a sample build configuration for building an app with Rollup, see [Building with Rollup](#building-with-rollup).
 
 Note that this page focuses primarily in building an application that uses Lit components _for production_.  For recommendations on build steps to perform on source code prior to _publishing_ a reusable Lit component to npm, see [Publishing](../publishing/).
 
@@ -21,7 +21,7 @@ Lit is packaged as a set of ES modules, written in modern JavaScript (ES 2020) a
 When building an app using Lit, your build system will need to handle the following, depending on the browsers that your app targets:
 
 *   **Modern browsers:** Resolving bare (or Node-style) module identifiers.
-*   **Legacy browsers:** Transpiling syntax and modules to ES5 and loading polyfills.
+*   **Legacy browsers:** Transpiling JS syntax and modules and loading polyfills.
 
 These steps are covered in detail in the sections that follow.
 
@@ -41,11 +41,11 @@ Modern browsers currently only support loading modules from URLs or relative pat
 
 Webpack automatically handles bare module specifiers; for Rollup, you'll need a plugin ([@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)).
 
-**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called [Import maps](https://github.com/WICG/import-maps) is starting to [ship](https://chromestatus.com/feature/5315286962012160), which will let let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps.
+**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called [Import maps](https://github.com/WICG/import-maps) is [starting to ship](https://chromestatus.com/feature/5315286962012160), which will let let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps.
 
 ### Buildig for legacy browsers {#supporting-older-browsers}
 
-Supporting older browsers (specifically Internet Explorer 11), requires a number of extra steps:
+Supporting older browsers (specifically Internet Explorer 11, but also older versions of evergreen browsers), requires a number of extra steps:
 
 *   Transpiling modern JavaScript syntax to ES5.
 *   Transforming ES modules to another module system.
@@ -60,7 +60,7 @@ You may need other polyfills depending on the features your application uses.
 
 Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used transpiler.
 
-Unlike some libraries, Lit is published as a set of ES modules using modern ES2020 JavaScript. When you build your app, you need to compile Lit as well as your own code.
+Unlike some libraries, Lit is published as a set of ES modules using modern ES2020 JavaScript. When you build your app for older browsers, you need to compile Lit as well as your own code.
 
 If you have a build already set up, it may be configured to ignore the `node_modules` folder when transpiling. If this is the case, we recommend updating this to transpile the `lit` package and its runtime dependencies (`lit-html` and `lit-element`). For example, if you're using the [Rollup Babel plugin](https://www.npmjs.com/package/@rollup/plugin-babel), you might have a configuration like this to exclude the `node_modules` folder from transpilation:
 
@@ -92,7 +92,7 @@ When producing output for older browsers without modules support like IE11, ther
 *   AMD modules. Uses the Asynchronous Module Definition format; requires a module loader script, such as [require.js](https://requirejs.org/).
 *   SystemJS modules. [SystemJS](https://www.npmjs.com/package/systemjs) is a module loader that defines its own module format. It also supports AMD, CommonJS, and standard JavaScript modules.
 
-The IIFE format works fine if all of your code can be bundled into a single file. To use code splitting with older browsers like IE11, you'll need to produce output in either the AMD or SystemJS module format and load the appropriate module loader/polyfill.
+The IIFE format works fine if all of your code can be bundled into a single file. To use code splitting via [dynamic `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) with older browsers like IE11, you'll need to produce output in either the AMD or SystemJS module format and load the appropriate module loader/polyfill.
 
 #### Polyfills {#polyfills}
 
@@ -103,7 +103,7 @@ These are the recommended polyfills:
 * Polyfills for JavaScript features:
   * [`core-js`](https://www.npmjs.com/package/core-js) - Standard JS library
   * [`regenerator-runtime`](https://www.npmjs.com/package/regenerator-runtime) - Support for generators & async/await
-* Polyfills for dynamic `import()` (if used in applicatoin; choose depending on how modules were transformed):
+* Polyfills for dynamic `import()` (if used in application; choose depending on how modules were transformed):
   * [`systemjs`](https://www.npmjs.com/package/systemjs) - systemjs module loader
   * [`requirejs`](https://www.npmjs.com/package/requirejs) - AMD module loader
 * Polyfills for Web Components:
@@ -124,7 +124,7 @@ Lit projects benefit from the same optimizations as other web projects:
 
 See the links above for further reading on applying those standard optimizations to your projects.
 
-In addition, note that because Lit templates are defined using template literals, they don't get processed by standard HTML minifiers. Adding a plugin that minifies template literals can result in a modest decrease in code size. Several packages are available to perform this optimization:
+In addition, note that because Lit templates are defined inside JavaScript template string literals, they don't get processed by standard HTML minifiers. Adding a plugin that minifies template literals can result in a modest decrease in code size. Several packages are available to perform this optimization:
 
 *   Rollup: [rollup-plugin-minify-html-literals](https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme)
 *   Webpack: [minify-template-literal-loader](https://www.npmjs.com/package/minify-template-literal-loader)
@@ -136,17 +136,17 @@ There are many ways to set up Rollup to bundle your project. The [Modern Web](ht
 
 ### Modern + legacy build
 
-The annotated `rollup.config.js` file below build would biuld an application that includes Lit components, implementing all of the build requirements and optimizations described on this page, and will work on all browsers down to IE11. To summarize, it:
+The annotated `rollup.config.js` file below will build  an application that includes Lit components, implementing all of the build requirements and optimizations described on this page, and will work on all browsers down to IE11. To summarize, it:
 
 * Finds all JS and static assets starting from a set of `*.html` entry points
-* Minifies JS code (JS and html template literals)
-* Creates separate sets of "modern" and "legacy" JS bundles
+* Minifies JS (code and html template literals)
+* Bundles JS into two separate sets of bundles
   * Modern: ES2020 with native JS modules
   * Legacy: ES5 with SystemJS modules
-* Outputs all static assets with filenames hashed based on their content
+* Outputs all static assets (including JS bundles) with filenames hashed based on their content
 * And rewrites the HTML entry points such that they:
   * Optimistically pre-fetch the modern JS bundle
-  * Load polyfills and modern vs. legacy JS bundle as needed based on feature detection
+  * Use feature detection to load polyfills and either the modern or legacy JS bundles
   * Load any other assets using hashed URLs
 * With all output files written to a `build` folder, appropate for production
   serving
@@ -183,13 +183,15 @@ import summary from 'rollup-plugin-summary';
 const htmlPlugin = html({
   rootDir: './',
   flattenOutput: false,
-});
-
-export default {
   // Entry point for application build; can specify a glob to build multiple
   // HTML files for non-SPA app
   input: 'index.html',
+});
+
+export default {
   plugins: [
+    // Finds <script> and other assets in HTML files for bundling/compilation
+    // and hashing, and re-writes HTML files to load these
     htmlPlugin,
     // Resolve bare module specifiers to relative paths
     resolve(),
