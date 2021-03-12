@@ -1,0 +1,213 @@
+/* ------------------------------------
+ * openSans
+ * ------------------------------------ */
+
+body.openSans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* ------------------------------------
+ * roboto
+ * ------------------------------------ */
+
+body.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ------------------------------------
+ * manrope docs
+ * ------------------------------------ */
+
+body.docsManrope article {
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* ------------------------------------
+ * headerWhite
+ * ------------------------------------ */
+
+.headerWhite header {
+  background: white;
+}
+
+/* ------------------------------------
+ * headerShadow
+ * ------------------------------------ */
+
+.headerShadow header {
+  box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 6px 0px;
+}
+
+/* ------------------------------------
+ * docsNavRight
+ * ------------------------------------ */
+
+.docsNavRight main {
+  --docs-nav-max-width: 1fr;
+}
+
+.docsNavRight #docsNavWrapper {
+  overflow-y: auto;
+  justify-content: flex-end;
+  background: var(--docs-nav-background);
+}
+
+.docsNavRight #docsNav {
+  overflow-y: initial;
+  background: transparent;
+}
+
+.docsNavRight #docsNavWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.docsNavRight #docsNavWrapper:hover::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 0.3);
+  border-radius: 10px;
+}
+
+/* ------------------------------------
+ * docsNavWhite
+ * ------------------------------------ */
+
+.docsNavWhite #docsNavWrapper {
+  --docs-nav-background: white;
+}
+
+.docsNavWhite #docsNav {
+  color: black;
+}
+
+/* ------------------------------------
+ * docsNavLight
+ * ------------------------------------ */
+
+.docsNavLight #docsNavWrapper {
+  --docs-nav-background: #f7f7f7;
+}
+
+.docsNavLight #docsNav {
+  color: black;
+}
+
+.docsNavLight #docsNav li.active::before {
+  color: var(--color-blue);
+}
+
+/* ------------------------------------
+ * docsNavBorder
+ * ------------------------------------ */
+
+.docsNavBorder:not(.docsNavRight) #docsNav {
+  border-right: 1px solid #d6d6d6;
+}
+
+.docsNavBorder.docsNavRight #docsNavWrapper {
+  border-right: 1px solid #d6d6d6;
+}
+
+/* ------------------------------------
+ * docsNavFlat
+ * ------------------------------------ */
+
+.docsNavFlat #docsNav > ol > li > ol {
+  padding-left: 0;
+}
+
+.docsNavFlat #docsNav {
+  font-size: 0.9em;
+  line-height: 1.8em;
+}
+
+.docsNavFlat .sectionHead {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.95em;
+  opacity: 0.5 !important;
+}
+
+.docsNavFlat #docsNav a {
+  font-size: 0.9em;
+  opacity: 1;
+}
+
+.docsNavFlat #docsNav > ol > li:not(:first-of-type) {
+  /* Space between top-level lists */
+  margin-top: 2em;
+}
+
+.docsNavFlat #docsNav > ol > li > ol {
+  /* Space between heading and second level items */
+  padding-top: 0.4em;
+}
+
+.docsNavFlat #docsNav .active a {
+  font-weight: 600;
+}
+
+/* ------------------------------------
+ * codeDark
+ * ------------------------------------ */
+
+.codeDark,
+.codeDark .CodeMirror {
+  --playground-code-background: #1e1e1e;
+  --playground-code-default-color: #d4d4d4;
+  --playground-code-keyword-color: #569cd6;
+  --playground-code-atom-color: #569cd6;
+  --playground-code-number-color: #b5cea8;
+  --playground-code-def-color: #9cdcfe;
+  --playground-code-variable-color: #9cdcfe;
+  --playground-code-property-color: #9cdcfe;
+  --playground-code-operator-color: #569cd6;
+  --playground-code-variable-2-color: #9cdcfe;
+  --playground-code-variable-3-color: #d4d4d4;
+  --playground-code-type-color: #4ec9b0;
+  --playground-code-comment-color: #6a9955;
+  --playground-code-string-color: #ce9178;
+  --playground-code-string-2-color: #ce9178;
+  --playground-code-meta-color: #d4d4d4;
+  --playground-code-qualifier-color: #d7ba7d;
+  --playground-code-builtin-color: #d7ba7d;
+  --playground-code-tag-color: #808080;
+  --playground-code-attribute-color: #9cdcfe;
+  --playground-code-callee-color: #dcdcaa;
+}
+
+/* ------------------------------------
+ * headerNarrow
+ * ------------------------------------ */
+
+.headerNarrow header {
+  display: flex;
+  justify-content: center;
+}
+
+.headerNarrow header > nav {
+  max-width: var(--content-max-width);
+}
+
+/* ------------------------------------
+ * footerNarrow
+ * ------------------------------------ */
+
+.footerNarrow #footerTop {
+  max-width: var(--content-max-width);
+  margin: auto;
+}
+
+.footerNarrow footer > nav {
+  max-width: var(--content-max-width);
+  margin: auto;
+}
+
+/* ------------------------------------
+ * docsSectionBorderBelow
+ * ------------------------------------ */
+
+.docsSectionBorderBelow article h2 {
+  border-top: none !important;
+  padding: 1em 0 0.5em 0 !important;
+  margin-top: 1.2em !important;
+  border-bottom: 1.5px solid #d1d1d1 !important;
+}

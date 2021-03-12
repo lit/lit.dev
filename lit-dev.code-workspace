@@ -5,6 +5,10 @@
 			"path": "packages/lit-dev-content",
 		},
 		{
+			"name": "lit-dev-tools",
+			"path": "packages/lit-dev-tools",
+		},
+		{
 			"name": "lit-dev-server",
 			"path": "packages/lit-dev-server",
 		},

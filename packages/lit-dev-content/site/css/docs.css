@@ -1,0 +1,572 @@
+/* ------------------------------------
+ * Main layout
+ * ------------------------------------ */
+
+main {
+    /* Colors */
+    --docs-h1-underline-color: var(--color-blue);
+    --docs-h2-color: #384861;
+    --docs-h3-color: #5d6c86;
+    --docs-rule-color: #d1d1d1;
+    --docs-table-header-background: #e4e4e4;
+    --docs-table-header-color: rgb(73, 73, 73);
+    --playground-code-background-color: #f0f0f0;
+
+  /* IMPORTANT: If any of the following variables change, one or both of the
+     @media query thresholds below need to be updated. */
+  --docs-nav-min-width: 15em;
+  --docs-nav-max-width: 15em;
+  --docs-toc-min-width: 10em;
+  --docs-article-min-width: 30em;
+  --docs-article-max-width: 49em;
+  --docs-article-margin-horizontal: 3em;
+  --docs-margin-top: 2em;
+
+  display: grid;
+  grid-template-columns:
+    minmax(var(--docs-nav-min-width), var(--docs-nav-max-width))
+    minmax(0, var(--docs-article-max-width)) 1fr;
+  max-width: none;
+  border-bottom: 1px solid var(--color-blue);
+}
+
+/* ------------------------------------
+ * Article
+ * ------------------------------------ */
+
+article {
+  max-width: var(--docs-article-max-width);
+  padding: var(--docs-margin-top) var(--docs-article-margin-horizontal) 0
+    var(--docs-article-margin-horizontal);
+  line-height: 1.8em;
+  font-size: 0.88889em; /* 16px / 18px basis */
+  color: #3e3e3e;
+
+  /* Open Sans is more readable than Manrope, so we prefer it for content that
+     users will spend a lot of time reading. */
+  font-family: "Open Sans", sans-serif;
+}
+
+/* ------------------------------------
+ * Body text
+ * ------------------------------------ */
+
+ article {
+   color: #3E3E3E;
+ }
+
+article p {
+  margin-block-start: 1.5em;
+  margin-block-end: 1.5em;
+}
+
+article a {
+  color: var(--color-blue);
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+article li {
+  /* Slightly more space between list items */
+  margin-bottom: 0.8em;
+}
+
+article li > p {
+  margin: 0;
+}
+
+/* ------------------------------------
+ * Code
+ * ------------------------------------ */
+
+/* Inline code */
+article code:not([class]) {
+  background: var(--color-light-gray);
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  font-family: var(--playground-code-font-family, monospace);
+}
+
+/* Non-highlighted code block */
+article pre > code:not([class]) {
+  background: none;
+  padding: 0;
+}
+
+/* Static code snippets */
+.CodeMirror {
+  --playground-code-background: #f5f5f5;
+  color: #3c3c3c;
+}
+
+/* Playground examples */
+litdev-example {
+  --playground-code-background: #f5f5f5;
+}
+
+/* Full IDEs */
+playground-ide {
+}
+
+.CodeMirror,
+litdev-example,
+playground-ide {
+  font-size: 0.85em;
+  border-radius: 5px;
+}
+
+playground-ide {
+  background: var(--playground-code-background);
+}
+
+figure {
+  /* We put code snippets in figures for improved a11y semantics, but they come
+     with a default left margin. */
+  margin-left: 0;
+}
+
+/* ------------------------------------
+ * Headings
+ * ------------------------------------ */
+
+article h1 {
+  padding: 0.3em 0 0.8em 0;
+  margin-bottom: 1.3em;
+  border-bottom: 2px solid var(--docs-h1-underline-color);
+  font-size: 2.2em;
+  font-weight: 400;
+}
+
+article h2 {
+  color: var(--docs-h2-color);
+  font-size: 1.8em;
+  font-weight: 600;
+  position: relative;
+  margin-top: 1.5em;
+  padding: 1.5em 0 0.5em 0;
+  border-top: 1px solid var(--docs-rule-color);
+}
+
+/* If a page has no introductory content before the first h2, remove the section
+   delineation. */
+article #inlineToc + h2 {
+  border-top: none !important;
+  margin-top: 0;
+  padding-top: 0.5em;
+}
+
+article h3 {
+  color: var(--docs-h3-color);
+  font-size: 1.2em;
+  font-weight: 600;
+  position: relative;
+  padding-top: 1em;
+}
+
+article h3 {
+  margin-top: 2.2em;
+}
+
+article h4 {
+  color: #6a6a6a;
+  font-weight: 600;
+}
+
+article > [id] {
+  /* Adjust scroll margins of all article headings to account for sticky header.
+     Otherwise, we'll scroll headings underneath the header. Add a little bit
+     more too, for some extra breathing room. */
+  scroll-margin-top: calc(var(--header-height) + 12px);
+}
+
+article > h1:first-of-type {
+  /* The default margin of the first heading extends above the article, which
+     complicates layout a bit. We have padding-top on the article itself. */
+  margin-top: 0;
+}
+
+/* ------------------------------------
+ * Lists
+ * ------------------------------------ */
+
+ article li {
+   padding-inline: 0.5em 10%;
+ }
+
+/* ------------------------------------
+ * Tables
+ * ------------------------------------ */
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #eaeaea;
+}
+
+th {
+  color: var(--docs-table-header-color);
+  background: var(--docs-table-header-background);
+  text-align: left;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #f6f8fa;
+}
+
+tr {
+  border-bottom: 1px solid #eaeaea;
+}
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top;
+}
+
+.wide-table, .wide-cell {
+  width: 100%;
+}
+
+.no-wrap-cell {
+  white-space: nowrap;
+}
+
+/* -----------------------------------
+/* Notes and warnings
+/* ------------------------------------ */
+
+.alert {
+  position: relative;
+  margin: 1em 0;
+  padding: 1em 1em 1em 3.5em;
+  border: 1px solid #ccc;
+}
+
+.alert > p {
+  margin: 0;
+}
+
+.alert::before {
+  position: absolute;
+  top: 1.15em;
+  left: 1em;
+}
+
+.alert.alert-info::before {
+  content: url(/images/alerts/info.svg);
+}
+
+.alert.alert-warning::before {
+  content: url(/images/alerts/warning.svg);
+}
+
+.alert-todo {
+  display: none;
+}
+
+.alert.alert-todo h3 {
+  color: red;
+}
+
+/* ------------------------------------
+ * LHS nav (desktop)
+ * ------------------------------------ */
+
+#docsNavWrapper {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: flex-start;
+  --docs-nav-background: var(--color-dark-gray);
+  box-sizing: border-box;
+}
+
+#docsNav {
+  overflow-y: auto;
+  background: var(--docs-nav-background);
+  color: white;
+  line-height: 1.6em;
+  padding: 0 1.5em;
+  box-sizing: border-box;
+}
+
+/* First level list */
+#docsNav > ol {
+  list-style: none;
+  padding-left: 0;
+  margin-top: var(--docs-margin-top);
+}
+#docsNav > ol > li:not(:first-of-type) {
+  /* Space between top-level lists */
+  margin-top: 1em;
+}
+
+/* Second level list */
+#docsNav > ol > li > ol {
+  list-style: none;
+  /* Space between heading and second level items */
+  padding-top: 0.2em;
+  /* Second level indent */
+  padding-left: 1.2em;
+}
+
+/* Section headings */
+#docsNav .sectionHead {
+  opacity: 0.5;
+}
+#docsNav .activeSection .sectionHead {
+  opacity: 1;
+}
+
+/* Active page bullet */
+#docsNav li.active {
+  position: relative;
+}
+#docsNav li.active::before {
+  /* Note it doesn't seem possible with list-style or ::marker to have a bullet
+     which is a smaller font-size than the list text, but also vertically
+     aligned. */
+  content: '◆';
+  position: absolute;
+  left: -2em;
+  font-size: 0.6em;
+}
+
+/* Page links */
+#docsNav a {
+  color: inherit;
+  font-size: 0.9em;
+  opacity: 0.5;
+}
+#docsNav .activeSection a {
+  opacity: 1;
+}
+#docsNav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* On some platforms like Linux, a traditional scrollbar will be always visible
+   on the nav, which is quite distracting. This reproduces something similar to
+   macOS style on all platforms. */
+#docsNav::-webkit-scrollbar {
+  width: 1em;
+}
+#docsNav:hover::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.3);
+  background-clip: content-box;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}
+
+/* ------------------------------------
+ * Inline TOC
+ * ------------------------------------ */
+
+#inlineToc {
+  /* Only visible in narrow layout. */
+  display: none;
+}
+
+#inlineToc h2 {
+  font-size: 1.5em;
+  border-top: none;
+}
+
+#inlineToc ol {
+  list-style: disc;
+}
+
+#inlineToc a {
+  color: inherit;
+}
+
+/* ------------------------------------
+* RHS TOC
+* ------------------------------------ */
+
+#rhsTocWrapper {
+  /* For some reason, when the natural DOM order is article > TOC, there is a
+  layout flash (easier to see with CPU throttling on). If we switch the
+  natural order to TOC > article, then change it here with CSS order, the
+  flash goes away. This order is probably better for screen-readers anyway.
+  */
+  order: 2;
+  min-width: var(--docs-toc-min-width);
+  position: relative;
+}
+
+#rhsToc {
+  position: sticky;
+  top: calc(var(--header-height));
+  height: calc(100vh - var(--header-height) - 60px);
+  overflow-y: auto;
+  padding: calc(var(--docs-margin-top) + 1.4em) 1.5em 0 1em;
+}
+
+/* "Contents" heading */
+#rhsToc > h2 {
+  color: #1d1d1d;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+/* First level */
+#rhsToc > div > ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#rhsToc > div > ol > li:not(:first-of-type) {
+  /* Space between top-level lists */
+  margin-top: 0.2em;
+}
+
+/* Second level */
+#rhsToc > div > ol > li > ol {
+  list-style: none;
+  /* Space between heading and second level items */
+  padding-top: 0.3em;
+  /* We move indentation to the anchors so that we can align the bullet
+     consistently to the left, regardless of indentation. */
+  padding-left: 0;
+}
+
+#rhsToc > div > ol > li > a {
+  padding-left: 1.5em;
+}
+
+#rhsToc > div > ol > li > ol > li > a {
+  /* Second level indent */
+  padding-left: 2.5em;
+}
+
+#rhsToc a {
+  color: black;
+  opacity: 0.5;
+  font-size: 0.8em;
+  position: relative;
+}
+
+#rhsToc a.active,
+#rhsToc a:hover {
+  opacity: 1;
+}
+
+/* Active section bullet */
+#rhsToc a.active::before {
+  /* Note it doesn't seem possible with list-style or ::marker to have a bullet
+     which is a smaller font-size than the list text, but also vertically
+     aligned. */
+  content: '◆';
+  color: var(--color-blue);
+  left: -2em;
+  font-size: 0.8em;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* ------------------------------------
+ * Narrow layouts
+ * ------------------------------------ */
+
+/**
+ * Move the TOC inline when slightly narrow.
+ *
+ * (15 + 49 + 10 + (3 * 2)) * 18 = 1440
+ *  |    |    |     |         +-- font-size
+ *  |    |    |     +------------ docs-article-margin-horizontal
+ *  |    |    +------------------ docs-toc-min-width
+ *  |    +----------------------- docs-article-max-width
+ *  +---------------------------- docs-nav-min-width
+ */
+@media (max-width: 1440px) {
+  main {
+    --docs-article-margin-horizontal: 2.5em;
+  }
+
+  #rhsTocWrapper {
+    display: none;
+  }
+
+  article {
+    grid-column: 2 / -1;
+  }
+
+  #inlineToc {
+    display: initial;
+  }
+  #inlineToc > details {
+    margin-bottom: 2em;
+  }
+  #inlineToc summary {
+    cursor: pointer;
+    padding: 0.2em 0;
+  }
+  #inlineToc summary::marker {
+    color: var(--docs-h2-color);
+    font-size: 1.25em;
+  }
+  #inlineToc h2 {
+    padding: 0;
+    margin: 0;
+    display: inline;
+    font-size: 1.25em;
+  }
+  #inlineToc > details[open] {
+    border-bottom: 1px solid var(--docs-rule-color);
+    padding-bottom: 1em;
+  }
+  #inlineToc div {
+    font-size: 0.9em;
+  }
+  #inlineToc li {
+    margin-bottom: 0;
+    padding-inline: initial;
+  }
+}
+
+/**
+ * Hide the RHS nav when very narrow.
+ *
+ * (15 + 30 + 3) * 18 = 864
+ *  |    |    |    +------------- font-size
+ *  |    |    +------------------ docs-article-margin-horizontal
+ *  |    +----------------------- docs-article-min-width
+ *  +---------------------------- docs-nav-min-width
+ */
+@media (max-width: 864px) {
+  main {
+    /* Remove grid */
+    display: block;
+  }
+  #docsNavWrapper {
+    display: none;
+  }
+  article {
+    margin: auto;
+    --docs-article-margin-horizontal: 1.5em;
+  }
+}
+
+.centered-image {
+  display: block;
+  margin: auto;
+}
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top;
+}
+
+th:empty {
+  padding: 1px;
+}

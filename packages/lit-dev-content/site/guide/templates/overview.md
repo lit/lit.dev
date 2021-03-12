@@ -18,7 +18,7 @@ Lit templates are written using JavaScript template literals tagged with the `ht
 html`<h1>Hello World</h1>`
 ```
 
-You can add dynamic content to your templates with **expressions**. Expressions are denoted with the standard JavaScript syntax for expressions in template literals:
+The static string content of a template must be [well-formed HTML](/guide/templates/expressions/#well-formed-html). You can add dynamic content to your templates with [expressions](/guide/templates/expressions/). Expressions are denoted with the standard JavaScript syntax for expressions in template literals:
 
 ```js
 html`<h1>Hello ${name}</h1>`
@@ -44,7 +44,7 @@ class MyElement extends LitElement {
 
 As shown in the example, you can use `this` inside an expression to access instance properties and methods on your component.
 
-## Efficient updates
+## Efficient updates { #efficient-updates }
 
 The template syntax might look like you're just doing string interpolation. But with tagged template literals, the browser passes the tag function an array of strings (the static portions of the template) and an array of expressions (the dynamic portions). Lit uses this to build an efficient representation of your template, so it can re-render only the parts of template that have changed.
 

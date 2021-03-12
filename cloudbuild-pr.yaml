@@ -1,0 +1,69 @@
+# lit.dev Cloud Build config for PR auto deployment.
+#
+# This differs from ./cloudbuild-main.yaml in these ways:
+#   - It's accessible only with its custom URL.
+#   - It isn't kept warm, and never scales above 1 instance.
+#
+# https://cloud.google.com/cloud-build/docs/build-config
+
+steps:
+  # Build Docker image.
+  #
+  # https://docs.docker.com/engine/reference/commandline/build/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  - id: Build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '--no-cache'
+      - '-t'
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - .
+      - '-f'
+      - Dockerfile
+
+  # Upload Docker image to Container Registry.
+  #
+  # https://docs.docker.com/engine/reference/commandline/push/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  - id: Push
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+
+  # Create a new Cloud Run revision.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: Deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - beta
+      - run
+      - deploy
+      - $_SERVICE_NAME
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-main.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=default' # unlimited
+      - '--min-instances=0'
+      - '--max-instances=1'
+
+images:
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+
+tags:
+  - lit-dev
+  - cloudbuild-pr
+
+timeout: 45m

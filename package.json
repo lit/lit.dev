@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap --ci",
     "build": "lerna run build --stream",
     "start": "cd packages/lit-dev-server && npm start",
+    "dev": "cd packages/lit-dev-content && (npm run build:ts:watch -- --preserveWatchOutput & npm run dev:build:site:watch & npm run dev:serve)",
     "format": "prettier \"**/*.{ts,js,json,html,css,md}\" --write",
     "nuke": "rm -rf node_modules package-lock.json packages/*/node_modules packages/*/package-lock.json && npm install && npm run bootstrap"
   },

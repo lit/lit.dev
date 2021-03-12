@@ -9,7 +9,6 @@
  */
 
 import Koa from 'koa';
-import koaCompress from 'koa-compress';
 import koaStatic from 'koa-static';
 import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
@@ -26,9 +25,29 @@ console.log('contentDir', contentDir);
 const app = new Koa();
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
-app.use(koaCompress());
-app.use(koaStatic(contentDir));
+app.use(
+  koaStatic(contentDir, {
+    // Serve pre-compressed .br and .gz files if available.
+    brotli: true,
+    gzip: true,
+  })
+);
 
 const port = process.env.PORT || 8080;
-app.listen(port);
+const server = app.listen(port);
 console.log(`server listening on port ${port}`);
+
+// Node only automatically exits on SIGINT when the PID is not 1 (e.g. launched
+// as the child of a shell process). When the Node PID is 1 (e.g. launched with
+// Docker `CMD ["node", ...]`) then it's our responsibility.
+let shuttingDown = false;
+process.on('SIGINT', () => {
+  if (!shuttingDown) {
+    // First signal: try graceful shutdown and let Node exit normally.
+    server.close();
+    shuttingDown = true;
+  } else {
+    // Second signal: somebody really wants to exit.
+    process.exit(1);
+  }
+});

@@ -1,0 +1,83 @@
+# lit.dev Cloud Build config for main branch auto deployment.
+#
+# https://cloud.google.com/cloud-build/docs/build-config
+
+steps:
+  # Build Docker image.
+  #
+  # https://docs.docker.com/engine/reference/commandline/build/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  - id: Build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '--no-cache'
+      - '-t'
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - .
+      - '-f'
+      - Dockerfile
+
+  # Upload Docker image to Container Registry.
+  #
+  # https://docs.docker.com/engine/reference/commandline/push/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  - id: Push
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+
+  # Create a new Cloud Run revision.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: Deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - beta
+      - run
+      - deploy
+      - $_SERVICE_NAME
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      - '--tag=master-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-pr.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=40'
+      - '--min-instances=1'
+      - '--max-instances=1000'
+
+  # Route traffic to new revision.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/services
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: Route Traffic
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - beta
+      - run
+      - services
+      - update-traffic
+      - $_SERVICE_NAME
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--quiet'
+      - '--to-tags=master-$SHORT_SHA=100'
+
+images:
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+
+tags:
+  - lit-dev
+  - cloudbuild-main
+
+timeout: 45m
