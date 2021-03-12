@@ -307,6 +307,30 @@ ${content}
     }
   });
 
+  eleventyConfig.addCollection('tutorial', function (collection) {
+    // Order the 'tutorial' collection by filename, which includes a number prefix.
+    // We could also order by a frontmatter property
+    // console.log(
+    //   'guide',
+    //   collection.getFilteredByGlob('site/guide/**')
+    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
+
+    return collection.getFilteredByGlob('site/tutorial/**')
+      // .filter((f) => !f.data.slug?.includes('/'))
+      .sort(function (a, b) {
+        if (a.fileSlug == 'tutorial') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
+  });
+
   return {
     dir: {input: 'site', output: OUTPUT_DIR},
     htmlTemplateEngine: 'njk',
