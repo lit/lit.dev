@@ -40,7 +40,7 @@ Where native shadow DOM isn't available, Lit can optionally use the [Shady DOM p
 
 To define a template for a Lit component, add a `render()` method:
 
-{% playground-example "docs/templates/define" "my-element.js" %}
+{% playground-example "docs/templates/define" "my-element.ts" %}
 
 *   Write your template in HTML inside a JavaScript [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) by enclosing the raw HTML in back-ticks (<code>``</code>).
 

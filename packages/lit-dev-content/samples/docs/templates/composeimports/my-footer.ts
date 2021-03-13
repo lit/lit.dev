@@ -1,4 +1,5 @@
-import {LitElement, html, customElement} from 'lit-element';
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators';
 
 @customElement('my-footer')
 class MyFooter extends LitElement {
