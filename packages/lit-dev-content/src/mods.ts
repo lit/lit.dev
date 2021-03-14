@@ -12,8 +12,11 @@ if (mods) {
     if (!anchor) {
       return;
     }
-    const url = new URL(anchor.href);
-    url.searchParams.set('mods', mods);
-    anchor.href = url.href;
+    const linkUrl = new URL(anchor.href);
+    const thisUrl = new URL(window.location.href);
+    if (linkUrl.origin === thisUrl.origin) {
+      linkUrl.searchParams.set('mods', mods);
+      anchor.href = linkUrl.href;
+    }
   });
 }

@@ -1,0 +1,85 @@
+#simplicityWrapper {
+  background: #eaeaea;
+}
+
+#simplicity {
+  max-width: var(--content-max-width);
+  margin: auto;
+  display: flex;
+  padding: 4em var(--home-side-margin);
+}
+
+#simplicity > .prose > h2 {
+  margin-bottom: 2em;
+  font-size: 1.7em;
+  padding-top: 0;
+}
+
+#simplicity > .prose {
+  padding-right: 4em;
+}
+
+#simplicity > .prose > p {
+  line-height: 2.1em;
+}
+
+#simplicity > .prose > p:last-of-type {
+  color: var(--color-blue);
+}
+
+/* ------------------------------------
+ * Adjustments before major layout change
+ * ------------------------------------ */
+
+/* Scale everything down a bit */
+@media (max-width: 1095px) {
+  #simplicity {
+    font-size: 0.9em;
+  }
+}
+
+/* ------------------------------------
+ * Above/below when narrow
+ * ------------------------------------ */
+
+ @media (max-width: 1000px) {
+   #simplicity {
+     display: block;
+   }
+
+   #simplicity > .prose {
+    max-width: 47em;
+    margin: auto;
+    padding-right: 0;
+    margin-bottom: 3em
+   }
+
+   #simplicity > .homeExample {
+    max-width: 47em;
+    margin: auto;
+   }
+
+   #simplicity > .homeExample > .code {
+     overflow-y: auto;
+   }
+ }
+
+/* ------------------------------------
+ * Shrink code when very narrow
+ * ------------------------------------ */
+
+ @media (max-width: 688px) {
+  #simplicity > .homeExample {
+    max-width: unset;
+    margin: 0 calc(-1 * var(--home-side-margin)) 0 calc(-1 * var(--home-side-margin));
+  }
+
+  #simplicity .CodeMirror {
+    padding: 1em;
+  }
+
+  #simplicity > .homeExample > .code {
+    /* In proportion to view width so it always fits. */
+    font-size: calc(1vw * 2.9);
+  }
+}

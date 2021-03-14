@@ -1,7 +1,7 @@
 ---
-title: Conditional templates
+title: Conditionals
 eleventyNavigation:
-  key: Conditional templates
+  key: Conditionals
   parent: Templates
   order: 3
 ---

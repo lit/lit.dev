@@ -25,7 +25,7 @@ html`<h1>Hello ${name}</h1>`
 One editable file from a project, with a preview right below.
 
 Arguments:
-1. Path of the project dir from `site/_includes/projects/PATH/project.json`.
+1. Path of the project dir from `samples/PATH/project.json`.
 2. Filename from project to show.
 
 Additional `project.json` config options:
@@ -43,7 +43,7 @@ Additional `project.json` config options:
 Fully editable playground project, with preview to the side.
 
 Arguments:
-1. (Required) Path of the project dir from `site/_includes/projects/PATH/project.json`.
+1. (Required) Path of the project dir from `samples/PATH/project.json`.
 
 ```
 {% raw %}{% playground-ide "docs/templates/define" %}{% endraw %}

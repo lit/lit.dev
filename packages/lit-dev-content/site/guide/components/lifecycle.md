@@ -109,7 +109,7 @@ Lit has no default behavior for this callback.
 
 This callback should only be used for advanced use cases when the element behavior should change when it changes documents.
 
-## Reactive update cycle { %reactive-update-cycle }
+## Reactive update cycle { #reactive-update-cycle }
 
 In addition to the standard custom element lifecycle, Lit components also implement a reactive update cycle.
 

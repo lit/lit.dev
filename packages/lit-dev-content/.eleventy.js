@@ -13,6 +13,11 @@ const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
 const fsSync = require('fs');
 const fastGlob = require('fast-glob');
+const {
+  inlinePlaygroundFilesIntoManifests,
+} = require('../lit-dev-tools/lib/playground-inline.js');
+const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
+const luxon = require('luxon');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -31,12 +36,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin);
   if (!DEV) {
-    // In dev mode, we symlink directly to the source CSS.
+    // In dev mode, we symlink these directly to source.
     eleventyConfig.addPassthroughCopy('site/css');
+    eleventyConfig.addPassthroughCopy('site/images');
+    eleventyConfig.addPassthroughCopy('samples');
   }
-  eleventyConfig.addPassthroughCopy('site/images/**/*');
   eleventyConfig.addPassthroughCopy('api/**/*');
-  eleventyConfig.addPassthroughCopy({'site/_includes/projects': 'samples'});
   eleventyConfig.addPassthroughCopy({
     'node_modules/playground-elements/playground-typescript-worker.js':
       './js/playground-typescript-worker.js',
@@ -49,6 +54,8 @@ module.exports = function (eleventyConfig) {
     'node_modules/playground-elements/playground-service-worker-proxy.html':
       './js/playground-service-worker-proxy.html',
   });
+
+  eleventyConfig.addWatchTarget('../lit-dev-tools/api-data');
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
@@ -118,6 +125,82 @@ ${content}
   });
 
   /**
+   * Render the given content as markdown.
+   */
+  eleventyConfig.addFilter('markdown', (content) => {
+    if (!content) {
+      return '';
+    }
+    return md.render(content);
+  });
+
+  // Don't use require() because of Node caching in watch mode.
+  const apiSymbolMap = JSON.parse(
+    fsSync.readFileSync('../lit-dev-tools/api-data/symbols.json', 'utf8')
+  );
+
+  /**
+   * Generate a hyperlink to the given API symbol.
+   *
+   * The first parameter is the link display text, and if there is no second
+   * parameter it is also the symbol to look up. If there is a second parameter,
+   * then that will be used for the symbol look up instead of the first
+   * parameter.
+   *
+   * Symbols are indexed in both concise and disambiguated forms. If a symbol is
+   * ambiguous, an error will be thrown during Eleventy build, with
+   * disambiguation suggestions.
+   *
+   * Examples:
+   *
+   *   renderRoot .............................. OK (not ambiguous)
+   *   ReactiveElement.renderRoot .............. OK
+   *
+   *   updateComplete .......................... ERROR (ambiguous)
+   *   ReactiveElement.updateComplete .......... OK
+   *   ReactiveControllerHost.updateComplete ... OK
+   *
+   *   render .................................. OK (top-level function)
+   *   LitElement.render ....................... OK (method)
+   */
+  eleventyConfig.addShortcode('api', (name, symbol) => {
+    symbol = symbol ?? name;
+    const locations = apiSymbolMap['$' + symbol];
+    if (!locations) {
+      throw new Error(`Could not find API link for symbol ${symbol}`);
+    }
+
+    let location;
+    if (locations.length === 1) {
+      // Unambiguous match
+      location = locations[0];
+    } else {
+      for (const option of locations) {
+        // Exact match.
+
+        // TODO(aomarks) It could be safer to always fail when ambiguous, but we
+        // currently don't have an unambiguous reference for the top-level
+        // "render" function. Maybe we could use the filename, e.g.
+        // "lit-html.render".
+        if (option.anchor === symbol) {
+          location = option;
+          break;
+        }
+      }
+    }
+
+    if (location === undefined) {
+      throw new Error(
+        `Ambiguous symbol ${symbol}. ` +
+          `Options: ${locations.map((l) => l.anchor).join(', ')}`
+      );
+    }
+
+    const {page, anchor} = location;
+    return `<a href="/guide/api/${page}#${anchor}">${name}</a>`;
+  });
+
+  /**
    * Bundle, minify, and inline a CSS file. Path is relative to ./site/css/.
    *
    * In dev mode, instead import the CSS file directly.
@@ -155,6 +238,20 @@ ${content}
     return `<script type="module">${script}</script>`;
   });
 
+  // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
+  eleventyConfig.addFilter('readableDate', (dateObj) => {
+    return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
+      'LLL d, yyyy'
+    );
+  });
+
+  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
+  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
+    return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
+      'yyyy-LL-dd'
+    );
+  });
+
   eleventyConfig.on('afterBuild', async () => {
     // The eleventyNavigation plugin requires that each section heading in our
     // docs has its own actual markdown file. But we don't actually use these
@@ -174,12 +271,20 @@ ${content}
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
     if (DEV) {
-      // Symlink site/css -> _dev/css. We do this in dev mode instead of
-      // addPassthroughCopy() so that changes are reflected immediately, instead
-      // of triggering an Eleventy build.
+      // Symlink css, images, and playground projects. We do this in dev mode
+      // instead of addPassthroughCopy() so that changes are reflected
+      // immediately, instead of triggering an Eleventy build.
       await symlinkForce(
         path.join(__dirname, 'site', 'css'),
         path.join(__dirname, '_dev', 'css')
+      );
+      await symlinkForce(
+        path.join(__dirname, 'site', 'images'),
+        path.join(__dirname, '_dev', 'images')
+      );
+      await symlinkForce(
+        path.join(__dirname, 'samples'),
+        path.join(__dirname, '_dev', 'samples')
       );
 
       // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs in
@@ -188,7 +293,42 @@ ${content}
         path.join(__dirname, 'lib'),
         path.join(__dirname, '_dev', 'lib')
       );
+    } else {
+      // Inline all Playground project files directly into their manifests, to
+      // cut down on requests per project.
+      await inlinePlaygroundFilesIntoManifests(
+        `${OUTPUT_DIR}/samples/**/project.json`
+      );
+
+      // Pre-compress all outputs as .br and .gz files so the server can read
+      // them directly instead of spending its own cycles. Note this adds ~4
+      // seconds to the build, but it's disabled during dev.
+      await preCompress({glob: `${OUTPUT_DIR}/**/*`});
     }
+  });
+
+  eleventyConfig.addCollection('tutorial', function (collection) {
+    // Order the 'tutorial' collection by filename, which includes a number prefix.
+    // We could also order by a frontmatter property
+    // console.log(
+    //   'guide',
+    //   collection.getFilteredByGlob('site/guide/**')
+    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
+
+    return collection.getFilteredByGlob('site/tutorial/**')
+      // .filter((f) => !f.data.slug?.includes('/'))
+      .sort(function (a, b) {
+        if (a.fileSlug == 'tutorial') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
   });
 
   return {

@@ -1,0 +1,85 @@
+@import url('./blog-common.css');
+
+#preamble {
+  font-size: 1.18em;
+  border-bottom: 1.5px solid var(--color-cyan);
+  padding-bottom: 1em;
+}
+
+#frontMatter a {
+  color: white;
+}
+#frontMatter a:hover {
+  text-decoration: underline;
+}
+
+#imageNameDate {
+  display: flex;
+  margin-top: 1.5em;
+  align-items: center;
+}
+
+#imageNameDate > img {
+  width: 3em;
+  height: 3em;
+  margin-right: 1em;
+}
+
+#frontMatter > h1 > img {
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+#frontMatter > h1 > img {
+  width: 1.2em;
+  height: 1.2em;
+  background: white;
+  padding: 0.1em;
+}
+
+#nameDate > * {
+  margin: 0;
+}
+
+#authorName {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+#content {
+  padding: var(--blog-top-padding) 3em;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.88889em;
+}
+
+#content > :first-child {
+  margin-top: 0;
+}
+
+#content h2 {
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-top: 2em;
+}
+
+#content a {
+  color: var(--color-dark-cyan);
+}
+
+#content a:hover {
+  text-decoration: underline;
+}
+
+#content .CodeMirror {
+  padding: 1em 1.5em;
+  margin: 0;
+}
+
+#content code:not([class]) {
+  background: rgb(0 0 0 / 25%);
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  font-family: var(--playground-code-font-family, monospace);
+}

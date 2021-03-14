@@ -48,7 +48,8 @@
     "@material/mwc-snackbar": "^0.20.0",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "playground-elements": "^0.6.0",
+    "luxon": "^1.26.0",
+    "playground-elements": "^0.6.2",
     "tarts": "^1.0.0"
   }
 }
