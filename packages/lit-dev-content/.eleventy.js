@@ -266,7 +266,10 @@ ${content}
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
       // file that a page shouldn't be generated.
-      (file) => !file.includes('why-lit') && !file.includes('getting-started')
+      (file) =>
+        !file.includes('why-lit') &&
+        !file.includes('getting-started') &&
+        !file.includes('browser-support')
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
@@ -315,20 +318,23 @@ ${content}
     //   collection.getFilteredByGlob('site/guide/**')
     //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
 
-    return collection.getFilteredByGlob('site/tutorial/**')
-      // .filter((f) => !f.data.slug?.includes('/'))
-      .sort(function (a, b) {
-        if (a.fileSlug == 'tutorial') {
-          return -1;
-        }
-        if (a.fileSlug < b.fileSlug) {
-          return -1;
-        }
-        if (b.fileSlug < a.fileSlug) {
-          return 1;
-        }
-        return 0;
-      });
+    return (
+      collection
+        .getFilteredByGlob('site/tutorial/**')
+        // .filter((f) => !f.data.slug?.includes('/'))
+        .sort(function (a, b) {
+          if (a.fileSlug == 'tutorial') {
+            return -1;
+          }
+          if (a.fileSlug < b.fileSlug) {
+            return -1;
+          }
+          if (b.fileSlug < a.fileSlug) {
+            return 1;
+          }
+          return 0;
+        })
+    );
   });
 
   return {

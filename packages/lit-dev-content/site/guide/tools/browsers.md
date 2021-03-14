@@ -1,29 +1,17 @@
 ---
-title: Browser Support
+title: (Old) Browser Support
 eleventyNavigation:
-  key: Browser Support
+  key: (Old) Browser Support
   parent: Tools
   order: 7
 ---
 
-Lit works and is supported on the last-two major versions of Chrome, Firefox, Edge, and Safari, and other browsers based on those rendering engines. Lit is also supported on IE11 and "classic" Edge. Lit uses modern JavaScript and web platform features like web components, JavaScript modules, and classes. Lit supports modern browsers natively, and older browsers like IE11 via compilers and polyfills.
+{% todo %}
 
-<div class="alert alert-info">
+ - Intro content was moved to the Introduction.
+ - This content should be integrated into the Tools overview.
 
-Lit is distributed with bare module specifiers (e.g. `import {html} from 'lit'`) that do not yet load natively in any browser. Therefore, a build is generally required to run Lit code. This will be address by the proposed [Import Maps](https://chromestatus.com/features/5315286962012160) feature.
-
-</div>
-
-The following table lists browser versions that support the features on which Lit relies. For the browsers not supporting these features natively, they are supported either via polyfills or by producing a compatible build.
-
-| Browser  | ES2020      | Web Components       |
-|:---------|:---------------------:|:--------------:|
-| Chrome   | 80             | 67                   |
-| Safari   | 13             | 10                   |
-| Firefox  | 72             | 63                   |
-| Edge (Chromium) | 80      | 79                   |
-| Edge 15-18 | build        | polyfill             |
-| Internet Explorer 11 | build | polyfill             |
+{% endtodo %}
 
 ## Older browsers
 
