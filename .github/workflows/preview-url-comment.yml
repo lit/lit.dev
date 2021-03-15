@@ -35,7 +35,7 @@ jobs:
           body: |
             A live preview of this PR will be available at the URL(s) below.
             The latest URL will be appended to this comment on each push.
-            Each build usually takes around 10 minutes, and will 404 until finished.
+            Each build takes ~5-10 minutes, and will 404 until finished.
 
             ${{ steps.gen-url.outputs.url }}
           reactions: eyes
