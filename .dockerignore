@@ -3,3 +3,4 @@ Dockerfile
 **/node_modules
 npm-debug.log
 **/tsconfig.tsbuildinfo
+/packages/lit-dev-api/lit/

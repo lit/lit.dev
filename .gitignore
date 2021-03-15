@@ -13,8 +13,9 @@ packages/lit-dev-content/_dev
 packages/lit-dev-content/site/_includes/js/
 packages/lit-dev-content/playground-plugin
 
-packages/lit-dev-tools/api-data/**/*
-!packages/lit-dev-tools/api-data/.gitkeep
+packages/lit-dev-api/lit/
+packages/lit-dev-api/api-data/**/*
+!packages/lit-dev-api/api-data/.gitkeep
 
 *.tsbuildinfo
 lerna-debug.log

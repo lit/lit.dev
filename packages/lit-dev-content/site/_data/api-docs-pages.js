@@ -24,7 +24,7 @@ module.exports = async () =>
         '..',
         '..',
         '..',
-        'lit-dev-tools',
+        'lit-dev-api',
         'api-data',
         'pages.json'
       ),
