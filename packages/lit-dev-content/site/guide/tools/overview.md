@@ -12,7 +12,7 @@ TODO: write tools overview. [#1195](https://github.com/Polymer/internal/issues/1
 
 {% endtodo %}
 
-_Introduction goes here_
+_TODO: Introduction goes here_
 
 ## Build requirements {#build-requirements}
 
@@ -35,7 +35,7 @@ Lit uses bare module specifiers to import modules between its sub-packages, like
 import {html} from 'lit-html';
 ```
 
-Modern browsers currently only support loading modules from URLs or relative paths, not bare names that refer to an npm package, so the build system needs to handle them: either by transforming the specifier to one that works for ES modules in the browser, or by producing a different type of module as output.
+Modern browsers currently only support loading modules from URLs or relative paths, not bare names that refer to an npm package, so the build system needs to handle them. This should be done either by transforming the specifier to one that works for ES modules in the browser, or by producing a different type of module as output.
 
 Webpack automatically handles bare module specifiers; for Rollup, you'll need a plugin ([@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)).
 
@@ -108,4 +108,8 @@ These are the recommended polyfills:
   * [`@webcomponents/webcomponentsjs`](https://www.npmjs.com/package/@webcomponents/webcomponentsjs) - Polyfills for custom elements, shadow DOM, template, and some newer DOM APIs
   * `lit/platform-support.js` - A file that ships in the `lit` package that must be loaded when using `webcomponentsjs`
 
+<div class="alert alert-info">
+
 Note that the Javascript polyfills should be bundled separately from the application bundle, and loaded before the Web Components polyfills, since those polyfills rely on modern JS like `Promise`.
+
+</div>
