@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-*Reactive properties* define the state of the component. Changing one or more of the components' reactive properties triggers a reactive update cycle, re-rendering the component.
+Components will usually store their state as JavaScript class fields or properties. *Reactive properties* are properties that can trigger the reactive update cycle when changed, re-rendering the component, and optionally be read or written to attributes.
 
 Lit manages your reactive properties and their corresponding attributes. In particular:
 
@@ -135,7 +135,9 @@ Set to true to declare the property as _internal reactive state_. Internal react
 </dt>
 <dd>
 
-A type hint for converting between properties and attributes. This hint is used by LitElement's default attribute converter, and is ignored if `converter` is set. If `type` is unspecified, behaves like `type: String`. See [Use LitElement's default attribute converter](#conversion-type).
+When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is ignored. If `type` is unspecified, behaves like `type: String`. See [Use LitElement's default attribute converter](#conversion-type). 
+
+Note that when using TypeScript, although this field should generally match the TypeScript type declared for the field, the `type` option is used by the Lit's _runtime_ for string serialization/deserialization, and should not be confused with a _type-checking_ mechanism.
 
 </dd>
 
@@ -348,7 +350,7 @@ During an update:
 
 ### Configure observed attributes {#observed-attributes}
 
-An **observed attribute** fires the custom elements API callback `attributeChangedCallback` whenever it changes. By default, whenever an attribute fires this callback, Lit sets the property value from the attribute using the property's `fromAttribute` function.
+When an **observed attribute's** value changes, the element's `attributeChangedCallback` method is called. By default, Lit sets the property value from the attribute using the property's `fromAttribute` function.
 
 By default, Lit creates a corresponding observed attribute for all reactive properties. The name of the observed attribute is the property name, lowercased:
 
@@ -424,7 +426,7 @@ See [observed attributes](#observed-attributes) and [converting between properti
 
 </div>
 
-## Configure property accessors {#accessors}
+## Custom property accessors {#accessors}
 
 By default, LitElement generates a getter/setter pair for all reactive properties. The setter is invoked whenever you set the property:
 
@@ -460,7 +462,7 @@ To use custom property accessors with the `@property` or `@state` decorators, pu
 
 The setters that Lit generates automatically call `requestUpdate()`. If you write your own setter you must call `requestUpdate()` manually, supplying the property name and its old value.
 
-In most cases, **you do not need to crete custom property accessors.** To compute values from existing properties, we recommend using the [`willUpdate`](/guide/components/lifecycle/#willupdate) callback, which allows you to set values during the update cycle without triggering an additonal update.
+In most cases, **you do not need to crete custom property accessors.** To compute values from existing properties, we recommend using the [`willUpdate`](/guide/components/lifecycle/#willupdate) callback, which allows you to set values during the update cycle without triggering an additional update. To perform a custom action after the element updates, we recommend using the [`updated`](/guide/components/lifecycle/#updated) callback. A custom setter can be used in rare cases when it's important to synchronously validate any value the user sets.
 
 If your class defines its own accessors for a property, Lit will not overwrite them with generated accessors. If your class does not define accessors for a property, Lit will generate them, even if a superclass has defined the property or accessors.
 
@@ -478,7 +480,7 @@ static get properties() {
 
 You don't need to set `noAccessor` when defining your own accessors.
 
-## Configure property changes {#haschanged}
+## Customizing change detection {#haschanged}
 
 All declared properties have a function, `hasChanged()`, which is called when the property is set.
 
@@ -507,4 +509,3 @@ myProp: { hasChanged(newVal, oldVal) {
 **Example: Configure property changes**
 
 {% playground-example "properties/haschanged" "my-element.ts" %}
-
