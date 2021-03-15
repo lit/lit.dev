@@ -1,16 +1,16 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators';
 
+
 @customElement('update-properties')
 class UpdateProperties extends LitElement {
 
   @property()
-  message: string = 'Loading';
+  message: string = 'Loading...';
 
   constructor() {
     super();
-    this.addEventListener('stuff-loaded', (e) => { this.message = e.detail } );
-    this.loadStuff();
+    this.loadStuff().then((content) => this.message = content);
   }
 
   render() {
@@ -20,11 +20,10 @@ class UpdateProperties extends LitElement {
   }
 
   loadStuff() {
-    setInterval(() => {
-      let loaded = new CustomEvent('stuff-loaded', {
-        detail: 'Loading complete.'
-      });
-      this.dispatchEvent(loaded);
-    }, 3000);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('Content loaded.');
+      }, 3000);
+    }
   }
 }

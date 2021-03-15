@@ -6,8 +6,6 @@ eleventyNavigation:
   order: 2
 ---
 
-A Lit component typically implements its UI by rendering an encapsulated DOM tree.
-
 Add a template to your component to define what it should render. Templates can include _expressions_, which are placeholders for dynamic content.
 
 ```ts
@@ -22,19 +20,26 @@ A Lit component renders its template initially when it's added to the DOM on a p
 
 The update cycle is _asynchronous_, so changes to multiple properties are batched into a single update. And when Lit updates, it only re-renders the changed portions of the DOM.
 
-(See [What happens when properties change](/guide/components/properties/#update-cycle) for more information on the update cycle.)
+For more information about the update cycle, see [What happens when properties change](/guide/components/properties/#update-cycle).
 
 ## DOM encapsulation
 
-Lit uses [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate the templated DOM. Shadow DOM provides three benefits:
+Lit uses shadow DOM to encapsulate the DOM a component renders. Shadow DOM provides three benefits:
 
 * DOM scoping. DOM APIs like `document.querySelector` won't find elements in the
   component's shadow DOM, so it's harder for global scripts to accidentally break your component.
 * Style scoping. You can write encapsulated styles for your shadow DOM that don't
-  affect the rest of the DOM tree.
+  affect the rest of the  page. No need for conventions like BEM to associate styles with your component.
 * Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your templated DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
 
-Where native shadow DOM isn't available, Lit can optionally use the [Shady DOM polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/shadydom) to provide emulated shadow DOM support.
+For more information about shadow DOM, see [Shadow DOM v1: Self-Contained Web Components
+](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
+
+<div class="alert alert-info">
+
+Where native shadow DOM isn't available on older browsers, Lit can optionally use the [Shady DOM polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/shadydom) to provide emulated shadow DOM support.
+
+</div>
 
 ## Define a template
 
@@ -50,34 +55,31 @@ To define a template for a Lit component, add a `render()` method:
 
 Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners.
 
-See the template [overview](/guide/templates/overview) for more information.
+For more information, see [Templates overview](/guide/templates/overview).
 
 ### Design a performant template
 
-During an update, only the parts of the DOM that change are re-rendered. To get the performance benefits of this model, you should **design your element's template as a pure function of its properties**.
+During an update, only the parts of the DOM that change are re-rendered. Although Lit templates look like string interpolation, Lit parses and creates static HTML once, and then only updates changed values in expressions after that, making updates very efficient.
 
-To do this, make sure the `render()` method:
+To take best advantage of Lit's functional rendering model, follow these guidelines for implementing your `render()` method:
 
 * Does not change the component's state.
 * Does not have any side effects.
-* Only depends on the componentco's properties.
+* Only depends on the component's properties.
 * Returns the same result when given the same property values.
 
 Also, avoid making DOM updates outside of `render()`. Instead, express the component's template as a function of its state, and capture its state in properties.
 
 The following code manipulates the rendered DOM. This is usually an anti-pattern:
 
-_dom-manip.js_
-
-```text
+```ts
 // Anti-pattern. Avoid!
-
 constructor() {
   super();
-  this.addEventListener('stuff-loaded', (e) => {
-    this.shadowRoot.getElementById('message').innerHTML=e.detail;
+  this.loadStuff().then((content) => {
+    this.shadowRoot.querySelector('#message')
+      .innerHTML = content;
   });
-  this.loadStuff();
 }
 render() {
   return html`
@@ -90,7 +92,7 @@ You can improve the template by declaring the message as a _reactive property_, 
 
 {% playground-example "docs/templates/design" "update-properties.ts" %}
 
-See [Reactive properties](/guide/components/properties/) for information on declaring reactive properties.
+For more information, see [Reactive properties](/guide/components/properties/).
 
 ## Compose a template from other templates
 
@@ -105,8 +107,10 @@ You can also compose templates by importing other elements and using them in you
 
 ## See also
 
-For more information on Lit templates:
+* [Reactive properties](/guide/components/properties/)
+* [Shadow DOM](/guide/components/shadow-dom/)
+* [Templates overview](/guide/templates/overview/)
+* [Template expressions](/guide/templates/overview/)
 
-* [Template overview](/guide/templates/overview/)
 
 
