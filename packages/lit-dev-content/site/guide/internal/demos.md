@@ -33,10 +33,10 @@ Additional `project.json` config options:
 - `previewHeight`: Height of the preview in pixels (default `120px`).
 
 ```
-{% raw %}{% playground-example "docs/templates/define" "my-element.js" %}{% endraw %}
+{% raw %}{% playground-example "docs/templates/define" "my-element.ts" %}{% endraw %}
 ```
 
-{% playground-example "docs/templates/define" "my-element.js" %}
+{% playground-example "docs/templates/define" "my-element.ts" %}
 
 ## Full IDE
 

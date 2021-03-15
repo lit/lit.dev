@@ -1,5 +1,6 @@
-import { LitElement, html } from 'lit-element';
+import {LitElement, html, customElement} from 'lit-element';
 
+@customElement('my-header')
 class MyHeader extends LitElement {
   render() {
     return html`
@@ -7,4 +8,3 @@ class MyHeader extends LitElement {
     `;
   }
 }
-customElements.define('my-header', MyHeader);

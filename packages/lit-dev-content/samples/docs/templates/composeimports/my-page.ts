@@ -1,9 +1,11 @@
-import { LitElement, html } from 'lit-element';
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators';
 
 import './my-header.js';
 import './my-article.js';
 import './my-footer.js';
 
+@customElement('my-page')
 class MyPage extends LitElement {
   render() {
     return html`
@@ -13,4 +15,3 @@ class MyPage extends LitElement {
     `;
   }
 }
-customElements.define('my-page', MyPage);

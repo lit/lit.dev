@@ -1,9 +1,15 @@
 {
   "files": {
-    "my-page.js": {},
-    "my-header.js": {},
-    "my-article.js": {},
-    "my-footer.js": {},
+    "my-page.ts": {},
+    "my-header.ts": {},
+    "my-article.ts": {},
+    "my-footer.ts": {},
     "index.html": {}
+  },
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
   }
 }
