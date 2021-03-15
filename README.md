@@ -66,27 +66,25 @@ global:
 First run `npm run dev` as shown above, and then in another terminal:
 
 ```sh
-cd packages/lit-dev-tools
-npm run build:api:watch
+cd packages/lit-dev-api
+npm run build:watch
 ```
 
-You can now edit the comments in any `.ts` file in the `lit-monorepo-submodule`
-directory, and after the automatic rebuild, the dev site will refresh.
+You can now edit the comments in any `.ts` file in the `lit` directory,
+and after the automatic rebuild, the dev site will refresh.
 
 ```sh
-code packages/lit-dev-tools/lit-monorepo-submodule/
+code packages/lit-dev-api/lit/
 ```
 
-The `lit-monorepo-submodule` directory is a [Git
-submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules), so you can make
-changes directly here, and push PRs from it as normal.
-
-The submodule is configured to track the `lit-next` branch, but Git submodules
-are always pinned to a particular commit. To update the current commit, run:
+The `lit` directory is a regular cloned git repo, so you can make changes
+directly here, and push PRs from it as normal. It's configured to track the
+`lit-next` branch, but is pinned to a particular commit via the `lit.sha` file.
+To update the current commit, run:
 
 ```sh
 cd packages/lit-dev-tools
-npm run submodule:pull
+npm run monorepo:update
 ```
 
 ### Serve production mode

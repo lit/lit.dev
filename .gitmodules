@@ -1,4 +1,0 @@
-[submodule "packages/lit-dev-tools/lit-monorepo-submodule"]
-	path = packages/lit-dev-tools/lit-monorepo-submodule
-  url = https://github.com/Polymer/lit-html.git
-	branch = lit-next

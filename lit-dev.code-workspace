@@ -9,6 +9,10 @@
 			"path": "packages/lit-dev-tools",
 		},
 		{
+			"name": "lit-dev-api",
+			"path": "packages/lit-dev-api",
+		},
+		{
 			"name": "lit-dev-server",
 			"path": "packages/lit-dev-server",
 		},
