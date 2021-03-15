@@ -8,6 +8,7 @@ eleventyNavigation:
 
 {% todo %}
 
+TEST
 This is placeholder content, need to decide what exactly we want to say here.
 
 {% endtodo %}
