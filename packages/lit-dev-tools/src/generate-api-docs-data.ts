@@ -17,10 +17,11 @@ import * as fs from 'fs/promises';
 import * as pathlib from 'path';
 import * as sourceMap from 'source-map';
 
+const litDevMonorepoPath = pathlib.resolve(__dirname, '..', '..', '..');
+
 const litMonorepoPath = pathlib.resolve(
-  __dirname,
-  '..',
-  '..',
+  litDevMonorepoPath,
+  'packages',
   'lit-dev-api',
   'lit'
 );
@@ -57,9 +58,8 @@ const tsConfigPath = pathlib.resolve(
  * Where to write the API data that is consumed by our Eleventy template.
  */
 const pagesOutPath = pathlib.resolve(
-  __dirname,
-  '..',
-  '..',
+  litDevMonorepoPath,
+  'packages',
   'lit-dev-api',
   'api-data',
   'pages.json'
@@ -69,9 +69,8 @@ const pagesOutPath = pathlib.resolve(
  * Where to write the index from $symbol to location object.
  */
 const symbolsOutPath = pathlib.resolve(
-  __dirname,
-  '..',
-  '..',
+  litDevMonorepoPath,
+  'packages',
   'lit-dev-api',
   'api-data',
   'symbols.json'
@@ -242,6 +241,7 @@ class Transformer {
       this.addLocationsForAllIds(node);
       this.linkifySymbolsInComments(node);
       for (const source of node.sources ?? []) {
+        this.makeSourceRelativeToMonorepoRoot(source);
         await this.updateSourceFromDtsToTs(source);
         this.setGithubUrl(source);
         this.setImportModuleSpecifier(source);
@@ -475,6 +475,20 @@ class Transformer {
   }
 
   /**
+   * TypeDoc sources are reported relative to the lit.dev monorepo root, instead
+   * of the Lit monorepo root. Fix that.
+   */
+  private async makeSourceRelativeToMonorepoRoot(source: SourceReference) {
+    const prefix = pathlib.relative(litDevMonorepoPath, litMonorepoPath) + '/';
+    if (!source.fileName.startsWith(prefix)) {
+      throw new Error(
+        `Expected source to start with ${prefix}, but was ${source.fileName}`
+      );
+    }
+    source.fileName = source.fileName.substring(prefix.length);
+  }
+
+  /**
    * TypeDoc sources are ".d.ts" files, but we prefer the original ".ts" source
    * files. Follow the corresponding ".d.ts.map" source map to find the original
    * file and location.
@@ -485,9 +499,9 @@ class Transformer {
       if (!source.fileName.endsWith('.d.ts')) {
         return;
       }
-      const mapFilename = pathlib.resolve(
+      const mapFilename = pathlib.join(
         litMonorepoPath,
-        source.fileName.replace(/^lit\//, '') + '.map'
+        source.fileName + '.map'
       );
       let mapStr;
       try {
@@ -505,10 +519,20 @@ class Transformer {
       line: source.line,
       column: source.character,
     });
-    // TODO(aomarks) Compute correctly.
-    source.fileName = pathlib.relative(
-      'lit',
-      pathlib.resolve(source.fileName, pos.source ?? '')
+    if (!pos.source) {
+      return;
+    }
+
+    // TODO(aomarks) The Lit monorepo d.ts.map files currently incorrectly have
+    // a sources field like "../src/source.ts" because they are copied directly
+    // out of the "development/" folder. We need to fix that properly the Lit
+    // monorepo, but temporarily fix it here too.
+    if (pos.source.startsWith('../')) {
+      pos.source = pos.source.slice('../'.length);
+    }
+    source.fileName = pathlib.join(
+      pathlib.dirname(source.fileName),
+      pos.source
     );
     source.line = pos.line ?? 0;
     source.character = pos.column ?? 0;
@@ -525,9 +549,7 @@ class Transformer {
    * Augment a source with its best import statement module specifier.
    */
   private setImportModuleSpecifier(source: SourceReference) {
-    const match = source.fileName.match(
-      /^lit\/packages\/(.+?)\/src\/(.+)\.ts$/
-    );
+    const match = source.fileName.match(/^packages\/(.+?)\/src\/(.+)\.ts$/);
     if (!match) {
       return;
     }
