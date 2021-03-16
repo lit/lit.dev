@@ -18,15 +18,198 @@ eleventyComputed:
   import { {{symbol.name}} } from '{{ symbol.entrypointSources[0].moduleSpecifier }}';
 {%- endmacro %}
 
+{% macro locationLink(location, label) -%}
+  <a href="{{ site.baseurl }} /guide/api/{{ location.page }}#{{ location.anchor }}">{{label}}</a>
+{%- endmacro %}
+
+{% macro heritageList(node) -%}
+  {%- set arrow = joiner(' → ') %}
+  {%- for super in node.heritage -%}
+    {{- arrow() }}
+    <code>
+      {%- if super.location -%}
+        {{ locationLink(super.location, super.name) }}
+      {%- else -%}
+        {{- super.name -}}
+      {%- endif -%}
+    </code>
+  {%- endfor -%}
+{% endmacro %}
+
+{% macro kind(obj) %}
+  {% if obj.kindString == "Function" and obj.sources[0].fileName.includes('/decorators/') %}
+    decorator
+  {% elif obj.kindString == "Function" and obj.sources[0].fileName.includes('/directives/') %}
+    directive
+  {% elif obj.kindString == "Interface" %}
+    type
+  {% elif obj.kindString == "Type alias" %}
+    type
+  {% elif obj.kindString == "Variable" %}
+    value
+  {% elif obj.kindString == "Accessor" %}
+    property
+  {% else %}
+    {{ obj.kindString | lower }}
+  {% endif %}
+{% endmacro %}
+
+{%- macro type(t) -%}
+  <span class="type">
+    {%- if t.location -%}
+      {{- locationLink(t.location, t.name) -}}
+    {%- elif t.type == "literal" and t.value == null -%}
+      null
+    {%- elif t.name -%}
+      {{- t.name -}}
+    {%- else -%}
+      ?
+    {%- endif -%}
+
+    {%- if t.typeArguments -%}
+      &lt;
+      {%- set comma = joiner(', ') -%}
+      {%- for arg in t.typeArguments -%}
+        {{- comma() -}} {{- arg.name if arg.name else "?" -}}
+      {%- endfor -%}
+      &gt;
+    {%- endif -%}
+
+    {%- if t.type == 'union' -%}
+      {%- set pipe = joiner(' | ') -%}
+      {%- for item in t.types -%}
+        {{- pipe() -}} {{- type(item) -}}
+      {%- endfor -%}
+    {%- elif t.type == 'array' -%}
+      Array&lt;{{- type(t.elementType) -}}&gt;
+    {%- endif -%}
+  </span>
+{%- endmacro -%}
+
+{% macro signature(sig) -%}
+  {%- set inOptionalBrackets = false -%}
+  {%- if sig.kindString === "Constructor signature" -%}
+    <span class="newKeyword">new</span>
+    <span class="functionName">{{ sig.type.name -}}</span>
+  {%- else -%}
+    <span class="functionName">{{- sig.name -}}</span>
+  {%- endif -%}
+  (
+    {%- set comma = joiner(', ') -%}
+    {%- for param in sig.parameters -%}
+      {{- comma() -}}
+      {%- if param.flags.isOptional and not inOptionalBrackets -%}
+        [
+        {%- set inOptionalBrackets = true -%}
+      {%- endif -%}
+      <span class="paramName">{{- param.name -}}</span>
+    {%- endfor -%}
+    {%- if inOptionalBrackets -%}
+      ]
+    {%- endif -%}
+  )
+  {%- if sig.type.name !== 'void' -%}
+    : {{ type(sig.type) }}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro params(t) %}
+  <dl class="params">
+    {% for param in t.signatures[0].parameters %}
+      <dt class="paramName">{{ param.name }}</dt>
+      <dd class="paramDetails">
+        <code class="paramType">{{ type(param.type) }}</code>
+        {{ param.comment.text | markdown | safe }}
+      </dd>
+    {% endfor %}
+  </dl>
+{% endmacro %}
+
+{% macro viewSourceLink(symbol) %}
+  {% if symbol.sources[0].gitHubUrl %}
+    <a class="viewSourceLink"
+        href="{{ symbol.sources[0].gitHubUrl }}"
+        target="_blank"
+        rel="noopener">
+      View source
+    </a>
+  {% endif %}
+{% endmacro %}
+
 {% for export in exports.children %}
-  <h2 id="{{ export.location.anchor }}">
-    {{ export.name }}
-  </h2>
+  <div class="topLevelHeading">
+    <h2 id="{{ export.location.anchor }}">
+      {{ export.name }}
+    </h2>
+    <span class="kindTag {{ kind(export) }}">
+      {{ kind(export) }}
+    </span>
+    {{ viewSourceLink(export) }}
+  </div>
 
-  <p>{{ export.comment.shortText | markdown | safe }}</p>
+  {{ export.comment.shortText | markdown | safe }}
 
+  <h3>Import</h3>
   <div class="import">
     {% highlight "ts" -%}{{ importStatement(export) }}{%- endhighlight -%}
     <copy-button text="{{ importStatement(export) }}"></copy-button>
   </div>
+
+  {% if export.signatures[0] %}
+    <h3>Signature</h3>
+    <p class="signature">
+      <code>{{ signature(export.signatures[0]) }}</code>
+    </p>
+
+    {% if export.signatures[0].parameters.length > 0 %}
+      <h3>Parameters</h3>
+      {{ params(export) }}
+    {% endif %}
+  {% endif %}
+
+  {% if export.comment.text %}
+    <h3>Details</h3>
+    {{ export.comment.text | markdown | safe }}
+  {% endif %}
+
+  {% if export.children.length > 0 %}
+    <div class="properties">
+      <h3>Methods and properties</h3>
+
+      {% if export.heritage %}
+        <em>Inherits methods and properties from {{ heritageList(export) }}</em>
+      {% endif %}
+
+      {% for prop in export.children %}
+        <span class="propertyHeadingContainer">
+          <h4 class="propertyHeading" id="{{ prop.location.anchor }}">
+            {% if prop.flags.isStatic %}
+              <span class="staticKeyword">static</span>
+            {% endif %}
+            {% if prop.signatures[0] %}
+              {{ signature(prop.signatures[0]) }}
+            {% elif prop.type %}
+              <span class="propertyName">{{ prop.name }}</span>:
+              {{ type(prop.type) }}
+            {% else %}
+              {{ prop.name }}
+            {% endif %}
+          </h4>
+          {{ viewSourceLink(prop) }}
+        </span>
+
+        <div class="propertyDetails">
+          {{ prop.comment.shortText | markdown | safe }}
+          {% if prop.signatures[0].parameters.length > 0 %}
+            <h5>Parameters</h5>
+            {{ params(prop) }}
+          {% endif %}
+          {% if prop.comment.text %}
+            <h5>Details</h5>
+            {{ prop.comment.text | markdown | safe }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endfor %}
