@@ -16,6 +16,7 @@
     "monorepo:build": "cd lit && npx lerna run build:ts --scope lit --include-dependencies"
   },
   "dependencies": {
+    "chokidar-cli": "^2.1.0",
     "lit-dev-tools": "^0.0.0"
   }
 }
