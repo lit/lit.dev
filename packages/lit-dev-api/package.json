@@ -8,7 +8,7 @@
   "scripts": {
     "build": "(ls lit 2>/dev/null || npm run monorepo:init) && npm run build:generate",
     "build:generate": "node ../lit-dev-tools/lib/generate-api-docs-data.js",
-    "build:watch": "chokidar 'lit/packages/*/src/**/*.ts' -c 'npm run monorepo:build && npm run build:generate' --initial",
+    "build:watch": "chokidar 'lit/packages/*/src/**/*.ts' '../lit-dev-tools/lib/generate-api-docs-data.js' -c 'npm run monorepo:build && npm run build:generate' --initial",
     "monorepo:init": "npm run monorepo:clone && npm run monorepo:install && npm run monorepo:build",
     "monorepo:clone": "git clone https://github.com/Polymer/lit-html --branch lit-next lit && cd lit && git checkout $(cat ../lit.sha)",
     "monorepo:update": "cd lit && git checkout lit-next && git pull && git rev-parse HEAD > ../lit.sha && npm run monorepo:install && npm run monorepo:build",
