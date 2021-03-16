@@ -2,22 +2,31 @@
 pagination:
     data: api-docs-pages
     size: 1
-    alias: module
+    alias: exports
     addAllPagesToCollections: true
 
-permalink: "guide/api/{{ module.name }}/"
+permalink: "guide/api/{{ exports.name }}/"
 
 eleventyComputed:
-    title: "{{ module.name | capitalize }}"
+    title: "{{ exports.name | capitalize }}"
     eleventyNavigation:
-        key: "{{ module.name | capitalize }}"
+        key: "{{ exports.name | capitalize }}"
         parent: API
 ---
 
-{% for export in module.children %}
+{% macro importStatement(symbol) -%}
+  import { {{symbol.name}} } from '{{ symbol.entrypointSources[0].moduleSpecifier }}';
+{%- endmacro %}
+
+{% for export in exports.children %}
   <h2 id="{{ export.location.anchor }}">
     {{ export.name }}
   </h2>
 
   <p>{{ export.comment.shortText | markdown | safe }}</p>
+
+  <div class="import">
+    {% highlight "ts" -%}{{ importStatement(export) }}{%- endhighlight -%}
+    <copy-button text="{{ importStatement(export) }}"></copy-button>
+  </div>
 {% endfor %}

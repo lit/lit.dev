@@ -10,7 +10,7 @@ main {
     --docs-rule-color: #d1d1d1;
     --docs-table-header-background: #e4e4e4;
     --docs-table-header-color: rgb(73, 73, 73);
-    --playground-code-background-color: #f0f0f0;
+    --playground-code-background-color: #f5f5f5;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -123,8 +123,9 @@ playground-ide {
 
 figure {
   /* We put code snippets in figures for improved a11y semantics, but they come
-     with a default left margin. */
-  margin-left: 0;
+     with a default padding/margin that we don't want. */
+  margin: 0;
+  padding: 0;
 }
 
 /* ------------------------------------

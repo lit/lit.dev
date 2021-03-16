@@ -1,0 +1,19 @@
+
+/* Import statements */
+
+.import {
+  display: flex;
+  background: var(--playground-code-background-color);
+  align-items: center;
+  justify-content: space-between;
+}
+
+copy-button {
+  height: 48px;
+  opacity: 0.5;
+  padding: 0.2em;
+}
+
+copy-button:hover {
+  opacity: 1;
+}
