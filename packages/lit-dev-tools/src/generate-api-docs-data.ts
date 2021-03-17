@@ -43,13 +43,18 @@ const litSrcDir = pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src');
 const entrypointModules = [
   pathlib.resolve(litSrcDir, 'async-directive.ts'),
   pathlib.resolve(litSrcDir, 'decorators.ts'),
-  pathlib.resolve(litSrcDir, 'directive-helpers.ts'),
+  pathlib.resolve(litSrcDir, 'directives/'), // Entire directory
   pathlib.resolve(litSrcDir, 'directive.ts'),
-  pathlib.resolve(litSrcDir, 'html.ts'),
+  pathlib.resolve(litSrcDir, 'directive-helpers.ts'),
+  // Don't include html.ts because it is already re-exported by index.ts.
+  //   pathlib.resolve(litSrcDir, 'html.ts'),
+  // Don't include hydration because it's not ready yet.
+  //   pathlib.resolve(litSrcDir, 'hydrate.ts'),
+  //   pathlib.resolve(litSrcDir, 'hydrate-support.ts'),
   pathlib.resolve(litSrcDir, 'index.ts'),
-  pathlib.resolve(litSrcDir, 'polyfill-support.ts'),
+  // Don't include polyfill-support.ts because it doesn't export anything.
+  //   pathlib.resolve(litSrcDir, 'polyfill-support.ts'),
   pathlib.resolve(litSrcDir, 'static-html.ts'),
-  pathlib.resolve(litSrcDir, 'directives'), // directory
 ];
 
 /**
@@ -91,6 +96,8 @@ const pageOrder = [
   'core',
   'decorators',
   'directives',
+  'custom directives',
+  'static html',
   'controllers',
   'misc',
   'types',
@@ -135,6 +142,7 @@ const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
   if (!aConstructor && bConstructor) {
     return 1;
   }
+
   // Static before non-static
   const aStatic = a.flags?.isStatic;
   const bStatic = b.flags?.isStatic;
@@ -144,6 +152,27 @@ const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
   if (!aStatic && bStatic) {
     return 1;
   }
+
+  // By entrypoint (e.g. a type from a directive module should be adjacent to
+  // the directive function).
+  const aEntrypoint =
+    (a as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ?? '';
+  const bEntrypoint =
+    (b as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ?? '';
+  if (aEntrypoint !== bEntrypoint) {
+    return aEntrypoint.localeCompare(bEntrypoint);
+  }
+
+  // Types after values
+  const aType = a.kindString === 'Type' || a.kindString === 'Interface';
+  const bType = b.kindString === 'Type' || b.kindString === 'Interface';
+  if (aType && !bType) {
+    return 1;
+  }
+  if (!aType && bType) {
+    return -1;
+  }
+
   // Hard-coded orderings
   const idxA = indexOfOrInfinity(
     symbolOrder,
@@ -156,6 +185,7 @@ const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
   if (idxA !== idxB) {
     return idxA - idxB;
   }
+
   // Lexicographic
   return a.name.localeCompare(b.name);
 };
@@ -168,34 +198,60 @@ const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
  * (i.e. the methods of a class always go on the same page as the class).
  */
 const pageForSymbol = (
-  node: DeclarationReflection
+  node: ExtendedDeclarationReflection
 ): typeof pageOrder[number] => {
+  const entrypoint = node.entrypointSources?.[0]?.fileName ?? '';
+  if (entrypoint.includes('/directives/')) {
+    return 'directives';
+  }
+
+  if (entrypoint.endsWith('/decorators.ts')) {
+    return 'decorators';
+  }
+
   if (
-    node.name === 'LitElement' ||
-    node.name === 'ReactiveElement' ||
-    node.name === 'PropertyDeclaration' ||
-    node.name === 'html' ||
-    node.name === 'css' ||
-    node.name === 'svg' ||
-    node.name === 'render'
+    entrypoint.endsWith('/directive.ts') ||
+    entrypoint.endsWith('/directive-helpers.ts') ||
+    entrypoint.endsWith('/async-directive.ts') ||
+    node.name === 'noChange' ||
+    node.name === 'Part' ||
+    node.name === 'AttributePart' ||
+    node.name === 'BooleanAttributePart' ||
+    node.name === 'ChildPart' ||
+    node.name === 'ElementPart' ||
+    node.name === 'EventPart' ||
+    node.name === 'PropertyPart'
+  ) {
+    return 'custom directives';
+  }
+
+  if (entrypoint.endsWith('/static-html.ts')) {
+    return 'static html';
+  }
+
+  if (
+    entrypoint.endsWith('/lit/src/index.ts') &&
+    (node.name === 'LitElement' ||
+      node.name === 'ReactiveElement' ||
+      node.name === 'PropertyDeclaration' ||
+      node.name === 'html' ||
+      node.name === 'css' ||
+      node.name === 'svg' ||
+      node.name === 'render' ||
+      node.name === 'nothing')
   ) {
     return 'core';
   }
+
   if (
     node.name === 'ReactiveController' ||
     node.name === 'ReactiveControllerHost'
   ) {
     return 'controllers';
   }
-  if (node.kindString === 'Type alias' || node.kindString === 'Interface') {
-    return 'types';
-  }
-  if (node.sources?.[0]?.fileName.includes('/directives/')) {
-    return 'directives';
-  }
-  if (node.sources?.[0]?.fileName.includes('/decorators/')) {
-    return 'decorators';
-  }
+
+  // TODO(aomarks) Make sure everything has a good final location, and then
+  // throw if we get here.
   return 'misc';
 };
 
@@ -266,8 +322,7 @@ class Transformer {
     // appear in our layout, and index all nodes by TypeDoc numeric ID.
     for (const entrypoint of this.project.children ?? []) {
       const ancestry: DeclarationReflection[] = [];
-      const firstPassVisit = (node: DeclarationReflection) => {
-        this.choosePageLocation(node, ancestry);
+      const firstPassVisit = async (node: DeclarationReflection) => {
         // We want to generate import statement module specifiers using our
         // chosen entrypoint module specifier, instead of module specifier for
         // the definition of this symbol (e.g. we want "lit" instead of
@@ -276,42 +331,40 @@ class Transformer {
         // to copy our original entrypoint source info to each node.
         (node as ExtendedDeclarationReflection).entrypointSources =
           entrypoint.sources;
+        for (const source of node.sources ?? []) {
+          this.makeSourceRelativeToMonorepoRoot(source);
+          await this.updateSourceFromDtsToTs(source);
+          this.setGithubUrl(source);
+          this.setImportModuleSpecifier(source);
+        }
+        this.choosePageLocation(node, ancestry);
+        this.promoteVariableFunctions(node);
+        this.promoteAccessorTypes(node);
+        this.promoteSignatureComments(node);
         this.reflectionById.set(node.id, node);
-        node.children = (node.children ?? []).filter((child) =>
-          this.filter(child)
-        );
+        node.children = (node.children ?? [])
+          .filter((child) => this.filter(child))
+          .sort(symbolSortFn);
         ancestry.push(node);
-        for (const child of node.children ?? []) {
-          firstPassVisit(child);
+        for (const child of node.children) {
+          await firstPassVisit(child);
         }
         ancestry.pop();
       };
-      firstPassVisit(entrypoint);
+      await firstPassVisit(entrypoint);
     }
 
     // In the second pass, we now know the location of every node, so we can
     // generate cross-references.
-    const secondPassVisit = async (node: DeclarationReflection) => {
-      this.promoteVariableFunctions(node);
-      this.promoteAccessorTypes(node);
-      this.promoteSignatureComments(node);
+    const secondPassVisit = (node: DeclarationReflection) => {
       this.expandTransitiveHeritage(node);
       this.addLocationsForAllIds(node);
       this.linkifySymbolsInComments(node);
-      for (const source of node.sources ?? []) {
-        this.makeSourceRelativeToMonorepoRoot(source);
-        await this.updateSourceFromDtsToTs(source);
-        this.setGithubUrl(source);
-        this.setImportModuleSpecifier(source);
-      }
-      if (node.children) {
-        for (const child of node.children) {
-          await secondPassVisit(child);
-        }
-        node.children.sort(symbolSortFn);
+      for (const child of node.children ?? []) {
+        secondPassVisit(child);
       }
     };
-    await secondPassVisit(this.project);
+    secondPassVisit(this.project);
 
     const pages = this.reorganizeExportsIntoPages();
 
