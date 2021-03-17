@@ -100,7 +100,7 @@ const LoggingMixin = (superClass) => class extends superClass {
 }
 ```
 
-Note that a mixin should always super to the standard custom elmeent lifecycle
+Note that a mixin should always make a super call to the standard custom element lifecycle
 methods implemented by `LitElement`. When overriding a reactive update lifecycle
 callback, it is good practice to call the super method if it already exists on
 the superclass (as shown above with the optional-chaining call to
@@ -155,7 +155,7 @@ Lit.
 
 ### Typing the subclass
 
-Although TypesScript has nominal support for inferring the return type for the
+Although TypesScript has basic support for inferring the return type for the
 subclass generated using the mixin pattern, it has a severe limitation in that
 the inferred class must not contain members with `private` or `protected`
 access modifiers.
@@ -168,10 +168,10 @@ be private or protected."_ when returning a class that extends `LitElement`.
 
 </div>
 
-Luckily, there are two workarounds that both involve casting the return type
+There are two workarounds that both involve casting the return type
 from the mixin function to avoid the error above.
 
-#### When mixin does not add new API
+#### When a mixin does not add new public/protected API
 
 If your mixin only overrides `LitElement` methods or properties and does not
 add any new API of its own, you can simply cast the generated class to the super
@@ -193,7 +193,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
 }
 ```
 
-#### When mixin adds new API
+#### When a mixin adds new public/protected API
 
 If your mixin does add new protected or public API that you need users to be
 able to use on their class, you will need to define the interface for the mixin
