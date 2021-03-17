@@ -26,6 +26,8 @@ const litMonorepoPath = pathlib.resolve(
   'lit'
 );
 
+const litSrcDir = pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src');
+
 /**
  * Entrypoint TypeScript modules for TypeDoc to analyze.
  *
@@ -39,9 +41,15 @@ const litMonorepoPath = pathlib.resolve(
  * If a directory, all .ts files within it are included.
  */
 const entrypointModules = [
-  pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src', 'index.ts'),
-  pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src', 'decorators.ts'),
-  pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src', 'directives'), // directory
+  pathlib.resolve(litSrcDir, 'async-directive.ts'),
+  pathlib.resolve(litSrcDir, 'decorators.ts'),
+  pathlib.resolve(litSrcDir, 'directive-helpers.ts'),
+  pathlib.resolve(litSrcDir, 'directive.ts'),
+  pathlib.resolve(litSrcDir, 'html.ts'),
+  pathlib.resolve(litSrcDir, 'index.ts'),
+  pathlib.resolve(litSrcDir, 'polyfill-support.ts'),
+  pathlib.resolve(litSrcDir, 'static-html.ts'),
+  pathlib.resolve(litSrcDir, 'directives'), // directory
 ];
 
 /**
