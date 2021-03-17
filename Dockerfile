@@ -1,12 +1,16 @@
-# Use the official lightweight Node.js 14 image.
+# Use the official lightweight Node.js 15 image.
 # https://hub.docker.com/_/node
-FROM node:14-slim
+FROM node:15-slim
 
-# Dependencies of Playwright Chromium.
 RUN apt-get update && apt-get install -y --no-install-recommends \
+  # Dependencies of Playwright Chromium for Playground SSR
   libgtk-3-0 \
   libnss3 \
-  libasound2
+  libasound2 \
+  # Git needed for API docs generation via submodule
+  git \
+  # Certificates needed for Git HTTPS
+  ca-certificates
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
@@ -19,11 +23,7 @@ COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
 COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
 COPY packages/lit-dev-tools/package*.json ./packages/lit-dev-tools/
 
-# Install production dependencies.
-# If you add a package-lock.json, speed your build by switching to 'npm ci'.
-# RUN npm ci --only=production
-RUN npm i
-
+RUN npm ci
 RUN npm run bootstrap
 
 # Copy local code to the container image.

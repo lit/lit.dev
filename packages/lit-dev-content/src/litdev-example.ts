@@ -25,28 +25,31 @@ export class LitDevExample extends LitElement {
       display: block;
       /* For absolute positioning of openInPlayground button. */
       position: relative;
-      --litdev-example-editor-height: 300px;
-      --litdev-example-preview-height: 100px;
+      border-radius: none;
     }
 
     playground-file-editor,
     playground-preview {
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 5px;
       box-sizing: border-box;
     }
 
     playground-file-editor {
-      height: var(--litdev-example-editor-height);
+      border: 1px solid transparent;
+      height: var(--litdev-example-editor-height, 300px);
       margin-bottom: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      /* Border radius is masked by default white background otherwise. */
-      --playground-code-background: transparent;
+      background: var(--playground-code-background);
+      /* TODO(aomarks) Should be in the playground styles */
+      line-height: var(--playground-code-line-height);
+      padding: var(--playground-code-padding);
     }
 
     playground-preview {
-      height: var(--litdev-example-preview-height);
+      border: 1px solid #ccc;
+      margin: 0 0.5px;
+      height: var(--litdev-example-preview-height, 100px);
       border-top: none;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -73,7 +76,7 @@ export class LitDevExample extends LitElement {
   `;
 
   /**
-   * Path to the project dir from `site/_includes/projects/PATH/project.json`.
+   * Path to the project dir from `samples/PATH/project.json`.
    */
   @property()
   project?: string;

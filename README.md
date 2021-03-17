@@ -61,10 +61,50 @@ global:
 {% endif %}
 ```
 
-### Start production server locally
+### Update generated API docs
+
+First run `npm run dev` as shown above, and then in another terminal:
 
 ```sh
+cd packages/lit-dev-tools
+npm run build:api:watch
+```
+
+You can now edit the comments in any `.ts` file in the `lit-monorepo-submodule`
+directory, and after the automatic rebuild, the dev site will refresh.
+
+```sh
+code packages/lit-dev-tools/lit-monorepo-submodule/
+```
+
+The `lit-monorepo-submodule` directory is a [Git
+submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules), so you can make
+changes directly here, and push PRs from it as normal.
+
+The submodule is configured to track the `lit-next` branch, but Git submodules
+are always pinned to a particular commit. To update the current commit, run:
+
+```sh
+cd packages/lit-dev-tools
+npm run submodule:pull
+```
+
+### Serve production mode
+
+```sh
+npm run build
 npm start
+```
+
+### Watch production mode
+
+```sh
+npm start # production server
+
+cd packages/lit-dev-content
+npm run build:ts:watch     # TypeScript
+npm run build:rollup:watch # Rollup
+npm run build:site:watch   # Eleventy
 ```
 
 Serves at [`http://localhost:8080`](http://localhost:8080)

@@ -6,24 +6,20 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>{% if page.title %}{{ page.title }} &ndash;{% endif %} {{ site.name }}</title>
     <meta name="description" content="{{ site.description }}">
-    <meta name="theme-color" content="#FF2F2F">
+    <meta name="theme-color" content="#324fff">
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-flat.svg"></link>
+    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-flat.svg" color="#324fff">
 
-    <!-- TODO An actual favicon, but this removes an unneccessary fetch/console
-         error for now. -->
-    <link rel="icon" href="data:,"></link>
+    {% inlinecss "global.css" %}
+
+    {% inlinejs "mods.js" %}
+    {% inlinecss "mods.css" %}
 
     {% if dev %}
-      <link rel="stylesheet" href="{{site.baseurl}}/css/main.css"></link>
-
-      <script type="module" async src="/lib/site.js"></script>
+      <script type="module" async src="/lib/global.js"></script>
       <script type="module" async src="/lib/playground-elements.js"></script>
     {% else %}
-      <style>
-        {% set maincss %} {% include '../css/main.css' %} {% endset %}
-        {{ maincss | cssmin | safe }}
-      </style>
-
-      <script type="module" async src="/js/site.js"></script>
+      <script type="module" async src="/js/global.js"></script>
       <script type="module" async src="/js/playground-elements.js"></script>
 
       <!-- Note it would be more correct to <link rel="modulepreload"> this common
@@ -33,8 +29,6 @@
       <script type="module" async src="/js/common.js"></script>
     {% endif %}
 
-    <link rel="preload" href="{{site.baseurl}}/codemirror.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     {% block head %}{% endblock %}
@@ -42,11 +36,11 @@
     {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
   </head>
   <body>
-    <mwc-drawer type="modal" id="nav-drawer">
-      <nav class="site-nav">
+    <mwc-drawer type="modal" id="mobileDrawer">
+      <nav id="mobileNav">
         <ol>
           <li>
-            <span class="section-head">Site</span>
+            <span class="sectionHead">Site</span>
             <ol>{% include 'nav-items.html' %}</ol>
           </li>
           {% block drawer %}{{ content | safe }}{% endblock %}
@@ -54,9 +48,7 @@
       </nav>
     </mwc-drawer>
 
-    <header>
-      {% include 'header.html' %}
-    </header>
+    {% include 'header.html' %}
 
     <main>
       {% block content %}{{ content | safe }}{% endblock %}

@@ -1,15 +1,10 @@
 {% extends 'default.html' %}
 
 {% block head %}
-  {% if dev %}
-    <link rel="stylesheet" href="{{site.baseurl}}/css/guide.css"></link>
-    <script type="module" src="{{site.baseurl}}/lib/guide.js"></script>
-  {% else %}
-    <style>
-      {% set guidecss %} {% include '../css/guide.css' %} {% endset %}
-      {{ guidecss | cssmin | safe }}
-    </style>
-    <script type="module">{% include 'js/guide.js' %}</script>
+  {% inlinecss "docs.css" %}
+  {% inlinejs "docs.js" %}
+  {% if '/api/' in page.url %}
+    {% inlinecss "docs-api.css" %}
   {% endif %}
 {% endblock %}
 
@@ -18,14 +13,14 @@
 {% endblock %}
 
 {% block content %}
-  <div class="lhs-nav-wrapper">
-    <nav class="site-nav lhs-nav">
+  <div id="docsNavWrapper">
+    <nav id="docsNav">
       <ol>{% include 'eleventy-nav.html' %}</ol>
     </nav>
   </div>
 
-  <div class="rhs-toc-wrapper">
-    <nav class="rhs-toc">
+  <div id="rhsTocWrapper">
+    <nav id="rhsToc">
       <h2>Contents</h2>
       {{ content | toc | safe }}
     </nav>
@@ -34,7 +29,7 @@
   <article>
     <h1>{{ title }}</h1>
 
-    <nav class="inline-toc">
+    <nav id="inlineToc">
       <details>
         <summary><h2>Contents</h2></summary>
         {{ content | toc | safe }}

@@ -1,3 +1,13 @@
+main {
+  display: flex;
+  margin: 0;
+  max-width: none;
+  /* Remove space usually allotted to the footer. */
+  min-height: calc(100vh - var(--header-height));
+  --tutorial-text-width: 50%;
+  overflow: hidden;
+}
+
 html, body {
   height: 100%;
   display: flex;
@@ -14,6 +24,24 @@ div.tutorial {
   flex: 1;
 }
 
-div.contents {
-  flex: 0 0 300px
+div.tutorial-text {
+  flex: 0 0 var(--tutorial-text-width);
+  padding: 20px;
+  min-height: calc(100vh - var(--header-height));
+  overflow: scroll;
+}
+
+div.tutorial-text h1 {
+  font-size: 1.4em;
+}
+
+div.internal-nav {
+  display: block;
+  padding-bottom: 20px;
+}
+
+footer {
+  /* The footer is a big pain on this page, because we want all the vertical
+  real-estate. */
+  display: none;
 }

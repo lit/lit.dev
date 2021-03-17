@@ -1,0 +1,77 @@
+@import url('./blog-common.css');
+
+#frontMatter > h1 {
+  display: flex;
+  align-items: center;
+}
+
+#frontMatter > h1 > img {
+  margin-right: 0.7em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+#suggestLink {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.7em 0;
+  font-size: 0.88889em;
+  border-bottom: 2px solid var(--color-cyan);
+}
+
+a#suggestLink:hover {
+  color: var(--color-dark-cyan);
+  border-color: white;
+  text-decoration: none;
+}
+
+#content .date {
+  color: var(--color-dark-cyan);
+  font-size: 1.1em;
+  font-weight: 600;
+  flex: 0 0 10em;
+  margin-top: 0;
+}
+
+#content .title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+#content a {
+  color: white;
+}
+
+#content a:hover {
+  text-decoration: underline;
+}
+
+#content .author {
+  display: flex;
+  color: var(--color-medium-gray);
+}
+
+#content .author > img {
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+}
+
+#content > .post {
+  display: flex;
+  padding: 1.5em 0;
+  border-top: 1.5px solid var(--color-dark-cyan);
+}
+
+#content > .post:first-of-type {
+  padding-top: 0;
+  border-top: none;
+}
+
+@media (max-width: 864px) {
+  #content > .post {
+    display: block;
+  }
+}

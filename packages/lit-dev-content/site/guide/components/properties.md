@@ -15,53 +15,71 @@ Lit manages your reactive properties and their corresponding attributes. In part
 *   **Superclass properties**. Lit automatically applies property options declared by a superclass. You don't need to redeclare properties unless you want to change options.
 *   **Element upgrade**. If a Lit component is defined after the element is already in the DOM, Lit handles upgrade logic, ensuring that any properties set on an element before it was upgraded trigger the correct reactive side effects when the element upgrades.
 
-## Internal reactive state
+## Public properties and internal state
 
-*Internal reactive state* refers to reactive properties that are  not part of the component's public API. These state properties don't have corresponding attributes, and aren't intended to be used from outside the component. Internal reactive state should be set by the component.
+Public properties are part of the component's public API. In general, public properties—especially public reactive properties—should be treated as _input_. The component shouldn't set its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that's set when the user selects an item.
 
-Public properties are part of the component's public API, and should be set from the outside.
+Lit also supports _internal reactive state_. Internal reactive state refers to reactive properties that _aren't_ part of the component's API. These properties don't have a corresponding attribute, and are typically marked protected or private in TypeScript.
 
-In general, the component shouldn't set its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that's set when the user selects an item.
+The component manipulates its own internal reactive state.
+In some cases, internal reactive state may be initialized from public properties—for example, if there is a expensive transformation between the user-visible property and the internal state.
 
-In some cases, internal reactive state may be initialized from public properties—for example, if there is a complex transformation between the user-visible data and the internal data.
+As with public reactive properties, updating internal reactive state triggers an update cycle.
 
-## Declare reactive properties {#declare}
+## Public reactive properties {#declare}
 
-Declare your element's properties using decorators or the static `properties` field:
-
-_Decorator (requires TypeScript or Babel)_
-
-<div class="language-ts">
-<pre class="highlight">
-export class MyElement extends LitElement {
-  // Reactive property
-  @property(<var>options</var>)
-  <var>propertyName</var>;
-  // Internal reactive state
-  @state(<var>options</var>)
-  <var>PropertyName</var>
-</pre>
-</div>
-
-
-_Properties field_
-
-<div class="language-js">
-<pre class="highlight">
-static get properties() {
-  return {
-    // Reactive property
-    <var>propertyName</var>: <var>options</var>,
-    // Internal reactive state
-    <var>propertyName</var>: {state: true, ...<var>options</var>}
-  };
-}
-</pre>
-</div>
+Declare your element's public reactive properties using decorators or the static `properties` field.
 
 In either case, you can pass an options object to configure features for the property.
 
-Properties declared in a static properties field should be initialized in the constructor. Properties declared with the `@property` and `@state` decorators can either be initialized using  class field initializers or in the constructor.
+### Declare properties with decorators {#declare-with-decorators}
+
+Use the `@property` decorator with a class field declaration to declare a reactive property.
+
+```ts
+class MyElement extends LitElement {
+  @property()
+  mode;
+
+  @property({attribute: false})
+  data = {};
+}
+```
+
+The argument to the `@property`  decorators is an [options object](#property-options). Omitting the argument is equivalent to specifying the default value for all options.
+
+<div class="alert alert-info">
+
+**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](/guide/components/decorators/) for details.
+
+</div>
+
+### Declare properties in a static properties field
+
+To declare properties in a static `properties` field:
+
+```js
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      mode: {},
+      data: {attribute: false},
+    };
+  }
+
+  constructor() {
+    this.data = {};
+  }
+}
+```
+
+An empty option object is equivalent to specifying the default value for all options.
+
+<div class="alert alert-info">
+
+**If you're using the static properties field, initialize properties in the constructor**. Class field initializers won't work in this case.
+
+</div>
 
 ### Property options
 
@@ -125,7 +143,7 @@ Whether property value is reflected back to the associated attribute. Default: f
 </dt>
 <dd>
 
-Set to true to declare the property as _internal reactive state_. Internal reactive state triggers updates like public reactive properties, but Lit doesn't generate an attribute for it, and users shouldn't access it from outside the component. Equivalent to using the `@state` decorator.
+Set to true to declare the property as _internal reactive state_. Internal reactive state triggers updates like public reactive properties, but Lit doesn't generate an attribute for it, and users shouldn't access it from outside the component. Equivalent to using the `@state` decorator. For more information, see [Internal reactive state](#internal-reactive-state).
 
 </dd>
 <dt>
@@ -135,7 +153,7 @@ Set to true to declare the property as _internal reactive state_. Internal react
 </dt>
 <dd>
 
-When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is ignored. If `type` is unspecified, behaves like `type: String`. See [Use LitElement's default attribute converter](#conversion-type). 
+When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is ignored. If `type` is unspecified, behaves like `type: String`. See [Use the default attribute converter](#conversion-type).
 
 Note that when using TypeScript, although this field should generally match the TypeScript type declared for the field, the `type` option is used by the Lit's _runtime_ for string serialization/deserialization, and should not be confused with a _type-checking_ mechanism.
 
@@ -143,32 +161,9 @@ Note that when using TypeScript, although this field should generally match the 
 
 An empty options object is equivalent to specifying the default value for all options.
 
-<div class="alert alert-info">
+## Internal reactive state
 
-**An options object by another name.** This guide uses the descriptive term "options object." In practice the options object is an instance of `PropertyDeclaration`, so you'll see that name if you're using an IDE, or looking at the API reference. By either name, it's an object that defines a set of options.
-
-</div>
-
-### Declare properties with decorators {#declare-with-decorators}
-
-Use the `@property` decorator with a class field declaration to declare a reactive property.
-
-```ts
-@property()
-mode;
-
-@property({attribute: false})
-data = {};
-```
-
-
-The argument to the `@property`  decorators is an [options object](#property-options). Omitting the argument is equivalent to specifying the default value for all options.
-
-<div class="alert alert-info">
-
-**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](decorators) for details.
-
-</div>
+*Internal reactive state* refers to reactive properties that are  not part of the component's public API. These state properties don't have corresponding attributes, and aren't intended to be used from outside the component. Internal reactive state should be set by the component itself.
 
 Use the `@state` decorator to declare internal reactive state:
 
@@ -177,84 +172,43 @@ Use the `@state` decorator to declare internal reactive state:
 protected _active = false;
 ```
 
- Properties declared with `@state` shouldn't be referenced from outside the component. In TypeScript, these properties should be marked as private or protected. We also recommend using a convention like a leading underscore (`_`) to identify private or protected properties for JavaScript users.
-
-The `@state` decorator automatically sets `attribute` to false; **the only option you can specify for internal reactive state is the `hasChanged` function.**
-
-The `@state` decorator can also serve as a hint to a code minifier that the property name can be changed during minification.
-
-### Declare properties in a static properties field
-
-To declare properties in a static `properties` field:
+Using the static `properties` getter, you can declare internal reactive state by using the `state: true` option.
 
 ```js
 static get properties() {
   return {
-    mode: {},
-    data: {attribute: false},
-    _active: {state: true}
-  };
+    _active: { state: true }
+  }
+}
+
+constructor() {
+  this._active = false;
 }
 ```
 
-An empty option object is equivalent to specifying the default value for all options.
+Internal reactive state shouldn't be referenced from outside the component. In TypeScript, these properties should be marked as private or protected. We also recommend using a convention like a leading underscore (`_`) to identify private or protected properties for JavaScript users.
 
-Use the `state: true` option to declare internal reactive state. This automatically sets `attribute` to false; **the only other option you can specify for internal reactive state is the `hasChanged` function.**
+Internal reactive state works just like public reactive properties, except that there is no attribute associated with the property. **The only option you can specify for internal reactive state is the `hasChanged` function.**
 
-<div class="alert alert-info">
-
-**If you're using the static properties field, initialize properties in the constructor**. Class field initializers won't work in this case.
-
-</div>
+The `@state` decorator can also serve as a hint to a code minifier that the property name can be changed during minification.
 
 ## What happens when properties change {#when-properties-change}
 
-A property change can trigger an asynchronous update cycle, which causes the component to re-render its template.
+A property change can trigger a reactive update cycle, which causes the component to re-render its template.
 
 When a property changes, the following sequence occurs:
 
 1.  The property's setter is called.
-1.  The setter calls the property's `hasChanged` function. The `hasChanged` function takes the property's old and new values, and returns true if the change should trigger an update. (The default `hasChanged` uses a strict inequality test (`oldValue !=== newValue`) to determine if the property has changed.)
-1.  If `hasChanged` returns true, the setter calls `requestUpdate` to schedule an update. The update itself happens asynchronously, so if several properties are updated at once, they only trigger a single update.
+1.  The setter calls the component's `requestUpdate` method.
+1.  `requestUpdate` calls the property's `hasChanged` function. The `hasChanged` function takes the property's old and new values, and returns true if the change should trigger an update. (The default `hasChanged` uses a strict inequality test (`oldValue !=== newValue`) to determine if the property has changed.)
+1.  If `hasChanged` returns true, `requestUpdate` schedules an update. The update itself happens asynchronously, so if several properties are updated at once, they only trigger a single update.
 1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
 
 There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/guide/components/lifecycle/#reactive-update-cycle).
 
-## Initialize property values {#initialize}
+## Attributes {#attributes}
 
-Typically, you initialize property values in the element constructor.
-
-When using decorators, you can initialize the property value using a class field initializer (equivalent to setting the value in the constructor).
-
-You may want to defer initializing a property if the value is expensive to compute and is not not required for the initial render of your component. This is a fairly rare case.
-
-### Initialize property values when using decorators
-
-When using the `@property` decorator, you can initialize the property using a class field initializer:
-
-```ts
-@property()
-greeting: string = 'Hello';
-```
-
-### Initialize property values in the element constructor {#initialize-constructor}
-
-If you implement a static properties field, initialize your property values in the element constructor:
-
-```js
-static get properties() { return { /* Property declarations */ }; }
-
-constructor() {
-  super();
-
-  // Initialize properties
-  this.greeting = 'Hello';
-}
-```
-
-## Configure attributes {#attributes}
-
-By default, Lit sets up an observed attribute corresponding to the property, and updates the property when the attribute changes. Property values can also, optionally, be _reflected_ back to the attribute.
+By default, Lit sets up an observed attribute corresponding to each public reactive property, and updates the property when the attribute changes. Property values can also, optionally, be _reflected_ (written back to the attribute).
 
 While element properties can be of any type, attributes are always strings. This impacts the [observed attributes](#observed-attributes) and [reflected attributes](#reflected-attributes) of non-string properties:
 
@@ -262,16 +216,52 @@ While element properties can be of any type, attributes are always strings. This
 
   * To **reflect** an attribute (set an attribute from a property), the property value must be converted to a string.
 
+### Setting the attribute name {#observed-attributes}
+
+By default, Lit creates a corresponding observed attribute for all public reactive properties. The name of the observed attribute is the property name, lowercased:
+
+```js
+// observed attribute name is "myvalue"
+@property({ type: Number })
+myValue = 0;
+```
+
+To create an observed attribute with a different name, set `attribute` to a string:
+
+```js
+// Observed attribute will be called my-prop
+@property({ attribute: 'my-prop' })
+myProp;
+```
+
+To prevent an observed attribute from being created for a property, set `attribute` to `false`. The property will not be initialized from attributes in markup, and attribute changes won't affect it.
+
+```js
+// No observed attribute for this property
+@property({ attribute: false })
+myData = {};
+```
+
+Internal reactive state never has an associated attribute.
+
+An observed attribute can be used to provide an initial value for a property from markup. For example:
+
+```html
+<my-element myvalue="99"></my-element>
+```
+
 ### Using the default converter {#conversion-type}
 
-LitElement has a default converter which handles `String`, `Number`, `Boolean`, `Array`, and `Object` property types.
+Lit has a default converter that handles `String`, `Number`, `Boolean`, `Array`, and `Object` property types.
 
 To use the default converter, specify the `type` option in your property declaration:
 
 ```js
-// Use LitElement's default converter
+// Use the default converter
 count: { type: Number },
 ```
+
+If don't specify a type _or_ a custom converter for a property, it behaves as if you'd specified `type: String`.
 
 The information below shows how the default converter handles conversion for each type.
 
@@ -288,12 +278,10 @@ The information below shows how the default converter handles conversion for eac
 **Convert from property to attribute**
 
 * For **Strings**, when the property is:
-  * `null`, remove the attribute.
-  * `undefined`, don't change the attribute.
+  * `null` or `undefined`, remove the attribute.
   * Defined and not `null`, set the attribute to the property value.
 * For **Numbers**, when the property is:
-  * `null`, remove the attribute.
-  * `undefined`, don't change the attribute.
+  * `null` or `undefined` remove the attribute.
   * Defined and not `null`, set the attribute to the property value.
 * For **Booleans**, when the property is:
   * truthy, create the attribute.
@@ -302,7 +290,7 @@ The information below shows how the default converter handles conversion for eac
   * `null` or `undefined`, remove the attribute.
   * Defined and not `null`, set the attribute value to `JSON.stringify(propertyValue)`.
 
-### Configuring a custom converter {#conversion-converter}
+### Providing a custom converter {#conversion-converter}
 
 You can specify a custom property converter in your property declaration with the `converter` option:
 
@@ -342,43 +330,13 @@ myProp: {
 
 If no `toAttribute` function is supplied for a reflected attribute, the attribute is set to the property value without conversion.
 
-During an update:
-
-  * If `toAttribute` returns `null`, the attribute is removed.
-
-  * If `toAttribute` returns `undefined`, the attribute is not changed.
-
-### Configure observed attributes {#observed-attributes}
-
-When an **observed attribute's** value changes, the element's `attributeChangedCallback` method is called. By default, Lit sets the property value from the attribute using the property's `fromAttribute` function.
-
-By default, Lit creates a corresponding observed attribute for all reactive properties. The name of the observed attribute is the property name, lowercased:
-
-```js
-// observed attribute name is "myprop"
-myProp: { type: Number }
-```
-
-To create an observed attribute with a different name, set `attribute` to a string:
-
-```js
-// Observed attribute will be called my-prop
-myProp: { attribute: 'my-prop' }
-```
-
-To prevent an observed attribute from being created for a property, set `attribute` to `false`. The property will not be initialized from attributes in markup, and attribute changes won't affect it.
-
-```js
-// No observed attribute for this property
-myProp: { attribute: false }
-```
-
-An observed attribute can be used to provide an initial value for a property via markup. See [Initialize properties with attributes in markup](#initialize-markup).
+During an update, if `toAttribute` returns `null` or `undefined`, the attribute is removed.
 
 
-### Configure reflected attributes {#reflected-attributes}
 
-You can configure a property so that whenever it changes, its value is reflected to its [observed attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
+### Enabling attribute reflection {#reflected-attributes}
+
+You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
 
 For example:
 
@@ -387,44 +345,15 @@ For example:
 active: {reflect: true}
 ```
 
-When the property changes, Lit uses the `toAttribute` function in the property's converter to set the attribute value from the new property value.
-
-* If `toAttribute` returns `null`, the attribute is removed.
-
-* If `toAttribute` returns `undefined`, the attribute is not changed.
-
-* If `toAttribute` itself is undefined, the attribute value is set to the property value without conversion.
+When the property changes, Lit sets the corresponding attribute value as described in [Using the default converter](#conversion-type) or [Providing a custom converter](#conversion-converter).
 
 <div class="alert alert-info">
 
-**Lit tracks reflection state during updates.** Lit keeps track of  state information to avoid creating an infinite loop of changes between a property and an observed, reflected attribute.
+**Lit tracks reflection state during updates.** You may have realized that if property chanages are reflected to an attribute and attribute changes update the property, it has the potential to create an infinite loop. However, Lit tracks when properties and attributes are set specifically to prevent this from happening
 
 </div>
 
 {% playground-example "properties/attributereflect" "my-element.ts" %}
-
-### Set property values from attributes in markup {#initialize-markup}
-
-If a property is configured with `attribute: true` (the default), users can set the property values from observed attributes in static markup:
-
-_index.html_
-
-```html
-<my-element
-  mystring="hello world"
-  mynumber="5"
-  mybool
-  myobj='{"stuff":"hi"}'
-  myarray='[1,2,3,4]'></my-element>
-```
-
-See [observed attributes](#observed-attributes) and [converting between properties and attributes](#conversion) for more information on setting up initialization from attributes.
-
-<div class="alert alert-info">
-
-**Attributes versus properties.** Setting a static attribute value is not the same as using an expression to set a property. See [Set properties](/guide/templates/expressions/#set-properties).
-
-</div>
 
 ## Custom property accessors {#accessors}
 
@@ -441,7 +370,7 @@ this.greeting = 'Hola'; // invokes greeting's generated property accessor
 
 Generated accessors automatically call `requestUpdate()`, initiating an update if one has not already begun.
 
-### Create your own property accessors {#accessors-custom}
+### Creating custom property accessors {#accessors-custom}
 
 To specify how getting and setting works for a property, you can define your own getter/setter pair. For example:
 
@@ -506,6 +435,5 @@ myProp: { hasChanged(newVal, oldVal) {
 
 </div>
 
-**Example: Configure property changes**
 
 {% playground-example "properties/haschanged" "my-element.ts" %}

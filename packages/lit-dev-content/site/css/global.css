@@ -1,0 +1,41 @@
+@import url('./fonts/manrope.css');
+@import url('./fonts/roboto-mono.css');
+@import url('./fonts/open-sans.css');
+@import url('./header.css');
+@import url('./footer.css');
+@import url('./mobile-nav.css');
+@import url('./colors.css');
+@import url('./codemirror.css');
+@import url('./code.css');
+
+html {
+  font-size: 18px;
+  --header-height: 3.33rem;
+  --footer-top-height: 12rem;
+  --footer-bottom-height: 6rem;
+  --content-max-width: 76rem;
+}
+
+@media (max-width: 864px) {
+  html {
+    --footer-top-height: 20rem;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Manrope, sans-serif;
+}
+
+main {
+  /* Ensures that the footer never floats above the bottom of the viewport on
+     short pages. */
+  min-height: calc(100vh - var(--header-height) - var(--footer-top-height) -
+    var(--footer-bottom-height)
+  );
+}
+
+a {
+  text-decoration: none;
+  color: #1879cd;
+}
