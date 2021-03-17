@@ -293,7 +293,7 @@ type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
 interface ExtendedDeclarationReflection extends DeclarationReflection {
   location?: Location;
   externalLocation?: ExternalLocation;
-  entrypointSources?: DeclarationReflection['sources'];
+  entrypointSources?: Array<ExtendedSourceReference>;
   heritage?: Array<{name: string; location?: Location}>;
 }
 
@@ -388,13 +388,80 @@ class Transformer {
       await firstPassVisit(entrypoint);
     }
 
+    // It's possible for the same exact export to be duplicated by TypeDoc. This
+    // can happen if:
+    //
+    // 1. Two entrypoints export the same symbol
+    // 2. A TypeScript value and type are exported as separate statements
+    const exportKeyToIds = new Map<string, Array<number>>();
+    const duplicateExportIdsToRemove = new Set<number>();
+    for (const entrypoint of this.project.children ?? []) {
+      for (const node of entrypoint.children ?? []) {
+        const source = node.sources?.[0];
+        if (!source) {
+          continue;
+        }
+        const exportKey = source.fileName + '#' + node.name;
+        let ids = exportKeyToIds.get(exportKey);
+        if (ids === undefined) {
+          ids = [];
+          exportKeyToIds.set(exportKey, ids);
+        }
+        ids.push(node.id);
+      }
+    }
+    for (const ids of exportKeyToIds.values()) {
+      if (ids.length <= 1) {
+        // No conflicts.
+        continue;
+      }
+      ids.sort((a, b) => {
+        const aReflection = this.reflectionById.get(a);
+        const bReflection = this.reflectionById.get(b);
+        // Prefer a shorter import statement.
+        const aImportLength =
+          aReflection?.entrypointSources?.[0]?.moduleSpecifier?.length ??
+          Infinity;
+        const bImportLength =
+          bReflection?.entrypointSources?.[0]?.moduleSpecifier?.length ??
+          Infinity;
+        if (aImportLength !== bImportLength) {
+          return aImportLength - bImportLength;
+        }
+        // Prefer a value to a type.
+        const aTypeAlias = aReflection?.kindString === 'Type alias';
+        const bTypeAlias = bReflection?.kindString === 'Type alias';
+        if (!aTypeAlias && bTypeAlias) {
+          return -1;
+        }
+        if (aTypeAlias && !bTypeAlias) {
+          return 1;
+        }
+        // Arbitrary but deterministic.
+        return a - b;
+      });
+      const winnerReflection = this.reflectionById.get(ids[0]);
+      if (!winnerReflection) {
+        continue;
+      }
+      for (const loserId of ids.slice(1)) {
+        duplicateExportIdsToRemove.add(loserId);
+        // Also update the id -> reflection map, so that any cross-references we
+        // add will point at the winner location.
+        this.reflectionById.set(loserId, winnerReflection);
+      }
+    }
+
     // In the second pass, we now know the location of every node, so we can
     // generate cross-references.
     const secondPassVisit = (node: DeclarationReflection) => {
       this.expandTransitiveHeritage(node);
       this.addLocationsForAllIds(node);
       this.linkifySymbolsInComments(node);
-      for (const child of node.children ?? []) {
+      node.children = (node.children ?? []).filter(
+        (child) => !duplicateExportIdsToRemove.has(child.id)
+      );
+      for (const child of node.children) {
         secondPassVisit(child);
       }
     };
