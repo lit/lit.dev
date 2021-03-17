@@ -1,32 +1,30 @@
 ---
-title: Building
+title: Building for Production
 eleventyNavigation:
   key: Building
   parent: Tools
   order: 4
 ---
 
+This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to _publishing_ a reusable Lit component to npm, see [Publishing](../publishing/).
+
 When building an application that includes Lit components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/) to prepare your source code and dependencies for serving in a production environment.
 
 See [Build Requirements](../overview/#build-requirements) for a full list of requirements for building Lit code, which apply to both development and production.
 
-In addition to those minimim requirements, this page also covers [optimizations](#optimizations) you should consider including in your build tooling when serving to production.
+In addition to those minimim requirements, this page describes optimizations you should consider when preparing code for production, as well as a concrete Rollup configuration that implements them.
 
-Note that this page focuses primarily in building an application that uses Lit components _for production_.  For recommendations on build steps to perform on source code prior to _publishing_ a reusable Lit component to npm, see [Publishing](../publishing/).
+## Preparing code for production {#preparing-code-for-production}
 
-## Optimizations {#optimizations}
+Lit projects benefit from the same build-time optimizations as other web projects. The following optimizations are recommended when serving Lit applications in production:
 
-Lit projects benefit from the same optimizations as other web projects:
+*   Bundling Javascript modules to reduce network requests (for example, using [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/)).
+*   Minifying Javascript code for smaller payload sizes ([Terser](https://www.npmjs.com/package/terser) works well for Lit, because it supports modern JavaScript).
+*   [Serving modern code to modern browsers](https://web.dev/serve-modern-code-to-modern-browsers/) as it is generally smaller and faster, and falling back to transpiled code on older browsers.
+*   [Hashing static assets including bundled JavaScript](https://web.dev/love-your-cache/#fingerprinted-urls) for easier cache invalidation.
+*   [Enabling serve-time compression](https://web.dev/reduce-network-payloads-using-text-compression/#data-compression) (such as gzip or brotli) for fewer bytes over the wire.
 
-*   Bundling (for example, using [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/)).
-*   Code minification/optimization ([Terser](https://www.npmjs.com/package/terser) works well for Lit, because it supports modern JavaScript).
-*   Serve-time compression (such as [gzip or brotli](https://web.dev/reduce-network-payloads-using-text-compression/#data-compression)).
-*   Serving modern code to modern browsers ([article](https://web.dev/serve-modern-code-to-modern-browsers/))
-*   Hashing static assets including bundled JavaScript ([article](https://web.dev/love-your-cache/#fingerprinted-urls))
-
-See the links above for further reading on applying those standard optimizations to your projects.
-
-In addition, note that because Lit templates are defined inside JavaScript template string literals, they don't get processed by standard HTML minifiers. Adding a plugin that minifies template literals can result in a modest decrease in code size. Several packages are available to perform this optimization:
+In addition, note that because Lit templates are defined inside JavaScript template string literals, they don't get processed by standard HTML minifiers. Adding a plugin that minifies the HTML in template string literals can result in a modest decrease in code size. Several packages are available to perform this optimization:
 
 *   Rollup: [rollup-plugin-minify-html-literals](https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme)
 *   Webpack: [minify-template-literal-loader](https://www.npmjs.com/package/minify-template-literal-loader)
@@ -34,18 +32,24 @@ In addition, note that because Lit templates are defined inside JavaScript templ
 
 ## Building with Rollup {#building-with-rollup}
 
-We recommend Rollup because it's designed to work with the standard ES module format and output optimal code that leverages modules on the client.
+There are many tools you can use to perform the required and optional build
+steps necessary to serve Lit code, and Lit does not require any one specific
+tool. However, we recommend Rollup because it's designed to work with the standard ES module
+format and output optimal code that leverages native modules on the client.
 
-There are many ways to set up Rollup to bundle your project. The [Modern Web](https://modern-web.dev/) project maintains an excellent Rollup plugin `@web/rollup-plugin-html` that helps tie a number of best-practices for building applications together into an easy-to-use package.
+There are many ways to set up Rollup to bundle your project. The [Modern
+Web](https://modern-web.dev/) project maintains an excellent Rollup plugin
+[`@web/rollup-plugin-html`](https://modern-web.dev/docs/building/rollup-plugin-html/)
+that helps tie a number of best-practices for building applications together
+into an easy-to-use package. Example configurations using this plugin are described below.
 
 ### Modern-only build
 
-The annotated `rollup.config.js` file below will build an application that
-includes Lit components, implementing the [modern browser build
-requirements](#building-for-modern-browsers) and [optimizations](#optimizations)
-described on this page, suitable for serving to modern browsers that can run
-ES2020 JS without polyfills. Javascript files are discovered from the HTML
-entrypoints listed
+The annotated `rollup.config.js` file below will build an application that meets
+the [modern browser build requirements](../overview/#building-for-modern-browsers) and
+[production optimizations](#preparing-code-for-production) described on this page. This configuration is
+suitable for serving to modern browsers that can run ES2020 JS without
+polyfills.
 
 Required node modules:
 ```sh
@@ -110,7 +114,7 @@ The following configuration generates a hybrid build with two sets of JS
 bundles, one for modern browsers, and one for legacy browsers. The modern
 bundles are optimistically pre-fetched, and client-side feature-detection is
 used to determine whether to load the smaller/faster modern builds or the legacy
-build (and any required polyfills), per the [legacy browser build requirements](#legacy-browser-build-requirements).
+build (and any required polyfills), per the [legacy browser build requirements](../overview/#building-for-legacy-browsers).
 
 Required node modules:
 ```sh
