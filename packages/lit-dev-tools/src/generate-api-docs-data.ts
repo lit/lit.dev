@@ -256,6 +256,34 @@ const pageForSymbol = (
 };
 
 /**
+ * Mapping from symbol name to an external URL.
+ */
+const symbolToExternalLink = new Map([
+  [
+    'CSSStyleSheet',
+    'https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet',
+  ],
+  [
+    'DocumentFragment',
+    'https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment',
+  ],
+  ['Element', 'https://developer.mozilla.org/en-US/docs/Web/API/Element'],
+  [
+    'HTMLElement',
+    'https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement',
+  ],
+  [
+    'HTMLTemplateElement',
+    'https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement',
+  ],
+  ['ShadowRoot', 'https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot'],
+  [
+    'ShadowRootInit',
+    'https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters',
+  ],
+]);
+
+/**
  * Generate a relative URL for the given location.
  */
 const locationToUrl = ({page, anchor}: Location) =>
@@ -264,6 +292,7 @@ const locationToUrl = ({page, anchor}: Location) =>
 type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
 interface ExtendedDeclarationReflection extends DeclarationReflection {
   location?: Location;
+  externalLocation?: ExternalLocation;
   entrypointSources?: DeclarationReflection['sources'];
   heritage?: Array<{name: string; location?: Location}>;
 }
@@ -278,6 +307,11 @@ interface ExtendedSourceReference extends SourceReference {
 interface Location {
   page: typeof pageOrder[number];
   anchor: string;
+}
+
+/** A link to e.g. MDN. */
+interface ExternalLocation {
+  url: string;
 }
 
 /**
@@ -544,6 +578,14 @@ class Transformer {
         if (reflection && reflection.location) {
           (node as {location?: Location}).location = reflection.location;
         }
+      } else if (
+        key === 'name' &&
+        typeof val === 'string' &&
+        symbolToExternalLink.has(val)
+      ) {
+        (node as {externalLocation?: ExternalLocation}).externalLocation = {
+          url: symbolToExternalLink.get(val)!,
+        };
       } else if (!(isTopLevel && key === 'children')) {
         // We already recurse into children of top-level reflections in our main
         // traversal, no need to also do it here.

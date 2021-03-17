@@ -22,16 +22,24 @@ eleventyComputed:
   <a href="{{ site.baseurl }} /guide/api/{{ location.page }}#{{ location.anchor }}">{{label}}</a>
 {%- endmacro %}
 
+{%- macro externalLink(url, label) -%}
+  <a href="{{ url }}" target="_blank" rel="noopener">
+    {%- if url.startsWith("https://developer.mozilla.org") -%}
+      <svg class="mdnIcon" role="img" width="16" height="16">
+        <title>MDN</title>
+        <use xlink:href="{{ site.baseurl }}/images/logos/mdn.svg#logo"></use>
+      </svg>
+    {%- endif %}
+    {{ label -}}
+  </a>
+{%- endmacro -%}
+
 {% macro heritageList(node) -%}
   {%- set arrow = joiner(' → ') %}
   {%- for super in node.heritage -%}
     {{- arrow() }}
     <code>
-      {%- if super.location -%}
-        {{ locationLink(super.location, super.name) }}
-      {%- else -%}
-        {{- super.name -}}
-      {%- endif -%}
+      {{- type(super) -}}
     </code>
   {%- endfor -%}
 {% endmacro %}
@@ -117,6 +125,9 @@ eleventyComputed:
 
     {%- elif t.location -%}
       {{- locationLink(t.location, t.name) -}}
+
+    {%- elif t.externalLocation -%}
+      {{- externalLink(t.externalLocation.url, t.name) -}}
 
     {%- elif t.type == "literal" -%}
       {%- if t.value == null -%}

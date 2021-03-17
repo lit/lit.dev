@@ -129,6 +129,10 @@ h3 {
   /* Less space between sections than on guide */
   padding-top: 0 !important;
 }
+.mdnIcon {
+  opacity: 60%;
+  vertical-align: middle;
+}
 
 /* Mobile layout */
 @media (max-width: 864px) {
