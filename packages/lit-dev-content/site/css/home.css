@@ -61,7 +61,7 @@ p {
   background: white;
 }
 
-.homeExample > h4 {
+.homeExample > figcaption {
   background: var(--color-blue);
   color: white;
   margin: 0;
@@ -75,7 +75,7 @@ p {
 
 .homeExample .CodeMirror {
   margin: 0;
-  padding: 1.2em 2em;
+  padding: 1.2em 1.3em;
   border: none;
   font-size: 0.77778em;
 }

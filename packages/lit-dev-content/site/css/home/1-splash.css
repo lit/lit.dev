@@ -34,7 +34,7 @@
   position: absolute;
 }
 
-#intro > h2 {
+#intro > .homeSectionHeading {
   border-top: 2px solid var(--color-blue);
   margin: 2em 0 1em 0;
 }
@@ -149,6 +149,6 @@
 
   #helloWorld .code {
     /* In proportion to view width so it always fits. */
-    font-size: calc(1vw * 3);
+    font-size: calc(1vw * 2.9);
   }
 }

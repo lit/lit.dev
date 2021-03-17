@@ -15,6 +15,14 @@ body.roboto {
 }
 
 /* ------------------------------------
+ * manrope docs
+ * ------------------------------------ */
+
+body.docsManrope article {
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* ------------------------------------
  * headerWhite
  * ------------------------------------ */
 
@@ -191,4 +199,15 @@ body.roboto {
 .footerNarrow footer > nav {
   max-width: var(--content-max-width);
   margin: auto;
+}
+
+/* ------------------------------------
+ * docsSectionBorderBelow
+ * ------------------------------------ */
+
+.docsSectionBorderBelow article h2 {
+  border-top: none !important;
+  padding: 1em 0 0.5em 0 !important;
+  margin-top: 1.2em !important;
+  border-bottom: 1.5px solid #d1d1d1 !important;
 }
