@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-Class mixins are a standard Javascript code pattern for sharing code
+Class mixins are a standard JavaScript code pattern for sharing code
 between classes. As opposed to "has-a" composition patterns like [reactive
 controllers](../controllers/), where a class can _own_ a controller to add
 behavior, mixins implement "is-a" composition, where the mixin causes the class
@@ -18,14 +18,14 @@ You can use mixins to customize a Lit component by adding API or overriding its 
 
 Mixins can be thought of as "subclass factories" that override the class they
 are applied to and return a subclass, extended with the behavior in the mixin.
-Because mixins are implemented using standard Javascript class expressions, they
+Because mixins are implemented using standard JavaScript class expressions, they
 can use all of the idioms available to subclassing, such as adding new
 fields/methods, overriding existing superclass methods, and using `super`.
 
 <div class="alert alert-info">
 
 For ease of reading, the samples on this page elide some of the TypeScript types
-for mixin functions. See [Mixins in TypeScript](#mixins-in-typescript) for details on proper
+for mixin functions. See [Mixins in TypeScript](#mixins-in-TypeScript) for details on proper
 typing of mixins in TypeScript.
 
 </div>
@@ -56,7 +56,21 @@ class MyElement extends MyMixin(LitElement) {
 }
 ```
 
-For more information on the standard mixin code pattern, see [For more reading](#for-more-reading) below.
+Because class mixins are a standard JavaScript pattern and not Lit-specific,
+there is a good deal of information in the community on leveraging mixins for
+code reuse. For more reading on mixins, here are a few good references:
+
+* [Class mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#mix-ins) on MDN
+* [Real Mixins with JavaScript
+  Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-JavaScript-classes/)
+  by Justin Fagnani
+* [Mixins](https://www.TypeScriptlang.org/docs/handbook/mixins.html) in the TypeScript handbook.
+* [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/) by
+  open-wc, including a discussion of when mixin usage may lead to duplication,
+  and how to use a deduping library to avoid it.
+* [Mixin conventions](https://component.kitchen/elix/mixins) followed by Elix
+  web component library. While not Lit-speciic, contains thoughtful suggestions
+  around applying conventions when defining mixins for web components.
 
 ## Creating mixins for LitElement
 
@@ -146,9 +160,13 @@ subclass generated using the mixin pattern, it has a severe limitation in that
 the inferred class must not contain members with `private` or `protected`
 access modifiers.
 
+<div class="alert alert-info">
+
 Because `LitElement` itself does have private and protected members, by default
 TypeScript will error with _"Property '...' of exported class expression may not
 be private or protected."_ when returning a class that extends `LitElement`.
+
+</div>
 
 Luckily, there are two workarounds that both involve casting the return type
 from the mixin function to avoid the error above.
@@ -211,17 +229,6 @@ In practice this means mixins in TypeScript need to declare a class
 and then return it, rather than return a class expression directly from the
 arrow function.
 
-Not supported:
-```ts
-export const MyMixin = <T extends LitElementConstructor>(superClass: T) =>
-  // ❌ Returning class expression direcly using arrow-function shorthand
-  class extends superClass {
-    @property()
-    mode = 'on';
-    /* ... */
-  }
-```
-
 Supported:
 ```ts
 export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
@@ -235,20 +242,13 @@ export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
 }
 ```
 
-## For more reading
-
-Because class mixins are a standard Javascript pattern and not Lit-specific,
-there is a good deal of information in the community on leveraging mixins for
-code reuse. Here are a few good references:
-
-* [Class mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#mix-ins) on MDN
-* [Real Mixins with JavaScript
-  Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
-  by Justin Fagnani
-* [Mixins](https://www.typescriptlang.org/docs/handbook/mixins.html) in the TypeScript handbook.
-* [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/) by
-  open-wc, including a discussion of when mixin usage may lead to duplication,
-  and how to use a deduping library to avoid it.
-* [Mixin conventions](https://component.kitchen/elix/mixins) followed by Elix
-  web component library. While not Lit-speciic, contains thoughtful suggestions
-  around applying conventions when defining mixins for web components.
+Not supported:
+```ts
+export const MyMixin = <T extends LitElementConstructor>(superClass: T) =>
+  // ❌ Returning class expression direcly using arrow-function shorthand
+  class extends superClass {
+    @property()
+    mode = 'on';
+    /* ... */
+  }
+```
