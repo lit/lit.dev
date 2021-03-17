@@ -83,7 +83,8 @@ copy-button:hover {
 }
 
 /* Top-level function signatures */
-.signature > code {
+.signature > code,
+.typeSignature > code {
   font-size: 1em !important;
   background: transparent !important;
   padding-left: 0 !important;

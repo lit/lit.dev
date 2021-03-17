@@ -70,6 +70,14 @@ eleventyComputed:
     {%- elif t.operator == 'readonly' and t.target.type == 'array' -%}
       ReadonlyArray&lt;{{- type(t.target.elementType) -}}&gt;
 
+    {%- elif t.operator == 'keyof' -%}
+      keyof {{ type(t.target) }}
+
+    {%- elif t.type == 'conditional' -%}
+      {{ type(t.checkType) }} ?
+      {{ type(t.trueType) }} :
+      {{ type(t.falseType) }}
+
     {%- elif t.type == 'union' -%}
       {%- set pipe = joiner(' | ') -%}
       {%- for item in t.types -%}
@@ -94,7 +102,7 @@ eleventyComputed:
     {%- elif t.type == 'reflection' -%}
       {{- type(t.declaration) -}}
 
-    {%- elif t.kindString == 'Type literal' and t.children -%}
+    {%- elif (t.kindString == 'Interface' or t.kindString == 'Type literal') and t.children -%}
       {
         {%- set comma = joiner(', ') -%}
         {%- for prop in t.children -%}
@@ -235,7 +243,12 @@ eleventyComputed:
       <h3>Parameters</h3>
       {{ params(export) }}
     {% endif %}
+
+  {% elif export.type %}
+    <h3>Type</h3>
+    <code class="typeSignature">{{ type(export.type) }}</code>
   {% endif %}
+
 
   {% if export.comment.text %}
     <h3>Details</h3>
