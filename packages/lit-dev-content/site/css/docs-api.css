@@ -72,7 +72,7 @@ copy-button:hover {
 }
 
 /* Types and keywords */
-.staticKeyword, .newKeyword {
+.staticKeyword, .newKeyword, .readonlyKeyword {
   font-style: italic;
 }
 .functionName, .propertyName {

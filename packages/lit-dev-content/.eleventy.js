@@ -134,6 +134,11 @@ ${content}
     return md.render(content);
   });
 
+  /**
+   * Render the `typeof` of the given value.
+   */
+  eleventyConfig.addFilter('typeof', (value) => typeof value);
+
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
     fsSync.readFileSync('../lit-dev-api/api-data/symbols.json', 'utf8')
