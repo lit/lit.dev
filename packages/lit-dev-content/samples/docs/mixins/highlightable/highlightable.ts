@@ -3,12 +3,17 @@ import { LitElement, css, html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { property } from 'lit/decorators/property.js';
 
-type LitElementConstructor = new (...args: any[]) => LitElement;
+type Constructor<T> = new (...args: any[]) => T;
+
+export declare class HighlightableInterface {
+  highlight: boolean;
+  renderHighlight(content: unknown): unknown;
+}
 /* playground-fold-end */
 
 export const Highlightable =
-  <T extends LitElementConstructor>(superClass: T) => {
-    class HighlightableSubclass extends superClass {
+  <T extends Constructor<LitElement>>(superClass: T) => {
+    class HighlightableElement extends superClass {
       // Adds some styles...
       static styles = css`.highlight { background: yellow; }`
 
@@ -23,5 +28,5 @@ export const Highlightable =
           </div>`;
         }
       }
-      return HighlightableSubclass;
+      return HighlightableElement as Constructor<HighlightableInterface> & T;
     };

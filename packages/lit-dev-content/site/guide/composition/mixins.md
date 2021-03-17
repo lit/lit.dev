@@ -26,13 +26,13 @@ fields/methods, overriding existing superclass methods, and using `super`.
 <div class="alert alert-info">
 
 For ease of reading, the samples on this page elide some of the TypeScript types
-for mixin functions. See [below](#mixins-in-typescript) for details on proper
+for mixin functions. See [Mixins in TypeScript](#mixins-in-typescript) for details on proper
 typing of mixins in TypeScript.
 
 </div>
 
 To define a mixin, write a function that takes a
-`superClass`, and returns a new class that extends it, adding fields & methods
+`superClass`, and returns a new class that extends it, adding fields and methods
 as needed:
 
 ```ts
@@ -57,7 +57,7 @@ class MyElement extends MyMixin(LitElement) {
 }
 ```
 
-For more reading on the standard mixin code pattern, [see below](#for-more-reading).
+For more information on the standard mixin code pattern, see [For more reading](#for-more-reading) below.
 
 ## Creating mixins for LitElement
 
@@ -91,7 +91,7 @@ Note that a mixin should always super to the standard custom elmeent lifecycle
 methods implemented by `LitElement`. When overriding a reactive update lifecycle
 callback, it is good practice to call the super method if it already exists on
 the superclass (as shown above with the optional-chaining call to
-`super.updated.?()`).
+`super.updated?.()`).
 
 Also note that mixins can choose to do work either before or after the base
 implementation of the standard lifecycle callbacks via its choice of when to
@@ -100,7 +100,7 @@ make the super call.
 Mixins can also add [reactive properties](../../components/properties/),
 [styles](../../components/styles/), and and API to the subclassed element.
 
-The mixin in the example below adds a reactive property `highlight` to the
+The mixin in the example below adds a `highlight` reactive property to the
 element and a `renderHighlight` method that the user can call to wrap some
 content will be styled yellow when the `highlight` property/attribute is set.
 
@@ -117,40 +117,89 @@ documented by the mixin author.
 When writing `LitElement` mixins in TypeScript, there are a few details to be
 aware of.
 
-### Constraining the superclass
+### Typing the superclass
 
-You should use a generic type to constrain the `superClass` argument to the type
-of class you expect users to extend, if any. When writing mixins that apply to
-`LitElement`, you can use the `LitElementConstructor` type from `lit`:
+You should constrain the `superClass` argument to the type of class you expect
+users to extend, if any. This can be accomplished using a generic `Constructor`
+helper type as shown below:
 
 ```ts
-import {LitElementConstructor} from 'lit';
+import {LitElement} from 'lit';
 
-export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
+type Constructor<T = {}> = new (...args: any[]) => T;
+
+export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
   class MyMixinClass extends superClass {
     /* ... */
   };
-  return MyMixinClass;
+  return MyMixinClass as /* see "typing the subclass" below */;
 }
 ```
 
-This ensures that the class being passed to the mixin extends from `LitElement`,
-so that your mixin can rely on callabcks and other API provided by Lit.
+The above example ensures that the class being passed to the mixin extends from
+`LitElement`, so that your mixin can rely on callabcks and other API provided by
+Lit.
 
-If your mixin depends on extending some other class (for example, a base class
-of your own making), you can use a generic `Constructor` type helper to
-constrain the `superClass` type to any class you choose:
+### Typing the subclass
+
+Although TypesScript has nominal support for inferring the return type for the
+subclass generated using the mixin pattern, it has a severe limitation in that
+the inferred class must not contain members with `private` or `protected`
+access modifiers.
+
+Because `LitElement` itself does have private and protected members, by default
+TypeScript will error with _"Property '...' of exported class expression may not
+be private or protected."_ when returning a class that extends `LitElement`.
+
+Luckily, there are two workarounds that both involve casting the return type
+from the mixin function to avoid the error above.
+
+#### When mixin does not add new API
+
+If your mixin only overrides `LitElement` methods or properties and does not
+add any new API of its own, you can simply cast the generated class to the super
+class type `T` that was passed in:
 
 ```ts
-type Constructor<T = {}> = new (...args: any[]) => T;
-
-export const MyMixin = <T extends Constructor<SomeBaseClass>>(superClass: T) => {
+export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
   class MyMixinClass extends superClass {
-    /* ... */
+    connectedCallback() {
+      super();
+      this.doSomethingPrivate();
+    }
+    private doSomethingPrivate() {
+      /* does not need to be part of the interface */
+    }
   };
-  return MyMixinClass;
+  // Cast return type to the supeClass type passed in
+  return MyMixinClass as T;
+}
+```
+
+#### When mixin adds new API
+
+If your mixin does add new protected or public API that you need users to be
+able to use on their class, you will need to define the interface for the mixin
+separate from the implementation, and cast the return type as the intersection
+of your mixin interface and the super class type:
+
+```ts
+// Define the interface for the mixin
+export declare class MyMixinInterface {
+  highlight: boolean;
+  protected renderHighlight(): unknown;
 }
 
+export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
+  class MyMixinClass extends superClass {
+    @property() highlight = false;
+    protected renderHighlight() {
+      /* ... */
+    }
+  };
+  // Cast return type to your mixin's interface intersected with the super class
+  return MyMixinClass as Constructor<MyMixinInterface> & T;
+}
 ```
 
 ### Applying decorators in mxins
@@ -187,53 +236,6 @@ export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
 }
 ```
 
-### Protected and private members
-
-As a current limitation of the type system, TypeScript does not support adding
-class members with `private` or `protected` access modifiers via a mixin.
-
-Not supported:
-```ts
-export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
-  class MyMixinClass extends superClass {
-    @state()
-    // ❌ Typescript does not support private access modifiers in mixins
-    private wasClicked = false;
-    /* ... */
-  }
-  return MyMixinClass;
-}
-```
-
-As an alternative, we recommend using symbols for hiding private fields/methods
-referenced internally by the mixin when necessary. This can also serve to help
-avoid naming collisions with users of the mixin. For example:
-
-```ts
-const wasClicked = Symbol();
-
-export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
-  class MyMixinClass extends superClass {
-    @state()
-    [wasClicked] = false;
-
-    constructor() {
-      super();
-      this.addEventListener('click', () => this[wasClicked] = true);
-    }
-
-    renderClickedState() {
-      return html`<div>${this[wasClicked] ? 'Clicked!' : 'Waiting...'}</div>`;
-    }
-  };
-  return MyMixinClass;
-}
-```
-
-For more details on writing mixins in TypeScript, refer to
-[Mixins](https://www.typescriptlang.org/docs/handbook/mixins.html) in the
-TypeScript handbook.
-
 ## For more reading
 
 Because class mixins are a standard Javascript pattern and not Lit-specific,
@@ -244,6 +246,7 @@ code reuse. Here are a few good references:
 * [Real Mixins with JavaScript
   Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
   by Justin Fagnani
+* [Mixins](https://www.typescriptlang.org/docs/handbook/mixins.html) in the TypeScript handbook.
 * [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/) by
   open-wc, including a discussion of when mixin usage may lead to duplication,
   and how to use a deduping library to avoid it.
