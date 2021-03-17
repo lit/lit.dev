@@ -101,7 +101,56 @@ const symbolOrder = [
   'css',
   'svg',
   'render',
+  'ReactiveElement.properties',
+  'ReactiveElement.styles',
 ];
+
+const indexOfOrInfinity = <T extends string>(
+  array: ReadonlyArray<T>,
+  item: T
+) => {
+  const idx = array.indexOf(item);
+  return idx === -1 ? Infinity : idx;
+};
+
+/**
+ * Determines order of symbols within a page, and of properties/methods appear
+ * within a class/interface.
+ */
+const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
+  // Constructor before other methods
+  const aConstructor = a.kindString === 'Constructor';
+  const bConstructor = b.kindString === 'Constructor';
+  if (aConstructor && !bConstructor) {
+    return -1;
+  }
+  if (!aConstructor && bConstructor) {
+    return 1;
+  }
+  // Static before non-static
+  const aStatic = a.flags?.isStatic;
+  const bStatic = b.flags?.isStatic;
+  if (aStatic && !bStatic) {
+    return -1;
+  }
+  if (!aStatic && bStatic) {
+    return 1;
+  }
+  // Hard-coded orderings
+  const idxA = indexOfOrInfinity(
+    symbolOrder,
+    (a as ExtendedDeclarationReflection).location?.anchor ?? a.name
+  );
+  const idxB = indexOfOrInfinity(
+    symbolOrder,
+    (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
+  );
+  if (idxA !== idxB) {
+    return idxA - idxB;
+  }
+  // Lexicographic
+  return a.name.localeCompare(b.name);
+};
 
 /**
  * Determine which generated API docs page the given TypeDoc reflection object
@@ -236,6 +285,7 @@ class Transformer {
     // generate cross-references.
     const secondPassVisit = async (node: DeclarationReflection) => {
       this.promoteVariableFunctions(node);
+      this.promoteAccessorTypes(node);
       this.promoteSignatureComments(node);
       this.expandTransitiveHeritage(node);
       this.addLocationsForAllIds(node);
@@ -246,9 +296,11 @@ class Transformer {
         this.setGithubUrl(source);
         this.setImportModuleSpecifier(source);
       }
-
-      for (const child of node.children ?? []) {
-        await secondPassVisit(child);
+      if (node.children) {
+        for (const child of node.children) {
+          await secondPassVisit(child);
+        }
+        node.children.sort(symbolSortFn);
       }
     };
     await secondPassVisit(this.project);
@@ -350,9 +402,22 @@ class Transformer {
   }
 
   /**
+   * TypeDoc nests type information for getters/setters. Promote them so that
+   * they can be treated more uniformly with properties.
+   */
+  private promoteAccessorTypes(node: DeclarationReflection) {
+    if (node.kindString !== 'Accessor') {
+      return;
+    }
+    if (node.getSignature?.[0]) {
+      node.type = node.getSignature[0].type;
+    }
+  }
+
+  /**
    * For functions, TypeDoc put comments inside the signatures property, instead
    * of directly in the function node. Hoist these comments up so that we can
-   * treat comments uniformly
+   * treat comments uniformly.
    */
   private promoteSignatureComments(node: DeclarationReflection) {
     if (!node.comment?.shortText && node.signatures?.[0]?.comment?.shortText) {
@@ -593,14 +658,6 @@ class Transformer {
       children,
     }));
 
-    const indexOfOrInfinity = <T extends string>(
-      array: ReadonlyArray<T>,
-      item: T
-    ) => {
-      const idx = array.indexOf(item);
-      return idx === -1 ? Infinity : idx;
-    };
-
     // Sort pages
     pagesArray.sort(({name: a}, {name: b}) => {
       const idxA = indexOfOrInfinity(pageOrder, a);
@@ -610,18 +667,6 @@ class Transformer {
       }
       return a.localeCompare(b);
     });
-
-    // Sort symbols within pages
-    for (const {children} of pagesArray) {
-      children.sort(({name: a}, {name: b}) => {
-        const idxA = indexOfOrInfinity(symbolOrder, a);
-        const idxB = indexOfOrInfinity(symbolOrder, b);
-        if (idxA !== idxB) {
-          return idxA - idxB;
-        }
-        return a.localeCompare(b);
-      });
-    }
 
     return pagesArray;
   }
