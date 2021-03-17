@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 4
 ---
 
-This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to _publishing_ a reusable Lit component to npm, see [Publishing](../publishing/).
+This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to publishing a reusable Lit _component_ to npm, see [Publishing](../publishing/).
 
 When building an application that includes Lit components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/) to prepare your source code and dependencies for serving in a production environment.
 
