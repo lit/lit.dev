@@ -6,14 +6,13 @@ eleventyNavigation:
   order: 3
 ---
 
-Javascript class mixins are a stadard Javascript code pattern for sharing code
+Class mixins are a standard Javascript code pattern for sharing code
 between classes. As opposed to "has-a" composition patterns like [reactive
 controllers](../controllers/), where a class can _own_ a controller to add
-behavior, mixins implement "is-a" composition, where the mixins causes the class
+behavior, mixins implement "is-a" composition, where the mixin causes the class
 itself to _be_ an instance of the behavior being shared.
 
-Mixins can be useful for adding behavior to Lit component classes by adding to
-or overriding their lifecycle callbacks and adding API to the class.
+You can use mixins to customize a Lit component by adding API or overriding its lifecycle callbacks.
 
 ## Mixin basics
 
@@ -62,9 +61,9 @@ For more information on the standard mixin code pattern, see [For more reading](
 ## Creating mixins for LitElement
 
 Mixins applied to LitElement can implement or override any of the standard
-[custom element lifecycle](../components/lifecycle/#custom-element-lifecycle)
+[custom element lifecycle](/guide/components/lifecycle/#custom-element-lifecycle)
 callbacks like the `constructor()` or `connectedCallback()`, as well as any of
-the [reactive update lifecycle](../components/lifecycle/#reactive-update-cycle)
+the [reactive update lifecycle](/guide/components/lifecycle/#reactive-update-cycle)
 callbacks like `render()` or `updated()`.
 
 For example, the following mixin would log when the element is created,
@@ -164,7 +163,7 @@ class type `T` that was passed in:
 export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
   class MyMixinClass extends superClass {
     connectedCallback() {
-      super();
+      super.connectedCallback();
       this.doSomethingPrivate();
     }
     private doSomethingPrivate() {
