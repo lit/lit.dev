@@ -41,17 +41,26 @@ const MyMixin = (superClass) => class extends superClass {
 ```
 
 To apply a mixin, simply pass a class to generate a subclass with the mixin
-applied:
-
-```ts
-const LitElementWithMixin = MyMixin(LitElement);
-```
-
-Most commonly, users will apply the mixin directly to a base class when defining
+applied. Most commonly, users will apply the mixin directly to a base class when defining
 a new class:
 
 ```ts
 class MyElement extends MyMixin(LitElement) {
+  /* user code */
+}
+```
+
+Mixins can also be used to create concrete subclasses that users can then extend
+like a normal class, where the mixin is an implementation detail:
+
+```ts
+export const LitElementWithMixin = MyMixin(LitElement);
+```
+
+```ts
+import {LitElementWithMixin} from './lit-element-with-mixin.js';
+
+class MyElement extends LitElementWithMixin {
   /* user code */
 }
 ```
