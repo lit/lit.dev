@@ -6,9 +6,8 @@ eleventyNavigation:
   order: 3
 ---
 
-Class mixins are a standard JavaScript code pattern for sharing code
-between classes. As opposed to "has-a" composition patterns like [reactive
-controllers](../controllers/), where a class can _own_ a controller to add
+Class mixins are a pattern for sharing code between classes using standard JavaScript. As opposed to "has-a" composition patterns like [reactive
+controllers](/guide/composition/controllers/), where a class can _own_ a controller to add
 behavior, mixins implement "is-a" composition, where the mixin causes the class
 itself to _be_ an instance of the behavior being shared.
 
@@ -119,17 +118,17 @@ Also note that mixins can choose to do work either before or after the base
 implementation of the standard lifecycle callbacks via its choice of when to
 make the super call.
 
-Mixins can also add [reactive properties](../../components/properties/),
-[styles](../../components/styles/), and and API to the subclassed element.
+Mixins can also add [reactive properties](/guide/components/properties/),
+[styles](/guide/components/styles/), and API to the subclassed element.
 
 The mixin in the example below adds a `highlight` reactive property to the
-element and a `renderHighlight` method that the user can call to wrap some
-content will be styled yellow when the `highlight` property/attribute is set.
+element and a `renderHighlight()` method that the user can call to wrap some
+content. The wrapped content is styled yellow when the `highlight` property/attribute is set.
 
 {% playground-ide "docs/mixins/highlightable/" "highlightable.ts" %}
 
 Note in the example above, the user of the mixin is expected to call the
-`renderHighlight` method from their `render` method, as well as take care to add
+`renderHighlight()` method from their `render()` method, as well as take care to add
 the `static styles` defined by the mixin to the subclass styles. The nature of
 this contract between mixin and user is up to the mixin definition and should be
 documented by the mixin author.
@@ -205,8 +204,8 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
 #### When a mixin adds new public/protected API
 
 If your mixin does add new protected or public API that you need users to be
-able to use on their class, you will need to define the interface for the mixin
-separate from the implementation, and cast the return type as the intersection
+able to use on their class, you need to define the interface for the mixin
+separately from the implementation, and cast the return type as the intersection
 of your mixin interface and the super class type:
 
 ```ts
