@@ -21,17 +21,7 @@ Lit also provides a `repeat` directive to build certain kinds of dynamic lists m
 
 When an expression in the child position in returns an array or iterable, Lit renders all of the items in the array:
 
-```js
-render() {
-  const colors = ['red', 'green', 'blue'];
-  return html`<p>Colors: ${colors}</p>`;
-}
-```
-This renders the following HTML:
-
-```
-<p>Colors: redgreenblue</p>
-```
+{% playground-example "docs/templates/lists-arrays/" "my-element.ts" %}
 
 In most cases, you'll want to transform the array items into a more useful form.
 
@@ -39,17 +29,7 @@ In most cases, you'll want to transform the array items into a more useful form.
 
 To render lists, you can use `map` to transform a list of data into a list of templates:
 
-```js
-render() {
-  return html`
-    <ul>
-      ${this.items.map((item) =>
-        html`<li>${item}</li>`
-      )}
-    </ul>
-  `;
-}
-```
+{% playground-example "docs/templates/lists-map/" "my-element.ts" %}
 
 Note that this expression returns an array of `TemplateResult` objects. Lit will render an array or iterable of subtemplates and other values.
 
@@ -57,17 +37,19 @@ Note that this expression returns an array of `TemplateResult` objects. Lit will
 
 You can also build an array of templates and pass it into a template expression.
 
-```js
-const itemTemplates = [];
-for (const i of items) {
-  itemTemplates.push(html`<li>${i}</li>`);
-}
+```ts
+render() {
+  const itemTemplates = [];
+  for (const i of this.items) {
+    itemTemplates.push(html`<li>${i}</li>`);
+  }
 
-html`
-  <ul>
-    ${itemTemplates}
-  </ul>
-`;
+  return html`
+    <ul>
+      ${itemTemplates}
+    </ul>
+  `;
+}
 ```
 
 ## The repeat directive
@@ -88,18 +70,7 @@ Where:
 
 For example:
 
-```js
-import {html} from 'lit-html';
-import {repeat} from 'lit-html/directives/repeat.js';
-
-const employeeList = (employees) => html`
-  <ul>
-    ${repeat(employees, (employee) => employee.id, (employee, index) => html`
-      <li>${index}: ${employee.familyName}, ${employee.givenName}</li>
-    `)}
-  </ul>
-`;
-```
+{% playground-example "docs/templates/lists-repeat/" "my-element.ts" %}
 
 If you re-sort the `employees` array, the `repeat` directive reorders the existing DOM nodes.
 
