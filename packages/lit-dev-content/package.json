@@ -29,6 +29,7 @@
     "eleventy-plugin-nesting-toc": "^1.1.0",
     "fast-glob": "^3.2.5",
     "html-minifier": "^4.0.0",
+    "lit-dev-api": "^0.0.0",
     "lit-dev-tools": "^0.0.0",
     "markdown-it": "^12.0.4",
     "markdown-it-anchor": "^7.0.2",
@@ -48,7 +49,8 @@
     "@material/mwc-snackbar": "^0.20.0",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "playground-elements": "^0.6.0",
+    "luxon": "^1.26.0",
+    "playground-elements": "^0.6.2",
     "tarts": "^1.0.0"
   }
 }

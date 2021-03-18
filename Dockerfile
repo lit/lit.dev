@@ -1,35 +1,49 @@
-# Use the official lightweight Node.js 15 image.
+# Official lightweight Node.js image
 # https://hub.docker.com/_/node
 FROM node:15-slim
 
-# Dependencies of Playwright Chromium.
 RUN apt-get update && apt-get install -y --no-install-recommends \
+  # Dependencies of Playwright Chromium for Playground SSR
   libgtk-3-0 \
   libnss3 \
-  libasound2
+  libasound2 \
+  # Git needed for cloning Lit monorepo for API docs generation
+  git \
+  # Certificates needed for Git HTTPS
+  ca-certificates
 
-# Create and change to the app directory.
+# Arbitrary but conventional working directory
 WORKDIR /usr/src/app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
-# Copying this first prevents re-running npm install on every code change.
+# Note we isolate work across sub-packages below, organized from least to most
+# likely to change, to maximize Docker filesystem layer cache hits. For
+# example, organized this way a site content only change will usually only need
+# to execute the final Eleventy build step.
+
+# External dependencies
 COPY package*.json lerna.json ./
-COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
-COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
 COPY packages/lit-dev-tools/package*.json ./packages/lit-dev-tools/
+COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
+COPY packages/lit-dev-api/package*.json ./packages/lit-dev-api/
+COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
+RUN npm ci && npm run bootstrap
 
-# Install production dependencies.
-# If you add a package-lock.json, speed your build by switching to 'npm ci'.
-# RUN npm ci --only=production
-RUN npm i
+# Tooling code
+COPY packages/lit-dev-tools/ ./packages/lit-dev-tools/
+COPY packages/lit-dev-server/ ./packages/lit-dev-server/
+RUN npx lerna run build:ts --scope lit-dev-tools --scope lit-dev-server --stream --parallel
 
-RUN npm run bootstrap
+# Generated API docs
+COPY packages/lit-dev-api/ ./packages/lit-dev-api/
+RUN npx lerna run build --scope lit-dev-api --stream && \
+  # By cloning and deleting the Lit monorepo checkout all within the same RUN
+  # command, we avoid ever including any Lit monorepo files in our Docker
+  # filesystem layers.
+  rm -rf packages/lit-dev-api/lit/
 
-# Copy local code to the container image.
-COPY . ./
-
-RUN npm run build
+# Site content
+COPY packages/lit-dev-content/ ./packages/lit-dev-content/
+RUN npx lerna run build --scope lit-dev-content --stream
 
 # Run the web service on container startup.
 #

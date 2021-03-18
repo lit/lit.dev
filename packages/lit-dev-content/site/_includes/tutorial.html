@@ -1,0 +1,50 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "tutorial.css" %}
+  {% inlinejs "docs.js" %}
+{% endblock %}
+
+{% block drawer %}
+  {% include 'eleventy-nav.html' %}
+{% endblock %}
+
+{% block content %}
+  <div class="tutorial">
+    <div class="tutorial-text">
+      <h1>{{ title }}</h1>
+      {{ content | safe }}
+      <div class="internal-nav">
+        <a href="{{site.baseurl}}/{{prev}}"><button  {{"disabled" if not prev}}>Prev</button></a>
+        <a href="{{site.baseurl}}/{{next}}""><button  {{"disabled" if not next}}>Next</button></a>
+
+        <button data-url="{{site.baseurl}}/{{startingSrc}}" id="reset">Reset</button>
+        <button data-url="{{site.baseurl}}/{{finishedSrc}}" id="finish">Show completed</button>
+      </div>
+    </div>
+
+  <playground-ide
+    project-src="{{site.baseurl}}/{{startingSrc}}"
+    resizable
+    line-numbers
+    editable-file-system>
+  </playground-ide>
+
+
+  </div>
+  <script>
+    // bad code alert
+    const resetButton = document.querySelector('button#reset');
+    const finishButton = document.querySelector('button#finish');
+    const editor = document.querySelector('playground-ide');
+    const listener = (e) => {
+      // Set src to empty string first, so the URL always appears to
+      // the editor as a "new" project.
+      editor.projectSrc = '';
+      editor.projectSrc = e.target.dataset.url;
+    }
+    [resetButton, finishButton].forEach((button) => {
+      button.addEventListener('click', listener)
+    })
+  </script>
+{% endblock %}

@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Generate preview URL
         id: gen-url
-        run: echo "::set-output name=url::https://pr${{ github.event.number }}-$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)---lit-dev-bvxw3ycs6q-uw.a.run.app/"
+        run: echo "::set-output name=url::https://pr${{ github.event.number }}-$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)---lit-dev-5ftespv5na-uc.a.run.app/"
 
       # https://github.com/peter-evans/find-comment
       - name: Find existing comment
@@ -35,7 +35,7 @@ jobs:
           body: |
             A live preview of this PR will be available at the URL(s) below.
             The latest URL will be appended to this comment on each push.
-            Each build usually takes around 7 minutes, and will 404 until finished.
+            Each build takes ~5-10 minutes, and will 404 until finished.
 
             ${{ steps.gen-url.outputs.url }}
           reactions: eyes

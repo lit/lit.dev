@@ -61,6 +61,32 @@ global:
 {% endif %}
 ```
 
+### Update generated API docs
+
+First run `npm run dev` as shown above, and then in another terminal:
+
+```sh
+cd packages/lit-dev-api
+npm run build:watch
+```
+
+You can now edit the comments in any `.ts` file in the `lit` directory,
+and after the automatic rebuild, the dev site will refresh.
+
+```sh
+code packages/lit-dev-api/lit/
+```
+
+The `lit` directory is a regular cloned git repo, so you can make changes
+directly here, and push PRs from it as normal. It's configured to track the
+`lit-next` branch, but is pinned to a particular commit via the `lit.sha` file.
+To update the current commit, run:
+
+```sh
+cd packages/lit-dev-tools
+npm run monorepo:update
+```
+
 ### Serve production mode
 
 ```sh

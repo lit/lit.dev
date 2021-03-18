@@ -25,7 +25,7 @@ html`<h1>Hello ${name}</h1>`
 One editable file from a project, with a preview right below.
 
 Arguments:
-1. Path of the project dir from `site/_includes/projects/PATH/project.json`.
+1. Path of the project dir from `samples/PATH/project.json`.
 2. Filename from project to show.
 
 Additional `project.json` config options:
@@ -33,17 +33,17 @@ Additional `project.json` config options:
 - `previewHeight`: Height of the preview in pixels (default `120px`).
 
 ```
-{% raw %}{% playground-example "docs/templates/define" "my-element.js" %}{% endraw %}
+{% raw %}{% playground-example "docs/templates/define" "my-element.ts" %}{% endraw %}
 ```
 
-{% playground-example "docs/templates/define" "my-element.js" %}
+{% playground-example "docs/templates/define" "my-element.ts" %}
 
 ## Full IDE
 
 Fully editable playground project, with preview to the side.
 
 Arguments:
-1. (Required) Path of the project dir from `site/_includes/projects/PATH/project.json`.
+1. (Required) Path of the project dir from `samples/PATH/project.json`.
 
 ```
 {% raw %}{% playground-ide "docs/templates/define" %}{% endraw %}

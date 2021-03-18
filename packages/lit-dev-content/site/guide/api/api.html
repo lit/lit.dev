@@ -1,0 +1,23 @@
+---
+pagination:
+    data: api-docs-pages
+    size: 1
+    alias: module
+    addAllPagesToCollections: true
+
+permalink: "guide/api/{{ module.name }}/"
+
+eleventyComputed:
+    title: "{{ module.name | capitalize }}"
+    eleventyNavigation:
+        key: "{{ module.name | capitalize }}"
+        parent: API
+---
+
+{% for export in module.children %}
+  <h2 id="{{ export.location.anchor }}">
+    {{ export.name }}
+  </h2>
+
+  <p>{{ export.comment.shortText | markdown | safe }}</p>
+{% endfor %}

@@ -7,26 +7,14 @@ steps:
   #
   # https://docs.docker.com/engine/reference/commandline/build/
   # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  # https://cloud.google.com/build/docs/kaniko-cache
   - id: Build
-    name: gcr.io/cloud-builders/docker
+    name: gcr.io/kaniko-project/executor
     args:
-      - build
-      - '--no-cache'
-      - '-t'
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
-      - .
-      - '-f'
-      - Dockerfile
-
-  # Upload Docker image to Container Registry.
-  #
-  # https://docs.docker.com/engine/reference/commandline/push/
-  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
-  - id: Push
-    name: gcr.io/cloud-builders/docker
-    args:
-      - push
-      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - --dockerfile=./Dockerfile
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - --cache=true
+      - --cache-ttl=168h # 1 week
 
   # Create a new Cloud Run revision.
   #
@@ -73,9 +61,11 @@ steps:
       - '--quiet'
       - '--to-tags=master-$SHORT_SHA=100'
 
-images:
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
-
 tags:
   - lit-dev
   - cloudbuild-main
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+timeout: 45m

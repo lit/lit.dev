@@ -2,18 +2,23 @@
   "name": "lit-dev-tools",
   "private": true,
   "version": "0.0.0",
-  "description": "Misc tools for the lit.dev",
+  "description": "Misc tools for lit.dev",
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "../../node_modules/.bin/tsc",
+    "build": "npm run build:ts",
+    "build:ts": "../../node_modules/.bin/tsc",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
+    "@types/source-map": "^0.5.7",
     "@web/dev-server": "^0.1.6",
     "@web/dev-server-core": "^0.3.5",
+    "fast-glob": "^3.2.5",
     "outdent": "^0.8.0",
-    "playground-elements": "^0.6.0",
-    "playwright": "^1.8.0"
+    "playground-elements": "^0.6.2",
+    "playwright": "^1.8.0",
+    "source-map": "^0.7.3",
+    "typedoc": "^0.20.30"
   }
 }
