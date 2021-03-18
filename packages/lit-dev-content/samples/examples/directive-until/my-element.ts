@@ -6,7 +6,7 @@ const fetchData = async () => {
   const response = await fetch('https://api.mocki.io/v1/b551e5c3');
   const json = await response.json();
   // Add some delay for demo purposes
-  await new Promise<void>((r) => setTimeout(() => r(), 1000);
+  await new Promise<void>((r) => setTimeout(() => r(), 1000));
   return json.data;
 }
 

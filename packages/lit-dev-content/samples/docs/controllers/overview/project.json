@@ -1,7 +1,7 @@
 {
   "files": {
-    "my-element.ts": {},
     "clock-controller.ts": {},
+    "my-element.ts": {},
     "index.html": {}
   },
   "importMap": {
