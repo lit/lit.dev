@@ -196,7 +196,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
       /* does not need to be part of the interface */
     }
   };
-  // Cast return type to the supeClass type passed in
+  // Cast return type to the superClass type passed in
   return MyMixinClass as T;
 }
 ```
@@ -222,7 +222,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
       /* ... */
     }
   };
-  // Cast return type to your mixin's interface intersected with the super class
+  // Cast return type to your mixin's interface intersected with the superClass type
   return MyMixinClass as Constructor<MyMixinInterface> & T;
 }
 ```
