@@ -191,7 +191,7 @@ registering in [Scoped Custom Element
 Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md)
 in the future.
 
-### For more reading
+## For more reading
 
 For a more general guide for creating high-quality reusable web components, see
 the [Gold Standard Checklist for Web
