@@ -1,47 +1,253 @@
 main {
   display: flex;
-  margin: 0;
-  max-width: none;
   /* Remove space usually allotted to the footer. */
   min-height: calc(100vh - var(--header-height));
-  --tutorial-text-width: 50%;
-  overflow: hidden;
-}
-
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-playground-ide {
-  flex: 1;
-  height: 100%;
-}
-
-div.tutorial {
-  display: flex;
-  flex: 1;
-}
-
-div.tutorial-text {
-  flex: 0 0 var(--tutorial-text-width);
-  padding: 20px;
-  min-height: calc(100vh - var(--header-height));
-  overflow: scroll;
-}
-
-div.tutorial-text h1 {
-  font-size: 1.4em;
-}
-
-div.internal-nav {
-  display: block;
-  padding-bottom: 20px;
+  --playground-bar-height: 2.5rem;
 }
 
 footer {
-  /* The footer is a big pain on this page, because we want all the vertical
-  real-estate. */
+  /* No footer on full screen UI. */
   display: none;
+}
+
+litdev-tutorial {
+  flex: 0 0 var(--text-side-width, 50%);
+  background: var(--color-dark-gray);
+  color: white;
+  line-height: 1.8em;
+  min-width: 18em;
+  max-width: 60em;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height));
+}
+
+/* Content */
+
+#tutorialContent {
+  font-size: 0.88889em;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  padding: 0 3em 1em 2em;
+  font-family: "Open Sans", sans-serif;
+}
+
+#tutorialContent[loading] {
+  visibility: hidden;
+}
+
+#tutorialContent > h1 {
+  font-weight: 500;
+  border-bottom: 2px solid #666;
+  padding-bottom: 0.5em;
+  font-size: 1.8em;
+  line-height: 1.3em;
+  font-family: "Manrope", sans-serif;
+}
+
+#tutorialContent a {
+  color: var(--color-dark-cyan);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#tutorialContent a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-dark-cyan);
+}
+
+#tutorialContent figure {
+  margin: 2em 0;
+  padding: 1em 1.5em;
+}
+
+#tutorialContent code:not([class]) {
+  background: rgb(0 0 0 / 25%);
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  font-family: var(--playground-code-font-family, monospace);
+}
+
+#tutorialContent ul,
+#tutorialContent ol {
+  padding-left: 1em;
+}
+
+/* On some platforms like Linux, a traditional scrollbar will be always visible
+  on the nav, which is quite distracting. This reproduces something similar to
+  macOS style on all platforms. */
+#tutorialContent::-webkit-scrollbar {
+  width: 1em;
+}
+#tutorialContent:hover::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.3);
+  background-clip: content-box;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}
+
+/* Tutorial header */
+
+#tutorialHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  padding: 0.5em 3.75em 0.3em 2em;
+}
+
+#tutorialHeader .number {
+  font-weight: bold;
+}
+
+#tutorialHeader .number:first-of-type {
+  margin-left: 0.3em;
+}
+
+#tutorialHeader #nextButton {
+  /** Shift tip of next arrow to edge of content. */
+  margin-right: -20px;
+}
+
+/* Solve/Reset/Next buttons */
+
+#tutorialFooter {
+  border-top: 2px solid #666;
+  padding-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5em;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#tutorialFooter > button {
+  color: white;
+  background: transparent;
+  font-size: 1em;
+  border: 1px solid white;
+  margin-bottom: 0.5em;
+  padding: 0.3em 0.6em;
+  text-align: center;
+  margin-right: 1em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline-color: var(--color-dark-cyan);
+}
+
+#tutorialFooter > button > svg {
+  margin-right: 0.5em;
+}
+
+#tutorialFooter > button:hover {
+  text-decoration: none;
+  background: #2a2a2a;
+}
+
+#tutorialFooter > #nextStep {
+  display: block;
+  text-align: right;
+  flex: 1;
+}
+
+#tutorialFooter > #nextStep > a {
+  margin-left: 0.25em;
+  color: var(--color-dark-cyan);
+}
+
+/* Editor and preview */
+
+#editorAndPreview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Eat space taken by the resize-bar */
+  margin-left: -3px;
+  /* Prevent flex layout problems when typing long lines in CodeMirror. */
+  min-width: 0;
+}
+
+playground-tab-bar {
+  flex: 0 0;
+  background: white;
+  --mdc-typography-button-font-family: "Open Sans", sans-serif;
+}
+
+playground-file-editor {
+  flex: 1 0;
+  height: 0;
+  background: white;
+  border-top: 1.5px solid #ccc;
+  /* Align border with active tab highlight */
+  margin-top: -1.5px;
+  --playground-code-gutter-background: white;
+  --playground-code-gutter-border-right: none;
+}
+
+playground-preview {
+  flex: 0 0 var(--preview-height, 50%);
+  height: unset;
+  min-height: 8em;
+  max-height: calc(100vh - var(--header-height) - 8em);
+  background: var(--color-light-gray);
+  overflow-y: hidden;
+}
+
+playground-preview::part(preview-toolbar) {
+  background: var(--color-light-gray);
+  border-bottom: 1.5px solid #ccc;
+  font-family: "Open Sans", sans-serif;
+  padding-left: 0.8em;
+  font-size: 0.9em;
+}
+
+/* Resize bars */
+
+resize-bar {
+  flex: 0 0 auto;
+}
+
+resize-bar[resizing] {
+  background: var(--color-dark-cyan);
+}
+
+/** Mobile layout */
+
+@media (max-width: 864px) {
+  main {
+    flex-direction: column;
+  }
+
+  #tutorialContent {
+    overflow-y: visible;
+  }
+
+  litdev-tutorial, #editorAndPreview {
+    flex-basis: initial;
+  }
+
+  litdev-tutorial {
+    height: unset;
+  }
+
+  #tutorialFooter > #nextStep {
+    text-align: center;
+    min-width: 100vw;
+  }
+
+  playground-file-editor {
+    flex-basis: auto;
+    height: 350px;
+  }
+
+  playground-preview {
+    flex-basis: auto;
+    height: 200px;
+  }
+
+  resize-bar {
+    display: none;
+  }
 }

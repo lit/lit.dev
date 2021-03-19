@@ -55,7 +55,7 @@ module.exports = function (eleventyConfig) {
       './js/playground-service-worker-proxy.html',
   });
 
-  eleventyConfig.addWatchTarget('../lit-dev-tools/api-data');
+  eleventyConfig.addWatchTarget('../lit-dev-api/api-data');
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
@@ -136,7 +136,7 @@ ${content}
 
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
-    fsSync.readFileSync('../lit-dev-tools/api-data/symbols.json', 'utf8')
+    fsSync.readFileSync('../lit-dev-api/api-data/symbols.json', 'utf8')
   );
 
   /**

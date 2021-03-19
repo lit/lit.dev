@@ -20,7 +20,9 @@ import * as sourceMap from 'source-map';
 const litMonorepoPath = pathlib.resolve(
   __dirname,
   '..',
-  'lit-monorepo-submodule'
+  '..',
+  'lit-dev-api',
+  'lit'
 );
 
 /**
@@ -54,7 +56,14 @@ const tsConfigPath = pathlib.resolve(
 /**
  * Where to write the API data that is consumed by our Eleventy template.
  */
-const pagesOutPath = pathlib.resolve(__dirname, '..', 'api-data', 'pages.json');
+const pagesOutPath = pathlib.resolve(
+  __dirname,
+  '..',
+  '..',
+  'lit-dev-api',
+  'api-data',
+  'pages.json'
+);
 
 /**
  * Where to write the index from $symbol to location object.
@@ -62,6 +71,8 @@ const pagesOutPath = pathlib.resolve(__dirname, '..', 'api-data', 'pages.json');
 const symbolsOutPath = pathlib.resolve(
   __dirname,
   '..',
+  '..',
+  'lit-dev-api',
   'api-data',
   'symbols.json'
 );

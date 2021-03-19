@@ -6,21 +6,14 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "npm run build:ts && npm run submodule:init && npm run build:api",
+    "build": "npm run build:ts",
     "build:ts": "../../node_modules/.bin/tsc",
-    "build:api": "node lib/generate-api-docs-data.js",
-    "build:api:watch": "chokidar 'src/generate-api-docs-data.ts' 'lit-monorepo-submodule/packages/*/src/**/*.ts' -c 'npm run build:ts && npm run submodule:build && npm run build:api' --initial",
-    "submodule:init": "git submodule init lit-monorepo-submodule && git submodule update lit-monorepo-submodule && npm run submodule:install && npm run submodule:build",
-    "submodule:update": "git submodule update lit-monorepo-submodule --remote",
-    "submodule:install": "cd lit-monorepo-submodule && npm ci && npm run bootstrap -- --ci",
-    "submodule:build": "cd lit-monorepo-submodule && npx lerna run build --scope lit-html --scope @lit/reactive-element --scope lit-element --scope lit",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
     "@types/source-map": "^0.5.7",
     "@web/dev-server": "^0.1.6",
     "@web/dev-server-core": "^0.3.5",
-    "chokidar-cli": "^2.1.0",
     "fast-glob": "^3.2.5",
     "outdent": "^0.8.0",
     "playground-elements": "^0.6.2",

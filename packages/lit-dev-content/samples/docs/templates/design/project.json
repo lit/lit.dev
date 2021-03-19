@@ -1,7 +1,12 @@
 {
   "files": {
-    "dom-manip.js": {},
-    "update-properties.js": {},
+    "update-properties.ts": {},
     "index.html": {}
+  },
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
   }
 }
