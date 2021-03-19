@@ -33,6 +33,10 @@ litdev-tutorial {
   font-family: "Open Sans", sans-serif;
 }
 
+#tutorialContent[loading] {
+  visibility: hidden;
+}
+
 #tutorialContent > h1 {
   font-weight: 500;
   border-bottom: 2px solid #666;

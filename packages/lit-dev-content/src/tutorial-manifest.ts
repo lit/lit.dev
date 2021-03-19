@@ -12,30 +12,35 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-export const manifest = {
+export interface TutorialStep {
+  slug: string;
+  title: string;
+}
+
+export const manifest: {steps: Array<TutorialStep>} = {
   steps: [
     {
-      id: '01-intro',
+      slug: '01-intro',
       title: 'Lit tutorial',
     },
     {
-      id: '02-define',
+      slug: '02-define',
       title: 'Define a component',
     },
     {
-      id: '03-properties',
+      slug: '03-properties',
       title: 'Reactive properties',
     },
     {
-      id: '04-events',
+      slug: '04-events',
       title: 'Declarative event handlers',
     },
     {
-      id: '05-expressions',
+      slug: '05-expressions',
       title: 'More expressions',
     },
     {
-      id: '06-template-logic',
+      slug: '06-template-logic',
       title: 'Template logic',
     },
   ],
