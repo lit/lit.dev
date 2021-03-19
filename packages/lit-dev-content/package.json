@@ -45,6 +45,7 @@
     "@material/mwc-drawer": "^0.20.0",
     "@material/mwc-icon": "^0.20.0",
     "@material/mwc-icon-button": "^0.20.0",
+    "@material/mwc-icon-button-toggle": "^0.20.0",
     "@material/mwc-select": "^0.20.0",
     "@material/mwc-snackbar": "^0.20.0",
     "lit-element": "^2.3.1",

@@ -39,3 +39,16 @@ a {
   text-decoration: none;
   color: #1879cd;
 }
+
+/* On some platforms like Linux, a traditional scrollbar will be always visible
+   on the nav, which is quite distracting. This reproduces something similar to
+   macOS style on all platforms. */
+.minimalScroller::-webkit-scrollbar {
+  width: 0.88889em;
+}
+.minimalScroller:hover::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.3);
+  background-clip: content-box;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}

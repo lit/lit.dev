@@ -1,9 +1,13 @@
 html {
-  --playground-code-font-family: "Roboto Mono", monospace;
+  --playground-code-font-family: 'Roboto Mono', monospace;
   --playground-code-font-size: 14px;
   --playground-code-line-height: 1.8em;
   --playground-code-padding: 0.5em 0 0.5em 1em;
-  --playground-highlight-color: #005cc5;
+  --playground-bar-height: 2.5rem;
+  --playground-code-gutter-background: white;
+  --playground-code-gutter-border-right: none;
+
+  --playground-highlight-color: var(--color-blue);
   --playground-code-keyword-color: #d73a49;
   --playground-code-atom-color: #005cc5;
   --playground-code-number-color: #005cc5;
@@ -27,4 +31,32 @@ html {
 
 .CodeMirror {
   overflow-y: auto;
+}
+
+playground-preview,
+playground-ide::part(preview) {
+  background: var(--color-light-gray);
+}
+
+playground-ide::part(preview-toolbar),
+playground-preview::part(preview-toolbar) {
+  background: var(--color-light-gray);
+  border-bottom: 1.5px solid #ccc;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+playground-ide::part(tab-bar),
+playground-tab-bar {
+  background: white;
+  --mdc-typography-button-font-family: 'Open Sans', sans-serif;
+}
+
+playground-file-editor,
+playground-ide::part(editor) {
+  background: white;
+  border-top: 1.5px solid #ccc;
+  /* Align border with active tab highlight */
+  margin-top: -1.5px;
 }
