@@ -238,10 +238,12 @@ resize-bar[resizing] {
   }
 
   playground-file-editor {
+    flex-basis: auto;
     height: 350px;
   }
 
   playground-preview {
+    flex-basis: auto;
     height: 200px;
   }
 
