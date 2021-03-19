@@ -1,0 +1,48 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "tutorial.css" %}
+{% endblock %}
+
+{% block content %}
+
+<litdev-tutorial
+  id="tutorial"
+  project="tutorialProject">
+</litdev-tutorial>
+
+<resize-bar
+   target="tutorial"
+   dimension="width"
+   property="--text-side-width">
+</resize-bar>
+
+<div id="editorAndPreview">
+  <playground-project
+     id="tutorialProject">
+  </playground-project>
+
+  <playground-tab-bar
+    project="tutorialProject"
+    editor="tutorialEditor">
+  </playground-tab-bar>
+
+  <playground-file-editor
+    id="tutorialEditor"
+    project="tutorialProject"
+    line-numbers>
+  </playground-file-editor>
+
+  <resize-bar
+     target="tutorialPreview"
+     dimension="height"
+     property="--preview-height">
+  </resize-bar>
+
+  <playground-preview
+    id="tutorialPreview"
+    project="tutorialProject">
+  </playground-preview>
+</div>
+
+{% endblock %}
