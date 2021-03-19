@@ -1,9 +1,9 @@
 ---
 title: Building for Production
 eleventyNavigation:
-  key: Building
+  key: Production
   parent: Tools
-  order: 4
+  order: 6
 ---
 
 This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to publishing a reusable Lit _component_ to npm, see [Publishing](../publishing/).

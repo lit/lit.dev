@@ -3,7 +3,7 @@ title: Development
 eleventyNavigation:
   key: Development
   parent: Tools
-  order: 2
+  order: 3
 ---
 
 During the development phase of your projects when you're writing Lit components, the following tools can help boost your productivity:
