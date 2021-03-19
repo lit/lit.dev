@@ -3,7 +3,7 @@ title: Testing
 eleventyNavigation:
   key: Testing
   parent: Tools
-  order: 3
+  order: 4
 ---
 
 Testing ensures your code functions as you intend and saves you from tedious debugging.

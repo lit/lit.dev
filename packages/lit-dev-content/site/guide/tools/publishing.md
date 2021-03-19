@@ -3,7 +3,7 @@ title: Publishing
 eleventyNavigation:
   key: Publishing
   parent: Tools
-  order: 6
+  order: 5
 ---
 
 {% todo %}
