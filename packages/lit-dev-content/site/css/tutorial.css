@@ -237,6 +237,14 @@ resize-bar[resizing] {
     min-width: 100vw;
   }
 
+  playground-file-editor {
+    height: 350px;
+  }
+
+  playground-preview {
+    height: 200px;
+  }
+
   resize-bar {
     display: none;
   }
