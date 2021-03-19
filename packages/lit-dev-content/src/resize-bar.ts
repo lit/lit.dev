@@ -114,6 +114,9 @@ export class ResizeBar extends LitElement {
     };
     this.addEventListener('pointermove', onPointermove);
 
+    // TODO(aomarks) We had a report that when moving the cursor quickly, we can
+    // miss this event and get stuck. Shouldn't happen because of
+    // setPointerCapture, but maybe there is a bug?
     this.addEventListener(
       'pointerup',
       () => {
