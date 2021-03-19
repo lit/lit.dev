@@ -97,6 +97,6 @@ These are the recommended polyfills:
 
 Note that the Javascript polyfills should be bundled separately from the application bundle, and loaded before the Web Components polyfills, since those polyfills rely on modern JS like `Promise`.
 
-You may need other polyfills depending on the features your application uses.
-
 </div>
+
+Note that you may need other polyfills depending on the features your application uses.
