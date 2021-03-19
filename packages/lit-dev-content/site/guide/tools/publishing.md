@@ -52,7 +52,8 @@ The following JSON sample is a partial tsconfig.json that uses recommended optio
 
 When transpiling from TypeScript, you should include declaration files
 (generated based on `declaration: true` above) for your component's types in the
-`types` field of `package.json`:
+`types` field of `package.json`, and ensure the `.d.ts` and `.d.ts.map` files
+are published as well:
 
 **package.json**
 ```json
@@ -70,7 +71,7 @@ To transpile a Lit component that uses proposed JavaScript features, use Babel.
 
 Install Babel and the Babel plugins you need. For example:
 
-```
+```sh
 npm install --save-dev @babel/core
 npm install --save-dev @babel/plugin-proposal-class-properties
 npm install --save-dev @babel/plugin-proposal-decorators
