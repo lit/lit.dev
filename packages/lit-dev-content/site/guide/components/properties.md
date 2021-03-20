@@ -278,32 +278,27 @@ count = 0;
 
 If don't specify a type _or_ a custom converter for a property, it behaves as if you'd specified `type: String`.
 
-The information below shows how the default converter handles conversion for each type.
+The tables below shows how the default converter handles conversion for each type.
 
-**Convert from attribute to property**
+**From attribute to property**
 
-* For **Strings**, when the attribute is defined, set the property to the attribute value.
-* For **Numbers**, when the attribute is defined, set the property to `Number(attributeValue)`.
-* For **Booleans**, when the attribute is:
-  * non-`null`, set the property to `true`.
-  * `null` or `undefined`, set the property to `false`.
-* For **Objects and Arrays**, when the attribute is:
-  * Defined, set the property value to `JSON.parse(attributeValue)`.
+| Type    | Conversion |
+|:--------|:-----------|
+| `String`  | If the attribute is defined, set the property to the attribute value. |
+| `Number`  | If the attribute is defined, set the property to `Number(attributeValue)`. |
+| `Boolean` | If the attribute is defined and non-null, set the property to true.<br>If the property is null or undefined, set the property to false. |
+| `Object`, `Array` | If the attribute is defined, set the property value to `JSON.parse(attributeValue)`. |
 
-**Convert from property to attribute**
+**From property to attribute**
 
-* For **Strings**, when the property is:
-  * `null` or `undefined`, remove the attribute.
-  * Defined and not `null`, set the attribute to the property value.
-* For **Numbers**, when the property is:
-  * `null` or `undefined` remove the attribute.
-  * Defined and not `null`, set the attribute to the property value.
-* For **Booleans**, when the property is:
-  * truthy, create the attribute and set its value to an empty string.
-  * falsy, remove the attribute.
-* For **Objects and Arrays**, when the property is:
-  * `null` or `undefined`, remove the attribute.
-  * Defined and not `null`, set the attribute value to `JSON.stringify(propertyValue)`.
+| Type    | Conversion |
+|:--------|:-----------|
+| `String`, `Number` | If property is defined and non-null, set the attribute to the property value.<br>If property is null or undefined, remove the attribute. |
+| `Boolean` | If property is truthy, create the attribute and set its value to an empty string. <br>If property is falsy, remove the attribute |
+| `Object`, `Arrray` | If property is defined and non-null, set the attribute to `JSON.stringify(propertyValue)`.<br>If property is null or undefined, remove the attribute. |
+
+
+
 
 ### Providing a custom converter {#conversion-converter}
 
