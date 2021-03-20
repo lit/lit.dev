@@ -24,7 +24,7 @@ Lit manages your reactive properties and their corresponding attributes. In part
 
 ## Public properties and internal state
 
-Public properties are part of the component's public API. In general, public properties—especially public reactive properties—should be treated as _input_. 
+Public properties are part of the component's public API. In general, public properties—especially public reactive properties—should be treated as _input_.
 
 The component shouldn't change its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that can be initialized to a given value by the owner of the element, but that is updated by the component itself when the user selects an item. In these instances, the component should dispatch an event to indicate to the component's owner that the `selected` property changed. See [Dispatching events](/guide/components/events/#dispatching-events) for more details.
 
@@ -223,7 +223,8 @@ There are many ways to hook into and modify the reactive update cycle. For more 
 For more information about property change detection, see [Customizing change detection](#haschanged).
 
 ## Attributes {#attributes}
-While properties are great for receiving JavaScript data as input, attributes are the standard way HTML allows configuring elements from _markup_, without needing to use Javascript to set properties. Providing both a property _and_ attribute interface for their reactive properties is a key way Lit components can be useful in a wide variety of environments, including those rendered without a client-side templating engine, such as static HTML pages served from CMSs.
+
+While properties are great for receiving JavaScript data as input, attributes are the standard way HTML allows configuring elements from _markup_, without needing to use JavaScript to set properties. Providing both a property _and_ attribute interface for their reactive properties is a key way Lit components can be useful in a wide variety of environments, including those rendered without a client-side templating engine, such as static HTML pages served from CMSs.
 
 By default, Lit sets up an observed attribute corresponding to each public reactive property, and updates the property when the attribute changes. Property values can also, optionally, be _reflected_ (written back to the attribute).
 
