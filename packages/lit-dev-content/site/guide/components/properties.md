@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-Components usually store their state as JavaScript class fields or properties. *Reactive properties* are properties that can trigger the reactive update cycle when changed, re-rendering the component, and optionally be read or written to attributes.
+Lit components receive input and store their state as JavaScript class fields or properties. *Reactive properties* are properties that can trigger the reactive update cycle when changed, re-rendering the component, and optionally be read or written to attributes.
 
 ```ts
 class MyElement extends LitElement {
@@ -24,7 +24,9 @@ Lit manages your reactive properties and their corresponding attributes. In part
 
 ## Public properties and internal state
 
-Public properties are part of the component's public API. In general, public properties—especially public reactive properties—should be treated as _input_. The component shouldn't set its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that's set when the user selects an item.
+Public properties are part of the component's public API. In general, public properties—especially public reactive properties—should be treated as _input_. 
+
+The component shouldn't change its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that can be initialized to a given value by the owner of the element, but that is updated by the component itself when the user selects an item. In these instances, the component should dispatch an event to indicate to the component's owner that the `selected` property changed. See [Dispatching events](/guide/components/events/#dispatching-events) for more details.
 
 Lit also supports _internal reactive state_. Internal reactive state refers to reactive properties that _aren't_ part of the component's API. These properties don't have a corresponding attribute, and are typically marked protected or private in TypeScript.
 
@@ -62,7 +64,7 @@ The argument to the `@property`  decorators is an [options object](#property-opt
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](/guide/components/decorators/) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Enabling decorators](/guide/components/decorators/#enabling-decorators) for details.
 
 </div>
 
@@ -221,6 +223,7 @@ There are many ways to hook into and modify the reactive update cycle. For more 
 For more information about property change detection, see [Customizing change detection](#haschanged).
 
 ## Attributes {#attributes}
+While properties are great for receiving JavaScript data as input, attributes are the standard way HTML allows configuring elements from _markup_, without needing to use Javascript to set properties. Providing both a property _and_ attribute interface for their reactive properties is a key way Lit components can be useful in a wide variety of environments, including those rendered without a client-side templating engine, such as static HTML pages served from CMSs.
 
 By default, Lit sets up an observed attribute corresponding to each public reactive property, and updates the property when the attribute changes. Property values can also, optionally, be _reflected_ (written back to the attribute).
 
@@ -362,7 +365,7 @@ When the property changes, Lit sets the corresponding attribute value as describ
 
 {% playground-example "properties/attributereflect" "my-element.ts" %}
 
-Attributes should be considered part of the public interface of the element, so reflecting properties to attributes should be done sparingly. It's necessary today, but this is likely to change as the platform adds features like the `:state` pseudo selector and the Accessibility Object Model.
+Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. It's necessary today for cases like styling and accessibility, but this is likely to change as the platform adds features like the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/), which fill these gaps.
 
 Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance.
 
