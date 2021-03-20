@@ -25,7 +25,7 @@ Browsers only support bare module specifiers with the brand new _import map_ sta
 
 ### TypeScript Type Definitions
 
-We publish type definitions generated from TypeScript 4.2 and downlevel them for TypeScript 3.4.
+We publish type definitions generated from TypeScript 4.2 and downlevel them for TypeScript 3.4. See [Using TypeScript](/guide/tools/development/#typescript) for more information.
 
 ## Required Browser APIs
 
