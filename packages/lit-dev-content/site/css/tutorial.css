@@ -209,7 +209,7 @@ resize-bar {
   flex: 0 0 auto;
 }
 
-resize-bar[resizing] {
+resize-bar[active] {
   background: var(--color-dark-cyan);
 }
 

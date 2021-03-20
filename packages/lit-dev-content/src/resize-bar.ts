@@ -14,6 +14,8 @@
 
 import {LitElement, html, css, property} from 'lit-element';
 
+const ACTIVE_HOVER_MS = 300;
+
 /**
  * Vertical or horizontal resize bar.
  */
@@ -71,16 +73,44 @@ export class ResizeBar extends LitElement {
   target?: string;
 
   /**
-   * Id in the host scope of the element that is being resized.
+   * Whether this resizer is active. Either the user has hovered over it for
+   * enough time, or they're dragging it.
+   */
+  @property({type: Boolean, reflect: true})
+  active = false;
+
+  /**
+   * Whether this resizer is being dragged.
    */
   @property({type: Boolean, reflect: true})
   resizing = false;
 
+  private _hoverTimer?: ReturnType<typeof setTimeout>;
+
   render() {
     return html`<div
       id="touchTarget"
+      @pointerover=${this._onPointerOver}
+      @pointerleave=${this._onPointerLeave}
       @pointerdown=${this._onPointerDown}
     ></div>`;
+  }
+
+  private _onPointerOver() {
+    this._hoverTimer = setTimeout(() => {
+      this.active = true;
+      this._hoverTimer = undefined;
+    }, ACTIVE_HOVER_MS);
+  }
+
+  private _onPointerLeave() {
+    if (this.active && !this.resizing) {
+      this.active = false;
+    }
+    if (this._hoverTimer !== undefined) {
+      clearTimeout(this._hoverTimer);
+      this._hoverTimer = undefined;
+    }
   }
 
   private _onPointerDown({pointerId}: PointerEvent) {
@@ -93,6 +123,7 @@ export class ResizeBar extends LitElement {
     if (!target) {
       return;
     }
+    this.active = true;
     this.resizing = true;
     this.setPointerCapture(pointerId);
     const isWidthDimension = this.dimension === 'width';
@@ -122,6 +153,7 @@ export class ResizeBar extends LitElement {
       () => {
         this.releasePointerCapture(pointerId);
         this.removeEventListener('pointermove', onPointermove);
+        this.active = false;
         this.resizing = false;
       },
       {once: true}
