@@ -31,7 +31,7 @@ We publish type definitions generated from TypeScript 4.2 and downlevel them for
 
 ### Web Components APIs
 
-Lit requires the web components APIs, such as custom elements, and shadow DOM. These are supported in all current major browsers and on older browsers via the web components polyfills.
+Lit requires the web components APIs, such as custom elements, and shadow DOM. These are supported in all current major browsers and on older browsers via the web components polyfills. See [Polyfills](/guide/tools/requirements/#polyfills) for more information.
 
 ### Other DOM APIs
 
