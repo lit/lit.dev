@@ -35,7 +35,7 @@ Lit requires the web components APIs, such as custom elements, and shadow DOM. T
 
 ### Other DOM APIs
 
-Lit uses other recent DOM APIs that are well supported in current browsers, and have polyfills for older browsers like IE11.
+Lit uses other recent DOM APIs that are well supported in current browsers, and have polyfills for older browsers like IE11. These are included in the webcomponents polyfills, among others.  See [Polyfills](/guide/tools/requirements/#polyfills) for more information.
 
 ## Development and Production Builds
 
