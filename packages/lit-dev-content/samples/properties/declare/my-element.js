@@ -1,11 +1,11 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html} from 'lit';
 
 class MyElement extends LitElement {
   static get properties() {
     return {
-      greeting: {type: String},
+      greeting: {},
       data: {attribute: false},
-      items: {type: Array},
+      _items: {state: true},
     };
   }
 
@@ -13,15 +13,14 @@ class MyElement extends LitElement {
     super();
     this.greeting = 'Hello';
     this.data = {name: 'Cora'};
-    this.items = [1, 2, 3];
+    this._items = [1, 2, 3];
   }
 
   render() {
     return html`
       <p>${this.greeting} ${this.data.name}.</p>
-      <p>You have ${this.items.length} items.</p>
+      <p>You have ${this._items.length} items.</p>
     `;
   }
 }
-
 customElements.define('my-element', MyElement);
