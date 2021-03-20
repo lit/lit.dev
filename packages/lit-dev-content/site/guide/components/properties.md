@@ -107,7 +107,7 @@ The options object can have the following properties:
 </dt>
 <dd>
 
-Whether the property is associated with an attribute, or a custom name for the associated attribute. Default: true. See [Configure observed attributes](#observed-attributes). If `attribute` is false, the `converter`, `reflect` and `type` options are ignored.
+Whether the property is associated with an attribute, or a custom name for the associated attribute. Default: true. If `attribute` is false, the `converter`, `reflect` and `type` options are ignored. For more information, see [Setting the attribute name](#observed-attributes).
 
 </dd>
 <dt>
@@ -127,7 +127,8 @@ A [custom converter](#conversion-converter) for converting between properties an
 </dt>
 <dd>
 
-A function that takes an `oldValue` and `newValue` and returns a boolean to indicate whether a [property has changed](#haschanged) when being set. If unspecified, LitElement uses a strict inequality check (`newValue !== oldValue`) to determine whether the property value has changed.
+A function called whenever the property is set to determine if the property has changed, and should trigger an update. If unspecified, LitElement uses a strict inequality check (`newValue !== oldValue`) to determine whether the property value has changed.
+For more information, see [Customizing change detection](#haschanged).
 
 </dd>
 <dt>
@@ -137,7 +138,7 @@ A function that takes an `oldValue` and `newValue` and returns a boolean to indi
 </dt>
 <dd>
 
-Set to true to avoid generating the default [property accessor](#accessors). Default: false.
+Set to true to avoid generating the default property accessors. This option is rarely necessary. Default: false. For more information, see [Preventing Lit from generating a property accessor](#accessors-noaccessor).
 
 </dd>
 <dt>
@@ -147,7 +148,7 @@ Set to true to avoid generating the default [property accessor](#accessors). Def
 </dt>
 <dd>
 
-Whether property value is reflected back to the associated attribute. Default: false. See  [Configure reflected attributes](#reflected-attributes).
+Whether property value is reflected back to the associated attribute. Default: false. For more information, see [Enabling attribute reflection](#reflected-attributes).
 
 </dd>
 <dt>
@@ -157,7 +158,7 @@ Whether property value is reflected back to the associated attribute. Default: f
 </dt>
 <dd>
 
-Set to true to declare the property as _internal reactive state_. Internal reactive state triggers updates like public reactive properties, but Lit doesn't generate an attribute for it, and users shouldn't access it from outside the component. Equivalent to using the `@state` decorator. For more information, see [Internal reactive state](#internal-reactive-state).
+Set to true to declare the property as _internal reactive state_. Internal reactive state triggers updates like public reactive properties, but Lit doesn't generate an attribute for it, and users shouldn't access it from outside the component. Equivalent to using the `@state` decorator. Default: false. For more information, see [Internal reactive state](#internal-reactive-state).
 
 </dd>
 <dt>
@@ -167,13 +168,13 @@ Set to true to declare the property as _internal reactive state_. Internal react
 </dt>
 <dd>
 
-When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is passed to the converter. If `type` is unspecified, the default converter treats it as `type: String`. See [Use the default attribute converter](#conversion-type).
+When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is passed to the converter. If `type` is unspecified, the default converter treats it as `type: String`. See [Using the default converter](#conversion-type).
 
 When using TypeScript, this field should generally match the TypeScript type declared for the field. However, the `type` option is used by the Lit's _runtime_ for string serialization/deserialization, and should not be confused with a _type-checking_ mechanism.
 
 </dd>
 
-An empty options object is equivalent to specifying the default value for all options.
+Omitting the options object or specifying an empty options object is equivalent to specifying the default value for all options.
 
 ## Internal reactive state
 
@@ -429,7 +430,7 @@ You don't need to set `noAccessor` when defining your own accessors.
 
 All reactive properties have a function, `hasChanged()`, which is called when the property is set.
 
-`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged()` returns true, LitElement starts an element update if one is not already scheduled. See the [Component update lifecycle documentation](/guide/components/lifecycle/) for more information on how updates work.
+`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged()` returns true, Lit starts an element update if one is not already scheduled. For more information on updates, see [Reactive update cycle](/guide/components/lifecycle/#reactive-update-cycle) .
 
 The default implementation of `hasChanged()` uses a strict inequality comparison: `hasChanged()` returns `true` if `newVal !== oldVal`.
 
