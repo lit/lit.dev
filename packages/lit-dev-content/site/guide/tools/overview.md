@@ -12,7 +12,7 @@ However, Lit uses very _modern_ web platform features, so it does require some t
 
 ## JavaScript Version
 
-Lit is written in TypeScript and compiled to and published as standard JavaScript ES2020, which is supported by the last two versions of Chrome, Edge, Safari, and Firefox. ES2020 must be compiled for older browsers.
+Lit is written in TypeScript and compiled to and published as standard JavaScript ES2020, which is supported by the last two versions of Chrome, Edge, Safari, and Firefox. ES2020 must be compiled for older browsers. See [Requirements for legacy browsers](/guide/tools/requirements/#building-for-legacy-browsers) for more information.
 
 ### Bare Module Specifiers
 Lit packages use so-called "bare module specifiers" to reference each other:
