@@ -92,7 +92,7 @@ The reactive controller lifecycle, defined in the {% api ReactiveController %} i
 * `hostConnected()`:
   * Called when the host is connected.
   * Called after creating the `renderRoot`, so a shadow root will exist at this point.
-  * Useful for seting up event listeners, observers, etc.
+  * Useful for setting up event listeners, observers, etc.
 * `hostUpdate()`:
   * Called before the host's `update()` and `render()` methods.
   * Useful for reading DOM before it's updated (for example, for animations).
