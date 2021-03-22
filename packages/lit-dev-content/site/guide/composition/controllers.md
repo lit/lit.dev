@@ -95,7 +95,7 @@ The reactive controller lifecycle is a subset of the [reactive update cycle](/gu
   * Useful for seting up event listeners, observers, etc.
 * `hostUpdate()`:
   * Called before the host's `update()` and `render()` methods.
-  * Useful for reading DOM before it's updated (eg, for animations).
+  * Useful for reading DOM before it's updated (for example, for animations).
 * `hostUpdated()`:
   * Called after updates, before the host's `updated()` method.
   * Useful for reading DOM after it's modified (for example, for animations).
