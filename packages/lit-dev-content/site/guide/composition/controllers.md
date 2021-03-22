@@ -103,6 +103,7 @@ The reactive controller lifecycle is a subset of the [reactive update cycle](/gu
   * Called when the host is disconnected.
   * Useful for cleaning up event listeners, observers, etc.
 
+For more information, see [Reactive update cycle](/guide/components/lifecycle/#reactive-update-cycle).
 ### Controller host API
 
 A reactive controller host implements a small API for adding controllers and requesting updates, and is responsible for calling its controller's lifecycle methods.
