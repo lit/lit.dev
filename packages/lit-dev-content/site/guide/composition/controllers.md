@@ -50,7 +50,7 @@ Since each controller has it's own API, refer to specific controller documentati
 
 ## Writing a controller
 
-Reactive controllers can be implemented in a number of ways, but we'll focus on using JavaScript classes, with constructors for initialization and methods for lifecycles.
+A reactive controller is an object associated with a host component, which implements one or more host lifecycle callbacks or interacts with its host. It can be implemented in a number of ways, but we'll focus on using JavaScript classes, with constructors for initialization and methods for lifecycles.
 
 ### Controller initialization
 
