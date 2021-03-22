@@ -30,7 +30,7 @@ There are many development servers that can deal with module specifiers. If you 
 
 If you need a dev server, we recommend [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/).
 
-### Web Dev Server
+### Web Dev Server { #web-dev-server }
 
 [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) is an open-source dev server that enables a build-free development process.
 

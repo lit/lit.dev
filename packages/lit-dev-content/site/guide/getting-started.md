@@ -323,9 +323,7 @@ If you already have a dev server that works with your build system, it should wo
 
 ### Supporting older browsers
 
-To support older browsers that don't support ES6 and the web components specifications, you'll need to take a few extra steps to produce code that will run on the older browsers.
-
-See [Build for production](build) for more information.
+For older browsers like Internet Explorer 11 that don't support ES2020 and web components natively, see [Tools and Workflows](/guide/tools/overview) for information about setting up Lit to work for testing, development, building, and publishing.
 
 ### Next steps
 

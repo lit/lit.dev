@@ -266,7 +266,10 @@ ${content}
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
       // file that a page shouldn't be generated.
-      (file) => !file.includes('why-lit') && !file.includes('getting-started')
+      (file) =>
+        !file.includes('why-lit') &&
+        !file.includes('getting-started') &&
+        !file.includes('browser-support')
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 

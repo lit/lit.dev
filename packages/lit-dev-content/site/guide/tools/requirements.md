@@ -31,6 +31,17 @@ Webpack automatically handles bare module specifiers; for Rollup, you'll need a 
 
 **Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called [Import maps](https://github.com/WICG/import-maps) is [starting to ship](https://chromestatus.com/feature/5315286962012160), which will let let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps.
 
+### Modern browser breakdown
+
+All modern browsers update automatically and users are highly likely to have a recent version. The following table lists the minimum version of each major browser that natively supports ES2020 and web components, the key features on which Lit relies.
+
+| Browser	| Supports ES2020 & web components |
+|:--------|:--------------------------------:|
+| Chrome  |	>=80                             |
+| Safari  |	>=13                             |
+|	Firefox |	>=72                             |
+|	Edge    |	>=80                             |
+
 ## Requirements for legacy browsers {#building-for-legacy-browsers}
 
 Supporting older browsers (specifically Internet Explorer 11, but also older versions of evergreen browsers), requires a number of extra steps:
@@ -38,6 +49,19 @@ Supporting older browsers (specifically Internet Explorer 11, but also older ver
 *   Transpiling modern JavaScript syntax to ES5.
 *   Transforming ES modules to another module system.
 *   Loading polyfills.
+
+### Legacy browser breakdown
+
+The following table lists supported browser versions that require transpiling Javascript and loading polyfills:
+
+| Browser           | Transpile JS | Transpile JS & load polyfills |
+|:------------------|:------------:|:-----------------------------:|
+| Chrome            | 67-79        | <67                           |
+| Safari            | 10-12        | <10                           |
+| Firefox           | 63-71        | <63                           |
+| Edge              | 79           |                               |
+| Edge "classic"    |              | <=18                         |
+| Internet Explorer |              | 11                            |
 
 ### Transpiling to ES5 {#transpiling-to-es5}
 
@@ -79,7 +103,7 @@ The IIFE format works fine if all of your code can be bundled into a single file
 
 ## Polyfills {#polyfills}
 
-Using Lit on older browsers will require loading polyfills for standard JavaScript features like Promises and async/await, the Web Components polyfills, as well as a `polyfill-support` script provided in the Lit package for interfacing Lit with the Web Components polyfills.
+Using Lit on older browsers will require loading polyfills for standard JavaScript features like Promises and async/await, the web components polyfills, as well as a `polyfill-support` script provided in the Lit package for interfacing Lit with the Web Components polyfills.
 
 These are the recommended polyfills:
 
@@ -91,12 +115,71 @@ These are the recommended polyfills:
   * [`requirejs`](https://www.npmjs.com/package/requirejs) - AMD module loader
 * Polyfills for Web Components:
   * [`@webcomponents/webcomponentsjs`](https://www.npmjs.com/package/@webcomponents/webcomponentsjs) - Polyfills for custom elements, shadow DOM, template, and some newer DOM APIs
-  * `lit/platform-support.js` - A file that ships in the `lit` package that must be loaded when using `webcomponentsjs`
-
-<div class="alert alert-info">
-
-Note that the Javascript polyfills should be bundled separately from the application bundle, and loaded before the Web Components polyfills, since those polyfills rely on modern JS like `Promise`.
-
-</div>
+  * `lit/polyfill-support.js` - A file that ships in the `lit` package that must be loaded when using `webcomponentsjs`
 
 Note that you may need other polyfills depending on the features your application uses.
+
+### Loading polyfills
+
+The Javascript polyfills should be bundled separately from the application bundle, and loaded before the web components polyfills, since those polyfills rely on modern JS like `Promise`. Putting it all together, the page should load code as follows:
+
+```html
+<script src="path/to/js/polyfills/you/need.js"></script>
+<script src="node_modules/lit/polyfill-support.js"></script>
+<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<!-- Load application code here -->
+```
+
+### Web components polyfills
+
+For detailed information about loading and configuring the web components polyfills, see the [webcomponentsjs documentation](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs). The following is a summary of some of the key points.
+
+#### Loading options
+
+There are two main ways to load the web components polyfills:
+
+- `webcomponents-bundle.js` includes all of the polyfills necessary to run on any of the supported browsers. Because all browsers receive all polyfills, this results in extra bytes being sent to browsers that support one or more feature.
+- `webcomponents-loader.js` performs client-side feature-detection and loads just the required polyfills. This requires an extra round-trip to the server, but saves bandwidth for browsers that support one or more features.
+
+#### Loading the ES5 adapter
+
+It's best to serve a modern build to modern browsers to avoid sending the extra code needed for older browsers. However, it can be convenient to serve just a single set of files. If you do this, there is one extra required step. In order for ES5 transpiled code to work with native web components and specifically custom elements, a small adapter is needed. For a detailed explanation, see the [webcomponentsjs documentation](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs).
+
+Load the `custom-elements-es5-adapter.js` after any Babel polyfills and before web components, like this:
+
+```html
+<script src="path/to/js/polyfills/you/need.js"></script>
+<script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+<script src="node_modules/lit/polyfill-support.js"></script>
+<script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<!-- Load application code here -->
+```
+
+#### Setting web components polyfill options
+
+By default, the individual polyfill for a given feature is disabled on browsers that natively support that feature.
+For testing purposes, you can force the polyfills on for browsers that have native support.
+
+While the web components polyfills strive to match the spec, there are some infidelities particularly around styling (see [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)). We recommend ensuring you test with polyfills both on and off, either on the browsers that need them, or by forcing them on. You can force the polyfills on by adding a JavaScript snippet before you import the polyfills:
+
+```html
+<script>
+  // Force all polyfills on
+  if (window.customElements) window.customElements.forcePolyfill = true;
+  ShadyDOM = { force: true };
+  ShadyCSS = { shimcssproperties: true};
+</script>
+<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+```
+
+Or, you if you use the `webcomponents-bundle.js` file, you can force the polyfills on by adding query parameters to the app's URL:
+
+`https://www.example.com/my-application/view1?wc-ce&wc-shadydom&wc-shimcssproperties`
+
+The following table lists the JavaScript snippets and query parameters for each polyfill.
+
+| Polyfill    | Javascript                          | Query parameter          |
+|:------------|:------------------------------------|:-------------------------|
+| Custom Elements | `if (window.customElements) window.customElements.forcePolyfill = true;` | `wc-ce` |
+| Shadow DOM | `ShadyDOM = { force: true };` | `wc-shadydom`              |
+| CSS custom properties | `ShadyCSS = { shimcssproperties: true};` | `wc-shimcssproperties` |

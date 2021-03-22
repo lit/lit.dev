@@ -32,7 +32,7 @@ The test environment you use must have support for using modern Javascript, incl
 
 To test on older browsers, your test environment will need to load some polyfills, including the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) and Lit's `polyfill-support` module. See the [Browser Support](../browser-support) documentation for more details.
 
-## Using Web Test Runner
+## Using Web Test Runner { #web-test-runner }
 
 We recommend using [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) since it is specifically designed to test modern web libraries like Lit using modern web features like custom elements and shadow DOM. See the [Getting Started](https://modern-web.dev/guides/test-runner/getting-started) documentation for Web Test Runner.
 
