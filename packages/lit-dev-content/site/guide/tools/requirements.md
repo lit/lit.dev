@@ -60,7 +60,7 @@ The following table lists supported browser versions that require transpiling Ja
 | Safari            | 10-12        | <10                           |
 | Firefox           | 63-71        | <63                           |
 | Edge              | 79           |                               |
-| Edge "classic"    |              | 15-18                         |
+| Edge "classic"    |              | <=18                         |
 | Internet Explorer |              | 11                            |
 
 ### Transpiling to ES5 {#transpiling-to-es5}
@@ -124,7 +124,7 @@ Note that you may need other polyfills depending on the features your applicatio
 The Javascript polyfills should be bundled separately from the application bundle, and loaded before the web components polyfills, since those polyfills rely on modern JS like `Promise`. Putting it all together, the page should load code as follows:
 
 ```html
-<script src="nomodule/src/babel-polyfills-nomodule.js"></script>
+<script src="path/to/js/polyfills/you/need.js"></script>
 <script src="node_modules/lit/polyfill-support.js"></script>
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 <!-- Load application code here -->
@@ -148,7 +148,7 @@ It's best to serve a modern build to modern browsers to avoid sending the extra 
 Load the `custom-elements-es5-adapter.js` after any Babel polyfills and before web components, like this:
 
 ```html
-<script src="nomodule/src/babel-polyfills-nomodule.js"></script>
+<script src="path/to/js/polyfills/you/need.js"></script>
 <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 <script src="node_modules/lit/polyfill-support.js"></script>
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
@@ -157,7 +157,10 @@ Load the `custom-elements-es5-adapter.js` after any Babel polyfills and before w
 
 #### Setting web components polyfill options
 
-By default, the individual polyfill for a given feature is disabled on browsers that natively support that feature. For testing purposes, you can force the polyfills on for browsers that have native support. You can force the polyfills on by adding a JavaScript snippet before you import the polyfills:
+By default, the individual polyfill for a given feature is disabled on browsers that natively support that feature.
+For testing purposes, you can force the polyfills on for browsers that have native support.
+
+While the web components polyfills strive to match the spec, there are some infidelities particularly around styling (see [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)). We recommend ensuring you test with polyfills both on and off, either on the browsers that need them, or by forcing them on. You can force the polyfills on by adding a JavaScript snippet before you import the polyfills:
 
 ```html
 <script>
