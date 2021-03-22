@@ -101,7 +101,7 @@ The reactive controller lifecycle, defined in the {% api ReactiveController %} i
   * Useful for reading DOM after it's modified (for example, for animations).
 * `hostDisconnected()`:
   * Called when the host is disconnected.
-  * Useful for cleaning up event listeners, observers, etc.
+  * Useful for cleaning up things added in `hostConnected()`, such as event listeners and observers.
 
 For more information, see [Reactive update cycle](/guide/components/lifecycle/#reactive-update-cycle).
 ### Controller host API
