@@ -146,6 +146,8 @@ There are two main patterns of using controllers with directives:
 * Controller directives. These are directives that themselves are controllers in order to hook the host lifecycle.
 * Controllers that own directives. These are controllers create one or more directives for use the host's template.
 
+For more information about writing directives, see [Custom directives](/guide/templates/custom-directives/).
+
 #### Controller directives
 
 Reactive controllers do not need to be stored as instance fields on the host. Anything added to a host using `addController()` is a controller. In particular, a [directive]() can also be a controller. This enables a directive to hook into the host lifecycle.
