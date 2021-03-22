@@ -91,7 +91,7 @@ The reactive controller lifecycle is a subset of the [reactive update cycle](/gu
 
 * `hostConnected()`:
   * Called when the host is connected.
-  * Called after creating the renderRoot, so a shadow root will exist at this point.
+  * Called after creating the `renderRoot`, so a shadow root will exist at this point.
   * Useful for seting up event listeners, observers, etc.
 * `hostUpdate()`:
   * Called before the host's `update()` and `render()` methods.
