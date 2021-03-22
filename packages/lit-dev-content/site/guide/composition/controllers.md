@@ -150,12 +150,6 @@ There are two main patterns of using controllers with directives:
 
 Reactive controllers do not need to be stored as instance fields on the host. Anything added to a host using `addController()` is a controller. In particular, a [directive]() can also be a controller. This enables a directive to hook into the host lifecycle.
 
-{% todo %}
-
-- Link to custom directive doc
-
-{% endtodo %}
-
 #### Controllers that own directives
 
 {% todo %}
