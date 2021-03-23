@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -7,9 +7,6 @@ class MyElement extends LitElement {
   name: string = 'Lit';
 
   render() {
-    return html`
-    <p>Welcome to the ${name} tutorial.</p>
-    `;
+    return html` <p>Welcome to the ${this.name} tutorial.</p> `;
   }
 }
-

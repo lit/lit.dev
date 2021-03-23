@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('name-tag')
 class NameTag extends LitElement {
@@ -9,7 +9,7 @@ class NameTag extends LitElement {
   render() {
     return html`
       <p>Hello, ${this.name}</p>
-      <input @change=${this.changeName} placeholder="Enter your name">
+      <input @change=${this.changeName} placeholder="Enter your name" />
     `;
   }
 
