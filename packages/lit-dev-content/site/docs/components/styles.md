@@ -274,8 +274,8 @@ To use `styleMap` and/or `classMap`:
 1.  Import `classMap` and/or `styleMap`:
 
     ```js
-    import { classMap } from 'lit/directives/class-map';
-    import { styleMap } from 'lit/directives/style-map';
+    import { classMap } from 'lit/directives/class-map.js';
+    import { styleMap } from 'lit/directives/style-map.js';
     ```
 
 2.  Use `classMap` and/or `styleMap` in your element template:
