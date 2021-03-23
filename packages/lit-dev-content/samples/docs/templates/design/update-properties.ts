@@ -24,6 +24,6 @@ class UpdateProperties extends LitElement {
       setTimeout(() => {
         resolve('Content loaded.');
       }, 3000);
-    }
+    });
   }
 }
