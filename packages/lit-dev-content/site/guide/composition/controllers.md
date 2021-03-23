@@ -154,10 +154,44 @@ Reactive controllers do not need to be stored as instance fields on the host. An
 
 #### Controllers that own directives
 
+Directives do not need to be standalone functions, they can be methods on other objects as well, such as controllers. This can be useful in cases where a controller needs a specific reference to an element in a template.
+
+For example, imagine a ResizeController that lets you observe an element's size with a ResizeObserver. To work we need both a ResizeController instance, and a directive that is placed on the element we want to observe:
+
+```ts
+class MyElement extends LitElement {
+  private _textSize = new ResizeController(this);
+
+  render() {
+    return html`
+      <textarea ${this._textSize.observe()}></textarea>
+      <p>The width is ${this._textSize.contentRect?.width}</p>
+    `;
+  }
+}
+```
+
+To implement this, you create a directive and call it from a method:
+
+```ts
+class ResizeDirective {
+  /* ... */
+}
+const resizeDirective = directive(ResizeDirective);
+
+export class ResizeController {
+  /* ... */
+  observe() {
+    // Pass a reference to the controller so the directive can
+    // notify the controller on size changes.
+    return resizeDirective(this);
+  }
+}
+```
+
 {% todo %}
 
-- Describe
-- Example
+- Review and cleanup this example
 
 {% endtodo %}
 
@@ -187,9 +221,9 @@ You can use `Task` to create a custom controller with an API tailored for your s
 
 {% playground-ide "docs/controllers/forex" "my-element.ts" %}
 
-### Animations
-
 {% todo %}
+
+### Animations
 
 - Write
 

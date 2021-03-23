@@ -11,8 +11,7 @@ interface ForexError {
   error: string;
 }
 
-export class ForexController implements ReactiveController {
-  private host: ReactiveControllerHost;
+export class ForexController {
   private _currency: string = '';
   private task!: Task;
 
@@ -23,8 +22,7 @@ export class ForexController implements ReactiveController {
   }
 
   constructor(host: ReactiveControllerHost) {
-    (this.host = host).addController(this);
-    this.task = new Task<[string], ForexResult>(this.host,
+    this.task = new Task<[string], ForexResult>(host,
       async ([currency]: [string]) => {
         if (currency == null || currency.trim() === '') {
           return initialState;
@@ -43,12 +41,6 @@ export class ForexController implements ReactiveController {
 
   render(renderFunctions: StatusRenderer<ForexResult>) {
     return this.task.render(renderFunctions);
-  }
-
-  hostConnected() {
-  }
-
-  hostDisconnected() {
   }
 
 }
