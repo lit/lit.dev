@@ -1,5 +1,5 @@
-import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators';
+import {LitElement, html, css} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
 @customElement('super-element')
 export class SuperElement extends LitElement {
@@ -10,8 +10,6 @@ export class SuperElement extends LitElement {
     }
   `;
   protected render() {
-    return html`
-      <div>Content</div>
-    `;
+    return html` <div>Content</div> `;
   }
 }

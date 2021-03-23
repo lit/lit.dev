@@ -1,15 +1,17 @@
-import { css } from 'lit';
-import { customElement } from 'lit/decorators';
-import { SuperElement } from './super-element.js';
+import {css} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {SuperElement} from './super-element.js';
 
 @customElement('my-element')
 export class MyElement extends SuperElement {
   static get styles() {
     return [
       super.styles,
-      css`div {
-        color: red;
-      }`
+      css`
+        div {
+          color: red;
+        }
+      `,
     ];
   }
 }

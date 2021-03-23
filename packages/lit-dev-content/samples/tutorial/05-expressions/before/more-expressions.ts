@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('more-expressions')
 class MoreExpressions extends LitElement {
@@ -11,10 +11,11 @@ class MoreExpressions extends LitElement {
 
   render() {
     return html`
-      <label><input type="checkbox" @change=${this.setChecked}> Enable editing</label>
-      <div>
-         TODO: Add input with bindings.
-      </div>
+      <label
+        ><input type="checkbox" @change=${this.setChecked} /> Enable
+        editing</label
+      >
+      <div>TODO: Add input with bindings.</div>
     `;
   }
 
@@ -22,4 +23,3 @@ class MoreExpressions extends LitElement {
     this.checked = (event.target as HTMLInputElement).checked;
   }
 }
-

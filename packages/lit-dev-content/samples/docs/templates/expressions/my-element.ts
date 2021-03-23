@@ -1,6 +1,6 @@
 /* playground-fold */
-import { LitElement, html } from 'lit';
-import { property, customElement } from 'lit/decorators';
+import {LitElement, html} from 'lit';
+import {property, customElement} from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -8,15 +8,18 @@ class MyElement extends LitElement {
   @property({type: Array}) todos = ['sleep!', 'eat', 'work', 'exercise'];
   @property({type: Boolean}) show = false;
   render() {
-/* playground-fold-end */
-    return html`
-      <p>
+    /* playground-fold-end */
+    return html` <p>
         ${this.greeting}
-        <button @click=${() => this.show = !this.show}>Todos</button>
+        <button @click=${() => (this.show = !this.show)}>Todos</button>
       </p>
-      ${this.show ? html`
-          <ul>${this.todos.map(i => html`<li>${i}</li>`)}</ul>
-        ` : ''}`;
-/* playground-fold */
+      ${this.show
+        ? html`
+            <ul>
+              ${this.todos.map((i) => html`<li>${i}</li>`)}
+            </ul>
+          `
+        : ''}`;
+    /* playground-fold */
   }
 }

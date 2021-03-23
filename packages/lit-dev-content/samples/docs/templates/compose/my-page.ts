@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 function headerTemplate(title) {
   return html`<header>${title}</header>`;
@@ -13,18 +13,16 @@ function footerTemplate() {
 
 @customElement('my-page')
 class MyPage extends LitElement {
-
   @property({attribute: false})
   article: string = {
-      title: 'My Nifty Article',
-      text: 'Some witty text.',
-    }
+    title: 'My Nifty Article',
+    text: 'Some witty text.',
+  };
 
   render() {
     return html`
       ${headerTemplate(this.article.title)}
-      ${articleTemplate(this.article.text)}
-      ${footerTemplate()}
+      ${articleTemplate(this.article.text)} ${footerTemplate()}
     `;
   }
 }

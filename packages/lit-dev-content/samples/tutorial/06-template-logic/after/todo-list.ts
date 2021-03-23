@@ -1,22 +1,18 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('todo-list')
 class ToDoList extends LitElement {
   @property()
-  listItems: Array<string> = [
-    'Make todo list',
-    'Buy bread'
-  ];
+  listItems: Array<string> = ['Make todo list', 'Buy bread'];
 
   render() {
     return html`
       <h2>To Do</h2>
       <ul>
-        ${this.listItems.map((item) =>
-          html`<li>${item}</li>`)}
+        ${this.listItems.map((item) => html`<li>${item}</li>`)}
       </ul>
-      <input @change=${this.addToDo} aria-label="New item">
+      <input @change=${this.addToDo} aria-label="New item" />
     `;
   }
 
@@ -27,4 +23,3 @@ class ToDoList extends LitElement {
     input.value = '';
   }
 }
-
