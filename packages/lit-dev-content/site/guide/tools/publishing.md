@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 5
 ---
 
-This page describes how to publish a Lit component to [npm](https://www.npmjs.com/).
+This page provides guidelines a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of Javascript libraries and developers.
 
 ## Publishing to npm
 
