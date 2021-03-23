@@ -50,7 +50,7 @@ mwc-drawer #mobileNav > ol {
 }
 
 /* The first section in the narrow-layout drawer is top-level site pages, and
-   underneath is e.g. the guide sub-pages. Visually separate these a bit. */
+   underneath is e.g. the docs sub-pages. Visually separate these a bit. */
 mwc-drawer #mobileNav > ol > li:nth-child(2) {
   margin-top: 18px;
   border-top: 1px solid #ccc;

@@ -7,9 +7,9 @@ layout: default
   <nav class="side-nav">
     <button id="toggleNavButton">Menu</button>
     <ul>
-      {% for guide in collections.guide %}
-        <li class="{% if page.url == guide.url %}active{% endif %}">
-          <a href="{{site.baseurl}}{{ guide.url | removeExtension }}">{{guide.data.title}}</a>
+      {% for docs in collections.docs %}
+        <li class="{% if page.url == docs.url %}active{% endif %}">
+          <a href="{{site.baseurl}}{{ docs.url | removeExtension }}">{{docs.data.title}}</a>
         </li>
       {% endfor %}
     </ul>

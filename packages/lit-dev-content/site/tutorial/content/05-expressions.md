@@ -21,4 +21,4 @@ In this step you'll add an input element with some bindings.
 
 The `disabled` attribute is toggled when the checkbox state changes, and the `value` property is set based on the component's `text` property.
 
-For more information, see [Expressions](/guide/templates/expressions/).
+For more information, see [Expressions](/docs/templates/expressions/).

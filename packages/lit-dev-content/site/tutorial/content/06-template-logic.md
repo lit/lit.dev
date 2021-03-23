@@ -14,4 +14,4 @@ You can use standard JavaScript in Lit expressions to create conditional or repe
 
 Try entering a new item in the input box.
 
-Note the nested `html` inside the `map()` callback. For more information, see [Lists and repeating templates](/guide/templates/lists/).
+Note the nested `html` inside the `map()` callback. For more information, see [Lists and repeating templates](/docs/templates/lists/).
