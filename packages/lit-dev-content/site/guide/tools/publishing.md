@@ -34,7 +34,7 @@ However, it is important that if you are using newly proposed or non-standard Ja
 
 ### Transpiling with TypeScript
 
-The following JSON sample is a partial tsconfig.json that uses recommended options for targeting ES2020, enables compilation of decorators, and outputs `.d.ts` types for users:
+The following JSON sample is a partial `tsconfig.json` that uses recommended options for targeting ES2020, enables compilation of decorators, and outputs `.d.ts` types for users:
 
 **tsconfig.json**
 
@@ -67,7 +67,7 @@ See the [tsconfig.json documentation](https://www.typescriptlang.org/docs/handbo
 
 ### Transpiling with Babel
 
-To transpile a Lit component that uses proposed JavaScript features, use Babel.
+To transpile a Lit component that uses proposed JavaScript features not yet included in ES2020, use Babel.
 
 Install Babel and the Babel plugins you need. For example:
 
@@ -92,7 +92,7 @@ module.exports = { plugins };
 
 You can run Babel via a bundler plugin such as [rollup-plugin-babel](https://www.npmjs.com/package/rollup-plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
 
-## Other rules of thumb
+## Publishing best practices
 
 The following are other good practices to follow when publishing reusable Web Components.
 
@@ -101,8 +101,7 @@ The following are other good practices to follow when publishing reusable Web Co
 Polyfills are an application concern, so the application should depend directly
 on them, not individual packages. The exact polyfills needed often depends on
 the browsers the application needs to support, and that choice is best left to
-the application developer using your component, as opposed to making that choice
-for them.
+the application developer using your component.
 
 Packages may need to depend on polyfills for tests and demos, so if
 they're needed, they should only go in `devDependencies`.
@@ -126,8 +125,8 @@ Import maps will allow mapping imports to URLs, but they only have two type of
 mappings: exact and prefix. That means it is easy to alias _all_ modules under a
 given package by mapping the package name to a single URL prefix. However, if
 you write imports without file extensions, it means that _each file_ in your
-package would need an entry in the import map, as opposed to one for the entire
-package, because the mapping couldn't be specified by a simple prefix. This
+package would need an entry in the import map.
+This
 could greatly bloat the import map.
 
 Thus, to prepare your source now to be optimally compatible with import maps, we
@@ -157,7 +156,7 @@ declare global {
 }
 ```
 
-Doing this would allow the following code to properly type-check:
+By doing this, the following code properly type-checks:
 
 ```ts
 const myElement = document.createElement('my-element');
@@ -175,7 +174,7 @@ The module that declares the web component class should always include a call to
 
 Work is progressing on adding [Scoped Custom Element
 Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md)
-to the platform, wherein an custom element's tag name could be chosen by the
+to the platform, wherein a custom element's tag name could be chosen by the
 user of the component for a given shadow root scope. Once browsers start
 shipping this feature, it will become practical to export the custom element
 class separate from a side-effectful import that registers it globally with a
