@@ -87,7 +87,7 @@ Once your controller is registered with the host component, you can add lifecycl
 
 ### Lifecycle
 
-The reactive controller lifecycle, defined in the {% api ReactiveController %} interface, is a subset of the reactive update cycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional.
+The reactive controller lifecycle, defined in the {% api "ReactiveController" %} interface, is a subset of the reactive update cycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional.
 
 * `hostConnected()`:
   * Called when the host is connected.
