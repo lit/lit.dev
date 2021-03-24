@@ -1,12 +1,12 @@
 ---
-title: Shadow DOM
+title: Working with Shadow DOM
 eleventyNavigation:
   key: Shadow DOM
   parent: Components
   order: 4
 ---
 
-By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM.
+Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM. DOM encapsulation is the key to unlocking interoperability with any other code, including other web components or Lit component, functioning on the page.
 
 Shadow DOM provides three benefits:
 
@@ -14,7 +14,7 @@ Shadow DOM provides three benefits:
   component's shadow DOM, so it's harder for global scripts to accidentally break your component.
 * Style scoping. You can write encapsulated styles for your shadow DOM that don't
   affect the rest of the DOM tree.
-* Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your component DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
+* Composition. The component's shadow DOM or internal DOM is separate from the component's children. You can choose how children are rendered in your component's internal DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
 
 For more information on shadow DOM:
 
@@ -24,13 +24,13 @@ For more information on shadow DOM:
 
 <div class="alert alert-info">
 
-**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [browser support](../tools/browsers) for details.
+**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) can be used to polyfill shadow DOM. See the [Polyfills](/docs/tools/requirements/#polyfills) documentation for more information.
 
 </div>
 
 ## Customizing the render root {#renderroot}
 
-Each Lit component has a **render root**—a DOM node that serves as a container for its component DOM.
+Each Lit component has a **render root**—a DOM node that serves as a container for its internal DOM.
 
 By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
 
@@ -56,9 +56,7 @@ class DelagatesFocus extends LitElement {
 }
 ```
 
-More information:
-
-*   [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) on MDN.
+See [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) on MDN for more information.
 
 ### Implementing `createRenderRoot`
 
@@ -70,7 +68,7 @@ For example, to render the template into the main DOM tree as your element's chi
 
 <div class="alert alert-info">
 
-**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its component DOM.
+**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its internal DOM.
 
 </div>
 
@@ -78,9 +76,9 @@ For example, to render the template into the main DOM tree as your element's chi
 
 ## Accessing nodes in the shadow DOM
 
-To find nodes relative to the render root, use `this.renderRoot.querySelector()` or `this.renderRoot.querySelectorAll()`. Since Lit renders into shadow DOM by default, `this.shadowRoot.querySelector()` could be used; however, because this is customizable, it's safer to use `this.renderRoot` to find nodes in your component DOM.
+To find nodes relative to the render root, use `this.renderRoot.querySelector()` or `this.renderRoot.querySelectorAll()`. Since Lit renders into shadow DOM by default, `this.shadowRoot.querySelector()` could be used; however, because this is customizable, it's safer to use `this.renderRoot` to find nodes in your component's internal DOM.
 
-You can query the component DOM after its initial render (for example, in `firstUpdated`), or use a getter pattern:
+You can query internal DOM after component initial render (for example, in `firstUpdated`), or use a getter pattern:
 
 ```js
 firstUpdated() {
@@ -94,14 +92,9 @@ get _closeButton() {
 
 LitElement supplies a set of decorators that provide a shorthand way of defining getters like this.
 
-More information:
-
-*   [Element.querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector) on MDN.
-*   [Element.querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll) on MDN.
-
 ### @query, @queryAll, and @queryAsync decorators
 
-The `@query`, `@queryAll`, `@queryAsync`, and `@queryAssignedNoes` decorators all provide a convenient way to access nodes in the component's DOM.
+The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient way to access nodes in the internal component DOM.
 
 <div class="alert alert-info">
 
@@ -193,11 +186,7 @@ By default, if an element has a shadow tree, its children don't render at all.
 
 To render children, your template needs to include one or more [`<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot), which act as placeholders for child nodes.
 
-<div class="alert alert-info">
-
-**Finding slotted children.** If your component needs information about its slotted children, see [Accessing slotted children](#accessing-slotted-children).
-
-</div>
+If your component needs information about its slotted children, see [Accessing slotted children](#accessing-slotted-children).
 
 ### Using the slot element
 
