@@ -196,7 +196,7 @@ You'll probably want to change the component name from "my-element" to something
 
 ### Next steps
 
-Ready to add features to your new component? Head over to [Templates](/docs/templates/overview/) for details on writing templates for your LitElement component.
+Ready to add features to your project? Head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
 
 For details on running tests and using other tools, see the starter project README:
 
