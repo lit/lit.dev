@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement}  from 'lit/decorators.js';
+import {customElement} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 
 const markup = '<h3>Some HTML to render.</h3>';

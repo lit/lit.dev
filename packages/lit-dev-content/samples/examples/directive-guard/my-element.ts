@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state, query}  from 'lit/decorators.js';
+import {customElement, state, query} from 'lit/decorators.js';
 import {guard} from 'lit/directives/guard.js';
 import {calculateSHA} from './calculate-sha.js';
 

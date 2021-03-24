@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state}  from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {until} from 'lit/directives/until.js';
 
 const fetchData = async () => {

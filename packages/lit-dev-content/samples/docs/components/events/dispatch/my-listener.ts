@@ -1,5 +1,5 @@
-import {LitElement, html}  from 'lit';
-import {customElement, property}  from 'lit/decorators.js';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 @customElement('my-listener')
 class MyListener extends LitElement {
   @property() name = '';

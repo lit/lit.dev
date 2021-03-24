@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state}  from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {asyncAppend} from 'lit/directives/async-append.js';
 
 async function *tossCoins(count: number) {

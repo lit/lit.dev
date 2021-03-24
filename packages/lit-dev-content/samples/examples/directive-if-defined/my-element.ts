@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state, query}  from 'lit/decorators.js';
+import {customElement, state, query} from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
 const imageInfo = {

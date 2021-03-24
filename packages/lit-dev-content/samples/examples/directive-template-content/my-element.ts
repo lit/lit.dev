@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement}  from 'lit/decorators.js';
+import {customElement} from 'lit/decorators.js';
 import {templateContent} from 'lit/directives/template-content.js';
 
 // <template> is located in index.html file

@@ -1,5 +1,5 @@
-import {LitElement, html}  from 'lit';
-import {customElement}  from 'lit/decorators.js';
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
 @customElement('default-root')
 export class DefaultRoot extends LitElement {

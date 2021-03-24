@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state}  from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {asyncReplace} from 'lit/directives/async-replace.js';
 
 async function *countDown(count: number) {

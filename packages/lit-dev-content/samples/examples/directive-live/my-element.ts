@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state, query}  from 'lit/decorators.js';
+import {customElement, state, query} from 'lit/decorators.js';
 import {live} from 'lit/directives/live.js';
 
 @customElement('my-element')

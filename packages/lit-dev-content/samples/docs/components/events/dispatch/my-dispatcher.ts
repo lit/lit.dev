@@ -1,5 +1,5 @@
-import {LitElement, html}  from 'lit';
-import {customElement, query}  from 'lit/decorators.js';
+import {LitElement, html} from 'lit';
+import {customElement, query} from 'lit/decorators.js';
 
 @customElement('my-dispatcher')
 class MyDispatcher extends LitElement {

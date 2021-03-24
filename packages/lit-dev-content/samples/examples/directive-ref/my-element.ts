@@ -1,5 +1,5 @@
 import {LitElement, html, css} from 'lit';
-import {customElement}  from 'lit/decorators.js';
+import {customElement} from 'lit/decorators.js';
 import {ref, createRef} from 'lit/directives/ref.js';
 
 const loremIpsum = Array(100).fill(0).map(() => 'Lorem ipsum dolor sit amet.').join(' ');

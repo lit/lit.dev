@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property}  from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 import {cache} from 'lit/directives/cache.js';
 
 const view1 = () => html`View 1: <input value="edit me then toggle">`;

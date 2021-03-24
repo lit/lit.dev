@@ -1,4 +1,4 @@
-import {LitElement, html, css}  from 'lit';
+import {LitElement, html, css} from 'lit';
 
 class MyElement extends LitElement {
   static get properties() {
