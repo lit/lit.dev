@@ -4,16 +4,11 @@
     "my-element.ts": {},
     "index.html": {}
   },
+  "editorHeight": "830px",
   "importMap": {
     "imports": {
       "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/",
-      "@lit/reactive-element": "https://cdn.skypack.dev/@lit/reactive-element",
-      "@lit/reactive-element/": "https://cdn.skypack.dev/@lit/reactive-element/",
-      "lit-element": "https://cdn.skypack.dev/lit-element@next-major",
-      "lit-element/": "https://cdn.skypack.dev/lit-element@next-major/",
-      "lit-html": "https://cdn.skypack.dev/lit-html@next-major",
-      "lit-html/": "https://cdn.skypack.dev/lit-html@next-major/"
+      "lit/": "https://cdn.skypack.dev/lit/"
     }
   }
 }

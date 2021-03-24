@@ -3,6 +3,7 @@
     "my-element.ts": {},
     "index.html": {}
   },
+  "previewHeight": "80px",
   "importMap": {
     "imports": {
       "lit": "https://cdn.skypack.dev/lit",

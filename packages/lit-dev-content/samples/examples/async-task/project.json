@@ -7,5 +7,11 @@
     "npm-info.js": {},
     "task.js": {},
     "index.html": {}
+  },
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
   }
 }

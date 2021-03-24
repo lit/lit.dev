@@ -9,5 +9,11 @@
     "index.html": {},
     "styles.css": {},
     "styles.css.js": {}
+  },
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
   }
 }

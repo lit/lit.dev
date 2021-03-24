@@ -2,5 +2,13 @@
   "files": {
     "simple-greeting.ts": {},
     "index.html": {}
+  },
+  "editorHeight": "555px",
+  "previewHeight": "80px",
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
   }
 }

@@ -7,9 +7,9 @@ class MyElement extends LitElement {
   protected render() {
     return html`
       <div @click="${this._clickHandler}">
-        <p><button>Item 1</button></p>
-        <p><button>Item 2</button></p>
-        <p><button>Item 3</button></p>
+        <button>Item 1</button>
+        <button>Item 2</button>
+        <button>Item 3</button>
       </div>
       <p>Clicked: ${this.clicked}</p>
     `;

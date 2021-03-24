@@ -8,5 +8,11 @@
     "my-footer.js": {},
     "my-header.js": {},
     "index.html": {}
+  },
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
   }
 }

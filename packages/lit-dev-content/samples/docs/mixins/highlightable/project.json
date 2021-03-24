@@ -5,9 +5,8 @@
     "element-two.ts": {},
     "index.html": {}
   },
-  "editorHeight": 640,
-  "lineNumbers": false,
-  "importMap": {
+  "editorHeight": "640px",
+    "importMap": {
     "imports": {
       "lit": "https://cdn.skypack.dev/lit",
       "lit/": "https://cdn.skypack.dev/lit/"

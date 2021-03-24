@@ -3,5 +3,12 @@
     "my-element.ts": {},
     "index.html": {}
   },
-  "previewHeight": "160px"
+  "editorHeight": "560px",
+  "previewHeight": "80px",
+  "importMap": {
+    "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/"
+    }
+  }
 }
