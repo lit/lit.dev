@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('more-expressions')
 class MoreExpressions extends LitElement {

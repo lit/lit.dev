@@ -1,6 +1,6 @@
 /* playground-fold */
 import { LitElement, html } from 'lit';
-import { property, customElement } from 'lit/decorators';
+import { property, customElement } from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
