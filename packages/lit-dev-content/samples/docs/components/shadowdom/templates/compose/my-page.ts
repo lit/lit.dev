@@ -1,4 +1,5 @@
-import {LitElement, html, customElement, property} from 'lit-element';
+import {LitElement, html} from 'lit';
+import {customElement, property}  from 'lit/decorators.js';
 
 function headerTemplate(title) {
   return html`<header>${title}</header>`;

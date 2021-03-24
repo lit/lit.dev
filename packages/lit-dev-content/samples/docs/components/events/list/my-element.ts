@@ -1,4 +1,5 @@
-import { LitElement, html, customElement, property } from '@polymer/lit-element';
+import {LitElement, html}  from 'lit';
+import {customElement, property}  from 'lit/decorators.js';
 @customElement('my-element')
 class MyElement extends LitElement {
   @property() clicked = '';
@@ -14,9 +15,9 @@ class MyElement extends LitElement {
     `;
   }
   private _clickHandler(e: Event) {
-    this.clicked = (e.target as Element).getAttribute('key');
+    this.clicked = (e.target as Element).getAttribute('key')!;
   }
   private _focusHandler(e: Event) {
-    this.focused = (e.target as Element).textContent;
+    this.focused = (e.target as Element).textContent!;
   }
 }

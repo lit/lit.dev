@@ -1,5 +1,5 @@
 import {LitElement, html, css} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, property}  from 'lit/decorators.js';
 import {styleMap} from 'lit/directives/style-map.js';
 
 @customElement('my-element')
@@ -14,7 +14,7 @@ export class MyElement extends LitElement {
   render() {
     const styles = {
       backgroundColor: this.enabled ? 'lightgreen' : 'transparent',
-      opacity: this.hidden ? 0.2 : 1,
+      opacity: this.hidden ? '0.2' : '1',
       padding: '10px'
     };
     return html`

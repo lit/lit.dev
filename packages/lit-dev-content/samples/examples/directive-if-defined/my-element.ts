@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state, query} from 'lit/decorators.js';
+import {customElement, state, query}  from 'lit/decorators.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
 const imageInfo = {
@@ -8,11 +8,13 @@ const imageInfo = {
   'canyon': { domain: 'picsum.photos', id: 1016 },
 };
 
+type ImageKey = keyof typeof imageInfo;
+
 @customElement('my-element')
 class MyElement extends LitElement {
 
   @state()
-  private imageName: string = 'beach';
+  private imageName: ImageKey = 'beach';
 
   @query('input#name')
   private input!: HTMLInputElement;
@@ -36,6 +38,6 @@ class MyElement extends LitElement {
   }
 
   private updateImage() {
-    this.imageName = this.input.value;
+    this.imageName = this.input.value as ImageKey;
   }
 }

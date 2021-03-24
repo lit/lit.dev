@@ -20,7 +20,7 @@ class UpdateProperties extends LitElement {
   }
 
   loadStuff() {
-    return new Promise((resolve) => {
+    return new Promise<string>((resolve) => {
       setTimeout(() => {
         resolve('Content loaded.');
       }, 3000);

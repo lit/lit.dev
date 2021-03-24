@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, state, query} from 'lit/decorators.js';
+import {customElement, state, query}  from 'lit/decorators.js';
 import {guard} from 'lit/directives/guard.js';
 import {calculateSHA} from './calculate-sha.js';
 
@@ -9,11 +9,11 @@ export class MyElement extends LitElement {
   @state()
   private value: string = 'test string';
 
-  @state({type: Number})
+  @state()
   private counter: number = 0;
 
   @query('input#value')
-  private input: HTMLInputElement;
+  private input!: HTMLInputElement;
 
   render() {
     return html`

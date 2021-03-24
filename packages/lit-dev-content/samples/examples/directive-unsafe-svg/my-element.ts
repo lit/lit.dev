@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement}  from 'lit/decorators.js';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
 
 const svg = '<circle cx="50" cy="50" r="40" fill="red" />';

@@ -1,8 +1,9 @@
-import { LitElement, html, property, customElement } from '@polymer/lit-element';
+import {LitElement, html}  from 'lit';
+import {customElement, property}  from 'lit/decorators.js';
 
 @customElement('my-listener')
 class MyListener extends LitElement {
-  @property({type: String}) height: string|null = null;
+  @property({type: Number}) height: number|null = null;
   protected render() {
     return html`
       <p @opened=${this._listener} @closed=${this._listener}><slot></slot></p>

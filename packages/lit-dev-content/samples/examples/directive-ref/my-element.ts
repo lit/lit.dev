@@ -1,5 +1,5 @@
 import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement}  from 'lit/decorators.js';
 import {ref, createRef} from 'lit/directives/ref.js';
 
 const loremIpsum = Array(100).fill(0).map(() => 'Lorem ipsum dolor sit amet.').join(' ');
@@ -35,11 +35,11 @@ export class MyElement extends LitElement {
   }
 
   firstUpdated() {
-    const input = this.inputRef.value;
+    const input = this.inputRef.value!;
     input.focus();
   }
 
-  ensureInView(element: Element) {
-    requestAnimationFrame(() => element.scrollIntoView(true));
+  ensureInView(element: Element | undefined) {
+    requestAnimationFrame(() => element!.scrollIntoView(true));
   }
 }

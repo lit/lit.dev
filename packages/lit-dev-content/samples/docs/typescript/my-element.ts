@@ -2,9 +2,8 @@
  * Import LitElement base class, html helper function,
  * and TypeScript decorators
  **/
-import {
-  LitElement, html, customElement, property
-} from 'lit-element';
+import {LitElement, html} from 'lit';
+import {customElement, property}  from 'lit/decorators.js';
 
 /**
  * Use the customElement decorator to define your class as
