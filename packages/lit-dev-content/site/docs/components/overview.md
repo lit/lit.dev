@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Components overview
 eleventyNavigation:
   key: Overview
   parent: Components
@@ -8,13 +8,15 @@ eleventyNavigation:
 
 A Lit component is a reusable piece of UI. You can think of a Lit component as a container that has some state and that displays a UI based on its state. It can also react to user input, fire events—anything you'd expect a UI component to do. And a Lit component is an HTML element, so it has all of the standard element APIs.
 
- Almost all Lit components include:
+A Lit component has several features:
 
-*   *Reactive properties* that define the state of the component. Changing one or more of the components' reactive properties triggers an update cycle, re-rendering the component.
+ *   A **render method** that's called to render the component's contents. In the render method, you define a *template* for the component.
 
-*   A *render method* that's called to render the component's contents. In the render method, you define a *template* for the component.
+*   **Reactive properties** that define the state of the component. Changing one or more of the components' reactive properties triggers an update cycle, re-rendering the component.
 
-Lit also provides a set of lifecycle methods that you can override to hook into the component's lifecycle (for example, to run code whenever the component updates).
+*   Encapsulated **styles** to control the appearance of the component.
+
+*   **Lifecycle callbacks** that you can override to hook into the component's lifecycle—for example, to run code when the element's added to a page, or whenever the component updates.
 
 To define a Lit component, you create a class that extends the `LitElement` base class.
 
@@ -38,22 +40,13 @@ When you define a Lit component, you're defining a [custom HTML element](https:/
 
 ```js
 const greeting = document.createElement('simple-greeting');
-greeting.name = 'Script';
-document.body.appendChild(greeting);
 ```
 
-Create a Lit component by creating a class extending LitElement and registering your class with the browser:
+Create a Lit component by creating a class extending `LitElement` and registering your class with the browser:
 
 ```ts
 @customElement('simple-greeting')
 export class SimpleGreeting extends LitElement { ... }
-```
-
-Or in JavaScript:
-
-```js
-export class SimpleGreeting extends LitElement { ... }
-customElements.define('simple-greeting', SimpleGreeting);
 ```
 
 The [`@customElement`](/api/modules/_lit_element_.html#customelement) decorator is shorthand for calling [`customElements.define`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define), which registers a custom element class with the browser and associates it with an element name (in this case, `simple-greeting`).
@@ -64,9 +57,9 @@ Specificially, `LitElement` inherits from `ReactiveElement`, which implements re
 
 ![Inheritance diagram showing LitElement inheriting from ReactiveElement, which in turn inherits from HTMLElement. LitElement is responsible for templating; ReactiveElement is responsible for managing reactive properties and attributes; HTMLElement is the standard DOM interface shared by all native HTML elements and custom elements.](/images/docs/components/lit-element-inheritance.png)
 
-## Rendering, templates and styles
+## Templates and rendering
 
-A Lit component's `render` method defines a *template* for the component. The template can contain *expressions* that are updated when the component renders:
+A Lit component's `render()` method defines a *template* for the component. The template can contain *expressions* that are updated when the component renders:
 
 ```js
 render() {
@@ -74,13 +67,15 @@ render() {
 }
 ```
 
-By default the rendered DOM is encapsulated using [shadow DOM](/docs/components/shadow-dom/). This has three main benefits:
+By default the rendered DOM is encapsulated using [shadow DOM](/docs/components/shadow-dom/).
 
-*   *DOM composition* means that users can provide child nodes without interfering with the component's internal DOM. The component author decides where or if user-provided child nodes render.
+Read more:
 
-*   *DOM encapsulation* means that outside code (like `document.querySelector`) won't accidentally select elements in your component's shadow DOM.
+*   [Rendering](/docs/components/rendering/)
+*   [Shadow DOM](/docs/components/shadow-dom/)
+*   [Template overview](/docs/templates/overview/)
 
-*   *Style encapsulation* means that you scope styles to your component, and prevent outside CSS styles from leaking in.
+## Styles
 
 You can specify encapsulated styles for your component using the static `styles` property:
 
@@ -94,8 +89,6 @@ These styles are applied to every instance of your component.
 
 Read more:
 
-*   [Rendering](/docs/components/rendering/)
-*   [Template overview](/docs/templates/overview/)
 *   [Styles](/docs/components/styles/)
 
 ## Reactive properties
@@ -110,20 +103,14 @@ class MyElement extends LitElement {
 
 Changing the value of a reactive property triggers an *update*. (The update process is asynchronous, so setting multiple properties at the same time only triggers one update.)
 
-During the update, a series of update related callbacks are called. As part of the process, the component's `render()` method is called and its UI updated.
-
-A reactive property can be set to *reflect* to an attribute. This means a corresponding attribute is set on the component when the property value changes. (Or in the case of a boolean property, the attribute is added when the property is true, and removed when the property is false.) Attribute reflection also happens during the update process.
-
-In addition to public properties, a component can have internal reactive state: private or protected properties that aren't part of the component's public API, but can still trigger an update. Use the `@state` decorator to declare internal reactive state:
-
-```ts
-class MyElement extends LitElement {
-  @property() message;
-  @state() private _language;
-}
-```
-
 Read more:
 
 *   [Reactive properties](/docs/components/properties)
+
+## Lifecycle
+
+Lit components use the standard custom element lifecycle methods. In addition Lit introduces a *reactive update cycle* that renders changes to DOM when reactive properties change.
+
+Read more:
+
 *   [Lifecycle](/docs/components/lifecycle)

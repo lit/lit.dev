@@ -3,7 +3,7 @@ title: Shadow DOM
 eleventyNavigation:
   key: Shadow DOM
   parent: Components
-  order: 4
+  order: 6
 ---
 
 By default, Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM.
