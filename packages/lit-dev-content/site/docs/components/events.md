@@ -188,7 +188,7 @@ Often, an event should be fired only after an element updates and renders. This 
 
 ### Using standard or custom events { #standard-custom-events }
 
-Events can be dispatched either using by constructing an `Event` instance or a `CustomEvent` instance. Either is a reasonable approach. When using a `CustomEvent`,any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+Events can be dispatched either by constructing an `Event` instance or a `CustomEvent` instance. Either is a reasonable approach. When using a `CustomEvent`,any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
 
 #### Firing a custom event:
 
@@ -222,15 +222,9 @@ this.dispatchEvent(event);
 
 When using shadow DOM there are a few modifications to the standard event system that are important to understand. Shadow DOM exists primarily to provide a scoping mechanism in the DOM that encapsulates details about these "shadow" elements. As such, events in shadow DOM encapsulate certain details from outside DOM elements.
 
-Only events dispatched with the [composed](#shadowdom-composed) are are visible outside of a shadow root. Non-composed events may only be listened for within the shadow root in which they are dispatched.
-
-In addition, `composed` events are [retargeted](#shadowdom-retargeting) to appear as if they were dispatched from the element hosting the shadow root.
-
 ### Understanding composed event dispatching {#shadowdom-composed}
 
-By default, a bubbling [custom event](#standard-custom-events) dispatched inside shadow DOM will stop bubbling when it reaches the shadow root.
-
-To make a custom event pass through shadow DOM boundaries, you must set the `composed` flag to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can hear the event:
+By default, a [custom event](#standard-custom-events) dispatched inside shadow DOM will not be heard outside the shadow root. To make a custom event pass through shadow DOM boundaries, you must set the `composed` flag to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can hear the event:
 
 ```js
 _dispatchMyEvent() {
@@ -242,11 +236,13 @@ _dispatchMyEvent() {
 }
 ```
 
+Note, if an event is `composed` but does not `bubble`, it can only be heard on the node that dispatches the event and on the host element containing the shadow root. If an event is `composed` and does `bubble`, all ancestor nodes to the node that dispatches the event will be able to hear the event.
+
 Note that most standard user interface events, including all mouse, touch, and keyboard events, are both bubbling and composed. See the [MDN documentation on composed events](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) for more information.
 
 ### Understanding event retargeting {#shadowdom-retargeting}
 
-[Composed](#shadowdom-composed) bubbling events dispatched from within shadow DOM are retargeted so that, to any listener external to the shadow DOM, they appear to come from the element hosting the shadow root. Since Lit components render into shadow DOM, all events dispatched from inside a Lit component appear to be dispatched by the Lit component itself. This means the event's `target` property is the Lit component.
+[Composed](#shadowdom-composed) events dispatched from within shadow DOM are retargeted so that, to any listener external to the shadow DOM, they appear to come from the element hosting the shadow root. Since Lit components render into shadow DOM, all events dispatched from inside a Lit component appear to be dispatched by the Lit component itself. This means the event's `target` property is the Lit component.
 
 ```html
 <my-element onClick="(e) => console.log(e.target)"></my-element>
