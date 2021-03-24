@@ -21,7 +21,7 @@ Take our [step-by-step tutorial](/tutorial/) to learn how to build a Lit compone
 
 ### Lit Starter Kits
 
-We proide TypeScript and JavaScript component starter kits for creating standalone reusable components. See [Starter Kits](/tools/starter-kits/).
+We proide TypeScript and JavaScript component starter kits for creating standalone reusable components. See [Starter Kits](/docs/tools/starter-kits/).
 
 ### Adding Lit to a existing project
 
