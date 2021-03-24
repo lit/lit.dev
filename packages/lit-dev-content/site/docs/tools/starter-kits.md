@@ -6,26 +6,26 @@ eleventyNavigation:
   order: 7
 ---
 
-The Lit Starter Kits are project templates for reusable LitElement components that could be published for others to use.
+The Lit Starter Kits are project templates for reusable Lit components that could be published for others to use.
 
 To get started working on a component locally, you can use one of these starter projects:
 
-*   [LitElement JavaScript starter project ](https://github.com/PolymerLabs/lit-element-starter-js)
-*   [LitElement TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts)
+*   [Lit JavaScript starter project ](https://github.com/PolymerLabs/lit-element-starter-js)
+*   [Lit TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts)
 
-Both projects define a LitElement component. They also add a set of optional tools for developing, linting, and testing the component:
+Both projects define a Lit component. They also add a set of optional tools for developing, linting, and testing the component:
 
 *   Node.js and npm for managing dependencies. _Requires Node.js 10 or greater._
-*   A local dev server,  [ES dev server](https://open-wc.org/developing/es-dev-server.html#getting-started).
+*   A local dev server,  [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/).
 *   Linting with [ESLint](https://eslint.org/) and [lit-analyzer](https://www.npmjs.com/package/lit-analyzer).
-*   Testing with [Karma](https://karma-runner.github.io/latest/index.html).
-*   A static doc site built with [web component analyzer](https://www.npmjs.com/package/web-component-analyzer) and [eleventy](https://www.11ty.dev/).
+*   Testing with [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/).
+*   A static doc site built with [web-component-analyzer](https://www.npmjs.com/package/web-component-analyzer) and [eleventy](https://www.11ty.dev/).
 
-None of these tools is _required_ to work with LitElement. They represent one possible set of tools for a good developer experience.
+None of these tools is _required_ to work with Lit. They represent one possible set of tools for a good developer experience.
 
 <div class="alert alert-info">
 
-**Alternative starting point.** As an alternative to the official LitElement starter projects, the open-wc project has a [project generator](https://open-wc.org/docs/development/generator/) for web components using LitElement. The open-wc script asks a series of questions and scaffolds out a project for you.
+**Alternative starting point.** As an alternative to the official Lit starter projects, the Open WC project has a [project generator](https://open-wc.org/docs/development/generator/) for web components using Lit. The Open WC script asks a series of questions and scaffolds out a project for you.
 
 </div>
 
@@ -97,7 +97,7 @@ A couple of things to look for in the code:
     _JavaScript_
 
     ```js
-    export class MyElement extends LitElement { ... }
+    export class MyElement extends LitElement { /* ... */ }
 
     customElements.define('my-element', MyElement);
     ```
@@ -106,15 +106,14 @@ A couple of things to look for in the code:
 
     ```ts
     @customElement('my-element')
-    export class MyElement extends LitElement { ... }
+    export class MyElement extends LitElement { /* ... */ }
     ```
 
-
-*   The component's `render` method defines a [template](templates) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](templates).
+*   The component's `render` method defines a [template](/docs/templates/overview) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](templates).
 
     ```js
     export class MyElement extends LitElement {
-      ...
+      // ...
       render() {
         return html`
           <h1>Hello, ${this.name}!</h1>
@@ -127,7 +126,7 @@ A couple of things to look for in the code:
     }
     ```
 
-*   The component defines some [properties](properties). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](properties).
+*   The component defines some [properties](/docs/components/properties/). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/components/properties/).
 
     _JavaScript_
 
@@ -144,7 +143,7 @@ A couple of things to look for in the code:
         super();
         this.name = 'World';
       }
-      ...
+      // ...
     }
     ```
 
@@ -152,10 +151,10 @@ A couple of things to look for in the code:
 
     ```ts
     export class MyElement extends LitElement {
-      ...
+      // ...
       @property({type: String})
       name = 'World';
-      ...
+      //...
     }
     ```
 
@@ -197,9 +196,11 @@ You'll probably want to change the component name from "my-element" to something
 
 ### Next steps
 
-Ready to add features to your new component? Head over to [Templates](templates) for details on writing templates for your LitElement component.
+Ready to add features to your new component? Head over to [Templates](/docs/templates/overview/) for details on writing templates for your LitElement component.
 
 For details on running tests and using other tools, see the starter project README:
 
 *   [TypeScript project README](https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/README.md)
 *   [JavaScript project README](https://github.com/PolymerLabs/lit-element-starter-js/blob/master/README.md)
+
+For a guide on publishing your component to `npm`, see [Publishing](/docs/tools/publishing/).
