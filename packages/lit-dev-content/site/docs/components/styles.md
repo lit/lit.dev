@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 5
 ---
 
-Your component's template is rendered to its shadow DOM tree. The styles you add to your component are automatically _scoped_ to the shadow tree, so they don't leak out and affect other elements.
+Your component's template is rendered to its shadow DOM. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root. Shadow DOM provides strong encapsulation for styling: styling does not accidentally apply to elements above the component or to elements below the component, either to its child nodes or any shadow roots on elements in its own shadow root.
 
 ## Adding styles to your component {#add-styles}
 
@@ -282,24 +282,7 @@ To use `styleMap` and/or `classMap`:
 
 {% playground-example "docs/components/style/maps" "my-element.ts" %}
 
-### classMap syntax {#classmap}
-
-`classMap` applies a set of classes to an HTML element:
-
-### styleMap syntax {#stylemap}
-
-`styleMap` applies a set of CSS rules to an HTML element:
-
-To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`).
-
-To refer to custom CSS properties such as `--custom-color`, place the whole property name in quotes (`'--custom-color'`).
-
-|Inline style or CSS|styleMap equivalent|
-|:----------------------|:----------------------|
-| `background-color: blue;`| `backgroundColor: 'blue'` or<br>`'background-color': 'blue'`|
-| `font-family: Roboto;` | `fontFamily: 'Roboto'` or<br>`'font-family': 'Roboto'`|
-|`--custom-color: #FFFABC;`|`'--custom-color': '#FFFABC;'`|
-|`--otherColor: #FFFABC;`|`'--otherColor': '#FFFABC;'`|
+See [classMap](docs/templates/directives/#classmap) and [styleMap](docs/templates/directives/#stylemap) for more information.
 
 ## Theming {#theming}
 
