@@ -16,7 +16,7 @@
     "build:rollup:watch": "rollup -c --watch",
     "dev:build:site": "ELEVENTY_ENV=dev eleventy",
     "dev:build:site:watch": "ELEVENTY_ENV=dev eleventy --watch",
-    "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch",
+    "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "devDependencies": {
