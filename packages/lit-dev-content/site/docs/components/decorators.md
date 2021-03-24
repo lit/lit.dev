@@ -6,13 +6,7 @@ eleventyNavigation:
   order: 8
 ---
 
-{% todo %}
-
-* See [#175](https://github.com/PolymerLabs/lit.dev/issues/175)
-
-{% endtodo %}
-
-Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide more declarative APIs for things like registering elements, reactive properties, and queries.
+Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide declarative APIs for things like registering elements, reactive properties, and queries.
 
 Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
 
@@ -45,14 +39,14 @@ See [Reactive properties](/docs/components/properties) for more information abou
 
 | Decorator | Summary | More Info |
 |-----------|---------|--------------|
-| [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement) | Defines a custom element | [Above](#custom-element) |
-| [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions) | Adds event listener options. | [Events](/docs/components/events#event-options-decorator) |
-| [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property) | Defines a public property. | [Properties](/docs/components/properties#declare-with-decorators) |
-| [`@state`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty) | Defines a private state property | [Properties](/docs/components/properties#declare-with-decorators) |
-| [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query) | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query) |
-| [`@queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll) | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-all) |
-| [`@queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync) | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-async) |
-| [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes) | Defines a property that returns the children assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom#query-assigned-nodes) |
+| [`@customElement`](/docs/api/decorators/#customElement) | Defines a custom element | [Above](#custom-element) |
+| [`@eventOptions`](/docs/api/decorators/#eventOptions) | Adds event listener options. | [Events](/docs/components/events#event-options-decorator) |
+| [`@property`](/docs/api/decorators/#property) | Defines a public property. | [Properties](/docs/components/properties#declare-with-decorators) |
+| [`@state`](/docs/api/decorators/#state) | Defines a private state property | [Properties](/docs/components/properties#declare-with-decorators) |
+| [`@query`](/docs/api/decorators/#query) | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query) |
+| [`@queryAll`](/docs/api/decorators/#queryAll) | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-all) |
+| [`@queryAsync`](/docs/api/decorators/#queryAsync) | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-async) |
+| [`@queryAssignedNodes`](/docs/api/decorators/#queryAssignedNodes) | Defines a property that returns the children assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom#query-assigned-nodes) |
 
 ## Importing decorators
 
@@ -102,7 +96,9 @@ plugins = [
 ```
 
 <div class="alert alert-info">
+
 Currently the older `legacy` mode of Babel decorators is not supported, but this may change as Babel evolves. See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy) if you want to experiment.
+
 </div>
 
 ### Avoiding issues with class fields
