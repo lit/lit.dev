@@ -8,82 +8,40 @@ eleventyNavigation:
 
 There are many ways to get started using Lit, from our Playground and interactive tutorial to installing into an exising project.
 
-### lit.dev Playground
+## Lit Playground
 
-lit.dev has an interactive Playground and examples to let you try Lit right away with no setup.
+lit.dev has an interactive Playground and examples to let you try Lit right away with no setup. Start with editable "Hello World" examples in JavaScript and TypeScript, then customize them or move on to more examples.
 
 * [Hello World (TypeScript)](/playground/#sample=examples/hello-world-typescript)
 * [Hello World (JavaScript)](/playground/#sample=examples/hello-world-javascript)
 
-### Interactive Tutorial
+## Interactive tutorial
 
 Take our [step-by-step tutorial](/tutorial/) to learn how to build a Lit component in minutes.
 
-### Lit Starter Kits
+## Lit starter kits
 
 We proide TypeScript and JavaScript component starter kits for creating standalone reusable components. See [Starter Kits](/docs/tools/starter-kits/).
 
-### Adding Lit to a existing project
+## Install locally from npm
 
-Lit doesn't require any specialized tools, so you can add it to exisitng projects and applications.
-
-#### Install from npm
+Lit is available as the `lit` package via npm.
 
 ```sh
 npm i lit
 ```
 
-#### Add an component
+Then import into JavaScript or TypeScript files:
 
-Create a new element, anywhere in your project's source:
-
-_lib/components/my-element.ts_
-
-```js
+```ts
 import {LitElement, html} from 'lit';
-import {customElement} from 'lit/decorators.js';
-
-@customElement('my-element')
-class MyElement extends LitElement {
-  render() {
-    return html`
-      <div>Hello from MyElement!</div>
-    `;
-  }
-}
+import {customElement, property} from 'lit/decorators.js';
 ```
 
-#### Use your component
+## Add Lit to an existing project
 
-How you use a component depends on your project and the libraries or frameworks is uses. You can use your component in HTML, with DOM APIs, or in template languages:
+See [Adding Lit to an existing project](/docs/tools/adding-lit) for more instructions on adding Lit to an existion project or application.
 
-##### Plain HTML:
-```html
-<script type="module" src="/lib/components/my-elements.js">
-<my-element></my-element>
-```
-
-##### JSX:
-
-```tsx
-import './components/my-elements.js';
-
-export const App = () => (
-  <h1>My App</h1>
-  <my-element></my-element>
-)
-```
-
-At this point, you should be able to build and run your project and see the "Hello from MyElement!" message.
-
-For details on building projects, including some sample Rollup configurations, see [Building for production](/docs/tools/production/).
-
-#### Next steps
-
-Ready to add features to your project? Head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
-
-For more on building applications that use web components, see the Open WC recommendations on [Building](https://open-wc.org/building/).
-
-### Open WC project generator
+## Open WC project generator
 
 The Open WC project has a [project generator](https://open-wc.org/init/) that can scaffold out an application project using LitElement.
