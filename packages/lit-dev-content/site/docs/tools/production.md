@@ -48,7 +48,7 @@ into an easy-to-use package. Example configurations using this plugin are descri
 The annotated `rollup.config.js` file below will build an application that meets
 the [modern browser build requirements](/docs/tools/requirements/#building-for-modern-browsers) and
 [production optimizations](#preparing-code-for-production) described on this page. This configuration is
-suitable for serving to modern browsers that can run ES2020 JS without
+suitable for serving to modern browsers that can run ES2019 JS without
 polyfills.
 
 Required node modules:
@@ -145,12 +145,12 @@ import summary from 'rollup-plugin-summary';
 const htmlPlugin = html({
   rootDir: './',
   flattenOutput: false,
-  // Injects a feature detection script to test for modern ES2020 syntax, used
+  // Injects a feature detection script to test for modern ES2019 syntax, used
   // to determine whether to load the modern or legacy build
   transformHtml: (html) => {
     return html.replace(
       '<script',
-      `<script>window.__isModern=window?.window;</script><script`
+      `<script>window.__isModern=!!Array.prototype.flat;</script><script`
     );
   },
 });
