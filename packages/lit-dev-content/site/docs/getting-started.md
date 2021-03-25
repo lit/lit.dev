@@ -323,7 +323,7 @@ If you already have a dev server that works with your build system, it should wo
 
 ### Supporting older browsers
 
-For older browsers like Internet Explorer 11 that don't support ES2020 and web components natively, see [Tools and Workflows](/docs/tools/overview) for information about setting up Lit to work for testing, development, building, and publishing.
+For older browsers like Internet Explorer 11 that don't support ES2019 and web components natively, see [Tools and Workflows](/docs/tools/overview) for information about setting up Lit to work for testing, development, building, and publishing.
 
 ### Next steps
 

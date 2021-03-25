@@ -1,10 +1,10 @@
 ---
 title: Custom directives
 eleventyNavigation:
-  parent: Composition
+  parent: Templates
   title: Custom directives
-  key: Directives
-  order: 2
+  key: Custom directives
+  order: 6
 ---
 
 Directives are objects that customize how Lit renders expressions. Using a directive in your template is like calling a function:
@@ -19,8 +19,8 @@ However, instead of simply _returning_ a value to render, a directive gets speci
 
 While Lit ships with a number of built-in directives like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. To create a directive:
 
-*   Implement the directive as a class that extends the `Directive` class.
-*   Pass your class to the `directive` factory to create a directive function that can be used in Lit template expressions.
+*   Implement the directive as a class that extends the [`Directive`](TODO_HREF) class.
+*   Pass your class to the [`directive()`](TODO_HREF) factory to create a directive function that can be used in Lit template expressions.
 
 ```js
 import {Directive, directive} from 'lit/directive.js';
@@ -122,12 +122,12 @@ Your `update()` method should return something Lit can render, or the special va
 
 Each expression position has its own specific `Part` object:
 
-*   [`ChildPart`](/api/classes/_lit_html_.childpart.html) for expressions in HTML child position.
-*   [`AttributePart`](/api/classes/_lit_html_.attributepart.html) for expressions in HTML attribute value position.
-*   [`BooleanAttributePart`](/api/classes/_lit_html_.booleanattributepart.html) for expressions in a boolean attribute value (name prefixed with `?`).
-*   [`EventPart`](/api/classes/_lit_html_.eventpart.html) for expressions in an event listener position (name prefixed with `@`).
-*   [`PropertyPart`](/api/classes/_lit_html_.propertypart.html) for expressions in property value position (name prefixed with `.`).
-*   [`ElementPart`](/api/classes/_lit_html_.elementpart.html) for expressions on the element tag.
+*   {% api "ChildPart" %} for expressions in HTML child position.
+*   {% api "AttributePart" %} for expressions in HTML attribute value position.
+*   {% api "BooleanAttributePart" %} for expressions in a boolean attribute value (name prefixed with `?`).
+*   {% api "EventPart" %} for expressions in an event listener position (name prefixed with `@`).
+*   {% api "PropertyPart" %} for expressions in property value position (name prefixed with `.`).
+*   {% api "ElementPart" %} for expressions on the element tag.
 
 In addition to the part-specific metadata contained in `PartInfo`, all `Part` types provide access to the DOM `element` associated with the expression (or `parentNode`, in the case of `ChildPart`), which may be directly accessed in `update()`. For example:
 
@@ -149,7 +149,7 @@ const template = html`<div a b>${attributeLogger()}</div>`;
 // Renders: `<div a b>a b</div>`
 ```
 
-In addition, the [`directive-helpers.js`](/api/TODO_API_HREF) module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
+In addition, the `directive-helpers.js` module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
 
 #### Calling render() from update()
 
@@ -169,7 +169,7 @@ class MyDirective extends Directive {
 
 ### Differences between update() and render()
 
-While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit/ssr` package for server-side rendering, _only_ the `render()` method is called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for logic that requires access to the DOM.
+While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit-labs/ssr` package for server-side rendering (SSR), _only_ the `render()` method is called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for logic that requires access to the DOM.
 
 ## Signaling no change
 
@@ -228,7 +228,7 @@ The previous example directives are synchronous: they return values synchronousl
 
 Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
-To set a value asynchronously, a directive needs to extend the `AsyncDirective` base class, which provides a `setValue()` API.
+To set a value asynchronously, a directive needs to extend the [`AsyncDirective`](TODO_HREF) base class, which provides a `setValue()` API.
 
 Here's an example of a simple async directive that renders a Promise value:
 
