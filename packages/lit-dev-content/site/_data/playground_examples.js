@@ -23,11 +23,8 @@ const topSectionOrder = [
 
 const orderOf = (section) => {
   let order = topSectionOrder.indexOf(section);
-  if (order < 0) {
-    // Put non-top sections at bottom; these get compared by name
-    order = Infinity;
-  }
-  return order;
+  // Put non-top sections at bottom; these get compared by name
+  return order < 0 ? Infinity : order;
 }
 
 // Create a data source, accessible to templates by the name of this file, that
