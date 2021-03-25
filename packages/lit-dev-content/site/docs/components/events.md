@@ -238,7 +238,7 @@ _dispatchMyEvent() {
 }
 ```
 
-Note, if an event is `composed` but does not `bubble`, it can only be listened to directly on the node that dispatches the event and on the host element containing the shadow root. If an event is `composed` and does `bubble`, all ancestor nodes, including ancestors in outer shadow roots, to the node that dispatches the event will be able to hear the event.
+If an event is `composed` and does `bubble`, it can be received by all ancestors of the element that dispatches the event—including ancestors in outer shadow roots. If an event is `composed` but does not `bubble`, it can only be received on the element that dispatches the event and on the host element containing the shadow root.
 
 Note that most standard user interface events, including all mouse, touch, and keyboard events, are both bubbling and composed. See the [MDN documentation on composed events](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) for more information.
 
