@@ -282,7 +282,7 @@ To use `styleMap` and/or `classMap`:
 
 {% playground-example "docs/components/style/maps" "my-element.ts" %}
 
-See [classMap](docs/templates/directives/#classmap) and [styleMap](docs/templates/directives/#stylemap) for more information.
+See [classMap](/docs/templates/directives/#classmap) and [styleMap](/docs/templates/directives/#stylemap) for more information.
 
 ## Theming {#theming}
 
