@@ -1,4 +1,5 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "my-page.ts": {},
     "my-header.ts": {},
@@ -6,10 +7,5 @@
     "my-footer.ts": {},
     "index.html": {}
   },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
-  }
+  "editorHeight": "550px"
 }

@@ -1,9 +1,9 @@
-import { LitElement, html, css } from "lit-element";
-import { styleMap } from "lit-html/directives/style-map.js";
+import { LitElement, html, css } from 'lit';
+import { styleMap } from 'lit/directives/style-map.js';
 
-import { styles } from "./styles.css.js";
-import { SpringController2D } from "./spring-controller.js";
-import { MouseController } from "./mouse-controller.js";
+import { styles } from './styles.css.js';
+import { SpringController2D } from './spring-controller.js';
+import { MouseController } from './mouse-controller.js';
 
 const slow = {
   stiffness: 400,

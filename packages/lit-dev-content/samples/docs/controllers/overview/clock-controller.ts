@@ -11,7 +11,6 @@ export class ClockController implements ReactiveController {
     (this.host = host).addController(this);
     this.timeout = timeout;
   }
-
   hostConnected() {
     // Start a timer when the host is connected
     this._timerID = setInterval(() => {
@@ -20,11 +19,9 @@ export class ClockController implements ReactiveController {
       this.host.requestUpdate();
     });
   }
-
   hostDisconnected() {
     // Clear the timer when the host is disconnected
     clearInterval(this._timerID);
     this._timerID = undefined;
   }
-
 }

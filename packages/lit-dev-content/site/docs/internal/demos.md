@@ -53,8 +53,17 @@ Arguments:
 
 ## Package versions
 
-Use `importMap.imports` in your `project.json` file to control the resolution of
-bare module specifiers.
+Use `extends` in your `project.config` to inherit from the site base
+configuration that resolve imports to `lit-next`:
+
+```json
+{
+  "extends": "/samples/base.json",
+}
+```
+
+Use `importMap.imports` in your `project.json` file to further control the
+resolution of bare module specifiers.
 
 ```json
 {

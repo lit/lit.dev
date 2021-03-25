@@ -1,4 +1,5 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "my-element.js": {},
     "index.html": {}
