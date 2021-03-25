@@ -8,8 +8,7 @@ eleventyNavigation:
 
 There are several strategies you can use to make your Lit code reusable:
 
-*   Composition
-*   Directives
+*   Component composition
 *   Reactive controllers
 *   Class mixins
 
@@ -17,13 +16,11 @@ _Composition_ is the process of assembling complex components from simpler compo
 
 Although component composition is the default way to think about breaking a complex Lit project down into smaller units, there are three other notable code patterns useful for factoring your Lit code:
 
-[_Directives_](/docs/composition/directives/) are functions that can customize how Lit renders values. Unlike a simple function in a template expression, a directive can hold state between render cycles, and directly manipulate the generated DOM.
-
 [_Reactive controllers_](/docs/composition/controllers/) are objects that can hook into the update lifecycle of a Lit component, encapsulating state and behavior related to a feature into a separate unit of code.
 
 [_Class mixins_](/docs/composition/mixins/) let you write reusable partial component definitions and "mix them in" to a component's inheritance chain.
 
-Directives are useful for code that needs to customize rendering in some fashion; while they have some similarities to components, it's best to think of these as rendering helpers, and not a full-fledged component model. On the other hand, both mixins and reactive controllers let you factor component logic related to a given feature into a reusable unit. See the next section for a comparison of controllers and mixins.
+Both mixins and reactive controllers let you factor component logic related to a given feature into a reusable unit. See the next section for a comparison of controllers and mixins.
 
 ## Controllers and mixins
 
