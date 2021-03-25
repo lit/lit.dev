@@ -224,7 +224,7 @@ When using shadow DOM there are a few modifications to the standard event system
 
 ### Understanding composed event dispatching {#shadowdom-composed}
 
-By default, a [custom event](#standard-custom-events) dispatched inside shadow DOM will not be heard outside the shadow root. To make a custom event pass through shadow DOM boundaries, you must set the `composed` flag to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can hear the event:
+By default, an event dispatched inside a shadow root will not be visible outside that shadow root. To make an event pass through shadow DOM boundaries, you must set the [`composed` property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can see the event:
 
 ```js
 _dispatchMyEvent() {
@@ -277,5 +277,4 @@ Another way to communicate between the dispatcher and listener is via the `preve
 Both of these techniques are used in the following example:
 
 {% playground-ide "docs/components/events/comm/" "my-listener.ts" %}
-
 
