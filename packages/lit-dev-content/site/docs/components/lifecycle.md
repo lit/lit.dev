@@ -378,3 +378,5 @@ Lit’s server-side rendering code is currently in an experimental stage so the 
 Not all of the update cycle is called when rendering Lit on the server. The following methods are called on the server.
 
 <img class="centered-image" src="/images/docs/components/update-server.jpg">
+
+<p><!-- Add some space --></p>

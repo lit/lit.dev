@@ -1,13 +1,10 @@
 {
-  "title": "Hello lit@next",
-  "description": "LitElement can be authored in vanilla JS as well.",
-  "section": "Basic Templates",
-  "files": {
-    "my-element.js": {},
-    "index.html": {}
-  },
   "importMap": {
     "imports": {
+      "lit": "https://cdn.skypack.dev/lit",
+      "lit/": "https://cdn.skypack.dev/lit/",
+      "@lit/reactive-element": "https://cdn.skypack.dev/@lit/reactive-element",
+      "@lit/reactive-element/": "https://cdn.skypack.dev/@lit/reactive-element/",
       "lit-element": "https://cdn.skypack.dev/lit-element@next-major",
       "lit-element/": "https://cdn.skypack.dev/lit-element@next-major/",
       "lit-html": "https://cdn.skypack.dev/lit-html@next-major",

@@ -1,4 +1,6 @@
-import { LitElement, html, customElement, query } from '@polymer/lit-element';
+import {LitElement, html} from 'lit';
+import {customElement, query} from 'lit/decorators.js';
+
 @customElement('my-dispatcher')
 class MyDispatcher extends LitElement {
   @query('input', true) _input!: HTMLInputElement;

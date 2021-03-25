@@ -9,11 +9,11 @@ export class MyElement extends LitElement {
   @state()
   private value: string = 'test string';
 
-  @state({type: Number})
+  @state()
   private counter: number = 0;
 
   @query('input#value')
-  private input: HTMLInputElement;
+  private input!: HTMLInputElement;
 
   render() {
     return html`

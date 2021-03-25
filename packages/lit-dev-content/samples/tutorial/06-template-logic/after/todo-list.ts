@@ -1,11 +1,11 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('todo-list')
 class ToDoList extends LitElement {
   @property()
   listItems: Array<string> = [
-    'Make todo list',
+    'Make to-do list',
     'Buy bread'
   ];
 

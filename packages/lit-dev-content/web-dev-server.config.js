@@ -1,6 +1,14 @@
 module.exports = {
   plugins: [
     {
+      name: 'dont-resolve-sample-modules',
+      async resolveImport({source, context}) {
+        if (context.path.startsWith('/samples/')) {
+          return source;
+        }
+      },
+    },
+    {
       // When we're using web-dev-server's --watch mode, we don't want our
       // playground project HTML files to get the injected web socket reload
       // script tag. This plugin reverses that transformation just for those

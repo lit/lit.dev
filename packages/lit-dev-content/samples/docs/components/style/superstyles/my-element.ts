@@ -1,6 +1,6 @@
-import { css } from 'lit';
-import { customElement } from 'lit/decorators';
-import { SuperElement } from './super-element.js';
+import {css} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {SuperElement} from './super-element.js';
 
 @customElement('my-element')
 export class MyElement extends SuperElement {

@@ -14,11 +14,25 @@ window.addEventListener('DOMContentLoaded', main);
  * On initial load, scroll the link for the current page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
-  // TODO(aomarks) Disabled because it also scrolls the whole window.
-  // An effect of display:sticky. Look into alternatives.
-  // https://github.com/PolymerLabs/lit.dev/issues/176
-  //const active = document.querySelector('.lhs-nav .active');
-  //active?.scrollIntoViewIfNeeded?.();
+  // Wait for layout.
+  requestAnimationFrame(() => {
+    // Note we don't use scrollIntoView() because for some reason it causes the
+    // entire window to scroll along with the nav. Possibly a bug with sticky
+    // position?
+    const nav = document.querySelector('#docsNav');
+    const active = document.querySelector('#docsNav .active');
+    if (!nav || !active) {
+      return;
+    }
+    const navRect = nav.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    if (activeRect.bottom > navRect.bottom) {
+      nav.scroll({
+        // Centered.
+        top: activeRect.top - navRect.top - navRect.height / 2,
+      });
+    }
+  });
 };
 
 /**

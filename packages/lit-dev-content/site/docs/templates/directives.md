@@ -1,7 +1,7 @@
 ---
-title: Directives
+title: Built-in directives
 eleventyNavigation:
-  key: Directives
+  key: Built-in directives
   parent: Templates
   order: 5
 ---
@@ -32,6 +32,8 @@ Lit includes a number of built-in directives to help with a variety of rendering
 *   [`until`](#until) - renders placeholder content until one or more promises resolve
 *   [`asyncAppend`](#asyncappend) - appends values from an `AsyncIterable` into the DOM as they are yielded
 *   [`asyncReplace`](#asyncreplace) - renders the latest value from an `AsyncIterable` into the DOM as it is yielded
+
+You can also build your own directives. For more information, see [Custom directives](/docs/templates/custom-directives/).
 
 ## classMap
 

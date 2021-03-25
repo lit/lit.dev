@@ -14,7 +14,7 @@ export class MyElement extends LitElement {
   render() {
     const styles = {
       backgroundColor: this.enabled ? 'lightgreen' : 'transparent',
-      opacity: this.hidden ? 0.2 : 1,
+      opacity: this.hidden ? '0.2' : '1',
       padding: '10px'
     };
     return html`
