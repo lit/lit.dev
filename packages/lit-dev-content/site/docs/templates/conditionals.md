@@ -69,7 +69,7 @@ render() {
 }
 ```
 
-See the [cache directive](docs/templates/directives/#cache) for more information.
+See the [cache directive](docs/templates/built-in-directives/#cache) for more information.
 
 ## Rendering nothing
 

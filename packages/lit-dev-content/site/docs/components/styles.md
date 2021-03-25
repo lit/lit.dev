@@ -267,7 +267,7 @@ One way to make styles dynamic is to add expressions to the `class` or `style` a
 
 Lit offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
 
-For more information on these and other directives, see the documentation on [built-in directives](/docs/templates/directives).
+For more information on these and other directives, see the documentation on [built-in directives](/docs/templates/built-in-directives).
 
 To use `styleMap` and/or `classMap`:
 
