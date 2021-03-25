@@ -188,7 +188,9 @@ Often, an event should be fired only after an element updates and renders. This 
 
 ### Using standard or custom events { #standard-custom-events }
 
-Events can be dispatched either by constructing an `Event` instance or a `CustomEvent` instance. Either is a reasonable approach. When using a `CustomEvent`, any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+Events can be dispatched either by constructing an `Event` or a `CustomEvent`. Either is a reasonable approach. When using a `CustomEvent`, any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+
+See [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event/Event) on MDN for details about constructing events.
 
 #### Firing a custom event:
 
