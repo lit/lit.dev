@@ -10,9 +10,11 @@
     "dev": "cd packages/lit-dev-content && (npm run build:ts:watch -- --preserveWatchOutput & npm run dev:build:site:watch & npm run dev:serve)",
     "format": "prettier \"**/*.{ts,js,json,html,css,md}\" --write",
     "nuke": "rm -rf node_modules package-lock.json packages/*/node_modules packages/*/package-lock.json && npm install && npx lerna bootstrap",
-    "test": "npm run test:links",
-    "test:links": "run-p -r start check-links",
-    "check-links": "wait-on tcp:8080 && blc --recursive http://localhost:8080/index.html"
+    "test": "npm run test:links:internal",
+    "test:links:internal": "run-p -r start check-links:internal",
+    "test:links:external": "run-p -r start check-links:external",
+    "check-links:internal": "wait-on tcp:8080 && blc http://localhost:8000 --exclude '*TODO_HREF' --exclude 'http://localhost:8000/api/*' --recursive --exclude-external",
+    "check-links:external": "wait-on tcp:8080 && blc http://localhost:8000 --exclude '*TODO_HREF' --exclude 'http://localhost:8000/api/*' --exclude 'https://github.com/Polymer/internal*' --exclude 'https://github.com/PolymerLabs/lit.dev*' --get --recursive --exclude-internal --host-requests 2"
   },
   "author": "",
   "license": "BSD-3-Clause",
