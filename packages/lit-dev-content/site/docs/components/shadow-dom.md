@@ -31,7 +31,7 @@ For more information on shadow DOM:
 ## Accessing nodes in the shadow DOM
 
 
-As described in [Rendering](/docs/components/rendering/), Lit renders components to a shadow root by default. To find internal elements in a shadow root you can use DOM query APIs on the shadow root, such as `this.shadowRoot.querySelector()`.
+Lit renders components to its `renderRoot`, which is a shadow root by default. To find internal elements, you can use DOM query APIs, such as `this.renderRoot.querySelector()`.
 
 Since Lit components can be configured to render to another location it's safer to use `this.renderRoot` instead of `this.shadowRoot`, like `this.renderRoot.querySelector()`. [`ShadowRoot`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) and `HTMLElement` both implement the [`ParentNode`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode) interface and share API like `.querySelectorAll()` and `.children`.
 
