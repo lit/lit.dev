@@ -1,12 +1,7 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "todo-list.ts": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit@latest",
-      "lit/": "https://cdn.skypack.dev/lit@latest/"
-    }
   }
 }
