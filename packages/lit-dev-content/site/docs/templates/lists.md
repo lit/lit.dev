@@ -60,7 +60,9 @@ The `repeat` directive can help here.
 
 The repeat directive performs efficient updates of lists based on user-supplied keys:
 
-`repeat(items, keyFunction, itemTemplate)`
+```ts
+repeat(items, keyFunction, itemTemplate)
+```
 
 Where:
 
