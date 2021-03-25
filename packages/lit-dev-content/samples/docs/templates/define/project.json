@@ -3,5 +3,6 @@
   "files": {
     "my-element.ts": {},
     "index.html": {}
-  }
+  },
+  "previewHeight": "80px"
 }

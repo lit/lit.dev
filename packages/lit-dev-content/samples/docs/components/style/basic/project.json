@@ -3,5 +3,7 @@
   "files": {
     "my-element.ts": {},
     "index.html": {}
-  }
+  },
+  "editorHeight": "390px",
+  "previewHeight": "80px"
 }

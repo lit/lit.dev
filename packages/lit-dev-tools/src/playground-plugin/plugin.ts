@@ -129,9 +129,9 @@ export const playgroundPlugin = (
     }
     const config = await readProjectConfig(project);
     const styleHeight = config.editorHeight
-      ? `style="height: ${config.editorHeight}px;"`
+      ? `style="height: ${config.editorHeight};"`
       : '';
-    const lineNumbers = config.lineNumbers === false ? '' : 'line-numbers';
+    const lineNumbers = config.lineNumbers ? 'line-numbers' : '';
     return `
       <playground-ide ${styleHeight}
       ${lineNumbers} resizable editable-file-system
