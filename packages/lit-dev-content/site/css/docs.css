@@ -233,6 +233,10 @@ td {
   white-space: nowrap;
 }
 
+.vcenter-cell {
+  vertical-align: middle;
+}
+
 /* -----------------------------------
 /* Notes and warnings
 /* ------------------------------------ */
