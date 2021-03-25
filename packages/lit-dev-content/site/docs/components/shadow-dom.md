@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 4
 ---
 
-Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM. DOM encapsulation is the key to unlocking interoperability with any other code, including other web components or Lit component, functioning on the page.
+Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM. Shadow DOM provides a way to add a separate isolated and encapsulated DOM tree to an element. DOM encapsulation is the key to unlocking interoperability with any other code, including other web components or Lit component, functioning on the page.
 
 Shadow DOM provides three benefits:
 
@@ -14,7 +14,7 @@ Shadow DOM provides three benefits:
   component's shadow DOM, so it's harder for global scripts to accidentally break your component.
 * Style scoping. You can write encapsulated styles for your shadow DOM that don't
   affect the rest of the DOM tree.
-* Composition. The component's shadow root, which contains its internal DOM, is separate from the component's children. You can choose how children are rendered in your component's internal DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
+* Composition. The component's shadow root, which contains its internal DOM, is separate from the component's children. You can choose how children are rendered in your component's internal DOM.
 
 For more information on shadow DOM:
 
@@ -27,52 +27,6 @@ For more information on shadow DOM:
 **Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) can be used to polyfill shadow DOM. See the [Polyfills](/docs/tools/requirements/#polyfills) documentation for more information.
 
 </div>
-
-## Customizing the render root {#renderroot}
-
-Each Lit component has a **render root**—a DOM node that serves as a container for its internal DOM.
-
-By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
-
-```html
-<my-element>
-  #shadow-root
-    <p>child 1</p>
-    <p>child 2</p>
-```
-
-There are two ways to customize the render root use by LitElement:
-
-* Setting `shadowRootOptions`.
-* Implementing the `createRenderRoot` method.
-
-### Setting `shadowRootOptions`
-
-The simplest way to customize the render root is to set the `shadowRootOptions` static property. The default implementation of `createRenderRoot` passes `shadowRootOptions` as the options argument to `attachShadow` when creating the component's shadow root. It can be set to customize any options allowed in the [ShadowRootInit](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters) dictionary, for example `mode` and `delegatesFocus`.
-
-```js
-class DelagatesFocus extends LitElement {
-  static shadowRootOptions = {...super.shadowRootOptions, delegatesFocus: true};
-}
-```
-
-See [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) on MDN for more information.
-
-### Implementing `createRenderRoot`
-
-The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` property. For more information on styling see [Styles](/docs/components/styles/).
-
-To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
-
-For example, to render the template into the main DOM tree as your element's children, implement `createRenderRoot` and return `this`.
-
-<div class="alert alert-info">
-
-**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its internal DOM.
-
-</div>
-
-{% playground-ide "docs/components/shadowdom/renderroot/" %}
 
 ## Accessing nodes in the shadow DOM
 
@@ -133,7 +87,7 @@ get first() {
 
 <div class="alert alert-info">
 
-**shadowRoot and renderRoot.** The [`renderRoot`](/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Customizing the render root](#renderroot)
+**shadowRoot and renderRoot.** The [`renderRoot`](/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Implementing createRenderRoot](#implementing-createrenderroot).
 
 </div>
 
@@ -252,10 +206,7 @@ render() {
 }
 ```
 
-More information:
-
-*   [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
-
+For more information, see [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
 
 ### @queryAssignedNodes decorator { #query-assigned-nodes }
 
@@ -288,3 +239,49 @@ get headerNodes() {
 ```
 
 For TypeScript, the typing of a `queryAssignedNodes` property is `NodeListOf<HTMLElement>`.
+
+## Customizing the render root {#renderroot}
+
+Each Lit component has a **render root**—a DOM node that serves as a container for its internal DOM.
+
+By default, LitElement creates an open `shadowRoot` and renders inside it, producing the following DOM structure:
+
+```html
+<my-element>
+  #shadow-root
+    <p>child 1</p>
+    <p>child 2</p>
+```
+
+There are two ways to customize the render root use by LitElement:
+
+* Setting `shadowRootOptions`.
+* Implementing the `createRenderRoot` method.
+
+### Setting `shadowRootOptions`
+
+The simplest way to customize the render root is to set the `shadowRootOptions` static property. The default implementation of `createRenderRoot` passes `shadowRootOptions` as the options argument to `attachShadow` when creating the component's shadow root. It can be set to customize any options allowed in the [ShadowRootInit](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters) dictionary, for example `mode` and `delegatesFocus`.
+
+```js
+class DelagatesFocus extends LitElement {
+  static shadowRootOptions = {...super.shadowRootOptions, delegatesFocus: true};
+}
+```
+
+See [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) on MDN for more information.
+
+### Implementing `createRenderRoot`
+
+The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` property. For more information on styling see [Styles](/docs/components/styles/).
+
+To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
+
+For example, to render the template into the main DOM tree as your element's children, implement `createRenderRoot` and return `this`.
+
+<div class="alert alert-info">
+
+**Rendering into children.** Rendering into children and not shadow DOM is generally not recommended. Your element will not have access to DOM or style scoping, and it will not be able to compose elements into its internal DOM.
+
+</div>
+
+{% playground-ide "docs/components/shadowdom/renderroot/" %}
