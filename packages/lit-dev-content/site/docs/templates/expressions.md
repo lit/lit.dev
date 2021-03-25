@@ -10,7 +10,7 @@ Lit templates can include dynamic values called expressions. An expression can b
 
 Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
-Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom Directives](/docs/templates/custom-directives) for more information.
+Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom directives](/docs/templates/custom-directives/) for more information.
 
 Here's a quick reference followed by more detailed information about each expression type.
 
