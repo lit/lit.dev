@@ -31,7 +31,7 @@ For more information on shadow DOM:
 ## Accessing nodes in the shadow DOM
 
 
-As described in [Rendering](/docs/components/rendering/), Lit renders components to a shadow root by default. To find internal elements in a shadow root you can use DOM query APIs on the shadow root, such as `this.shadowRoot.querySelector()`. 
+As described in [Rendering](/docs/components/rendering/), Lit renders components to a shadow root by default. To find internal elements in a shadow root you can use DOM query APIs on the shadow root, such as `this.shadowRoot.querySelector()`.
 
 Since Lit components can be configured to render to another location it's safer to use `this.renderRoot` instead of `this.shadowRoot`, like `this.renderRoot.querySelector()`. [`ShadowRoot`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) and `HTMLElement` both implement the [`ParentNode`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode) interface and share API like `.querySelectorAll()` and `.children`.
 
@@ -88,12 +88,6 @@ get first() {
 }
 ```
 
-<div class="alert alert-info">
-
-**shadowRoot and renderRoot.** The [`renderRoot`](/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Implementing createRenderRoot](#implementing-createrenderroot).
-
-</div>
-
 #### @queryAll { #query-all }
 
 Identical to `query` except that it returns all matching nodes, instead of a single node. It's the equivalent of calling `querySelectorAll`.
@@ -130,7 +124,7 @@ Similar to `@query`, except that instead of returning a node directly, it return
 
 This is useful, for example, if the node returned by `@queryAsync` can change as a result of another property change.
 
-## Composing element children with the slot element {#slots}
+## Rendering children with slots {#slots}
 
 Your component may accept children (like a `<ul>` element can have `<li>` children).
 
@@ -142,8 +136,6 @@ Your component may accept children (like a `<ul>` element can have `<li>` childr
 By default, if an element has a shadow tree, its children don't render at all.
 
 To render children, your template needs to include one or more [`<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot), which act as placeholders for child nodes.
-
-If your component needs information about its slotted children, see [Accessing slotted children](#accessing-slotted-children).
 
 ### Using the slot element
 
