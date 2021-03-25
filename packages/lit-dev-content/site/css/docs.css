@@ -154,7 +154,7 @@ figure {
   /* Adjust scroll margins of all article headings to account for sticky header.
      Otherwise, we'll scroll headings underneath the header. Add a little bit
      more too, for some extra visual breathing room. */
-  scroll-margin-top: calc(var(--header-height) + 12px);
+  scroll-margin-top: calc(var(--header-height) + 1.5em);
   position: relative;
   font-size: inherit;
   margin: 0;
