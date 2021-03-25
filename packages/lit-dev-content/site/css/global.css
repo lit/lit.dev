@@ -39,3 +39,12 @@ a {
   text-decoration: none;
   color: #1879cd;
 }
+
+/* Hide something visually in a way that screen readers will read. */
+.offscreen {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
