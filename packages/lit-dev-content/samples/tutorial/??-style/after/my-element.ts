@@ -1,6 +1,9 @@
-import { LitElement, html, css } from 'lit-element';
+import {LitElement, html, css} from 'lit';
 
 class MyElement extends LitElement {
+  message: string;
+  myArray: string[];
+  myBool: boolean;
   static get properties() {
     return {
       message: { type: String },
@@ -40,7 +43,7 @@ class MyElement extends LitElement {
       <button @click="${this.clickHandler}">Click</button>
     `;
   }
-  clickHandler(event) {
+  clickHandler(event: Event) {
     console.log(event.target);
     this.myBool = !this.myBool;
   }

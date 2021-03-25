@@ -15,6 +15,18 @@
 const glob = require('fast-glob');
 const fs = require('fs/promises');
 
+const topSectionOrder = [
+  'Basics',
+  'Template concepts',
+  'Directives',
+];
+
+const orderOf = (section) => {
+  let order = topSectionOrder.indexOf(section);
+  // Put non-top sections at bottom; these get compared by name
+  return order < 0 ? Infinity : order;
+}
+
 // Create a data source, accessible to templates by the name of this file, that
 // describes the projects that are shown in the "Examples" drawer on the
 // playground page.
@@ -28,6 +40,9 @@ module.exports = async () => {
     paths.map(async (path) => {
       const json = await fs.readFile(path, {encoding: 'utf8'});
       const project = JSON.parse(json);
+      if (project.hide) {
+        return;
+      }
       const shortPath = path.replace(
         /^samples\/(.+)\/project.json$/,
         '$1'
@@ -46,6 +61,6 @@ module.exports = async () => {
     })
   );
   return [...sections.entries()]
-    .map(([name, files]) => ({name, files}))
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .map(([name, files]) => ({name, files, order: orderOf(name)}))
+    .sort((a, b) => (a.order-b.order) || a.name.localeCompare(b.name));
 };

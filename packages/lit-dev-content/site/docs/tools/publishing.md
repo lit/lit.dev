@@ -28,22 +28,22 @@ You should also create a README describing how to consume your component.
 
 ## Publishing modern JavaScript
 
-We recommend publishing JavaScript modules in standard [ES2020](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always downlevel further to support older browsers, but they cannot "uplevel" legacy JavaScript to modern syntax if you pre-compile your code before publishing.
+We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always downlevel further to support older browsers, but they cannot "uplevel" legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
-However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ transpile those features to standard ES2020 supported natively in browsers before publishing to npm.
+However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ transpile those features to standard ES2019 supported natively in browsers before publishing to npm.
 
 ### Transpiling with TypeScript
 
-The following JSON sample is a partial `tsconfig.json` that uses recommended options for targeting ES2020, enables compilation of decorators, and outputs `.d.ts` types for users:
+The following JSON sample is a partial `tsconfig.json` that uses recommended options for targeting ES2019, enables compilation of decorators, and outputs `.d.ts` types for users:
 
 **tsconfig.json**
 
 ```json
 "compilerOptions": {
-  "target": "es2020",
+  "target": "es2019",
   "module": "es2015",
   "moduleResolution": "node",
-  "lib": ["es2020", "dom"],
+  "lib": ["es2019", "dom"],
   "declaration": true,
   "declarationMap": true,
   "experimentalDecorators": true
@@ -67,7 +67,7 @@ See the [tsconfig.json documentation](https://www.typescriptlang.org/docs/handbo
 
 ### Transpiling with Babel
 
-To transpile a Lit component that uses proposed JavaScript features not yet included in ES2020, use Babel.
+To transpile a Lit component that uses proposed JavaScript features not yet included in ES2019, use Babel.
 
 Install Babel and the Babel plugins you need. For example:
 
