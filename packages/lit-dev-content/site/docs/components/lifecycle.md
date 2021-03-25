@@ -13,7 +13,7 @@ Lit components are standard custom elements and inherit the custom element lifec
 
 <div class="alert alert-info">
 
-Note, if you need to customize any of the standard lifecycle methods, make sure to call the `super` implementation (e.g. `super.connectedCallback()`) so the standard Lit functionality is maintained.
+Note, if you need to customize any of the standard custom element lifecycle methods, make sure to call the `super` implementation (such as `super.connectedCallback()`) so the standard Lit functionality is maintained.
 
 </div>
 
