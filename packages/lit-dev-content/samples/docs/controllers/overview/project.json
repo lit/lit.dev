@@ -1,14 +1,9 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "clock-controller.ts": {},
     "my-element.ts": {},
     "index.html": {}
   },
-  "editorHeight": "830px",
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
-  }
+  "editorHeight": "830px"
 }

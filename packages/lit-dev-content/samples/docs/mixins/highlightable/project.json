@@ -1,15 +1,10 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "highlightable.ts": {},
     "element-one.ts": {},
     "element-two.ts": {},
     "index.html": {}
   },
-  "editorHeight": "640px",
-    "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
-  }
+  "editorHeight": "640px"
 }

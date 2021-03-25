@@ -1,14 +1,9 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "my-element.ts": {},
     "mouse-controller.ts": {},
     "index.html": {}
   },
-  "editorHeight": "580px",
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
-  }
+  "editorHeight": "580px"
 }

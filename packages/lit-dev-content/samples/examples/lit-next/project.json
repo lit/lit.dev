@@ -1,15 +1,10 @@
 {
+  "extends": "/samples/base.json",
   "title": "Hello lit@next",
   "description": "LitElement can be authored in vanilla JS as well.",
   "section": "Basic Templates",
   "files": {
     "my-element.js": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }

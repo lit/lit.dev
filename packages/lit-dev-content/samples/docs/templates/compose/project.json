@@ -1,14 +1,9 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "my-page.ts": {},
     "index.html": {}
   },
   "editorHeight": "770px",
-  "previewHeight": "90px",
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
-  }
+  "previewHeight": "90px"
 }

@@ -1,4 +1,5 @@
 {
+  "extends": "/samples/base.json",
   "title": "repeat directive",
   "description": "Demo exploring use of the repeat directive.",
   "section": "Directives",
@@ -7,11 +8,5 @@
     "index.html": {}
   },
   "editorHeight": "340px",
-  "previewHeight": "75px",
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
-  }
+  "previewHeight": "75px"
 }
