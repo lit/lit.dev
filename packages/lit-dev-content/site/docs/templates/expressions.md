@@ -10,7 +10,7 @@ Lit templates can include dynamic values called expressions. An expression can b
 
 Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
-Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Directives](/docs/templates/directives) for more information.
+Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom Directives](/docs/templates/custom-directives) for more information.
 
 Here's a quick reference followed by more detailed information about each expression type.
 
@@ -279,7 +279,7 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with [directives](/docs/templates/directives). Any other value type in an element expression is ignored.
+Element expressions only work with [directives](/docs/templates/built-in-directives). Any other value type in an element expression is ignored.
 
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
@@ -287,7 +287,7 @@ One built-in directive that can be used in an element expression is the `ref` di
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](/docs/templates/directives#ref) for more information.
+See [ref](/docs/templates/built-in-directives#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 
@@ -349,9 +349,9 @@ Static expressions are special one-time interpolations of values into the templa
 
 To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
 
-<div class="alert alert-info">
+<div class="alert alert-warning">
 
-Note the use of _unsafe_ in `unsafeStatic()`. Creating static expressions should be considered unsafe from a security perspective, and therefore used with caution. To avoid potential [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting) security issues, never allow user content to be an argument to `unsafeStatic()`.
+Note the use of _unsafe_ in `unsafeStatic()`. The string passed to `unsafeStatic()` must be developer-controlled and not include untrusted content. Examples of untrusted content include query string parameters and values from user inputs. Untrusted content rendered with this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
 
 </div>
 
