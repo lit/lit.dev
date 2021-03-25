@@ -201,7 +201,7 @@ Reactive controllers are very general and have a very broad set of possible use 
 
 ### External inputs
 
-Reactive controllers can be used to connect external inputs, like keyboard and mouse events; resize, intersection or mutation observers; etc; to a component. The controller can provide the current value of the input to use in rendering, and request a host update when the value changes.
+Reactive controllers can be used to connect to external inputs. For example, keyboard and mouse events, resize observers, or mutation observers. The controller can provide the current value of the input to use in rendering, and request a host update when the value changes.
 
 #### Example: MouseMoveController
 
