@@ -1,7 +1,7 @@
 ---
-title: Components overview
+title: Component basics
 eleventyNavigation:
-  key: Overview
+  key: Basics
   parent: Components
   order: 1
 ---
@@ -30,32 +30,23 @@ Here's a sample component:
 
 </div>
 
-## A Lit component is an HTML element
+## Defining a Lit component
 
-When you define a Lit component, you're defining a [custom HTML element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). So you can use the new element like you'd use any built-in element:
-
-```html
-<simple-greeting name="Markup"></simple-greeting>
-```
-
-```js
-const greeting = document.createElement('simple-greeting');
-```
-
-Create a Lit component by creating a class extending `LitElement` and registering your class with the browser:
+Define a Lit component by creating a class extending `LitElement` and registering your class with the browser:
 
 ```ts
 @customElement('simple-greeting')
 export class SimpleGreeting extends LitElement { ... }
 ```
 
+In JavaScript, or if you're not using decorators:
+
+```js
+export class SimpleGreeting extends LitElement { ... }
+customElements.define('simple-greeting', SimpleGreeting);
+```
+
 The [`@customElement`](/api/modules/_lit_element_.html#customelement) decorator is shorthand for calling [`customElements.define`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define), which registers a custom element class with the browser and associates it with an element name (in this case, `simple-greeting`).
-
-The `LitElement` base class is a subclass of `HTMLElement`, so a Lit component inherits all of the standard `HTMLElement` properties and methods.
-
-Specificially, `LitElement` inherits from `ReactiveElement`, which implements reactive properties, and in turn inherits from `HTMLElement`.
-
-![Inheritance diagram showing LitElement inheriting from ReactiveElement, which in turn inherits from HTMLElement. LitElement is responsible for templating; ReactiveElement is responsible for managing reactive properties and attributes; HTMLElement is the standard DOM interface shared by all native HTML elements and custom elements.](/images/docs/components/lit-element-inheritance.png)
 
 ## Templates and rendering
 
@@ -114,3 +105,21 @@ Lit components use the standard custom element lifecycle methods. In addition Li
 Read more:
 
 *   [Lifecycle](/docs/components/lifecycle)
+
+## A Lit component is an HTML element
+
+When you define a Lit component, you're defining a [custom HTML element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). So you can use the new element like you'd use any built-in element:
+
+```html
+<simple-greeting name="Markup"></simple-greeting>
+```
+
+```js
+const greeting = document.createElement('simple-greeting');
+```
+
+The `LitElement` base class is a subclass of `HTMLElement`, so a Lit component inherits all of the standard `HTMLElement` properties and methods.
+
+Specificially, `LitElement` inherits from `ReactiveElement`, which implements reactive properties, and in turn inherits from `HTMLElement`.
+
+![Inheritance diagram showing LitElement inheriting from ReactiveElement, which in turn inherits from HTMLElement. LitElement is responsible for templating; ReactiveElement is responsible for managing reactive properties and attributes; HTMLElement is the standard DOM interface shared by all native HTML elements and custom elements.](/images/docs/components/lit-element-inheritance.png)
