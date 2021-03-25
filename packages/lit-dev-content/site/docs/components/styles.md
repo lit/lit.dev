@@ -6,7 +6,9 @@ eleventyNavigation:
   order: 5
 ---
 
-Your component's template is rendered to its shadow DOM. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root. Shadow DOM provides strong encapsulation for styling: styling does not accidentally apply to elements above the component or to elements below the component, either to its child nodes or any shadow roots on elements in its own shadow root.
+Your component's template is rendered to its shadow root. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root.
+
+Shadow DOM provides strong encapsulation for styling. If Lit did not use Shadow DOM, you would have to be extremely careful not to accidentally style elements outside of your component, either ancestors or children of your component. This might involve writing long, cumbersome to use class names. By using Shadow DOM, Lit ensures whatever selector you write only apply to elements in your Lit component's shadow root.
 
 ## Adding styles to your component {#add-styles}
 
