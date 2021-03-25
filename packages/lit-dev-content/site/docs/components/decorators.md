@@ -39,14 +39,14 @@ See [Reactive properties](/docs/components/properties) for more information abou
 
 | Decorator | Summary | More Info |
 |-----------|---------|--------------|
-| [`@customElement`](/docs/api/decorators/#customElement) | Defines a custom element | [Above](#custom-element) |
-| [`@eventOptions`](/docs/api/decorators/#eventOptions) | Adds event listener options. | [Events](/docs/components/events#event-options-decorator) |
-| [`@property`](/docs/api/decorators/#property) | Defines a public property. | [Properties](/docs/components/properties#declare-with-decorators) |
-| [`@state`](/docs/api/decorators/#state) | Defines a private state property | [Properties](/docs/components/properties#declare-with-decorators) |
-| [`@query`](/docs/api/decorators/#query) | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query) |
-| [`@queryAll`](/docs/api/decorators/#queryAll) | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-all) |
-| [`@queryAsync`](/docs/api/decorators/#queryAsync) | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-async) |
-| [`@queryAssignedNodes`](/docs/api/decorators/#queryAssignedNodes) | Defines a property that returns the children assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom#query-assigned-nodes) |
+| {% api "@customElement" "customElement" %} | Defines a custom element | [Above](#custom-element) |
+| {% api "@eventOptions" "eventOptions" %} | Adds event listener options. | [Events](/docs/components/events#event-options-decorator) |
+| {% api "@property" "property" %} | Defines a public property. | [Properties](/docs/components/properties#declare-with-decorators) |
+| {% api "@state" "state" %} | Defines a private state property | [Properties](/docs/components/properties#declare-with-decorators) |
+| {% api "@query" "query %} | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query) |
+| {% api "@queryAll" "queryAll %} | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-all) |
+| {% api "@queryAsync" "queryAsync %} | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/components/shadow-dom#query-async) |
+| {% api "@queryAssignedNodes" "queryAssignedNodes %} | Defines a property that returns the children assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom#query-assigned-nodes) |
 
 ## Importing decorators
 
