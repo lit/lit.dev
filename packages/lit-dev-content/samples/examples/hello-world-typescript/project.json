@@ -1,15 +1,10 @@
 {
+  "extends": "/samples/base.json",
   "title": "Hello World (TypeScript)",
   "description": "Basic example of the key features of LitElement.",
   "section": "Basic Templates",
   "files": {
     "my-element.ts": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }

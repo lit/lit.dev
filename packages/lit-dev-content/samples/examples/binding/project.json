@@ -1,15 +1,10 @@
 {
+  "extends": "/samples/base.json",
   "title": "Binding to different parts of a template",
   "description": "Bind to attributes, boolean attributes, properties, text content, and event handlers in a template.",
   "section": "Rendering & Templating",
   "files": {
     "my-element.js": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }

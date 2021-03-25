@@ -1,15 +1,10 @@
 {
+  "extends": "/samples/base.json",
   "title": "List Separators in lit-html",
   "description": "How to add commas between list items with `Array.map`.",
   "section": "Specific Solutions",
   "files": {
     "index.js": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }

@@ -1,4 +1,5 @@
 {
+  "extends": "/samples/base.json",
   "title": "Async Task / NPM Info element",
   "description": "Shows an example of an async Task controller. This one fetches npm package info and renders based on the state of the fetch.",
   "section": "Specific Solutions",
@@ -7,11 +8,5 @@
     "npm-info.js": {},
     "task.js": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }

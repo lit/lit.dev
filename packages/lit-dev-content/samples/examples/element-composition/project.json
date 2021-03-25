@@ -1,4 +1,5 @@
 {
+  "extends": "/samples/base.json",
   "title": "Element composition",
   "description": "Compose a template from other custom elements.",
   "section": "Rendering & Templating",
@@ -8,11 +9,5 @@
     "my-footer.js": {},
     "my-header.js": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }

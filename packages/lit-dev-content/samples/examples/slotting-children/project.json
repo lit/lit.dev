@@ -1,15 +1,10 @@
 {
+  "extends": "/samples/base.json",
   "title": "Slotting children",
   "description": "Render children with the <slot> element.",
   "section": "Rendering & Templating",
   "files": {
     "my-element.js": {},
     "index.html": {}
-  },
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit",
-      "lit/": "https://cdn.skypack.dev/lit/"
-    }
   }
 }
