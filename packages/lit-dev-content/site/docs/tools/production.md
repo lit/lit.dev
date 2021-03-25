@@ -145,14 +145,6 @@ import summary from 'rollup-plugin-summary';
 const htmlPlugin = html({
   rootDir: './',
   flattenOutput: false,
-  // Injects a feature detection script to test for modern ES2019 syntax, used
-  // to determine whether to load the modern or legacy build
-  transformHtml: (html) => {
-    return html.replace(
-      '<script',
-      `<script>window.__isModern=!!Array.prototype.flat;</script><script`
-    );
-  },
 });
 
 export default {
@@ -179,7 +171,7 @@ export default {
       // Feature detection for loading legacy bundles
       legacyOutput: {
         name: 'legacy',
-        test: '!window.__isModern',
+        test: '!!Array.prototype.flat',
         type: 'systemjs',
       },
       // List of polyfills to inject (each has individual feature detection)
