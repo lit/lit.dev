@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-During the development phase of your projects when you're writing Lit components, the following tools can help boost your productivity:
+During the development phase of your projects, when you're writing Lit components, the following tools can help boost your productivity:
 
 * A dev server, for previewing code without a build step.
 * TypeScript, for writing type-checked code.
@@ -16,7 +16,28 @@ During the development phase of your projects when you're writing Lit components
 
 Check out the [Getting Started](../../getting-started) documentation to easily setup a development environment with all of these features pre-configured.
 
-## Using a dev server { #devserver }
+## Development and Production Builds
+
+All the Lit packages are published with development and production builds, using Node's support for [export conditions](https://nodejs.org/api/packages.html#packages_conditional_exports).
+
+The production build is optimized with very aggressive minification settings. The development build is unminified for easier debugging and includes extra checks and warnings. The default build is the production build, so that projects don't accidentally deploy the larger development build.
+
+You must opt into the developement build by specifying the `"development"` export condition in tools that support export conditions, such as Rollup, Webpack, and Web Dev Server. This is done differently for each tool.
+
+For example, in Rollup, using the `@rollup/node-resolve` plugin, you can select the development build with `exportConditions` option:
+
+```js
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+export default {
+  // ...
+  plugins: [nodeResolve({
+    exportConditions: ['development']
+  })]
+};
+```
+
+## Local dev servers { #devserver }
 
 Lit is packaged as JavaScript modules, and it uses bare module specifiers that are not yet natively supported in most browsers. Bare specifiers are commonly used, and you may want to use them in your own code as well. For example:
 
@@ -24,7 +45,7 @@ Lit is packaged as JavaScript modules, and it uses bare module specifiers that a
 import {LitElement, html, css} from 'lit';
 ```
 
-To run this code in the browser, the bare specifier ('lit') needs to be transformed to a URL that the browser can load (such as '/node_modules/lit/lit.js').
+To run this code in the browser, the bare specifier (`'lit'`) needs to be transformed to a URL that the browser can load (such as `'/node_modules/lit/lit.js'`).
 
 There are many development servers that can deal with module specifiers. If you already have a dev server that does this and integrates with your build process, that should be sufficient.
 
@@ -46,8 +67,22 @@ Add a command to your `package.json` file:
 
 ```json
 "scripts": {
-  "start": "web-dev-server --node-resolve --app-index index.html --open --watch --esbuild-target auto"
+  "start": "web-dev-server"
 }
+```
+
+And a `web-dev-server.config.js` file:
+```js
+export default {
+  open: true,
+  watch: true,
+  appIndex: 'index.html',
+  nodeResolve: {
+    exportConditions: ['development'],
+    dedupe: true,
+  },
+  esbuildTarget: 'auto',
+};
 ```
 
 Run the dev server:
@@ -55,6 +90,8 @@ Run the dev server:
 ```bash
 npm run start
 ```
+
+#### Legacy browser support
 
 For older browsers like IE11, Web Dev Server can transform JavaScript modules to use the backwards-compatible SystemJS module loader, and automatically serve the web components polyfills. You'll need to configure the `@web/dev-server-legacy` package to support older browsers.
 
@@ -70,8 +107,9 @@ Configure `web-dev-server.config.js`:
 import { legacyPlugin } from '@web/dev-server-legacy';
 
 export default {
+  // ...
   plugins: [
-    // make sure this plugin is always last
+    // Make sure this plugin is always last
     legacyPlugin({
       polyfills: {
         webcomponents: true,
@@ -93,7 +131,7 @@ export default {
 
 For full installation and usage instructions, see the [Web Dev Server documentation](https://modern-web.dev/docs/dev-server/overview/).
 
-## Using TypeScript { #typescript }
+## TypeScript { #typescript }
 
 TypeScript extends the Javascript language by adding support for types. Types are useful for catching errors early and making code more readable and understandable.
 
@@ -111,7 +149,7 @@ npx tsc --watch
 
 For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
 
-## Setting up Javascript linting { #linting }
+## JavaScript and TypeScript linting { #linting }
 
 Linting can help catch errors in your code. We recommend using [ESLint](https://eslint.org) for linting Lit code.
 
@@ -132,7 +170,7 @@ For full installation and usage instructions, see the [ESLint documentation](htt
 
 Integrating linting into your IDE workflow can help catch errors as early as possible. See [Lit-specific IDE plugins](#ide-plugins) to configure linting specifically for Lit.
 
-## Setting up formatting { #formatting }
+## Source formatting { #formatting }
 
 Using a code formatter can help ensure code is consistent and readable. Integrating your formatter of choice with your IDE ensures your code is always clean and tidy.
 
@@ -143,7 +181,7 @@ A few popular options include:
 * [Clang](https://www.npmjs.com/package/clang-format): [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
 
 
-## Using Lit-specific IDE plugins { #ide-plugins }
+## Lit-specific IDE plugins { #ide-plugins }
 
 There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
 
