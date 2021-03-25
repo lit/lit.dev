@@ -8,16 +8,14 @@ export class MouseController {
   };
 
   constructor(host) {
-    this.host = host;
+    (this.host = host).addController(host);
+  }
+
+  hostConnected() {
     window.addEventListener('mousemove', this._onMouseMove);
   }
 
-  // TODO: We need a way to hook the host's connectedness
-  // connectedCallback() {
-  //   window.addEventListener('mousemove', this._onMouseMove);
-  // }
-
-  // disconnectedCallback() {
-  //   window.removeEventListener('mousemove', this._onMouseMove);
-  // }
+  hostDisconnected() {
+    window.removeEventListener('mousemove', this._onMouseMove);
+  }
 }

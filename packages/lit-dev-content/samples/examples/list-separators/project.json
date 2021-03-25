@@ -1,4 +1,5 @@
 {
+  "hide": true,
   "extends": "/samples/base.json",
   "title": "List Separators in lit-html",
   "description": "How to add commas between list items with `Array.map`.",

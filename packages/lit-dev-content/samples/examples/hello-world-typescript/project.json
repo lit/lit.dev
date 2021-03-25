@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "title": "Hello World (TypeScript)",
   "description": "Basic example of the key features of LitElement.",
-  "section": "Basic Templates",
+  "section": "Basics",
   "files": {
     "my-element.ts": {},
     "index.html": {}
