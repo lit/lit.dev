@@ -71,7 +71,7 @@ The `render` method also takes an `options` argument that allows you to specify 
 
 *   `renderBefore`: An optional reference node within the `container` before which lit-html will render. By default, lit-html will append to the end of the container. Setting `renderBefore` allows rendering to a specific spot within the container.
 
-*   `creationScope`: The object lit-html will call `importNode` on (defaults to `document`). This is provided for advanced use cases.
+*   `creationScope`: The object lit-html will call `importNode` on when cloning templates (defaults to `document`). This is provided for advanced use cases.
 
 For example, if you're creating a component class, you might use render options like this:
 
