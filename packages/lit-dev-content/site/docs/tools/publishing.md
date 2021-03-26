@@ -136,16 +136,12 @@ recommend authoring with file extensions on imports.
 
 To make your element easy to use from TypeScript, we recommend that you:
 
-*   Add a `HTMLElementTagNameMap` entry for all elements authored
+*   Add an `HTMLElementTagNameMap` entry for all elements authored
 in TypeScript.
 
     ```ts
     @customElement('my-element')
-    export class MyElement extends LitElement {
-      @property({type: Number})
-      aNumber: number = 5;
-      /* ... */
-    }
+    export class MyElement extends LitElement { /* ... */ }
 
     declare global {
       interface HTMLElementTagNameMap {
@@ -156,7 +152,7 @@ in TypeScript.
 *   Publish your `.d.ts` typings in your npm package.
 
 
- For more information, see [Providing good TypeScript typings](/docs/components/defining/#typescript-typings).
+ For more information about `HTMLElementTagNameMap`, see [Providing good TypeScript typings](/docs/components/defining/#typescript-typings).
 
 ### Self-define elements
 
