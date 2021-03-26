@@ -204,12 +204,10 @@ figure {
   color: var(--docs-h3-color);
 }
 
-.heading.h4 {
+article > h4 {
   font-size: 0.88889rem;
-  margin: 1.3em 0 0 0;
-}
-.heading > h4 {
   color: var(--docs-h4-color);
+  margin: 1.3em 0 0 0;
 }
 
 /* ------------------------------------
