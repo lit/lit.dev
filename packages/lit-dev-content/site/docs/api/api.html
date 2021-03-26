@@ -2,15 +2,15 @@
 pagination:
     data: api-docs-pages
     size: 1
-    alias: exports
+    alias: data
     addAllPagesToCollections: true
 
-permalink: "docs/api/{{ exports.name }}/"
+permalink: "docs/api/{{ data.slug }}/"
 
 eleventyComputed:
-    title: "{{ exports.name | capitalize }}"
+    title: "{{ data.title }}"
     eleventyNavigation:
-        key: "{{ exports.name | capitalize }}"
+        key: "{{ data.title }}"
         parent: API
 ---
 
@@ -217,14 +217,64 @@ eleventyComputed:
   {% endif %}
 {% endmacro %}
 
-{% for export in exports.children %}
-  <div class="topLevelHeading">
+{% macro anchor(id, name) %}
+  <a class="anchor" href="#{{ id }}">
+    <span aria-hidden="true">#</span>
+    <span class="offscreen">
+      Permalink to {{ name }}
+    </span>
+  </a>
+{% endmacro %}
+
+{% macro properties(arr) %}
+  {% for prop in arr %}
+    <div class="heading h4 property">
+      <h4 id="{{ prop.location.anchor }}">
+        {% if prop.flags.isStatic %}
+          <span class="staticKeyword">static</span>
+        {% endif %}
+        {% if prop.flags.isReadonly %}
+          <span class="readonlyKeyword">readonly</span>
+        {% endif %}
+        {% if prop.signatures[0] %}
+          {{ signature(prop.signatures[0]) }}
+        {% elif prop.type %}
+          <span class="propertyName">{{ prop.name }}</span>
+          {%- if prop.flags.isOptional -%} ? {%- endif -%}
+          : {{ type(prop.type) }}
+        {% else %}
+          {{ prop.name }}
+        {% endif %}
+      </h4>
+      {{ anchor(prop.location.anchor, prop.name) }}
+      {{ viewSourceLink(prop) }}
+    </div>
+
+    <div class="propertyDetails">
+      {{ prop.comment.shortText | markdown | safe }}
+      {% if prop.signatures[0].parameters.length > 0 %}
+        <h5>Parameters</h5>
+        {{ params(prop) }}
+      {% endif %}
+      {% if prop.comment.text %}
+        <h5>Details</h5>
+        {{ prop.comment.text | markdown | safe }}
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endmacro %}
+
+{% for export in data.items %}
+  <div class="heading h2">
     <h2 id="{{ export.location.anchor }}">
       {{ export.name }}
     </h2>
     <span class="kindTag {{ kind(export) }}">
       {{ kind(export) }}
     </span>
+    {% if export.location.anchor %}
+      {{ anchor(export.location.anchor, export.name) }}
+    {% endif %}
     {{ viewSourceLink(export) }}
   </div>
 
@@ -258,48 +308,23 @@ eleventyComputed:
     {{ export.comment.text | markdown | safe }}
   {% endif %}
 
-  {% if export.children.length > 0 %}
+  {% if export.expandedCategories.length > 0 %}
+    {% for category in export.expandedCategories %}
+      <div class="properties">
+        <div class="heading h3">
+          <h3 id="{{ category.anchor }}">
+            {{ category.title }}
+          </h2>
+          {{ anchor(category.anchor, category.title) }}
+        </div>
+        {{ properties(category.children) }}
+      </div>
+    {% endfor %}
+
+  {% elif export.children.length > 0 %}
     <div class="properties">
       <h3>Methods and properties</h3>
-
-      {% if export.heritage %}
-        <em>Inherits methods and properties from {{ heritageList(export) }}</em>
-      {% endif %}
-
-      {% for prop in export.children %}
-        <span class="propertyHeadingContainer">
-          <h4 class="propertyHeading" id="{{ prop.location.anchor }}">
-            {% if prop.flags.isStatic %}
-              <span class="staticKeyword">static</span>
-            {% endif %}
-            {% if prop.flags.isReadonly %}
-              <span class="readonlyKeyword">readonly</span>
-            {% endif %}
-            {% if prop.signatures[0] %}
-              {{ signature(prop.signatures[0]) }}
-            {% elif prop.type %}
-              <span class="propertyName">{{ prop.name }}</span>
-              {%- if prop.flags.isOptional -%} ? {%- endif -%}
-              : {{ type(prop.type) }}
-            {% else %}
-              {{ prop.name }}
-            {% endif %}
-          </h4>
-          {{ viewSourceLink(prop) }}
-        </span>
-
-        <div class="propertyDetails">
-          {{ prop.comment.shortText | markdown | safe }}
-          {% if prop.signatures[0].parameters.length > 0 %}
-            <h5>Parameters</h5>
-            {{ params(prop) }}
-          {% endif %}
-          {% if prop.comment.text %}
-            <h5>Details</h5>
-            {{ prop.comment.text | markdown | safe }}
-          {% endif %}
-        </div>
-      {% endfor %}
+      {{ properties(export.children) }}
     </div>
   {% endif %}
 {% endfor %}

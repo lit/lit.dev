@@ -85,10 +85,10 @@ ${content}
       permalink: true,
       permalinkClass: 'anchor',
       permalinkSymbol: '#',
+      level: [2, 3],
       renderPermalink: accessiblePermalink({
         wrapperClassName: 'heading',
         offscreenClass: 'offscreen',
-        headerLevels: ['h2', 'h3'],
       }),
     });
   eleventyConfig.setLibrary('md', md);

@@ -6,13 +6,12 @@ main {
     /* Colors */
     --docs-h1-underline-color: var(--color-blue);
     --docs-h2-color: #384861;
-    --docs-h3-color: #49566d;
-    --docs-h4-color: #474747;
+    --docs-h3-color: #5d6c86;
     --docs-rule-color: #d1d1d1;
     --docs-table-header-background: #e4e4e4;
     --docs-table-header-color: rgb(73, 73, 73);
     --docs-link-color: #005cc5;
-    --playground-code-background-color: #f5f5f5;
+    --playground-code-background-color: #f0f0f0;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -38,7 +37,8 @@ main {
 
 article {
   max-width: var(--docs-article-max-width);
-  padding: var(--docs-margin-top) var(--docs-article-margin-horizontal) var(--docs-margin-top) var(--docs-article-margin-horizontal);
+  padding: var(--docs-margin-top) var(--docs-article-margin-horizontal) var(--docs-margin-top)
+    var(--docs-article-margin-horizontal);
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
   color: #3e3e3e;
@@ -85,7 +85,7 @@ article li > p {
 /* Inline code */
 article code:not([class]) {
   background: var(--color-light-gray);
-  font-size: var(--playground-code-font-size);
+  font-size: 0.85em;
   padding: 0.2em 0.4em;
   font-family: var(--playground-code-font-family, monospace);
 }
@@ -98,13 +98,13 @@ article pre > code:not([class]) {
 
 /* Static code snippets */
 .CodeMirror {
-  --playground-code-background: #f5f5f5;
+  --playground-code-background: #f0f0f0;
   color: #3c3c3c;
 }
 
 /* Playground examples */
 litdev-example {
-  --playground-code-background: #f5f5f5;
+  --playground-code-background: #f0f0f0;
 }
 
 /* Full IDEs */
@@ -114,7 +114,7 @@ playground-ide {
 .CodeMirror,
 litdev-example,
 playground-ide {
-  font-size: var(--playground-code-font-size);
+  font-size: 0.85em;
   border-radius: 5px;
 }
 
@@ -124,9 +124,8 @@ playground-ide {
 
 figure {
   /* We put code snippets in figures for improved a11y semantics, but they come
-     with a default padding/margin that we don't want. */
-  margin: 0;
-  padding: 0;
+     with a default left margin. */
+  margin-left: 0;
 }
 
 /* ------------------------------------
@@ -160,7 +159,6 @@ figure {
   position: relative;
   font-size: inherit;
   margin: 0;
-  font-weight: 600;
 }
 
 /* "#" anchor links that float in the left margin */
@@ -173,6 +171,7 @@ figure {
   padding-bottom: 0.2em;
   margin-top: -0.2em;
 }
+:hover > .anchor,
 .anchor:hover,
 .anchor:focus {
   opacity: 1;
@@ -180,26 +179,16 @@ figure {
   text-decoration: none;
 }
 
-article h4 {
-  color: var(--docs-h4-color);
-  font-weight: 600;
-}
-
-article [id] {
-  /* Adjust scroll margins of all article headings to account for sticky header.
-     Otherwise, we'll scroll headings underneath the header. Add a little bit
-     more too, for some extra breathing room. */
-  scroll-margin-top: calc(var(--header-height) + 12px);
-}
-
-.heading.h2 {
+.heading.h2,
+article > h2 {
   font-size: 1.8em;
   margin: 1.5em 0 1.328em 0 ;
   padding: 1.5em 0 0 0;
   border-top: 1px solid var(--docs-rule-color);
 }
-.heading > h2 {
+article h2 {
   color: var(--docs-h2-color);
+  font-weight: 600;
 }
 /* If a page has no introductory content before the first heading, remove the
    section delineation. */
@@ -209,19 +198,21 @@ article [id] {
   padding-top: 0.5em;
 }
 
-.heading.h3 {
+.heading.h3,
+article > h3 {
   font-size: 1.2em;
-  margin: 2.2em 0 0 0;
+  margin-top: 2.2em;
   padding-top: 1em;
 }
-.heading > h3 {
+article h3 {
   color: var(--docs-h3-color);
+  font-weight: 600;
 }
 
-article > h4 {
+article h4 {
   font-size: 0.88889rem;
   color: var(--docs-h4-color);
-  margin: 1.3em 0 0 0;
+  margin-top: 1.3em;
 }
 
 /* ------------------------------------
@@ -258,21 +249,8 @@ tr {
 
 th,
 td {
-  padding: 0.3rem 1rem;
+  padding: 0.3em 1em;
   vertical-align: top;
-}
-
-th:empty {
-  padding: 1px;
-}
-
-
-td > :first-child {
-  margin-top: 0;
-}
-
-td > :last-child {
-  margin-bottom: 0;
 }
 
 .wide-table, .wide-cell {
@@ -611,4 +589,14 @@ td > :last-child {
 .centered-image {
   display: block;
   margin: auto;
+}
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top;
+}
+
+th:empty {
+  padding: 1px;
 }

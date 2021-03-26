@@ -90,17 +90,24 @@ const symbolsOutPath = pathlib.resolve(
 );
 
 /**
- * Order that generated API docs pages will appear in the navigation.
+ * Pages in the order they will appear in the navigation.
  */
-const pageOrder = [
-  'core',
-  'decorators',
-  'directives',
-  'custom directives',
-  'static html',
-  'controllers',
-  'misc',
-  'types',
+const pages = [
+  {slug: 'LitElement', title: 'LitElement'},
+  {slug: 'ReactiveElement', title: 'ReactiveElement'},
+  {slug: 'templates', title: 'Templates'},
+  {slug: 'styles', title: 'Styles'},
+  {slug: 'decorators', title: 'Decorators'},
+  {
+    slug: 'directives',
+    title: 'Directives',
+    anchorFilter: (node: DeclarationReflection) =>
+      node.kindString === 'Function',
+  },
+  {slug: 'custom-directives', title: 'Custom directives'},
+  {slug: 'static-html', title: 'Static HTML'},
+  {slug: 'controllers', title: 'Controllers'},
+  {slug: 'misc', title: 'Misc'},
 ] as const;
 
 /**
@@ -108,24 +115,18 @@ const pageOrder = [
  * lexicographic. (Note this doesn't distinguish between pages, but we don't
  * have any overlapping export names for now so it doesn't matter).
  */
-const symbolOrder = [
-  'LitElement',
-  'ReactiveElement',
-  'PropertyDeclaration',
-  'html',
-  'css',
-  'svg',
-  'render',
-  'ReactiveElement.properties',
-  'ReactiveElement.styles',
-];
+const symbolOrder = ['LitElement', 'ReactiveElement'];
 
-const indexOfOrInfinity = <T extends string>(
+const findIndexOrInfinity = <T>(
   array: ReadonlyArray<T>,
-  item: T
+  match: (el: T) => boolean
 ) => {
-  const idx = array.indexOf(item);
+  const idx = array.findIndex(match);
   return idx === -1 ? Infinity : idx;
+};
+
+const isType = (node: DeclarationReflection) => {
+  return node.kindString === 'Type alias' || node.kindString === 'Interface';
 };
 
 /**
@@ -133,26 +134,6 @@ const indexOfOrInfinity = <T extends string>(
  * within a class/interface.
  */
 const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
-  // Constructor before other methods
-  const aConstructor = a.kindString === 'Constructor';
-  const bConstructor = b.kindString === 'Constructor';
-  if (aConstructor && !bConstructor) {
-    return -1;
-  }
-  if (!aConstructor && bConstructor) {
-    return 1;
-  }
-
-  // Static before non-static
-  const aStatic = a.flags?.isStatic;
-  const bStatic = b.flags?.isStatic;
-  if (aStatic && !bStatic) {
-    return -1;
-  }
-  if (!aStatic && bStatic) {
-    return 1;
-  }
-
   // By entrypoint (e.g. a type from a directive module should be adjacent to
   // the directive function).
   const aEntrypoint =
@@ -163,30 +144,30 @@ const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
     return aEntrypoint.localeCompare(bEntrypoint);
   }
 
-  // Types after values
-  const aType = a.kindString === 'Type' || a.kindString === 'Interface';
-  const bType = b.kindString === 'Type' || b.kindString === 'Interface';
-  if (aType && !bType) {
-    return 1;
-  }
-  if (!aType && bType) {
-    return -1;
-  }
-
   // Hard-coded orderings
-  const idxA = indexOfOrInfinity(
+  const idxA = findIndexOrInfinity(
     symbolOrder,
-    (a as ExtendedDeclarationReflection).location?.anchor ?? a.name
+    (s) => s === (a as ExtendedDeclarationReflection).location?.anchor ?? a.name
   );
-  const idxB = indexOfOrInfinity(
+  const idxB = findIndexOrInfinity(
     symbolOrder,
-    (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
+    (s) => s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
   );
   if (idxA !== idxB) {
     return idxA - idxB;
   }
 
+  // Types after values
+  if (isType(a) && !isType(b)) {
+    return 1;
+  }
+  if (!isType(a) && isType(b)) {
+    return -1;
+  }
+
   // Lexicographic
+  if (a.name === 'createRef' || b.name === 'createRef') {
+  }
   return a.name.localeCompare(b.name);
 };
 
@@ -199,7 +180,7 @@ const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
  */
 const pageForSymbol = (
   node: ExtendedDeclarationReflection
-): typeof pageOrder[number] => {
+): typeof pages[number]['slug'] => {
   const entrypoint = node.entrypointSources?.[0]?.fileName ?? '';
   if (entrypoint.includes('/directives/')) {
     return 'directives';
@@ -222,25 +203,50 @@ const pageForSymbol = (
     node.name === 'EventPart' ||
     node.name === 'PropertyPart'
   ) {
-    return 'custom directives';
+    return 'custom-directives';
   }
 
   if (entrypoint.endsWith('/static-html.ts')) {
-    return 'static html';
+    return 'static-html';
+  }
+
+  if (node.name === 'LitElement' || node.name === 'RenderOptions') {
+    return 'LitElement';
   }
 
   if (
-    entrypoint.endsWith('/lit/src/index.ts') &&
-    (node.name === 'LitElement' ||
-      node.name === 'ReactiveElement' ||
-      node.name === 'PropertyDeclaration' ||
-      node.name === 'html' ||
-      node.name === 'css' ||
-      node.name === 'svg' ||
-      node.name === 'render' ||
-      node.name === 'nothing')
+    node.name === 'ReactiveElement' ||
+    node.name === 'PropertyDeclaration' ||
+    node.name === 'PropertyDeclarations' ||
+    node.name === 'UpdatingElement' ||
+    node.name === 'PropertyValues' ||
+    node.name === 'ComplexAttributeConverter'
   ) {
-    return 'core';
+    return 'ReactiveElement';
+  }
+
+  if (
+    node.name === 'html' ||
+    node.name === 'svg' ||
+    node.name === 'render' ||
+    node.name === 'nothing' ||
+    node.name === 'SanitizerFactory' ||
+    node.name === 'Template' ||
+    node.name === 'TemplateResult' ||
+    node.name === 'SVGTemplateResult'
+  ) {
+    return 'templates';
+  }
+
+  if (
+    node.name === 'css' ||
+    node.name === 'adoptStyles' ||
+    node.name === 'getCompatibleStyle' ||
+    node.name === 'unsafeCSS' ||
+    node.name === 'supportsAdoptingStyleSheets' ||
+    node.name.startsWith('CSS')
+  ) {
+    return 'styles';
   }
 
   if (
@@ -295,6 +301,11 @@ interface ExtendedDeclarationReflection extends DeclarationReflection {
   externalLocation?: ExternalLocation;
   entrypointSources?: Array<ExtendedSourceReference>;
   heritage?: Array<{name: string; location?: Location}>;
+  expandedCategories?: Array<{
+    title: string;
+    anchor: string;
+    children: Array<DeclarationReflection>;
+  }>;
 }
 
 type SourceReference = typedoc.JSONOutput.SourceReference;
@@ -305,7 +316,7 @@ interface ExtendedSourceReference extends SourceReference {
 
 /** Where to find a symbol in our custom API docs page structure. */
 interface Location {
-  page: typeof pageOrder[number];
+  page: typeof pages[number]['slug'];
   anchor: string;
 }
 
@@ -319,8 +330,9 @@ interface ExternalLocation {
  * page.
  */
 type Pages = Array<{
-  name: string;
-  children: Array<DeclarationReflection>;
+  slug: string;
+  title: string;
+  items: Array<DeclarationReflection>;
 }>;
 
 /**
@@ -376,9 +388,9 @@ class Transformer {
         this.promoteAccessorTypes(node);
         this.promoteSignatureComments(node);
         this.reflectionById.set(node.id, node);
-        node.children = (node.children ?? [])
-          .filter((child) => this.filter(child))
-          .sort(symbolSortFn);
+        node.children = (node.children ?? []).filter((child) =>
+          this.filter(child)
+        );
         ancestry.push(node);
         for (const child of node.children) {
           await firstPassVisit(child);
@@ -457,6 +469,7 @@ class Transformer {
     const secondPassVisit = (node: DeclarationReflection) => {
       this.expandTransitiveHeritage(node);
       this.addLocationsForAllIds(node);
+      this.expandAndMergeCategoryReferences(node);
       this.linkifySymbolsInComments(node);
       node.children = (node.children ?? []).filter(
         (child) => !duplicateExportIdsToRemove.has(child.id)
@@ -482,8 +495,6 @@ class Transformer {
     return !(
       node.flags?.isPrivate ||
       node.flags?.isExternal ||
-      node.inheritedFrom ||
-      node.overwrites ||
       node.name.startsWith('_')
     );
   }
@@ -662,6 +673,53 @@ class Transformer {
   }
 
   /**
+   * The "categories" lists are just numeric reflection ID references. They're
+   * also divided across Property/Method/etc. groups. Create a flat list of
+   * mixed types, and with fully expanded reflections.
+   */
+  private expandAndMergeCategoryReferences(
+    node: ExtendedDeclarationReflection
+  ) {
+    for (const group of node.groups ?? []) {
+      for (const category of group.categories ?? []) {
+        const name = category.title;
+        // Delimit with '/' instead of '.' so that a category anchor can never
+        // overlap with a property/method anchor.
+        const anchor = node.name + '/' + name;
+        node.expandedCategories ??= [];
+        let cat = node.expandedCategories.find(
+          (category) => category.anchor === anchor
+        );
+        if (cat === undefined) {
+          cat = {
+            anchor,
+            title: name
+              .replace(/-/g, ' ')
+              // Uppercase first letter
+              .replace(/^./, (c) => c.toUpperCase()),
+            children: [],
+          };
+          node.expandedCategories.push(cat);
+        }
+        for (const id of category.children ?? []) {
+          const ref = this.reflectionById.get(id);
+          if (ref !== undefined) {
+            cat.children.push(ref);
+          }
+        }
+      }
+    }
+    if (node.expandedCategories) {
+      node.expandedCategories.sort(({title: a}, {title: b}) =>
+        a.localeCompare(b)
+      );
+      for (const category of node.expandedCategories) {
+        category.children.sort(symbolSortFn);
+      }
+    }
+  }
+
+  /**
    * Convert [[ symbol ]] references in comments into hyperlinks.
    *
    * TODO(aomarks) This should probably technically be factored out and called
@@ -710,11 +768,15 @@ class Transformer {
   }
 
   /**
-   * TypeDoc sources are reported relative to the lit.dev monorepo root, instead
-   * of the Lit monorepo root. Fix that.
+   * TypeDoc sources are reported relative to the lit.dev packages/ directory,
+   * for some reason. Update them to be relative to the Lit monorepo root.
    */
   private async makeSourceRelativeToMonorepoRoot(source: SourceReference) {
-    const prefix = pathlib.relative(litDevMonorepoPath, litMonorepoPath) + '/';
+    const prefix =
+      pathlib.relative(
+        pathlib.join(litDevMonorepoPath, 'packages'),
+        litMonorepoPath
+      ) + '/';
     if (!source.fileName.startsWith(prefix)) {
       throw new Error(
         `Expected source to start with ${prefix}, but was ${source.fileName}`
@@ -803,9 +865,14 @@ class Transformer {
    * Re-organize all module exports into our custom page structure.
    */
   private reorganizeExportsIntoPages() {
-    const pageToItems = new Map<
-      typeof pageOrder[number],
-      Array<DeclarationReflection>
+    const slugToPage = new Map<
+      typeof pages[number]['slug'],
+      {
+        slug: string;
+        title: string;
+        anchorFilter?: (node: DeclarationReflection) => boolean;
+        items: Array<DeclarationReflection>;
+      }
     >();
 
     for (const module of this.project.children ?? []) {
@@ -814,29 +881,46 @@ class Transformer {
         if (!location) {
           continue;
         }
-        let items = pageToItems.get(location.page);
-        if (items === undefined) {
-          items = [];
-          pageToItems.set(location.page, items);
+        let page = slugToPage.get(location.page);
+        if (page === undefined) {
+          const match = pages.find(({slug}) => slug === location.page);
+          if (!match) {
+            throw new Error(`No page definition for ${location.page}`);
+          }
+          page = {
+            ...match,
+            items: [],
+          };
+          slugToPage.set(location.page, page);
         }
-        items.push(export_);
+        page.items.push(export_);
       }
     }
 
-    const pagesArray = [...pageToItems.entries()].map(([name, children]) => ({
-      name,
-      children,
-    }));
+    const pagesArray = [...slugToPage.values()];
 
     // Sort pages
-    pagesArray.sort(({name: a}, {name: b}) => {
-      const idxA = indexOfOrInfinity(pageOrder, a);
-      const idxB = indexOfOrInfinity(pageOrder, b);
+    pagesArray.sort(({slug: a}, {slug: b}) => {
+      const idxA = findIndexOrInfinity(pages, ({slug}) => slug === a);
+      const idxB = findIndexOrInfinity(pages, ({slug}) => slug === b);
       if (idxA !== idxB) {
         return idxA - idxB;
       }
       return a.localeCompare(b);
     });
+
+    // Sort items within pages
+    for (const page of pagesArray) {
+      page.items.sort(symbolSortFn);
+
+      if (page.anchorFilter) {
+        for (const item of page.items) {
+          if (!page.anchorFilter(item)) {
+            delete (item as ExtendedDeclarationReflection)['location'];
+          }
+        }
+      }
+    }
 
     return pagesArray;
   }

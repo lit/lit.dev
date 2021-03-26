@@ -5,6 +5,6 @@ import '@material/mwc-button';
 import '@material/mwc-snackbar';
 
 import './litdev-example.js';
-import './litdev-tutorial.js';
 import './resize-bar.js';
+import './litdev-tutorial.js';
 import './copy-button.js';

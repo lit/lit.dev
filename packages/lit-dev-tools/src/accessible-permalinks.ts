@@ -37,11 +37,9 @@ import type StateCore from 'markdown-it/lib/rules_core/state_core.js';
 export const accessiblePermalink = ({
   wrapperClassName,
   offscreenClass,
-  headerLevels,
 }: {
   wrapperClassName: string;
   offscreenClass: string;
-  headerLevels: string[];
 }): AnchorOptions['renderPermalink'] => (
   slug: string,
   opts: AnchorOptions,
@@ -56,9 +54,6 @@ export const accessiblePermalink = ({
   const headingTag = state.tokens[idx].tag;
   if (!headingTag.match(/^h[123456]$/)) {
     throw new Error(`Expected token to be a h1-6: ${headingTag}`);
-  }
-  if (!headerLevels.includes(headingTag)) {
-    return;
   }
   const linkContent = state.tokens[idx + 1].content;
 
