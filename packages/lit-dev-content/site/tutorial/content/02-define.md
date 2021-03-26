@@ -1,5 +1,7 @@
 In Lit, most things start with defining a component. Complete this component definition by adding a `render()` method that defines the component's internal DOM.
 
+
+
 In `my-element.ts`, replace the existing class definition with the following code:
 
 ```ts
