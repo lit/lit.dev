@@ -44,4 +44,4 @@ See [Adding Lit to an existing project](/docs/tools/adding-lit) for more instruc
 
 ## Open WC project generator
 
-The Open WC project has a [project generator](https://open-wc.org/init/) that can scaffold out an application project using LitElement.
+The Open WC project has a [project generator](https://open-wc.org/guides/developing-components/getting-started/#generator) that can scaffold out an application project using LitElement.
