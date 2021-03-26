@@ -1,5 +1,5 @@
 import {ReactiveController, ReactiveControllerHost} from 'lit';
-import { initialState, StatusRenderer, Task } from './task.js';
+import {initialState, StatusRenderer, Task} from './task.js';
 
 interface ForexResult {
   rates: {[currency: string]: number};

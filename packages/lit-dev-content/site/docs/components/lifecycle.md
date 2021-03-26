@@ -29,7 +29,7 @@ Saves any properties already set on the element. This ensures values set before 
 
 #### Use cases
 
-Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, [default values](./properties#initialize) for properties can be set in the constructor.
+Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, default values for properties can be set in the constructor, as shown in [Declaring properties in a static properties field](/docs/components/properties/#declaring-properties-in-a-static-properties-field).
 
 ```js
 constructor() {
@@ -382,3 +382,5 @@ Lit’s server-side rendering code is currently in an experimental stage so the 
 Not all of the update cycle is called when rendering Lit on the server. The following methods are called on the server.
 
 <img class="centered-image" src="/images/docs/components/update-server.jpg">
+
+<p><!-- Add some space --></p>

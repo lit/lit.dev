@@ -35,11 +35,11 @@ export class MyElement extends LitElement {
   }
 
   firstUpdated() {
-    const input = this.inputRef.value;
+    const input = this.inputRef.value!;
     input.focus();
   }
 
-  ensureInView(element: Element) {
-    requestAnimationFrame(() => element.scrollIntoView(true));
+  ensureInView(element: Element | undefined) {
+    requestAnimationFrame(() => element!.scrollIntoView(true));
   }
 }

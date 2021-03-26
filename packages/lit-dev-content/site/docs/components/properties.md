@@ -82,6 +82,7 @@ class MyElement extends LitElement {
   }
 
   constructor() {
+    super();
     this.data = {};
   }
 }

@@ -3,5 +3,7 @@
   "files": {
     "update-properties.ts": {},
     "index.html": {}
-  }
+  },
+  "editorHeight": "750px",
+  "previewHeight": "80px"
 }

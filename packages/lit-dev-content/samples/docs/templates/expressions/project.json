@@ -4,5 +4,6 @@
     "my-element.ts": {},
     "index.html": {}
   },
-  "previewHeight": "140px"
+  "editorHeight": "300px",
+  "previewHeight": "160px"
 }
