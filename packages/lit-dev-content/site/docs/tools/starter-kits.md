@@ -109,7 +109,7 @@ A couple of things to look for in the code:
     export class MyElement extends LitElement { /* ... */ }
     ```
 
-*   The component's `render` method defines a [template](/docs/templates/overview) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](templates).
+*   The component's `render` method defines a [template](/docs/templates/overview/) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](/docs/templates/overview/).
 
     ```js
     export class MyElement extends LitElement {
