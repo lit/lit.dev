@@ -25,7 +25,7 @@ Saves any properties already set on the element. This ensures values set before 
 
 #### Use cases
 
-Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, [default values](./properties#initialize) for properties can be set in the constructor.
+Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, default values for properties can be set in the constructor, as shown in [Declaring properties in a static properties field](/docs/components/properties/#declaring-properties-in-a-static-properties-field).
 
 ```js
 constructor() {

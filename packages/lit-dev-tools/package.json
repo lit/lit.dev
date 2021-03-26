@@ -11,10 +11,12 @@
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
+    "@types/markdown-it": "^12.0.1",
     "@types/source-map": "^0.5.7",
     "@web/dev-server": "^0.1.6",
     "@web/dev-server-core": "^0.3.5",
     "fast-glob": "^3.2.5",
+    "markdown-it-anchor": "^7.1.0",
     "outdent": "^0.8.0",
     "playground-elements": "^0.6.2",
     "playwright": "^1.8.0",

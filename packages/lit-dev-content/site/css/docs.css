@@ -131,60 +131,83 @@ figure {
  * Headings
  * ------------------------------------ */
 
-article h1 {
-  padding: 0.3em 0 0.8em 0;
-  margin-bottom: 1.3em;
-  border-bottom: 2px solid var(--docs-h1-underline-color);
-  font-size: 2.2em;
-  font-weight: 400;
+ /* Title */
+ article h1 {
+   padding: 0.3em 0 0.8em 0;
+   margin-bottom: 1.3em;
+   border-bottom: 2px solid var(--docs-h1-underline-color);
+   font-size: 2.2em;
+   font-weight: 400;
+   /* The default margin of the first heading extends above the article, which
+     complicates layout a bit. We have padding-top on the article itself. */
+   margin-top: 0;
 }
 
-article h2 {
-  color: var(--docs-h2-color);
-  font-size: 1.8em;
-  font-weight: 600;
+ /* Each section heading has a wrapper <span> to allow for accessible anchor
+    links. */
+.heading {
+  display: flex;
   position: relative;
-  margin-top: 1.5em;
-  padding: 1.5em 0 0.5em 0;
+}
+
+.heading > [id] {
+  /* Adjust scroll margins of all article headings to account for sticky header.
+     Otherwise, we'll scroll headings underneath the header. Add a little bit
+     more too, for some extra visual breathing room. */
+  scroll-margin-top: calc(var(--header-height) + 1.5em);
+  position: relative;
+  font-size: inherit;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* "#" anchor links that float in the left margin */
+.anchor {
+  position: absolute;
+  left: -1.5rem;
+  width: 100%;
+  opacity: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin-top: -0.2em;
+}
+.anchor:hover,
+.anchor:focus {
+  opacity: 1;
+  color: var(--color-medium-gray);;
+  text-decoration: none;
+}
+
+.heading.h2 {
+  font-size: 1.8em;
+  margin: 1.5em 0 1.328em 0 ;
+  padding: 1.5em 0 0 0;
   border-top: 1px solid var(--docs-rule-color);
 }
-
-/* If a page has no introductory content before the first h2, remove the section
-   delineation. */
-article #inlineToc + h2 {
-  border-top: none !important;
+.heading > h2 {
+  color: var(--docs-h2-color);
+}
+/* If a page has no introductory content before the first heading, remove the
+   section delineation. */
+#inlineToc + .heading.h2 {
+  border-top: none;
   margin-top: 0;
   padding-top: 0.5em;
 }
 
-article h3 {
-  color: var(--docs-h3-color);
+.heading.h3 {
   font-size: 1.2em;
-  font-weight: 600;
-  position: relative;
+  margin: 2.2em 0 0 0;
   padding-top: 1em;
 }
-
-article h3 {
-  margin-top: 2.2em;
+.heading > h3 {
+  color: var(--docs-h3-color);
 }
 
-article h4 {
-  color: #6a6a6a;
-  font-weight: 600;
-}
-
-article > [id] {
-  /* Adjust scroll margins of all article headings to account for sticky header.
-     Otherwise, we'll scroll headings underneath the header. Add a little bit
-     more too, for some extra breathing room. */
-  scroll-margin-top: calc(var(--header-height) + 12px);
-}
-
-article > h1:first-of-type {
-  /* The default margin of the first heading extends above the article, which
-     complicates layout a bit. We have padding-top on the article itself. */
-  margin-top: 0;
+article > h4 {
+  font-size: 0.88889rem;
+  color: var(--docs-h4-color);
+  margin: 1.3em 0 0 0;
 }
 
 /* ------------------------------------
@@ -372,8 +395,7 @@ td {
 }
 
 #inlineToc h2 {
-  font-size: 1.5em;
-  border-top: none;
+  font-weight: 600;
 }
 
 #inlineToc ol {
@@ -553,6 +575,9 @@ td {
   article {
     margin: auto;
     --docs-article-margin-horizontal: 1.5em;
+  }
+  .anchor {
+    left: -1.1rem;
   }
 }
 
