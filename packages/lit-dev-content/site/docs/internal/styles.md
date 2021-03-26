@@ -11,7 +11,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 ## Headings
 
-<div style="padding:0 2em; border:2px solid #eaeaea;">
+<div style="padding:var(--docs-margin-top) 2em; border:2px solid #eaeaea;">
 
 # Heading 1
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
