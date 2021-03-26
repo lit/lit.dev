@@ -24,7 +24,7 @@ For more information on shadow DOM:
 
 <div class="alert alert-info">
 
-**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [browser support](../tools/browsers) for details.
+**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [Requirements for legacy browsers](/docs/tools/requirements/#building-for-legacy-browsers) for details.
 
 </div>
 

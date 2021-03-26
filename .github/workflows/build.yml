@@ -21,3 +21,6 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Check for broken links
+        run: npm run test
