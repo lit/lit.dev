@@ -127,10 +127,14 @@ export const playgroundPlugin = (
           `Usage {% playground-ide "path/to/project" %}`
       );
     }
-    readProjectConfig(project);
+    const config = await readProjectConfig(project);
+    const styleHeight = config.editorHeight
+      ? `style="height: ${config.editorHeight};"`
+      : '';
+    const lineNumbers = config.lineNumbers ? 'line-numbers' : '';
     return `
-      <playground-ide
-        line-numbers resizable editable-file-system
+      <playground-ide ${styleHeight}
+      ${lineNumbers} resizable editable-file-system
         project-src="/samples/${project}/project.json">
       </playground-ide>
     `.trim();
@@ -139,6 +143,7 @@ export const playgroundPlugin = (
   type LitProjectConfig = ProjectManifest & {
     editorHeight?: string;
     previewHeight?: string;
+    lineNumbers?: boolean;
   };
 
   // TODO(aomarks)

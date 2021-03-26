@@ -18,6 +18,9 @@ const {
 } = require('../lit-dev-tools/lib/playground-inline.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 const luxon = require('luxon');
+const {
+  accessiblePermalink,
+} = require('../lit-dev-tools/lib/accessible-permalinks.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -77,7 +80,17 @@ ${content}
     linkify: true,
   })
     .use(markdownItAttrs)
-    .use(markdownItAnchor, {slugify, permalink: false});
+    .use(markdownItAnchor, {
+      slugify,
+      permalink: true,
+      permalinkClass: 'anchor',
+      permalinkSymbol: '#',
+      renderPermalink: accessiblePermalink({
+        wrapperClassName: 'heading',
+        offscreenClass: 'offscreen',
+        headerLevels: ['h2', 'h3'],
+      }),
+    });
   eleventyConfig.setLibrary('md', md);
 
   eleventyConfig.addFilter('removeExtension', function (url) {
@@ -85,31 +98,19 @@ ${content}
     return url.substring(0, url.length - extension.length);
   });
 
-  eleventyConfig.addCollection('guide', function (collection) {
-    // Order the 'guide' collection by filename, which includes a number prefix.
-    // We could also order by a frontmatter property
-    // console.log(
-    //   'guide',
-    //   collection.getFilteredByGlob('site/guide/**')
-    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
-
-    return (
-      collection
-        .getFilteredByGlob('site/guide/**')
-        // .filter((f) => !f.data.slug?.includes('/'))
-        .sort(function (a, b) {
-          if (a.fileSlug == 'guide') {
-            return -1;
-          }
-          if (a.fileSlug < b.fileSlug) {
-            return -1;
-          }
-          if (b.fileSlug < a.fileSlug) {
-            return 1;
-          }
-          return 0;
-        })
-    );
+  eleventyConfig.addCollection('docs', function (collection) {
+    return collection.getFilteredByGlob('site/docs/**').sort(function (a, b) {
+      if (a.fileSlug == 'docs') {
+        return -1;
+      }
+      if (a.fileSlug < b.fileSlug) {
+        return -1;
+      }
+      if (b.fileSlug < a.fileSlug) {
+        return 1;
+      }
+      return 0;
+    });
   });
 
   eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
@@ -202,7 +203,7 @@ ${content}
     }
 
     const {page, anchor} = location;
-    return `<a href="/guide/api/${page}#${anchor}">${name}</a>`;
+    return `<a href="/docs/api/${page}#${anchor}">${name}</a>`;
   });
 
   /**
@@ -265,13 +266,16 @@ ${content}
     // "index.html" and see a weird empty page.
     const emptyDocsIndexFiles = (
       await fastGlob([
-        OUTPUT_DIR + '/guide/introduction.html',
-        OUTPUT_DIR + '/guide/*/index.html',
+        OUTPUT_DIR + '/docs/introduction.html',
+        OUTPUT_DIR + '/docs/*/index.html',
       ])
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
       // file that a page shouldn't be generated.
-      (file) => !file.includes('why-lit') && !file.includes('getting-started')
+      (file) =>
+        !file.includes('why-lit') &&
+        !file.includes('getting-started') &&
+        !file.includes('browser-support')
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
@@ -313,30 +317,20 @@ ${content}
   });
 
   eleventyConfig.addCollection('tutorial', function (collection) {
-    // Order the 'tutorial' collection by filename, which includes a number prefix.
-    // We could also order by a frontmatter property
-    // console.log(
-    //   'guide',
-    //   collection.getFilteredByGlob('site/guide/**')
-    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
-
-    return (
-      collection
-        .getFilteredByGlob('site/tutorial/**')
-        // .filter((f) => !f.data.slug?.includes('/'))
-        .sort(function (a, b) {
-          if (a.fileSlug == 'tutorial') {
-            return -1;
-          }
-          if (a.fileSlug < b.fileSlug) {
-            return -1;
-          }
-          if (b.fileSlug < a.fileSlug) {
-            return 1;
-          }
-          return 0;
-        })
-    );
+    return collection
+      .getFilteredByGlob('site/tutorial/**')
+      .sort(function (a, b) {
+        if (a.fileSlug == 'tutorial') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
   });
 
   return {

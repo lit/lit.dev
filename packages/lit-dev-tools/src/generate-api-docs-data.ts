@@ -287,7 +287,7 @@ const symbolToExternalLink = new Map([
  * Generate a relative URL for the given location.
  */
 const locationToUrl = ({page, anchor}: Location) =>
-  `/guide/api/${page}/#${anchor}`;
+  `/docs/api/${page}/#${anchor}`;
 
 type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
 interface ExtendedDeclarationReflection extends DeclarationReflection {

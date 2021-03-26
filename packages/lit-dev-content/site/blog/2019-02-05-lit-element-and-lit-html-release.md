@@ -146,7 +146,7 @@ templating into another project, see the lit-html docs:
 * [lit-html docs](https://lit-html.polymer-project.org/)
 
 As always, let us know what you think. You can reach us on
-[Slack](/slack-invite) or [Twitter](https://twitter.com/polymer). Our projects
+[Slack](https://www.polymer-project.org/slack-invite) or [Twitter](https://twitter.com/polymer). Our projects
 are open source (of course!) and you can report bugs, file feature requests or
 suggest improvements on GitHub:
 
