@@ -16,7 +16,8 @@ You can use controllers to implement features that require their own state and a
 * Managing asynchronous tasks like fetching data over the network
 * Running animations
 
-Reactive controllers can be thought of as reusable, partial component definitions, with their own identity and state. They allow you to build components by composing smaller pieces that aren't themselves components.
+
+Reactive controllers allow you to build components by composing smaller pieces that aren't themselves components. They can be thought of as reusable, partial component definitions, with their own identity and state.
 
 {% playground-ide "docs/controllers/overview" "clock-controller.ts" %}
 
