@@ -9,8 +9,15 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": []
+    "types": [],
   },
-  "include": ["./docs/controllers/**/*.ts"],
-  "exclude": ["../node_modules/**/*"]
+  "include": [
+    "./**/*.ts",
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    // TODO(kschaaf): Remove once lit released with these directives
+    "examples/directive-async-append/**/*",
+    "examples/directive-async-replace/**/*",
+  ]
 }

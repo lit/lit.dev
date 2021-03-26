@@ -6,12 +6,6 @@ eleventyNavigation:
   order: 8
 ---
 
-{% todo %}
-
-* See [#175](https://github.com/PolymerLabs/lit.dev/issues/175)
-
-{% endtodo %}
-
 Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide more declarative APIs for things like registering elements, reactive properties, and queries.
 
 Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.

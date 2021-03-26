@@ -8,11 +8,13 @@ const imageInfo = {
   'canyon': { domain: 'picsum.photos', id: 1016 },
 };
 
+type ImageKey = keyof typeof imageInfo;
+
 @customElement('my-element')
 class MyElement extends LitElement {
 
   @state()
-  private imageName: string = 'beach';
+  private imageName: ImageKey = 'beach';
 
   @query('input#name')
   private input!: HTMLInputElement;
@@ -36,6 +38,6 @@ class MyElement extends LitElement {
   }
 
   private updateImage() {
-    this.imageName = this.input.value;
+    this.imageName = this.input.value as ImageKey;
   }
 }

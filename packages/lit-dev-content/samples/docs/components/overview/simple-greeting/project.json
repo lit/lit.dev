@@ -1,6 +1,9 @@
 {
+  "extends": "/samples/base.json",
   "files": {
     "simple-greeting.ts": {},
     "index.html": {}
-  }
+  },
+  "editorHeight": "555px",
+  "previewHeight": "80px"
 }

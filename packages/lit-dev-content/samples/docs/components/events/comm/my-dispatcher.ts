@@ -1,11 +1,12 @@
-import { LitElement, html, property, customElement } from '@polymer/lit-element';
+import {LitElement, html} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-dispatcher')
 class MyDispatcher extends LitElement {
   @property() label = 'Check me!';
   defaultMessage = '🙂';
   @property() message = this.defaultMessage;
-  private _resetMessage?: NodeJS.Timeout;
+  private _resetMessage?: ReturnType<typeof setTimeout>;
   protected render() {
     return html`
       <label><input type="checkbox" @click=${this._tryChange}>${this.label}</label>
