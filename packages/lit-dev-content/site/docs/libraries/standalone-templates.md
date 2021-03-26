@@ -50,11 +50,11 @@ import {html, render} from 'lit-html';
 const myTemplate = (name) => html`<div>Hello ${name}</div>`;
 
 // Render the template with some data
-render(myTemplate('world'), document.body);
+render(myTemplate('earth'), document.body);
 
 // ... Later on ...
 // Render the template with different data
-render(myTemplate('lit-html'), document.body);
+render(myTemplate('mars'), document.body);
 ```
 
 When you call the template function, lit-html captures the current expression values. The template function doesn't create any DOM nodes, so it's fast and cheap.
