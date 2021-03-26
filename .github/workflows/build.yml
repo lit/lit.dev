@@ -1,10 +1,10 @@
-name: Verify Build
+name: CI
 
 on: [push, pull_request]
 
 jobs:
   build:
-    name: Build site & verify links (internal)
+    name: Build site & Check internal links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
         run: npm run test:links:internal
 
   verify-external:
-    name: Verify links (external)
+    name: Check external links
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
