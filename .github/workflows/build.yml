@@ -1,11 +1,11 @@
-name: Verify Build
+name: CI
 
 on: [push, pull_request]
 
 jobs:
   build:
+    name: Build site & Check internal links
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -22,5 +22,27 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check for broken links
-        run: npm run test
+      - name: Check for broken links (internal)
+        run: npm run test:links:internal
+
+  verify-external:
+    name: Check external links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15
+
+      - name: NPM install
+        run: npm ci
+
+      - name: Lerna bootstrap
+        run: npm run bootstrap
+
+      - name: Build
+        run: npm run build
+
+      - name: Check for broken links (external)
+        run: npm run test:links:external
