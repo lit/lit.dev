@@ -1,6 +1,6 @@
-import { LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { Highlightable } from './highlightable.js'
+import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {Highlightable} from './highlightable.js'
 
 @customElement('element-one')
 export class ElementOne extends Highlightable(LitElement) {

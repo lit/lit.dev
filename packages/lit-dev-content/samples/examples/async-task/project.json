@@ -1,4 +1,6 @@
 {
+  "extends": "/samples/base.json",
+  "hide": true,
   "title": "Async Task / NPM Info element",
   "description": "Shows an example of an async Task controller. This one fetches npm package info and renders based on the state of the fetch.",
   "section": "Specific Solutions",

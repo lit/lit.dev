@@ -85,7 +85,7 @@ LitElement uses [lit-html](https://lit-html.polymer-project.org/) to render into
 
 ## Next steps
 
-* [Getting Started](/docs/start): Set up LitElement and create a component.
-* [Templates](/docs/templates): Write templates with lit-html syntax.
-* [Properties](/docs/properties): Manage properties and attributes.
-* [Lifecycle](/docs/lifecycle): Work with the LitElement lifecycle API.
+* [Getting started](/docs/getting-started/): Get set up to start developing with Lit.
+* [Components](/docs/components/overview/): Learn about the Lit component model.
+* [Templates](/docs/templates/overview/): Write templates with lit-html syntax.
+* [Code organization](/docs/composition/overview/): Manage properties and attributes.

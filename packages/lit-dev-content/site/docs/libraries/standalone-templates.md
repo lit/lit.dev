@@ -48,11 +48,11 @@ When you call `render`, **lit-html only updates the parts of the template that h
 
 The `render` method also takes an `options` argument that allows you to specify the following options:
 
-*   `eventContext`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Add event listeners](writing-templates#add-event-listeners) for more on event listeners.
+*   `host`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Event listener expressions](/docs/templates/expressions/#event-listener-expressions) for more on event listeners.
 
-*   `templateFactory`: The `TemplateFactory` to use. This is an advanced option. A `TemplateFactory` creates a template element from a `TemplateResult`, typically caching templates based on their static content. Users won't usually supply their own `TemplateFactory`, but libraries that use lit-html may implement custom template factories to customize template handling.
+*   `renderBefore`: An optional reference node within the `container` before which lit-html will render. By default, lit-html will append to the end of the container. Setting `renderBefore` allows rendering to a specific spot within the container.
 
-    The `shady-render` module provides its own template factory, which it uses to preprocess templates to integrate with the shadow DOM polyfills (shadyDOM and shadyCSS).
+*   `creationScope`: The object lit-html will call `importNode` on (defaults to `document`). This is provided for advanced use cases.
 
 For example, if you're creating a component class, you might use render options like this:
 
@@ -62,7 +62,7 @@ class MyComponent extends HTMLElement {
 
   _update() {
     // Bind event listeners to the current instance of MyComponent
-    render(this._template(), this._renderRoot, {eventContext: this});
+    render(this._template(), this.shadowRoot, {host: this});
   }
 }
 
@@ -111,7 +111,7 @@ const itemTemplate = (item) => {
 }
 ```
 
-More information: see [classMap](template-reference#classmap) in the Template syntax reference.
+More information: see [classMap](/docs/templates/directives/#classmap) in the Template syntax reference.
 
 ### Inline styles with styleMap {#stylemap}
 
@@ -137,7 +137,7 @@ const myTemplate = () => {
 };
 ```
 
-More information: see See [styleMap](template-reference#stylemap) in the Template syntax reference.
+More information: see See [styleMap](/docs/templates/directives/#stylemap) in the Template syntax reference.
 
 ### Rendering in shadow DOM
 
@@ -155,7 +155,7 @@ html`
 
 This pattern may seem inefficient, since the same style sheet is reproduced in a each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once.
 
-A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](https://lit-element.polymer-project.org/docs/styles#define-styles-in-a-static-styles-property).
+A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its static `styles` property. See [Adding styles to your component](/docs/components/styles/#add-styles) for more details.
 
 #### Expressions in style sheets
 

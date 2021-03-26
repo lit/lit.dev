@@ -33,14 +33,14 @@ Webpack automatically handles bare module specifiers; for Rollup, you'll need a 
 
 ### Modern browser breakdown
 
-All modern browsers update automatically and users are highly likely to have a recent version. The following table lists the minimum version of each major browser that natively supports ES2020 and web components, the key features on which Lit relies.
+All modern browsers update automatically and users are highly likely to have a recent version. The following table lists the minimum version of each major browser that natively supports ES2019 and web components, the key features on which Lit relies.
 
-| Browser	| Supports ES2020 & web components |
+| Browser	| Supports ES2019 & web components |
 |:--------|:--------------------------------:|
-| Chrome  |	>=80                             |
-| Safari  |	>=13                             |
-|	Firefox |	>=72                             |
-|	Edge    |	>=80                             |
+| Chrome  |	>=73                             |
+| Safari  |	>=12.1                           |
+|	Firefox |	>=63                             |
+|	Edge    |	>=79                             |
 
 ## Requirements for legacy browsers {#building-for-legacy-browsers}
 
@@ -67,7 +67,7 @@ The following table lists supported browser versions that require transpiling Ja
 
 Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used transpiler.
 
-Unlike some libraries, Lit is published as a set of ES modules using modern ES2020 JavaScript. When you build your app for older browsers, you need to compile Lit as well as your own code.
+Unlike some libraries, Lit is published as a set of ES modules using modern ES2019 JavaScript. When you build your app for older browsers, you need to compile Lit as well as your own code.
 
 If you have a build already set up, it may be configured to ignore the `node_modules` folder when transpiling. If this is the case, we recommend updating this to transpile the `lit` package and its runtime dependencies (`lit-html` and `lit-element`). For example, if you're using the [Rollup Babel plugin](https://www.npmjs.com/package/@rollup/plugin-babel), you might have a configuration like this to exclude the `node_modules` folder from transpilation:
 

@@ -6,5 +6,6 @@
     "my-article.ts": {},
     "my-footer.ts": {},
     "index.html": {}
-  }
+  },
+  "editorHeight": "550px"
 }
