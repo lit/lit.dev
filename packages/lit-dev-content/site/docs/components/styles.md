@@ -267,8 +267,6 @@ One way to make styles dynamic is to add expressions to the `class` or `style` a
 
 Lit offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
 
-For more information on these and other directives, see the documentation on [built-in directives](/docs/templates/directives/).
-
 To use `styleMap` and/or `classMap`:
 
 1.  Import `classMap` and/or `styleMap`:
@@ -282,24 +280,7 @@ To use `styleMap` and/or `classMap`:
 
 {% playground-example "docs/components/style/maps" "my-element.ts" %}
 
-### classMap syntax {#classmap}
-
-`classMap` applies a set of classes to an HTML element:
-
-### styleMap syntax {#stylemap}
-
-`styleMap` applies a set of CSS rules to an HTML element:
-
-To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`).
-
-To refer to custom CSS properties such as `--custom-color`, place the whole property name in quotes (`'--custom-color'`).
-
-|Inline style or CSS|styleMap equivalent|
-|:----------------------|:----------------------|
-| `background-color: blue;`| `backgroundColor: 'blue'` or<br>`'background-color': 'blue'`|
-| `font-family: Roboto;` | `fontFamily: 'Roboto'` or<br>`'font-family': 'Roboto'`|
-|`--custom-color: #FFFABC;`|`'--custom-color': '#FFFABC;'`|
-|`--otherColor: #FFFABC;`|`'--otherColor': '#FFFABC;'`|
+For more information, see the [classMap](/docs/templates/directives/#classmap) and [styleMap](/docs/templates/directives/#stylemap) documentation.
 
 ## Theming {#theming}
 

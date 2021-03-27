@@ -213,15 +213,13 @@ Sometimes you want to set an attribute only if a value or set of values is avail
 html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 ```
 
-If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
-
-You can use the `ifDefined` function to avoid this issue:
+If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur. You can use the `ifDefined` function to avoid this issue:
 
 ```js
 html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
 ```
 
-In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
+Fore more information, see the [ifDefined](/docs/templates/directives/#ifdefined) documentation.
 
 ## Boolean attributes {#boolean-attribute-expressions }
 
