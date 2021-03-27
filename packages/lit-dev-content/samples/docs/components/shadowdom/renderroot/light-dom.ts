@@ -5,10 +5,10 @@ import {customElement} from 'lit/decorators.js';
 export class LightDom extends LitElement {
   protected render() {
     return html`
-      <p>Custom rendering without shadow DOM.</p>
+      <p>Custom rendering without shadow DOM (note, styling leaks in).</p>
     `;
   }
-  protected createRenderRoot(){
+  protected createRenderRoot() {
     return this;
   }
 }
