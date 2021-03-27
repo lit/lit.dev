@@ -279,7 +279,7 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with [directives](/docs/templates/built-in-directives). Any other value type in an element expression is ignored.
+Element expressions only work with [directives](/docs/templates/directives). Any other value type in an element expression is ignored.
 
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
@@ -287,7 +287,7 @@ One built-in directive that can be used in an element expression is the `ref` di
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](/docs/templates/built-in-directives#ref) for more information.
+See [ref](/docs/templates/directives#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 
