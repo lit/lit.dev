@@ -1,7 +1,7 @@
 ---
-title: Built-in directives
+title: Built-in Directives
 eleventyNavigation:
-  key: Built-in directives
+  key: Built-in Directives
   parent: Templates
   order: 5
 ---
@@ -39,11 +39,39 @@ You can also build your own directives. For more information, see [Custom direct
 
 Sets a list of classes to an element based on an object.
 
-| | |
-|-|-|
-| Import | `import {classMap} from 'lit/directives/class-map.js';`|
-| Signature | `classMap(classInfo: {[name: string]: string | boolean | number})`|
-| Usable location | `class` attribute expression (must be the only expression in the `class` attribute) |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {classMap} from 'lit/directives/class-map.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+classMap(classInfo: {[name: string]: string | boolean | number})
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+`class` attribute expression (must be the only expression in the `class` attribute)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 The `classMap` directive uses the `element.classList` API to efficiently add and
 remove classes to an element based on an object passed by the user. Each key in
@@ -79,17 +107,45 @@ Explore `classMap` more in the [playground](/playground/#sample=examples/directi
 
 Sets a list of style properties to an element based on an object.
 
-| | |
-|-|-|
-| Import | `import {styleMap} from 'lit/directives/style-map.js';` |
-| Signature | `styleMap(styleInfo: {[name: string]: string})` |
-| Usable location | `style` attribute expression (must be the only expression in the `style` attribute) |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {styleMap} from 'lit/directives/style-map.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+styleMap(styleInfo: {[name: string]: string})
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+`style` attribute expression (must be the only expression in the `style` attribute)
+
+</td>
+</tr>
+</tbody>
+</table>
 
 The `styleMap` directive uses the `element.style` API to efficiently add and
 remove inline styles to an element based on an object passed by the user. Each
 key in the object is treated as a style property name, the value is treated as
 the value for that property. On subsequent renders, any previously set style
-properties that are longer in the object are removed (set to `null`).
+properties that are no longer in the object are removed (set to `null`).
 
 ```ts
 @customElement('my-element')
@@ -125,11 +181,42 @@ Explore `styleMap` more in the [playground](/playground/#sample=examples/directi
 
 Renders values from an Iterable into the DOM, with optional keying.
 
-| | |
-|-|-|
-| Import | `import {repeat} from 'lit/directives/repeat.js';` |
-| Signature | `repeat(items: Iterable<T>, keyfn: KeyFn<T>, template: ItemTemplate<T>)`<br>`repeat(items: Iterable<T>, template: ItemTemplate<T>)`<br>`type KeyFn<T> = (item: T, index: number) => unknown;`<br>`type ItemTemplate<T> = (item: T, index: number) => unknown;`|
-| Usable location | Child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {repeat} from 'lit/directives/repeat.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+repeat(items: Iterable<T>, keyfn: KeyFn<T>, template: ItemTemplate<T>)
+repeat(items: Iterable<T>, template: ItemTemplate<T>)
+type KeyFn<T> = (item: T, index: number) => unknown;
+type ItemTemplate<T> = (item: T, index: number) => unknown;
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Repeats a series of values (usually `TemplateResults`) generated from an
 iterable, and updates those items efficiently when the iterable changes. When
@@ -168,11 +255,39 @@ Explore `repeat` more in the [playground](/playground/#sample=examples/directive
 
 Renders the content of a `<template>` element.
 
-| | |
-|-|-|
-| Import | `import {templateContent} from 'lit/directives/template-content.js';` |
-| Signature | `templateContent(templateElement: HTMLTemplateElement)` |
-| Usable location | Child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {templateContent} from 'lit/directives/template-content.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+templateContent(templateElement: HTMLTemplateElement)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Lit templates are encoded in Javascript, so that they can embed Javascript
 expressions that make them dynamic. If you have a static HTML `<template>` that
@@ -186,7 +301,7 @@ subsequent renders will no-op.
 Note, the template content should be developer-controlled and must not be
 created using an untrusted string. Examples of untrusted content include query
 string parameters and values from user inputs. Untrusted templates rendered with
-this directive could lead to cross-site scripting (XSS) vulnerabilities.
+this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
 
 </div>
 
@@ -209,11 +324,39 @@ Explore `templateContent` more in the [playground](/playground/#sample=examples/
 
 Renders a string as HTML rather than text.
 
-| | |
-|-|-|
-| Import | `import {unsafeHTML} from 'lit/directives/unsafe-html.js';` |
-| Signature | `unsafeHTML(value: string | typeof nothing | typeof noChange)` |
-| Usable location | Child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+unsafeHTML(value: string | typeof nothing | typeof noChange)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 A key feature of Lit's templating syntax is that only strings originating in
 template literals are parsed as HTML. Because template literals can only be
@@ -228,7 +371,7 @@ parse such a string as HTML and render it in a Lit template.
 Note, the string passed to `unsafeHTML` must be developer-controlled and not
 include untrusted content. Examples of untrusted content include query string
 parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to cross-site scripting (XSS) vulnerabilities.
+directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
 
 </div>
 
@@ -252,11 +395,39 @@ Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/direc
 
 Renders a string as SVG rather than text.
 
-| | |
-|-|-|
-| Import | `import {unsafeSVG} from 'lit/directives/unsafe-svg.js';` |
-| Signature | `unsafeSVG(value: string | typeof nothing | typeof noChange)` |
-| Usable location | Child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+unsafeSVG(value: string | typeof nothing | typeof noChange)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when SVG content
 not originating in script files needs to be rendered in a Lit template, for
@@ -268,7 +439,7 @@ will parse such a string as SVG and render it in a Lit template.
 Note, the string passed to `unsafeSVG` must be developer-controlled and not
 include untrusted content. Examples of untrusted content include query string
 parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to cross-site scripting (XSS) vulnerabilities.
+directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
 
 </div>
 
@@ -296,11 +467,39 @@ Caches rendered DOM when changing templates rather than discarding the DOM. You
 can use this directive to optimize rendering performance when frequently
 switching between large templates.
 
-| | |
-|-|-|
-| Import | `import {cache} from 'lit/directives/cache.js';`|
-| Signature | `cache(value: TemplateResult|unknown)`|
-| Usable location | Child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {cache} from 'lit/directives/cache.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+cache(value: TemplateResult|unknown)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 When the value passed to `cache` changes between one or more `TemplateResult`s,
 the rendered DOM nodes for a given template are cached when they're not in use.
@@ -338,11 +537,39 @@ Explore `cache` more in the [playground](/playground/#sample=examples/directive-
 Only re-evaluates the template when one of its dependencies changes, to optimize
 rendering performance by preventing unnecessary work.
 
-| | |
-|-|-|
-| Import | `import {guard} from 'lit/directives/guard.js';`|
-| Signature | `guard(dependencies: unknown[], valueFn: () => unknown)`|
-| Usable location | Any expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {guard} from 'lit/directives/guard.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+guard(dependencies: unknown[], valueFn: () => unknown)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Renders the value returned by `valueFn`, and only re-evaluates `valueFn` when one of the
 dependencies changes identity.
@@ -379,11 +606,39 @@ Explore `guard` more in the [playground](/playground/#sample=examples/directive-
 
 Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value.
 
-| | |
-|-|-|
-| Import | `import {live} from 'lit/directives/live.js';` |
-| Signature | `live(value: unknown)` |
-| Usable location | Attribute or property expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {live} from 'lit/directives/live.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+live(value: unknown)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Attribute or property expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 When determining whether to update the value, checks the expression value
 against the _live_ DOM value, instead of Lit's default behavior of checking
@@ -425,11 +680,39 @@ Explore `live` more in the [playground](/playground/#sample=examples/directive-l
 
 Sets an attribute if the value is defined and removes the attribute if undefined.
 
-| | |
-|-|-|
-| Import | `import {ifDefined} from 'lit/directives/if-defined.js';`|
-| Signature | `ifDefined(value: unknown)`|
-| Usable location | Attribute expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {ifDefined} from 'lit/directives/if-defined.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+ifDefined(value: unknown)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Attribute expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined (`undefined` or `null`). For other part types, this directive is a no-op.
 
@@ -459,11 +742,39 @@ Explore `ifDefined` more in the [playground](/playground/#sample=examples/direct
 
 Retrieves a reference to an element rendered into the DOM.
 
-| | |
-|-|-|
-| Import | `import {ref} from 'lit/directives/ref.js';` |
-| Signature | `ref(refOrCallback: RefOrCallback)` |
-| Usable location | Element expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {ref} from 'lit/directives/ref.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+ref(refOrCallback: RefOrCallback)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Element expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Although most DOM manipulation in Lit can be achieved declaratively using
 templates, advanced situations may required getting a reference to an element
@@ -527,11 +838,39 @@ Explore `ref` more in the [playground](/playground/#sample=examples/directive-re
 
 Renders placeholder content until one or more promises resolve.
 
-| | |
-|-|-|
-| Import | `import {until} from 'lit/directives/until.js';` |
-| Signature | `until(...values: unknown[])` |
-| Usable location | Any expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {until} from 'lit/directives/until.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+until(...values: unknown[])
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Takes a series of values, including Promises. Values are rendered in priority order,
  with the first argument having the highest priority and the last argument having the
@@ -562,11 +901,39 @@ Explore `until` more in the [playground](/playground/#sample=examples/directive-
 
 Appends values from an `AsyncIterable` into the DOM as they are yielded.
 
-| | |
-|-|-|
-| Import | `import {asyncAppend} from 'lit/directives/async-append.js';`|
-| Signature | `asyncAppend(iterable: AsyncIterable)`|
-| Usable location  | child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {asyncAppend} from 'lit/directives/async-append.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+asyncAppend(iterable: AsyncIterable)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 `asyncAppend` renders the values of an [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of), appending each new value after the previous. Note that async generators also implement the async iterable protocol, and thus can be consumed by `asyncAppend`.
 
@@ -596,11 +963,39 @@ Explore `asyncAppend` more in the [playground](/playground/#sample=examples/dire
 
 Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.
 
-| | |
-|-|-|
-| Import | `import {asyncAppend} from 'lit/directives/async-append.js';`|
-| Signature | `asyncAppend(iterable: AsyncIterable)`|
-| Usable location | Child expression |
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {asyncReplace} from 'lit/directives/async-replace.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+asyncReplace(iterable: AsyncIterable)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
 
 Similar to [`asyncAppend`](#asyncappend), `asyncReplace` renders the values of an [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of), replacing the previous value with each new value.
 
