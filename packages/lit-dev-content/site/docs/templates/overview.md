@@ -22,11 +22,11 @@ The template syntax might look like you're just doing string interpolation. But 
 
 Lit templates are extremely expressive and allow you to render dynamic content in a variety of ways:
 
- - [Expressions](/docs/templates/expressions): Templates can include dynamic values called expressions that can be used to render attributes, text, properties, event handlers, and even other templates.
- - [Conditionals](/docs/templates/conditionals): Templates can render conditional content using standard Javascript flow control.
- - [Lists](/docs/templates/lists): Render complex lists by composing templates together using standard Javascript looping and listing techniques.
- - [Built-in directives](/docs/templates/built-in-directives): Directives are functions that can extend Lit, and there's a set built in to help with a variety of rendering needs.
- - [Custom directives](/docs/templates/custom-directives): You can also write your own directives to extend Lit according to your rendering needs.
+ - [Expressions](/docs/templates/expressions/): Templates can include dynamic values called *expressions* that can be used to render attributes, text, properties, event handlers, and even other templates.
+ - [Conditionals](/docs/templates/conditionals/): Expressions can render conditional content using standard JavaScript flow control.
+ - [Lists](/docs/templates/lists/): Render complex lists by composing templates together using standard JavaScript looping and listing techniques.
+ - [Built-in directives](/docs/templates/built-in-directives/): Directives are functions that can extend Lit's templating functionality. The library includes a set of built-in directives to help with a variety of rendering needs.
+ - [Custom directives](/docs/templates/custom-directives/): You can also write your own directives to customize Lit's rendering as needed.
 
 ## Standalone templating
 
