@@ -1,58 +1,53 @@
-#mobileNav {
-  font-size: 14px;
-}
-
-#mobileNav > ol {
-  padding-left: 29px;
-}
-
-#mobileNav li {
-  list-style: none;
-}
-
-#mobileNav .sectionHead {
-  color: black;
-  padding: 2px 14px;
-  margin-left: -17px;
-  font-weight: 500;
-}
-
-#mobileNav a {
-  display: block;
-  color: inherit;
-  margin-bottom: 3px;
-  padding: 3px 12px;
-}
-
-#mobileNav .active {
-  color: #005ad6;
-  background-color:#e8f0fe;
-  border-radius: 10px;
-}
-
-#mobileNav a:hover {
-  background-color:#f1f3f4;
-  border-radius: 10px;
-}
-
-#mobileNav ol ol {
-  padding-left: 8px;
-  margin: 8px 0 12px 0;
-}
-
 /* Don't render drawer slotted children before it upgrades. */
 mwc-drawer:not(:defined) {
   display: none;
 }
 
-mwc-drawer #mobileNav > ol {
-  padding: 0 24px;
+#mobileDrawer ol {
+  margin: 0;
+  padding: 0;
 }
 
-/* The first section in the narrow-layout drawer is top-level site pages, and
-   underneath is e.g. the docs sub-pages. Visually separate these a bit. */
-mwc-drawer #mobileNav > ol > li:nth-child(2) {
-  margin-top: 18px;
-  border-top: 1px solid #ccc;
-  padding-top: 24px;
+#mobileDrawer li {
+  list-style-type: none;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#mobileDrawer a {
+  color: inherit;
+}
+
+#mobileDrawer .active {
+  font-weight: 700;
+}
+
+#mobileSiteNav {
+  background: var(--color-blue);
+  color: white;
+  padding: 20px;
+}
+
+#mobileDocsNav {
+  padding: 20px !important;
+}
+
+#mobileDocsNav ol {
+  margin-left: 30px;
+}
+
+#mobileDocsNav > li:first-of-type {
+  margin-top: 0;
+}
+
+#mobileDocsNav .sectionHead {
+  padding-left: 5px;
+}
+
+#mobileDocsNav details {
+  cursor: pointer;
+}
+
+#mobileDocsNav summary::marker {
+  font-size: 13px;
 }
