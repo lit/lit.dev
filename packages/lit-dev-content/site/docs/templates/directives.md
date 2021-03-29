@@ -168,6 +168,13 @@ For CSS properties that contain dashes, you can either use the camel-case equiva
 { 'font-family': 'roboto' }
 ```
 
+Refer to CSS custom properties such as `--custom-color`, by placing the whole property name in quotes:
+
+```js
+{ '--custom-color': 'steelblue' }
+```
+
+
 The `styleMap` must be the only expression in the `style` attribute, but it can
 be combined with static values:
 
