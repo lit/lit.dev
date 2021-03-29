@@ -3,7 +3,7 @@ title: Styles
 eleventyNavigation:
   key: Styles
   parent: Components
-  order: 5
+  order: 4
 ---
 
 Your component's template is rendered to its shadow root. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root.
