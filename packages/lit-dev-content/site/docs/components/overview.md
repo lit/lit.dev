@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Components Overview
 eleventyNavigation:
   key: Overview
   parent: Components
