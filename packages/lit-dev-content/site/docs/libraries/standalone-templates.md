@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 1
 ---
 
-Lit combines the component model of LitElement with Javascript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standlone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
+Lit combines the component model of LitElement with JavaScript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
 
 ## lit-html standalone package
 
@@ -188,4 +188,3 @@ See the the [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) f
       }
     }
     ```
-
