@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 1
 ---
 
-Lit combines the component model of LitElement with JavaScript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
+Lit combines the component model of LitElement with Javascript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
 
 ## lit-html standalone package
 
@@ -23,7 +23,7 @@ import {html, render} from 'lit-html';
 
 ## Rendering lit-html templates
 
-Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
+Lit templates are written using Javascript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
 
 ```html
 html`<h1>Hello ${name}</h1>`
@@ -73,21 +73,29 @@ The `render` method also takes an `options` argument that allows you to specify 
 
 *   `creationScope`: The object lit-html will call `importNode` on when cloning templates (defaults to `document`). This is provided for advanced use cases.
 
-For example, if you're creating a component class, you might use render options like this:
+For example, if you're using `lit-html` standalone, you might use render options like this:
 
-```js
-class MyComponent extends HTMLElement {
-  // ...
-
-  _update() {
-    // Bind event listeners to the current instance of MyComponent
-    render(this._template(), this.shadowRoot, {host: this});
-  }
-}
-
+```html
+<div id="container">
+  <header>My Site</header>
+  <footer>Copyright 2021</footer>
+</div>
 ```
 
-Render options should *not* change between subsequent `render` calls.
+```ts
+const template = () => html`...`;
+const container = document.getElementById('container');
+const renderBefore = container.querySelector('footer');
+render(template(), container, {renderBefore});
+```
+
+The above example would render the template between the `<header>` and `<footer>` elements.
+
+<div class="alert alert-info">
+
+**Render options must be constant.** Render options should *not* change between subsequent `render` calls.
+
+</div>
 
 ## Styles and lit-html templates
 
@@ -95,96 +103,16 @@ lit-html focuses on one thing: rendering HTML. How you apply styles to the HTML 
 
 In general, how you style HTML will depend on whether you're using shadow DOM:
 
-*   If you aren't using shadow DOM, you can style HTML using global style sheets.
-*   If you're using shadow DOM (for example, in LitElement), then you can add style sheets inside the shadow root.
+*   If you are not rendering into shadow DOM, you can style HTML using global style sheets.
+*   If are rendering into shadow DOM, then you can render `<style>` tags inside the shadow root.
+
+<div class="alert alert-info">
+
+**Styling shadow roots on legacy browsers requires polyfills.** Using the [ShadyCSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill with standalone `lit-html` requires loading `lit-html/polyfill-support.js` and passing a `scope` option in `RenderOptions` with the host tag name for scoping the rendered content. Although this approach is possible, we recommend using [LitElement](/docs/components/overview/) if you want to support rendering lit-html templates to shadow DOM on legacy browsers.
+
+</div>
 
 To help with dynamic styling, lit-html provides two directives for manipulating an element's `class` and `style` attributes:
 
 *   [`classMap`](/docs/templates/directives/#classmap) sets classes on an element based on the properties of an object.
 *   [`styleMap`](/docs/templates/directives/#stylemap) sets the styles on an element based on a map of style properties and values.
-
-## Rendering in shadow DOM
-
-When rendering into a shadow root, you usually want to add a style sheet inside the shadow root to the template, to you can style the contents of the shadow root.
-
-```js
-html`
-  <style>
-    :host { ... }
-    .test { ... }
-  </style>
-  <div class="test">...</div>
-`;
-```
-
-This pattern may seem inefficient, since the same style sheet is reproduced in a each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once.
-
-A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its static `styles` property. See [Adding styles to your component](/docs/components/styles/#add-styles) for more details.
-
-### Expressions in style sheets
-
-Using expressions in the style sheet is an antipattern, because it defeats the browser's style sheet optimizations. It's also not supported by the ShadyCSS polyfill.
-
-```js
-// DON'T DO THIS
-html`
-  <style>
-    :host {
-      background-color: ${themeColor};
-    }
-  </style>
-`;
-```
-
-Alternatives to using expressions in a style sheet:
-
-*   Use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) to pass values down the tree.
-*   Use expressions in the `class` and `style` attributes to control the styling of child elements.
-
-See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap](#classmap) for examples of using expressions with the `style` and `class` attributes.
-
-
-### Polyfilled shadow DOM
-
-If you're using Shadow DOM and intend to support older browsers without the native feature, you'll need to use polyfills. [ShadyDOM](https://github.com/webcomponents/shadydom) and [ShadyCSS](https://github.com/webcomponents/shadycss) are polyfills, or shims, that emulate shadow DOM isolation and style scoping.
-
-For best performance, the ShadyCSS polyfill has an optimization to statically pre-scope the DOM of a template being rendered for a given custom element tag name. Loading the `lit-html/polyfill-support.js` script will enable passing a `scope` field in `RenderOptions` to specify the custom element the DOM should be scoped to:
-
-```js
-import {render, TemplateResult} from 'lit-html/lib/shady-render';
-
-class MyShadyBaseClass extends HTMLElement {
-
-  /* ... */
-
-  myTemplate() {
-    return html`...`;
-  }
-
-  update() {
-    render(this.myTemplate(), this.shadowRoot, { scope: this.tagName.toLowerCase() });
-  }
-}
-```
-
-See the the [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) for more information and limitations on the ShadyCSS polyfill, noting the following `lit-html`-specific details:
-
-*   You **don't** need to call `ShadyCSS.prepareTemplate` when using `polyfill-support.js`. Instead pass the scope name as a render option. For custom elements, use the element name as a scope name as shown above.
-
-*   In order to use ShadyCSS's polyfilled CSS custom properties support, you **do** need to call `ShadyCSS.styleElement` when the element is connected to the DOM, and in case of any dynamic changes that might affect custom property values.  For example, consider a set of rules like this:
-
-    ```js
-    my-element { --theme-color: blue; }
-    main my-element { --theme-color: red; }
-    ```
-
-    If you add an instance of `my-element` to a document, or move it, a different value of `--theme-color` may apply. On browsers with native custom property support, these changes will take place automatically, but on browsers that rely on the custom property shim included with shadyCSS, you'll need to call `styleElement`.
-
-    ```js
-    connectedCallback() {
-      super.connectedCallback();
-      if (window.ShadyCSS !== undefined) {
-          window.ShadyCSS.styleElement(this);
-      }
-    }
-    ```
