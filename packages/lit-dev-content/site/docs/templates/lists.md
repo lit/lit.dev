@@ -6,13 +6,6 @@ eleventyNavigation:
   order: 4
 ---
 
-{% todo %}
-
--  Check all import paths.
--  Add interactive examples.
-
-{% endtodo %}
-
 You can use standard JavaScript constructs to create repeating templates.
 
 Lit also provides a `repeat` directive to build certain kinds of dynamic lists more efficiently.
@@ -60,7 +53,9 @@ The `repeat` directive can help here.
 
 The repeat directive performs efficient updates of lists based on user-supplied keys:
 
-`repeat(items, keyFunction, itemTemplate)`
+```ts
+repeat(items, keyFunction, itemTemplate)
+```
 
 Where:
 
