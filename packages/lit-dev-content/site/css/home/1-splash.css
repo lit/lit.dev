@@ -56,8 +56,13 @@
 #helloWorld {
   width: 60%;
   background: #454545;
-  padding: 4em var(--home-side-margin) 4em 4em;
+  padding: 4em var(--home-side-margin) 4em 3em;
   position: relative;
+}
+
+#helloWorld > figure {
+  margin: 0;
+  max-width: min-content;
 }
 
 /* Stretch the gray background all the way to right */
