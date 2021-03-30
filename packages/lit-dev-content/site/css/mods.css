@@ -1,57 +1,9 @@
 /* ------------------------------------
- * headerWhite
- * ------------------------------------ */
-
-.headerWhite header {
-  background: white;
-}
-
-/* ------------------------------------
  * headerShadow
  * ------------------------------------ */
 
 .headerShadow header {
   box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 6px 0px;
-}
-
-/* ------------------------------------
- * docsNavWhite
- * ------------------------------------ */
-
-.docsNavWhite #docsNavWrapper {
-  --docs-nav-background: white;
-}
-
-.docsNavWhite #docsNav {
-  color: black;
-}
-
-/* ------------------------------------
- * docsNavLight
- * ------------------------------------ */
-
-.docsNavLight #docsNavWrapper {
-  --docs-nav-background: #f7f7f7;
-}
-
-.docsNavLight #docsNav {
-  color: black;
-}
-
-.docsNavLight #docsNav li.active::before {
-  color: var(--color-blue);
-}
-
-/* ------------------------------------
- * docsNavBorder
- * ------------------------------------ */
-
-.docsNavBorder:not(.docsNavRight) #docsNav {
-  border-right: 1px solid #d6d6d6;
-}
-
-.docsNavBorder.docsNavRight #docsNavWrapper {
-  border-right: 1px solid #d6d6d6;
 }
 
 /* ------------------------------------

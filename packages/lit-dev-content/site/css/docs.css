@@ -11,7 +11,8 @@ main {
     --docs-table-header-background: #e4e4e4;
     --docs-table-header-color: rgb(73, 73, 73);
     --playground-code-background-color: #f0f0f0;
-    --docs-nav-background: var(--color-dark-gray);
+    --docs-nav-background: white;
+    --docs-nav-color: #242424;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -311,11 +312,12 @@ td {
   box-sizing: border-box;
   background: var(--docs-nav-background);
   overflow-y: auto;
+  border-right: 1px solid var(--docs-rule-color);
 }
 
 #docsNav {
   background: transparent;
-  color: white;
+  color: var(--docs-nav-color);
   line-height: 1.6em;
   padding: 0 2.5em 0 0;
   box-sizing: border-box;
@@ -341,17 +343,11 @@ td {
   padding-left: 1.2em;
 }
 
-/* Section headings */
-#docsNav .sectionHead {
-  opacity: 0.5;
-}
-#docsNav .activeSection .sectionHead {
-  opacity: 1;
-}
-
 /* Active page bullet */
 #docsNav li.active {
   position: relative;
+  font-weight: 600;
+  color: black;
 }
 #docsNav li.active::before {
   /* Note it doesn't seem possible with list-style or ::marker to have a bullet
@@ -361,19 +357,16 @@ td {
   position: absolute;
   left: -2em;
   font-size: 0.6em;
+  color: var(--color-blue);
 }
 
 /* Page links */
 #docsNav a {
   color: inherit;
   font-size: 0.9em;
-  opacity: 0.5;
 }
-#docsNav .activeSection a {
-  opacity: 1;
-}
+
 #docsNav a:hover {
-  opacity: 1;
   text-decoration: underline;
 }
 
@@ -384,7 +377,7 @@ td {
   width: 1em;
 }
 #docsNavWrapper:hover::-webkit-scrollbar-thumb {
-  background: rgb(255 255 255 / 0.3);
+  background: #d6d6d6;
   background-clip: content-box;
   border: 4px solid transparent;
   border-radius: 10px;
