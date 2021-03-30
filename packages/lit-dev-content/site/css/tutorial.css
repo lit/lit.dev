@@ -95,6 +95,8 @@ litdev-tutorial {
   justify-content: space-between;
   flex: 0 0 auto;
   padding: 0.5em 3.75em 0.3em 2em;
+  /* Disabled buttons are very dark by default, lighten a bit. */
+  --mdc-theme-text-disabled-on-light: #777;
 }
 
 #tutorialHeader .number {
