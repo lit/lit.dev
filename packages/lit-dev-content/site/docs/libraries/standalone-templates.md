@@ -3,12 +3,40 @@ title: Using lit-html standalone
 eleventyNavigation:
   key: Standalone lit-html
   parent: Related libraries
-  order: 3
+  order: 1
 ---
 
-<!-- TODO: expand this into a full section on standalone lit-html use. Current content is from the lit-html "rendering templates" and "styling templates" docs. -->
+Lit combines the component model of LitElement with Javascript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
+
+## lit-html standalone package
+
+The `lit-html` package can be installed separately from `lit`:
+
+```sh
+npm install lit-html
+```
+
+The main imports are `html` and `render`:
+```js
+import {html, render} from 'lit-html';
+```
+
+The standalone `lit-html` package also includes modules for the following features described in the full `Lit` developer guide:
+
+* `lit-html/directives/*` - [Built-in directives](/docs/templates/directives/)
+* `lit-html/directive.js` - [Custom directives](/docs/templates/custom-directives/)
+* `lit-html/async-directive.js` - [Custom async directives](/docs/templates/custom-directives/#async-directives)
+* `lit-html/directive-helpers.js` - [Directive helpers for imperative updates](/docs/templates/custom-directives/#imperative-dom-access:-update())
+* `lit-html/static.js` - [Static html tag](/docs/templates/expressions/#static-expressions)
+* `lit-html/polyfill-support.js` - Support for interfacing with the web components polyfills (see [Styles and lit-html templates](#styles-and-lit-html-templates))
 
 ## Rendering lit-html templates
+
+Lit templates are written using Javascript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
+
+```html
+html`<h1>Hello ${name}</h1>`
+```
 
 A lit-html template expression does not cause any DOM to be created or updated. It's only a description of DOM, called a `TemplateResult`. To actually create or update DOM, you need to pass the `TemplateResult` to the `render()` function, along with a container to render to:
 
@@ -31,11 +59,11 @@ import {html, render} from 'lit-html';
 const myTemplate = (name) => html`<div>Hello ${name}</div>`;
 
 // Render the template with some data
-render(myTemplate('world'), document.body);
+render(myTemplate('earth'), document.body);
 
 // ... Later on ...
 // Render the template with different data
-render(myTemplate('lit-html'), document.body);
+render(myTemplate('mars'), document.body);
 ```
 
 When you call the template function, lit-html captures the current expression values. The template function doesn't create any DOM nodes, so it's fast and cheap.
@@ -52,34 +80,29 @@ The `render` method also takes an `options` argument that allows you to specify 
 
 *   `renderBefore`: An optional reference node within the `container` before which lit-html will render. By default, lit-html will append to the end of the container. Setting `renderBefore` allows rendering to a specific spot within the container.
 
-*   `creationScope`: The object lit-html will call `importNode` on (defaults to `document`). This is provided for advanced use cases.
+*   `creationScope`: The object lit-html will call `importNode` on when cloning templates (defaults to `document`). This is provided for advanced use cases.
 
-For example, if you're creating a component class, you might use render options like this:
+For example, if you're using `lit-html` standalone, you might use render options like this:
 
-```js
-class MyComponent extends HTMLElement {
-  // ...
-
-  _update() {
-    // Bind event listeners to the current instance of MyComponent
-    render(this._template(), this.shadowRoot, {host: this});
-  }
-}
-
+```html
+<div id="container">
+  <header>My Site</header>
+  <footer>Copyright 2021</footer>
+</div>
 ```
 
-Render options should *not* change between subsequent `render` calls.
+```ts
+const template = () => html`...`;
+const container = document.getElementById('container');
+const renderBefore = container.querySelector('footer');
+render(template(), container, {renderBefore});
+```
 
-## Event handlers
-
-<!-- TODO move this somewhere, expand this section, or get rid of it.
-
--->
+The above example would render the template between the `<header>` and `<footer>` elements.
 
 <div class="alert alert-info">
 
-**Event listener objects.** When you specify a listener using an event listener object,
-the listener object itself is set as the event context (`this` value).
+**Render options must be constant.** Render options should *not* change between subsequent `render` calls.
 
 </div>
 
@@ -89,139 +112,16 @@ lit-html focuses on one thing: rendering HTML. How you apply styles to the HTML 
 
 In general, how you style HTML will depend on whether you're using shadow DOM:
 
-*   If you aren't using shadow DOM, you can style HTML using global style sheets.
-*   If you're using shadow DOM (for example, in LitElement), then you can add style sheets inside the shadow root.
+*   If you are not rendering into shadow DOM, you can style HTML using global style sheets.
+*   If are rendering into shadow DOM, then you can render `<style>` tags inside the shadow root.
+
+<div class="alert alert-info">
+
+**Styling shadow roots on legacy browsers requires polyfills.** Using the [ShadyCSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill with standalone `lit-html` requires loading `lit-html/polyfill-support.js` and passing a `scope` option in `RenderOptions` with the host tag name for scoping the rendered content. Although this approach is possible, we recommend using [LitElement](/docs/components/overview/) if you want to support rendering lit-html templates to shadow DOM on legacy browsers.
+
+</div>
 
 To help with dynamic styling, lit-html provides two directives for manipulating an element's `class` and `style` attributes:
 
 *   [`classMap`](/docs/templates/directives/#classmap) sets classes on an element based on the properties of an object.
 *   [`styleMap`](/docs/templates/directives/#stylemap) sets the styles on an element based on a map of style properties and values.
-
-### Setting classes with classMap {#classmap}
-
-Like `styleMap`, the `classMap` directive lets you set a group of classes based on an object.
-
-```js
-import {html} from 'lit-html';
-import {classMap} from 'lit-html/directives/class-map.js';
-
-const itemTemplate = (item) => {
-  const classes = {selected: item.selected};
-  return html`<div class="menu-item ${classMap(classes)}">Classy text</div>`;
-}
-```
-
-More information: see [classMap](/docs/templates/directives/#classmap) in the Template syntax reference.
-
-### Inline styles with styleMap {#stylemap}
-
-You can use the `styleMap` directive to set inline styles on an element in the template.
-
-```js
-import {html} from 'lit-html';
-import {styleMap} from 'lit-html/directives/style-map.js';
-
-...
-
-const myTemplate = () => {
-  styles = {
-    color: myTextColor,
-    backgroundColor: highlight ? myHighlightColor : myBackgroundColor,
-  };
-
-  return html`
-    <div style=${styleMap(styles)}>
-      Hi there!
-    </div>
-  `;
-};
-```
-
-More information: see See [styleMap](/docs/templates/directives/#stylemap) in the Template syntax reference.
-
-### Rendering in shadow DOM
-
-When rendering into a shadow root, you usually want to add a style sheet inside the shadow root to the template, to you can style the contents of the shadow root.
-
-```js
-html`
-  <style>
-    :host { ... }
-    .test { ... }
-  </style>
-  <div class="test">...</div>
-`;
-```
-
-This pattern may seem inefficient, since the same style sheet is reproduced in a each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once.
-
-A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its static `styles` property. See [Adding styles to your component](/docs/components/styles/#add-styles) for more details.
-
-#### Expressions in style sheets
-
-Using expressions  in the style sheet is an antipattern, because it defeats the browser's style sheet optimizations. It's also not supported by the ShadyCSS polyfill.
-
-```js
-// DON'T DO THIS
-html`
-  <style>
-    :host {
-      background-color: ${themeColor};
-    }
-  </style>
-`;
-```
-
-Alternatives to using expressions in a style sheet:
-
-*   Use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) to pass values down the tree.
-*   Use expressions in the `class` and `style` attributes to control the styling of child elements.
-
-See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap](#classmap) for examples of using expressions with the `style` and `class` attributes.
-
-
-#### Polyfilled shadow DOM: ShadyDOM and ShadyCSS
-
-If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. [ShadyDOM](https://github.com/webcomponents/shadydom) and [ShadyCSS](https://github.com/webcomponents/shadycss) are polyfills, or shims, that emulate shadow DOM isolation and style scoping.
-
-The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own.
-
-The [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) provides some directions for using shady CSS. When using it with `lit-html`:
-
-*   Import `render` and `TemplateResult` from the `shady-render` library.
-*   You **don't** need to call `ShadyCSS.prepareTemplate`.  Instead pass the scope name as a render option. For custom elements, use the element name as a scope name. For example:
-
-    ```js
-    import {render, TemplateResult} from 'lit-html/lib/shady-render';
-
-    class MyShadyBaseClass extends HTMLElement {
-
-      // ...
-
-      _update() {
-        render(this.myTemplate(), this.shadowRoot, { scopeName: this.tagName.toLowerCase() });
-      }
-    }
-    ```
-
-    Where `this.myTemplate` is a method that returns a `TemplateResult`.
-
-*   You **do** need to call `ShadyCSS.styleElement` when the element is connected to the DOM, and in case of any dynamic changes that might affect custom property values.
-
-	For example, consider a set of rules like this:
-    ```js
-    my-element { --theme-color: blue; }
-	main my-element { --theme-color: red; }
-    ```
-
-	If you add an instance of `my-element` to a document, or move it, a different value of `--theme-color` may apply. On browsers with native custom property support, these changes will take place automatically, but on browsers that rely on the custom property shim included with shadyCSS, you'll need to call `styleElement`.
-
-    ```js
-    connectedCallback() {
-      super.connectedCallback();
-      if (window.ShadyCSS !== undefined) {
-          window.ShadyCSS.styleElement(this);
-      }
-    }
-    ```
-
