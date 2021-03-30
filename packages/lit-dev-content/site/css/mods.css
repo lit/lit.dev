@@ -39,34 +39,6 @@ body.docsManrope article {
 }
 
 /* ------------------------------------
- * docsNavRight
- * ------------------------------------ */
-
-.docsNavRight main {
-  --docs-nav-max-width: 1fr;
-}
-
-.docsNavRight #docsNavWrapper {
-  overflow-y: auto;
-  justify-content: flex-end;
-  background: var(--docs-nav-background);
-}
-
-.docsNavRight #docsNav {
-  overflow-y: initial;
-  background: transparent;
-}
-
-.docsNavRight #docsNavWrapper::-webkit-scrollbar {
-  width: 8px;
-}
-
-.docsNavRight #docsNavWrapper:hover::-webkit-scrollbar-thumb {
-  background: rgb(0 0 0 / 0.3);
-  border-radius: 10px;
-}
-
-/* ------------------------------------
  * docsNavWhite
  * ------------------------------------ */
 
