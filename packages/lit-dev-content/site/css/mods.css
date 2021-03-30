@@ -75,33 +75,6 @@
 }
 
 /* ------------------------------------
- * headerNarrow
- * ------------------------------------ */
-
-.headerNarrow header {
-  display: flex;
-  justify-content: center;
-}
-
-.headerNarrow header > nav {
-  max-width: var(--content-max-width);
-}
-
-/* ------------------------------------
- * footerNarrow
- * ------------------------------------ */
-
-.footerNarrow #footerTop {
-  max-width: var(--content-max-width);
-  margin: auto;
-}
-
-.footerNarrow footer > nav {
-  max-width: var(--content-max-width);
-  margin: auto;
-}
-
-/* ------------------------------------
  * docsSectionBorderBelow
  * ------------------------------------ */
 
