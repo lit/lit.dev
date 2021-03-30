@@ -1,28 +1,4 @@
 /* ------------------------------------
- * openSans
- * ------------------------------------ */
-
-body.openSans {
-  font-family: 'Open Sans', sans-serif;
-}
-
-/* ------------------------------------
- * roboto
- * ------------------------------------ */
-
-body.roboto {
-  font-family: 'Roboto', sans-serif;
-}
-
-/* ------------------------------------
- * manrope docs
- * ------------------------------------ */
-
-body.docsManrope article {
-  font-family: 'Manrope', sans-serif !important;
-}
-
-/* ------------------------------------
  * headerWhite
  * ------------------------------------ */
 
