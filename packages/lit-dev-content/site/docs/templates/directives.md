@@ -168,7 +168,7 @@ For CSS properties that contain dashes, you can either use the camel-case equiva
 { 'font-family': 'roboto' }
 ```
 
-For CSS *custom* properties such as `--custom-color`, put the whole property name in quotes (`'--custom-color'`).
+For CSS *custom* properties such as `--custom-color`, put the whole property name in quotes:
 
 ```js
 { '--custom-color': '#FFFABC' }
@@ -1025,4 +1025,3 @@ class MyElement extends LitElement {
 }
 ```
 Explore `asyncReplace` more in the [playground](/playground/#sample=examples/directive-async-replace).
-
