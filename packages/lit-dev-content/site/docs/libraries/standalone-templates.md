@@ -21,6 +21,15 @@ The main imports are `html` and `render`:
 import {html, render} from 'lit-html';
 ```
 
+The standalone `lit-html` package also includes modules for the following features described in the full `Lit` developer guide:
+
+* `lit-html/directives/*` - [Built-in directives](/docs/templates/directives/)
+* `lit-html/directive.js` - [Custom directives](/docs/templates/custom-directives/)
+* `lit-html/async-directive.js` - [Custom async directives](/docs/templates/custom-directives/#async-directives)
+* `lit-html/directive-helpers.js` - [Directive helpers for imperative updates](/docs/templates/custom-directives/#imperative-dom-access:-update())
+* `lit-html/static.js` - [Static html tag](/docs/templates/expressions/#static-expressions)
+* `lit-html/polyfill-support.js` - Support for interfacing with the web components polyfills (see [Styles and lit-html templates](#styles-and-lit-html-templates))
+
 ## Rendering lit-html templates
 
 Lit templates are written using Javascript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
