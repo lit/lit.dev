@@ -334,6 +334,7 @@ td {
   list-style: none;
   padding-left: 0;
   margin-top: var(--docs-margin-top);
+  padding-bottom: 1.5em;
 }
 #docsNav > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
