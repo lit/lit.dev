@@ -43,5 +43,9 @@ export const manifest: {steps: Array<TutorialStep>} = {
       slug: '06-template-logic',
       title: 'Template logic',
     },
+    {
+      slug: '07-styles',
+      title: 'Styles',
+    },
   ],
 };

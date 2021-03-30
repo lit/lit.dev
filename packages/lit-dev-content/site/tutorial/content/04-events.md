@@ -28,6 +28,8 @@ In this step you'll add an input element and an event handler to a component.
     }
     ```
 
+    Since `name` is a reactive property, setting it in the event handler triggers the component to update.
+
 Now try it out!
 
 For more information about declarative event handlers, see [Events](/docs/components/events/).

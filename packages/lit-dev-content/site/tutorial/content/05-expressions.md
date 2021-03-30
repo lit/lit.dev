@@ -1,6 +1,23 @@
-On the previous pages you used expressions to add text content (child nodes) and add an event listener. You can also use expressions to set attributes or properties:
+On the previous pages you used expressions to add text content (child nodes) and add an event listener. You can also use expressions to set attributes or properties.
 
-```js
+In this step you'll add an input element with some bindings.
+
+**Add an input element to your component.**
+
+```html
+<input ?disabled=${!this.checked} .value=${this.text}>
+```
+
+The `disabled` attribute is toggled when the checkbox state changes, and the `value` property is set based on the component's `text` property.
+
+<details>
+<summary>Learn more: expressions</summary>
+
+Here are the most common places to use expressions:
+
+```html
+<!-- Child nodes -->
+<h1>${this.pageTitle}</h1>
 <!-- Attribute -->
 <div class=${this.myTheme}></div>
 <!-- Boolean attribute -->
@@ -9,16 +26,9 @@ On the previous pages you used expressions to add text content (child nodes) and
 <input .value=${this.value}>
 ```
 
-In this step you'll add an input element with some bindings.
-
-1. **Add an input element.**
-
-    Add an input element to your component:
-
-    ```html
-    <input ?disabled=${!this.checked} .value=${this.text}>
-    ```
-
-The `disabled` attribute is toggled when the checkbox state changes, and the `value` property is set based on the component's `text` property.
+Expressions can use any standard JavaScript.
 
 For more information, see [Expressions](/docs/templates/expressions/).
+
+</details>
+
