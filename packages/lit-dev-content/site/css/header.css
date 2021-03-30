@@ -20,6 +20,8 @@ header > nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: var(--header-footer-max-width, unset);
+  margin: var(--header-footer-margin, unset);
 }
 
 #desktopNav {

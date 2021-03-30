@@ -4,6 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: var(--header-footer-max-width, unset);
+  margin: var(--header-footer-margin, unset);
 }
 
 #footerNameAndLogo {
