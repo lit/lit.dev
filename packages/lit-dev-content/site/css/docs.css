@@ -181,9 +181,9 @@ figure {
 
 .heading.h2 {
   font-size: 1.8em;
-  margin: 1.5em 0 1.328em 0 ;
-  padding: 1.5em 0 0 0;
-  border-top: 1px solid var(--docs-rule-color);
+  margin: 0 0 1.328em 0 ;
+  padding: 1.5em 0 0.5em 0;
+  border-bottom: 1px solid var(--docs-rule-color);
 }
 .heading > h2 {
   color: var(--docs-h2-color);
