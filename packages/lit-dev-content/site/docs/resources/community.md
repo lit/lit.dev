@@ -6,26 +6,25 @@ eleventyNavigation:
   order: 1
 ---
 
-There are many great resources and locations to learn about lit-html and LitElement,
-share what you've built, and more. All community participation is subject to the Polymer Project's
-<a href="https://github.com/Polymer/project/blob/master/Code_of_Conduct.md">Code of Conduct</a>—be
+There are many great resources and locations to learn about Lit,
+share what you've built, and more. Participation in our community is subject to the Lit
+[Code of Conduct](https://github.com/Polymer/lit-html/blob/master/CODE_OF_CONDUCT.md)—be
 excellent to each other!
 
-*   <strong>Join us on <a href="https://www.polymer-project.org/slack-invite">Slack</a>!</strong> The
-    Polymer Project Slack workspace has thousands of users discussing lit-html, LitElement, and related topics.
-    Check out <code>#general</code>, <code>#beginners</code>, or
-    <code>#tools</code> to get started.
+*   **Join us on [Slack](https://www.polymer-project.org/slack-invite)!** The
+    Lit workspace has thousands of users discussing lit-html, LitElement, and related topics.
+    Check out `#lit`, `#beginners`, or `#tools` to get started.
 
-*   Follow us on <a href="https://twitter.com/polymer">Twitter</a>
-    for the latest on web components and the Polymer Project. Many
-    of our team members can be found tweeting about lit-html, LitElement,
+*   **Follow us at [@buildWithLit  on Twitter](https://twitter.com/buildWithLit)**
+    for the latest on Lit and web components. Many
+    of our team members can also be found tweeting about Lit,
     and the latest developments in the web platform.
 
-*   On <a href="https://stackoverflow.com/tags/lit-html">StackOverflow</a> use
-    the <code><a href="https://stackoverflow.com/tags/lit-html">lit-html</a></code> or <code><a href="https://stackoverflow.com/tags/lit-element">lit-element</a></code> tags when
-    looking for answers. You can also find help on underlying web standards like
-    <a href="https://stackoverflow.com/tags/web-component">web components</a>, and try your
-    hand at answering other people’s queries.
+*   **Find answers on [StackOverflow](https://stackoverflow.com/tags/lit-html).**
+    Search the [`lit`, `lit-element`, and `lit-html`](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element) tags when
+    looking for answers. You can also find help on underlying web standards with
+    tags like [`web-component`](https://stackoverflow.com/tags/web-component),
+    and try your hand at answering other people’s queries.
 
 
 
