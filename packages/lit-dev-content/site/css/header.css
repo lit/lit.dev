@@ -24,6 +24,12 @@ header > nav {
   margin: var(--header-footer-margin, unset);
 }
 
+.navItem > a > svg {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+}
+
 #desktopNav {
   display: flex;
   align-items: center;
