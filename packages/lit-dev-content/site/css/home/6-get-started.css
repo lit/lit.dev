@@ -15,9 +15,12 @@
 
 #getStartedItems > div {
   max-width: 18em;
+  display: flex;
+  flex-direction: column;
 }
 
 #getStartedItems > div > h3 {
+  flex: 1;
   color: var(--color-blue);
   font-size: 1.2em;
   font-weight: 500;
