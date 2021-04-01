@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 7
 ---
 
-The Lit Starter Kits are project templates for reusable Lit components that could be published for others to use.
+The Lit Starter Kits are project templates for reusable Lit components that can be published for others to use.
 
 To get started working on a component locally, you can use one of these starter projects:
 
@@ -126,7 +126,7 @@ A couple of things to look for in the code:
     }
     ```
 
-*   The component defines some [properties](/docs/components/properties/). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/components/properties/).
+*   The component defines some properties. The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/components/properties/).
 
     _JavaScript_
 
@@ -196,7 +196,7 @@ You'll probably want to change the component name from "my-element" to something
 
 ### Next steps
 
-Ready to add features to your project? Head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
+Ready to add features to your component? Head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
 
 For details on running tests and using other tools, see the starter project README:
 

@@ -40,7 +40,7 @@ class MyElement extends LitElement {
 
 ## Use your component
 
-How you use a component depends on your project and the libraries or frameworks is uses. You can use your component in HTML, with DOM APIs, or in template languages:
+How you use a component depends on your project and the libraries or frameworks it uses. You can use your component in HTML, with DOM APIs, or in template languages:
 
 ### Plain HTML
 ```html
@@ -69,6 +69,6 @@ Most JavaScript frameworks have [great support for web components](https://custo
 
 At this point, you should be able to build and run your project and see the "Hello from MyElement!" message.
 
-If you're ready to add features to your project, head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
+If you're ready to add features to your component, head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
 
 For details on building projects, including some sample Rollup configurations, see [Building for production](/docs/tools/production/).
