@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 2
 ---
 
-The most important things to know about Lit in order to work with verious browsers and tools are that:
+The most important things to know about Lit in order to work with various browsers and tools are that:
 
  * Lit is published as ES2019.
  * Lit uses "bare module specifiers" to import modules.
