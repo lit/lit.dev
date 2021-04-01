@@ -287,7 +287,7 @@ One built-in directive that can be used in an element expression is the `ref` di
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](/docs/templates/directives#ref) for more information.
+See [ref](/docs/templates/directives/#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 
