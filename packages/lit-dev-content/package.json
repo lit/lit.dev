@@ -7,10 +7,10 @@
   "license": "BSD-3-Clause",
   "main": "_site/index.html",
   "scripts": {
-    "build": "npm run build:ts && npm run build:rollup && npm run build:site && npm run build:samples",
+    "build": "rm -rf _site && npm run build:ts && npm run build:rollup && npm run build:site && npm run build:samples",
     "build:ts": "../../node_modules/.bin/tsc",
     "build:ts:watch": "../../node_modules/.bin/tsc --watch",
-    "build:site": "rm -rf _site && eleventy",
+    "build:site": "eleventy",
     "build:site:watch": "rm -rf _site && eleventy --watch",
     "build:rollup": "rollup -c",
     "build:rollup:watch": "rollup -c --watch",
