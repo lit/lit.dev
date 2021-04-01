@@ -462,8 +462,6 @@ td {
 /* Second level */
 #rhsToc > div > ol > li > ol {
   list-style: none;
-  /* Space between heading and second level items */
-  padding-top: 0.3em;
   /* We move indentation to the anchors so that we can align the bullet
      consistently to the left, regardless of indentation. */
   padding-left: 0;
@@ -483,6 +481,9 @@ td {
   opacity: 0.5;
   font-size: 0.8em;
   position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em;
+  line-height: 1.2em;
 }
 
 #rhsToc a.active,
