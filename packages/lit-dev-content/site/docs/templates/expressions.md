@@ -381,7 +381,7 @@ class MyAnchor extends MyButton {
 
 In the example above, if the template re-renders and `this.caption` or `this.active` change, Lit updates the template efficiently, only changing the affected expressions. However, if `this.tag` or `this.activeAttribute` change, since they are static values tagged with `literal`, an entirely new template is created; the update is inefficient since the DOM is completely re-rendered. In addition, changing `literal` values passed to expressions increases memory use since each unique template is cached in memory to improve re-render performance.
 
-For these reasons, it's a good idea keep changes to expressions using `literal` to a minimum and avoid using reactive properties to  since they are intended to change.
+For these reasons, it's a good idea keep changes to expressions using `literal` to a minimum and avoid using reactive properties to change `literal` values, since reactive properties are intended to change.
 
 ### Non-literal statics
 
