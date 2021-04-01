@@ -20,6 +20,14 @@ header > nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: var(--header-footer-max-width, unset);
+  margin: var(--header-footer-margin, unset);
+}
+
+.navItem > a > svg {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
 }
 
 #desktopNav {

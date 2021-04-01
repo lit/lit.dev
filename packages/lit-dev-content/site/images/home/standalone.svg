@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-   width="1000" height="1000" viewBox="0 0 264.58333 264.58334">
-   <symbol id="main" viewBox="0 0 264.58333 264.58334">
-   <rect fill="white" width="114.56393" height="114.56393" x="75.009705" y="75.009705" />
-   <path stroke="white" stroke-dasharray="20" d="M 76.199998,0 V 264.58333" />
-   <path stroke="white" stroke-dasharray="20" d="M 188.24835,0 V 264.58333" />
-   <path stroke="white" stroke-dasharray="20" d="M 264.58331,76.14143 H -2e-5" />
-   <path stroke="white" stroke-dasharray="20" d="M 264.58331,188.18978 H -2e-5" />
+<svg xmlns="http://www.w3.org/2000/svg">
+   <symbol id="main" viewBox="0 0 265 265">
+      <rect fill="currentcolor" x="75" y="75" width="115" height="115" />
+      <g stroke="currentcolor" stroke-dasharray="20">
+         <line x1="0" x2="75" y1="78" y2="78" />
+         <line x1="205" x2="265" y1="78" y2="78" />
+         <line x1="0" x2="75" y1="187" y2="187" />
+         <line x1="205" x2="265" y1="187" y2="187" />
+         <line x1="78" x2="78" y1="0" y2="78" />
+         <line x1="187" x2="187" y1="0" y2="78" />
+         <line x1="78" x2="78" y1="205" y2="265" />
+         <line x1="187" x2="187" y1="205" y2="265" />
+      </g>
    </symbol>
 </svg>

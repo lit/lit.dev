@@ -53,7 +53,7 @@
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
     "luxon": "^1.26.0",
-    "playground-elements": "^0.6.3",
+    "playground-elements": "^0.7.0",
     "tarts": "^1.0.0"
   }
 }

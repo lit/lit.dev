@@ -35,6 +35,14 @@ const terserOptions = {
 
 export default [
   {
+    input: 'lib/mobile-nav.js',
+    output: {
+      file: 'site/_includes/js/mobile-nav.js',
+      format: 'esm',
+    },
+    plugins: [resolve(), terser(terserOptions), summary()],
+  },
+  {
     input: 'lib/mods.js',
     output: {
       file: 'site/_includes/js/mods.js',

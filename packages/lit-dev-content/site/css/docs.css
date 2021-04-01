@@ -1,3 +1,9 @@
+html {
+  /* Center the header and footer */
+  --header-footer-max-width: var(--content-max-width);
+  --header-footer-margin: auto;
+}
+
 /* ------------------------------------
  * Main layout
  * ------------------------------------ */
@@ -12,11 +18,13 @@ main {
     --docs-table-header-color: rgb(73, 73, 73);
     --docs-link-color: #005cc5;
     --playground-code-background-color: #f0f0f0;
+    --docs-nav-background: white;
+    --docs-nav-color: #242424;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
   --docs-nav-min-width: 15em;
-  --docs-nav-max-width: 15em;
+  --docs-nav-max-width: 1fr;
   --docs-toc-min-width: 10em;
   --docs-article-min-width: 30em;
   --docs-article-max-width: 49em;
@@ -29,6 +37,10 @@ main {
     minmax(0, var(--docs-article-max-width)) 1fr;
   max-width: none;
   border-bottom: 1px solid var(--color-blue);
+
+  /* Open Sans is more readable than Manrope, so we prefer it for content that
+     users will spend a lot of time reading. */
+  font-family: "Open Sans", sans-serif;
 }
 
 /* ------------------------------------
@@ -42,10 +54,6 @@ article {
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
   color: #3e3e3e;
-
-  /* Open Sans is more readable than Manrope, so we prefer it for content that
-     users will spend a lot of time reading. */
-  font-family: "Open Sans", sans-serif;
 }
 
 /* ------------------------------------
@@ -182,9 +190,9 @@ figure {
 .heading.h2,
 article > h2 {
   font-size: 1.8em;
-  margin: 1.5em 0 1.328em 0 ;
-  padding: 1.5em 0 0 0;
-  border-top: 1px solid var(--docs-rule-color);
+  margin: 0 0 1.328em 0 ;
+  padding: 1.5em 0 0.5em 0;
+  border-bottom: 1px solid var(--docs-rule-color);
 }
 article h2 {
   color: var(--docs-h2-color);
@@ -261,6 +269,10 @@ td {
   white-space: nowrap;
 }
 
+.vcenter-cell {
+  vertical-align: middle;
+}
+
 /* -----------------------------------
 /* Notes and warnings
 /* ------------------------------------ */
@@ -307,17 +319,18 @@ td {
   top: var(--header-height);
   height: calc(100vh - var(--header-height));
   display: flex;
-  justify-content: flex-start;
-  --docs-nav-background: var(--color-dark-gray);
+  justify-content: flex-end;
   box-sizing: border-box;
+  background: var(--docs-nav-background);
+  overflow-y: auto;
+  border-right: 1px solid var(--docs-rule-color);
 }
 
 #docsNav {
-  overflow-y: auto;
-  background: var(--docs-nav-background);
-  color: white;
+  background: transparent;
+  color: var(--docs-nav-color);
   line-height: 1.6em;
-  padding: 0 1.5em;
+  padding: 0 2.5em 0 0;
   box-sizing: border-box;
 }
 
@@ -326,6 +339,7 @@ td {
   list-style: none;
   padding-left: 0;
   margin-top: var(--docs-margin-top);
+  padding-bottom: 1.5em;
 }
 #docsNav > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
@@ -341,17 +355,11 @@ td {
   padding-left: 1.2em;
 }
 
-/* Section headings */
-#docsNav .sectionHead {
-  opacity: 0.5;
-}
-#docsNav .activeSection .sectionHead {
-  opacity: 1;
-}
-
 /* Active page bullet */
 #docsNav li.active {
   position: relative;
+  font-weight: 600;
+  color: black;
 }
 #docsNav li.active::before {
   /* Note it doesn't seem possible with list-style or ::marker to have a bullet
@@ -361,30 +369,31 @@ td {
   position: absolute;
   left: -2em;
   font-size: 0.6em;
+  color: var(--color-blue);
 }
 
 /* Page links */
 #docsNav a {
   color: inherit;
-  font-size: 0.9em;
-  opacity: 0.5;
+  font-size: 16px;
 }
-#docsNav .activeSection a {
-  opacity: 1;
+
+#docsNav .sectionHead {
+  font-size: 16px;
 }
+
 #docsNav a:hover {
-  opacity: 1;
   text-decoration: underline;
 }
 
 /* On some platforms like Linux, a traditional scrollbar will be always visible
    on the nav, which is quite distracting. This reproduces something similar to
    macOS style on all platforms. */
-#docsNav::-webkit-scrollbar {
+#docsNavWrapper::-webkit-scrollbar {
   width: 1em;
 }
-#docsNav:hover::-webkit-scrollbar-thumb {
-  background: rgb(255 255 255 / 0.3);
+#docsNavWrapper:hover::-webkit-scrollbar-thumb {
+  background: #d6d6d6;
   background-clip: content-box;
   border: 4px solid transparent;
   border-radius: 10px;
@@ -458,8 +467,6 @@ td {
 /* Second level */
 #rhsToc > div > ol > li > ol {
   list-style: none;
-  /* Space between heading and second level items */
-  padding-top: 0.3em;
   /* We move indentation to the anchors so that we can align the bullet
      consistently to the left, regardless of indentation. */
   padding-left: 0;
@@ -479,6 +486,9 @@ td {
   opacity: 0.5;
   font-size: 0.8em;
   position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em;
+  line-height: 1.2em;
 }
 
 #rhsToc a.active,
