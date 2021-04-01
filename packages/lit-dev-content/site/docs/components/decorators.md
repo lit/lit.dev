@@ -33,7 +33,7 @@ customElements.define('my-element', MyElement);
 
 The `@property` decorator declares a reactive property.
 
-See [Reactive properties](/docs/components/properties) for more information about configuring properties.
+See [Reactive properties](/docs/components/properties/) for more information about configuring properties.
 
 ## Built-in decorators
 
