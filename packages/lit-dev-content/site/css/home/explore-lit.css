@@ -1,5 +1,5 @@
 #exploreLitWrapper {
-  background: var(--color-light-gray);
+  background: var(--color-medium-light-gray);
 }
 
 #exploreLit {
@@ -13,22 +13,29 @@
 }
 
 #exploreLitItems {
+  padding: 0 var(--home-side-margin);
   display: flex;
   justify-content: space-between;
 }
 
 #exploreLitItems > div {
-  max-width: 18em;
+  max-width: 14em;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
+}
+
+#exploreLitItems > div > img {
+  padding: 8em 0 2em 0;
 }
 
 #exploreLitItems > div > h3 {
   color: var(--color-blue);
   flex: 1;
   font-size: 1.2em;
+  margin-bottom: 2em;
   font-weight: 500;
+  text-align: center;
 }
 
 @media (max-width: 1000px) {

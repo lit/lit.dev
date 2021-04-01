@@ -1,183 +1,54 @@
-#useCasesWrapper {
-  background: black;
-  color: white;
-  padding: 3.6em var(--home-side-margin);
-  --home-use-cases-lhs-color: #2643ff;
-}
-
 #useCases {
   max-width: var(--content-max-width);
+  padding: 4em var(--home-side-margin) 2em var(--home-side-margin);
   margin: auto;
-  z-index: 0;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  justify-items: start;
+  align-items: start;
 }
 
-/* Main heading */
-#useCasesHeading {
-  border-bottom: 2px solid var(--color-blue);
-}
-#useCasesHeading > h2 {
-  font-size: 1.8em;
-  font-weight: 500;
-  margin-bottom: 0.27em;
-}
-#useCasesHeading > p {
-  font-size: 1.44em;
-  font-weight: 300;
-  margin-top: 0;
+#useCases > h2 {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding-top: 0;
+  margin-bottom: 3em;
 }
 
-/* Sub headings */
-#useCases > h3 {
+#useCases > svg {
+  width: 150px;
+  height: 150px;
+  margin: 0 5em 4em var(--home-side-margin);
+}
+
+#useCases > .prose {
+  margin: 0 var(--home-side-margin) 4em 0;
+}
+
+#useCases > .prose > h3 {
+  color: var(--color-blue);
   font-size: 1.5em;
   font-weight: 500;
-  margin: 0;
-  color: var(--color-cyan);
+  margin: 0 0 0.6em 0;
 }
 
-/* Line between sections */
-#useCases > .divider {
-  border-bottom: 2px solid white;
-}
-
-/* ------------------------------------
-* Desktop grid layout
-* ------------------------------------ */
-
-@media (min-width: 865px) {
-  #useCases {
-    display: grid;
-    grid-template-columns: 1fr min-content min-content minmax(min-content, 31.5em);
-    gap: 3.6em 3.6em;
-  }
-
-  #useCasesHeading {
-    grid-column: 3 / -1;
-  }
-
-  #useCases > p {
-    margin-top: 0;
-    padding-right: 1.8em;
-  }
-
-  #useCases > .divider {
-    grid-column: 1 / -1;
-    margin-top: -2px;
-    /* Above blue speckle background */
-    z-index: 0;
-  }
-
-  /* Illustrations */
-  .useCasesArt {
-    grid-column: 2;
-    /* Relative for LHS backgrounds and squares */
-    position: relative;
-    /* Above LHS background */
-    z-index: 0;
-  }
-  .useCasesArt > svg {
-    width: 8.5em;
-    height: 8.5em;
-    stroke-width: 1px;
-  }
-
-  /* Colored square behind illustrations */
-  .useCasesArt::before,
-  .useCasesArt::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    height: 7em;
-    width: 3.5em;
-    top: 0.72em;
-  }
-  .useCasesArt.first::before,
-  .useCasesArt.first::after {
-    display: none;
-  }
-  .useCasesArt::before {
-    right: 50%;
-    background: var(--home-use-cases-lhs-color);
-    filter: saturate(800%);
-    opacity: 50%;
-  }
-  .useCasesArt::after {
-    left: 50%;
-    background: white;
-    opacity: 15%;
-  }
-  /* TODO(aomarks) This SVG has lines implemented differently to the others.
-     Update so we don't need this extra stroke width. */
-  .useCasesArt > svg.standalone {
-    stroke-width: 3px;
-  }
-
-  /**
-   * LHS color background
-   *
-   * This is implemented in a somewhat complex way because we want the color to
-   * start exactly halfway through the illustrations. Each row has a block,
-   * which starts 50% of the way into the art column, and stretches all the way
-   * right.
-   */
-  .lhsBackground {
-    position: absolute;
-    right: 50%;
-    top: -3.6em;
-    width: 100vw;
-    height: calc(100% + 2 * 3.6em + 2px);
-    z-index: -3;
-    background: var(--home-use-cases-lhs-color);
-  }
-  .lhsBackground::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    background: url('/images/texture-white.png');
-    opacity: 30%;
-    z-index: -2;
-  }
-  .useCasesArt.last > .lhsBackground {
-    height: calc(100% + 2 * 3.6em);
-  }
+#useCases > .prose > a {
+  display: inline-block;
+  margin-top: 1.5em;
 }
 
 /* ------------------------------------
- * Mobile vertical layout
+ * Above/below when narrow
  * ------------------------------------ */
 
-@media (max-width: 864px) {
-  #useCases > .divider {
-    border-color: var(--color-blue);
+@media (max-width: 1000px) {
+  #useCases {
+    display: block;
   }
 
-  #useCases > p {
-    margin-bottom: 1.35em;
-  }
-
-  .useCasesArt > svg {
-    width: 3.7em;
-    height: 3.7em;
-    margin: 1.8em 0 0.9em 0;
-    stroke-width: 1.5px;
-  }
-  .useCasesArt > svg.standalone {
-    stroke-width: 8px;
-  }
-
-  /* Solid blue rectangle under illustrations */
-  .useCasesArt {
-    z-index: 1;
-    position: relative;
-  }
-  .useCasesArt:not(.first)::after {
-    background: #1431ff;
-    position: absolute;
-    content: '';
-    left: 0.45em;
-    top: 2.34em;
-    width: 2.7em;
-    height: 2.7em;
-    z-index: -1;
+  #useCases > img {
+    width: 7em;
+    height: 7em;
+    margin-bottom: 1em;
   }
 }

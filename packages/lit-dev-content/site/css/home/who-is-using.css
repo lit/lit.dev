@@ -1,26 +1,19 @@
-#whoIsUsing {
-  background: var(--color-light-gray);
-  padding: 5em var(--home-side-margin);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#whoIsUsingWrapper {
+  background: var(--color-medium-light-gray);
 }
 
-#whoIsUsing > h2 {
-  color: var(--color-blue);
-  font-size: 1.4em;
-  font-weight: 500;
-  margin: 0;
-  text-align: center;
-  margin-bottom: 2.5em;
+#whoIsUsing {
+  max-width: var(--content-max-width);
+  margin: auto;
+  padding: 2.5em var(--home-side-margin) 5em var(--home-side-margin);
 }
 
 #whoIsUsingLogos {
-  width: 100%;
+  padding: 14em var(--home-side-margin) 8em var(--home-side-margin);
   max-width: var(--content-max-width);
   display: flex;
   justify-content: space-between;
-  color: #b9b9b9;
+  color: var(--color-dark-gray);
 }
 
 #whoIsUsingLogos > svg {
