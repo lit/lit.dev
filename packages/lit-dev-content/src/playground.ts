@@ -69,7 +69,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const shareSnackbar = $('.share-snackbar')! as Snackbar;
   shareButton.addEventListener('click', async () => {
     // No need to include contentType (inferred) or undefined label (unused).
-    const files = (ide.files ?? []).map(({content, name}) => ({content, name}));
+    const files = Object.entries(ide.config?.files ?? {}).map(
+      ([name, file]) => ({
+        name,
+        content: file.content,
+      })
+    );
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
@@ -78,10 +83,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const downloadButton = $('.download-button')!;
   downloadButton.addEventListener('click', () => {
-    const tarFiles = (ide.files ?? []).map(({name, content}) => ({
-      name,
-      content,
-    }));
+    const tarFiles = Object.entries(ide.config?.files ?? {}).map(
+      ([name, {content}]) => ({
+        name,
+        content: content ?? '',
+      })
+    );
     const tar = Tar(tarFiles);
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([tar], {type: 'application/tar'}));
@@ -93,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(1));
 
-    let urlFiles;
+    let urlFiles: Array<{name: string; content: string}> | undefined;
     const base64 = params.get('project');
     if (base64) {
       try {
@@ -114,7 +121,12 @@ window.addEventListener('DOMContentLoaded', () => {
       // TODO(aomarks) We really need a second origin now that it is trivial for
       // somebody to share a link that executes arbitrary code.
       // https://github.com/PolymerLabs/lit.dev/issues/26
-      ide.files = urlFiles;
+      ide.config = {
+        extends: '/samples/base.json',
+        files: Object.fromEntries(
+          urlFiles.map(({name, content}) => [name, {content}])
+        ),
+      };
     } else {
       let sample = 'examples/hello-world-typescript';
       let openExamplesDrawer = false;

@@ -7,3 +7,4 @@ import '@material/mwc-snackbar';
 import './litdev-example.js';
 import './resize-bar.js';
 import './litdev-tutorial.js';
+import './copy-button.js';

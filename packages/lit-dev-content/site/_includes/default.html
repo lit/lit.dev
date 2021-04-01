@@ -7,11 +7,11 @@
     <title>{% if page.title %}{{ page.title }} &ndash;{% endif %} {{ site.name }}</title>
     <meta name="description" content="{{ site.description }}">
     <meta name="theme-color" content="#324fff">
-    <link rel="icon" href="{{ site.baseurl }}/images/flame-flat.svg"></link>
-    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-flat.svg" color="#324fff">
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg"></link>
+    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
 
     {% inlinecss "global.css" %}
-
+    {% inlinejs "mobile-nav.js" %}
     {% inlinejs "mods.js" %}
     {% inlinecss "mods.css" %}
 
@@ -37,13 +37,15 @@
   </head>
   <body>
     <mwc-drawer type="modal" id="mobileDrawer">
-      <nav id="mobileNav">
-        <ol>
-          <li>
-            <span class="sectionHead">Site</span>
-            <ol>{% include 'nav-items.html' %}</ol>
-          </li>
-          {% block drawer %}{{ content | safe }}{% endblock %}
+      <nav>
+        <div id="mobileSiteNav">
+          <img src="{{ site.baseurl }}/images/flame-white.svg" width="24px" height="30px">
+          <ol>
+            {% include 'site-nav.html' %}
+          </ol>
+        </div>
+        <ol id="mobileDocsNav">
+          {% include 'docs-nav-collapsing.html' %}
         </ol>
       </nav>
     </mwc-drawer>

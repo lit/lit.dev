@@ -19,7 +19,7 @@ const scrollActiveSiteNavPageIntoView = () => {
     // Note we don't use scrollIntoView() because for some reason it causes the
     // entire window to scroll along with the nav. Possibly a bug with sticky
     // position?
-    const nav = document.querySelector('#docsNav');
+    const nav = document.querySelector('#docsNavWrapper');
     const active = document.querySelector('#docsNav .active');
     if (!nav || !active) {
       return;

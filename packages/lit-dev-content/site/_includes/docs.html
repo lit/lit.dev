@@ -8,14 +8,10 @@
   {% endif %}
 {% endblock %}
 
-{% block drawer %}
-  {% include 'eleventy-nav.html' %}
-{% endblock %}
-
 {% block content %}
   <div id="docsNavWrapper">
     <nav id="docsNav">
-      <ol>{% include 'eleventy-nav.html' %}</ol>
+      <ol>{% include 'docs-nav.html' %}</ol>
     </nav>
   </div>
 
