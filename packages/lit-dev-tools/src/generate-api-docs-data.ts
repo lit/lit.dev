@@ -943,10 +943,12 @@ async function main() {
   const json = await app.serializer.projectToObject(root);
   const transformer = new Transformer(
     json,
-    await fs.readFile(
-      pathlib.join(litDevMonorepoPath, 'packages', 'lit-dev-api', 'lit.sha'),
-      'utf8'
-    )
+    (
+      await fs.readFile(
+        pathlib.join(litDevMonorepoPath, 'packages', 'lit-dev-api', 'lit.sha'),
+        'utf8'
+      )
+    ).trim()
   );
   const {pages, symbolMap} = await transformer.transform();
 
