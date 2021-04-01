@@ -1,0 +1,14 @@
+{
+    "files": {
+        "my-timer.ts": {},
+        "index.html": {},
+        "icons.ts": {}
+    },
+    "editorHeight": "980px",
+      "importMap": {
+      "imports": {
+        "lit": "https://cdn.skypack.dev/lit",
+        "lit/": "https://cdn.skypack.dev/lit/"
+      }
+    }
+  }
