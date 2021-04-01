@@ -1,7 +1,7 @@
 ---
 title: What is Lit?
 eleventyNavigation:
-  key: What is Lit
+  key: What is Lit?
   parent: Introduction
   order: 1
 ---
