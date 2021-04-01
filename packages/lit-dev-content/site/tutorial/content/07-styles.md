@@ -2,41 +2,39 @@ You can add _encapsulated styles_ to a Lit component.
 
 In this step, we've fleshed out the to-do list component a little bit, adding code to handle completed to-do items. To finish this component, you'll need to add some styles for completed items.
 
-**Add a static `styles` getter to define the encapsulated styles for a component.**
+*   **Add a static `styles` getter.**
 
-```js
-static get styles() {
-  return css`
-    :host {
-      font-weight: bold;
+    ```js
+    static get styles() {
+      return css`
+        :host {
+          font-weight: bold;
+        }
+        .completed {
+          text-decoration-line: line-through;
+        }
+        .hide {
+          display: none;
+        }
+      `;
     }
-    .completed {
-      text-decoration-line: line-through;
-    }
-    .hide {
-      display: none;
-    }
-  `;
-}
-```
+    ```
 
-**Add classes to your item template (lines 23-24).**
+    Styles defined in the static `styles` getter are scoped to the component using shadow DOM. The special `:host` selector lets you style the component itself. For more information, see [Styles](/docs/components/styles/) and [Working with shadow DOM](/docs/components/shadow-dom/).
 
-```js
-html`<li data-index=${index}
-        class=${classMap({completed: item.completed,
-            hide: item.completed && this.hideCompleted})}
-        @click=${this.toggleCompleted}>${item.text}</li>`)}
-```
+*   **Add classes to your item template**
 
-[`classMap`](/docs/templates/directives/#classmap) is a rendering helper called a *directive*. Here, we're using it to set classes on the list item based on the current state of the component.
+    Replace the existing line, `class="TODO"` with the following expression:
 
-<details>
-<summary>Learn more: styles</summary>
+    ```js
+    class=${classMap({
+      completed: item.completed,
+      hide: item.completed && this.hideCompleted
+    })}
+    ```
 
-Styles defined in the static `styles` getter are scoped to the component using shadow DOM. The special `:host` selector lets you style the component itself.
+    [`classMap`](/docs/templates/directives/#classmap) is a rendering helper called a *directive*. Here, we're using it to set classes on the list item based on the current state of the component.
 
-For more information, see [Styles](/docs/components/styles/) and [Working with shadow DOM](/docs/components/shadow-dom/).
+Now you should be able to mark items completed, so go ahead and cross off **Complete Lit tutorial.**
 
-</details>
-
+If you'd like to keep experimenting with Lit online, you can head over to the [Playground](/playground/). Or if you're ready to try something real, you might want to check out our component [Starter kits](TODO_HREF) or [add Lit to an existing project](TODO_HREF).

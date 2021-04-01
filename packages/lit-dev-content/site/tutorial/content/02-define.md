@@ -1,26 +1,15 @@
-In Lit, most things start with defining a _component_. In this step we've provided the boilerplate for a Lit component, but it doesn't display anything yet.
+In Lit, most things start with defining a _component_. In this step we've provided the boilerplate for a Lit component, but it doesn't display anything yet. In this step, you'll add some internal DOM to the component.
 
-Complete this component definition by adding a `render()` method that defines the component's internal DOM.
+*   **Add the following method to the existing class definition.**
 
+    ```ts
+    render() {
+      return html`
+        <p>Hello world! From my-element</p>
+      `;
+    }
+    ```
 
-**In `my-element.ts`, replace the existing class definition with the following code.**
-
-```ts
-class MyElement extends LitElement {
-  render() {
-    return html`
-      <p>Hello world! From my-element</p>
-    `;
-  }
-}
-```
+    The `render()` method defines your component's template. The `html` tag function processes a template literal and returns a `TemplateResult`—an object Lit can render.
 
 You should see the greeting message in the output.
-
-<details>
-<summary>Learn more: rendering</summary>
-
-The `render()` method defines your component's template. You must implement `render()` for every Lit component. The `html` tag function processes a template literal and returns a `TemplateResult`—an object Lit can render.
-
-</details>
-

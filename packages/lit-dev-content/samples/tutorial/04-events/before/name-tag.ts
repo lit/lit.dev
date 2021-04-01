@@ -13,9 +13,5 @@ class NameTag extends LitElement {
     `;
   }
 
-  changeName(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.name = input.value;
-    input.value = '';
-  }
+  // TODO add event handler
 }

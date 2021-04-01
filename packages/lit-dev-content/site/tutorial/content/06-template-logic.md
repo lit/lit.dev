@@ -1,8 +1,6 @@
 You can use standard JavaScript in Lit expressions to create conditional or repeating templates. In this step, you'll use `map()` to turn an array of data into a repeating template.
 
-1. **Add the list items to the template.**
-
-    Replace the TODO comment with the expression shown below:
+*   **Add the list items to the template.**
 
     ```html
     <ul>
@@ -12,6 +10,7 @@ You can use standard JavaScript in Lit expressions to create conditional or repe
     <ul>
     ```
 
+    Note the nested `html` inside the `map()` callback. For more information, see [Lists and repeating templates](/docs/templates/lists/).
+
 Try entering a new item in the input box.
 
-Note the nested `html` inside the `map()` callback. For more information, see [Lists and repeating templates](/docs/templates/lists/).

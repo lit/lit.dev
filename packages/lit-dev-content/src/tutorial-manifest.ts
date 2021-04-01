@@ -29,7 +29,7 @@ export const manifest: {steps: Array<TutorialStep>} = {
     },
     {
       slug: '03-properties',
-      title: 'Reactive properties',
+      title: 'Properties and expressions',
     },
     {
       slug: '04-events',

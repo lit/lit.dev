@@ -13,7 +13,7 @@ class MoreExpressions extends LitElement {
     return html`
       <label><input type="checkbox" @change=${this.setChecked}> Enable editing</label>
       <div>
-         TODO: Add input with bindings.
+         TODO: Add input with expressions.
       </div>
     `;
   }

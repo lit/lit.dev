@@ -20,8 +20,8 @@ export class ToDoList extends LitElement {
 
   @property()
   listItems = [
-    { text: 'Make to-do list', completed: false },
-    { text: 'Buy bread', completed: false }
+    { text: 'Make to-do list', completed: true },
+    { text: 'Complete Lit tutorial', completed: false }
   ];
   @property()
   hideCompleted = false;
@@ -32,9 +32,13 @@ export class ToDoList extends LitElement {
       <ul ?hide-completed=${this.hideCompleted}>
         ${this.listItems.map((item, index) =>
           html`<li data-index=${index}
-                  class=${classMap({completed: item.completed,
-                      hide: item.completed && this.hideCompleted})}
-                  @click=${this.toggleCompleted}>${item.text}</li>`)}
+                class=${classMap({
+                  completed: item.completed,
+                  hide: item.completed && this.hideCompleted
+                })}
+                @click=${this.toggleCompleted}>${item.text}
+          </li>`
+        )}
       </ul>
       <input @change=${this.addToDo} aria-label="New item">
       <button @click=${() => {this.hideCompleted = !this.hideCompleted}}>
