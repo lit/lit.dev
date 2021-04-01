@@ -85,10 +85,10 @@ ${content}
       permalink: true,
       permalinkClass: 'anchor',
       permalinkSymbol: '#',
+      level: [2, 3],
       renderPermalink: accessiblePermalink({
         wrapperClassName: 'heading',
         offscreenClass: 'offscreen',
-        headerLevels: ['h2', 'h3'],
       }),
     });
   eleventyConfig.setLibrary('md', md);
@@ -134,6 +134,11 @@ ${content}
     }
     return md.render(content);
   });
+
+  /**
+   * Render the `typeof` of the given value.
+   */
+  eleventyConfig.addFilter('typeof', (value) => typeof value);
 
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
