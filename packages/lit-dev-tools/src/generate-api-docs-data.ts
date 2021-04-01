@@ -355,9 +355,11 @@ class Transformer {
   private reflectionById = new Map<number, ExtendedDeclarationReflection>();
   /** Cache of .d.ts -> .ts sourcemaps. */
   private sourceMaps = new Map<string, sourceMap.SourceMapConsumer>();
+  private commit: string;
 
-  constructor(project: typedoc.JSONOutput.ProjectReflection) {
+  constructor(project: typedoc.JSONOutput.ProjectReflection, commit: string) {
     this.project = project;
+    this.commit = commit;
   }
 
   async transform(): Promise<{
@@ -839,7 +841,7 @@ class Transformer {
    * Augment a source with a GitHub URL.
    */
   private setGithubUrl(source: SourceReference) {
-    (source as ExtendedSourceReference).gitHubUrl = `https://github.com/Polymer/lit-html/blob/lit-next/${source.fileName}#L${source.line}`;
+    (source as ExtendedSourceReference).gitHubUrl = `https://github.com/Polymer/lit-html/blob/${this.commit}/${source.fileName}#L${source.line}`;
   }
 
   /**
@@ -939,7 +941,13 @@ async function main() {
   }
 
   const json = await app.serializer.projectToObject(root);
-  const transformer = new Transformer(json);
+  const transformer = new Transformer(
+    json,
+    await fs.readFile(
+      pathlib.join(litDevMonorepoPath, 'packages', 'lit-dev-api', 'lit.sha'),
+      'utf8'
+    )
+  );
   const {pages, symbolMap} = await transformer.transform();
 
   await fs.writeFile(pagesOutPath, JSON.stringify(pages, null, 2), 'utf8');
