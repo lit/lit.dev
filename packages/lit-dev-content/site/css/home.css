@@ -8,9 +8,6 @@
 
 html {
   --home-side-margin: 2rem;
-  /* Center the header and footer */
-  --header-footer-max-width: var(--content-max-width);
-  --header-footer-margin: auto;
 }
 
 /* Fading lit-logo (see home.js) */

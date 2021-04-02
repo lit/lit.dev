@@ -1,9 +1,3 @@
-html {
-  /* Center the header and footer */
-  --header-footer-max-width: var(--content-max-width);
-  --header-footer-margin: auto;
-}
-
 /* ------------------------------------
  * Main layout
  * ------------------------------------ */
@@ -17,13 +11,13 @@ main {
     --docs-table-header-background: #e4e4e4;
     --docs-table-header-color: rgb(73, 73, 73);
     --docs-link-color: #005cc5;
-    --playground-code-background-color: #f0f0f0;
-    --docs-nav-background: white;
     --docs-nav-color: #242424;
+    --playground-code-background: #fafafa;
+    --code-border: 1px solid #ddd;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
-  --docs-nav-min-width: 15em;
+  --docs-nav-min-width: 14em;
   --docs-nav-max-width: 1fr;
   --docs-toc-min-width: 10em;
   --docs-article-min-width: 30em;
@@ -41,6 +35,8 @@ main {
   /* Open Sans is more readable than Manrope, so we prefer it for content that
      users will spend a lot of time reading. */
   font-family: "Open Sans", sans-serif;
+
+  background: var(--color-light-gray);
 }
 
 /* ------------------------------------
@@ -54,6 +50,10 @@ article {
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
   color: #3e3e3e;
+  background: white;
+  margin: var(--docs-margin-top) 0;
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
+  margin-right: 2em;
 }
 
 /* ------------------------------------
@@ -106,13 +106,12 @@ article pre > code:not([class]) {
 
 /* Static code snippets */
 .CodeMirror {
-  --playground-code-background: #f0f0f0;
   color: #3c3c3c;
+  border: var(--code-border);
 }
 
 /* Playground examples */
 litdev-example {
-  --playground-code-background: #f0f0f0;
 }
 
 /* Full IDEs */
@@ -124,6 +123,7 @@ litdev-example,
 playground-ide {
   font-size: 0.85em;
   border-radius: 5px;
+  border: var(--code-border);
 }
 
 playground-ide {
@@ -316,34 +316,35 @@ td {
 
 #docsNavWrapper {
   position: sticky;
-  top: var(--header-height);
+  top: calc(var(--header-height) + var(--docs-margin-top) - 0.5em);
+  margin-bottom: 1.5em;
   height: calc(100vh - var(--header-height));
   display: flex;
   justify-content: flex-end;
   box-sizing: border-box;
   background: var(--docs-nav-background);
-  overflow-y: auto;
-  border-right: 1px solid var(--docs-rule-color);
+  overflow-y: scroll;
 }
 
 #docsNav {
   background: transparent;
   color: var(--docs-nav-color);
   line-height: 1.6em;
-  padding: 0 2.5em 0 0;
+  padding-left: 2em;
   box-sizing: border-box;
+  width: var(--docs-nav-min-width);
 }
 
 /* First level list */
 #docsNav > ol {
   list-style: none;
   padding-left: 0;
-  margin-top: var(--docs-margin-top);
+  margin-top: 0.5em;
   padding-bottom: 1.5em;
 }
 #docsNav > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 /* Second level list */
@@ -352,7 +353,7 @@ td {
   /* Space between heading and second level items */
   padding-top: 0.2em;
   /* Second level indent */
-  padding-left: 1.2em;
+  padding-left: 0;
 }
 
 /* Active page bullet */
@@ -362,14 +363,13 @@ td {
   color: black;
 }
 #docsNav li.active::before {
-  /* Note it doesn't seem possible with list-style or ::marker to have a bullet
-     which is a smaller font-size than the list text, but also vertically
-     aligned. */
-  content: '◆';
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
   position: absolute;
-  left: -2em;
-  font-size: 0.6em;
-  color: var(--color-blue);
+  top: 10px;
+  left: -25px;
 }
 
 /* Page links */
@@ -380,6 +380,9 @@ td {
 
 #docsNav .sectionHead {
   font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #6e6e6e;
 }
 
 #docsNav a:hover {
@@ -390,7 +393,7 @@ td {
    on the nav, which is quite distracting. This reproduces something similar to
    macOS style on all platforms. */
 #docsNavWrapper::-webkit-scrollbar {
-  width: 1em;
+  width: 15px;
 }
 #docsNavWrapper:hover::-webkit-scrollbar-thumb {
   background: #d6d6d6;
@@ -432,15 +435,13 @@ td {
   */
   order: 2;
   min-width: var(--docs-toc-min-width);
-  position: relative;
+  padding-bottom: 1em;
 }
 
 #rhsToc {
+  padding: calc(var(--docs-margin-top) + 0.3em) 1.5em 0 1em;
   position: sticky;
-  top: calc(var(--header-height));
-  height: calc(100vh - var(--header-height) - 60px);
-  overflow-y: auto;
-  padding: calc(var(--docs-margin-top) + 1.4em) 1.5em 0 1em;
+  top: var(--header-height);
 }
 
 /* "Contents" heading */
@@ -452,36 +453,45 @@ td {
   margin-top: 0;
 }
 
-/* First level */
-#rhsToc > div > ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Scroller */
+#rhsTocInner {
+  overflow-y: auto;
+  max-height: calc(100vh - var(--header-height) - 7em);
+  padding: 0 1em 0 0.3em;
 }
 
-#rhsToc > div > ol > li:not(:first-of-type) {
+/* First level */
+#rhsTocInner > div > ol {
+  margin: 0;
+  padding: 0;
+  position: sticky;
+  list-style: none;
+  border-left: 1px solid #d3d3d3;
+}
+
+#rhsTocInner > div > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
   margin-top: 0.2em;
 }
 
 /* Second level */
-#rhsToc > div > ol > li > ol {
+#rhsTocInner > div > ol > li > ol {
   list-style: none;
   /* We move indentation to the anchors so that we can align the bullet
      consistently to the left, regardless of indentation. */
   padding-left: 0;
 }
 
-#rhsToc > div > ol > li > a {
+#rhsTocInner > div > ol > li > a {
   padding-left: 1.5em;
 }
 
-#rhsToc > div > ol > li > ol > li > a {
+#rhsTocInner > div > ol > li > ol > li > a {
   /* Second level indent */
   padding-left: 2.5em;
 }
 
-#rhsToc a {
+#rhsTocInner a {
   color: black;
   opacity: 0.5;
   font-size: 0.8em;
@@ -491,23 +501,20 @@ td {
   line-height: 1.2em;
 }
 
-#rhsToc a.active,
-#rhsToc a:hover {
+#rhsTocInner a.active,
+#rhsTocInner a:hover {
   opacity: 1;
 }
 
 /* Active section bullet */
-#rhsToc a.active::before {
-  /* Note it doesn't seem possible with list-style or ::marker to have a bullet
-     which is a smaller font-size than the list text, but also vertically
-     aligned. */
-  content: '◆';
-  color: var(--color-blue);
-  left: -2em;
-  font-size: 0.8em;
+#rhsTocInner a.active::before {
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 10px;
+  height: 10px;
   position: absolute;
-  left: 0;
-  top: 0;
+  top: 3px;
+  left: -5px;
 }
 
 /* ------------------------------------
@@ -517,7 +524,7 @@ td {
 /**
  * Move the TOC inline when slightly narrow.
  *
- * (15 + 49 + 10 + (3 * 2)) * 18 = 1440
+ * (14 + 49 + 10 + (3 * 2)) * 18 = 1422
  *  |    |    |     |         +-- font-size
  *  |    |    |     +------------ docs-article-margin-horizontal
  *  |    |    +------------------ docs-toc-min-width
@@ -573,7 +580,7 @@ td {
 /**
  * Hide the RHS nav when very narrow.
  *
- * (15 + 30 + 3) * 18 = 864
+ * (14 + 30 + 3) * 18 = 846
  *  |    |    |    +------------- font-size
  *  |    |    +------------------ docs-article-margin-horizontal
  *  |    +----------------------- docs-article-min-width
