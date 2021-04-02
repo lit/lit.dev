@@ -394,7 +394,7 @@ td {
    on the nav, which is quite distracting. This reproduces something similar to
    macOS style on all platforms. */
 #docsNavWrapper::-webkit-scrollbar {
-  width: 1em;
+  width: 15px;
 }
 #docsNavWrapper:hover::-webkit-scrollbar-thumb {
   background: #d6d6d6;
