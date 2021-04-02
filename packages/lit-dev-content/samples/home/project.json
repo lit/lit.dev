@@ -1,9 +1,7 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "with-lit.ts": {},
+    "hello-world.ts": {},
     "index.html": {}
-  },
-  "editorHeight": "600px",
-  "previewHeight": "100px"
+  }
 }
