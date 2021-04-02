@@ -1,37 +1,4 @@
 /* ------------------------------------
- * docsNavFlat
- * ------------------------------------ */
-
-
-.docsNavFlat #docsNav {
-  font-size: 0.9em;
-  line-height: 1.8em;
-}
-
-.docsNavFlat .sectionHead {
-  font-size: 0.95em;
-}
-
-.docsNavFlat #docsNav a {
-  font-size: 0.9em;
-  opacity: 1;
-}
-
-.docsNavFlat #docsNav > ol > li:not(:first-of-type) {
-  /* Space between top-level lists */
-  margin-top: 2em;
-}
-
-.docsNavFlat #docsNav > ol > li > ol {
-  /* Space between heading and second level items */
-  padding-top: 0.4em;
-}
-
-.docsNavFlat #docsNav .active a {
-  font-weight: 600;
-}
-
-/* ------------------------------------
  * codeDark
  * ------------------------------------ */
 
