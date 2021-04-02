@@ -1,0 +1,32 @@
+
+/* ------------------------------------
+ * floatingPage
+ * ------------------------------------ */
+
+ .floatingPage main {
+   background: var(--docs-nav-background);
+ }
+
+ .floatingPage #docsNavWrapper {
+   border-right: none;
+ }
+
+ .floatingPage #articleWrapper {
+   background: var(--docs-nav-background);
+   z-index: 1;
+ }
+
+.floatingPage article {
+  background: white;
+  margin: var(--docs-margin-top) 0;
+  box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 10%);
+}
+
+.floatingPage #rhsToc {
+  background: var(--docs-nav-background);
+  padding-left: 3em;
+}
+
+.floatingPage #rhsToc > div > ol {
+  border-left: 1px solid rgb(189, 189, 189);
+}

@@ -2,6 +2,7 @@
 
 {% block head %}
   {% inlinecss "docs.css" %}
+  {% inlinecss "mods-docs.css" %}
   {% inlinejs "docs.js" %}
   {% if '/api/' in page.url %}
     {% inlinecss "docs-api.css" %}
@@ -22,16 +23,18 @@
     </nav>
   </div>
 
-  <article>
-    <h1>{{ title }}</h1>
+  <div id="articleWrapper">
+    <article>
+      <h1>{{ title }}</h1>
 
-    <nav id="inlineToc">
-      <details>
-        <summary><h2>Contents</h2></summary>
-        {{ content | toc | safe }}
-      </details>
-    </nav>
+      <nav id="inlineToc">
+        <details>
+          <summary><h2>Contents</h2></summary>
+          {{ content | toc | safe }}
+        </details>
+      </nav>
 
-    {{ content | safe }}
-  </article>
+      {{ content | safe }}
+    </article>
+  </div>
 {% endblock %}
