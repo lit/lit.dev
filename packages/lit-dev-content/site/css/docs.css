@@ -12,7 +12,7 @@ main {
     --docs-table-header-color: rgb(73, 73, 73);
     --docs-link-color: #005cc5;
     --playground-code-background-color: #f0f0f0;
-    --docs-nav-background: white;
+    --docs-nav-background: var(--color-light-gray);
     --docs-nav-color: #242424;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
