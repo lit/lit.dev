@@ -1,51 +1,4 @@
 /* ------------------------------------
- * headerShadow
- * ------------------------------------ */
-
-.headerShadow header {
-  box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 6px 0px;
-}
-
-/* ------------------------------------
- * docsNavFlat
- * ------------------------------------ */
-
-.docsNavFlat #docsNav > ol > li > ol {
-  padding-left: 0;
-}
-
-.docsNavFlat #docsNav {
-  font-size: 0.9em;
-  line-height: 1.8em;
-}
-
-.docsNavFlat .sectionHead {
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.95em;
-  opacity: 0.5 !important;
-}
-
-.docsNavFlat #docsNav a {
-  font-size: 0.9em;
-  opacity: 1;
-}
-
-.docsNavFlat #docsNav > ol > li:not(:first-of-type) {
-  /* Space between top-level lists */
-  margin-top: 2em;
-}
-
-.docsNavFlat #docsNav > ol > li > ol {
-  /* Space between heading and second level items */
-  padding-top: 0.4em;
-}
-
-.docsNavFlat #docsNav .active a {
-  font-weight: 600;
-}
-
-/* ------------------------------------
  * codeDark
  * ------------------------------------ */
 
@@ -72,15 +25,4 @@
   --playground-code-tag-color: #808080;
   --playground-code-attribute-color: #9cdcfe;
   --playground-code-callee-color: #dcdcaa;
-}
-
-/* ------------------------------------
- * docsSectionBorderBelow
- * ------------------------------------ */
-
-.docsSectionBorderBelow article h2 {
-  border-top: none !important;
-  padding: 1em 0 0.5em 0 !important;
-  margin-top: 1.2em !important;
-  border-bottom: 1.5px solid #d1d1d1 !important;
 }

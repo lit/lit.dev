@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Testing ensures your code functions as you intend and saves you from tedious debugging.
 
-See the [Getting Started](/docs/getting-started) documentation for an easy to use setup with a fully pre-configured testing environment that works great for testing Lit components.
+See the [Starter Kits](/docs/tools/starter-kits/) documentation for an easy to use setup with a fully pre-configured testing environment that works great for testing Lit components.
 
 ## Selecting a test framework
 

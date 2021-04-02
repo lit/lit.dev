@@ -14,7 +14,7 @@ During the development phase of your projects when you're writing Lit components
 * A code formatter, for consistently formatting code.
 * Lit-specific IDE plugins, for linting and syntax-highlighting Lit templates.
 
-Check out the [Getting Started](/docs/getting-started/) documentation to easily setup a development environment with all of these features pre-configured.
+Check out the [Starter Kits](/docs/tools/starter-kits/) documentation to easily setup a development environment with all of these features pre-configured.
 
 ## Using a dev server { #devserver }
 
