@@ -316,7 +316,8 @@ td {
 
 #docsNavWrapper {
   position: sticky;
-  top: var(--header-height);
+  top: calc(var(--header-height) + var(--docs-margin-top) - 0.5em);
+  margin-bottom: 1.5em;
   height: calc(100vh - var(--header-height));
   display: flex;
   justify-content: flex-end;
@@ -329,7 +330,7 @@ td {
   background: transparent;
   color: var(--docs-nav-color);
   line-height: 1.6em;
-  padding: 0 0 0 2em;
+  padding-left: 2em;
   box-sizing: border-box;
   width: var(--docs-nav-min-width);
 }
@@ -338,7 +339,7 @@ td {
 #docsNav > ol {
   list-style: none;
   padding-left: 0;
-  margin-top: var(--docs-margin-top);
+  margin-top: 0.5em;
   padding-bottom: 1.5em;
 }
 #docsNav > ol > li:not(:first-of-type) {
