@@ -466,7 +466,7 @@ td {
   padding: 0;
   position: sticky;
   list-style: none;
-  border-left: 1px solid rgb(223, 223, 223);
+  border-left: 1px solid #d3d3d3;
 }
 
 #rhsTocInner > div > ol > li:not(:first-of-type) {
