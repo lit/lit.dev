@@ -16,7 +16,7 @@ These features are supported by the latest versions of major browsers (including
 
 When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we recomend grouping browsers into one of two categories:
 
-*   **Modern browsers** support ES2019 and web components. Tools must resolving bare module specifiers.
+*   **Modern browsers** support ES2019 and web components. Tools must resolve bare module specifiers.
 *   **Legacy browsers** support ES5 and don't support web components or newer DOM APIs. Tools must transpile JavaScript and load polyfills.
 
 This page gives a general overview for how to meet these requirements in your development and productions envirionments.
