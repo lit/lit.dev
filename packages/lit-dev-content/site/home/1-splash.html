@@ -23,19 +23,23 @@
       <a class="homeBoldLink" href="{{site.baseurl}}/docs/getting-started/">Get started with Lit</a>
     </section>
 
+<!--
+// Define scoped styles right with your component, in plain CSS
+// Declare reactive properties
+// Render the UI as a function of component state
+// Then use the component anywhere you use HTML!
+-->
+
     <section id="helloWorld">
       <figure class="homeExample">
-        <figcaption>Hello World</figcaption>
-        <div class="code">
-          {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight
-          %}
+        <figcaption>Interactive Lit Component</figcaption>
+        <litdev-example
+        class="playground-example"
+        project="home/"
+        filename="with-lit.ts,index.html"
+        hidePlayground>
+      </litdev-example>
 
-          <div class="divider"></div>
-
-          {% highlight 'html' %}{% include './1-splash-example.html' %}{%
-          endhighlight %}
-        </div>
-      </div>
     </figure>
   </div>
 </div>

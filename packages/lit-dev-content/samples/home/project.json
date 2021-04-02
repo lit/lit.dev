@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "with-lit.ts": {},
+    "index.html": {}
+  },
+  "editorHeight": "600px",
+  "previewHeight": "100px"
+}

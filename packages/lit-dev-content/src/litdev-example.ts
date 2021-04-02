@@ -36,6 +36,7 @@ export class LitDevExample extends LitElement {
 
     playground-file-editor {
       border: 1px solid transparent;
+      border-bottom: var(--litdev-example-editor-separator, 1px solid transparent);
       height: var(--litdev-example-editor-height, 300px);
       margin-bottom: 0;
       border-bottom-left-radius: 0;
@@ -44,6 +45,10 @@ export class LitDevExample extends LitElement {
       /* TODO(aomarks) Should be in the playground styles */
       line-height: var(--playground-code-line-height);
       padding: var(--playground-code-padding);
+    }
+
+    playground-file-editor:not(:first-of-type) {
+      height: var(--litdev-example-editor-n-height, 100px);
     }
 
     playground-preview {
@@ -63,6 +68,7 @@ export class LitDevExample extends LitElement {
 
     .openInPlayground {
       position: absolute;
+      background: var(--playground-code-background);
       bottom: calc(var(--litdev-example-preview-height) - 24px - 16px);
       right: 16px;
       color: inherit;
@@ -87,10 +93,14 @@ export class LitDevExample extends LitElement {
   @property()
   filename?: string;
 
+  @property({type: Boolean})
+  hidePlayground = false;
+
   render() {
     if (!this.project || !this.filename) {
       return nothing;
     }
+    const files = this.filename.split(/\s*,\s*/);
     return html`
       <playground-project
         id="project"
@@ -98,12 +108,12 @@ export class LitDevExample extends LitElement {
       >
       </playground-project>
 
-      <playground-file-editor project="project" filename="${this.filename}">
-      </playground-file-editor>
+      ${files.map((file) => html`<playground-file-editor project="project" filename="${file}">
+      </playground-file-editor>`)}
 
       <playground-preview project="project"> </playground-preview>
 
-      <a
+      ${!this.hidePlayground ? html`<a
         class="openInPlayground"
         title="Open this example in the playground"
         target="_blank"
@@ -115,7 +125,7 @@ export class LitDevExample extends LitElement {
             d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
           />
         </svg>
-      </a>
+      </a>` : ''}
     `;
   }
 }

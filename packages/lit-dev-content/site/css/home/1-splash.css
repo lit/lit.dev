@@ -65,6 +65,19 @@
   max-width: min-content;
 }
 
+#helloWorld > figure > litdev-example:not(:defined) {
+  display: block;
+  background: white;
+  height: 640px;
+}
+
+#helloWorld > figure > litdev-example {
+  width: 620px;
+  --litdev-example-editor-height: 480px;
+  --litdev-example-editor-n-height: 60px;
+  --litdev-example-editor-separator: 1px solid #454545;
+}
+
 /* Stretch the gray background all the way to right */
 #helloWorld::after {
   content: '';
