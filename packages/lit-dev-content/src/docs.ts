@@ -11,6 +11,24 @@ const main = () => {
 window.addEventListener('DOMContentLoaded', main);
 
 /**
+ * Note we don't use scrollIntoView() because for some reason it causes the
+ * entire window to scroll along with the nav. Possibly a bug with sticky
+ * position?
+ */
+const scrollToCenter = (target: Element, parent: Element) => {
+  const parentRect = parent.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  if (
+    targetRect.bottom > parentRect.bottom ||
+    targetRect.top < parentRect.top
+  ) {
+    parent.scroll({
+      top: targetRect.top - parentRect.top - parentRect.height / 2,
+    });
+  }
+};
+
+/**
  * On initial load, scroll the link for the current page into view.
  */
 const scrollActiveSiteNavPageIntoView = () => {
@@ -24,14 +42,7 @@ const scrollActiveSiteNavPageIntoView = () => {
     if (!nav || !active) {
       return;
     }
-    const navRect = nav.getBoundingClientRect();
-    const activeRect = active.getBoundingClientRect();
-    if (activeRect.bottom > navRect.bottom) {
-      nav.scroll({
-        // Centered.
-        top: activeRect.top - navRect.top - navRect.height / 2,
-      });
-    }
+    scrollToCenter(active, nav);
   });
 };
 
@@ -45,12 +56,10 @@ const observeActiveTocSection = () => {
   if (!window.IntersectionObserver) {
     return;
   }
-  const toc = document.querySelector('#rhsToc');
-  if (!toc) {
-    return;
-  }
   const article = document.querySelector('article');
-  if (!article) {
+  const toc = document.querySelector('#rhsToc');
+  const innerToc = document.querySelector('#rhsTocInner');
+  if (!article || !toc || !innerToc) {
     return;
   }
 
@@ -99,15 +108,16 @@ const observeActiveTocSection = () => {
       if (!foundFirstVisible && visibleHeadings.has(id)) {
         foundFirstVisible = true;
         link.classList.add('active');
-        if (!narrowLayout && Element.prototype.scrollIntoViewIfNeeded) {
+        if (!narrowLayout) {
           // If the TOC is especially long, and/or the window is especially
           // short (but still wide enough to have a RHS TOC), then the TOC
           // itself can have a scrollbar. Keep the active section in view as we
           // scroll.
-          //
-          // TODO(aomarks) Disabled because it also scrolls the whole window.
-          // An effect of display:sticky. Look into alternatives.
-          //link.scrollIntoView();
+
+          // Wait for layout.
+          requestAnimationFrame(() => {
+            scrollToCenter(link, innerToc);
+          });
         }
       } else {
         link.classList.remove('active');
