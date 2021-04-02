@@ -12,7 +12,7 @@ The most important things to know about Lit in order to work with various browse
  * Lit uses "bare module specifiers" to import modules.
  * Lit uses modern web APIs such as `<template>`, custom elements, shadow DOM, and `ParentNode`.
 
-These features are supported by the latest versions of major browsers (including Chrome, Edge, Safari, and Firefox) and most popular tools (such as Rollup, Webpack, Babel, and Terser) - with the exception of "bare module specifier" support in browsers.
+These features are supported by the latest versions of major browsers (including Chrome, Edge, Safari, and Firefox) and most popular tools (such as Rollup, Webpack, Babel, and Terser)—with the exception of bare module specifier support in browsers.
 
 When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we reccomend grouping browsers into one of two categories:
 
