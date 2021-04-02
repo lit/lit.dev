@@ -12,7 +12,7 @@ However, Lit uses very _modern_ web platform features, so it does require some t
 
 The tools and workflows docs cover the different phases of development:
 
-* [Requirements](/docs/tools/requirements/): Minimum requirements for modern browsers and compiler options and polyfills are required for legacy browsers.
+* [Requirements](/docs/tools/requirements/): Common requirements for tools and browsers to work with Lit out of the box, as well as compiler options and polyfills required for legacy browsers.
 * [Development](/docs/tools/development/): Setting up your local development environment, including dev server, linting, formatting, syntax highlighting and type-checking.
 * [Testing](/docs/tools/testing/): Reccomendations for testing Lit projects in modern and legacy browsers.
 * [Publishing](/docs/tools/publishing/): Guidlines for publishing your component packages to npm.
