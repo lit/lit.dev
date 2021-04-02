@@ -14,7 +14,7 @@ The most important things to know about Lit in order to work with various browse
 
 These features are supported by the latest versions of major browsers (including Chrome, Edge, Safari, and Firefox) and most popular tools (such as Rollup, Webpack, Babel, and Terser)—with the exception of bare module specifier support in browsers.
 
-When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we reccomend grouping browsers into one of two categories:
+When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we recomend grouping browsers into one of two categories:
 
 *   **Modern browsers** support ES2019 and web components. Tools must resolving bare module specifiers.
 *   **Legacy browsers** support ES5 and don't support web components or newer DOM APIs. Tools must transpile JavaScript and load polyfills.
