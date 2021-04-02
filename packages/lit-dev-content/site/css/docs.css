@@ -316,7 +316,7 @@ td {
   justify-content: flex-end;
   box-sizing: border-box;
   background: var(--docs-nav-background);
-  overflow-y: auto;
+  overflow-y: scroll;
   border-right: 1px solid var(--docs-rule-color);
 }
 
@@ -436,15 +436,18 @@ td {
   */
   order: 2;
   min-width: var(--docs-toc-min-width);
-  position: relative;
+  padding-bottom: 1em;
 }
 
 #rhsToc {
-  position: sticky;
-  top: calc(var(--header-height));
-  height: calc(100vh - var(--header-height) - 60px);
-  overflow-y: auto;
+  /* top: calc(var(--header-height)); */
+  /* TODO(aomarks) This height makes it possible for the TOC to scroll when it
+  doesn't fit on the page, but it also causes the TOC to scroll away too soon.
+  Ideally we */
+  /* height: calc(100vh - var(--header-height) - 60px); */
   padding: calc(var(--docs-margin-top) + 1.4em) 1.5em 0 1em;
+  position: sticky;
+  top: var(--header-height);
 }
 
 /* "Contents" heading */
@@ -456,37 +459,45 @@ td {
   margin-top: 0;
 }
 
+/* Scroller */
+#rhsTocInner {
+  overflow-y: auto;
+  max-height: calc(100vh - var(--header-height) - 7em);
+  padding: 0 1em 0 0.2em;
+}
+
 /* First level */
-#rhsToc > div > ol {
+#rhsTocInner > div > ol {
   margin: 0;
   padding: 0;
+  position: sticky;
   list-style: none;
   border-left: 1px solid rgb(223, 223, 223);
 }
 
-#rhsToc > div > ol > li:not(:first-of-type) {
+#rhsTocInner > div > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
   margin-top: 0.2em;
 }
 
 /* Second level */
-#rhsToc > div > ol > li > ol {
+#rhsTocInner > div > ol > li > ol {
   list-style: none;
   /* We move indentation to the anchors so that we can align the bullet
      consistently to the left, regardless of indentation. */
   padding-left: 0;
 }
 
-#rhsToc > div > ol > li > a {
+#rhsTocInner > div > ol > li > a {
   padding-left: 1.5em;
 }
 
-#rhsToc > div > ol > li > ol > li > a {
+#rhsTocInner > div > ol > li > ol > li > a {
   /* Second level indent */
   padding-left: 2.5em;
 }
 
-#rhsToc a {
+#rhsTocInner a {
   color: black;
   opacity: 0.5;
   font-size: 0.8em;
@@ -496,13 +507,13 @@ td {
   line-height: 1.2em;
 }
 
-#rhsToc a.active,
-#rhsToc a:hover {
+#rhsTocInner a.active,
+#rhsTocInner a:hover {
   opacity: 1;
 }
 
 /* Active section bullet */
-#rhsToc a.active::before {
+#rhsTocInner a.active::before {
   /* Note it doesn't seem possible with list-style or ::marker to have a bullet
      which is a smaller font-size than the list text, but also vertically
      aligned. */

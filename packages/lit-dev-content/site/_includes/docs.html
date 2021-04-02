@@ -19,7 +19,9 @@
   <div id="rhsTocWrapper">
     <nav id="rhsToc">
       <h2>Contents</h2>
-      {{ content | toc | safe }}
+      <div id="rhsTocInner">
+        {{ content | toc | safe }}
+      </div>
     </nav>
   </div>
 
