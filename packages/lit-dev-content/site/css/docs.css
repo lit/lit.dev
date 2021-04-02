@@ -52,7 +52,7 @@ article {
   color: #3e3e3e;
   background: white;
   margin: var(--docs-margin-top) 0;
-  box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
   margin-right: 2em;
 }
 
