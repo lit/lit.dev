@@ -336,6 +336,8 @@ ${content}
   return {
     dir: {input: 'site', output: OUTPUT_DIR},
     htmlTemplateEngine: 'njk',
+    // TODO: Switch markdown to Nunjucks
+    // markdownTemplateEngine: 'njk',
   };
 };
 

@@ -6,19 +6,16 @@ eleventyNavigation:
   order: 3
 ---
 
-{% todo %}
+{# reverse isn't working :( #}
+{% assign releases = collections.release | reverse %}
+{% for release in releases %}
 
-- Replace release notes with correct version for Lit 2.
+## {{ release.data.title }}
 
-{% endtodo %}
+{{ release.templateContent }}
 
-<ul>
-{%- for release in collections.release -%}
-  <li><a href="{{ release.url }}">{{ release.data.title }}</a></li>
-{%- endfor -%}
-</ul>
+{% endfor %}
 
-{%- for release in collections.release -%}
-  <h1>{{ release.data.title }}</h1>
-  {{ release.templateContent }}
-{%- endfor -%}
+<h3>Releases Prior to lit-html 1.2.0</h3>
+
+We don't have written release notes for lit-html releases prior to lit-html 1.2.0, or for other libraries. Please see the [changelogs on GitHub](https://github.com/Polymer/lit-html) for those releases.
