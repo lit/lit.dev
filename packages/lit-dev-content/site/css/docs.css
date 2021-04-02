@@ -17,7 +17,7 @@ main {
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
-  --docs-nav-min-width: 15em;
+  --docs-nav-min-width: 14em;
   --docs-nav-max-width: 1fr;
   --docs-toc-min-width: 10em;
   --docs-article-min-width: 30em;
@@ -324,8 +324,9 @@ td {
   background: transparent;
   color: var(--docs-nav-color);
   line-height: 1.6em;
-  padding: 0 2.5em 0 0;
+  padding: 0 0 0 2em;
   box-sizing: border-box;
+  width: var(--docs-nav-min-width);
 }
 
 /* First level list */
@@ -520,7 +521,7 @@ td {
 /**
  * Move the TOC inline when slightly narrow.
  *
- * (15 + 49 + 10 + (3 * 2)) * 18 = 1440
+ * (14 + 49 + 10 + (3 * 2)) * 18 = 1422
  *  |    |    |     |         +-- font-size
  *  |    |    |     +------------ docs-article-margin-horizontal
  *  |    |    +------------------ docs-toc-min-width
@@ -576,7 +577,7 @@ td {
 /**
  * Hide the RHS nav when very narrow.
  *
- * (15 + 30 + 3) * 18 = 864
+ * (14 + 30 + 3) * 18 = 846
  *  |    |    |    +------------- font-size
  *  |    |    +------------------ docs-article-margin-horizontal
  *  |    +----------------------- docs-article-min-width
