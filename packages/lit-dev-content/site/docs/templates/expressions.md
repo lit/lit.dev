@@ -167,9 +167,9 @@ html`
 `;
 ```
 
-For more on conditionals, see [Conditionals](/docs/templates/conditionals).
+For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
 
-For more on using JavaScript to create repeating templates, see [Lists](/docs/templates/lists).
+For more on using JavaScript to create repeating templates, see [Lists](/docs/templates/lists/).
 
 ### DOM nodes
 
@@ -185,7 +185,7 @@ const page = html`
 
 ### Arrays and iterables
 
-An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/templates/lists).
+An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/templates/lists/).
 
 ## Attribute expressions {#attribute-expressions }
 
@@ -247,7 +247,7 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-For more information about component properties, see [Reactive properties](/docs/components/properties).
+For more information about component properties, see [Reactive properties](/docs/components/properties/).
 
 ## Event listener expressions {#event-listener-expressions}
 
@@ -269,7 +269,7 @@ clickHandler() {
 }
 ```
 
-For more information about component events, see [Events](/docs/components/events).
+For more information about component events, see [Events](/docs/components/events/).
 
 ## Element expressions {#element-expressions}
 
@@ -279,7 +279,7 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with [directives](/docs/templates/directives). Any other value type in an element expression is ignored.
+Element expressions only work with [directives](/docs/templates/directives/). Any other value type in an element expression is ignored.
 
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
@@ -287,7 +287,7 @@ One built-in directive that can be used in an element expression is the `ref` di
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](/docs/templates/directives#ref) for more information.
+See [ref](/docs/templates/directives/#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 

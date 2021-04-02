@@ -75,4 +75,4 @@ See the [cache directive](/docs/templates/directives/#cache) for more informatio
 
 Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
 
-In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.  See [Setting values only if data is defined](/docs/templates/expressions#ifDefined) to handle this.
+In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.  See [Setting values only if data is defined](/docs/templates/expressions/#ifDefined) to handle this.
