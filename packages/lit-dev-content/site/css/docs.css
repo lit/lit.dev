@@ -11,9 +11,9 @@ main {
     --docs-table-header-background: #e4e4e4;
     --docs-table-header-color: rgb(73, 73, 73);
     --docs-link-color: #005cc5;
-    --playground-code-background-color: #f0f0f0;
-    --docs-nav-background: var(--color-light-gray);
     --docs-nav-color: #242424;
+    --playground-code-background: #fafafa;
+    --code-border: 1px solid #ddd;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -35,6 +35,8 @@ main {
   /* Open Sans is more readable than Manrope, so we prefer it for content that
      users will spend a lot of time reading. */
   font-family: "Open Sans", sans-serif;
+
+  background: var(--color-light-gray);
 }
 
 /* ------------------------------------
@@ -48,6 +50,10 @@ article {
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
   color: #3e3e3e;
+  background: white;
+  margin: var(--docs-margin-top) 0;
+  box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 10%);
+  margin-right: 2em;
 }
 
 /* ------------------------------------
@@ -100,13 +106,12 @@ article pre > code:not([class]) {
 
 /* Static code snippets */
 .CodeMirror {
-  --playground-code-background: #f0f0f0;
   color: #3c3c3c;
+  border: var(--code-border);
 }
 
 /* Playground examples */
 litdev-example {
-  --playground-code-background: #f0f0f0;
 }
 
 /* Full IDEs */
@@ -118,6 +123,7 @@ litdev-example,
 playground-ide {
   font-size: 0.85em;
   border-radius: 5px;
+  border: var(--code-border);
 }
 
 playground-ide {
@@ -317,7 +323,6 @@ td {
   box-sizing: border-box;
   background: var(--docs-nav-background);
   overflow-y: scroll;
-  border-right: 1px solid var(--docs-rule-color);
 }
 
 #docsNav {
@@ -338,7 +343,7 @@ td {
 }
 #docsNav > ol > li:not(:first-of-type) {
   /* Space between top-level lists */
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 /* Second level list */
@@ -347,16 +352,7 @@ td {
   /* Space between heading and second level items */
   padding-top: 0.2em;
   /* Second level indent */
-  padding-left: 0.8em;
-}
-
-/* Indented vertical line */
-#docsNav > ol > li > ol > li {
-  padding-left: 0.8em;
-  border-left: 1px solid #bdbdbd;
-}
-#docsNav > ol > li.activeSection > ol > li {
-  border-color: var(--color-blue);
+  padding-left: 0;
 }
 
 /* Active page bullet */
@@ -371,8 +367,8 @@ td {
      aligned. */
   content: '◆';
   position: absolute;
-  left: -0.45em;
-  font-size: 0.6em;
+  left: -25px;
+  font-size: 12px;
   color: var(--color-blue);
 }
 
@@ -384,6 +380,9 @@ td {
 
 #docsNav .sectionHead {
   font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #6e6e6e;
 }
 
 #docsNav a:hover {
@@ -440,12 +439,7 @@ td {
 }
 
 #rhsToc {
-  /* top: calc(var(--header-height)); */
-  /* TODO(aomarks) This height makes it possible for the TOC to scroll when it
-  doesn't fit on the page, but it also causes the TOC to scroll away too soon.
-  Ideally we */
-  /* height: calc(100vh - var(--header-height) - 60px); */
-  padding: calc(var(--docs-margin-top) + 1.4em) 1.5em 0 1em;
+  padding: calc(var(--docs-margin-top) + 0.3em) 1.5em 0 1em;
   position: sticky;
   top: var(--header-height);
 }

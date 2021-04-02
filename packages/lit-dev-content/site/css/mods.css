@@ -2,9 +2,6 @@
  * docsNavFlat
  * ------------------------------------ */
 
-.docsNavFlat #docsNav > ol > li > ol {
-  padding-left: 0;
-}
 
 .docsNavFlat #docsNav {
   font-size: 0.9em;
@@ -12,10 +9,7 @@
 }
 
 .docsNavFlat .sectionHead {
-  text-transform: uppercase;
-  font-weight: 600;
   font-size: 0.95em;
-  opacity: 0.5 !important;
 }
 
 .docsNavFlat #docsNav a {
