@@ -460,6 +460,7 @@ td {
   margin: 0;
   padding: 0;
   list-style: none;
+  border-left: 1px solid rgb(223, 223, 223);
 }
 
 #rhsToc > div > ol > li:not(:first-of-type) {
@@ -506,10 +507,9 @@ td {
      aligned. */
   content: '◆';
   color: var(--color-blue);
-  left: -2em;
   font-size: 0.8em;
   position: absolute;
-  left: 0;
+  left: -0.4em;
   top: 0;
 }
 
