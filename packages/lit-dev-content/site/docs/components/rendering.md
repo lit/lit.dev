@@ -55,7 +55,7 @@ To define a template for a Lit component, add a `render()` method:
 
 Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners.
 
-For more information, see [Templates overview](/docs/templates/overview).
+For more information, see [Templates overview](/docs/templates/overview/).
 
 ### Design a performant template
 

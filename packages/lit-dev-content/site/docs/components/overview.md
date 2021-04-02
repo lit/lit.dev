@@ -10,7 +10,7 @@ A Lit component is a reusable piece of UI. You can think of a Lit component as a
 
 Creating a Lit component involves a number of concepts:
 
- *   [Defining a component](/docs/components/defining). A Lit component is implemented as a *custom element*, registered  with the browser.
+ *   [Defining a component](/docs/components/defining/). A Lit component is implemented as a *custom element*, registered  with the browser.
 
  *   [Rendering](/docs/components/rendering/). A component has *render method* that's called to render the component's contents. In the render method, you define a *template* for the component.
 
