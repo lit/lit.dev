@@ -63,7 +63,7 @@
 #helloWorld > figure {
   margin: 0;
   max-width: min-content;
-  --playground-code-line-height: 1.4em;
+  --playground-code-line-height: 1.5em;
   --litdev-example-editor-height: 436px;
   --litdev-example-editor-n-height: 84px;
   --litdev-example-editor-separator: 1px solid #454545;
