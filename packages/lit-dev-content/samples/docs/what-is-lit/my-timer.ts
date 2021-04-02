@@ -1,6 +1,8 @@
 import {LitElement, html, css} from 'lit';
+/* playground-fold */
 import {customElement, property, state} from 'lit/decorators.js';
 import {play, pause, replay} from './icons.js';
+/* playground-fold-end */
 
 @customElement("my-timer")
 export class MyTimer extends LitElement {
@@ -20,8 +22,8 @@ export class MyTimer extends LitElement {
     /* playground-fold-end */`;
 
   @property() duration = 60;
-  @state() end: number | null = null;
-  @state() remaining = 0;
+  @state() private end: number | null = null;
+  @state() private remaining = 0;
 
   render() {
     const {remaining, running} = this;
@@ -31,12 +33,9 @@ export class MyTimer extends LitElement {
     return html`
       ${min ? `${min}:${sec}` : `${sec}.${hun}`}
       <footer>
-        ${remaining ?
-            running ?
-              html`<span @click=${this.pause}>${pause}</span>`
-              : html`<span @click=${this.start}>${play}</span>`
-            : ''
-        }
+        ${remaining === 0 ? '' : running ?
+          html`<span @click=${this.pause}>${pause}</span>` :
+          html`<span @click=${this.start}>${play}</span>`}
         <span @click=${this.reset}>${replay}</span>
       </footer>
     `;
@@ -78,5 +77,5 @@ export class MyTimer extends LitElement {
 /* playground-fold */
 
 function pad(pad: unknown, val: number) {
-  return pad ? (100 + val + '').substr(1) : val;
+  return pad ? String(val).padStart(2, '0') : val;
 }/* playground-fold-end */
