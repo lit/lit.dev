@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 1
 ---
 
-Lit components are written using plain JavaScript or TypeScript and run out-of-the box on modern browsers with little-to-no tools, so you don't _need_ any Lit-specific compilers, tools, or workflows.
+Lit components are written using plain JavaScript or TypeScript and run out-of-the box on modern browsers with minimal tooling, so you don't _need_ any Lit-specific compilers, tools, or workflows.
 
 However, Lit uses very _modern_ web platform features, so it does require some tooling and polyfills to run on older browsers. Some tools also require configuration options to handle modern JavaScript. And, while Lit is "just JavaScript" there are some tools that make working with web components  much nicer.
 
