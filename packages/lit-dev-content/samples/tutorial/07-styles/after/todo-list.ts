@@ -2,6 +2,11 @@ import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 
+type ToDoItem = {
+  text: string,
+  completed: boolean
+}
+
 @customElement('todo-list')
 export class ToDoList extends LitElement {
   static get styles() {
@@ -36,29 +41,26 @@ export class ToDoList extends LitElement {
                   completed: item.completed,
                   hide: item.completed && this.hideCompleted
                 })}
-                @click=${this.toggleCompleted}>${item.text}
+                @click=${() => this.toggleCompleted(item)}}>${item.text}
           </li>`
         )}
       </ul>
       <input @change=${this.addToDo} aria-label="New item">
       <button @click=${() => {this.hideCompleted = !this.hideCompleted}}>
-        ${this.hideCompleted
-        ? 'Show completed'
-        : 'Hide completed'}
+        ${this.hideCompleted ? 'Show' : 'Hide'} completed
+      </button>
     `;
   }
 
-  toggleCompleted(event: Event) {
-    const target = event.target as HTMLElement;
-    const item = this.listItems[parseInt(target.dataset["index"] as string)];
+  toggleCompleted(item: ToDoItem) {
     item.completed = !item.completed;
-    // Call requestUpdate() to trigger a re-render
     this.requestUpdate();
   }
 
   addToDo(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.listItems = [...this.listItems, { text: input.value, completed: false }];
+    this.listItems.push({ text: input.value, completed: false });
+    this.requestUpdate();
     input.value = '';
   }
 }

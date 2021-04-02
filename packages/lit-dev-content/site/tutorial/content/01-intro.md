@@ -12,4 +12,4 @@ Lit components are [web components](https://developer.mozilla.org/en-US/docs/Web
 
 Take a look at `index.html` in the code editor to see how the sample Lit component is added to the page.
 
-For a primer on web components, or if you'd like a more traditional tutorial, check out our [codelab](https://codelabs.developers.google.com/codelabs/the-lit-path). You can also review our documentation for more information as you go along.
+ You can also review our documentation for more information as you go along.

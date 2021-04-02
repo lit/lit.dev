@@ -22,8 +22,8 @@ class ToDoList extends LitElement {
 
   addToDo(event: Event) {
     const input = event.target as HTMLInputElement;
-    // Create a new array including the new item
-    this.listItems = [...this.listItems, input.value];
+    this.listItems.push(input.value);
+    this.requestUpdate();
     input.value = '';
   }
 }
