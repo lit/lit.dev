@@ -113,6 +113,11 @@ ${content}
     });
   });
 
+  // The reverse filter isn't working in Liquid templates
+  eleventyConfig.addCollection('releasenotes', function (collection) {
+    return collection.getFilteredByTag('release').reverse();
+  });
+
   eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
     if (DEV || !outputPath.endsWith('.html')) {
       return content;
