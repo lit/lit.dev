@@ -1,9 +1,3 @@
-html {
-  /* Center the header and footer */
-  --header-footer-max-width: var(--content-max-width);
-  --header-footer-margin: auto;
-}
-
 /* ------------------------------------
  * Main layout
  * ------------------------------------ */
