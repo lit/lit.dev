@@ -363,14 +363,13 @@ td {
   color: black;
 }
 #docsNav li.active::before {
-  /* Note it doesn't seem possible with list-style or ::marker to have a bullet
-     which is a smaller font-size than the list text, but also vertically
-     aligned. */
-  content: '◆';
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
   position: absolute;
+  top: 10px;
   left: -25px;
-  font-size: 12px;
-  color: var(--color-blue);
 }
 
 /* Page links */
@@ -458,7 +457,7 @@ td {
 #rhsTocInner {
   overflow-y: auto;
   max-height: calc(100vh - var(--header-height) - 7em);
-  padding: 0 1em 0 0.2em;
+  padding: 0 1em 0 0.3em;
 }
 
 /* First level */
@@ -509,15 +508,13 @@ td {
 
 /* Active section bullet */
 #rhsTocInner a.active::before {
-  /* Note it doesn't seem possible with list-style or ::marker to have a bullet
-     which is a smaller font-size than the list text, but also vertically
-     aligned. */
-  content: '◆';
-  color: var(--color-blue);
-  font-size: 0.8em;
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 10px;
+  height: 10px;
   position: absolute;
-  left: -0.4em;
-  top: 0;
+  top: 3px;
+  left: -5px;
 }
 
 /* ------------------------------------
