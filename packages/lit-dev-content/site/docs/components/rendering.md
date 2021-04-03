@@ -39,6 +39,19 @@ For example, if your component needs to update its UI when it receives an event,
 
 For more information, see [Reactive properties](/docs/components/properties/).
 
+## Compose a template from other templates
+
+You can compose Lit templates from other templates. The following example composes a template for an component called `<my-page>` from smaller templates for the page's header, footer, and main content:
+
+{% playground-example "docs/templates/compose" "my-page.ts" %}
+
+In this example, the individual templates are defined as instance methods, so a subclass could extend this component and override one or more templates.
+
+You can also compose templates by importing other elements and using them in your template:
+
+{% playground-ide "docs/templates/composeimports" %}
+
+
 ## When templates render
 
 A Lit component renders its template initially when it's added to the DOM on a page. After the initial render, any change to the component's reactive properties triggers an update cycle, re-rendering the component.
@@ -63,19 +76,6 @@ For more information about shadow DOM, see [Shadow DOM v1: Self-Contained Web Co
 ](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
 
 For more information about working with shadow DOM in your component, see [Working with shadow DOM](/docs/components/shadow-dom).
-
-## Compose a template from other templates
-
-You can compose Lit templates from other templates. The following example composes a template for an component called `<my-page>` from smaller templates for the page's header, footer, and main content:
-
-{% playground-example "docs/templates/compose" "my-page.ts" %}
-
-In this example, the individual templates are defined as instance methods, so a subclass could extend this component and override one or more templates.
-
-You can also compose templates by importing other elements and using them in your template:
-
-{% playground-ide "docs/templates/composeimports" %}
-
 
 ## See also
 
