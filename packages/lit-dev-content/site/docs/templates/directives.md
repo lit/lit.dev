@@ -785,7 +785,7 @@ Element expression
 
 Although most DOM manipulation in Lit can be achieved declaratively using
 templates, advanced situations may required getting a reference to an element
-rendered in the template and maipulating it imparatively. Common examples of
+rendered in the template and maipulating it imperatively. Common examples of
 when this may be useful include focusing a form control or calling an imperative
 DOM manipulation library on a container element.
 
