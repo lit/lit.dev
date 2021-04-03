@@ -1,16 +1,20 @@
 #getStarted {
-  max-width: var(--content-max-width);
-  margin: auto;
   padding: 2.5em var(--home-side-margin) 5em var(--home-side-margin);
+  background: white;
+  border-top: 1px solid #d1d1d1;
 }
 
 #getStarted > h2 {
   margin-bottom: 1em;
+  max-width: var(--content-max-width);
+  margin: auto;
 }
 
 #getStartedItems {
   display: flex;
   justify-content: space-between;
+  max-width: var(--content-max-width);
+  margin: auto;
 }
 
 #getStartedItems > div {
@@ -33,6 +37,10 @@
 }
 
 @media (max-width: 1000px) {
+  #getStarted {
+    padding-bottom: 1em;
+  }
+
   #getStarted > h2 {
     margin-top: 0;
     margin-bottom: 2em;

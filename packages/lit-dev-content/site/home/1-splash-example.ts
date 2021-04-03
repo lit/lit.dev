@@ -1,5 +1,7 @@
 import {html, css, LitElement} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
+@customElement('simple-greeting')
 export class SimpleGreeting extends LitElement {
   static styles = css`
     p {
@@ -7,20 +9,10 @@ export class SimpleGreeting extends LitElement {
     }
   `;
 
-  static get properties() {
-    return {
-      name: {type: String}
-    }
-  }
-
-  constructor() {
-    super();
-    this.name = 'Somebody';
-  }
+  @property()
+  name = 'Somebody';
 
   render() {
     return html`<p>Hello, ${this.name}!</p>`;
   }
 }
-
-customElements.define('simple-greeting', SimpleGreeting);

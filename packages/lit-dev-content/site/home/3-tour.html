@@ -1,0 +1,61 @@
+<section id="tour">
+  <h1>Hello World</h1>
+
+  <div id="tourCodeAndNotes">
+    <div id="tourCode">
+      <mwc-formfield id="tourJsTsSwitch" label="TypeScript">
+        <mwc-switch checked></mwc-switch>
+      </mwc-formfield>
+      <div id="tourTsCode">
+        {% highlight 'ts' %}{% include './1-splash-example.ts' %}{% endhighlight %}
+      </div>
+      <div id="tourJsCode" hidden>
+        {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight %}
+      </div>
+      <div id="tourHtmlCode">
+        {% highlight 'html' %}{% include './1-splash-example.html' %}{% endhighlight %}
+      </div>
+    </div>
+
+    <div id="tourNotes">
+      <div id="tourNoteCustomElements" tabindex="0">
+        <h3>Custom Elements</h3>
+        <p>
+          Lit components are <em>custom elements</em>, so the browser treats
+          them exactly like built-in elements. Create an instance with a simple
+          HTML tag, with <code>createElement</code>, or with any HTML framework.
+        </p>
+      </div>
+
+      <div id="tourNoteStyles" tabindex="0">
+        <h3>Scoped styles</h3>
+        <p>
+          Lit uses Shadow DOM, so your component's styles don't affect — and
+          aren't affected by — any other styles on the page.
+        </p>
+      </div>
+
+      <div id="tourNoteProperties" tabindex="0">
+        <h3>Reactive properties</h3>
+        <p>
+          When a change is made to a Lit property or its HTML attribute, Lit re-renders
+          by precisely updating only the parts of the DOM affected by the change — without expensive VDOM diffing.
+        </p>
+      </div>
+
+      <div id="tourNoteExpressions" tabindex="0">
+        <h3>Powerful expressions</h3>
+        <p>
+          Lit uses standard <em>template literals</em> to bind data into templates, so
+          you get the full expressivity of JavaScript at native speed.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="playgroundLinkContainer">
+    <a id="playgroundLink" href="{{ url.baseurl }}/playground/">
+      Edit this example in the Lit Playground
+    </a>
+  </div>
+</section>
