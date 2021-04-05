@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4em 0 5em 0;
+  padding: 4.5em 0 5em 0;
+  position: relative;
+  z-index: 0;
 }
 
 #splashLogo > img {
@@ -15,7 +17,7 @@
 }
 
 #tagline {
-  margin-top: 2em;
+  margin-top: 3em;
   color: rgb(48, 48, 48);
   font-size: 24px;
   text-align: center;
@@ -58,4 +60,23 @@
   #intro {
     padding: 2em 0 3em 0;
   }
+}
+
+#introLayer1,
+#introLayer2,
+#introLayer3 {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+#introLayer1 {
+  z-index: -1;
+}
+#introLayer2 {
+  z-index: -2;
+}
+#introLayer3 {
+  z-index: -3;
 }

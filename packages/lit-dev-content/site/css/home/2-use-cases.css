@@ -1,7 +1,7 @@
 #useCasesWrapper {
   background: black;
   color: white;
-  padding: 2em var(--home-side-margin);
+  padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
 }
 
 #useCasesWrapper > h1 {
@@ -22,7 +22,7 @@
 #useCases > .item {
   flex: 1;
   padding: 0 1.5em;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #3f3f3f;
 }
 
 #useCases > .item:first-of-type {

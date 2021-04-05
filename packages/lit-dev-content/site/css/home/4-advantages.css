@@ -2,7 +2,7 @@
   background: white;
   border: solid #d1d1d1;
   border-width: 1px 0;
-  padding: 2em var(--home-side-margin);
+  padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
 }
 
 #advantagesItems {

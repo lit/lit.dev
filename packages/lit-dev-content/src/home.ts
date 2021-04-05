@@ -1,5 +1,8 @@
+document.body.classList.add('home');
+
 window.addEventListener('DOMContentLoaded', () => {
   fadeInLogoOnScroll();
+  fadeHeaderOnScroll();
   activateTourRegions();
   activateTourJsTsSwitch();
 });
@@ -29,6 +32,24 @@ const fadeInLogoOnScroll = () => {
   // var(--header-height) pixels above the bottom of the logo, and check for its
   // intersection with the viewport.
   const splashLogo = document.body.querySelector('#splashLogoHeaderOffset')!;
+  observer.observe(splashLogo);
+};
+
+const fadeHeaderOnScroll = () => {
+  if (!window.IntersectionObserver) {
+    return;
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.length === 0) {
+        return;
+      }
+      const entry = entries[0];
+      document.body.classList.toggle('introScrolled', !entry.isIntersecting);
+    },
+    {rootMargin: '-60px'}
+  );
+  const splashLogo = document.body.querySelector('#intro')!;
   observer.observe(splashLogo);
 };
 
