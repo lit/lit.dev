@@ -12,8 +12,8 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {LitElement, html, css, property} from 'lit-element';
-import {nothing} from 'lit-html';
+import {LitElement, html, css, property, internalProperty} from 'lit-element';
+import {ifDefined} from 'lit-html/directives/if-defined.js';
 import 'playground-elements/playground-ide.js';
 
 /**
@@ -36,7 +36,6 @@ export class LitDevExample extends LitElement {
 
     playground-file-editor {
       border: 1px solid transparent;
-      border-bottom: var(--litdev-example-editor-separator, 1px solid transparent);
       height: var(--litdev-example-editor-height, 300px);
       margin-bottom: 0;
       border-bottom-left-radius: 0;
@@ -45,6 +44,8 @@ export class LitDevExample extends LitElement {
       /* TODO(aomarks) Should be in the playground styles */
       line-height: var(--playground-code-line-height);
       padding: var(--playground-code-padding);
+      font-family: var(--playground-code-font-family, monospace);
+      font-size: var(--playground-code-font-size, inherit);
     }
 
     playground-file-editor:not(:first-of-type) {
@@ -78,6 +79,12 @@ export class LitDevExample extends LitElement {
     .openInPlayground:hover {
       opacity: 100%;
     }
+
+    .divider {
+      border-bottom: var(--code-divider-border, 0);
+      margin: var(--code-divider-margin, 0);
+      height: 0;
+    }
   `;
 
   /**
@@ -95,37 +102,59 @@ export class LitDevExample extends LitElement {
   @property({type: Boolean})
   hidePlayground = false;
 
+  @property({type: Boolean})
+  hasFallbackContent = false;
+
+  @internalProperty()
+  private _outputReady = false;
+
   render() {
-    if (!this.project || !this.filename) {
-      return nothing;
+    /* TOOD(sorvell): When fallback content is provided, a slot is rendered and
+      the main output is hidden until CodeMirror renders it. There doesn't appear
+      to be a good signal for this right now and a timeout is used in `updated`.
+    */
+    const canRender = this.project && this.filename && (!this.hasFallbackContent || this._outputReady);
+    const files = (this.filename || '').split(/\s*,\s*/);
+    const content = html`<playground-project
+    id="project"
+    project-src="/samples/${ifDefined(this.project)}/project.json"
+  >
+  </playground-project>
+
+  ${files.map((file, i) => html`<playground-file-editor project="project" filename="${file}">
+  </playground-file-editor>${i < files.length-1 ? html`<div class="divider"></div>` : ''}`)}
+
+  <div class="divider"></div>
+  <playground-preview project="project"> </playground-preview>
+
+  ${!this.hidePlayground ? html`<a
+    class="openInPlayground"
+    title="Open this example in the playground"
+    target="_blank"
+    href="/playground/#sample=${this.project}"
+  >
+    <!-- Source: https://material.io/resources/icons/?icon=launch&style=baseline -->
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
+      <path
+        d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+      />
+    </svg>
+  </a>` : ''}`;
+    return html`${!this.hasFallbackContent ? content : html`
+      ${canRender ? '' : html`<slot></slot>`}
+      <div ?hidden="${!canRender}">${content}</div>`}`;
+  }
+
+  async updated() {
+    if (!this.hasFallbackContent) {
+      return;
     }
-    const files = this.filename.split(/\s*,\s*/);
-    return html`
-      <playground-project
-        id="project"
-        project-src="/samples/${this.project}/project.json"
-      >
-      </playground-project>
-
-      ${files.map((file) => html`<playground-file-editor project="project" filename="${file}">
-      </playground-file-editor>`)}
-
-      <playground-preview project="project"> </playground-preview>
-
-      ${!this.hidePlayground ? html`<a
-        class="openInPlayground"
-        title="Open this example in the playground"
-        target="_blank"
-        href="/playground/#sample=${this.project}"
-      >
-        <!-- Source: https://material.io/resources/icons/?icon=launch&style=baseline -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
-          <path
-            d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
-          />
-        </svg>
-      </a>` : ''}
-    `;
+    if (this.project && this.filename && !this._outputReady) {
+      // TODO(sorvell): playground-editor waits some amount of time before
+      // displaying and does not fire an event when ready.
+      await new Promise((r) => setTimeout(r, 1000));
+      this._outputReady = true;
+    }
   }
 }
 

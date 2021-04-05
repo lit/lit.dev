@@ -33,10 +33,26 @@
     <section id="helloWorld">
       <figure class="homeExample">
         <litdev-example
-        class="playground-example"
+        class="splashExample playground-example"
         project="home/"
         filename="hello-world.ts,index.html"
-        hidePlayground>
+        hidePlayground
+        hasFallbackContent>
+        <div class="not-defined-example">
+          <div class="code">
+            {% highlight 'js' %}{% include '../../samples/home/hello-world.ts' %}{% endhighlight
+            %}
+          </div>
+          <div class="divider spacer1"></div>
+          <div class="code">
+            {% highlight 'html' %}{% include '../../samples/home/index.html' %}{%
+            endhighlight %}
+          </div>
+          <div class="divider spacer2"></div>
+          <div class="not-defined-output">
+            <h2>Hello Everyone!</h2>
+          </div>
+        </div>
       </litdev-example>
 
     </figure>

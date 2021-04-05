@@ -58,25 +58,67 @@
   background: #454545;
   padding: 4em var(--home-side-margin) 4em 3em;
   position: relative;
+
+  --code-divider-border: 0.08em solid #dfdfdf;
+  --code-divider-margin: 0 1.76em;
 }
 
 #helloWorld > figure {
   margin: 0;
   max-width: min-content;
-  --playground-code-line-height: 1.5em;
+  /* TODO(sorvell): specifying this in ems makes it different when litdev-example is upgraded v. not */
+  --playground-code-line-height: 27px;
   --litdev-example-editor-height: 470px;
-  --litdev-example-editor-n-height: 60px;
-  --litdev-example-editor-separator: 1px solid #454545;
+  --litdev-example-editor-n-height: 55px;
 }
 
-#helloWorld > figure > litdev-example:not(:defined) {
+/* TODO(sorvell): Note, the styling here is brittle and intended to match the playground editor output. */
+.splashExample {
   display: block;
   background: white;
   height: 630px;
+  width: 584px;
 }
 
-#helloWorld > figure > litdev-example {
-  width: 584px;
+.splashExample .divider {
+  border-bottom: var(--code-divider-border, 1px solid black);
+  margin: var(--code-divider-margin, 0);
+  height: 0;
+}
+
+.splashExample > .not-defined-example {
+  padding-top: 4px;
+  border: 1px solid transparent;
+}
+
+.splashExample > .not-defined-example .CodeMirror-line {
+  padding-left: 4px;
+}
+
+.splashExample .spacer1 {
+  padding-top: 20px;
+  margin-bottom: 4px;
+}
+
+.splashExample .spacer2 {
+  padding-top: 9px;
+}
+
+.splashExample .CodeMirror {
+  margin: 0;
+}
+
+.splashExample > .not-defined-example > .not-defined-output {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  color: blue;
+}
+
+.splashExample > .not-defined-example > .not-defined-output > h2 {
+  font-size: 24px;
 }
 
 /* Stretch the gray background all the way to right */
