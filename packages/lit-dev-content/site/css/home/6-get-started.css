@@ -1,7 +1,7 @@
 #getStarted {
   padding: 2.5em var(--home-side-margin) 5em var(--home-side-margin);
   background: white;
-  border-top: 1px solid #d1d1d1;
+  /* border-top: 1px solid #d1d1d1; */
 }
 
 #getStarted > h2 {

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: var(--color-light-gray);
 }
 
 #whoIsUsing > h2 {

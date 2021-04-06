@@ -52,3 +52,7 @@ a {
   height: 1px;
   overflow: hidden;
 }
+
+.nowrap {
+  white-space: nowrap;
+}

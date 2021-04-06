@@ -45,11 +45,21 @@ p {
   border-bottom: 2px solid var(--color-blue);
 }
 
+.homeBoldLink.light {
+  color: white;
+  border-color: var(--color-cyan);
+}
+
 .homeBoldLink:hover {
   color: white;
   background: black;
   padding: 1em 0.5em;
   margin: 0 -0.5em;
+}
+
+.homeBoldLink.light:hover {
+  color: black;
+  background: white;
 }
 
 /* Large section headings with blue underline */

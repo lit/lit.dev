@@ -1,27 +1,30 @@
-<section id="intro">
-  <div id="introLayer1"></div>
-  <div id="introLayer2"></div>
-  <div id="introLayer3"></div>
+<section id="introWrapper">
+  <div id="intro">
+    <div id="introMain">
+      <div id="splashLogo">
+        <img class="black" src="{{site.baseurl}}/images/logo.svg" aria-label="Lit" />
+        <img class="white" src="{{site.baseurl}}/images/logo-white.svg" aria-label="Lit" />
+        <!-- Trick for detecting when the logo has scrolled under the header.
+            See src/home.ts -->
+        <div id="splashLogoHeaderOffset"></div>
+      </div>
 
-  <div id="splashLogo">
-    <img class="black" src="{{site.baseurl}}/images/logo.svg" aria-label="Lit" />
-    <img class="white" src="{{site.baseurl}}/images/logo-white.svg" aria-label="Lit" />
-    <!-- Trick for detecting when the logo has scrolled under the header.
-        See src/home.ts -->
-    <div id="splashLogoHeaderOffset"></div>
-  </div>
+      <div id="splashButtons">
+        <code id="npmInstall">
+          <span class="prompt">&gt; </span>npm i lit
+        </code>
 
-  <p id="tagline">
-    Simple. Fast. Lightweight. Web components.
-  </p>
+        <a id="getStartedLink" href="{{site.baseurl}}/docs/getting-started/">
+          Get started
+        </a>
+      </div>
+    </div>
+    <div id="introPitch">
+      <h2>
+        Simple. Fast. Lightweight. <span class="nowrap">Web components.</span>
+      </h2>
 
-  <div id="splashButtons">
-    <code id="npmInstall">
-      <span class="prompt">&gt; </span>npm i lit
-    </code>
-
-    <a id="getStartedLink" href="{{site.baseurl}}/docs/getting-started/">
-      Get started
-    </a>
+      <p>Lit is a simple library for building fast, lightweight web components. Based on web standards, Lit components work wherever you use HTML–with any framework, or without one.</p>
+    </div>
   </div>
 </section>

@@ -21,8 +21,7 @@
 
 #useCases > .item {
   flex: 1;
-  padding: 0 1.5em;
-  border-right: 1px solid #3f3f3f;
+  padding: 0 2em;
 }
 
 #useCases > .item:first-of-type {
@@ -31,7 +30,6 @@
 
 #useCases > .item:last-of-type {
   padding-right: 0;
-  border-right: none;
 }
 
 #useCases > .item > .heading {
@@ -80,10 +78,5 @@
 
   #useCases > .item {
     padding: 1em 0;
-  }
-
-  #useCases > .item:not(:last-of-type) {
-    border-right: none;
-    border-bottom: 1px solid #ccc;
   }
 }
