@@ -27,50 +27,21 @@ const terserOptions = {
 
 export default [
   {
-    input: 'lib/global/mobile-nav.js',
+    input: [
+      'lib/global/global.js',
+      'lib/global/mobile-nav.js',
+      'lib/global/mods.js',
+      'lib/global/playground-elements.js',
+      'lib/pages/docs.js',
+      'lib/pages/home.js',
+      'lib/pages/playground.js',
+    ],
     output: {
-      file: 'site/_includes/js/global/mobile-nav.js',
+      dir: '_site/js/',
       format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/global/mods.js',
-    output: {
-      file: 'site/_includes/js/global/mods.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/pages/home.js',
-    output: {
-      file: 'site/_includes/js/pages/home.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/pages/docs.js',
-    output: {
-      file: 'site/_includes/js/pages/docs.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/pages/playground.js',
-    output: {
-      file: 'site/_includes/js/pages/playground.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: ['lib/global/global.js', 'lib/global/playground-elements.js'],
-    output: {
-      dir: '_site/js/global/',
-      format: 'esm',
+      // Preserve directory structure for entrypoints.
+      entryFileNames: ({facadeModuleId}) =>
+        facadeModuleId.replace(`${__dirname}/lib/`, ''),
       // Override the default chunk name of "[name]-[hash].js" because:
       //
       // 1. By default, the hash is included in the filename, which would

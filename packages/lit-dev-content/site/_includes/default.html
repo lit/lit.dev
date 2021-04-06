@@ -15,18 +15,14 @@
     {% inlinejs "global/mods.js" %}
     {% inlinecss "mods.css" %}
 
-    {% if dev %}
-      <script type="module" async src="/lib/global/global.js"></script>
-      <script type="module" async src="/lib/global/playground-elements.js"></script>
-    {% else %}
-      <script type="module" async src="/js/global/global.js"></script>
-      <script type="module" async src="/js/global/playground-elements.js"></script>
-
+    <script type="module" async src="/js/global/global.js"></script>
+    <script type="module" async src="/js/global/playground-elements.js"></script>
+    {% if not dev %}
       <!-- Note it would be more correct to <link rel="modulepreload"> this common
           script, since the other two modules already import it, but
           modulepreload is not yet supported in Firefox or Safari. No real harm
           in actually loading it here. -->
-      <script type="module" async src="/js/global/common.js"></script>
+      <script type="module" async src="/js/common.js"></script>
     {% endif %}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
