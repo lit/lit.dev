@@ -27,12 +27,12 @@ For more information about writing templates, see [Templates](/docs/templates/ov
 
 ## Writing a good render() method
 
-To take best advantage of Lit's functional rendering model, follow these guidelines for implementing your `render()` method:
+To take best advantage of Lit's functional rendering model, your `render()` method should follow these guidelines:
 
-* Does not change the component's state.
-* Does not have any side effects.
-* Only depends on the component's properties.
-* Returns the same result when given the same property values.
+* Avoid changing the component's state.
+* Avoid producing any side effects.
+* Use only the component's properties as input.
+* Return the same result when given the same property values.
 
 Following these guidelines keeps the template deterministic, and makes it easier to reason about the code.
 
@@ -73,13 +73,7 @@ For more information about the update cycle, see [What happens when properties c
 
 ## DOM encapsulation
 
-Lit uses shadow DOM to encapsulate the DOM a component renders. Shadow DOM provides three benefits:
-
-* DOM scoping. DOM APIs like `document.querySelector` won't find elements in the
-  component's shadow DOM, so it's harder for global scripts to accidentally break your component.
-* Style scoping. You can write encapsulated styles for your shadow DOM that don't
-  affect the rest of the  page. No need for conventions like BEM to associate styles with your component.
-* Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your templated DOM.
+Lit uses shadow DOM to encapsulate the DOM a component renders. Shadow DOM lets an element create its own, isolated DOM tree that's separate from the main document tree. It's a core feature of the web components specifications that enables interoperability, style encapsulation, and other benefits.
 
 For more information about shadow DOM, see [Shadow DOM v1: Self-Contained Web Components
 ](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
