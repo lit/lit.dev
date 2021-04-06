@@ -35,49 +35,49 @@ const terserOptions = {
 
 export default [
   {
-    input: 'lib/mobile-nav.js',
+    input: 'lib/global/mobile-nav.js',
     output: {
-      file: 'site/_includes/js/mobile-nav.js',
+      file: 'site/_includes/js/global/mobile-nav.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: 'lib/mods.js',
+    input: 'lib/global/mods.js',
     output: {
-      file: 'site/_includes/js/mods.js',
+      file: 'site/_includes/js/global/mods.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: 'lib/home.js',
+    input: 'lib/pages/home.js',
     output: {
-      file: 'site/_includes/js/home.js',
+      file: 'site/_includes/js/pages/home.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: 'lib/docs.js',
+    input: 'lib/pages/docs.js',
     output: {
-      file: 'site/_includes/js/docs.js',
+      file: 'site/_includes/js/pages/docs.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: 'lib/playground.js',
+    input: 'lib/pages/playground.js',
     output: {
-      file: 'site/_includes/js/playground.js',
+      file: 'site/_includes/js/pages/playground.js',
       format: 'esm',
     },
     plugins: [resolve(), terser(terserOptions), summary()],
   },
   {
-    input: ['lib/global.js', 'lib/playground-elements.js'],
+    input: ['lib/global/global.js', 'lib/global/playground-elements.js'],
     output: {
-      dir: '_site/js/',
+      dir: '_site/js/global/',
       format: 'esm',
       // Override the default chunk name of "[name]-[hash].js" because:
       //
