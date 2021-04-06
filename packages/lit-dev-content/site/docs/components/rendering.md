@@ -60,7 +60,7 @@ The update cycle is _asynchronous_, so changes to multiple properties are batche
 
 During an update, only the parts of the DOM that change are re-rendered. Although Lit templates look like string interpolation, Lit parses and creates static HTML once, and then only updates changed values in expressions after that, making updates very efficient.
 
-For more information about the update cycle, see [What happens when properties change](/docs/components/properties/#update-cycle).
+For more information about the update cycle, see [What happens when properties change](/docs/components/properties/#when-properties-change).
 
 ## DOM encapsulation
 
@@ -83,6 +83,5 @@ For more information about working with shadow DOM in your component, see [Worki
 * [Shadow DOM](/docs/components/shadow-dom/)
 * [Templates overview](/docs/templates/overview/)
 * [Template expressions](/docs/templates/overview/)
-
 
 
