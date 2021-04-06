@@ -1,5 +1,5 @@
 ---
-title: Controllers
+title: Reactive Controllers
 eleventyNavigation:
   parent: Composition
   key: Controllers
@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Lit 2 introduces a new concept for code reuse and composition called _reactive controllers_.
 
-A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/components/lifecycle#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reuseable across multiple component definitions.
+A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reuseable across multiple component definitions.
 
 You can use controllers to implement features that require their own state and access to the component's lifecycle, such as:
 
@@ -16,11 +16,12 @@ You can use controllers to implement features that require their own state and a
 * Managing asynchronous tasks like fetching data over the network
 * Running animations
 
-Reactive controllers can be thought of as reusable, partial component definitions, with their own identity and state. They allow you to build components by composing smaller pieces that aren't themselves components.
+
+Reactive controllers allow you to build components by composing smaller pieces that aren't themselves components. They can be thought of as reusable, partial component definitions, with their own identity and state.
 
 {% playground-ide "docs/controllers/overview" "clock-controller.ts" %}
 
-Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers vs Mixins](#controllers-vs-mixins) for more details.
+Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers and mixins](/docs/composition/overview/#controllers-and-mixins) for more details.
 
 ## Using a controller
 
@@ -201,7 +202,7 @@ Reactive controllers are very general and have a very broad set of possible use 
 
 ### External inputs
 
-Reactive controllers can be used to connect external inputs, like keyboard and mouse events; resize, intersection or mutation observers; etc; to a component. The controller can provide the current value of the input to use in rendering, and request a host update when the value changes.
+Reactive controllers can be used to connect to external inputs. For example, keyboard and mouse events, resize observers, or mutation observers. The controller can provide the current value of the input to use in rendering, and request a host update when the value changes.
 
 #### Example: MouseMoveController
 
@@ -223,13 +224,11 @@ You can use `Task` to create a custom controller with an API tailored for your s
 
 {% todo %}
 
-### Animations
-
-- Write
+- Animations
 
 {% endtodo %}
 
 ## See also
 
-* [Reactive update cycle](/docs/components/lifecycle#reactive-update-cycle)
+* [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle)
 * [@lit-labs/task](https://www.npmjs.com/package/@lit-labs/task)

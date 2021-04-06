@@ -10,7 +10,7 @@ Lit templates can include dynamic values called expressions. An expression can b
 
 Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
-Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Directives](/docs/templates/directives) for more information.
+Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom directives](/docs/templates/custom-directives/) for more information.
 
 Here's a quick reference followed by more detailed information about each expression type.
 
@@ -167,9 +167,9 @@ html`
 `;
 ```
 
-For more on conditionals, see [Conditionals](/docs/templates/conditionals).
+For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
 
-For more on using JavaScript to create repeating templates, see [Lists](/docs/templates/lists).
+For more on using JavaScript to create repeating templates, see [Lists](/docs/templates/lists/).
 
 ### DOM nodes
 
@@ -185,7 +185,7 @@ const page = html`
 
 ### Arrays and iterables
 
-An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/templates/lists).
+An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/templates/lists/).
 
 ## Attribute expressions {#attribute-expressions }
 
@@ -247,7 +247,7 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-For more information about component properties, see [Reactive properties](/docs/components/properties).
+For more information about component properties, see [Reactive properties](/docs/components/properties/).
 
 ## Event listener expressions {#event-listener-expressions}
 
@@ -269,7 +269,7 @@ clickHandler() {
 }
 ```
 
-For more information about component events, see [Events](/docs/components/events).
+For more information about component events, see [Events](/docs/components/events/).
 
 ## Element expressions {#element-expressions}
 
@@ -279,7 +279,7 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with [directives](/docs/templates/directives). Any other value type in an element expression is ignored.
+Element expressions only work with [directives](/docs/templates/directives/). Any other value type in an element expression is ignored.
 
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
@@ -287,7 +287,7 @@ One built-in directive that can be used in an element expression is the `ref` di
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](/docs/templates/directives#ref) for more information.
+See [ref](/docs/templates/directives/#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 
@@ -345,31 +345,69 @@ Expressions **_cannot_** appear where tag or attribute names would appear; howev
 
  ## Static expressions { #static-expressions }
 
-Static expressions are special one-time interpolations of values into the template that are not intended to be updated. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be well-formed; see the [Well-formed HTML](#well-formed-html) section for more information.
+Static expressions are special one-time interpolations of values into the template that are not intended to be changed frequently. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be well-formed; see the [Well-formed HTML](#well-formed-html) section for more information.
 
-To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `unsafeStatic()` function to create static expressions.
+To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `literal` tag function to create static expressions.
 
-<div class="alert alert-info">
-
-Note the use of _unsafe_ in `unsafeStatic()`. Creating static expressions should be considered unsafe from a security perspective, and therefore used with caution. To avoid potential [cross-site scripting](https://en.wikipedia.org/wiki/Cross-site_scripting) security issues, never allow user content to be an argument to `unsafeStatic()`.
-
-</div>
-
-You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might be renderable using either a `<button>` tag or an `<a>` tag. This is a good place to use a static expression because the setting is unlikely to change and customizing an HTML tag cannot be done with a normal expression.
+You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might render a `<button>` tag, but be subclassable to render an `<a>` tag. This is a good place to use a static expression because the setting does not change frequently and customizing an HTML tag cannot be done with a normal expression.
 
 ```ts
-tag = 'button';
-activeAttribute = 'active';
-@property() caption = 'Go';
-@property({type: Boolean}) active = false;
-protected render() {
-  return html`
-    <${unsafeStatic(this.tag)} ${unsafeStatic(this.activeAttribute)}?=${this.active}>
-      <p>${this.caption}</p>
-    </${unsafeStatic(this.tag)}>`;
+@customElement('my-button')
+class MyButton extends LitElement {
+  tag = literal`button`;
+  activeAttribute = literal`active`;
+  @property() caption = 'Hello static';
+  @property({type: Boolean}) active = false;
+  protected render() {
+    return html`
+      <${this.tag} ${this.activeAttribute}?=${this.active}>
+        <p>${this.caption}</p>
+      </${this.tag}>`;
+  }
+}
+```
+```ts
+@customElement('my-anchor')
+class MyAnchor extends MyButton {
+  tag = literal`a`;
 }
 ```
 
-The values passed to `unsafeStatic()` should not change frequently. In the example above, if the template re-renders and `this.caption` or `this.active` change, Lit updates the template efficiently, only changing the affected expressions. However, if `this.tag` or `this.activeAttribute` change, since they are arguments to `unsafeStatic()`, an entirely new template is created; the update is inefficient since the DOM is completely re-rendered. In addition, changing values passed to `unsafeStatic()` increases memory use since each unique template is kept in memory.
+<div class="alert alert-warning">
 
-For these reasons, it's a good idea keep changes to arguments to `unsafeStatic()` to a minimum and avoid using reactive properties as arguments since they are intended to change.
+**Changing static expressions is expensive.** Expressions using `literal` values should not change frequently, as they cause a new template to be re-parsed and each variation is held in memory.
+
+</div>
+
+In the example above, if the template re-renders and `this.caption` or `this.active` change, Lit updates the template efficiently, only changing the affected expressions. However, if `this.tag` or `this.activeAttribute` change, since they are static values tagged with `literal`, an entirely new template is created; the update is inefficient since the DOM is completely re-rendered. In addition, changing `literal` values passed to expressions increases memory use since each unique template is cached in memory to improve re-render performance.
+
+For these reasons, it's a good idea keep changes to expressions using `literal` to a minimum and avoid using reactive properties to change `literal` values, since reactive properties are intended to change.
+
+### Non-literal statics
+
+In rare cases, you may need to interpolate static HTML into a template that is not defined in your script, and thus cannot be tagged with the `literal` function. For these cases, the `unsafeStatic()` function can be used to create static HTML based on strings from non-script source.
+
+<div class="alert alert-warning">
+
+**Only for trusted content.** Note the use of _unsafe_ in `unsafeStatic()`. The string passed to `unsafeStatic()` must be developer-controlled and not include untrusted content, because it will be parsed directly as HTML with no sanitization. Examples of untrusted content include query string parameters and values from user inputs. Untrusted content rendered with this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+
+</div>
+
+```ts
+@customElement('my-button')
+class MyButton extends LitElement {
+  @property() caption = 'Hello static';
+  @property({type: Boolean}) active = false;
+  protected render() {
+    // These strings MUST be trusted, otherwise this is an XSS vulnerability
+    const tag = getTagName();
+    const activeAttribute = getActiveAttribute();
+    return html`
+      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}?=${this.active}>
+        <p>${this.caption}</p>
+      </${unsafeStatic(tag)}>`;
+  }
+}
+```
+
+Note that the behavior of using `unsafeStatic` carries the same caveats as `literal`: because changing values causes a new template to be parsed and cached in memory, they should not change frequently.

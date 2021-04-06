@@ -18,6 +18,9 @@ const {
 } = require('../lit-dev-tools/lib/playground-inline.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 const luxon = require('luxon');
+const {
+  accessiblePermalink,
+} = require('../lit-dev-tools/lib/accessible-permalinks.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -77,7 +80,17 @@ ${content}
     linkify: true,
   })
     .use(markdownItAttrs)
-    .use(markdownItAnchor, {slugify, permalink: false});
+    .use(markdownItAnchor, {
+      slugify,
+      permalink: true,
+      permalinkClass: 'anchor',
+      permalinkSymbol: '#',
+      level: [2, 3],
+      renderPermalink: accessiblePermalink({
+        wrapperClassName: 'heading',
+        offscreenClass: 'offscreen',
+      }),
+    });
   eleventyConfig.setLibrary('md', md);
 
   eleventyConfig.addFilter('removeExtension', function (url) {
@@ -98,6 +111,11 @@ ${content}
       }
       return 0;
     });
+  });
+
+  // The reverse filter isn't working in Liquid templates
+  eleventyConfig.addCollection('releasenotes', function (collection) {
+    return collection.getFilteredByTag('release').reverse();
   });
 
   eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
@@ -121,6 +139,11 @@ ${content}
     }
     return md.render(content);
   });
+
+  /**
+   * Render the `typeof` of the given value.
+   */
+  eleventyConfig.addFilter('typeof', (value) => typeof value);
 
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
@@ -318,6 +341,8 @@ ${content}
   return {
     dir: {input: 'site', output: OUTPUT_DIR},
     htmlTemplateEngine: 'njk',
+    // TODO: Switch markdown to Nunjucks
+    // markdownTemplateEngine: 'njk',
   };
 };
 

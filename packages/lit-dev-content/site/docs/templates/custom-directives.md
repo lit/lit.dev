@@ -17,7 +17,7 @@ html`<div>
 
 However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression. And a directive instance is persisted across multiple renders so it can maintain state. A directive can even update the DOM asynchronously, outside of the main update cycle.
 
-While Lit ships with a number of built-in directives like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. To create a directive:
+While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. To create a directive:
 
 *   Implement the directive as a class that extends the [`Directive`](TODO_HREF) class.
 *   Pass your class to the [`directive()`](TODO_HREF) factory to create a directive function that can be used in Lit template expressions.

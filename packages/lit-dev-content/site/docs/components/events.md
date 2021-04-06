@@ -35,7 +35,7 @@ private _handleTouchStart(e) { console.log(e.type) }
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](../decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Enabling decorators](/docs/components/decorators/#enabling-decorators) for details.
 
 </div>
 
@@ -99,7 +99,7 @@ To add an event listener after rendering, use the `firstUpdated` method. This is
 
 The `firstUpdated` callback fires after the first time your component has been updated and called its `render` method, but **before** the browser has had a chance to paint.
 
-See [firstUpdated](../lifecycle#firstupdated) in the Lifecycle documentation for more information.
+See [firstUpdated](/docs/components/lifecycle/#firstupdated) in the Lifecycle documentation for more information.
 
 To ensure the listener is added after the user can see the component, you can await a Promise that resolves after the browser paints.
 
@@ -188,7 +188,9 @@ Often, an event should be fired only after an element updates and renders. This 
 
 ### Using standard or custom events { #standard-custom-events }
 
-Events can be dispatched either using by constructing an `Event` instance or a `CustomEvent` instance. Either is a reasonable approach. When using a `CustomEvent`,any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+Events can be dispatched either by constructing an `Event` or a `CustomEvent`. Either is a reasonable approach. When using a `CustomEvent`, any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+
+See [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event/Event) on MDN for details about constructing events.
 
 #### Firing a custom event:
 
@@ -222,15 +224,9 @@ this.dispatchEvent(event);
 
 When using shadow DOM there are a few modifications to the standard event system that are important to understand. Shadow DOM exists primarily to provide a scoping mechanism in the DOM that encapsulates details about these "shadow" elements. As such, events in shadow DOM encapsulate certain details from outside DOM elements.
 
-Only events dispatched with the [composed](#shadowdom-composed) are are visible outside of a shadow root. Non-composed events may only be listened for within the shadow root in which they are dispatched.
-
-In addition, `composed` events are [retargeted](#shadowdom-retargeting) to appear as if they were dispatched from the element hosting the shadow root.
-
 ### Understanding composed event dispatching {#shadowdom-composed}
 
-By default, a bubbling [custom event](#standard-custom-events) dispatched inside shadow DOM will stop bubbling when it reaches the shadow root.
-
-To make a custom event pass through shadow DOM boundaries, you must set the `composed` flag to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can hear the event:
+By default, an event dispatched inside a shadow root will not be visible outside that shadow root. To make an event pass through shadow DOM boundaries, you must set the [`composed` property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can see the event:
 
 ```js
 _dispatchMyEvent() {
@@ -242,11 +238,13 @@ _dispatchMyEvent() {
 }
 ```
 
+If an event is `composed` and does `bubble`, it can be received by all ancestors of the element that dispatches the event—including ancestors in outer shadow roots. If an event is `composed` but does not `bubble`, it can only be received on the element that dispatches the event and on the host element containing the shadow root.
+
 Note that most standard user interface events, including all mouse, touch, and keyboard events, are both bubbling and composed. See the [MDN documentation on composed events](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) for more information.
 
 ### Understanding event retargeting {#shadowdom-retargeting}
 
-[Composed](#shadowdom-composed) bubbling events dispatched from within shadow DOM are retargeted so that, to any listener external to the shadow DOM, they appear to come from the element hosting the shadow root. Since Lit components render into shadow DOM, all events dispatched from inside a Lit component appear to be dispatched by the Lit component itself. This means the event's `target` property is the Lit component.
+[Composed](#shadowdom-composed) events dispatched from within a shadow root are retargeted, meaning that to any listener on an element hosting a shadow root or any of its ancestors, they appear to come from the hosting element. Since Lit components render into shadow roots, all composed events dispatched from inside a Lit component appear to be dispatched by the Lit component itself. The event's `target` property is the Lit component.
 
 ```html
 <my-element onClick="(e) => console.log(e.target)"></my-element>
@@ -281,5 +279,3 @@ Another way to communicate between the dispatcher and listener is via the `preve
 Both of these techniques are used in the following example:
 
 {% playground-ide "docs/components/events/comm/" "my-listener.ts" %}
-
-

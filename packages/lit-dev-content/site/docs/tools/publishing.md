@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 5
 ---
 
-This page provides guidelines a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of Javascript libraries and developers.
+This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of Javascript libraries and developers. See [Starter Kits](/docs/tools/starter-kits/) for reusable component templates set up for publishing to npm.
 
 ## Publishing to npm
 
@@ -90,7 +90,7 @@ const plugins = [
 module.exports = { plugins };
 ```
 
-You can run Babel via a bundler plugin such as [rollup-plugin-babel](https://www.npmjs.com/package/rollup-plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
+You can run Babel via a bundler plugin such as [@rollup/plugin-babel](https://www.npmjs.com/package/@rollup/plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
 
 ## Publishing best practices
 
@@ -132,45 +132,32 @@ could greatly bloat the import map.
 Thus, to prepare your source now to be optimally compatible with import maps, we
 recommend authoring with file extensions on imports.
 
-### Include good TypeScript typings
+### Publish TypeScript typings
 
-TypeScript will infer the class of an HTML element returned from certain DOM
-APIs based on the tag name. For example, `document.createElement('img')` returns
-an `HTMLImageElement` instance with a `src: string` property.
+To make your element easy to use from TypeScript, we recommend that you:
 
-Custom elements can get this same treatment by adding to the
-`HTMLElementTagNameMap` as follows:
+*   Add an `HTMLElementTagNameMap` entry for all elements authored
+in TypeScript.
 
-```ts
-@customElement('my-element')
-export class MyElement extends LitElement {
-  @property({type: Number})
-  aNumber: number = 5;
-  /* ... */
-}
+    ```ts
+    @customElement('my-element')
+    export class MyElement extends LitElement { /* ... */ }
 
-declare global {
-  interface HTMLElementTagNameMap {
-    "my-element": MyElement,
-  }
-}
-```
+    declare global {
+      interface HTMLElementTagNameMap {
+        "my-element": MyElement,
+      }
+    }
+    ```
+*   Publish your `.d.ts` typings in your npm package.
 
-By doing this, the following code properly type-checks:
 
-```ts
-const myElement = document.createElement('my-element');
-myElement.aNumber = 10;
-```
-
-We recommend adding an `HTMLElementTagNameMap` entry for all elements authored
-in TypeScript, and ensuring you publish your `.d.ts` typings in your `npm`
-package.
+ For more information about `HTMLElementTagNameMap`, see [Providing good TypeScript typings](/docs/components/defining/#typescript-typings).
 
 ### Self-define elements
 
 The module that declares the web component class should always include a call to
-`customElements.define()` to define the element.
+`customElements.define()` (or the `@customElement` decorator) to define the element.
 
 Work is progressing on adding [Scoped Custom Element
 Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md)

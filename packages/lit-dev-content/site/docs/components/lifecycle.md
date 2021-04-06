@@ -3,7 +3,7 @@ title: Lifecycle
 eleventyNavigation:
   key: Lifecycle
   parent: Components
-  order: 6
+  order: 5
 ---
 
 Lit components use the standard custom element lifecycle methods. In addition Lit introduces a reactive update cycle that renders changes to DOM when reactive properties change.
@@ -11,7 +11,11 @@ Lit components use the standard custom element lifecycle methods. In addition Li
 ## Standard custom element lifecycle { #custom-element-lifecycle }
 Lit components are standard custom elements and inherit the custom element lifecycle methods. For information about the custom element lifecycle, see [Using the lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) on MDN.
 
-Note, if you need to customize any of the standard lifecycle methods, make sure to call the super implementation (e.g. `super.connectedCallback()`) so the standard Lit functionality is maintained.
+<div class="alert alert-info">
+
+If you need to customize any of the standard custom element lifecycle methods, make sure to call the `super` implementation (such as `super.connectedCallback()`) so the standard Lit functionality is maintained.
+
+</div>
 
 ### constructor() {#constructor}
 
@@ -25,7 +29,7 @@ Saves any properties already set on the element. This ensures values set before 
 
 #### Use cases
 
-Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, [default values](./properties#initialize) for properties can be set in the constructor.
+Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, default values for properties can be set in the constructor, as shown in [Declaring properties in a static properties field](/docs/components/properties/#declaring-properties-in-a-static-properties-field).
 
 ```js
 constructor() {
@@ -147,7 +151,7 @@ An update is triggered when a reactive property changes or the `requestUpdate()`
 
 #### hasChanged() {#haschanged}
 
-Called when a reactive property is set. By default `hasChanged()` does a strict equality check and if it returns `true`, an update is scheduled. See [configuring `hasChanged()`](/docs/components/properties#haschanged) for more information.
+Called when a reactive property is set. By default `hasChanged()` does a strict equality check and if it returns `true`, an update is scheduled. See [configuring `hasChanged()`](/docs/components/properties/#haschanged) for more information.
 
 #### requestUpdate() {#requestUpdate}
 
@@ -341,7 +345,7 @@ async performUpdate() {
 }
 ```
 
-In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread. See [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
+In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
 
 #### hasUpdated  {#hasupdated}
 

@@ -47,10 +47,9 @@ export class LitDevExample extends LitElement {
     }
 
     playground-preview {
-      border: 1px solid #ccc;
       margin: 0 0.5px;
       height: var(--litdev-example-preview-height, 100px);
-      border-top: none;
+      border-top: var(--code-border);
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }

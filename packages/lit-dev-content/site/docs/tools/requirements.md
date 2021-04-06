@@ -6,14 +6,22 @@ eleventyNavigation:
   order: 2
 ---
 
-When developing an app using Lit, your environment will need to handle the following, depending on the browsers that your app targets:
+The most important things to know about Lit in order to work with various browsers and tools are that:
 
-*   **Modern browsers:** Resolving bare (or Node-style) module identifiers.
-*   **Legacy browsers:** Transpiling JS syntax and modules and loading polyfills.
+ * Lit is published as ES2019.
+ * Lit uses "bare module specifiers" to import modules.
+ * Lit uses modern web APIs such as `<template>`, custom elements, shadow DOM, and `ParentNode`.
 
-This page gives a general overview for how to meet these requirements in your development envirionment.
+These features are supported by the latest versions of major browsers (including Chrome, Edge, Safari, and Firefox) and most popular tools (such as Rollup, Webpack, Babel, and Terser)—with the exception of bare module specifier support in browsers.
 
-See [Development](/docs/tools/development/), [Testing](/docs/tools/testing/), and [Building for Production](/docs/tools/production/) for recommandations on tools and configurations that meet these requirements.
+When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we recomend grouping browsers into one of two categories:
+
+*   **Modern browsers** support ES2019 and web components. Tools must resolve bare module specifiers.
+*   **Legacy browsers** support ES5 and don't support web components or newer DOM APIs. Tools must transpile JavaScript and load polyfills.
+
+This page gives a general overview for how to meet these requirements in your development and productions envirionments.
+
+See [Development](/docs/tools/development/), [Testing](/docs/tools/testing/), and [Building for Production](/docs/tools/production/) for recommendations on tools and configurations that meet these requirements.
 
 ## Requirements for modern browsers {#building-for-modern-browsers}
 
