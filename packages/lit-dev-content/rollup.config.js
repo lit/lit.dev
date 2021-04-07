@@ -21,6 +21,8 @@ const terserOptions = {
     inline_script: false,
   },
   mangle: {
+    // TODO(aomarks) Find out why we can't do property renaming. Something in
+    // MWC?
     properties: false,
   },
 };
