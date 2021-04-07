@@ -40,23 +40,24 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(playgroundPlugin);
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
+    eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
     eleventyConfig.addPassthroughCopy('site/css');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-typescript-worker.js':
+        './js/playground-typescript-worker.js',
+    });
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-service-worker.js':
+        './js/playground-service-worker.js',
+    });
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-service-worker-proxy.html':
+        './js/playground-service-worker-proxy.html',
+    });
   }
   eleventyConfig.addPassthroughCopy('api/**/*');
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-typescript-worker.js':
-      './js/playground-typescript-worker.js',
-  });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-service-worker.js':
-      './js/playground-service-worker.js',
-  });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-service-worker-proxy.html':
-      './js/playground-service-worker-proxy.html',
-  });
 
   eleventyConfig.addWatchTarget('../lit-dev-api/api-data');
 
@@ -236,16 +237,16 @@ ${content}
 
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
-   * to ./site/_includes/js/ directory (which is where Rollup output goes).
+   * to ./rollupout.
    *
-   * In dev mode, instead directly import the module relative from ./lib/ (which
-   * is where TypeScript output goes).
+   * In dev mode, instead directly import the module, which has already been
+   * symlinked directly to the TypeScript output directory.
    */
   eleventyConfig.addShortcode('inlinejs', (path) => {
     if (DEV) {
-      return `<script type="module" src="/lib/${path}"></script>`;
+      return `<script type="module" src="/js/${path}"></script>`;
     }
-    const script = fsSync.readFileSync(`site/_includes/js/${path}`, 'utf8');
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8');
     return `<script type="module">${script}</script>`;
   });
 
@@ -301,11 +302,11 @@ ${content}
         path.join(__dirname, '_dev', 'samples')
       );
 
-      // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs in
+      // Symlink lib -> _dev/js. This lets us directly reference tsc outputs in
       // dev mode, instead of the Rollup bundles we use for production.
       await symlinkForce(
         path.join(__dirname, 'lib'),
-        path.join(__dirname, '_dev', 'lib')
+        path.join(__dirname, '_dev', 'js')
       );
     } else {
       // Inline all Playground project files directly into their manifests, to
