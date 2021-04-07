@@ -40,7 +40,7 @@ export default [
       'lib/pages/playground.js',
     ],
     output: {
-      dir: '_site/js/',
+      dir: 'rollupout',
       format: 'esm',
       // Preserve directory structure for entrypoints.
       entryFileNames: ({facadeModuleId}) =>

@@ -40,6 +40,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(playgroundPlugin);
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
+    eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
     eleventyConfig.addPassthroughCopy('site/css');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
@@ -236,16 +237,16 @@ ${content}
 
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
-   * to ./site/js/ directory (which is where Rollup output goes).
+   * to ./rollupout.
    *
-   * In dev mode, instead directly import the module, which has been symlinked
-   * directly to the TypeScript output directory.
+   * In dev mode, instead directly import the module, which has already been
+   * symlinked directly to the TypeScript output directory.
    */
   eleventyConfig.addShortcode('inlinejs', (path) => {
     if (DEV) {
       return `<script type="module" src="/js/${path}"></script>`;
     }
-    const script = fsSync.readFileSync(`_site/js/${path}`, 'utf8');
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8');
     return `<script type="module">${script}</script>`;
   });
 
