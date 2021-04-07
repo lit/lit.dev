@@ -146,6 +146,15 @@ ${content}
    */
   eleventyConfig.addFilter('typeof', (value) => typeof value);
 
+  /**
+   * Return whether the given table-of-contents HTML includes at least one <a>
+   * tag. It always renders a surrounding <nav> element, even when there are no
+   * items.
+   */
+  eleventyConfig.addFilter('tocHasEntries', (html) => {
+    return html.includes('<a');
+  });
+
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
     fsSync.readFileSync('../lit-dev-api/api-data/symbols.json', 'utf8')
