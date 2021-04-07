@@ -99,19 +99,26 @@ ${content}
     return url.substring(0, url.length - extension.length);
   });
 
+  const docsByUrl = new Map();
   eleventyConfig.addCollection('docs', function (collection) {
-    return collection.getFilteredByGlob('site/docs/**').sort(function (a, b) {
-      if (a.fileSlug == 'docs') {
-        return -1;
-      }
-      if (a.fileSlug < b.fileSlug) {
-        return -1;
-      }
-      if (b.fileSlug < a.fileSlug) {
-        return 1;
-      }
-      return 0;
-    });
+    const docs = collection
+      .getFilteredByGlob('site/docs/**')
+      .sort(function (a, b) {
+        if (a.fileSlug == 'docs') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
+    for (const page of docs) {
+      docsByUrl.set(page.url, page);
+    }
+    return docs;
   });
 
   // The reverse filter isn't working in Liquid templates
@@ -129,6 +136,44 @@ ${content}
       collapseWhitespace: true,
     });
     return minified;
+  });
+
+  /**
+   * Flatten a navigation object into an array, and add "next" and "prev"
+   * properties.
+   *
+   * See https://github.com/11ty/eleventy-navigation/issues/22
+   */
+  eleventyConfig.addFilter('flattenNavigationAndAddNextPrev', (nav) => {
+    const flat = [];
+    // TODO(aomarks) For an unknown reason, every page in the "Templates"
+    // section is duplicated in the nav. Doesn't affect any other section. Just
+    // de-dupe by URL for now.
+    const seen = new Set();
+    const visit = (items) => {
+      for (const item of items) {
+        if (seen.has(item.url)) {
+          continue;
+        }
+        seen.add(item.url);
+        flat.push(item);
+        visit(item.children);
+      }
+    };
+    visit(nav);
+    for (let i = 0; i < flat.length; i++) {
+      const item = flat[i];
+      item.prev = flat[i - 1];
+      item.next = flat[i + 1];
+    }
+    return flat;
+  });
+
+  /**
+   * Gets the title given a docs URL.
+   */
+  eleventyConfig.addFilter('docsUrlTitle', (url) => {
+    return docsByUrl.get(url)?.data?.title;
   });
 
   /**
