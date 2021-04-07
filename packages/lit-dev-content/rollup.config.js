@@ -77,7 +77,10 @@ export default [
         dedupe: () => true,
       }),
       terser(terserOptions),
-      summary(),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
     ],
   },
 ];
