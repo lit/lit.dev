@@ -147,7 +147,8 @@ ${content}
 
   /**
    * Return whether the given table-of-contents HTML includes at least one <a>
-   * tag.
+   * tag. It always renders a surrounding <nav> element, even when there are no
+   * items.
    */
   eleventyConfig.addFilter('tocHasEntries', (html) => {
     return html.includes('<a');
