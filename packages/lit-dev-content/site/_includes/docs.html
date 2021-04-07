@@ -5,6 +5,10 @@
   {% inlinejs "pages/docs.js" %}
   {% if '/api/' in page.url %}
     {% inlinecss "docs-api.css" %}
+    <script type="module" src="{{ site.baseurl }}/js/components/copy-button.js"></script>
+  {% else %}
+    <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
   {% endif %}
 {% endblock %}
 

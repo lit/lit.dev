@@ -28,10 +28,13 @@ const terserOptions = {
 export default [
   {
     input: [
-      'lib/global/global.js',
+      'lib/components/copy-button.js',
+      'lib/components/litdev-example.js',
+      'lib/components/litdev-tutorial.js',
+      'lib/components/playground-elements.js',
+      'lib/components/resize-bar.js',
       'lib/global/mobile-nav.js',
       'lib/global/mods.js',
-      'lib/global/playground-elements.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/playground.js',

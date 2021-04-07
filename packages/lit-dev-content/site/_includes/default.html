@@ -11,12 +11,10 @@
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
 
     {% inlinecss "global.css" %}
-    {% inlinejs "global/mobile-nav.js" %}
-    {% inlinejs "global/mods.js" %}
     {% inlinecss "mods.css" %}
 
-    <script type="module" async src="/js/global/global.js"></script>
-    <script type="module" async src="/js/global/playground-elements.js"></script>
+    {% inlinejs "global/mods.js" %}
+    <script type="module" async src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
     {% if not dev %}
       <!-- Note it would be more correct to <link rel="modulepreload"> this common
           script, since the other two modules already import it, but
