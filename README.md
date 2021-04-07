@@ -50,11 +50,11 @@ Dev mode is different to production in these ways:
   are reflected immediately after `tsc` compile.
 - HTML is not minified.
 
-If needed, you can check for dev mode from an Eleventy template using the `dev`
-global:
+If needed, you can check for dev mode from an Eleventy template using the
+`env.DEV` global:
 
 ```
-{% if dev %}
+{% if env.DEV %}
   <p>Dev mode</p>
 {% else %}
   <p>Prod mode</p>

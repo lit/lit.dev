@@ -28,6 +28,7 @@ const slugify = (s) => slugifyLib(s, {lower: true});
 
 const DEV = process.env.ELEVENTY_ENV === 'dev';
 const OUTPUT_DIR = DEV ? '_dev' : '_site';
+const PLAYGROUND_SANDBOX = process.env.PLAYGROUND_SANDBOX;
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
@@ -37,7 +38,9 @@ module.exports = function (eleventyConfig) {
     wrapperClass: '',
   });
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
-  eleventyConfig.addPlugin(playgroundPlugin);
+  eleventyConfig.addPlugin(playgroundPlugin, {
+    sandboxUrl: PLAYGROUND_SANDBOX,
+  });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
     eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
