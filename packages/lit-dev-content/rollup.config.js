@@ -45,34 +45,30 @@ export default [
       // Preserve directory structure for entrypoints.
       entryFileNames: ({facadeModuleId}) =>
         facadeModuleId.replace(`${__dirname}/lib/`, ''),
-      // Make sure we have a clean lit chunk. People will be looking for this :)
-      manualChunks: {
-        lit: ['lit-html', 'lit-element'],
-      },
-      // Override the default chunk name of "[name]-[hash].js"
-      chunkFileNames: (info) => {
-        for (const module of Object.keys(info.modules)) {
-          // Most common MWC stuff goes into one chunk, but Rollup usually picks
-          // "mwc-icon-button.js" using its default name picking heuristic.
-          // Assume that the chunk with "base-element" in it is the majority of
-          // MWC common stuff, and give it a better name.
-
-          // TODO(aomarks) Why is Rollup creating an "observer.js" with just MWC
-          // observer code in it? It could just be included in the base one...?
-          if (module.includes('/@material/mwc-base/base-element.js')) {
-            return 'mwc-common.js';
-          }
-          // Drop the es6 suffix from tslib.
-          if (module.includes('/tslib/tslib.es6.js')) {
-            return 'tslib.js';
-          }
+      manualChunks: (id) => {
+        // Create some more logical shared chunks. In particular, people will
+        // probably be looking for lit.js in devtools!
+        const relative = id.replace(`${__dirname}/node_modules/`, '');
+        if (
+          relative.startsWith('lit-html/') ||
+          relative.startsWith('lit-element/')
+        ) {
+          return 'lit';
         }
-        // Otherwise just use the input name, but skip the usual "-[hash]"
-        // suffix. We pre-load certain common chunks so we want to know its
-        // exact name (e.g. "lit.js"), and we don't have cache headers that
-        // would take advantage of hashed names anyway.
-        return '[name].js';
+        if (
+          relative.startsWith('@material/mwc-base/') ||
+          relative.startsWith('@material/base/')
+        ) {
+          return 'mwc-base';
+        }
+        if (relative.startsWith('tslib/')) {
+          return 'tslib';
+        }
       },
+      // Skip the usual "-[hash]" suffix. We pre-load certain common chunks so
+      // we want to know its exact name (e.g. "lit.js"), and we don't have cache
+      // headers that would take advantage of hashed names anyway.
+      chunkFileNames: '[name].js',
     },
     plugins: [
       resolve({
