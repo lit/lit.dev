@@ -56,11 +56,6 @@ export default [
       //    more importantly contains lit, mwc-base, etc.
       chunkFileNames: 'common.js',
     },
-    onwarn(warning) {
-      if (warning.code !== 'CIRCULAR_DEPENDENCY') {
-        console.error(`(!) ${warning.message}`);
-      }
-    },
     plugins: [
       resolve({
         dedupe: () => true,

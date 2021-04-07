@@ -54,6 +54,7 @@
     "lit-html": "^1.2.1",
     "luxon": "^1.26.0",
     "playground-elements": "^0.8.0",
-    "tarts": "^1.0.0"
+    "tarts": "^1.0.0",
+    "tslib": "^2.2.0"
   }
 }
