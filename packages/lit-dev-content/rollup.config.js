@@ -45,19 +45,34 @@ export default [
       // Preserve directory structure for entrypoints.
       entryFileNames: ({facadeModuleId}) =>
         facadeModuleId.replace(`${__dirname}/lib/`, ''),
-      // Override the default chunk name of "[name]-[hash].js" because:
-      //
-      // 1. By default, the hash is included in the filename, which would
-      //    require us to pipe the hash to the Eleventy HTML template somehow,
-      //    because we preload this chunk. This will obviously break if we ever
-      //    have >1 chunk, so we'll probably eventually need to do this piping
-      //    (chunkFileNames can also be a function, so we could pick static
-      //    names that way too).
-      //
-      // 2. The default name is picked from one of the included modules. In our
-      //    case, it picks "mwc-icon-button", which isn't great because this
-      //    more importantly contains lit, mwc-base, etc.
-      chunkFileNames: 'common.js',
+      // Make sure we have a clean lit chunk. People will be looking for this :)
+      manualChunks: {
+        lit: ['lit-html', 'lit-element'],
+      },
+      // Override the default chunk name of "[name]-[hash].js"
+      chunkFileNames: (info) => {
+        for (const module of Object.keys(info.modules)) {
+          // Most common MWC stuff goes into one chunk, but Rollup usually picks
+          // "mwc-icon-button.js" using its default name picking heuristic.
+          // Assume that the chunk with "base-element" in it is the majority of
+          // MWC common stuff, and give it a better name.
+
+          // TODO(aomarks) Why is Rollup creating an "observer.js" with just MWC
+          // observer code in it? It could just be included in the base one...?
+          if (module.includes('/@material/mwc-base/base-element.js')) {
+            return 'mwc-common.js';
+          }
+          // Drop the es6 suffix from tslib.
+          if (module.includes('/tslib/tslib.es6.js')) {
+            return 'tslib.js';
+          }
+        }
+        // Otherwise just use the input name, but skip the usual "-[hash]"
+        // suffix. We pre-load certain common chunks so we want to know its
+        // exact name (e.g. "lit.js"), and we don't have cache headers that
+        // would take advantage of hashed names anyway.
+        return '[name].js';
+      },
     },
     plugins: [
       resolve({
