@@ -2,13 +2,20 @@
 
 {% block head %}
   {% inlinecss "docs.css" %}
-  {% inlinejs "docs.js" %}
+  {% inlinejs "pages/docs.js" %}
   {% if '/api/' in page.url %}
     {% inlinecss "docs-api.css" %}
+    <script type="module" src="{{ site.baseurl }}/js/components/copy-button.js"></script>
+  {% else %}
+    <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
   {% endif %}
 {% endblock %}
 
 {% block content %}
+  {% set toc = content | toc %}
+
+
   <div id="docsNavWrapper">
     <nav id="docsNav">
       <ol>{% include 'docs-nav.html' %}</ol>
@@ -16,24 +23,28 @@
   </div>
 
   <div id="rhsTocWrapper">
-    <nav id="rhsToc">
-      <h2>Contents</h2>
-      <div id="rhsTocInner">
-        {{ content | toc | safe }}
-      </div>
-    </nav>
+    {% if toc | tocHasEntries %}
+      <nav id="rhsToc">
+        <h2>Contents</h2>
+        <div id="rhsTocInner">
+          {{ toc | safe }}
+        </div>
+      </nav>
+    {% endif %}
   </div>
 
   <div id="articleWrapper">
     <article>
       <h1>{{ title }}</h1>
 
-      <nav id="inlineToc">
-        <details>
-          <summary><h2>Contents</h2></summary>
-          {{ content | toc | safe }}
-        </details>
-      </nav>
+      {% if toc | tocHasEntries %}
+        <nav id="inlineToc">
+          <details>
+            <summary><h2>Contents</h2></summary>
+            {{ toc | safe }}
+          </details>
+        </nav>
+      {% endif %}
 
       {{ content | safe }}
 
