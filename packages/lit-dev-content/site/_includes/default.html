@@ -14,13 +14,13 @@
     {% inlinecss "mods.css" %}
 
     {% inlinejs "global/mods.js" %}
-    <script type="module" async src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
     {% if not dev %}
       <!-- Note it would be more correct to <link rel="modulepreload"> this common
           script, since the other two modules already import it, but
           modulepreload is not yet supported in Firefox or Safari. No real harm
           in actually loading it here. -->
-      <script type="module" async src="/js/common.js"></script>
+      <script type="module" src="/js/lit.js"></script>
     {% endif %}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
