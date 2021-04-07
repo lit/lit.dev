@@ -141,6 +141,8 @@ ${content}
   /**
    * Flatten a navigation object into an array, and add "next" and "prev"
    * properties.
+   *
+   * See https://github.com/11ty/eleventy-navigation/issues/22
    */
   eleventyConfig.addFilter('flattenNavigationAndAddNextPrev', (nav) => {
     const flat = [];
