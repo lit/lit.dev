@@ -82,7 +82,6 @@ For more information about working with shadow DOM in your component, see [Worki
 
 ## See also
 
-* [Reactive properties](/docs/components/properties/)
 * [Shadow DOM](/docs/components/shadow-dom/)
 * [Templates overview](/docs/templates/overview/)
 * [Template expressions](/docs/templates/overview/)
