@@ -43,6 +43,7 @@ RUN npx lerna run build --scope lit-dev-api --stream && \
 
 # Site content
 COPY packages/lit-dev-content/ ./packages/lit-dev-content/
+ARG PLAYGROUND_SANDBOX
 RUN npx lerna run build --scope lit-dev-content --stream
 
 # Run the web service on container startup.

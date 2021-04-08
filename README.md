@@ -110,6 +110,7 @@ Serves at [`http://localhost:8080`](http://localhost:8080)
 ### Start production Docker environment locally
 
 ```sh
-docker build -t litdev .
-docker run --rm --name litdev -p 8080:8080 litdev
+docker build -t litdev . --build-arg PLAYGROUND_SANDBOX=http://localhost:8081/
+docker run --rm --name litdev -p 8080:8080 -e PORT=8080 -e MODE=main litdev
+docker run --rm --name litdev-playground -p 8081:8081 -e PORT=8081 -e MODE=playground litdev
 ```
