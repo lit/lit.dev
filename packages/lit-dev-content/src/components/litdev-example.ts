@@ -1,19 +1,12 @@
 /**
  * @license
- * Copyright (c) 2021 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at
- * http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at
- * http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at
- * http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at
- * http://polymer.github.io/PATENTS.txt
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 import {LitElement, html, css, property} from 'lit-element';
 import {nothing} from 'lit-html';
+import {ifDefined} from 'lit-html/directives/if-defined.js';
 import 'playground-elements/playground-ide.js';
 
 /**
@@ -86,12 +79,19 @@ export class LitDevExample extends LitElement {
   @property()
   filename?: string;
 
+  /**
+   * Base URL for script execution sandbox.
+   */
+  @property({attribute: 'sandbox-base-url'})
+  sandboxBaseUrl?: string;
+
   render() {
     if (!this.project || !this.filename) {
       return nothing;
     }
     return html`
       <playground-project
+        sandbox-base-url=${ifDefined(this.sandboxBaseUrl)}
         id="project"
         project-src="/samples/${this.project}/project.json"
       >

@@ -43,6 +43,14 @@ RUN npx lerna run build --scope lit-dev-api --stream && \
 
 # Site content
 COPY packages/lit-dev-content/ ./packages/lit-dev-content/
+ARG PLAYGROUND_SANDBOX
+# Kaniko doesn't include ARG values in the layer cache key (see
+# https://github.com/GoogleContainerTools/kaniko/pull/1085). This is different
+# to normal Docker behavior, which would invalidate anything after the ARG
+# declaration if the value changes. So, we need to write it to the file system
+# to force a cache invalidation. Otherwise, we might re-use the most recent
+# Eleventy build output, even when the playground sandbox URL has changed.
+RUN echo "$PLAYGROUND_SANDBOX" > playground-sandbox
 RUN npx lerna run build --scope lit-dev-content --stream
 
 # Run the web service on container startup.
