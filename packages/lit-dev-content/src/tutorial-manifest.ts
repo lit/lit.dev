@@ -33,7 +33,7 @@ export const manifest: {steps: Array<TutorialStep>} = {
     },
     {
       slug: '04-events',
-      title: 'Declarative event handlers',
+      title: 'Declarative event listeners',
     },
     {
       slug: '05-expressions',
@@ -47,5 +47,9 @@ export const manifest: {steps: Array<TutorialStep>} = {
       slug: '07-styles',
       title: 'Styles',
     },
+    {
+      slug: '08-finishing-touches',
+      title: 'Finishing touches'
+    }
   ],
 };

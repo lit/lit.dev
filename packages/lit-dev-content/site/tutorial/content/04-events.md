@@ -1,22 +1,22 @@
-To add interactivity to your components, you'll probably want to add some event handlers. Lit makes it easy to add a _declarative event handler_ in the template, using an expression like this:
+To add interactivity to your components, you'll probably want to add some event handlers. Lit makes it easy to add a _declarative event listener in the template, using an expression like this:
 
 ```html
 <button @click=${this.handleClick}>Click me!</button>
 ```
 
-In this step you'll add an input element and an event handler to a component.
+Here we've provided a name tag component with a message and an input element. In this step you'll use a declarative event listener so the component can handle input events.
 
-*   **Add an input element.**
+*   **Add a declarative event listener.**
 
-    Add an input element to your component's template:
+    Find the input element and add this expression inside the tag:
 
     ```html
-    <input @change=${this.changeName} placeholder="Enter your name">
+    @input=${this.changeName}
     ```
 
     <code>@<var>eventName</var></code> is a special syntax for adding an event handler using an expression.
 
-*   **Add the event handler.**
+*   **Add the event handler method.**
 
     Next, add the event handler that's called when the input value changes.
 
@@ -24,7 +24,6 @@ In this step you'll add an input element and an event handler to a component.
     changeName(event: Event) {
       const input = event.target as HTMLInputElement;
       this.name = input.value;
-      input.value = '';
     }
     ```
 

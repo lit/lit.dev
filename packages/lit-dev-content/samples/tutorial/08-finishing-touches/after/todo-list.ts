@@ -5,7 +5,7 @@ import {classMap} from 'lit/directives/class-map.js';
 type ToDoItem = {
   text: string,
   completed: boolean
-}
+};
 
 @customElement('todo-list')
 export class ToDoList extends LitElement {
@@ -18,7 +18,7 @@ export class ToDoList extends LitElement {
     `;
   }
 
-  @property()
+  @property({attribute: false})
   listItems = [
     { text: 'Make to-do list', completed: true },
     { text: 'Complete Lit tutorial', completed: false }
@@ -27,10 +27,12 @@ export class ToDoList extends LitElement {
   hideCompleted = false;
 
   render() {
-    return html`
-      <h2>To Do</h2>
+    const items = this.hideCompleted
+      ? this.listItems.filter((item) => !item.completed)
+      : this.listItems;
+    const list = html`
       <ul>
-        ${this.listItems.map((item, index) =>
+        ${items.map((item, index) =>
           html`<li data-index=${index}
                 class=${classMap({
                   completed: item.completed
@@ -39,14 +41,38 @@ export class ToDoList extends LitElement {
           </li>`
         )}
       </ul>
+    `;
+    const caughtUpMessage = html`
+      <p>
+      You're all caught up!
+      </p>
+    `;
+    const listOrMessage = items.length > 0
+      ? list
+      : caughtUpMessage;
+
+    return html`
+      <h2>To Do</h2>
+      ${listOrMessage}
       <input id="newitem" aria-label="New item">
       <button @click=${this.addToDo}>Add</button>
+      <br>
+      <label>
+        <input type="checkbox"
+          @change=${this.setHideCompleted}
+          ?checked=${this.hideCompleted}>
+        Hide completed
+      </label>
     `;
   }
 
   toggleCompleted(item: ToDoItem) {
     item.completed = !item.completed;
     this.requestUpdate();
+  }
+
+  setHideCompleted(e: Event) {
+    this.hideCompleted = (e.target as HTMLInputElement).checked;
   }
 
   @query('#newitem')
@@ -58,3 +84,4 @@ export class ToDoList extends LitElement {
     this.input.value = '';
   }
 }
+

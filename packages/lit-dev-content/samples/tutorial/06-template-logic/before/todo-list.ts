@@ -4,26 +4,23 @@ import {customElement, property} from 'lit/decorators.js';
 @customElement('todo-list')
 class ToDoList extends LitElement {
   @property()
-  listItems: Array<string> = [
-    'Make to-do list',
-    'Buy bread'
+  listItems = [
+    { text: 'Start Lit tutorial', completed: true },
+    { text: 'Make to-do list', completed: false }
   ];
 
   render() {
     return html`
       <h2>To Do</h2>
       <ul>
-         <!-- TODO: render list items -->
+         <!-- TODO: Render list items. -->
       </ul>
-      <input @change=${this.addToDo} aria-label="New item">
+      <input id="newitem" aria-label="New item">
+      <button @click=${this.addToDo}>Add</button>
     `;
   }
 
-  addToDo(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.listItems.push(input.value);
-    this.requestUpdate();
-    input.value = '';
-  }
+  // TODO: Add click handler.
+
 }
 
