@@ -19,10 +19,12 @@
 
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
-    <script type="module" src="{{ site.baseurl }}/js/lit.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
+    {% if not env.DEV %}
+      <script type="module" src="{{ site.baseurl }}/js/lit.js"></script>
+      <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
+      <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
+      <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
+    {% endif %}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 

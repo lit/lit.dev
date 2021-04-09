@@ -6,6 +6,7 @@
 
 import {LitElement, html, css, property} from 'lit-element';
 import {nothing} from 'lit-html';
+import {ifDefined} from 'lit-html/directives/if-defined.js';
 import 'playground-elements/playground-ide.js';
 
 /**
@@ -78,12 +79,19 @@ export class LitDevExample extends LitElement {
   @property()
   filename?: string;
 
+  /**
+   * Base URL for script execution sandbox.
+   */
+  @property({attribute: 'sandbox-base-url'})
+  sandboxBaseUrl?: string;
+
   render() {
     if (!this.project || !this.filename) {
       return nothing;
     }
     return html`
       <playground-project
+        sandbox-base-url=${ifDefined(this.sandboxBaseUrl)}
         id="project"
         project-src="/samples/${this.project}/project.json"
       >

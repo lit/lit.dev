@@ -42,7 +42,7 @@ interface EleventyConfig {
  */
 export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
-  _pluginOptions?: {}
+  {sandboxUrl}: {sandboxUrl: string}
 ) => {
   let renderer: BlockingRenderer | undefined;
 
@@ -169,7 +169,7 @@ export const playgroundPlugin = (
       const editorHeight = config.editorHeight ?? '300px';
       const previewHeight = config.previewHeight ?? '120px';
       return `
-      <litdev-example
+      <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
         style="height:calc(${editorHeight} + ${previewHeight});
                --litdev-example-editor-height:${editorHeight};
                --litdev-example-preview-height:${previewHeight}"
