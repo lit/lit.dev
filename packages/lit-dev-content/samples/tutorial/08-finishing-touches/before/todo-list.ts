@@ -2,6 +2,11 @@ import {LitElement, html, css} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 
+type ToDoItem = {
+  text: string,
+  completed: boolean
+};
+
 @customElement('todo-list')
 export class ToDoList extends LitElement {
   static get styles() {
