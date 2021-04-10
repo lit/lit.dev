@@ -23,7 +23,7 @@ class MyElement extends LitElement {
             <p>1 ${currency} = ${inUSD} USD as of ${result.date}</p>
           `;
         },
-        initial: () => `Enter a currency symbol...`,
+        initial: () => `Enter a currency symbol like EUR or GBP...`,
         pending: () => `Loading...`,
         error: (e) => `Error: ${e}`
       })}
