@@ -27,12 +27,5 @@ In this step you'll add some styles for completed items.
     })}
     ```
 
-    [`classMap`](/docs/templates/directives/#classmap) is a rendering helper called a *directive*. Here, we're using it to set a class on the list item based on the current state of the component. You don't necessarily need `classMap` to set a single class. You could use a ternary like this:
-
-    ```
-    class=${item.completed ? 'completed' : undefined}
-    ```
-
-    
-
+    [`classMap`](/docs/templates/directives/#classmap) is a rendering helper called a *directive*, which provides a quick way to toggle classes on an element. Here you're only using it to set a single class, but using `classMap` lets you add more classes in the future without rewriting this code.
 

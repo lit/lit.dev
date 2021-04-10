@@ -6,9 +6,6 @@ In Lit, most things start with defining a _component_. Here we've given you a st
     ```ts
     @customElement('my-element')
     class MyElement extends LitElement {
-
-      // TODO: Add a render() method.
-
     }
     ```
 
