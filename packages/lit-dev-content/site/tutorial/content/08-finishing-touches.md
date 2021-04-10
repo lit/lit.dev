@@ -1,4 +1,4 @@
-As templates get big and complicated, it can help to break them down into smaller pieces. Here we've added a **Hide completed** checkbox to the to-do list. Your mission: refactor the template to hide the completed items when **Hide completed** is checked.
+As templates get big and complicated, it can help to break them down into smaller pieces. Here we've added a **Hide completed** checkbox to the to-do list. Your mission: refactor the template to hide the completed items when **Hide completed** is checked and show a message when no uncompleted items are displayed.
 
 *   **Calculate the items to display.**
 
