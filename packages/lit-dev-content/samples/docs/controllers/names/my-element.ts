@@ -4,7 +4,6 @@ import {NamesController, Kind, NamesResult} from './names-controller.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-
   private namesController = new NamesController(this);
 
   render() {

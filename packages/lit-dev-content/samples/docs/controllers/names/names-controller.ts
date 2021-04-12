@@ -1,18 +1,14 @@
 import {ReactiveControllerHost} from 'lit';
 import {initialState, StatusRenderer, Task} from '@lit-labs/task';
 
-export type NamesResult = Array<{value: string}>;
-
 interface NamesError {
   error: string;
 }
-
+export type NamesResult = Array<{value: string}>;
 export const kinds = ['', 'cities', 'countries', 'states', 'streets', 'error'] as const;
-
 export type Kind = typeof kinds[number];
 
 export class NamesController {
-
   private task!: Task;
   kinds = kinds;
   kind: Kind = '';
@@ -49,5 +45,4 @@ export class NamesController {
   render(renderFunctions: StatusRenderer<NamesResult>) {
     return this.task.render(renderFunctions);
   }
-
 }
