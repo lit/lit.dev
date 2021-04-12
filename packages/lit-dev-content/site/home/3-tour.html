@@ -21,16 +21,18 @@
       <div id="tourNoteCustomElements" tabindex="0">
         <h3>Custom Elements</h3>
         <p>
-          Lit components are <em>custom elements</em>, so the browser treats
-          them exactly like built-in elements. Create an instance with a simple
-          HTML tag, with <code>createElement</code>, or with any HTML framework.
+          Lit components are standard <em>custom elements</em>, so the browser treats
+          them exactly like built-in elements. Use them in hand-written HTML or framework
+          code, output them from your CMS or static site builder, even create instances
+          in JavaScript — they just work!
         </p>
       </div>
 
       <div id="tourNoteStyles" tabindex="0">
         <h3>Scoped styles</h3>
         <p>
-          Lit uses Shadow DOM, so your component's styles don't affect — and
+          Lit scopes your styles by default, using <em>Shadow DOM</em>. This keeps your CSS
+          selectors simple and ensures that your component’s styles don't affect — and
           aren't affected by — any other styles on the page.
         </p>
       </div>
@@ -38,16 +40,18 @@
       <div id="tourNoteProperties" tabindex="0">
         <h3>Reactive properties</h3>
         <p>
-          When a change is made to a Lit property or its HTML attribute, Lit re-renders
-          by precisely updating only the parts of the DOM affected by the change — without expensive VDOM diffing.
+          Declare <em>reactive properties</em> to model your component’s API and internal
+          state. A Lit component efficiently re-renders whenever a reactive property (or
+          corresponding HTML attribute) changes.
         </p>
       </div>
 
-      <div id="tourNoteExpressions" tabindex="0">
-        <h3>Powerful expressions</h3>
+      <div id="tourNoteTemplates" tabindex="0">
+        <h3>Declarative templates</h3>
         <p>
-          Lit uses standard <em>template literals</em> to bind data into templates, so
-          you get the full expressivity of JavaScript at native speed.
+          Lit templates, based on <em>tagged template literals</em>, are simple,
+          expressive and fast, featuring HTML markup with native JavaScript expressions
+          inline. No custom syntax to learn, no transpilation required.
         </p>
       </div>
     </div>
