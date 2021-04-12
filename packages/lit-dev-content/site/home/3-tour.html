@@ -1,7 +1,7 @@
 <section id="tour">
   <h1>Hello World</h1>
 
-  <div id="tourCodeAndNotes">
+  <div id="tourCodeAndNotes" data-syntax="ts">
     <div id="tourCode">
       <mwc-formfield id="tourJsTsSwitch" label="TypeScript">
         <mwc-switch checked></mwc-switch>
@@ -9,7 +9,7 @@
       <div id="tourTsCode">
         {% highlight 'ts' %}{% include './1-splash-example.ts' %}{% endhighlight %}
       </div>
-      <div id="tourJsCode" hidden>
+      <div id="tourJsCode">
         {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight %}
       </div>
       <div id="tourHtmlCode">

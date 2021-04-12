@@ -74,6 +74,18 @@
   position: relative;
 }
 
+#tourCodeAndNotes[data-syntax="js"] > #tourCode > #tourTsCode {
+  display: none;
+}
+
+#tourCodeAndNotes[data-syntax="ts"] > #tourCode > #tourJsCode {
+  display: none;
+}
+
+#tourCodeAndNotes[data-syntax="js"] > #tourNotes > #tourNoteCustomElements {
+  order: 4;
+}
+
 #tourNotes {
   margin-left: 2em;
   display: flex;
@@ -83,7 +95,6 @@
   margin-bottom: -1.3em;
   position: sticky;
   top: calc(var(--header-height));
-  justify-content: space-between;
   outline: none;
 }
 
