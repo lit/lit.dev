@@ -1,8 +1,12 @@
-As templates get big and complicated, it can help to break them down into smaller pieces. Here we've added a **Hide completed** checkbox to the to-do list. Your mission: refactor the template to hide the completed items when **Hide completed** is checked and show a message when no uncompleted items are displayed.
+As templates get big and complicated, it can help to break them down into smaller pieces. Here we've added a **Hide completed** checkbox to the to-do list. We've also pulled the main todo list template out into a separate local constant, `todos`. You can think of this as a partial template.
+
+You'll notice the `todos` partial is *almost* identical to the `<ul>` element in the previous step, except that it's using the new `items` local constant instead of `this.listItems`.
+
+Your mission: refactor the template to hide the completed items when **Hide completed** is checked and show a message when no uncompleted items are displayed.
 
 *   **Calculate the items to display.**
 
-    Add the following at the beginning of the `render()` method:
+    Find the definition for the `items` constant at the beginning of the `render()` method and replace it with the following code:
 
     ```ts
     const items = this.hideCompleted
@@ -12,40 +16,25 @@ As templates get big and complicated, it can help to break them down into smalle
 
 *   **Define some partial templates.**
 
-    Add the following code directly below the code you just added.
+    Add the following code just before the `return` statement.
 
     ```ts
-    const list = html`
-      <ul>
-        ${items.map((item, index) =>
-          html`<li data-index=${index}
-                class=${classMap({
-                  completed: item.completed
-                })}
-                @click=${() => this.toggleCompleted(item)}>${item.text}
-          </li>`
-        )}
-      </ul>
-    `;
     const caughtUpMessage = html`
       <p>
       You're all caught up!
       </p>
     `;
-    const listOrMessage = items.length > 0
-      ? list
+    const todosOrMessage = items.length > 0
+      ? todos
       : caughtUpMessage;
     ```
 
-    You'll notice the `list` template is *almost* indentical to the `<ul>` element in the main template, except that it's using the new `items` local constant instead of `this.listItems`.
-
 *   **Put it all together.**
 
-    In the main template, find the `<ul>` element, and replace the entire
-    element, including start and end tags, with the following expression:
+    In the main template, find the `${todos}` expression, and replace it with your new partial template:
 
     ```js
-    ${listOrMessage}
+    ${todosOrMessage}
     ```
 
     The end result should look like this:
@@ -53,7 +42,7 @@ As templates get big and complicated, it can help to break them down into smalle
     ```ts
     return html`
       <h2>To Do</h2>
-      ${listOrMessage}
+      ${todosOrMessage}
       <input id="newitem" aria-label="New item">
       ...
     ```

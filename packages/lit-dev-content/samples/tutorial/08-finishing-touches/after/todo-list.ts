@@ -1,6 +1,5 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import {classMap} from 'lit/directives/class-map.js';
 
 type ToDoItem = {
   text: string,
@@ -30,15 +29,15 @@ export class ToDoList extends LitElement {
     const items = this.hideCompleted
       ? this.listItems.filter((item) => !item.completed)
       : this.listItems;
-    const list = html`
+    const todos = html`
       <ul>
-        ${items.map((item, index) =>
-          html`<li data-index=${index}
-                class=${classMap({
-                  completed: item.completed
-                })}
-                @click=${() => this.toggleCompleted(item)}>${item.text}
-          </li>`
+        ${items.map((item) =>
+            html`
+              <li
+                  class=${item.completed ? 'completed' : ''}
+                  @click=${() => this.toggleCompleted(item)}>
+                ${item.text}
+              </li>`
         )}
       </ul>
     `;
@@ -47,13 +46,13 @@ export class ToDoList extends LitElement {
       You're all caught up!
       </p>
     `;
-    const listOrMessage = items.length > 0
-      ? list
+    const todosOrMessage = items.length > 0
+      ? todos
       : caughtUpMessage;
 
     return html`
       <h2>To Do</h2>
-      ${listOrMessage}
+      ${todosOrMessage}
       <input id="newitem" aria-label="New item">
       <button @click=${this.addToDo}>Add</button>
       <br>

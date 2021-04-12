@@ -1,6 +1,5 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import {classMap} from 'lit/directives/class-map.js';
 
 type ToDoItem = {
   text: string,
@@ -21,7 +20,7 @@ export class ToDoList extends LitElement {
   @property()
   listItems = [
     { text: 'Make to-do list', completed: true },
-    { text: 'Complete Lit tutorial', completed: false }
+    { text: 'Add some styles', completed: true }
   ];
   @property()
   hideCompleted = false;
@@ -30,13 +29,13 @@ export class ToDoList extends LitElement {
     return html`
       <h2>To Do</h2>
       <ul>
-        ${this.listItems.map((item, index) =>
-          html`<li data-index=${index}
-                class=${classMap({
-                  completed: item.completed
-                })}
-                @click=${() => this.toggleCompleted(item)}>${item.text}
-          </li>`
+        ${this.listItems.map((item) =>
+          html`
+            <li
+                class=${item.completed ? 'completed' : ''}
+                @click=${() => this.toggleCompleted(item)}>
+              ${item.text}
+            </li>`
         )}
       </ul>
       <input id="newitem" aria-label="New item">

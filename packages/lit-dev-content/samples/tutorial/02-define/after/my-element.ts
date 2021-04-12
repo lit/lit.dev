@@ -5,7 +5,7 @@ import {customElement} from 'lit/decorators.js';
 class MyElement extends LitElement {
   render() {
     return html`
-      <p>Hello world! From my-element</p>
+      <p>Hello world! From my-element.</p>
     `;
   }
 }

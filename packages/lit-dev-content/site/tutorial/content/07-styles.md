@@ -22,10 +22,8 @@ In this step you'll add some styles for completed items.
     Replace the existing line, `class="TODO"` with the following expression:
 
     ```js
-    class=${classMap({
-      completed: item.completed
-    })}
+    class=${item.completed ? 'completed' : ''}
     ```
 
-    [`classMap`](/docs/templates/directives/#classmap) is a rendering helper called a *directive*, which provides a quick way to toggle classes on an element. Here you're only using it to set a single class, but using `classMap` lets you add more classes in the future without rewriting this code.
-
+    A ternary expression is a handy way of adding conditional logic to a template. If you want to set more than one class at a time, you can use Lit's
+    [`classMap`](/docs/templates/directives/#classmap) directive, instead.
