@@ -29,6 +29,6 @@ Here we've provided a name tag component with a message and an input element. In
 
     Since `name` is a reactive property, setting it in the event handler triggers the component to update.
 
-Try it out by entering a name. (To trigger the input `change` event, you'll need to press Enter or click outside the input.)
+Try it out by entering a name.
 
 For more information about declarative event handlers, see [Events](/docs/components/events/).
