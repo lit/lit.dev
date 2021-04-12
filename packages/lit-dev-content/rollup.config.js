@@ -39,6 +39,7 @@ export default [
       'lib/global/mods.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
+      'lib/pages/home-components.js',
       'lib/pages/playground.js',
     ],
     output: {

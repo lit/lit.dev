@@ -61,6 +61,7 @@
     letter-spacing: 0.06em;
     margin: 0 0 1em 0;
     max-width: 15em;
+    font-weight: 700;
   }
 
   #connectLhs > .content > p {

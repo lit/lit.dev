@@ -16,6 +16,10 @@ html {
   --content-max-width: 76rem;
 }
 
+code {
+  font-family: "Roboto Mono", monospace;
+}
+
 @media (max-width: 864px) {
   html {
     --footer-top-height: 20rem;

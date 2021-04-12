@@ -1,5 +1,6 @@
 @import url('./home/1-splash.css');
 @import url('./home/2-use-cases.css');
+@import url('./home/3-tour.css');
 /* @import url('./home/3-simplicity.css'); */
 @import url('./home/4-advantages.css');
 @import url('./home/5-who-is-using.css');
@@ -8,6 +9,11 @@
 
 html {
   --home-side-margin: 2rem;
+}
+
+main {
+  background: #fafafa;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Fading lit-logo (see home.js) */
@@ -24,7 +30,8 @@ html {
 /* Copy */
 
 p {
-  line-height: 1.9em;
+  line-height: 1.7em;
+  font-size: 16px;
 }
 
 /* Bold uppercase links */
@@ -32,7 +39,7 @@ p {
 .homeBoldLink {
   text-transform: uppercase;
   color: black;
-  font-weight: 800;
+  font-weight: 700;
   padding: 1em 0;
   font-size: 0.88889em;
   border-bottom: 2px solid var(--color-blue);
