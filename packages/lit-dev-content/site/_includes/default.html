@@ -7,26 +7,23 @@
     <title>{% if page.title %}{{ page.title }} &ndash;{% endif %} {{ site.name }}</title>
     <meta name="description" content="{{ site.description }}">
     <meta name="theme-color" content="#324fff">
-    <link rel="icon" href="{{ site.baseurl }}/images/flame-flat.svg"></link>
-    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-flat.svg" color="#324fff">
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg"></link>
+    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
 
     {% inlinecss "global.css" %}
 
-    {% inlinejs "mods.js" %}
     {% inlinecss "mods.css" %}
+    {% inlinejs "global/mods.js" %}
 
-    {% if dev %}
-      <script type="module" async src="/lib/global.js"></script>
-      <script type="module" async src="/lib/playground-elements.js"></script>
-    {% else %}
-      <script type="module" async src="/js/global.js"></script>
-      <script type="module" async src="/js/playground-elements.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
 
-      <!-- Note it would be more correct to <link rel="modulepreload"> this common
-          script, since the other two modules already import it, but
-          modulepreload is not yet supported in Firefox or Safari. No real harm
-          in actually loading it here. -->
-      <script type="module" async src="/js/common.js"></script>
+    <!-- Preload common chunks we always need. Note <link rel="modulepreload">
+         isn't yet supported in Firefox or Safari. -->
+    {% if not env.DEV %}
+      <script type="module" src="{{ site.baseurl }}/js/lit.js"></script>
+      <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
+      <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
+      <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
     {% endif %}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -37,13 +34,15 @@
   </head>
   <body>
     <mwc-drawer type="modal" id="mobileDrawer">
-      <nav id="mobileNav">
-        <ol>
-          <li>
-            <span class="sectionHead">Site</span>
-            <ol>{% include 'nav-items.html' %}</ol>
-          </li>
-          {% block drawer %}{{ content | safe }}{% endblock %}
+      <nav>
+        <div id="mobileSiteNav">
+          <img src="{{ site.baseurl }}/images/flame-white.svg" width="24px" height="30px">
+          <ol>
+            {% include 'site-nav.html' %}
+          </ol>
+        </div>
+        <ol id="mobileDocsNav">
+          {% include 'docs-nav-collapsing.html' %}
         </ol>
       </nav>
     </mwc-drawer>

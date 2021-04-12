@@ -1,7 +1,8 @@
 {
+  "extends": "/samples/base.json",
   "title": "Binding to different parts of a template",
   "description": "Bind to attributes, boolean attributes, properties, text content, and event handlers in a template.",
-  "section": "Rendering & Templating",
+  "section": "Template concepts",
   "files": {
     "my-element.js": {},
     "index.html": {}

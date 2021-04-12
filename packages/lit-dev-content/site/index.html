@@ -2,9 +2,9 @@
 
 {% block head %}
   {% inlinecss "home.css" %}
-  {% inlinejs "home.js" %}
+  {% inlinejs "pages/home.js" %}
 
-  {% if dev %}
+  {% if env.DEV %}
     <!-- HACK: In dev mode, the logo renders before the stylesheet loads, so it
     is initially visible, and then immediately fades away. This doesn't affect
     prod because the whole stylesheet is inlined. -->

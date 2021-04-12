@@ -44,11 +44,20 @@ a {
    on the nav, which is quite distracting. This reproduces something similar to
    macOS style on all platforms. */
 .minimalScroller::-webkit-scrollbar {
-  width: 0.88889em;
+  width: 15px;
 }
 .minimalScroller:hover::-webkit-scrollbar-thumb {
   background: rgb(255 255 255 / 0.3);
-  background-clip: content-box;
+  background-clip: content-box !important;
   border: 4px solid transparent;
   border-radius: 10px;
+}
+
+/* Hide something visually in a way that screen readers will read. */
+.offscreen {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

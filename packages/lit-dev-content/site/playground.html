@@ -2,7 +2,10 @@
 
 {% block head %}
   {% inlinecss "playground.css" %}
-  {% inlinejs "playground.js" %}
+  <script type="module" src="{{ site.baseurl }}/js/pages/playground.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-drawer.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/resize-bar.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -63,6 +66,9 @@
   </div>
 
   <playground-project
+    {% if env.PLAYGROUND_SANDBOX %}
+      sandbox-base-url={{ env.PLAYGROUND_SANDBOX }}
+    {% endif %}
      id="project">
   </playground-project>
 

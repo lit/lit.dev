@@ -1,0 +1,21 @@
+<li class="navItem{% if page.url.includes('/docs') %} active{% endif %}">
+   <a href="{{ site.baseurl }}/docs/">Documentation</a></li>
+<li class="navItem{% if page.url.includes('/tutorial') %} active{% endif %}">
+   <a href="{{ site.baseurl }}/tutorial/">Tutorial</a></li>
+<li class="navItem{% if page.url.includes('/playground') %} active{% endif %}">
+   <a href="{{ site.baseurl }}/playground/">Playground</a></li>
+<li class="navItem{% if page.url.includes('/blog') %} active{% endif %}">
+   <a href="{{ site.baseurl }}/blog/">Blog</a></li>
+<li class="navItem">
+   <a
+      href="https://github.com/Polymer/lit-html/"
+      target="_blank"
+      rel="noopener"
+      title="GitHub"
+      aria-label="GitHub"
+      ><svg>
+         <use
+            xlink:href="/images/social/github.svg#github"
+         ></use>
+      </svg>
+      </a></li>

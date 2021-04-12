@@ -1,11 +1,7 @@
 /**
  * @license
- * Copyright (c) 2020 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ * Copyright 2020 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 import {BlockingRenderer} from './blocking-renderer.js';
@@ -46,7 +42,7 @@ interface EleventyConfig {
  */
 export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
-  _pluginOptions?: {}
+  {sandboxUrl}: {sandboxUrl: string}
 ) => {
   let renderer: BlockingRenderer | undefined;
 
@@ -129,9 +125,9 @@ export const playgroundPlugin = (
     }
     const config = await readProjectConfig(project);
     const styleHeight = config.editorHeight
-      ? `style="height: ${config.editorHeight}px;"`
+      ? `style="height: ${config.editorHeight};"`
       : '';
-    const lineNumbers = config.lineNumbers === false ? '' : 'line-numbers';
+    const lineNumbers = config.lineNumbers ? 'line-numbers' : '';
     return `
       <playground-ide ${styleHeight}
       ${lineNumbers} resizable editable-file-system
@@ -173,7 +169,7 @@ export const playgroundPlugin = (
       const editorHeight = config.editorHeight ?? '300px';
       const previewHeight = config.previewHeight ?? '120px';
       return `
-      <litdev-example
+      <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
         style="height:calc(${editorHeight} + ${previewHeight});
                --litdev-example-editor-height:${editorHeight};
                --litdev-example-preview-height:${previewHeight}"

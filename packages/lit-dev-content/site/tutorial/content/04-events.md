@@ -30,4 +30,4 @@ In this step you'll add an input element and an event handler to a component.
 
 Now try it out!
 
-For more information about declarative event handlers, see [Events](/guide/components/events/).
+For more information about declarative event handlers, see [Events](/docs/components/events/).

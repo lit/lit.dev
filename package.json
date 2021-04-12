@@ -9,13 +9,22 @@
     "start": "cd packages/lit-dev-server && npm start",
     "dev": "cd packages/lit-dev-content && (npm run build:ts:watch -- --preserveWatchOutput & npm run dev:build:site:watch & npm run dev:serve)",
     "format": "prettier \"**/*.{ts,js,json,html,css,md}\" --write",
-    "nuke": "rm -rf node_modules package-lock.json packages/*/node_modules packages/*/package-lock.json && npm install && npm run bootstrap"
+    "nuke": "rm -rf node_modules package-lock.json packages/*/node_modules packages/*/package-lock.json && npm install && npx lerna bootstrap",
+    "test": "npm run test:links",
+    "test:links": "npm run test:links:internal && npm run test:links:external",
+    "test:links:internal": "run-p -r start check-links:internal",
+    "test:links:external": "run-p -r start check-links:external",
+    "check-links:internal": "wait-on tcp:8080 && blc http://localhost:8080 --exclude '*TODO_HREF' --exclude 'http://localhost:8080/api/*' --recursive --exclude-external --ordered",
+    "check-links:external": "wait-on tcp:8080 && blc http://localhost:8080 --exclude '*TODO_HREF' --exclude 'http://localhost:8080/api/*' --exclude 'http://localhost:8000/dev/' --exclude 'https://github.com/Polymer/internal*' --exclude 'https://github.com/PolymerLabs/lit.dev*' --exclude 'https://www.npmjs.com/*' --get --recursive --exclude-internal --host-requests 1"
   },
-  "author": "",
+  "author": "Google LLC",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "broken-link-checker": "^0.7.8",
     "lerna": "^3.22.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "wait-on": "^5.3.0"
   }
 }

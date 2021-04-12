@@ -18,6 +18,9 @@ const {
 } = require('../lit-dev-tools/lib/playground-inline.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 const luxon = require('luxon');
+const {
+  accessiblePermalink,
+} = require('../lit-dev-tools/lib/accessible-permalinks.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -25,6 +28,7 @@ const slugify = (s) => slugifyLib(s, {lower: true});
 
 const DEV = process.env.ELEVENTY_ENV === 'dev';
 const OUTPUT_DIR = DEV ? '_dev' : '_site';
+const PLAYGROUND_SANDBOX = process.env.PLAYGROUND_SANDBOX;
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
@@ -34,26 +38,29 @@ module.exports = function (eleventyConfig) {
     wrapperClass: '',
   });
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
-  eleventyConfig.addPlugin(playgroundPlugin);
+  eleventyConfig.addPlugin(playgroundPlugin, {
+    sandboxUrl: PLAYGROUND_SANDBOX,
+  });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
+    eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
     eleventyConfig.addPassthroughCopy('site/css');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-typescript-worker.js':
+        './js/playground-typescript-worker.js',
+    });
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-service-worker.js':
+        './js/playground-service-worker.js',
+    });
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-service-worker-proxy.html':
+        './js/playground-service-worker-proxy.html',
+    });
   }
   eleventyConfig.addPassthroughCopy('api/**/*');
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-typescript-worker.js':
-      './js/playground-typescript-worker.js',
-  });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-service-worker.js':
-      './js/playground-service-worker.js',
-  });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-service-worker-proxy.html':
-      './js/playground-service-worker-proxy.html',
-  });
 
   eleventyConfig.addWatchTarget('../lit-dev-api/api-data');
 
@@ -77,7 +84,17 @@ ${content}
     linkify: true,
   })
     .use(markdownItAttrs)
-    .use(markdownItAnchor, {slugify, permalink: false});
+    .use(markdownItAnchor, {
+      slugify,
+      permalink: true,
+      permalinkClass: 'anchor',
+      permalinkSymbol: '#',
+      level: [2, 3],
+      renderPermalink: accessiblePermalink({
+        wrapperClassName: 'heading',
+        offscreenClass: 'offscreen',
+      }),
+    });
   eleventyConfig.setLibrary('md', md);
 
   eleventyConfig.addFilter('removeExtension', function (url) {
@@ -85,31 +102,31 @@ ${content}
     return url.substring(0, url.length - extension.length);
   });
 
-  eleventyConfig.addCollection('guide', function (collection) {
-    // Order the 'guide' collection by filename, which includes a number prefix.
-    // We could also order by a frontmatter property
-    // console.log(
-    //   'guide',
-    //   collection.getFilteredByGlob('site/guide/**')
-    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
+  const docsByUrl = new Map();
+  eleventyConfig.addCollection('docs', function (collection) {
+    const docs = collection
+      .getFilteredByGlob('site/docs/**')
+      .sort(function (a, b) {
+        if (a.fileSlug == 'docs') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
+    for (const page of docs) {
+      docsByUrl.set(page.url, page);
+    }
+    return docs;
+  });
 
-    return (
-      collection
-        .getFilteredByGlob('site/guide/**')
-        // .filter((f) => !f.data.slug?.includes('/'))
-        .sort(function (a, b) {
-          if (a.fileSlug == 'guide') {
-            return -1;
-          }
-          if (a.fileSlug < b.fileSlug) {
-            return -1;
-          }
-          if (b.fileSlug < a.fileSlug) {
-            return 1;
-          }
-          return 0;
-        })
-    );
+  // The reverse filter isn't working in Liquid templates
+  eleventyConfig.addCollection('releasenotes', function (collection) {
+    return collection.getFilteredByTag('release').reverse();
   });
 
   eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
@@ -125,6 +142,44 @@ ${content}
   });
 
   /**
+   * Flatten a navigation object into an array, and add "next" and "prev"
+   * properties.
+   *
+   * See https://github.com/11ty/eleventy-navigation/issues/22
+   */
+  eleventyConfig.addFilter('flattenNavigationAndAddNextPrev', (nav) => {
+    const flat = [];
+    // TODO(aomarks) For an unknown reason, every page in the "Templates"
+    // section is duplicated in the nav. Doesn't affect any other section. Just
+    // de-dupe by URL for now.
+    const seen = new Set();
+    const visit = (items) => {
+      for (const item of items) {
+        if (seen.has(item.url)) {
+          continue;
+        }
+        seen.add(item.url);
+        flat.push(item);
+        visit(item.children);
+      }
+    };
+    visit(nav);
+    for (let i = 0; i < flat.length; i++) {
+      const item = flat[i];
+      item.prev = flat[i - 1];
+      item.next = flat[i + 1];
+    }
+    return flat;
+  });
+
+  /**
+   * Gets the title given a docs URL.
+   */
+  eleventyConfig.addFilter('docsUrlTitle', (url) => {
+    return docsByUrl.get(url)?.data?.title;
+  });
+
+  /**
    * Render the given content as markdown.
    */
   eleventyConfig.addFilter('markdown', (content) => {
@@ -132,6 +187,20 @@ ${content}
       return '';
     }
     return md.render(content);
+  });
+
+  /**
+   * Render the `typeof` of the given value.
+   */
+  eleventyConfig.addFilter('typeof', (value) => typeof value);
+
+  /**
+   * Return whether the given table-of-contents HTML includes at least one <a>
+   * tag. It always renders a surrounding <nav> element, even when there are no
+   * items.
+   */
+  eleventyConfig.addFilter('tocHasEntries', (html) => {
+    return html.includes('<a');
   });
 
   // Don't use require() because of Node caching in watch mode.
@@ -197,7 +266,7 @@ ${content}
     }
 
     const {page, anchor} = location;
-    return `<a href="/guide/api/${page}#${anchor}">${name}</a>`;
+    return `<a href="/docs/api/${page}#${anchor}">${name}</a>`;
   });
 
   /**
@@ -225,16 +294,16 @@ ${content}
 
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
-   * to ./site/_includes/js/ directory (which is where Rollup output goes).
+   * to ./rollupout.
    *
-   * In dev mode, instead directly import the module relative from ./lib/ (which
-   * is where TypeScript output goes).
+   * In dev mode, instead directly import the module, which has already been
+   * symlinked directly to the TypeScript output directory.
    */
   eleventyConfig.addShortcode('inlinejs', (path) => {
     if (DEV) {
-      return `<script type="module" src="/lib/${path}"></script>`;
+      return `<script type="module" src="/js/${path}"></script>`;
     }
-    const script = fsSync.readFileSync(`site/_includes/js/${path}`, 'utf8');
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8');
     return `<script type="module">${script}</script>`;
   });
 
@@ -260,13 +329,16 @@ ${content}
     // "index.html" and see a weird empty page.
     const emptyDocsIndexFiles = (
       await fastGlob([
-        OUTPUT_DIR + '/guide/introduction.html',
-        OUTPUT_DIR + '/guide/*/index.html',
+        OUTPUT_DIR + '/docs/introduction.html',
+        OUTPUT_DIR + '/docs/*/index.html',
       ])
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
       // file that a page shouldn't be generated.
-      (file) => !file.includes('why-lit') && !file.includes('getting-started')
+      (file) =>
+        !file.includes('why-lit') &&
+        !file.includes('getting-started') &&
+        !file.includes('browser-support')
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
@@ -287,11 +359,11 @@ ${content}
         path.join(__dirname, '_dev', 'samples')
       );
 
-      // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs in
+      // Symlink lib -> _dev/js. This lets us directly reference tsc outputs in
       // dev mode, instead of the Rollup bundles we use for production.
       await symlinkForce(
         path.join(__dirname, 'lib'),
-        path.join(__dirname, '_dev', 'lib')
+        path.join(__dirname, '_dev', 'js')
       );
     } else {
       // Inline all Playground project files directly into their manifests, to
@@ -308,35 +380,27 @@ ${content}
   });
 
   eleventyConfig.addCollection('tutorial', function (collection) {
-    // Order the 'tutorial' collection by filename, which includes a number prefix.
-    // We could also order by a frontmatter property
-    // console.log(
-    //   'guide',
-    //   collection.getFilteredByGlob('site/guide/**')
-    //     .map((f) => `${f.inputPath}, ${f.fileSlug}, ${f.data.slug}, ${f.data.slug.includes('/')}`));
-
-    return (
-      collection
-        .getFilteredByGlob('site/tutorial/**')
-        // .filter((f) => !f.data.slug?.includes('/'))
-        .sort(function (a, b) {
-          if (a.fileSlug == 'tutorial') {
-            return -1;
-          }
-          if (a.fileSlug < b.fileSlug) {
-            return -1;
-          }
-          if (b.fileSlug < a.fileSlug) {
-            return 1;
-          }
-          return 0;
-        })
-    );
+    return collection
+      .getFilteredByGlob('site/tutorial/**')
+      .sort(function (a, b) {
+        if (a.fileSlug == 'tutorial') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
   });
 
   return {
     dir: {input: 'site', output: OUTPUT_DIR},
     htmlTemplateEngine: 'njk',
+    // TODO: Switch markdown to Nunjucks
+    // markdownTemplateEngine: 'njk',
   };
 };
 

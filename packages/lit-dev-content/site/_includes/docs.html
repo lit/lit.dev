@@ -1,0 +1,92 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "docs.css" %}
+  {% inlinejs "pages/docs.js" %}
+  {% if '/api/' in page.url %}
+    {% inlinecss "docs-api.css" %}
+    <script type="module" src="{{ site.baseurl }}/js/components/copy-button.js"></script>
+  {% else %}
+    <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% set toc = content | toc %}
+
+
+  <div id="docsNavWrapper" class="minimalScroller">
+    <nav id="docsNav">
+      <ol>{% include 'docs-nav.html' %}</ol>
+    </nav>
+  </div>
+
+  <div id="rhsTocWrapper">
+    {% if toc | tocHasEntries %}
+      <nav id="rhsToc">
+        <h2>Contents</h2>
+        <div id="rhsTocInner">
+          {{ toc | safe }}
+        </div>
+      </nav>
+    {% endif %}
+  </div>
+
+  <div id="articleWrapper">
+    <article>
+      <h1>{{ title }}</h1>
+
+      {% if toc | tocHasEntries %}
+        <nav id="inlineToc">
+          <details>
+            <summary><h2>Contents</h2></summary>
+            {{ toc | safe }}
+          </details>
+        </nav>
+      {% endif %}
+
+      {{ content | safe }}
+
+      {% set navItems = collections.docs | eleventyNavigation | flattenNavigationAndAddNextPrev %}
+      {% for item in navItems %}
+        {% if item.url === page.url and item.parent %}
+          {% set prev = item.prev %}
+          {% if not prev.parent %}
+            {% set prev = prev.prev %}
+          {% endif %}
+          {% set next = item.next %}
+          {% if not next.parent %}
+            {% set next = next.next %}
+          {% endif %}
+
+          <div id="prevAndNextLinks">
+            <a id="prevLink" href="{{ prev.url }}">
+              {% if prev %}
+                <!-- Source: https://material.io/resources/icons/?icon=arrow_back -->
+                <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
+                  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                </svg>
+                <span class="direction">Previous</span>
+                <span class="title">{{ prev.url | docsUrlTitle }}</span>
+              {% endif %}
+            </a>
+
+            <a id="nextLink" href="{{ next.url }}">
+              {% if next %}
+                <span class="direction">Next</span>
+                <span class="title">{{ next.url | docsUrlTitle }}</span>
+                <!-- Source: https://material.io/resources/icons/?icon=arrow_forward -->
+                <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
+                  <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                </svg>
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </article>
+  </div>
+
+
+{% endblock %}

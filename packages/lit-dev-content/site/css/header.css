@@ -4,10 +4,13 @@ header {
   height: var(--header-height);
   /* CodeMirrors have a very high z-index for some reason. */
   z-index: 4;
-  background: var(--color-light-gray);
+  background: white;
   display: flex;
   padding: 0 1.5em;
   justify-content: stretch;
+  border-bottom: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
 }
 
 #headerLogo {
@@ -20,6 +23,14 @@ header > nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: var(--header-footer-max-width, unset);
+  margin: var(--header-footer-margin, unset);
+}
+
+.navItem > a > svg {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
 }
 
 #desktopNav {

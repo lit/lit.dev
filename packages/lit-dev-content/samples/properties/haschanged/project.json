@@ -1,6 +1,9 @@
 {
+  "extends": "/samples/base.json",
   "files": {
-    "my-element.js": {},
+    "my-element.ts": {},
     "index.html": {}
-  }
+  },
+  "editorHeight": "675px",
+  "previewHeight": "100px"
 }
