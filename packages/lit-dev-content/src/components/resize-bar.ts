@@ -78,6 +78,7 @@ export class ResizeBar extends LitElement {
   resizing = false;
 
   private _hoverTimer?: ReturnType<typeof setTimeout>;
+  private _updateSizeRafId?: ReturnType<typeof requestAnimationFrame>;
 
   render() {
     return html`<div
@@ -122,18 +123,33 @@ export class ResizeBar extends LitElement {
     const {left, right, top, bottom} = target.getBoundingClientRect();
     const oldSize = isWidthDimension ? right - left : bottom - top;
 
-    const onPointermove = ({clientX, clientY}: PointerEvent) => {
-      if (!this.property) {
+    let clientX = 0;
+    let clientY = 0;
+
+    const onPointermove = (event: PointerEvent) => {
+      // Only update once per animation frame, but with the latest offsets.
+      clientX = event.clientX;
+      clientY = event.clientY;
+      if (this._updateSizeRafId !== undefined) {
         return;
       }
-      // TODO(aomarks) This calculation also depends on which edge we're on. For
-      // now we assume that when the dimension is width we resize the element to
-      // the left of the bar, and when dimension is height we resize the element
-      // underneath the bar.
-      const newSize = isWidthDimension
-        ? oldSize + clientX - right
-        : oldSize - clientY + top;
-      document.documentElement.style.setProperty(this.property, `${newSize}px`);
+      this._updateSizeRafId = requestAnimationFrame(() => {
+        this._updateSizeRafId = undefined;
+        if (!this.property) {
+          return;
+        }
+        // TODO(aomarks) This calculation also depends on which edge we're on. For
+        // now we assume that when the dimension is width we resize the element to
+        // the left of the bar, and when dimension is height we resize the element
+        // underneath the bar.
+        const newSize = isWidthDimension
+          ? oldSize + clientX - right
+          : oldSize - clientY + top;
+        document.documentElement.style.setProperty(
+          this.property,
+          `${newSize}px`
+        );
+      });
     };
     this.addEventListener('pointermove', onPointermove);
 
