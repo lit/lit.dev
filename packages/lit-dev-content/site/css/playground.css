@@ -3,7 +3,7 @@ main {
   /* Account for removed footer height. */
   min-height: calc(100vh - var(--header-height));
   --litdev-drawer-header-height: 3.4em;
-  --litdev-drawer-open-width: 18rem;
+  --litdev-drawer-open-width: 280px;
   --litdev-drawer-closed-width: 2.5rem;
   --example-drawer-padding: 2em;
   --litdev-drawer-transition-duration: 200ms;
@@ -40,48 +40,47 @@ litdev-drawer:not([closed])::part(header) {
 }
 
 .exampleSectionHeading {
-  font-size: 0.8em;
+  font-size: 16px;
+  font-weight: 600;
   text-transform: uppercase;
-  border-bottom: 2px solid #666;
   margin-top: 2em;
-  padding-bottom: 0.6em;
+  margin-bottom: 0;
   padding-left: var(--example-drawer-padding);
 }
 
 .exampleList {
   list-style: none;
   padding-left: 0;
+  margin-top: 8px;
 }
 
 .exampleItem {
-  font-size: 0.88889em;
+  font-size: 16px;
 }
 
 .exampleItem > a {
   display: block;
   color: white;
-  padding: 0.3em var(--example-drawer-padding);
+  padding: 6px var(--example-drawer-padding);
 }
 
 .exampleItem > a:hover {
-  background: #333;
-}
-
-.exampleItem.active > a {
-  background: #666;
+  text-decoration: underline;
 }
 
 .exampleItem.active > a {
   position: relative;
+  font-weight: bold;
 }
 
 .exampleItem.active > a::before {
-  content: '◆';
-  color: var(--color-dark-cyan);
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%2300e8ff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
   position: absolute;
-  left: 0.9em;
-  top: 0.6em;
-  font-size: 0.7em;
+  left: 10px;
+  top: 12px;
 }
 
 /* Right side */
@@ -128,9 +127,7 @@ litdev-drawer:not([closed])::part(header) {
 }
 
 #actionBar > button:hover {
-  background: white;
-  border-color: white;
-  color: var(--color-blue);
+  background: blue;
 }
 
 #actionBar > button > svg {
