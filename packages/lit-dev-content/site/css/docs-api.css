@@ -28,9 +28,15 @@
 /* Import statements */
 .import {
   display: flex;
-  background: var(--playground-code-background-color);
+  background: var(--playground-code-background);
+  border: var(--code-border);
+  border-radius: 5px;
   align-items: center;
   justify-content: space-between;
+}
+.import > figure {
+  border: none;
+  margin: 0;
 }
 copy-button {
   height: 48px;

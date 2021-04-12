@@ -2,6 +2,9 @@
 
 {% block head %}
   {% inlinecss "tutorial.css" %}
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-tutorial.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/resize-bar.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,6 +22,9 @@
 
 <div id="editorAndPreview">
   <playground-project
+    {% if env.PLAYGROUND_SANDBOX %}
+      sandbox-base-url={{ env.PLAYGROUND_SANDBOX }}
+    {% endif %}
      id="tutorialProject">
   </playground-project>
 

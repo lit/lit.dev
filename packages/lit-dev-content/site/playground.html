@@ -2,7 +2,7 @@
 
 {% block head %}
   {% inlinecss "playground.css" %}
-  {% inlinejs "playground.js" %}
+  <script type="module" src="{{ site.baseurl }}/js/pages/playground.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -69,6 +69,9 @@
   </div>
 
   <playground-ide
+    {% if env.PLAYGROUND_SANDBOX %}
+      sandbox-base-url={{ env.PLAYGROUND_SANDBOX }}
+    {% endif %}
     slot="appContent"
     pragmas="off"
     resizable

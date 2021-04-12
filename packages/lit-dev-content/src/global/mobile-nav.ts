@@ -1,3 +1,12 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+import '@material/mwc-icon-button';
+import '@material/mwc-drawer';
+
 window.addEventListener('DOMContentLoaded', async () => {
   // Expand the current section.
   const activeDetails = document.querySelector(

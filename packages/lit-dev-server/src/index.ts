@@ -1,11 +1,7 @@
 /**
  * @license
- * Copyright (c) 2020 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ * Copyright 2020 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 import Koa from 'koa';
@@ -15,25 +11,37 @@ import koaEtag from 'koa-etag';
 import {createRequire} from 'module';
 import * as path from 'path';
 
-const require = createRequire(import.meta.url);
-const contentPackage = require.resolve('lit-dev-content');
-const contentDir = path.dirname(contentPackage);
+const mode = process.env.MODE;
+if (mode !== 'main' && mode !== 'playground') {
+  console.error(`MODE env must be "main" or "playground", was "${mode}"`);
+  process.exit(1);
+}
+const port = Number(process.env.PORT);
+if (isNaN(port)) {
+  console.error(`PORT env must be a number, was "${process.env.PORT}"`);
+  process.exit(1);
+}
 
-console.log('contentPackage', contentPackage);
-console.log('contentDir', contentDir);
+const require = createRequire(import.meta.url);
+const contentPackage = path.dirname(require.resolve('lit-dev-content'));
+const staticRoot =
+  mode === 'playground' ? path.join(contentPackage, 'js') : contentPackage;
+
+console.log(`mode: ${mode}`);
+console.log(`port: ${port}`);
+console.log(`static root: ${staticRoot}`);
 
 const app = new Koa();
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
 app.use(
-  koaStatic(contentDir, {
+  koaStatic(staticRoot, {
     // Serve pre-compressed .br and .gz files if available.
     brotli: true,
     gzip: true,
   })
 );
 
-const port = process.env.PORT || 8080;
 const server = app.listen(port);
 console.log(`server listening on port ${port}`);
 

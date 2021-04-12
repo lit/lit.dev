@@ -19,8 +19,8 @@ However, instead of simply _returning_ a value to render, a directive gets speci
 
 While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. To create a directive:
 
-*   Implement the directive as a class that extends the [`Directive`](TODO_HREF) class.
-*   Pass your class to the [`directive()`](TODO_HREF) factory to create a directive function that can be used in Lit template expressions.
+*   Implement the directive as a class that extends the {% api "Directive" %} class.
+*   Pass your class to the {% api "directive()" "directive" %} factory to create a directive function that can be used in Lit template expressions.
 
 ```js
 import {Directive, directive} from 'lit/directive.js';
@@ -228,7 +228,7 @@ The previous example directives are synchronous: they return values synchronousl
 
 Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
-To set a value asynchronously, a directive needs to extend the [`AsyncDirective`](TODO_HREF) base class, which provides a `setValue()` API.
+To set a value asynchronously, a directive needs to extend the {% api "AsyncDirective" %} base class, which provides a `setValue()` API.
 
 Here's an example of a simple async directive that renders a Promise value:
 

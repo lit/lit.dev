@@ -1,3 +1,5 @@
+// TODO(aomarks) This is only here for some mods. Remove it and mods when home
+// page design finalized.
 document.body.classList.add('home');
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -89,14 +91,14 @@ const activateTourRegions = () => {
       },
     },
     {
-      noteSelector: '#tourNoteTemplates',
+      noteSelector: '#tourNoteExpressions',
       ts: {
-        start: {line: 15, char: 11.5},
-        end: {line: 15, char: 42},
+        start: {line: 15, char: 26.5},
+        end: {line: 15, char: 36},
       },
       js: {
-        start: {line: 21, char: 11.5},
-        end: {line: 21, char: 42},
+        start: {line: 21, char: 26.5},
+        end: {line: 21, char: 36},
       },
     },
   ];

@@ -12,29 +12,31 @@ steps:
   # https://docs.docker.com/engine/reference/commandline/build/
   # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
   # https://cloud.google.com/build/docs/kaniko-cache
-  - id: Build
+  - id: build
     name: gcr.io/kaniko-project/executor
     args:
       - --dockerfile=./Dockerfile
-      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA
       - --cache=true
       - --cache-ttl=168h # 1 week
+      # Bake in this revision's corresponding playground sandbox url
+      - --build-arg=PLAYGROUND_SANDBOX=https://pr$_PR_NUMBER-$SHORT_SHA---lit-dev-playground-5ftespv5na-uc.a.run.app/
 
-  # Create a new Cloud Run revision.
+  # Create a new Cloud Run revision for the main site.
   #
   # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
   # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
-  - id: Deploy
+  - id: deploy-main
     name: gcr.io/google.com/cloudsdktool/cloud-sdk
     entrypoint: gcloud
     args:
       - beta
       - run
       - deploy
-      - $_SERVICE_NAME
+      - lit-dev # Service name
       - '--region=$_DEPLOY_REGION'
       - '--platform=managed'
-      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
       - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
@@ -46,6 +48,40 @@ steps:
       - '--concurrency=default' # unlimited
       - '--min-instances=0'
       - '--max-instances=1'
+      # Serve the main site
+      - '--update-env-vars=MODE=main'
+
+  # Create a new Cloud Run revision for the playground sandbox.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: deploy-playground
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    waitFor:
+      # Don't wait for main site to deploy
+      - build
+    args:
+      - beta
+      - run
+      - deploy
+      - lit-dev-playground # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-main.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=default' # unlimited
+      - '--min-instances=0'
+      - '--max-instances=1'
+      # Serve the playground
+      - '--update-env-vars=MODE=playground'
 
 tags:
   - lit-dev

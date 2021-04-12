@@ -28,6 +28,7 @@ const slugify = (s) => slugifyLib(s, {lower: true});
 
 const DEV = process.env.ELEVENTY_ENV === 'dev';
 const OUTPUT_DIR = DEV ? '_dev' : '_site';
+const PLAYGROUND_SANDBOX = process.env.PLAYGROUND_SANDBOX;
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
@@ -37,26 +38,29 @@ module.exports = function (eleventyConfig) {
     wrapperClass: '',
   });
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
-  eleventyConfig.addPlugin(playgroundPlugin);
+  eleventyConfig.addPlugin(playgroundPlugin, {
+    sandboxUrl: PLAYGROUND_SANDBOX,
+  });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
+    eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
     eleventyConfig.addPassthroughCopy('site/css');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-typescript-worker.js':
+        './js/playground-typescript-worker.js',
+    });
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-service-worker.js':
+        './js/playground-service-worker.js',
+    });
+    eleventyConfig.addPassthroughCopy({
+      'node_modules/playground-elements/playground-service-worker-proxy.html':
+        './js/playground-service-worker-proxy.html',
+    });
   }
   eleventyConfig.addPassthroughCopy('api/**/*');
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-typescript-worker.js':
-      './js/playground-typescript-worker.js',
-  });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-service-worker.js':
-      './js/playground-service-worker.js',
-  });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/playground-elements/playground-service-worker-proxy.html':
-      './js/playground-service-worker-proxy.html',
-  });
 
   eleventyConfig.addWatchTarget('../lit-dev-api/api-data');
 
@@ -98,19 +102,26 @@ ${content}
     return url.substring(0, url.length - extension.length);
   });
 
+  const docsByUrl = new Map();
   eleventyConfig.addCollection('docs', function (collection) {
-    return collection.getFilteredByGlob('site/docs/**').sort(function (a, b) {
-      if (a.fileSlug == 'docs') {
-        return -1;
-      }
-      if (a.fileSlug < b.fileSlug) {
-        return -1;
-      }
-      if (b.fileSlug < a.fileSlug) {
-        return 1;
-      }
-      return 0;
-    });
+    const docs = collection
+      .getFilteredByGlob('site/docs/**')
+      .sort(function (a, b) {
+        if (a.fileSlug == 'docs') {
+          return -1;
+        }
+        if (a.fileSlug < b.fileSlug) {
+          return -1;
+        }
+        if (b.fileSlug < a.fileSlug) {
+          return 1;
+        }
+        return 0;
+      });
+    for (const page of docs) {
+      docsByUrl.set(page.url, page);
+    }
+    return docs;
   });
 
   // The reverse filter isn't working in Liquid templates
@@ -131,6 +142,44 @@ ${content}
   });
 
   /**
+   * Flatten a navigation object into an array, and add "next" and "prev"
+   * properties.
+   *
+   * See https://github.com/11ty/eleventy-navigation/issues/22
+   */
+  eleventyConfig.addFilter('flattenNavigationAndAddNextPrev', (nav) => {
+    const flat = [];
+    // TODO(aomarks) For an unknown reason, every page in the "Templates"
+    // section is duplicated in the nav. Doesn't affect any other section. Just
+    // de-dupe by URL for now.
+    const seen = new Set();
+    const visit = (items) => {
+      for (const item of items) {
+        if (seen.has(item.url)) {
+          continue;
+        }
+        seen.add(item.url);
+        flat.push(item);
+        visit(item.children);
+      }
+    };
+    visit(nav);
+    for (let i = 0; i < flat.length; i++) {
+      const item = flat[i];
+      item.prev = flat[i - 1];
+      item.next = flat[i + 1];
+    }
+    return flat;
+  });
+
+  /**
+   * Gets the title given a docs URL.
+   */
+  eleventyConfig.addFilter('docsUrlTitle', (url) => {
+    return docsByUrl.get(url)?.data?.title;
+  });
+
+  /**
    * Render the given content as markdown.
    */
   eleventyConfig.addFilter('markdown', (content) => {
@@ -144,6 +193,15 @@ ${content}
    * Render the `typeof` of the given value.
    */
   eleventyConfig.addFilter('typeof', (value) => typeof value);
+
+  /**
+   * Return whether the given table-of-contents HTML includes at least one <a>
+   * tag. It always renders a surrounding <nav> element, even when there are no
+   * items.
+   */
+  eleventyConfig.addFilter('tocHasEntries', (html) => {
+    return html.includes('<a');
+  });
 
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
@@ -236,16 +294,16 @@ ${content}
 
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
-   * to ./site/_includes/js/ directory (which is where Rollup output goes).
+   * to ./rollupout.
    *
-   * In dev mode, instead directly import the module relative from ./lib/ (which
-   * is where TypeScript output goes).
+   * In dev mode, instead directly import the module, which has already been
+   * symlinked directly to the TypeScript output directory.
    */
   eleventyConfig.addShortcode('inlinejs', (path) => {
     if (DEV) {
-      return `<script type="module" src="/lib/${path}"></script>`;
+      return `<script type="module" src="/js/${path}"></script>`;
     }
-    const script = fsSync.readFileSync(`site/_includes/js/${path}`, 'utf8');
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8');
     return `<script type="module">${script}</script>`;
   });
 
@@ -301,11 +359,11 @@ ${content}
         path.join(__dirname, '_dev', 'samples')
       );
 
-      // Symlink lib -> _dev/lib. This lets us directly reference tsc outputs in
+      // Symlink lib -> _dev/js. This lets us directly reference tsc outputs in
       // dev mode, instead of the Rollup bundles we use for production.
       await symlinkForce(
         path.join(__dirname, 'lib'),
-        path.join(__dirname, '_dev', 'lib')
+        path.join(__dirname, '_dev', 'js')
       );
     } else {
       // Inline all Playground project files directly into their manifests, to

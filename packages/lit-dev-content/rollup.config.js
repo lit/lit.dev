@@ -1,15 +1,7 @@
 /**
  * @license
- * Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at
- * http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at
- * http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at
- * http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at
- * http://polymer.github.io/PATENTS.txt
+ * Copyright 2020 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 import resolve from '@rollup/plugin-node-resolve';
@@ -29,81 +21,67 @@ const terserOptions = {
     inline_script: false,
   },
   mangle: {
+    // TODO(aomarks) Find out why we can't do property renaming. Something in
+    // MWC?
     properties: false,
   },
 };
 
 export default [
   {
-    input: 'lib/mobile-nav.js',
+    input: [
+      'lib/components/copy-button.js',
+      'lib/components/litdev-example.js',
+      'lib/components/litdev-tutorial.js',
+      'lib/components/playground-elements.js',
+      'lib/components/resize-bar.js',
+      'lib/global/mobile-nav.js',
+      'lib/global/mods.js',
+      'lib/pages/docs.js',
+      'lib/pages/home.js',
+      'lib/pages/home-components.js',
+      'lib/pages/playground.js',
+    ],
     output: {
-      file: 'site/_includes/js/mobile-nav.js',
+      dir: 'rollupout',
       format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/mods.js',
-    output: {
-      file: 'site/_includes/js/mods.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/home.js',
-    output: {
-      file: 'site/_includes/js/home.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/docs.js',
-    output: {
-      file: 'site/_includes/js/docs.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: 'lib/playground.js',
-    output: {
-      file: 'site/_includes/js/playground.js',
-      format: 'esm',
-    },
-    plugins: [resolve(), terser(terserOptions), summary()],
-  },
-  {
-    input: ['lib/global.js', 'lib/playground-elements.js'],
-    output: {
-      dir: '_site/js/',
-      format: 'esm',
-      // Override the default chunk name of "[name]-[hash].js" because:
-      //
-      // 1. By default, the hash is included in the filename, which would
-      //    require us to pipe the hash to the Eleventy HTML template somehow,
-      //    because we preload this chunk. This will obviously break if we ever
-      //    have >1 chunk, so we'll probably eventually need to do this piping
-      //    (chunkFileNames can also be a function, so we could pick static
-      //    names that way too).
-      //
-      // 2. The default name is picked from one of the included modules. In our
-      //    case, it picks "mwc-icon-button", which isn't great because this
-      //    more importantly contains lit, mwc-base, etc.
-      chunkFileNames: 'common.js',
-    },
-    onwarn(warning) {
-      if (warning.code !== 'CIRCULAR_DEPENDENCY') {
-        console.error(`(!) ${warning.message}`);
-      }
+      // Preserve directory structure for entrypoints.
+      entryFileNames: ({facadeModuleId}) =>
+        facadeModuleId.replace(`${__dirname}/lib/`, ''),
+      manualChunks: (id) => {
+        // Create some more logical shared chunks. In particular, people will
+        // probably be looking for lit.js in devtools!
+        const relative = id.replace(`${__dirname}/node_modules/`, '');
+        if (
+          relative.startsWith('lit-html/') ||
+          relative.startsWith('lit-element/')
+        ) {
+          return 'lit';
+        }
+        if (
+          relative.startsWith('@material/mwc-base/') ||
+          relative.startsWith('@material/base/')
+        ) {
+          return 'mwc-base';
+        }
+        if (relative.startsWith('tslib/')) {
+          return 'tslib';
+        }
+      },
+      // Skip the usual "-[hash]" suffix. We pre-load certain common chunks so
+      // we want to know its exact name (e.g. "lit.js"), and we don't have cache
+      // headers that would take advantage of hashed names anyway.
+      chunkFileNames: '[name].js',
     },
     plugins: [
       resolve({
         dedupe: () => true,
       }),
       terser(terserOptions),
-      summary(),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
     ],
   },
 ];

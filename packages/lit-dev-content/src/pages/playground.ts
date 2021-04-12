@@ -1,3 +1,13 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+import '@material/mwc-button';
+import '@material/mwc-snackbar';
+import 'playground-elements/playground-ide.js';
+
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
 import {PlaygroundIde} from 'playground-elements/playground-ide.js';
