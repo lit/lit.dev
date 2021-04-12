@@ -4,7 +4,7 @@ import {customElement, property} from 'lit/decorators.js';
 @customElement('my-element')
 class MyElement extends LitElement {
   @property()
-  message: string = 'Hello world! From my-element';
+  message: string = 'Hello again.';
 
   render() {
     return html`

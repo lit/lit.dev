@@ -1,0 +1,1 @@
+window.addEventListener("DOMContentLoaded",(()=>{e()}));const e=()=>{if(!window.IntersectionObserver)return;const e=new IntersectionObserver((e=>{if(0===e.length)return;const t=e[0];document.body.classList.toggle("splashLogoScrolled",!t.isIntersecting)})),t=document.body.querySelector("#splashLogoHeaderOffset");e.observe(t)};

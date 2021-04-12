@@ -1,55 +1,68 @@
 #advantages {
+  background: white;
+  border: solid #d1d1d1;
+  border-width: 1px 0;
+  padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
+}
+
+#advantagesItems {
+  display: flex;
   max-width: var(--content-max-width);
-  padding: 4em var(--home-side-margin) 2em var(--home-side-margin);
   margin: auto;
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  justify-items: start;
-  align-items: start;
 }
 
-#advantages > h2 {
-  grid-column: 1 / -1;
-  width: 100%;
-  padding-top: 0;
-  margin-bottom: 3em;
+#advantagesItems > .item {
+  flex: 1;
+  padding: 0 1.5em;
+  border-right: 1px solid #ccc;
 }
 
-#advantages > img {
-  width: 10em;
-  height: 10em;
-  margin: 0 5em 4em 0;
+#advantagesItems > .item:first-of-type {
+  padding-left: 0;
 }
 
-#advantages > .prose {
-  max-width: 50em;
-  margin: 0 0 4em 0;
+#advantagesItems > .item:last-of-type {
+  padding-right: 0;
+  border-right: none;
 }
 
-#advantages > .prose > h3 {
-  color: var(--color-blue);
-  font-size: 1.5em;
+#advantagesItems > .item > .heading {
+  display: flex;
+  align-items: center;
+}
+
+#advantagesItems > .item > .heading > img {
+  width: 70px;
+  height: 70px;
+  /* SVG has a bunch of extra padding */
+  margin-left: -20px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+#advantagesItems > .item > .heading > h2 {
   font-weight: 500;
-  margin: 0 0 0.6em 0;
+  font-size: 32px;
+  margin: 0;
 }
 
-#advantages > .prose > a {
-  display: inline-block;
-  margin-top: 1.5em;
+#advantagesItems > .item > p:first-of-type {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 1.5em;
 }
-
-/* ------------------------------------
- * Above/below when narrow
- * ------------------------------------ */
 
 @media (max-width: 1000px) {
-  #advantages {
-    display: block;
+  #advantagesItems {
+    flex-direction: column;
   }
 
-  #advantages > img {
-    width: 7em;
-    height: 7em;
-    margin-bottom: 1em;
+  #advantagesItems > .item {
+    padding: 1em 0;
+  }
+
+  #advantagesItems > .item:not(:last-of-type) {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
   }
 }

@@ -1,30 +1,33 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, property, query} from 'lit/decorators.js';
 
 @customElement('todo-list')
 class ToDoList extends LitElement {
   @property()
-  listItems: Array<string> = [
-    'Make to-do list',
-    'Buy bread'
-  ];
+  listItems = [
+      { text: 'Start Lit tutorial', completed: true },
+      { text: 'Make to-do list', completed: false }
+    ];
 
   render() {
     return html`
       <h2>To Do</h2>
       <ul>
         ${this.listItems.map((item) =>
-          html`<li>${item}</li>`)}
+          html`<li>${item.text}</li>`)}
       </ul>
-      <input @change=${this.addToDo} aria-label="New item">
+      <input id="newitem" aria-label="New item">
+      <button @click=${this.addToDo}>Add</button>
     `;
   }
 
-  addToDo(event: Event) {
-    const input = event.target as HTMLInputElement;
-    // Create a new array including the new item
-    this.listItems = [...this.listItems, input.value];
-    input.value = '';
+  @query('#newitem')
+  input!: HTMLInputElement;
+
+  addToDo() {
+    this.listItems.push({text: this.input.value, completed: false});
+    this.requestUpdate();
+    this.input.value = '';
   }
 }
 

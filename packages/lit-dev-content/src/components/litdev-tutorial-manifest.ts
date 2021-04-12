@@ -21,11 +21,11 @@ export const manifest: {steps: Array<TutorialStep>} = {
     },
     {
       slug: '03-properties',
-      title: 'Reactive properties',
+      title: 'Properties and expressions',
     },
     {
       slug: '04-events',
-      title: 'Declarative event handlers',
+      title: 'Declarative event listeners',
     },
     {
       slug: '05-expressions',
@@ -35,5 +35,13 @@ export const manifest: {steps: Array<TutorialStep>} = {
       slug: '06-template-logic',
       title: 'Template logic',
     },
+    {
+      slug: '07-styles',
+      title: 'Styles',
+    },
+    {
+      slug: '08-finishing-touches',
+      title: 'Finishing touches'
+    }
   ],
 };
