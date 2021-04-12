@@ -21,7 +21,7 @@ export class MyElement extends LitElement {
         `;
       },
       initial: () => html`<p>Choose a kind of names...</p>`,
-      pending: () => html`<p>Loading...</p>`,
+      pending: () => html`<p>Loading ${this.namesController.kind}...</p>`,
       error: (e: any) => html`<p>Error: ${e}</p>`
     })}`;
   }
