@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "files": {
     "my-element.ts": {},
-    "forex-controller.ts": {},
+    "names-controller.ts": {},
     "index.html": {}
   },
   "editorHeight": "1110px"
