@@ -72,29 +72,41 @@
      id="project">
   </playground-project>
 
-  <playground-tab-bar
-    editable-file-system
-    project="project"
-    editor="editor">
-  </playground-tab-bar>
+  <did id="tabsEditorAndPreview">
+    <div id="tabsAndEditor">
+      <playground-tab-bar
+        editable-file-system
+        project="project"
+        editor="editor">
+      </playground-tab-bar>
 
-  <playground-file-editor
-    id="editor"
-    project="project"
-    pragmas="off"
-    line-numbers>
-  </playground-file-editor>
+      <playground-file-editor
+        id="editor"
+        project="project"
+        pragmas="off"
+        line-numbers>
+      </playground-file-editor>
+    </div>
 
-  <resize-bar
-     target="preview"
-     dimension="height"
-     property="--preview-height">
-  </resize-bar>
+    <resize-bar
+      id="horizontalResizeBar"
+      target="tabsAndEditor"
+      dimension="width"
+      property="--tabs-and-editor-width">
+    </resize-bar>
 
-  <playground-preview
-    id="preview"
-    project="project">
-  </playground-preview>
+    <resize-bar
+      id="verticalResizeBar"
+      target="preview"
+      dimension="height"
+      property="--preview-height">
+    </resize-bar>
+
+    <playground-preview
+      id="preview"
+      project="project">
+    </playground-preview>
+  </div>
 </div>
 
 {% endblock %}

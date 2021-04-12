@@ -137,25 +137,30 @@ litdev-drawer:not([closed])::part(header) {
   margin-right: 1em;
 }
 
-/* Playground */
-
-playground-tab-bar {
-  flex: 0 0;
+#tabsEditorAndPreview {
+  flex: 1;
+  display: flex;
 }
 
+#tabsAndEditor {
+  width: var(--tabs-and-editor-width, 60%);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Playground */
+
 playground-file-editor {
-  flex: 1 0;
-  height: 0;
+  flex: 1;
 }
 
 playground-preview {
-  flex: 0 0 var(--preview-height, 45%);
+  flex: 1;
   height: unset;
-  min-height: 8em;
-  max-height: calc(
-    100vh - var(--header-height) - var(--litdev-drawer-header-height) - 8em
-  );
-  overflow-y: hidden;
+  min-width: 200px;
+  /* Eat space taken by the resize-bar */
+  margin-left: -3px;
 }
 
 /* Resize bars */
@@ -166,4 +171,35 @@ resize-bar {
 
 resize-bar[active] {
   background: var(--color-dark-cyan);
+}
+
+#verticalResizeBar {
+  display: none;
+}
+
+@media (max-width: 864px) {
+  #tabsEditorAndPreview {
+    flex-direction: column;
+  }
+  #tabsAndEditor {
+    width: initial;
+    flex: 1;
+  }
+  playground-file-editor {
+    min-height: 100px;
+    flex-basis: 0;
+  }
+  playground-preview {
+    flex: 0 0 var(--preview-height, 45%);
+    min-height: 200px;
+    /* Eat space taken by the resize-bar */
+    margin-left: 0;
+    margin-top: -3px;
+  }
+  #verticalResizeBar {
+    display: initial;
+  }
+  #horizontalResizeBar {
+    display: none;
+  }
 }
