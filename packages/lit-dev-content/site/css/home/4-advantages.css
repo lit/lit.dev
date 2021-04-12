@@ -46,6 +46,12 @@
   margin: 0;
 }
 
+#advantagesItems > .item > p:first-of-type {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 1.5em;
+}
+
 @media (max-width: 1000px) {
   #advantagesItems {
     flex-direction: column;
