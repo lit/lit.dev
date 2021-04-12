@@ -243,6 +243,7 @@ export class LitDevTutorial extends LitElement {
         : await this._fetchHtml(active.htmlSrc);
     this._setProjectSrc(active.projectSrcBefore);
     this._loading = false;
+    this.renderRoot.querySelector('h1')?.scrollIntoView();
 
     // Start loading the next step's HTML content.
     const next = this._nextInfo;

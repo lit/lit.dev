@@ -1,0 +1,67 @@
+<section id="tour">
+  <h1>Hello World</h1>
+
+  <div id="tourCodeAndNotes">
+    <div id="tourCode">
+      <mwc-formfield id="tourJsTsSwitch" label="TypeScript">
+        <mwc-switch checked></mwc-switch>
+      </mwc-formfield>
+      <div id="tourTsCode">
+        {% highlight 'ts' %}{% include './1-splash-example.ts' %}{% endhighlight %}
+      </div>
+      <div id="tourJsCode" hidden>
+        {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight %}
+      </div>
+      <div id="tourHtmlCode">
+        {% highlight 'html' %}{% include './1-splash-example.html' %}{% endhighlight %}
+      </div>
+    </div>
+
+    <div id="tourNotes">
+      <div id="tourNoteCustomElements" tabindex="0">
+        <h3>Custom Elements</h3>
+        <p>
+          Lit components are standard <em>custom elements</em>, so the browser treats
+          them exactly like built-in elements. Use them in hand-written HTML or framework
+          code, output them from your CMS or static site builder, even create instances
+          in JavaScript — they just work!
+        </p>
+      </div>
+
+      <div id="tourNoteStyles" tabindex="0">
+        <h3>Scoped styles</h3>
+        <p>
+          Lit scopes your styles by default, using <em>Shadow DOM</em>. This keeps your CSS
+          selectors simple and ensures that your component’s styles don't affect — and
+          aren't affected by — any other styles on the page.
+        </p>
+      </div>
+
+      <div id="tourNoteProperties" tabindex="0">
+        <h3>Reactive properties</h3>
+        <p>
+          Declare <em>reactive properties</em> to model your component’s API and internal
+          state. A Lit component efficiently re-renders whenever a reactive property (or
+          corresponding HTML attribute) changes.
+        </p>
+      </div>
+
+      <div id="tourNoteTemplates" tabindex="0">
+        <h3>Declarative templates</h3>
+        <p>
+          Lit templates, based on <em>tagged template literals</em>, are simple,
+          expressive and fast, featuring HTML markup with native JavaScript expressions
+          inline. No custom syntax to learn, no transpilation required.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div id="playgroundLinkContainer">
+      <a id="playgroundLink" href="{{ url.baseurl }}/playground/">
+        Edit this example in the Lit Playground
+      </a>
+    </div>
+  </div>
+</section>

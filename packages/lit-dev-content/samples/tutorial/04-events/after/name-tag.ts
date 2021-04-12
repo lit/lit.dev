@@ -9,13 +9,12 @@ class NameTag extends LitElement {
   render() {
     return html`
       <p>Hello, ${this.name}</p>
-      <input @change=${this.changeName} placeholder="Enter your name">
+      <input @input=${this.changeName} placeholder="Enter your name">
     `;
   }
 
   changeName(event: Event) {
     const input = event.target as HTMLInputElement;
     this.name = input.value;
-    input.value = '';
   }
 }

@@ -1,5 +1,4 @@
 #whoIsUsing {
-  background: var(--color-light-gray);
   padding: 5em var(--home-side-margin);
   display: flex;
   flex-direction: column;

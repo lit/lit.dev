@@ -1,21 +1,26 @@
 import {html, css, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
 
-@customElement('simple-greeting')
 export class SimpleGreeting extends LitElement {
-  // Define scoped styles right with your component, in plain CSS
   static styles = css`
-    :host {
-      border: solid 1px blue;
+    p {
+      color: blue;
     }
   `;
 
-  // Declare reactive properties
-  @property()
-  name = 'World';
+  static get properties() {
+    return {
+      name: {type: String}
+    }
+  }
 
-  // Render the UI as a function of component state
+  constructor() {
+    super();
+    this.name = 'Somebody';
+  }
+
   render() {
     return html`<p>Hello, ${this.name}!</p>`;
   }
 }
+
+customElements.define('simple-greeting', SimpleGreeting);

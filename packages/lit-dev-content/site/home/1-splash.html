@@ -1,41 +1,27 @@
-<div id="splashWrapper">
-  <div id="splash">
-    <section id="intro">
-      <div id="splashLogo">
-        <img src="{{site.baseurl}}/images/logo.svg" aria-label="Lit" />
-        <!-- Trick for detecting when the logo has scrolled under the header.
-            See src/home.ts -->
-        <div id="splashLogoHeaderOffset"></div>
-      </div>
+<section id="intro">
+  <div id="introLayer1"></div>
+  <div id="introLayer2"></div>
+  <div id="introLayer3"></div>
 
-      <p class="homeSectionHeading">
-        <!-- If in an h2, with the br, VoiceOver weirdly reads this twice.-->
-        Simple. Fast. Lightweight.<br />Web components.
-      </p>
-
-      <p>
-        Lit is a library for building fast, lightweight web components. Based on
-        web standards, Lit components work wherever you use HTML–with any
-        framework, or without one. Use Lit to create shareable components, design
-        systems, or apps.
-      </p>
-
-      <a class="homeBoldLink" href="{{site.baseurl}}/docs/getting-started/">Get started with Lit</a>
-    </section>
-
-    <section id="helloWorld">
-      <figure class="homeExample">
-        <figcaption>Hello World</figcaption>
-        <div class="code">
-          {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight
-          %}
-
-          <div class="divider"></div>
-
-          {% highlight 'html' %}{% include './1-splash-example.html' %}{%
-          endhighlight %}
-        </div>
-      </div>
-    </figure>
+  <div id="splashLogo">
+    <img class="black" src="{{site.baseurl}}/images/logo.svg" aria-label="Lit" />
+    <img class="white" src="{{site.baseurl}}/images/logo-white.svg" aria-label="Lit" />
+    <!-- Trick for detecting when the logo has scrolled under the header.
+        See src/home.ts -->
+    <div id="splashLogoHeaderOffset"></div>
   </div>
-</div>
+
+  <p id="tagline">
+    Simple. Fast. Web Components.
+  </p>
+
+  <div id="splashButtons">
+    <code id="npmInstall">
+      <span class="prompt">&gt; </span>npm i lit
+    </code>
+
+    <a id="getStartedLink" href="{{site.baseurl}}/docs/getting-started/">
+      Get started
+    </a>
+  </div>
+</section>

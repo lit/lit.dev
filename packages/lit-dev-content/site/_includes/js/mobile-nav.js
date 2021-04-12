@@ -1,0 +1,1 @@
+window.addEventListener("DOMContentLoaded",(async()=>{const e=document.querySelector("#mobileDocsNav > li.activeSection details");null!==e&&(e.open=!0,await customElements.whenDefined("mwc-drawer"),requestAnimationFrame((()=>{e.scrollIntoView({block:"end"})})))}));
