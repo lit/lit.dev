@@ -50,7 +50,7 @@ a#suggestLink:hover {
 
 #blogContent .author {
   display: flex;
-  color: var(--color-medium-gray);
+  font-weight: 600;
 }
 
 #blogContent .author > img {
