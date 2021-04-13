@@ -339,7 +339,7 @@ td {
   text-align: right;
 }
 
-#prevAndNextLinks > a > .arrow {
+#prevAndNextLinks > span > a > .arrow {
   grid-row: 1 / 3;
   color: #757575;
 }
@@ -348,29 +348,29 @@ td {
   grid-column: 2;
 }
 
-#prevAndNextLinks > a > .direction {
+#prevAndNextLinks > span > a > .direction {
   display: block;
   color: #757575;
   font-size: 15px;
 }
 
-#prevAndNextLinks > a:hover > .direction {
+#prevAndNextLinks > span > a:hover > .direction {
   color: var(--color-blue);
 }
 
-#prevAndNextLinks > a:hover > .arrow {
+#prevAndNextLinks > span > a:hover > .arrow {
   color: var(--color-blue);
 }
 
-#prevAndNextLinks > a > .title {
+#prevAndNextLinks > span > a > .title {
   font-size: 18px;
 }
 
-#prevAndNextLinks > a:hover > .title {
+#prevAndNextLinks > span > a:hover > .title {
   color: var(--color-blue);
 }
 
-#prevAndNextLinks > a:first-of-type {
+#prevAndNextLinks > span > a:first-of-type {
   margin-right: 2em;
   text-align: left;
 }
