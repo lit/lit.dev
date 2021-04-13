@@ -80,14 +80,17 @@
     box-sizing: border-box;
   }
 
-  #connectItems {
+  #connectItemsWrapper {
     flex: 1;
     max-width: calc(var(--connect-list-overlap) + var(--content-max-width) / 2);
+    position: relative; /* for monolith */
     margin: 0 2.5em 0 calc(-1 * var(--connect-list-overlap));
+    min-width: 30.6em;
+  }
+
+  #connectItems {
     display: flex;
     flex-direction: column;
-    min-width: 30.6em;
-    position: relative; /* for monolith */
   }
 
   #connectItems > li {
