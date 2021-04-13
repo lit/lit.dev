@@ -54,6 +54,8 @@ article {
   margin: var(--docs-margin-top) 0;
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
   margin-right: 2em;
+  /* For when linking to #content via nav bypass. */
+  scroll-margin-top: var(--header-height);
 }
 
 /* ------------------------------------

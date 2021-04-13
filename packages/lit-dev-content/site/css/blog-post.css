@@ -46,17 +46,17 @@
   font-size: 1.1em;
 }
 
-#content {
+#blogContent {
   padding: var(--blog-top-padding) 3em;
   font-family: "Open Sans", sans-serif;
   font-size: 0.88889em;
 }
 
-#content > :first-child {
+#blogContent > :first-child {
   margin-top: 0;
 }
 
-#content h2 {
+#blogContent h2 {
   text-transform: uppercase;
   color: var(--color-cyan);
   font-weight: 600;
@@ -64,20 +64,20 @@
   margin-top: 2em;
 }
 
-#content a {
+#blogContent a {
   color: var(--color-dark-cyan);
 }
 
-#content a:hover {
+#blogContent a:hover {
   text-decoration: underline;
 }
 
-#content .CodeMirror {
+#blogContent .CodeMirror {
   padding: 1em 1.5em;
   margin: 0;
 }
 
-#content code:not([class]) {
+#blogContent code:not([class]) {
   background: rgb(0 0 0 / 25%);
   font-size: 0.85em;
   padding: 0.2em 0.4em;

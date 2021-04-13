@@ -15,7 +15,6 @@
 {% block content %}
   {% set toc = content | toc %}
 
-
   <div id="docsNavWrapper" class="minimalScroller">
     <nav id="docsNav">
       <ol>{% include 'docs-nav.html' %}</ol>
@@ -34,7 +33,7 @@
   </div>
 
   <div id="articleWrapper">
-    <article>
+    <article id="content">
       <h1>{{ title }}</h1>
 
       {% if toc | tocHasEntries %}
