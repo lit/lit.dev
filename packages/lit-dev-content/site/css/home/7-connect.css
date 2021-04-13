@@ -3,9 +3,9 @@
   color: white;
 }
 
-#connectLhs > .content > h3 {
+#connectLhs > .content > h1 {
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.2em;
 }
 
@@ -57,7 +57,7 @@
     box-sizing: border-box;
   }
 
-  #connectLhs > .content > h3 {
+  #connectLhs > .content > h1 {
     letter-spacing: 0.06em;
     margin: 0 0 1em 0;
     max-width: 15em;
