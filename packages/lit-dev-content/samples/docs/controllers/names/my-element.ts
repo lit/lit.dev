@@ -7,7 +7,12 @@ export class MyElement extends LitElement {
   private namesController = new NamesController(this);
 
   render() {
-    return html`Kind: <select @change=${this._kindChange}>
+    return html`
+      <h3>Names List</h3>
+      Kind: <select @change=${(e: Event) =>
+        this.namesController.kind =
+          (e.target! as HTMLSelectElement).value as Kind
+      }>
       ${this.namesController.kinds.map(
         (k) => html`<option value=${k}>${k}</option>`)
       }
@@ -20,14 +25,9 @@ export class MyElement extends LitElement {
           </ul>
         `;
       },
-      initial: () => html`<p>Choose a kind of names...</p>`,
+      initial: () => html`<p>Select a kind...</p>`,
       pending: () => html`<p>Loading ${this.namesController.kind}...</p>`,
       error: (e: any) => html`<p>Error: ${e}</p>`
     })}`;
-  }
-
-  private _kindChange(e: Event) {
-   this.namesController.kind = (e.target! as HTMLSelectElement).value as Kind;
-   this.requestUpdate();
   }
 }

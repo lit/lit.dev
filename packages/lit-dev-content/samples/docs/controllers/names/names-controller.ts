@@ -10,8 +10,9 @@ export type Kind = typeof kinds[number];
 
 export class NamesController {
   private task!: Task;
+  host: ReactiveControllerHost;
   kinds = kinds;
-  kind: Kind = '';
+  _kind: Kind = '';
   value?: string[];
   baseUrl = 'https://next.json-generator.com/api/json/get/';
   kindUrlMap = {
@@ -24,7 +25,17 @@ export class NamesController {
     'error': ''
   }
 
+  set kind(value: Kind) {
+    this._kind = value;
+    this.host.requestUpdate();
+  }
+
+  get kind() {
+    return this._kind;
+  }
+
   constructor(host: ReactiveControllerHost) {
+    this.host = host;
     this.task = new Task<[Kind], NamesResult>(host,
       async ([kind]: [Kind]) => {
         if (kind == null || kind.trim() === '') {
