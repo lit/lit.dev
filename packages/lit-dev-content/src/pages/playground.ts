@@ -10,7 +10,6 @@ import 'playground-elements/playground-ide.js';
 
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
-import {PlaygroundIde} from 'playground-elements/playground-ide.js';
 
 window.addEventListener('DOMContentLoaded', () => {
   /**
@@ -61,25 +60,13 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   const $ = document.body.querySelector.bind(document.body);
-  const ide = $('playground-ide')! as PlaygroundIde;
+  const project = $('playground-project')!;
 
-  const examplesButton = $('.examples-button')!;
-  const examplesDrawer = $('.examples-drawer')!;
-  examplesButton.addEventListener('click', () => {
-    examplesDrawer.classList.toggle('open');
-    examplesDrawer.classList.add('transitioning');
-  });
-  examplesDrawer.addEventListener('transitionend', () => {
-    // We need to track transitioning so that we can prevent focus by fully
-    // hiding the drawer, but only after the transition is complete.
-    examplesDrawer.classList.remove('transitioning');
-  });
-
-  const shareButton = $('.share-button')!;
-  const shareSnackbar = $('.share-snackbar')! as Snackbar;
+  const shareButton = $('#shareButton')!;
+  const shareSnackbar = $('#shareSnackbar')! as Snackbar;
   shareButton.addEventListener('click', async () => {
     // No need to include contentType (inferred) or undefined label (unused).
-    const files = Object.entries(ide.config?.files ?? {}).map(
+    const files = Object.entries(project.config?.files ?? {}).map(
       ([name, file]) => ({
         name,
         content: file.content,
@@ -88,12 +75,12 @@ window.addEventListener('DOMContentLoaded', () => {
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
-    shareSnackbar.show();
+    shareSnackbar.open = true;
   });
 
-  const downloadButton = $('.download-button')!;
+  const downloadButton = $('#downloadButton')!;
   downloadButton.addEventListener('click', () => {
-    const tarFiles = Object.entries(ide.config?.files ?? {}).map(
+    const tarFiles = Object.entries(project.config?.files ?? {}).map(
       ([name, {content}]) => ({
         name,
         content: content ?? '',
@@ -106,7 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
     a.click();
   });
 
-  const syncStateFromUrlHash = () => {
+  const syncStateFromUrlHash = async () => {
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(1));
 
@@ -125,13 +112,13 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    $('.sample-link.active')?.classList.remove('active');
+    $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
       // TODO(aomarks) We really need a second origin now that it is trivial for
       // somebody to share a link that executes arbitrary code.
       // https://github.com/PolymerLabs/lit.dev/issues/26
-      ide.config = {
+      project.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
           urlFiles.map(({name, content}) => [name, {content}])
@@ -139,27 +126,20 @@ window.addEventListener('DOMContentLoaded', () => {
       };
     } else {
       let sample = 'examples/hello-world-typescript';
-      let openExamplesDrawer = false;
       const urlSample = params.get('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
         sample = urlSample;
-        if (urlSample.startsWith('examples/')) {
-          openExamplesDrawer = true;
-        }
       }
-      ide.projectSrc = `/samples/${sample}/project.json`;
+      project.projectSrc = `/samples/${sample}/project.json`;
 
-      // Open the examples drawer and indicate which one is active.
-      const link = $(`.sample-link[data-sample="${sample}"]`);
+      const link = $(`.exampleItem[data-sample="${sample}"]`);
       if (link) {
         link.classList.add('active');
+        // Wait for the drawer to upgrade and render before scrolling.
+        await customElements.whenDefined('litdev-drawer');
         requestAnimationFrame(() => {
-          // Wait for layout before scrolling.
-          link.scrollIntoViewIfNeeded?.();
+          link.scrollIntoView({behavior: 'smooth', block: 'nearest'});
         });
-      }
-      if (openExamplesDrawer) {
-        examplesDrawer.classList.add('open');
       }
     }
   };

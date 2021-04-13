@@ -452,17 +452,8 @@ td {
   text-decoration: underline;
 }
 
-/* On some platforms like Linux, a traditional scrollbar will be always visible
-   on the nav, which is quite distracting. This reproduces something similar to
-   macOS style on all platforms. */
-#docsNavWrapper::-webkit-scrollbar {
-  width: 15px;
-}
 #docsNavWrapper:hover::-webkit-scrollbar-thumb {
   background: #d6d6d6;
-  background-clip: content-box;
-  border: 4px solid transparent;
-  border-radius: 10px;
 }
 
 /* ------------------------------------

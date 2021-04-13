@@ -108,7 +108,11 @@ export class LitDevTutorial extends LitElement {
         </nav>
       </div>
 
-      <div id="tutorialContent" ?loading=${this._loading}>
+      <div
+        id="tutorialContent"
+        class="minimalScroller"
+        ?loading=${this._loading}
+      >
         <h1>${this._info?.title}</h1>
         ${unsafeHTML(this._html)}
 

@@ -1,142 +1,202 @@
 main {
   display: flex;
-  margin: 0;
-  max-width: none;
-  /* Remove space usually allotted to the footer. */
+  /* Account for removed footer height. */
   min-height: calc(100vh - var(--header-height));
-  --examples-drawer-width: 300px;
+  --litdev-drawer-header-height: 3.4em;
+  --litdev-drawer-open-width: 280px;
+  --litdev-drawer-closed-width: 2.5rem;
+  --example-drawer-padding: 2em;
+  --litdev-drawer-transition-duration: 200ms;
+  font-family: "Open Sans", sans-serif;
 }
 
 footer {
-  /* The footer is a big pain on this page, because we want all the vertical
-  real-estate. */
+  /* No footer on full screen UI. */
   display: none;
 }
 
-.playground-bar-and-ide {
+/* example drawer */
+
+litdev-drawer {
+  width: var(--litdev-drawer-open-width);
+  background: var(--color-dark-gray);
+  color: white;
+  height: calc(100vh - var(--header-height));
+  z-index: 1;
+}
+
+litdev-drawer:not(:defined) > * {
+  display: none;
+}
+
+litdev-drawer:not([closed])::part(header) {
+  background: #333;
+}
+
+#exampleHeading {
+  font-size: 1em;
+  font-weight: 500;
+  padding-left: var(--example-drawer-padding);
+}
+
+.exampleSectionHeading {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2em;
+  margin-bottom: 0;
+  padding-left: var(--example-drawer-padding);
+}
+
+.exampleList {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+.exampleItem {
+  font-size: 16px;
+}
+
+.exampleItem > a {
+  display: block;
+  color: white;
+  padding: 6px var(--example-drawer-padding);
+}
+
+.exampleItem > a:hover {
+  text-decoration: underline;
+}
+
+.exampleItem.active > a {
+  position: relative;
+  font-weight: bold;
+}
+
+.exampleItem.active > a::before {
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%2300e8ff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+/* Right side */
+
+#rightSide {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  /* Prevent flex layout problems when typing long lines in CodeMirror. */
+  /* Prevent CodeMirror content size from affecting us here. */
   min-width: 0;
 }
 
-.playground-bar {
-  height: 52px;
+/* Action bar */
+
+#actionBar {
+  flex: 0 0 var(--litdev-drawer-header-height);
+
+  /* Sometimes layout doesn't keep up with the example drawer animation, so a
+  white line appears. Shifting the bar slightly behind the drawer hides this
+  effect. */
+  z-index: 0;
+  margin-left: -100px;
+  padding: 0 1.3em 0 calc(100px + 1em);
   box-sizing: border-box;
-  background: #f5f5f5;
+
+  background: var(--color-blue);
+  color: white;
   display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  --mdc-theme-primary: currentcolor;
-  border-bottom: 1px solid #ccc;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-playground-ide {
+#actionBar > button {
+  font-family: "Open Sans", sans-serif;
+  background: transparent;
+  border: 1px solid currentcolor;
+  padding: 0.3em 0.5em;
+  display: flex;
+  color: inherit;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+#actionBar > button:hover {
+  background: blue;
+}
+
+#actionBar > button > svg {
+  margin-right: 1em;
+}
+
+#tabsEditorAndPreview {
   flex: 1;
-  height: unset;
-  border: none;
-  border-radius: 0;
-  --playground-highlight-color: #1879cd;
-  transition: width 200ms;
+  display: flex;
 }
 
-mwc-button:not(:defined) {
-  visibility: hidden;
-}
-
-.examples-drawer {
-  width: 0;
-  transition: width 200ms;
-  background: white;
-  border-right: 1px solid #ccc;
-  /* TODO(aomarks) We shouldn't need this max height, right? */
-  max-height: calc(100vh - var(--header-height));
-  flex-shrink: 0;
-  box-sizing: border-box;
-}
-
-.examples-drawer.open {
-  width: var(--examples-drawer-width);
-}
-
-.examples-drawer:not(.open):not(.transitioning) {
-  /* For a11y. */
-  visibility: hidden;
-}
-
-.examples-drawer-contents {
-  width: var(--examples-drawer-width);
-  transform: translateX(calc(-1 * var(--examples-drawer-width)));
-  transition: transform 200ms;
-  --lit-playground-bar-height: 52px;
-  box-sizing: border-box;
-  overflow-y: auto;
-  height: 100%;
-}
-
-.examples-drawer.open .examples-drawer-contents {
-  visibility: visible;
-  transform: translateX(0);
-}
-
-.examples-drawer-contents h3 {
-  font-size: 18px;
-  color: #212121;
-  padding-left: 24px;
-  margin: 12px 0;
-}
-
-.examples-drawer-section {
-  padding: 20px 0;
-}
-
-.examples-drawer-section:not(:last-of-type) {
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.examples-drawer-contents ul {
-  padding-left: 0;
-}
-
-.examples-drawer-contents li {
-  list-style: none;
+#tabsAndEditor {
+  width: var(--tabs-and-editor-width, 60%);
+  min-width: 200px;
   display: flex;
   flex-direction: column;
 }
 
-.examples-drawer-contents a {
-  color: #616161;
-  scroll-margin: 16px;
-  font-size: 14px;
-  padding: 12px 24px;
-  margin-right: 1px;
+/* Playground */
+
+playground-file-editor {
+  flex: 1;
 }
 
-.examples-drawer-contents a.active {
-  background: #f1f3f4;
+playground-preview {
+  flex: 1;
+  height: unset;
+  min-width: 200px;
+  /* Eat space taken by the resize-bar */
+  margin-left: -3px;
 }
 
-.examples-drawer-contents a:hover {
-  color: black;
+/* Resize bars */
+
+resize-bar {
+  flex: 0 0 auto;
 }
 
-.examples-drawer .description {
+resize-bar[active] {
+  background: var(--color-dark-cyan);
+}
+
+#verticalResizeBar {
   display: none;
-  color: #3e3e3e;
-  font-size: 14px;
-  line-height: 24px;
-  margin: 8px 0 0 0;
 }
 
-/*
-.examples-drawer-contents > h2 {
-  position: sticky;
-  top: 0;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-  height: var(--lit-playground-bar-height);
-  box-sizing: border-box;
-  margin: 0;
+@media (max-width: 864px) {
+  #tabsEditorAndPreview {
+    flex-direction: column;
+  }
+  #tabsAndEditor {
+    width: initial;
+    flex: 1;
+  }
+  playground-file-editor {
+    min-height: 100px;
+    flex-basis: 0;
+  }
+  playground-preview {
+    flex: 0 0 var(--preview-height, 45%);
+    min-height: 200px;
+    /* Eat space taken by the resize-bar */
+    margin-left: 0;
+    margin-top: -3px;
+  }
+  #verticalResizeBar {
+    display: initial;
+  }
+  #horizontalResizeBar {
+    display: none;
+  }
 }
-*/

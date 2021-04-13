@@ -48,6 +48,7 @@
     "@material/mwc-drawer": "^0.20.0",
     "@material/mwc-formfield": "^0.20.0",
     "@material/mwc-icon-button": "^0.20.0",
+    "@material/mwc-icon-button-toggle": "^0.20.0",
     "@material/mwc-snackbar": "^0.20.0",
     "@material/mwc-switch": "^0.20.0",
     "lit": "^2.0.0-pre.1",

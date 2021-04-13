@@ -1,0 +1,41 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "docs.css" %}
+  {% inlinejs "docs.js" %}
+  {% if '/api/' in page.url %}
+    {% inlinecss "docs-api.css" %}
+  {% endif %}
+{% endblock %}
+
+{% block drawer %}
+  {% include 'eleventy-nav.html' %}
+{% endblock %}
+
+{% block content %}
+  <div id="docsNavWrapper">
+    <nav id="docsNav" class="minimalScroller">
+      <ol>{% include 'eleventy-nav.html' %}</ol>
+    </nav>
+  </div>
+
+  <div id="rhsTocWrapper">
+    <nav id="rhsToc">
+      <h2>Contents</h2>
+      {{ content | toc | safe }}
+    </nav>
+  </div>
+
+  <article>
+    <h1>{{ title }}</h1>
+
+    <nav id="inlineToc">
+      <details>
+        <summary><h2>Contents</h2></summary>
+        {{ content | toc | safe }}
+      </details>
+    </nav>
+
+    {{ content | safe }}
+  </article>
+{% endblock %}

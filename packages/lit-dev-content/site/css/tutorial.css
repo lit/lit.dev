@@ -2,7 +2,6 @@ main {
   display: flex;
   /* Remove space usually allotted to the footer. */
   min-height: calc(100vh - var(--header-height));
-  --playground-bar-height: 2.5rem;
 }
 
 footer {
@@ -11,7 +10,7 @@ footer {
 }
 
 litdev-tutorial {
-  flex: 0 0 var(--text-side-width, 50%);
+  flex: 0 0 var(--text-side-width, 45%);
   background: var(--color-dark-gray);
   color: white;
   line-height: 1.5em;
@@ -30,7 +29,7 @@ litdev-tutorial {
   flex: 1 1 auto;
   box-sizing: border-box;
   padding: 0 3em 1em 2em;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #tutorialContent[loading] {
@@ -43,7 +42,7 @@ litdev-tutorial {
   padding-bottom: 0.5em;
   font-size: 1.8em;
   line-height: 1.3em;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 #tutorialContent a {
@@ -72,19 +71,6 @@ litdev-tutorial {
 #tutorialContent ul,
 #tutorialContent ol {
   padding-left: 1em;
-}
-
-/* On some platforms like Linux, a traditional scrollbar will be always visible
-  on the nav, which is quite distracting. This reproduces something similar to
-  macOS style on all platforms. */
-#tutorialContent::-webkit-scrollbar {
-  width: 1em;
-}
-#tutorialContent:hover::-webkit-scrollbar-thumb {
-  background: rgb(255 255 255 / 0.3);
-  background-clip: content-box;
-  border: 4px solid transparent;
-  border-radius: 10px;
 }
 
 /* Tutorial header */
@@ -137,6 +123,7 @@ litdev-tutorial {
   align-items: center;
   cursor: pointer;
   outline-color: var(--color-dark-cyan);
+  font-family: "Open Sans", sans-serif;
 }
 
 #tutorialFooter > button > svg {
@@ -173,36 +160,23 @@ litdev-tutorial {
 
 playground-tab-bar {
   flex: 0 0;
-  background: white;
-  --mdc-typography-button-font-family: "Open Sans", sans-serif;
 }
 
 playground-file-editor {
   flex: 1 0;
   height: 0;
-  background: white;
-  border-top: 1.5px solid #ccc;
-  /* Align border with active tab highlight */
-  margin-top: -1.5px;
-  --playground-code-gutter-background: white;
-  --playground-code-gutter-border-right: none;
 }
 
 playground-preview {
-  flex: 0 0 var(--preview-height, 50%);
+  flex: 0 0 var(--preview-height, 45%);
   height: unset;
   min-height: 8em;
   max-height: calc(100vh - var(--header-height) - 8em);
-  background: var(--color-light-gray);
   overflow-y: hidden;
 }
 
 playground-preview::part(preview-toolbar) {
-  background: var(--color-light-gray);
-  border-bottom: 1.5px solid #ccc;
-  font-family: "Open Sans", sans-serif;
   padding-left: 0.8em;
-  font-size: 0.9em;
 }
 
 /* Resize bars */
@@ -211,7 +185,7 @@ resize-bar {
   flex: 0 0 auto;
 }
 
-resize-bar[resizing] {
+resize-bar[active] {
   background: var(--color-dark-cyan);
 }
 
@@ -226,7 +200,8 @@ resize-bar[resizing] {
     overflow-y: visible;
   }
 
-  litdev-tutorial, #editorAndPreview {
+  litdev-tutorial,
+  #editorAndPreview {
     flex-basis: initial;
   }
 
