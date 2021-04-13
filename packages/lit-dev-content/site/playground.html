@@ -10,10 +10,10 @@
 
 {% block content %}
 
-<litdev-drawer class="minimalScroller">
+<litdev-drawer>
   <h1 id="exampleHeading" slot="header">Examples</h1>
 
-  <div id="exampleContent" slot="content">
+  <div id="exampleContent" slot="content" class="minimalScroller">
     {% for section in playground_examples %}
       <div class="exampleSection">
         <h2 class="exampleSectionHeading">{{ section.name }}</h2>
@@ -33,11 +33,12 @@
   </div>
 </litdev-drawer>
 
-<div id="rightSide">
+<div id="content">
   <div id="actionBar">
     <button id="downloadButton" class="outlineButton">
       <svg width="24" height="24" viewBox="0 0 8.9403505 7.7663145"
-           stroke="currentcolor" stroke-width="0.5" fill="none">
+           stroke="currentcolor" stroke-width="0.5" fill="none"
+           aria-hidden="true">
         <g transform="translate(-60.514912,-89.035921)">
           <path d="m 60.779495,92.719876 v 3.817776 h 8.411184 v -3.768603" />
           <path d="M 64.978456,94.503808 V 89.035921" />
@@ -49,7 +50,8 @@
 
     <button id="shareButton" class="outlineButton">
       <svg width="24" height="24" viewBox="0 0 7.9368957 14.252527"
-           stroke="currentcolor" stroke-width="0.8" fill="none">
+           stroke="currentcolor" stroke-width="0.8" fill="none"
+           aria-hidden="true">
         <rect width="3.4483507" height="3.4483507" x="5.8423676" y="0.2645835" />
         <rect width="3.4483507" height="3.4483507" x="-1.3794879" y="5.3813062" />
         <rect width="3.4483507" height="3.4483507" x="5.8680329" y="10.539593" />

@@ -22,7 +22,9 @@ main {
   transition: opacity 500ms;
 }
 
-.splashLogoScrolled #headerLogo {
+.splashLogoScrolled #headerLogo,
+#homeLink:hover > #headerLogo,
+#homeLink:focus > #headerLogo {
   opacity: 1;
 }
 

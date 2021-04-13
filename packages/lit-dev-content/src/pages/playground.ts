@@ -138,7 +138,7 @@ window.addEventListener('DOMContentLoaded', () => {
         // Wait for the drawer to upgrade and render before scrolling.
         await customElements.whenDefined('litdev-drawer');
         requestAnimationFrame(() => {
-          link.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+          scrollToCenter(link, document.querySelector('#exampleContent')!);
         });
       }
     }
@@ -147,3 +147,19 @@ window.addEventListener('DOMContentLoaded', () => {
   syncStateFromUrlHash();
   window.addEventListener('hashchange', syncStateFromUrlHash);
 });
+
+/**
+ * Note we don't use scrollIntoView() because it also steals focus.
+ */
+const scrollToCenter = (target: Element, parent: Element) => {
+  const parentRect = parent.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  if (
+    targetRect.bottom > parentRect.bottom ||
+    targetRect.top < parentRect.top
+  ) {
+    parent.scroll({
+      top: targetRect.top - parentRect.top - parentRect.height / 2,
+    });
+  }
+};

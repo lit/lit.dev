@@ -7,16 +7,6 @@
   margin: auto;
 }
 
-#tour > h1 {
-  font-weight: 500;
-  margin-bottom: 1em;
-  font-size: 34px;
-  padding-bottom: 0.5em;
-  border-bottom: 2px solid var(--color-blue);
-  width: 620px;
-  display: none;
-}
-
 #tourCodeAndNotes {
   display: flex;
   justify-content: space-between;
@@ -92,7 +82,8 @@
   border-left: 4px solid transparent;
 }
 
-#tourNotes > div > h3 {
+#tourNotes > div > h2 {
+  font-size: 18px;
   font-weight: 600;
   color: #666;
 }

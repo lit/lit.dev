@@ -33,6 +33,10 @@
     {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
   </head>
   <body>
+    <a href="#content" id="bypassNavLink">
+      Skip to main content
+    </a>
+
     <mwc-drawer type="modal" id="mobileDrawer">
       <nav>
         <div id="mobileSiteNav">
@@ -49,7 +53,9 @@
 
     {% include 'header.html' %}
 
-    <main>
+    <main {% if not page.url.includes('/docs/')
+            and not page.url.includes('/playground/') %}
+              id="content" {% endif %}>
       {% block content %}{{ content | safe }}{% endblock %}
     </main>
 

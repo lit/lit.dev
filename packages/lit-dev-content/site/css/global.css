@@ -10,7 +10,7 @@
 
 html {
   font-size: 18px;
-  --header-height: 3.33rem;
+  --header-height: 60px;
   --footer-top-height: 12rem;
   --footer-bottom-height: 6rem;
   --content-max-width: 76rem;
@@ -37,6 +37,7 @@ main {
   min-height: calc(100vh - var(--header-height) - var(--footer-top-height) -
     var(--footer-bottom-height)
   );
+  scroll-margin-top: var(--header-height);
 }
 
 a {
@@ -64,4 +65,23 @@ a {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+#bypassNavLink {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  transform: translateX(-100%);
+  transition: transform 100ms;
+  font-size: 18px;
+  padding: 8px 14px;
+  color: var(--color-blue);
+  background: white;
+  z-index: 5;
+}
+#bypassNavLink:focus {
+  transform: translateX(0);
+}
+#bypassNavLink:hover {
+  text-decoration: underline;
 }

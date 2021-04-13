@@ -26,7 +26,7 @@ a#suggestLink:hover {
   text-decoration: none;
 }
 
-#content .date {
+#blogContent .date {
   color: var(--color-dark-cyan);
   font-size: 1.1em;
   font-weight: 600;
@@ -34,44 +34,44 @@ a#suggestLink:hover {
   margin-top: 0;
 }
 
-#content .title {
+#blogContent .title {
   font-size: 1.2em;
   font-weight: 600;
   margin-top: 0;
 }
 
-#content a {
+#blogContent a {
   color: white;
 }
 
-#content a:hover {
+#blogContent a:hover {
   text-decoration: underline;
 }
 
-#content .author {
+#blogContent .author {
   display: flex;
-  color: var(--color-medium-gray);
+  font-weight: 600;
 }
 
-#content .author > img {
+#blogContent .author > img {
   width: 2em;
   height: 2em;
   margin-right: 1em;
 }
 
-#content > .post {
+#blogContent > .post {
   display: flex;
   padding: 1.5em 0;
   border-top: 1.5px solid var(--color-dark-cyan);
 }
 
-#content > .post:first-of-type {
+#blogContent > .post:first-of-type {
   padding-top: 0;
   border-top: none;
 }
 
 @media (max-width: 864px) {
-  #content > .post {
+  #blogContent > .post {
     display: block;
   }
 }
