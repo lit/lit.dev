@@ -1,7 +1,7 @@
 html {
   --playground-code-font-family: 'Roboto Mono', monospace;
   --playground-code-font-size: 14px;
-  --playground-code-line-height: 1.8em;
+  --playground-code-line-height: 1.6em;
   --playground-code-padding: 0.5em 0 0.5em 1em;
   --playground-bar-height: 2.5rem;
   --playground-code-gutter-background: white;
