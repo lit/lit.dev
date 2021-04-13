@@ -33,6 +33,11 @@ litdev-drawer:not([closed])::part(header) {
   background: #333;
 }
 
+#exampleContent {
+  overflow-y: auto;
+  height: 100%;
+}
+
 #exampleHeading {
   font-size: 1em;
   font-weight: 500;

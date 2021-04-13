@@ -10,10 +10,10 @@
 
 {% block content %}
 
-<litdev-drawer class="minimalScroller">
+<litdev-drawer>
   <h1 id="exampleHeading" slot="header">Examples</h1>
 
-  <div id="exampleContent" slot="content">
+  <div id="exampleContent" slot="content" class="minimalScroller">
     {% for section in playground_examples %}
       <div class="exampleSection">
         <h2 class="exampleSectionHeading">{{ section.name }}</h2>
