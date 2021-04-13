@@ -1,1 +1,0 @@
-const e=new URL(window.location.href).searchParams.get("mods");e&&(document.body.classList.add(...e.split(" ").map((e=>e.trim())).filter((e=>""!==e))),window.addEventListener("click",(({target:t})=>{const n=t.closest("a");if(!n)return;const o=new URL(n.href),r=new URL(window.location.href);o.origin===r.origin&&(o.searchParams.set("mods",e),n.href=o.href)})));
