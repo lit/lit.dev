@@ -173,6 +173,8 @@ playground-preview {
   min-height: 8em;
   max-height: calc(100vh - var(--header-height) - 8em);
   overflow-y: hidden;
+  /* Eat space taken by the resize-bar */
+  margin-top: -3px;
 }
 
 playground-preview::part(preview-toolbar) {
