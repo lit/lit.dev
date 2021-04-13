@@ -259,7 +259,9 @@ export class LitDevTutorial extends LitElement {
         : await this._fetchHtml(active.htmlSrc);
     this._setProjectSrc(active.projectSrcBefore);
     this._loading = false;
-    this.renderRoot.querySelector('h1')?.scrollIntoView();
+    // Use scrollTop instead of scrollIntoView, because scrollIntoView also
+    // changes focus.
+    this.renderRoot.querySelector('#tutorialContent')!.scrollTop = 0;
 
     // Start loading the next step's HTML content.
     const next = this._nextInfo;
