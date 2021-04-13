@@ -5,6 +5,7 @@
       "lit/": "https://cdn.skypack.dev/lit@2.0.0-pre.2/",
       "@lit/reactive-element": "https://cdn.skypack.dev/@lit/reactive-element@1.0.0-pre.3",
       "@lit/reactive-element/": "https://cdn.skypack.dev/@lit/reactive-element@1.0.0-pre.3/",
+      "@lit-labs/task": "https://cdn.skypack.dev/@lit-labs/task@1.0.0-pre.2",
       "@lit-labs/task/": "https://cdn.skypack.dev/@lit-labs/task@1.0.0-pre.2/",
       "lit-element": "https://cdn.skypack.dev/lit-element@3.0.0-pre.4",
       "lit-element/": "https://cdn.skypack.dev/lit-element@3.0.0-pre.4/",

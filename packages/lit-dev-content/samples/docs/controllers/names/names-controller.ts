@@ -25,7 +25,7 @@ export class NamesController {
   }
 
   constructor(host: ReactiveControllerHost) {
-    this.task = new Task<[string], NamesResult>(host,
+    this.task = new Task<[Kind], NamesResult>(host,
       async ([kind]: [Kind]) => {
         if (kind == null || kind.trim() === '') {
           return initialState;
