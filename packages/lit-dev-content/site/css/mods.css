@@ -56,7 +56,7 @@
 .blackIntro #npmInstall .prompt {
   color: #00e7ff;
 }
-.blackIntro #getStartedLink {
+.blackIntro #exploreLink {
   background: var(--color-blue);
 }
 #splashLogo > .white {
@@ -68,11 +68,11 @@
 .blackIntro #splashLogo > .white {
   display: inline;
 }
-.blackIntro #getStartedLink {
+.blackIntro #exploreLink {
   background: white;
   color: black;
 }
-.blackIntro #getStartedLink:hover {
+.blackIntro #exploreLink:hover {
   background: var(--color-blue);
   color: white;
 }
@@ -83,7 +83,7 @@
 .bigGlow #introLayer1 {
   background: linear-gradient(180deg, transparent 10%, rgb(0, 132, 255) 100%);
 }
-.bigGlow #getStartedLink:hover {
+.bigGlow #exploreLink:hover {
   background: black;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .noSectionBorders #advantages .item,
-.noSectionBorders #useCasesWrapper .item {
+.noSectionBorders #buildAnythingWrapper .item {
   border-color: transparent;
 }
 
