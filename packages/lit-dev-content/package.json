@@ -18,7 +18,7 @@
     "build:samples:watch": "tsc --project samples --watch --noEmit",
     "dev:build:site": "rm -rf _dev && ELEVENTY_ENV=dev eleventy",
     "dev:build:site:watch": "rm -rf _dev && ELEVENTY_ENV=dev eleventy --watch",
-    "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open",
+    "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open --preserve-symlinks",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "devDependencies": {
