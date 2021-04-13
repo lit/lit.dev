@@ -4,7 +4,7 @@ import {initialState, StatusRenderer, Task} from '@lit-labs/task';
 export class NamesController {
   host: ReactiveControllerHost;
   value?: string[];
-  readonly kinds = kinds;
+  readonly kinds = ['', 'cities', 'countries', 'states', 'streets', 'error'] as const;
   private task!: Task;
 
   constructor(host: ReactiveControllerHost) {
@@ -45,8 +45,7 @@ export interface NamesError {
   error: string;
 }
 export type NamesResult = Array<{value: string}>;
-export const kinds = ['', 'cities', 'countries', 'states', 'streets', 'error'] as const;
-export type Kind = typeof kinds[number];
+export type Kind = typeof NamesController.prototype.kinds[number];
 
 const baseUrl = 'https://next.json-generator.com/api/json/get/';
 const kindUrlMap = {

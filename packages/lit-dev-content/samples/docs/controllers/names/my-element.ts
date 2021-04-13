@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {NamesController, Kind, NamesResult} from './names-controller.js';
+import {NamesController, NamesResult, Kind} from './names-controller.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
