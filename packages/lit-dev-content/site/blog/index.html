@@ -41,7 +41,7 @@
               {% if post.data.authorImage == "logo.svg#flame" %}
                 <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
               {% else %}
-                <img alt="Portrait of {{ author }}" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
+                <img alt="Photo of {{ post.data.author }}" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
               {% endif %}
               {{ post.data.author }}
             </p>
