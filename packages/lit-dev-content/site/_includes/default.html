@@ -29,8 +29,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     {% block head %}{% endblock %}
-
-    {% if site.google_analytics %}{% include 'analytics.html' %}{% endif %}
   </head>
   <body>
     <a href="#content" id="bypassNavLink">
@@ -60,5 +58,10 @@
     </main>
 
     {% include 'footer.html' %}
+
+    {% if env.GOOGLE_ANALYTICS_ID %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
+      <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date);gtag("config","{{ env.GOOGLE_ANALYTICS_ID }}");</script>
+    {% endif %}
   </body>
 </html>
