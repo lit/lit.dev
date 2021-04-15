@@ -1,25 +1,23 @@
 <section id="tour">
-  <h1 class="offscreen">Hello World</h1>
-
   <div id="tourCodeAndNotes">
     <div id="tourCode">
       <mwc-formfield id="tourJsTsSwitch" label="TypeScript">
         <mwc-switch checked></mwc-switch>
       </mwc-formfield>
       <div id="tourTsCode">
-        {% highlight 'ts' %}{% include './1-splash-example.ts' %}{% endhighlight %}
+        {% highlight 'ts' %}{% include './3-tour-example.ts' %}{% endhighlight %}
       </div>
       <div id="tourJsCode" hidden>
-        {% highlight 'js' %}{% include './1-splash-example.js' %}{% endhighlight %}
+        {% highlight 'js' %}{% include './3-tour-example.js' %}{% endhighlight %}
       </div>
       <div id="tourHtmlCode">
-        {% highlight 'html' %}{% include './1-splash-example.html' %}{% endhighlight %}
+        {% highlight 'html' %}{% include './3-tour-example.html' %}{% endhighlight %}
       </div>
     </div>
 
     <div id="tourNotes">
       <div id="tourNoteCustomElements" tabindex="0">
-        <h2>Custom Elements</h2>
+        <h1>Custom Elements</h1>
         <p>
           Lit components are standard <em>custom elements</em>, so the browser treats
           them exactly like built-in elements. Use them in hand-written HTML or framework
@@ -29,7 +27,7 @@
       </div>
 
       <div id="tourNoteStyles" tabindex="0">
-        <h2>Scoped styles</h2>
+        <h1>Scoped styles</h1>
         <p>
           Lit scopes your styles by default, using <em>Shadow DOM</em>. This keeps your CSS
           selectors simple and ensures that your component’s styles don't affect — and
@@ -38,7 +36,7 @@
       </div>
 
       <div id="tourNoteProperties" tabindex="0">
-        <h2>Reactive properties</h2>
+        <h1>Reactive properties</h1>
         <p>
           Declare <em>reactive properties</em> to model your component’s API and internal
           state. A Lit component efficiently re-renders whenever a reactive property (or
@@ -47,7 +45,7 @@
       </div>
 
       <div id="tourNoteTemplates" tabindex="0">
-        <h2>Declarative templates</h2>
+        <h1>Declarative templates</h1>
         <p>
           Lit templates, based on <em>tagged template literals</em>, are simple,
           expressive and fast, featuring HTML markup with native JavaScript expressions

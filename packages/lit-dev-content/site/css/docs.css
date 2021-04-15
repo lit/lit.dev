@@ -548,8 +548,7 @@ td {
 }
 
 #rhsTocInner a {
-  color: black;
-  opacity: 0.5;
+  color: #6f6f6f;
   font-size: 0.8em;
   position: relative;
   display: inline-block;
@@ -559,7 +558,7 @@ td {
 
 #rhsTocInner a.active,
 #rhsTocInner a:hover {
-  opacity: 1;
+  color: black;
 }
 
 /* Active section bullet */
