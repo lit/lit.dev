@@ -159,15 +159,26 @@ in TypeScript.
 The module that declares the web component class should always include a call to
 `customElements.define()` (or the `@customElement` decorator) to define the element.
 
+Currently, web components are always defined in a global registry. Each custom element definition needs to use a unique tag name **and** a unique JavaScript class. Attempting to register the same tag name twice, or the same class twice will fail with an error. Simply exporting a class and expecting the user to call `define()` is brittle. If two different components both depend on a shared third component, and both try to define it, one will fail. This isn't a problem if an element is always defined in the same module where its class is declared.
+
+One downside of this approach is that if two different elements use the same tag name, they can't both be imported to the same project.
+
 Work is progressing on adding [Scoped Custom Element
 Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md)
-to the platform, wherein a custom element's tag name could be chosen by the
+to the platform. Scoped registries allow a custom element's tag name to be chosen by the
 user of the component for a given shadow root scope. Once browsers start
-shipping this feature, it will become practical to export the custom element
-class separate from a side-effectful import that registers it globally with a
-tag name.
+shipping this feature, it will become practical to publish two modules for each component: one that exports the custom element class with no side effects, and one that registers it globally with a tag name.
 
 Until then, we recommend continuing to register elements in the global registry.
+
+If for some reason a user needs to register an element with a different tag name, they can create a trivial subclass:
+
+```js
+import {SomeElement} from './some-element.js';
+
+export class AnotherElement extends SomeElement {}
+customElements.define('another-element', AnotherElement);
+```
 
 ### Export element classes
 
