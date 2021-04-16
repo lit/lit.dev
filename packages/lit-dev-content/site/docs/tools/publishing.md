@@ -28,7 +28,7 @@ You should also create a README describing how to consume your component.
 
 ## Publishing modern JavaScript
 
-We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always downlevel further to support older browsers, but they cannot "uplevel" legacy JavaScript to modern syntax if you pre-compile your code before publishing.
+We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
 However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ transpile those features to standard ES2019 supported natively in browsers before publishing to npm.
 
@@ -170,15 +170,6 @@ user of the component for a given shadow root scope. Once browsers start
 shipping this feature, it will become practical to publish two modules for each component: one that exports the custom element class with no side effects, and one that registers it globally with a tag name.
 
 Until then, we recommend continuing to register elements in the global registry.
-
-If for some reason a user needs to register an element with a different tag name, they can create a trivial subclass:
-
-```js
-import {SomeElement} from './some-element.js';
-
-export class AnotherElement extends SomeElement {}
-customElements.define('another-element', AnotherElement);
-```
 
 ### Export element classes
 
