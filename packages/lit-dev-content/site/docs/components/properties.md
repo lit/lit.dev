@@ -64,7 +64,7 @@ The argument to the `@property`  decorators is an [options object](#property-opt
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Enabling decorators](/docs/components/decorators/#enabling-decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a compiler like Babel or the TypeScript compiler to use decorators. See [Enabling decorators](/docs/components/decorators/#enabling-decorators) for details.
 
 </div>
 

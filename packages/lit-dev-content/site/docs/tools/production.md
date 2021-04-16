@@ -20,7 +20,7 @@ Lit projects benefit from the same build-time optimizations as other web project
 
 *   Bundling Javascript modules to reduce network requests (for example, using [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/)).
 *   Minifying Javascript code for smaller payload sizes ([Terser](https://www.npmjs.com/package/terser) works well for Lit, because it supports modern JavaScript).
-*   [Serving modern code to modern browsers](https://web.dev/serve-modern-code-to-modern-browsers/) as it is generally smaller and faster, and falling back to transpiled code on older browsers.
+*   [Serving modern code to modern browsers](https://web.dev/serve-modern-code-to-modern-browsers/) as it is generally smaller and faster, and falling back to compiled code on older browsers.
 *   [Hashing static assets including bundled JavaScript](https://web.dev/love-your-cache/#fingerprinted-urls) for easier cache invalidation.
 *   [Enabling serve-time compression](https://web.dev/reduce-network-payloads-using-text-compression/#data-compression) (such as gzip or brotli) for fewer bytes over the wire.
 
@@ -201,11 +201,11 @@ export default {
     }),
   ],
   // Specifies two JS output configurations, modern and legacy, which the HTML plugin will
-  // automatically choose between; the legacy build is transpiled to ES5
+  // automatically choose between; the legacy build is compiled to ES5
   // and SystemJS modules
   output: [
     {
-      // Modern JS bundles (no JS transpilation, ES module output)
+      // Modern JS bundles (no JS compilation, ES module output)
       format: 'esm',
       chunkFileNames: '[name]-[hash].js',
       entryFileNames: '[name]-[hash].js',
@@ -213,7 +213,7 @@ export default {
       plugins: [htmlPlugin.api.addOutput('modern')],
     },
     {
-      // Legacy JS bundles (ES5 transpilation and SystemJS module output)
+      // Legacy JS bundles (ES5 compilation and SystemJS module output)
       format: 'esm',
       chunkFileNames: 'legacy-[name]-[hash].js',
       entryFileNames: 'legacy-[name]-[hash].js',
@@ -262,4 +262,4 @@ Use the template polyfill:
 <script src="./node_modules/@webcomponents/template/template.js"></script>
 ```
 
-Note: when transpiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill.
+Note: when compiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill.
