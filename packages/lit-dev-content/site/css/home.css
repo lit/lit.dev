@@ -10,9 +10,8 @@ html {
   --home-side-margin: 2rem;
 }
 
-main {
-  background: #fafafa;
-  font-family: "Open Sans", sans-serif;
+header {
+  background: #f4f4f4;
 }
 
 /* Fading lit-logo (see home.js) */
@@ -33,24 +32,6 @@ main {
 p {
   line-height: 1.7em;
   font-size: 16px;
-}
-
-/* Bold uppercase links */
-
-.homeBoldLink {
-  text-transform: uppercase;
-  color: black;
-  font-weight: 700;
-  padding: 1em 0;
-  font-size: 0.88889em;
-  border-bottom: 2px solid var(--color-blue);
-}
-
-.homeBoldLink:hover {
-  color: white;
-  background: black;
-  padding: 1em 0.5em;
-  margin: 0 -0.5em;
 }
 
 /* Large section headings with blue underline */
@@ -99,4 +80,14 @@ p {
   border-bottom: 0.08em solid #dfdfdf;
   margin: 0 1.76em;
   height: 0;
+}
+
+#MOCK {
+  position: fixed;
+  top: -6px;
+  right: -30px;
+  z-index: 999;
+  opacity: 0%;
+  width: 1700px;
+  display: none;
 }
