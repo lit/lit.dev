@@ -218,9 +218,9 @@ Controllers are a great way to bundle task execution and state to make it easy t
 
 `@lit-labs/task` contains a generic `Task` controller that can pull inputs from the host, execute a task function, and render different templates depending on the task state.
 
-You can use `Task` to create a custom controller with an API tailored for your specific task. Here we wrap `Task` in a `NamesController` that can fetch one of a specified list of names from a REST API. `NameController` exposes a `kind` property as an input, and a `render()` method that can render one of four templates depending on the task state. The task logic, and how it updates the host, are abstracted from the host component.
+You can use `Task` to create a custom controller with an API tailored for your specific task. Here we wrap `Task` in a `NamesController` that can fetch one of a specified list of names from a demo REST API. `NameController` exposes a `kind` property as an input, and a `render()` method that can render one of four templates depending on the task state. The task logic, and how it updates the host, are abstracted from the host component.
 
-{% playground-ide "docs/controllers/names" "my-element.ts" %}
+{% playground-ide "docs/controllers/names" %}
 
 {% todo %}
 

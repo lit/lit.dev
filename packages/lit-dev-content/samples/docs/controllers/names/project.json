@@ -1,9 +1,10 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "my-element.ts": {},
     "names-controller.ts": {},
+    "my-element.ts": {},
+    "names-api.ts": {},
     "index.html": {}
   },
-  "editorHeight": "1020px"
+  "editorHeight": "1160px"
 }
