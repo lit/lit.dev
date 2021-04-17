@@ -45,7 +45,7 @@ export interface NamesError {
   error: string;
 }
 export type NamesResult = Array<{value: string}>;
-export type Kind = typeof NamesController.prototype.kinds[number];
+export type Kind = keyof typeof kindUrlMap;
 
 const baseUrl = 'https://next.json-generator.com/api/json/get/';
 const kindUrlMap = {
