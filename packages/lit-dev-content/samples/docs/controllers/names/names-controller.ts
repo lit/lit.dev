@@ -11,7 +11,7 @@ export class NamesController {
     this.host = host;
     this.task = new Task<[Kind], NamesResult>(host,
       async ([kind]: [Kind]) => {
-        if (kind == null || kind.trim() === '') {
+        if (!kind?.trim()) {
           return initialState;
         }
         const response = await fetch(`${baseUrl}${kindUrlMap[kind]}`);
