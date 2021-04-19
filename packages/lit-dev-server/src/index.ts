@@ -32,6 +32,26 @@ console.log(`port: ${port}`);
 console.log(`static root: ${staticRoot}`);
 
 const app = new Koa();
+app.use(async (ctx, next) => {
+  if (ctx.path.match(/\/[^\/\.]+$/)) {
+    // Canonicalize paths to have a trailing slash, except for files with
+    // extensions.
+    ctx.status = 301;
+    ctx.redirect(
+      ctx.path + '/' + (ctx.querystring ? '?' + ctx.querystring : '')
+    );
+  } else if (ctx.path.endsWith('//')) {
+    // Koa static doesn't care if there are any number of trailing slashes.
+    // Normalize this too.
+    ctx.status = 301;
+    ctx.redirect(
+      ctx.path.replace(/\/+$/, '/') +
+        (ctx.querystring ? '?' + ctx.querystring : '')
+    );
+  } else {
+    await next();
+  }
+});
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
 app.use(
