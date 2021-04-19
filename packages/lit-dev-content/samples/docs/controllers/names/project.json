@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
   "files": {
+    "names-controller.ts": {},
     "my-element.ts": {},
-    "forex-controller.ts": {},
-    "task.ts": {},
+    "names-api.ts": {},
     "index.html": {}
   },
-  "editorHeight": "1110px"
+  "editorHeight": "1160px"
 }
