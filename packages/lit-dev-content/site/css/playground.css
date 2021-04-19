@@ -1,3 +1,11 @@
+body {
+  /* TODO(aomarks) Shouldn't really need this, but when the preview height is
+     dragged too high, it causes extra space to be consumed below, and the
+     entire viewport scrolls. There must be a flexbox configuration that will do
+     the right thing automatically here. */
+  overflow-y: hidden;
+}
+
 main {
   display: flex;
   /* Account for removed footer height. */
@@ -154,7 +162,7 @@ litdev-drawer:not([closed])::part(header) {
 /* Playground */
 
 playground-file-editor {
-  flex: 1;
+  flex: 1 0 0;
 }
 
 playground-preview {
@@ -189,7 +197,6 @@ resize-bar[active] {
   }
   playground-file-editor {
     min-height: 100px;
-    flex-basis: 0;
   }
   playground-preview {
     flex: 0 0 var(--preview-height, 45%);
