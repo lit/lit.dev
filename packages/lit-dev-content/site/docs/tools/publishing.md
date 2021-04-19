@@ -30,9 +30,9 @@ You should also create a README describing how to consume your component.
 
 We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
-However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ transpile those features to standard ES2019 supported natively in browsers before publishing to npm.
+However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ compile those features to standard ES2019 supported natively in browsers before publishing to npm.
 
-### Transpiling with TypeScript
+### Compiling with TypeScript
 
 The following JSON sample is a partial `tsconfig.json` that uses recommended options for targeting ES2019, enables compilation of decorators, and outputs `.d.ts` types for users:
 
@@ -50,7 +50,7 @@ The following JSON sample is a partial `tsconfig.json` that uses recommended opt
 }
 ```
 
-When transpiling from TypeScript, you should include declaration files
+When compiling from TypeScript, you should include declaration files
 (generated based on `declaration: true` above) for your component's types in the
 `types` field of `package.json`, and ensure the `.d.ts` and `.d.ts.map` files
 are published as well:
@@ -65,9 +65,9 @@ are published as well:
 
 See the [tsconfig.json documentation](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for more information.
 
-### Transpiling with Babel
+### Compiling with Babel
 
-To transpile a Lit component that uses proposed JavaScript features not yet included in ES2019, use Babel.
+To compile a Lit component that uses proposed JavaScript features not yet included in ES2019, use Babel.
 
 Install Babel and the Babel plugins you need. For example:
 

@@ -17,7 +17,7 @@ These features are supported by the latest versions of major browsers (including
 When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we recomend grouping browsers into one of two categories:
 
 *   **Modern browsers** support ES2019 and web components. Tools must resolve bare module specifiers.
-*   **Legacy browsers** support ES5 and don't support web components or newer DOM APIs. Tools must transpile JavaScript and load polyfills.
+*   **Legacy browsers** support ES5 and don't support web components or newer DOM APIs. Tools must compile JavaScript and load polyfills.
 
 This page gives a general overview for how to meet these requirements in your development and productions envirionments.
 
@@ -54,15 +54,15 @@ All modern browsers update automatically and users are highly likely to have a r
 
 Supporting older browsers (specifically Internet Explorer 11, but also older versions of evergreen browsers), requires a number of extra steps:
 
-*   Transpiling modern JavaScript syntax to ES5.
+*   Compiling modern JavaScript syntax to ES5.
 *   Transforming ES modules to another module system.
 *   Loading polyfills.
 
 ### Legacy browser breakdown
 
-The following table lists supported browser versions that require transpiling Javascript and loading polyfills:
+The following table lists supported browser versions that require compiling Javascript and loading polyfills:
 
-| Browser           | Transpile JS | Transpile JS & load polyfills |
+| Browser           | Compile JS | Compile JS & load polyfills |
 |:------------------|:------------:|:-----------------------------:|
 | Chrome            | 67-79        | <67                           |
 | Safari            | 10-12        | <10                           |
@@ -71,19 +71,19 @@ The following table lists supported browser versions that require transpiling Ja
 | Edge "classic"    |              | <=18                         |
 | Internet Explorer |              | 11                            |
 
-### Transpiling to ES5 {#transpiling-to-es5}
+### Compiling to ES5 {#compiling-to-es5}
 
-Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used transpiler.
+Rollup, webpack and other build tools have plugins to support compiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used compiler.
 
 Unlike some libraries, Lit is published as a set of ES modules using modern ES2019 JavaScript. When you build your app for older browsers, you need to compile Lit as well as your own code.
 
-If you have a build already set up, it may be configured to ignore the `node_modules` folder when transpiling. If this is the case, we recommend updating this to transpile the `lit` package and its runtime dependencies (`lit-html` and `lit-element`). For example, if you're using the [Rollup Babel plugin](https://www.npmjs.com/package/@rollup/plugin-babel), you might have a configuration like this to exclude the `node_modules` folder from transpilation:
+If you have a build already set up, it may be configured to ignore the `node_modules` folder when compiling. If this is the case, we recommend updating this to compile the `lit` package and its runtime dependencies (`lit-html` and `lit-element`). For example, if you're using the [Rollup Babel plugin](https://www.npmjs.com/package/@rollup/plugin-babel), you might have a configuration like this to exclude the `node_modules` folder from compilation:
 
 ```js
 exclude: [ 'node_modules/**' ]
 ```
 
-You can replace this with a rule to explicitly include folders to transpile:
+You can replace this with a rule to explicitly include folders to compile:
 
 ```js
 include: [
@@ -151,7 +151,7 @@ There are two main ways to load the web components polyfills:
 
 #### Loading the ES5 adapter
 
-It's best to serve a modern build to modern browsers to avoid sending the extra code needed for older browsers. However, it can be convenient to serve just a single set of files. If you do this, there is one extra required step. In order for ES5 transpiled code to work with native web components and specifically custom elements, a small adapter is needed. For a detailed explanation, see the [webcomponentsjs documentation](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs).
+It's best to serve a modern build to modern browsers to avoid sending the extra code needed for older browsers. However, it can be convenient to serve just a single set of files. If you do this, there is one extra required step. In order for ES5 compiled code to work with native web components and specifically custom elements, a small adapter is needed. For a detailed explanation, see the [webcomponentsjs documentation](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs).
 
 Load the `custom-elements-es5-adapter.js` after any Babel polyfills and before web components, like this:
 
