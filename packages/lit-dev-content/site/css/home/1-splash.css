@@ -30,6 +30,10 @@
   margin: 0 60px -9px 0;
 }
 
+#tagline > span {
+  display: block;
+}
+
 #splashButtons {
   display: flex;
   flex-direction: column;
@@ -90,8 +94,8 @@
     font-size: 20px;
   }
 
-  #tagline > br {
-    display: none;
+  #tagline > span {
+    display: inline;
   }
 
   #npmInstall {
