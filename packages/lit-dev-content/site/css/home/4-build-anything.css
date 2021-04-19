@@ -1,10 +1,8 @@
-#useCasesWrapper {
-  background: black;
-  color: white;
+#buildAnythingWrapper {
   padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
 }
 
-#useCasesWrapper > h1 {
+#buildAnythingWrapper > h1 {
   font-size: 32px;
   font-weight: 500;
   margin: 0 auto 1em auto;
@@ -13,57 +11,57 @@
   max-width: var(--content-max-width);
 }
 
-#useCases {
+#buildAnything {
   max-width: var(--content-max-width);
   margin: auto;
   display: flex;
 }
 
-#useCases > .item {
+#buildAnything > .item {
   flex: 1;
   padding: 0 1.5em;
-  border-right: 1px solid #3f3f3f;
+  border-right: 2px solid #bbb;
 }
 
-#useCases > .item:first-of-type {
+#buildAnything > .item:first-of-type {
   padding-left: 0;
 }
 
-#useCases > .item:last-of-type {
+#buildAnything > .item:last-of-type {
   padding-right: 0;
   border-right: none;
 }
 
-#useCases > .item > .heading {
+#buildAnything > .item > .heading {
   display: flex;
   align-items: center;
 }
 
-#useCases > .item > .heading > h2 {
-  font-size: 1.5em;
-  font-weight: 500;
+#buildAnything > .item > .heading > h2 {
+  font-size: 24px;
+  font-weight: 700;
   margin: 0;
-  color: var(--color-cyan);
   margin-left: 1em;
 }
 
-.useCasesArt > svg {
+.buildAnythingArt > svg {
   width: 3.7em;
   height: 3.7em;
   margin: 1.8em 0 0.9em 0;
   stroke-width: 1.5px;
+  color: var(--color-blue);
 }
-.useCasesArt > svg.standalone {
+.buildAnythingArt > svg.standalone {
   stroke-width: 8px;
 }
 
 /* Solid blue rectangle under illustrations */
-.useCasesArt {
+.buildAnythingArt {
   z-index: 1;
   position: relative;
 }
-.useCasesArt:not(.first)::after {
-  background: #1431ff;
+.buildAnythingArt:not(.first)::after {
+  background: #D6FDFD;
   position: absolute;
   content: '';
   left: 8px;
@@ -74,15 +72,15 @@
 }
 
 @media (max-width: 1000px) {
-  #useCases {
+  #buildAnything {
     flex-direction: column;
   }
 
-  #useCases > .item {
+  #buildAnything > .item {
     padding: 1em 0;
   }
 
-  #useCases > .item:not(:last-of-type) {
+  #buildAnything > .item:not(:last-of-type) {
     border-right: none;
     border-bottom: 1px solid #ccc;
   }

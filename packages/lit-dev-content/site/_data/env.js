@@ -11,4 +11,5 @@
  module.exports = {
    DEV: process.env.ELEVENTY_ENV === 'dev',
    PLAYGROUND_SANDBOX: process.env.PLAYGROUND_SANDBOX,
+   GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
  }

@@ -10,7 +10,7 @@
 
 html {
   font-size: 18px;
-  --header-height: 3.33rem;
+  --header-height: 60px;
   --footer-top-height: 12rem;
   --footer-bottom-height: 6rem;
   --content-max-width: 76rem;
@@ -37,11 +37,25 @@ main {
   min-height: calc(100vh - var(--header-height) - var(--footer-top-height) -
     var(--footer-bottom-height)
   );
+  scroll-margin-top: var(--header-height);
 }
 
 a {
   text-decoration: none;
   color: #1879cd;
+}
+
+/* On some platforms like Linux, a traditional scrollbar will be always visible
+   on the nav, which is quite distracting. This reproduces something similar to
+   macOS style on all platforms. */
+.minimalScroller::-webkit-scrollbar {
+  width: 15px;
+}
+.minimalScroller:hover::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.3);
+  background-clip: content-box !important;
+  border: 4px solid transparent;
+  border-radius: 10px;
 }
 
 /* Hide something visually in a way that screen readers will read. */
@@ -51,4 +65,23 @@ a {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+#bypassNavLink {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 100ms;
+  font-size: 18px;
+  padding: 8px 14px;
+  color: var(--color-blue);
+  background: white;
+  z-index: 5;
+}
+#bypassNavLink:focus {
+  transform: translateX(10px);
+}
+#bypassNavLink:hover {
+  text-decoration: underline;
 }

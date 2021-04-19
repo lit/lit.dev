@@ -38,11 +38,11 @@ article {
   font-size: 1.5em;
 }
 
-#content {
+#blogContent {
   padding: var(--blog-top-padding) 3em;
 }
 
-#content > :first-child {
+#blogContent > :first-child {
   margin-top: 0;
 }
 
@@ -56,7 +56,7 @@ main img.flame {
   article {
     display: block;
   }
-  #content {
+  #blogContent {
     padding-left: 2em;
   }
 }

@@ -18,7 +18,7 @@
     "build:samples:watch": "tsc --project samples --watch --noEmit",
     "dev:build:site": "rm -rf _dev && ELEVENTY_ENV=dev eleventy",
     "dev:build:site:watch": "rm -rf _dev && ELEVENTY_ENV=dev eleventy --watch",
-    "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open",
+    "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open --preserve-symlinks",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "devDependencies": {
@@ -48,13 +48,14 @@
     "@material/mwc-drawer": "^0.20.0",
     "@material/mwc-formfield": "^0.20.0",
     "@material/mwc-icon-button": "^0.20.0",
+    "@material/mwc-icon-button-toggle": "^0.20.0",
     "@material/mwc-snackbar": "^0.20.0",
     "@material/mwc-switch": "^0.20.0",
     "lit": "^2.0.0-pre.1",
     "@lit-labs/task": "1.0.0-pre.2",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "playground-elements": "^0.8.0",
+    "playground-elements": "^0.9.0",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }

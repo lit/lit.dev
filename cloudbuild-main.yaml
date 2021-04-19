@@ -15,8 +15,9 @@ steps:
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA
       - --cache=true
       - --cache-ttl=168h # 1 week
-      # Bake in the playground sandbox url
+      # Bake in environment parameters
       - --build-arg=PLAYGROUND_SANDBOX=https://lit-dev-playground-5ftespv5na-uc.a.run.app/
+      - --build-arg=GOOGLE_ANALYTICS_ID=G-FTZ6CJP9F3
 
   # Create a new Cloud Run revision for the main site.
   #

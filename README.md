@@ -79,8 +79,8 @@ code packages/lit-dev-api/lit/
 
 The `lit` directory is a regular cloned git repo, so you can make changes
 directly here, and push PRs from it as normal. It's configured to track the
-`lit-next` branch, but is pinned to a particular commit via the `lit.sha` file.
-To update the current commit, run:
+`main` branch, but is pinned to a particular commit via the `lit.sha` file. To
+update the current commit, run:
 
 ```sh
 cd packages/lit-dev-tools

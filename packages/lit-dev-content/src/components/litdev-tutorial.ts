@@ -108,14 +108,24 @@ export class LitDevTutorial extends LitElement {
         </nav>
       </div>
 
-      <div id="tutorialContent" ?loading=${this._loading}>
+      <div
+        id="tutorialContent"
+        class="minimalScroller"
+        ?loading=${this._loading}
+      >
         <h1>${this._info?.title}</h1>
         ${unsafeHTML(this._html)}
 
         <div id="tutorialFooter">
           <button @click=${this._onClickSolve}>
             <!-- Source: https://material.io/resources/icons/?icon=auto_fix_high -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentcolor"
+              aria-hidden="true"
+            >
               <path
                 d="M7.5 5.6L10 7 8.6 4.5 10 2 7.5 3.4 5 2l1.4 2.5L5 7zm12 9.8L17 14l1.4 2.5L17 19l2.5-1.4L22 19l-1.4-2.5L22 14zM22 2l-2.5 1.4L17 2l1.4 2.5L17 7l2.5-1.4L22 7l-1.4-2.5zm-7.63 5.29c-.39-.39-1.02-.39-1.41 0L1.29 18.96c-.39.39-.39 1.02 0 1.41l2.34 2.34c.39.39 1.02.39 1.41 0L16.7 11.05c.39-.39.39-1.02 0-1.41l-2.33-2.35zm-1.03 5.49l-2.12-2.12 2.44-2.44 2.12 2.12-2.44 2.44z"
               />
@@ -125,7 +135,13 @@ export class LitDevTutorial extends LitElement {
 
           <button @click=${this._onClickReset}>
             <!-- Source: https://material.io/resources/icons/?icon=restart_alt -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentcolor"
+              aria-hidden="true"
+            >
               <path
                 d="M12,5V2L8,6l4,4V7c3.31,0,6,2.69,6,6c0,2.97-2.17,5.43-5,5.91v2.02c3.95-0.49,7-3.85,7-7.93C20,8.58,16.42,5,12,5z"
               />
@@ -243,7 +259,9 @@ export class LitDevTutorial extends LitElement {
         : await this._fetchHtml(active.htmlSrc);
     this._setProjectSrc(active.projectSrcBefore);
     this._loading = false;
-    this.renderRoot.querySelector('h1')?.scrollIntoView();
+    // Use scrollTop instead of scrollIntoView, because scrollIntoView also
+    // changes focus.
+    this.renderRoot.querySelector('#tutorialContent')!.scrollTop = 0;
 
     // Start loading the next step's HTML content.
     const next = this._nextInfo;

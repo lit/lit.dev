@@ -1,191 +1,81 @@
 #connect {
-  background: black;
-  color: white;
+  background: url('/images/flame-tile.svg');
+  background-size: 60px;
+  background-repeat: space;
+  background-color: #f4f4f4;
 }
 
-#connectLhs > .content > h3 {
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 1.2em;
+#connectContent {
+  max-width: var(--content-max-width);
+  padding: 60px var(--home-side-margin);
+  margin: auto;
+  display: flex;
+}
+
+#connectLhs {
+  flex: 1;
+  margin-right: 100px;
+}
+
+#connectLhs > h1 {
+  font-size: 24px;
 }
 
 #connectRhs {
-  background: var(--color-blue);
+  flex: 1;
 }
 
-#connectItems {
-  padding-left: 0;
+#connectList {
   list-style: none;
+  padding: 0;
 }
 
-#connectItems > li > a {
+#connectList > li {
+  margin-bottom: 40px;
+}
+
+#connectList > li > a {
+  color: var(--color-blue);
+  border-bottom: 2px solid var(--color-blue);
+  padding: 8px 20px 6px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#connectList > li > a:hover,
+#connectList > li > a:focus {
+  background: var(--color-blue);
   color: white;
-  text-transform: uppercase;
-  margin-top: 0.7em;
 }
 
-#connectItems > li:hover > a {
-  background: white;
-  color: black;
+#connectList > li > a > .title {
+  font-weight: 700;
+  margin-right: 30px;
 }
 
-/* ------------------------------------
- * Wide
- * ------------------------------------ */
+#connectList > li > a > .desc {
+  visibility: hidden;
+}
 
- @media (min-width: 1001px) {
-  #connect {
-    display: flex;
-    --connect-list-overlap: 6em;
-  }
+#connectList > li > a:hover > .desc,
+#connectList > li > a:focus > .desc {
+  visibility: visible;
+}
 
-  /* LHS */
-
-  #connectLhs {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 4em 0 4em var(--home-side-margin);
-    box-sizing: border-box;
-  }
-
-  #connectLhs > .content {
-    flex: 1;
-    max-width: calc(var(--content-max-width) / 2);
-    padding-right: calc(var(--connect-list-overlap) + 1.08em);
-    box-sizing: border-box;
-  }
-
-  #connectLhs > .content > h3 {
-    letter-spacing: 0.06em;
-    margin: 0 0 1em 0;
-    max-width: 15em;
-    font-weight: 700;
-  }
-
-  #connectLhs > .content > p {
-    color: var(--color-light-gray);
-    margin-bottom: 0;
-    max-width: 19em;
-  }
-
-  /* RHS */
-
-  #connectRhs {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    padding-right: var(--home-side-margin);
-    box-sizing: border-box;
-  }
-
-  #connectItems {
-    flex: 1;
-    max-width: calc(var(--connect-list-overlap) + var(--content-max-width) / 2);
-    margin: 0 2.5em 0 calc(-1 * var(--connect-list-overlap));
-    display: flex;
+@media (max-width: 860px) {
+  #connectContent {
     flex-direction: column;
-    min-width: 30.6em;
-    position: relative; /* for monolith */
   }
-
-  #connectItems > li {
-    border-bottom: 1.5px solid black;
-    display: flex;
-    position: relative;
-  }
-
-  #connectItems > li > .underline {
-    width: var(--connect-list-overlap);
-    border-bottom: 1.5px solid var(--color-blue);
-    position: absolute;
-    left: 0;
-    bottom: -1.5px;
-  }
-
-  #connectItems > li > p {
-    visibility: hidden;
-    position: absolute;
-    color: var(--color-blue);
-    left: 1em;
-    bottom: 0;
-    font-size: 0.756em;
-    font-weight: 600;
-    pointer-events: none;
-    line-height: 0.8em;
-  }
-
-  #connectItems > li:hover > p {
-    visibility: visible;
-  }
-
-  #connectItems > li > a {
-    flex: 1;
-    text-align: right;
-    font-size: 0.8em;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 0.8em 0.9em 0.6em 0;
-  }
-
-  #connectMonolith {
-    background: #1431ff;
-    height: 15em;
-    width: 4.8em;
-    position: absolute;
-    right: -2.5em;
-    top: 1.8em;
-    z-index: 0;
-  }
-
-  #connectMonolith::before {
-    background: url('/images/texture-white.png');
-    opacity: 30%;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    content: '';
-  }
-}
-
-/* ------------------------------------
- * Narrow
- * ------------------------------------ */
-
-@media (max-width: 1000px) {
-
-  /* LHS */
 
   #connectLhs {
-    padding: 1.8em var(--home-side-margin) 1em var(--home-side-margin);
+    margin-right: 0;
   }
 
-  #connectLhs > .content {
-    max-width: var(--content-max-width);
-    margin: auto;
+  #connectList > li {
+    margin-bottom: 20px;
   }
 
-  /* RHS */
-
-  #connectRhs {
-    padding: 0 var(--home-side-margin);
-  }
-
-  #connectItems {
-    max-width: var(--content-max-width);
-    padding: 0.5em 0 3em 0;
-  }
-
-  #connectItems > li > p {
+  #connectList > li > a > .desc {
     display: none;
-  }
-
-  #connectItems > li > a {
-    display: block;
-    text-align: center;
-    border-bottom: 2px solid black;
-    font-weight: 700;
-    padding: 1em;
   }
 }

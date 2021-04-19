@@ -28,7 +28,7 @@ You should also create a README describing how to consume your component.
 
 ## Publishing modern JavaScript
 
-We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always downlevel further to support older browsers, but they cannot "uplevel" legacy JavaScript to modern syntax if you pre-compile your code before publishing.
+We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
 However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ transpile those features to standard ES2019 supported natively in browsers before publishing to npm.
 
@@ -159,13 +159,15 @@ in TypeScript.
 The module that declares the web component class should always include a call to
 `customElements.define()` (or the `@customElement` decorator) to define the element.
 
+Currently, web components are always defined in a global registry. Each custom element definition needs to use a unique tag name **and** a unique JavaScript class. Attempting to register the same tag name twice, or the same class twice will fail with an error. Simply exporting a class and expecting the user to call `define()` is brittle. If two different components both depend on a shared third component, and both try to define it, one will fail. This isn't a problem if an element is always defined in the same module where its class is declared.
+
+One downside of this approach is that if two different elements use the same tag name, they can't both be imported to the same project.
+
 Work is progressing on adding [Scoped Custom Element
 Registries](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md)
-to the platform, wherein a custom element's tag name could be chosen by the
+to the platform. Scoped registries allow a custom element's tag name to be chosen by the
 user of the component for a given shadow root scope. Once browsers start
-shipping this feature, it will become practical to export the custom element
-class separate from a side-effectful import that registers it globally with a
-tag name.
+shipping this feature, it will become practical to publish two modules for each component: one that exports the custom element class with no side effects, and one that registers it globally with a tag name.
 
 Until then, we recommend continuing to register elements in the global registry.
 

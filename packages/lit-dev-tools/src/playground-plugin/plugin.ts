@@ -130,7 +130,7 @@ export const playgroundPlugin = (
     const lineNumbers = config.lineNumbers ? 'line-numbers' : '';
     return `
       <playground-ide ${styleHeight}
-      ${lineNumbers} resizable editable-file-system
+      ${lineNumbers} resizable
         project-src="/samples/${project}/project.json">
       </playground-ide>
     `.trim();

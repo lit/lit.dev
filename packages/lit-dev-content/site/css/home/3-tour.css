@@ -1,20 +1,11 @@
 #tour {
   padding: 7em var(--home-side-margin) 6em var(--home-side-margin);
+  background: #f4f4f4;
 }
 
 #tour > * {
   max-width: var(--content-max-width);
   margin: auto;
-}
-
-#tour > h1 {
-  font-weight: 500;
-  margin-bottom: 1em;
-  font-size: 34px;
-  padding-bottom: 0.5em;
-  border-bottom: 2px solid var(--color-blue);
-  width: 620px;
-  display: none;
 }
 
 #tourCodeAndNotes {
@@ -66,7 +57,7 @@
 #tourCode .tourHighlight:hover,
 #tourCode .tourHighlight.active {
   cursor: pointer;
-  background: rgb(255, 238, 0);
+  background: #ffe950;
 }
 
 #tourCode .CodeMirror-line,
@@ -79,30 +70,30 @@
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  margin-top: -1.6em;
-  margin-bottom: -1.3em;
   position: sticky;
   top: calc(var(--header-height));
-  justify-content: space-between;
   outline: none;
 }
 
 #tourNotes > div {
   max-width: 680px;
   border-left: 4px solid transparent;
+  margin-bottom: 19px;
 }
 
-#tourNotes > div > h3 {
-  font-weight: 600;
-  color: #666;
+#tourNotes > div > h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #454545;
+  margin: 12px 0 0 0;
 }
 
 #tourNotes > div.active {
   background: white;
   border-color: #325cff;
-  box-shadow: rgb(0 0 0 / 20%) 0px 0 5px 0px;
-  margin: 0 -1em 0 -1em;
-  padding: 0 1em 0 1em;
+  box-shadow: rgb(0 0 0 / 20%) 0 0 5px 0;
+  margin: 0 -18px 19px -18px;
+  padding: 0 18px 0 18px;
   cursor: pointer;
   outline: none;
 }
@@ -111,22 +102,17 @@
   outline: none;
 }
 
-#playgroundLinkContainer {
-  display: flex;
-  width: 620px;
-  margin: 0;
-}
-
 #playgroundLink {
+  display: block;
   background: #325cff;
   color: white;
   padding: 10px 30px;
-  margin-top: 2em;
   text-align: center;
-  margin-left: auto;
+  margin-top: 2em;
 }
 
-#playgroundLink:hover {
+#playgroundLink:hover,
+#playgroundLink:focus {
   background: blue;
 }
 
@@ -138,10 +124,6 @@
 
   #tourNotes {
     font-size: 16px;
-  }
-
-  #playgroundLinkContainer {
-    width: 540px
   }
 }
 
@@ -174,14 +156,5 @@
   #tourNotes {
     margin-left: 0;
     margin-top: 1em;
-  }
-
-  #playgroundLinkContainer {
-    width: 100%;
-  }
-
-  #playgroundLink {
-    margin-left: auto;
-    margin-right: auto;
   }
 }
