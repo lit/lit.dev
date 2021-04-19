@@ -45,6 +45,7 @@ module.exports = function (eleventyConfig) {
     // In dev mode, we symlink these directly to source.
     eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
     eleventyConfig.addPassthroughCopy('site/css');
+    eleventyConfig.addPassthroughCopy('site/fonts');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
     eleventyConfig.addPassthroughCopy({
@@ -353,6 +354,10 @@ ${content}
       await symlinkForce(
         path.join(__dirname, 'site', 'images'),
         path.join(__dirname, '_dev', 'images')
+      );
+      await symlinkForce(
+        path.join(__dirname, 'site', 'fonts'),
+        path.join(__dirname, '_dev', 'fonts')
       );
       await symlinkForce(
         path.join(__dirname, 'samples'),

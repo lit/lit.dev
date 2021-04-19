@@ -7,6 +7,7 @@
   "license": "BSD-3-Clause",
   "main": "_site/index.html",
   "scripts": {
+    "postinstall": "npm run fonts:manrope",
     "build": "rm -rf _site && npm run build:ts && npm run build:rollup && npm run build:site && npm run build:samples",
     "build:ts": "../../node_modules/.bin/tsc",
     "build:ts:watch": "../../node_modules/.bin/tsc --watch",
@@ -16,6 +17,7 @@
     "build:rollup:watch": "rm -rf rollupout && rollup -c --watch",
     "build:samples": "tsc --project samples  --noEmit",
     "build:samples:watch": "tsc --project samples --watch --noEmit",
+    "fonts:manrope": "rm -rf site/fonts temp && mkdir -p site/fonts && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/ && cd ../.. && rm -rf temp",
     "dev:build:site": "rm -rf _dev && ELEVENTY_ENV=dev eleventy",
     "dev:build:site:watch": "rm -rf _dev && ELEVENTY_ENV=dev eleventy --watch",
     "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open --preserve-symlinks",
