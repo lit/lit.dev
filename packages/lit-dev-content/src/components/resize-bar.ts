@@ -142,9 +142,10 @@ export class ResizeBar extends LitElement {
         // now we assume that when the dimension is width we resize the element to
         // the left of the bar, and when dimension is height we resize the element
         // underneath the bar.
-        const newSize = isWidthDimension
-          ? oldSize + clientX - right
-          : oldSize - clientY + top;
+        const newSize = Math.max(
+          0,
+          isWidthDimension ? oldSize + clientX - right : oldSize - clientY + top
+        );
         document.documentElement.style.setProperty(
           this.property,
           `${newSize}px`
