@@ -14,6 +14,7 @@ html {
   --footer-top-height: 12rem;
   --footer-bottom-height: 6rem;
   --content-max-width: 76rem;
+  -webkit-font-smoothing: antialiased;
 }
 
 code {
