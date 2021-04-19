@@ -30,18 +30,18 @@ export class ResizeBar extends LitElement {
       cursor: col-resize;
       position: absolute;
       top: 0;
-      left: calc(var(--resize-bar-touch-size, 24px) / -2);
-      width: var(--resize-bar-touch-size, 24px);
+      left: calc(var(--resize-bar-touch-size, 6px) / -2);
+      width: var(--resize-bar-touch-size, 6px);
       height: 100%;
     }
 
     :host([dimension='height']) > #touchTarget {
       cursor: row-resize;
       position: absolute;
-      top: calc(var(--resize-bar-touch-size, 24px) / -2);
+      top: calc(var(--resize-bar-touch-size, 6px) / -2);
       left: 0;
       width: 100%;
-      height: var(--resize-bar-touch-size, 24px);
+      height: var(--resize-bar-touch-size, 6px);
     }
   `;
 
