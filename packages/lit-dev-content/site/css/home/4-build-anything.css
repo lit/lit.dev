@@ -1,6 +1,4 @@
 #buildAnythingWrapper {
-  background: black;
-  color: white;
   padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
 }
 
@@ -22,7 +20,7 @@
 #buildAnything > .item {
   flex: 1;
   padding: 0 1.5em;
-  border-right: 1px solid #3f3f3f;
+  border-right: 2px solid #bbb;
 }
 
 #buildAnything > .item:first-of-type {
@@ -40,10 +38,9 @@
 }
 
 #buildAnything > .item > .heading > h2 {
-  font-size: 1.5em;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 700;
   margin: 0;
-  color: var(--color-cyan);
   margin-left: 1em;
 }
 
@@ -52,6 +49,7 @@
   height: 3.7em;
   margin: 1.8em 0 0.9em 0;
   stroke-width: 1.5px;
+  color: var(--color-blue);
 }
 .buildAnythingArt > svg.standalone {
   stroke-width: 8px;
@@ -63,7 +61,7 @@
   position: relative;
 }
 .buildAnythingArt:not(.first)::after {
-  background: #1431ff;
+  background: #D6FDFD;
   position: absolute;
   content: '';
   left: 8px;

@@ -70,7 +70,7 @@ a {
 #bypassNavLink {
   position: fixed;
   top: 10px;
-  left: 10px;
+  left: 0;
   transform: translateX(-100%);
   transition: transform 100ms;
   font-size: 18px;
@@ -80,7 +80,7 @@ a {
   z-index: 5;
 }
 #bypassNavLink:focus {
-  transform: translateX(0);
+  transform: translateX(10px);
 }
 #bypassNavLink:hover {
   text-decoration: underline;
