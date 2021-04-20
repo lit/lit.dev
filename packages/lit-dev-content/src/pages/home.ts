@@ -95,8 +95,8 @@ const activateTourRegions = () => {
     {
       noteSelector: '#tourNoteTemplates',
       ts: {
-        start: {line: 13, char: 11.5},
-        end: {line: 13, char: 42},
+        start: {line: 11, char: 11.5},
+        end: {line: 11, char: 42},
       },
       js: {
         start: {line: 19, char: 11.5},
