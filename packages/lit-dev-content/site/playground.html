@@ -14,6 +14,11 @@ title: Playground
 
 {% block content %}
 
+<mwc-snackbar
+  id="shareSnackbar"
+  labelText="URL copied to clipboard">
+</mwc-snackbar>
+
 <litdev-drawer>
   <h1 id="exampleHeading" slot="header">Examples</h1>
 
@@ -64,11 +69,6 @@ title: Playground
       </svg>
       Share
     </button>
-
-    <mwc-snackbar
-      id="shareSnackbar"
-      labelText="URL copied to clipboard">
-    </mwc-snackbar>
   </div>
 
   <playground-project
