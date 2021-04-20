@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 8
 ---
 
-Lit doesn't require any specialized tools, and Lit components work in any JavaScript framework or with any server templating system or CMS, so Lit is ideal for adding to exisitng projects and applications.
+Lit doesn't require any specialized tools, and Lit components work in any JavaScript framework or with any server templating system or CMS, so Lit is ideal for adding to existing projects and applications.
 
 ## Install from npm
 
@@ -16,7 +16,7 @@ First, install the `lit` package from npm:
 npm i lit
 ```
 
-If you are not already using npm to manage JavaScript dependencies, you will have to set up your project first. We reccomend the [npm CLI](https://docs.npmjs.com/cli/v7/configuring-npm/install).
+If you are not already using npm to manage JavaScript dependencies, you will have to set up your project first. We recommend the [npm CLI](https://docs.npmjs.com/cli/v7/configuring-npm/install).
 
 ## Add a component
 

@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 1
 ---
 
-Lit combines the component model of LitElement with Javascript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
+Lit combines the component model of LitElement with JavaScript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
 
 ## lit-html standalone package
 
@@ -32,7 +32,7 @@ The standalone `lit-html` package also includes modules for the following featur
 
 ## Rendering lit-html templates
 
-Lit templates are written using Javascript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
+Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
 
 ```html
 html`<h1>Hello ${name}</h1>`

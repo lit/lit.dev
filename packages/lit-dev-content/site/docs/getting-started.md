@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-There are many ways to get started using Lit, from our Playground and interactive tutorial to installing into an exising project.
+There are many ways to get started using Lit, from our Playground and interactive tutorial to installing into an existing project.
 
 ## Lit Playground
 

@@ -22,7 +22,7 @@ All the Lit packages are published with development and production builds, using
 
 The production build is optimized with very aggressive minification settings. The development build is unminified for easier debugging and includes extra checks and warnings. The default build is the production build, so that projects don't accidentally deploy the larger development build.
 
-You must opt into the developement build by specifying the `"development"` export condition in tools that support export conditions, such as Rollup, Webpack, and Web Dev Server. This is done differently for each tool.
+You must opt into the development build by specifying the `"development"` export condition in tools that support export conditions, such as Rollup, Webpack, and Web Dev Server. This is done differently for each tool.
 
 For example, in Rollup, using the `@rollup/node-resolve` plugin, you can select the development build with `exportConditions` option:
 

@@ -24,7 +24,7 @@ To render lists, you can use `map` to transform a list of data into a list of te
 
 {% playground-example "docs/templates/lists-map/" "my-element.ts" %}
 
-Note that this expression returns an array of `TemplateResult` objects. Lit will render an array or iterable of subtemplates and other values.
+Note that this expression returns an array of `TemplateResult` objects. Lit will render an array or iterable of sub-templates and other values.
 
 ## Repeating templates with looping statements
 
