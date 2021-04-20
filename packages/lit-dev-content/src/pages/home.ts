@@ -64,41 +64,41 @@ const activateTourRegions = () => {
         end: {line: 3, char: 32},
       },
       js: {
-        start: {line: 25, char: 0},
-        end: {line: 25, char: 55},
+        start: {line: 21, char: 0},
+        end: {line: 21, char: 55},
       },
     },
     {
       noteSelector: '#tourNoteStyles',
       ts: {
-        start: {line: 5, char: 1.5},
-        end: {line: 9, char: 20},
+        start: {line: 5, char: 2},
+        end: {line: 5, char: 41},
       },
       js: {
-        start: {line: 3, char: 1.5},
-        end: {line: 7, char: 20},
+        start: {line: 3, char: 2},
+        end: {line: 3, char: 40},
       },
     },
     {
       noteSelector: '#tourNoteProperties',
       ts: {
-        start: {line: 11, char: 2},
-        end: {line: 12, char: 19},
+        start: {line: 7, char: 2},
+        end: {line: 8, char: 19},
       },
       js: {
-        start: {line: 9, char: 2},
-        end: {line: 13, char: 25},
+        start: {line: 7, char: 6},
+        end: {line: 7, char: 25},
       },
     },
     {
       noteSelector: '#tourNoteTemplates',
       ts: {
-        start: {line: 15, char: 11.5},
-        end: {line: 15, char: 42},
+        start: {line: 11, char: 11.5},
+        end: {line: 11, char: 42},
       },
       js: {
-        start: {line: 21, char: 11.5},
-        end: {line: 21, char: 42},
+        start: {line: 17, char: 11.5},
+        end: {line: 17, char: 42},
       },
     },
   ];
