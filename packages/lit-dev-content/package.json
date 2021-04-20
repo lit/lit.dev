@@ -57,7 +57,7 @@
     "@lit-labs/task": "1.0.0-pre.2",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "playground-elements": "^0.9.0",
+    "playground-elements": "^0.9.1",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }
