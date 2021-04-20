@@ -87,8 +87,8 @@
   white-space: nowrap;
 }
 
-#whoIsUsingLogos > a:hover > div,
-#whoIsUsingLogos > a:focus > div {
+#whoIsUsingLogos > a[href]:hover > div,
+#whoIsUsingLogos > a[href]:focus > div {
   color: inherit;
   text-decoration: underline;
 }
