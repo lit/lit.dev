@@ -42,6 +42,7 @@ export default [
       'lib/pages/home.js',
       'lib/pages/home-components.js',
       'lib/pages/playground.js',
+      'lib/pages/playground-inline.js',
     ],
     output: {
       dir: 'rollupout',

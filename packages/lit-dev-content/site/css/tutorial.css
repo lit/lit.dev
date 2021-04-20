@@ -163,7 +163,7 @@ playground-tab-bar {
 }
 
 playground-file-editor {
-  flex: 1 0;
+  flex: 1 0 0;
   height: 0;
 }
 

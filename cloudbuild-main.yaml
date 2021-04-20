@@ -36,7 +36,7 @@ steps:
       - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
-      - '--tag=master-$SHORT_SHA'
+      - '--tag=main-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
       # --max-old-space-size in ./Dockerfile, and this same flag in
       # ./cloudbuild-pr.yaml
@@ -68,7 +68,7 @@ steps:
       - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
-      - '--tag=master-$SHORT_SHA'
+      - '--tag=main-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
       # --max-old-space-size in ./Dockerfile, and this same flag in
       # ./cloudbuild-pr.yaml
@@ -100,7 +100,7 @@ steps:
       - '--region=$_DEPLOY_REGION'
       - '--platform=managed'
       - '--quiet'
-      - '--to-tags=master-$SHORT_SHA=100'
+      - '--to-tags=main-$SHORT_SHA=100'
 
   # Route traffic to new revision for the main site.
   #
@@ -122,7 +122,7 @@ steps:
       - '--region=$_DEPLOY_REGION'
       - '--platform=managed'
       - '--quiet'
-      - '--to-tags=master-$SHORT_SHA=100'
+      - '--to-tags=main-$SHORT_SHA=100'
 
 tags:
   - lit-dev

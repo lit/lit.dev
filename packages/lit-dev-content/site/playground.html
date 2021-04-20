@@ -6,6 +6,7 @@ title: Playground
 
 {% block head %}
   {% inlinecss "playground.css" %}
+  {% inlinejs "pages/playground-inline.js" %}
   <script type="module" src="{{ site.baseurl }}/js/pages/playground.js"></script>
   <script type="module" src="{{ site.baseurl }}/js/components/litdev-drawer.js"></script>
   <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
@@ -64,11 +65,6 @@ title: Playground
       </svg>
       Share
     </button>
-
-    <mwc-snackbar
-      id="shareSnackbar"
-      labelText="URL copied to clipboard">
-    </mwc-snackbar>
   </div>
 
   <playground-project
@@ -114,5 +110,10 @@ title: Playground
     </playground-preview>
   </div>
 </div>
+
+<mwc-snackbar
+  id="shareSnackbar"
+  labelText="URL copied to clipboard">
+</mwc-snackbar>
 
 {% endblock %}

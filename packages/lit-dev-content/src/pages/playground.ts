@@ -11,6 +11,7 @@ import 'playground-elements/playground-ide.js';
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
 
+// TODO(aomarks) This whole thing should probably be a custom element.
 window.addEventListener('DOMContentLoaded', () => {
   /**
    * Encode the given string to base64url, with support for all UTF-16 code
@@ -64,7 +65,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const shareButton = $('#shareButton')!;
   const shareSnackbar = $('#shareSnackbar')! as Snackbar;
-  shareButton.addEventListener('click', async () => {
+
+  const share = async () => {
     // No need to include contentType (inferred) or undefined label (unused).
     const files = Object.entries(project.config?.files ?? {}).map(
       ([name, file]) => ({
@@ -76,7 +78,9 @@ window.addEventListener('DOMContentLoaded', () => {
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
     shareSnackbar.open = true;
-  });
+  };
+
+  shareButton.addEventListener('click', share);
 
   const downloadButton = $('#downloadButton')!;
   downloadButton.addEventListener('click', () => {
@@ -115,9 +119,6 @@ window.addEventListener('DOMContentLoaded', () => {
     $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
-      // TODO(aomarks) We really need a second origin now that it is trivial for
-      // somebody to share a link that executes arbitrary code.
-      // https://github.com/PolymerLabs/lit.dev/issues/26
       project.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
@@ -146,6 +147,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
   syncStateFromUrlHash();
   window.addEventListener('hashchange', syncStateFromUrlHash);
+
+  // Trigger URL sharing when Control-s or Command-s is pressed.
+  let controlDown = false;
+  let commandDown = false;
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Control') {
+      controlDown = true;
+    } else if (event.key === 'Meta') {
+      commandDown = true;
+    } else if (event.key === 's' && (controlDown || commandDown)) {
+      share();
+      event.preventDefault(); // Don't trigger "Save page as"
+    }
+  });
+  window.addEventListener('keyup', (event) => {
+    if (event.key === 'Control') {
+      controlDown = false;
+    } else if (event.key === 'Meta') {
+      commandDown = false;
+    }
+  });
+  window.addEventListener('blur', () => {
+    controlDown = false;
+    commandDown = false;
+  });
 });
 
 /**
