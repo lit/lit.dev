@@ -77,7 +77,8 @@
 
 #whoIsUsingLogos div {
   position: absolute;
-  display: none;
+  display: flex;
+  color: #e1e5ff;
   justify-content: center;
   align-items: center;
   bottom: 0;
@@ -88,12 +89,13 @@
 
 #whoIsUsingLogos > a:hover > div,
 #whoIsUsingLogos > a:focus > div {
-  display: flex;
+  color: inherit;
+  text-decoration: underline;
 }
 
 #whoIsUsingLogos span {
   display: block;
-  font-size: 0.77778em;
+  font-size: 0.72222em;
   color: inherit;
 }
 
