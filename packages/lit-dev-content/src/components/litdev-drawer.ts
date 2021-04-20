@@ -12,12 +12,13 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {LitElement, html, css} from 'lit-element';
+import {LitElement, html, css, property, customElement} from 'lit-element';
 import '@material/mwc-icon-button-toggle';
 
 /**
  * A drawer that expands and collapses.
  */
+@customElement('litdev-drawer')
 export class LitDevDrawer extends LitElement {
   static styles = css`
     :host {
@@ -29,7 +30,7 @@ export class LitDevDrawer extends LitElement {
       position: relative;
     }
 
-    :host([closed]) {
+    :host(:not([open])) {
       /* We don't actually change width, we instead shift everything left. This
          way there is no content reflow within the drawer during animation. */
       transform: translateX(
@@ -66,7 +67,7 @@ export class LitDevDrawer extends LitElement {
       transition: transform var(--litdev-drawer-transition-duration);
     }
 
-    :host([closed]) #openCloseButton {
+    :host(:not([closed])) #openCloseButton {
       transform: var(--litdev-drawer-closed-button-transform);
     }
 
@@ -91,14 +92,17 @@ export class LitDevDrawer extends LitElement {
       border-radius: 10px;
     }
 
-    :host([closed]) #content {
+    :host(:not([open])) #content {
       opacity: 0;
     }
 
-    :host([closed]:not([transitioning])) > #content {
+    :host(:not([open]):not([transitioning])) > #content {
       visibility: hidden;
     }
   `;
+
+  @property({type: Boolean, reflect: true})
+  open = false;
 
   render() {
     return html`
@@ -108,6 +112,7 @@ export class LitDevDrawer extends LitElement {
         <mwc-icon-button-toggle
           id="openCloseButton"
           label="Open or close examples drawer"
+          .on=${!this.open}
           @click=${this._onClickToggleButton}
         >
           <!-- Source: https://material.io/resources/icons/?icon=close --->
@@ -154,7 +159,7 @@ export class LitDevDrawer extends LitElement {
   }
 
   private _onClickToggleButton() {
-    this.toggleAttribute('closed');
+    this.open = !this.open;
     this.setAttribute('transitioning', '');
     this.addEventListener(
       'transitionend',
@@ -166,4 +171,8 @@ export class LitDevDrawer extends LitElement {
   }
 }
 
-customElements.define('litdev-drawer', LitDevDrawer);
+declare global {
+  interface HTMLElementTagNameMap {
+    'litdev-drawer': LitDevDrawer;
+  }
+}

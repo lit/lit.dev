@@ -119,9 +119,6 @@ window.addEventListener('DOMContentLoaded', () => {
     $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
-      // TODO(aomarks) We really need a second origin now that it is trivial for
-      // somebody to share a link that executes arbitrary code.
-      // https://github.com/PolymerLabs/lit.dev/issues/26
       project.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
