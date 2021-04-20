@@ -14,7 +14,7 @@ main {
   --litdev-drawer-open-width: 280px;
   --litdev-drawer-closed-width: 2.5rem;
   --example-drawer-padding: 2em;
-  --litdev-drawer-transition-duration: 200ms;
+  --litdev-drawer-transition-duration: 0;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -23,10 +23,21 @@ footer {
   display: none;
 }
 
+body:not(.ready) > main > * {
+  visibility: hidden;
+}
+
 /* example drawer */
 
-litdev-drawer {
+litdev-drawer:not(:defined) {
+  width: var(--litdev-drawer-closed-width);
+}
+
+litdev-drawer:not(:defined)[open] {
   width: var(--litdev-drawer-open-width);
+}
+
+litdev-drawer {
   background: var(--color-dark-gray);
   color: white;
   height: calc(100vh - var(--header-height));
