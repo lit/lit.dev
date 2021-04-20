@@ -75,7 +75,7 @@
   width: 7em;
 }
 
-#whoIsUsingLogos footer {
+#whoIsUsingLogos div {
   position: absolute;
   display: none;
   justify-content: center;
@@ -86,12 +86,9 @@
   white-space: nowrap;
 }
 
-#whoIsUsingLogos > a:hover > footer {
+#whoIsUsingLogos > a:hover > div,
+#whoIsUsingLogos > a:focus > div {
   display: flex;
-}
-
-#whoIsUsingLogos > a[href]:hover span {
-  text-decoration: underline;
 }
 
 #whoIsUsingLogos span {
