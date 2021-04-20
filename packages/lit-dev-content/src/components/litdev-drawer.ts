@@ -12,12 +12,13 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {LitElement, html, css, property} from 'lit-element';
+import {LitElement, html, css, property, customElement} from 'lit-element';
 import '@material/mwc-icon-button-toggle';
 
 /**
  * A drawer that expands and collapses.
  */
+@customElement('litdev-drawer')
 export class LitDevDrawer extends LitElement {
   static styles = css`
     :host {
@@ -159,7 +160,6 @@ export class LitDevDrawer extends LitElement {
 
   private _onClickToggleButton() {
     this.open = !this.open;
-    // this.toggleAttribute('closed');
     this.setAttribute('transitioning', '');
     this.addEventListener(
       'transitionend',
@@ -170,8 +170,6 @@ export class LitDevDrawer extends LitElement {
     );
   }
 }
-
-customElements.define('litdev-drawer', LitDevDrawer);
 
 declare global {
   interface HTMLElementTagNameMap {
