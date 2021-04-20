@@ -78,29 +78,6 @@ copy-button:hover {
   padding-left: 0 !important;
 }
 
-/* Parameter lists */
-.params {
-  display: grid;
-  grid-template-columns: minmax(min-content, 12em) 1fr;
-  border-top: 1px solid #ccc;
-}
-.params > * {
-  padding: 0.5em 1em;
-  border-bottom: 1px solid #ccc;
-}
-.params > .paramName {
-  margin: 0;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: var(--playground-code-font-family);
-  background: var(--color-light-gray);
-  border-right: 1px solid rgb(230, 230, 230);
-  color: rgb(37, 37, 37);
-}
-.params > .paramDetails {
-  margin-left: 0;
-}
-
 /* View source links */
 .viewSourceLink {
   font-size: 13px;
@@ -138,17 +115,6 @@ h3 {
   a {
     /* Allow long URLs to break */
     word-break: break-all;
-  }
-  .params {
-    display: block;
-    border: none;
-  }
-  .params > * {
-    border: none;
-    background: transparent !important;
-  }
-  .params > .paramName {
-    font-weight: 600;
   }
   .heading {
     display: block;
