@@ -12,7 +12,7 @@ When building an application that includes Lit components, you can use common Ja
 
 See [Requirements](/docs/tools/requirements/) for a full list of requirements for building Lit code, which apply to both development and production.
 
-In addition to those minimim requirements, this page describes optimizations you should consider when preparing code for production, as well as a concrete Rollup configuration that implements them.
+In addition to those minimum requirements, this page describes optimizations you should consider when preparing code for production, as well as a concrete Rollup configuration that implements them.
 
 ## Preparing code for production {#preparing-code-for-production}
 

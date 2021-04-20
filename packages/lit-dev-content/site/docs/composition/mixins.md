@@ -77,7 +77,7 @@ code reuse. For more reading on mixins, here are a few good references:
   open-wc, including a discussion of when mixin usage may lead to duplication,
   and how to use a deduping library to avoid it.
 * [Mixin conventions](https://component.kitchen/elix/mixins) followed by Elix
-  web component library. While not Lit-speciic, contains thoughtful suggestions
+  web component library. While not Lit-specific, contains thoughtful suggestions
   around applying conventions when defining mixins for web components.
 
 ## Creating mixins for LitElement
@@ -158,7 +158,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
 ```
 
 The above example ensures that the class being passed to the mixin extends from
-`LitElement`, so that your mixin can rely on callabcks and other API provided by
+`LitElement`, so that your mixin can rely on callbacks and other API provided by
 Lit.
 
 ### Typing the subclass
@@ -227,7 +227,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
 }
 ```
 
-### Applying decorators in mxins
+### Applying decorators in mixins
 
 Due to limitations of TypeScript's type system, decorators (such as
 `@property()`) must be applied to a class declaration statement and not a class

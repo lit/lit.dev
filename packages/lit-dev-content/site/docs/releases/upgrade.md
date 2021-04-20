@@ -11,8 +11,8 @@ eleventyNavigation:
 Lit 2.0 is designed to work with most code written for LitElement 2.x and lit-html 1.x. There are a small number of changes required to migrate your code to Lit 2.0. The high-level changes required include:
 
 1. Updating npm packages and import paths.
-1. Loading `polyfill-support` script when loading the webcomponents polyfills.
-1. Updating any custom directive implementations to use new class-based API and associated helpers
+1. Loading `polyfill-support` script when loading the web components polyfills.
+1. Updating any custom directive implementations to use new class-based API and associated helpers.
 1. Updating code to renamed APIs.
 1. Adapting to minor breaking changes, mostly in uncommon cases.
 
@@ -68,11 +68,11 @@ To:
 import {repeat} from `lit/directives/repeat.js`;
 ```
 
-## Load `polyfill-support` when using webcomponents polyfills
+## Load `polyfill-support` when using web components polyfills
 
-Lit 2.0 still supports the same browsers down to IE11. However, given the broad adoption of Web Components APIs in modern browsers, we have taken the opportunity to move all of the code required for interfacing with the `webcomponents` polyfills out of the core libraries and into an opt-in support file, so that the tax for supporting older browsers is only paid when required.
+Lit 2.0 still supports the same browsers down to IE11. However, given the broad adoption of Web Components APIs in modern browsers, we have taken the opportunity to move all of the code required for interfacing with the web components polyfills out of the core libraries and into an opt-in support file, so that the tax for supporting older browsers is only paid when required.
 
-In general, any time you use the `webcomponents` polyfills, you should also load the `lit/polyfill-support.js` support file once on the page, similar to a polyfill. For example:
+In general, any time you use the web components polyfills, you should also load the `lit/polyfill-support.js` support file once on the page, similar to a polyfill. For example:
 
 ```html
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js">
@@ -230,7 +230,7 @@ update callbacks will be called if/when the element is re-connected.
 ### `lit-html`
 * `render()` no longer clears the container it's rendered to on first render. It now appends to the container by default.
 * Expressions in comments are not rendered or updated.
-* Template caching happens per callsite, not per template-tag/callsize pair. This means some rare forms of highly dynamic template tags are no longer supported.
+* Template caching happens per call site, not per template-tag/call-site pair. This means some rare forms of highly dynamic template tags are no longer supported.
 * Arrays and other iterables passed to attribute bindings are not specially handled. Arrays will be rendered with their default toString representation. This means that `` html`<div class=${['a', 'b']}> `` will render `<div class="a,b">` instead of `<div class="a b">`. To get the old behavior, use `array.join(' ')`.
 * The `templateFactory` option of `RenderOptions` has been removed.
 * `TemplateProcessor` has been removed.

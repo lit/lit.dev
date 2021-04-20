@@ -186,7 +186,7 @@ Explore `styleMap` more in the [playground](/playground/#sample=examples/directi
 
 ## repeat
 
-Renders values from an Iterable into the DOM, with optional keying.
+Renders values from an iterable into the DOM, with optional keying.
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -605,7 +605,7 @@ class MyElement extends LitElement {
   }
 }
 ```
-In this case, the expesive `calculateSHA` function is only run when the `value` property changes.
+In this case, the expensive `calculateSHA` function is only run when the `value` property changes.
 
 Explore `guard` more in the [playground](/playground/#sample=examples/directive-guard).
 
@@ -785,7 +785,7 @@ Element expression
 
 Although most DOM manipulation in Lit can be achieved declaratively using
 templates, advanced situations may required getting a reference to an element
-rendered in the template and maipulating it imperatively. Common examples of
+rendered in the template and manipulating it imperatively. Common examples of
 when this may be useful include focusing a form control or calling an imperative
 DOM manipulation library on a container element.
 

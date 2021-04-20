@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Lit 2 introduces a new concept for code reuse and composition called _reactive controllers_.
 
-A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reuseable across multiple component definitions.
+A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reusable across multiple component definitions.
 
 You can use controllers to implement features that require their own state and access to the component's lifecycle, such as:
 
@@ -35,7 +35,7 @@ class MyElement extends LitElement {
 
 The component associated with a controller instance is called the host component.
 
-The controller instance registers itself to receive lifecycle callbacks from the host component, and triggers a host update when the controller has new data ro render. This is how the `ClockController` example periodically renders the current time.
+The controller instance registers itself to receive lifecycle callbacks from the host component, and triggers a host update when the controller has new data to render. This is how the `ClockController` example periodically renders the current time.
 
 A controller will typically expose some functionality to be used in the host's `render()` method. For example, many controllers will have some state, like a current value:
 
