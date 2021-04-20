@@ -4,10 +4,10 @@
   "description": "Compose a template from other custom elements.",
   "section": "Template concepts",
   "files": {
-    "my-page.js": {},
-    "my-article.js": {},
-    "my-footer.js": {},
-    "my-header.js": {},
+    "my-page.ts": {},
+    "my-article.ts": {},
+    "my-footer.ts": {},
+    "my-header.ts": {},
     "index.html": {}
   }
 }

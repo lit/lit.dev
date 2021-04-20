@@ -4,7 +4,7 @@
   "description": "Render children with the <slot> element.",
   "section": "Template concepts",
   "files": {
-    "my-element.js": {},
+    "my-element.ts": {},
     "index.html": {}
   }
 }

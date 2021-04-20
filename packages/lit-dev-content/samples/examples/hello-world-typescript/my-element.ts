@@ -17,15 +17,15 @@ export class MyElement extends LitElement {
     }
   `;
 
-  // @property denotes reactive properties that can be used in rendering
-  // They can be set via HTML attributes in JavaScript by setting their
-  // property
+
+  // Define reactive properties--updating a reactive property causes
+  // the component to update.
   @property() greeting = "Hello";
   @property() planet = "World";
 
   // The render() method is called any time reactive properties change.
   // Return HTML in a string template literal tagged with the `html`
-  // tag function to describe the DOM to efficiently render using lit-html.
+  // tag function to describe the component's internal DOM.
   // Expressions can set attribute values, proeprty values, event handlers,
   // and child nodes/text.
   render() {
@@ -42,6 +42,4 @@ export class MyElement extends LitElement {
   togglePlanet() {
     this.planet = this.planet === "World" ? "Mars" : "World";
   }
-
-  // Learn more at https://lit-element.polymer-project.org/guide
 }

@@ -4,7 +4,7 @@
   "description": "Compose a template from other templates by calling methods in a template expression.",
   "section": "Template concepts",
   "files": {
-    "my-page.js": {},
+    "my-page.ts": {},
     "index.html": {}
   }
 }

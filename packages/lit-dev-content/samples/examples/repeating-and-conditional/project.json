@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "Basic templating concepts",
+  "title": "Repeating and conditional templates",
   "description": "Use properties, arrays, and conditionals in a template.",
   "section": "Template concepts",
   "files": {
-    "my-element.js": {},
+    "my-element.ts": {},
     "index.html": {}
   }
 }
