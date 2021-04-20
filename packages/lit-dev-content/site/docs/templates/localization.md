@@ -20,17 +20,19 @@ multiple languages and locales in your apps and components. `@lit/localize`
 allows you to:
 
 - Embed HTML markup and data expressions in your localized templates using
-  natural Lit syntax, just by wrapping your templates in the `msg` function.
+  natural Lit syntax, just by wrapping your templates in the [`msg`](#msg())
+  function.
 
-- In *transform* mode, generate a zero-overhead bundle for each locale, where
-  all `msg` calls are replaced by pure localized templates that render as fast
-  as possible.
+- [Extract messages](#extracting-messages) to standard XLIFF format for
+  integration with all major translation services.
 
-- In *runtime* mode, automatically re-render your app whenever the locale
-  changes, just by adding the `@localized` decorator to your components.
+- In [*transform* mode](#transform-mode), generate a zero-overhead bundle for
+  each locale, where all `msg` calls are replaced by localized templates that
+  render as fast as possible.
 
-- Integrate with all major translation services using the standard XLIFF XML
-  format.
+- In [*runtime* mode](#runtime-mode), automatically re-render your app whenever
+  the locale changes, just by adding the `@localized` decorator to your
+  components.
 
 ## Example
 
@@ -68,7 +70,7 @@ class MyGreeter extends LitElement {
 }
 ```
 
-## Modes
+## Build output modes
 
 `@lit/localize` supports two build modes: *transform* and *runtime*, each with
 their own advantages. It's easy to switch between the two, because the core
@@ -164,7 +166,8 @@ your project's root directory.
   <dt class="paramName">output.mode</dt>
   <dd class="paramDetails">
     <code class="paramType">"transform" | "runtime"</code>
-    <p>What kind of output should be produced. See <a href="#modes">modes</a>.</p>
+    <p>What kind of output should be produced. See
+       <a href="#build-output-modes">modes</a>.</p>
   </dd>
 
   <dt class="paramName">output.localeCodesModule</dt>
@@ -208,11 +211,12 @@ your project's root directory.
   </dd>
 </dl>
 
-## Extraction
+## Extracting messages
 
 Run `lit-localize extract` command to generate an
-[XLIFF](https://docs.oasis-open.org/xliff/v1.2/os/xliff-core.html) file for each
-target locale. XLIFF is an XML format supported by many localization tools and
+<a href="https://docs.oasis-open.org/xliff/v1.2/os/xliff-core.html"
+   target="_blank" rel="noopener">XLIFF</a>
+file for each target locale. XLIFF is an XML format supported by many localization tools and
 services. XLIFF files will be written to the directory specified by the
 `interchange.xliffDir` [config option](#config-options).
 
@@ -233,7 +237,7 @@ lit-localize extract
 </xliff>
 ```
 
-## Translation
+## Translation with XLIFF
 
 XLIFF files can be edited manually, but more typically they are sent to a
 third-party translation service, where they are edited by language experts using
@@ -255,11 +259,11 @@ just like the one you uploaded, but with `<target>` tags inserted into each
 When you receive a new translation XLIFF file, save it to your `xliff/`
 directory, overwriting your original version.
 
-## Build
+## Building a localized app
 
 Use the `lit-localize build` command to incorporate translations back into your
-application. The behavior of this command depends on the [mode](#modes) you have
-configured.
+application. The behavior of this command depends on the
+[mode](#build-output-modes) you have configured.
 
 ```sh
 lit-localize build
@@ -359,7 +363,7 @@ window.addEventListener('lit-localize-status', (event) => {
 });
 ```
 
-## Descriptions
+## Message descriptions
 
 Use the `desc` option to provide human-readable descriptions for your localized
 Lit templates. These descriptions are shown to translators, and are highly
@@ -383,7 +387,7 @@ contents. All parts of a template affect the automatic ID, except for the
 contents of expressions (though the *position* of expressions does affect the
 ID).
 
-## Placeholders
+## Message placeholders
 
 Lit splits your localizable templates into two categories: *localizable* parts
 and *placeholder* parts. Placeholders are visible to translators, and can be
