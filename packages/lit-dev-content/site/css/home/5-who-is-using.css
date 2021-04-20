@@ -1,6 +1,6 @@
 #whoIsUsing {
   background: var(--color-blue);
-  padding: 5em var(--home-side-margin);
+  padding: 2em var(--home-side-margin);
   z-index: 0;
   position: relative;
 }
@@ -55,31 +55,72 @@
   width: 100%;
   max-width: var(--content-max-width);
   display: flex;
-  justify-content: space-around;
-  color: white;
   flex-wrap: wrap;
+  justify-content: center;
+  color: white;
+  margin-top: 3em;
 }
 
-#whoIsUsingLogos > svg {
-  width: 100px;
-  height: 30px;
-  margin: 20px;
+#whoIsUsingLogos > a {
+  max-width: 7em;
+  height: 4.5em;
+  text-align: center;
+  position: relative;
+  margin: 1.5em;
+  color: inherit;
 }
 
-@media (max-width: 500px) {
+#whoIsUsingLogos svg {
+  height: 1.82em;
+  width: 7em;
+}
+
+#whoIsUsingLogos div {
+  position: absolute;
+  display: flex;
+  color: #e1e5ff;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  height: 2em;
+  width: 100%;
+  white-space: nowrap;
+}
+
+#whoIsUsingLogos > a[href]:hover > div,
+#whoIsUsingLogos > a[href]:focus > div {
+  color: inherit;
+  text-decoration: underline;
+}
+
+#whoIsUsingLogos span {
+  display: block;
+  font-size: 0.72222em;
+  color: inherit;
+}
+
+@media (max-width: 1250px) {
   #whoIsUsing {
     padding: 0 0 40px 0;
   }
+
   #whoIsUsingContent {
     flex-direction: column;
   }
+
+  #whoIsUsingLogos {
+    margin-top: 0;
+  }
+
   #whoIsUsingContent > .heading {
-    margin: calc(-1 * var(--home-side-margin)) 0;
-    text-align: center;
+    margin: var(--home-side-margin);
     margin-bottom: 40px;
     padding: 20px var(--home-side-margin);
   }
+
   #whoIsUsingContent > .heading > h1 {
     min-width: unset;
+    max-width: unset;
+    margin-right: var(--home-side-margin);
   }
 }
