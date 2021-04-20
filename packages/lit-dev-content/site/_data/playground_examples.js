@@ -28,7 +28,7 @@ const orderOf = (section) => {
 module.exports = async () => {
   const paths = await glob('samples/examples/**/project.json');
   const sections = new Map();
-  const jsons = await Promise.all(
+  await Promise.all(
     paths.map(async (path) => {
       const json = await fs.readFile(path, {encoding: 'utf8'});
       const project = JSON.parse(json);
@@ -43,6 +43,7 @@ module.exports = async () => {
         project: shortPath,
         title: project.title,
         description: project.description,
+        order: project.order ?? Number.MAX_VALUE
       };
       let filesArr = sections.get(project.section);
       if (!filesArr) {
@@ -52,6 +53,14 @@ module.exports = async () => {
       filesArr.push(file);
     })
   );
+  for (const examples of sections.values()) {
+    examples.sort((a, b) => {
+      if (a.order !== b.order) {
+        return a.order - b.order;
+      }
+      return a.title.localeCompare(b.title);
+    });
+  }
   return [...sections.entries()]
     .map(([name, files]) => ({name, files, order: orderOf(name)}))
     .sort((a, b) => (a.order-b.order) || a.name.localeCompare(b.name));

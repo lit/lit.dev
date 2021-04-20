@@ -1,3 +1,5 @@
+import type {Switch} from '@material/mwc-switch';
+
 // TODO(aomarks) This is only here for some mods. Remove it and mods when home
 // page design finalized.
 document.body.classList.add('home');
@@ -177,10 +179,19 @@ const activateTourRegions = () => {
 };
 
 const activateTourJsTsSwitch = async () => {
-  const sw = document.querySelector('#tourJsTsSwitch > mwc-switch')!;
+  const sw = document.querySelector('#tourJsTsSwitch > mwc-switch') as Switch;
   sw.addEventListener('change', () => {
     document.querySelector('#tourTsCode')!.toggleAttribute('hidden');
     document.querySelector('#tourJsCode')!.toggleAttribute('hidden');
+    const playgroundLink = document.querySelector(
+      '#playgroundLink'
+    ) as HTMLAnchorElement;
+    if (sw.checked) {
+      playgroundLink.href = '/playground/';
+    } else {
+      playgroundLink.href =
+        '/playground/#sample=examples/hello-world-javascript';
+    }
   });
 
   // No way to set an mwc-formfield field cursor?
