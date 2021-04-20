@@ -5,13 +5,13 @@
         <mwc-switch checked></mwc-switch>
       </mwc-formfield>
       <div id="tourTsCode">
-        {% highlight 'ts' %}{% include './3-tour-example.ts' %}{% endhighlight %}
+        {% highlight 'ts' %}{% include '../../samples/examples/hello-world-typescript/simple-greeting.ts' %}{% endhighlight %}
       </div>
       <div id="tourJsCode" hidden>
-        {% highlight 'js' %}{% include './3-tour-example.js' %}{% endhighlight %}
+        {% highlight 'js' %}{% include '../../samples/examples/hello-world-javascript/simple-greeting.js' %}{% endhighlight %}
       </div>
       <div id="tourHtmlCode">
-        {% highlight 'html' %}{% include './3-tour-example.html' %}{% endhighlight %}
+        {% highlight 'html' %}<simple-greeting name="World"></simple-greeting>{% endhighlight %}
       </div>
       <a id="playgroundLink" href="{{ url.baseurl }}/playground/">
         Edit this example in the Lit Playground

@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Full component",
+  "description": "Basic example of a Lit component, using TypeScript.",
+  "section": "Basics",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}
