@@ -65,7 +65,7 @@ import {repeat} from `lit-html/directives/repeat.js`;
 ```
 To:
 ```js
-import {repeat} from `lit/decorators/repeat.js`;
+import {repeat} from `lit/directives/repeat.js`;
 ```
 
 ## Load `polyfill-support` when using webcomponents polyfills
