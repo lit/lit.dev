@@ -54,7 +54,7 @@ litdev-drawer:not([closed])::part(header) {
 
 #exampleContent {
   overflow-y: auto;
-  height: 100%;
+  height: calc(100vh - var(--header-height) - var(--litdev-drawer-header-height));
 }
 
 #exampleHeading {
