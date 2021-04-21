@@ -1,5 +1,5 @@
 ---
-title: Building for Production
+title: Building for production
 eleventyNavigation:
   key: Production
   parent: Tools
