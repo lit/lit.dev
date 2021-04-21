@@ -10,7 +10,7 @@ eleventyNavigation:
   Lit localize is a <strong>Labs</strong> feature. It's ready to use, but
   is still in active development, so some additional features may be missing.
   Check the
-  <a href="https://github.com/Polymer/lit-html/issues?q=is%3Aissue+is%3Aopen+localize" target="_blank" rel="noopener">
+  <a href="https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+localize" target="_blank" rel="noopener">
   open issues</a> for details.
 </div>
 
@@ -130,7 +130,7 @@ your project's root directory.
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/Polymer/lit-html/main/packages/localize-tools/config.schema.json",
+  "$schema": "https://raw.githubusercontent.com/lit/lit/main/packages/localize-tools/config.schema.json",
   "sourceLocale": "en",
   "targetLocales": ["es-419", "zh_CN"],
   "tsConfig": "./tsconfig.json",

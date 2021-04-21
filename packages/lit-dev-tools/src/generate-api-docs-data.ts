@@ -833,7 +833,7 @@ class Transformer {
    * Augment a source with a GitHub URL.
    */
   private setGithubUrl(source: SourceReference) {
-    (source as ExtendedSourceReference).gitHubUrl = `https://github.com/Polymer/lit-html/blob/${this.commit}/${source.fileName}#L${source.line}`;
+    (source as ExtendedSourceReference).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
   }
 
   /**

@@ -62,11 +62,11 @@ changes so that they don’t affect most users, or only require a mechanical
 change (like changing an import).
 
 Please see the READMEs
-([LitElement](https://github.com/Polymer/lit-html/tree/lit-next/packages/lit-element#readme),
-[lit-html](https://github.com/Polymer/lit-html/tree/lit-next/packages/lit-html#readme))
+([LitElement](https://github.com/lit/lit/tree/lit-next/packages/lit-element#readme),
+[lit-html](https://github.com/lit/lit/tree/lit-next/packages/lit-html#readme))
 and CHANGELOGs
-([LitElement](https://github.com/Polymer/lit-html/blob/lit-next/packages/lit-element/CHANGELOG.md),
-[lit-html](https://github.com/Polymer/lit-html/blob/lit-next/packages/lit-html/CHANGELOG.md))
+([LitElement](https://github.com/lit/lit/blob/lit-next/packages/lit-element/CHANGELOG.md),
+[lit-html](https://github.com/lit/lit/blob/lit-next/packages/lit-html/CHANGELOG.md))
 for the most detailed list of changes.
 
 The most important changes:
@@ -118,7 +118,7 @@ npm i lit-html@next-major
 
 We’re in the process of moving the next versions of LitElement and lit-html into
 a mono-repo. Please file issues on the [current lit-html
-repo](https://github.com/Polymer/lit-html/issues), using a prefix of
+repo](https://github.com/lit/lit/issues), using a prefix of
 `[lit-html]` or `[lit-element]`. We expect that, as with any pre-release, there
 will be common issues we will have to fix. Please search for your issue first.
 Issues for the next major versions will have the label lit-next.
