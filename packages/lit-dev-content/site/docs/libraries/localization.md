@@ -2,8 +2,8 @@
 title: Localization
 eleventyNavigation:
   key: Localization
-  parent: Templates
-  order: 7
+  parent: Related libraries
+  order: 2
 ---
 
 <div class="alert alert-labs">
@@ -36,7 +36,7 @@ allows you to:
 
 ## Example
 
-{% playground-example "docs/templates/localization/runtime" "x-greeter.ts" %}
+{% playground-example "docs/libraries/localization/runtime" "x-greeter.ts" %}
 
 ## Installation
 
