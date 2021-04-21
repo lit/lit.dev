@@ -51,7 +51,7 @@
 
 #npmInstall {
   font-family: var(--playground-code-font-family);
-  background: #9E9E9E;
+  background: #757575;
   color: white;
   margin-bottom: 8px;
   font-size: 16px;
@@ -59,7 +59,7 @@
 
 #npmInstall:hover,
 #npmInstall:focus {
-  background: #818181;
+  background: #575757;
 }
 
 #npmInstall > .prompt {
