@@ -1,7 +1,7 @@
 {
   "extends": "/samples/base.json",
-  "title": "cache directive",
-  "description": "Demo exploring use of the cache directive.",
+  "title": "ref directive",
+  "description": "Demo exploring use of the ref directive.",
   "section": "Directives",
   "files": {
     "my-element.ts": {},
