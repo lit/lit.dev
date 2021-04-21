@@ -1,7 +1,7 @@
 ---
-title: Code organization
+title: Composition
 eleventyNavigation:
-  title: Code organization
+  title: Composition
   key: Composition
   order: 4
 ---

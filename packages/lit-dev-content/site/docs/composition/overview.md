@@ -1,20 +1,20 @@
 ---
-title: Composition Overview
+title: Composition overview
 eleventyNavigation:
   parent: Composition
   key: Overview
   order: 1
 ---
 
-There are several strategies you can use to make your Lit code reusable:
+Composition is a strategy for managing complexity and organizing code into reusable pieces. Lit provides a few options for composition and code reuse:
 
-*   Component composition
-*   Reactive controllers
-*   Class mixins
+*   Component composition.
+*   Reactive controllers.
+*   Class mixins.
 
-_Composition_ is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
+_Component composition_ is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
 
-Although component composition is the default way to think about breaking a complex Lit project down into smaller units, there are three other notable code patterns useful for factoring your Lit code:
+Although component composition is the default way to think about breaking a complex Lit project down into smaller units, there are two other notable code patterns useful for factoring your Lit code:
 
 [_Reactive controllers_](/docs/composition/controllers/) are objects that can hook into the update lifecycle of a Lit component, encapsulating state and behavior related to a feature into a separate unit of code.
 

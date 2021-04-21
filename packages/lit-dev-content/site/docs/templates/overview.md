@@ -1,5 +1,5 @@
 ---
-title: Templates Overview
+title: Templates overview
 eleventyNavigation:
   key: Overview
   parent: Templates

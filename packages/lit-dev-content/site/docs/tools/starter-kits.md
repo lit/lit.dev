@@ -1,7 +1,7 @@
 ---
-title: Starter Kits
+title: Starter kits
 eleventyNavigation:
-  key: Starter Kits
+  key: Starter kits
   parent: Tools
   order: 7
 ---

@@ -16,7 +16,7 @@ During the development phase of your projects, when you're writing Lit component
 
 Check out the [Starter Kits](/docs/tools/starter-kits/) documentation to easily setup a development environment with all of these features pre-configured.
 
-## Development and Production Builds
+## Development and production builds
 
 All the Lit packages are published with development and production builds, using Node's support for [export conditions](https://nodejs.org/api/packages.html#packages_conditional_exports).
 
