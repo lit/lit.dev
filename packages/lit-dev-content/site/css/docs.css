@@ -62,9 +62,9 @@ article {
  * Body text
  * ------------------------------------ */
 
- article {
-   color: #3E3E3E;
- }
+article {
+  color: #3E3E3E;
+}
 
 article p {
   margin-block-start: 1.5em;
@@ -86,6 +86,10 @@ article li {
 
 article li > p {
   margin: 0;
+}
+
+article > p > img.logo {
+  max-width: 30%;
 }
 
 /* ------------------------------------
