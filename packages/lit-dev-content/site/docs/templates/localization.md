@@ -20,8 +20,8 @@ multiple languages and locales in your apps and components. `@lit/localize`
 allows you to:
 
 - Embed HTML markup and data expressions in your localized templates using
-  natural Lit syntax, just by wrapping your templates in the [`msg`](#msg())
-  function.
+  natural Lit syntax, just by wrapping your templates in the
+  [`msg`](#making-templates-localizable) function.
 
 - [Extract messages](#extracting-messages) to standard XLIFF format for
   integration with all major translation services.
@@ -48,12 +48,15 @@ npm i @lit/localize
 npm i -D @lit/localize-tools
 ```
 
-## msg()
+## Making templates localizable
 
-`msg()` allows `@lit/localize-tools` to extract messages needing translation,
-and to replace them with translations once available. Before you have any
-translations available, `msg()` simply returns the unmodified template, so it's
-safe to start using even if you're not yet ready for localization.
+Wrapping a Lit template with the `msg()` function allows `@lit/localize-tools`
+to extract it so that it can be sent for localization, and to replace it with
+the localized version once available.
+
+Before you have any translations available, `msg()` simply returns the
+unmodified template, so it's safe to start using even if you're not yet ready
+for localization.
 
 ```ts
 import {msg} from '@lit/localize';
