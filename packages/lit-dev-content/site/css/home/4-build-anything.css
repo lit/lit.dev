@@ -39,20 +39,16 @@
 
 #buildAnything > .item > .heading > h2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
   margin-left: 1em;
 }
 
 .buildAnythingArt > svg {
-  width: 3.7em;
-  height: 3.7em;
+  width: 66px;
+  height: 66px;
   margin: 1.8em 0 0.9em 0;
-  stroke-width: 1.5px;
   color: var(--color-blue);
-}
-.buildAnythingArt > svg.standalone {
-  stroke-width: 8px;
 }
 
 /* Solid blue rectangle under illustrations */
