@@ -10,7 +10,7 @@
     "build:generate": "node ../lit-dev-tools/lib/generate-api-docs-data.js",
     "build:watch": "chokidar 'lit/packages/*/src/**/*.ts' '../lit-dev-tools/lib/generate-api-docs-data.js' -c 'npm run monorepo:build && npm run build:generate' --initial",
     "monorepo:init": "npm run monorepo:clone && npm run monorepo:install && npm run monorepo:build",
-    "monorepo:clone": "git clone https://github.com/Polymer/lit-html --branch main lit && cd lit && git checkout $(cat ../lit.sha)",
+    "monorepo:clone": "git clone https://github.com/lit/lit --branch main lit && cd lit && git checkout $(cat ../lit.sha)",
     "monorepo:update": "cd lit && git checkout main && git pull && git rev-parse HEAD > ../lit.sha && cd .. && npm run monorepo:install && npm run monorepo:build",
     "monorepo:install": "cd lit && npm ci && npm run bootstrap",
     "monorepo:build": "cd lit && npx lerna run build:ts --scope lit --include-dependencies"

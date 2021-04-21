@@ -8,7 +8,7 @@ eleventyNavigation:
 
 There are many great resources and locations to learn about Lit,
 share what you've built, and more. Participation in our community is subject to the Lit
-[Code of Conduct](https://github.com/Polymer/lit-html/blob/master/CODE_OF_CONDUCT.md)—be
+[Code of Conduct](https://github.com/lit/lit/blob/master/CODE_OF_CONDUCT.md)—be
 excellent to each other!
 
 *   **Join us on [Slack](https://www.polymer-project.org/slack-invite)!** The

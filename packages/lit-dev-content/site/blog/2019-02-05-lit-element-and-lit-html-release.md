@@ -150,5 +150,5 @@ As always, let us know what you think. You can reach us on
 are open source (of course!) and you can report bugs, file feature requests or
 suggest improvements on GitHub:
 
-* [lit-html on GitHub](https://github.com/Polymer/lit-html)
+* [lit-html on GitHub](https://github.com/lit/lit)
 * [LitElement on GitHub](https://github.com/Polymer/lit-element)
