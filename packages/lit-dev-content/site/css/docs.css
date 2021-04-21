@@ -233,6 +233,29 @@ article h4 {
    padding-inline: 0.5em 10%;
  }
 
+/* API parameter lists */
+.params {
+  display: grid;
+  grid-template-columns: minmax(min-content, 12em) 1fr;
+  border-top: 1px solid #ccc;
+}
+.params > * {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #ccc;
+}
+.params > .paramName {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: var(--playground-code-font-family);
+  background: var(--color-light-gray);
+  border-right: 1px solid rgb(230, 230, 230);
+  color: rgb(37, 37, 37);
+}
+.params > .paramDetails {
+  margin-left: 0;
+}
+
 /* ------------------------------------
  * Tables
  * ------------------------------------ */
@@ -302,6 +325,10 @@ td {
 
 .alert.alert-warning::before {
   content: url(/images/alerts/warning.svg);
+}
+
+.alert.alert-labs::before {
+  content: url(/images/alerts/labs.svg);
 }
 
 .alert-todo {
@@ -655,6 +682,18 @@ td {
   }
   .anchor {
     left: -1.1rem;
+  }
+
+  .params {
+    display: block;
+    border: none;
+  }
+  .params > * {
+    border: none;
+    background: transparent !important;
+  }
+  .params > .paramName {
+    font-weight: 600;
   }
 }
 
