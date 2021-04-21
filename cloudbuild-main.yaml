@@ -16,7 +16,7 @@ steps:
       - --cache=true
       - --cache-ttl=168h # 1 week
       # Bake in environment parameters
-      - --build-arg=PLAYGROUND_SANDBOX=https://lit-dev-playground-5ftespv5na-uc.a.run.app/
+      - --build-arg=PLAYGROUND_SANDBOX=https://playground.lit.dev/
       - --build-arg=GOOGLE_ANALYTICS_ID=G-FTZ6CJP9F3
 
   # Create a new Cloud Run revision for the main site.
