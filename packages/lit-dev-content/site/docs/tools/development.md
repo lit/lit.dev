@@ -160,15 +160,27 @@ npm install eslint --save-dev
 npx eslint --init
 ```
 
-To invoke it:
+To run it:
 
 ```bash
 npx eslint yourfile.js
 ```
 
+Or add it to your npm scripts:
+
+```json
+{
+  "scripts": {
+    "lint": "eslint \"**/*.{js,ts}\"",
+  }
+}
+```
+
 For full installation and usage instructions, see the [ESLint documentation](https://eslint.org/docs/user-guide/getting-started).
 
-Integrating linting into your IDE workflow can help catch errors as early as possible. See [Lit-specific IDE plugins](#ide-plugins) to configure linting specifically for Lit.
+We also reccomend the [`eslint-plugin-lit` for ESLint](https://www.npmjs.com/package/eslint-plugin-lit) which provides linting for Lit's HTML templates, inlcluding common HTML linting checks plus Lit-specific rules.
+
+Integrating linting into your IDE workflow can help catch errors as early as possible. See [Lit-specific IDE plugins](#ide-plugins) to configure your IDE for Lit.
 
 ## Source formatting { #formatting }
 
@@ -185,15 +197,11 @@ A few popular options include:
 
 There are a number of IDE plugins that may be useful when developing with Lit. In particular, we recommend using a syntax highlighter that works with Lit templates.
 
-The following plugins highlight Lit templates and check them for errors:
+### lit-plugin
 
-* [`lit-plugin` for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
+`lit-plugin` provides syntax highlighting, type checing, and more for Lit templates. It's [available for for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin), or you can use the [`ts-lit-plugin` TypeScript compiler plugin](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) which works with Sublime and Atom.
 
-* [`ts-lit-plugin` for TypeScript](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) (works with Sublime and Atom)
-
-* [`eslint-plugin-lit` for ESLint](https://github.com/43081j/eslint-plugin-lit)
-
-These plugins provide:
+`lit-plugin` and `ts-lit-plugin` provide:
 
 - Syntax highlighting
 - Type-checking
@@ -202,5 +210,11 @@ These plugins provide:
 - Jump to definition
 - Linting
 - Quick Fixes
+
+### ESLint
+
+ESLint has [integrations](https://eslint.org/docs/user-guide/integrations#editors) for a number of code editors. If you have [`eslint-plugin-lit` for ESLint](https://www.npmjs.com/package/eslint-plugin-lit) installed in your ESLint configuration, your IDE will show the Lit specific errors and warnings.
+
+### Other plugins
 
 See the [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo for other IDE plugins, as well as additional tools and information.
