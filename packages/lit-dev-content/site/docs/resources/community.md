@@ -11,8 +11,8 @@ share what you've built, and more. Participation in our community is subject to 
 [Code of Conduct](https://github.com/lit/lit/blob/master/CODE_OF_CONDUCT.md)—be
 excellent to each other!
 
-*   **Join us on [Slack](https://www.polymer-project.org/slack-invite)!** The
-    Lit workspace has thousands of users discussing lit-html, LitElement, and related topics.
+*   **Join us on [Slack](/slack-invite/)!** The
+    Lit & Friends workspace has thousands of users discussing Lit, web components, and related topics.
     Check out `#lit`, `#beginners`, or `#tools` to get started.
 
 *   **Follow us at [@buildWithLit  on Twitter](https://twitter.com/buildWithLit)**

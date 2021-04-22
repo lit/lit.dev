@@ -10,6 +10,7 @@ import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
 import {createRequire} from 'module';
 import * as path from 'path';
+import {pageRedirects} from './redirects.js';
 
 const mode = process.env.MODE;
 if (mode !== 'main' && mode !== 'playground') {
@@ -47,6 +48,13 @@ app.use(async (ctx, next) => {
     ctx.redirect(
       ctx.path.replace(/\/+$/, '/') +
         (ctx.querystring ? '?' + ctx.querystring : '')
+    );
+  } else if (pageRedirects.has(ctx.path)) {
+    // Handle any 1:1 page redirects
+    ctx.status = 301;
+    ctx.redirect(
+      pageRedirects.get(ctx.path) +
+      (ctx.querystring ? '?' + ctx.querystring : '')
     );
   } else {
     await next();
