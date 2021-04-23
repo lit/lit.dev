@@ -1,4 +1,4 @@
-To add interactivity to your components, you'll probably want to add some event handlers. Lit makes it easy to add a _declarative event listener in the template, using an expression like this:
+To add interactivity to your components, you'll probably want to add some event handlers. Lit makes it easy to add a _declarative_ event listener in the template, using an expression like this:
 
 ```html
 <button @click=${this.handleClick}>Click me!</button>
