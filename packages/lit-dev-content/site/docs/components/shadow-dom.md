@@ -83,7 +83,7 @@ class MyElement extends LitElement {
 This decorator is equivalent to:
 
 ```js
-get first() {
+get _first() {
   return this.renderRoot.querySelector('#first');
 }
 ```
@@ -227,7 +227,7 @@ _defaultSlotNodes;
 The first example above is equivalent to the following code:
 
 ```js
-get headerNodes() {
+get _headerNodes() {
   const slot = this.shadowRoot.querySelector('slot[name=header]');
   return slot.assignedNodes({flatten: true});
 }
