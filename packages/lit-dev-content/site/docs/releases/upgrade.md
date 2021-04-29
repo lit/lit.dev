@@ -76,7 +76,7 @@ In general, any time you use the web components polyfills, you should also load 
 
 ```html
 <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js">
-<script src="node_modules/lit/platform-support.js">
+<script src="node_modules/lit/polyfill-support.js">
 ```
 
 If using [`@web/test-runner`](https://modern-web.dev/docs/test-runner/overview/) or [`@web/dev-server`](https://modern-web.dev/docs/dev-server/overview/) with the [`legacyPlugin`](https://modern-web.dev/docs/dev-server/plugins/legacy/) for development, adding the following configuration to your `web-test-runner.config.js` or `web-dev-server.config.js` file will configure it to automatically inject the support file when needed:
