@@ -343,22 +343,33 @@ Expressions **_cannot_** appear where tag or attribute names would appear; howev
 <div ${attrName}=true></div>
 ```
 
- ## Static expressions { #static-expressions }
+## Static expressions { #static-expressions }
 
-Static expressions are special one-time interpolations of values into the template that are not intended to be changed frequently. Because they become part of the template's static HTML, they can exist anywhere in the template; however, when the static content is interpolated, the template must be well-formed; see the [Well-formed HTML](#well-formed-html) section for more information.
+Static expressions return special values that are interpolated into the template _before_ the template is processed as HTML by Lit. Because they become part of the template's static HTML, they can be placed anywhere in the template - even where expressions would normally be disallowed, such as in attribute and tag names.
 
-To create static expressions, import Lit's `static-html` module. It contains special `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `literal` tag function to create static expressions.
+To use static expressions, you must import a special version of the `html` or `svg` template tags from Lit's `static-html` module:
+
+```ts
+import {html, literal} from 'lit/static-html.js';
+```
+
+The `static-html` module contains `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `literal` tag function to create static expressions.
 
 You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might render a `<button>` tag, but a subclass might render an `<a>` tag, instead. This is a good place to use a static expression because the setting does not change frequently and customizing an HTML tag cannot be done with a normal expression.
 
 ```ts
+import {LitElement} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
+import {html, literal} from 'lit/static-html.js';
+
 @customElement('my-button')
 class MyButton extends LitElement {
   tag = literal`button`;
   activeAttribute = literal`active`;
   @property() caption = 'Hello static';
   @property({type: Boolean}) active = false;
-  protected render() {
+
+  render() {
     return html`
       <${this.tag} ${this.activeAttribute}?=${this.active}>
         <p>${this.caption}</p>
@@ -375,7 +386,7 @@ class MyAnchor extends MyButton {
 
 <div class="alert alert-warning">
 
-**Changing static expressions is expensive.** Expressions using `literal` values should not change frequently, as they cause a new template to be re-parsed and each variation is held in memory.
+**Changing the value of static expressions is expensive.** Expressions using `literal` values should not change frequently, as they cause a new template to be re-parsed and each variation is held in memory.
 
 </div>
 
@@ -383,9 +394,17 @@ In the example above, if the template re-renders and `this.caption` or `this.act
 
 For these reasons, it's a good idea keep changes to expressions using `literal` to a minimum and avoid using reactive properties to change `literal` values, since reactive properties are intended to change.
 
+### Template structure
+
+After static values have been interpolated, the template must be well-formed like normal Lit templates, otherwise the dynamic expressions in the template might not function properly. See the [Well-formed HTML](#well-formed-html) section for more information.
+
 ### Non-literal statics
 
 In rare cases, you may need to interpolate static HTML into a template that is not defined in your script, and thus cannot be tagged with the `literal` function. For these cases, the `unsafeStatic()` function can be used to create static HTML based on strings from non-script source.
+
+```ts
+import {html, unsafeStatic} from 'lit/static-html.js';
+```
 
 <div class="alert alert-warning">
 
@@ -398,7 +417,8 @@ In rare cases, you may need to interpolate static HTML into a template that is n
 class MyButton extends LitElement {
   @property() caption = 'Hello static';
   @property({type: Boolean}) active = false;
-  protected render() {
+
+  render() {
     // These strings MUST be trusted, otherwise this is an XSS vulnerability
     const tag = getTagName();
     const activeAttribute = getActiveAttribute();
