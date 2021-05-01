@@ -16,7 +16,7 @@ Creating a Lit component involves a number of concepts:
 
 *   [Reactive properties](/docs/components/properties/). Properties hold the state of the component. Changing one or more of the components' _reactive properties_ triggers an update cycle, re-rendering the component.
 
-*   [Styles](/docs/components/styles/). A component can define _encapsulated styles_ to control its own the appearance.
+*   [Styles](/docs/components/styles/). A component can define _encapsulated styles_ to control its own appearance.
 
 *   [Lifecycle](/docs/components/lifecycle/). Lit defines a set of callbacks that you can override to hook into the component's lifecycle—for example, to run code when the element's added to a page, or whenever the component updates.
 
