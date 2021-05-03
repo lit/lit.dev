@@ -24,7 +24,7 @@ fields/methods, overriding existing superclass methods, and using `super`.
 <div class="alert alert-info">
 
 For ease of reading, the samples on this page elide some of the TypeScript types
-for mixin functions. See [Mixins in TypeScript](#mixins-in-TypeScript) for details on proper
+for mixin functions. See [Mixins in TypeScript](#mixins-in-typescript) for details on proper
 typing of mixins in TypeScript.
 
 </div>
