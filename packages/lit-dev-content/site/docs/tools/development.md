@@ -199,7 +199,7 @@ There are a number of IDE plugins that may be useful when developing with Lit. I
 
 ### lit-plugin
 
-`lit-plugin` provides syntax highlighting, type checing, and more for Lit templates. It's [available for for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin), or you can use the [`ts-lit-plugin` TypeScript compiler plugin](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) which works with Sublime and Atom.
+`lit-plugin` provides syntax highlighting, type checking, and more for Lit templates. It's [available for VS Code](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin), or you can use the [`ts-lit-plugin` TypeScript compiler plugin](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin) which works with Sublime Text and Atom.
 
 `lit-plugin` and `ts-lit-plugin` provide:
 
