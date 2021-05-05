@@ -8,6 +8,11 @@ packages/*/index.js.map
 packages/*/index.d.ts
 packages/*/index.d.ts.map
 
+packages/lit-dev-server/redirects.js
+packages/lit-dev-server/redirects.js.map
+packages/lit-dev-server/redirects.d.ts
+packages/lit-dev-server/redirects.d.ts.map
+
 packages/lit-dev-content/_site
 packages/lit-dev-content/_dev
 packages/lit-dev-content/playground-plugin
