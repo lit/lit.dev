@@ -37,6 +37,44 @@ export default {
 };
 ```
 
+### Development build runtime warnings
+
+The development builds of ReactiveElement and LitElement support extra runtime warnings that can help identify issues that would be costly to check for in production builds.
+
+There is an API to enable and disable some warnings, based on the kind of warning. There are two warning kinds that can be enabled and disable currently:
+* `'migration'`: warnings related to migration from LitElement 2.x
+* `'change-in-update'`: warnings related to changing reactive state during an update
+
+The methods to control warnings are `ReactiveElement.disableWarning()` and `ReactiveElement.enableWarning()`. You can call them on any subclass of ReactiveElement, including LitElement and your own classes, and the warnings will be enabled or disabled for only those classes. For instance, you can disable warnings on all ReactiveElement classes, all LitElement classes, or only specific LitElement subclasses.
+
+These methods are only available in development builds, so be sure to guard their access. We reccomend using optional chaining.
+
+Examples:
+```ts
+import {LitElement, ReactiveElement} from 'lit';
+
+// Disable migration warnings on all ReactiveElements,
+// including LitElements
+ReactiveElement.disableWarning.?('migration');
+
+// Disable update warnings on all LitElements
+LitElement.disableWarning.?('change-in-update');
+
+// Disable update warnings on one element
+MyElement.disableWarning.?('change-in-update');
+
+```
+
+You can also control warnings within a single class with the `static enabledWarnings`:
+
+```ts
+class MyElement extends LitElement {
+  static enabledWarnings = ['migration'];
+}
+```
+
+It's best for code size if the code to control warnings is eliminated in your own production builds.
+
 ## Local dev servers { #devserver }
 
 Lit is packaged as JavaScript modules, and it uses bare module specifiers that are not yet natively supported in most browsers. Bare specifiers are commonly used, and you may want to use them in your own code as well. For example:
