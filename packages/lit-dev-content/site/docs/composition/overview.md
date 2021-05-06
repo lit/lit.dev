@@ -26,7 +26,7 @@ Both mixins and reactive controllers let you factor component logic related to a
 
 Controllers and class mixins are very similar in some ways. They both can hook into a host component's lifecycle, maintain state, and trigger host updates.
 
-The primary difference between controllers and mixins is their relationship with the the component. A component has a "has-a" relationship with a reactive controller, since it owns the controller. A component has an "is-a" relationship with a mixin, since the component is an instance of the mixin class.
+The primary difference between controllers and mixins is their relationship with the component. A component has a "has-a" relationship with a reactive controller, since it owns the controller. A component has an "is-a" relationship with a mixin, since the component is an instance of the mixin class.
 
 A reactive controller is a separate object owned by a component. The controller can access methods and fields on the component, and the component can access methods and fields on the controller. But the controller can't (easily) be accessed by someone using the component, unless the component exposes a public API to it. The controller's lifecycle methods are called _before_ the corresponding lifecycle method on the component.
 
