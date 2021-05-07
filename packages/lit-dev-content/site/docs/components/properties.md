@@ -282,7 +282,7 @@ To use the default converter, specify the `type` option in your property declara
 count = 0;
 ```
 
-If don't specify a type _or_ a custom converter for a property, it behaves as if you'd specified `type: String`.
+If you don't specify a type _or_ a custom converter for a property, it behaves as if you'd specified `type: String`.
 
 The tables below shows how the default converter handles conversion for each type.
 
