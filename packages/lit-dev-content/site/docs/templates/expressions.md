@@ -400,7 +400,7 @@ After static values have been interpolated, the template must be well-formed lik
 
 ### Non-literal statics
 
-In rare cases, you may need to interpolate static HTML into a template that is not defined in your script, and thus cannot be tagged with the `literal` function. For these cases, the `unsafeStatic()` function can be used to create static HTML based on strings from non-script source.
+In rare cases, you may need to interpolate static HTML into a template that is not defined in your script, and thus cannot be tagged with the `literal` function. For these cases, the `unsafeStatic()` function can be used to create static HTML based on strings from non-script sources.
 
 ```ts
 import {html, unsafeStatic} from 'lit/static-html.js';
