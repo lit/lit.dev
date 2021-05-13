@@ -259,7 +259,7 @@ The simplest way to customize the render root is to set the `shadowRootOptions` 
 
 ```js
 class DelagatesFocus extends LitElement {
-  static shadowRootOptions = {...super.shadowRootOptions, delegatesFocus: true};
+  static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true};
 }
 ```
 
