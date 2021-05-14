@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 1
 ---
 
-![Lit Logo]({{ site.baseurl }}/images/logo.svg){.logo}
+![Lit Logo]({{ site.baseurl }}/images/logo.svg){.logo width="425" height="200"}
 
 Lit is a simple library for building fast, lightweight web components.
 
