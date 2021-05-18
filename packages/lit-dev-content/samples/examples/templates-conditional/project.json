@@ -1,11 +1,11 @@
 {
   "extends": "/samples/base.json",
-  "title": "Repeating templates",
-  "description": "Create a repeating template from an array of data.",
+  "title": "Conditional templates",
+  "description": "Use conditionals in a template.",
   "section": "Template concepts",
   "files": {
     "my-element.ts": {},
     "index.html": {}
   },
-  "order": 2
+  "order": 1
 }

@@ -6,5 +6,6 @@
   "files": {
     "my-element.ts": {},
     "index.html": {}
-  }
+  },
+  "order": 3
 }

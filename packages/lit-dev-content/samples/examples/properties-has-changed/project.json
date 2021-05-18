@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Change detection",
+  "description": "Customizing change detection.",
+  "section": "Reactive properties",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}
