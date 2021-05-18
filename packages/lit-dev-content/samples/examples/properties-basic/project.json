@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Basic properties",
+  "description": "Declaring reactive properties.",
+  "section": "Reactive properties",
+  "files": {
+    "name-tag.ts": {},
+    "index.html": {}
+  },
+  "order": 0
+}

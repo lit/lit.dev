@@ -9,6 +9,7 @@ const fs = require('fs/promises');
 
 const topSectionOrder = [
   'Basics',
+  'Reactive properties',
   'Template concepts',
   'Directives',
 ];

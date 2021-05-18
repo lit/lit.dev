@@ -1,0 +1,12 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Change detection",
+  "description": "Customizing change detection.",
+  "section": "Reactive properties",
+  "files": {
+    "date-display.ts": {},
+    "my-element.ts": {},
+    "date-utils.ts": {},
+    "index.html": {}
+  }
+}

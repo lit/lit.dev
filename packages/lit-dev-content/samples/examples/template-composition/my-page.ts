@@ -9,8 +9,8 @@ class MyPage extends LitElement {
   article = {
     title: 'Template composition',
     text: `Defining partial templates as instance methods
-           can break the template into manageable pieces—and
-           allow a subclass to override individual parts of the template.`
+           breaks the template into manageable pieces—and
+           allows a subclass to override individual parts of the template.`
   };
 
   headerTemplate() {
