@@ -5,6 +5,7 @@
   "section": "Reactive properties",
   "files": {
     "my-element.ts": {},
+    "date-utils.ts": {},
     "index.html": {}
   }
 }
