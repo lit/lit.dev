@@ -103,6 +103,16 @@ export class Renderer {
           if (lastLine?.textContent?.match(/^[\s\u200B]*$/)) {
             lastLine.remove();
           }
+
+          // Replace zero width newlines that doesn't copy paste into editors with
+          // a line feed unicode character that pastes correctly.
+          const codeLines = cm.querySelectorAll('.CodeMirror-line > span > span[cm-text]');
+          for (const line of codeLines) {
+            if (line?.textContent?.match(/^[\u200B]*$/)) {
+              line.textContent = `\u000A`;
+            }
+          }
+
           return cm.innerHTML;
         },
         [lang, code]
