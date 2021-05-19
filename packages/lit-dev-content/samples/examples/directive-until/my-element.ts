@@ -3,11 +3,11 @@ import {customElement, state} from 'lit/decorators.js';
 import {until} from 'lit/directives/until.js';
 
 const fetchData = async () => {
-  const response = await fetch('https://api.mocki.io/v1/b551e5c3');
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/2');
   const json = await response.json();
   // Add some delay for demo purposes
   await new Promise<void>((r) => setTimeout(() => r(), 1000));
-  return json.data;
+  return json.title;
 }
 
 @customElement('my-element')
