@@ -104,8 +104,8 @@ export class Renderer {
             lastLine.remove();
           }
 
-          // Replace zero width newlines that doesn't copy paste into editors with
-          // a line feed unicode character that pastes correctly.
+          // Replace zero width newlines that don't copy paste well with a line
+          // feed unicode character that pastes correctly.
           const codeLines = cm.querySelectorAll('.CodeMirror-line > span > span[cm-text]');
           for (const line of codeLines) {
             if (line?.textContent?.match(/^[\u200B]*$/)) {
