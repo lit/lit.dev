@@ -33,11 +33,11 @@ And re-write your module imports appropriately:
 
 From:
 ```js
-import {LitElement, html} from `lit-element`;
+import {LitElement, html} from 'lit-element';
 ```
 To:
 ```js
-import {LitElement, html} from `lit`;
+import {LitElement, html} from 'lit';
 ```
 
 Although the `lit-element@^3` and `lit-html@^2` packages should be largely backward-compatible, we recommend updating to the `lit` package as the other packages are moving towards eventual deprecation.
@@ -48,11 +48,11 @@ The previous version of `lit-element` exported all TypeScript decorators from th
 
 From:
 ```js
-import {property, customElement} from `lit-element`;
+import {property, customElement} from 'lit-element';
 ```
 To:
 ```js
-import {property, customElement} from `lit/decorators.js`;
+import {property, customElement} from 'lit/decorators.js';
 ```
 
 ### Update directive imports
@@ -61,11 +61,11 @@ Built-in lit-html directives are also now exported from the `lit` package.
 
 From:
 ```js
-import {repeat} from `lit-html/directives/repeat.js`;
+import {repeat} from 'lit-html/directives/repeat.js';
 ```
 To:
 ```js
-import {repeat} from `lit/directives/repeat.js`;
+import {repeat} from 'lit/directives/repeat.js';
 ```
 
 ## Load `polyfill-support` when using web components polyfills
