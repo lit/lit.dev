@@ -26,7 +26,7 @@ class DateDisplay extends LitElement {
     return html`<span id="datefield">${this.date?.toLocaleDateString()}</span>`;
   }
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues<this>) {
     if (changed.has('date')) {
       this.datefield.animate(this.frames, 1000);
     }
