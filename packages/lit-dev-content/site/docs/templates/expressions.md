@@ -236,7 +236,7 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 You can set a JavaScript property on an element using the `.` prefix and the property name:
 
 ```js
-html`<input .value=${this.itemCount}></input>`;
+html`<input .value=${this.itemCount}>`;
 ```
 
 You can use this syntax to pass complex data down the tree to subcomponents. For example, if you have a `my-list` component with a `listItems` property, you could pass it an array of objects:
