@@ -235,3 +235,5 @@ update callbacks will be called if/when the element is re-connected.
 * The `templateFactory` option of `RenderOptions` has been removed.
 * `TemplateProcessor` has been removed.
 * Symbols are not converted to a string before mutating DOM, so passing a Symbol to an attribute or text binding will result in an exception.
+* The `ifDefined` directive in an attribute expression now removes the attribute for both `null` and `undefined`, not just `undefined`.
+* Rendering the value `nothing` to an attribute expression causes the attribute to be removed.
