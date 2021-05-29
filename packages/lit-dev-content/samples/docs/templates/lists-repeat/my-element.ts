@@ -14,8 +14,8 @@ private sort = 1;
 @property() employees = [
   {id: 0, givenName: 'Fred', familyName: 'Flintstone'},
   {id: 1, givenName: 'George', familyName: 'Jetson'},
-  {id: 0, givenName: 'Barney', familyName: 'Rubble'},
-  {id: 2, givenName: 'Cosmo', familyName: 'Spacely'}
+  {id: 2, givenName: 'Barney', familyName: 'Rubble'},
+  {id: 3, givenName: 'Cosmo', familyName: 'Spacely'}
 ];
 /* playground-fold-end */
 
