@@ -221,7 +221,7 @@ Implement `willUpdate()` to compute property values that depend on other propert
 ```js
 willUpdate(changedProperties) {
   // only need to check changed properties for an expensive computation.
-  if (changeProperties.has(‘firstName’) || changedProperties.has(‘lastName’)) {
+  if (changedProperties.has(‘firstName’) || changedProperties.has(‘lastName’)) {
     this.sha = computeSHA(`${this.firstName} ${this.lastName}`);
   }
 }
