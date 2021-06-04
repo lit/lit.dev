@@ -292,7 +292,7 @@ The tables below shows how the default converter handles conversion for each typ
 |:--------|:-----------|
 | `String`  | If the attribute is defined, set the property to the attribute value. |
 | `Number`  | If the attribute is defined, set the property to `Number(attributeValue)`. |
-| `Boolean` | If the attribute is defined and non-null, set the property to true.<br>If the property is null or undefined, set the property to false. |
+| `Boolean` | If the attribute is defined and non-null, set the property to true.<br>If the attribute is null or undefined, set the property to false. |
 | `Object`, `Array` | If the attribute is defined, set the property value to `JSON.parse(attributeValue)`. |
 
 **From property to attribute**
