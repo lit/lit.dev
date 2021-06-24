@@ -17,7 +17,7 @@ export class ClockController implements ReactiveController {
       this.value = new Date();
       // Update the host with new value
       this.host.requestUpdate();
-    });
+    }, this.timeout);
   }
   hostDisconnected() {
     // Clear the timer when the host is disconnected
