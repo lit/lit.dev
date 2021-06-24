@@ -810,7 +810,7 @@ class MyElement extends LitElement {
   }
 
   firstUpdated() {
-    const input = this.inputRef.value;
+    const input = this.inputRef.value!;
     input.focus();
   }
 }
@@ -832,8 +832,8 @@ class MyElement extends LitElement {
     return html`<input ${ref(this.inputChanged)}>`;
   }
 
-  inputChanged(input: HTMLInputElement) {
-    input.focus();
+  inputChanged(input?: HTMLInputElement) {
+    input?.focus();
   }
 }
 ```
