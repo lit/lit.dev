@@ -42,7 +42,7 @@ A controller will typically expose some functionality to be used in the host's `
 ```ts
   render() {
     return html`
-      <div>Current time: ${this.clock.time}</div>
+      <div>Current time: ${this.clock.value}</div>
     `;
   }
 ```
@@ -130,12 +130,12 @@ class DualClockController implements ReactiveController {
   private clock2: ClockController;
 
   constructor(host: ReactiveControllerHost, delay1: number, delay2: number) {
-    clock1 = new ClockController(host, delay1);
-    clock2 = new ClockController(host, delay2);
+    this.clock1 = new ClockController(host, delay1);
+    this.clock2 = new ClockController(host, delay2);
   }
 
-  get time1() { return this.clock1.time; }
-  get time2() { return this.clock2.time; }
+  get time1() { return this.clock1.value; }
+  get time2() { return this.clock2.value; }
 }
 ```
 
