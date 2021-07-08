@@ -124,22 +124,26 @@ export const playgroundPlugin = (
       );
     }
     const config = await readProjectConfig(project);
-    const styleHeight = config.editorHeight
-      ? `style="height: ${config.editorHeight};"`
-      : '';
-    const lineNumbers = config.lineNumbers ? 'line-numbers' : '';
+
+    // Note we explicitly set "height" here so that the pre-upgrade height is
+    // correct, to prevent layout shift.
+    const editorHeight = config.editorHeight ?? '300px';
+    const previewHeight = config.previewHeight ?? '120px';
+    const fileTabBarHeight = '45px';
     return `
-      <playground-ide ${styleHeight}
-      ${lineNumbers} resizable
-        project-src="/samples/${project}/project.json">
-      </playground-ide>
-    `.trim();
+    <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
+      style="height:calc(${editorHeight} + ${previewHeight} + ${fileTabBarHeight});
+              --litdev-example-editor-height:${editorHeight};
+              --litdev-example-preview-height:${previewHeight}"
+      project=${project}
+    >
+    </litdev-example>
+  `.trim();
   });
 
   type LitProjectConfig = ProjectManifest & {
     editorHeight?: string;
     previewHeight?: string;
-    lineNumbers?: boolean;
   };
 
   // TODO(aomarks)

@@ -4,7 +4,8 @@
         "index.html": {},
         "icons.ts": {}
     },
-    "editorHeight": "840px",
+    "editorHeight": "650px",
+    "previewHeight": "125px",
       "importMap": {
       "imports": {
         "lit": "https://cdn.skypack.dev/lit",

@@ -5,6 +5,7 @@
  */
 
 import {LitElement, html, css, property} from 'lit-element';
+import {styleMap} from 'lit-html/directives/style-map';
 import {nothing} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined.js';
 import 'playground-elements/playground-ide.js';
@@ -22,9 +23,18 @@ export class LitDevExample extends LitElement {
     }
 
     playground-file-editor,
-    playground-preview {
+    playground-preview,
+    playground-tab-bar {
       border-radius: 5px;
       box-sizing: border-box;
+    }
+
+    playground-tab-bar {
+      background: #fff;
+      --mdc-typography-button-font-family: 'Open Sans',sans-serif;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: var(--code-border);
     }
 
     playground-file-editor {
@@ -75,6 +85,7 @@ export class LitDevExample extends LitElement {
 
   /**
    * Name of file in project to display.
+   * If no file is provided, we show the tab-bar with all project files.
    */
   @property()
   filename?: string;
@@ -86,9 +97,15 @@ export class LitDevExample extends LitElement {
   sandboxBaseUrl?: string;
 
   render() {
-    if (!this.project || !this.filename) {
+    if (!this.project) {
       return nothing;
     }
+    const showTabBar = !this.filename
+    // Only the top element should have a border radius.
+    const fileEditorOverrideStyles = showTabBar
+      ? styleMap({ 'border-radius': '0' })
+      : nothing;
+
     return html`
       <playground-project
         sandbox-base-url=${ifDefined(this.sandboxBaseUrl)}
@@ -97,10 +114,24 @@ export class LitDevExample extends LitElement {
       >
       </playground-project>
 
-      <playground-file-editor project="project" filename="${this.filename}">
+      ${
+        showTabBar
+          ? html`<playground-tab-bar
+                    project="project"
+                    editor="project-file-editor"
+                  ></playground-tab-bar>`
+          : nothing
+      }
+
+      <playground-file-editor
+        id="project-file-editor"
+        project="project"
+        filename="${ifDefined(this.filename)}"
+        style=${fileEditorOverrideStyles}
+      >
       </playground-file-editor>
 
-      <playground-preview project="project"> </playground-preview>
+      <playground-preview project="project"></playground-preview>
 
       <a
         class="openInPlayground"
