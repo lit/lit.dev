@@ -58,7 +58,7 @@ import {LitElement, ReactiveElement} from 'lit';
 ReactiveElement.disableWarning?.('migration');
 
 // Disable update warnings on all LitElements
-LitElement.disableWarning.?('change-in-update');
+LitElement.disableWarning?.('change-in-update');
 
 // Disable update warnings on one element
 MyElement.disableWarning?.('change-in-update');
