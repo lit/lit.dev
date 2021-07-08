@@ -61,7 +61,7 @@ ReactiveElement.disableWarning?.('migration');
 LitElement.disableWarning.?('change-in-update');
 
 // Disable update warnings on one element
-MyElement.disableWarning.?('change-in-update');
+MyElement.disableWarning?.('change-in-update');
 
 ```
 
