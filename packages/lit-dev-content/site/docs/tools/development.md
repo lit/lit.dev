@@ -47,7 +47,7 @@ There is an API to enable and disable some warnings, based on the kind of warnin
 
 The methods to control warnings are `ReactiveElement.disableWarning()` and `ReactiveElement.enableWarning()`. You can call them on any subclass of ReactiveElement, including LitElement and your own classes, and the warnings will be enabled or disabled for only those classes. For instance, you can disable warnings on all ReactiveElement classes, all LitElement classes, or only specific LitElement subclasses.
 
-These methods are only available in development builds, so be sure to guard their access. We reccomend using optional chaining.
+These methods are only available in development builds, so be sure to guard their access. We recommend using optional chaining.
 
 Examples:
 ```ts
