@@ -102,9 +102,8 @@ export class LitDevExample extends LitElement {
     }
     const showTabBar = !this.filename
     // Only the top element should have a border radius.
-    const fileEditorOverrideStyles = showTabBar
-      ? styleMap({ 'border-radius': '0' })
-      : nothing;
+    const fileEditorOverrideStyles =
+      { borderRadius: showTabBar ? 'unset': 'inherit' }
 
     return html`
       <playground-project
@@ -127,7 +126,7 @@ export class LitDevExample extends LitElement {
         id="project-file-editor"
         project="project"
         filename="${ifDefined(this.filename)}"
-        style=${fileEditorOverrideStyles}
+        style=${styleMap(fileEditorOverrideStyles)}
       >
       </playground-file-editor>
 
