@@ -6,5 +6,6 @@
     "names-api.ts": {},
     "index.html": {}
   },
-  "editorHeight": "1160px"
+  "editorHeight": "1060px",
+  "previewHeight": "150px"
 }
