@@ -18,8 +18,8 @@
     "fast-glob": "^3.2.5",
     "markdown-it-anchor": "^7.1.0",
     "outdent": "^0.8.0",
-    "playground-elements": "^0.9.3",
-    "playwright": "^1.8.0",
+    "playground-elements": "^0.10.1",
+    "playwright": "^1.12.3",
     "source-map": "^0.7.3",
     "typedoc": "^0.20.30"
   }
