@@ -290,10 +290,12 @@ The tables below shows how the default converter handles conversion for each typ
 
 | Type    | Conversion |
 |:--------|:-----------|
-| `String`  | If the attribute is defined, set the property to the attribute value. |
-| `Number`  | If the attribute is defined, set the property to `Number(attributeValue)`. |
-| `Boolean` | If the attribute is defined and non-null, set the property to true.<br>If the property is null or undefined, set the property to false. |
-| `Object`, `Array` | If the attribute is defined, set the property value to `JSON.parse(attributeValue)`. |
+| `String`  | If the element has the corresponding attribute, set the property to the attribute value. |
+| `Number`  | If the element has the corresponding attribute, set the property to `Number(attributeValue)`. |
+| `Boolean` | If the element has the corresponding attribute, set the property to true.<br>If not, set the property to false. |
+| `Object`, `Array` | If the element has the corresponding attribute, set the property value to `JSON.parse(attributeValue)`. |
+
+For any case except `Boolean`, if the element doesn't have the corresponding attribute, the property keeps its default value, or `undefined` if no default is set.
 
 **From property to attribute**
 
@@ -302,8 +304,6 @@ The tables below shows how the default converter handles conversion for each typ
 | `String`, `Number` | If property is defined and non-null, set the attribute to the property value.<br>If property is null or undefined, remove the attribute. |
 | `Boolean` | If property is truthy, create the attribute and set its value to an empty string. <br>If property is falsy, remove the attribute |
 | `Object`, `Arrray` | If property is defined and non-null, set the attribute to `JSON.stringify(propertyValue)`.<br>If property is null or undefined, remove the attribute. |
-
-
 
 
 ### Providing a custom converter {#conversion-converter}
