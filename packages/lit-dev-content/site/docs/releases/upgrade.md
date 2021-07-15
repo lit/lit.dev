@@ -236,4 +236,4 @@ update callbacks will be called if/when the element is re-connected.
 * `TemplateProcessor` has been removed.
 * Symbols are not converted to a string before mutating DOM, so passing a Symbol to an attribute or text binding will result in an exception.
 * The `ifDefined` directive in an attribute expression now removes the attribute for both `null` and `undefined`, not just `undefined`.
-* Rendering the value `nothing` to an attribute expression causes the attribute to be removed.
+* Rendering the value `nothing` to an attribute expression causes the attribute to be removed—even if there are multiple expressions in the attribute value position and only one is `nothing`. For example given `src="${baseurl}/${filename}"`, the `src` attribute is removed if _either_ `baseurl` or `filename` evaluate to `nothing`.
