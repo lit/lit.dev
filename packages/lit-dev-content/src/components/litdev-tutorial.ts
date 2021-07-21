@@ -8,7 +8,7 @@ import {
   LitElement,
   html,
   property,
-  internalProperty,
+  state,
   PropertyValues,
 } from 'lit-element';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
@@ -41,26 +41,26 @@ export class LitDevTutorial extends LitElement {
   /**
    * The 0-indexed step that's currently active.
    */
-  @internalProperty()
+  @state()
   private _idx = 0;
 
   /**
    * Whether the active step content is currently loading.
    */
-  @internalProperty()
+  @state()
   private _loading = true;
 
   /**
    * The dynamically fetched HTML content to display.
    */
-  @internalProperty()
+  @state()
   private _html?: string;
 
   /**
    * Preloaded HTML content for the next step (idx is explicit to ensure we
    * don't get out of sync).
    */
-  @internalProperty()
+  @state()
   private _preloadedHtml?: {idx: number; promise: Promise<string>};
 
   createRenderRoot() {
