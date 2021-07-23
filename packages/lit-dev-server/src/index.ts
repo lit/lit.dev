@@ -33,6 +33,15 @@ console.log(`port: ${port}`);
 console.log(`static root: ${staticRoot}`);
 
 const app = new Koa();
+
+if (mode === 'playground') {
+  // See https://github.com/PolymerLabs/playground-elements#process-isolation
+  app.use(async (ctx, next) => {
+    ctx.set('Origin-Agent-Cluster', '?1');
+    await next();
+  });
+}
+
 app.use(async (ctx, next) => {
   if (ctx.path.match(/\/[^\/\.]+$/)) {
     // Canonicalize paths to have a trailing slash, except for files with
@@ -54,12 +63,13 @@ app.use(async (ctx, next) => {
     ctx.status = 301;
     ctx.redirect(
       pageRedirects.get(ctx.path) +
-      (ctx.querystring ? '?' + ctx.querystring : '')
+        (ctx.querystring ? '?' + ctx.querystring : '')
     );
   } else {
     await next();
   }
 });
+
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
 app.use(
