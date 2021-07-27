@@ -31,7 +31,7 @@ export class LitDevExample extends LitElement {
 
     playground-tab-bar {
       background: #fff;
-      --mdc-typography-button-font-family: 'Open Sans', sans-serif;
+      font-family: 'Open Sans', sans-serif;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       border-bottom: var(--code-border);
