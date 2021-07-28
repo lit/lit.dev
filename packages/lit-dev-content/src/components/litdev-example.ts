@@ -31,7 +31,7 @@ export class LitDevExample extends LitElement {
 
     playground-tab-bar {
       background: #fff;
-      --mdc-typography-button-font-family: 'Open Sans',sans-serif;
+      --mdc-typography-button-font-family: 'Open Sans', sans-serif;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       border-bottom: var(--code-border);
@@ -100,10 +100,11 @@ export class LitDevExample extends LitElement {
     if (!this.project) {
       return nothing;
     }
-    const showTabBar = !this.filename
+    const showTabBar = !this.filename;
     // Only the top element should have a border radius.
-    const fileEditorOverrideStyles =
-      { borderRadius: showTabBar ? 'unset': 'inherit' }
+    const fileEditorOverrideStyles = {
+      borderRadius: showTabBar ? 'unset' : 'inherit',
+    };
 
     return html`
       <playground-project
@@ -113,14 +114,12 @@ export class LitDevExample extends LitElement {
       >
       </playground-project>
 
-      ${
-        showTabBar
-          ? html`<playground-tab-bar
-                    project="project"
-                    editor="project-file-editor"
-                  ></playground-tab-bar>`
-          : nothing
-      }
+      ${showTabBar
+        ? html`<playground-tab-bar
+            project="project"
+            editor="project-file-editor"
+          ></playground-tab-bar>`
+        : nothing}
 
       <playground-file-editor
         id="project-file-editor"
