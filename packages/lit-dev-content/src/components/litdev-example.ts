@@ -46,7 +46,7 @@ export class LitDevExample extends LitElement {
       background: var(--playground-code-background);
       /* TODO(aomarks) Should be in the playground styles */
       line-height: var(--playground-code-line-height);
-      padding: var(--playground-code-padding);
+      padding: var(--litdev-code-padding);
     }
 
     playground-preview {
