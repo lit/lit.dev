@@ -2,7 +2,7 @@ html {
   --playground-code-font-family: 'Roboto Mono', monospace;
   --playground-code-font-size: 14px;
   --playground-code-line-height: 1.6em;
-  --playground-code-padding: 0.5em 0 0.5em 1em;
+  --litdev-code-padding: 0.5em 0 0.5em 1em;
   --playground-bar-height: 2.5rem;
   --playground-code-gutter-background: white;
   --playground-code-gutter-border-right: none;
@@ -41,7 +41,7 @@ playground-ide::part(preview) {
 playground-ide::part(preview-toolbar),
 playground-preview::part(preview-toolbar) {
   background: var(--color-light-gray);
-  border-bottom: 1.5px solid #ccc;
+  border-bottom: 1px solid #ccc;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.9rem;
   box-sizing: border-box;
@@ -50,13 +50,13 @@ playground-preview::part(preview-toolbar) {
 playground-ide::part(tab-bar),
 playground-tab-bar {
   background: white;
-  --mdc-typography-button-font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 playground-file-editor,
 playground-ide::part(editor) {
   background: white;
-  border-top: 1.5px solid #ccc;
-  /* Align border with active tab highlight */
-  margin-top: -1.5px;
 }

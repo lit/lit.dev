@@ -18,8 +18,8 @@
     "build:samples": "tsc --project samples  --noEmit",
     "build:samples:watch": "tsc --project samples --watch --noEmit",
     "fonts:manrope": "rm -rf site/fonts temp && mkdir -p site/fonts && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/ && cd ../.. && rm -rf temp",
-    "dev:build:site": "rm -rf _dev && ELEVENTY_ENV=dev eleventy",
-    "dev:build:site:watch": "rm -rf _dev && ELEVENTY_ENV=dev eleventy --watch",
+    "dev:build:site": "rm -rf _dev && ELEVENTY_ENV=dev PLAYGROUND_SANDBOX=. eleventy",
+    "dev:build:site:watch": "rm -rf _dev && ELEVENTY_ENV=dev PLAYGROUND_SANDBOX=. eleventy --watch",
     "dev:serve": "web-dev-server --root-dir=_dev --node-resolve --watch --open --preserve-symlinks",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
@@ -46,19 +46,19 @@
     "slugify": "^1.3.6"
   },
   "dependencies": {
-    "@material/mwc-button": "^0.20.0",
-    "@material/mwc-drawer": "^0.20.0",
-    "@material/mwc-formfield": "^0.20.0",
-    "@material/mwc-icon-button": "^0.20.0",
-    "@material/mwc-icon-button-toggle": "^0.20.0",
-    "@material/mwc-snackbar": "^0.20.0",
-    "@material/mwc-switch": "^0.20.0",
+    "@material/mwc-button": "^0.22.1",
+    "@material/mwc-drawer": "^0.22.1",
+    "@material/mwc-formfield": "^0.22.1",
+    "@material/mwc-icon-button": "^0.22.1",
+    "@material/mwc-icon-button-toggle": "^0.22.1",
+    "@material/mwc-snackbar": "^0.22.1",
+    "@material/mwc-switch": "^0.22.1",
     "@lit/localize": "^0.10.0",
     "@lit-labs/task": "1.0.0-pre.2",
     "lit": "^2.0.0-pre.1",
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
-    "playground-elements": "^0.9.3",
+    "playground-elements": "^0.11.0",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }

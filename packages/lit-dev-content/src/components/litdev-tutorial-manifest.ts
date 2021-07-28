@@ -41,7 +41,7 @@ export const manifest: {steps: Array<TutorialStep>} = {
     },
     {
       slug: '08-finishing-touches',
-      title: 'Finishing touches'
-    }
+      title: 'Finishing touches',
+    },
   ],
 };

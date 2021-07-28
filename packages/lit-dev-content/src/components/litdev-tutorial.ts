@@ -4,13 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {
-  LitElement,
-  html,
-  property,
-  state,
-  PropertyValues,
-} from 'lit-element';
+import {LitElement, html, property, state, PropertyValues} from 'lit-element';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
 import {manifest, TutorialStep} from './litdev-tutorial-manifest.js';

@@ -17,7 +17,7 @@
 #tourCode {
   width: 620px;
   --playground-code-background: #fdfdfd;
-  --playground-code-padding: 1.5em 2em;
+  --litdev-code-padding: 1.5em 2em;
   --playground-code-font-size: 16px;
   position: sticky;
   top: calc(var(--header-height) + 2em);

@@ -5,7 +5,7 @@
   font-size: var(--playground-code-font-size, inherit);
   color: var(--playground-code-default-color, #000);
   background: var(--playground-code-background, #fff);
-  padding: var(--playground-code-padding);
+  padding: var(--litdev-code-padding);
 }
 
 .CodeMirror pre.CodeMirror-line {
