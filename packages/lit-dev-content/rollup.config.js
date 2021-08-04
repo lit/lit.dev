@@ -34,6 +34,7 @@ export default [
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
       'lib/components/litdev-tutorial.js',
+      'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
       'lib/global/mobile-nav.js',
@@ -77,7 +78,8 @@ export default [
     },
     plugins: [
       resolve({
-        dedupe: () => true,
+        // TODO(ajakubowicz): Dedupe breaks @lion by removing internal lit dependencies.
+        // dedupe: () => true,
       }),
       terser(terserOptions),
       summary({
