@@ -16,6 +16,7 @@ const fastGlob = require('fast-glob');
 const {
   inlinePlaygroundFilesIntoManifests,
 } = require('../lit-dev-tools/lib/playground-inline.js');
+const {createSearchIndex} = require('../lit-dev-tools/lib/search/plugin.js')
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 const luxon = require('luxon');
 const {
@@ -342,6 +343,8 @@ ${content}
         !file.includes('browser-support')
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
+
+    await createSearchIndex(OUTPUT_DIR);
 
     if (DEV) {
       // Symlink css, images, and playground projects. We do this in dev mode
