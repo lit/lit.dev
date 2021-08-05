@@ -22,3 +22,8 @@
   --playground-code-attribute-color: #9cdcfe;
   --playground-code-callee-color: #dcdcaa;
 }
+
+/* TODO(https://github.com/lit/lit.dev/issues/423) - Land Lit.dev search */
+body:not(.search) litdev-search {
+  display: none;
+}

@@ -50,6 +50,11 @@ header > nav {
   font-size: 0.9em;
 }
 
+#desktopNav > .navItem > litdev-search {
+  margin-left: 0.5em;
+  width: 222px;
+}
+
 #desktopNav > .navItem > a:hover,
 #desktopNav > .navItem.active > a {
   color: var(--color-blue);

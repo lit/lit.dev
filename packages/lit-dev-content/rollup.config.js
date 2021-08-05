@@ -34,6 +34,7 @@ export default [
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
       'lib/components/litdev-tutorial.js',
+      'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
       'lib/global/mobile-nav.js',
@@ -77,7 +78,8 @@ export default [
     },
     plugins: [
       resolve({
-        dedupe: () => true,
+        // TODO(ajakubowicz): See Issue #420 - Both Lit 1 and Lit 2 are used.
+        // dedupe: () => true,
       }),
       terser(terserOptions),
       summary({
