@@ -130,8 +130,8 @@ class LitDevSearch extends LitElement {
       lion-combobox > lion-options {
         /* Fix the dimensions of the suggestion dropdown */
         max-height: min(400px, 100vh - 60px);
-        width: 255px;
-        margin-left: -8px;
+        width: 240px;
+        margin-left: -20px;
       }
     }
   `;
