@@ -14,6 +14,11 @@
     {% inlinecss "mods.css" %}
     {% inlinejs "global/mods.js" %}
 
+    <!-- We need to load litdev-search first because @lion/core loads the
+         scoped-custom-element-registry polyfill. If MWC components are loaded
+         first the polyfill currently throws errors. -->
+    <script type="module" src="{{ site.baseurl }}/js/components/litdev-search.js"></script>
+
     <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
 
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
@@ -24,7 +29,6 @@
       <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
     {% endif %}
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-search.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
