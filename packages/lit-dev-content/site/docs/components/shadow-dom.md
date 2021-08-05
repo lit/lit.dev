@@ -33,7 +33,7 @@ For more information on shadow DOM:
 
 Lit renders components to its `renderRoot`, which is a shadow root by default. To find internal elements, you can use DOM query APIs, such as `this.renderRoot.querySelector()`.
 
-The `renderRoot` should always be either a shadow root or an element. Both implement the [`ParentNode`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode) interface and share API like `.querySelectorAll()` and `.children`.
+The `renderRoot` should always be either a shadow root or an element, which share APIs like `.querySelectorAll()` and `.children`.
 
 You can query internal DOM after component initial render (for example, in `firstUpdated`), or use a getter pattern:
 
