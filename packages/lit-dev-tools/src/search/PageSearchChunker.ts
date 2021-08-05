@@ -6,7 +6,7 @@
 
 import {JSDOM} from 'jsdom';
 import striptags from 'striptags';
-import strip from 'strip-comments';
+import stripcomments from 'strip-comments';
 
 /**
  * A page chunk represents a section of a lit.dev page that starts with a
@@ -45,7 +45,7 @@ function dataChunktoSearchChunk(
   {heading, fragment, nodeCollection}: PageDataChunk,
   title: string
 ): PageSearchDataChunk {
-  const withoutComments = strip(nodeCollection.outerHTML);
+  const withoutComments = stripcomments(nodeCollection.outerHTML);
   // Leave a space when removing tags so we don't accidentally concat text from
   // adjacent tags. Thus `<h1>Hi</h1><p>hi</p>` becomes ` Hi  hi `.
   const withoutTags = striptags(withoutComments, undefined, ' ');
@@ -57,7 +57,7 @@ function dataChunktoSearchChunk(
       // Remove common escaped characters that otherwise become invalid words.
       .replace(/(&lt;)|(&gt;)/g, '')
       // Remove all symbols and punctuation.
-      .replace(/[^a-zA-Z\s]/g, '')
+      .replace(/[^\p{Letter}\s]/gu, '')
       // Space everything evenly apart.
       .replace(/\s+/g, ' ')
       .trim(),
@@ -80,21 +80,21 @@ export class PageSearchChunker {
 
   /**
    * Retrieve page title.
-   * 
+   *
    * @throws Will throw if no title.
    */
-  private get title (): string {
+  private get title(): string {
     const titleText = this.parsedPage.window.document.querySelector('title');
-    if (!titleText || !titleText.textContent) {
+    if (!titleText?.textContent) {
       throw new Error(`Page is missing title`);
     }
-    return titleText.textContent!;
+    return titleText.textContent;
   }
 
   /**
    * Retrieves article#content element for parsed page with some elements that
    * we don't want to index in search removed.
-   * 
+   *
    * @throws Page must have an 'article#content' element.
    */
   private filteredArticleContent(): Element {
@@ -170,7 +170,7 @@ export class PageSearchChunker {
   /**
    * Returns the page broken into searchable chunks of sanitized text with
    * associated title, subheading and possible link fragment.
-   * 
+   *
    * @throws Page needs to be an expected layout.
    */
   pageSearchChunks(): PageSearchDataChunk[] {
@@ -186,7 +186,7 @@ export class PageSearchChunker {
         // need to double index that text.
         reducedPageChunks.push(maybeNewPageChunk);
       } else {
-        const lastChunk = reducedPageChunks[reducedPageChunks.length-1];
+        const lastChunk = reducedPageChunks[reducedPageChunks.length - 1];
         if (lastChunk !== null) {
           lastChunk.nodeCollection.appendChild(childNode);
         }

@@ -26,9 +26,7 @@
     "source-map": "^0.7.3",
     "strip-comments": "^2.0.1",
     "striptags": "^3.2.0",
-    "typedoc": "^0.20.30"
-  },
-  "devDependencies": {
+    "typedoc": "^0.20.30",
     "@types/jsdom": "^16.2.13",
     "@types/strip-comments": "^2.0.1",
     "uvu": "^0.5.1"

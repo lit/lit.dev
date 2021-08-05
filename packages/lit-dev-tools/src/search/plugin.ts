@@ -8,7 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import Minisearch from 'minisearch';
 
-import { PageSearchChunker } from './PageSearchChunker.js';
+import {PageSearchChunker} from './PageSearchChunker.js';
 
 /**
  * Map associating relative site url to the file path of the index.html file.
@@ -27,21 +27,20 @@ interface UserFacingPageData {
   isSubsection: boolean;
 }
 
-// Path to root documentation path, configurable so we can search _dev or _site.
-let DOCS_PATH: string;
-
 /**
  * Plugin that scans and indexes the lit.dev /docs directory into a search index
  * that can be used to search the website. The search index is written to
  * `/searchIndex.json`. This is accessible by the client via:
  * `https://lit.dev/searchIndex.json`.
  */
-export async function createSearchIndex(outputDir: "_dev" | "_site") {
-  DOCS_PATH = path.resolve(
+export async function createSearchIndex(outputDir: '_dev' | '_site') {
+  // Path to root documentation path, configurable so we can search _dev or _site.
+  const DOCS_PATH = path.resolve(
     __dirname,
     `../../../lit-dev-content/${outputDir}/docs`
   );
-  const relativeDocUrlsToHtmlFile = walkDir('.');
+  const relativeDocUrlsToHtmlFile: UrlToFile = walkDir(DOCS_PATH, new Map());
+
   /**
    * NOTE: The minisearch options must exactly match when we create the search
    * index on the client. Any changes here must be reflected in the
@@ -65,16 +64,16 @@ export async function createSearchIndex(outputDir: "_dev" | "_site") {
       continue;
     }
 
-    const pageContent = fs.readFileSync(filePath, { encoding: 'utf8' });
+    const pageContent = fs.readFileSync(filePath, {encoding: 'utf8'});
     try {
       const pageToChunk = new PageSearchChunker(pageContent);
       const sanitizedPageChunks = pageToChunk.pageSearchChunks();
       for (const pageChunk of sanitizedPageChunks) {
-        const { title, heading, fragment, text } = pageChunk;
+        const {title, heading, fragment, text} = pageChunk;
 
         // Filter out "See also" heading that always shows up because it's full
         // of keywords and links.
-        if (heading === "See also") {
+        if (heading === 'See also') {
           continue;
         }
 
@@ -86,13 +85,13 @@ export async function createSearchIndex(outputDir: "_dev" | "_site") {
           heading,
           relativeUrl: relUrl.replace(/index.html$/, '') + (fragment ?? ''),
           text: text,
-          isSubsection: !!fragment
+          isSubsection: !!fragment,
         });
       }
     } catch (e: unknown) {
       throw new Error(
         `Failure while creating search index for page ` +
-        `'${relUrl}': ${(e as Error).message}`
+          `'${relUrl}': ${(e as Error).message}`
       );
     }
   }
@@ -104,26 +103,26 @@ export async function createSearchIndex(outputDir: "_dev" | "_site") {
 }
 
 /**
- * Populate a map with all lit.dev static index.html pages and their relative
- * url paths.
+ * Populate a results map with all lit.dev static index.html pages and their
+ * relative url paths.
  *
  * @param dir Directory to recursively walk
+ * @param results Map we're mutating with relative url and absolute path.
  * @returns mapping between lit.dev relative url and index.html file paths.
  */
-function walkDir(dir: string): UrlToFile {
-  const results: UrlToFile = new Map();
-  walkDir_aux(path.resolve(DOCS_PATH, dir), results);
-  return results;
-}
-
-function walkDir_aux(dir: string, results: UrlToFile) {
+function walkDir(dir: string, results: UrlToFile): UrlToFile {
   const dirContents = fs.readdirSync(dir);
   for (const contents of dirContents) {
     if (path.extname(contents) === '.html') {
-      const relPath = `/docs${dir.slice(DOCS_PATH.length)}/${contents}`;
+      const relPathBase = dir.match(/\/docs.*/)?.[0];
+      if (!relPathBase) {
+        throw new Error(`Failed to match relative path.`);
+      }
+      const relPath = `${relPathBase}/${contents}`;
       results.set(relPath, path.resolve(dir, contents));
     } else if (path.extname(contents) === '') {
-      walkDir_aux(path.resolve(dir, contents), results);
+      walkDir(path.resolve(dir, contents), results);
     }
   }
+  return results;
 }

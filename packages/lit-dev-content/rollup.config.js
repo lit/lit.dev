@@ -78,7 +78,7 @@ export default [
     },
     plugins: [
       resolve({
-        // TODO(ajakubowicz): Dedupe breaks @lion by removing internal lit dependencies.
+        // TODO(ajakubowicz): See Issue #420 - Both Lit 1 and Lit 2 are used.
         // dedupe: () => true,
       }),
       terser(terserOptions),

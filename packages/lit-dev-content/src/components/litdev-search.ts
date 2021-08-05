@@ -5,7 +5,13 @@
  */
 
 import {LitElement, html, css, TemplateResult, nothing} from 'lit';
-import {state, property, queryAll, customElement} from 'lit/decorators.js';
+import {
+  state,
+  property,
+  query,
+  queryAll,
+  customElement,
+} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import Minisearch from 'minisearch';
 
@@ -54,10 +60,14 @@ function isApiLink(url: string) {
   return url.includes('docs/api/');
 }
 
-const SEARCH_ICON = html`<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" aria-hidden="true">
+const SEARCH_ICON = html`<svg height="24" width="24" aria-hidden="true">
   <path d="M0 0h24v24H0z" fill="none"></path>
-  <path class="search-icon" fill="#6f6f6f" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-</svg>`
+  <path
+    class="search-icon"
+    fill="#6f6f6f"
+    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+  ></path>
+</svg>`;
 
 /**
  * Search input component that can fuzzy search the site.
@@ -66,27 +76,31 @@ const SEARCH_ICON = html`<svg xmlns="http://www.w3.org/2000/svg" height="24" wid
 class LitDevSearch extends LitElement {
   static styles = css`
     :host {
-      /* Required to vertically center the search text. */
-      padding-top: 4px;
-      margin-left: 0.5em;
-      width: 222px;
-    }
+      display: block;
+      padding: 0.3em 0.5em;
+      box-sizing: border-box;
+      position: relative;
 
-    #padding-container {
-      margin: 0.3em 0.5em;
-      padding: 0.2em;
-      border-radius: 4px;
-      display: flex;
+      /* Subtle vertical layout placement. */
+      margin-top: 4px;
     }
 
     svg {
       margin-left: 0.3em;
+      position: absolute;
+      right: 14px;
+      top: 2px;
+      /* If you press the search icon you will focus the input behind it. */
+      pointer-events: none;
+
+      transition: opacity 1s;
     }
 
     lion-combobox > lion-options {
       /* Fix the dimensions of the suggestion dropdown */
       max-height: min(400px, 100vh - 60px);
       width: 400px;
+      box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
     }
 
     lion-combobox {
@@ -101,13 +115,16 @@ class LitDevSearch extends LitElement {
         color: white;
       }
 
+      lion-combobox input::placeholder {
+        color: inherit;
+      }
+
       svg .search-icon {
         fill: white;
       }
 
-      #padding-container {
-        margin: unset;
-        padding: unset;
+      :host {
+        padding-left: 0;
       }
 
       lion-combobox > lion-options {
@@ -137,8 +154,20 @@ class LitDevSearch extends LitElement {
   /**
    * Search suggestion options.
    */
-  @queryAll('search-option')
-  private searchOptionElements!: SearchOption[];
+  @queryAll('litdev-search-option')
+  private searchOptionElements!: LitdevSearchOption[];
+
+  /**
+   * Search input within lion-combobox.
+   */
+  @query('lion-combobox input')
+  private input!: HTMLInputElement;
+
+  /**
+   * Reference the search icon.
+   */
+  @query('svg')
+  private searchIcon!: SVGElement;
 
   /**
    * Suggestions visible to the user rendered under the search input field.
@@ -149,7 +178,7 @@ class LitDevSearch extends LitElement {
   /**
    * Load and deserialize search index into `LitDevSearch.siteSearchIndex`.
    */
-  async loadSearchIndex () {
+  private async loadSearchIndex() {
     // We already have a search index.
     if (LitDevSearch.siteSearchIndex !== null) {
       return;
@@ -160,22 +189,25 @@ class LitDevSearch extends LitElement {
     LitDevSearch.loadingSearchIndex = true;
 
     const searchIndexJson = await (await fetch('/searchIndex.json')).text();
-  
+
     // Minisearch intialization config must exactly match
     // `/lit-dev-tools/src/search/plugin.ts` Minisearch options.
-    LitDevSearch.siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(searchIndexJson, {
-      idField: 'id',
-      fields: ['title', 'heading', 'text'],
-      storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
-      searchOptions: {
-        boost: {title: 1.4, heading: 1.2, text: 1},
-        prefix: true,
-        fuzzy: 0.2,
-      },
-    });
+    LitDevSearch.siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
+      searchIndexJson,
+      {
+        idField: 'id',
+        fields: ['title', 'heading', 'text'],
+        storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
+        searchOptions: {
+          boost: {title: 1.4, heading: 1.2, text: 1},
+          prefix: true,
+          fuzzy: 0.2,
+        },
+      }
+    );
 
     // If a search query has already been written, fill suggestions.
-    this.querySearch(this.searchText)
+    this.querySearch(this.searchText);
   }
 
   /**
@@ -188,12 +220,14 @@ class LitDevSearch extends LitElement {
     } else {
       setTimeout(() => this.loadSearchIndex(), 500);
     }
+
+    this.input.placeholder = 'Search';
   }
 
   /**
    * Repopulate suggestions with each input event.
    */
-  handleInput(e: InputEvent) {
+  private handleInput(e: InputEvent) {
     this.searchText = (e.target as HTMLInputElement).value ?? '';
     this.querySearch(this.searchText);
   }
@@ -203,27 +237,31 @@ class LitDevSearch extends LitElement {
    *
    * An empty query clears suggestions.
    */
-  querySearch(query: string) {
-    if (!LitDevSearch.siteSearchIndex || query === '' || query.length < 2) {
+  private querySearch(query: string) {
+    const trimmedQuery = query.trim();
+    if (
+      !LitDevSearch.siteSearchIndex ||
+      trimmedQuery === '' ||
+      trimmedQuery.length < 2
+    ) {
       this.suggestions = [];
       return;
     }
-    this.suggestions = (LitDevSearch.siteSearchIndex.search(query) ?? []).slice(
-      0,
-      10
-    ) as unknown as Suggestion[];
+    this.suggestions = (
+      LitDevSearch.siteSearchIndex.search(trimmedQuery) ?? []
+    ).slice(0, 10) as unknown as Suggestion[];
   }
 
   /**
    * Handle key press with side effects.
    *  - "Enter" finds the selected option and navigates to the page.
    */
-  handleKeyDown (e: KeyboardEvent) {
+  private handleKeyDown(e: KeyboardEvent) {
     if (this.searchOptionElements.length > 0 && e.key === 'Enter') {
       // Navigate to checked element.
       for (const el of this.searchOptionElements) {
         if (el.checked as boolean) {
-          document.location = el.relativeUrl as unknown as Location;
+          this.navigate(el.relativeUrl);
           return;
         }
       }
@@ -231,36 +269,62 @@ class LitDevSearch extends LitElement {
       // suggestion.
       const firstSuggestion = this.searchOptionElements[0];
       firstSuggestion.checked = true;
-      document.location = firstSuggestion.relativeUrl as unknown as Location;
+      this.navigate(firstSuggestion.relativeUrl);
     }
+  }
+
+  /**
+   * Navigate to the provided url. Manually clears the input value as the
+   * default behavior when navigating to a fragment on the page is not
+   * refreshing the UI.
+   */
+  private navigate(url: string) {
+    document.location = url as unknown as Location;
+    this.input.value = '';
+    this.searchText = '';
+  }
+
+  /**
+   * We hide the search icon on focus to prevent text overlapping the icon.
+   */
+  private onFocus() {
+    this.searchIcon.style.setProperty('opacity', '0');
+  }
+
+  private onBlur() {
+    this.searchIcon.style.setProperty('opacity', '1');
   }
 
   render() {
     return html`
-      <div id="padding-container">
-        <lion-combobox
-          name="lit-search"
-          autocomplete="none"
-
-          @input=${this.handleInput}
-          @keydown=${this.handleKeyDown}
-        >
-          ${repeat(
-            this.suggestions,
-            (v) => v.id,
-            ({relativeUrl, title, heading, isSubsection}) => html`
-              <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
-              <search-option
-                .choiceValue="${this.searchText}"
-                .relativeUrl="${relativeUrl}"
-                .title="${title}"
-                .heading="${heading}"
-                .isSubsection="${isSubsection}"
-              >`
-          )}
-        </lion-combobox>
-        ${SEARCH_ICON}
-      </div>
+      <lion-combobox
+        name="lit-search"
+        autocomplete="none"
+        @input=${this.handleInput}
+        @keydown=${this.handleKeyDown}
+        @focus=${this.onFocus}
+        @blur=${this.onBlur}
+      >
+        ${repeat(
+          this.suggestions,
+          (v) => v.id,
+          ({
+            relativeUrl,
+            title,
+            heading,
+            isSubsection,
+          }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
+            <litdev-search-option
+              .choiceValue="${this.searchText}"
+              .relativeUrl="${relativeUrl}"
+              .title="${title}"
+              .heading="${heading}"
+              .isSubsection="${isSubsection}"
+              @click="${() => this.navigate(relativeUrl)}"
+            ></litdev-search-option>`
+        )}
+      </lion-combobox>
+      ${SEARCH_ICON}
     `;
   }
 }
@@ -268,15 +332,15 @@ class LitDevSearch extends LitElement {
 /**
  * A single search option suggestion.
  */
-@customElement('search-option')
-class SearchOption extends LionOption {
-  @property({type: String})
+@customElement('litdev-search-option')
+class LitdevSearchOption extends LionOption {
+  @property()
   relativeUrl = '';
 
-  @property({type: String})
+  @property()
   title = '';
 
-  @property({type: String})
+  @property()
   heading = '';
 
   @property({type: Boolean})
@@ -305,7 +369,8 @@ class SearchOption extends LionOption {
           width: 100%;
         }
 
-        .title, .header {
+        .title,
+        .header {
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
@@ -327,16 +392,9 @@ class SearchOption extends LionOption {
     ];
   }
 
-  /**
-   * Handle navigation when clicking a suggestion directly.
-   */
-  private navigate = () => {
-    document.location = this.relativeUrl as unknown as Location;
-  }
-
   render() {
     return html`
-      <div class="suggestion" @click=${this.navigate}>
+      <div class="suggestion">
         ${titleAndHeadingCard(this.title, this.heading, this.isSubsection)}
         ${isApiLink(this.relativeUrl)
           ? html`<span class="api-tag">API</span>`
@@ -349,6 +407,6 @@ class SearchOption extends LionOption {
 declare global {
   interface HTMLElementTagNameMap {
     'litdev-search': LitDevSearch;
-    'search-option': SearchOption;
+    'litdev-search-option': LitdevSearchOption;
   }
 }
