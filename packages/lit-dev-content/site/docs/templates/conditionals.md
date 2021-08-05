@@ -16,10 +16,9 @@ Ternary expressions with the conditional operator, `?`, are a great way to add i
 
 ```ts
 render() {
-  return html`${this.userName
+  return this.userName
     ? html`Welcome ${this.userName}`
-    : html`Please log in <button>Login</button>`
-    }`;
+    : html`Please log in <button>Login</button>`;
 }
 ```
 
