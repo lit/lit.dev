@@ -280,11 +280,13 @@ class LitDevSearch extends LitElement {
    */
   private navigate(url: string) {
     // TODO(https://github.com/lit/lit.dev/issues/423) - Land Lit.dev search
-    // It is safe to append this directly as no url included in the searchIndex
-    // will have any query params.
-    url += `?mods=search`;
+    const pageUrl = new URL(document.location.href);
+    const searchUrl = new URL(url, pageUrl.origin);
+    // Assume that because search uses mods, there will always be mods set on
+    // the pageUrl.
+    searchUrl.searchParams.set('mods', pageUrl.searchParams.get('mods')!);
 
-    document.location = url as unknown as Location;
+    document.location = searchUrl.href as unknown as Location;
     this.input.value = '';
     this.searchText = '';
   }
