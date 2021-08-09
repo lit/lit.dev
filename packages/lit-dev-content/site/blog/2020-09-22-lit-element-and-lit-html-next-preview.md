@@ -1,5 +1,5 @@
 ---
-tags: blogPosts
+tags: announcements
 layout: blog-post.html
 title: "LitElement 3.0 & lit-html 2.0: Early Preview Release"
 summary: "Preview the next major versions of LitElement and lit-html."

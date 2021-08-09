@@ -1,5 +1,6 @@
 ---
 title: Blog
+eleventyExcludeFromCollections: true
 ---
 
 {% extends 'default.html' %}
@@ -18,6 +19,15 @@ title: Blog
 
       <p>Hear from our team on the latest with Lit and the community. Our blog covers
          major release announcements and showcases cool stuff being built with Lit.</p>
+
+      <div id="tags">
+        <p>
+        {% for tag in collections.tagList %}
+         {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+         <a href="{{ tagUrl | url }}" class="tag">{{ tag }}</a>
+        {% endfor %}
+        </p>
+      </div>
 
       <p>Have an idea for an article?</p>
       <a id="suggestLink" target="_blank" rel="noopener"

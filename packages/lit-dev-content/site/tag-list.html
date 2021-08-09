@@ -1,0 +1,26 @@
+---
+permalink: /tags/
+---
+
+{% extends "default.html" %}
+
+{% block head %}
+  {% inlinecss "blog-index.css" %}
+{% endblock %}
+
+{% block content %}
+
+<article>
+  <div id="frontMatter">
+    <h1>Tags</h1>
+
+  </div>
+
+  <div id="blogContent">
+    {% for tag in collections.tagList %}
+      {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+      <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+    {% endfor %}
+  </div>
+
+{% endblock %}

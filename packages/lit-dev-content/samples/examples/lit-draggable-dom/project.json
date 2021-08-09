@@ -1,0 +1,12 @@
+{
+  "hide": true,
+  "extends": "/samples/base.json",
+  "title": "Draggable DOM",
+  "description": "Draggable slotted children using canvas and CSS transforms.",
+  "section": "Specific Solutions",
+  "files": {
+    "src/draggable-dom.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "300px"
+}
