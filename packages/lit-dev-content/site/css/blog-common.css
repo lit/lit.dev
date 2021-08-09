@@ -38,6 +38,23 @@ article {
   font-size: 1.5em;
 }
 
+#frontMatter a.tag {
+  display: inline-block;
+  font-size: .9em;
+  color: white;
+  border-radius: 4px;
+  line-height: 18px;
+  padding: 2px 4px 4px 4px;
+  margin: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-clip: padding-box;
+}
+
+#frontMatter a.tag:hover {
+  border: 2px solid white;
+  text-decoration: none;
+}
+
 #blogContent {
   padding: var(--blog-top-padding) 3em;
 }

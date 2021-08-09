@@ -1,0 +1,25 @@
+---
+title: Blog
+eleventyExcludeFromCollections: true
+---
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "blog-index.css" %}
+{% endblock %}
+
+{% block content %}
+  <article>
+    <div id="frontMatter">
+      <h1>{{ title }}</h1>
+
+      <p>{{ summary | safe }}</p>
+    </div>
+
+    <div id="blogContent">
+      {{ blogContent | safe }}
+    </div>
+  </article>
+{% endblock %}
+

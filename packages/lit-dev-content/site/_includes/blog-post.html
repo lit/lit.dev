@@ -8,6 +8,14 @@ authorImage: logo.svg#flame
 
 {% block head %}
   {% inlinecss "blog-post.css" %}
+  <link rel="canonical" href="{{ canonicalUrl }}">
+  <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
+  <style>
+    playground-ide::part(preview) {
+      height: 450px;
+    }
+  </style>
 {% endblock %}
 
 {% block drawer %}
@@ -41,7 +49,19 @@ authorImage: logo.svg#flame
           <time datetime="{{ date | htmlDateString }}">
             {{ date | readableDate }}
           </time>
+          {% if repostedFrom %}
+            <p>Reposted from <a href="{{ canonicalUrl }}">{{ repostedFrom }}</a></p>
+          {% endif %}
         </div>
+      </div>
+      <div id="tags">
+        <p>
+          {% if tags %}
+            {% for tag in tags %}
+              <a class="tag" href="/tags/{{ tag | slug }}">{{ tag }}</a>
+            {% endfor %}
+          {% endif %}
+        </p>
       </div>
     </div>
 

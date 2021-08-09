@@ -1,5 +1,5 @@
 ---
-tags: blogPosts
+tags: announcements
 layout: blog-post.html
 title: "Lightning-fast templates & Web Components: lit-html & LitElement"
 summary: "Announcing the stable releases of our next-generation web development libraries."

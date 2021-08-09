@@ -387,6 +387,27 @@ ${content}
     }
   });
 
+  function filterTagList(tags) {
+    return (tags || []).filter(tag => ["all", "nav", "post", "posts", "release"].indexOf(tag) === -1);
+  }
+
+  eleventyConfig.addFilter("filterTagList", filterTagList)
+
+  // Create an array of all tags
+  eleventyConfig.addCollection("tagList", function(collection) {
+    let tagSet = new Set();
+    collection.getAll().forEach(item => {
+      (item.data.tags || []).forEach(tag => tagSet.add(tag));
+    });
+
+    return filterTagList([...tagSet]);
+  });
+
+
+  eleventyConfig.addCollection('blogPosts', function(collection) {
+    return collection.getFilteredByGlob('site/blog/**')
+  });
+
   eleventyConfig.addCollection('tutorial', function (collection) {
     return collection
       .getFilteredByGlob('site/tutorial/**')

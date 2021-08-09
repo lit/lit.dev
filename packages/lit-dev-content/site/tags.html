@@ -1,0 +1,62 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+  addAllPagesToCollections: true
+eleventyComputed:
+  title: Tagged "{{ tag }}"
+permalink: /tags/{{ tag | slug }}/
+---
+
+{% extends "default.html" %}
+
+{% block head %}
+  {% inlinecss "blog-index.css" %}
+{% endblock %}
+
+{% block content %}
+  {% set postslist = collections[ tag ] %}
+  <article>
+    <div id="frontMatter">
+      <h1>Tagged "{{ tag }}"</h1>
+
+      <p>See <a href="{{ '/tags/' | url }}">all tags</a>.</p>
+    </div>
+
+    <div id="blogContent">
+      {% for post in postslist | reverse %}
+      <div class="post">
+        <h2 class="date">
+          <time datetime="{{ post.data.date | htmlDateString }}">
+            {{ post.data.date | readableDate }}
+          </time>
+        </h2>
+
+        <div class="details">
+          <h3 class="title">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h3>
+
+          <p>{{ post.data.summary }}</p>
+
+          <p class="author">
+            {% if post.data.authorImage == "logo.svg#flame" %}
+              <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
+            {% else %}
+              <img alt="Photo of {{ post.data.author }}" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
+            {% endif %}
+            {{ post.data.author }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+{% endblock %}
