@@ -140,6 +140,7 @@ class LitDevSearch extends LitElement {
   /**
    * Text value in search input.
    */
+  @state()
   private searchText: string = '';
 
   /**
@@ -299,9 +300,6 @@ class LitDevSearch extends LitElement {
     if (navDrawer) {
       navDrawer.open = false;
     }
-
-    // Rerender to visually clear the value on the input.
-    this.requestUpdate();
   }
 
   /**
