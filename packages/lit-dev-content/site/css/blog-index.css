@@ -26,6 +26,17 @@ a#suggestLink:hover {
   text-decoration: none;
 }
 
+#frontMatter a {
+  color: white;
+  font-size: 0.88889em;
+  font-weight: 700;
+}
+
+#frontMatter a:hover {
+  color: var(--color-dark-cyan);
+  text-decoration: underline;
+}
+
 #blogContent .date {
   color: var(--color-dark-cyan);
   font-size: 1.1em;
@@ -46,6 +57,16 @@ a#suggestLink:hover {
 
 #blogContent a:hover {
   text-decoration: underline;
+}
+
+#blogContent a.post-tag {
+  display: inline-block;
+  font-size: 1.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  line-height: 20px;
+  padding: 0 10px;
+  margin: 2px 10px;
 }
 
 #blogContent .author {
