@@ -17,6 +17,7 @@ import Minisearch from 'minisearch';
 
 import '@lion/combobox/define';
 import {LionOption} from '@lion/listbox';
+import type {Drawer} from '@material/mwc-drawer';
 
 /**
  * Representation of each document indexed by Minisearch.
@@ -289,6 +290,18 @@ class LitDevSearch extends LitElement {
     document.location = searchUrl.href as unknown as Location;
     this.input.value = '';
     this.searchText = '';
+
+    // On mobile we manually close the nav drawer, otherwise the drawer remains
+    // open when navigating between fragment identifiers.
+    const navDrawer = document.querySelector(
+      'mwc-drawer#mobileDrawer'
+    ) as Drawer;
+    if (navDrawer) {
+      navDrawer.open = false;
+    }
+
+    // Rerender to visually clear the value on the input.
+    this.requestUpdate();
   }
 
   /**
