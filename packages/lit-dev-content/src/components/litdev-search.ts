@@ -406,6 +406,12 @@ class LitdevSearchOption extends LionOption {
           margin-left: 1em;
           font-weight: 600;
         }
+
+        @media (max-width: 864px) {
+          .suggestion {
+            padding: 0.2em 0.4em;
+          }
+        }
       `,
     ];
   }
