@@ -61,7 +61,7 @@ function isApiLink(url: string) {
   return url.includes('docs/api/');
 }
 
-const SEARCH_ICON = html`<svg height="24" width="24" aria-hidden="true">
+const SEARCH_ICON = html`<svg aria-hidden="true" viewbox="0 0 24 24">
   <path d="M0 0h24v24H0z" fill="none"></path>
   <path
     class="search-icon"
@@ -78,21 +78,25 @@ class LitDevSearch extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 0.3em 0.5em;
       box-sizing: border-box;
-      position: relative;
 
       /* Subtle vertical layout placement. */
-      margin-top: 4px;
+      margin-block-start: 4px;
+    }
+
+    .root {
+      position: relative;
     }
 
     svg {
-      margin-left: 0.3em;
+      margin-inline-start: 0.3em;
       position: absolute;
-      right: 14px;
-      top: 2px;
+      inset-inline-end: 4px;
+      inset-block-start: 0;
       /* If you press the search icon you will focus the input behind it. */
       pointer-events: none;
+      height: 100%;
+      aspect-ratio: 1/1;
 
       transition: opacity 1s;
     }
@@ -106,8 +110,8 @@ class LitDevSearch extends LitElement {
 
     lion-combobox {
       color: #6f6f6f;
-      font-size: 0.9em;
-      font-weight: 600;
+      font-size: inherit;
+      font-weight: inherit;
     }
 
     /* Mobile responsive search */
@@ -125,14 +129,14 @@ class LitDevSearch extends LitElement {
       }
 
       :host {
-        padding-left: 0;
+        padding-inline-start: 0;
       }
 
       lion-combobox > lion-options {
         /* Fix the dimensions of the suggestion dropdown */
         max-height: min(400px, 100vh - 60px);
         width: 240px;
-        margin-left: -20px;
+        margin-inline-start: -20px;
       }
     }
   `;
@@ -315,34 +319,36 @@ class LitDevSearch extends LitElement {
 
   render() {
     return html`
-      <lion-combobox
-        name="lit-search"
-        autocomplete="none"
-        @input=${this.handleInput}
-        @keydown=${this.handleKeyDown}
-        @focus=${this.onFocus}
-        @blur=${this.onBlur}
-      >
-        ${repeat(
-          this.suggestions,
-          (v) => v.id,
-          ({
-            relativeUrl,
-            title,
-            heading,
-            isSubsection,
-          }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
-            <litdev-search-option
-              .choiceValue="${this.searchText}"
-              .relativeUrl="${relativeUrl}"
-              .title="${title}"
-              .heading="${heading}"
-              .isSubsection="${isSubsection}"
-              @click="${() => this.navigate(relativeUrl)}"
-            ></litdev-search-option>`
-        )}
-      </lion-combobox>
-      ${SEARCH_ICON}
+      <div class="root">
+        <lion-combobox
+          name="lit-search"
+          autocomplete="none"
+          @input=${this.handleInput}
+          @keydown=${this.handleKeyDown}
+          @focus=${this.onFocus}
+          @blur=${this.onBlur}
+        >
+          ${repeat(
+            this.suggestions,
+            (v) => v.id,
+            ({
+              relativeUrl,
+              title,
+              heading,
+              isSubsection,
+            }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
+              <litdev-search-option
+                .choiceValue="${this.searchText}"
+                .relativeUrl="${relativeUrl}"
+                .title="${title}"
+                .heading="${heading}"
+                .isSubsection="${isSubsection}"
+                @click="${() => this.navigate(relativeUrl)}"
+              ></litdev-search-option>`
+          )}
+        </lion-combobox>
+        ${SEARCH_ICON}
+      </div>
     `;
   }
 }
@@ -374,7 +380,7 @@ class LitdevSearchOption extends LionOption {
           justify-content: space-between;
           height: 50px;
           padding: 0.2em 2em;
-          border-bottom: 1px solid #ddd;
+          border-block-end: 1px solid #ddd;
           background-color: white;
           color: black;
           font-size: 16px;
