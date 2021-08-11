@@ -89,7 +89,6 @@ class LitDevSearch extends LitElement {
     }
 
     svg {
-      margin-inline-start: 0.3em;
       position: absolute;
       inset-inline-end: 4px;
       inset-block-start: 0;
@@ -126,10 +125,6 @@ class LitDevSearch extends LitElement {
 
       svg .search-icon {
         fill: white;
-      }
-
-      :host {
-        padding-inline-start: 0;
       }
 
       lion-combobox > lion-options {
