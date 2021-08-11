@@ -42,7 +42,8 @@ header > nav {
   margin: 0;
 }
 
-#desktopNav > .navItem > a {
+#desktopNav > .navItem > a,
+#desktopNav > .navItem > litdev-search {
   color: #6f6f6f;
   font-weight: 600;
   padding: 0.3em 0.5em;
@@ -51,7 +52,6 @@ header > nav {
 }
 
 #desktopNav > .navItem > litdev-search {
-  margin-left: 0.5em;
   width: 222px;
 }
 
