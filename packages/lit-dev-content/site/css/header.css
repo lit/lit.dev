@@ -55,6 +55,12 @@ header > nav {
   width: 222px;
 }
 
+#desktopNav > .navItem.search {
+  /* Reserve space fixing CLS caused by litdev-search */
+  width: 230px;
+  height: 37px;
+}
+
 #desktopNav > .navItem > a:hover,
 #desktopNav > .navItem.active > a {
   color: var(--color-blue);
