@@ -254,6 +254,7 @@ Async directives often need to subscribe to external resources. To prevent memor
   - When the DOM tree the directive is contained in is removed from the DOM
   - When the directive's host element is disconnected
   - When the expression that produced the directive no longer resolves to the same directive.
+
   After a directive receives a `disconnected` callback, it should release all resources it may have subscribed to during `update` or `render` to prevent memory leaks.
 
 * `reconnected()`: Called when a previously disconnected directive is being returned to use. Because DOM subtrees can be temporarily disconnected and then reconnected again later, a disconnected directive may need to react to being reconnected. Examples of this include when DOM is removed and cached for later use, or when a host element is moved causing a disconnection and reconnection. The `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
@@ -262,7 +263,7 @@ Async directives often need to subscribe to external resources. To prevent memor
 
 <div class="alert alert-info">
 
-Note that it is possible for an `AsyncDirective` to continue receiving updates while it is disconnected if its containing tree is re-rendered. Bacause of this, `update` and/or `render` should always check the `this.isConnected` flag before subscribing to any long-held resources to prevent memory leaks.
+Note that it is possible for an `AsyncDirective` to continue receiving updates while it is disconnected if its containing tree is re-rendered. Because of this, `update` and/or `render` should always check the `this.isConnected` flag before subscribing to any long-held resources to prevent memory leaks.
 
 </div>
 
