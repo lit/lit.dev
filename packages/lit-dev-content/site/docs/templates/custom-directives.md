@@ -250,7 +250,11 @@ Here, the rendered template shows "Waiting for promise to resolve," followed by 
 
 Async directives often need to subscribe to external resources. To prevent memory leaks async directives should unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks and API:
 
-* `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected when the value of a given expression no longer resolves to the same directive, or if the subtree the directive was contained in was removed from the DOM. After a directive receives a `disconnected` callback, it should release all resources it may have subscribed to during `update` or `render` to prevent memory leaks.
+* `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected in three cases:
+  - When the DOM tree the directive is contained in is removed from the DOM
+  - When the directive's host element is disconnected
+  - When the expression that produced the directive no longer resolves to the same directive.
+  After a directive receives a `disconnected` callback, it should release all resources it may have subscribed to during `update` or `render` to prevent memory leaks.
 
 * `reconnected()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later (for example, when DOM is moved or cached for later use) a disconnected directive may need to react to being re-connected. So the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
 
