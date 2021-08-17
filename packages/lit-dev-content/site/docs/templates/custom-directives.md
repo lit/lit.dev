@@ -248,10 +248,19 @@ export const resolvePromise = directive(ResolvePromise);
 
 Here, the rendered template shows "Waiting for promise to resolve," followed by the resolved value of the promise, whenever it resolves.
 
-Async directives often need to subscribe to external resources. To prevent memory leaks async directives often need to unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks:
+Async directives often need to subscribe to external resources. To prevent memory leaks async directives should unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks and API:
 
-* `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected when the value of a given expression no longer resolves to the same directive, or if the subtree the directive was contained in was removed from the DOM.
+* `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected when the value of a given expression no longer resolves to the same directive, or if the subtree the directive was contained in was removed from the DOM. After a directive receives a `disconnected` callback, it should release all resources it may have subscribed to during `update` or `render` to prevent memory leaks.
+
 * `reconnected()`: Because DOM subtrees can be temporarily disconnected and then reconnected again later (for example, when DOM is moved or cached for later use) a disconnected directive may need to react to being re-connected. So the `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
+
+* `isConnected`: Reflects the current connection state of the directive.
+
+<div class="alert alert-info">
+
+Note that it is possible for an `AsyncDirective` to continue receiving updates while it is disconnected if its containing tree is re-rendered. As such, `update` and/or `render` should always check the `this.isConnected` flag before subscribing to any long-held resources to prevent memory leaks.
+
+</div>
 
 Below is an example of a directive that subscribes to an `Observable` and handles disconnection and reconnection appropriately:
 
@@ -265,7 +274,9 @@ class ObserveDirective extends AsyncDirective {
     if (this.observable !== observable) {
       this.unsubscribe?.();
       this.observable = observable
-      this.subscribe(observable);
+      if (this.isConnected)  {
+        this.subscribe(observable);
+      }
     }
     return noChange;
   }

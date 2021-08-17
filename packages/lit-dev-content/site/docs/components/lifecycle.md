@@ -46,7 +46,7 @@ Invoked when a component is added to the document's DOM.
 
 Lit initiates the first element update cycle after the element is connected. In preparation for rendering, Lit also ensures the `renderRoot` (typically, its `shadowRoot`) is created.
 
-Note, component updates proceed only when the component is connected. They are paused when the component is disconnected. When the components is reconnected, any changes made while it was disconnected are applied.
+Once an element has connected to the document at least once, component updates will proceed regardless of the connection state of the element.
 
 #### Use cases
 
