@@ -1,17 +1,8 @@
 {
-  "importMap": {
-    "imports": {
-      "lit": "https://cdn.skypack.dev/lit@2.0.0-rc.2",
-      "lit/": "https://cdn.skypack.dev/lit@2.0.0-rc.2/",
-      "@lit/reactive-element": "https://cdn.skypack.dev/@lit/reactive-element@1.0.0-rc.2",
-      "@lit/reactive-element/": "https://cdn.skypack.dev/@lit/reactive-element@1.0.0-rc.2/",
-      "@lit-labs/task": "https://cdn.skypack.dev/@lit-labs/task@1.0.0-rc.2",
-      "@lit-labs/task/": "https://cdn.skypack.dev/@lit-labs/task@1.0.0-rc.2/",
-      "lit-element": "https://cdn.skypack.dev/lit-element@3.0.0-rc.2",
-      "lit-element/": "https://cdn.skypack.dev/lit-element@3.0.0-rc.2/",
-      "lit-html": "https://cdn.skypack.dev/lit-html@2.0.0-rc.3",
-      "lit-html/": "https://cdn.skypack.dev/lit-html@2.0.0-rc.3/",
-      "typescript/": "https://unpkg.com/typescript@4.3.5/"
+  "files": {
+    "package.json": {
+      "content": "{\"dependencies\":{\"lit\":\"^2.0.0-rc.2\",\"@lit/reactive-element\":\"^1.0.0-rc.2\",\"lit-element\":\"^3.0.0-rc.2\",\"lit-html\":\"^2.0.0-rc.3\"}}",
+      "hidden": true
     }
   }
 }
