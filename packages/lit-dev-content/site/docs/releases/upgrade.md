@@ -211,10 +211,6 @@ that you may need to adapt your code to. We expect these changes to affect
 relatively few users.
 
 ### `LitElement`
-* The `update` and `render` callbacks will only be called when the element is
-connected to the document. If an element is disconnected while an update is
-pending, or if an update is requested while the element is disconnected,
-update callbacks will be called if/when the element is re-connected.
 * For simplicity, `requestUpdate` no longer returns a Promise. Instead await the `updateComplete` Promise.
 * Errors that occur during the update cycle were previously squelched to allow subsequent updates to proceed normally. Now errors are re-fired asynchronously so they can be detected. Errors can be observed via an `unhandledrejection` event handler on window.
 * Creation of `shadowRoot` via `createRenderRoot` and support for applying `static styles` to the `shadowRoot` has moved from `LitElement` to `ReactiveElement`.
