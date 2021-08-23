@@ -233,3 +233,4 @@ relatively few users.
 * Symbols are not converted to a string before mutating DOM, so passing a Symbol to an attribute or text binding will result in an exception.
 * The `ifDefined` directive in an attribute expression now removes the attribute for both `null` and `undefined`, not just `undefined`.
 * Rendering the value `nothing` to an attribute expression causes the attribute to be removed—even if there are multiple expressions in the attribute value position and only one is `nothing`. For example given `src="${baseurl}/${filename}"`, the `src` attribute is removed if _either_ `baseurl` or `filename` evaluate to `nothing`.
+* Rendering the value `nothing`, `null`, or `undefined` in the `unsafeHTML` or `unsafeSVG` directive will now result in no content being rendered (previously it would render `'[object Object]'`, `'null'`, or `'undefined'`, respectively).
