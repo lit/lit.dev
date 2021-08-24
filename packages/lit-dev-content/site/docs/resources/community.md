@@ -20,6 +20,8 @@ excellent to each other!
     of our team members can also be found tweeting about Lit,
     and the latest developments in the web platform.
 
+*   **Talk about Lit on [GitHub Discussions](https://github.com/lit/lit/discussions).** For longer questions or ideas about Lit, or to see what others are talking about, GitHub discussions are a great way to connect with the team and community.
+
 *   **Find answers on [StackOverflow](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element).**
     Search the [`lit`, `lit-element`, and `lit-html`](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element) tags when
     looking for answers. You can also find help on underlying web standards with
