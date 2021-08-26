@@ -11,6 +11,12 @@ import 'playground-elements/playground-ide.js';
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
 
+interface CompactProjectFile {
+  name: string;
+  content: string;
+  hidden?: true;
+}
+
 // TODO(aomarks) This whole thing should probably be a custom element.
 window.addEventListener('DOMContentLoaded', () => {
   /**
@@ -67,13 +73,23 @@ window.addEventListener('DOMContentLoaded', () => {
   const shareSnackbar = $('#shareSnackbar')! as Snackbar;
 
   const share = async () => {
-    // No need to include contentType (inferred) or undefined label (unused).
-    const files = Object.entries(project.config?.files ?? {}).map(
-      ([name, file]) => ({
+    const files = [];
+    for (const [name, {content, hidden}] of Object.entries(
+      project.config?.files ?? {}
+    )) {
+      // We don't directly encode the Playground project's files data structure
+      // because we want something more compact to reduce URL bloat. There's no
+      // need to include contentType (will be inferred from filename) or labels
+      // (unused), and hidden should be omitted instead of false.
+      const compactFile: CompactProjectFile = {
         name,
-        content: file.content,
-      })
-    );
+        content: content ?? '',
+      };
+      if (hidden) {
+        compactFile.hidden = true;
+      }
+      files.push(compactFile);
+    }
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
@@ -101,7 +117,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(1));
 
-    let urlFiles: Array<{name: string; content: string}> | undefined;
+    let urlFiles: Array<CompactProjectFile> | undefined;
     const base64 = params.get('project');
     if (base64) {
       try {
@@ -122,7 +138,7 @@ window.addEventListener('DOMContentLoaded', () => {
       project.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
-          urlFiles.map(({name, content}) => [name, {content}])
+          urlFiles.map(({name, content, hidden}) => [name, {content, hidden}])
         ),
       };
     } else {
