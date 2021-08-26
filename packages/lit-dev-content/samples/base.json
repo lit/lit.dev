@@ -1,7 +1,7 @@
 {
   "files": {
     "package.json": {
-      "content": "{\"dependencies\":{\"lit\":\"^2.0.0-rc.2\",\"@lit/reactive-element\":\"^1.0.0-rc.2\",\"lit-element\":\"^3.0.0-rc.2\",\"lit-html\":\"^2.0.0-rc.3\"}}",
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0-rc.2\",\n    \"@lit/reactive-element\": \"^1.0.0-rc.2\",\n    \"lit-element\": \"^3.0.0-rc.2\",\n    \"lit-html\": \"^2.0.0-rc.3\"\n  }\n}",
       "hidden": true
     }
   }
