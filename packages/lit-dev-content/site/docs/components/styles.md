@@ -233,7 +233,7 @@ render() {
 
 <div class="alert alert-info">
 
-**Limitations in the ShadyCSS polyfill around expressions.** Expressions in `<style>` elements won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. See the [ShadyCSS limitations](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) for more information.
+**Limitations in the ShadyCSS polyfill around expressions.** Expressions in `<style>` elements won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. In addition, `<style>` nodes may not be passed as expression values when using the ShadyCSS polyfill. See the [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for more information.
 
 </div>
 
@@ -257,7 +257,7 @@ While you can include an external style sheet in your template with a `<link>`, 
 
 **External stylesheet caveats.**
 
-*  The [ShadyCSS polyfill](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) doesn't support external style sheets.
+*  The [ShadyCSS polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) doesn't support external style sheets.
 *   External styles can cause a flash-of-unstyled-content (FOUC) while they load.
 *   The URL in the `href` attribute is relative to the **main document**. This is okay if you're building an app and your asset URLs are well-known, but avoid using external style sheets when building a reusable element.
 
