@@ -215,7 +215,7 @@ html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 
 If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
-You can use the [ifDefined](docs/api/directives/#ifDefined) directive to avoid this issue:
+You can use the [ifDefined](/docs/api/directives/#ifDefined) directive to avoid this issue:
 
 ```js
 html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
