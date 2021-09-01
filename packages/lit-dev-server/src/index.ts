@@ -43,6 +43,8 @@ if (mode === 'playground') {
 }
 
 app.use(async (ctx, next) => {
+  // If there would be multiple redirects, resolve them all here so that we
+  // serve just one HTTP redirect instead of a chain.
   let path = ctx.path;
   if (path.match(/\/[^\/\.]+$/)) {
     // Canonicalize paths to have a trailing slash, except for files with
