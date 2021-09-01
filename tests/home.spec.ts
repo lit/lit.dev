@@ -1,10 +1,14 @@
-import {test, expect} from '@playwright/test';
+/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 
-const LOCAL_DOMAIN = `http://localhost:8080/`;
+import {test, expect} from '@playwright/test';
 
 test.describe('Home page', () => {
   test('splashLogo accessible.', async ({page}) => {
-    await page.goto(LOCAL_DOMAIN);
+    await page.goto('/');
     expect(await page.locator('#splashLogo').getAttribute('role')).toBe(
       'heading'
     );
@@ -12,14 +16,8 @@ test.describe('Home page', () => {
     expect(await homePageImg.getAttribute('aria-label')).toBe('Lit');
   });
 
-  test('homepage screenshot test', async ({page}) => {
-    await page.goto(LOCAL_DOMAIN);
-    const homePageIntro = page.locator('#intro');
-    expect(await homePageIntro.screenshot()).toMatchSnapshot('home-intro.png');
-  });
-
   test('search site input basic functionality works', async ({page}) => {
-    await page.goto(LOCAL_DOMAIN);
+    await page.goto('/');
     const searchInput = page.locator('#desktopNav litdev-search input');
     await searchInput.type('reactive update cycle');
 
@@ -34,5 +32,10 @@ test.describe('Home page', () => {
     await expect(
       page.locator('litdev-search-option:nth-child(1) .header')
     ).toHaveText('Reactive update cycle');
+
+    await page.click('litdev-search-option:nth-child(1)');
+
+    await expect(page.locator('#reactive-update-cycle')).toBeVisible();
+    expect(page.url().includes('/docs/components/lifecycle')).toBe(true);
   });
 });

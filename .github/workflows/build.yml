@@ -49,3 +49,25 @@ jobs:
 
       - name: Check for broken links (external)
         run: npm run test:links:external
+
+  integration-tests:
+    name: Integration tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15
+
+      - name: NPM install
+        run: npm ci
+
+      - name: Lerna bootstrap
+        run: npm run bootstrap
+
+      - name: Build
+        run: npm run build
+
+      - name: Run integration tests
+        run: npm run test:integration
