@@ -2,7 +2,7 @@
   "name": "lit-dev-tools",
   "private": true,
   "version": "0.0.0",
-  "description": "Misc tools for lit.dev",
+  "description": "Misc tools for lit.dev (CommonJS)",
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
