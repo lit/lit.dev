@@ -11,7 +11,7 @@ test.describe('Playground', () => {
     await page.goto(`/playground`);
 
     await page.waitForSelector(
-      'playground-preview mwc-linear-progress[aria-hidden="true"]'
+      'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
     );
 
     const greetingExample = page.locator(
@@ -49,7 +49,7 @@ test.describe('Playground', () => {
 
     // Wait for iframe to reload
     await page.waitForSelector(
-      'playground-preview mwc-linear-progress[aria-hidden="true"]'
+      'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
     );
 
     const playgroundPreviewFrame = await (
