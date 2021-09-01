@@ -19,7 +19,7 @@ const {red, green, yellow, bold, reset} = ansi.style;
 const OK = Symbol();
 type ErrorMessage = string;
 
-const isUrl = (str: string) => {
+const isAbsoluteUrl = (str: string) => {
   try {
     new URL(str);
     return true;
@@ -42,7 +42,7 @@ const siteOutputDir = pathLib.resolve(
 const checkRedirect = async (
   redirect: string
 ): Promise<ErrorMessage | typeof OK> => {
-  if (isUrl(redirect)) {
+  if (isAbsoluteUrl(redirect)) {
     // Remote URLs.
     let res;
     try {
