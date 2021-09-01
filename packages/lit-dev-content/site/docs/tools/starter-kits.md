@@ -10,8 +10,8 @@ The Lit Starter Kits are project templates for reusable Lit components that can 
 
 To get started working on a component locally, you can use one of these starter projects:
 
-*   [Lit JavaScript starter project ](https://github.com/PolymerLabs/lit-element-starter-js)
-*   [Lit TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts)
+*   [Lit JavaScript starter project ](https://github.com/lit/lit-element-starter-js)
+*   [Lit TypeScript starter project](https://github.com/lit/lit-element-starter-ts)
 
 Both projects define a Lit component. They also add a set of optional tools for developing, linting, and testing the component:
 
@@ -35,8 +35,8 @@ The quickest way to try out a project locally is to download one of the starter 
 
 1.  Download the starter project from GitHub as a zip file:
 
-    *   [JavaScript starter project](https://github.com/PolymerLabs/lit-element-starter-js/archive/master.zip)
-    *   [TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts/archive/master.zip)
+    *   [JavaScript starter project](https://github.com/lit/lit-element-starter-js/archive/main.zip)
+    *   [TypeScript starter project](https://github.com/lit/lit-element-starter-ts/archive/main.zip)
 
 1.  Uncompress the zip file.
 
