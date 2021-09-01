@@ -12,5 +12,9 @@
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
+    "@types/ansi-escape-sequences": "^4.0.0",
+    "ansi-escape-sequences": "^6.2.0",
+    "lit-dev-server": "^0.0.0",
+    "node-fetch": "^3.0.0"
   }
 }
