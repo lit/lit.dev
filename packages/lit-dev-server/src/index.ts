@@ -43,28 +43,21 @@ if (mode === 'playground') {
 }
 
 app.use(async (ctx, next) => {
-  if (ctx.path.match(/\/[^\/\.]+$/)) {
+  let path = ctx.path;
+  if (path.match(/\/[^\/\.]+$/)) {
     // Canonicalize paths to have a trailing slash, except for files with
     // extensions.
-    ctx.status = 301;
-    ctx.redirect(
-      ctx.path + '/' + (ctx.querystring ? '?' + ctx.querystring : '')
-    );
-  } else if (ctx.path.endsWith('//')) {
+    path += '/';
+  }
+  if (path.endsWith('//')) {
     // Koa static doesn't care if there are any number of trailing slashes.
     // Normalize this too.
+    path = path.replace(/\/+$/, '/');
+  }
+  path = pageRedirects.get(path) ?? path;
+  if (path !== ctx.path) {
     ctx.status = 301;
-    ctx.redirect(
-      ctx.path.replace(/\/+$/, '/') +
-        (ctx.querystring ? '?' + ctx.querystring : '')
-    );
-  } else if (pageRedirects.has(ctx.path)) {
-    // Handle any 1:1 page redirects
-    ctx.status = 301;
-    ctx.redirect(
-      pageRedirects.get(ctx.path) +
-        (ctx.querystring ? '?' + ctx.querystring : '')
-    );
+    ctx.redirect(path + (ctx.querystring ? '?' + ctx.querystring : ''));
   } else {
     await next();
   }
