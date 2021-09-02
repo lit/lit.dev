@@ -335,9 +335,9 @@ Element expressions can occur inside the opening tag after the tag name:
 
 ### Invalid locations { #invalid-locations }
 
-Expressions should not appear in the following locations and will issue warnings/errors in development mode:
+Expressions should generally not appear in the following locations:
 
-* Where tag or attribute names would appear. Lit does not support dynamically changing values in this position.
+* Where tag or attribute names would appear. Lit does not support dynamically changing values in this position and will error in development mode.
 
   ```html
   <!-- ERROR -->
@@ -347,7 +347,7 @@ Expressions should not appear in the following locations and will issue warnings
   <div ${attrName}=true></div>
   ```
 
-* Inside `<template>` element content (attribute expressions on the template element itself are allowed). Lit does not recurse into template content to dynamically update expressions.
+* Inside `<template>` element content (attribute expressions on the template element itself are allowed). Lit does not recurse into template content to dynamically update expressions and will error in development mode.
 
   ```html
   <!-- ERROR -->
@@ -357,9 +357,9 @@ Expressions should not appear in the following locations and will issue warnings
   <template id="${attrValue}">static content ok</template>
   ```
 
-* Inside `<textarea>` element content (attribute expressions on the textarea element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update. Instead, bind to the `.value` property of textarea instead.
+* Inside `<textarea>` element content (attribute expressions on the textarea element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update, and Lit will warn in development mode. Instead, bind to the `.value` property of textarea instead.
   ```html
-  <!-- ERROR -->
+  <!-- BEWARE -->
   <textarea>${content}</template>
 
   <!-- OK -->
@@ -367,6 +367,11 @@ Expressions should not appear in the following locations and will issue warnings
 
   <!-- OK -->
   <textarea id="${attrValue}">static content ok</textarea>
+  ```
+
+* Inside HTML comments. Lit will not update expressions in comments, and the expressions will instead be rendered with a Lit token string. However, this will not break subsequent expressions, so commenting out blocks of HTML during development that may contain expressions is safe.
+  ```html
+  <!-- will not update: ${value} -->
   ```
 
 * Inside `<style>` elements when using the ShadyCSS polyfill. See [Expressions and style elements](/docs/components/styles/#style-element) for more details.
