@@ -333,15 +333,45 @@ Element expressions can occur inside the opening tag after the tag name:
 <div ${ref(elementReference)}></div>
 ```
 
-Expressions **_cannot_** appear where tag or attribute names would appear; however [static expressions](#static-expressions) can.
+### Invalid locations { #invalid-locations }
 
-```html
-<!-- ERROR -->
-<${tagName}></${tagName}>
+Expressions should not appear in the following locations and will issue warnings/errors in development mode:
 
-<!-- ERROR -->
-<div ${attrName}=true></div>
-```
+* Where tag or attribute names would appear. Lit does not support dynamically changing values in this position.
+
+  ```html
+  <!-- ERROR -->
+  <${tagName}></${tagName}>
+
+  <!-- ERROR -->
+  <div ${attrName}=true></div>
+  ```
+
+* Inside `<template>` element content (attribute expressions on the template element itself are allowed). Lit does not recurse into template content to dynamically update expressions.
+
+  ```html
+  <!-- ERROR -->
+  <template>${content}</template>
+
+  <!-- OK -->
+  <template id="${attrValue}">static content ok</template>
+  ```
+
+* Inside `<textarea>` element content (attribute expressions on the textarea element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update. Instead, bind to the `.value` property of textarea instead.
+  ```html
+  <!-- ERROR -->
+  <textarea>${content}</template>
+
+  <!-- OK -->
+  <textarea .value=${content}></textarea>
+
+  <!-- OK -->
+  <textarea id="${attrValue}">static content ok</textarea>
+  ```
+
+* Inside `<style>` elements when using the ShadyCSS polyfill. See [Expressions and style elements](/docs/components/styles/#style-element) for more details.
+
+Note that expressions in all the invalid cases above are valid when using [static expressions](#static-expressions), although these should not be used for performance-sensitive updates due to the inefficiencies involved (see below).
 
 ## Static expressions { #static-expressions }
 
