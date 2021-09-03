@@ -833,6 +833,18 @@ class Transformer {
    * Augment a source with a GitHub URL.
    */
   private setGithubUrl(source: SourceReference) {
+    if (!source.fileName.endsWith('.ts')) {
+      throw new Error(
+        `Unexpected source.fileName extension: ${source.fileName}`
+      );
+    }
+    if (source.fileName.endsWith('.d.ts')) {
+      // TODO(aomarks) For an unknown reason, TypeDoc sometimes resolves to d.ts
+      // files instead of original .ts source files, e.g. when a class inherits
+      // a constructor from a superclass. We can't link to these, since d.ts
+      // files aren't checked into GitHub.
+      return;
+    }
     (
       source as ExtendedSourceReference
     ).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
