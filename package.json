@@ -9,7 +9,8 @@
     "start": "cd packages/lit-dev-server && npm start",
     "dev": "cd packages/lit-dev-content && (npm run build:ts:watch -- --preserveWatchOutput & npm run dev:build:site:watch & npm run dev:serve)",
     "format": "prettier \"**/*.{ts,js,json,html,css,md}\" --write",
-    "nuke": "rm -rf node_modules package-lock.json packages/*/node_modules packages/*/package-lock.json && npm install && npx lerna bootstrap",
+    "nuke": "rm -rf node_modules && npm ci && lerna exec 'rm -rf node_modules' && lerna bootstrap --ci",
+    "upgrade": "rm -rf node_modules package-lock.json && npm install && lerna exec 'rm -rf node_modules package-lock.json' && lerna bootstrap",
     "test": "npm run test:integration && npm run test:links",
     "test:links": "npm run test:links:redirects && npm run test:links:internal && npm run test:links:external",
     "test:links:redirects": "node packages/lit-dev-tools-esm/lib/check-redirects.js",
@@ -26,10 +27,10 @@
   "devDependencies": {
     "@playwright/test": "^1.14.1",
     "broken-link-checker": "^0.7.8",
-    "lerna": "^3.22.1",
+    "lerna": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "typescript": "^4.0.2",
-    "wait-on": "^5.3.0"
+    "wait-on": "^6.0.0"
   }
 }

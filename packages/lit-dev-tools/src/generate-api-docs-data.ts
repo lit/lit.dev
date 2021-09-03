@@ -489,7 +489,9 @@ class Transformer {
     return !(
       node.flags?.isPrivate ||
       node.flags?.isExternal ||
-      node.name.startsWith('_')
+      node.name.startsWith('_') ||
+      // Reference types don't seem useful; just aliases for other nodes.
+      node.kindString === 'Reference'
     );
   }
 
@@ -798,7 +800,7 @@ class Transformer {
       try {
         mapStr = await fs.readFile(mapFilename, 'utf8');
       } catch (e) {
-        if (e.code == 'ENOENT') {
+        if ((e as {code: string}).code == 'ENOENT') {
           return;
         }
         throw e;
@@ -833,7 +835,21 @@ class Transformer {
    * Augment a source with a GitHub URL.
    */
   private setGithubUrl(source: SourceReference) {
-    (source as ExtendedSourceReference).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
+    if (!source.fileName.endsWith('.ts')) {
+      throw new Error(
+        `Unexpected source.fileName extension: ${source.fileName}`
+      );
+    }
+    if (source.fileName.endsWith('.d.ts')) {
+      // TODO(aomarks) For an unknown reason, TypeDoc sometimes resolves to d.ts
+      // files instead of original .ts source files, e.g. when a class inherits
+      // a constructor from a superclass. We can't link to these, since d.ts
+      // files aren't checked into GitHub.
+      return;
+    }
+    (
+      source as ExtendedSourceReference
+    ).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
   }
 
   /**
