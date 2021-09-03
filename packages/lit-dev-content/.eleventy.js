@@ -16,12 +16,9 @@ const fastGlob = require('fast-glob');
 const {
   inlinePlaygroundFilesIntoManifests,
 } = require('../lit-dev-tools/lib/playground-inline.js');
-const {createSearchIndex} = require('../lit-dev-tools/lib/search/plugin.js')
+const {createSearchIndex} = require('../lit-dev-tools/lib/search/plugin.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 const luxon = require('luxon');
-const {
-  accessiblePermalink,
-} = require('../lit-dev-tools/lib/accessible-permalinks.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -80,6 +77,44 @@ ${content}
 </div>`;
   });
 
+  const linkAfterHeaderBase = markdownItAnchor.permalink.linkAfterHeader({
+    style: 'visually-hidden',
+    class: 'anchor',
+    visuallyHiddenClass: 'offscreen',
+    assistiveText: (title) => `Permalink to “${title}”`,
+  });
+
+  /**
+   * The built-in linkAfterHeader permalink renderer is almost exactly what we
+   * need for accessible permalinks, except it doesn't put a wrapper element
+   * around the header + anchor link, so they won't appear on the same line.
+   *
+   * This function fixes up the base renderer to do so, based on the comment at
+   * https://github.com/valeriangalliat/markdown-it-anchor/issues/100#issuecomment-906745405.
+   */
+  const linkAfterHeaderWithWrapper = (slug, opts, state, idx) => {
+    const headingTag = state.tokens[idx].tag;
+    if (!headingTag.match(/^h[123456]$/)) {
+      throw new Error(`Expected token to be a h1-6: ${headingTag}`);
+    }
+    state.tokens.splice(
+      idx,
+      0,
+      Object.assign(new state.Token('div_open', 'div', 1), {
+        attrs: [['class', `heading ${headingTag}`]],
+        block: true,
+      })
+    );
+    state.tokens.splice(
+      idx + 4,
+      0,
+      Object.assign(new state.Token('div_close', 'div', -1), {
+        block: true,
+      })
+    );
+    linkAfterHeaderBase(slug, opts, state, idx + 1);
+  };
+
   const md = markdownIt({
     html: true,
     breaks: false, // 2 newlines for paragraph break instead of 1
@@ -88,14 +123,10 @@ ${content}
     .use(markdownItAttrs)
     .use(markdownItAnchor, {
       slugify,
-      permalink: true,
+      permalink: linkAfterHeaderWithWrapper,
       permalinkClass: 'anchor',
       permalinkSymbol: '#',
       level: [2, 3],
-      renderPermalink: accessiblePermalink({
-        wrapperClassName: 'heading',
-        offscreenClass: 'offscreen',
-      }),
     });
   eleventyConfig.setLibrary('md', md);
 
