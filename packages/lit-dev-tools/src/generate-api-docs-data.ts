@@ -489,7 +489,9 @@ class Transformer {
     return !(
       node.flags?.isPrivate ||
       node.flags?.isExternal ||
-      node.name.startsWith('_')
+      node.name.startsWith('_') ||
+      // Reference types don't seem useful; just aliases for other nodes.
+      node.kindString === 'Reference'
     );
   }
 
