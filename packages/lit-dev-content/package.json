@@ -42,7 +42,6 @@
     "rollup": "^2.23.0",
     "rollup-plugin-summary": "^1.2.3",
     "rollup-plugin-terser": "^7.0.2",
-    "serve": "^11.3.0",
     "slugify": "^1.3.6"
   },
   "dependencies": {
