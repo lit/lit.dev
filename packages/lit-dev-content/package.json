@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
-    "@11ty/eleventy-navigation": "^0.1.6",
-    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "@rollup/plugin-node-resolve": "^13.0.4",
     "@web/dev-server": "^0.1.6",
     "clean-css": "^5.1.0",
     "codemirror": "^5.58.2",
@@ -35,7 +35,7 @@
     "html-minifier": "^4.0.0",
     "lit-dev-api": "^0.0.0",
     "lit-dev-tools": "^0.0.0",
-    "luxon": "^1.26.0",
+    "luxon": "^2.0.2",
     "markdown-it": "^12.0.4",
     "markdown-it-anchor": "^8.3.0",
     "markdown-it-attrs": "^4.0.0",
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@lion/combobox": "^0.8.3",
-    "@lit-labs/task": "1.0.0-pre.2",
+    "@lit-labs/task": "^1.0.0-pre.4",
     "@lit/localize": "^0.10.0",
     "@material/mwc-button": "^0.22.1",
     "@material/mwc-drawer": "^0.22.1",
