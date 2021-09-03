@@ -798,7 +798,7 @@ class Transformer {
       try {
         mapStr = await fs.readFile(mapFilename, 'utf8');
       } catch (e) {
-        if (e.code == 'ENOENT') {
+        if ((e as {code: string}).code == 'ENOENT') {
           return;
         }
         throw e;
@@ -833,7 +833,9 @@ class Transformer {
    * Augment a source with a GitHub URL.
    */
   private setGithubUrl(source: SourceReference) {
-    (source as ExtendedSourceReference).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
+    (
+      source as ExtendedSourceReference
+    ).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
   }
 
   /**

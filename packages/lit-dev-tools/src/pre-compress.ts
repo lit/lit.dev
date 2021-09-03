@@ -128,7 +128,7 @@ const unlinkIfExists = async (path: string): Promise<boolean> => {
     await fs.unlink(path);
     return true;
   } catch (e) {
-    if (e.code === 'ENOENT') {
+    if ((e as {code: string}).code === 'ENOENT') {
       return false;
     }
     throw e;
