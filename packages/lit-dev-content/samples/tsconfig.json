@@ -9,7 +9,9 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": []
+    "types": [],
+    "rootDir": ".",
+    "outDir": "js"
   },
   "include": ["./**/*.ts"],
   "exclude": []
