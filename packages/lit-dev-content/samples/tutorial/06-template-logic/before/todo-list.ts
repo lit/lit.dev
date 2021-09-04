@@ -21,6 +21,7 @@ class ToDoList extends LitElement {
   }
 
   // TODO: Add click handler.
-
+  addToDo() {
+  }
 }
 

@@ -9,17 +9,8 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [],
+    "types": []
   },
-  "include": [
-    "./**/*.ts",
-  ],
-  "exclude": [
-    "node_modules/**/*",
-    // TODO(kschaaf): Remove once lit released with these directives
-    "examples/directive-async-append/**/*",
-    "examples/directive-async-replace/**/*",
-    // (arthure) This tutorial step is intentionally incomplete
-    "tutorial/06-template-logic/before/**/*",
-  ]
+  "include": ["./**/*.ts"],
+  "exclude": []
 }
