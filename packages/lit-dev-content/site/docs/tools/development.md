@@ -37,6 +37,44 @@ export default {
 };
 ```
 
+### Development build runtime warnings
+
+The development builds of `ReactiveElement` and `LitElement` support extra runtime warnings that can help identify issues that would be costly to check for in production builds.
+
+Some warnings are always displayed.  There are also two categories of _optional warnings_ that can be turned on or off:
+* `'migration'`. Warnings related to migration from LitElement 2.x. Off by default.
+* `'change-in-update'`. Warnings related to changing reactive state during an update. On by default.
+
+You can control the optional warnings using the `ReactiveElement.disableWarning()` and `ReactiveElement.enableWarning()` methods. You can call them on any subclass of `ReactiveElement`, including `LitElement` and your own classes. Calling the methods on a given class turns warnings on or off for and the warnings for that class and any subclasses. For instance, you can turn off a category of warnings on all `ReactiveElement` classes, on all `LitElement` classes, or on a specific `LitElement` subclass.
+
+These methods are only available in development builds, so be sure to guard their access. We recommend using optional chaining.
+
+Examples:
+```ts
+import {LitElement, ReactiveElement} from 'lit';
+
+// Turn off migration warnings on all ReactiveElements,
+// including LitElements
+ReactiveElement.disableWarning?.('migration');
+
+// Turn off update warnings on all LitElements
+LitElement.disableWarning?.('change-in-update');
+
+// Turn off update warnings on one element
+MyElement.disableWarning?.('change-in-update');
+
+```
+
+You can also control warnings within a single class by defining a `static enabledWarnings` property:
+
+```ts
+class MyElement extends LitElement {
+  static enabledWarnings = ['migration'];
+}
+```
+
+It's best for code size if the code to control warnings is eliminated in your own production builds.
+
 ## Local dev servers { #devserver }
 
 Lit is packaged as JavaScript modules, and it uses bare module specifiers that are not yet natively supported in most browsers. Bare specifiers are commonly used, and you may want to use them in your own code as well. For example:
