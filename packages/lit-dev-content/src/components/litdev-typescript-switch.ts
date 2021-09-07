@@ -36,6 +36,8 @@ export class LitDevTypeScriptSwitch extends LitElement {
       padding: 2px 14px;
       border: 1.5px solid #8e9498;
       transition: background-color 100ms;
+      width: 40px;
+      justify-content: center;
     }
 
     /* Note [disabled] implies selected, because the active choice is always

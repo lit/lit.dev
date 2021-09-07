@@ -51,9 +51,10 @@ export class LitDevExample extends LitElement {
       padding-top: 0;
     }
 
+    #bar,
+    playground-tab-bar,
     playground-file-editor,
-    playground-preview,
-    playground-tab-bar {
+    playground-preview {
       border-radius: 5px;
       box-sizing: border-box;
     }
