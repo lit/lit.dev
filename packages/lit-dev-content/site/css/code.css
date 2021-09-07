@@ -33,12 +33,10 @@ html {
   overflow-y: auto;
 }
 
-playground-preview,
-playground-ide::part(preview) {
+playground-preview {
   background: var(--color-light-gray);
 }
 
-playground-ide::part(preview-toolbar),
 playground-preview::part(preview-toolbar) {
   background: var(--color-light-gray);
   border-bottom: 1px solid #ccc;
@@ -47,7 +45,6 @@ playground-preview::part(preview-toolbar) {
   box-sizing: border-box;
 }
 
-playground-ide::part(tab-bar),
 playground-tab-bar {
   background: white;
   font-size: 16px;
@@ -56,7 +53,6 @@ playground-tab-bar {
   box-sizing: border-box;
 }
 
-playground-file-editor,
-playground-ide::part(editor) {
+playground-file-editor {
   background: white;
 }
