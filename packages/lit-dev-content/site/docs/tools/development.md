@@ -42,8 +42,8 @@ export default {
 The development builds of `ReactiveElement` and `LitElement` support extra runtime warnings that can help identify issues that would be costly to check for in production builds.
 
 Some warnings are always displayed.  There are also two categories of _optional warnings_ that can be turned on or off:
-* `'migration'`: warnings related to migration from LitElement 2.x
-* `'change-in-update'`: warnings related to changing reactive state during an update
+* `'migration'`. Warnings related to migration from LitElement 2.x. Off by default.
+* `'change-in-update'`. Warnings related to changing reactive state during an update. On by default.
 
 You can control the optional warnings using the `ReactiveElement.disableWarning()` and `ReactiveElement.enableWarning()` methods. You can call them on any subclass of `ReactiveElement`, including `LitElement` and your own classes. Calling the methods on a given class turns warnings on or off for and the warnings for that class and any subclasses. For instance, you can turn off a category of warnings on all `ReactiveElement` classes, on all `LitElement` classes, or on a specific `LitElement` subclass.
 
