@@ -22,7 +22,8 @@ import {
 export class LitDevTypeScriptSwitch extends LitElement {
   static override styles = css`
     :host {
-      display: inline-flex;
+      /* TODO(aomarks) Fix as inline-flex after jsSamples mod is retired. */
+      display: var(--litdev-typescript-switch-display, none);
       font-family: 'Open Sans', sans-serif;
     }
 
