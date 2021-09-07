@@ -8,7 +8,12 @@ import {LitElement, html, css, property} from 'lit-element';
 import {styleMap} from 'lit-html/directives/style-map';
 import {nothing} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined.js';
+import {
+  getTypeScriptPreference,
+  TYPESCRIPT_PREFERENCE_EVENT_NAME,
+} from '../typescript-preference.js';
 import 'playground-elements/playground-ide.js';
+import './litdev-example-controls.js';
 
 /**
  * Embedded playground code example in vertical layout.
@@ -17,9 +22,33 @@ export class LitDevExample extends LitElement {
   static styles = css`
     :host {
       display: block;
-      /* For absolute positioning of openInPlayground button. */
-      position: relative;
-      border-radius: none;
+      /* Move the border-bottom from the host to the iframe. Iframes will have a
+      white background (by default), which will clip any host border slightly.
+      */
+      border-bottom: none !important;
+    }
+
+    #bar {
+      display: flex;
+      height: var(--litdev-example-bar-height);
+    }
+
+    /* With tabs */
+    :host(:not([filename])) > #bar {
+      border-bottom: var(--code-border);
+    }
+
+    /* Without tabs */
+    :host([filename]) > #bar {
+      background: var(--playground-code-background);
+    }
+    :host([filename]) > #bar > litdev-example-controls {
+      padding-top: 6px;
+    }
+    :host([filename]) > playground-file-editor {
+      /* Top padding is unnecessary because the same-background toolbar already
+      provides a bunch of visual space at the top.*/
+      padding-top: 0;
     }
 
     playground-file-editor,
@@ -32,9 +61,17 @@ export class LitDevExample extends LitElement {
     playground-tab-bar {
       background: #fff;
       font-family: 'Open Sans', sans-serif;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      border-bottom: var(--code-border);
+      height: var(--litdev-example-tab-bar-height);
+      /* Allow the tab bar to shrink below its content size so that when an
+      example is very narrow the tab bar shrinks and scrolls instead of pushing
+      the controls outside the parent. */
+      min-width: 0;
+    }
+
+    litdev-example-controls {
+      height: var(--litdev-example-controls-height);
+      padding-right: 6px;
+      box-sizing: border-box;
     }
 
     playground-file-editor {
@@ -53,6 +90,7 @@ export class LitDevExample extends LitElement {
       margin: 0 0.5px;
       height: var(--litdev-example-preview-height, 100px);
       border-top: var(--code-border);
+      border-bottom: var(--code-border);
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
@@ -61,19 +99,6 @@ export class LitDevExample extends LitElement {
       /* TODO(aomarks) The toolbar should be a separate element altogether. Then
          we can just omit rendering it. */
       display: none;
-    }
-
-    .openInPlayground {
-      position: absolute;
-      bottom: calc(var(--litdev-example-preview-height) - 24px - 16px);
-      right: 16px;
-      color: inherit;
-      z-index: 2;
-      opacity: 70%;
-    }
-
-    .openInPlayground:hover {
-      opacity: 100%;
     }
   `;
 
@@ -87,7 +112,7 @@ export class LitDevExample extends LitElement {
    * Name of file in project to display.
    * If no file is provided, we show the tab-bar with all project files.
    */
-  @property()
+  @property({reflect: true})
   filename?: string;
 
   /**
@@ -95,6 +120,26 @@ export class LitDevExample extends LitElement {
    */
   @property({attribute: 'sandbox-base-url'})
   sandboxBaseUrl?: string;
+
+  override connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener(
+      TYPESCRIPT_PREFERENCE_EVENT_NAME,
+      this._onTypeScriptPreferenceChanged
+    );
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener(
+      TYPESCRIPT_PREFERENCE_EVENT_NAME,
+      this._onTypeScriptPreferenceChanged
+    );
+  }
+
+  private _onTypeScriptPreferenceChanged = () => {
+    this.requestUpdate();
+  };
 
   render() {
     if (!this.project) {
@@ -106,44 +151,44 @@ export class LitDevExample extends LitElement {
       borderRadius: showTabBar ? 'unset' : 'inherit',
     };
 
+    const mode = getTypeScriptPreference();
+    const projectSrc =
+      mode === 'ts'
+        ? `/samples/${this.project}/project.json`
+        : `/samples/js/${this.project}/project.json`;
+    const filename =
+      mode === 'ts' ? this.filename : this.filename?.replace(/.ts$/, '.js');
+
     return html`
       <playground-project
         sandbox-base-url=${ifDefined(this.sandboxBaseUrl)}
         id="project"
-        project-src="/samples/${this.project}/project.json"
+        project-src=${projectSrc}
       >
       </playground-project>
 
-      ${showTabBar
-        ? html`<playground-tab-bar
-            project="project"
-            editor="project-file-editor"
-          ></playground-tab-bar>`
-        : nothing}
+      <div id="bar">
+        ${showTabBar
+          ? html`<playground-tab-bar
+              project="project"
+              editor="project-file-editor"
+            ></playground-tab-bar>`
+          : nothing}
+
+        <litdev-example-controls
+          .project=${this.project}
+        ></litdev-example-controls>
+      </div>
 
       <playground-file-editor
         id="project-file-editor"
         project="project"
-        filename="${ifDefined(this.filename)}"
+        filename="${ifDefined(filename)}"
         style=${styleMap(fileEditorOverrideStyles)}
       >
       </playground-file-editor>
 
       <playground-preview project="project"></playground-preview>
-
-      <a
-        class="openInPlayground"
-        title="Open this example in the playground"
-        target="_blank"
-        href="/playground/#sample=${this.project}"
-      >
-        <!-- Source: https://material.io/resources/icons/?icon=launch&style=baseline -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
-          <path
-            d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
-          />
-        </svg>
-      </a>
     `;
   }
 }
