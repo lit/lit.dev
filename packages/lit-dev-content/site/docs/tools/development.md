@@ -66,7 +66,7 @@ MyElement.disableWarning?.('change-in-update');
 
 ```
 
-You can also control warnings within a single class with the `static enabledWarnings`:
+You can also control warnings within a single class by defining a `static enabledWarnings` property:
 
 ```ts
 class MyElement extends LitElement {
