@@ -46,7 +46,7 @@ Some warnings are always displayed.  There are also two categories of _optional 
 * `'migration'`: warnings related to migration from LitElement 2.x
 * `'change-in-update'`: warnings related to changing reactive state during an update
 
-The methods to control warnings are `ReactiveElement.disableWarning()` and `ReactiveElement.enableWarning()`. You can call them on any subclass of ReactiveElement, including LitElement and your own classes, and the warnings will be enabled or disabled for only those classes. For instance, you can disable warnings on all ReactiveElement classes, all LitElement classes, or only specific LitElement subclasses.
+You can control the optional warnings using the `ReactiveElement.disableWarning()` and `ReactiveElement.enableWarning()` methods. You can call them on any subclass of `ReactiveElement`, including `LitElement` and your own classes. Calling the methods on a given class turns warnings on or off for and the warnings for that class and any subclasses. For instance, you can turn off a category of warnings on all `ReactiveElement` classes, on all `LitElement` classes, or on a specific `LitElement` subclass.
 
 These methods are only available in development builds, so be sure to guard their access. We recommend using optional chaining.
 
