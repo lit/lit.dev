@@ -17,6 +17,6 @@ class MyElement extends LitElement {
 
   render() {
     return html`
-      <ul>${asyncAppend(this.tosses, (v: string) => html`<li>${v}</li>`)}</ul>`;
+      <ul>${asyncAppend(this.tosses, (v) => html`<li>${v}</li>`)}</ul>`;
   }
 }

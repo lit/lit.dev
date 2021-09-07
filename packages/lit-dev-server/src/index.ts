@@ -8,7 +8,7 @@ import Koa from 'koa';
 import koaStatic from 'koa-static';
 import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
-import {createRequire} from 'module';
+import {fileURLToPath} from 'url';
 import * as path from 'path';
 import {pageRedirects} from './redirects.js';
 
@@ -23,8 +23,14 @@ if (isNaN(port)) {
   process.exit(1);
 }
 
-const require = createRequire(import.meta.url);
-const contentPackage = path.dirname(require.resolve('lit-dev-content'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const contentPackage = path.resolve(
+  __dirname,
+  '..',
+  'lit-dev-content',
+  '_site'
+);
 const staticRoot =
   mode === 'playground' ? path.join(contentPackage, 'js') : contentPackage;
 

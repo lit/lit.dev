@@ -17,8 +17,7 @@
     "koa": "^2.13.0",
     "koa-conditional-get": "^3.0.0",
     "koa-etag": "^4.0.0",
-    "koa-static": "^5.0.0",
-    "lit-dev-content": "^0.0.0"
+    "koa-static": "^5.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.11.6",

@@ -12,9 +12,14 @@
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
+    "@lit/ts-transformers": "^1.0.0",
     "@types/ansi-escape-sequences": "^4.0.0",
+    "@types/prettier": "^2.3.2",
     "ansi-escape-sequences": "^6.2.0",
+    "chokidar": "^3.5.2",
     "lit-dev-server": "^0.0.0",
-    "node-fetch": "^3.0.0"
+    "node-fetch": "^3.0.0",
+    "playground-elements": "^0.12.1",
+    "prettier": "^2.3.2"
   }
 }
