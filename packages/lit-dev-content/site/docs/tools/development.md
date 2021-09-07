@@ -54,7 +54,7 @@ Examples:
 ```ts
 import {LitElement, ReactiveElement} from 'lit';
 
-// Disable migration warnings on all ReactiveElements,
+// Turn off migration warnings on all ReactiveElements,
 // including LitElements
 ReactiveElement.disableWarning?.('migration');
 
