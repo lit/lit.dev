@@ -116,6 +116,12 @@ article pre > code:not([class]) {
   border: var(--code-border);
 }
 
+litdev-example {
+  /* Prevent layout shift before upgrade, since custom elements default to
+     inline. */
+  display: block;
+}
+
 .CodeMirror,
 litdev-example {
   font-size: 0.85em;
