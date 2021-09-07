@@ -39,7 +39,7 @@ export default {
 
 ### Development build runtime warnings
 
-The development builds of ReactiveElement and LitElement support extra runtime warnings that can help identify issues that would be costly to check for in production builds.
+The development builds of `ReactiveElement` and `LitElement` support extra runtime warnings that can help identify issues that would be costly to check for in production builds.
 
 There is an API to enable and disable some warnings, based on the kind of warning. There are two warning kinds that can be enabled and disable currently:
 * `'migration'`: warnings related to migration from LitElement 2.x
