@@ -211,21 +211,7 @@ export const playgroundPlugin = (
           ' There also must be a blank line between the {% switchable-sample %} and the ```ts block.'
       );
     }
-    // Set one of the "extra-lines" CSS properties depending on whether the TS
-    // or JS version is longer. This will be used to reserve additional space on
-    // one or the other version, so that there is no layout shift when the
-    // language is switched.
-    const tsCodeLines = match[1].split('\n').length;
-    const jsCodeLines = match[2].split('\n').length;
-    let styleAttr;
-    if (tsCodeLines > jsCodeLines) {
-      styleAttr = ` style="--js-extra-lines:${tsCodeLines - jsCodeLines}"`;
-    } else if (tsCodeLines < jsCodeLines) {
-      styleAttr = ` style="--ts-extra-lines:${jsCodeLines - tsCodeLines}"`;
-    } else {
-      styleAttr = ``;
-    }
-    return `<litdev-switchable-sample${styleAttr}>${content}</litdev-switchable-sample>`;
+    return `<litdev-switchable-sample>${content}</litdev-switchable-sample>`;
   });
 
   eleventyConfig.addMarkdownHighlighter(
