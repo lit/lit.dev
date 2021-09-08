@@ -14,7 +14,7 @@ import {
 } from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import Minisearch from 'minisearch';
-
+import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import '@lion/combobox/define';
 import {LionOption} from '@lion/listbox';
 import type {Drawer} from '@material/mwc-drawer';
@@ -280,14 +280,7 @@ class LitDevSearch extends LitElement {
    * refreshing the UI.
    */
   private navigate(url: string) {
-    const pageUrl = new URL(document.location.href);
-    const searchUrl = new URL(url, pageUrl.origin);
-    const mods = pageUrl.searchParams.get('mods');
-    if (mods) {
-      searchUrl.searchParams.set('mods', mods);
-    }
-
-    document.location = searchUrl.href as unknown as Location;
+    document.location = addModsParameterToUrlIfNeeded(url);
     this.input.value = '';
     this.searchText = '';
 

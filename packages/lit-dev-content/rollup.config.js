@@ -38,7 +38,6 @@ export default [
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
       'lib/global/mobile-nav.js',
-      'lib/global/mods.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/home-components.js',
@@ -82,6 +81,34 @@ export default [
         // dedupe: () => true,
       }),
       terser(terserOptions),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
+    ],
+  },
+
+  // Build the mods script separately from the rest because it includes a local
+  // import that we actually DO want to duplicate. This script is inlined and
+  // must run before first render, so an asynchronous import is not acceptable.
+  {
+    input: ['lib/global/apply-mods.js'],
+    output: {
+      dir: 'rollupout',
+      format: 'esm',
+      // Preserve directory structure for entrypoints.
+      entryFileNames: ({facadeModuleId}) =>
+        facadeModuleId.replace(`${__dirname}/lib/`, ''),
+    },
+    plugins: [
+      terser({
+        ...terserOptions,
+        output: {
+          ...terserOptions.output,
+          // Remove license comment for inline script.
+          comments: false,
+        },
+      }),
       summary({
         // Already minified.
         showMinifiedSize: false,

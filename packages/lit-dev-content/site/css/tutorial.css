@@ -158,8 +158,20 @@ litdev-tutorial {
   min-width: 0;
 }
 
+#tabsAndControls {
+  display: flex;
+  padding-right: 8px;
+  /* Move border from the tab-bar to this wrapping div. */
+  border-bottom: 1px solid #ccc;
+  height: var(--playground-bar-height);
+  box-sizing: border-box;
+}
+
 playground-tab-bar {
-  flex: 0 0;
+  flex: 1 0;
+  min-width: 0;
+  border-bottom: none;
+  height: auto;
 }
 
 playground-file-editor {
