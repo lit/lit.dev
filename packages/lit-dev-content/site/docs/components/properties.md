@@ -8,12 +8,24 @@ eleventyNavigation:
 
 Lit components receive input and store their state as JavaScript class fields or properties. *Reactive properties* are properties that can trigger the reactive update cycle when changed, re-rendering the component, and optionally be read or written to attributes.
 
+{% switchable-sample %}
+
 ```ts
 class MyElement extends LitElement {
   @property()
   name: string;
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    name: {},
+  };
+}
+```
+
+{% endswitchable-sample %}
 
 Lit manages your reactive properties and their corresponding attributes. In particular:
 
@@ -30,10 +42,25 @@ The component shouldn't change its own public properties, except in response to 
 
 Lit also supports _internal reactive state_. Internal reactive state refers to reactive properties that _aren't_ part of the component's API. These properties don't have a corresponding attribute, and are typically marked protected or private in TypeScript.
 
+{% switchable-sample %}
+
 ```ts
 @state()
 private _counter = 0;
 ```
+
+```js
+static properties = {
+  _counter: {};
+};
+
+constructor()
+  super();
+  this._counter = 0;
+}
+```
+
+{% endswitchable-sample %}
 
 The component manipulates its own internal reactive state.
 In some cases, internal reactive state may be initialized from public properties—for example, if there is a expensive transformation between the user-visible property and the internal state.
