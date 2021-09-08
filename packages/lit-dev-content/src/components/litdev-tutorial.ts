@@ -9,7 +9,12 @@ import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
 import {manifest, TutorialStep} from './litdev-tutorial-manifest.js';
 import {addModsParameterToUrlIfNeeded} from '../mods.js';
+import {
+  getTypeScriptPreference,
+  TYPESCRIPT_PREFERENCE_EVENT_NAME,
+} from '../typescript-preference.js';
 import '@material/mwc-icon-button';
+import './litdev-example-controls.js';
 
 interface ExpandedTutorialStep extends TutorialStep {
   idx: number;
@@ -164,12 +169,24 @@ export class LitDevTutorial extends LitElement {
     super.connectedCallback();
     this._readUrl();
     window.addEventListener('hashchange', this._readUrl);
+    window.addEventListener(
+      TYPESCRIPT_PREFERENCE_EVENT_NAME,
+      this._onTypeScriptPreferenceChanged
+    );
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener('hashchange', this._readUrl);
+    window.removeEventListener(
+      TYPESCRIPT_PREFERENCE_EVENT_NAME,
+      this._onTypeScriptPreferenceChanged
+    );
   }
+
+  private _onTypeScriptPreferenceChanged = () => {
+    this._loadStep();
+  };
 
   update(changedProperties: PropertyValues) {
     super.update(changedProperties);
@@ -286,13 +303,15 @@ export class LitDevTutorial extends LitElement {
     if (info === undefined) {
       return undefined;
     }
+    const samplesRoot =
+      getTypeScriptPreference() === 'ts' ? '/samples' : '/samples/js';
     return {
       ...info,
       idx,
       url: idx === 0 ? `/tutorial/` : `/tutorial/#${info.slug}`,
       htmlSrc: `/tutorial/content/${info.slug}/`,
-      projectSrcBefore: `/samples/tutorial/${info.slug}/before/project.json`,
-      projectSrcAfter: `/samples/tutorial/${info.slug}/after/project.json`,
+      projectSrcBefore: `${samplesRoot}/tutorial/${info.slug}/before/project.json`,
+      projectSrcAfter: `${samplesRoot}/tutorial/${info.slug}/after/project.json`,
     };
   }
 }
