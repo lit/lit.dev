@@ -56,3 +56,32 @@ playground-tab-bar {
 playground-file-editor {
   background: white;
 }
+
+body[typescript-preference="ts"] litdev-switchable-sample > pre > code.language-js {
+  /* Hide JS samples when preference is TS. */
+  display: none;
+}
+
+body[typescript-preference="js"] litdev-switchable-sample > pre > code.language-ts {
+  /* Hide TS samples when preference is JS. */
+  display: none;
+}
+
+/* TODO(aomarks) Remove .jsSamples mod selectors when JS samples launch. */
+
+body.jsSamples litdev-switchable-sample > pre > code > figure {
+  /* Reserve space for the JS|TS switch before custom element upgrade. */
+  padding-top: calc(0.5em + 31px) !important;
+}
+
+body.jsSamples litdev-switchable-sample > pre > code.language-ts > figure {
+  /* Match vertical space taken by JS and TS samples to prevent layout shift
+     when switching. */
+  padding-bottom: calc(6.8px + calc(var(--ts-extra-lines, 0) * 21.3333px));
+}
+
+body.jsSamples litdev-switchable-sample > pre > code.language-js > figure {
+  /* Match vertical space taken by JS and TS samples to prevent layout shift
+  when switching. */
+  padding-bottom: calc(6.8px + calc(var(--js-extra-lines, 0) * 21.3333px));
+}

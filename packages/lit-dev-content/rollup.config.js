@@ -33,6 +33,7 @@ export default [
       'lib/components/copy-button.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
+      'lib/components/litdev-switchable-sample.js',
       'lib/components/litdev-tutorial.js',
       'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',

@@ -181,4 +181,54 @@ export const playgroundPlugin = (
     `.trim();
     }
   );
+
+  /**
+   * A static highlighted code snippet which can be toggled between JavaScript
+   * and TypeScript.
+   *
+   * Usage:
+   *
+   *   {% switchable-sample %}
+   *
+   *   ```ts
+   *   const foo: string = 123;
+   *   ```
+   *
+   *   ```js
+   *   const foo = 123;
+   *   ```
+   *
+   *   {% endswitchable-sample %}
+   */
+  eleventyConfig.addPairedShortcode('switchable-sample', (content: string) => {
+    const match = content.match(
+      /^\s*\n\n```ts\n(.+)\n```\s+```js\n(.+)\n```\s*$/s
+    );
+    if (match === null) {
+      throw new Error(
+        'Invalid {% switchable-sample %}.' +
+          ' Expected one ```ts block followed by one ```js block.' +
+          ' There also must be a blank line between the {% switchable-sample %} and the ```ts block.'
+      );
+    }
+    // Set one of the "extra-lines" CSS properties depending on whether the TS
+    // or JS version is longer. This will be used to reserve additional space on
+    // one or the other version, so that there is no layout shift when the
+    // language is switched.
+    const tsCodeLines = match[1].split('\n').length;
+    const jsCodeLines = match[2].split('\n').length;
+    let styleAttr;
+    if (tsCodeLines > jsCodeLines) {
+      styleAttr = ` style="--js-extra-lines:${tsCodeLines - jsCodeLines}"`;
+    } else if (tsCodeLines < jsCodeLines) {
+      styleAttr = ` style="--ts-extra-lines:${jsCodeLines - tsCodeLines}"`;
+    } else {
+      styleAttr = ``;
+    }
+    return `<litdev-switchable-sample${styleAttr}>${content}</litdev-switchable-sample>`;
+  });
+
+  eleventyConfig.addMarkdownHighlighter(
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+  );
 };
