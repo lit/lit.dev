@@ -116,24 +116,31 @@ article pre > code:not([class]) {
   border: var(--code-border);
 }
 
-/* Playground examples */
-litdev-example {
+/* With tabs */
+litdev-example:not([filename]) {
+  --litdev-example-bar-height: 45px;
 }
 
-/* Full IDEs */
-playground-ide {
+/* Without tabs */
+litdev-example[filename] {
+  --litdev-example-bar-height: 31px;
+}
+
+litdev-example {
+  /* Prevent layout shift before upgrade, since custom elements default to
+  inline. */
+  display: block;
+  height: calc(
+    var(--litdev-example-bar-height) +
+    var(--litdev-example-editor-height) +
+    var(--litdev-example-preview-height));
 }
 
 .CodeMirror,
-litdev-example,
-playground-ide {
+litdev-example {
   font-size: 0.85em;
   border-radius: 5px;
   border: var(--code-border);
-}
-
-playground-ide {
-  background: var(--playground-code-background);
 }
 
 figure {

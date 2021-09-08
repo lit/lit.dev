@@ -129,12 +129,10 @@ export const playgroundPlugin = (
     // correct, to prevent layout shift.
     const editorHeight = config.editorHeight ?? '300px';
     const previewHeight = config.previewHeight ?? '120px';
-    const fileTabBarHeight = '45px';
     return `
     <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
-      style="height:calc(${editorHeight} + ${previewHeight} + ${fileTabBarHeight});
-              --litdev-example-editor-height:${editorHeight};
-              --litdev-example-preview-height:${previewHeight}"
+      style="--litdev-example-editor-height:${editorHeight};
+             --litdev-example-preview-height:${previewHeight}"
       project=${project}
     >
     </litdev-example>
@@ -174,8 +172,7 @@ export const playgroundPlugin = (
       const previewHeight = config.previewHeight ?? '120px';
       return `
       <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
-        style="height:calc(${editorHeight} + ${previewHeight});
-               --litdev-example-editor-height:${editorHeight};
+        style="--litdev-example-editor-height:${editorHeight};
                --litdev-example-preview-height:${previewHeight}"
         project=${project}
         filename=${filename}
