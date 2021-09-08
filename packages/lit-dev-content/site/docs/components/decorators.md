@@ -79,6 +79,17 @@ To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook
 
 Enabling `emitDecoratorMetadata` is not required and not recommended.
 
+For TypeScript 3.7 and above a new flag `useDefineForClassFields` is incompatible with property decorators, and for 4.3 when the `target` is `es2020` or higher it defaults to true. 
+
+There are two ways to work around this incompatability: either add a compiler option to force it off:
+
+```json
+"experimentalDecorators": true,
+"useDefineForClassFields": false,
+```
+
+Alternatively `useDefineForClassFields` _can_ be used if every decorator annotated property uses `declare`.
+
 ### Using decorators with Babel  { #decorators-babel }
 
 If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins:
