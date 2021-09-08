@@ -38,9 +38,14 @@ export class LitDevExampleControls extends LitElement {
   @property()
   project?: string;
 
+  @property({type: Boolean})
+  hideTypeScriptSwitch = false;
+
   override render() {
     return html`
-      <litdev-typescript-switch></litdev-typescript-switch>
+      ${this.hideTypeScriptSwitch
+        ? nothing
+        : html`<litdev-typescript-switch></litdev-typescript-switch>`}
       ${this.project
         ? html`<a
             id="openInPlayground"
@@ -62,6 +67,6 @@ export class LitDevExampleControls extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'litdev-typescript-controls': LitDevExampleControls;
+    'litdev-example-controls': LitDevExampleControls;
   }
 }

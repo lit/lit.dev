@@ -7,6 +7,11 @@
 import '@material/mwc-button';
 import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
+import '../components/litdev-example-controls.js';
+import {
+  getTypeScriptPreference,
+  TYPESCRIPT_PREFERENCE_EVENT_NAME,
+} from '../typescript-preference.js';
 
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
@@ -135,6 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
+      hideTypeScriptSwitch();
       project.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
@@ -142,12 +148,15 @@ window.addEventListener('DOMContentLoaded', () => {
         ),
       };
     } else {
+      showTypeScriptSwitch();
       let sample = 'examples/hello-world-typescript';
       const urlSample = params.get('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
         sample = urlSample;
       }
-      project.projectSrc = `/samples/${sample}/project.json`;
+      const samplesRoot =
+        getTypeScriptPreference() === 'ts' ? '/samples' : '/samples/js';
+      project.projectSrc = `${samplesRoot}/${sample}/project.json`;
 
       const link = $(`.exampleItem[data-sample="${sample}"]`);
       if (link) {
@@ -163,6 +172,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   syncStateFromUrlHash();
   window.addEventListener('hashchange', syncStateFromUrlHash);
+  window.addEventListener(
+    TYPESCRIPT_PREFERENCE_EVENT_NAME,
+    syncStateFromUrlHash
+  );
 
   // Trigger URL sharing when Control-s or Command-s is pressed.
   let controlDown = false;
@@ -189,6 +202,28 @@ window.addEventListener('DOMContentLoaded', () => {
     commandDown = false;
   });
 });
+
+const exampleControls = document.body.querySelector('litdev-example-controls');
+
+/**
+ * Set the opacity of the TypeScript/JavaScript language switch.
+ *
+ * When a Playground is comes from a base64-encoded project in the URL (i.e.
+ * through the "Share" button), it's not possible to automatically translate
+ * between JS and TS forms. Only pre-built TS samples have a generated JS
+ * version available.
+ */
+const hideTypeScriptSwitch = () => {
+  if (exampleControls) {
+    exampleControls.hideTypeScriptSwitch = true;
+  }
+};
+
+const showTypeScriptSwitch = () => {
+  if (exampleControls) {
+    exampleControls.hideTypeScriptSwitch = false;
+  }
+};
 
 /**
  * Note we don't use scrollIntoView() because it also steals focus.

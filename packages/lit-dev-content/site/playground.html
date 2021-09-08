@@ -76,11 +76,16 @@ title: Playground
 
   <did id="tabsEditorAndPreview">
     <div id="tabsAndEditor">
-      <playground-tab-bar
-        editable-file-system
-        project="project"
-        editor="editor">
-      </playground-tab-bar>
+
+      <div id="tabsAndControls">
+        <playground-tab-bar
+          editable-file-system
+          project="project"
+          editor="editor">
+        </playground-tab-bar>
+
+        <litdev-example-controls></litdev-example-controls>
+      </div>
 
       <playground-file-editor
         id="editor"
