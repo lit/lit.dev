@@ -169,6 +169,22 @@ litdev-drawer:not([closed])::part(header) {
   display: flex;
   flex-direction: column;
 }
+/* TODO(aomarks) There is some duplication between this layout and the
+   tutorial. It's very similar, but slightly different in a few places. */
+#tabsAndControls {
+  display: flex;
+  padding-right: 8px;
+  /* Move border from the tab-bar to this wrapping div. */
+  border-bottom: 1px solid #ccc;
+  height: var(--playground-bar-height);
+  box-sizing: border-box;
+}
+
+playground-tab-bar {
+  min-width: 0;
+  border-bottom: none;
+  height: auto;
+}
 
 /* Playground */
 
