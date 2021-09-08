@@ -121,6 +121,29 @@ class MyElement extends LitElement {
 }
 ```
 
+## Switchable sample
+
+{% switchable-sample %}
+
+```ts
+@customElement('my-element')
+class MyElement {
+  @property({attribute: false})
+  foo;
+}
+```
+
+```js
+class MyElement {
+  static properties = {
+    foo: {attribute: false}
+  };
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 ## Interactive code snippet
 
 {% playground-example "docs/templates/define" "my-element.ts" %}
