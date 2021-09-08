@@ -267,27 +267,75 @@ While element properties can be of any type, attributes are always strings. This
 
 By default, Lit creates a corresponding observed attribute for all public reactive properties. The name of the observed attribute is the property name, lowercased:
 
-```js
+{% switchable-sample %}
+
+```ts
 // observed attribute name is "myvalue"
 @property({ type: Number })
 myValue = 0;
 ```
 
+```js
+// observed attribute name is "myvalue"
+static properties = {
+  myValue: { type: Number },
+};
+
+constructor() {
+  super();
+  this.myValue = 0;
+}
+```
+
+{% endswitchable-sample %}
+
 To create an observed attribute with a different name, set `attribute` to a string:
 
-```js
+{% switchable-sample %}
+
+```ts
 // Observed attribute will be called my-name
 @property({ attribute: 'my-name' })
 myName = 'Ogden';
 ```
 
+```js
+// Observed attribute will be called my-name
+static properties = {
+  myName: { attribute: 'my-name' },
+};
+
+constructor() {
+  super();
+  this.myName = 'Ogden'
+}
+```
+
+{% endswitchable-sample %}
+
 To prevent an observed attribute from being created for a property, set `attribute` to `false`. The property will not be initialized from attributes in markup, and attribute changes won't affect it.
 
-```js
+{% switchable-sample %}
+
+```ts
 // No observed attribute for this property
 @property({ attribute: false })
 myData = {};
 ```
+
+```js
+// No observed attribute for this property
+static properties = {
+  myData: { attribute: false },
+};
+
+constructor() {
+  super();
+  this.myData = {};
+}
+```
+
+{% endswitchable-sample %}
 
 Internal reactive state never has an associated attribute.
 
@@ -303,11 +351,27 @@ Lit has a default converter that handles `String`, `Number`, `Boolean`, `Array`,
 
 To use the default converter, specify the `type` option in your property declaration:
 
-```js
+{% switchable-sample %}
+
+```ts
 // Use the default converter
 @property({ type: Number })
 count = 0;
 ```
+
+```js
+// Use the default converter
+static properties = {
+  count: { type: Number },
+};
+
+constructor() {
+  super();
+  this.count = 0;
+}
+```
+
+{% endswitchable-sample %}
 
 If you don't specify a type _or_ a custom converter for a property, it behaves as if you'd specified `type: String`.
 
@@ -404,6 +468,8 @@ Reflecting properties of type object or array is not recommended. This can cause
 
 By default, LitElement generates a getter/setter pair for all reactive properties. The setter is invoked whenever you set the property:
 
+{% switchable-sample %}
+
 ```ts
 // Declare a property
 @property()
@@ -413,11 +479,29 @@ greeting: string = 'Hello';
 this.greeting = 'Hola'; // invokes greeting's generated property accessor
 ```
 
+```js
+// Declare a property
+static properties = {
+  greeting: {},
+}
+constructor() {
+  this.super();
+  this.greeting = 'Hello';
+}
+...
+// Later, set the property
+this.greeting = 'Hola'; // invokes greeting's generated property accessor
+```
+
+{% endswitchable-sample %}
+
 Generated accessors automatically call `requestUpdate()`, initiating an update if one has not already begun.
 
 ### Creating custom property accessors {#accessors-custom}
 
 To specify how getting and setting works for a property, you can define your own getter/setter pair. For example:
+
+{% switchable-sample %}
 
 ```ts
 private _prop = 0;
@@ -431,6 +515,24 @@ set prop(val: number) {
 @property()
 get prop() { return this._prop; }
 ```
+
+```js
+static properties = {
+  prop: {},
+};
+
+_prop = 0;
+
+set prop(val) {
+  let oldVal = this._prop;
+  this._prop = Math.floor(val);
+  this.requestUpdate('prop', oldVal);
+}
+
+get prop() { return this._prop; }
+```
+
+{% endswitchable-sample %}
 
 To use custom property accessors with the `@property` or `@state` decorators, put the decorator on the getter, as shown above.
 
@@ -464,6 +566,8 @@ The default implementation of `hasChanged()` uses a strict inequality comparison
 
 To customize `hasChanged()` for a property, specify it as a property option:
 
+{% switchable-sample %}
+
 ```ts
 @property({
   hasChanged(newVal: string, oldVal: string) {
@@ -472,6 +576,18 @@ To customize `hasChanged()` for a property, specify it as a property option:
 })
 myProp: string | undefined;
 ```
+
+```js
+static properties = {
+  myProp: {
+    hasChanged(newVal, oldVal) {
+      return newVal?.toLowerCase() !== oldVal?.toLowerCase();
+    }
+  }
+};
+```
+
+{% endswitchable-sample %}
 
 In the following example, `hasChanged()` only returns true for odd values.
 
