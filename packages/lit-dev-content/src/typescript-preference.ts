@@ -8,6 +8,8 @@ type TypeScriptPreference = 'ts' | 'js';
 
 const LOCAL_STORAGE_KEY = 'typescript-preference';
 
+const BODY_ATTRIBUTE = 'typescript-preference';
+
 /**
  * Name of the event that is fired on window whenever the global user TypeScript
  * preference changes.
@@ -31,4 +33,13 @@ export const setTypeScriptPreference = (
 ): void => {
   localStorage.setItem(LOCAL_STORAGE_KEY, preference);
   window.dispatchEvent(new Event(TYPESCRIPT_PREFERENCE_EVENT_NAME));
+  writeTypeScriptPreferenceBodyAttribute();
+};
+
+/**
+ * Write the user's current TypeScript vs JavaScript preference to an HTML
+ * attribute on body.
+ */
+export const writeTypeScriptPreferenceBodyAttribute = () => {
+  document.body.setAttribute(BODY_ATTRIBUTE, getTypeScriptPreference());
 };

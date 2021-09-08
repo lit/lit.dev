@@ -88,11 +88,18 @@ export default [
     ],
   },
 
-  // Build the mods script separately from the rest because it includes a local
-  // import that we actually DO want to duplicate. This script is inlined and
-  // must run before first render, so an asynchronous import is not acceptable.
+  // These scripts are inlined and must run before first render because they set
+  // global CSS classes/atributes that would otherwise cause restyle/relayout.
+  //
+  // We compile them separately here because they include imports for a small
+  // amount of code that we want to inline directly (again, because we want to
+  // execute immediately), even though that code is technically duplicated into
+  // the asyncronously-loaded module bundles above.
   {
-    input: ['lib/global/apply-mods.js'],
+    input: [
+      'lib/global/apply-mods.js',
+      'lib/global/initialize-typescript-attribute.js',
+    ],
     output: {
       dir: 'rollupout',
       format: 'esm',
