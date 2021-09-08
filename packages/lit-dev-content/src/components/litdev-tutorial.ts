@@ -8,6 +8,7 @@ import {LitElement, html, property, state, PropertyValues} from 'lit-element';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
 import {manifest, TutorialStep} from './litdev-tutorial-manifest.js';
+import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import '@material/mwc-icon-button';
 
 interface ExpandedTutorialStep extends TutorialStep {
@@ -230,7 +231,11 @@ export class LitDevTutorial extends LitElement {
   };
 
   private _writeUrl() {
-    window.history.pushState(null, '', this._info.url);
+    window.history.pushState(
+      null,
+      '',
+      addModsParameterToUrlIfNeeded(this._info.url)
+    );
   }
 
   private _setProjectSrc(src: string, force = false) {
