@@ -66,10 +66,3 @@ body[typescript-preference="js"] litdev-switchable-sample > pre > code.language-
   /* Hide TS samples when preference is JS. */
   display: none;
 }
-
-/* TODO(aomarks) Remove .jsSamples mod selectors when JS samples launch. */
-
-body.jsSamples litdev-switchable-sample > pre > code > figure {
-  /* Reserve space for the JS|TS switch before custom element upgrade. */
-  padding-top: calc(0.5em + 31px) !important;
-}
