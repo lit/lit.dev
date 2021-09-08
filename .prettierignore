@@ -4,3 +4,4 @@ package-lock.json
 /packages/lit-dev-content/_site/
 /packages/*/lib/
 /packages/*/index.*
+/packages/lit-dev-server/src/redirects.ts
