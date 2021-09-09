@@ -14,5 +14,9 @@
     "outDir": "js"
   },
   "include": ["./**/*.ts"],
-  "exclude": []
+  "exclude": [
+    // Intentionally contains unused imports. This one's .js output is
+    // hand-rolled becuase TypeScript will elide imports.
+    "tutorial/02-define/before/my-element.ts"
+  ]
 }
