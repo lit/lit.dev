@@ -225,7 +225,6 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onClickPrevButton(event: Event) {
-    this._solved = false;
     event.preventDefault();
     if (this._idx > 0) {
       this._idx--;
