@@ -27,8 +27,8 @@ You can use standard JavaScript in Lit expressions to create conditional or repe
 
     addToDo() {
       this.listItems.push({text: this.input.value, completed: false});
-      this.requestUpdate();
       this.input.value = '';
+      this.requestUpdate();
     }
     ```
 
@@ -39,8 +39,8 @@ You can use standard JavaScript in Lit expressions to create conditional or repe
 
     addToDo() {
       this.listItems.push({text: this.input.value, completed: false});
-      this.requestUpdate();
       this.input.value = '';
+      this.requestUpdate();
     }
     ```
 
