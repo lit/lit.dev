@@ -63,6 +63,11 @@ export class LitDevTutorial extends LitElement {
   @state()
   private _preloadedHtml?: {idx: number; promise: Promise<string>};
 
+  /**
+   * Whether the tutorial is currently in its "solved" state.
+   */
+  private _solved = false;
+
   createRenderRoot() {
     // This is a site-specific component, and we want to inherit site-wide
     // styles.
@@ -185,7 +190,13 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onCodeLanguagePreferenceChanged = () => {
-    this._loadStep();
+    // TODO(aomarks) If the user has modified the code, we should show a dialog
+    // on the Playground along the lines of "Switching languages will lose your
+    // changes [Accept] [Cancel]".
+    this._setProjectSrc(
+      this._solved ? this._info.projectSrcAfter : this._info.projectSrcBefore,
+      true
+    );
   };
 
   update(changedProperties: PropertyValues) {
@@ -196,11 +207,13 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onClickSolve() {
+    this._solved = true;
     this._setProjectSrc(this._info.projectSrcAfter, true);
   }
 
   private _onClickReset() {
-    this._setProjectSrc(this._info.projectSrcBefore, true);
+    this._solved = false;
+    this._setProjectSrc(this._info.projectSrcBefore);
   }
 
   private _onClickNextButton(event: Event) {
@@ -212,6 +225,7 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onClickPrevButton(event: Event) {
+    this._solved = false;
     event.preventDefault();
     if (this._idx > 0) {
       this._idx--;
@@ -268,6 +282,7 @@ export class LitDevTutorial extends LitElement {
 
   private async _loadStep() {
     this._loading = true;
+    this._solved = false;
     const active = this._info;
     this._html =
       this._preloadedHtml?.idx === this._idx
