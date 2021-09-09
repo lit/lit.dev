@@ -547,6 +547,10 @@ td {
   margin-top: 0;
 }
 
+#rhsToc > h2 > a {
+  color: inherit;
+}
+
 /* Scroller */
 #rhsTocInner {
   overflow-y: auto;
