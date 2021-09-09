@@ -90,7 +90,7 @@ export default [
   },
 
   // These scripts are inlined and must run before first render because they set
-  // global CSS classes/atributes that would otherwise cause restyle/relayout.
+  // global CSS classes/attributes that would otherwise cause restyle/relayout.
   //
   // We compile them separately here because they include imports for a small
   // amount of code that we want to inline directly (again, because we want to
