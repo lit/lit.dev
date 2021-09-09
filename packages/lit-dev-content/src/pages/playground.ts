@@ -9,9 +9,9 @@ import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
 import {
-  getTypeScriptPreference,
-  TYPESCRIPT_PREFERENCE_EVENT_NAME,
-} from '../typescript-preference.js';
+  getCodeLanguagePreference,
+  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+} from '../code-language-preference.js';
 
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
@@ -140,7 +140,7 @@ window.addEventListener('DOMContentLoaded', () => {
     $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
-      hideTypeScriptSwitch();
+      hideCodeLanguageSwitch();
       project.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
@@ -148,14 +148,14 @@ window.addEventListener('DOMContentLoaded', () => {
         ),
       };
     } else {
-      showTypeScriptSwitch();
+      showCodeLanguageSwitch();
       let sample = 'examples/hello-world-typescript';
       const urlSample = params.get('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
         sample = urlSample;
       }
       const samplesRoot =
-        getTypeScriptPreference() === 'ts' ? '/samples' : '/samples/js';
+        getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
       project.projectSrc = `${samplesRoot}/${sample}/project.json`;
 
       const link = $(`.exampleItem[data-sample="${sample}"]`);
@@ -173,7 +173,7 @@ window.addEventListener('DOMContentLoaded', () => {
   syncStateFromUrlHash();
   window.addEventListener('hashchange', syncStateFromUrlHash);
   window.addEventListener(
-    TYPESCRIPT_PREFERENCE_EVENT_NAME,
+    CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
     syncStateFromUrlHash
   );
 
@@ -213,15 +213,15 @@ const exampleControls = document.body.querySelector('litdev-example-controls');
  * between JS and TS forms. Only pre-built TS samples have a generated JS
  * version available.
  */
-const hideTypeScriptSwitch = () => {
+const hideCodeLanguageSwitch = () => {
   if (exampleControls) {
-    exampleControls.hideTypeScriptSwitch = true;
+    exampleControls.hideCodeLanguageSwitch = true;
   }
 };
 
-const showTypeScriptSwitch = () => {
+const showCodeLanguageSwitch = () => {
   if (exampleControls) {
-    exampleControls.hideTypeScriptSwitch = false;
+    exampleControls.hideCodeLanguageSwitch = false;
   }
 };
 

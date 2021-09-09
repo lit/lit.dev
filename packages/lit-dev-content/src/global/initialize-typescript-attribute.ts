@@ -4,6 +4,6 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {writeTypeScriptPreferenceBodyAttribute} from '../typescript-preference.js';
+import {writeCodeLanguagePreferenceBodyAttribute} from '../code-language-preference.js';
 
-writeTypeScriptPreferenceBodyAttribute();
+writeCodeLanguagePreferenceBodyAttribute();

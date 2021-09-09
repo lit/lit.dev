@@ -6,10 +6,10 @@
 
 import {LitElement, html, css, customElement} from 'lit-element';
 import {
-  getTypeScriptPreference,
-  setTypeScriptPreference,
-  TYPESCRIPT_PREFERENCE_EVENT_NAME,
-} from '../typescript-preference.js';
+  getCodeLanguagePreference,
+  setCodeLanguagePreference,
+  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+} from '../code-language-preference.js';
 
 /**
  * A switch that toggles between TypeScript and JavaScript preferences.
@@ -18,12 +18,12 @@ import {
  * updated anywhere on the page, every instance of this switch will
  * automatically update to reflect it.
  */
-@customElement('litdev-typescript-switch')
-export class LitDevTypeScriptSwitch extends LitElement {
+@customElement('litdev-code-language-switch')
+export class LitDevCodeLanguageSwitch extends LitElement {
   static override styles = css`
     :host {
       /* TODO(aomarks) Fix as inline-flex after jsSamples mod is retired. */
-      display: var(--litdev-typescript-switch-display, none);
+      display: var(--litdev-code-language-switch-display, none);
       font-family: 'Open Sans', sans-serif;
     }
 
@@ -71,25 +71,25 @@ export class LitDevTypeScriptSwitch extends LitElement {
     // components could be refactored into a controller.
     super.connectedCallback();
     window.addEventListener(
-      TYPESCRIPT_PREFERENCE_EVENT_NAME,
-      this._onTypeScriptPreferenceChanged
+      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      this._onCodeLanguagePreferenceChanged
     );
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(
-      TYPESCRIPT_PREFERENCE_EVENT_NAME,
-      this._onTypeScriptPreferenceChanged
+      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      this._onCodeLanguagePreferenceChanged
     );
   }
 
-  private _onTypeScriptPreferenceChanged = () => {
+  private _onCodeLanguagePreferenceChanged = () => {
     this.requestUpdate();
   };
 
   override render() {
-    const mode = getTypeScriptPreference();
+    const mode = getCodeLanguagePreference();
     return html`
       <button
         title="Display code as JavaScript"
@@ -112,16 +112,16 @@ export class LitDevTypeScriptSwitch extends LitElement {
   }
 
   private _onClickJs() {
-    setTypeScriptPreference('js');
+    setCodeLanguagePreference('js');
   }
 
   private _onClickTs() {
-    setTypeScriptPreference('ts');
+    setCodeLanguagePreference('ts');
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'litdev-typescript-switch': LitDevTypeScriptSwitch;
+    'litdev-code-language-switch': LitDevCodeLanguageSwitch;
   }
 }

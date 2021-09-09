@@ -9,9 +9,9 @@ import {styleMap} from 'lit-html/directives/style-map';
 import {nothing} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined.js';
 import {
-  getTypeScriptPreference,
-  TYPESCRIPT_PREFERENCE_EVENT_NAME,
-} from '../typescript-preference.js';
+  getCodeLanguagePreference,
+  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+} from '../code-language-preference.js';
 import 'playground-elements/playground-ide.js';
 import './litdev-example-controls.js';
 
@@ -125,20 +125,20 @@ export class LitDevExample extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     window.addEventListener(
-      TYPESCRIPT_PREFERENCE_EVENT_NAME,
-      this._onTypeScriptPreferenceChanged
+      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      this._onCodeLanguagePreferenceChanged
     );
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(
-      TYPESCRIPT_PREFERENCE_EVENT_NAME,
-      this._onTypeScriptPreferenceChanged
+      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      this._onCodeLanguagePreferenceChanged
     );
   }
 
-  private _onTypeScriptPreferenceChanged = () => {
+  private _onCodeLanguagePreferenceChanged = () => {
     this.requestUpdate();
   };
 
@@ -152,7 +152,7 @@ export class LitDevExample extends LitElement {
       borderRadius: showTabBar ? 'unset' : 'inherit',
     };
 
-    const mode = getTypeScriptPreference();
+    const mode = getCodeLanguagePreference();
     const projectSrc =
       mode === 'ts'
         ? `/samples/${this.project}/project.json`

@@ -5,7 +5,7 @@
  */
 
 import {LitElement, html, css, customElement} from 'lit-element';
-import './litdev-typescript-switch.js';
+import './litdev-code-language-switch.js';
 
 /**
  * An inline static code sample that can be toggled between JavaScript and
@@ -19,7 +19,7 @@ export class LitDevSwitchableSample extends LitElement {
       position: relative;
     }
 
-    litdev-typescript-switch {
+    litdev-code-language-switch {
       position: absolute;
       right: 6px;
       top: 6px;
@@ -28,7 +28,7 @@ export class LitDevSwitchableSample extends LitElement {
 
   override render() {
     return html`
-      <litdev-typescript-switch></litdev-typescript-switch>
+      <litdev-code-language-switch></litdev-code-language-switch>
       <slot></slot>
     `;
   }
