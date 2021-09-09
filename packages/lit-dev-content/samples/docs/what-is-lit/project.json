@@ -1,15 +1,9 @@
 {
-    "files": {
-        "my-timer.ts": {},
-        "index.html": {},
-        "icons.ts": {}
-    },
-    "editorHeight": "670px",
-    "previewHeight": "125px",
-      "importMap": {
-      "imports": {
-        "lit": "https://cdn.skypack.dev/lit",
-        "lit/": "https://cdn.skypack.dev/lit/"
-      }
-    }
-  }
+  "extends": "/samples/base.json",
+  "files": {
+    "my-timer.ts": {},
+    "index.html": {},
+    "icons.ts": {}
+  },
+  "previewHeight": "125px"
+}

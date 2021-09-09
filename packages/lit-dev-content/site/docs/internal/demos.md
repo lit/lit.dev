@@ -29,7 +29,6 @@ Arguments:
 2. Filename from project to show.
 
 Additional `project.json` config options:
-- `editorHeight`: Height of the editor in pixels (default `300px`).
 - `previewHeight`: Height of the preview in pixels (default `120px`).
 
 ```
@@ -59,21 +58,5 @@ configuration that resolve imports to `lit-next`:
 ```json
 {
   "extends": "/samples/base.json",
-}
-```
-
-Use `importMap.imports` in your `project.json` file to further control the
-resolution of bare module specifiers.
-
-```json
-{
-  "importMap": {
-    "imports": {
-      "lit-element": "https://cdn.skypack.dev/lit-element@next-major",
-      "lit-element/": "https://cdn.skypack.dev/lit-element@next-major/",
-      "lit-html": "https://cdn.skypack.dev/lit-html@next-major",
-      "lit-html/": "https://cdn.skypack.dev/lit-html@next-major/"
-    }
-  }
 }
 ```
