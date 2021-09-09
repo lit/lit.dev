@@ -26,8 +26,8 @@ class ToDoList extends LitElement {
 
   addToDo() {
     this.listItems.push({text: this.input.value, completed: false});
-    this.requestUpdate();
     this.input.value = '';
+    this.requestUpdate();
   }
 }
 

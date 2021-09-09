@@ -3,11 +3,21 @@ In Lit, most things start with defining a _component_. Here we've given you a st
 
 *   **Define a component.**
 
+    {% switchable-sample %}
+
     ```ts
     @customElement('my-element')
     class MyElement extends LitElement {
     }
     ```
+
+    ```js
+    class MyElement extends LitElement {
+    }
+    customElements.define('my-element', MyElement);
+    ```
+
+    {% endswitchable-sample %}
 
     The `MyElement` class provides the implementation for your new component, and the `@customElement` decorator registers it with the browser as a new element type named `my-element`.
 

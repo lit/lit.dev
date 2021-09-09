@@ -63,6 +63,11 @@ export class LitDevTutorial extends LitElement {
   @state()
   private _preloadedHtml?: {idx: number; promise: Promise<string>};
 
+  /**
+   * Whether the tutorial is currently in its "solved" state.
+   */
+  private _solved = false;
+
   createRenderRoot() {
     // This is a site-specific component, and we want to inherit site-wide
     // styles.
@@ -185,7 +190,10 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onCodeLanguagePreferenceChanged = () => {
-    this._loadStep();
+    this._setProjectSrc(
+      this._solved ? this._info.projectSrcAfter : this._info.projectSrcBefore,
+      true
+    );
   };
 
   update(changedProperties: PropertyValues) {
@@ -196,10 +204,12 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onClickSolve() {
+    this._solved = true;
     this._setProjectSrc(this._info.projectSrcAfter, true);
   }
 
   private _onClickReset() {
+    this._solved = false;
     this._setProjectSrc(this._info.projectSrcBefore, true);
   }
 
@@ -268,6 +278,7 @@ export class LitDevTutorial extends LitElement {
 
   private async _loadStep() {
     this._loading = true;
+    this._solved = false;
     const active = this._info;
     this._html =
       this._preloadedHtml?.idx === this._idx

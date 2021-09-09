@@ -20,12 +20,24 @@ Here we've provided a name tag component with a message and an input element. In
 
     Next, add the event handler that's called when the input value changes.
 
+
+    {% switchable-sample %}
+
     ```ts
     changeName(event: Event) {
       const input = event.target as HTMLInputElement;
       this.name = input.value;
     }
     ```
+
+    ```js
+    changeName(event) {
+      const input = event.target;
+      this.name = input.value;
+    }
+    ```
+
+    {% endswitchable-sample %}
 
     Since `name` is a reactive property, setting it in the event handler triggers the component to update.
 

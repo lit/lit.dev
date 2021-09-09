@@ -202,7 +202,7 @@ export const playgroundPlugin = (
    */
   eleventyConfig.addPairedShortcode('switchable-sample', (content: string) => {
     const match = content.match(
-      /^\s*\n\n```ts\n(.+)\n```\s+```js\n(.+)\n```\s*$/s
+      /^\s*\n\n\s*```ts\n(.+)\n\s*```\s+```js\n(.+)\n\s*```\s*$/s
     );
     if (match === null) {
       throw new Error(

@@ -18,16 +18,33 @@ You can use standard JavaScript in Lit expressions to create conditional or repe
 
     We've provided an input and an **Add** button, but they aren't hooked up yet. Add the `input` property and an event handler method for the button:
 
+
+    {% switchable-sample %}
+
     ```ts
     @query('#newitem')
     input!: HTMLInputElement;
 
     addToDo() {
       this.listItems.push({text: this.input.value, completed: false});
-      this.requestUpdate();
       this.input.value = '';
+      this.requestUpdate();
     }
     ```
+
+    ```js
+    get input() {
+      return this.renderRoot?.querySelector('#newitem') ?? null;
+    }
+
+    addToDo() {
+      this.listItems.push({text: this.input.value, completed: false});
+      this.input.value = '';
+      this.requestUpdate();
+    }
+    ```
+
+    {% endswitchable-sample %}
 
     As the name suggests, `requestUpdate()` triggers the component to update. Setting a reactive property calls this automatically. Since you're not setting `listItems` here, but only mutating the array, you need to call `requestUpdate()` yourself.
 
