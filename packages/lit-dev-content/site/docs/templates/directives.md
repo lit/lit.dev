@@ -79,6 +79,7 @@ the object is treated as a class name, and if the value associated with the key
 is truthy, that class is added to the element. On subsequent renders, any
 previously set classes that are falsy or no longer in the object are removed.
 
+{% switchable-sample %}
 
 ```ts
 @customElement('my-element')
@@ -93,6 +94,27 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    enabled: {type: Boolean},
+  };
+
+  constructor() {
+    super();
+    this.enabled = false;
+  }
+
+  render() {
+    const classes = { enabled: this.enabled, hidden: false };
+    return html`<div class=${classMap(classes)}>Classy text</div>`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 The `classMap` must be the only expression in the `class` attribute, but it can
 be combined with static values:
@@ -147,6 +169,8 @@ key in the object is treated as a style property name, the value is treated as
 the value for that property. On subsequent renders, any previously set style
 properties that are no longer in the object are removed (set to `null`).
 
+{% switchable-sample %}
+
 ```ts
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -160,6 +184,27 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    enabled: {type: Boolean},
+  };
+
+  constructor() {
+    super();
+    this.enabled = false;
+  }
+
+  render() {
+    const styles = { backgroundColor: this.enabled ? 'blue' : 'gray', color: 'white' };
+    return html`<p style=${styleMap(styles)}>Hello style!</p>`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 For CSS properties that contain dashes, you can either use the camel-case equivalent, or put the property name in quotes. For example, you can write the the CSS property `font-family` as either `fontFamily` or `'font-family'`:
 
@@ -231,6 +276,7 @@ the `keyFn` is provided, key-to-DOM association is maintained between updates by
 moving DOM when required, and is generally the most efficient way to use
 `repeat` since it performs minimum unnecessary work for insertions and removals.
 
+{% switchable-sample %}
 
 ```ts
 @customElement('my-element')
@@ -249,6 +295,31 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    items: {},
+  };
+
+  constructor() {
+    super();
+    this.items = [];
+  }
+
+  render() {
+    return html`
+      <ul>
+        ${repeat(this.items, (item) => item.id, (item, index) => html`
+          <li>${index}: ${item.name}</li>`)}
+      </ul>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 If no `keyFn` is provided, `repeat` will perform similar to a simple map of
 items to values, and DOM will be reused against potentially different items.
@@ -312,6 +383,8 @@ this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.o
 
 </div>
 
+{% switchable-sample %}
+
 ```ts
 const templateEl = document.querySelector('template#myContent') as HTMLTemplateElement;
 
@@ -325,6 +398,23 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+const templateEl = document.querySelector('template#myContent');
+
+class MyElement extends LitElement {
+
+  render() {
+    return  html`
+      Here's some content from a template element:
+      ${templateContent(templateEl)}`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 Explore `templateContent` more in the [playground](/playground/#sample=examples/directive-template-content).
 
 ## unsafeHTML
@@ -382,6 +472,8 @@ directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wi
 
 </div>
 
+{% switchable-sample %}
+
 ```ts
 const markup = '<h3>Some HTML to render.</h3>';
 
@@ -396,6 +488,25 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+const markup = '<h3>Some HTML to render.</h3>';
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe HTML ahead:
+      ${unsafeHTML(markup)}
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
+
 Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/directive-unsafe-html).
 
 ## unsafeSVG
@@ -450,6 +561,8 @@ directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wi
 
 </div>
 
+{% switchable-sample %}
+
 ```ts
 const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
 
@@ -466,6 +579,26 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe SVG ahead:
+      <svg width="40" height="40" viewBox="0 0 100 100"
+        xmlns="http://www.w3.org/2000/svg" version="1.1">
+        ${unsafeSVG(svg)}
+      </svg> `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 Explore `unsafeSVG` more in the [playground](/playground/#sample=examples/directive-unsafe-svg).
 
 ## cache
@@ -514,6 +647,8 @@ When the template changes, the directive caches the _current_ DOM nodes before
 switching to the new value, and restores them from the cache when switching back
 to a previously-rendered value, rather than creating the DOM nodes anew.
 
+{% switchable-sample %}
+
 ```ts
 const detailView = (data) => html`<div>...</div>`;
 const summaryView = (data) => html`<div>...</div>`;
@@ -532,6 +667,32 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+const detailView = (data) => html`<div>...</div>`;
+const summaryView = (data) => html`<div>...</div>`;
+
+class MyElement extends LitElement {
+  static properties = {
+    data: {},
+  };
+
+  constructor() {
+    super();
+    this.data = {showDetails: true, /*...*/ };
+  }
+
+  render() {
+    return html`${cache(this.data.showDetails
+      ? detailView(this.data)
+      : summaryView(this.data)
+    )}`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 When Lit re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than needed. But when you switch from one template to another, Lit removes the old DOM and renders a new DOM tree.
 
@@ -589,6 +750,7 @@ Where:
 `guard` is useful with immutable data patterns, by preventing expensive work
 until data updates.
 
+{% switchable-sample %}
 
 ```ts
 @customElement('my-element')
@@ -605,6 +767,30 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    value: {},
+  };
+
+  constructor() {
+    super();
+    this.value = '';
+  }
+
+  render() {
+    return html`
+      <div>
+        ${guard([this.value], () => calculateSHA(this.value))}
+      </div>`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 In this case, the expensive `calculateSHA` function is only run when the `value` property changes.
 
 Explore `guard` more in the [playground](/playground/#sample=examples/directive-guard).
@@ -661,6 +847,7 @@ expression hasn't, Lit won't know to update the DOM value and will leave it
 alone. If this is not what you want—if you want to overwrite the DOM value with
 the bound value no matter what—use the `live()` directive.
 
+{% switchable-sample %}
 
 ```ts
 @customElement('my-element')
@@ -674,6 +861,26 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    data: {},
+  };
+
+  constructor() {
+    super();
+    this.data = {value: 'test'};
+  }
+
+  render() {
+    return html`<input .value=${live(this.data.value)}>`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 `live()` performs a strict equality check agains the live DOM value, and if
 the new value is equal to the live value, does nothing. This means that
@@ -725,6 +932,7 @@ For AttributeParts, sets the attribute if the value is defined and removes the a
 
 When more than one expression exists in a single attribute value, the attribute will be removed if _any_ expression uses `ifDefined` and evaluates to `undefined`/`null`. This is especially useful for setting URL attributes, when the attribute should not be set if required parts of the URL are not defined, to prevent 404's.
 
+{% switchable-sample %}
 
 ```ts
 @customElement('my-element')
@@ -742,6 +950,29 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    filename: {},
+    size: {},
+  };
+
+  constructor() {
+    super();
+    this.filename = undefined;
+    this.size = undefined;
+  }
+
+  render() {
+    // src attribute not rendered if either size or filename are undefined
+    return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
+  }
+}
+customElements.define('my-element', MyEleent);
+```
+
+{% endswitchable-sample %}
 
 Explore `ifDefined` more in the [playground](/playground/#sample=examples/directive-if-defined).
 
@@ -798,6 +1029,8 @@ created using the `createRef` helper method found in the `ref` module. After
 rendering, the `Ref`'s `value` property will be set to the element, where it
 can be accessed in post-render lifecycle like `updated`.
 
+{% switchable-sample %}
+
 ```ts
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -816,12 +1049,34 @@ class MyElement extends LitElement {
 }
 ```
 
+```js
+class MyElement extends LitElement {
+
+  inputRef = createRef();
+
+  render() {
+    // Passing ref directive a Ref object that will hold the element in .value
+    return html`<input ${ref(this.inputRef)}>`;
+  }
+
+  firstUpdated() {
+    const input = this.inputRef.value!;
+    input.focus();
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 A ref callback can also be passed to the `ref` directive. The callback will be
 called each time the referenced element changes.  If a ref callback is
 rendered to a different element position or is removed in a subsequent render,
 it will first be called with `undefined`, followed by another call with the new
 element it was rendered to (if any). Note that in a `LitElement`, the callback
 will be called bound to the host element automatically.
+
+{% switchable-sample %}
 
 ```ts
 @customElement('my-element')
@@ -837,6 +1092,23 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+
+  render() {
+    // Passing ref directive a change callback
+    return html`<input ${ref(this.inputChanged)}>`;
+  }
+
+  inputChanged(input) {
+    input?.focus();
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 Explore `ref` more in the [playground](/playground/#sample=examples/directive-ref).
 
@@ -890,6 +1162,8 @@ be used as the second (lower-priority) argument. The loading indicator
 renders immediately, and the primary content will render when the Promise
 resolves.
 
+{% switchable-sample %}
+
 ```ts
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -902,6 +1176,27 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    content: {state: true},
+  };
+
+  constructor() {
+    super();
+    this.content = fetch('./content.txt').then(r => r.text());
+  }
+
+  render() {
+    return html`${until(this.content, html`<span>Loading...</span>`)}`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 Explore `until` more in the [playground](/playground/#sample=examples/directive-until).
 
 ## asyncAppend
@@ -944,6 +1239,8 @@ Child expression
 
 `asyncAppend` renders the values of an [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of), appending each new value after the previous. Note that async generators also implement the async iterable protocol, and thus can be consumed by `asyncAppend`.
 
+{% switchable-sample %}
+
 ```ts
 async function *tossCoins(count: number) {
   for (let i=0; i<count; i++) {
@@ -964,6 +1261,35 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+async function *tossCoins(count) {
+  for (let i=0; i<count; i++) {
+    yield Math.random() > 0.5 ? 'Heads' : 'Tails';
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+}
+
+class MyElement extends LitElement {
+  static properties = {
+    tosses: {state: true},
+  };
+
+  constructor() {
+    super();
+    this.tosses = tossCoins(10);
+  }
+
+  render() {
+    return html`
+      <ul>${asyncAppend(this.tosses, (v) => html`<li>${v}</li>`)}</ul>`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 Explore `asyncAppend` more in the [playground](/playground/#sample=examples/directive-async-append).
 
 ## asyncReplace
@@ -1006,6 +1332,8 @@ Child expression
 
 Similar to [`asyncAppend`](#asyncappend), `asyncReplace` renders the values of an [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of), replacing the previous value with each new value.
 
+{% switchable-sample %}
+
 ```ts
 async function *countDown(count: number) {
   while (count > 0) {
@@ -1025,5 +1353,33 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+async function *countDown(count) {
+  while (count > 0) {
+    yield count--;
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+}
+
+class MyElement extends LitElement {
+  static properties = {
+    timer: {state: true},
+  };
+
+  constructor() {
+    super();
+    this.timer = countDown(10);
+  }
+
+  render() {
+    return html`Timer: <span>${asyncReplace(this.timer)}</span>.`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
 Explore `asyncReplace` more in the [playground](/playground/#sample=examples/directive-async-replace).
 

@@ -84,7 +84,7 @@ This decorator is equivalent to:
 
 ```js
 get _first() {
-  return this.renderRoot.querySelector('#first');
+  return this.renderRoot?.querySelector('#first');
 }
 ```
 

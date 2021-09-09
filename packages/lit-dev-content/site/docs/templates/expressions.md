@@ -392,6 +392,8 @@ The `static-html` module contains `html` and `svg` tag functions which support s
 
 You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might render a `<button>` tag, but a subclass might render an `<a>` tag, instead. This is a good place to use a static expression because the setting does not change frequently and customizing an HTML tag cannot be done with a normal expression.
 
+{% switchable-sample %}
+
 ```ts
 import {LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
@@ -412,12 +414,55 @@ class MyButton extends LitElement {
   }
 }
 ```
+
+```js
+import {LitElement} from 'lit';
+import {html, literal} from 'lit/static-html.js';
+
+class MyButton extends LitElement {
+  static properties = {
+    caption: {},
+    active: {type: Boolean},
+  };
+
+  tag = literal`button`;
+  activeAttribute = literal`active`;
+
+  constructor() {
+    super();
+    this.caption = 'Hello static';
+    this.active = false;
+  }
+
+  render() {
+    return html`
+      <${this.tag} ${this.activeAttribute}?=${this.active}>
+        <p>${this.caption}</p>
+      </${this.tag}>`;
+  }
+}
+customElements.define('my-button', MyButton);
+```
+
+{% endswitchable-sample %}
+
+{% switchable-sample %}
+
 ```ts
 @customElement('my-anchor')
 class MyAnchor extends MyButton {
   tag = literal`a`;
 }
 ```
+
+```js
+class MyAnchor extends MyButton {
+  tag = literal`a`;
+}
+customElements.define('my-anchor', MyAnchor);
+```
+
+{% endswitchable-sample %}
 
 <div class="alert alert-warning">
 
@@ -447,6 +492,8 @@ import {html, unsafeStatic} from 'lit/static-html.js';
 
 </div>
 
+{% switchable-sample %}
+
 ```ts
 @customElement('my-button')
 class MyButton extends LitElement {
@@ -464,5 +511,33 @@ class MyButton extends LitElement {
   }
 }
 ```
+
+```js
+class MyButton extends LitElement {
+  static properties = {
+    caption: {},
+    active: {type: Boolean},
+  };
+
+  constructor() {
+    super();
+    this.caption = 'Hello static';
+    this.active = false;
+  }
+
+  render() {
+    // These strings MUST be trusted, otherwise this is an XSS vulnerability
+    const tag = getTagName();
+    const activeAttribute = getActiveAttribute();
+    return html`
+      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}?=${this.active}>
+        <p>${this.caption}</p>
+      </${unsafeStatic(tag)}>`;
+  }
+}
+customElements.define('my-button', MyButton);
+```
+
+{% endswitchable-sample %}
 
 Note that the behavior of using `unsafeStatic` carries the same caveats as `literal`: because changing values causes a new template to be parsed and cached in memory, they should not change frequently.

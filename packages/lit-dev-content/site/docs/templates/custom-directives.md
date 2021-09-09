@@ -58,6 +58,8 @@ Async directives, which can update the DOM outside of the normal update cycle, u
 
 When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class (causing the directive's constructor and any class field initializers to run):
 
+{% switchable-sample %}
+
 ```ts
 class MyDirective extends Directive {
   // Class fields will be initialized once and can be used to persist
@@ -72,6 +74,23 @@ class MyDirective extends Directive {
   ...
 }
 ```
+
+```js
+class MyDirective extends Directive {
+  // Class fields will be initialized once and can be used to persist
+  // state between renders
+  value = 0;
+  // Constructor is only run the first time a given directive is used
+  // in an expression
+  constructor(partInfo) {
+    super(partInfo);
+    console.log('MyDirective created');
+  }
+  ...
+}
+```
+
+{% endswitchable-sample %}
 
 As long as the same directive function is used in the same expression each render, the previous instance is reused, thus the state of the instance persists between renders.
 
@@ -89,6 +108,8 @@ const template = html`<div>${myDirective(name, rank)}</div>`
 
 The parameters defined for the `render()` method determine the signature of the directive function:
 
+{% switchable-sample %}
+
 ```ts
 class MaxDirective extends Directive {
   maxValue = Number.MIN_VALUE;
@@ -103,6 +124,23 @@ const max = directive(MaxDirective);
 // Call the directive with `value` and `minValue` arguments defined for `render()`:
 const template = html`<div>${max(someNumber, 0)}</div>`;
 ```
+
+```js
+class MaxDirective extends Directive {
+  maxValue = Number.MIN_VALUE;
+  // Define a render method, which may accept arguments:
+  render(value, minValue = Number.MIN_VALUE) {
+    this.maxValue = Math.max(value, this.maxValue, minValue);
+    return this.maxValue;
+  }
+}
+const max = directive(MaxDirective);
+
+// Call the directive with `value` and `minValue` arguments defined for `render()`:
+const template = html`<div>${max(someNumber, 0)}</div>`;
+```
+
+{% endswitchable-sample %}
 
 ### Imperative DOM access: update()
 
@@ -131,6 +169,8 @@ Each expression position has its own specific `Part` object:
 
 In addition to the part-specific metadata contained in `PartInfo`, all `Part` types provide access to the DOM `element` associated with the expression (or `parentNode`, in the case of `ChildPart`), which may be directly accessed in `update()`. For example:
 
+{% switchable-sample %}
+
 ```ts
 // Renders attribute names of parent element to textContent
 class AttributeLogger extends Directive {
@@ -149,6 +189,26 @@ const template = html`<div a b>${attributeLogger()}</div>`;
 // Renders: `<div a b>a b</div>`
 ```
 
+```js
+// Renders attribute names of parent element to textContent
+class AttributeLogger extends Directive {
+  attributeNames = '';
+  update(part) {
+    this.attributeNames = part.parentNode.getAttributeNames?.().join(' ');
+    return this.render();
+  }
+  render() {
+    return this.attributeNames;
+  }
+}
+const attributeLogger = directive(AttributeLogger);
+
+const template = html`<div a b>${attributeLogger()}</div>`;
+// Renders: `<div a b>a b</div>`
+```
+
+{% endswitchable-sample %}
+
 In addition, the `directive-helpers.js` module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
 
 #### Calling render() from update()
@@ -156,6 +216,8 @@ In addition, the `directive-helpers.js` module includes a number of helper funct
 The default implementation of `update()` simply calls and returns the value from `render()`. If you override `update()` and still want to call `render()` to generate a value, you need to call `render()` explicitly.
 
 The `render()` arguments are passed into `update()` as an array. You can pass the arguments to `render()` like this:
+
+{% switchable-sample %}
 
 ```ts
 class MyDirective extends Directive {
@@ -166,6 +228,18 @@ class MyDirective extends Directive {
   render(fish: number, bananas: number) { ... }
 }
 ```
+
+```js
+class MyDirective extends Directive {
+  update(part, [fish, bananas]) {
+    // ...
+    return this.render(fish, bananas);
+  }
+  render(fish, bananas) { ... }
+}
+```
+
+{% endswitchable-sample %}
 
 ### Differences between update() and render()
 
@@ -182,6 +256,8 @@ There are several common reasons for returning `noChange`:
 *   In an async directive, a call to `update()` or `render()` may return `noChange` because there's nothing to render _yet_.
 
 For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return `noChange`  to signal that the directive's output doesn't need to be re-rendered.
+
+{% switchable-sample %}
 
 ```ts
 import {Directive} from 'lit/directive.js';
@@ -201,11 +277,31 @@ class CalculateDiff extends Directive {
 }
 ```
 
+```js
+import {Directive} from 'lit/directive.js';
+import {noChange} from 'lit';
+class CalculateDiff extends Directive {
+  render(a, b) {
+    if (this.a !== a || this.b !== b) {
+      this.a = a;
+      this.b = b;
+      // Expensive & fancy text diffing algorithm
+      return calculateDiff(a, b);
+    }
+    return noChange;
+  }
+}
+```
+
+{% endswitchable-sample %}
+
 ## Limiting a directive to one expression type
 
 Some directives are only useful in one context, such as an attribute expression or a child expression. If placed in the wrong context, the directive should throw an appropriate error.
 
 For example, the `classMap` directive validates that it is only used in an `AttributePart` and only for the `class` attribute`:
+
+{% switchable-sample %}
 
 ```ts
 class ClassMap extends Directive {
@@ -222,6 +318,23 @@ class ClassMap extends Directive {
 }
 ```
 
+```js
+class ClassMap extends Directive {
+  constructor(partInfo) {
+    super(partInfo);
+    if (
+      partInfo.type !== PartType.ATTRIBUTE ||
+      partInfo.name !== 'class'
+    ) {
+      throw new Error('The `classMap` directive must be used in the `class` attribute');
+    }
+  }
+  ...
+}
+```
+
+{% endswitchable-sample %}
+
 ## Async directives
 
 The previous example directives are synchronous: they return values synchronously from their `render()`/`update()` lifecycle callbacks, so their results are written to the DOM during the component's `update()` callback.
@@ -231,6 +344,8 @@ Sometimes, you want a directive to be able to update the DOM asynchronously—fo
 To set a value asynchronously, a directive needs to extend the {% api "AsyncDirective" %} base class, which provides a `setValue()` API.
 
 Here's an example of a simple async directive that renders a Promise value:
+
+{% switchable-sample %}
 
 ```ts
 class ResolvePromise extends AsyncDirective {
@@ -245,6 +360,22 @@ class ResolvePromise extends AsyncDirective {
 }
 export const resolvePromise = directive(ResolvePromise);
 ```
+
+```js
+class ResolvePromise extends AsyncDirective {
+  render(promise) {
+    Promise.resolve(promise).then((resolvedValue) => {
+      // Rendered asynchronously:
+      this.setValue(resolvedValue);
+    });
+    // Rendered synchronously:
+    return `Waiting for promise to resolve`;
+  }
+}
+export const resolvePromise = directive(ResolvePromise);
+```
+
+{% endswitchable-sample %}
 
 Here, the rendered template shows "Waiting for promise to resolve," followed by the resolved value of the promise, whenever it resolves.
 
@@ -268,6 +399,8 @@ Note that it is possible for an `AsyncDirective` to continue receiving updates w
 </div>
 
 Below is an example of a directive that subscribes to an `Observable` and handles disconnection and reconnection appropriately:
+
+{% switchable-sample %}
 
 ```ts
 class ObserveDirective extends AsyncDirective {
@@ -305,3 +438,40 @@ class ObserveDirective extends AsyncDirective {
 }
 export const observe = directive(ObserveDirective);
 ```
+
+```js
+class ObserveDirective extends AsyncDirective {
+  // When the observable changes, unsubscribe to the old one and
+  // subscribe to the new one
+  render(observable) {
+    if (this.observable !== observable) {
+      this.unsubscribe?.();
+      this.observable = observable
+      if (this.isConnected)  {
+        this.subscribe(observable);
+      }
+    }
+    return noChange;
+  }
+  // Subscribes to the observable, calling the directive's asynchronous
+  // setValue API each time the value changes
+  subscribe(observable) {
+    this.unsubscribe = observable.subscribe((v) => {
+      this.setValue(v);
+    });
+  }
+  // When the directive is disconnected from the DOM, unsubscribe to ensure
+  // the directive instance can be garbage collected
+  disconnected() {
+    this.unsubscribe();
+  }
+  // If the subtree the directive is in was disconneted and subsequently
+  // re-connected, re-subscribe to make the directive operable again
+  reconnected() {
+    this.subscribe(this.observable);
+  }
+}
+export const observe = directive(ObserveDirective);
+```
+
+{% endswitchable-sample %}
