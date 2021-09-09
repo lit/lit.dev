@@ -7,7 +7,8 @@
 import {BlockingRenderer} from './blocking-renderer.js';
 import {outdent} from 'outdent';
 import * as fs from 'fs/promises';
-import {ProjectManifest} from 'playground-elements/shared/worker-api.js';
+
+import type {ProjectManifest} from 'playground-elements/shared/worker-api.js';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
@@ -24,6 +25,47 @@ interface EleventyConfig {
   addMarkdownHighlighter(fn: (content: string, lang: any) => string): void;
   on(name: string, fn: () => void): void;
 }
+
+/**
+ * Returns the number of lines that the given file in the given project has,
+ * accounting for hidden regions.
+ */
+const getNumVisibleLinesForProjectFile = async (
+  project: string,
+  filename: string
+): Promise<{ts: number; js: number}> => {
+  const tsData = removeHiddenRegions(
+    filename,
+    await fs.readFile(`samples/${project}/${filename}`, 'utf8')
+  );
+  const tsLines = tsData.split('\n').length;
+  let jsLines;
+  if (filename.endsWith('.ts')) {
+    const jsFilename = filename.replace(/\.ts$/, '.js');
+    const jsData = removeHiddenRegions(
+      filename,
+      await fs.readFile(`samples/js/${project}/${jsFilename}`, 'utf8')
+    );
+    jsLines = jsData.split('\n').length;
+  } else {
+    jsLines = tsLines;
+  }
+  return {ts: tsLines, js: jsLines};
+};
+
+const removeHiddenRegions = (filename: string, code: string): string => {
+  // For reference see:
+  // https://github.com/PolymerLabs/playground-elements/blob/ce3e12e6e23bcd3e0b2cbfc3584a1191c3ca6663/src/playground-code-editor.ts#L486
+  let pattern;
+  if (filename.endsWith('.html')) {
+    pattern =
+      /( *<!-- *playground-(?<kind>hide|fold) *-->\n?)(?:(.*?)( *<!-- *playground-\k<kind>-end *-->\n?))?/gs;
+  } else {
+    pattern =
+      /( *\/\* *playground-(?<kind>hide|fold) *\*\/\n?)(?:(.*?)( *\/\* *playground-\k<kind>-end *\*\/\n?))?/gs;
+  }
+  return code.replace(pattern, '');
+};
 
 /**
  * Adds syntax highlighters using playground-elements.
@@ -124,14 +166,16 @@ export const playgroundPlugin = (
       );
     }
     const config = await readProjectConfig(project);
-
-    // Note we explicitly set "height" here so that the pre-upgrade height is
-    // correct, to prevent layout shift.
-    const editorHeight = config.editorHeight ?? '300px';
+    const firstFilename = Object.keys(config.files ?? {})[0];
+    const numVisibleLines = await getNumVisibleLinesForProjectFile(
+      project,
+      firstFilename
+    );
     const previewHeight = config.previewHeight ?? '120px';
     return `
     <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
-      style="--litdev-example-editor-height:${editorHeight};
+      style="--litdev-example-editor-lines-ts:${numVisibleLines.ts};
+             --litdev-example-editor-lines-js:${numVisibleLines.js};
              --litdev-example-preview-height:${previewHeight}"
       project=${project}
     >
@@ -140,7 +184,6 @@ export const playgroundPlugin = (
   });
 
   type LitProjectConfig = ProjectManifest & {
-    editorHeight?: string;
     previewHeight?: string;
   };
 
@@ -158,21 +201,21 @@ export const playgroundPlugin = (
             `Usage {% playground-example "project/dir" "filename.js" %}`
         );
       }
-
       const config = await readProjectConfig(project);
       if (!config.files?.[filename]) {
         throw new Error(
           `Could not find file "${filename}" in playground project "${project}"`
         );
       }
-
-      // Note we explicitly set "height" here so that the pre-upgrade height is
-      // correct, to prevent layout shift.
-      const editorHeight = config.editorHeight ?? '300px';
+      const numVisibleLines = await getNumVisibleLinesForProjectFile(
+        project,
+        filename
+      );
       const previewHeight = config.previewHeight ?? '120px';
       return `
       <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
-        style="--litdev-example-editor-height:${editorHeight};
+        style="--litdev-example-editor-lines-ts:${numVisibleLines.ts};
+               --litdev-example-editor-lines-js:${numVisibleLines.js};
                --litdev-example-preview-height:${previewHeight}"
         project=${project}
         filename=${filename}
