@@ -6,10 +6,25 @@ Here we've given you a basic component definition. In this step you'll declare a
 
     Add the following field to the `MyElement` class:
 
-    ```js
+    {% switchable-sample %}
+
+    ```ts
     @property()
     message: string = 'Hello again.';
     ```
+
+    ```js
+    static properties = {
+      message: {},
+    };
+
+    constructor() {
+      super();
+      this.message = 'Hello again.';
+    }
+    ```
+
+    {% endswitchable-sample %}
 
     The code snippet above adds a string property called `message` to your element class. The `@property` decorator identifies it as a reactive property.
 
