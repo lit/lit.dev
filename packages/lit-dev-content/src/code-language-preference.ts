@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-type CodeLanguagePreference = 'ts' | 'js';
+export type CodeLanguagePreference = 'ts' | 'js';
 
 const LOCAL_STORAGE_KEY = 'code-language-preference';
 
