@@ -190,9 +190,6 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onCodeLanguagePreferenceChanged = () => {
-    // TODO(aomarks) If the user has modified the code, we should show a dialog
-    // on the Playground along the lines of "Switching languages will lose your
-    // changes [Accept] [Cancel]".
     this._setProjectSrc(
       this._solved ? this._info.projectSrcAfter : this._info.projectSrcBefore,
       true
