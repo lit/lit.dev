@@ -213,7 +213,7 @@ export class LitDevTutorial extends LitElement {
 
   private _onClickReset() {
     this._solved = false;
-    this._setProjectSrc(this._info.projectSrcBefore);
+    this._setProjectSrc(this._info.projectSrcBefore, true);
   }
 
   private _onClickNextButton(event: Event) {
