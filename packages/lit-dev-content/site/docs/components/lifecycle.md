@@ -371,6 +371,70 @@ class MyElement extends LitElement {
 }
 ```
 
+## External lifecycle hooks: controllers and decorators
+
+In addition to component classes implementing lifecycle callbacks, external code, such as [decorators](/docs/components/decorators/) may need to hook a component's lifecycle.
+
+Lit offers two concepts for external code to integrate with the reactive update lifecycle: `static addInitializer()` and `addController()`:
+
+#### static addInitializer() {#addInitializer}
+
+`addInitializer()` allows code that has access to a Lit class definition to run code when instances of the class are constructed.
+
+This is very useful when writing custom decorators. Decorators are run at class definition time, and can do things like replace field and method definitions. If they also need to do work when an instance is created, they must call `addInitializer()`. It will be common to use this to add a [reactive controller](/docs/composition/controllers/) so decorators can hook the component lifecycle:
+
+{% switchable-sample %}
+
+```ts
+// A TypeScript decorator
+const myDecorator = (proto: ReactiveElement, key: string) => {
+  const ctor = proto.constructor as typeof ReactiveElement;
+
+  ctor.addInitializer((instance: ReactiveElement) => {
+    // This is run during construction of the element
+    new MyController(instance);
+  });
+};
+```
+
+```js
+// A Babel "Stage 2" decorator
+const myDecorator = (descriptor) => {
+  ...descriptor,
+  finisher(ctor) {
+    ctor.addInitializer((instance) => {
+      // This is run during construction of the element
+      new MyController(instance);
+    });
+  },
+};
+```
+
+{% endswitchable-sample %}
+
+
+Decorating a field will then cause each instance to run an an initializer
+that adds a controller:
+
+```ts
+class MyElement extends LitElement {
+  @myDecorator foo;
+}
+```
+
+Initializers are stored per-constructor. Adding an initializer to a
+subclass does not add it to a superclass. Since initializers are run in
+constructors, initializers will run in order of the class hierarchy,
+starting with superclasses and progressing to the instance's class.
+
+#### addController() {#addController}
+
+`addController()` adds a reactive controller to a Lit component so that the component invokes the controller's lifecycle callbacks. See the [Reactive Controller](/docs/composition/controllers/) docs for more information.
+
+#### removeController() {#removeController}
+
+`removeController()` removes a reactive controller so it no longer receives lifecycle callbacks from this component.
+
 ## Server-side reactive update cycle {#server-reactive-update-cycle}
 
 <div class="alert alert-info">
