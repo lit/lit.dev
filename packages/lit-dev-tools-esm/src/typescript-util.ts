@@ -5,7 +5,6 @@
  */
 
 import ts from 'typescript';
-import fs from 'fs';
 import pathlib from 'path';
 
 /**
@@ -33,8 +32,13 @@ export interface InvokeTypeScriptOpts {
  * without errors. Diagnostics are logged to stderr.
  */
 export const compileTypeScriptOnce = (opts: InvokeTypeScriptOpts): boolean => {
+  const rawConfig = ts.readConfigFile(opts.tsConfigPath, ts.sys.readFile);
+  if (rawConfig.error !== undefined) {
+    logDiagnostic(rawConfig.error);
+    return false;
+  }
   const config = ts.parseJsonConfigFileContent(
-    JSON.parse(fs.readFileSync(opts.tsConfigPath, 'utf8')),
+    rawConfig.config,
     ts.sys,
     pathlib.dirname(opts.tsConfigPath)
   );
