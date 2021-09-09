@@ -24,7 +24,9 @@ You can create a new element anywhere in your project's sources:
 
 _lib/components/my-element.ts_
 
-```js
+{% switchable-sample %}
+
+```ts
 import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
@@ -37,6 +39,21 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+import {LitElement, html} from 'lit';
+
+class MyElement extends LitElement {
+  render() {
+    return html`
+      <div>Hello from MyElement!</div>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 ## Use your component
 

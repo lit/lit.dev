@@ -57,6 +57,8 @@ A reactive controller is an object associated with a host component, which imple
 
 A controller registers itself with its host component by calling `host.addController(this)`. Usually a controller stores a reference to its host component so that it can interact with it later.
 
+{% switchable-sample %}
+
 ```ts
 class ClockController implements ReactiveController {
   private host: ReactiveControllerHost;
@@ -70,7 +72,22 @@ class ClockController implements ReactiveController {
 }
 ```
 
+```js
+class ClockController {
+  constructor(host) {
+    // Store a reference to the host
+    this.host = host;
+    // Register for lifecycle updates
+    host.addController(this);
+  }
+}
+```
+
+{% endswitchable-sample %}
+
 You can add other constructor parameters for one-time configuration.
+
+{% switchable-sample %}
 
 ```ts
 class ClockController implements ReactiveController {
@@ -83,6 +100,18 @@ class ClockController implements ReactiveController {
     host.addController(this);
   }
 ```
+
+```js
+class ClockController {
+  constructor(host, timeout) {
+    this.host = host;
+    this.timeout = timeout;
+    host.addController(this);
+  }
+```
+
+{% endswitchable-sample %}
+
 
 Once your controller is registered with the host component, you can add lifecycle callbacks and other class fields and methods to the controller to implement the desired state and behavior.
 
@@ -124,6 +153,8 @@ You can also create controllers that are specific to `HTMLElement`, `ReactiveEle
 
 Controllers can be composed of other controllers as well. To do this create a child controller and forward the host to it.
 
+{% switchable-sample %}
+
 ```ts
 class DualClockController implements ReactiveController {
   private clock1: ClockController;
@@ -138,6 +169,20 @@ class DualClockController implements ReactiveController {
   get time2() { return this.clock2.value; }
 }
 ```
+
+```js
+class DualClockController {
+  constructor(host, delay1, delay2) {
+    this.clock1 = new ClockController(host, delay1);
+    this.clock2 = new ClockController(host, delay2);
+  }
+
+  get time1() { return this.clock1.value; }
+  get time2() { return this.clock2.value; }
+}
+```
+
+{% endswitchable-sample %}
 
 ### Controllers and directives
 
@@ -159,6 +204,8 @@ Directives do not need to be standalone functions, they can be methods on other 
 
 For example, imagine a ResizeController that lets you observe an element's size with a ResizeObserver. To work we need both a ResizeController instance, and a directive that is placed on the element we want to observe:
 
+{% switchable-sample %}
+
 ```ts
 class MyElement extends LitElement {
   private _textSize = new ResizeController(this);
@@ -171,6 +218,21 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  _textSize = new ResizeController(this);
+
+  render() {
+    return html`
+      <textarea ${this._textSize.observe()}></textarea>
+      <p>The width is ${this._textSize.contentRect?.width}</p>
+    `;
+  }
+}
+```
+
+{% endswitchable-sample %}
 
 To implement this, you create a directive and call it from a method:
 

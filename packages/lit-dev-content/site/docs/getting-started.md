@@ -33,10 +33,18 @@ npm i lit
 
 Then import into JavaScript or TypeScript files:
 
+{% switchable-sample %}
+
 ```ts
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 ```
+
+```js
+import {LitElement, html} from 'lit';
+```
+
+{% endswitchable-sample %}
 
 ## Add Lit to an existing project
 
