@@ -51,7 +51,7 @@ private _counter = 0;
 
 ```js
 static properties = {
-  _counter: {};
+  _counter: {state: true};
 };
 
 constructor()
