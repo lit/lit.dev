@@ -25,6 +25,6 @@
 
 .jsSamples {
   /* TODO(aomarks) Remove when JS samples launch, and update the
-  litdev-typescript-switch display property to match this. */
-  --litdev-typescript-switch-display: inline-flex;
+  litdev-code-language-switch display property to match this. */
+  --litdev-code-language-switch-display: inline-flex;
 }

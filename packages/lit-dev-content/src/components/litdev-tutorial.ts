@@ -10,9 +10,9 @@ import {PlaygroundProject} from 'playground-elements/playground-project.js';
 import {manifest, TutorialStep} from './litdev-tutorial-manifest.js';
 import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import {
-  getTypeScriptPreference,
-  TYPESCRIPT_PREFERENCE_EVENT_NAME,
-} from '../typescript-preference.js';
+  getCodeLanguagePreference,
+  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+} from '../code-language-preference.js';
 import '@material/mwc-icon-button';
 import './litdev-example-controls.js';
 
@@ -170,8 +170,8 @@ export class LitDevTutorial extends LitElement {
     this._readUrl();
     window.addEventListener('hashchange', this._readUrl);
     window.addEventListener(
-      TYPESCRIPT_PREFERENCE_EVENT_NAME,
-      this._onTypeScriptPreferenceChanged
+      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      this._onCodeLanguagePreferenceChanged
     );
   }
 
@@ -179,12 +179,12 @@ export class LitDevTutorial extends LitElement {
     super.disconnectedCallback();
     window.removeEventListener('hashchange', this._readUrl);
     window.removeEventListener(
-      TYPESCRIPT_PREFERENCE_EVENT_NAME,
-      this._onTypeScriptPreferenceChanged
+      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      this._onCodeLanguagePreferenceChanged
     );
   }
 
-  private _onTypeScriptPreferenceChanged = () => {
+  private _onCodeLanguagePreferenceChanged = () => {
     this._loadStep();
   };
 
@@ -304,7 +304,7 @@ export class LitDevTutorial extends LitElement {
       return undefined;
     }
     const samplesRoot =
-      getTypeScriptPreference() === 'ts' ? '/samples' : '/samples/js';
+      getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
     return {
       ...info,
       idx,

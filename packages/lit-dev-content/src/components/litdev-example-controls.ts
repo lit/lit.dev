@@ -6,7 +6,7 @@
 
 import {LitElement, html, css, customElement, property} from 'lit-element';
 import {nothing} from 'lit-html';
-import './litdev-typescript-switch.js';
+import './litdev-code-language-switch.js';
 
 /**
  * Controls for lit.dev code examples.
@@ -39,13 +39,13 @@ export class LitDevExampleControls extends LitElement {
   project?: string;
 
   @property({type: Boolean})
-  hideTypeScriptSwitch = false;
+  hideCodeLanguageSwitch = false;
 
   override render() {
     return html`
-      ${this.hideTypeScriptSwitch
+      ${this.hideCodeLanguageSwitch
         ? nothing
-        : html`<litdev-typescript-switch></litdev-typescript-switch>`}
+        : html`<litdev-code-language-switch></litdev-code-language-switch>`}
       ${this.project
         ? html`<a
             id="openInPlayground"

@@ -56,3 +56,13 @@ playground-tab-bar {
 playground-file-editor {
   background: white;
 }
+
+body[code-language-preference="ts"] litdev-switchable-sample > pre > code.language-js {
+  /* Hide JS samples when preference is TS. */
+  display: none;
+}
+
+body[code-language-preference="js"] litdev-switchable-sample > pre > code.language-ts {
+  /* Hide TS samples when preference is JS. */
+  display: none;
+}

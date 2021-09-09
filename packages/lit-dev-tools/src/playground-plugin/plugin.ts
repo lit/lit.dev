@@ -181,4 +181,40 @@ export const playgroundPlugin = (
     `.trim();
     }
   );
+
+  /**
+   * A static highlighted code snippet which can be toggled between JavaScript
+   * and TypeScript.
+   *
+   * Usage:
+   *
+   *   {% switchable-sample %}
+   *
+   *   ```ts
+   *   const foo: string = 123;
+   *   ```
+   *
+   *   ```js
+   *   const foo = 123;
+   *   ```
+   *
+   *   {% endswitchable-sample %}
+   */
+  eleventyConfig.addPairedShortcode('switchable-sample', (content: string) => {
+    const match = content.match(
+      /^\s*\n\n```ts\n(.+)\n```\s+```js\n(.+)\n```\s*$/s
+    );
+    if (match === null) {
+      throw new Error(
+        'Invalid {% switchable-sample %}.' +
+          ' Expected one ```ts block followed by one ```js block.' +
+          ' There also must be a blank line between the {% switchable-sample %} and the ```ts block.'
+      );
+    }
+    return `<litdev-switchable-sample>${content}</litdev-switchable-sample>`;
+  });
+
+  eleventyConfig.addMarkdownHighlighter(
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+  );
 };
