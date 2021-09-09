@@ -9,6 +9,7 @@ import {
   getCodeLanguagePreference,
   setCodeLanguagePreference,
   CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+  CodeLanguagePreference,
 } from '../code-language-preference.js';
 
 /**
@@ -112,11 +113,32 @@ export class LitDevCodeLanguageSwitch extends LitElement {
   }
 
   private _onClickJs() {
-    setCodeLanguagePreference('js');
+    this._changeLanguageAndAdjustScroll('js');
   }
 
   private _onClickTs() {
-    setCodeLanguagePreference('ts');
+    this._changeLanguageAndAdjustScroll('ts');
+  }
+
+  /**
+   * Set the language preference and re-scroll the window so that this button
+   * remains in the same position relative to the viewport.
+   *
+   * Code samples commonly have a different number of lines in TypeScript vs
+   * JavaScript. This can cause page layout shifts when the language changes,
+   * especially because changing the language for one sample changes it for all
+   * other samples on the page too. These shifts are very visually distracting,
+   * and can even cause the active code sample to move entirely out of view.
+   *
+   * We mitigate this by comparing the viewport-relative position of this
+   * particular instance of the language switch before and after the change, and
+   * re-scrolling the window so it remains in the same visual location.
+   */
+  private _changeLanguageAndAdjustScroll(language: CodeLanguagePreference) {
+    const viewportYBefore = this.getBoundingClientRect().y;
+    setCodeLanguagePreference(language);
+    const viewportYAfter = this.getBoundingClientRect().y;
+    window.scrollBy({top: viewportYAfter - viewportYBefore});
   }
 }
 
