@@ -196,6 +196,7 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
       parser: 'typescript',
       singleQuote: true,
       bracketSpacing: false,
+      embeddedLanguageFormatting: 'off',
     });
     return js;
   },
