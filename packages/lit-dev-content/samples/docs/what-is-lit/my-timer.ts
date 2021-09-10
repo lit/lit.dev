@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit';
-/* playground-fold */
 import {customElement, property, state} from 'lit/decorators.js';
+/* playground-fold */
 import {play, pause, replay} from './icons.js';
 /* playground-fold-end */
 
