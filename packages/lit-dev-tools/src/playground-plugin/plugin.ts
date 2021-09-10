@@ -63,6 +63,8 @@ const countVisibleLines = (filename: string, code: string): number => {
     if (kind === 'fold') {
       // In the fold case a clickable "..." is put in its place. For some
       // reason, these lines have slightly more height than a normal code line.
+      // TODO(aomarks) Ideally these would be the same height. Investigate in
+      // CodeMirror/Playground.
       count += 1.03;
     }
   }
