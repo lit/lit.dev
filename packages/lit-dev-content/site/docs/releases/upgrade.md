@@ -221,7 +221,7 @@ relatively few users.
 * The dirty check in `attributeChangedCallback` has been removed. While technically breaking, in practice it should very rarely be ([#699](https://github.com/Polymer/lit-element/issues/699)).
 * LitElement's `adoptStyles` method has been removed. Styling is now adopted in `createRenderRoot`. This method may be overridden to customize this behavior.
 * Removed `requestUpdateInternal`. The `requestUpdate` method is now identical to this method and should be used instead.
-* The type of the `css` function has been changed to `CSSResultGroup` and is now the same as `LitElement.styles`. This avoids the need to cast the `styles` property to `any` when a subclass sets `styles` to an Array and its super class set a single value (or visa versa).
+* The type of the `css` function has been changed to `CSSResultGroup` and is now the same as `LitElement.styles`. This avoids the need to cast the `styles` class field to `any` when a subclass sets `styles` to an Array and its super class set a single value (or visa versa).
 
 ### `lit-html`
 * `render()` no longer clears the container it's rendered to on first render. It now appends to the container by default.

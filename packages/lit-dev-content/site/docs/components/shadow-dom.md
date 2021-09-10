@@ -267,7 +267,7 @@ See [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/El
 
 ### Implementing `createRenderRoot`
 
-The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` property. For more information on styling see [Styles](/docs/components/styles/).
+The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` class field. For more information on styling see [Styles](/docs/components/styles/).
 
 To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
 

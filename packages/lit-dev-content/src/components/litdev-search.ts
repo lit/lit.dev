@@ -358,57 +358,55 @@ class LitdevSearchOption extends LionOption {
   @property({type: Boolean})
   isSubsection = false;
 
-  static get styles() {
-    return [
-      ...super.styles,
-      css`
+  static styles = [
+    ...super.styles,
+    css`
+      .suggestion {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        padding: 0.2em 2em;
+        border-block-end: 1px solid #ddd;
+        background-color: white;
+        color: black;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .title-and-header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .title,
+      .header {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .header {
+        font-size: 0.9em;
+        font-weight: 600;
+      }
+
+      .api-tag {
+        color: white;
+        background-color: #6e6e6e;
+        padding: 0 0.5em;
+        margin-left: 1em;
+        font-weight: 600;
+      }
+
+      @media (max-width: 864px) {
         .suggestion {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 50px;
-          padding: 0.2em 2em;
-          border-block-end: 1px solid #ddd;
-          background-color: white;
-          color: black;
-          font-size: 16px;
-          cursor: pointer;
+          padding: 0.2em 0.4em;
         }
-
-        .title-and-header {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-        }
-
-        .title,
-        .header {
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-        }
-
-        .header {
-          font-size: 0.9em;
-          font-weight: 600;
-        }
-
-        .api-tag {
-          color: white;
-          background-color: #6e6e6e;
-          padding: 0 0.5em;
-          margin-left: 1em;
-          font-weight: 600;
-        }
-
-        @media (max-width: 864px) {
-          .suggestion {
-            padding: 0.2em 0.4em;
-          }
-        }
-      `,
-    ];
-  }
+      }
+    `,
+  ];
 
   render() {
     return html`
