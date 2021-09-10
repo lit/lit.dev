@@ -34,37 +34,39 @@ const getNumVisibleLinesForProjectFile = async (
   project: string,
   filename: string
 ): Promise<{ts: number; js: number}> => {
-  const tsData = removeHiddenRegions(
-    filename,
-    await fs.readFile(`samples/${project}/${filename}`, 'utf8')
-  );
-  const tsLines = tsData.split('\n').length;
+  const tsData = await fs.readFile(`samples/${project}/${filename}`, 'utf8');
+  const tsLines = countVisibleLines(filename, tsData);
   let jsLines;
   if (filename.endsWith('.ts')) {
     const jsFilename = filename.replace(/\.ts$/, '.js');
-    const jsData = removeHiddenRegions(
-      filename,
-      await fs.readFile(`samples/js/${project}/${jsFilename}`, 'utf8')
+    const jsData = await fs.readFile(
+      `samples/js/${project}/${jsFilename}`,
+      'utf8'
     );
-    jsLines = jsData.split('\n').length;
+    jsLines = countVisibleLines(jsFilename, jsData);
   } else {
     jsLines = tsLines;
   }
   return {ts: tsLines, js: jsLines};
 };
 
-const removeHiddenRegions = (filename: string, code: string): string => {
+const countVisibleLines = (filename: string, code: string): number => {
+  let count = code.split('\n').length;
   // For reference see:
   // https://github.com/PolymerLabs/playground-elements/blob/ce3e12e6e23bcd3e0b2cbfc3584a1191c3ca6663/src/playground-code-editor.ts#L486
-  let pattern;
-  if (filename.endsWith('.html')) {
-    pattern =
-      /( *<!-- *playground-(?<kind>hide|fold) *-->\n?)(?:(.*?)( *<!-- *playground-\k<kind>-end *-->\n?))?/gs;
-  } else {
-    pattern =
-      /( *\/\* *playground-(?<kind>hide|fold) *\*\/\n?)(?:(.*?)( *\/\* *playground-\k<kind>-end *\*\/\n?))?/gs;
+  const pattern = filename.endsWith('.html')
+    ? /( *<!-- *playground-(?<kind>hide|fold) *-->\n?)(?:(.*?)( *<!-- *playground-\k<kind>-end *-->\n?))?/gs
+    : /( *\/\* *playground-(?<kind>hide|fold) *\*\/\n?)(?:(.*?)( *\/\* *playground-\k<kind>-end *\*\/\n?))?/gs;
+  for (const [content, , kind] of code.matchAll(pattern)) {
+    // Remove the lines within the hidden/folded region.
+    count -= content.split('\n').length;
+    if (kind === 'fold') {
+      // In the fold case a clickable "..." is put in its place. For some
+      // reason, these lines have slightly more height than a normal code line.
+      count += 1.03;
+    }
   }
-  return code.replace(pattern, '');
+  return count;
 };
 
 /**
