@@ -125,7 +125,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       <button
         role="switch"
         aria-checked=${mode == 'ts' ? 'true' : 'false'}
-        aria-title="Toggle TypeScript"
+        aria-label="Toggle TypeScript"
         title=${mode === 'ts' ? 'Disable TypeScript' : 'Enable TypeScript'}
         position=${mode}
         @click=${this._toggleLanguageAndAdjustScroll}
