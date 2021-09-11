@@ -80,13 +80,6 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       left: 50%;
     }
 
-    [aria-checked='true'] > #tsLabel,
-    [aria-checked='false'] > #jsLabel {
-      color: white;
-      font-weight: 600;
-      opacity: 100%;
-    }
-
     #jsLabel,
     #tsLabel {
       display: inline-flex;
@@ -94,6 +87,13 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       padding-left: 0.25em;
       opacity: 60%;
       transition: color 100ms, opacity 100ms;
+    }
+
+    [aria-checked='true'] > #tsLabel,
+    [aria-checked='false'] > #jsLabel {
+      color: white;
+      font-weight: 600;
+      opacity: 100%;
     }
   `;
 
