@@ -62,6 +62,12 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       border-radius: 1em;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      #toggle {
+        transition: none;
+      }
+    }
+
     button:hover > #toggle {
       background: #005cc5bd;
     }
