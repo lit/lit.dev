@@ -95,7 +95,7 @@ The argument to the `@property`  decorators is an [options object](#property-opt
 
 </div>
 
-### Declaring properties in a static properties field
+### Declaring properties in a static properties class field
 
 To declare properties in a static `properties` class field:
 
