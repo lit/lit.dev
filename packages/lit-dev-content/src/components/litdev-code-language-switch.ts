@@ -56,7 +56,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       height: 100%;
       top: 0;
       transition: left 100ms;
-      background: #888;
+      background: #767676;
       z-index: -1;
       box-shadow: rgb(0 0 0 / 30%) 1px 1px 2px;
       border-radius: 1em;
