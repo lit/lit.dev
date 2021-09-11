@@ -24,13 +24,16 @@ export class LitDevExampleControls extends LitElement {
       display: flex;
       color: inherit;
       opacity: 70%;
-      margin-right: 10px;
       fill: #5f5f5f;
     }
 
     #openInPlayground:hover {
       opacity: 100%;
       fill: #005cc5bd;
+    }
+
+    litdev-code-language-switch {
+      margin-left: 10px;
     }
   `;
 
