@@ -72,16 +72,16 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       background: #005cc5bd;
     }
 
-    [position='js'] > #toggle {
+    [aria-checked='false'] > #toggle {
       left: 0;
     }
 
-    [position='ts'] > #toggle {
+    [aria-checked='true'] > #toggle {
       left: 50%;
     }
 
-    [position='ts'] > #tsLabel,
-    [position='js'] > #jsLabel {
+    [aria-checked='true'] > #tsLabel,
+    [aria-checked='false'] > #jsLabel {
       color: white;
       font-weight: 600;
       opacity: 100%;
@@ -127,7 +127,6 @@ export class LitDevCodeLanguageSwitch extends LitElement {
         aria-checked=${mode == 'ts' ? 'true' : 'false'}
         aria-label="Toggle TypeScript"
         title=${mode === 'ts' ? 'Disable TypeScript' : 'Enable TypeScript'}
-        position=${mode}
         @click=${this._toggleLanguageAndAdjustScroll}
       >
         <span id="jsLabel">JS</span>
