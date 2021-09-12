@@ -21,22 +21,28 @@ import {
 @customElement('litdev-code-language-switch')
 export class LitDevCodeLanguageSwitch extends LitElement {
   static override styles = css`
+    :host,
+    * {
+      box-sizing: border-box;
+    }
+
     :host {
       /* TODO(aomarks) Fix as inline-flex after jsSamples mod is retired. */
       display: var(--litdev-code-language-switch-display, none);
+      align-items: center;
       font-size: 13px;
-      width: 3.3em;
-      height: 1.6em;
+      width: calc(48em / 13);
+      height: calc(27em / 13);
       border-radius: 1em;
-      padding: 0.1em 0.2em;
-      border: 1.5px solid #ccc;
+      padding: calc(2em / 13);
+      border: calc(1.5em / 13) solid #ccc;
       background: white;
-      box-shadow: rgb(0 0 0 / 5%) 0px 0px 1px 1px inset;
       font-family: 'Open Sans', sans-serif;
     }
 
     button {
       flex: 1;
+      height: 100%;
       display: flex;
       position: relative;
       font-size: inherit;
@@ -58,7 +64,6 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       transition: left 100ms;
       background: #767676;
       z-index: -1;
-      box-shadow: rgb(0 0 0 / 30%) 1px 1px 2px;
       border-radius: 1em;
     }
 
@@ -84,7 +89,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
     #tsLabel {
       display: inline-flex;
       z-index: 1;
-      padding-left: 0.25em;
+      padding: 0 0 calc(1em / 13) calc(3em / 13);
       opacity: 60%;
       transition: color 100ms, opacity 100ms;
     }
