@@ -4,12 +4,10 @@ import {Highlightable} from './highlightable.js'
 
 @customElement('element-two')
 export class ElementTwo extends Highlightable(LitElement) {
-  static get styles() {
-    return [
-      super.styles || [],
-      css`:host { display: block; }`
-    ];
-  }
+  static styles = [
+    super.styles || [],
+    css`:host { display: block; }`
+  ];
   render(){
     return this.renderHighlight(html`
       <label>

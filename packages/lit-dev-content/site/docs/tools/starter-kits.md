@@ -133,11 +133,9 @@ A couple of things to look for in the code:
     ```js
     export class MyElement extends LitElement {
 
-      static get properties() {
-        return {
-          name: {type: String}
-        }
-      }
+      static properties = {
+        name: {type: String}
+      };
 
       constructor() {
         super();

@@ -6,16 +6,14 @@ class MyElement extends LitElement {
   @property({type: Boolean, reflect: true})
   active: boolean = false;
 
-  static get styles() {
-    return css`
-      :host {
-        display: inline-block;
-      }
+  static styles = css`
+    :host {
+      display: inline-block;
+    }
 
-      :host([active]) {
-        border: 1px solid red;
-      }`;
-  }
+    :host([active]) {
+      border: 1px solid red;
+    }`;
 
   render() {
     return html`

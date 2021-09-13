@@ -95,18 +95,16 @@ The argument to the `@property`  decorators is an [options object](#property-opt
 
 </div>
 
-### Declaring properties in a static properties field
+### Declaring properties in a static properties class field
 
-To declare properties in a static `properties` field:
+To declare properties in a static `properties` class field:
 
 ```js
 class MyElement extends LitElement {
-  static get properties() {
-    return {
-      mode: {type: String},
-      data: {attribute: false},
-    };
-  }
+  static properties = {
+    mode: {type: String},
+    data: {attribute: false},
+  };
 
   constructor() {
     super();
@@ -215,14 +213,12 @@ Use the `@state` decorator to declare internal reactive state:
 protected _active = false;
 ```
 
-Using the static `properties` getter, you can declare internal reactive state by using the `state: true` option.
+Using the static `properties` class field, you can declare internal reactive state by using the `state: true` option.
 
 ```js
-static get properties() {
-  return {
-    _active: {state: true}
-  }
-}
+static properties = {
+  _active: {state: true}
+};
 
 constructor() {
   this._active = false;
@@ -549,9 +545,9 @@ In rare cases, a subclass may need to change or add property options for a prope
 To prevent Lit from generating a property accessor that overwrites the superclass's defined accessor, set `noAccessor` to `true` in the property declaration:
 
 ```js
-static get properties() {
-  return { myProp: { type: Number, noAccessor: true } };
-}
+static properties = {
+  myProp: { type: Number, noAccessor: true }
+};
 ```
 
 You don't need to set `noAccessor` when defining your own accessors.

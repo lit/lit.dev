@@ -8,14 +8,12 @@ type ToDoItem = {
 
 @customElement('todo-list')
 export class ToDoList extends LitElement {
-  static get styles() {
-    return css`
-      .completed {
-        text-decoration-line: line-through;
-        color: #777;
-      }
-    `;
-  }
+  static styles = css`
+    .completed {
+      text-decoration-line: line-through;
+      color: #777;
+    }
+  `;
 
   @property()
   listItems = [

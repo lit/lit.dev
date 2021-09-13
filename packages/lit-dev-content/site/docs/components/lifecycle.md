@@ -34,8 +34,8 @@ Perform one time initialization tasks that must be done before the first [update
 ```js
 constructor() {
   super();
-  this.foo = ‘foo’;
-  this.bar = ‘bar’;
+  this.foo = 'foo';
+  this.bar = 'bar';
 }
 ```
 ### connectedCallback() {#connectedcallback}
@@ -55,7 +55,7 @@ In `connectedCallback()` you should setup tasks that should only occur when the 
 ```js
 connectedCallback() {
   super.connectedCallback()
-  addEventListener(‘keydown’, this._handleKeydown);
+  addEventListener('keydown', this._handleKeydown);
 }
 ```
 ### disconnectedCallback() {#disconnectedcallback}
@@ -73,7 +73,7 @@ This callback is the main signal to the element that it may no longer be used; a
 ```js
 disconnectedCallback() {
   super.disconnectedCallback()
-  window.removeEventListener(‘keydown’, this._handleKeydown);
+  window.removeEventListener('keydown', this._handleKeydown);
 }
 ```
 
@@ -174,7 +174,7 @@ The list of properties that have changed is stored in a Map that’s passed to a
 Optionally, you can pass a property name and a previous value when calling `requestUpdate()`, which will be stored in the `changedProperties` map. This can be useful if you implement a custom getter and setter for a property. See [Reactive properties](/docs/components/properties/) for more information about implementing custom getters and setters.
 
 ```js
-  this.requestUpdate(‘state’, this._previousState);
+  this.requestUpdate('state', this._previousState);
 ```
 
 ### Performing an update {#reactive-update-cycle-performing}
@@ -221,7 +221,7 @@ Implement `willUpdate()` to compute property values that depend on other propert
 ```js
 willUpdate(changedProperties) {
   // only need to check changed properties for an expensive computation.
-  if (changedProperties.has(‘firstName’) || changedProperties.has(‘lastName’)) {
+  if (changedProperties.has('firstName') || changedProperties.has('lastName')) {
     this.sha = computeSHA(`${this.firstName} ${this.lastName}`);
   }
 }
@@ -322,7 +322,7 @@ async _loginClickHandler() {
   this.loggedIn = true;
   // Wait for `loggedIn` state to be rendered to the DOM
   await this.updateComplete;
-  this.dispatchEvent(new Event(‘login’));
+  this.dispatchEvent(new Event('login'));
 }
 ```
 

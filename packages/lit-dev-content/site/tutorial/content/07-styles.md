@@ -2,20 +2,18 @@ You can add _encapsulated styles_ to a Lit component. Here the starting code is 
 
 In this step you'll add some styles for completed items.
 
-*   **Add a static `styles` getter.**
+*   **Add a static `styles` class field.**
 
     ```js
-    static get styles() {
-      return css`
-        .completed {
-          text-decoration-line: line-through;
-          color: #777;
-        }
-      `;
-    }
+    static styles = css`
+      .completed {
+        text-decoration-line: line-through;
+        color: #777;
+      }
+    `;
     ```
 
-    Styles defined in the static `styles` getter are scoped to the component using shadow DOM. For more information, see [Styles](/docs/components/styles/) and [Working with shadow DOM](/docs/components/shadow-dom/).
+    Styles defined in the static `styles` class field are scoped to the component using shadow DOM. For more information, see [Styles](/docs/components/styles/) and [Working with shadow DOM](/docs/components/shadow-dom/).
 
 *   **Add classes to your item template**
 

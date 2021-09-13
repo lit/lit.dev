@@ -1,15 +1,11 @@
 import {html, css, LitElement} from 'lit';
 
 export class SimpleGreeting extends LitElement {
-  static get styles() {
-    return css`p { color: blue }`;
-  }
+  static styles = css`p { color: blue }`;
 
-  static get properties() {
-    return {
-      name: {type: String}
-    }
-  }
+  static properties = {
+    name: {type: String}
+  };
 
   constructor() {
     super();

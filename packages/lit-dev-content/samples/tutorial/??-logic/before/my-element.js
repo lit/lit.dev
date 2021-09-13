@@ -1,13 +1,11 @@
 import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
-  static get properties() {
-    return { 
-      message: { type: String } 
-      // TODO: Add a boolean property
-      // TODO: Add an array property
-    };
-  }
+  static properties = {
+    message: { type: String }
+    // TODO: Add a boolean property
+    // TODO: Add an array property
+  };
   constructor() {
     super();
     this.message = 'Hello world! From my-element';

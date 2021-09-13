@@ -58,20 +58,46 @@ Before you have any translations available, `msg()` simply returns the
 unmodified template, so it's safe to start using even if you're not yet ready
 for localization.
 
+{% switchable-sample %}
+
 ```ts
 import {msg} from '@lit/localize';
-import {html, LitElement, customElement, property} from 'lit';
+import {html, LitElement} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-greeter');
 class MyGreeter extends LitElement {
   @property()
-  who: 'World';
+  who = 'World';
 
   render() {
     return msg(html`Hello <b>${this.who}</b>!`);
   }
 }
 ```
+
+```js
+import {msg} from '@lit/localize';
+import {html, LitElement} from 'lit';
+
+class MyGreeter extends LitElement {
+  static properties = {
+    who: {},
+  };
+
+  constructor() {
+    super();
+    this.who = 'World';
+  }
+
+  render() {
+    return msg(html`Hello <b>${this.who}</b>!`);
+  }
+}
+customElements.define('my-greeter', MyGreeter);
+```
+
+{% endswitchable-sample %}
 
 ## Build output modes
 
@@ -283,16 +309,21 @@ application with a different client bundle. The remainder of this section
 applies to runtime mode only.
 </div>
 
-### Localized decorator
+### Automatically re-render
 
-Apply the `@localized` decorator to your `LitElement` components to
-automatically trigger a re-render whenever the locale changes.
+To automatically trigger a re-render when the locale changes, apply the
+`@localized` decorator to your class, or call the `updateWhenLocaleChanges`
+function in your `constructor`.
+
+{% switchable-sample %}
 
 ```ts
 import {LitElement, html} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import {msg, localized} from '@lit/localize';
 
 @localized()
+@customElement('my-element');
 class MyElement extends LitElement {
   render() {
     // Whenever setLocale() is called, and templates for that locale have
@@ -301,6 +332,27 @@ class MyElement extends LitElement {
   }
 }
 ```
+
+```js
+import {LitElement, html} from 'lit';
+import {msg, updateWhenLocaleChanges} from '@lit/localize';
+
+class MyElement extends LitElement {
+  constructor() {
+    super();
+    updateWhenLocaleChanges(this);
+  }
+
+  render() {
+    // Whenever setLocale() is called, and templates for that locale have
+    // finished loading, this render() function will be re-invoked.
+    return msg(html`Hello <b>World!</b>`);
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 ### configureLocalization
 

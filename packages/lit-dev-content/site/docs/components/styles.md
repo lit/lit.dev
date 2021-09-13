@@ -12,13 +12,13 @@ Shadow DOM provides strong encapsulation for styling. If Lit did not use Shadow 
 
 ## Adding styles to your component {#add-styles}
 
-You define scoped styles in the static `styles` property using the tagged template literal `css` function. Defining styles this way results in the most optimal performance:
+You define scoped styles in the static `styles` class field using the tagged template literal `css` function. Defining styles this way results in the most optimal performance:
 
 {% playground-example "docs/components/style/basic" "my-element.ts" %}
 
 The styles you add to your component are _scoped_ using shadow DOM. For a quick overview, see [Shadow DOM](#shadow-dom).
 
-The value of the static `styles` property can be:
+The value of the static `styles` class field can be:
 
 *   A single tagged template literal.
 
@@ -32,7 +32,7 @@ The value of the static `styles` property can be:
     static styles = [ css`...`, css`...`];
     ```
 
-The static `styles` property is _almost always_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
+The static `styles` class field is _almost always_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
 
 ### Using expressions in static styles {#expressions}
 
@@ -43,12 +43,11 @@ For tree-based or per-instance style customization, use CSS custom properties to
 To prevent Lit components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
 
 ```js
-static get styles() {
-  const mainColor = css`red`;
-  return css`
-    div { color: ${mainColor} }
-  `;
-}
+const mainColor = css`red`;
+...
+static styles = css`
+  div { color: ${mainColor} }
+`;
 ```
 
 This restriction exists to protect applications from security vulnerabilities whereby malicious styles, or even malicious code, can be injected from untrusted sources such as URL parameters or database values.
@@ -56,12 +55,11 @@ This restriction exists to protect applications from security vulnerabilities wh
 If you must use an expression in a `css` literal that is not itself a `css` literal, **and** you are confident that the expression is from a fully trusted source such as a constant defined in your own code, then you can wrap the expression with the `unsafeCSS` function:
 
 ```js
-static get styles() {
-  const mainColor = 'red';
-  return css`
-    div { color: ${unsafeCSS(mainColor)} }
-  `;
-}
+const mainColor = 'red';
+...
+static styles = css`
+  div { color: ${unsafeCSS(mainColor)} }
+`;
 ```
 
 <div class="alert alert-info">
@@ -91,7 +89,7 @@ export const buttonStyles = css`
   }`;
 ```
 
-Your element can then import the styles and add them to its static `styles` property:
+Your element can then import the styles and add them to its static `styles` class field:
 
 ```js
 import { buttonStyles } from './button-styles.js';
@@ -185,7 +183,7 @@ my-element > div {
 
 ## Defining scoped styles in the template {#styles-in-the-template}
 
-We recommend using the [static `styles` property](#add-styles) for optimal performance.  However, sometimes you may want to define styles in the Lit template. There are two ways to add scoped styles in the template:
+We recommend using the [static `styles` class field](#add-styles) for optimal performance.  However, sometimes you may want to define styles in the Lit template. There are two ways to add scoped styles in the template:
 
 *   Add styles using a [`<style>` element](#style-element).
 *   Add styles using an [external style sheet](#external-stylesheet) (not recommended).
@@ -194,7 +192,7 @@ Each of these techniques has its own set of advantages and drawbacks.
 
 ### In a style element {#style-element}
 
-Typically, styles are placed in the [static `styles` property](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a Lit template. These are updated per instance.
+Typically, styles are placed in the [static `styles` class field](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a Lit template. These are updated per instance.
 
 ```js
 render() {
@@ -251,7 +249,7 @@ To mitigate this cost, separate styles that require per-instance evaluation from
 
 ### Import an external stylesheet (not recommended) {#external-stylesheet}
 
-While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach. Instead, styles should be placed in the [static `styles` property](#add-styles).
+While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach. Instead, styles should be placed in the [static `styles` class field](#add-styles).
 
 <div class="alert alert-info">
 
