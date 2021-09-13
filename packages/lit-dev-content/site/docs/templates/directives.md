@@ -147,7 +147,7 @@ import {styleMap} from 'lit/directives/style-map.js';
 <td class="wide-cell">
 
 ```ts
-styleMap(styleInfo: {[name: string]: string})
+styleMap(styleInfo: {[name: string]: string | undefined | null})
 ```
 
 </td>
@@ -167,7 +167,7 @@ The `styleMap` directive uses the `element.style` API to efficiently add and
 remove inline styles to an element based on an object passed by the user. Each
 key in the object is treated as a style property name, the value is treated as
 the value for that property. On subsequent renders, any previously set style
-properties that are no longer in the object are removed (set to `null`).
+properties that are undefined or `null` are removed (set to `null`).
 
 {% switchable-sample %}
 
