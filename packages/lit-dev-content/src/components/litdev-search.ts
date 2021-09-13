@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, TemplateResult, nothing} from 'lit';
+import { LitElement, html, css, TemplateResult, nothing } from 'lit';
 import {
   state,
   property,
@@ -12,12 +12,12 @@ import {
   queryAll,
   customElement,
 } from 'lit/decorators.js';
-import {repeat} from 'lit/directives/repeat.js';
+import { repeat } from 'lit/directives/repeat.js';
 import Minisearch from 'minisearch';
-import {addModsParameterToUrlIfNeeded} from '../mods.js';
+import { addModsParameterToUrlIfNeeded } from '../mods.js';
 import '@lion/combobox/define';
-import {LionOption} from '@lion/listbox';
-import type {Drawer} from '@material/mwc-drawer';
+import { LionOption } from '@lion/listbox';
+import type { Drawer } from '@material/mwc-drawer';
 
 /**
  * Representation of each document indexed by Minisearch.
@@ -200,7 +200,7 @@ class LitDevSearch extends LitElement {
         fields: ['title', 'heading', 'text'],
         storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
         searchOptions: {
-          boost: {title: 1.4, heading: 1.2, text: 1},
+          boost: { title: 1.4, heading: 1.2, text: 1 },
           prefix: true,
           fuzzy: 0.2,
         },
@@ -317,14 +317,14 @@ class LitDevSearch extends LitElement {
           @blur=${this.onBlur}
         >
           ${repeat(
-            this.suggestions,
-            (v) => v.id,
-            ({
-              relativeUrl,
-              title,
-              heading,
-              isSubsection,
-            }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
+      this.suggestions,
+      (v) => v.id,
+      ({
+        relativeUrl,
+        title,
+        heading,
+        isSubsection,
+      }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
               <litdev-search-option
                 .choiceValue="${this.searchText}"
                 .relativeUrl="${relativeUrl}"
@@ -333,7 +333,7 @@ class LitDevSearch extends LitElement {
                 .isSubsection="${isSubsection}"
                 @click="${() => this.navigate(relativeUrl)}"
               ></litdev-search-option>`
-          )}
+    )}
         </lion-combobox>
         ${SEARCH_ICON}
       </div>
@@ -355,12 +355,13 @@ class LitdevSearchOption extends LionOption {
   @property()
   heading = '';
 
-  @property({type: Boolean})
+  @property({ type: Boolean })
   isSubsection = false;
 
-  static styles = [
-    ...super.styles,
-    css`
+  static get styles() {
+    return [
+      ...super.styles,
+      css`
       .suggestion {
         display: flex;
         align-items: center;
@@ -406,15 +407,16 @@ class LitdevSearchOption extends LionOption {
         }
       }
     `,
-  ];
+    ];
+  }
 
   render() {
     return html`
       <div class="suggestion">
         ${titleAndHeadingCard(this.title, this.heading, this.isSubsection)}
         ${isApiLink(this.relativeUrl)
-          ? html`<span class="api-tag">API</span>`
-          : nothing}
+        ? html`<span class="api-tag">API</span>`
+        : nothing}
       </div>
     `;
   }
