@@ -413,7 +413,7 @@ const myDecorator = (descriptor) => {
 {% endswitchable-sample %}
 
 
-Decorating a field will then cause each instance to run an an initializer
+Decorating a field will then cause each instance to run an initializer
 that adds a controller:
 
 ```ts
