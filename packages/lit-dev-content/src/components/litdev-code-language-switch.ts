@@ -9,7 +9,6 @@ import {
   getCodeLanguagePreference,
   setCodeLanguagePreference,
   CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
-  CodeLanguagePreference,
 } from '../code-language-preference.js';
 
 /**
@@ -22,48 +21,84 @@ import {
 @customElement('litdev-code-language-switch')
 export class LitDevCodeLanguageSwitch extends LitElement {
   static override styles = css`
+    :host,
+    * {
+      box-sizing: border-box;
+    }
+
     :host {
       /* TODO(aomarks) Fix as inline-flex after jsSamples mod is retired. */
       display: var(--litdev-code-language-switch-display, none);
+      align-items: center;
+      font-size: 13px;
+      width: calc(48em / 13);
+      height: calc(27em / 13);
+      border-radius: 1em;
+      padding: calc(2em / 13);
+      border: calc(1.5em / 13) solid #ccc;
+      background: white;
       font-family: 'Open Sans', sans-serif;
     }
 
     button {
+      flex: 1;
+      height: 100%;
       display: flex;
+      position: relative;
+      font-size: inherit;
       font-family: inherit;
-      font-weight: inherit;
-      color: black;
-      background: #fbfcff;
-      padding: 2px 14px;
-      border: 1.5px solid #8e9498;
-      transition: background-color 100ms;
-      width: 40px;
-      justify-content: center;
-    }
-
-    /* Note [disabled] implies selected, because the active choice is always
-    disabled.*/
-    button[disabled],
-    button:hover {
-      background: #ebeeff;
-      border-color: #7589ff;
-    }
-
-    button:not([disabled]) {
+      background: transparent;
+      border: none;
+      align-items: center;
+      justify-content: space-around;
       cursor: pointer;
+      padding: 0;
+      z-index: 0;
     }
 
-    button:first-of-type {
-      border-radius: 15px 0 0 15px;
+    #toggle {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      transition: left 100ms;
+      background: #767676;
+      z-index: -1;
+      border-radius: 1em;
     }
 
-    button:last-of-type {
-      border-radius: 0 15px 15px 0;
-      border-left-color: #8e9498;
+    @media (prefers-reduced-motion: reduce) {
+      #toggle {
+        transition: none;
+      }
     }
 
-    button:not(:last-of-type) {
-      border-right: none;
+    button:hover > #toggle {
+      background: #005cc5bd;
+    }
+
+    [aria-checked='false'] > #toggle {
+      left: 0;
+    }
+
+    [aria-checked='true'] > #toggle {
+      left: 50%;
+    }
+
+    #jsLabel,
+    #tsLabel {
+      display: inline-flex;
+      z-index: 1;
+      padding: 0 0 calc(1em / 13) calc(3em / 13);
+      opacity: 60%;
+      transition: color 100ms, opacity 100ms;
+    }
+
+    [aria-checked='true'] > #tsLabel,
+    [aria-checked='false'] > #jsLabel {
+      color: white;
+      font-weight: 600;
+      opacity: 100%;
     }
   `;
 
@@ -93,31 +128,17 @@ export class LitDevCodeLanguageSwitch extends LitElement {
     const mode = getCodeLanguagePreference();
     return html`
       <button
-        title="Display code as JavaScript"
-        aria-label="Display code as JavaScript"
-        ?disabled=${mode === 'js'}
-        @click=${this._onClickJs}
+        role="switch"
+        aria-checked=${mode == 'ts' ? 'true' : 'false'}
+        aria-label="Toggle TypeScript"
+        title=${mode === 'ts' ? 'Disable TypeScript' : 'Enable TypeScript'}
+        @click=${this._toggleLanguageAndAdjustScroll}
       >
-        JS
-      </button>
-
-      <button
-        title="Display code as TypeScript"
-        aria-label="Display code as TypeScript"
-        ?disabled=${mode === 'ts'}
-        @click=${this._onClickTs}
-      >
-        TS
+        <span id="jsLabel">JS</span>
+        <span id="tsLabel">TS</span>
+        <span id="toggle"></span>
       </button>
     `;
-  }
-
-  private _onClickJs() {
-    this._changeLanguageAndAdjustScroll('js');
-  }
-
-  private _onClickTs() {
-    this._changeLanguageAndAdjustScroll('ts');
   }
 
   /**
@@ -134,9 +155,10 @@ export class LitDevCodeLanguageSwitch extends LitElement {
    * particular instance of the language switch before and after the change, and
    * re-scrolling the window so it remains in the same visual location.
    */
-  private _changeLanguageAndAdjustScroll(language: CodeLanguagePreference) {
+  private _toggleLanguageAndAdjustScroll() {
+    const newLanguage = getCodeLanguagePreference() === 'ts' ? 'js' : 'ts';
     const viewportYBefore = this.getBoundingClientRect().y;
-    setCodeLanguagePreference(language);
+    setCodeLanguagePreference(newLanguage);
     const viewportYAfter = this.getBoundingClientRect().y;
     window.scrollBy({top: viewportYAfter - viewportYBefore});
   }

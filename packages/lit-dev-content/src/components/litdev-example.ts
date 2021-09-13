@@ -73,6 +73,7 @@ export class LitDevExample extends LitElement {
       height: var(--litdev-example-controls-height);
       padding-right: 6px;
       box-sizing: border-box;
+      z-index: 1;
     }
 
     playground-file-editor {
