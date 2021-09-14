@@ -11,10 +11,11 @@ import {manifest, TutorialStep} from './litdev-tutorial-manifest.js';
 import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import {
   getCodeLanguagePreference,
-  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+  CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 import '@material/mwc-icon-button';
 import './litdev-example-controls.js';
+import './litdev-playground-change-guard.js';
 
 interface ExpandedTutorialStep extends TutorialStep {
   idx: number;
@@ -175,7 +176,7 @@ export class LitDevTutorial extends LitElement {
     this._readUrl();
     window.addEventListener('hashchange', this._readUrl);
     window.addEventListener(
-      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
   }
@@ -184,7 +185,7 @@ export class LitDevTutorial extends LitElement {
     super.disconnectedCallback();
     window.removeEventListener('hashchange', this._readUrl);
     window.removeEventListener(
-      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
   }
