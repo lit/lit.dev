@@ -10,7 +10,7 @@ import {nothing} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined.js';
 import {
   getCodeLanguagePreference,
-  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+  CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 import 'playground-elements/playground-ide.js';
 import './litdev-example-controls.js';
@@ -126,7 +126,7 @@ export class LitDevExample extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     window.addEventListener(
-      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
   }
@@ -134,7 +134,7 @@ export class LitDevExample extends LitElement {
   override disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(
-      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
   }

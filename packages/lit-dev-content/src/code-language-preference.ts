@@ -14,8 +14,34 @@ const BODY_ATTRIBUTE = 'code-language-preference';
  * Name of the event that is fired on window whenever the global user TypeScript
  * preference changes.
  */
-export const CODE_LANGUAGE_PREFERENCE_EVENT_NAME =
-  'code-language-preference-changed';
+export const CODE_LANGUAGE_CHANGE = 'code-language-change';
+
+/**
+ * Name of the event that is fired on window before the global user code
+ * language changes, providing an opportunity to cancel it.
+ */
+export const BEFORE_CODE_LANGUAGE_CHANGE = 'before-code-language-change';
+
+/**
+ * Details of the before-code-language-change event.
+ */
+interface BeforeCodeLanguageChangeDetail {
+  /**
+   * The new language that will be changed to.
+   */
+  pendingLanguage: CodeLanguagePreference;
+
+  /**
+   * If this function is called, this language change will be aborted.
+   */
+  cancel: () => void;
+}
+
+declare global {
+  interface WindowEventMap {
+    [BEFORE_CODE_LANGUAGE_CHANGE]: CustomEvent<BeforeCodeLanguageChangeDetail>;
+  }
+}
 
 /**
  * Get the user's TypeScript vs JavaScript preference from localStorage.
@@ -30,10 +56,26 @@ export const getCodeLanguagePreference = (): CodeLanguagePreference =>
  * a change event on window.
  */
 export const setCodeLanguagePreference = (
-  preference: CodeLanguagePreference
+  preference: CodeLanguagePreference,
+  force = false
 ): void => {
+  if (!force) {
+    let cancelled = false;
+    const detail: BeforeCodeLanguageChangeDetail = {
+      pendingLanguage: preference,
+      cancel: () => {
+        cancelled = true;
+      },
+    };
+    window.dispatchEvent(
+      new CustomEvent(BEFORE_CODE_LANGUAGE_CHANGE, {detail})
+    );
+    if (cancelled) {
+      return;
+    }
+  }
   localStorage.setItem(LOCAL_STORAGE_KEY, preference);
-  window.dispatchEvent(new Event(CODE_LANGUAGE_PREFERENCE_EVENT_NAME));
+  window.dispatchEvent(new Event(CODE_LANGUAGE_CHANGE));
   writeCodeLanguagePreferenceBodyAttribute();
 };
 

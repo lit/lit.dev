@@ -8,9 +8,10 @@ import '@material/mwc-button';
 import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
+import '../components/litdev-playground-change-guard.js';
 import {
   getCodeLanguagePreference,
-  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+  CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 
 import Tar from 'tarts';
@@ -172,10 +173,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   syncStateFromUrlHash();
   window.addEventListener('hashchange', syncStateFromUrlHash);
-  window.addEventListener(
-    CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
-    syncStateFromUrlHash
-  );
+  window.addEventListener(CODE_LANGUAGE_CHANGE, syncStateFromUrlHash);
 
   // Trigger URL sharing when Control-s or Command-s is pressed.
   let controlDown = false;

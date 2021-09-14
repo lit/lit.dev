@@ -8,7 +8,7 @@ import {LitElement, html, css, customElement} from 'lit-element';
 import {
   getCodeLanguagePreference,
   setCodeLanguagePreference,
-  CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+  CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 
 /**
@@ -107,7 +107,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
     // components could be refactored into a controller.
     super.connectedCallback();
     window.addEventListener(
-      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
   }
@@ -115,7 +115,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
   override disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener(
-      CODE_LANGUAGE_PREFERENCE_EVENT_NAME,
+      CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
   }
