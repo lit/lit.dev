@@ -22,9 +22,3 @@
   --playground-code-attribute-color: #9cdcfe;
   --playground-code-callee-color: #dcdcaa;
 }
-
-.jsSamples {
-  /* TODO(aomarks) Remove when JS samples launch, and update the
-  litdev-code-language-switch display property to match this. */
-  --litdev-code-language-switch-display: inline-flex;
-}
