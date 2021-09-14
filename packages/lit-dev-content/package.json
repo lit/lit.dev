@@ -61,7 +61,7 @@
     "lit-element": "^2.3.1",
     "lit-html": "^1.2.1",
     "minisearch": "^3.0.4",
-    "playground-elements": "^0.12.1",
+    "playground-elements": "^0.13.0",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }
