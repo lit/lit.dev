@@ -42,7 +42,7 @@ Some things to note:
 * Lit’s [expressive, declarative templates](/docs/templates/overview/) (utilizing JavaScript tagged template literals) make it easy to describe how a component should be rendered.
 * [Reactive properties](/docs/components/properties/) represent a component’s public API and/or internal state; your component automatically re-renders whenever a reactive property changes.
 * [Styles](/docs/components/styles) are scoped by default, keeping your CSS selectors simple and ensuring that your component’s styling won’t pollute (or be polluted by) the surrounding context.
-* Lit works great in vanilla JavaScript, or you can use TypeScript for more even better ergonomics by using decorators and strong types.
+* Lit works great in vanilla JavaScript, or you can use TypeScript for even better ergonomics by using decorators and type declarations.
 
 Lit doesn’t require compilation or building during development, so it can be used virtually tool-free if you prefer. First-class [IDE support](/docs/tools/development/#ide-plugins) (code-completion, linting, etc.) and [tooling for production](/docs/tools/production/) (localization, template minification, etc.) are readily available.
 
