@@ -50,6 +50,7 @@
     "@lit-labs/task": "^1.0.0-pre.4",
     "@lit/localize": "^0.10.0",
     "@material/mwc-button": "^0.22.1",
+    "@material/mwc-dialog": "^0.23.0",
     "@material/mwc-drawer": "^0.22.1",
     "@material/mwc-formfield": "^0.22.1",
     "@material/mwc-icon-button": "^0.22.1",
