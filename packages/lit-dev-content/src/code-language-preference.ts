@@ -52,8 +52,15 @@ export const getCodeLanguagePreference = (): CodeLanguagePreference =>
   'ts';
 
 /**
- * Save the user's TypeScript vs JavaScript preference to localStorage, and fire
- * a change event on window.
+ * Save the user's TypeScript vs JavaScript preference.
+ *
+ * Unless `force` is true, a "before-code-language-change" event is first fired
+ * on window, which gives playgrounds an opportunity to cancel the preference
+ * change in case they have unsaved changes.
+ *
+ * If no handlers cancel the change, or if `force` is true, then the preference
+ * is written to local storage, a "code-language-change" event is fired on
+ * window, and an HTML attribute is written to the body.
  */
 export const setCodeLanguagePreference = (
   preference: CodeLanguagePreference,

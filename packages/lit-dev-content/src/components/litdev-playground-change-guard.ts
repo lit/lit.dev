@@ -19,7 +19,7 @@ import type {CodeLanguagePreference} from '../code-language-preference.js';
 
 /**
  * Prompts the user to continue or cancel if the global code language preference
- * is about to change if the associated Playground has been modified.
+ * is about to change and the associated Playground has been modified.
  */
 @customElement('litdev-playground-change-guard')
 export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
