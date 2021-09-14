@@ -1,5 +1,3 @@
-import type {Switch} from '@material/mwc-switch';
-
 // TODO(aomarks) This is only here for some mods. Remove it and mods when home
 // page design finalized.
 document.body.classList.add('home');
@@ -8,7 +6,6 @@ window.addEventListener('DOMContentLoaded', () => {
   fadeInLogoOnScroll();
   fadeHeaderOnScroll();
   activateTourRegions();
-  activateTourJsTsSwitch();
 });
 
 const fadeInLogoOnScroll = () => {
@@ -176,29 +173,4 @@ const activateTourRegions = () => {
     activateRegion(tsCode, note, region.ts);
     activateRegion(jsCode, note, region.js);
   }
-};
-
-const activateTourJsTsSwitch = async () => {
-  const sw = document.querySelector('#tourJsTsSwitch > mwc-switch') as Switch;
-  sw.addEventListener('change', () => {
-    document.querySelector('#tourTsCode')!.toggleAttribute('hidden');
-    document.querySelector('#tourJsCode')!.toggleAttribute('hidden');
-    const playgroundLink = document.querySelector(
-      '#playgroundLink'
-    ) as HTMLAnchorElement;
-    if (sw.checked) {
-      playgroundLink.href = '/playground/';
-    } else {
-      playgroundLink.href =
-        '/playground/#sample=examples/hello-world-javascript';
-    }
-  });
-
-  // No way to set an mwc-formfield field cursor?
-  await customElements.whenDefined('mwc-formfield');
-  requestAnimationFrame(() => {
-    document
-      .querySelector('#tourJsTsSwitch')!
-      .shadowRoot!.querySelector('label')!.style.cursor = 'pointer';
-  });
 };

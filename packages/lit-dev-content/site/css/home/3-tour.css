@@ -30,6 +30,13 @@
   margin: 0;
 }
 
+body[code-language-preference="ts"] #tourJsCode {
+  display: none;
+}
+body[code-language-preference="js"] #tourTsCode {
+  display: none;
+}
+
 #tourJsCode > figure,
 #tourTsCode > figure {
   /* Extra room for the JS/TS switch */
@@ -38,14 +45,11 @@
   margin-bottom: 2em;
 }
 
-#tourJsTsSwitch {
+litdev-code-language-switch {
   position: absolute;
-  top: 20px;
-  right: 25px;
-  --mdc-theme-secondary: #0a7dff;
-  --mdc-typography-body2-font-size: 17px;
-  --mdc-theme-text-primary-on-background: #444;
-  zoom: 90%;
+  font-size: 16px;
+  top: 14px;
+  right: 14px;
 }
 
 #tourCode .tourHighlight {
@@ -148,8 +152,8 @@
     border-right: none;
   }
 
-  #tourJsTsSwitch {
-    position: absolute;
+  litdev-code-language-switch {
+    font-size: 13px;
     top: 45px;
     right: -20px;
   }
