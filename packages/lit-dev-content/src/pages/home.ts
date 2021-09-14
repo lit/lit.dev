@@ -63,8 +63,8 @@ const activateTourRegions = () => {
         end: {line: 3, char: 32},
       },
       js: {
-        start: {line: 23, char: 0},
-        end: {line: 23, char: 55},
+        start: {line: 18, char: 0},
+        end: {line: 18, char: 55},
       },
     },
     {
@@ -74,8 +74,8 @@ const activateTourRegions = () => {
         end: {line: 5, char: 41},
       },
       js: {
-        start: {line: 4, char: 4},
-        end: {line: 4, char: 32},
+        start: {line: 3, char: 2},
+        end: {line: 3, char: 41},
       },
     },
     {
@@ -85,8 +85,8 @@ const activateTourRegions = () => {
         end: {line: 8, char: 19},
       },
       js: {
-        start: {line: 9, char: 6},
-        end: {line: 9, char: 25},
+        start: {line: 5, char: 2},
+        end: {line: 7, char: 23},
       },
     },
     {
@@ -96,8 +96,8 @@ const activateTourRegions = () => {
         end: {line: 11, char: 42},
       },
       js: {
-        start: {line: 19, char: 11.5},
-        end: {line: 19, char: 42},
+        start: {line: 15, char: 11.5},
+        end: {line: 15, char: 42},
       },
     },
   ];
