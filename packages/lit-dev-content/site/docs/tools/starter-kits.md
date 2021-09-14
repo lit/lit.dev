@@ -94,7 +94,12 @@ A couple of things to look for in the code:
 
 *   The code defines a class for the component (`MyElement`) and registers it with the browser as a custom element named `<my-element>`.
 
-    _JavaScript_
+    {% switchable-sample %}
+
+    ```ts
+    @customElement('my-element')
+    export class MyElement extends LitElement { /* ... */ }
+    ```
 
     ```js
     export class MyElement extends LitElement { /* ... */ }
@@ -102,12 +107,8 @@ A couple of things to look for in the code:
     customElements.define('my-element', MyElement);
     ```
 
-    _TypeScript_
+    {% endswitchable-sample %}
 
-    ```ts
-    @customElement('my-element')
-    export class MyElement extends LitElement { /* ... */ }
-    ```
 
 *   The component's `render` method defines a [template](/docs/templates/overview/) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](/docs/templates/overview/).
 
@@ -128,11 +129,20 @@ A couple of things to look for in the code:
 
 *   The component defines some properties. The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/components/properties/).
 
-    _JavaScript_
+    {% switchable-sample %}
+
+    ```ts
+    export class MyElement extends LitElement {
+      // ...
+      @property({type: String})
+      name = 'World';
+      //...
+    }
+    ```
 
     ```js
     export class MyElement extends LitElement {
-
+      // ...
       static properties = {
         name: {type: String}
       };
@@ -145,16 +155,8 @@ A couple of things to look for in the code:
     }
     ```
 
-    _TypeScript_
+    {% endswitchable-sample %}
 
-    ```ts
-    export class MyElement extends LitElement {
-      // ...
-      @property({type: String})
-      name = 'World';
-      //...
-    }
-    ```
 
 ### Rename your component
 

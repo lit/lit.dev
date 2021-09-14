@@ -90,7 +90,9 @@ LitElement uses lit-html to render components and adds APIs to declare reactive
 properties and attributes. Elements update automatically when their properties
 change. And they update _fast_, without diffing.
 
-Here's a simple LitElement component in TypeScript:
+Here's a simple LitElement component:
+
+{% switchable-sample %}
 
 ```ts
 @customElement('name-tag')
@@ -104,7 +106,25 @@ class NameTag extends LitElement {
 }
 ```
 
-(We have a great vanilla JavaScript API also.)
+```js
+class NameTag extends LitElement {
+  static properties = {
+    name: {},
+  };
+
+  constructor() {
+    super();
+    this.name = 'a secret';
+  }
+
+  render() {
+    return html`<p>Hi, my name is ${this.name}!</p>`;
+  }
+}
+customElements.define('name-tag', NameTag);
+```
+
+{% endswitchable-sample %}
 
 This creates an element you can use anywhere you'd use a regular HTML element:
 

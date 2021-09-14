@@ -24,8 +24,4 @@ Here's a sample component:
 
 {% playground-example "docs/components/overview/simple-greeting" "simple-greeting.ts" %}
 
-<div class="alert alert-info">
-
-**TypeScript or JavaScript?** Unless otherwise noted, samples are in TypeScript, but you can use plain JavaScript with Lit, too.
-
 </div>
