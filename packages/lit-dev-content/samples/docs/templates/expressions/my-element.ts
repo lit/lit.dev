@@ -18,6 +18,5 @@ class MyElement extends LitElement {
       ${this.show ? html`
           <ul>${this.todos.map(i => html`<li>${i}</li>`)}</ul>
         ` : ''}`;
-  }
-  /* playground-fold */
+  }/* playground-fold */
 }
