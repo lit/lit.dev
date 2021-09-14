@@ -1,5 +1,3 @@
-import type {Switch} from '@material/mwc-switch';
-
 // TODO(aomarks) This is only here for some mods. Remove it and mods when home
 // page design finalized.
 document.body.classList.add('home');
@@ -8,7 +6,6 @@ window.addEventListener('DOMContentLoaded', () => {
   fadeInLogoOnScroll();
   fadeHeaderOnScroll();
   activateTourRegions();
-  activateTourJsTsSwitch();
 });
 
 const fadeInLogoOnScroll = () => {
@@ -66,8 +63,8 @@ const activateTourRegions = () => {
         end: {line: 3, char: 32},
       },
       js: {
-        start: {line: 23, char: 0},
-        end: {line: 23, char: 55},
+        start: {line: 18, char: 0},
+        end: {line: 18, char: 55},
       },
     },
     {
@@ -77,8 +74,8 @@ const activateTourRegions = () => {
         end: {line: 5, char: 41},
       },
       js: {
-        start: {line: 4, char: 4},
-        end: {line: 4, char: 32},
+        start: {line: 3, char: 2},
+        end: {line: 3, char: 41},
       },
     },
     {
@@ -88,8 +85,8 @@ const activateTourRegions = () => {
         end: {line: 8, char: 19},
       },
       js: {
-        start: {line: 9, char: 6},
-        end: {line: 9, char: 25},
+        start: {line: 5, char: 2},
+        end: {line: 7, char: 23},
       },
     },
     {
@@ -99,8 +96,8 @@ const activateTourRegions = () => {
         end: {line: 11, char: 42},
       },
       js: {
-        start: {line: 19, char: 11.5},
-        end: {line: 19, char: 42},
+        start: {line: 15, char: 11.5},
+        end: {line: 15, char: 42},
       },
     },
   ];
@@ -176,29 +173,4 @@ const activateTourRegions = () => {
     activateRegion(tsCode, note, region.ts);
     activateRegion(jsCode, note, region.js);
   }
-};
-
-const activateTourJsTsSwitch = async () => {
-  const sw = document.querySelector('#tourJsTsSwitch > mwc-switch') as Switch;
-  sw.addEventListener('change', () => {
-    document.querySelector('#tourTsCode')!.toggleAttribute('hidden');
-    document.querySelector('#tourJsCode')!.toggleAttribute('hidden');
-    const playgroundLink = document.querySelector(
-      '#playgroundLink'
-    ) as HTMLAnchorElement;
-    if (sw.checked) {
-      playgroundLink.href = '/playground/';
-    } else {
-      playgroundLink.href =
-        '/playground/#sample=examples/hello-world-javascript';
-    }
-  });
-
-  // No way to set an mwc-formfield field cursor?
-  await customElements.whenDefined('mwc-formfield');
-  requestAnimationFrame(() => {
-    document
-      .querySelector('#tourJsTsSwitch')!
-      .shadowRoot!.querySelector('label')!.style.cursor = 'pointer';
-  });
 };

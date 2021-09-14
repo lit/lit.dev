@@ -10,5 +10,4 @@
 // TODO(aomarks) A better solution would be for each page to dynamically import its
 // lazy dependencies. Rollup almost does the right thing here, except that the relative
 // import paths are wrong when we import. Find a way to fix the relative paths.
-import '@material/mwc-formfield';
-import '@material/mwc-switch';
+import '../components/litdev-code-language-switch.js';

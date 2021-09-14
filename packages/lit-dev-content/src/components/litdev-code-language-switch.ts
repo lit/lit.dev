@@ -27,8 +27,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
     }
 
     :host {
-      /* TODO(aomarks) Fix as inline-flex after jsSamples mod is retired. */
-      display: var(--litdev-code-language-switch-display, none);
+      display: inline-flex;
       align-items: center;
       font-size: 13px;
       width: calc(48em / 13);

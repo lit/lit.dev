@@ -12,6 +12,7 @@ import {
 
 import pathlib from 'path';
 import fs from 'fs/promises';
+import fsSync from 'fs';
 import {fileURLToPath} from 'url';
 
 import chokidar from 'chokidar';
@@ -187,10 +188,11 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
     ],
   }),
 
-  transformJs: (js) => {
+  transformJs: (js, filepath) => {
     // Replace the special blank line placeholder comments from
     // preserveBlankLinesTransformer.
     js = js.replace(BLANK_LINE_PLACEHOLDER_COMMENT_REGEXP, '\n');
+
     // Prettier does a nicer job than TypeScript's built-in formatter.
     js = prettier.format(js, {
       parser: 'typescript',
@@ -198,6 +200,31 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
       bracketSpacing: false,
       embeddedLanguageFormatting: 'off',
     });
+
+    const jsPath = pathlib.relative(process.cwd(), filepath);
+    const playgroundCommentRegexp =
+      /\/\*\s*(playground-(fold|hide)(-end)?)\s\*\//g;
+    const tsPath = jsPath
+      .replace(/^samples\/js\//, 'samples/')
+      .replace(/\.js$/, '.ts');
+    const ts = fsSync.readFileSync(tsPath, 'utf8');
+    const tsPlaygroundComments = [...ts.matchAll(playgroundCommentRegexp)].map(
+      ([, kind]) => kind
+    );
+    const jsPlaygroundComments = [...js.matchAll(playgroundCommentRegexp)].map(
+      ([, kind]) => kind
+    );
+    if (tsPlaygroundComments.join(';') !== jsPlaygroundComments.join(';')) {
+      const msg =
+        `Mismatched playground hide/fold comments:` +
+        `\n  ${tsPath}` +
+        `\n  ${jsPath}\n`;
+      if (watchMode) {
+        console.error(msg);
+      } else {
+        throw new Error(msg);
+      }
+    }
     return js;
   },
 };

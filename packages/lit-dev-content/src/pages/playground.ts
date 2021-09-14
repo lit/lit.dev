@@ -150,7 +150,7 @@ window.addEventListener('DOMContentLoaded', () => {
       };
     } else {
       showCodeLanguageSwitch();
-      let sample = 'examples/hello-world-typescript';
+      let sample = 'examples/hello-world';
       const urlSample = params.get('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
         sample = urlSample;

@@ -17,6 +17,13 @@
   "exclude": [
     // Intentionally contains unused imports. This one's .js output is
     // hand-rolled becuase TypeScript will elide imports.
-    "tutorial/02-define/before/my-element.ts"
+    "tutorial/02-define/before/my-element.ts",
+    // Position of static properties block is imperfect, and this example is
+    // prominent on the homepage. See https://github.com/lit/lit/issues/2159.
+    "examples/hello-world/simple-greeting.ts",
+    // Comments in some locations get lost by TypeScript. See
+    // https://github.com/lit/lit/issues/2158.
+    "docs/templates/lists-arrays/my-element.ts",
+    "docs/templates/lists-map/my-element.ts"
   ]
 }
