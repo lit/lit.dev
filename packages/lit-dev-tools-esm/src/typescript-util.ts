@@ -22,9 +22,9 @@ export interface InvokeTypeScriptOpts {
   transformersFactory?: (program: ts.Program) => ts.CustomTransformers;
 
   /**
-   * Function to transform JavaScript before it is written.
+   * Function to transform JavaScript as a string before it is written.
    */
-  transformJs?: (js: string) => string;
+  transformJs?: (js: string, filepath: string) => string;
 }
 
 /**
@@ -107,6 +107,6 @@ const wrapWriteFile =
   (path, data, byteOrderMark) =>
     ts.sys.writeFile(
       path,
-      opts.transformJs ? opts.transformJs(data) : data,
+      opts.transformJs ? opts.transformJs(data, path) : data,
       byteOrderMark
     );
