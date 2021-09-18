@@ -7,7 +7,7 @@
 import '@material/mwc-dialog';
 import '@material/mwc-button';
 
-import {html, css, customElement, internalProperty} from 'lit-element';
+import {html, css, customElement, state} from 'lit-element';
 import {nothing} from 'lit-html';
 import {PlaygroundConnectedElement} from 'playground-elements/playground-connected-element.js';
 import {
@@ -75,7 +75,7 @@ export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
     );
   }
 
-  @internalProperty()
+  @state()
   private _pendingLanguage: CodeLanguagePreference | undefined = undefined;
 
   private _onBeforeCodeLanguageChange = (
