@@ -56,8 +56,10 @@ export default [
         // probably be looking for lit.js in devtools!
         const relative = id.replace(`${__dirname}/node_modules/`, '');
         if (
+          relative.startsWith('lit/') ||
           relative.startsWith('lit-html/') ||
-          relative.startsWith('lit-element/')
+          relative.startsWith('lit-element/') ||
+          relative.startsWith('@lit/reactive-element/')
         ) {
           return 'lit';
         }
@@ -77,10 +79,7 @@ export default [
       chunkFileNames: '[name].js',
     },
     plugins: [
-      resolve({
-        // TODO(ajakubowicz): See Issue #420 - Both Lit 1 and Lit 2 are used.
-        // dedupe: () => true,
-      }),
+      resolve(),
       terser(terserOptions),
       summary({
         // Already minified.
