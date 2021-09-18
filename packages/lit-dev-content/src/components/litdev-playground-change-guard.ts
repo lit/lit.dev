@@ -7,8 +7,8 @@
 import '@material/mwc-dialog';
 import '@material/mwc-button';
 
-import {html, css, customElement, state} from 'lit-element';
-import {nothing} from 'lit-html';
+import {html, css, nothing} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 import {PlaygroundConnectedElement} from 'playground-elements/playground-connected-element.js';
 import {
   BEFORE_CODE_LANGUAGE_CHANGE,

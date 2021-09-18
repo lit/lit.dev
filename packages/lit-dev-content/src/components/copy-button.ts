@@ -4,7 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, property} from 'lit-element';
+import {LitElement, html, css} from 'lit';
+import {property} from 'lit/decorators.js';
 import '@material/mwc-icon-button';
 
 /**

@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, property} from 'lit-element';
-import {styleMap} from 'lit-html/directives/style-map.js';
-import {nothing} from 'lit-html';
-import {ifDefined} from 'lit-html/directives/if-defined.js';
+import {LitElement, html, css, nothing} from 'lit';
+import {property} from 'lit/decorators.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {ifDefined} from 'lit/directives/if-defined.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,

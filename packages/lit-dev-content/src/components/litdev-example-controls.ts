@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, customElement, property} from 'lit-element';
-import {nothing} from 'lit-html';
+import {LitElement, html, css, nothing} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import './litdev-code-language-switch.js';
 
 /**
