@@ -7,7 +7,8 @@
   "license": "BSD-3-Clause",
   "main": "_site/index.html",
   "scripts": {
-    "postinstall": "npm run fonts:manrope",
+    "postinstall": "npm run fonts:manrope && npm run temp:fixup-invalid-mwc-import",
+    "temp:fixup-invalid-mwc-import": "sed -i=\"\" \"s#'lit-html/directive';#'lit-html/directive.js';#\" node_modules/@material/mwc-snackbar/accessible-snackbar-label-directive.js",
     "build": "rm -rf _site && npm run build:ts && npm run build:rollup && npm run build:samples && npm run build:site",
     "build:ts": "../../node_modules/.bin/tsc",
     "build:ts:watch": "../../node_modules/.bin/tsc --watch",
