@@ -373,7 +373,7 @@ class MyElement extends LitElement {
 
 ## External lifecycle hooks: controllers and decorators
 
-In addition to component classes implementing lifecycle callbacks, external code, such as [decorators](/docs/components/decorators/) may need to hook a component's lifecycle.
+In addition to component classes implementing lifecycle callbacks, external code, such as [decorators](/docs/components/decorators/) may need to hook into a component's lifecycle.
 
 Lit offers two concepts for external code to integrate with the reactive update lifecycle: `static addInitializer()` and `addController()`:
 
@@ -381,7 +381,7 @@ Lit offers two concepts for external code to integrate with the reactive update 
 
 `addInitializer()` allows code that has access to a Lit class definition to run code when instances of the class are constructed.
 
-This is very useful when writing custom decorators. Decorators are run at class definition time, and can do things like replace field and method definitions. If they also need to do work when an instance is created, they must call `addInitializer()`. It will be common to use this to add a [reactive controller](/docs/composition/controllers/) so decorators can hook the component lifecycle:
+This is very useful when writing custom decorators. Decorators are run at class definition time, and can do things like replace field and method definitions. If they also need to do work when an instance is created, they must call `addInitializer()`. It will be common to use this to add a [reactive controller](/docs/composition/controllers/) so decorators can hook into the component lifecycle:
 
 {% switchable-sample %}
 
