@@ -5,7 +5,7 @@
  */
 
 import {LitElement, html, css, property} from 'lit-element';
-import {styleMap} from 'lit-html/directives/style-map';
+import {styleMap} from 'lit-html/directives/style-map.js';
 import {nothing} from 'lit-html';
 import {ifDefined} from 'lit-html/directives/if-defined.js';
 import {
