@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "@lion/combobox": "^0.8.3",
-    "@lit-labs/task": "^1.0.0-pre.4",
+    "@lit-labs/task": "^1.0.0",
+    "@lit-labs/motion": "^1.0.0",
     "@lit/localize": "^0.10.0",
     "@material/mwc-button": "^0.25.1",
     "@material/mwc-dialog": "^0.25.1",
