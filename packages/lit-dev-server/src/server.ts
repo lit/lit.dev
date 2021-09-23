@@ -10,7 +10,7 @@ import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
 import {fileURLToPath} from 'url';
 import * as path from 'path';
-import {pageRedirects} from './redirects.js';
+import {redirectMiddleware} from './middleware/redirect-middleware.js';
 
 const mode = process.env.MODE;
 if (mode !== 'main' && mode !== 'playground') {
@@ -27,6 +27,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const contentPackage = path.resolve(
   __dirname,
+  '..',
   '..',
   'lit-dev-content',
   '_site'
@@ -48,29 +49,7 @@ if (mode === 'playground') {
   });
 }
 
-app.use(async (ctx, next) => {
-  // If there would be multiple redirects, resolve them all here so that we
-  // serve just one HTTP redirect instead of a chain.
-  let path = ctx.path;
-  if (path.match(/\/[^\/\.]+$/)) {
-    // Canonicalize paths to have a trailing slash, except for files with
-    // extensions.
-    path += '/';
-  }
-  if (path.endsWith('//')) {
-    // Koa static doesn't care if there are any number of trailing slashes.
-    // Normalize this too.
-    path = path.replace(/\/+$/, '/');
-  }
-  path = pageRedirects.get(path) ?? path;
-  if (path !== ctx.path) {
-    ctx.status = 301;
-    ctx.redirect(path + (ctx.querystring ? '?' + ctx.querystring : ''));
-  } else {
-    await next();
-  }
-});
-
+app.use(redirectMiddleware());
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
 app.use(

@@ -8,7 +8,7 @@ import * as pathLib from 'path';
 import * as fs from 'fs/promises';
 import ansi from 'ansi-escape-sequences';
 import fetch from 'node-fetch';
-import {pageRedirects} from 'lit-dev-server/redirects.js';
+import {pageRedirects} from 'lit-dev-server/lib/redirects.js';
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);

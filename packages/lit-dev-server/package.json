@@ -6,11 +6,11 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "type": "module",
-  "main": "index.js",
+  "main": "lib/server.js",
   "scripts": {
     "build": "npm run build:ts",
     "build:ts": "../../node_modules/.bin/tsc",
-    "start": "MODE=main PORT=8080 node index.js",
+    "start": "MODE=main PORT=8080 node lib/server.js",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {
