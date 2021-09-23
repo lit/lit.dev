@@ -28,6 +28,7 @@ const __dirname = path.dirname(__filename);
 const contentPackage = path.resolve(
   __dirname,
   '..',
+  '..',
   'lit-dev-content',
   '_site'
 );

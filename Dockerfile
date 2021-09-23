@@ -75,4 +75,4 @@ RUN npx lerna run build --scope lit-dev-content --stream
 #
 # [0] https://nodejs.org/api/cli.html#cli_max_old_space_size_size_in_megabytes
 # [1] https://github.com/nodejs/node/pull/25576
-CMD [ "node", "--max-old-space-size=768", "packages/lit-dev-server/index.js" ]
+CMD [ "node", "--max-old-space-size=768", "packages/lit-dev-server/lib/index.js" ]
