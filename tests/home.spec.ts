@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {test, expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 test.describe('Home page', () => {
-  test('splashLogo accessible.', async ({page}) => {
+  test('splashLogo accessible.', async ({ page }) => {
     await page.goto('/');
     expect(await page.locator('#splashLogo').getAttribute('role')).toBe(
       'heading'
@@ -16,7 +16,7 @@ test.describe('Home page', () => {
     expect(await homePageImg.getAttribute('aria-label')).toBe('Lit');
   });
 
-  test('search site input basic functionality works', async ({page}) => {
+  test('search site input basic functionality works', async ({ page }) => {
     await page.goto('/');
     const searchInput = page.locator('#desktopNav litdev-search input');
     await searchInput.type('reactive update cycle');
@@ -37,5 +37,10 @@ test.describe('Home page', () => {
 
     await expect(page.locator('#reactive-update-cycle')).toBeVisible();
     expect(page.url().includes('/docs/components/lifecycle')).toBe(true);
+  });
+
+  test('intro section golden', async ({ page }) => {
+    await page.goto('/');
+    await expect(await page.locator('#intro').screenshot()).toMatchSnapshot('homePageIntroSection.png');
   });
 });

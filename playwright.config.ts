@@ -4,12 +4,15 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {PlaywrightTestConfig} from '@playwright/test';
+import { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: 'tests',
   use: {
-    screenshot: 'only-on-failure',
+    screenshot: 'off',
     baseURL: 'http://localhost:8080/',
   },
+  // To update snapshots please run 'update-goldens' action through Github
+  // Actions, and download the results. This keeps snapshots consistent with CI.
+  updateSnapshots: 'none',
 };
 export default config;

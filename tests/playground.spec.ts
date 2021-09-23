@@ -4,15 +4,13 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {test, expect} from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 test.describe('Playground', () => {
-  test('default example is simple-greeting.ts', async ({page}) => {
+  test('default example is simple-greeting.ts', async ({ page }) => {
     await page.goto(`/playground`);
 
-    await page.waitForSelector(
-      'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
-    );
+    await waitForPlaygroundPreviewToLoad(page);
 
     const greetingExample = page.locator(
       '#exampleContent > div:nth-child(1) > ul > li:nth-child(1)'
@@ -38,7 +36,7 @@ test.describe('Playground', () => {
     );
   });
 
-  test('updating the example code updates the preview', async ({page}) => {
+  test('updating the example code updates the preview', async ({ page }) => {
     await page.goto(`/playground`);
 
     // Double click text=blue
@@ -47,10 +45,7 @@ test.describe('Playground', () => {
     // Change the text to red
     await page.keyboard.type('red');
 
-    // Wait for iframe to reload
-    await page.waitForSelector(
-      'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
-    );
+    await waitForPlaygroundPreviewToLoad(page);
 
     const playgroundPreviewFrame = await (
       await page.locator('playground-preview iframe').elementHandle()
@@ -63,4 +58,18 @@ test.describe('Playground', () => {
       'rgb(255, 0, 0)'
     );
   });
+
+  test('Hello world project golden', async ({ page }) => {
+    await page.goto('/playground');
+    await waitForPlaygroundPreviewToLoad(page);
+    // Because of shadow dom piercing, Playwright finds multiple '#content'
+    // nodes, i.e. the page, and within the playground shadow DOM.
+    await expect(await page.locator('main > #content').screenshot()).toMatchSnapshot('helloWorldPlaygroundProject.png');
+  });
 });
+
+async function waitForPlaygroundPreviewToLoad(page: Page) {
+  await page.waitForSelector(
+    'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
+  );
+}
