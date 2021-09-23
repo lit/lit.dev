@@ -8,7 +8,7 @@
     "styles.ts": {},
     "index.html": {},
     "package.json": {
-      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit/reactive-element\": \"^1.0.0\",\n    \"lit-element\": \"^3.0.0\",\n    \"lit-html\": \"^2.0.0\"\n,\n    \"@lit-labs/motion\": \"^1.0.0\",  }\n}",
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit-labs/motion\": \"^1.0.0\",  }\n}",
       "hidden": true
     }
   },
