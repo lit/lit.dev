@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   plugins: [
     {
       name: 'dont-resolve-sample-modules',
