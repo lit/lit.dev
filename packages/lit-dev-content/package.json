@@ -35,6 +35,7 @@
     "fast-glob": "^3.2.5",
     "html-minifier": "^4.0.0",
     "lit-dev-api": "^0.0.0",
+    "lit-dev-server": "^0.0.0",
     "lit-dev-tools": "^0.0.0",
     "lit-dev-tools-esm": "^0.0.0",
     "luxon": "^2.0.2",
