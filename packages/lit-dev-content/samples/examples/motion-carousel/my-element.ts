@@ -14,7 +14,7 @@ export class MyElement extends LitElement {
   render() {
     return html`
       <section class="container">
-        ${this.data.map((v, i) => {
+        ${this.data.map((_v, i) => {
           const l = this.data.length;
           const c = Math.trunc(l / 2);
           const order = (l + c + i - this.selected) % l;
@@ -40,7 +40,7 @@ export class MyElement extends LitElement {
     `;
   }
 
-  shift(i) {
+  shift(i: number) {
     const e = this.data.length - 1;
     return i > e ? 0 : i < 0 ? e : i;
   }

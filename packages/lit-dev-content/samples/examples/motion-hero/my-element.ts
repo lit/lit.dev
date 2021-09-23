@@ -7,7 +7,7 @@ import {
   fadeInSlow,
   fadeOut,
 } from '@lit-labs/motion';
-import {onFrames, data} from './support.js';
+import {onFrames, data, DataItem} from './support.js';
 import {styles} from './styles.js';
 
 @customElement('my-element')
@@ -16,7 +16,7 @@ export class MyElement extends LitElement {
 
   @property({type: Array}) data = data;
 
-  @state() detail!: typeof data[number];
+  @state() detail!: DataItem;
 
   controller = new AnimateController(this, {
     defaultOptions: {
@@ -36,7 +36,7 @@ export class MyElement extends LitElement {
           (i) => i,
           (i, x) =>
             html`<li
-              @click=${(e) => this.clickHandler(e, i)}
+              @click=${(e: Event) => this.clickHandler(e, i)}
               ${animate({
                 out: fadeOut,
                 id: `${i.id}:card`,
@@ -135,7 +135,7 @@ export class MyElement extends LitElement {
     </div>`;
   }
 
-  clickHandler(e, item) {
+  clickHandler(e: Event, item: DataItem) {
     if (this.controller.isAnimating) {
       this.controller.togglePlay();
     } else {

@@ -4,7 +4,13 @@ export const springy = [
   0.9925, 0.9935, 0.9949, 0.9964, 0.9978, 0.999, 0.9998,
 ];
 
-export const onFrames = ({animatingProperties, frames}) => {
+export const onFrames = ({
+  animatingProperties,
+  frames,
+}: {
+  animatingProperties: {[index: string]: number};
+  frames: Keyframe[];
+}) => {
   const props = animatingProperties;
   if (frames === undefined || props === undefined) {
     return frames;
@@ -51,3 +57,5 @@ export const data = [
   },
   {id: 8, value: 'Cows', summary: 'Cows make good hamburgers.'},
 ];
+
+export type DataItem = typeof data[number];
