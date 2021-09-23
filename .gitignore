@@ -15,5 +15,9 @@ packages/lit-dev-api/lit/
 packages/lit-dev-api/api-data/**/*
 !packages/lit-dev-api/api-data/.gitkeep
 
+tests/**/*.png
+!tests/**/*-linux.png
+test-results
+
 *.tsbuildinfo
 lerna-debug.log
