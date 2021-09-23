@@ -115,7 +115,7 @@ docker run --rm --name litdev -p 8080:8080 -e PORT=8080 -e MODE=main litdev
 docker run --rm --name litdev-playground -p 8081:8081 -e PORT=8081 -e MODE=playground litdev
 ```
 
-### Updating snapshot integration tests
+### Updating snapshot tests
 
 Snapshots that are committed to the repository need to be created through the
 "Artifacts / Download link for updated snapshots" Github Action. This action

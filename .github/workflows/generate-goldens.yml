@@ -1,6 +1,5 @@
 # GitHub Action that generates screenshots for integration tests. These can be
-# downloaded and added to your PR. These are created with every PR so it's easy
-# to retrieve updated snapshots.
+# downloaded and added to your PR.
 name: Artifacts
 
 on:

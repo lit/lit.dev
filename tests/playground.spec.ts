@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import { test, expect, Page } from '@playwright/test';
+import {test, expect, Page} from '@playwright/test';
 
 test.describe('Playground', () => {
-  test('default example is simple-greeting.ts', async ({ page }) => {
+  test('default example is simple-greeting.ts', async ({page}) => {
     await page.goto(`/playground`);
 
     await waitForPlaygroundPreviewToLoad(page);
@@ -36,7 +36,7 @@ test.describe('Playground', () => {
     );
   });
 
-  test('updating the example code updates the preview', async ({ page }) => {
+  test('updating the example code updates the preview', async ({page}) => {
     await page.goto(`/playground`);
 
     // Double click text=blue
@@ -59,12 +59,14 @@ test.describe('Playground', () => {
     );
   });
 
-  test('Hello world project golden', async ({ page }) => {
+  test('Hello world project golden', async ({page}) => {
     await page.goto('/playground');
     await waitForPlaygroundPreviewToLoad(page);
     // Because of shadow dom piercing, Playwright finds multiple '#content'
     // nodes, i.e. the page, and within the playground shadow DOM.
-    await expect(await page.locator('main > #content').screenshot()).toMatchSnapshot('helloWorldPlaygroundProject.png');
+    await expect(
+      await page.locator('main > #content').screenshot()
+    ).toMatchSnapshot('helloWorldPlaygroundProject.png');
   });
 });
 
@@ -72,7 +74,7 @@ async function waitForPlaygroundPreviewToLoad(page: Page) {
   await page.waitForSelector(
     'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
   );
-  // There is a fade out transition on the playground loading bar that makes
-  // snapshots flaky.
+  // There is a fade-out transition on the playground loading bar that makes
+  // snapshots flaky. Wait for the loading bar to have animated out.
   await page.waitForTimeout(250);
 }
