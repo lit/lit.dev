@@ -51,7 +51,7 @@ The following JSON sample is a partial `tsconfig.json` that uses recommended opt
 }
 ```
 
-Note, setting `useDefineForClassFields` to `false` should only be required when the `target` is set to `es2020` or greater, but it's recommended to explicitly ensure this setting is `false`.
+Note, setting `useDefineForClassFields` to `false` should only be required when the `target` is set to `esnext` or greater, but it's recommended to explicitly ensure this setting is `false`.
 
 When compiling from TypeScript, you should include declaration files
 (generated based on `declaration: true` above) for your component's types in the

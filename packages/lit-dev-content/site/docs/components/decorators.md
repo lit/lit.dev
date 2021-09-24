@@ -73,7 +73,7 @@ In the future when decorators become a native web platform feature, this may no 
 
 To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html), enable the `experimentalDecorators` compiler option.
 
-You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this should only be required when the `target` is set to `es2020` or greater, but it's recommended to explicitly ensure this setting is `false`.
+You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this should only be required when the `target` is set to `esnext` or greater, but it's recommended to explicitly ensure this setting is `false`.
 
 ```json
 "experimentalDecorators": true,
