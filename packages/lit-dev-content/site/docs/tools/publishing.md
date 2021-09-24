@@ -46,9 +46,12 @@ The following JSON sample is a partial `tsconfig.json` that uses recommended opt
   "lib": ["es2019", "dom"],
   "declaration": true,
   "declarationMap": true,
-  "experimentalDecorators": true
+  "experimentalDecorators": true,
+  "useDefineForClassFields": false
 }
 ```
+
+Note, setting `useDefineForClassFields` to `false` should only be required when the `target` is set to `esnext` or greater, but it's recommended to explicitly ensure this setting is `false`.
 
 When compiling from TypeScript, you should include declaration files
 (generated based on `declaration: true` above) for your component's types in the
@@ -82,12 +85,17 @@ Configure Babel. For example:
 **babel.config.js**
 
 ```js
+const assumptions = {
+  "setPublicClassFields": true
+};
+
 const plugins = [
-  ["@babel/plugin-proposal-class-properties", {"loose": true}],
   ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true } ],
+  ["@babel/plugin-proposal-class-properties"],
+
 ];
 
-module.exports = { plugins };
+module.exports = { assumptions, plugins };
 ```
 
 You can run Babel via a bundler plugin such as [@rollup/plugin-babel](https://www.npmjs.com/package/@rollup/plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.

@@ -73,25 +73,34 @@ In the future when decorators become a native web platform feature, this may no 
 
 To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html), enable the `experimentalDecorators` compiler option.
 
+You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this should only be required when the `target` is set to `esnext` or greater, but it's recommended to explicitly ensure this setting is `false`.
+
 ```json
 "experimentalDecorators": true,
+"useDefineForClassFields": false,
 ```
 
 Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 ### Using decorators with Babel  { #decorators-babel }
 
-If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins:
+If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins and settings:
 
-*   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators).
+*   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)
 *   [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
 
-To enable the plugins, add code like this to your Babel configuration:
+Note, the `@babel/plugin-proposal-class-properties` may not be required with the latest versions of Babel.
+
+To set up the plugins, add code like this to your Babel configuration:
 
 ```js
+assumptions = {
+  "setPublicClassFields": true
+};
+
 plugins = [
   ['@babel/plugin-proposal-decorators', {decoratorsBeforeExport: true}],
-  ["@babel/plugin-proposal-class-properties", {"loose": true}],
+  ["@babel/plugin-proposal-class-properties"],
 ];
 ```
 
@@ -101,42 +110,19 @@ Currently the older `legacy` mode of Babel decorators is not supported, but this
 
 </div>
 
-### Avoiding issues with class fields
-
-Class fields are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. They currently have a problematic interaction with the decorators proposal in some circumstances.
-
-There are generally no issues when using TypeScript. However, it's important to ensure that the `useDefineForClassFields` setting in your `tsconfig` is set to false. This is currently the default setting.
-
-When using Babel, class fields should only be used for properties that are defined with a decorator.
-
-<div class="alert alert-info">
-Using the `static properties` syntax along with class fields is not supported.
-</div>
-
-The following is ok:
-
-```js
-@property()
-foo = 'bar';
-```
-
-but this is **not supported**:
-
-```js
-static properties = { foo: {} };
-foo = 'bar';
-```
-
-### Using TypeScript with Babel
+### Using decorators with TypeScript and Babel
 
 When using TypeScript with Babel, it's important to order the TypeScript transform before the decorators transform in your Babel config as follows:
 
 ```js
 {
+  "assumptions": {
+    "setPublicClassFields": true
+  },
   "plugins":[
     ["@babel/plugin-transform-typescript", {"allowDeclareFields": true}],
     ["@babel/plugin-proposal-decorators", {"decoratorsBeforeExport": true}],
-    ["@babel/plugin-proposal-class-properties", {"loose": true}],
+    ["@babel/plugin-proposal-class-properties"],
   ]
 }
 ```
@@ -153,3 +139,11 @@ constructor() {
   this.foo = 'bar';
 }
 ```
+
+### Avoiding issues with class fields and decorators {#avoiding-issues-with-class-fields}
+
+[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/components/properties/#avoiding-issues-with-class-fields) for more information.
+
+The current decorators [stage 3 proposal](https://github.com/tc39/proposal-decorators) does not directly address this issue, but it should be solved as the proposal evolves and matures.
+
+When using decorators, transpiler settings for Babel and TypeScript must be configured correctly as shown in the sections above for [TypeScript](#decorators-typescript) and [Babel](#decorators-babel).

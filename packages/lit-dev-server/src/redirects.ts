@@ -10,8 +10,7 @@ export const pageRedirects = new Map([
   // TODO(sorvell) https://github.com/lit/lit.dev/issues/455
   ['/msg/multiple-versions',          '/docs/tools/requirements/'],
   ['/msg/polyfill-support-missing',   '/docs/tools/requirements/#polyfills'],
-  // TODO(sorvell) https://github.com/lit/lit.dev/issues/462
-  ['/msg/class-field-shadowing',      '/docs/components/properties/#declare'],
+  ['/msg/class-field-shadowing',      '/docs/components/properties/#avoiding-issues-with-class-fields'],
   // TODO(aomarks) Should we add something specifically about this issue?
   ['/msg/change-in-update',           '/docs/components/properties/#when-properties-change'],
   ['/msg/deprecated-import-path',     '/docs/releases/upgrade/#update-packages-and-import-paths'],
