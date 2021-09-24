@@ -122,5 +122,5 @@ Screenshots that are committed to the repository need to be created through the
 generates a zip archive `golden-results` which can be extracted into `tests/`.
 
 ```sh
-unzip golden-results -d tests/
+unzip golden-results.zip -d tests/
 ```
