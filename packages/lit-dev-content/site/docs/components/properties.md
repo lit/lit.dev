@@ -121,7 +121,7 @@ An empty option object is equivalent to specifying the default value for all opt
 
 **You can use class fields** with reactive properties when transpiling code with Babel or TypeScript and the proper settings are enabled. Both Babel and TypeScript support transpiling class fields into properties set in the constructor rather than defined on the instance.
 
-For TypeScript, set the `useDefineForClassFields` setting in your `tsconfig` is set to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
+For **TypeScript**, you may use class fields for declaring reactive properties as long as the `useDefineForClassFields` setting in your `tsconfig` is set to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
 
 For Babel, set `setPublicClassFields` to `true` in the `assumptions` config of your `babelrc`. Note, for older versions of Babel, you also need to include the plugin `@babel/plugin-proposal-class-properties`:
 
