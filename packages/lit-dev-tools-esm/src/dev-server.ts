@@ -23,7 +23,8 @@ type DevServerPlugin = Exclude<DevServerConfig['plugins'], undefined>[number];
  *
  * However, when serving a .js file from a Playground project, we don't want
  * this resolution to occur, because we want to display the raw file in the
- * editor.
+ * editor, and we want to do our own bare module resolution within the
+ * Playground web worker.
  *
  * This plugin overrides bare module resolution for anything served from the
  * Playground samples directory to preserve the original specifier.
@@ -42,8 +43,10 @@ const dontResolveBareModulesInPlaygroundFiles: DevServerPlugin = {
  * Since we're using the `watch` setting, @web/dev-server injects a script into
  * any .html file it serves that listens for changes and reloads the page.
  *
- * However, when serving a .html file from a Playground project, we want this
- * script to be injected, because we want to display the raw file in the editor.
+ * However, when serving an .html file from a Playground project, we don't want
+ * this script to be injected, because we want to display the raw file in the
+ * editor, and we don't need the HTML preview to reload (since the parent will
+ * reload anyway).
  *
  * This plugin removes the script for anything served from the Playground
  * samples directory.
