@@ -16,6 +16,8 @@ Meanwhile, at Google, we've extensively tested Lit 2 by upgrading thousands of G
 
 Today we're happy to announce that Lit 2 is ready to go.
 
+**Correction:** _The lit-analyzer CLI and VS Code Lit plugin are being updated to work with Lit 2. The original version of this post incorrectly stated that these had already been released._
+
 </div>
 
 
@@ -71,9 +73,9 @@ Since the initial RC, most changes have been bug fixes. A few notable changes:
 
 *   Better runtime warnings in the development build. For information on using the development build, see [Development and production builds](https://lit.dev/docs/tools/development/#development-and-production-builds).
 
-*   The lit-analyzer CLI and VS Code Lit plugin have been updated to work with Lit 2.
 
 For a full list of changes, see the [changelog](https://github.com/lit/lit/blob/main/packages/lit/CHANGELOG.md).
+
 
 ## Get started with Lit 2
 
