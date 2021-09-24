@@ -11,6 +11,7 @@ import koaEtag from 'koa-etag';
 import {fileURLToPath} from 'url';
 import * as path from 'path';
 import {redirectMiddleware} from './middleware/redirect-middleware.js';
+import {playgroundMiddleware} from './middleware/playground-middleware.js';
 
 const mode = process.env.MODE;
 if (mode !== 'main' && mode !== 'playground') {
@@ -38,11 +39,7 @@ console.log(`static root: ${staticRoot}`);
 const app = new Koa();
 
 if (mode === 'playground') {
-  // See https://github.com/PolymerLabs/playground-elements#process-isolation
-  app.use(async (ctx, next) => {
-    ctx.set('Origin-Agent-Cluster', '?1');
-    await next();
-  });
+  app.use(playgroundMiddleware());
 }
 
 app.use(redirectMiddleware());

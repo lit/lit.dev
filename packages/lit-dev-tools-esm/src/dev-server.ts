@@ -8,6 +8,7 @@ import {startDevServer, DevServerConfig} from '@web/dev-server';
 import {fileURLToPath} from 'url';
 import * as pathlib from 'path';
 import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middleware.js';
+import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
@@ -88,6 +89,7 @@ startDevServer({
       'node_modules',
       'playground-elements'
     ),
+    middleware: [playgroundMiddleware()],
   },
   // Ignore any CLI flags. In particular we only want --open to apply to the
   // main server.
