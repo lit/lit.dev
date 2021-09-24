@@ -12,6 +12,7 @@ import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middlew
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
 const MAIN_PORT = 5415;
+const PLAYGROUND_PORT = 5416;
 
 type DevServerPlugin = Exclude<DevServerConfig['plugins'], undefined>[number];
 
@@ -77,4 +78,18 @@ startDevServer({
     nodeResolve: true,
     preserveSymlinks: true,
   },
+});
+
+startDevServer({
+  config: {
+    port: PLAYGROUND_PORT,
+    rootDir: pathlib.resolve(
+      CONTENT_PKG,
+      'node_modules',
+      'playground-elements'
+    ),
+  },
+  // Ignore any CLI flags. In particular we only want --open to apply to the
+  // main server.
+  readCliArgs: false,
 });
