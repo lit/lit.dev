@@ -11,11 +11,11 @@ const config: PlaywrightTestConfig = {
     screenshot: 'off',
     baseURL: 'http://localhost:8080/',
   },
-  // Prevent implicit snapshot creation and tests passing. Create snapshots
+  // Prevent implicit snapshot creation and tests passing. Create screenshots
   // explicitly with either:
-  //  * Github Action: "Artifacts / Download link for updated snapshots" for
+  //  * Github Action: "Artifacts / Download link for updated screenshots" for
   //    committing the snapshot to the repository.
-  //  * `npm run test:update-goldens` for local testing.
+  //  * `npm run test:update-golden-screenshots` for local testing.
   updateSnapshots: 'none',
 };
 export default config;

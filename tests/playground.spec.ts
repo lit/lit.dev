@@ -75,6 +75,6 @@ async function waitForPlaygroundPreviewToLoad(page: Page) {
     'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
   );
   // There is a fade-out transition on the playground loading bar that makes
-  // snapshots flaky. Wait for the loading bar to have animated out.
+  // screenshots flaky. Wait for the loading bar to have animated out.
   await page.waitForTimeout(250);
 }

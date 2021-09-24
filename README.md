@@ -115,8 +115,12 @@ docker run --rm --name litdev -p 8080:8080 -e PORT=8080 -e MODE=main litdev
 docker run --rm --name litdev-playground -p 8081:8081 -e PORT=8081 -e MODE=playground litdev
 ```
 
-### Updating snapshot tests
+### Updating screenshots tests
 
-Snapshots that are committed to the repository need to be created through the
-"Artifacts / Download link for updated snapshots" Github Action. This action
+Screenshots that are committed to the repository need to be created through the
+"Artifacts / Download link for updated screenshots" Github Action. This action
 generates a zip archive `golden-results` which can be extracted into `tests/`.
+
+```sh
+unzip golden-results -d tests/
+```

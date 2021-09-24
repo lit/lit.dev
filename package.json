@@ -19,10 +19,10 @@
     "check-links:internal": "wait-on tcp:8080 && blc http://localhost:8080 --recursive --exclude-external --ordered",
     "check-links:external": "wait-on tcp:8080 && blc http://localhost:8080 --exclude 'http://localhost:8000/dev/' --exclude 'https://www.npmjs.com/*' --get --recursive --host-requests 1",
     "test:integration": "npm run test:integration:install-deps && run-p -r start test:integration:run",
-    "test:update-goldens": "npm run test:integration:install-deps && run-p -r start test:integration:update-goldens",
+    "test:update-golden-screenshots": "npm run test:integration:install-deps && run-p -r start test:integration:update-golden-screenshots",
     "test:integration:install-deps": "npx playwright install-deps chromium",
     "test:integration:run": "npx playwright test",
-    "test:integration:update-goldens": "npx playwright test --update-snapshots"
+    "test:integration:update-golden-screenshots": "npx playwright test --update-snapshots"
   },
   "author": "Google LLC",
   "license": "BSD-3-Clause",
