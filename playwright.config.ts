@@ -9,7 +9,7 @@ const config: PlaywrightTestConfig = {
   testDir: 'tests',
   use: {
     screenshot: 'off',
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'http://localhost:6415/',
   },
   // Prevent implicit snapshot creation and tests passing. Create screenshots
   // explicitly with either:

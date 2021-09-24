@@ -26,7 +26,8 @@ const slugify = (s) => slugifyLib(s, {lower: true});
 
 const DEV = process.env.ELEVENTY_ENV === 'dev';
 const OUTPUT_DIR = DEV ? '_dev' : '_site';
-const PLAYGROUND_SANDBOX = process.env.PLAYGROUND_SANDBOX || '.';
+const PLAYGROUND_SANDBOX =
+  process.env.PLAYGROUND_SANDBOX || 'http://localhost:6416/';
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme

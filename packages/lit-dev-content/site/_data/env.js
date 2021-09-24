@@ -10,6 +10,6 @@
 // https://www.11ty.dev/docs/data-js/#example-exposing-environment-variables
  module.exports = {
    DEV: process.env.ELEVENTY_ENV === 'dev',
-   PLAYGROUND_SANDBOX: process.env.PLAYGROUND_SANDBOX,
+   PLAYGROUND_SANDBOX: process.env.PLAYGROUND_SANDBOX || 'http://localhost:6416/',
    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
  }
