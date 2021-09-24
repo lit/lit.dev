@@ -137,7 +137,7 @@ plugins = [
 
 For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/components/decorators/#avoiding-issues-with-class-fields).
 
-**You cannot use *native* class fields** or their emulated output in Babel or TypeScript with properties intended to be reactive. Instead, properties should be initialized in the element constructor:
+In **JavaScript** you must not use class fields when declaring reactive properties. Instead, properties must be initialized in the element constructor:
 
 ```js
 constructor() {
