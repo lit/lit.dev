@@ -117,7 +117,7 @@ An empty option object is equivalent to specifying the default value for all opt
 
 ### Avoiding issues with class fields when declaring properties {#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. Class fields are defined on the element instance. Reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used. When a property is set, the element does not update.
+[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance. Reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used. When a property is set, the element does not update.
 
 **You can use class fields** with reactive properties when transpiling code with Babel or TypeScript and the proper settings are enabled. Both Babel and TypeScript support transpiling class fields into properties set in the constructor rather than defined on the instance.
 
