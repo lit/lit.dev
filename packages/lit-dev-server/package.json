@@ -10,7 +10,9 @@
   "scripts": {
     "build": "npm run build:ts",
     "build:ts": "../../node_modules/.bin/tsc",
-    "start": "MODE=main PORT=8080 node lib/server.js",
+    "start": "run-p start:main start:playground",
+    "start:main": "MODE=main PORT=6415 node lib/server.js",
+    "start:playground": "MODE=playground PORT=6416 node lib/server.js",
     "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
   },
   "dependencies": {

@@ -68,9 +68,7 @@ title: Playground
   </div>
 
   <playground-project
-    {% if env.PLAYGROUND_SANDBOX %}
-      sandbox-base-url={{ env.PLAYGROUND_SANDBOX }}
-    {% endif %}
+     sandbox-base-url="{{ env.PLAYGROUND_SANDBOX }}"
      id="project">
   </playground-project>
 

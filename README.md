@@ -30,7 +30,7 @@ npm run build
 npm run dev
 ```
 
-Serves at [`http://localhost:8000`](http://localhost:8000) (port may be incremented if not available, see console output).
+Serves at [`http://localhost:5415`](http://localhost:5415).
 
 You may also prefer to run each dev script in its own terminal:
 
@@ -94,6 +94,8 @@ npm run build
 npm start
 ```
 
+Serves at [`http://localhost:6415`](http://localhost:6415)
+
 ### Watch production mode
 
 ```sh
@@ -105,15 +107,17 @@ npm run build:rollup:watch # Rollup
 npm run build:site:watch   # Eleventy
 ```
 
-Serves at [`http://localhost:8080`](http://localhost:8080)
+Serves at [`http://localhost:6415`](http://localhost:6415)
 
 ### Start production Docker environment locally
 
 ```sh
-docker build -t litdev . --build-arg PLAYGROUND_SANDBOX=http://localhost:8081/
-docker run --rm --name litdev -p 8080:8080 -e PORT=8080 -e MODE=main litdev
-docker run --rm --name litdev-playground -p 8081:8081 -e PORT=8081 -e MODE=playground litdev
+docker build -t litdev . --build-arg PLAYGROUND_SANDBOX=http://localhost:7416/
+docker run --rm --name litdev -p 7415:7415 -e PORT=7415 -e MODE=main litdev
+docker run --rm --name litdev-playground -p 7416:7416 -e PORT=7416 -e MODE=playground litdev
 ```
+
+Serves at [`http://localhost:7415`](http://localhost:7415)
 
 ### Updating screenshots tests
 
