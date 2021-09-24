@@ -91,7 +91,7 @@ If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you ca
 
 Note, the `@babel/plugin-proposal-class-properties` may not be required with the latest versions of Babel.
 
-To enable these settings, add code like this to your Babel configuration:
+To set up the plugins, add code like this to your Babel configuration:
 
 ```js
 assumptions = {
