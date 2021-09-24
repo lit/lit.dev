@@ -30,7 +30,7 @@ npm run build
 npm run dev
 ```
 
-Serves at [`http://localhost:8000`](http://localhost:8000) (port may be incremented if not available, see console output).
+Serves at [`http://localhost:5415`](http://localhost:5415).
 
 You may also prefer to run each dev script in its own terminal:
 
