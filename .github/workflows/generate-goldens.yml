@@ -1,0 +1,38 @@
+# GitHub Action that generates screenshots for integration tests. These can be
+# downloaded and added to your PR.
+name: Artifacts
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+jobs:
+  generate-goldens:
+    name: Download link for updated screenshots
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 15
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: NPM install
+        run: npm ci
+
+      - name: Lerna bootstrap
+        run: npm run bootstrap
+
+      - name: Build
+        run: npm run build
+
+      - name: Update goldens
+        run: npm run test:update-golden-screenshots
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: golden-results
+          path: tests/**/**.png

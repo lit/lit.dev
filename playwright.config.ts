@@ -8,8 +8,14 @@ import {PlaywrightTestConfig} from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: 'tests',
   use: {
-    screenshot: 'only-on-failure',
+    screenshot: 'off',
     baseURL: 'http://localhost:8080/',
   },
+  // Prevent implicit snapshot creation and tests passing. Create screenshots
+  // explicitly with either:
+  //  * Github Action: "Artifacts / Download link for updated screenshots" for
+  //    committing the snapshot to the repository.
+  //  * `npm run test:update-golden-screenshots` for local testing.
+  updateSnapshots: 'none',
 };
 export default config;
