@@ -46,17 +46,13 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('site/fonts');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
+    // The Playground web worker is loaded directly from the main origin, so it
+    // should be in our js directory. We don't need the service worker, though,
+    // because that will be served directly out of node_modules/ by the
+    // dedicated Playground sandbox server.
     eleventyConfig.addPassthroughCopy({
       'node_modules/playground-elements/playground-typescript-worker.js':
         './js/playground-typescript-worker.js',
-    });
-    eleventyConfig.addPassthroughCopy({
-      'node_modules/playground-elements/playground-service-worker.js':
-        './js/playground-service-worker.js',
-    });
-    eleventyConfig.addPassthroughCopy({
-      'node_modules/playground-elements/playground-service-worker-proxy.html':
-        './js/playground-service-worker-proxy.html',
     });
   }
   eleventyConfig.addPassthroughCopy('api/**/*');

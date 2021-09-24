@@ -25,15 +25,11 @@ if (isNaN(port)) {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const contentPackage = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  'lit-dev-content',
-  '_site'
-);
+const contentPackage = path.resolve(__dirname, '..', '..', 'lit-dev-content');
 const staticRoot =
-  mode === 'playground' ? path.join(contentPackage, 'js') : contentPackage;
+  mode === 'playground'
+    ? path.join(contentPackage, 'node_modules', 'playground-elements')
+    : path.join(contentPackage, '_site');
 
 console.log(`mode: ${mode}`);
 console.log(`port: ${port}`);
