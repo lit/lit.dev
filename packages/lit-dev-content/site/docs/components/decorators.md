@@ -84,7 +84,7 @@ Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 ### Using decorators with Babel  { #decorators-babel }
 
-If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins and assumptions:
+If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins and settings:
 
 *   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)
 *   [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
