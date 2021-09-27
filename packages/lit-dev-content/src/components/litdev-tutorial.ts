@@ -260,7 +260,7 @@ export class LitDevTutorial extends LitElement {
   };
 
   private _writeUrl() {
-    window.history.pushState(
+    window.history.replaceState(
       null,
       '',
       addModsParameterToUrlIfNeeded(this._info.url)
