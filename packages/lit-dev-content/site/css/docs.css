@@ -684,7 +684,7 @@ td {
 }
 
 /**
- * Hide the RHS nav when very narrow.
+ * Hide the LHS nav when very narrow.
  *
  * (14 + 30 + 3) * 18 = 846
  *  |    |    |    +------------- font-size
