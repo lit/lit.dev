@@ -10,6 +10,7 @@ import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
 import {fileURLToPath} from 'url';
 import * as path from 'path';
+import * as fs from 'fs';
 import {redirectMiddleware} from './middleware/redirect-middleware.js';
 import {playgroundMiddleware} from './middleware/playground-middleware.js';
 import {contentSecurityPolicyMiddleware} from './middleware/content-security-policy-middleware.js';
@@ -42,8 +43,16 @@ const app = new Koa();
 if (mode === 'playground') {
   app.use(playgroundMiddleware());
 } else {
+  const inlineScriptHashes = fs
+    .readFileSync(
+      path.join(contentPackage, '_site', 'csp-inline-script-hashes.txt'),
+      'utf8'
+    )
+    .trim()
+    .split('\n');
   app.use(
     contentSecurityPolicyMiddleware({
+      inlineScriptHashes,
       reportViolations: process.env.REPORT_CSP_VIOLATIONS === 'true',
     })
   );
