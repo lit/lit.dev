@@ -19,7 +19,7 @@ main {
      @media query thresholds below need to be updated. */
   --docs-nav-min-width: 14em;
   --docs-nav-max-width: 1fr;
-  --docs-toc-min-width: 10em;
+  --docs-toc-min-width: 5em;
   --docs-article-min-width: 30em;
   --docs-article-max-width: 49em;
   --docs-article-margin-horizontal: 3em;
@@ -542,7 +542,7 @@ td {
 }
 
 #rhsToc {
-  padding: calc(var(--docs-margin-top) + 0.3em) 1.5em 0 1em;
+  padding: calc(var(--docs-margin-top) + 0.3em) 1em 0 0;
   position: sticky;
   top: var(--header-height);
 }
@@ -630,14 +630,14 @@ td {
 /**
  * Move the TOC inline when slightly narrow.
  *
- * (14 + 49 + 10 + (3 * 2)) * 18 = 1422
- *  |    |    |     |         +-- font-size
- *  |    |    |     +------------ docs-article-margin-horizontal
+ * (14 + 49 + 5 + (3 * 2)) * 18 = 1332
+ *  |    |    |    |         +--- font-size
+ *  |    |    |    +------------- docs-article-margin-horizontal
  *  |    |    +------------------ docs-toc-min-width
  *  |    +----------------------- docs-article-max-width
  *  +---------------------------- docs-nav-min-width
  */
-@media (max-width: 1440px) {
+@media (max-width: 1332px) {
   main {
     --docs-article-margin-horizontal: 2.5em;
   }
@@ -684,7 +684,7 @@ td {
 }
 
 /**
- * Hide the RHS nav when very narrow.
+ * Hide the LHS nav when very narrow.
  *
  * (14 + 30 + 3) * 18 = 846
  *  |    |    |    +------------- font-size
