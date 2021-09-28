@@ -12,6 +12,7 @@ import {fileURLToPath} from 'url';
 import * as path from 'path';
 import {redirectMiddleware} from './middleware/redirect-middleware.js';
 import {playgroundMiddleware} from './middleware/playground-middleware.js';
+import {contentSecurityPolicyMiddleware} from './middleware/content-security-policy-middleware.js';
 
 const mode = process.env.MODE;
 if (mode !== 'main' && mode !== 'playground') {
@@ -40,6 +41,12 @@ const app = new Koa();
 
 if (mode === 'playground') {
   app.use(playgroundMiddleware());
+} else {
+  app.use(
+    contentSecurityPolicyMiddleware({
+      reportViolations: process.env.REPORT_CSP_VIOLATIONS === 'true',
+    })
+  );
 }
 
 app.use(redirectMiddleware());

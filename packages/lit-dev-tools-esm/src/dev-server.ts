@@ -9,6 +9,7 @@ import {fileURLToPath} from 'url';
 import * as pathlib from 'path';
 import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middleware.js';
 import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
+import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
@@ -77,7 +78,10 @@ startDevServer({
       dontResolveBareModulesInPlaygroundFiles,
       removeWatchScriptFromPlaygroundFiles,
     ],
-    middleware: [redirectMiddleware()],
+    middleware: [
+      contentSecurityPolicyMiddleware({devMode: true}),
+      redirectMiddleware(),
+    ],
     watch: true,
     nodeResolve: true,
     preserveSymlinks: true,
