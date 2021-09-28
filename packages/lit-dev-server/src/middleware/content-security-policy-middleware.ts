@@ -26,6 +26,11 @@ export interface ContentSecurityPolicyMiddlewareOptions {
    * allowlisted to run as inline scripts.
    */
   inlineScriptHashes?: string[];
+
+  /**
+   * Origin for Playground preview iframes.
+   */
+  playgroundPreviewOrigin: string;
 }
 
 /**
@@ -39,7 +44,7 @@ export interface ContentSecurityPolicyMiddlewareOptions {
  * https://speakerdeck.com/lweichselbaum/csp-a-successful-mess-between-hardening-and-mitigation
  */
 export const contentSecurityPolicyMiddleware = (
-  opts: ContentSecurityPolicyMiddlewareOptions = {}
+  opts: ContentSecurityPolicyMiddlewareOptions
 ): Koa.Middleware => {
   const cspHeaderValue = [
     // TODO(aomarks) We should also enable trusted types, but that will require
@@ -71,13 +76,8 @@ export const contentSecurityPolicyMiddleware = (
     // them for automatic reloads.
     `connect-src 'self' https://unpkg.com/${opts.devMode ? ` ws:` : ''}`,
 
-    // TODO(aomarks) These frame-src directives are only needed for embedding
-    // Playground previews. We can know the exact origin that is being used for
-    // Playground previews, so we could restrict this further by passing that in
-    // as a parameter to the middleware.
-    //
-    // In dev mode, http: is needed for http://localhost Playground iframes.
-    `frame-src https:${opts.devMode ? ' http:' : ''}`,
+    // Playground previews and embedded YouTube videos.
+    `frame-src ${opts.playgroundPreviewOrigin} https://www.youtube-nocookie.com/`,
 
     // We need 'unsafe-inline' because CodeMirror uses inline styles See
     // https://discuss.codemirror.net/t/inline-styles-and-content-security-policy/1311/2
