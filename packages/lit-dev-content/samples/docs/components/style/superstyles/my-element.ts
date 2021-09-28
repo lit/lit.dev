@@ -5,7 +5,7 @@ import {SuperElement} from './super-element.js';
 @customElement('my-element')
 export class MyElement extends SuperElement {
   static styles = [
-    super.styles,
+    SuperElement.styles,
     css`div {
       color: red;
     }`
