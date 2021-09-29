@@ -1,11 +1,9 @@
-/* https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap */
-
 @font-face {
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/manrope-regular.woff2) format('woff2');
+  src: url(/fonts/manrope-xn7gYHE41ni1AdIRggexSvfedN4.woff2) format('woff2');
 }
 
 @font-face {
@@ -13,7 +11,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/fonts/manrope-medium.woff2) format('woff2');
+  src: url(/fonts/manrope-xn7gYHE41ni1AdIRggexSvfedN4.woff2) format('woff2');
 }
 
 @font-face {
@@ -21,7 +19,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url(/fonts/manrope-semibold.woff2) format('woff2');
+  src: url(/fonts/manrope-xn7gYHE41ni1AdIRggexSvfedN4.woff2) format('woff2');
 }
 
 @font-face {
@@ -29,7 +27,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(/fonts/manrope-bold.woff2) format('woff2');
+  src: url(/fonts/manrope-xn7gYHE41ni1AdIRggexSvfedN4.woff2) format('woff2');
 }
 
 @font-face {
@@ -37,5 +35,5 @@
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url(/fonts/manrope-extrabold.woff2) format('woff2');
+  src: url(/fonts/manrope-xn7gYHE41ni1AdIRggexSvfedN4.woff2) format('woff2');
 }
