@@ -34,6 +34,11 @@ export interface ContentSecurityPolicyMiddlewareOptions {
 }
 
 /**
+ * A Google service which aggregates CSP violations.
+ */
+const CSP_REPORT_URI = 'https://csp.withgoogle.com/csp/lit-dev';
+
+/**
  * Creates a Koa middleware that sets the lit.dev Content Security Policy (CSP)
  * headers.
  *
@@ -46,20 +51,13 @@ export interface ContentSecurityPolicyMiddlewareOptions {
 export const contentSecurityPolicyMiddleware = (
   opts: ContentSecurityPolicyMiddlewareOptions
 ): Koa.Middleware => {
-  const cspHeaderValue = [
+  const mainCsp = [
     // TODO(aomarks) We should also enable trusted types, but that will require
     // a policy in playground-elements for creating the worker, and a policy
     // es-module-lexer for doing an eval (see next comment for more on that).
 
-    // TODO(aomarks) unsafe-eval is needed for an eval that is made by
-    // es-module-lexer to perform JavaScript string unescaping
-    // (https://github.com/guybedford/es-module-lexer/blob/91964da6b086dc5029091eeef481180a814ce24a/src/lexer.js#L32).
-    // There are a number of ways we could make this stricter: [1] use the
-    // asm.js build which doesn't use eval (but it's significantly slower), [2]
-    // use a separate CSP for the worker (except Chrome doesn't support that
-    // yet, though we could simulate it with an iframe), [3] get trusted types
-    // into the WASM build, [4] modify or fork the WASM build to implement
-    // string unescaping without eval (needs benchmarking).
+    // TODO(aomarks) Remove unsafe-eval when https://crbug.com/1253267 is fixed.
+    // See comment below about playgroundWorkerCsp.
     //
     // In dev mode, data: scripts are required because @web/dev-server uses them
     // for automatic reloads.
@@ -67,10 +65,8 @@ export const contentSecurityPolicyMiddleware = (
       opts.inlineScriptHashes?.map((hash) => `'${hash}'`).join(' ') ?? ''
     } https://www.googletagmanager.com/gtag/js ${opts.devMode ? ` data:` : ''}`,
 
-    // unpkg.com is needed to allow the Playground worker to fetch dependencies.
-    // TODO(aomarks) After https://crbug.com/1253267 is fixed we can serve a
-    // separate CSP policy just for the worker script (Firefox and Safari
-    // already support this).
+    // TODO(aomarks) Remove unpkg.com when https://crbug.com/1253267 is fixed.
+    // See comment below about playgroundWorkerCsp.
     //
     // In dev mode, ws: connections are required because @web/dev-server uses
     // them for automatic reloads.
@@ -105,9 +101,43 @@ export const contentSecurityPolicyMiddleware = (
     // https://github.com/w3c/webappsec-csp/issues/199.
     `default-src 'self'`,
 
-    ...(opts.reportViolations
-      ? [`report-uri https://csp.withgoogle.com/csp/lit-dev`]
-      : []),
+    ...(opts.reportViolations ? [`report-uri ${CSP_REPORT_URI}`] : []),
+  ].join('; ');
+
+  // TODO(aomarks) Currently this worker CSP will take effect in Firefox and
+  // Safari, but not Chrome. Chrome does not currently follow the CSP spec for
+  // workers; instead workers inherit the CSP policy of their parent context.
+  // This is being actively fixed (https://crbug.com/1253267), and once it ships
+  // we can remove unsafe-eval and unpkg.com from the main CSP above.
+  const playgroundWorkerCsp = [
+    // unsafe-eval is needed because we use es-module-lexer to parse import
+    // statements in modules. es-module-lexer needs unsafe-eval because:
+    //
+    // 1. It uses Web Assembly, which requires unsafe-eval until
+    //    wasm-unsafe-eval ships in all browsers:
+    //
+    //      Spec:    https://github.com/w3c/webappsec-csp/pull/293
+    //      Chrome:  https://bugs.chromium.org/p/chromium/issues/detail?id=948834
+    //      Safari:  https://bugs.webkit.org/show_bug.cgi?id=197759
+    //      Firefox: <not yet filed>
+    //
+    // 2. It uses eval() to parse JavaScript string literals
+    //    (https://github.com/guybedford/es-module-lexer/blob/91964da6b086dc5029091eeef481180a814ce24a/src/lexer.js#L32).
+    //    This is theoretically a safe use of eval because it's only used to
+    //    process strings that have already been lexed as single or double quote
+    //    strings. Trusted types could be used to isolate the exact eval() call.
+    //    It may also be a good idea to replace the eval call with a fast WASM
+    //    implementation of string unescaping.
+    `script-src 'unsafe-eval'`,
+
+    // Allow bare module specifiers to be fetched from unpkg. Note this does not
+    // restrict the user from directly importing from arbitrary other URLs in
+    // their import statements when using the Playground.
+    `connect-src https://unpkg.com/`,
+
+    // Disallow everything else.
+    `default-src 'none'`,
+    ...(opts.reportViolations ? [`report-uri ${CSP_REPORT_URI}`] : []),
   ].join('; ');
 
   return async (ctx, next) => {
@@ -115,7 +145,9 @@ export const contentSecurityPolicyMiddleware = (
     if (ctx.response.type === 'text/html') {
       // TODO(aomarks) Remove -Report-Only suffix when we are confident the
       // policy is working.
-      ctx.set('Content-Security-Policy-Report-Only', cspHeaderValue);
+      ctx.set('Content-Security-Policy-Report-Only', mainCsp);
+    } else if (ctx.path.endsWith('/playground-typescript-worker.js')) {
+      ctx.set('Content-Security-Policy-Report-Only', playgroundWorkerCsp);
     }
   };
 };
