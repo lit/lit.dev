@@ -52,7 +52,7 @@ if (mode === 'playground') {
     .split('\n');
   const playgroundPreviewOrigin = process.env.PLAYGROUND_SANDBOX;
   if (!playgroundPreviewOrigin) {
-    throw new Error('PLAYGROUND_SANDBOX env must be set');
+    throw new Error('PLAYGROUND_SANDBOX env was not set');
   }
   app.use(
     contentSecurityPolicyMiddleware({
