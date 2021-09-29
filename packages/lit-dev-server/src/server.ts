@@ -75,7 +75,12 @@ app.use(
       // TODO(aomarks) Oddly can't access the request URL path from this API.
       // This `path` is the path on disk. Works for now, though.
       if (path.includes('/fonts/')) {
-        res.setHeader('Cache-Control', 'max-age=3600');
+        res.setHeader(
+          'Cache-Control',
+          // These are the cache headers used by fonts.googleapis.com. It can be
+          // aggressively cached because the font filenames are unique.
+          'max-age=86400, stale-while-revalidate=604800'
+        );
       }
     },
   })
