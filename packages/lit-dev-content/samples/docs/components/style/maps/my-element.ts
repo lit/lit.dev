@@ -12,7 +12,7 @@ export class MyElement extends LitElement {
   @property()
   classes = { someclass: true, anotherclass: true };
   @property()
-  styles = { color: 'lightgreen', fontFamily: 'Roboto' };
+  styles = { color: 'lightgreen', fontFamily: 'sans-serif' };
   protected render() {
     return html`
       <div class=${classMap(this.classes)} style=${styleMap(this.styles)}>
