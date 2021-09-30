@@ -137,6 +137,10 @@ litdev-drawer:not([closed])::part(header) {
   align-items: center;
 }
 
+#actionBar > * {
+  margin-left: 1em;
+}
+
 #actionBar > button {
   font-family: "Open Sans", sans-serif;
   background: transparent;
@@ -147,7 +151,6 @@ litdev-drawer:not([closed])::part(header) {
   align-items: center;
   font-size: 16px;
   cursor: pointer;
-  margin-left: 1em;
 }
 
 #actionBar > button:hover {
