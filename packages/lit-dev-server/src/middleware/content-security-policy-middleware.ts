@@ -75,18 +75,16 @@ export const contentSecurityPolicyMiddleware = (
     // TODO(aomarks) We should also enable trusted types, but that will require
     // a policy in playground-elements for creating the worker, and a policy
     // es-module-lexer for doing an eval (see next comment for more on that).
-
-    // TODO(aomarks) Remove unsafe-eval when https://crbug.com/1253267 is fixed.
-    // See comment below about playgroundWorkerCsp.
-    //
-    // In dev mode, data: scripts are required because @web/dev-server uses them
-    // for automatic reloads.
     `script-src ${[
       `'self'`,
+      // TODO(aomarks) Remove unsafe-eval when https://crbug.com/1253267 is fixed.
+      // See comment below about playgroundWorkerCsp.
       `'unsafe-eval'`,
       `https://www.googletagmanager.com/gtag/js`,
       GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH,
       ...(opts.inlineScriptHashes?.map((hash) => `'${hash}'`) ?? []),
+      // In dev mode, data: scripts are required because @web/dev-server uses them
+      // for automatic reloads.
       ...(opts.devMode ? [`data:`] : []),
     ].join(' ')}`,
 
