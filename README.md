@@ -128,3 +128,15 @@ generates a zip archive `golden-results` which can be extracted into `tests/`.
 ```sh
 unzip golden-results.zip -d tests/
 ```
+
+### Fonts
+
+Fonts are served locally and copied into this Git repo from Google Fonts.
+
+To update existing font woff2 and `@font-face` CSS rules from Google Fonts, run
+`npm run build:fonts` from the `lit-dev-content` package.
+
+To add a new font, edit the `FONTS` variable in
+`lit-dev-tools-esm/src/update-fonts.ts`, run `npm run build` in the
+`lit-dev-tools-esm` package, and run `npm run build:fonts` from the
+`lit-dev-content` package.

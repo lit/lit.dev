@@ -4,7 +4,7 @@ import {customElement} from 'lit/decorators.js';
 @customElement('my-element')
 export class MyElement extends LitElement {
   static styles = css`
-    ::slotted(*) { font-family: Roboto; }
+    ::slotted(*) { font-family: sans-serif; }
     ::slotted(p) { color: blue; }
     div ::slotted(*) { color: red; }
   `;
