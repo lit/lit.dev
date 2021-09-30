@@ -50,9 +50,14 @@ if (mode === 'playground') {
     )
     .trim()
     .split('\n');
+  const playgroundPreviewOrigin = process.env.PLAYGROUND_SANDBOX;
+  if (!playgroundPreviewOrigin) {
+    throw new Error('PLAYGROUND_SANDBOX env was not set');
+  }
   app.use(
     contentSecurityPolicyMiddleware({
       inlineScriptHashes,
+      playgroundPreviewOrigin,
       reportViolations: process.env.REPORT_CSP_VIOLATIONS === 'true',
     })
   );

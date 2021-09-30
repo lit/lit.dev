@@ -113,7 +113,7 @@ Serves at [`http://localhost:6415`](http://localhost:6415)
 
 ```sh
 docker build -t litdev . --build-arg PLAYGROUND_SANDBOX=http://localhost:7416/
-docker run --rm --name litdev -p 7415:7415 -e PORT=7415 -e MODE=main litdev
+docker run --rm --name litdev -p 7415:7415 -e PORT=7415 -e MODE=main -e PLAYGROUND_SANDBOX=http://localhost:7416/ litdev
 docker run --rm --name litdev-playground -p 7416:7416 -e PORT=7416 -e MODE=playground litdev
 ```
 

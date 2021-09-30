@@ -79,7 +79,10 @@ startDevServer({
       removeWatchScriptFromPlaygroundFiles,
     ],
     middleware: [
-      contentSecurityPolicyMiddleware({devMode: true}),
+      contentSecurityPolicyMiddleware({
+        devMode: true,
+        playgroundPreviewOrigin: `http://localhost:${PLAYGROUND_PORT}`,
+      }),
       redirectMiddleware(),
     ],
     watch: true,
