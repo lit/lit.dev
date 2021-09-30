@@ -104,6 +104,11 @@ class FakeGitHub {
       ctx.body = 'error: missing or incorrect client_id url parameter';
       return;
     }
+    if (ctx.query.scope !== 'gist') {
+      ctx.status = 400;
+      ctx.body = 'error: expected scope=gist url parameter';
+      return;
+    }
 
     const userId = this._getOrSetUserIdFromCookie(ctx);
     const code = randomString();
