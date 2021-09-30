@@ -425,6 +425,8 @@ ${content}
       // seconds to the build, but it's disabled during dev.
       await preCompress({glob: `${OUTPUT_DIR}/**/*`});
 
+      // Note we only need to write CSP inline script hashes for the production
+      // output, because in dev mode we don't inline scripts.
       await fs.writeFile(
         path.join(OUTPUT_DIR, 'csp-inline-script-hashes.txt'),
         [...cspInlineScriptHashes].join('\n'),
