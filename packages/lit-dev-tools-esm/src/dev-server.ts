@@ -10,11 +10,13 @@ import * as pathlib from 'path';
 import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middleware.js';
 import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
 import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
+import {fakeGitHubMiddleware} from 'lit-dev-server/lib/middleware/fake-github-middleware.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
 const MAIN_PORT = 5415;
 const PLAYGROUND_PORT = 5416;
+const FAKE_GITHUB_PORT = 5417;
 
 type DevServerPlugin = Exclude<DevServerConfig['plugins'], undefined>[number];
 
@@ -100,6 +102,22 @@ startDevServer({
       'playground-elements'
     ),
     middleware: [playgroundMiddleware()],
+  },
+  // Ignore any CLI flags. In particular we only want --open to apply to the
+  // main server.
+  readCliArgs: false,
+});
+
+startDevServer({
+  config: {
+    port: FAKE_GITHUB_PORT,
+    middleware: [
+      fakeGitHubMiddleware({
+        clientId: 'FAKE_CLIENT_ID',
+        clientSecret: 'FAKE_APP_SECRET',
+        redirectUrl: `http://localhost:${MAIN_PORT}/playground/signin/`,
+      }),
+    ],
   },
   // Ignore any CLI flags. In particular we only want --open to apply to the
   // main server.
