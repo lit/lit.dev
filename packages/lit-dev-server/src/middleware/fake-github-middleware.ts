@@ -44,7 +44,7 @@ export const fakeGitHubMiddleware = (
 ): Koa.Middleware => {
   let fake = new FakeGitHub(options);
   return async (ctx, next) => {
-    if (ctx.path === '/reset') {
+    if (ctx.path === '/reset/') {
       return fake.reset(ctx);
     } else if (ctx.path === '/login/oauth/authorize') {
       return fake.authorize(ctx);
@@ -67,7 +67,7 @@ class FakeGitHub {
   /**
    * Generate a random user ID for this session and persist it in a cookie.
    */
-  private _getOrSetUserId(ctx: Koa.Context) {
+  private _getOrSetUserIdFromCookie(ctx: Koa.Context) {
     let userId = ctx.cookies.get('userid');
     if (!userId) {
       userId = randomString();
@@ -78,6 +78,10 @@ class FakeGitHub {
 
   /**
    * Clear all server state and browser cookies.
+   *
+   * Note this is not a real GitHub API. It is a convenience for developing and
+   * testing with this fake server, so that we can quickly reset to a
+   * pre-authenticated state.
    */
   reset(ctx: Koa.Context) {
     this._userToCode.clear();
@@ -101,7 +105,7 @@ class FakeGitHub {
       return;
     }
 
-    const userId = this._getOrSetUserId(ctx);
+    const userId = this._getOrSetUserIdFromCookie(ctx);
     const code = randomString();
     this._userToCode.set(userId, code);
 
