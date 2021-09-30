@@ -8,7 +8,7 @@
 // they can be hosted locally. We do this because:
 //
 // 1. There's no caching advantage to using an external CDN for fonts because of
-//    https://developers.goole.com/web/updates/2020/10/http-cache-partitioning.
+//    https://developers.google.com/web/updates/2020/10/http-cache-partitioning.
 //
 // 2. It avoids an extra connection and allows fonts to be multiplexed over the
 //    same HTTP/2 connection as other assets.
