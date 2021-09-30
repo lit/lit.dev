@@ -47,11 +47,25 @@ const CSP_REPORT_URI = 'https://csp.withgoogle.com/csp/lit-dev';
  * https://www.w3.org/TR/CSP3/
  * https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
  * https://speakerdeck.com/lweichselbaum/csp-a-successful-mess-between-hardening-and-mitigation
+ * https://csp-evaluator.withgoogle.com/
  */
 export const contentSecurityPolicyMiddleware = (
   opts: ContentSecurityPolicyMiddlewareOptions
 ): Koa.Middleware => {
-  const mainCsp = [
+  const makePolicy = (...directives: string[]) =>
+    [
+      ...directives,
+      // Prevent an injected <base> tag from modifying relative URLs.
+      `base-uri 'none'`,
+      // Prevent form submissions.
+      `form-action 'none'`,
+      // Disallow other sites from iframing this site (e.g. clickjacking).
+      `frame-ancestors 'none'`,
+      ...(opts.reportViolations ? [`report-uri ${CSP_REPORT_URI}`] : []),
+    ].join('; ');
+
+  // Policy for the main HTML entrypoints (homepage, docs, playground, etc.)
+  const htmlCsp = makePolicy(
     // TODO(aomarks) We should also enable trusted types, but that will require
     // a policy in playground-elements for creating the worker, and a policy
     // es-module-lexer for doing an eval (see next comment for more on that).
@@ -61,9 +75,13 @@ export const contentSecurityPolicyMiddleware = (
     //
     // In dev mode, data: scripts are required because @web/dev-server uses them
     // for automatic reloads.
-    `script-src 'self' 'unsafe-eval' ${
-      opts.inlineScriptHashes?.map((hash) => `'${hash}'`).join(' ') ?? ''
-    } https://www.googletagmanager.com/gtag/js ${opts.devMode ? ` data:` : ''}`,
+    `script-src ${[
+      `'self'`,
+      `'unsafe-eval'`,
+      `https://www.googletagmanager.com/gtag/js`,
+      ...(opts.inlineScriptHashes?.map((hash) => `'${hash}'`) ?? []),
+      ...(opts.devMode ? [`data:`] : []),
+    ].join(' ')}`,
 
     // TODO(aomarks) Remove unpkg.com when https://crbug.com/1253267 is fixed.
     // See comment below about playgroundWorkerCsp.
@@ -94,22 +112,27 @@ export const contentSecurityPolicyMiddleware = (
     // The ytimg.com domain is needed for embedded YouTube videos.
     `img-src 'self' data: https://i.ytimg.com/`,
 
+    // Disallow any embeds, applets, etc. This would usually be covered by
+    // `default-src: 'none'`, but we can't set that for the reason explained
+    // below.
+    `object-src 'none'`,
+
     // TODO(aomarks) This could be 'none' if we didn't use <svg><use> elements,
     // because Firefox does not follow the img-src directive for them, so there
     // is no other directive to use. See
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1303364#c4 and
     // https://github.com/w3c/webappsec-csp/issues/199.
-    `default-src 'self'`,
+    `default-src 'self'`
+  );
 
-    ...(opts.reportViolations ? [`report-uri ${CSP_REPORT_URI}`] : []),
-  ].join('; ');
-
+  // Policy for the playground-elements web worker script.
+  //
   // TODO(aomarks) Currently this worker CSP will take effect in Firefox and
   // Safari, but not Chrome. Chrome does not currently follow the CSP spec for
   // workers; instead workers inherit the CSP policy of their parent context.
   // This is being actively fixed (https://crbug.com/1253267), and once it ships
   // we can remove unsafe-eval and unpkg.com from the main CSP above.
-  const playgroundWorkerCsp = [
+  const playgroundWorkerCsp = makePolicy(
     // unsafe-eval is needed because we use es-module-lexer to parse import
     // statements in modules. es-module-lexer needs unsafe-eval because:
     //
@@ -136,18 +159,30 @@ export const contentSecurityPolicyMiddleware = (
     `connect-src https://unpkg.com/`,
 
     // Disallow everything else.
-    `default-src 'none'`,
-    ...(opts.reportViolations ? [`report-uri ${CSP_REPORT_URI}`] : []),
-  ].join('; ');
+    `default-src 'none'`
+  );
+
+  // For all other responses, set the strictest possible CSP, just in case a
+  // response that shouldn't normally allow any code execution actually does.
+  //
+  // See https://github.com/w3c/webappsec/issues/520#issuecomment-488516726 and
+  // https://github.com/webhintio/hint/issues/3403#issue-528402128 for
+  // discussion of why this is a good practice.
+  const strictFallbackCsp = makePolicy(`default-src 'none'`);
 
   return async (ctx, next) => {
     await next();
+
+    let policy: string;
     if (ctx.response.type === 'text/html') {
-      // TODO(aomarks) Remove -Report-Only suffix when we are confident the
-      // policy is working.
-      ctx.set('Content-Security-Policy-Report-Only', mainCsp);
+      policy = htmlCsp;
     } else if (ctx.path.endsWith('/playground-typescript-worker.js')) {
-      ctx.set('Content-Security-Policy-Report-Only', playgroundWorkerCsp);
+      policy = playgroundWorkerCsp;
+    } else {
+      policy = strictFallbackCsp;
     }
+    // TODO(aomarks) Remove -Report-Only suffix when we are confident the
+    // policy is working.
+    ctx.set('Content-Security-Policy-Report-Only', policy);
   };
 };
