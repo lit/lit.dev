@@ -44,7 +44,7 @@ export const fakeGitHubMiddleware = (
 ): Koa.Middleware => {
   let fake = new FakeGitHub(options);
   return async (ctx, next) => {
-    if (ctx.path === '/reset/') {
+    if (ctx.path === '/reset') {
       return fake.reset(ctx);
     } else if (ctx.path === '/login/oauth/authorize') {
       return fake.authorize(ctx);
