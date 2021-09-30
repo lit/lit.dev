@@ -75,6 +75,12 @@ Using an array of tagged template literals, a component can inherit the styles f
 
 {% playground-ide "docs/components/style/superstyles" %}
 
+<div class="alert alert-info">
+
+**Using super.styles**. You can also use `super.styles` to reference the superclass's styles property, but TypeScript doesn't convert this correctly when compiling for ES5. Explicitly referencing the superclass, as shown in the example, avoids this issue.
+
+</div>
+
 ### Sharing styles
 
 You can share styles between components by creating a module that exports tagged styles:
