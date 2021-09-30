@@ -38,7 +38,7 @@ export class LitDevGitHubShareButton extends LitElement {
 
   private async _onClick() {
     if (!this.clientId || !this.authorizeUrl) {
-      return;
+      throw new Error('Missing required properties');
     }
     const result = await signInToGithub({
       clientId: this.clientId,

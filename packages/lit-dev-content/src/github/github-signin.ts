@@ -37,7 +37,8 @@ export const signInToGithub = async (
     'redirect_uri',
     new URL('/playground/signin/', document.location.href).href
   );
-  // Width and height found by empirically.
+
+  // Width and height found empirically.
   const width = 600;
   const height = 650;
   // Position the popup in the middle of this tab.
@@ -49,17 +50,72 @@ export const signInToGithub = async (
     `width=${width},height=${height},top=${top},left=${left}`
   );
   if (popup === null) {
+    // TODO(aomarks) Display a more helpful message to the user in the UI.
     throw new Error('Could not open window. Are popups disabled?');
   }
-  const result = await new Promise<GitHubSigninReceiverMessage>((resolve) => {
-    const listener = (event: MessageEvent<GitHubSigninReceiverMessage>) => {
-      if (event.source === popup) {
-        resolve(event.data);
-        window.removeEventListener('message', listener);
-      }
-    };
-    window.addEventListener('message', listener);
-  });
+
+  const closePopupIfParentCloses = () => popup.close();
+  window.addEventListener('beforeunload', closePopupIfParentCloses);
+
+  const pendingCode = receiveCodeFromPopup(popup);
+  const codeOrClosed = await Promise.race([
+    pendingCode.promise,
+    pollForPopupClosed(popup, 250),
+  ]);
+  window.removeEventListener('beforeunload', closePopupIfParentCloses);
+  if (codeOrClosed === 'closed') {
+    pendingCode.abort();
+    // TODO(aomarks) Display a more helpful message to the user in the UI.
+    throw new Error('Popup was closed too early!');
+  }
   popup.close();
-  return result;
+  return codeOrClosed;
+};
+
+/**
+ * Listen for a postMessage from the popup window containing the temporary
+ * GitHub authentication code or an error. Also returns an abort function which
+ * can be used to clean up this event listener if we need to end early.
+ */
+const receiveCodeFromPopup = (
+  popup: Window
+): {
+  promise: Promise<GitHubSigninReceiverMessage>;
+  abort: () => void;
+} => {
+  const abortController = new AbortController();
+  const abort = () => abortController.abort();
+  const promise = new Promise<GitHubSigninReceiverMessage>((resolve) => {
+    window.addEventListener(
+      'message',
+      (event) => {
+        // Note we must check source because our popup might not be the only
+        // source of "message" events. This is also why we can't set "once".
+        if (event.source === popup) {
+          resolve(event.data);
+          abort();
+        }
+      },
+      {signal: abortController.signal}
+    );
+  });
+  return {promise, abort};
+};
+
+/**
+ * Return a promise that resolves when the given window is closed. Since there
+ * is no event to indicate this, unfortunately we must poll.
+ */
+const pollForPopupClosed = (
+  popup: Window,
+  pollInterval: number
+): Promise<'closed'> => {
+  return new Promise((resolve) => {
+    const id = setInterval(() => {
+      if (popup.closed) {
+        resolve('closed');
+        clearInterval(id);
+      }
+    }, pollInterval);
+  });
 };
