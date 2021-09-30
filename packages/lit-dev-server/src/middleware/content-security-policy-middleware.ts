@@ -20,6 +20,12 @@ export interface ContentSecurityPolicyMiddlewareOptions {
    * If true, CSP violations will be reported to the Google CSP Collector.
    */
   reportViolations?: boolean;
+
+  /**
+   * An array of "<hash-algorithm>-<base64-value>" CSP sources that will be
+   * allowlisted to run as inline scripts.
+   */
+  inlineScriptHashes?: string[];
 }
 
 /**
@@ -40,11 +46,6 @@ export const contentSecurityPolicyMiddleware = (
     // a policy in playground-elements for creating the worker, and a policy
     // es-module-lexer for doing an eval (see next comment for more on that).
 
-    // TODO(aomarks) unsafe-inline is needed because we use some inline scripts
-    // on some pages. We should generate hashes for them during Eleventy build
-    // and allowlist them here using `<hash-algorithm>-<base64-value>`
-    // directives.
-    //
     // TODO(aomarks) unsafe-eval is needed for an eval that is made by
     // es-module-lexer to perform JavaScript string unescaping
     // (https://github.com/guybedford/es-module-lexer/blob/91964da6b086dc5029091eeef481180a814ce24a/src/lexer.js#L32).
@@ -57,9 +58,9 @@ export const contentSecurityPolicyMiddleware = (
     //
     // In dev mode, data: scripts are required because @web/dev-server uses them
     // for automatic reloads.
-    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com/gtag/js ${
-      opts.devMode ? ` data:` : ''
-    }`,
+    `script-src 'self' 'unsafe-eval' ${
+      opts.inlineScriptHashes?.map((hash) => `'${hash}'`).join(' ') ?? ''
+    } https://www.googletagmanager.com/gtag/js ${opts.devMode ? ` data:` : ''}`,
 
     // unpkg.com is needed to allow the Playground worker to fetch dependencies.
     // TODO(aomarks) After https://crbug.com/1253267 is fixed we can serve a
