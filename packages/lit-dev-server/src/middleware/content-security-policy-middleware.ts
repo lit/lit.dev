@@ -39,10 +39,12 @@ export interface ContentSecurityPolicyMiddlewareOptions {
 const CSP_REPORT_URI = 'https://csp.withgoogle.com/csp/lit-dev';
 
 /**
- * TODO(aomarks) Generate this automatically. See
+ * TODO(aomarks) Generate these automatically. See
  * https://github.com/lit/lit.dev/issues/531.
  */
-const GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH = `'sha256-bG+QS/Ob2lFyxJ7r7PCtj/a8YofLHFx4t55RzjR1znI='`;
+const GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH =
+  `'sha256-bG+QS/Ob2lFyxJ7r7PCtj/a8YofLHFx4t55RzjR1znI='` + // With production GA ID.
+  ` 'sha256-RzTTI/28QrruyqG1AYHiMuUgzLJnScrkQZ+k4vM54sc='`; // With testing GA ID.
 
 /**
  * Creates a Koa middleware that sets the lit.dev Content Security Policy (CSP)

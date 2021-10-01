@@ -21,6 +21,8 @@ steps:
       - --cache-ttl=168h # 1 week
       # Bake in this revision's corresponding playground sandbox url
       - --build-arg=PLAYGROUND_SANDBOX=https://pr$_PR_NUMBER-$SHORT_SHA---lit-dev-playground-5ftespv5na-uc.a.run.app/
+      # Testing Google Analytics ID
+      - --build-arg=GOOGLE_ANALYTICS_ID=G-PPMSZR9W18
 
   # Create a new Cloud Run revision for the main site.
   #
