@@ -80,7 +80,7 @@ export const contentSecurityPolicyMiddleware = (
       // TODO(aomarks) Remove unsafe-eval when https://crbug.com/1253267 is fixed.
       // See comment below about playgroundWorkerCsp.
       `'unsafe-eval'`,
-      `https://www.googletagmanager.com/gtag/js`,
+      `https://www.googletagmanager.com/`,
       GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH,
       ...(opts.inlineScriptHashes?.map((hash) => `'${hash}'`) ?? []),
       // In dev mode, data: scripts are required because @web/dev-server uses them
@@ -93,7 +93,12 @@ export const contentSecurityPolicyMiddleware = (
     //
     // In dev mode, ws: connections are required because @web/dev-server uses
     // them for automatic reloads.
-    `connect-src 'self' https://unpkg.com/${opts.devMode ? ` ws:` : ''}`,
+    `connect-src ${[
+      `'self'`,
+      'https://unpkg.com/',
+      'https://www.google-analytics.com/',
+      ...(opts.devMode ? [` ws:`] : []),
+    ].join(' ')}`,
 
     // Playground previews and embedded YouTube videos.
     `frame-src ${opts.playgroundPreviewOrigin} https://www.youtube-nocookie.com/`,
