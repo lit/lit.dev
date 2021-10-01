@@ -39,10 +39,12 @@ export interface ContentSecurityPolicyMiddlewareOptions {
 const CSP_REPORT_URI = 'https://csp.withgoogle.com/csp/lit-dev';
 
 /**
- * TODO(aomarks) Generate this automatically. See
+ * TODO(aomarks) Generate these automatically. See
  * https://github.com/lit/lit.dev/issues/531.
  */
-const GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH = `'sha256-bG+QS/Ob2lFyxJ7r7PCtj/a8YofLHFx4t55RzjR1znI='`;
+const GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH =
+  `'sha256-bG+QS/Ob2lFyxJ7r7PCtj/a8YofLHFx4t55RzjR1znI='` + // With production GA ID.
+  ` 'sha256-RzTTI/28QrruyqG1AYHiMuUgzLJnScrkQZ+k4vM54sc='`; // With testing GA ID.
 
 /**
  * Creates a Koa middleware that sets the lit.dev Content Security Policy (CSP)
@@ -71,7 +73,7 @@ export const contentSecurityPolicyMiddleware = (
     ].join('; ');
 
   // Policy for the main HTML entrypoints (homepage, docs, playground, etc.)
-  const htmlCsp = makePolicy(
+  const entrypointsCsp = makePolicy(
     // TODO(aomarks) We should also enable trusted types, but that will require
     // a policy in playground-elements for creating the worker, and a policy
     // es-module-lexer for doing an eval (see next comment for more on that).
@@ -80,7 +82,7 @@ export const contentSecurityPolicyMiddleware = (
       // TODO(aomarks) Remove unsafe-eval when https://crbug.com/1253267 is fixed.
       // See comment below about playgroundWorkerCsp.
       `'unsafe-eval'`,
-      `https://www.googletagmanager.com/gtag/js`,
+      `https://www.googletagmanager.com/`,
       GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH,
       ...(opts.inlineScriptHashes?.map((hash) => `'${hash}'`) ?? []),
       // In dev mode, data: scripts are required because @web/dev-server uses them
@@ -93,7 +95,12 @@ export const contentSecurityPolicyMiddleware = (
     //
     // In dev mode, ws: connections are required because @web/dev-server uses
     // them for automatic reloads.
-    `connect-src 'self' https://unpkg.com/${opts.devMode ? ` ws:` : ''}`,
+    `connect-src ${[
+      `'self'`,
+      'https://unpkg.com/',
+      'https://www.google-analytics.com/',
+      ...(opts.devMode ? [` ws:`] : []),
+    ].join(' ')}`,
 
     // Playground previews and embedded YouTube videos.
     `frame-src ${opts.playgroundPreviewOrigin} https://www.youtube-nocookie.com/`,
@@ -176,11 +183,19 @@ export const contentSecurityPolicyMiddleware = (
   const strictFallbackCsp = makePolicy(`default-src 'none'`);
 
   return async (ctx, next) => {
-    await next();
-
     let policy: string;
-    if (ctx.response.type === 'text/html') {
-      policy = htmlCsp;
+    // Note we can't rely on ctx.type being set by the downstream middleware,
+    // because for a 304 Not Modified response, the Content-Type header will not
+    // be set.
+    //
+    // Also note that we don't necessarily need to set a CSP on 304 responses at
+    // all, because the browser will use the one from the previous 200 response
+    // if missing (as it does for all headers). However, by including a CSP on
+    // 304 responses, we cover the case where the CSP has changed, but the
+    // file's content (and hence ETag) has not. Note this approach would not
+    // work if we were using nonces instead of hashes.
+    if (ctx.path.endsWith('/')) {
+      policy = entrypointsCsp;
     } else if (ctx.path.endsWith('/playground-typescript-worker.js')) {
       policy = playgroundWorkerCsp;
     } else {
@@ -189,5 +204,6 @@ export const contentSecurityPolicyMiddleware = (
     // TODO(aomarks) Remove -Report-Only suffix when we are confident the
     // policy is working.
     ctx.set('Content-Security-Policy-Report-Only', policy);
+    return next();
   };
 };
