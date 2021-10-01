@@ -12,4 +12,6 @@
    DEV: process.env.ELEVENTY_ENV === 'dev',
    PLAYGROUND_SANDBOX: process.env.PLAYGROUND_SANDBOX || 'http://localhost:6416/',
    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
+   GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+   GITHUB_AUTHORIZE_URL: process.env.GITHUB_AUTHORIZE_URL,
  }

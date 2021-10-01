@@ -22,3 +22,10 @@
   --playground-code-attribute-color: #9cdcfe;
   --playground-code-callee-color: #dcdcaa;
 }
+
+litdev-github-share-button {
+  display: none;
+}
+.gists litdev-github-share-button {
+  display: inline-block;
+}

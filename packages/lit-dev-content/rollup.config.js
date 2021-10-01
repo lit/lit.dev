@@ -38,6 +38,7 @@ export default [
       'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
+      'lib/github/github-signin-receiver-page.js',
       'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',

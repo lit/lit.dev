@@ -65,6 +65,11 @@ title: Playground
       </svg>
       Share
     </button>
+
+    <litdev-github-share-button
+      clientId="{{ env.GITHUB_CLIENT_ID }}"
+      authorizeUrl="{{ env.GITHUB_AUTHORIZE_URL }}">
+    </litdev-github-share-button>
   </div>
 
   <playground-project
