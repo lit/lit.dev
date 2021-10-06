@@ -57,7 +57,7 @@
     "@material/mwc-snackbar": "^0.25.1",
     "lit": "^2.0.0",
     "minisearch": "^3.0.4",
-    "playground-elements": "^0.14.3-pre.1",
+    "playground-elements": "^0.14.3-pre.2",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }
