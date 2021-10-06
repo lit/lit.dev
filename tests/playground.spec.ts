@@ -77,7 +77,7 @@ async function waitForPlaygroundPreviewToLoad(page: Page) {
   // had an iframe load event for some period of time.
   const iframe = await page.waitForSelector('playground-preview iframe');
   await page.waitForFunction(async (iframe) => {
-    const settleTime = 250;
+    const settleTime = 500;
     await new Promise<void>((resolve) => {
       let timer = setTimeout(resolve, settleTime);
       iframe.addEventListener('load', () => {
