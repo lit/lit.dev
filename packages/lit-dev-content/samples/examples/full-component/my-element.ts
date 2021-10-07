@@ -26,7 +26,7 @@ export class MyElement extends LitElement {
   // The render() method is called any time reactive properties change.
   // Return HTML in a string template literal tagged with the `html`
   // tag function to describe the component's internal DOM.
-  // Expressions can set attribute values, proeprty values, event handlers,
+  // Expressions can set attribute values, property values, event handlers,
   // and child nodes/text.
   render() {
     return html`

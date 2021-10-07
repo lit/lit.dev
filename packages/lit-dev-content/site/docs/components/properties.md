@@ -115,11 +115,34 @@ class MyElement extends LitElement {
 
 An empty option object is equivalent to specifying the default value for all options.
 
-<div class="alert alert-info">
+### Avoiding issues with class fields when declaring properties {#avoiding-issues-with-class-fields}
 
-**If you're using the static properties field, initialize properties in the constructor**. Class field initializers won't work in this case.
+[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance. Reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used. When a property is set, the element does not update.
 
-</div>
+In **JavaScript** you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+
+```js
+constructor() {
+  super();
+  this.data = {};
+}
+```
+
+For **TypeScript**, you **may use class fields** for declaring reactive properties as long as the `useDefineForClassFields` setting in your `tsconfig` is set to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
+
+When compiling JavaScript with **Babel**, you **may use class fields** for declaring reactive properties as long as you set `setPublicClassFields` to `true` in the `assumptions` config of your `babelrc`. Note, for older versions of Babel, you also need to include the plugin `@babel/plugin-proposal-class-properties`:
+
+```js
+assumptions = {
+  "setPublicClassFields": true
+};
+
+plugins = [
+  ["@babel/plugin-proposal-class-properties"],
+];
+```
+
+For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/components/decorators/#avoiding-issues-with-class-fields).
 
 ### Property options
 

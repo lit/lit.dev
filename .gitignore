@@ -3,19 +3,9 @@
 node_modules
 
 packages/*/lib/
-packages/*/index.js
-packages/*/index.js.map
-packages/*/index.d.ts
-packages/*/index.d.ts.map
-
-packages/lit-dev-server/redirects.js
-packages/lit-dev-server/redirects.js.map
-packages/lit-dev-server/redirects.d.ts
-packages/lit-dev-server/redirects.d.ts.map
 
 packages/lit-dev-content/_site
 packages/lit-dev-content/_dev
-packages/lit-dev-content/playground-plugin
 packages/lit-dev-content/rollupout
 packages/lit-dev-content/site/fonts
 packages/lit-dev-content/temp
@@ -24,6 +14,11 @@ packages/lit-dev-content/samples/js
 packages/lit-dev-api/lit/
 packages/lit-dev-api/api-data/**/*
 !packages/lit-dev-api/api-data/.gitkeep
+
+# We only want to keep '-linux' screenshots which are tested by Github Actions.
+tests/**/*.png
+!tests/**/*-linux.png
+test-results
 
 *.tsbuildinfo
 lerna-debug.log

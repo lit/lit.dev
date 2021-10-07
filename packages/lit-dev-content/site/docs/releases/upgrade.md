@@ -68,6 +68,19 @@ To:
 import {repeat} from 'lit/directives/repeat.js';
 ```
 
+### Update standalone lit-html imports
+
+If using lit-html standalone (outside of LitElement), you can import standalone-specific API's like `render` from the `lit/html.js` entrypoint:
+
+From:
+```js
+import {render, html} from 'lit-html';
+```
+To:
+```js
+import {render, html} from 'lit/html.js';
+```
+
 ## Load `polyfill-support` when using web components polyfills
 
 Lit 2.0 still supports the same browsers down to IE11. However, given the broad adoption of Web Components APIs in modern browsers, we have taken the opportunity to move all of the code required for interfacing with the web components polyfills out of the core libraries and into an opt-in support file, so that the tax for supporting older browsers is only paid when required.

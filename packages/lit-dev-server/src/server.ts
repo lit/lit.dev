@@ -10,7 +10,10 @@ import koaConditionalGet from 'koa-conditional-get';
 import koaEtag from 'koa-etag';
 import {fileURLToPath} from 'url';
 import * as path from 'path';
-import {pageRedirects} from './redirects.js';
+import * as fs from 'fs';
+import {redirectMiddleware} from './middleware/redirect-middleware.js';
+import {playgroundMiddleware} from './middleware/playground-middleware.js';
+import {contentSecurityPolicyMiddleware} from './middleware/content-security-policy-middleware.js';
 
 const mode = process.env.MODE;
 if (mode !== 'main' && mode !== 'playground') {
@@ -25,14 +28,11 @@ if (isNaN(port)) {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const contentPackage = path.resolve(
-  __dirname,
-  '..',
-  'lit-dev-content',
-  '_site'
-);
+const contentPackage = path.resolve(__dirname, '..', '..', 'lit-dev-content');
 const staticRoot =
-  mode === 'playground' ? path.join(contentPackage, 'js') : contentPackage;
+  mode === 'playground'
+    ? path.join(contentPackage, 'node_modules', 'playground-elements')
+    : path.join(contentPackage, '_site');
 
 console.log(`mode: ${mode}`);
 console.log(`port: ${port}`);
@@ -41,36 +41,29 @@ console.log(`static root: ${staticRoot}`);
 const app = new Koa();
 
 if (mode === 'playground') {
-  // See https://github.com/PolymerLabs/playground-elements#process-isolation
-  app.use(async (ctx, next) => {
-    ctx.set('Origin-Agent-Cluster', '?1');
-    await next();
-  });
+  app.use(playgroundMiddleware());
+} else {
+  const inlineScriptHashes = fs
+    .readFileSync(
+      path.join(contentPackage, '_site', 'csp-inline-script-hashes.txt'),
+      'utf8'
+    )
+    .trim()
+    .split('\n');
+  const playgroundPreviewOrigin = process.env.PLAYGROUND_SANDBOX;
+  if (!playgroundPreviewOrigin) {
+    throw new Error('PLAYGROUND_SANDBOX env was not set');
+  }
+  app.use(
+    contentSecurityPolicyMiddleware({
+      inlineScriptHashes,
+      playgroundPreviewOrigin,
+      reportViolations: process.env.REPORT_CSP_VIOLATIONS === 'true',
+    })
+  );
 }
 
-app.use(async (ctx, next) => {
-  // If there would be multiple redirects, resolve them all here so that we
-  // serve just one HTTP redirect instead of a chain.
-  let path = ctx.path;
-  if (path.match(/\/[^\/\.]+$/)) {
-    // Canonicalize paths to have a trailing slash, except for files with
-    // extensions.
-    path += '/';
-  }
-  if (path.endsWith('//')) {
-    // Koa static doesn't care if there are any number of trailing slashes.
-    // Normalize this too.
-    path = path.replace(/\/+$/, '/');
-  }
-  path = pageRedirects.get(path) ?? path;
-  if (path !== ctx.path) {
-    ctx.status = 301;
-    ctx.redirect(path + (ctx.querystring ? '?' + ctx.querystring : ''));
-  } else {
-    await next();
-  }
-});
-
+app.use(redirectMiddleware());
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
 app.use(

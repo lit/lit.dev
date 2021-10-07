@@ -27,9 +27,7 @@ title: Tutorial
 
 <div id="editorAndPreview">
   <playground-project
-    {% if env.PLAYGROUND_SANDBOX %}
-      sandbox-base-url={{ env.PLAYGROUND_SANDBOX }}
-    {% endif %}
+     sandbox-base-url="{{ env.PLAYGROUND_SANDBOX }}"
      id="tutorialProject">
   </playground-project>
 

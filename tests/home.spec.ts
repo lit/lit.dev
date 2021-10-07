@@ -38,4 +38,11 @@ test.describe('Home page', () => {
     await expect(page.locator('#reactive-update-cycle')).toBeVisible();
     expect(page.url().includes('/docs/components/lifecycle')).toBe(true);
   });
+
+  test('intro section golden', async ({page}) => {
+    await page.goto('/');
+    await expect(await page.locator('#intro').screenshot()).toMatchSnapshot(
+      'homePageIntroSection.png'
+    );
+  });
 });

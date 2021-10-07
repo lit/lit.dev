@@ -19,6 +19,7 @@ const {
 const {createSearchIndex} = require('../lit-dev-tools/lib/search/plugin.js');
 const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
 const luxon = require('luxon');
+const crypto = require('crypto');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -26,7 +27,10 @@ const slugify = (s) => slugifyLib(s, {lower: true});
 
 const DEV = process.env.ELEVENTY_ENV === 'dev';
 const OUTPUT_DIR = DEV ? '_dev' : '_site';
-const PLAYGROUND_SANDBOX = process.env.PLAYGROUND_SANDBOX;
+const PLAYGROUND_SANDBOX =
+  process.env.PLAYGROUND_SANDBOX || 'http://localhost:6416/';
+
+const cspInlineScriptHashes = new Set();
 
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
@@ -46,17 +50,13 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('site/fonts');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
+    // The Playground web worker is loaded directly from the main origin, so it
+    // should be in our js directory. We don't need the service worker, though,
+    // because that will be served directly out of node_modules/ by the
+    // dedicated Playground sandbox server.
     eleventyConfig.addPassthroughCopy({
       'node_modules/playground-elements/playground-typescript-worker.js':
         './js/playground-typescript-worker.js',
-    });
-    eleventyConfig.addPassthroughCopy({
-      'node_modules/playground-elements/playground-service-worker.js':
-        './js/playground-service-worker.js',
-    });
-    eleventyConfig.addPassthroughCopy({
-      'node_modules/playground-elements/playground-service-worker-proxy.html':
-        './js/playground-service-worker-proxy.html',
     });
   }
   eleventyConfig.addPassthroughCopy('api/**/*');
@@ -336,7 +336,12 @@ ${content}
     if (DEV) {
       return `<script type="module" src="/js/${path}"></script>`;
     }
-    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8');
+    // Note we must trim before hashing, because our html-minifier will trim
+    // inline script trailing newlines, and otherwise our hash will be wrong.
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
+    const hash =
+      'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
+    cspInlineScriptHashes.add(hash);
     return `<script type="module">${script}</script>`;
   });
 
@@ -352,6 +357,10 @@ ${content}
     return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
       'yyyy-LL-dd'
     );
+  });
+
+  eleventyConfig.on('beforeBuild', () => {
+    cspInlineScriptHashes.clear();
   });
 
   eleventyConfig.on('afterBuild', async () => {
@@ -415,6 +424,14 @@ ${content}
       // them directly instead of spending its own cycles. Note this adds ~4
       // seconds to the build, but it's disabled during dev.
       await preCompress({glob: `${OUTPUT_DIR}/**/*`});
+
+      // Note we only need to write CSP inline script hashes for the production
+      // output, because in dev mode we don't inline scripts.
+      await fs.writeFile(
+        path.join(OUTPUT_DIR, 'csp-inline-script-hashes.txt'),
+        [...cspInlineScriptHashes].join('\n'),
+        'utf8'
+      );
     }
   });
 

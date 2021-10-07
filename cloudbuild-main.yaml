@@ -46,7 +46,7 @@ steps:
       - '--min-instances=1'
       - '--max-instances=1000'
       # Serve the main site
-      - '--update-env-vars=MODE=main'
+      - '--update-env-vars=MODE=main,REPORT_CSP_VIOLATIONS=true,PLAYGROUND_SANDBOX=https://playground.lit.dev/'
 
   # Create a new Cloud Run revision for the Playground sandbox.
   #

@@ -9,6 +9,7 @@ import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
 import '../components/litdev-playground-change-guard.js';
+import '../components/litdev-github-share-button.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
