@@ -29,7 +29,7 @@ export interface GitHubSigninOptions {
  */
 export const signInToGithub = async (
   options: GitHubSigninOptions
-): Promise<GitHubSigninReceiverMessage> => {
+): Promise<string> => {
   const url = new URL(options.authorizeUrl);
   url.searchParams.set('client_id', options.clientId);
   url.searchParams.set('scope', 'gist');
@@ -69,7 +69,12 @@ export const signInToGithub = async (
     throw new Error('Popup was closed too early!');
   }
   popup.close();
-  return codeOrClosed;
+  const code = codeOrClosed;
+  if (code.error !== undefined) {
+    // TODO(aomarks) Display a more helpful message to the user in the UI.
+    throw new Error(`Error getting code: ${code.error}`);
+  }
+  return exchangeCodeForAccessToken(code.code);
 };
 
 /**
@@ -118,4 +123,29 @@ const pollForPopupClosed = (
       }
     }, pollInterval);
   });
+};
+
+/**
+ * Response from /api/github-token-exchange
+ */
+export type GitHubTokenExchangeApiResponse =
+  | {accessToken: string; error?: undefined}
+  | {accessToken?: undefined; error: string};
+
+/**
+ * Exchange a temporary code for a long term access token.
+ */
+const exchangeCodeForAccessToken = async (code: string): Promise<string> => {
+  const url = new URL('/api/github-token-exchange', document.location.href);
+  url.searchParams.set('code', code);
+  const httpResp = await fetch(url.href, {method: 'POST'});
+  const jsonResp = (await httpResp.json()) as GitHubTokenExchangeApiResponse;
+  if (jsonResp.error !== undefined || !httpResp.ok) {
+    throw new Error(
+      `/api/github-token-exchange error [${httpResp.status}]: ${
+        jsonResp.error ?? '<unknown>'
+      }`
+    );
+  }
+  return jsonResp.accessToken;
 };

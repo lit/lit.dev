@@ -11,6 +11,7 @@ import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middlew
 import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
 import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
 import {fakeGitHubMiddleware} from 'lit-dev-server/lib/middleware/fake-github-middleware.js';
+import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware/github-token-exchange-middleware.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
@@ -72,6 +73,11 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
   },
 };
 
+const clientId = 'FAKE_CLIENT_ID';
+// Important: We should never put real GitHub app secrets here. This one is just
+// for local testing with the fake server.
+const clientSecret = 'FAKE_APP_SECRET';
+
 startDevServer({
   config: {
     port: MAIN_PORT,
@@ -84,6 +90,11 @@ startDevServer({
       contentSecurityPolicyMiddleware({
         devMode: true,
         playgroundPreviewOrigin: `http://localhost:${PLAYGROUND_PORT}`,
+      }),
+      createGitHubTokenExchangeMiddleware({
+        clientId,
+        clientSecret,
+        githubApiUrl: `http://localhost:${FAKE_GITHUB_PORT}/login/oauth/access_token`,
       }),
       redirectMiddleware(),
     ],
@@ -113,8 +124,8 @@ startDevServer({
     port: FAKE_GITHUB_PORT,
     middleware: [
       fakeGitHubMiddleware({
-        clientId: 'FAKE_CLIENT_ID',
-        clientSecret: 'FAKE_APP_SECRET',
+        clientId,
+        clientSecret,
         redirectUrl: `http://localhost:${MAIN_PORT}/playground/signin/`,
       }),
     ],
