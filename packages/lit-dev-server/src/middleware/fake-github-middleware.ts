@@ -48,6 +48,8 @@ export const fakeGitHubMiddleware = (
       return fake.reset(ctx);
     } else if (ctx.path === '/login/oauth/authorize') {
       return fake.authorize(ctx);
+    } else if (ctx.path === '/login/oauth/access_token') {
+      return fake.accessToken(ctx);
     } else {
       return next();
     }
@@ -58,7 +60,10 @@ const randomString = () => String(Math.floor(Math.random() * 1e10));
 
 class FakeGitHub {
   private readonly _options: FakeGitHubMiddlewareOptions;
-  private readonly _userToCode = new Map<string, string>();
+  private readonly _codeToUserIdAndScope = new Map<
+    string,
+    {userId: string; scope: string}
+  >();
 
   constructor(options: FakeGitHubMiddlewareOptions) {
     this._options = options;
@@ -84,7 +89,7 @@ class FakeGitHub {
    * pre-authenticated state.
    */
   reset(ctx: Koa.Context) {
-    this._userToCode.clear();
+    this._codeToUserIdAndScope.clear();
     ctx.cookies.set('userid', null);
     ctx.cookies.set('authorized', null);
     ctx.status = 200;
@@ -99,20 +104,17 @@ class FakeGitHub {
    * https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#1-request-a-users-github-identity
    */
   authorize(ctx: Koa.Context) {
-    if (ctx.query.client_id !== this._options.clientId) {
+    const req = ctx.query as {client_id?: string; scope?: string};
+    if (req.client_id !== this._options.clientId) {
       ctx.status = 400;
       ctx.body = 'error: missing or incorrect client_id url parameter';
       return;
     }
-    if (ctx.query.scope !== 'gist') {
-      ctx.status = 400;
-      ctx.body = 'error: expected scope=gist url parameter';
-      return;
-    }
 
+    const scope = req.scope ?? '';
     const userId = this._getOrSetUserIdFromCookie(ctx);
-    const code = randomString();
-    this._userToCode.set(userId, code);
+    const code = `fake-code-${randomString()}`;
+    this._codeToUserIdAndScope.set(code, {userId, scope});
 
     const authorizeUrl = `${this._options.redirectUrl}?code=${code}`;
     const cancelUrl = `${this._options.redirectUrl}?error=access_denied`;
@@ -138,5 +140,57 @@ class FakeGitHub {
         }
       </script>
     `;
+  }
+
+  /**
+   * Simulates https://github.com/login/oauth/access_token, the API that
+   * exchanges a temporary GitHub OAuth code for a longer term authentication
+   * token.
+   *
+   * Documentation:
+   * https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#2-users-are-redirected-back-to-your-site-by-github
+   */
+  async accessToken(ctx: Koa.Context) {
+    const req = ctx.query as {
+      code?: string;
+      client_id?: string;
+      client_secret?: string;
+    };
+    if (!req.code || !req.client_id || !req.client_secret) {
+      ctx.status = 400;
+      ctx.body =
+        'error: missing or incorrect code, client_id, and/or client_secret';
+      return;
+    }
+
+    if (req.client_secret !== this._options.clientSecret) {
+      ctx.status = 200;
+      ctx.type = 'application/json';
+      ctx.body = JSON.stringify({error: 'incorrect_client_credentials'});
+      return;
+    }
+
+    const info = this._codeToUserIdAndScope.get(req.code);
+    if (info === undefined) {
+      // TODO(aomarks) Could also simulate the 10 minute expiry, but since the
+      // error returned is indistinguishable from a completely invalid code,
+      // there doesn't seem to be much point.
+      ctx.status = 200;
+      ctx.type = 'application/json';
+      ctx.body = JSON.stringify({error: 'bad_verification_code'});
+      return;
+    }
+    this._codeToUserIdAndScope.delete(req.code);
+
+    // TODO(aomarks) Store this so that it can be checked by the gist APIs.
+    const accessToken = `fake-token-${randomString()}`;
+
+    ctx.status = 200;
+    ctx.type = 'application/json';
+    ctx.body = JSON.stringify({
+      access_token: accessToken,
+      scope: info.scope,
+      token_type: 'bearer',
+    });
   }
 }
