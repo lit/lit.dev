@@ -121,8 +121,12 @@ export const contentSecurityPolicyMiddleware = (
 
     // TODO(aomarks) We use some data: URLs for SVGs in docs.css. There's
     // probably a simpler way.
+    //
     // The ytimg.com domain is needed for embedded YouTube videos.
-    `img-src 'self' data: https://i.ytimg.com/`,
+    //
+    // The googletagmanager.com domain is needed for Google Analytics
+    // (https://developers.google.com/tag-manager/web/csp).
+    `img-src 'self' data: https://i.ytimg.com/ https://www.googletagmanager.com/`,
 
     // Disallow any embeds, applets, etc. This would usually be covered by
     // `default-src: 'none'`, but we can't set that for the reason explained
@@ -201,9 +205,7 @@ export const contentSecurityPolicyMiddleware = (
     } else {
       policy = strictFallbackCsp;
     }
-    // TODO(aomarks) Remove -Report-Only suffix when we are confident the
-    // policy is working.
-    ctx.set('Content-Security-Policy-Report-Only', policy);
+    ctx.set('Content-Security-Policy', policy);
     return next();
   };
 };
