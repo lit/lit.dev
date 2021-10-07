@@ -201,9 +201,7 @@ export const contentSecurityPolicyMiddleware = (
     } else {
       policy = strictFallbackCsp;
     }
-    // TODO(aomarks) Remove -Report-Only suffix when we are confident the
-    // policy is working.
-    ctx.set('Content-Security-Policy-Report-Only', policy);
+    ctx.set('Content-Security-Policy', policy);
     return next();
   };
 };
