@@ -162,6 +162,11 @@ class FakeGitHub {
         'error: missing or incorrect code, client_id, and/or client_secret';
       return;
     }
+    if (ctx.get('accept') !== 'application/json') {
+      ctx.status = 400;
+      ctx.body = 'error: expected accept: application/json request header';
+      return;
+    }
 
     if (req.client_secret !== this._options.clientSecret) {
       ctx.status = 200;

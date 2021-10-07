@@ -74,6 +74,8 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
 };
 
 const clientId = 'FAKE_CLIENT_ID';
+// Important: We should never put real GitHub app secrets here. This one is just
+// for local testing with the fake server.
 const clientSecret = 'FAKE_APP_SECRET';
 
 startDevServer({
