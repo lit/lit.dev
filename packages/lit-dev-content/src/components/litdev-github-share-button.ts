@@ -41,15 +41,11 @@ export class LitDevGitHubShareButton extends LitElement {
       throw new Error('Missing required properties');
     }
     // TODO(aomarks) Prevent multiple signups from being queued.
-    const result = await signInToGithub({
+    const accessToken = await signInToGithub({
       clientId: this.clientId,
       authorizeUrl: this.authorizeUrl,
     });
-    if (result.error) {
-      alert(`error: ${result.error}`);
-    } else {
-      alert(`code: ${result.code}`);
-    }
+    alert(accessToken);
   }
 }
 
