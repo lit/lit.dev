@@ -62,7 +62,7 @@ export class MyElement extends LitElement {
   render() {
     const keyframeOptions = {
       duration: 500,
-      fill: 'both',
+      fill: 'both' as FillMode,
     };
     const list = (completed = false) => html`<div
       class="list ${classMap({completed})}"

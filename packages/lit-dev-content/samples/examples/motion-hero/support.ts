@@ -1,17 +1,13 @@
+import {Animate} from '@lit-labs/motion';
+
 export const springy = [
   0, 0.0701, 0.2329, 0.4308, 0.6245, 0.7906, 0.9184, 1.0065, 1.059, 1.0833,
   1.0872, 1.0783, 1.0628, 1.0453, 1.0288, 1.015, 1.0048, 0.9979, 0.994, 0.9925,
   0.9925, 0.9935, 0.9949, 0.9964, 0.9978, 0.999, 0.9998,
 ];
 
-export const onFrames = ({
-  animatingProperties,
-  frames,
-}: {
-  animatingProperties: {[index: string]: number};
-  frames: Keyframe[];
-}) => {
-  const props = animatingProperties;
+export const onFrames = (animate: Animate) => {
+  const {animatingProperties: props, frames} = animate;
   if (frames === undefined || props === undefined) {
     return frames;
   }
@@ -19,13 +15,21 @@ export const onFrames = ({
     frames[0],
     ...springy.map((v) => {
       const frame: Keyframe = {};
-      const x = props.left ? `translateX(${props.left * (1 - v)}px)` : '';
-      const y = props.top ? `translateY(${props.top * (1 - v)}px)` : '';
+      const x = props.left
+        ? `translateX(${(props.left as number) * (1 - v)}px)`
+        : '';
+      const y = props.top
+        ? `translateY(${(props.top as number) * (1 - v)}px)`
+        : '';
       const sx = props.width
-        ? `scaleX(${props.width + (1 - props.width) * v})`
+        ? `scaleX(${
+            (props.width as number) + (1 - (props.width as number)) * v
+          })`
         : '';
       const sy = props.height
-        ? `scaleY(${props.height + (1 - props.height) * v})`
+        ? `scaleY(${
+            (props.height as number) + (1 - (props.height as number)) * v
+          })`
         : '';
       frame.transform = `${x} ${y} ${sx} ${sy}`;
       return frame;
