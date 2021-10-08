@@ -14,6 +14,7 @@ import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
+import {getGist} from '../github/github-gists.js';
 
 import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
@@ -79,6 +80,18 @@ window.addEventListener('DOMContentLoaded', () => {
   const shareButton = $('#shareButton')!;
   const shareSnackbar = $('#shareSnackbar')! as Snackbar;
 
+  // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
+  // needs to be refactored, probably into one or two custom elements.
+  const githubShareButton = $('litdev-github-share-button')!;
+  const githubApiUrl = githubShareButton.githubApiUrl ?? '';
+  githubShareButton.getProjectFiles = () => project.files;
+  githubShareButton.addEventListener('gist-created', async (event: Event) => {
+    const gistId = (event as CustomEvent<{gistId: string}>).detail.gistId;
+    window.location.hash = '#gist=' + gistId;
+    await navigator.clipboard.writeText(window.location.toString());
+    shareSnackbar.open = true;
+  });
+
   const share = async () => {
     const files = [];
     for (const [name, {content, hidden}] of Object.entries(
@@ -120,17 +133,14 @@ window.addEventListener('DOMContentLoaded', () => {
     a.click();
   });
 
-  const syncStateFromUrlHash = async () => {
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.slice(1));
-
-    let urlFiles: Array<CompactProjectFile> | undefined;
-    const base64 = params.get('project');
+  const loadBase64 = (
+    base64: string
+  ): Array<CompactProjectFile> | undefined => {
     if (base64) {
       try {
         const json = decodeSafeBase64(base64);
         try {
-          urlFiles = JSON.parse(json);
+          return JSON.parse(json) as Array<CompactProjectFile>;
         } catch {
           console.error('Invalid JSON in URL', JSON.stringify(json));
         }
@@ -138,7 +148,35 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error('Invalid project base64 in URL');
       }
     }
+    return undefined;
+  };
 
+  const loadGist = async (
+    gistId: string
+  ): Promise<Array<CompactProjectFile>> => {
+    const gist = await getGist(gistId, {apiBaseUrl: githubApiUrl});
+    const playgroundFiles: Array<CompactProjectFile> = Object.values(
+      gist.files
+    ).map(
+      (file): CompactProjectFile => ({
+        name: file.filename!,
+        content: file.content,
+      })
+    );
+    return playgroundFiles;
+  };
+
+  const syncStateFromUrlHash = async () => {
+    const hash = window.location.hash;
+    const params = new URLSearchParams(hash.slice(1));
+    let urlFiles: Array<CompactProjectFile> | undefined;
+    const gist = params.get('gist');
+    const base64 = params.get('base64');
+    if (gist) {
+      urlFiles = await loadGist(gist);
+    } else if (base64) {
+      urlFiles = loadBase64(base64);
+    }
     $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
