@@ -90,6 +90,7 @@ startDevServer({
       contentSecurityPolicyMiddleware({
         devMode: true,
         playgroundPreviewOrigin: `http://localhost:${PLAYGROUND_PORT}`,
+        githubApiOrigin: `http://localhost:${FAKE_GITHUB_PORT}`,
       }),
       createGitHubTokenExchangeMiddleware({
         clientId,

@@ -31,6 +31,11 @@ export interface ContentSecurityPolicyMiddlewareOptions {
    * Origin for Playground preview iframes.
    */
   playgroundPreviewOrigin: string;
+
+  /**
+   * Origin for GitHub API calls.
+   */
+  githubApiOrigin?: string;
 }
 
 /**
@@ -99,7 +104,8 @@ export const contentSecurityPolicyMiddleware = (
       `'self'`,
       'https://unpkg.com/',
       'https://www.google-analytics.com/',
-      ...(opts.devMode ? [` ws:`] : []),
+      ...(opts.githubApiOrigin ? [opts.githubApiOrigin] : []),
+      ...(opts.devMode ? [`ws:`] : []),
     ].join(' ')}`,
 
     // Playground previews and embedded YouTube videos.
