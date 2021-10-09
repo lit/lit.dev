@@ -9,7 +9,7 @@ import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
 import '../components/litdev-playground-change-guard.js';
-import '../components/litdev-github-share-button.js';
+import '../components/litdev-playground-share-button.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
@@ -82,17 +82,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
   // needs to be refactored, probably into one or two custom elements.
-  const githubShareButton = $('litdev-github-share-button');
-  const githubApiUrl = githubShareButton?.githubApiUrl ?? '';
-  if (githubShareButton) {
-    githubShareButton.getProjectFiles = () => project.files;
-    githubShareButton.addEventListener('gist-created', async (event) => {
+  const newShareButton = $('litdev-playground-share-button');
+  const githubApiUrl = newShareButton?.githubApiUrl ?? '';
+  if (newShareButton) {
+    newShareButton.getProjectFiles = () => project.files;
+    newShareButton.addEventListener('gist-created', async (event) => {
       window.location.hash = '#gist=' + event.detail.gistId;
       await navigator.clipboard.writeText(window.location.toString());
       shareSnackbar.open = true;
     });
   } else {
-    console.error('Missing litdev-github-share-button');
+    console.error('Missing litdev-playground-share-button');
   }
 
   const share = async () => {

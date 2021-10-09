@@ -23,7 +23,7 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
  * (It's not expected to usually have more than one instance of a share button,
  * but it could happen e.g. in testing.)
  */
-const tokenCache = new WeakMap<LitDevGitHubShareButton, string>();
+const tokenCache = new WeakMap<LitDevPlaygroundShareButton, string>();
 
 /**
  * A button that shares a Playground project as a GitHub gist. If the user isn't
@@ -33,8 +33,8 @@ const tokenCache = new WeakMap<LitDevGitHubShareButton, string>();
  * //               while the popup is open.
  * // TODO(aomarks) Style this button
  */
-@customElement('litdev-github-share-button')
-export class LitDevGitHubShareButton extends LitElement {
+@customElement('litdev-playground-share-button')
+export class LitDevPlaygroundShareButton extends LitElement {
   /**
    * GitHub OAuth App client ID. Generated when a GitHub OAuth App is first
    * created.
@@ -110,6 +110,6 @@ declare global {
     'gist-created': CustomEvent<{gistId: string}>;
   }
   interface HTMLElementTagNameMap {
-    'litdev-github-share-button': LitDevGitHubShareButton;
+    'litdev-playground-share-button': LitDevPlaygroundShareButton;
   }
 }
