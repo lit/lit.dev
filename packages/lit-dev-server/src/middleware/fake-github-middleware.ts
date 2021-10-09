@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+import coBody from 'co-body';
+
 import type Koa from 'koa';
 
 /**
@@ -44,26 +46,65 @@ export const fakeGitHubMiddleware = (
 ): Koa.Middleware => {
   let fake = new FakeGitHub(options);
   return async (ctx, next) => {
-    if (ctx.path === '/reset') {
+    if (ctx.method === 'OPTIONS') {
+      // CORS preflight
+      ctx.status = 204;
+      ctx.set('Access-Control-Allow-Origin', '*');
+      ctx.set('Access-Control-Allow-Headers', 'Authorization');
+      return;
+    } else if (ctx.path === '/reset') {
       return fake.reset(ctx);
     } else if (ctx.path === '/login/oauth/authorize') {
       return fake.authorize(ctx);
     } else if (ctx.path === '/login/oauth/access_token') {
       return fake.accessToken(ctx);
+    } else if (ctx.path === '/gists' && ctx.method === 'POST') {
+      return fake.createGist(ctx);
+    } else if (ctx.path.startsWith('/gists/') && ctx.method === 'GET') {
+      return fake.getGist(ctx);
     } else {
       return next();
     }
   };
 };
 
-const randomString = () => String(Math.floor(Math.random() * 1e10));
+const randomNumber = () => Math.floor(Math.random() * 1e10);
+
+interface UserAndScope {
+  userId: number;
+  scope: string;
+}
+
+interface GistFile {
+  filename: string;
+  content: string;
+}
+
+interface CreateGistRequest {
+  files: {[filename: string]: GistFile};
+}
+
+interface GetGistResponse {
+  id: string;
+  files: {[filename: string]: GistFile};
+  owner: {id: number};
+}
+
+const jsonResponse = (
+  ctx: Koa.Context,
+  status: number,
+  response: any
+): void => {
+  ctx.status = status;
+  ctx.type = 'application/json';
+  ctx.body = JSON.stringify(response);
+};
 
 class FakeGitHub {
   private readonly _options: FakeGitHubMiddlewareOptions;
-  private readonly _codeToUserIdAndScope = new Map<
-    string,
-    {userId: string; scope: string}
-  >();
+  private readonly _temporaryCodes = new Map<string, UserAndScope>();
+  private readonly _accessTokens = new Map<string, UserAndScope>();
+  private readonly _gists = new Map<string, GetGistResponse>();
 
   constructor(options: FakeGitHubMiddlewareOptions) {
     this._options = options;
@@ -72,11 +113,12 @@ class FakeGitHub {
   /**
    * Generate a random user ID for this session and persist it in a cookie.
    */
-  private _getOrSetUserIdFromCookie(ctx: Koa.Context) {
-    let userId = ctx.cookies.get('userid');
-    if (!userId) {
-      userId = randomString();
-      ctx.cookies.set('userid', userId);
+  private _getOrSetUserIdFromCookie(ctx: Koa.Context): number {
+    let userIdStr = ctx.cookies.get('userid');
+    let userId = userIdStr ? Number(userIdStr) : undefined;
+    if (userId === undefined) {
+      userId = randomNumber();
+      ctx.cookies.set('userid', String(userId));
     }
     return userId;
   }
@@ -89,7 +131,9 @@ class FakeGitHub {
    * pre-authenticated state.
    */
   reset(ctx: Koa.Context) {
-    this._codeToUserIdAndScope.clear();
+    this._temporaryCodes.clear();
+    this._accessTokens.clear();
+    this._gists.clear();
     ctx.cookies.set('userid', null);
     ctx.cookies.set('authorized', null);
     ctx.status = 200;
@@ -113,8 +157,8 @@ class FakeGitHub {
 
     const scope = req.scope ?? '';
     const userId = this._getOrSetUserIdFromCookie(ctx);
-    const code = `fake-code-${randomString()}`;
-    this._codeToUserIdAndScope.set(code, {userId, scope});
+    const code = `fake-code-${randomNumber()}`;
+    this._temporaryCodes.set(code, {userId, scope});
 
     const authorizeUrl = `${this._options.redirectUrl}?code=${code}`;
     const cancelUrl = `${this._options.redirectUrl}?error=access_denied`;
@@ -169,33 +213,102 @@ class FakeGitHub {
     }
 
     if (req.client_secret !== this._options.clientSecret) {
-      ctx.status = 200;
-      ctx.type = 'application/json';
-      ctx.body = JSON.stringify({error: 'incorrect_client_credentials'});
-      return;
+      return jsonResponse(ctx, 200, {
+        error: 'incorrect_client_credentials',
+      });
     }
 
-    const info = this._codeToUserIdAndScope.get(req.code);
-    if (info === undefined) {
+    const userAndScope = this._temporaryCodes.get(req.code);
+    if (userAndScope === undefined) {
       // TODO(aomarks) Could also simulate the 10 minute expiry, but since the
       // error returned is indistinguishable from a completely invalid code,
       // there doesn't seem to be much point.
-      ctx.status = 200;
-      ctx.type = 'application/json';
-      ctx.body = JSON.stringify({error: 'bad_verification_code'});
-      return;
+      return jsonResponse(ctx, 200, {error: 'bad_verification_code'});
     }
-    this._codeToUserIdAndScope.delete(req.code);
+    this._temporaryCodes.delete(req.code);
 
     // TODO(aomarks) Store this so that it can be checked by the gist APIs.
-    const accessToken = `fake-token-${randomString()}`;
+    const accessToken = `fake-token-${randomNumber()}`;
+    this._accessTokens.set(accessToken, userAndScope);
 
-    ctx.status = 200;
-    ctx.type = 'application/json';
-    ctx.body = JSON.stringify({
+    return jsonResponse(ctx, 200, {
       access_token: accessToken,
-      scope: info.scope,
+      scope: userAndScope.scope,
       token_type: 'bearer',
     });
+  }
+
+  /**
+   * Simulates GET https://api.github.com/gists/<id>, the API for getting a
+   * GitHub gist.
+   *
+   * Documentation:
+   * https://docs.github.com/en/rest/reference/gists#get-a-gist
+   */
+  async getGist(ctx: Koa.Context) {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    const accept = ctx.get('accept');
+    if (accept !== 'application/vnd.github.v3+json') {
+      return jsonResponse(ctx, 415, {
+        message: "Unsupported 'Accept' header",
+      });
+    }
+    const match = ctx.path.match(/^\/gists\/(?<id>.+)/);
+    const id = match?.groups?.id;
+    if (!id) {
+      return jsonResponse(ctx, 400, {message: 'Invalid gist request'});
+    }
+    const gist = this._gists.get(id);
+    if (!gist) {
+      return jsonResponse(ctx, 404, {message: 'Not Found'});
+    }
+    return jsonResponse(ctx, 200, gist);
+  }
+
+  /**
+   * Simulates POST https://api.github.com/gists/, the API for creating a GitHub
+   * gist.
+   *
+   * Documentation:
+   * https://docs.github.com/en/rest/reference/gists#create-a-gist
+   */
+  async createGist(ctx: Koa.Context) {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    const accept = ctx.get('accept');
+    if (accept !== 'application/vnd.github.v3+json') {
+      return jsonResponse(ctx, 415, {
+        message: "Unsupported 'Accept' header",
+      });
+    }
+
+    const authMatch = (ctx.get('authorization') ?? '').match(
+      /^\s*(?:token|bearer)\s(?<token>.+)$/
+    );
+    const authToken = authMatch?.groups?.token?.trim() ?? '';
+    const userAndScope = this._accessTokens.get(authToken);
+    if (!userAndScope) {
+      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+    }
+
+    let createRequest: CreateGistRequest;
+    try {
+      createRequest = await coBody.json(ctx);
+    } catch (e) {
+      return jsonResponse(ctx, 400, {message: 'Problems parsing JSON'});
+    }
+    if (!createRequest.files || Object.keys(createRequest.files).length === 0) {
+      return jsonResponse(ctx, 422, {message: 'Invalid files'});
+    }
+
+    for (const [filename, file] of Object.entries(createRequest.files)) {
+      file.filename = filename;
+    }
+    const gist = {
+      id: `fake-gist-${randomNumber()}`,
+      files: createRequest.files,
+      owner: {id: userAndScope.userId},
+    };
+    this._gists.set(gist.id, gist);
+    return jsonResponse(ctx, 200, gist);
   }
 }
