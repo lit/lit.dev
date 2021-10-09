@@ -100,6 +100,7 @@ export default [
     input: [
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-attribute.js',
+      'lib/global/mobile-drawer.js',
     ],
     output: {
       dir: 'rollupout',
