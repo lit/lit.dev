@@ -1,5 +1,5 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, property, query} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {animate, fadeOut, flyBelow} from '@lit-labs/motion';
@@ -7,6 +7,7 @@ import {styles} from './styles.js';
 import {TextField} from '@material/mwc-textfield';
 import {Checkbox} from '@material/mwc-checkbox';
 import '@material/mwc-textfield';
+import '@material/mwc-button';
 import '@material/mwc-checkbox';
 import '@material/mwc-formfield';
 
@@ -22,8 +23,8 @@ const data = [
 
 type DataItem = typeof data[number];
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('motion-todos')
+export class MotionTodos extends LitElement {
   static styles = styles;
 
   static shadowRootOptions = {
@@ -33,17 +34,22 @@ export class MyElement extends LitElement {
 
   @property({type: Array}) data = data;
 
-  addItem(e: Event) {
+  @query('mwc-textfield') textField!: TextField;
+
+  addItem() {
+    if (!this.textField.value) {
+      return;
+    }
     const nextId = this.data[this.data.length - 1].id + 1;
     this.data = [
       ...this.data,
       {
         id: nextId,
-        value: (e.target! as TextField).value,
+        value: this.textField.value,
         completed: false,
       },
     ];
-    (e.target! as TextField)!.value = '';
+    this.textField.value = '';
   }
 
   removeItem(item: DataItem) {
@@ -100,12 +106,10 @@ export class MyElement extends LitElement {
       </ul>
     </div>`;
     return html`
-      <mwc-textfield
-        outlined
-        @change=${this.addItem}
-        label="Enter a todo..."
-        autofocus
-      ></mwc-textfield>
+      <mwc-textfield outlined label="Enter a todo..."></mwc-textfield>
+      <div class="controls">
+        <mwc-button @click=${this.addItem} raised>Add Todo</mwc-button>
+      </div>
       <div class="lists">${list()} ${list(true)}</div>
     `;
   }

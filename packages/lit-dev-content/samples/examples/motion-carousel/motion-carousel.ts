@@ -4,8 +4,8 @@ import {animate} from '@lit-labs/motion';
 import {styleMap} from 'lit/directives/style-map.js';
 import {styles} from './styles.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('motion-carousel')
+export class MotionCarousel extends LitElement {
   static styles = styles;
   @property({type: Number}) selected = 0;
 
@@ -15,20 +15,20 @@ export class MyElement extends LitElement {
     return html`
       <section class="container">
         ${this.data.map((_v, i) => {
-          const l = this.data.length;
-          const c = Math.trunc(l / 2);
-          const order = (l + c + i - this.selected) % l;
-          const zIndex = order === 0 || order === l - 1 ? -1 : 1;
-          const p = i / this.data.length;
+          const count = this.data.length;
+          const center = Math.trunc(count / 2);
+          const order = (count + center + i - this.selected) % count;
+          const zIndex = order === 0 || order === count - 1 ? -1 : 1;
+          const fraction = i / this.data.length;
           return html`<div
-            @click=${order < c ? this.dec : this.inc}
+            @click=${order < center ? this.dec : this.inc}
             style=${styleMap({
               order: String(order),
               zIndex: String(zIndex),
               background: `hsl(
-                    ${Math.trunc(360 * p)},
-                    ${20 + Math.trunc(60 * p)}%,
-                    ${30 + Math.trunc(30 * p)}%)`,
+                    ${Math.trunc(360 * fraction)},
+                    ${20 + Math.trunc(60 * fraction)}%,
+                    ${30 + Math.trunc(30 * fraction)}%)`,
             })}
             class="card"
             ${animate()}
@@ -41,8 +41,8 @@ export class MyElement extends LitElement {
   }
 
   shift(i: number) {
-    const e = this.data.length - 1;
-    return i > e ? 0 : i < 0 ? e : i;
+    const last = this.data.length - 1;
+    return i > last ? 0 : i < 0 ? last : i;
   }
 
   dec() {

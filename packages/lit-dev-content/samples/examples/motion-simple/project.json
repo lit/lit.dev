@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "simple",
+  "title": "Sliding Circle",
   "description": "Simple `animate()` directive example.",
   "section": "Motion",
   "files": {
-    "my-element.ts": {},
+    "motion-slide.ts": {},
     "index.html": {},
     "package.json": {
       "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit-labs/motion\": \"^1.0.1\",  }\n}",

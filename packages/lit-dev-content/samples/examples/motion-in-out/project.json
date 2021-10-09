@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "in/out",
+  "title": "Lit Logo Animation",
   "description": "Animate elements when they go in and out of the page.",
   "section": "Motion",
   "files": {
-    "my-element.ts": {},
+    "motion-lit.ts": {},
     "styles.ts": {},
     "index.html": {},
     "package.json": {

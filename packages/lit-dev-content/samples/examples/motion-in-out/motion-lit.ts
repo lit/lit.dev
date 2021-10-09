@@ -3,8 +3,8 @@ import {customElement, property} from 'lit/decorators.js';
 import {animate, AnimateController, flyBelow, fade} from '@lit-labs/motion';
 import {styles} from './styles.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('motion-lit')
+export class MotionLit extends LitElement {
   static styles = styles;
 
   lit = ['L', 'I', 'T'];

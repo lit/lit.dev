@@ -19,6 +19,12 @@ export const styles = [
       --mdc-shape-small: 12px;
     }
 
+    .controls {
+      display: flex;
+      padding: 8px 0;
+      justify-content: flex-end;
+    }
+
     .lists {
       display: flex;
     }

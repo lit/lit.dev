@@ -15,7 +15,7 @@ export const styles = [
 
     .letter {
       flex: 1;
-      font-size: 30rem;
+      font-size: 30vw;
       text-align: center;
       will-change: transform;
       background: linear-gradient(

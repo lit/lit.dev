@@ -3,8 +3,8 @@ import {customElement, state} from 'lit/decorators.js';
 import {animate} from '@lit-labs/motion';
 import {styles} from './styles.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('motion-grid')
+export class MotionGrid extends LitElement {
   static styles = styles;
 
   @state() layout = 0;

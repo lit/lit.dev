@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "grid",
+  "title": "Grid Layout Transitions",
   "description": "Animate css grid layouts.",
   "section": "Motion",
   "files": {
-    "my-element.ts": {},
+    "motion-grid.ts": {},
     "styles.ts": {},
     "index.html": {},
     "package.json": {

@@ -6,7 +6,7 @@ export const styles = [
       display: flex;
       align-items: center;
       justify-content: center;
-      --size: 300px;
+      --size: 50vw;
       width: calc(var(--size) + 80px);
       gap: 8px;
       border-radius: 8px;
@@ -28,7 +28,7 @@ export const styles = [
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 10em;
+      font-size: var(--size);
       cursor: pointer;
       user-select: none;
     }

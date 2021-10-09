@@ -5,8 +5,8 @@ import {classMap} from 'lit/directives/class-map.js';
 import {animate, flyBelow, fadeIn} from '@lit-labs/motion';
 import {styles} from './styles.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('motion-list')
+export class MotionList extends LitElement {
   static styles = styles;
 
   data = [

@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "hero",
+  "title": "List/Detail Hero Transition",
   "description": "Hero animation.",
   "section": "Motion",
   "files": {
-    "my-element.ts": {},
+    "motion-hero.ts": {},
     "styles.ts": {},
     "support.ts": {},
     "index.html": {},

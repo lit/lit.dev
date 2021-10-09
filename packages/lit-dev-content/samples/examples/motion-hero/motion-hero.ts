@@ -10,8 +10,8 @@ import {
 import {onFrames, data, DataItem} from './support.js';
 import {styles} from './styles.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('motion-hero')
+export class MotionHero extends LitElement {
   static styles = styles;
 
   @property({type: Array}) data = data;

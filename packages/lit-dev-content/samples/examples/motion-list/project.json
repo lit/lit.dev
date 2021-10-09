@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "list",
+  "title": "List Item Animation",
   "description": "Animate list items.",
   "section": "Motion",
   "files": {
-    "my-element.ts": {},
+    "motion-list.ts": {},
     "styles.ts": {},
     "index.html": {},
     "package.json": {

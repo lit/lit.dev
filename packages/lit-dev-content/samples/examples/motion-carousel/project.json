@@ -1,10 +1,10 @@
 {
   "extends": "/samples/base.json",
-  "title": "carousel",
+  "title": "Carousel Transitions",
   "description": "Animated carousel.",
   "section": "Motion",
   "files": {
-    "my-element.ts": {},
+    "motion-carousel.ts": {},
     "styles.ts": {},
     "index.html": {},
     "package.json": {
