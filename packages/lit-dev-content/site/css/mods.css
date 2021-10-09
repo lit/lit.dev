@@ -29,3 +29,6 @@ litdev-playground-share-button {
 .gists litdev-playground-share-button {
   display: inline-block;
 }
+.gists #shareButton {
+  display: none;
+}
