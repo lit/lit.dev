@@ -82,15 +82,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
   // needs to be refactored, probably into one or two custom elements.
-  const githubShareButton = $('litdev-github-share-button')!;
-  const githubApiUrl = githubShareButton.githubApiUrl ?? '';
-  githubShareButton.getProjectFiles = () => project.files;
-  githubShareButton.addEventListener('gist-created', async (event: Event) => {
-    const gistId = (event as CustomEvent<{gistId: string}>).detail.gistId;
-    window.location.hash = '#gist=' + gistId;
-    await navigator.clipboard.writeText(window.location.toString());
-    shareSnackbar.open = true;
-  });
+  const githubShareButton = $('litdev-github-share-button');
+  const githubApiUrl = githubShareButton?.githubApiUrl ?? '';
+  if (githubShareButton) {
+    githubShareButton.getProjectFiles = () => project.files;
+    githubShareButton.addEventListener('gist-created', async (event) => {
+      window.location.hash = '#gist=' + event.detail.gistId;
+      await navigator.clipboard.writeText(window.location.toString());
+      shareSnackbar.open = true;
+    });
+  } else {
+    console.error('Missing litdev-github-share-button');
+  }
 
   const share = async () => {
     const files = [];
@@ -154,6 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadGist = async (
     gistId: string
   ): Promise<Array<CompactProjectFile>> => {
+    // TODO(aomarks) Show user visible error on failure
     const gist = await getGist(gistId, {apiBaseUrl: githubApiUrl});
     const playgroundFiles: Array<CompactProjectFile> = Object.values(
       gist.files
@@ -171,7 +175,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(hash.slice(1));
     let urlFiles: Array<CompactProjectFile> | undefined;
     const gist = params.get('gist');
-    const base64 = params.get('base64');
+    const base64 = params.get('project');
     if (gist) {
       urlFiles = await loadGist(gist);
     } else if (base64) {

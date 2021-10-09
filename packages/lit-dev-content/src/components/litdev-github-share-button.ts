@@ -73,9 +73,14 @@ export class LitDevGitHubShareButton extends LitElement {
     ) {
       throw new Error('Missing required properties');
     }
+    if (projectFiles.length === 0) {
+      // TODO(aomarks) The button should just be disabled in this case.
+      throw new Error("Can't save an empty project");
+    }
 
     let token = tokenCache.get(this);
     if (token === undefined) {
+      // TODO(aomarks) User facing error if this fails.
       token = await signInToGithub({
         clientId: this.clientId,
         authorizeUrl: this.authorizeUrl,
@@ -87,15 +92,23 @@ export class LitDevGitHubShareButton extends LitElement {
       projectFiles.map((file) => [file.name, {content: file.content}])
     );
 
+    // TODO(aomarks) User facing error if this fails.
     const gistId = await createGist(gistFiles, {
       apiBaseUrl: this.githubApiUrl,
       token,
     });
-    this.dispatchEvent(new CustomEvent('gist-created', {detail: {gistId}}));
+    const event: HTMLElementEventMap['gist-created'] = new CustomEvent(
+      'gist-created',
+      {detail: {gistId}}
+    );
+    this.dispatchEvent(event);
   }
 }
 
 declare global {
+  interface HTMLElementEventMap {
+    'gist-created': CustomEvent<{gistId: string}>;
+  }
   interface HTMLElementTagNameMap {
     'litdev-github-share-button': LitDevGitHubShareButton;
   }
