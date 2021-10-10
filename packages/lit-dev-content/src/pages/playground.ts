@@ -10,13 +10,12 @@ import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
 import '../components/litdev-playground-change-guard.js';
 import '../components/litdev-playground-share-button.js';
+import '../components/litdev-playground-download-button.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 import {getGist} from '../github/github-gists.js';
-
-import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
 
 interface CompactProjectFile {
@@ -121,20 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   shareButton.addEventListener('click', share);
 
-  const downloadButton = $('#downloadButton')!;
-  downloadButton.addEventListener('click', () => {
-    const tarFiles = Object.entries(project.config?.files ?? {}).map(
-      ([name, {content}]) => ({
-        name,
-        content: content ?? '',
-      })
-    );
-    const tar = Tar(tarFiles);
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([tar], {type: 'application/tar'}));
-    a.download = 'lit-playground.tar';
-    a.click();
-  });
+  const downloadButton = $('litdev-playground-download-button');
+  if (downloadButton) {
+    downloadButton.getProjectFiles = () => project.files;
+  } else {
+    console.error('Missing litdev-playground-download-button');
+  }
 
   const loadBase64 = (
     base64: string
