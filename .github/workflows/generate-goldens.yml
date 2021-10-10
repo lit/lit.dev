@@ -23,6 +23,9 @@ jobs:
       - name: NPM install
         run: npm ci
 
+      - name: Install playwright deps
+        run: npm run test:integration:install-deps
+
       - name: Lerna bootstrap
         run: npm run bootstrap
 
