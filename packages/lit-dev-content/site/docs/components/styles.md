@@ -74,6 +74,14 @@ Using an array of tagged template literals, a component can inherit the styles f
 
 {% playground-ide "docs/components/style/superstyles" %}
 
+Note that when writing components intended to be subclassed in TypeScript, the `static styles` field should be explicitly typed as `CSSResultGroup` to allow flexibility for users to override `styles` with an array:
+
+```ts
+// Prevent typescript from narrowing the type of `styles` to `CSSResult`
+// so that subclassers can assign e.g. `[SuperElement.styles, css`...`]`;
+static styles: CSSResultGroup = css`...`;
+```
+
 ### Sharing styles
 
 You can share styles between components by creating a module that exports tagged styles:
