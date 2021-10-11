@@ -78,7 +78,7 @@ Note that when writing components intended to be subclassed in TypeScript, the `
 
 ```ts
 // Prevent typescript from narrowing the type of `styles` to `CSSResult`
-// so that subclasssers can assign e.g. `[SuperElement.styles, css`...`]`;
+// so that subclassers can assign e.g. `[SuperElement.styles, css`...`]`;
 static styles: CSSResultGroup = css`...`;
 ```
 
