@@ -1,0 +1,16 @@
+{
+  "extends": "/samples/base.json",
+  "title": "List Item Animation",
+  "description": "Animate list items.",
+  "section": "Motion",
+  "files": {
+    "motion-list.ts": {},
+    "styles.ts": {},
+    "index.html": {},
+    "package.json": {
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit-labs/motion\": \"^1.0.1\",  }\n}",
+      "hidden": true
+    }
+  },
+  "order": 2
+}
