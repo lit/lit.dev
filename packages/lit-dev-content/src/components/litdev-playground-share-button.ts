@@ -4,10 +4,14 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html} from 'lit';
+import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {signInToGithub} from '../github/github-signin.js';
 import {createGist} from '../github/github-gists.js';
+
+import {shareIcon} from '../icons/share-icon.js';
+
+import './litdev-icon-button.js';
 
 import type {GistFiles} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
@@ -23,7 +27,7 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
  * (It's not expected to usually have more than one instance of a share button,
  * but it could happen e.g. in testing.)
  */
-const tokenCache = new WeakMap<LitDevGitHubShareButton, string>();
+const tokenCache = new WeakMap<LitDevPlaygroundShareButton, string>();
 
 /**
  * A button that shares a Playground project as a GitHub gist. If the user isn't
@@ -31,10 +35,15 @@ const tokenCache = new WeakMap<LitDevGitHubShareButton, string>();
  *
  * // TODO(aomarks) Show a scrim and some indication about what is happening
  * //               while the popup is open.
- * // TODO(aomarks) Style this button
  */
-@customElement('litdev-github-share-button')
-export class LitDevGitHubShareButton extends LitElement {
+@customElement('litdev-playground-share-button')
+export class LitDevPlaygroundShareButton extends LitElement {
+  static styles = css`
+    litdev-icon-button:hover {
+      background: blue;
+    }
+  `;
+
   /**
    * GitHub OAuth App client ID. Generated when a GitHub OAuth App is first
    * created.
@@ -60,7 +69,11 @@ export class LitDevGitHubShareButton extends LitElement {
   getProjectFiles?: () => SampleFile[] | undefined;
 
   override render() {
-    return html`<button @click=${this._onClick}>Share with GitHub</button>`;
+    return html`
+      <litdev-icon-button @click=${this._onClick}>
+        ${shareIcon} Share
+      </litdev-icon-button>
+    `;
   }
 
   private async _onClick() {
@@ -110,6 +123,6 @@ declare global {
     'gist-created': CustomEvent<{gistId: string}>;
   }
   interface HTMLElementTagNameMap {
-    'litdev-github-share-button': LitDevGitHubShareButton;
+    'litdev-playground-share-button': LitDevPlaygroundShareButton;
   }
 }

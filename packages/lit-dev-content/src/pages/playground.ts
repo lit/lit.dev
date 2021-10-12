@@ -9,14 +9,13 @@ import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
 import '../components/litdev-playground-change-guard.js';
-import '../components/litdev-github-share-button.js';
+import '../components/litdev-playground-share-button.js';
+import '../components/litdev-playground-download-button.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 import {getGist} from '../github/github-gists.js';
-
-import Tar from 'tarts';
 import {Snackbar} from '@material/mwc-snackbar';
 
 interface CompactProjectFile {
@@ -82,17 +81,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
   // needs to be refactored, probably into one or two custom elements.
-  const githubShareButton = $('litdev-github-share-button');
-  const githubApiUrl = githubShareButton?.githubApiUrl ?? '';
-  if (githubShareButton) {
-    githubShareButton.getProjectFiles = () => project.files;
-    githubShareButton.addEventListener('gist-created', async (event) => {
+  const newShareButton = $('litdev-playground-share-button');
+  const githubApiUrl = newShareButton?.githubApiUrl ?? '';
+  if (newShareButton) {
+    newShareButton.getProjectFiles = () => project.files;
+    newShareButton.addEventListener('gist-created', async (event) => {
       window.location.hash = '#gist=' + event.detail.gistId;
       await navigator.clipboard.writeText(window.location.toString());
       shareSnackbar.open = true;
     });
   } else {
-    console.error('Missing litdev-github-share-button');
+    console.error('Missing litdev-playground-share-button');
   }
 
   const share = async () => {
@@ -121,20 +120,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   shareButton.addEventListener('click', share);
 
-  const downloadButton = $('#downloadButton')!;
-  downloadButton.addEventListener('click', () => {
-    const tarFiles = Object.entries(project.config?.files ?? {}).map(
-      ([name, {content}]) => ({
-        name,
-        content: content ?? '',
-      })
-    );
-    const tar = Tar(tarFiles);
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([tar], {type: 'application/tar'}));
-    a.download = 'lit-playground.tar';
-    a.click();
-  });
+  const downloadButton = $('litdev-playground-download-button');
+  if (downloadButton) {
+    downloadButton.getProjectFiles = () => project.files;
+  } else {
+    console.error('Missing litdev-playground-download-button');
+  }
 
   const loadBase64 = (
     base64: string

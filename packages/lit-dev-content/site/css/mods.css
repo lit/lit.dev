@@ -23,9 +23,12 @@
   --playground-code-callee-color: #dcdcaa;
 }
 
-litdev-github-share-button {
+litdev-playground-share-button {
   display: none;
 }
-.gists litdev-github-share-button {
+.gists litdev-playground-share-button {
   display: inline-block;
+}
+.gists #shareButton {
+  display: none;
 }

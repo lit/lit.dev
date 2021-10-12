@@ -40,18 +40,8 @@ title: Playground
 
 <div id="content">
   <div id="actionBar">
-    <button id="downloadButton" class="outlineButton">
-      <svg width="24" height="24" viewBox="0 0 8.9403505 7.7663145"
-           stroke="currentcolor" stroke-width="0.5" fill="none"
-           aria-hidden="true">
-        <g transform="translate(-60.514912,-89.035921)">
-          <path d="m 60.779495,92.719876 v 3.817776 h 8.411184 v -3.768603" />
-          <path d="M 64.978456,94.503808 V 89.035921" />
-          <path d="M 66.807058,92.468875 64.978456,94.470831 63.117735,92.61011" />
-        </g>
-      </svg>
-      Download
-    </button>
+    <litdev-playground-download-button>
+    </litdev-playground-download-button>
 
     <button id="shareButton" class="outlineButton">
       <svg width="24" height="24" viewBox="0 0 7.9368957 14.252527"
@@ -66,11 +56,11 @@ title: Playground
       Share
     </button>
 
-    <litdev-github-share-button
+    <litdev-playground-share-button
       clientId="{{ env.GITHUB_CLIENT_ID }}"
       authorizeUrl="{{ env.GITHUB_AUTHORIZE_URL }}"
       githubApiUrl="{{ env.GITHUB_API_URL }}">
-    </litdev-github-share-button>
+    </litdev-playground-share-button>
   </div>
 
   <playground-project
