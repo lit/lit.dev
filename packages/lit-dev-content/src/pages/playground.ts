@@ -39,11 +39,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const githubApiUrl = newShareButton?.githubApiUrl ?? '';
   if (newShareButton) {
     newShareButton.getProjectFiles = () => project.files;
-    newShareButton.addEventListener('gist-created', async (event) => {
-      window.location.hash = '#gist=' + event.detail.gistId;
-      await navigator.clipboard.writeText(window.location.toString());
-      shareSnackbar.open = true;
-    });
   } else {
     console.error('Missing litdev-playground-share-button');
   }

@@ -4,42 +4,41 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
-import {signInToGithub} from '../github/github-signin.js';
-import {createGist} from '../github/github-gists.js';
+import './litdev-flyout.js';
+import './litdev-playground-share-gist.js';
+import './litdev-playground-share-long-url.js';
+import '@material/mwc-snackbar';
 
+import {LitElement, html, css} from 'lit';
+import {customElement, property, state, query} from 'lit/decorators.js';
 import {shareIcon} from '../icons/share-icon.js';
 
-import './litdev-icon-button.js';
-
-import type {GistFiles} from '../github/github-gists.js';
+import type {LitDevPlaygroundShareLongUrl} from './litdev-playground-share-long-url.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
+import type {Snackbar} from '@material/mwc-snackbar';
 
 /**
- * An in-memory cache of the GitHub authentication tokens associated with each
- * instance of a share button. This allows the user to authenticate only once
- * per page load, instead of on each save.
- *
- * By using a WeakMap instead of a class instance property, we make it much more
- * difficult for code outside of this module to directly access tokens.
- *
- * (It's not expected to usually have more than one instance of a share button,
- * but it could happen e.g. in testing.)
- */
-const tokenCache = new WeakMap<LitDevPlaygroundShareButton, string>();
-
-/**
- * A button that shares a Playground project as a GitHub gist. If the user isn't
- * signed into GitHub yet, they are prompted to do so.
- *
- * // TODO(aomarks) Show a scrim and some indication about what is happening
- * //               while the popup is open.
+ * The Playground "Share" button. Opens a menu with options for sharing as a
+ * long base64 URL, or signing into GitHub and sharing as a Gist.
  */
 @customElement('litdev-playground-share-button')
 export class LitDevPlaygroundShareButton extends LitElement {
   static styles = css`
-    litdev-icon-button:hover {
+    section {
+      padding: 15px;
+    }
+    section:not(:last-of-type) {
+      border-bottom: 1px solid #ccc;
+    }
+    section > h3 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    #menu {
+      z-index: 10;
+    }
+    mwc-snackbar {
       background: blue;
     }
   `;
@@ -64,64 +63,88 @@ export class LitDevPlaygroundShareButton extends LitElement {
   githubApiUrl?: string;
 
   /**
+   * Whether the share menu is open.
+   */
+  @state()
+  private _open = false;
+
+  @query('litdev-playground-share-long-url')
+  private _longUrl?: LitDevPlaygroundShareLongUrl;
+
+  @query('mwc-snackbar')
+  private _snackbar?: Snackbar;
+
+  /**
    * A function to allow this component to access the project upon save.
    */
+  @property({attribute: false})
   getProjectFiles?: () => SampleFile[] | undefined;
 
   override render() {
     return html`
-      <litdev-icon-button @click=${this._onClick}>
+      <litdev-icon-button @click=${this._toggleOpen}>
         ${shareIcon} Share
       </litdev-icon-button>
+
+      ${this._menu}
+
+      <!-- TODO(aomarks) Not the biggest fan of the snackbar here,
+           it feels easy to miss. -->
+      <mwc-snackbar></mwc-snackbar>
     `;
   }
 
-  private async _onClick() {
-    const projectFiles = this.getProjectFiles?.();
-    if (
-      !this.githubApiUrl ||
-      !this.clientId ||
-      !this.authorizeUrl ||
-      !projectFiles
-    ) {
-      throw new Error('Missing required properties');
-    }
-    if (projectFiles.length === 0) {
-      // TODO(aomarks) The button should just be disabled in this case.
-      throw new Error("Can't save an empty project");
-    }
+  private get _menu() {
+    return html`<litdev-flyout
+      id="menu"
+      .anchor=${this}
+      .open=${this._open}
+      @closed=${this._close}
+      @status=${this._showStatus}
+    >
+      <section>
+        <h3>Long URL</h3>
+        <litdev-playground-share-long-url
+          .getProjectFiles=${this.getProjectFiles}
+          @copied=${this._close}
+        ></litdev-playground-share-long-url>
+      </section>
 
-    let token = tokenCache.get(this);
-    if (token === undefined) {
-      // TODO(aomarks) User facing error if this fails.
-      token = await signInToGithub({
-        clientId: this.clientId,
-        authorizeUrl: this.authorizeUrl,
-      });
-      tokenCache.set(this, token);
+      <section>
+        <h3>GitHub Gist</h3>
+        <litdev-playground-share-gist
+          .clientId=${this.clientId}
+          .authorizeUrl=${this.authorizeUrl}
+          .githubApiUrl=${this.githubApiUrl}
+          .getProjectFiles=${this.getProjectFiles}
+          @created=${this._close}
+        ></litdev-playground-share-gist>
+      </section>
+    </litdev-flyout>`;
+  }
+
+  private _toggleOpen() {
+    this._open = !this._open;
+    if (this._open) {
+      this._longUrl?.generateUrl();
     }
+  }
 
-    const gistFiles: GistFiles = Object.fromEntries(
-      projectFiles.map((file) => [file.name, {content: file.content}])
-    );
+  private _close() {
+    this._open = false;
+  }
 
-    // TODO(aomarks) User facing error if this fails.
-    const gistId = await createGist(gistFiles, {
-      apiBaseUrl: this.githubApiUrl,
-      token,
-    });
-    const event: HTMLElementEventMap['gist-created'] = new CustomEvent(
-      'gist-created',
-      {detail: {gistId}}
-    );
-    this.dispatchEvent(event);
+  private _showStatus(event: CustomEvent<{text: string}>) {
+    const snackbar = this._snackbar;
+    if (!snackbar) {
+      return;
+    }
+    snackbar.labelText = event.detail.text;
+    snackbar.open = true;
   }
 }
 
 declare global {
-  interface HTMLElementEventMap {
-    'gist-created': CustomEvent<{gistId: string}>;
-  }
   interface HTMLElementTagNameMap {
     'litdev-playground-share-button': LitDevPlaygroundShareButton;
   }

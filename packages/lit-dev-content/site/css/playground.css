@@ -122,10 +122,6 @@ litdev-drawer:not([closed])::part(header) {
 #actionBar {
   flex: 0 0 var(--litdev-drawer-header-height);
 
-  /* Sometimes layout doesn't keep up with the example drawer animation, so a
-  white line appears. Shifting the bar slightly behind the drawer hides this
-  effect. */
-  z-index: 0;
   margin-left: -100px;
   padding: 0 1.3em 0 calc(100px + 1em);
   box-sizing: border-box;
