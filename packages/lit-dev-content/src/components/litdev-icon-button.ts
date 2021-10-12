@@ -39,6 +39,7 @@ export class LitDevIconButton extends LitElement {
       display: flex;
       font-family: inherit;
       font-size: inherit;
+      margin: 0;
       padding: 0;
     }
 
