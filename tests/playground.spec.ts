@@ -69,4 +69,17 @@ test.describe('Playground', () => {
       await page.locator('main > #content').screenshot()
     ).toMatchSnapshot('helloWorldPlaygroundProject.png');
   });
+
+  test('open and close share menu', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+    await waitForPlaygroundPreviewToLoad(page);
+    await page.click('litdev-playground-share-button');
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'openAndCloseShareMenu-1-opened.png'
+    );
+    await page.click('playground-code-editor');
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'openAndCloseShareMenu-2-closed.png'
+    );
+  });
 });
