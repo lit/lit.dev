@@ -17,6 +17,8 @@ import {
 } from '../code-language-preference.js';
 import {getGist} from '../github/github-gists.js';
 import {Snackbar} from '@material/mwc-snackbar';
+import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
+import {compactPlaygroundFile} from '../util/compact-playground-file.js';
 
 interface CompactProjectFile {
   name: string;
@@ -26,56 +28,8 @@ interface CompactProjectFile {
 
 // TODO(aomarks) This whole thing should probably be a custom element.
 window.addEventListener('DOMContentLoaded', () => {
-  /**
-   * Encode the given string to base64url, with support for all UTF-16 code
-   * points, and '=' padding omitted.
-   *
-   * Built-in btoa throws on non-latin code points (>0xFF), so this function
-   * first converts the input to a binary UTF-8 string.
-   *
-   * Outputs base64url (https://tools.ietf.org/html/rfc4648#section-5), where
-   * '+' and '/' are replaced with '-' and '_' respectively, so that '+' doesn't
-   * need to be percent-encoded (since it would otherwise be mis-interpreted as
-   * a space).
-   *
-   * TODO(aomarks) Make this a method on <playground-project>? It's likely to be
-   * needed by other projects too.
-   */
-  const encodeSafeBase64 = (str: string) => {
-    // Adapted from suggestions in https://stackoverflow.com/a/30106551
-    //
-    // Example:
-    //
-    //   [1] Given UTF-16 input: "😃" {D83D DE03}
-    //   [2] Convert to UTF-8 escape sequences: "%F0%9F%98%83"
-    //   [3] Extract UTF-8 code points, and re-interpret as UTF-16 code points,
-    //       creating a string where all code points are <= 0xFF and hence safe
-    //       to base64 encode: {F0 9F 98 83}
-    const percentEscaped = encodeURIComponent(str);
-    const utf8 = percentEscaped.replace(/%([0-9A-F]{2})/g, (_, hex) =>
-      String.fromCharCode(parseInt(hex, 16))
-    );
-    const base64 = btoa(utf8);
-    const base64url = base64.replace(/\+/g, '-').replace(/\//g, '_');
-    // Padding is confirmed optional on Chrome 88, Firefox 85, and Safari 14.
-    const padIdx = base64url.indexOf('=');
-    return padIdx >= 0 ? base64url.slice(0, padIdx) : base64url;
-  };
-
-  const decodeSafeBase64 = (base64url: string) => {
-    const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
-    const utf8 = atob(base64);
-    const percentEscaped = utf8
-      .split('')
-      .map((char) => '%' + char.charCodeAt(0).toString(16).padStart(2, '0'))
-      .join('');
-    const str = decodeURIComponent(percentEscaped);
-    return str;
-  };
-
   const $ = document.body.querySelector.bind(document.body);
   const project = $('playground-project')!;
-
   const shareButton = $('#shareButton')!;
   const shareSnackbar = $('#shareSnackbar')! as Snackbar;
 
@@ -95,23 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const share = async () => {
-    const files = [];
-    for (const [name, {content, hidden}] of Object.entries(
-      project.config?.files ?? {}
-    )) {
-      // We don't directly encode the Playground project's files data structure
-      // because we want something more compact to reduce URL bloat. There's no
-      // need to include contentType (will be inferred from filename) or labels
-      // (unused), and hidden should be omitted instead of false.
-      const compactFile: CompactProjectFile = {
-        name,
-        content: content ?? '',
-      };
-      if (hidden) {
-        compactFile.hidden = true;
-      }
-      files.push(compactFile);
-    }
+    const files = (project.files ?? []).map(compactPlaygroundFile);
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
