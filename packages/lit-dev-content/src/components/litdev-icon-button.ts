@@ -42,6 +42,11 @@ export class LitDevIconButton extends LitElement {
       padding: 0;
     }
 
+    slot {
+      display: flex;
+      align-items: center;
+    }
+
     ::slotted(svg:first-child) {
       height: 1.5em;
       margin-right: 1em;
