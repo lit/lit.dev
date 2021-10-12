@@ -11,6 +11,10 @@ const config: PlaywrightTestConfig = {
     screenshot: 'off',
     baseURL: 'http://localhost:6415/',
   },
+  webServer: {
+    command: 'npm start',
+    port: 6415,
+  },
   // Prevent implicit snapshot creation and tests passing. Create screenshots
   // explicitly with either:
   //  * Github Action: "Artifacts / Download link for updated screenshots" for
