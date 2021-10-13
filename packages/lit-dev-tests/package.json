@@ -25,7 +25,6 @@
     "broken-link-checker": "^0.7.8",
     "lit-dev-server": "^0.0.0",
     "node-fetch": "^3.0.0",
-    "npm-run-all": "^4.1.5",
     "wait-on": "^6.0.0"
   }
 }
