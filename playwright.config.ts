@@ -19,7 +19,7 @@ const config: PlaywrightTestConfig = {
   // explicitly with either:
   //  * Github Action: "Artifacts / Download link for updated screenshots" for
   //    committing the snapshot to the repository.
-  //  * `npm run test:update-golden-screenshots` for local testing.
+  //  * `npm run test:integration:update-golden-screenshots` for local testing.
   updateSnapshots: 'none',
 };
 export default config;
