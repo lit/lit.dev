@@ -8,8 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "npm run build:ts",
-    "build:ts": "../../node_modules/.bin/tsc",
-    "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write"
+    "build:ts": "../../node_modules/.bin/tsc"
   },
   "dependencies": {
     "@lit/ts-transformers": "^1.0.0",

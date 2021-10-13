@@ -8,7 +8,6 @@
   "scripts": {
     "build": "npm run build:ts",
     "build:ts": "../../node_modules/.bin/tsc",
-    "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write",
     "test": "npm run build && uvu ./lib \".spec.js$\""
   },
   "dependencies": {
