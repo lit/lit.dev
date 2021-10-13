@@ -20,6 +20,7 @@
   "dependencies": {
     "@playwright/test": "^1.14.1",
     "@types/ansi-escape-sequences": "^4.0.0",
+    "@types/node": "^15.0.0",
     "ansi-escape-sequences": "^6.2.0",
     "broken-link-checker": "^0.7.8",
     "lit-dev-server": "^0.0.0",
