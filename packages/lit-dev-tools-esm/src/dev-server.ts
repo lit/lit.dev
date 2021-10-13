@@ -12,12 +12,10 @@ import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-mid
 import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
 import {fakeGitHubMiddleware} from 'lit-dev-server/lib/middleware/fake-github-middleware.js';
 import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware/github-token-exchange-middleware.js';
+import {dev as ENV} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
-const MAIN_PORT = 5415;
-const PLAYGROUND_PORT = 5416;
-const FAKE_GITHUB_PORT = 5417;
 
 type DevServerPlugin = Exclude<DevServerConfig['plugins'], undefined>[number];
 
@@ -73,15 +71,18 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
   },
 };
 
-const clientId = 'FAKE_CLIENT_ID';
-// Important: We should never put real GitHub app secrets here. This one is just
-// for local testing with the fake server.
-const clientSecret = 'FAKE_APP_SECRET';
+const envRequired = <T extends keyof typeof ENV>(name: T) => {
+  const val = ENV[name];
+  if (!val) {
+    throw new Error(`Expected ENV.${name} to be defined.`);
+  }
+  return val as Exclude<typeof ENV[T], undefined>;
+};
 
 startDevServer({
   config: {
-    port: MAIN_PORT,
-    rootDir: pathlib.join(CONTENT_PKG, '_dev'),
+    port: ENV.mainPort,
+    rootDir: pathlib.join(CONTENT_PKG, ENV.eleventyOutDir),
     plugins: [
       dontResolveBareModulesInPlaygroundFiles,
       removeWatchScriptFromPlaygroundFiles,
@@ -89,13 +90,13 @@ startDevServer({
     middleware: [
       contentSecurityPolicyMiddleware({
         devMode: true,
-        playgroundPreviewOrigin: `http://localhost:${PLAYGROUND_PORT}`,
-        githubApiOrigin: `http://localhost:${FAKE_GITHUB_PORT}`,
+        playgroundPreviewOrigin: ENV.playgroundSandboxUrl,
+        githubApiOrigin: ENV.githubApiUrl,
       }),
       createGitHubTokenExchangeMiddleware({
-        clientId,
-        clientSecret,
-        githubApiUrl: `http://localhost:${FAKE_GITHUB_PORT}/login/oauth/access_token`,
+        clientId: envRequired('githubClientId'),
+        clientSecret: envRequired('githubClientSecret'),
+        githubMainUrl: envRequired('githubMainUrl'),
       }),
       redirectMiddleware(),
     ],
@@ -107,7 +108,7 @@ startDevServer({
 
 startDevServer({
   config: {
-    port: PLAYGROUND_PORT,
+    port: ENV.playgroundPort,
     rootDir: pathlib.resolve(
       CONTENT_PKG,
       'node_modules',
@@ -122,12 +123,12 @@ startDevServer({
 
 startDevServer({
   config: {
-    port: FAKE_GITHUB_PORT,
+    port: ENV.fakeGithubPort,
     middleware: [
       fakeGitHubMiddleware({
-        clientId,
-        clientSecret,
-        redirectUrl: `http://localhost:${MAIN_PORT}/playground/signin/`,
+        clientId: envRequired('githubClientId'),
+        clientSecret: envRequired('githubClientSecret'),
+        redirectUrl: envRequired('githubAuthorizeRedirectUrl'),
       }),
     ],
   },

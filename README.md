@@ -112,12 +112,12 @@ Serves at [`http://localhost:6415`](http://localhost:6415)
 ### Start production Docker environment locally
 
 ```sh
-docker build -t litdev . --build-arg PLAYGROUND_SANDBOX=http://localhost:7416/
-docker run --rm --name litdev -p 7415:7415 -e PORT=7415 -e MODE=main -e PLAYGROUND_SANDBOX=http://localhost:7416/ litdev
-docker run --rm --name litdev-playground -p 7416:7416 -e PORT=7416 -e MODE=playground litdev
+docker build -t litdev . --build-arg LITDEV_ENV=local
+docker run --rm --name litdev -p 6415:6415 -e LITDEV_ENV=local -e MODE=main litdev
+docker run --rm --name litdev-playground -p 6416:6416 -e LITDEV_ENV=local -e MODE=playground litdev
 ```
 
-Serves at [`http://localhost:7415`](http://localhost:7415)
+Serves at [`http://localhost:6415`](http://localhost:6415)
 
 ### Updating screenshots tests
 

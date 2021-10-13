@@ -16,6 +16,7 @@
     "@web/dev-server": "^0.1.6",
     "chokidar": "^3.5.2",
     "lit-dev-server": "^0.0.0",
+    "lit-dev-tools-cjs": "^0.0.0",
     "playground-elements": "^0.14.3",
     "prettier": "^2.3.2"
   }
