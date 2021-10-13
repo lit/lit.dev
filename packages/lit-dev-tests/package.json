@@ -1,0 +1,30 @@
+{
+  "name": "lit-dev-tests",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Tests for lit.dev",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "cd ../.. && npm run start",
+    "test:integration": "playwright test",
+    "test:integration:update-golden-screenshots": "playwright test --update-snapshots",
+    "test:links:redirects": "node lib/check-redirects.js",
+    "test:links:internal": "run-p --race start test:links:internal:cmd",
+    "test:links:internal:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --recursive --exclude-external --ordered",
+    "test:links:external": "run-p --race start test:links:external:cmd",
+    "test:links:external:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --exclude 'http://localhost:8000/dev/' --exclude 'https://www.npmjs.com/*' --get --recursive --host-requests 1"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.14.1",
+    "@types/ansi-escape-sequences": "^4.0.0",
+    "ansi-escape-sequences": "^6.2.0",
+    "broken-link-checker": "^0.7.8",
+    "lit-dev-server": "^0.0.0",
+    "node-fetch": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "wait-on": "^6.0.0"
+  }
+}
