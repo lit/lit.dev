@@ -7,7 +7,7 @@ const path = require('path');
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
 const {
   playgroundPlugin,
-} = require('lit-dev-tools/lib/playground-plugin/plugin.js');
+} = require('lit-dev-tools-cjs/lib/playground-plugin/plugin.js');
 const htmlMinifier = require('html-minifier');
 const CleanCSS = require('clean-css');
 const fs = require('fs/promises');
@@ -15,9 +15,11 @@ const fsSync = require('fs');
 const fastGlob = require('fast-glob');
 const {
   inlinePlaygroundFilesIntoManifests,
-} = require('../lit-dev-tools/lib/playground-inline.js');
-const {createSearchIndex} = require('../lit-dev-tools/lib/search/plugin.js');
-const {preCompress} = require('../lit-dev-tools/lib/pre-compress.js');
+} = require('../lit-dev-tools-cjs/lib/playground-inline.js');
+const {
+  createSearchIndex,
+} = require('../lit-dev-tools-cjs/lib/search/plugin.js');
+const {preCompress} = require('../lit-dev-tools-cjs/lib/pre-compress.js');
 const luxon = require('luxon');
 const crypto = require('crypto');
 

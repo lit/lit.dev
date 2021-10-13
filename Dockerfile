@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 
 # External dependencies
 COPY package*.json lerna.json ./
-COPY packages/lit-dev-tools/package*.json ./packages/lit-dev-tools/
+COPY packages/lit-dev-tools-cjs/package*.json ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/package*.json ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
 COPY packages/lit-dev-api/package*.json ./packages/lit-dev-api/
@@ -30,10 +30,10 @@ COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
 RUN npm ci && npm run bootstrap
 
 # Tooling code
-COPY packages/lit-dev-tools/ ./packages/lit-dev-tools/
+COPY packages/lit-dev-tools-cjs/ ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/ ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/ ./packages/lit-dev-server/
-RUN npx lerna run build:ts --scope lit-dev-tools --scope lit-dev-tools-esm --scope lit-dev-server --stream
+RUN npx lerna run build:ts --scope lit-dev-tools-cjs --scope lit-dev-tools-esm --scope lit-dev-server --stream
 
 # Generated API docs
 COPY packages/lit-dev-api/ ./packages/lit-dev-api/

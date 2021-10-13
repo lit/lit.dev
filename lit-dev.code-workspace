@@ -5,8 +5,8 @@
       "path": "packages/lit-dev-content"
     },
     {
-      "name": "lit-dev-tools",
-      "path": "packages/lit-dev-tools"
+      "name": "lit-dev-tools-cjs",
+      "path": "packages/lit-dev-tools-cjs"
     },
     {
       "name": "lit-dev-tools-esm",

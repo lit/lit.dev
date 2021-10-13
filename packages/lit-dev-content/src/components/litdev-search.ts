@@ -22,7 +22,7 @@ import type {Drawer} from '@material/mwc-drawer';
 /**
  * Representation of each document indexed by Minisearch.
  *
- * Duplicated interface that must match `/lit-dev-tools/src/search/plugin.ts`
+ * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
 interface UserFacingPageData {
   id: string;
@@ -192,7 +192,7 @@ class LitDevSearch extends LitElement {
     const searchIndexJson = await (await fetch('/searchIndex.json')).text();
 
     // Minisearch intialization config must exactly match
-    // `/lit-dev-tools/src/search/plugin.ts` Minisearch options.
+    // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
     LitDevSearch.siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
       searchIndexJson,
       {

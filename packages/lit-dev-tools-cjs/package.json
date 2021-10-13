@@ -1,5 +1,5 @@
 {
-  "name": "lit-dev-tools",
+  "name": "lit-dev-tools-cjs",
   "private": true,
   "version": "0.0.0",
   "description": "Misc tools for lit.dev (CommonJS)",
