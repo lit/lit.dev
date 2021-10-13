@@ -2,7 +2,9 @@
   "name": "lit.dev",
   "private": true,
   "version": "0.0.0",
-  "description": "",
+  "description": "Monorepo root package for lit.dev",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
   "scripts": {
     "bootstrap": "lerna bootstrap --ci",
     "build": "lerna run build --stream",
@@ -21,8 +23,6 @@
     "test:integration": "playwright test",
     "test:integration:update-golden-screenshots": "playwright test --update-snapshots"
   },
-  "author": "Google LLC",
-  "license": "BSD-3-Clause",
   "devDependencies": {
     "@playwright/test": "^1.14.1",
     "broken-link-checker": "^0.7.8",
