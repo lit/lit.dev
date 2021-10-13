@@ -20,16 +20,16 @@ test.describe('Playground', () => {
 
     const codeEditor = page.locator('playground-code-editor #focusContainer');
     expect(
-      (await codeEditor.textContent()).includes(
+      ((await codeEditor.textContent()) ?? '').includes(
         `@customElement('simple-greeting')`
       )
     ).toBe(true);
 
-    const playgroundPreviewFrame = await (
-      await page.locator('playground-preview iframe').elementHandle()
-    ).contentFrame();
+    const playgroundPreviewFrame = (await (await page
+      .locator('playground-preview iframe')
+      .elementHandle())!.contentFrame())!;
     await expect(
-      playgroundPreviewFrame.locator('simple-greeting p')
+      playgroundPreviewFrame.locator('simple-greeting p')!
     ).toHaveText('Hello, World!');
     await expect(playgroundPreviewFrame.locator('simple-greeting p')).toHaveCSS(
       'color',
@@ -48,9 +48,9 @@ test.describe('Playground', () => {
 
     await waitForPlaygroundPreviewToLoad(page);
 
-    const playgroundPreviewFrame = await (
-      await page.locator('playground-preview iframe').elementHandle()
-    ).contentFrame();
+    const playgroundPreviewFrame = (await (await page
+      .locator('playground-preview iframe')
+      .elementHandle())!.contentFrame())!;
     await expect(
       playgroundPreviewFrame.locator('simple-greeting p')
     ).toHaveText('Hello, World!');

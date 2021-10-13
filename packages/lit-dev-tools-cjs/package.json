@@ -1,5 +1,5 @@
 {
-  "name": "lit-dev-tools",
+  "name": "lit-dev-tools-cjs",
   "private": true,
   "version": "0.0.0",
   "description": "Misc tools for lit.dev (CommonJS)",
@@ -8,8 +8,7 @@
   "scripts": {
     "build": "npm run build:ts",
     "build:ts": "../../node_modules/.bin/tsc",
-    "format": "../../node_modules/.bin/prettier \"**/*.{ts,js,json,html,css,md}\" --write",
-    "test": "npm run build && uvu ./lib \".spec.js$\""
+    "test": "uvu ./lib \".spec.js$\""
   },
   "dependencies": {
     "@types/jsdom": "^16.2.13",

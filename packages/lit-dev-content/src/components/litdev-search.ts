@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import { LitElement, html, css, TemplateResult, nothing } from 'lit';
+import {LitElement, html, css, TemplateResult, nothing} from 'lit';
 import {
   state,
   property,
@@ -12,17 +12,17 @@ import {
   queryAll,
   customElement,
 } from 'lit/decorators.js';
-import { repeat } from 'lit/directives/repeat.js';
+import {repeat} from 'lit/directives/repeat.js';
 import Minisearch from 'minisearch';
-import { addModsParameterToUrlIfNeeded } from '../mods.js';
+import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import '@lion/combobox/define';
-import { LionOption } from '@lion/listbox';
-import type { Drawer } from '@material/mwc-drawer';
+import {LionOption} from '@lion/listbox';
+import type {Drawer} from '@material/mwc-drawer';
 
 /**
  * Representation of each document indexed by Minisearch.
  *
- * Duplicated interface that must match `/lit-dev-tools/src/search/plugin.ts`
+ * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
 interface UserFacingPageData {
   id: string;
@@ -192,7 +192,7 @@ class LitDevSearch extends LitElement {
     const searchIndexJson = await (await fetch('/searchIndex.json')).text();
 
     // Minisearch intialization config must exactly match
-    // `/lit-dev-tools/src/search/plugin.ts` Minisearch options.
+    // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
     LitDevSearch.siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
       searchIndexJson,
       {
@@ -200,7 +200,7 @@ class LitDevSearch extends LitElement {
         fields: ['title', 'heading', 'text'],
         storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
         searchOptions: {
-          boost: { title: 1.4, heading: 1.2, text: 1 },
+          boost: {title: 1.4, heading: 1.2, text: 1},
           prefix: true,
           fuzzy: 0.2,
         },
@@ -317,14 +317,14 @@ class LitDevSearch extends LitElement {
           @blur=${this.onBlur}
         >
           ${repeat(
-      this.suggestions,
-      (v) => v.id,
-      ({
-        relativeUrl,
-        title,
-        heading,
-        isSubsection,
-      }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
+            this.suggestions,
+            (v) => v.id,
+            ({
+              relativeUrl,
+              title,
+              heading,
+              isSubsection,
+            }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
               <litdev-search-option
                 .choiceValue="${this.searchText}"
                 .relativeUrl="${relativeUrl}"
@@ -333,7 +333,7 @@ class LitDevSearch extends LitElement {
                 .isSubsection="${isSubsection}"
                 @click="${() => this.navigate(relativeUrl)}"
               ></litdev-search-option>`
-    )}
+          )}
         </lion-combobox>
         ${SEARCH_ICON}
       </div>
@@ -355,58 +355,58 @@ class LitdevSearchOption extends LionOption {
   @property()
   heading = '';
 
-  @property({ type: Boolean })
+  @property({type: Boolean})
   isSubsection = false;
 
   static get styles() {
     return [
       ...super.styles,
       css`
-      .suggestion {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 50px;
-        padding: 0.2em 2em;
-        border-block-end: 1px solid #ddd;
-        background-color: white;
-        color: black;
-        font-size: 16px;
-        cursor: pointer;
-      }
-
-      .title-and-header {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .title,
-      .header {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-
-      .header {
-        font-size: 0.9em;
-        font-weight: 600;
-      }
-
-      .api-tag {
-        color: white;
-        background-color: #6e6e6e;
-        padding: 0 0.5em;
-        margin-left: 1em;
-        font-weight: 600;
-      }
-
-      @media (max-width: 864px) {
         .suggestion {
-          padding: 0.2em 0.4em;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 50px;
+          padding: 0.2em 2em;
+          border-block-end: 1px solid #ddd;
+          background-color: white;
+          color: black;
+          font-size: 16px;
+          cursor: pointer;
         }
-      }
-    `,
+
+        .title-and-header {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .title,
+        .header {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .header {
+          font-size: 0.9em;
+          font-weight: 600;
+        }
+
+        .api-tag {
+          color: white;
+          background-color: #6e6e6e;
+          padding: 0 0.5em;
+          margin-left: 1em;
+          font-weight: 600;
+        }
+
+        @media (max-width: 864px) {
+          .suggestion {
+            padding: 0.2em 0.4em;
+          }
+        }
+      `,
     ];
   }
 
@@ -415,8 +415,8 @@ class LitdevSearchOption extends LionOption {
       <div class="suggestion">
         ${titleAndHeadingCard(this.title, this.heading, this.isSubsection)}
         ${isApiLink(this.relativeUrl)
-        ? html`<span class="api-tag">API</span>`
-        : nothing}
+          ? html`<span class="api-tag">API</span>`
+          : nothing}
       </div>
     `;
   }

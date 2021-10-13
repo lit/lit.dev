@@ -4,3 +4,4 @@ Dockerfile
 npm-debug.log
 **/tsconfig.tsbuildinfo
 /packages/lit-dev-api/lit/
+/packages/lit-dev-tests/

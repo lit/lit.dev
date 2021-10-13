@@ -16,8 +16,8 @@ packages/lit-dev-api/api-data/**/*
 !packages/lit-dev-api/api-data/.gitkeep
 
 # We only want to keep '-linux' screenshots which are tested by Github Actions.
-tests/**/*.png
-!tests/**/*-linux.png
+packages/lit-dev-tests/src/playwright/**/*.png
+!packages/lit-dev-tests/src/playwright/**/*-linux.png
 test-results
 
 *.tsbuildinfo

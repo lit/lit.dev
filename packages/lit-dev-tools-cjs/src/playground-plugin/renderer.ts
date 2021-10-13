@@ -106,7 +106,9 @@ export class Renderer {
 
           // Replace zero width newlines that don't copy paste well with a line
           // feed unicode character that pastes correctly.
-          const codeLines = cm.querySelectorAll('.CodeMirror-line > span > span[cm-text]');
+          const codeLines = cm.querySelectorAll(
+            '.CodeMirror-line > span > span[cm-text]'
+          );
           for (const line of codeLines) {
             if (line?.textContent?.match(/^[\u200B]*$/)) {
               line.textContent = `\u000A`;

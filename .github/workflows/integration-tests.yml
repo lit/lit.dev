@@ -1,0 +1,31 @@
+name: Integration tests
+
+on: [push, pull_request]
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+      - run: npx playwright install-deps
+      - run: npm run bootstrap
+      - run: npm run build
+
+      - id: test
+        run: npm run test:integration
+
+      - if: ${{ always() && steps.test.outcome == 'failure' }}
+        run: npm run test:integration:update-golden-screenshots
+
+      - if: ${{ always() && steps.test.outcome == 'failure' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: golden-results
+          path: tests/**/**.png

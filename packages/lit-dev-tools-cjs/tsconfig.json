@@ -3,10 +3,10 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib",
+    "module": "commonjs",
     "incremental": true,
     "composite": true,
-    "tsBuildInfoFile": "lib/.tsbuildinfo",
-    "skipLibCheck": true
+    "tsBuildInfoFile": "lib/.tsbuildinfo"
   },
   "include": ["src/**/*.ts"],
   "exclude": []
