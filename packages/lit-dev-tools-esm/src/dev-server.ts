@@ -10,7 +10,7 @@ import * as pathlib from 'path';
 import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middleware.js';
 import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
 import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
-import {fakeGitHubMiddleware} from 'lit-dev-server/lib/middleware/fake-github-middleware.js';
+import {fakeGitHubMiddleware} from './fake-github-middleware.js';
 import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware/github-token-exchange-middleware.js';
 import {dev as ENV} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
 

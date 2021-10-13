@@ -10,12 +10,9 @@
   "scripts": {
     "build": "npm run build:ts",
     "build:ts": "../../node_modules/.bin/tsc",
-    "start": "run-p start:main start:playground",
-    "start:main": "LITDEV_ENV=local MODE=main node lib/server.js",
-    "start:playground": "LITDEV_ENV=local MODE=playground node lib/server.js"
+    "start": "node lib/server.js"
   },
   "dependencies": {
-    "co-body": "^6.1.0",
     "koa": "^2.13.0",
     "koa-conditional-get": "^3.0.0",
     "koa-etag": "^4.0.0",
@@ -24,7 +21,6 @@
     "node-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@types/co-body": "^6.1.0",
     "@types/koa": "^2.11.6",
     "@types/koa-conditional-get": "^2.0.0",
     "@types/koa-etag": "^3.0.0",
