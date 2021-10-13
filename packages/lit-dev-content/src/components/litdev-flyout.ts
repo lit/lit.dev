@@ -86,6 +86,7 @@ export class LitDevFlyout extends LitElement {
   }
 
   override disconnectedCallback() {
+    super.disconnectedCallback();
     this._removeEventListeners();
   }
 
