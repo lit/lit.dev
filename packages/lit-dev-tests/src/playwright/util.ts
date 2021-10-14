@@ -23,13 +23,10 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
     });
     return true;
   }, iframe);
-  // Wait for the loading indicator to stop for screenshots.
-  await page.waitForSelector(
-    'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
-  );
-  // There is a fade-out transition on the playground loading bar that makes
-  // screenshots flaky. Wait for the loading bar to have animated out.
-  await page.waitForTimeout(250);
+  // Hide the animated loading indicator.
+  await page.evaluate((el) => {
+    el.style.visibility = 'hidden';
+  }, await page.waitForSelector('playground-preview [part="preview-loading-indicator"]'));
 }
 
 interface MwcSnackbar extends HTMLElement {
