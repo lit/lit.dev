@@ -31,3 +31,37 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
   // screenshots flaky. Wait for the loading bar to have animated out.
   await page.waitForTimeout(250);
 }
+
+interface MwcSnackbar extends HTMLElement {
+  timeoutMs: number;
+  open: boolean;
+}
+
+/**
+ * Prevent any <mwc-snackbar> elements on the page from automatically closing
+ * after they are opened, and disable their opacity/transform transitions.
+ */
+export async function freezeSnackbars(page: Page) {
+  for (const snackbar of await page.$$('mwc-snackbar')) {
+    await page.evaluate((snackbar) => {
+      (snackbar as MwcSnackbar).timeoutMs = -1;
+      const surface = snackbar.shadowRoot?.querySelector(
+        '.mdc-snackbar__surface'
+      );
+      if (surface) {
+        (surface as HTMLElement).style.transition = 'none';
+      }
+    }, snackbar);
+  }
+}
+
+/**
+ * Close any open <mwc-snackbar> elements on the given page.
+ */
+export async function closeSnackbars(page: Page) {
+  for (const snackbar of await page.$$('mwc-snackbar')) {
+    await page.evaluate((snackbar) => {
+      (snackbar as MwcSnackbar).open = false;
+    }, snackbar);
+  }
+}
