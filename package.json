@@ -8,7 +8,10 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --ci",
     "build": "lerna run build --stream",
-    "start": "cd packages/lit-dev-server && npm start",
+    "start": "run-p -r start:main start:playground start:fake-github",
+    "start:main": "LITDEV_ENV=local MODE=main lerna run start --scope=lit-dev-server --stream",
+    "start:playground": "LITDEV_ENV=local MODE=playground lerna run start --scope=lit-dev-server --stream",
+    "start:fake-github": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
     "dev": "cd packages/lit-dev-content && (npm run build:ts:watch -- --preserveWatchOutput & npm run dev:build:site:watch & npm run dev:serve)",
     "format": "prettier . --write",
     "format:check": "prettier . --check",

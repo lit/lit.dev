@@ -14,11 +14,10 @@ import type {Response} from 'node-fetch';
  */
 export interface GitHubTokenExchangeMiddlewareOptions {
   /**
-   * The URL of GitHub token exchange API. The official URL is
-   * https://github.com/login/oauth/access_token, but a different URL can be
-   * passed here for testing.
+   * The URL of GitHub. The official URL is https://github.com/, but a different
+   * URL can be passed here for testing.
    */
-  githubApiUrl: string;
+  githubMainUrl: string;
 
   /**
    * GitHub OAuth app client ID.
@@ -58,7 +57,7 @@ const safelyGetHttpBody = async (resp: Response): Promise<string> => {
  */
 export const createGitHubTokenExchangeMiddleware =
   ({
-    githubApiUrl,
+    githubMainUrl,
     clientId,
     clientSecret,
   }: GitHubTokenExchangeMiddlewareOptions): koa.Middleware =>
@@ -94,7 +93,7 @@ export const createGitHubTokenExchangeMiddleware =
       );
     }
 
-    const tokenFetchUrl = new URL(githubApiUrl);
+    const tokenFetchUrl = new URL('/login/oauth/access_token', githubMainUrl);
     tokenFetchUrl.searchParams.set('code', code);
     tokenFetchUrl.searchParams.set('client_id', clientId);
     tokenFetchUrl.searchParams.set('client_secret', clientSecret);
@@ -124,7 +123,7 @@ export const createGitHubTokenExchangeMiddleware =
       return errorResponse(
         500,
         'Error parsing JSON response from GitHub API.',
-        await safelyGetHttpBody(tokenHttpResp)
+        (error as Error).message
       );
     }
 

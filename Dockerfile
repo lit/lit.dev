@@ -47,8 +47,8 @@ RUN npx lerna run build --scope lit-dev-api --stream && \
 COPY packages/lit-dev-content/ ./packages/lit-dev-content/
 
 # Environment variables used by Eleventy build
+ARG LITDEV_ENV
 ARG PLAYGROUND_SANDBOX
-ARG GOOGLE_ANALYTICS_ID
 
 # Kaniko doesn't include ARG values in the layer cache key (see
 # https://github.com/GoogleContainerTools/kaniko/pull/1085). This is different
@@ -56,11 +56,11 @@ ARG GOOGLE_ANALYTICS_ID
 # declaration if the value changes. So, we need to write it to the file system
 # to force a cache invalidation. Otherwise, we might re-use the most recent
 # Eleventy build output, even when our build environment variables have changed.
-RUN echo "PLAYGROUND_SANDBOX=$PLAYGROUND_SANDBOX" >> env \
-  && echo "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> env
+RUN echo "LITDEV_ENV=$LITDEV_ENV" >> env \
+  && echo "PLAYGROUND_SANDBOX=$PLAYGROUND_SANDBOX" >> env
 
 # Eleventy build
-RUN npx lerna run build --scope lit-dev-content --stream
+RUN npx lerna run prod:build --scope lit-dev-content --stream
 
 # Run the web service on container startup.
 #

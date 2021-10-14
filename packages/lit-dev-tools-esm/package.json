@@ -12,10 +12,13 @@
   },
   "dependencies": {
     "@lit/ts-transformers": "^1.0.0",
+    "@types/co-body": "^6.1.0",
     "@types/prettier": "^2.3.2",
     "@web/dev-server": "^0.1.6",
     "chokidar": "^3.5.2",
+    "co-body": "^6.1.0",
     "lit-dev-server": "^0.0.0",
+    "lit-dev-tools-cjs": "^0.0.0",
     "playground-elements": "^0.14.3",
     "prettier": "^2.3.2"
   }

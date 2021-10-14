@@ -14,17 +14,17 @@ import * as fs from 'fs';
 import {redirectMiddleware} from './middleware/redirect-middleware.js';
 import {playgroundMiddleware} from './middleware/playground-middleware.js';
 import {contentSecurityPolicyMiddleware} from './middleware/content-security-policy-middleware.js';
+import {createGitHubTokenExchangeMiddleware} from './middleware/github-token-exchange-middleware.js';
+import {getEnvironment} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
+
+const ENV = getEnvironment();
 
 const mode = process.env.MODE;
 if (mode !== 'main' && mode !== 'playground') {
   console.error(`MODE env must be "main" or "playground", was "${mode}"`);
   process.exit(1);
 }
-const port = Number(process.env.PORT);
-if (isNaN(port)) {
-  console.error(`PORT env must be a number, was "${process.env.PORT}"`);
-  process.exit(1);
-}
+const port = mode === 'main' ? ENV.mainPort : ENV.playgroundPort;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,7 +32,7 @@ const contentPackage = path.resolve(__dirname, '..', '..', 'lit-dev-content');
 const staticRoot =
   mode === 'playground'
     ? path.join(contentPackage, 'node_modules', 'playground-elements')
-    : path.join(contentPackage, '_site');
+    : path.join(contentPackage, ENV.eleventyOutDir);
 
 console.log(`mode: ${mode}`);
 console.log(`port: ${port}`);
@@ -45,22 +45,33 @@ if (mode === 'playground') {
 } else {
   const inlineScriptHashes = fs
     .readFileSync(
-      path.join(contentPackage, '_site', 'csp-inline-script-hashes.txt'),
+      path.join(
+        contentPackage,
+        ENV.eleventyOutDir,
+        'csp-inline-script-hashes.txt'
+      ),
       'utf8'
     )
     .trim()
     .split('\n');
-  const playgroundPreviewOrigin = process.env.PLAYGROUND_SANDBOX;
-  if (!playgroundPreviewOrigin) {
-    throw new Error('PLAYGROUND_SANDBOX env was not set');
-  }
+  const playgroundPreviewOrigin = ENV.playgroundSandboxUrl;
   app.use(
     contentSecurityPolicyMiddleware({
       inlineScriptHashes,
       playgroundPreviewOrigin,
-      reportViolations: process.env.REPORT_CSP_VIOLATIONS === 'true',
+      reportViolations: ENV.reportCspViolations,
+      githubApiOrigin: ENV.githubApiUrl,
     })
   );
+  if (ENV.githubMainUrl && ENV.githubClientId && ENV.githubClientSecret) {
+    app.use(
+      createGitHubTokenExchangeMiddleware({
+        githubMainUrl: ENV.githubMainUrl,
+        clientId: ENV.githubClientId,
+        clientSecret: ENV.githubClientSecret,
+      })
+    );
+  }
 }
 
 app.use(redirectMiddleware());

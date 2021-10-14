@@ -1,3 +1,12 @@
+/**
+ * @license
+ * Copyright 2020 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+const ENV =
+  require('lit-dev-tools-cjs/lib/lit-dev-environments.js').getEnvironment();
+
 const markdownIt = require('markdown-it');
 const pluginTOC = require('eleventy-plugin-nesting-toc');
 const markdownItAnchor = require('markdown-it-anchor');
@@ -27,10 +36,7 @@ const crypto = require('crypto');
 // and preserves the existing URL fragments
 const slugify = (s) => slugifyLib(s, {lower: true});
 
-const DEV = process.env.ELEVENTY_ENV === 'dev';
-const OUTPUT_DIR = DEV ? '_dev' : '_site';
-const PLAYGROUND_SANDBOX =
-  process.env.PLAYGROUND_SANDBOX || 'http://localhost:6416/';
+const DEV = ENV.eleventyMode === 'dev';
 
 const cspInlineScriptHashes = new Set();
 
@@ -43,7 +49,7 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin, {
-    sandboxUrl: PLAYGROUND_SANDBOX,
+    sandboxUrl: ENV.playgroundSandboxUrl,
   });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
@@ -373,8 +379,8 @@ ${content}
     // "index.html" and see a weird empty page.
     const emptyDocsIndexFiles = (
       await fastGlob([
-        OUTPUT_DIR + '/docs/introduction.html',
-        OUTPUT_DIR + '/docs/*/index.html',
+        ENV.eleventyOutDir + '/docs/introduction.html',
+        ENV.eleventyOutDir + '/docs/*/index.html',
       ])
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
@@ -386,7 +392,7 @@ ${content}
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
-    await createSearchIndex(OUTPUT_DIR);
+    await createSearchIndex(ENV.eleventyOutDir);
 
     if (DEV) {
       // Symlink css, images, and playground projects. We do this in dev mode
@@ -394,43 +400,43 @@ ${content}
       // immediately, instead of triggering an Eleventy build.
       await symlinkForce(
         path.join(__dirname, 'site', 'css'),
-        path.join(__dirname, '_dev', 'css')
+        path.join(__dirname, ENV.eleventyOutDir, 'css')
       );
       await symlinkForce(
         path.join(__dirname, 'site', 'images'),
-        path.join(__dirname, '_dev', 'images')
+        path.join(__dirname, ENV.eleventyOutDir, 'images')
       );
       await symlinkForce(
         path.join(__dirname, 'site', 'fonts'),
-        path.join(__dirname, '_dev', 'fonts')
+        path.join(__dirname, ENV.eleventyOutDir, 'fonts')
       );
       await symlinkForce(
         path.join(__dirname, 'samples'),
-        path.join(__dirname, '_dev', 'samples')
+        path.join(__dirname, ENV.eleventyOutDir, 'samples')
       );
 
       // Symlink lib -> _dev/js. This lets us directly reference tsc outputs in
       // dev mode, instead of the Rollup bundles we use for production.
       await symlinkForce(
         path.join(__dirname, 'lib'),
-        path.join(__dirname, '_dev', 'js')
+        path.join(__dirname, ENV.eleventyOutDir, 'js')
       );
     } else {
       // Inline all Playground project files directly into their manifests, to
       // cut down on requests per project.
       await inlinePlaygroundFilesIntoManifests(
-        `${OUTPUT_DIR}/samples/**/project.json`
+        `${ENV.eleventyOutDir}/samples/**/project.json`
       );
 
       // Pre-compress all outputs as .br and .gz files so the server can read
       // them directly instead of spending its own cycles. Note this adds ~4
       // seconds to the build, but it's disabled during dev.
-      await preCompress({glob: `${OUTPUT_DIR}/**/*`});
+      await preCompress({glob: `${ENV.eleventyOutDir}/**/*`});
 
       // Note we only need to write CSP inline script hashes for the production
       // output, because in dev mode we don't inline scripts.
       await fs.writeFile(
-        path.join(OUTPUT_DIR, 'csp-inline-script-hashes.txt'),
+        path.join(ENV.eleventyOutDir, 'csp-inline-script-hashes.txt'),
         [...cspInlineScriptHashes].join('\n'),
         'utf8'
       );
@@ -455,7 +461,7 @@ ${content}
   });
 
   return {
-    dir: {input: 'site', output: OUTPUT_DIR},
+    dir: {input: 'site', output: ENV.eleventyOutDir},
     htmlTemplateEngine: 'njk',
     // TODO: Switch markdown to Nunjucks
     // markdownTemplateEngine: 'njk',
