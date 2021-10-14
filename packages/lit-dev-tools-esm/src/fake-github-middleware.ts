@@ -171,8 +171,9 @@ class FakeGitHub {
     ctx.body = `
       <h2>Fake GitHub authorization prompt</h2>
 
-      <button onclick="authorize()">Authorize</button>
       <button onclick="cancel()">Cancel</button>
+      <button style="background:green;color:white"
+              onclick="authorize()">Authorize lit</button>
 
       <script>
         function authorize() {
