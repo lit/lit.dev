@@ -135,4 +135,4 @@ which can be downloaded from the "Artifacts" menu in the top-right of the failin
   ```
 
 - `screenshot-diffs.zip`: Expected, actuals, and diff screenshots. Can be
-  extracted viewed directly to help understand what failed.
+  extracted and viewed directly to help understand what failed.
