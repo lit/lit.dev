@@ -24,8 +24,20 @@ jobs:
       - if: ${{ always() && steps.test.outcome == 'failure' }}
         run: npm run test:integration:update-golden-screenshots
 
-      - if: ${{ always() && steps.test.outcome == 'failure' }}
+      - name: Upload screenshot-goldens.zip artifact
+        if: ${{ always() && steps.test.outcome == 'failure' }}
         uses: actions/upload-artifact@v2
         with:
-          name: golden-results
-          path: tests/**/**.png
+          name: screenshot-goldens
+          path: packages/lit-dev-tests/src/playwright/**/**.png
+          if-no-files-found: error
+
+      - name: Upload screenshot-diffs.zip artifact
+        if: ${{ always() && steps.test.outcome == 'failure' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshot-diffs
+          path: packages/lit-dev-tests/test-results/**/**.png
+          # Only exists if it was screenshot tests that failed. Other kinds of
+          # tests could also fail.
+          if-no-files-found: ignore

@@ -17,12 +17,12 @@
     "format:check": "prettier . --check",
     "nuke": "rm -rf node_modules && npm ci && lerna exec 'rm -rf node_modules' && lerna bootstrap --ci",
     "upgrade": "rm -rf node_modules package-lock.json && npm install && lerna exec 'rm -rf node_modules package-lock.json' && lerna bootstrap",
-    "test:unit": "lerna run test --scope lit-dev-tools-cjs --scope lit-dev-tools-esm",
-    "test:integration": "lerna run test:integration",
-    "test:integration:update-golden-screenshots": "lerna run test:integration:update-golden-screenshots",
-    "test:links:redirects": "lerna run test:links:redirects",
-    "test:links:internal": "lerna run test:links:internal",
-    "test:links:external": "lerna run test:links:external"
+    "test:unit": "lerna run test --scope lit-dev-tools-cjs --scope lit-dev-tools-esm --stream",
+    "test:integration": "lerna run test:integration --stream",
+    "test:integration:update-golden-screenshots": "lerna run test:integration:update-golden-screenshots --stream",
+    "test:links:redirects": "lerna run test:links:redirects --stream",
+    "test:links:internal": "lerna run test:links:internal --stream",
+    "test:links:external": "lerna run test:links:external --stream"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
