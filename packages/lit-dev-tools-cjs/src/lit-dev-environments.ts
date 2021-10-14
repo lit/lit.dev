@@ -17,6 +17,9 @@ interface LitDevEnvironment {
   githubApiUrl: string | undefined;
   githubAuthorizeRedirectUrl: string | undefined;
   githubClientId: string | undefined;
+  /**
+   * IMPORTANT: Do not hard code actual secrets.
+   */
   githubClientSecret: string | undefined;
 }
 
@@ -56,10 +59,12 @@ const urlEnv = (name: string): string => {
   return val!;
 };
 
+const environment = <T extends LitDevEnvironment>(env: T): T => env;
+
 /**
  * lit.dev environment configuration for fast local dev mode with auto-reload.
  */
-export const dev: LitDevEnvironment = {
+export const dev = environment({
   mainPort: 5415,
   playgroundPort: 5416,
   fakeGithubPort: 5417,
@@ -83,12 +88,12 @@ export const dev: LitDevEnvironment = {
   },
   githubClientId: FAKE_GITHUB_CLIENT_ID,
   githubClientSecret: FAKE_GITHUB_CLIENT_SECRET,
-};
+});
 
 /**
  * lit.dev environment configuration for running a prod-ish environment locally.
  */
-const local: LitDevEnvironment = {
+const local = environment({
   mainPort: 6415,
   playgroundPort: 6416,
   fakeGithubPort: 6417,
@@ -112,12 +117,12 @@ const local: LitDevEnvironment = {
   },
   githubClientId: FAKE_GITHUB_CLIENT_ID,
   githubClientSecret: FAKE_GITHUB_CLIENT_SECRET,
-};
+});
 
 /**
  * lit.dev environment configuration for automatically generated test PRs.
  */
-const pr: LitDevEnvironment = {
+const pr = environment({
   get mainPort() {
     // Assigned automatically and passed as an environment variable.
     return integerEnv('PORT');
@@ -141,12 +146,12 @@ const pr: LitDevEnvironment = {
   githubAuthorizeRedirectUrl: undefined, // Not set up yet
   githubClientId: undefined, // Not set up yet
   githubClientSecret: undefined, // Not set up yet
-};
+});
 
 /**
  * lit.dev environment configuration for the live production site.
  */
-const prod: LitDevEnvironment = {
+const prod = environment({
   get mainPort() {
     // Assigned automatically and passed as an environment variable.
     return integerEnv('PORT');
@@ -166,7 +171,7 @@ const prod: LitDevEnvironment = {
   githubAuthorizeRedirectUrl: undefined, // Not set up yet
   githubClientId: undefined, // Not set up yet
   githubClientSecret: undefined, // Not set up yet
-};
+});
 
 const environments = {dev, local, pr, prod};
 
@@ -174,7 +179,7 @@ const environments = {dev, local, pr, prod};
  * Return the environment configuration matching the LITDEV_ENV environment
  * variable.
  */
-export const getEnvironment = () => {
+export const getEnvironment = (): LitDevEnvironment => {
   const name = process.env.LITDEV_ENV;
   const env = environments[(name ?? '') as keyof typeof environments];
   if (!env) {

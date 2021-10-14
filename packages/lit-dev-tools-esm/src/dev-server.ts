@@ -71,14 +71,6 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
   },
 };
 
-const envRequired = <T extends keyof typeof ENV>(name: T) => {
-  const val = ENV[name];
-  if (!val) {
-    throw new Error(`Expected ENV.${name} to be defined.`);
-  }
-  return val as Exclude<typeof ENV[T], undefined>;
-};
-
 startDevServer({
   config: {
     port: ENV.mainPort,
@@ -94,9 +86,9 @@ startDevServer({
         githubApiOrigin: ENV.githubApiUrl,
       }),
       createGitHubTokenExchangeMiddleware({
-        clientId: envRequired('githubClientId'),
-        clientSecret: envRequired('githubClientSecret'),
-        githubMainUrl: envRequired('githubMainUrl'),
+        clientId: ENV.githubClientId,
+        clientSecret: ENV.githubClientSecret,
+        githubMainUrl: ENV.githubMainUrl,
       }),
       redirectMiddleware(),
     ],
@@ -126,9 +118,9 @@ startDevServer({
     port: ENV.fakeGithubPort,
     middleware: [
       fakeGitHubMiddleware({
-        clientId: envRequired('githubClientId'),
-        clientSecret: envRequired('githubClientSecret'),
-        redirectUrl: envRequired('githubAuthorizeRedirectUrl'),
+        clientId: ENV.githubClientId,
+        clientSecret: ENV.githubClientSecret,
+        redirectUrl: ENV.githubAuthorizeRedirectUrl,
       }),
     ],
   },

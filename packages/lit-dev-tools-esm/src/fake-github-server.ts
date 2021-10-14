@@ -10,12 +10,20 @@ import {getEnvironment} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
 
 const ENV = getEnvironment();
 
+const envRequired = <T extends keyof typeof ENV>(name: T) => {
+  const val = ENV[name];
+  if (!val) {
+    throw new Error(`Expected ENV.${name} to be defined.`);
+  }
+  return val as Exclude<typeof ENV[T], undefined>;
+};
+
 const app = new Koa();
 app.use(
   fakeGitHubMiddleware({
-    clientId: ENV.githubClientId!,
-    clientSecret: ENV.githubClientSecret!,
-    redirectUrl: ENV.githubAuthorizeRedirectUrl!,
+    clientId: envRequired('githubClientId'),
+    clientSecret: envRequired('githubClientSecret'),
+    redirectUrl: envRequired('githubAuthorizeRedirectUrl'),
   })
 );
 app.listen(ENV.fakeGithubPort);
