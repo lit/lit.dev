@@ -91,7 +91,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
   }
 
   private get _signInButton() {
-    return html`<litdev-icon-button @click=${this._signIn}>
+    return html`<litdev-icon-button id="signInButton" @click=${this._signIn}>
       ${githubLogo} Sign in to GitHub
     </litdev-icon-button>`;
   }
@@ -103,7 +103,10 @@ export class LitDevPlaygroundShareGist extends LitElement {
   }
 
   private get _shareButton() {
-    return html`<litdev-icon-button @click=${this._createGist}>
+    return html`<litdev-icon-button
+      id="saveNewGistButton"
+      @click=${this._createGist}
+    >
       ${githubLogo} Save new gist
     </litdev-icon-button>`;
   }
