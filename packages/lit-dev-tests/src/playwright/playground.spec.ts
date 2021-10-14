@@ -5,9 +5,18 @@
  */
 
 import {test, expect} from '@playwright/test';
-import {waitForPlaygroundPreviewToLoad} from './util';
+import {waitForPlaygroundPreviewToLoad, freezeSnackbars} from './util';
 
 test.describe('Playground', () => {
+  test.beforeEach(async ({browser}) => {
+    const page = await browser.newPage();
+    await page.goto('http://localhost:6417/reset');
+    expect(await page.textContent('body')).toEqual(
+      'fake github successfully reset'
+    );
+    await page.close();
+  });
+
   test('default example is simple-greeting.ts', async ({page}) => {
     await page.goto(`/playground`);
 
@@ -70,16 +79,90 @@ test.describe('Playground', () => {
     ).toMatchSnapshot('helloWorldPlaygroundProject.png');
   });
 
-  test('open and close share menu', async ({page}) => {
+  test('share long url', async ({page}) => {
     await page.goto('/playground/?mods=gists');
+    await freezeSnackbars(page);
+
+    // Type some new content
+    await page.click('playground-code-editor');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('"my long url content";');
     await waitForPlaygroundPreviewToLoad(page);
+
+    // Open the share menu
     await page.click('litdev-playground-share-button');
     await expect(await page.screenshot()).toMatchSnapshot(
-      'openAndCloseShareMenu-1-opened.png'
+      'shareLongUrl-1-shareMenuOpen.png'
     );
-    await page.click('playground-code-editor');
+
+    // Save the long URL
+    await page.click('litdev-playground-share-long-url copy-button');
+    await page.waitForURL(/#project=/);
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(
+      page.url()
+    );
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'hidden',
+    });
     await expect(await page.screenshot()).toMatchSnapshot(
-      'openAndCloseShareMenu-2-closed.png'
+      'shareLongUrl-2-snackbarOpen.png'
+    );
+
+    // Reload the page to confirm the new content is still there
+    await page.reload();
+    await waitForPlaygroundPreviewToLoad(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareLongUrl-3-pageReloaded.png'
+    );
+  });
+
+  test('share gist', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+    await freezeSnackbars(page);
+
+    // Type some new content
+    await page.click('playground-code-editor');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('"my gist content";');
+    await waitForPlaygroundPreviewToLoad(page);
+
+    // Open the share menu
+    await page.click('litdev-playground-share-button');
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-1-shareMenuOpen.png'
+    );
+
+    // Sign in to GitHub
+    const [popup] = await Promise.all([
+      page.waitForEvent('popup'),
+      page.click('#signInButton'),
+    ]);
+    await popup.waitForLoadState();
+    await popup.click('text=Authorize lit');
+    await popup.waitForEvent('close');
+    await page.waitForSelector('#saveNewGistButton', {state: 'visible'});
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-2-signedIn.png'
+    );
+
+    // Save the gist
+    await page.click('#saveNewGistButton');
+    await page.waitForURL(/#gist=/);
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(
+      page.url()
+    );
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'hidden',
+    });
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-3-snackbarOpen.png'
+    );
+
+    // Reload the page to confirm the new content is still there
+    await page.reload();
+    await waitForPlaygroundPreviewToLoad(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-4-pageReloaded.png'
     );
   });
 });

@@ -10,6 +10,7 @@ const config: PlaywrightTestConfig = {
   use: {
     screenshot: 'off',
     baseURL: 'http://localhost:6415/',
+    permissions: ['clipboard-read', 'clipboard-write'],
   },
   webServer: {
     command: 'npm start',

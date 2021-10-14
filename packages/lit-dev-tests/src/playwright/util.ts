@@ -23,11 +23,42 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
     });
     return true;
   }, iframe);
-  // Wait for the loading indicator to stop for screenshots.
-  await page.waitForSelector(
-    'playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
-  );
-  // There is a fade-out transition on the playground loading bar that makes
-  // screenshots flaky. Wait for the loading bar to have animated out.
-  await page.waitForTimeout(250);
+  // Hide the animated loading indicator.
+  await page.evaluate((el) => {
+    el.style.visibility = 'hidden';
+  }, await page.waitForSelector('playground-preview [part="preview-loading-indicator"]'));
+}
+
+interface MwcSnackbar extends HTMLElement {
+  timeoutMs: number;
+  open: boolean;
+}
+
+/**
+ * Prevent any <mwc-snackbar> elements on the page from automatically closing
+ * after they are opened, and disable their opacity/transform transitions.
+ */
+export async function freezeSnackbars(page: Page) {
+  for (const snackbar of await page.$$('mwc-snackbar')) {
+    await page.evaluate((snackbar) => {
+      (snackbar as MwcSnackbar).timeoutMs = -1;
+      const surface = snackbar.shadowRoot?.querySelector(
+        '.mdc-snackbar__surface'
+      );
+      if (surface) {
+        (surface as HTMLElement).style.transition = 'none';
+      }
+    }, snackbar);
+  }
+}
+
+/**
+ * Close any open <mwc-snackbar> elements on the given page.
+ */
+export async function closeSnackbars(page: Page) {
+  for (const snackbar of await page.$$('mwc-snackbar')) {
+    await page.evaluate((snackbar) => {
+      (snackbar as MwcSnackbar).open = false;
+    }, snackbar);
+  }
 }

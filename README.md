@@ -121,10 +121,18 @@ Serves at [`http://localhost:6415`](http://localhost:6415)
 
 ### Updating screenshots tests
 
-Screenshots that are committed to the repository need to be created through the
-"Artifacts / Download link for updated screenshots" Github Action. This action
-generates a zip archive `golden-results` which can be extracted into `tests/`.
+Unless you are using Linux, screenshot test goldens need to be created by
+downloading artifacts from the "Integration Tests" Github Action.
 
-```sh
-unzip golden-results.zip -d tests/
-```
+If the integration tests fail, two `.zip` archives are generated as artifacts,
+which can be downloaded from the "Artifacts" menu in the top-right of the failing action:
+
+- `screenshot-goldens.zip`: New goldens which, if correct, can be extracted into
+  `packages/lit-dev-tests/src/playwright` and committed as the new goldens:
+
+  ```sh
+  unzip screenshot-goldens.zip -d packages/lit-dev-tests/src/playwright
+  ```
+
+- `screenshot-diffs.zip`: Expected, actuals, and diff screenshots. Can be
+  extracted and viewed directly to help understand what failed.
