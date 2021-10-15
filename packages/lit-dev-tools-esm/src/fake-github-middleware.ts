@@ -60,6 +60,8 @@ export const fakeGitHubMiddleware = (
       return fake.accessToken(ctx);
     } else if (ctx.path === '/user' && ctx.method === 'GET') {
       return fake.getUser(ctx);
+    } else if (ctx.path.startsWith('/u/') && ctx.method === 'GET') {
+      return fake.getAvatarImage(ctx);
     } else if (ctx.path === '/gists' && ctx.method === 'POST') {
       return fake.createGist(ctx);
     } else if (ctx.path.startsWith('/gists/') && ctx.method === 'GET') {
@@ -283,6 +285,32 @@ class FakeGitHub {
       id: userId,
       login: details.login,
     });
+  }
+
+  async getAvatarImage(ctx: Koa.Context) {
+    const id = ctx.path.match(/^\/u\/(?<id>\d+)/)?.groups?.id;
+    ctx.status = 200;
+    ctx.type = 'image/svg+xml';
+    if (id && this._userDetails.has(Number(id))) {
+      // Yellow smiley
+      ctx.body = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="50" fill="#fd0" />
+        <circle cx="30" cy="40" r="10" fill="#000" />
+        <circle cx="70" cy="40" r="10" fill="#000" />
+        <path d="M20,65 c15,15 45,15 60,0"
+              style="fill:none;stroke:#000;stroke-width:5" />
+      </svg>
+      `;
+    } else {
+      // Red cross
+      ctx.body = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <path d="M5,5 L95,95 M5,95 L95,5"
+              style="fill:none;stroke:#f00;stroke-width:15" />
+      </svg>
+      `;
+    }
   }
 
   /**
