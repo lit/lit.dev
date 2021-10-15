@@ -61,6 +61,7 @@ if (mode === 'playground') {
       playgroundPreviewOrigin,
       reportViolations: ENV.reportCspViolations,
       githubApiOrigin: ENV.githubApiUrl,
+      githubAvatarOrigin: ENV.githubAvatarUrl,
     })
   );
   if (ENV.githubMainUrl && ENV.githubClientId && ENV.githubClientSecret) {

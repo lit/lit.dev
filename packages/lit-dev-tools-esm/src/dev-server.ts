@@ -84,6 +84,7 @@ startDevServer({
         devMode: true,
         playgroundPreviewOrigin: ENV.playgroundSandboxUrl,
         githubApiOrigin: ENV.githubApiUrl,
+        githubAvatarOrigin: ENV.githubAvatarUrl,
       }),
       createGitHubTokenExchangeMiddleware({
         clientId: ENV.githubClientId,
