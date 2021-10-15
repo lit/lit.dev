@@ -58,6 +58,8 @@ export const fakeGitHubMiddleware = (
       return fake.authorize(ctx);
     } else if (ctx.path === '/login/oauth/access_token') {
       return fake.accessToken(ctx);
+    } else if (ctx.path === '/user' && ctx.method === 'GET') {
+      return fake.getUser(ctx);
     } else if (ctx.path === '/gists' && ctx.method === 'POST') {
       return fake.createGist(ctx);
     } else if (ctx.path.startsWith('/gists/') && ctx.method === 'GET') {
@@ -90,6 +92,10 @@ interface GetGistResponse {
   owner: {id: number};
 }
 
+interface UserDetails {
+  login: string;
+}
+
 const jsonResponse = (
   ctx: Koa.Context,
   status: number,
@@ -105,6 +111,7 @@ class FakeGitHub {
   private readonly _temporaryCodes = new Map<string, UserAndScope>();
   private readonly _accessTokens = new Map<string, UserAndScope>();
   private readonly _gists = new Map<string, GetGistResponse>();
+  private readonly _userDetails = new Map<number, UserDetails>();
 
   constructor(options: FakeGitHubMiddlewareOptions) {
     this._options = options;
@@ -116,8 +123,15 @@ class FakeGitHub {
   private _getOrSetUserIdFromCookie(ctx: Koa.Context): number {
     let userIdStr = ctx.cookies.get('userid');
     let userId = userIdStr ? Number(userIdStr) : undefined;
-    if (userId === undefined) {
+    if (
+      userId === undefined ||
+      // The server must have restarted, so this is an invalid user id now.
+      !this._userDetails.has(userId)
+    ) {
       userId = randomNumber();
+      this._userDetails.set(userId, {
+        login: 'fakeuser',
+      });
       ctx.cookies.set('userid', String(userId));
     }
     return userId;
@@ -134,6 +148,7 @@ class FakeGitHub {
     this._temporaryCodes.clear();
     this._accessTokens.clear();
     this._gists.clear();
+    this._userDetails.clear();
     ctx.cookies.set('userid', null);
     ctx.cookies.set('authorized', null);
     ctx.status = 200;
@@ -236,6 +251,37 @@ class FakeGitHub {
       access_token: accessToken,
       scope: userAndScope.scope,
       token_type: 'bearer',
+    });
+  }
+
+  /**
+   * Simulates get https://api.github.com/user, the API for getting details
+   * about the authenticated user.
+   */
+  async getUser(ctx: Koa.Context) {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    const accept = ctx.get('accept');
+    if (accept !== 'application/vnd.github.v3+json') {
+      return jsonResponse(ctx, 415, {
+        message: "Unsupported 'Accept' header",
+      });
+    }
+    const authMatch = (ctx.get('authorization') ?? '').match(
+      /^\s*(?:token|bearer)\s(?<token>.+)$/
+    );
+    const authToken = authMatch?.groups?.token?.trim() ?? '';
+    const userAndScope = this._accessTokens.get(authToken);
+    if (!userAndScope) {
+      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+    }
+    const {userId} = userAndScope;
+    const details = this._userDetails.get(userId);
+    if (!details) {
+      return jsonResponse(ctx, 500, {message: 'Missing user details'});
+    }
+    return jsonResponse(ctx, 200, {
+      id: userId,
+      login: details.login,
     });
   }
 
