@@ -57,7 +57,14 @@ class KeyboardController implements ReactiveController {
       this._ctrlDown = true;
     } else if (event.key === 'Meta') {
       this._cmdDown = true;
-    } else if (event.key === 's' && (this._ctrlDown || this._cmdDown)) {
+    } else if (
+      // TODO(aomarks) File a Playwright issue. Playwright seems to have a bug
+      // where the "key" property is always uppercase, even when Shift was not
+      // also held. This seems to violate the UI Events spec
+      // (https://www.w3.org/TR/uievents-key/#:~:text=the%20key%20attribute%20value%20for%20the,%22q%22).
+      event.key.toLowerCase() === 's' &&
+      (this._ctrlDown || this._cmdDown)
+    ) {
       event.preventDefault(); // Don't trigger "Save page as"
       this._callback();
     }

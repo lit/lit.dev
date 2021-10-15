@@ -62,3 +62,9 @@ export async function closeSnackbars(page: Page) {
     }, snackbar);
   }
 }
+
+/**
+ * Read the contents of the clipboard.
+ */
+export const readClipboardText = async (page: Page): Promise<string> =>
+  page.evaluate(() => navigator.clipboard.readText());

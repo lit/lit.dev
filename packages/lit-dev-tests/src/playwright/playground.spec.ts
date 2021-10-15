@@ -4,8 +4,22 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {test, expect} from '@playwright/test';
-import {waitForPlaygroundPreviewToLoad, freezeSnackbars} from './util';
+import {test, expect, Page} from '@playwright/test';
+import {
+  waitForPlaygroundPreviewToLoad,
+  freezeSnackbars,
+  readClipboardText,
+} from './util';
+
+const signInToGithub = async (page: Page): Promise<void> => {
+  const [popup] = await Promise.all([
+    page.waitForEvent('popup'),
+    page.click('#signInButton'),
+  ]);
+  await popup.waitForLoadState();
+  await popup.click('text=Authorize lit');
+  await popup.waitForEvent('close');
+};
 
 test.describe('Playground', () => {
   test.beforeEach(async ({browser}) => {
@@ -98,9 +112,7 @@ test.describe('Playground', () => {
     // Save the long URL
     await page.click('litdev-playground-share-long-url copy-button');
     await page.waitForURL(/#project=/);
-    expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(
-      page.url()
-    );
+    expect(await readClipboardText(page)).toMatch(page.url());
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
       state: 'hidden',
     });
@@ -133,13 +145,7 @@ test.describe('Playground', () => {
     );
 
     // Sign in to GitHub
-    const [popup] = await Promise.all([
-      page.waitForEvent('popup'),
-      page.click('#signInButton'),
-    ]);
-    await popup.waitForLoadState();
-    await popup.click('text=Authorize lit');
-    await popup.waitForEvent('close');
+    await signInToGithub(page);
     await page.waitForSelector('#saveNewGistButton', {state: 'visible'});
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-2-signedIn.png'
@@ -148,9 +154,7 @@ test.describe('Playground', () => {
     // Save the gist
     await page.click('#saveNewGistButton');
     await page.waitForURL(/#gist=/);
-    expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(
-      page.url()
-    );
+    expect(await readClipboardText(page)).toMatch(page.url());
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
       state: 'hidden',
     });
@@ -164,5 +168,59 @@ test.describe('Playground', () => {
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-4-pageReloaded.png'
     );
+  });
+
+  test('share long URL with keyboard shortcuts', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+
+    // On the first Ctrl+S, the share menu opens and we click the copy button
+    await page.keyboard.press('Control+S');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'visible',
+    });
+    await page.click('litdev-playground-share-long-url copy-button');
+    await page.waitForURL(/#project=/);
+    expect(await readClipboardText(page)).toMatch(page.url());
+    const firstUrl = page.url();
+
+    // Change the content
+    await page.click('playground-code-editor');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('"new content";');
+
+    // On the next Ctrl+S, the long URL share should happen automatically
+    await page.keyboard.press('Control+S');
+    await page.waitForURL(
+      (url) => url.href.match(/#project=/) !== null && url.href !== firstUrl
+    );
+    expect(await readClipboardText(page)).toMatch(page.url());
+  });
+
+  test('share gist with keyboard shortcuts', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+
+    // On the first Ctrl+S, the share menu opens and we click the new gist button
+    await page.keyboard.press('Control+S');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'visible',
+    });
+    await signInToGithub(page);
+    await page.waitForSelector('#saveNewGistButton', {state: 'visible'});
+    await page.click('#saveNewGistButton');
+    await page.waitForURL(/#gist=/);
+    expect(await readClipboardText(page)).toMatch(page.url());
+    const firstUrl = page.url();
+
+    // Change the content
+    await page.click('playground-code-editor');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('"new content";');
+
+    // On the next Ctrl+S, the new gist should be created automatically
+    await page.keyboard.press('Control+S');
+    await page.waitForURL(
+      (url) => url.href.match(/#gist=/) !== null && url.href !== firstUrl
+    );
+    expect(await readClipboardText(page)).toMatch(page.url());
   });
 });
