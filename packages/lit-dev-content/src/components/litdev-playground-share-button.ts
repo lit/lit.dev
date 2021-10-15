@@ -19,6 +19,7 @@ import type {
   ReactiveControllerHost,
 } from 'lit';
 import type {LitDevPlaygroundShareLongUrl} from './litdev-playground-share-long-url.js';
+import type {LitDevPlaygroundShareGist} from './litdev-playground-share-gist.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 import type {Snackbar} from '@material/mwc-snackbar';
 
@@ -136,8 +137,17 @@ export class LitDevPlaygroundShareButton extends LitElement {
   @query('litdev-playground-share-long-url')
   private _longUrl?: LitDevPlaygroundShareLongUrl;
 
+  @query('litdev-playground-share-gist')
+  private _gist?: LitDevPlaygroundShareGist;
+
   @query('mwc-snackbar')
   private _snackbar?: Snackbar;
+
+  /**
+   * How the user most recently saved, or undefined if they haven't saved this
+   * pageload.
+   */
+  private _mostRecentSaveType: 'longurl' | 'gist' | undefined = undefined;
 
   /**
    * A function to allow this component to access the project upon save.
@@ -183,7 +193,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
         <h3>Long URL</h3>
         <litdev-playground-share-long-url
           .getProjectFiles=${this.getProjectFiles}
-          @copied=${this._close}
+          @copied=${this._onLongUrlSaved}
         ></litdev-playground-share-long-url>
       </section>
 
@@ -195,7 +205,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
           .githubApiUrl=${this.githubApiUrl}
           .githubAvatarUrl=${this.githubAvatarUrl}
           .getProjectFiles=${this.getProjectFiles}
-          @created=${this._close}
+          @created=${this._onGistSaved}
         ></litdev-playground-share-gist>
       </section>
     </litdev-flyout>`;
@@ -218,8 +228,26 @@ export class LitDevPlaygroundShareButton extends LitElement {
     snackbar.open = true;
   }
 
+  private _onLongUrlSaved() {
+    this._close();
+    this._mostRecentSaveType = 'longurl';
+  }
+
+  private _onGistSaved() {
+    this._close();
+    this._mostRecentSaveType = 'gist';
+  }
+
   private _onSaveKeyboardShortcut() {
-    this._open = true;
+    if (this._mostRecentSaveType === 'longurl') {
+      this._longUrl?.generateUrl();
+      this._longUrl?.save();
+    } else if (this._mostRecentSaveType === 'gist' && this._gist?.isSignedIn) {
+      // TODO(aomarks) Save a revision.
+      this._gist?.createNewGist();
+    } else {
+      this._open = true;
+    }
   }
 }
 

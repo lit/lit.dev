@@ -139,7 +139,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
   private get _shareButton() {
     return html`<litdev-icon-button
       id="saveNewGistButton"
-      @click=${this._createGist}
+      @click=${this.createNewGist}
     >
       ${githubLogo} Save new gist
     </litdev-icon-button>`;
@@ -151,6 +151,10 @@ export class LitDevPlaygroundShareGist extends LitElement {
       return JSON.parse(value);
     }
     return undefined;
+  }
+
+  get isSignedIn(): boolean {
+    return this._signedInUser !== undefined;
   }
 
   private async _signIn() {
@@ -189,7 +193,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     this.requestUpdate();
   }
 
-  private async _createGist() {
+  async createNewGist() {
     if (!this.githubApiUrl) {
       throw new Error('Missing required properties');
     }
