@@ -287,6 +287,10 @@ class FakeGitHub {
     });
   }
 
+  /**
+   * Simulates https://avatars.githubusercontent.com/u/<numeric user id>, the
+   * endpoint that serves GitHub avatar images.
+   */
   async getAvatarImage(ctx: Koa.Context) {
     const id = ctx.path.match(/^\/u\/(?<id>\d+)/)?.groups?.id;
     ctx.status = 200;
