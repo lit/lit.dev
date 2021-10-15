@@ -9,6 +9,7 @@ import './litdev-icon-button.js';
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {signInToGithub} from '../github/github-signin.js';
+import {getAuthenticatedUser} from '../github/github-user.js';
 import {createGist} from '../github/github-gists.js';
 import {githubLogo} from '../icons/github-logo.js';
 
@@ -28,7 +29,7 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
  */
 const tokenCache = new WeakMap<LitDevPlaygroundShareGist, string>();
 
-const GITHUB_USER_ID_LOCALSTORAGE_KEY = 'github-user-id';
+const GITHUB_USER_LOCALSTORAGE_KEY = 'github-user';
 
 /**
  * Buttons for sharing a Playground project as a GitHub gist and signing into
@@ -37,24 +38,37 @@ const GITHUB_USER_ID_LOCALSTORAGE_KEY = 'github-user-id';
 @customElement('litdev-playground-share-gist')
 export class LitDevPlaygroundShareGist extends LitElement {
   static styles = css`
-    :host {
-      align-items: center;
-      display: flex;
-    }
     litdev-icon-button {
       background: var(--color-blue);
       color: white;
     }
+
     litdev-icon-button:hover {
       background: blue;
     }
-    #signOutButton {
+
+    #signInStatus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
       font-size: 16px;
-      margin-left: 15px;
     }
+
+    #signInStatus > span {
+      display: flex;
+      align-items: center;
+    }
+
+    #avatar {
+      margin-left: 8px;
+      border: 1px solid #ccc;
+    }
+
     #signOutButton:visited {
       color: currentcolor;
     }
+
     #signOutButton:hover {
       color: blue;
     }
@@ -80,13 +94,19 @@ export class LitDevPlaygroundShareGist extends LitElement {
   githubApiUrl?: string;
 
   /**
+   * Base URL for the GitHub avatar service.
+   */
+  @property()
+  githubAvatarUrl?: string;
+
+  /**
    * A function to allow this component to access the project upon save.
    */
   getProjectFiles?: () => SampleFile[] | undefined;
 
   override render() {
-    return this._signedIn
-      ? [this._shareButton, this._signOutButton]
+    return this._signedInUser
+      ? [this._signedInStatus, this._shareButton]
       : this._signInButton;
   }
 
@@ -96,10 +116,16 @@ export class LitDevPlaygroundShareGist extends LitElement {
     </litdev-icon-button>`;
   }
 
-  private get _signOutButton() {
-    return html`<a id="signOutButton" href="#" @click=${this._signOut}
-      >Sign out</a
-    >`;
+  private get _signedInStatus() {
+    const {id, login} = this._signedInUser!;
+    const avatarUrl = new URL(`/u/${id}`, this.githubAvatarUrl).href;
+    return html`<div id="signInStatus">
+      <span>
+        <span>Signed in as <b>${login}</b></span>
+        <img id="avatar" src="${avatarUrl}" width="24" height="24"
+      /></span>
+      <a id="signOutButton" href="#" @click=${this._signOut}>Sign out</a>
+    </div>`;
   }
 
   private get _shareButton() {
@@ -111,8 +137,12 @@ export class LitDevPlaygroundShareGist extends LitElement {
     </litdev-icon-button>`;
   }
 
-  private get _signedIn(): boolean {
-    return localStorage.getItem(GITHUB_USER_ID_LOCALSTORAGE_KEY) !== null;
+  private get _signedInUser(): {id: number; login: string} | undefined {
+    const value = localStorage.getItem(GITHUB_USER_LOCALSTORAGE_KEY);
+    if (value) {
+      return JSON.parse(value);
+    }
+    return undefined;
   }
 
   private async _signIn() {
@@ -127,9 +157,14 @@ export class LitDevPlaygroundShareGist extends LitElement {
       authorizeUrl: this.authorizeUrl,
     });
     tokenCache.set(this, token);
-    // TODO(aomarks) Retrieve and store the actual user ID here so that we can
-    // show a profile picture.
-    localStorage.setItem(GITHUB_USER_ID_LOCALSTORAGE_KEY, '1');
+    const {id, login} = await getAuthenticatedUser({
+      apiBaseUrl: this.githubApiUrl,
+      token,
+    });
+    localStorage.setItem(
+      GITHUB_USER_LOCALSTORAGE_KEY,
+      JSON.stringify({id, login})
+    );
     // Render share button.
     this.requestUpdate();
   }
@@ -141,7 +176,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
   private _signOut(event: Event) {
     event.preventDefault();
     tokenCache.delete(this);
-    localStorage.removeItem(GITHUB_USER_ID_LOCALSTORAGE_KEY);
+    localStorage.removeItem(GITHUB_USER_LOCALSTORAGE_KEY);
     // Render sign-in button.
     this.requestUpdate();
   }
