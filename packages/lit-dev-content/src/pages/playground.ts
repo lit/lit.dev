@@ -19,6 +19,7 @@ import {getGist} from '../github/github-gists.js';
 import {Snackbar} from '@material/mwc-snackbar';
 import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
+import {MODS} from '../mods.js';
 
 interface CompactProjectFile {
   name: string;
@@ -143,29 +144,31 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener(CODE_LANGUAGE_CHANGE, syncStateFromUrlHash);
 
   // Trigger URL sharing when Control-s or Command-s is pressed.
-  let controlDown = false;
-  let commandDown = false;
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Control') {
-      controlDown = true;
-    } else if (event.key === 'Meta') {
-      commandDown = true;
-    } else if (event.key === 's' && (controlDown || commandDown)) {
-      share();
-      event.preventDefault(); // Don't trigger "Save page as"
-    }
-  });
-  window.addEventListener('keyup', (event) => {
-    if (event.key === 'Control') {
+  if (!MODS?.split(' ').includes('gists')) {
+    let controlDown = false;
+    let commandDown = false;
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Control') {
+        controlDown = true;
+      } else if (event.key === 'Meta') {
+        commandDown = true;
+      } else if (event.key === 's' && (controlDown || commandDown)) {
+        share();
+        event.preventDefault(); // Don't trigger "Save page as"
+      }
+    });
+    window.addEventListener('keyup', (event) => {
+      if (event.key === 'Control') {
+        controlDown = false;
+      } else if (event.key === 'Meta') {
+        commandDown = false;
+      }
+    });
+    window.addEventListener('blur', () => {
       controlDown = false;
-    } else if (event.key === 'Meta') {
       commandDown = false;
-    }
-  });
-  window.addEventListener('blur', () => {
-    controlDown = false;
-    commandDown = false;
-  });
+    });
+  }
 });
 
 const exampleControls = document.body.querySelector('litdev-example-controls');
