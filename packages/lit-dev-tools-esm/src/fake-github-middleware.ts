@@ -295,10 +295,13 @@ class FakeGitHub {
     const id = ctx.path.match(/^\/u\/(?<id>\d+)/)?.groups?.id;
     ctx.status = 200;
     ctx.type = 'image/svg+xml';
+    const size = parseInt((ctx.query.s as string | undefined) ?? '245', 10);
+    const widthHeight = `width="${size}" height="${size}"`;
     if (id && this._userDetails.has(Number(id))) {
       // Yellow smiley
       ctx.body = `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 100 100" ${widthHeight}>
         <circle cx="50" cy="50" r="50" fill="#fd0" />
         <circle cx="30" cy="40" r="10" fill="#000" />
         <circle cx="70" cy="40" r="10" fill="#000" />
@@ -309,7 +312,8 @@ class FakeGitHub {
     } else {
       // Red cross
       ctx.body = `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 100 100" ${widthHeight}>
         <path d="M5,5 L95,95 M5,95 L95,5"
               style="fill:none;stroke:#f00;stroke-width:15" />
       </svg>

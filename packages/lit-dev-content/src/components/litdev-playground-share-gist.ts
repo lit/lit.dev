@@ -62,7 +62,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
 
     #avatar {
       margin-left: 8px;
-      border: 1px solid #ccc;
+      border-radius: 50%;
     }
 
     #signOutButton:visited {
@@ -118,11 +118,19 @@ export class LitDevPlaygroundShareGist extends LitElement {
 
   private get _signedInStatus() {
     const {id, login} = this._signedInUser!;
-    const avatarUrl = new URL(`/u/${id}`, this.githubAvatarUrl).href;
+    const avatarSize = 24;
+    const avatarUrl = new URL(
+      `/u/${id}?s=${/* double for high dpi */ avatarSize * 2}`,
+      this.githubAvatarUrl
+    ).href;
     return html`<div id="signInStatus">
       <span>
         <span>Signed in as <b>${login}</b></span>
-        <img id="avatar" src="${avatarUrl}" width="24" height="24"
+        <img
+          id="avatar"
+          src="${avatarUrl}"
+          width="${avatarSize}"
+          height="${avatarSize}"
       /></span>
       <a id="signOutButton" href="#" @click=${this._signOut}>Sign out</a>
     </div>`;
