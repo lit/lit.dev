@@ -18,6 +18,7 @@ import type {LitDevPlaygroundShareLongUrl} from './litdev-playground-share-long-
 import type {LitDevPlaygroundShareGist} from './litdev-playground-share-gist.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 import type {Snackbar} from '@material/mwc-snackbar';
+import type {Gist} from '../github/github-gists.js';
 
 /**
  * The Playground "Share" button. Opens a menu with options for sharing as a
@@ -97,6 +98,12 @@ export class LitDevPlaygroundShareButton extends LitElement {
   @property({attribute: false})
   getProjectFiles?: () => SampleFile[] | undefined;
 
+  /**
+   * The gist we are currently viewing, if any.
+   */
+  @property({attribute: false})
+  activeGist?: Gist;
+
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('keydown', this._onWindowKeydown);
@@ -152,6 +159,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
           .githubApiUrl=${this.githubApiUrl}
           .githubAvatarUrl=${this.githubAvatarUrl}
           .getProjectFiles=${this.getProjectFiles}
+          .activeGist=${this.activeGist}
           @created=${this._onGistSaved}
         ></litdev-playground-share-gist>
       </section>
@@ -178,6 +186,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
   private _onLongUrlSaved() {
     this._close();
     this._mostRecentSaveType = 'longurl';
+    this.activeGist = undefined;
   }
 
   private _onGistSaved() {

@@ -13,7 +13,7 @@ import {getAuthenticatedUser} from '../github/github-user.js';
 import {createGist} from '../github/github-gists.js';
 import {githubLogo} from '../icons/github-logo.js';
 
-import type {GistFiles} from '../github/github-gists.js';
+import type {Gist, GistFiles} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 
 /**
@@ -102,7 +102,14 @@ export class LitDevPlaygroundShareGist extends LitElement {
   /**
    * A function to allow this component to access the project upon save.
    */
+  @property({attribute: false})
   getProjectFiles?: () => SampleFile[] | undefined;
+
+  /**
+   * The gist we are currently viewing, if any.
+   */
+  @property({attribute: false})
+  activeGist?: Gist;
 
   override render() {
     return this._signedInUser

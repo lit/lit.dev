@@ -84,6 +84,9 @@ window.addEventListener('DOMContentLoaded', () => {
   ): Promise<Array<CompactProjectFile>> => {
     // TODO(aomarks) Show user visible error on failure
     const gist = await getGist(gistId, {apiBaseUrl: githubApiUrl});
+    if (newShareButton) {
+      newShareButton.activeGist = gist;
+    }
     const playgroundFiles: Array<CompactProjectFile> = Object.values(
       gist.files
     ).map(
