@@ -63,7 +63,7 @@
     "@material/mwc-formfield": "^0.25.1",
     "lit": "^2.0.0",
     "minisearch": "^3.0.4",
-    "playground-elements": "^0.14.3",
+    "playground-elements": "^0.14.6-pre.0",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }
