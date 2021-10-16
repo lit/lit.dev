@@ -15,6 +15,7 @@ interface LitDevEnvironment {
   playgroundSandboxUrl: string;
   githubMainUrl: string | undefined;
   githubApiUrl: string | undefined;
+  githubAvatarUrl: string | undefined;
   githubAuthorizeRedirectUrl: string | undefined;
   githubClientId: string | undefined;
   /**
@@ -78,6 +79,9 @@ export const dev = environment({
   get githubMainUrl() {
     return `http://localhost:${this.fakeGithubPort}/`;
   },
+  get githubAvatarUrl() {
+    return `http://localhost:${this.fakeGithubPort}/`;
+  },
   get githubApiUrl() {
     // We fake both github.com and api.github.com with the same server, since
     // they don't have overlapping endpoint paths.
@@ -105,6 +109,9 @@ const local = environment({
     return `http://localhost:${this.playgroundPort}/`;
   },
   get githubMainUrl() {
+    return `http://localhost:${this.fakeGithubPort}/`;
+  },
+  get githubAvatarUrl() {
     return `http://localhost:${this.fakeGithubPort}/`;
   },
   get githubApiUrl() {
@@ -143,6 +150,7 @@ const pr = environment({
   },
   githubMainUrl: undefined, // Not set up yet
   githubApiUrl: undefined, // Not set up yet
+  githubAvatarUrl: undefined, // Not set up yet
   githubAuthorizeRedirectUrl: undefined, // Not set up yet
   githubClientId: undefined, // Not set up yet
   githubClientSecret: undefined, // Not set up yet
@@ -168,6 +176,7 @@ const prod = environment({
   playgroundSandboxUrl: 'https://playground.lit.dev/',
   githubMainUrl: undefined, // Not set up yet
   githubApiUrl: undefined, // Not set up yet
+  githubAvatarUrl: undefined, // Not set up yet
   githubAuthorizeRedirectUrl: undefined, // Not set up yet
   githubClientId: undefined, // Not set up yet
   githubClientSecret: undefined, // Not set up yet

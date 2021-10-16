@@ -58,6 +58,10 @@ export const fakeGitHubMiddleware = (
       return fake.authorize(ctx);
     } else if (ctx.path === '/login/oauth/access_token') {
       return fake.accessToken(ctx);
+    } else if (ctx.path === '/user' && ctx.method === 'GET') {
+      return fake.getUser(ctx);
+    } else if (ctx.path.startsWith('/u/') && ctx.method === 'GET') {
+      return fake.getAvatarImage(ctx);
     } else if (ctx.path === '/gists' && ctx.method === 'POST') {
       return fake.createGist(ctx);
     } else if (ctx.path.startsWith('/gists/') && ctx.method === 'GET') {
@@ -90,6 +94,10 @@ interface GetGistResponse {
   owner: {id: number};
 }
 
+interface UserDetails {
+  login: string;
+}
+
 const jsonResponse = (
   ctx: Koa.Context,
   status: number,
@@ -105,6 +113,7 @@ class FakeGitHub {
   private readonly _temporaryCodes = new Map<string, UserAndScope>();
   private readonly _accessTokens = new Map<string, UserAndScope>();
   private readonly _gists = new Map<string, GetGistResponse>();
+  private readonly _userDetails = new Map<number, UserDetails>();
 
   constructor(options: FakeGitHubMiddlewareOptions) {
     this._options = options;
@@ -116,8 +125,15 @@ class FakeGitHub {
   private _getOrSetUserIdFromCookie(ctx: Koa.Context): number {
     let userIdStr = ctx.cookies.get('userid');
     let userId = userIdStr ? Number(userIdStr) : undefined;
-    if (userId === undefined) {
+    if (
+      userId === undefined ||
+      // The server must have restarted, so this is an invalid user id now.
+      !this._userDetails.has(userId)
+    ) {
       userId = randomNumber();
+      this._userDetails.set(userId, {
+        login: 'fakeuser',
+      });
       ctx.cookies.set('userid', String(userId));
     }
     return userId;
@@ -134,6 +150,7 @@ class FakeGitHub {
     this._temporaryCodes.clear();
     this._accessTokens.clear();
     this._gists.clear();
+    this._userDetails.clear();
     ctx.cookies.set('userid', null);
     ctx.cookies.set('authorized', null);
     ctx.status = 200;
@@ -237,6 +254,71 @@ class FakeGitHub {
       scope: userAndScope.scope,
       token_type: 'bearer',
     });
+  }
+
+  /**
+   * Simulates get https://api.github.com/user, the API for getting details
+   * about the authenticated user.
+   */
+  async getUser(ctx: Koa.Context) {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    const accept = ctx.get('accept');
+    if (accept !== 'application/vnd.github.v3+json') {
+      return jsonResponse(ctx, 415, {
+        message: "Unsupported 'Accept' header",
+      });
+    }
+    const authMatch = (ctx.get('authorization') ?? '').match(
+      /^\s*(?:token|bearer)\s(?<token>.+)$/
+    );
+    const authToken = authMatch?.groups?.token?.trim() ?? '';
+    const userAndScope = this._accessTokens.get(authToken);
+    if (!userAndScope) {
+      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+    }
+    const {userId} = userAndScope;
+    const details = this._userDetails.get(userId);
+    if (!details) {
+      return jsonResponse(ctx, 500, {message: 'Missing user details'});
+    }
+    return jsonResponse(ctx, 200, {
+      id: userId,
+      login: details.login,
+    });
+  }
+
+  /**
+   * Simulates https://avatars.githubusercontent.com/u/<numeric user id>, the
+   * endpoint that serves GitHub avatar images.
+   */
+  async getAvatarImage(ctx: Koa.Context) {
+    const id = ctx.path.match(/^\/u\/(?<id>\d+)/)?.groups?.id;
+    ctx.status = 200;
+    ctx.type = 'image/svg+xml';
+    const size = parseInt((ctx.query.s as string | undefined) ?? '245', 10);
+    const widthHeight = `width="${size}" height="${size}"`;
+    if (id && this._userDetails.has(Number(id))) {
+      // Yellow smiley
+      ctx.body = `
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 100 100" ${widthHeight}>
+        <circle cx="50" cy="50" r="50" fill="#fd0" />
+        <circle cx="30" cy="40" r="10" fill="#000" />
+        <circle cx="70" cy="40" r="10" fill="#000" />
+        <path d="M20,65 c15,15 45,15 60,0"
+              style="fill:none;stroke:#000;stroke-width:5" />
+      </svg>
+      `;
+    } else {
+      // Red cross
+      ctx.body = `
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 100 100" ${widthHeight}>
+        <path d="M5,5 L95,95 M5,95 L95,5"
+              style="fill:none;stroke:#f00;stroke-width:15" />
+      </svg>
+      `;
+    }
   }
 
   /**

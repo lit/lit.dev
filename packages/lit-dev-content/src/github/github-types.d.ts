@@ -7,3 +7,11 @@
 export type GitHubSigninReceiverMessage =
   | {code: string; error?: undefined}
   | {code?: undefined; error: string};
+
+export interface GitHubApiOptions {
+  apiBaseUrl: string;
+}
+
+export interface AuthenticatedGitHubApiOptions extends GitHubApiOptions {
+  token: string;
+}

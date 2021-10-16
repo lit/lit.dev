@@ -63,6 +63,12 @@ export class LitDevPlaygroundShareButton extends LitElement {
   githubApiUrl?: string;
 
   /**
+   * Base URL for the GitHub avatar service.
+   */
+  @property()
+  githubAvatarUrl?: string;
+
+  /**
    * Whether the share menu is open.
    */
   @state()
@@ -116,6 +122,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
           .clientId=${this.clientId}
           .authorizeUrl=${this.authorizeUrl}
           .githubApiUrl=${this.githubApiUrl}
+          .githubAvatarUrl=${this.githubAvatarUrl}
           .getProjectFiles=${this.getProjectFiles}
           @created=${this._close}
         ></litdev-playground-share-gist>

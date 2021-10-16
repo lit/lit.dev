@@ -4,13 +4,12 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-export interface GitHubApiOptions {
-  apiBaseUrl: string;
-}
+import {JSON_GITHUB_API_V3} from './github-util.js';
 
-export interface AuthenticatedGitHubApiOptions extends GitHubApiOptions {
-  token: string;
-}
+import type {
+  GitHubApiOptions,
+  AuthenticatedGitHubApiOptions,
+} from './github-types.js';
 
 export interface Gist {
   id: string;
@@ -25,11 +24,6 @@ export interface GistFile {
 }
 
 /**
- * Specifies the GitHub API version we expect.
- */
-const JSON_GITHUB_API_V3 = 'application/vnd.github.v3+json';
-
-/**
  * Get an existing GitHub gist.
  */
 export const getGist = async (
@@ -37,7 +31,7 @@ export const getGist = async (
   opts: GitHubApiOptions
 ): Promise<Gist> => {
   // https://docs.github.com/en/rest/reference/gists#get-a-gist
-  const url = `${trimTrailingSlash(opts.apiBaseUrl)}/gists/${id}`;
+  const url = new URL(`/gists/${id}`, opts.apiBaseUrl).href;
   const res = await fetch(url, {
     headers: {
       accept: JSON_GITHUB_API_V3,
@@ -57,7 +51,7 @@ export const createGist = async (
   opts: AuthenticatedGitHubApiOptions
 ): Promise<string> => {
   // https://docs.github.com/en/rest/reference/gists#create-a-gist
-  const url = `${trimTrailingSlash(opts.apiBaseUrl)}/gists`;
+  const url = new URL('/gists', opts.apiBaseUrl).href;
   const res = await fetch(url, {
     method: 'POST',
     headers: {
@@ -72,5 +66,3 @@ export const createGist = async (
   const gist = (await res.json()) as Gist;
   return gist.id;
 };
-
-const trimTrailingSlash = (s: string) => (s.endsWith('/') ? s.slice(0, -1) : s);

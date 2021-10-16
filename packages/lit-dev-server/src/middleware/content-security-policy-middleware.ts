@@ -36,6 +36,11 @@ export interface ContentSecurityPolicyMiddlewareOptions {
    * Origin for GitHub API calls.
    */
   githubApiOrigin?: string;
+
+  /**
+   * Origin for GitHub avatar images.
+   */
+  githubAvatarOrigin?: string;
 }
 
 /**
@@ -125,14 +130,19 @@ export const contentSecurityPolicyMiddleware = (
     // and it would be one fewer connection to make.
     `font-src 'self' https://fonts.gstatic.com/`,
 
-    // TODO(aomarks) We use some data: URLs for SVGs in docs.css. There's
-    // probably a simpler way.
-    //
-    // The ytimg.com domain is needed for embedded YouTube videos.
-    //
-    // The googletagmanager.com domain is needed for Google Analytics
-    // (https://developers.google.com/tag-manager/web/csp).
-    `img-src 'self' data: https://i.ytimg.com/ https://www.googletagmanager.com/`,
+    `img-src ${[
+      `'self'`,
+      // TODO(aomarks) We use some data: URLs for SVGs in docs.css. There's
+      // probably a simpler way.
+      'data:',
+      // Needed for embedded YouTube videos.
+      'https://i.ytimg.com/',
+      // Needed for Google Analytics
+      // (https://developers.google.com/tag-manager/web/csp).
+      'https://www.googletagmanager.com/',
+      // Needed for showing GitHub avatars when signed in.
+      ...(opts.githubAvatarOrigin ? [opts.githubAvatarOrigin] : []),
+    ].join(' ')}`,
 
     // Disallow any embeds, applets, etc. This would usually be covered by
     // `default-src: 'none'`, but we can't set that for the reason explained
