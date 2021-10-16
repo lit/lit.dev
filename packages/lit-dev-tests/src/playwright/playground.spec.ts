@@ -172,6 +172,7 @@ test.describe('Playground', () => {
 
   test('share long URL with keyboard shortcuts', async ({page}) => {
     await page.goto('/playground/?mods=gists');
+    await waitForPlaygroundPreviewToLoad(page);
 
     // On the first Ctrl+S, the share menu opens and we click the copy button
     await page.keyboard.press('Control+S');
@@ -187,6 +188,7 @@ test.describe('Playground', () => {
     await page.click('playground-code-editor');
     await page.keyboard.press('Control+A');
     await page.keyboard.type('"new content";');
+    await waitForPlaygroundPreviewToLoad(page);
 
     // On the next Ctrl+S, the long URL share should happen automatically
     await page.keyboard.press('Control+S');
@@ -198,6 +200,7 @@ test.describe('Playground', () => {
 
   test('share gist with keyboard shortcuts', async ({page}) => {
     await page.goto('/playground/?mods=gists');
+    await waitForPlaygroundPreviewToLoad(page);
 
     // On the first Ctrl+S, the share menu opens and we click the new gist button
     await page.keyboard.press('Control+S');
@@ -215,6 +218,7 @@ test.describe('Playground', () => {
     await page.click('playground-code-editor');
     await page.keyboard.press('Control+A');
     await page.keyboard.type('"new content";');
+    await waitForPlaygroundPreviewToLoad(page);
 
     // On the next Ctrl+S, the new gist should be created automatically
     await page.keyboard.press('Control+S');
