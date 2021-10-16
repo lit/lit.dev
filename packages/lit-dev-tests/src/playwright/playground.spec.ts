@@ -140,6 +140,9 @@ test.describe('Playground', () => {
 
     // Open the share menu
     await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'visible',
+    });
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-1-shareMenuOpen.png'
     );
@@ -155,6 +158,7 @@ test.describe('Playground', () => {
     await page.click('#createNewGistButton');
     await page.waitForURL(/#gist=/);
     expect(await readClipboardText(page)).toMatch(page.url());
+    const firstUrl = page.url();
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
       state: 'hidden',
     });
@@ -167,6 +171,53 @@ test.describe('Playground', () => {
     await waitForPlaygroundPreviewToLoad(page);
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-4-pageReloaded.png'
+    );
+
+    // Type some more content
+    await page.click('playground-code-editor');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('"my updated gist content";');
+
+    // Rename file
+    await page.hover('text=simple-greeting.ts');
+    await page.click('text=simple-greeting.ts >> .menu-button');
+    await page.click('#renameButton');
+    await page.click('.filename-input');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('new-name.ts');
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-5-renamingFile.png'
+    );
+    await page.keyboard.press('Enter');
+
+    // Open the share menu again
+    await waitForPlaygroundPreviewToLoad(page);
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'visible',
+    });
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-6-shareMenuOpenAgain.png'
+    );
+
+    // Update the gist
+    await freezeSnackbars(page);
+    await page.click('#updateGistButton');
+    await page.waitForURL(/#gist=/);
+    expect(page.url()).toEqual(firstUrl);
+    expect(await readClipboardText(page)).toMatch(firstUrl);
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'hidden',
+    });
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-7-gistUpdated.png'
+    );
+
+    // Reload the page again to confirm the updated content is there
+    await page.reload();
+    await waitForPlaygroundPreviewToLoad(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-8-pageReloadedAgain.png'
     );
   });
 
@@ -220,11 +271,9 @@ test.describe('Playground', () => {
     await page.keyboard.type('"new content";');
     await waitForPlaygroundPreviewToLoad(page);
 
-    // On the next Ctrl+S, the new gist should be created automatically
+    // On the next Ctrl+S, the new gist should be updated automatically
     await page.keyboard.press('Control+S');
-    await page.waitForURL(
-      (url) => url.href.match(/#gist=/) !== null && url.href !== firstUrl
-    );
-    expect(await readClipboardText(page)).toMatch(page.url());
+    expect(page.url()).toEqual(firstUrl);
+    expect(await readClipboardText(page)).toMatch(firstUrl);
   });
 });
