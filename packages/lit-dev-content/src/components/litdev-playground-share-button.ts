@@ -210,10 +210,9 @@ export class LitDevPlaygroundShareButton extends LitElement {
         this._longUrl?.save();
       } else if (
         this._mostRecentSaveType === 'gist' &&
-        this._gist?.isSignedIn
+        this._gist?.canUpdateGist
       ) {
-        // TODO(aomarks) Save a revision.
-        this._gist?.createNewGist();
+        this._gist?.updateGist();
       } else {
         this._open = true;
       }

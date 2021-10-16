@@ -14,6 +14,9 @@ import type {
 export interface Gist {
   id: string;
   files: GistFiles;
+  owner: {
+    id: number;
+  };
 }
 
 export type GistFiles = {[filename: string]: GistFile};

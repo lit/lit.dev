@@ -146,13 +146,13 @@ test.describe('Playground', () => {
 
     // Sign in to GitHub
     await signInToGithub(page);
-    await page.waitForSelector('#saveNewGistButton', {state: 'visible'});
+    await page.waitForSelector('#createNewGistButton', {state: 'visible'});
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-2-signedIn.png'
     );
 
     // Save the gist
-    await page.click('#saveNewGistButton');
+    await page.click('#createNewGistButton');
     await page.waitForURL(/#gist=/);
     expect(await readClipboardText(page)).toMatch(page.url());
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
@@ -208,8 +208,8 @@ test.describe('Playground', () => {
       state: 'visible',
     });
     await signInToGithub(page);
-    await page.waitForSelector('#saveNewGistButton', {state: 'visible'});
-    await page.click('#saveNewGistButton');
+    await page.waitForSelector('#createNewGistButton', {state: 'visible'});
+    await page.click('#createNewGistButton');
     await page.waitForURL(/#gist=/);
     expect(await readClipboardText(page)).toMatch(page.url());
     const firstUrl = page.url();
