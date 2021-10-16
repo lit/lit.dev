@@ -71,14 +71,11 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
   override render() {
     return html`
       <input type="text" disabled .value=${this._url} />
-      <copy-button
-        .text=${this._url}
-        @click=${this._clickCopyButton}
-      ></copy-button>
+      <copy-button .text=${this._url} @click=${this.save}></copy-button>
     `;
   }
 
-  private async _clickCopyButton() {
+  async save() {
     history.pushState({}, '', this._url);
     await navigator.clipboard.writeText(this._url);
     this.dispatchEvent(new Event('copied'));

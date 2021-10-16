@@ -26,7 +26,7 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
   // Hide the animated loading indicator.
   await page.evaluate((el) => {
     el.style.visibility = 'hidden';
-  }, await page.waitForSelector('playground-preview [part="preview-loading-indicator"]'));
+  }, await page.waitForSelector('playground-preview [part="preview-loading-indicator"]', {state: 'attached'}));
 }
 
 interface MwcSnackbar extends HTMLElement {
@@ -62,3 +62,9 @@ export async function closeSnackbars(page: Page) {
     }, snackbar);
   }
 }
+
+/**
+ * Read the contents of the clipboard.
+ */
+export const readClipboardText = async (page: Page): Promise<string> =>
+  page.evaluate(() => navigator.clipboard.readText());
