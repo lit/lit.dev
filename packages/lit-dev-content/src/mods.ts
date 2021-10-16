@@ -17,3 +17,6 @@ export const addModsParameterToUrlIfNeeded = (url: string): string => {
   }
   return url;
 };
+
+export const modEnabled = (mod: string): boolean =>
+  MODS !== null && MODS.split(' ').includes(mod);

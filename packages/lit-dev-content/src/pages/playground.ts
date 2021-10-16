@@ -19,7 +19,7 @@ import {getGist} from '../github/github-gists.js';
 import {Snackbar} from '@material/mwc-snackbar';
 import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
-import {MODS} from '../mods.js';
+import {modEnabled} from '../mods.js';
 
 interface CompactProjectFile {
   name: string;
@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener(CODE_LANGUAGE_CHANGE, syncStateFromUrlHash);
 
   // Trigger URL sharing when Control-s or Command-s is pressed.
-  if (!MODS?.split(' ').includes('gists')) {
+  if (!modEnabled('gists')) {
     let controlDown = false;
     let commandDown = false;
     window.addEventListener('keydown', (event) => {

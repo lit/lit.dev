@@ -13,76 +13,11 @@ import {LitElement, html, css} from 'lit';
 import {customElement, property, state, query} from 'lit/decorators.js';
 import {shareIcon} from '../icons/share-icon.js';
 
-import type {
-  PropertyValues,
-  ReactiveController,
-  ReactiveControllerHost,
-} from 'lit';
+import type {PropertyValues} from 'lit';
 import type {LitDevPlaygroundShareLongUrl} from './litdev-playground-share-long-url.js';
 import type {LitDevPlaygroundShareGist} from './litdev-playground-share-gist.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 import type {Snackbar} from '@material/mwc-snackbar';
-
-/**
- * Handles the Ctrl+S and Cmd+S keyboard shortcuts.
- *
- * This is factored out for readability. Though it could also be nice to make it
- * more generic by taking a map of key-sequences and callbacks.
- */
-class KeyboardController implements ReactiveController {
-  private readonly _callback: () => void;
-  private _ctrlDown = false;
-  private _cmdDown = false;
-
-  constructor(host: ReactiveControllerHost, callback: () => void) {
-    host.addController(this);
-    this._callback = callback;
-  }
-
-  hostConnected() {
-    window.addEventListener('keydown', this._onKeydown);
-    window.addEventListener('keyup', this._onKeyup);
-    window.addEventListener('blur', this._reset);
-  }
-
-  hostDisconnected() {
-    window.removeEventListener('keydown', this._onKeydown);
-    window.removeEventListener('keyup', this._onKeyup);
-    window.removeEventListener('blur', this._reset);
-    this._reset();
-  }
-
-  private readonly _onKeydown = (event: KeyboardEvent) => {
-    if (event.key === 'Control') {
-      this._ctrlDown = true;
-    } else if (event.key === 'Meta') {
-      this._cmdDown = true;
-    } else if (
-      // TODO(aomarks) File a Playwright issue. Playwright seems to have a bug
-      // where the "key" property is always uppercase, even when Shift was not
-      // also held. This seems to violate the UI Events spec
-      // (https://www.w3.org/TR/uievents-key/#:~:text=the%20key%20attribute%20value%20for%20the,%22q%22).
-      event.key.toLowerCase() === 's' &&
-      (this._ctrlDown || this._cmdDown)
-    ) {
-      event.preventDefault(); // Don't trigger "Save page as"
-      this._callback();
-    }
-  };
-
-  private readonly _onKeyup = (event: KeyboardEvent) => {
-    if (event.key === 'Control') {
-      this._ctrlDown = false;
-    } else if (event.key === 'Meta') {
-      this._cmdDown = false;
-    }
-  };
-
-  private readonly _reset = () => {
-    this._ctrlDown = false;
-    this._cmdDown = false;
-  };
-}
 
 /**
  * The Playground "Share" button. Opens a menu with options for sharing as a
@@ -162,9 +97,14 @@ export class LitDevPlaygroundShareButton extends LitElement {
   @property({attribute: false})
   getProjectFiles?: () => SampleFile[] | undefined;
 
-  constructor() {
-    super();
-    new KeyboardController(this, () => this._onSaveKeyboardShortcut());
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('keydown', this._onWindowKeydown);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('keydown', this._onWindowKeydown);
   }
 
   override update(changes: PropertyValues) {
@@ -245,17 +185,31 @@ export class LitDevPlaygroundShareButton extends LitElement {
     this._mostRecentSaveType = 'gist';
   }
 
-  private _onSaveKeyboardShortcut() {
-    if (this._mostRecentSaveType === 'longurl') {
-      this._longUrl?.generateUrl();
-      this._longUrl?.save();
-    } else if (this._mostRecentSaveType === 'gist' && this._gist?.isSignedIn) {
-      // TODO(aomarks) Save a revision.
-      this._gist?.createNewGist();
-    } else {
-      this._open = true;
+  private readonly _onWindowKeydown = (event: KeyboardEvent) => {
+    // TODO(aomarks) File a Playwright issue. Playwright seems to have a bug
+    // where the "key" property is always uppercase, even when Shift was not
+    // also held. This seems to violate the UI Events spec
+    // (https://www.w3.org/TR/uievents-key/#:~:text=the%20key%20attribute%20value%20for%20the,%22q%22).
+    if (
+      event.key.toLowerCase() === 's' &&
+      (event.ctrlKey || event.metaKey) &&
+      !event.repeat
+    ) {
+      event.preventDefault(); // Don't trigger "Save page as"
+      if (this._mostRecentSaveType === 'longurl') {
+        this._longUrl?.generateUrl();
+        this._longUrl?.save();
+      } else if (
+        this._mostRecentSaveType === 'gist' &&
+        this._gist?.isSignedIn
+      ) {
+        // TODO(aomarks) Save a revision.
+        this._gist?.createNewGist();
+      } else {
+        this._open = true;
+      }
     }
-  }
+  };
 }
 
 declare global {
