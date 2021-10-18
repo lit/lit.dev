@@ -51,6 +51,7 @@ export const fakeGitHubMiddleware = (
       ctx.status = 204;
       ctx.set('Access-Control-Allow-Origin', '*');
       ctx.set('Access-Control-Allow-Headers', 'Authorization');
+      ctx.set('Access-Control-Allow-Methods', 'GET, POST, PATCH');
       return;
     } else if (ctx.path === '/reset') {
       return fake.reset(ctx);
@@ -66,6 +67,8 @@ export const fakeGitHubMiddleware = (
       return fake.createGist(ctx);
     } else if (ctx.path.startsWith('/gists/') && ctx.method === 'GET') {
       return fake.getGist(ctx);
+    } else if (ctx.path.startsWith('/gists/') && ctx.method === 'PATCH') {
+      return fake.updateGist(ctx);
     } else {
       return next();
     }
@@ -85,6 +88,10 @@ interface GistFile {
 }
 
 interface CreateGistRequest {
+  files: {[filename: string]: GistFile};
+}
+
+interface UpdateGistRequest {
   files: {[filename: string]: GistFile};
 }
 
@@ -137,6 +144,30 @@ class FakeGitHub {
       ctx.cookies.set('userid', String(userId));
     }
     return userId;
+  }
+
+  private _checkAccept(ctx: Koa.Context): boolean {
+    const accept = ctx.get('accept');
+    if (accept !== 'application/vnd.github.v3+json') {
+      jsonResponse(ctx, 415, {
+        message: "Unsupported 'Accept' header",
+      });
+      return false;
+    }
+    return true;
+  }
+
+  private _checkAuthentication(ctx: Koa.Context): UserAndScope | undefined {
+    const match = (ctx.get('authorization') ?? '').match(
+      /^\s*(?:token|bearer)\s(?<token>.+)$/
+    );
+    const token = match?.groups?.token?.trim() ?? '';
+    const userAndScope = this._accessTokens.get(token);
+    if (!userAndScope) {
+      jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return undefined;
+    }
+    return userAndScope;
   }
 
   /**
@@ -262,19 +293,12 @@ class FakeGitHub {
    */
   async getUser(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
-    const authMatch = (ctx.get('authorization') ?? '').match(
-      /^\s*(?:token|bearer)\s(?<token>.+)$/
-    );
-    const authToken = authMatch?.groups?.token?.trim() ?? '';
-    const userAndScope = this._accessTokens.get(authToken);
+    const userAndScope = this._checkAuthentication(ctx);
     if (!userAndScope) {
-      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return;
     }
     const {userId} = userAndScope;
     const details = this._userDetails.get(userId);
@@ -330,11 +354,8 @@ class FakeGitHub {
    */
   async getGist(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
     const match = ctx.path.match(/^\/gists\/(?<id>.+)/);
     const id = match?.groups?.id;
@@ -357,20 +378,12 @@ class FakeGitHub {
    */
   async createGist(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
-
-    const authMatch = (ctx.get('authorization') ?? '').match(
-      /^\s*(?:token|bearer)\s(?<token>.+)$/
-    );
-    const authToken = authMatch?.groups?.token?.trim() ?? '';
-    const userAndScope = this._accessTokens.get(authToken);
+    const userAndScope = this._checkAuthentication(ctx);
     if (!userAndScope) {
-      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return;
     }
 
     let createRequest: CreateGistRequest;
@@ -392,6 +405,65 @@ class FakeGitHub {
       owner: {id: userAndScope.userId},
     };
     this._gists.set(gist.id, gist);
+    return jsonResponse(ctx, 200, gist);
+  }
+
+  /**
+   * Simulates PATCH https://api.github.com/gists/<id>, the API for creating a
+   * new revision of an existing GitHub gist.
+   *
+   * Documentation:
+   * https://docs.github.com/en/rest/reference/gists#update-a-gist
+   */
+  async updateGist(ctx: Koa.Context) {
+    ctx.set('Access-Control-Allow-Origin', '*');
+    if (!this._checkAccept(ctx)) {
+      return;
+    }
+    const userAndScope = this._checkAuthentication(ctx);
+    if (!userAndScope) {
+      return;
+    }
+
+    const idMatch = ctx.path.match(/^\/gists\/(?<id>.+)/);
+    const id = idMatch?.groups?.id;
+    const gist = this._gists.get(id ?? '');
+    if (!gist) {
+      // TODO(aomarks) Check error code
+      return jsonResponse(ctx, 404, {message: 'Invalid gist'});
+    }
+
+    let updateRequest: UpdateGistRequest;
+    try {
+      updateRequest = await coBody.json(ctx);
+    } catch (e) {
+      return jsonResponse(ctx, 400, {message: 'Problems parsing JSON'});
+    }
+    if (!updateRequest.files || Object.keys(updateRequest.files).length === 0) {
+      return jsonResponse(ctx, 422, {message: 'Invalid files'});
+    }
+
+    // TODO(aomarks) In the real API, each revision is stored individually, and
+    // you can GET either the latest revision, or a specific revision. Until
+    // needed, though, this fake just directly updates the simplified flat gist
+    // instead.
+    const newFiles = updateRequest.files;
+    for (const [newFilename, newFile] of Object.entries(newFiles)) {
+      newFile.filename = newFilename;
+    }
+    const oldFiles = gist.files;
+    for (const [oldFilename, oldFile] of Object.entries(oldFiles)) {
+      // To delete a file, you set its content to an empty string or undefined.
+      // If entirely omitted, the existing file is unchanged. See
+      // https://github.community/t/deleting-or-renaming-files-in-a-multi-file-gist-using-github-api/170967
+      if (newFiles[oldFilename] === undefined) {
+        newFiles[oldFilename] = oldFile;
+      } else if (!newFiles[oldFilename]?.content) {
+        delete newFiles[oldFilename];
+      }
+    }
+    gist.files = newFiles;
+
     return jsonResponse(ctx, 200, gist);
   }
 }

@@ -6,14 +6,14 @@
 
 import './litdev-icon-button.js';
 
-import {LitElement, html, css} from 'lit';
+import {LitElement, html, css, nothing} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {signInToGithub} from '../github/github-signin.js';
 import {getAuthenticatedUser} from '../github/github-user.js';
-import {createGist} from '../github/github-gists.js';
+import {createGist, updateGist} from '../github/github-gists.js';
 import {githubLogo} from '../icons/github-logo.js';
 
-import type {GistFiles} from '../github/github-gists.js';
+import type {Gist, GistFiles} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 
 /**
@@ -72,6 +72,11 @@ export class LitDevPlaygroundShareGist extends LitElement {
     #signOutButton:hover {
       color: blue;
     }
+
+    #gistActions {
+      display: flex;
+      justify-content: space-between;
+    }
   `;
 
   /**
@@ -102,12 +107,26 @@ export class LitDevPlaygroundShareGist extends LitElement {
   /**
    * A function to allow this component to access the project upon save.
    */
+  @property({attribute: false})
   getProjectFiles?: () => SampleFile[] | undefined;
 
+  /**
+   * The gist we are currently viewing, if any.
+   */
+  @property({attribute: false})
+  activeGist?: Gist;
+
   override render() {
-    return this._signedInUser
-      ? [this._signedInStatus, this._shareButton]
-      : this._signInButton;
+    if (!this._signedInUser) {
+      return this._signInButton;
+    }
+    return html`
+      ${this._signedInStatus}
+      <div id="gistActions">
+        ${this.canUpdateGist ? this._updateGistButton : nothing}
+        ${this._newGistButton}
+      </div>
+    `;
   }
 
   private get _signInButton() {
@@ -136,12 +155,21 @@ export class LitDevPlaygroundShareGist extends LitElement {
     </div>`;
   }
 
-  private get _shareButton() {
+  private get _newGistButton() {
     return html`<litdev-icon-button
-      id="saveNewGistButton"
+      id="createNewGistButton"
       @click=${this.createNewGist}
     >
-      ${githubLogo} Save new gist
+      ${githubLogo} Create new gist
+    </litdev-icon-button>`;
+  }
+
+  private get _updateGistButton() {
+    return html`<litdev-icon-button
+      id="updateGistButton"
+      @click=${this.updateGist}
+    >
+      ${githubLogo} Update gist
     </litdev-icon-button>`;
   }
 
@@ -155,6 +183,17 @@ export class LitDevPlaygroundShareGist extends LitElement {
 
   get isSignedIn(): boolean {
     return this._signedInUser !== undefined;
+  }
+
+  get canUpdateGist(): boolean {
+    if (!this.activeGist) {
+      return false;
+    }
+    const user = this._signedInUser;
+    if (!user) {
+      return false;
+    }
+    return this.activeGist.owner.id === user.id;
   }
 
   private async _signIn() {
@@ -228,6 +267,57 @@ export class LitDevPlaygroundShareGist extends LitElement {
     this.dispatchEvent(
       new CustomEvent('status', {
         detail: {text: 'Gist created and URL copied to clipboard'},
+        bubbles: true,
+      })
+    );
+  }
+
+  async updateGist() {
+    if (!this.githubApiUrl || !this.activeGist) {
+      throw new Error('Missing required properties');
+    }
+    const projectFiles = this.getProjectFiles?.();
+    if (!projectFiles || projectFiles.length === 0) {
+      // TODO(aomarks) The button should just be disabled in this case.
+      throw new Error("Can't save an empty project");
+    }
+
+    let token = tokenCache.get(this);
+    if (token === undefined) {
+      await this._signIn();
+    }
+    token = tokenCache.get(this);
+    if (token === undefined) {
+      throw new Error('Error token not defined');
+    }
+
+    const gistFiles: GistFiles = Object.fromEntries(
+      projectFiles.map((file) => [file.name, {content: file.content}])
+    );
+
+    // If we have deleted or renamed a file, then the old filename will no
+    // longer be in our project files list. However, when updating a gist, if
+    // you omit a file that existed in the previous revision, it will not be
+    // automatically deleted. Instead, we need to add an explicit entry for the
+    // file where the content is empty.
+    for (const oldFilename of Object.keys(this.activeGist.files)) {
+      if (!gistFiles[oldFilename]) {
+        gistFiles[oldFilename] = {content: ''};
+      }
+    }
+
+    // TODO(aomarks) User facing error if this fails.
+    const gist = await updateGist(this.activeGist.id, gistFiles, {
+      apiBaseUrl: this.githubApiUrl,
+      token,
+    });
+
+    window.location.hash = '#gist=' + gist.id;
+    await navigator.clipboard.writeText(window.location.toString());
+    this.dispatchEvent(new Event('created'));
+    this.dispatchEvent(
+      new CustomEvent('status', {
+        detail: {text: 'Gist updated and URL copied to clipboard'},
         bubbles: true,
       })
     );
