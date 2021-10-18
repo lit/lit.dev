@@ -146,6 +146,30 @@ class FakeGitHub {
     return userId;
   }
 
+  private _checkAccept(ctx: Koa.Context): boolean {
+    const accept = ctx.get('accept');
+    if (accept !== 'application/vnd.github.v3+json') {
+      jsonResponse(ctx, 415, {
+        message: "Unsupported 'Accept' header",
+      });
+      return false;
+    }
+    return true;
+  }
+
+  private _checkAuthentication(ctx: Koa.Context): UserAndScope | undefined {
+    const match = (ctx.get('authorization') ?? '').match(
+      /^\s*(?:token|bearer)\s(?<token>.+)$/
+    );
+    const token = match?.groups?.token?.trim() ?? '';
+    const userAndScope = this._accessTokens.get(token);
+    if (!userAndScope) {
+      jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return undefined;
+    }
+    return userAndScope;
+  }
+
   /**
    * Clear all server state and browser cookies.
    *
@@ -269,19 +293,12 @@ class FakeGitHub {
    */
   async getUser(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
-    const authMatch = (ctx.get('authorization') ?? '').match(
-      /^\s*(?:token|bearer)\s(?<token>.+)$/
-    );
-    const authToken = authMatch?.groups?.token?.trim() ?? '';
-    const userAndScope = this._accessTokens.get(authToken);
+    const userAndScope = this._checkAuthentication(ctx);
     if (!userAndScope) {
-      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return;
     }
     const {userId} = userAndScope;
     const details = this._userDetails.get(userId);
@@ -337,11 +354,8 @@ class FakeGitHub {
    */
   async getGist(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
     const match = ctx.path.match(/^\/gists\/(?<id>.+)/);
     const id = match?.groups?.id;
@@ -364,20 +378,12 @@ class FakeGitHub {
    */
   async createGist(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
-
-    const authMatch = (ctx.get('authorization') ?? '').match(
-      /^\s*(?:token|bearer)\s(?<token>.+)$/
-    );
-    const authToken = authMatch?.groups?.token?.trim() ?? '';
-    const userAndScope = this._accessTokens.get(authToken);
+    const userAndScope = this._checkAuthentication(ctx);
     if (!userAndScope) {
-      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return;
     }
 
     let createRequest: CreateGistRequest;
@@ -411,20 +417,12 @@ class FakeGitHub {
    */
   async updateGist(ctx: Koa.Context) {
     ctx.set('Access-Control-Allow-Origin', '*');
-    const accept = ctx.get('accept');
-    if (accept !== 'application/vnd.github.v3+json') {
-      return jsonResponse(ctx, 415, {
-        message: "Unsupported 'Accept' header",
-      });
+    if (!this._checkAccept(ctx)) {
+      return;
     }
-
-    const authMatch = (ctx.get('authorization') ?? '').match(
-      /^\s*(?:token|bearer)\s(?<token>.+)$/
-    );
-    const authToken = authMatch?.groups?.token?.trim() ?? '';
-    const userAndScope = this._accessTokens.get(authToken);
+    const userAndScope = this._checkAuthentication(ctx);
     if (!userAndScope) {
-      return jsonResponse(ctx, 401, {message: 'Bad credentials'});
+      return;
     }
 
     const idMatch = ctx.path.match(/^\/gists\/(?<id>.+)/);
@@ -455,8 +453,8 @@ class FakeGitHub {
     }
     const oldFiles = gist.files;
     for (const [oldFilename, oldFile] of Object.entries(oldFiles)) {
-      // To delete a file, you set its content to an empty string. If omitted,
-      // the existing file is unchanged. See
+      // To delete a file, you set its content to an empty string or undefined.
+      // If entirely omitted, the existing file is unchanged. See
       // https://github.community/t/deleting-or-renaming-files-in-a-multi-file-gist-using-github-api/170967
       if (newFiles[oldFilename] === undefined) {
         newFiles[oldFilename] = oldFile;
