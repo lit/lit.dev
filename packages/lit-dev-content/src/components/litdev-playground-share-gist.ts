@@ -258,12 +258,12 @@ export class LitDevPlaygroundShareGist extends LitElement {
     );
 
     // TODO(aomarks) User facing error if this fails.
-    const gistId = await createGist(gistFiles, {
+    const gist = await createGist(gistFiles, {
       apiBaseUrl: this.githubApiUrl,
       token,
     });
 
-    window.location.hash = '#gist=' + gistId;
+    window.location.hash = '#gist=' + gist.id;
     await navigator.clipboard.writeText(window.location.toString());
     this.dispatchEvent(new Event('created'));
     this.dispatchEvent(

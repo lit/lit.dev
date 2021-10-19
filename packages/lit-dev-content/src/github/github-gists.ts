@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {JSON_GITHUB_API_V3} from './github-util.js';
+import {JSON_GITHUB_API_V3, fetchGitHubJson} from './github-util.js';
 
 import type {
   GitHubApiOptions,
@@ -34,16 +34,12 @@ export const getGist = async (
   opts: GitHubApiOptions
 ): Promise<Gist> => {
   // https://docs.github.com/en/rest/reference/gists#get-a-gist
-  const url = new URL(`/gists/${gistId}`, opts.apiBaseUrl).href;
-  const res = await fetch(url, {
+  const url = new URL(`/gists/${gistId}`, opts.apiBaseUrl);
+  return fetchGitHubJson<Gist>(url, {
     headers: {
       accept: JSON_GITHUB_API_V3,
     },
   });
-  if (!res.ok) {
-    throw new Error(`HTTP ${res.status} error getting gist ${gistId}`);
-  }
-  return res.json() as Promise<Gist>;
 };
 
 /**
@@ -52,10 +48,10 @@ export const getGist = async (
 export const createGist = async (
   files: GistFiles,
   opts: AuthenticatedGitHubApiOptions
-): Promise<string> => {
+): Promise<Gist> => {
   // https://docs.github.com/en/rest/reference/gists#create-a-gist
-  const url = new URL('/gists', opts.apiBaseUrl).href;
-  const res = await fetch(url, {
+  const url = new URL('/gists', opts.apiBaseUrl);
+  return fetchGitHubJson<Gist>(url, {
     method: 'POST',
     headers: {
       accept: JSON_GITHUB_API_V3,
@@ -63,11 +59,6 @@ export const createGist = async (
     },
     body: JSON.stringify({files}),
   });
-  if (!res.ok) {
-    throw new Error(`HTTP ${res.status} error creating gist`);
-  }
-  const gist = (await res.json()) as Gist;
-  return gist.id;
 };
 
 /**
@@ -78,9 +69,9 @@ export const updateGist = async (
   files: GistFiles,
   opts: AuthenticatedGitHubApiOptions
 ): Promise<Gist> => {
-  // Create a new revision of an existing GitHub gist.
-  const url = new URL(`/gists/${gistId}`, opts.apiBaseUrl).href;
-  const res = await fetch(url, {
+  // https://docs.github.com/en/rest/reference/gists#update-a-gist
+  const url = new URL(`/gists/${gistId}`, opts.apiBaseUrl);
+  return fetchGitHubJson<Gist>(url, {
     method: 'PATCH',
     headers: {
       accept: JSON_GITHUB_API_V3,
@@ -91,8 +82,4 @@ export const updateGist = async (
       files,
     }),
   });
-  if (!res.ok) {
-    throw new Error(`HTTP ${res.status} error updating gist`);
-  }
-  return res.json() as Promise<Gist>;
 };
