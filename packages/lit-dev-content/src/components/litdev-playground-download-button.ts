@@ -48,7 +48,7 @@ export class LitDevPlaygroundDownloadButton extends LitElement {
       // TODO(aomarks) The button should just be disabled in this case.
       throw new Error("Can't download an empty project");
     }
-    const tarFiles = Object.entries(projectFiles).map(([name, {content}]) => ({
+    const tarFiles = projectFiles.map(({name, content}) => ({
       name,
       content: content ?? '',
     }));
