@@ -4,10 +4,11 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {test, expect, Page} from '@playwright/test';
+import {test, expect, Page, Browser} from '@playwright/test';
 import {
   waitForPlaygroundPreviewToLoad,
   freezeSnackbars,
+  freezeDialogs,
   readClipboardText,
 } from './util';
 
@@ -19,6 +20,13 @@ const signInToGithub = async (page: Page): Promise<void> => {
   await popup.waitForLoadState();
   await popup.click('text=Authorize lit');
   await popup.waitForEvent('close');
+};
+
+const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
+  const page = await browser.newPage();
+  await page.goto('http://localhost:6417/fail-next-request');
+  expect(await page.textContent('body')).toEqual('Next request will fail');
+  await page.close();
 };
 
 test.describe('Playground', () => {
@@ -130,7 +138,6 @@ test.describe('Playground', () => {
 
   test('share gist', async ({page}) => {
     await page.goto('/playground/?mods=gists');
-    await freezeSnackbars(page);
 
     // Type some new content
     await page.click('playground-code-editor');
@@ -162,6 +169,7 @@ test.describe('Playground', () => {
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
       state: 'hidden',
     });
+    await freezeSnackbars(page);
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-3-snackbarOpen.png'
     );
@@ -275,5 +283,99 @@ test.describe('Playground', () => {
     await page.keyboard.press('Control+S');
     expect(page.url()).toEqual(firstUrl);
     expect(await readClipboardText(page)).toMatch(firstUrl);
+  });
+
+  test('user declines github auth', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+    await waitForPlaygroundPreviewToLoad(page);
+
+    // Open the share menu
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout');
+
+    // Click share
+    const [popup] = await Promise.all([
+      page.waitForEvent('popup'),
+      page.click('#signInButton'),
+    ]);
+    await popup.waitForLoadState();
+
+    // Decline authorization
+    await popup.click('text=Cancel');
+    await popup.waitForEvent('close');
+
+    // An informative dialog should display
+    await page.waitForSelector('[role=alertdialog]');
+    await freezeDialogs(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'userDeclinesGithubAuth.png'
+    );
+  });
+
+  test('user closes github auth window early', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+    await waitForPlaygroundPreviewToLoad(page);
+
+    // Open the share menu
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout');
+
+    // Click share
+    const [popup] = await Promise.all([
+      page.waitForEvent('popup'),
+      page.click('#signInButton'),
+    ]);
+    await popup.waitForLoadState();
+
+    // Close the window
+    await popup.close();
+
+    // An informative dialog should display
+    await page.waitForSelector('[role=alertdialog]');
+    await freezeDialogs(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'userClosesGitHubAuthWindowTooEarly.png'
+    );
+  });
+
+  test('gist does not exist', async ({page}) => {
+    await page.goto('/playground/?mods=gists#gist=not-a-real-gist');
+    await waitForPlaygroundPreviewToLoad(page);
+
+    // An informative dialog should display
+    await page.waitForSelector('[role=alertdialog]');
+    await freezeDialogs(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'gistDoesNotExist.png'
+    );
+  });
+
+  test('backend error writing gist', async ({page, browser}) => {
+    await page.goto('/playground/?mods=gists');
+
+    // Type some new content
+    await page.click('playground-code-editor');
+    await page.keyboard.press('Control+A');
+    await page.keyboard.type('"my gist content";');
+    await waitForPlaygroundPreviewToLoad(page);
+
+    // Open the share menu
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout');
+
+    // Sign in to GitHub
+    await signInToGithub(page);
+
+    // Try to save the gist
+    await page.waitForSelector('#createNewGistButton');
+    await failNextGitHubRequest(browser);
+    await page.click('#createNewGistButton');
+
+    // An informative dialog should display
+    await page.waitForSelector('[role=alertdialog]');
+    await freezeDialogs(page);
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'backendErrorWritingGist.png'
+    );
   });
 });
