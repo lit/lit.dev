@@ -23,6 +23,50 @@ export class LitDevError extends Error {
   }
 }
 
+/**
+ * Display the given error to the user via the <litdev-error-notifier>
+ * component.
+ */
+export const showError = (error: unknown) => {
+  let detail: LitDevError;
+  if (error instanceof LitDevError) {
+    detail = error;
+  } else {
+    detail = new LitDevError({
+      heading: 'Unexpected error',
+      message: (error as Error).message ?? '',
+      stack: (error as Error).stack,
+    });
+  }
+  window.dispatchEvent(new CustomEvent('error', {detail}));
+};
+
+/**
+ * Class method decorator that catches exceptions and forwards them to the
+ * <litdev-error-notifier> component so that they will be displayed to the user
+ * in a dialog.
+ */
+export const showErrors =
+  () =>
+  (_target: unknown, _propertyKey: unknown, descriptor: PropertyDescriptor) => {
+    const originalMethod = descriptor.value;
+    descriptor.value = function (...args: unknown[]) {
+      try {
+        const result = originalMethod.apply(this, ...args);
+        if (result instanceof Promise) {
+          return result.catch((error: unknown) => {
+            showError(error);
+            throw error;
+          });
+        }
+        return result;
+      } catch (error: unknown) {
+        showError(error);
+        throw error;
+      }
+    };
+  };
+
 declare global {
   interface WindowEventMap {
     error: CustomEvent<LitDevError>;
