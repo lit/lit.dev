@@ -13,8 +13,9 @@ import {getAuthenticatedUser} from '../github/github-user.js';
 import {createGist, updateGist} from '../github/github-gists.js';
 import {githubLogo} from '../icons/github-logo.js';
 import {showErrors} from '../errors.js';
+import {playgroundToGist} from '../util/gist-conversion.js';
 
-import type {Gist, GistFiles} from '../github/github-gists.js';
+import type {Gist} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 
 /**
@@ -253,9 +254,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       throw new Error('Error token not defined');
     }
 
-    const gistFiles: GistFiles = Object.fromEntries(
-      projectFiles.map((file) => [file.name, {content: file.content}])
-    );
+    const gistFiles = playgroundToGist(projectFiles);
 
     const gist = await createGist(gistFiles, {
       apiBaseUrl: this.githubApiUrl,
@@ -293,9 +292,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       throw new Error('Error token not defined');
     }
 
-    const gistFiles: GistFiles = Object.fromEntries(
-      projectFiles.map((file) => [file.name, {content: file.content}])
-    );
+    const gistFiles = playgroundToGist(projectFiles);
 
     // If we have deleted or renamed a file, then the old filename will no
     // longer be in our project files list. However, when updating a gist, if
@@ -308,7 +305,6 @@ export class LitDevPlaygroundShareGist extends LitElement {
       }
     }
 
-    // TODO(aomarks) User facing error if this fails.
     const gist = await updateGist(this.activeGist.id, gistFiles, {
       apiBaseUrl: this.githubApiUrl,
       token,
