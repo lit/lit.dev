@@ -178,12 +178,14 @@ const prod = environment({
   googleAnalyticsId: 'G-FTZ6CJP9F3',
   reportCspViolations: true,
   playgroundSandboxUrl: 'https://playground.lit.dev/',
-  githubMainUrl: undefined, // Not set up yet
-  githubApiUrl: undefined, // Not set up yet
-  githubAvatarUrl: undefined, // Not set up yet
-  githubAuthorizeRedirectUrl: undefined, // Not set up yet
-  githubClientId: undefined, // Not set up yet
-  githubClientSecret: undefined, // Not set up yet
+  githubMainUrl: 'https://github.com/',
+  githubApiUrl: 'https://api.github.com/',
+  githubAvatarUrl: 'https://avatars.githubusercontent.com/',
+  githubAuthorizeRedirectUrl: 'https://lit.dev/playground/signin/',
+  githubClientId: 'd5c8e81abdf8867459c1',
+  get githubClientSecret() {
+    return stringEnv('GITHUB_CLIENT_SECRET');
+  },
 });
 
 const environments = {dev, local, pr, prod};
