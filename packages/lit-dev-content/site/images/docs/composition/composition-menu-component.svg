@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="232.5 145.5 331 385" width="331" height="385">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-05-26 19:25:07 +0000</metadata>
+  <g id="Canvas_1" fill-opacity="1" stroke-dasharray="none" fill="none" stroke="none" stroke-opacity="1">
+    <title>Canvas 1</title>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2">
+        <path d="M 242 146 L 418 146 C 422.97056 146 427 150.02944 427 155 L 427 188 C 427 192.97056 422.97056 197 418 197 L 242 197 C 237.02944 197 233 192.97056 233 188 L 233 155 C 233 150.02944 237.02944 146 242 146 Z" fill="white"/>
+        <path d="M 242 146 L 418 146 C 422.97056 146 427 150.02944 427 155 L 427 188 C 427 192.97056 422.97056 197 418 197 L 242 197 C 237.02944 197 233 192.97056 233 188 L 233 155 C 233 150.02944 237.02944 146 242 146 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(238 162.276)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="58.048" y="15">my-menu</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <path d="M 242 218 L 418 218 C 422.97056 218 427 222.02944 427 227 L 427 260 C 427 264.97056 422.97056 269 418 269 L 242 269 C 237.02944 269 233 264.97056 233 260 L 233 227 C 233 222.02944 237.02944 218 242 218 Z" fill="white"/>
+        <path d="M 242 218 L 418 218 C 422.97056 218 427 222.02944 427 227 L 427 260 C 427 264.97056 422.97056 269 418 269 L 242 269 C 237.02944 269 233 264.97056 233 260 L 233 227 C 233 222.02944 237.02944 218 242 218 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(238 234.276)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="42.072" y="15">#shadow-root</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <path d="M 378 305 L 554 305 C 558.97056 305 563 309.02944 563 314 L 563 347 C 563 351.97056 558.97056 356 554 356 L 378 356 C 373.02944 356 369 351.97056 369 347 L 369 314 C 369 309.02944 373.02944 305 378 305 Z" fill="white"/>
+        <path d="M 378 305 L 554 305 C 558.97056 305 563 309.02944 563 314 L 563 347 C 563 351.97056 558.97056 356 554 356 L 378 356 C 373.02944 356 369 351.97056 369 347 L 369 314 C 369 309.02944 373.02944 305 378 305 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(374 321.276)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="55.976" y="15">my-item 1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <path d="M 378 392 L 554 392 C 558.97056 392 563 396.02944 563 401 L 563 434 C 563 438.97056 558.97056 443 554 443 L 378 443 C 373.02944 443 369 438.97056 369 434 L 369 401 C 369 396.02944 373.02944 392 378 392 Z" fill="white"/>
+        <path d="M 378 392 L 554 392 C 558.97056 392 563 396.02944 563 401 L 563 434 C 563 438.97056 558.97056 443 554 443 L 378 443 C 373.02944 443 369 438.97056 369 434 L 369 401 C 369 396.02944 373.02944 392 378 392 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(374 408.276)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="55.976" y="15">my-item 2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <path d="M 378 479 L 554 479 C 558.97056 479 563 483.02944 563 488 L 563 521 C 563 525.97056 558.97056 530 554 530 L 378 530 C 373.02944 530 369 525.97056 369 521 L 369 488 C 369 483.02944 373.02944 479 378 479 Z" fill="white"/>
+        <path d="M 378 479 L 554 479 C 558.97056 479 563 483.02944 563 488 L 563 521 C 563 525.97056 558.97056 530 554 530 L 378 530 C 373.02944 530 369 525.97056 369 521 L 369 488 C 369 483.02944 373.02944 479 378 479 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(374 495.276)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="55.976" y="15">my-item 3</tspan>
+        </text>
+      </g>
+      <g id="Line_7">
+        <path d="M 330 197 L 330 207.5 L 330 203.1 L 330 208.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_8">
+        <path d="M 330 269 L 330 330.5 L 359.1 330.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_9">
+        <path d="M 330 269 L 330 417.5 L 359.1 417.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_10">
+        <path d="M 330 269 L 330 504.5 L 359.1 504.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>
