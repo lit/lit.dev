@@ -12,6 +12,7 @@ import {signInToGithub} from '../github/github-signin.js';
 import {getAuthenticatedUser} from '../github/github-user.js';
 import {createGist, updateGist} from '../github/github-gists.js';
 import {githubLogo} from '../icons/github-logo.js';
+import {showErrors} from '../errors.js';
 
 import type {Gist, GistFiles} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
@@ -196,6 +197,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     return this.activeGist.owner.id === user.id;
   }
 
+  @showErrors()
   private async _signIn() {
     if (!this.githubApiUrl || !this.clientId || !this.authorizeUrl) {
       throw new Error('Missing required properties');

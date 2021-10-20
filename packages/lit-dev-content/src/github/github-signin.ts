@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+import {LitDevError} from '../errors.js';
+
 import type {GitHubSigninReceiverMessage} from './github-types.js';
 
 /**
@@ -50,8 +52,15 @@ export const signInToGithub = async (
     `width=${width},height=${height},top=${top},left=${left}`
   );
   if (popup === null) {
-    // TODO(aomarks) Display a more helpful message to the user in the UI.
-    throw new Error('Could not open window. Are popups disabled?');
+    // Disabling popups in Chrome and Firefox doesn't seem to prevent
+    // window.open from working here, so it's unclear when this can actually
+    // occur.
+    throw new LitDevError({
+      heading: 'Could not open GitHub window',
+      message:
+        "We couldn't open the window that's required for signing in to" +
+        ' GitHub. You may need to enable popups in your browser settings.',
+    });
   }
 
   const closePopupIfParentCloses = () => popup.close();
@@ -65,14 +74,32 @@ export const signInToGithub = async (
   window.removeEventListener('beforeunload', closePopupIfParentCloses);
   if (codeOrClosed === 'closed') {
     pendingCode.abort();
-    // TODO(aomarks) Display a more helpful message to the user in the UI.
-    throw new Error('Popup was closed too early!');
+    throw new LitDevError({
+      heading: 'GitHub window closed',
+      message:
+        'It looks like you closed the GitHub window. If you still' +
+        " want to create a GitHub gist, you'll need to click " +
+        '"Authorize lit" when prompted by the popup window.',
+    });
   }
   popup.close();
   const code = codeOrClosed;
   if (code.error !== undefined) {
-    // TODO(aomarks) Display a more helpful message to the user in the UI.
-    throw new Error(`Error getting code: ${code.error}`);
+    if (code.error === 'access_denied') {
+      throw new LitDevError({
+        heading: 'GitHub authorization declined',
+        message:
+          'It looks like you clicked the "Cancel" button. If you still' +
+          " want to create a GitHub gist, you'll need to click " +
+          '"Authorize lit" when prompted by the popup window.',
+      });
+    }
+    throw new LitDevError({
+      heading: 'Unknown GitHub authorization error',
+      message:
+        'Sorry! An unknown error occured while authorizing with' +
+        ` GitHub. The following code is all we know: ${code.error}`,
+    });
   }
   return exchangeCodeForAccessToken(code.code);
 };
