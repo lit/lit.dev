@@ -19,9 +19,7 @@ module.exports = {
   PLAYGROUND_SANDBOX: ENV.playgroundSandboxUrl,
   GOOGLE_ANALYTICS_ID: ENV.googleAnalyticsId,
   GITHUB_CLIENT_ID: ENV.githubClientId,
-  GITHUB_AUTHORIZE_URL: ENV.githubMainUrl
-    ? `${trimTrailingSlash(ENV.githubMainUrl)}/login/oauth/authorize`
-    : '',
+  GITHUB_AUTHORIZE_URL: `${trimTrailingSlash(ENV.githubMainUrl)}/login/oauth/authorize`,
   GITHUB_API_URL: ENV.githubApiUrl,
   GITHUB_AVATAR_URL: ENV.githubAvatarUrl
 };

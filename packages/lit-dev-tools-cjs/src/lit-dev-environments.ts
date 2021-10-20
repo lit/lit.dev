@@ -13,15 +13,15 @@ interface LitDevEnvironment {
   googleAnalyticsId: string;
   reportCspViolations: boolean;
   playgroundSandboxUrl: string;
-  githubMainUrl: string | undefined;
-  githubApiUrl: string | undefined;
-  githubAvatarUrl: string | undefined;
-  githubAuthorizeRedirectUrl: string | undefined;
-  githubClientId: string | undefined;
+  githubMainUrl: string;
+  githubApiUrl: string;
+  githubAvatarUrl: string;
+  githubAuthorizeRedirectUrl: string;
+  githubClientId: string;
   /**
    * IMPORTANT: Do not hard code actual secrets.
    */
-  githubClientSecret: string | undefined;
+  githubClientSecret: string;
 }
 
 const TEST_GOOGLE_ANALYTICS_ID = 'G-PPMSZR9W18';
