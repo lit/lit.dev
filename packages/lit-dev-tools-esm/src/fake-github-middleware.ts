@@ -45,15 +45,30 @@ export const fakeGitHubMiddleware = (
   options: FakeGitHubMiddlewareOptions
 ): Koa.Middleware => {
   let fake = new FakeGitHub(options);
+  let failNextRequest = false;
   return async (ctx, next) => {
+    ctx.set('Access-Control-Allow-Origin', '*');
     if (ctx.method === 'OPTIONS') {
       // CORS preflight
       ctx.status = 204;
-      ctx.set('Access-Control-Allow-Origin', '*');
       ctx.set('Access-Control-Allow-Headers', 'Authorization');
       ctx.set('Access-Control-Allow-Methods', 'GET, POST, PATCH');
       return;
+    } else if (ctx.path === '/favicon.ico') {
+      // Don't count this automatic request when failing intentionally.
+      return next();
+    } else if (ctx.path === '/fail-next-request') {
+      failNextRequest = true;
+      ctx.status = 200;
+      ctx.body = 'Next request will fail';
+      return;
+    } else if (failNextRequest) {
+      ctx.status = 500;
+      ctx.body = 'Failed intentionally';
+      failNextRequest = false;
+      return;
     } else if (ctx.path === '/reset') {
+      failNextRequest = false;
       return fake.reset(ctx);
     } else if (ctx.path === '/login/oauth/authorize') {
       return fake.authorize(ctx);
@@ -292,7 +307,6 @@ class FakeGitHub {
    * about the authenticated user.
    */
   async getUser(ctx: Koa.Context) {
-    ctx.set('Access-Control-Allow-Origin', '*');
     if (!this._checkAccept(ctx)) {
       return;
     }
@@ -377,7 +391,6 @@ class FakeGitHub {
    * https://docs.github.com/en/rest/reference/gists#create-a-gist
    */
   async createGist(ctx: Koa.Context) {
-    ctx.set('Access-Control-Allow-Origin', '*');
     if (!this._checkAccept(ctx)) {
       return;
     }
@@ -416,7 +429,6 @@ class FakeGitHub {
    * https://docs.github.com/en/rest/reference/gists#update-a-gist
    */
   async updateGist(ctx: Koa.Context) {
-    ctx.set('Access-Control-Allow-Origin', '*');
     if (!this._checkAccept(ctx)) {
       return;
     }
