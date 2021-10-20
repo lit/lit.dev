@@ -20,7 +20,7 @@ steps:
       - --cache=true
       - --cache-ttl=168h # 1 week
       - --build-arg=LITDEV_ENV=pr
-      - --build-arg=PLAYGROUND_SANDBOX=https://pr$_PR_NUMBER-$SHORT_SHA---lit-dev-playground-5ftespv5na-uc.a.run.app/
+      - --build-arg=REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA
 
   # Create a new Cloud Run revision for the main site.
   #
@@ -49,7 +49,7 @@ steps:
       - '--min-instances=0'
       - '--max-instances=1'
       # Serve the main site
-      - '--update-env-vars=LITDEV_ENV=pr,PLAYGROUND_SANDBOX=https://pr$_PR_NUMBER-$SHORT_SHA---lit-dev-playground-5ftespv5na-uc.a.run.app/,MODE=main'
+      - '--update-env-vars=LITDEV_ENV=pr,REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA,MODE=main'
 
   # Create a new Cloud Run revision for the playground sandbox.
   #
@@ -80,6 +80,7 @@ steps:
       - '--concurrency=default' # unlimited
       - '--min-instances=0'
       - '--max-instances=1'
+      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-test'
       # Serve the playground
       - '--update-env-vars=LITDEV_ENV=pr,MODE=playground'
 
