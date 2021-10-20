@@ -234,6 +234,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     this.requestUpdate();
   }
 
+  @showErrors()
   async createNewGist() {
     if (!this.githubApiUrl) {
       throw new Error('Missing required properties');
@@ -274,6 +275,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     );
   }
 
+  @showErrors()
   async updateGist() {
     if (!this.githubApiUrl || !this.activeGist) {
       throw new Error('Missing required properties');

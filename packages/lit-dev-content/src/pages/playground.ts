@@ -17,10 +17,12 @@ import {
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 import {getGist} from '../github/github-gists.js';
+import {GitHubError} from '../github/github-util.js';
 import {Snackbar} from '@material/mwc-snackbar';
 import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
 import {modEnabled} from '../mods.js';
+import {LitDevError, showError} from '../errors.js';
 
 interface CompactProjectFile {
   name: string;
@@ -83,7 +85,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const loadGist = async (
     gistId: string
   ): Promise<Array<CompactProjectFile>> => {
-    // TODO(aomarks) Show user visible error on failure
     const gist = await getGist(gistId, {apiBaseUrl: githubApiUrl});
     if (newShareButton) {
       newShareButton.activeGist = gist;
@@ -106,7 +107,20 @@ window.addEventListener('DOMContentLoaded', () => {
     const gist = params.get('gist');
     const base64 = params.get('project');
     if (gist) {
-      urlFiles = await loadGist(gist);
+      try {
+        urlFiles = await loadGist(gist);
+      } catch (error: unknown) {
+        if (error instanceof GitHubError && error.status === 404) {
+          error = new LitDevError({
+            heading: 'Gist not found',
+            message: 'The given GitHub gist could not be found.',
+            stack: (error as Error).stack,
+          });
+        }
+        // TODO(aomarks) Use @showErrors decorator after refactoring this into a
+        // component.
+        showError(error);
+      }
     } else if (base64) {
       urlFiles = loadBase64(base64);
     }
