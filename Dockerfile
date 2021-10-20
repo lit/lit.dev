@@ -48,7 +48,7 @@ COPY packages/lit-dev-content/ ./packages/lit-dev-content/
 
 # Environment variables used by Eleventy build
 ARG LITDEV_ENV
-ARG PLAYGROUND_SANDBOX
+ARG REVISION_TAG
 
 # Kaniko doesn't include ARG values in the layer cache key (see
 # https://github.com/GoogleContainerTools/kaniko/pull/1085). This is different
@@ -57,7 +57,7 @@ ARG PLAYGROUND_SANDBOX
 # to force a cache invalidation. Otherwise, we might re-use the most recent
 # Eleventy build output, even when our build environment variables have changed.
 RUN echo "LITDEV_ENV=$LITDEV_ENV" >> env \
-  && echo "PLAYGROUND_SANDBOX=$PLAYGROUND_SANDBOX" >> env
+  && echo "REVISION_TAG=$REVISION_TAG" >> env
 
 # Eleventy build
 RUN npx lerna run prod:build --scope lit-dev-content --stream
