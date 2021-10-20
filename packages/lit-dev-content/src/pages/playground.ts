@@ -11,6 +11,7 @@ import '../components/litdev-example-controls.js';
 import '../components/litdev-playground-change-guard.js';
 import '../components/litdev-playground-share-button.js';
 import '../components/litdev-playground-download-button.js';
+import '../components/litdev-error-notifier.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
