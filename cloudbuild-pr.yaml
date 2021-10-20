@@ -80,7 +80,7 @@ steps:
       - '--concurrency=default' # unlimited
       - '--min-instances=0'
       - '--max-instances=1'
-      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-test'
+      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-test:1'
       # Serve the playground
       - '--update-env-vars=LITDEV_ENV=pr,MODE=playground'
 
