@@ -85,6 +85,8 @@ For more information on dispatching and listening for events, see [Events](/docs
 
 A component that's made up of subcomponents can use the _mediator pattern_ to manage complexity. Subcomponents shouldn't communicate with each other directly. Instead, interactions should be _mediated._ A simple way to implement the mediator pattern is by having the owning component handle events from its children, and in turn update the state of its children as necessary by passing changed data back down the tree.
 
+In the following example, the mediator element listens for events from the input and button elements in its shadow DOM. It controls the enabled state of the button so the user can only click **Submit** when there's text in the input.
+
 {% playground-example "docs/composition/mediator-pattern" "mediator-element.ts" %}
 
 Other mediator patterns include flux/Redux-style patterns where a store mediates changes and updates components via subscriptions. Having components directly subscribe to changes can help avoid needing every parent to pass along all data required by its children.
