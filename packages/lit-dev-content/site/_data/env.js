@@ -23,5 +23,6 @@ module.exports = {
     ? `${trimTrailingSlash(ENV.githubMainUrl)}/login/oauth/authorize`
     : '',
   GITHUB_API_URL: ENV.githubApiUrl,
-  GITHUB_AVATAR_URL: ENV.githubAvatarUrl
+  GITHUB_AVATAR_URL: ENV.githubAvatarUrl,
+  SITE_VERSION: ENV.siteVersion
 };
