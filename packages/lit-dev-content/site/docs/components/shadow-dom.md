@@ -258,7 +258,7 @@ There are two ways to customize the render root use by LitElement:
 The simplest way to customize the render root is to set the `shadowRootOptions` static property. The default implementation of `createRenderRoot` passes `shadowRootOptions` as the options argument to `attachShadow` when creating the component's shadow root. It can be set to customize any options allowed in the [ShadowRootInit](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters) dictionary, for example `mode` and `delegatesFocus`.
 
 ```js
-class DelagatesFocus extends LitElement {
+class DelegatesFocus extends LitElement {
   static shadowRootOptions = {...LitElement.shadowRootOptions, delegatesFocus: true};
 }
 ```
