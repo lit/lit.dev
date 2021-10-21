@@ -416,6 +416,10 @@ class FakeGitHub {
     }
 
     for (const [filename, file] of Object.entries(createRequest.files)) {
+      if (!file.content) {
+        // Empty files are not allowed.
+        return jsonResponse(ctx, 422, {message: 'Validation Failed'});
+      }
       file.filename = filename;
     }
     const gist = {
@@ -468,10 +472,14 @@ class FakeGitHub {
     // needed, though, this fake just directly updates the simplified flat gist
     // instead.
     const newFiles = updateRequest.files;
+    const oldFiles = gist.files;
     for (const [newFilename, newFile] of Object.entries(newFiles)) {
       newFile.filename = newFilename;
+      if (!newFile.content && oldFiles[newFilename] === undefined) {
+        // New empty files are not allowed.
+        return jsonResponse(ctx, 422, {message: 'Validation Failed'});
+      }
     }
-    const oldFiles = gist.files;
     for (const [oldFilename, oldFile] of Object.entries(oldFiles)) {
       // To delete a file, you set its content to an empty string or undefined.
       // If entirely omitted, the existing file is unchanged. See
