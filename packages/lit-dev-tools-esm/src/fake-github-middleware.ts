@@ -424,6 +424,8 @@ class FakeGitHub {
       owner: {id: userAndScope.userId},
     };
     this._gists.set(gist.id, gist);
+    // Add a similar latency to the real API.
+    await new Promise((resolve) => setTimeout(resolve, 500));
     return jsonResponse(ctx, 200, gist);
   }
 
@@ -482,6 +484,8 @@ class FakeGitHub {
     }
     gist.files = newFiles;
 
+    // Add a similar latency to the real API.
+    await new Promise((resolve) => setTimeout(resolve, 500));
     return jsonResponse(ctx, 200, gist);
   }
 }
