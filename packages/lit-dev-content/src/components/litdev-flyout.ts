@@ -121,7 +121,7 @@ export class LitDevFlyout extends LitElement {
       // Defer a microtask so that the click that opened this flyout won't cause
       // it to close.
       if (this.open) {
-        window.addEventListener('click', this._onWindowClick);
+        window.addEventListener('mouseup', this._onWindowMouseup);
       }
     });
   }
@@ -129,7 +129,7 @@ export class LitDevFlyout extends LitElement {
   private _removeEventListeners() {
     window.removeEventListener('keydown', this._onWindowKeydown);
     this.removeEventListener('mousedown', this._onThisMousedown);
-    window.removeEventListener('click', this._onWindowClick);
+    window.removeEventListener('mouseup', this._onWindowMouseup);
   }
 
   private _clickStartedWithinThis = false;
@@ -143,7 +143,7 @@ export class LitDevFlyout extends LitElement {
     this._clickStartedWithinThis = true;
   };
 
-  private readonly _onWindowClick = () => {
+  private readonly _onWindowMouseup = () => {
     if (this._clickStartedWithinThis) {
       this._clickStartedWithinThis = false;
     } else {
