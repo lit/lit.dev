@@ -112,7 +112,7 @@ export class LitDevDrawer extends LitElement {
 
         <mwc-icon-button-toggle
           id="openCloseButton"
-          label="Open or close examples drawer"
+          aria-label="Open or close examples drawer"
           .on=${!this.open}
           @click=${this._onClickToggleButton}
         >
