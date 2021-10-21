@@ -77,11 +77,20 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
 
   async save() {
     history.pushState({}, '', this._url);
-    await navigator.clipboard.writeText(this._url);
+    let statusText;
+    try {
+      await navigator.clipboard.writeText(window.location.toString());
+      statusText = 'URL copied to clipboard';
+    } catch {
+      // The browser isn't allowing us to copy. This could happen because it's
+      // disabled in settings, or because we're in a browser like Safari that
+      // only allows copying from a syncronous event handler.
+      statusText += 'URL bar updated';
+    }
     this.dispatchEvent(new Event('copied'));
     this.dispatchEvent(
       new CustomEvent('status', {
-        detail: {text: 'URL copied to clipboard'},
+        detail: {text: statusText},
         bubbles: true,
       })
     );

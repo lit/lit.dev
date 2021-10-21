@@ -289,11 +289,20 @@ export class LitDevPlaygroundShareGist extends LitElement {
       });
 
       window.location.hash = '#gist=' + gist.id;
-      await navigator.clipboard.writeText(window.location.toString());
+      let statusText = 'Gist created';
+      try {
+        await navigator.clipboard.writeText(window.location.toString());
+        statusText += ' and URL copied to clipboard';
+      } catch {
+        // The browser isn't allowing us to copy. This could happen because it's
+        // disabled in settings, or because we're in a browser like Safari that
+        // only allows copying from a syncronous event handler.
+        statusText += ' and URL bar updated';
+      }
       this.dispatchEvent(new Event('created'));
       this.dispatchEvent(
         new CustomEvent('status', {
-          detail: {text: 'Gist created and URL copied to clipboard'},
+          detail: {text: statusText},
           bubbles: true,
         })
       );
@@ -350,11 +359,15 @@ export class LitDevPlaygroundShareGist extends LitElement {
       });
 
       window.location.hash = '#gist=' + gist.id;
-      await navigator.clipboard.writeText(window.location.toString());
+      let statusText = 'Gist updated';
+      try {
+        await navigator.clipboard.writeText(window.location.toString());
+        statusText += ' and URL copied to clipboard';
+      } catch {}
       this.dispatchEvent(new Event('created'));
       this.dispatchEvent(
         new CustomEvent('status', {
-          detail: {text: 'Gist updated and URL copied to clipboard'},
+          detail: {text: statusText},
           bubbles: true,
         })
       );
