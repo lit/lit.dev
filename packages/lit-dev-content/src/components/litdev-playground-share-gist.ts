@@ -245,6 +245,13 @@ export class LitDevPlaygroundShareGist extends LitElement {
       throw new Error("Can't save an empty project");
     }
 
+    this.dispatchEvent(
+      new CustomEvent('status', {
+        detail: {text: 'Creating gist ...'},
+        bubbles: true,
+      })
+    );
+
     let token = tokenCache.get(this);
     if (token === undefined) {
       await this._signIn();
@@ -282,6 +289,13 @@ export class LitDevPlaygroundShareGist extends LitElement {
       // TODO(aomarks) The button should just be disabled in this case.
       throw new Error("Can't save an empty project");
     }
+
+    this.dispatchEvent(
+      new CustomEvent('status', {
+        detail: {text: 'Updating gist ...'},
+        bubbles: true,
+      })
+    );
 
     let token = tokenCache.get(this);
     if (token === undefined) {

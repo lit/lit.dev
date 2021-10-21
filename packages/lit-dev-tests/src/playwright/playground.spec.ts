@@ -9,6 +9,7 @@ import {
   waitForPlaygroundPreviewToLoad,
   freezeSnackbars,
   freezeDialogs,
+  closeSnackbars,
   readClipboardText,
 } from './util';
 
@@ -374,6 +375,7 @@ test.describe('Playground', () => {
     // An informative dialog should display
     await page.waitForSelector('[role=alertdialog]');
     await freezeDialogs(page);
+    await closeSnackbars(page);
     await expect(await page.screenshot()).toMatchSnapshot(
       'backendErrorWritingGist.png'
     );
