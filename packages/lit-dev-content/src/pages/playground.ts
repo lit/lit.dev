@@ -99,6 +99,12 @@ window.addEventListener('DOMContentLoaded', () => {
     let urlFiles: Array<CompactProjectFile> | undefined;
     const gist = params.get('gist');
     const base64 = params.get('project');
+    if (newShareButton && newShareButton.activeGist?.id !== gist) {
+      // We're about to switch to a new gist, or to something that's not a gist
+      // at all (a pre-made sample or a base64 project). Either way, the active
+      // gist is now outdated.
+      newShareButton.activeGist = undefined;
+    }
     if (gist) {
       try {
         urlFiles = await loadGist(gist);
