@@ -23,6 +23,7 @@ import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
 import {modEnabled} from '../mods.js';
 import {LitDevError, showError} from '../errors.js';
+import {gistToPlayground} from '../util/gist-conversion.js';
 
 interface CompactProjectFile {
   name: string;
@@ -89,15 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (newShareButton) {
       newShareButton.activeGist = gist;
     }
-    const playgroundFiles: Array<CompactProjectFile> = Object.values(
-      gist.files
-    ).map(
-      (file): CompactProjectFile => ({
-        name: file.filename!,
-        content: file.content,
-      })
-    );
-    return playgroundFiles;
+    return gistToPlayground(gist.files).map(compactPlaygroundFile);
   };
 
   const syncStateFromUrlHash = async () => {

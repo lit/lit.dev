@@ -22,9 +22,7 @@ test.describe('Home page', () => {
     await searchInput.type('reactive update cycle');
 
     // Playwright pierces shadow dom by default.
-    await page.waitForSelector('litdev-search-option:nth-child(1)', {
-      timeout: 1000,
-    });
+    await page.waitForSelector('litdev-search-option:nth-child(1)');
 
     await expect(
       page.locator('litdev-search-option:nth-child(1) .title')

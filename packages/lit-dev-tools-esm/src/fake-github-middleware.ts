@@ -367,7 +367,6 @@ class FakeGitHub {
    * https://docs.github.com/en/rest/reference/gists#get-a-gist
    */
   async getGist(ctx: Koa.Context) {
-    ctx.set('Access-Control-Allow-Origin', '*');
     if (!this._checkAccept(ctx)) {
       return;
     }
@@ -380,6 +379,13 @@ class FakeGitHub {
     if (!gist) {
       return jsonResponse(ctx, 404, {message: 'Not Found'});
     }
+    // Gist files are always sorted alphabetically regardless of the order
+    // given.
+    gist.files = Object.fromEntries(
+      Object.entries(gist.files).sort(([aName], [bName]) =>
+        aName.localeCompare(bName)
+      )
+    );
     return jsonResponse(ctx, 200, gist);
   }
 
