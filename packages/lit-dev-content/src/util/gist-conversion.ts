@@ -12,10 +12,10 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
  * primitives.
  */
 type GistPlaygroundMetadata = {
-  files: {
+  files?: {
     [filename: string]: {
-      /** File display order . Gist files are always returned ~alphabetically. */
-      position: number;
+      /** File display order. Gist files are always returned alphabetically. */
+      position?: number;
       /** Whether the file is hidden. */
       hidden?: boolean;
     };
@@ -34,7 +34,9 @@ export const playgroundToGist = (playgroundFiles: SampleFile[]): GistFiles => {
   const metadata: GistPlaygroundMetadata = {
     files: Object.fromEntries(
       playgroundFiles.map(({name, hidden}, position) => {
-        const entry: GistPlaygroundMetadata['files'][string] = {position};
+        const entry: Required<GistPlaygroundMetadata>['files'][string] = {
+          position,
+        };
         if (hidden) {
           entry.hidden = true;
         }
@@ -59,7 +61,10 @@ export const gistToPlayground = (gistFiles: GistFiles): SampleFile[] => {
   let metadata: GistPlaygroundMetadata = {files: {}};
   if (metadataFile) {
     try {
-      metadata = JSON.parse(metadataFile.content) as GistPlaygroundMetadata;
+      metadata =
+        (JSON.parse(
+          metadataFile.content
+        ) as GistPlaygroundMetadata) /* in case it is null */ || {};
     } catch (error) {
       console.warn('Failed to JSON parse playground metadata file in gist');
     }
@@ -73,15 +78,18 @@ export const gistToPlayground = (gistFiles: GistFiles): SampleFile[] => {
       name: gistFile.filename,
       content: gistFile.content,
     };
-    if (metadata.files[gistFile.filename]?.hidden) {
+    if (metadata.files?.[gistFile.filename]?.hidden) {
       file.hidden = true;
     }
     playgroundFiles.push(file);
   }
   playgroundFiles.sort((a, b) => {
-    const aPos = metadata.files[a.name]?.position;
-    const bPos = metadata.files[b.name]?.position;
-    if (aPos !== undefined && bPos !== undefined) {
+    const aPos = metadata.files?.[a.name]?.position;
+    const bPos = metadata.files?.[b.name]?.position;
+    // Check types because this metadata file can theoretically contain
+    // anything, since they can easily be edited by a user directly from the
+    // GitHub gist UI.
+    if (typeof aPos === 'number' && typeof bPos === 'number') {
       return aPos - bPos;
     }
     return 0;
