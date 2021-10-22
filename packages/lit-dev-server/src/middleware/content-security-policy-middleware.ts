@@ -35,12 +35,12 @@ export interface ContentSecurityPolicyMiddlewareOptions {
   /**
    * Origin for GitHub API calls.
    */
-  githubApiOrigin?: string;
+  githubApiOrigin: string;
 
   /**
    * Origin for GitHub avatar images.
    */
-  githubAvatarOrigin?: string;
+  githubAvatarOrigin: string;
 }
 
 /**
@@ -109,7 +109,7 @@ export const contentSecurityPolicyMiddleware = (
       `'self'`,
       'https://unpkg.com/',
       'https://www.google-analytics.com/',
-      ...(opts.githubApiOrigin ? [opts.githubApiOrigin] : []),
+      opts.githubApiOrigin,
       ...(opts.devMode ? [`ws:`] : []),
     ].join(' ')}`,
 
@@ -141,7 +141,7 @@ export const contentSecurityPolicyMiddleware = (
       // (https://developers.google.com/tag-manager/web/csp).
       'https://www.googletagmanager.com/',
       // Needed for showing GitHub avatars when signed in.
-      ...(opts.githubAvatarOrigin ? [opts.githubAvatarOrigin] : []),
+      opts.githubAvatarOrigin,
     ].join(' ')}`,
 
     // Disallow any embeds, applets, etc. This would usually be covered by

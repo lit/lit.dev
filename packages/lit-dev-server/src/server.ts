@@ -64,15 +64,13 @@ if (mode === 'playground') {
       githubAvatarOrigin: ENV.githubAvatarUrl,
     })
   );
-  if (ENV.githubMainUrl && ENV.githubClientId && ENV.githubClientSecret) {
-    app.use(
-      createGitHubTokenExchangeMiddleware({
-        githubMainUrl: ENV.githubMainUrl,
-        clientId: ENV.githubClientId,
-        clientSecret: ENV.githubClientSecret,
-      })
-    );
-  }
+  app.use(
+    createGitHubTokenExchangeMiddleware({
+      githubMainUrl: ENV.githubMainUrl,
+      clientId: ENV.githubClientId,
+      clientSecret: ENV.githubClientSecret,
+    })
+  );
 }
 
 app.use(redirectMiddleware());

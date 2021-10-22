@@ -45,6 +45,7 @@ steps:
       - '--concurrency=40'
       - '--min-instances=1'
       - '--max-instances=1000'
+      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-prod:1'
       # Serve the main site
       - '--update-env-vars=LITDEV_ENV=prod,MODE=main'
 
