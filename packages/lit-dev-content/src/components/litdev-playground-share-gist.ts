@@ -202,7 +202,6 @@ export class LitDevPlaygroundShareGist extends LitElement {
     if (!this.githubApiUrl || !this.clientId || !this.authorizeUrl) {
       throw new Error('Missing required properties');
     }
-    // TODO(aomarks) User facing error if this fails.
     // TODO(aomarks) Show a scrim and some indication about what is happening
     //               while the GitHub sign in popup is open.
     const token = await signInToGithub({
@@ -258,7 +257,6 @@ export class LitDevPlaygroundShareGist extends LitElement {
       projectFiles.map((file) => [file.name, {content: file.content}])
     );
 
-    // TODO(aomarks) User facing error if this fails.
     const gist = await createGist(gistFiles, {
       apiBaseUrl: this.githubApiUrl,
       token,

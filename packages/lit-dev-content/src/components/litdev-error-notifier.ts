@@ -5,7 +5,7 @@
  */
 
 import {LitElement, html, nothing} from 'lit';
-import {property, state} from 'lit/decorators.js';
+import {customElement, property, state} from 'lit/decorators.js';
 
 import '@material/mwc-dialog';
 import '@material/mwc-button';
@@ -15,6 +15,7 @@ import type {LitDevError} from '../errors.js';
 /**
  * Displays dismissable alerts about lit.dev errors.
  */
+@customElement('litdev-error-notifier')
 export class LitDevErrorNotifier extends LitElement {
   /**
    * The SHA or version number identifying the version of lit.dev, used for
@@ -97,4 +98,8 @@ Browser: \`${navigator.userAgent}\`
   }
 }
 
-customElements.define('litdev-error-notifier', LitDevErrorNotifier);
+declare global {
+  interface HTMLElementTagNameMap {
+    'litdev-error-notifier': LitDevErrorNotifier;
+  }
+}
