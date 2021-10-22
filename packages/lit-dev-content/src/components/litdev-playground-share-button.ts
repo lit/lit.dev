@@ -39,7 +39,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
       font-weight: 600;
     }
     #menu {
-      z-index: 10;
+      z-index: 7;
     }
     mwc-snackbar {
       background: blue;

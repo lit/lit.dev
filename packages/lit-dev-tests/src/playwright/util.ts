@@ -53,6 +53,20 @@ export async function freezeSnackbars(page: Page) {
 }
 
 /**
+ * Find all <mwc-dialog> elements on the page and disable their
+ * transitions/animations.
+ */
+export async function freezeDialogs(page: Page) {
+  for (const dialog of await page.$$('mwc-dialog')) {
+    await page.evaluate((dialog) => {
+      for (const child of dialog?.shadowRoot?.querySelectorAll('*') ?? []) {
+        (child as HTMLElement).style.transition = 'none';
+      }
+    }, dialog);
+  }
+}
+
+/**
  * Close any open <mwc-snackbar> elements on the given page.
  */
 export async function closeSnackbars(page: Page) {

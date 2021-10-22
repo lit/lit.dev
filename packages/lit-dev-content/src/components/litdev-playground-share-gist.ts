@@ -12,6 +12,7 @@ import {signInToGithub} from '../github/github-signin.js';
 import {getAuthenticatedUser} from '../github/github-user.js';
 import {createGist, updateGist} from '../github/github-gists.js';
 import {githubLogo} from '../icons/github-logo.js';
+import {showErrors} from '../errors.js';
 
 import type {Gist, GistFiles} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
@@ -196,11 +197,11 @@ export class LitDevPlaygroundShareGist extends LitElement {
     return this.activeGist.owner.id === user.id;
   }
 
+  @showErrors()
   private async _signIn() {
     if (!this.githubApiUrl || !this.clientId || !this.authorizeUrl) {
       throw new Error('Missing required properties');
     }
-    // TODO(aomarks) User facing error if this fails.
     // TODO(aomarks) Show a scrim and some indication about what is happening
     //               while the GitHub sign in popup is open.
     const token = await signInToGithub({
@@ -232,6 +233,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     this.requestUpdate();
   }
 
+  @showErrors()
   async createNewGist() {
     if (!this.githubApiUrl) {
       throw new Error('Missing required properties');
@@ -255,13 +257,12 @@ export class LitDevPlaygroundShareGist extends LitElement {
       projectFiles.map((file) => [file.name, {content: file.content}])
     );
 
-    // TODO(aomarks) User facing error if this fails.
-    const gistId = await createGist(gistFiles, {
+    const gist = await createGist(gistFiles, {
       apiBaseUrl: this.githubApiUrl,
       token,
     });
 
-    window.location.hash = '#gist=' + gistId;
+    window.location.hash = '#gist=' + gist.id;
     await navigator.clipboard.writeText(window.location.toString());
     this.dispatchEvent(new Event('created'));
     this.dispatchEvent(
@@ -272,6 +273,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     );
   }
 
+  @showErrors()
   async updateGist() {
     if (!this.githubApiUrl || !this.activeGist) {
       throw new Error('Missing required properties');

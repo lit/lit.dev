@@ -18,6 +18,7 @@ steps:
       - --cache=true
       - --cache-ttl=168h # 1 week
       - --build-arg=LITDEV_ENV=prod
+      - --build-arg=SHORT_SHA=$SHORT_SHA
 
   # Create a new Cloud Run revision for the main site.
   #

@@ -5,6 +5,7 @@
  */
 
 interface LitDevEnvironment {
+  siteVersion: string;
   mainPort: number;
   playgroundPort: number;
   fakeGithubPort: number | undefined;
@@ -64,6 +65,7 @@ const environment = <T extends LitDevEnvironment>(env: T): T => env;
  * lit.dev environment configuration for fast local dev mode with auto-reload.
  */
 export const dev = environment({
+  siteVersion: 'dev',
   mainPort: 5415,
   playgroundPort: 5416,
   fakeGithubPort: 5417,
@@ -96,6 +98,7 @@ export const dev = environment({
  * lit.dev environment configuration for running a prod-ish environment locally.
  */
 const local = environment({
+  siteVersion: 'local',
   mainPort: 6415,
   playgroundPort: 6416,
   fakeGithubPort: 6417,
@@ -128,6 +131,9 @@ const local = environment({
  * lit.dev environment configuration for automatically generated test PRs.
  */
 const pr = environment({
+  get siteVersion() {
+    return `pr-${stringEnv('SHORT_SHA')}`;
+  },
   get mainPort() {
     // Assigned automatically and passed as an environment variable.
     return integerEnv('PORT');
@@ -164,6 +170,9 @@ const pr = environment({
  * lit.dev environment configuration for the live production site.
  */
 const prod = environment({
+  get siteVersion() {
+    return `prod-${stringEnv('SHORT_SHA')}`;
+  },
   get mainPort() {
     // Assigned automatically and passed as an environment variable.
     return integerEnv('PORT');
