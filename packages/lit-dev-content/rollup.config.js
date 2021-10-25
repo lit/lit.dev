@@ -95,7 +95,7 @@ export default [
   // We compile them separately here because they include imports for a small
   // amount of code that we want to inline directly (again, because we want to
   // execute immediately), even though that code is technically duplicated into
-  // the asyncronously-loaded module bundles above.
+  // the asynchronously-loaded module bundles above.
   {
     input: [
       'lib/global/apply-mods.js',

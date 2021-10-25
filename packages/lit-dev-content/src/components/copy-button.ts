@@ -28,7 +28,7 @@ export class CopyButton extends LitElement {
     return html`<mwc-icon-button
       outlined
       @click=${this._click}
-      label="Copy to clipboard"
+      aria-label="Copy to clipboard"
     >
       ${copyIcon}
     </mwc-icon-button>`;

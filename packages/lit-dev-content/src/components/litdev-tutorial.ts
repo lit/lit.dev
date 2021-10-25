@@ -91,7 +91,7 @@ export class LitDevTutorial extends LitElement {
         <nav>
           <mwc-icon-button
             id="prevButton"
-            label="Previous step"
+            aria-label="Previous step"
             .disabled=${this._idx <= 0}
             @click=${this._onClickPrevButton}
           >
@@ -105,7 +105,7 @@ export class LitDevTutorial extends LitElement {
 
           <mwc-icon-button
             id="nextButton"
-            label="Next step"
+            aria-label="Next step"
             .disabled=${this._idx >= manifest.steps.length - 1}
             @click=${this._onClickNextButton}
           >
