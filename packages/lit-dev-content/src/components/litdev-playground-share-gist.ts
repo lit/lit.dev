@@ -7,7 +7,7 @@
 import './litdev-icon-button.js';
 
 import {LitElement, html, css, nothing} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, property, state} from 'lit/decorators.js';
 import {signInToGithub} from '../github/github-signin.js';
 import {getAuthenticatedUser} from '../github/github-user.js';
 import {createGist, updateGist} from '../github/github-gists.js';
@@ -113,6 +113,13 @@ export class LitDevPlaygroundShareGist extends LitElement {
   getProjectFiles?: () => SampleFile[] | undefined;
 
   /**
+   * Whether we're actively awaiting something like signing in or writing a
+   * gist. The buttons should be disabled in that case.
+   */
+  @state()
+  private _pending = false;
+
+  /**
    * The gist we are currently viewing, if any.
    */
   @property({attribute: false})
@@ -132,7 +139,11 @@ export class LitDevPlaygroundShareGist extends LitElement {
   }
 
   private get _signInButton() {
-    return html`<litdev-icon-button id="signInButton" @click=${this._signIn}>
+    return html`<litdev-icon-button
+      id="signInButton"
+      .disabled=${this._pending}
+      @click=${this._signIn}
+    >
       ${githubLogo} Sign in to GitHub
     </litdev-icon-button>`;
   }
@@ -160,6 +171,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
   private get _newGistButton() {
     return html`<litdev-icon-button
       id="createNewGistButton"
+      .disabled=${this._pending}
       @click=${this.createNewGist}
     >
       ${githubLogo} Create new gist
@@ -169,6 +181,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
   private get _updateGistButton() {
     return html`<litdev-icon-button
       id="updateGistButton"
+      .disabled=${this._pending}
       @click=${this.updateGist}
     >
       ${githubLogo} Update gist
@@ -200,26 +213,31 @@ export class LitDevPlaygroundShareGist extends LitElement {
 
   @showErrors()
   private async _signIn() {
-    if (!this.githubApiUrl || !this.clientId || !this.authorizeUrl) {
-      throw new Error('Missing required properties');
+    this._pending = true;
+    try {
+      if (!this.githubApiUrl || !this.clientId || !this.authorizeUrl) {
+        throw new Error('Missing required properties');
+      }
+      // TODO(aomarks) Show a scrim and some indication about what is happening
+      //               while the GitHub sign in popup is open.
+      const token = await signInToGithub({
+        clientId: this.clientId,
+        authorizeUrl: this.authorizeUrl,
+      });
+      tokenCache.set(this, token);
+      const {id, login} = await getAuthenticatedUser({
+        apiBaseUrl: this.githubApiUrl,
+        token,
+      });
+      localStorage.setItem(
+        GITHUB_USER_LOCALSTORAGE_KEY,
+        JSON.stringify({id, login})
+      );
+      // Render share button.
+      this.requestUpdate();
+    } finally {
+      this._pending = false;
     }
-    // TODO(aomarks) Show a scrim and some indication about what is happening
-    //               while the GitHub sign in popup is open.
-    const token = await signInToGithub({
-      clientId: this.clientId,
-      authorizeUrl: this.authorizeUrl,
-    });
-    tokenCache.set(this, token);
-    const {id, login} = await getAuthenticatedUser({
-      apiBaseUrl: this.githubApiUrl,
-      token,
-    });
-    localStorage.setItem(
-      GITHUB_USER_LOCALSTORAGE_KEY,
-      JSON.stringify({id, login})
-    );
-    // Render share button.
-    this.requestUpdate();
   }
 
   /**
@@ -236,103 +254,113 @@ export class LitDevPlaygroundShareGist extends LitElement {
 
   @showErrors()
   async createNewGist() {
-    if (!this.githubApiUrl) {
-      throw new Error('Missing required properties');
+    this._pending = true;
+    try {
+      if (!this.githubApiUrl) {
+        throw new Error('Missing required properties');
+      }
+      const projectFiles = this.getProjectFiles?.();
+      if (!projectFiles || projectFiles.length === 0) {
+        // TODO(aomarks) The button should just be disabled in this case.
+        throw new Error("Can't save an empty project");
+      }
+
+      this.dispatchEvent(
+        new CustomEvent('status', {
+          detail: {text: 'Creating gist ...'},
+          bubbles: true,
+        })
+      );
+
+      let token = tokenCache.get(this);
+      if (token === undefined) {
+        await this._signIn();
+      }
+      token = tokenCache.get(this);
+      if (token === undefined) {
+        throw new Error('Error token not defined');
+      }
+
+      const gistFiles = playgroundToGist(projectFiles);
+
+      const gist = await createGist(gistFiles, {
+        apiBaseUrl: this.githubApiUrl,
+        token,
+      });
+
+      window.location.hash = '#gist=' + gist.id;
+      await navigator.clipboard.writeText(window.location.toString());
+      this.dispatchEvent(new Event('created'));
+      this.dispatchEvent(
+        new CustomEvent('status', {
+          detail: {text: 'Gist created and URL copied to clipboard'},
+          bubbles: true,
+        })
+      );
+    } finally {
+      this._pending = false;
     }
-    const projectFiles = this.getProjectFiles?.();
-    if (!projectFiles || projectFiles.length === 0) {
-      // TODO(aomarks) The button should just be disabled in this case.
-      throw new Error("Can't save an empty project");
-    }
-
-    this.dispatchEvent(
-      new CustomEvent('status', {
-        detail: {text: 'Creating gist ...'},
-        bubbles: true,
-      })
-    );
-
-    let token = tokenCache.get(this);
-    if (token === undefined) {
-      await this._signIn();
-    }
-    token = tokenCache.get(this);
-    if (token === undefined) {
-      throw new Error('Error token not defined');
-    }
-
-    const gistFiles = playgroundToGist(projectFiles);
-
-    const gist = await createGist(gistFiles, {
-      apiBaseUrl: this.githubApiUrl,
-      token,
-    });
-
-    window.location.hash = '#gist=' + gist.id;
-    await navigator.clipboard.writeText(window.location.toString());
-    this.dispatchEvent(new Event('created'));
-    this.dispatchEvent(
-      new CustomEvent('status', {
-        detail: {text: 'Gist created and URL copied to clipboard'},
-        bubbles: true,
-      })
-    );
   }
 
   @showErrors()
   async updateGist() {
-    if (!this.githubApiUrl || !this.activeGist) {
-      throw new Error('Missing required properties');
-    }
-    const projectFiles = this.getProjectFiles?.();
-    if (!projectFiles || projectFiles.length === 0) {
-      // TODO(aomarks) The button should just be disabled in this case.
-      throw new Error("Can't save an empty project");
-    }
-
-    this.dispatchEvent(
-      new CustomEvent('status', {
-        detail: {text: 'Updating gist ...'},
-        bubbles: true,
-      })
-    );
-
-    let token = tokenCache.get(this);
-    if (token === undefined) {
-      await this._signIn();
-    }
-    token = tokenCache.get(this);
-    if (token === undefined) {
-      throw new Error('Error token not defined');
-    }
-
-    const gistFiles = playgroundToGist(projectFiles);
-
-    // If we have deleted or renamed a file, then the old filename will no
-    // longer be in our project files list. However, when updating a gist, if
-    // you omit a file that existed in the previous revision, it will not be
-    // automatically deleted. Instead, we need to add an explicit entry for the
-    // file where the content is empty.
-    for (const oldFilename of Object.keys(this.activeGist.files)) {
-      if (!gistFiles[oldFilename]) {
-        gistFiles[oldFilename] = {content: ''};
+    this._pending = true;
+    try {
+      if (!this.githubApiUrl || !this.activeGist) {
+        throw new Error('Missing required properties');
       }
+      const projectFiles = this.getProjectFiles?.();
+      if (!projectFiles || projectFiles.length === 0) {
+        // TODO(aomarks) The button should just be disabled in this case.
+        throw new Error("Can't save an empty project");
+      }
+
+      this.dispatchEvent(
+        new CustomEvent('status', {
+          detail: {text: 'Updating gist ...'},
+          bubbles: true,
+        })
+      );
+
+      let token = tokenCache.get(this);
+      if (token === undefined) {
+        await this._signIn();
+      }
+      token = tokenCache.get(this);
+      if (token === undefined) {
+        throw new Error('Error token not defined');
+      }
+
+      const gistFiles = playgroundToGist(projectFiles);
+
+      // If we have deleted or renamed a file, then the old filename will no
+      // longer be in our project files list. However, when updating a gist, if
+      // you omit a file that existed in the previous revision, it will not be
+      // automatically deleted. Instead, we need to add an explicit entry for the
+      // file where the content is empty.
+      for (const oldFilename of Object.keys(this.activeGist.files)) {
+        if (!gistFiles[oldFilename]) {
+          gistFiles[oldFilename] = {content: ''};
+        }
+      }
+
+      const gist = await updateGist(this.activeGist.id, gistFiles, {
+        apiBaseUrl: this.githubApiUrl,
+        token,
+      });
+
+      window.location.hash = '#gist=' + gist.id;
+      await navigator.clipboard.writeText(window.location.toString());
+      this.dispatchEvent(new Event('created'));
+      this.dispatchEvent(
+        new CustomEvent('status', {
+          detail: {text: 'Gist updated and URL copied to clipboard'},
+          bubbles: true,
+        })
+      );
+    } finally {
+      this._pending = false;
     }
-
-    const gist = await updateGist(this.activeGist.id, gistFiles, {
-      apiBaseUrl: this.githubApiUrl,
-      token,
-    });
-
-    window.location.hash = '#gist=' + gist.id;
-    await navigator.clipboard.writeText(window.location.toString());
-    this.dispatchEvent(new Event('created'));
-    this.dispatchEvent(
-      new CustomEvent('status', {
-        detail: {text: 'Gist updated and URL copied to clipboard'},
-        bubbles: true,
-      })
-    );
   }
 }
 
