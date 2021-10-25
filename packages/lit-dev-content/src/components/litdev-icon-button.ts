@@ -5,7 +5,7 @@
  */
 
 import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 
 /**
  * A button with lit.dev styling.
@@ -15,6 +15,12 @@ import {customElement} from 'lit/decorators.js';
  */
 @customElement('litdev-icon-button')
 export class LitDevIconButton extends LitElement {
+  /**
+   * Whether this button is disabled.
+   */
+  @property({type: Boolean, reflect: true})
+  disabled = false;
+
   static override styles = css`
     :host {
       border: 1px solid currentcolor;
@@ -23,7 +29,11 @@ export class LitDevIconButton extends LitElement {
       display: inline-block;
       font-family: 'Open Sans', sans-serif;
       font-size: 16px;
-      padding: 5px 8px;
+    }
+
+    :host([disabled]) {
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     :host(:hover) {
@@ -40,7 +50,7 @@ export class LitDevIconButton extends LitElement {
       font-family: inherit;
       font-size: inherit;
       margin: 0;
-      padding: 0;
+      padding: 5px 8px;
     }
 
     slot {
@@ -57,7 +67,7 @@ export class LitDevIconButton extends LitElement {
 
   override render() {
     return html`
-      <button>
+      <button ?disabled=${this.disabled}>
         <slot></slot>
       </button>
     `;
