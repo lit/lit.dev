@@ -296,7 +296,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       } catch {
         // The browser isn't allowing us to copy. This could happen because it's
         // disabled in settings, or because we're in a browser like Safari that
-        // only allows copying from a syncronous event handler.
+        // only allows copying from a synchronous event handler.
         statusText += ' and URL bar updated';
       }
       this.dispatchEvent(new Event('created'));
