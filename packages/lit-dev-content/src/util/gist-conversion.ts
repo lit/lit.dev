@@ -45,7 +45,11 @@ export const playgroundToGist = (playgroundFiles: SampleFile[]): GistFiles => {
     ),
   };
   const gistFiles: GistFiles = Object.fromEntries(
-    playgroundFiles.map(({name, content}) => [name, {content}])
+    playgroundFiles
+      // Gist files can't be empty. But because an empty file will still have a
+      // metadata entry, we'll still know it exists when we load it later.
+      .filter(({content}) => content !== '')
+      .map(({name, content}) => [name, {content}])
   );
   gistFiles[METADATA_FILENAME] = {
     content: JSON.stringify(metadata),
@@ -69,7 +73,7 @@ export const gistToPlayground = (gistFiles: GistFiles): SampleFile[] => {
       console.warn('Failed to JSON parse playground metadata file in gist');
     }
   }
-  const playgroundFiles: SampleFile[] = [];
+  const playgroundFiles: {[name: string]: SampleFile} = {};
   for (const gistFile of Object.values(gistFiles)) {
     if (gistFile === metadataFile || !gistFile.filename) {
       continue;
@@ -78,12 +82,19 @@ export const gistToPlayground = (gistFiles: GistFiles): SampleFile[] => {
       name: gistFile.filename,
       content: gistFile.content,
     };
-    if (metadata.files?.[gistFile.filename]?.hidden) {
-      file.hidden = true;
-    }
-    playgroundFiles.push(file);
+    playgroundFiles[file.name] = file;
   }
-  playgroundFiles.sort((a, b) => {
+  for (const [name, {hidden}] of Object.entries(metadata.files || {})) {
+    let playgroundFile = playgroundFiles[name];
+    if (!playgroundFile) {
+      playgroundFile = {name, content: ''};
+      playgroundFiles[name] = playgroundFile;
+    }
+    if (hidden) {
+      playgroundFile.hidden = true;
+    }
+  }
+  return Object.values(playgroundFiles).sort((a, b) => {
     const aPos = metadata.files?.[a.name]?.position;
     const bPos = metadata.files?.[b.name]?.position;
     // Check types because this metadata file can theoretically contain
@@ -94,5 +105,4 @@ export const gistToPlayground = (gistFiles: GistFiles): SampleFile[] => {
     }
     return 0;
   });
-  return playgroundFiles;
 };

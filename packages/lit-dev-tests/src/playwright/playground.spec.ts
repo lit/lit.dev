@@ -9,6 +9,7 @@ import {
   waitForPlaygroundPreviewToLoad,
   freezeSnackbars,
   freezeDialogs,
+  closeSnackbars,
   readClipboardText,
 } from './util';
 
@@ -186,7 +187,7 @@ test.describe('Playground', () => {
     await page.keyboard.press('Control+A');
     await page.keyboard.type('"my updated gist content";');
 
-    // Rename file
+    // Rename a file
     await page.hover('text=simple-greeting.ts');
     await page.click('text=simple-greeting.ts >> .menu-button');
     await page.click('#renameButton');
@@ -198,6 +199,15 @@ test.describe('Playground', () => {
     );
     await page.keyboard.press('Enter');
 
+    // Add a new empty file
+    await page.click('.add-file-button');
+    await page.click('.filename-input');
+    await page.keyboard.type('empty.txt');
+    await expect(await page.screenshot()).toMatchSnapshot(
+      'shareGist-6-addingFile.png'
+    );
+    await page.keyboard.press('Enter');
+
     // Open the share menu again
     await waitForPlaygroundPreviewToLoad(page);
     await page.click('litdev-playground-share-button');
@@ -205,7 +215,7 @@ test.describe('Playground', () => {
       state: 'visible',
     });
     await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-6-shareMenuOpenAgain.png'
+      'shareGist-7-shareMenuOpenAgain.png'
     );
 
     // Update the gist
@@ -218,14 +228,14 @@ test.describe('Playground', () => {
       state: 'hidden',
     });
     await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-7-gistUpdated.png'
+      'shareGist-8-gistUpdated.png'
     );
 
     // Reload the page again to confirm the updated content is there
     await page.reload();
     await waitForPlaygroundPreviewToLoad(page);
     await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-8-pageReloadedAgain.png'
+      'shareGist-9-pageReloadedAgain.png'
     );
   });
 
@@ -374,6 +384,7 @@ test.describe('Playground', () => {
     // An informative dialog should display
     await page.waitForSelector('[role=alertdialog]');
     await freezeDialogs(page);
+    await closeSnackbars(page);
     await expect(await page.screenshot()).toMatchSnapshot(
       'backendErrorWritingGist.png'
     );

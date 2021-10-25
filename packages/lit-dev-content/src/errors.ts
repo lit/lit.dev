@@ -52,7 +52,7 @@ export const showErrors =
     const originalMethod = descriptor.value;
     descriptor.value = function (...args: unknown[]) {
       try {
-        const result = originalMethod.apply(this, ...args);
+        const result = originalMethod.apply(this, args);
         if (result instanceof Promise) {
           return result.catch((error: unknown) => {
             showError(error);

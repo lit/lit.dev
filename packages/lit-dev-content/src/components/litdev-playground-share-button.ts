@@ -174,10 +174,17 @@ export class LitDevPlaygroundShareButton extends LitElement {
     this._open = false;
   }
 
-  private _showStatus(event: CustomEvent<{text: string}>) {
+  private async _showStatus(event: CustomEvent<{text: string}>) {
     const snackbar = this._snackbar;
     if (!snackbar) {
       return;
+    }
+    if (snackbar.open) {
+      // Since we have a new message, we need to reset the snackbar close timer.
+      // This also creates a new pop-in animation, which makes it more visually
+      // obvious that the message has changed.
+      snackbar.open = false;
+      await snackbar.updateComplete;
     }
     snackbar.labelText = event.detail.text;
     snackbar.open = true;
