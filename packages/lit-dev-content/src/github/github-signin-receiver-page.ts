@@ -28,6 +28,10 @@ if (opener) {
   } else {
     message = {code};
   }
+  // Note the default postMessage targetOrigin is "/"
+  // (https://html.spec.whatwg.org/multipage/web-messaging.html#posting-messages)
+  // so by leaving it unspecified we ensure that we will only post codes to our
+  // expected same-origin.
   opener.postMessage(message);
 } else {
   const p = document.createElement('p');

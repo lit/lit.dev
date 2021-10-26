@@ -122,8 +122,11 @@ const receiveCodeFromPopup = (
       'message',
       (event) => {
         // Note we must check source because our popup might not be the only
-        // source of "message" events. This is also why we can't set "once".
-        if (event.source === popup) {
+        // source of "message" events. This is also why we can't set "once". We
+        // also check the origin because we expect GitHub to redirect to the
+        // receiver page running on the same origin as this page; any other
+        // origin would be suspicious (or a misconfiguration).
+        if (event.source === popup && event.origin === window.location.origin) {
           resolve(event.data);
           abort();
         }
