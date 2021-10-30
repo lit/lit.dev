@@ -272,6 +272,9 @@ article h4 {
   border-right: 1px solid rgb(230, 230, 230);
   color: rgb(37, 37, 37);
 }
+.params > .paramDetails > :first-of-type {
+  margin-top: 0;
+}
 .params > .paramDetails {
   margin-left: 0;
 }
