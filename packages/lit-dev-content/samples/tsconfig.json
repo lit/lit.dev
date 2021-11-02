@@ -1,6 +1,7 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "esnext",
     "rootDir": ".",
     "outDir": "js",
     "types": [],
