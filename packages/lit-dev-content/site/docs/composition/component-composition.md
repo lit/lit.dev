@@ -58,7 +58,7 @@ Reusable controls like buttons, checkboxes, and input fields can make great comp
 When exchanging data with subcomponents, the general rule is to follow the model of the DOM: _properties down_, _events up_.
 
 
-*   Properties down. Setting properties on a subcomponent is usually preferable to calling methods on the subcomponent. It's easy to set properties with Lit expressions.
+*   Properties down. Setting properties on a subcomponent is usually preferable to calling methods on the subcomponent. It's easy to set properties in Lit templates and other declarative template systems.
 *   Events up. In the web platform, firing events is the default method for elements to send information up the tree, often in response to user interactions. This lets the host component respond to the event, or transform or re-fire the event for ancestors farther up the tree.
 
 A few implications of this model:
