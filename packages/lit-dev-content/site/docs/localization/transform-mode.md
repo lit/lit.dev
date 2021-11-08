@@ -42,6 +42,35 @@ render() {
 }
 ```
 
+## Configuring transform mode
+
+In your `lit-localize.json` config, set the `mode` property to `transform`, and
+set the `output.outputDir` property to the location where you would like your
+localized app folders to be generated. See [transform mode
+settings](/docs/localization/cli-and-config#transform-mode-settings) for more
+details.
+
+In your JavaScript or TypeScript project, optionally call
+`configureTransformLocalization`, passing an object with the following
+properties:
+
+- `sourceLocale: string`: Required locale code in which source templates in this
+  project are written.
+
+```js
+import {configureTransformLocalization} from '@lit/localize';
+
+export const {getLocale} = configureTransformLocalization({
+  sourceLocale: 'en',
+});
+```
+
+`configureTransformLocalization` returns an object with the following properties:
+
+### getLocale
+
+The `getLocale` function returns the active locale code.
+
 ## Setting the initial locale
 
 In transform mode, the active locale is determined simply by the JavaScript
@@ -94,14 +123,9 @@ import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {getLocale} from './localization.js';
 import {allLocales} from './generated/locales.js';
-import {updateWhenLocaleChanges} from '@lit/localize';
 
 @customElement('locale-picker');
 export class LocalePicker extends LitElement {
-  super() {
-    super();
-    updateWhenLocaleChanges(this);
-  }
   render() {
     return html`
       <select @change=${this.localeChanged}>
@@ -130,13 +154,8 @@ export class LocalePicker extends LitElement {
 import {LitElement, html} from 'lit';
 import {getLocale} from './localization.js';
 import {allLocales} from './generated/locales.js';
-import {updateWhenLocaleChanges} from '@lit/localize';
 
 export class LocalePicker extends LitElement {
-  super() {
-    super();
-    updateWhenLocaleChanges(this);
-  }
   render() {
     return html`
       <select @change=${this.localeChanged}>
@@ -150,8 +169,8 @@ export class LocalePicker extends LitElement {
     `;
   }
 
-  localeChanged(event: Event) {
-    const newLocale = (event.target as HTMLSelectElement).value;
+  localeChanged(event) {
+    const newLocale = event.target.value;
     const url = new URL(window.location.href);
     if (url.searchParams.get('locale') !== newLocale) {
       url.searchParams.set('locale', newLocale);

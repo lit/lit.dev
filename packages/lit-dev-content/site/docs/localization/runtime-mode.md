@@ -30,17 +30,21 @@ runtime mode:
 
 {% playground-example "docs/libraries/localization/runtime" "x-greeter.ts" %}
 
-For a full working example of runtime mode that you can use as a template, see
-the
-[JavaScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-js)
-and
-[TypeScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-ts)
-directories in the Lit GitHub repo.
+The Lit GitHub repo includes full working examples
+([JavaScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-js),
+[TypeScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-ts))
+of Lit Localize runtime mode that you can use as templates.
 
 ## Configuring runtime mode
 
-Initialize runtime mode by calling the `configureLocalization` function, passing
-an object with the following properties:
+In your `lit-localize.json` config, set the `mode` property to `runtime`, and
+set the `output.outputDir` property to the location where you would like your
+localized template modules to be generated. See [runtime mode
+settings](/docs/localization/cli-and-config#runtime-mode-settings) for more
+details.
+
+In your JavaScript or TypeScript project, call `configureLocalization` function,
+passing an object with the following properties:
 
 - `sourceLocale: string`: Required locale code in which source templates in this
   project are written, and the initial active locale.

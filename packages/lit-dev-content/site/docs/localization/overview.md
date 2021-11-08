@@ -424,9 +424,11 @@ explain and contextualize the meaning of messages.
 
 ```js
 render() {
-  return msg(html`<button>${msg('Launch')}</button>`, {
-    desc: 'Button that begins rocket launch sequence.'
-  });
+  return html`<button>
+    ${msg("Launch", {
+      desc: "Button that begins rocket launch sequence.",
+    })}
+  </button>`;
 }
 ```
 
@@ -439,16 +441,42 @@ Descriptions will be represented in XLIFF files using `<note>` elements.
 </trans-unit>
 ```
 
-## Message IDs
+## Message ids
 
-Lit Localize automatically generates a unique ID for every message using a hash
-of the template contents. All parts of a template affect the automatic ID,
-except for the contents of expressions (though the _position_ of expressions
-does affect the ID).
+Lit Localize automatically generates an id for every `msg` call using a hash of
+the string contents, including HTML markup.
 
-Avoid hard-coding IDs when possible, but in rare cases it may be helpful, such
-as when multiple phrases with different meanings are written the same way in the
-source language, but might be written differently in a target language:
+If two `msg` calls share the same id, then they are treated as the same message,
+meaning they will be translated as a single unit and the same translations will
+be substituted in both places.
+
+For example, these two `msg` calls are in two different files, but since they
+have the same content they will be treated as one message:
+
+```js
+// file1.js
+msg('Hello World')
+
+// file2.js
+msg('Hello World')
+```
+
+If a string contains an expression (e.g. `${foo}`), then the content of the
+expression does **not** affect the id, though the presence and position of the
+expression does.
+
+For example, these two messages have the same id:
+
+```js
+// Same id
+msg(`Hello ${name}`)
+msg(`Hello ${this.name}`);
+```
+
+Message ids can be overridden by specifying the `id` option to the `msg`
+function. In some cases this may be necessary, such as when an identical string
+has multiple meanings, because each might be written differently in another
+language:
 
 ```js
 msg('Buffalo', {id: 'buffalo-animal-singular'});

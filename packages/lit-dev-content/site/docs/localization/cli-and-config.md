@@ -18,8 +18,8 @@ lit-localize command [--flags]
 
 | Command   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `extract` | Extract templates from `msg()` calls across all source files included by your `tsconfig.json`, and create or update XLIFF (`.xlf`) files containing translation requests.                                                                                                                                                                                                                                                                               |
-| `build`   | Read translations and build the project according to the configured mode.<br><br>In _transform_ mode, compile your project for each locale, replacing `msg` calls with localized templates. See also the [Rollup](#rollup) section for performing this transform as part of a Rollup pipeline.<br><br>In _runtime_ mode, generate a `<locale>.js` or `<locale>.ts` file for each locale, which can be dynamically loaded by the `@lit/localize` module. |
+| `extract` | Extract `msg` calls from all input files and create or update XLIFF (`.xlf`) files.                                                                                                                                                                                                                                                                               |
+| `build`   | Incorporate translations back into your app using the configured [mode](/docs/localization/overview/#output-modes). |
 
 ### Flags
 
@@ -83,7 +83,7 @@ All file paths are relative to the location of the config file.
     <code class="paramType">"transform" | "runtime"</code>
     <p><em>Required</em></p>
     <p>What kind of output should be produced. See
-    <a href="#build-output-modes">modes</a>.</p>
+    <a href="/docs/localization/overview/#output-modes">modes</a>.</p>
   </dd>
 
   <dt class="paramName">output.localeCodesModule</dt>

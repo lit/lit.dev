@@ -95,9 +95,8 @@ because:
 1. It's easier for translators to deal with simple string phrases instead of
    phrases with embedded markup.
 
-2. It avoids unnecessary re-translation work when markup changes, such as adding
-   a class that affects appearance without changing the meaning. HTML markup is
-   included when generating an id, so changing markup creates a new message.
+2. It avoids unnecessary re-translation work when markup changes, such as when
+   adding a class that affects appearance without changing the meaning.
 
 3. It will typically be faster to swap locales, because fewer parts of the DOM
    will need to update. Also, less JavaScript will be included in your bundles,
@@ -147,15 +146,15 @@ render() {
 
 <div class="alert alert-info">
 
-When using transform mode, templates will be automaticaly flattened to make them
-as small and efficient as possible. After transformation, the above example
+When using transform mode, templates will be automatically flattened to make
+them as small and efficient as possible. After transformation, the above example
 won't have any placeholders, because it knows that strings can be directly
 merged into HTML templates.
 
 </div>
 
-There are cases where HTML *should* be included in the localized template,
-however, for example where an HTML tag is needed in the middle of a phrase:
+There are cases where HTML *should* be included in the localized template. For
+example where an HTML tag is needed in the middle of a phrase:
 
 ```js
 render() {
