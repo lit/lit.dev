@@ -1,8 +1,8 @@
 ---
-title: Releases
+title: Localization
 eleventyNavigation:
-  key: Releases
-  order: 8
+  key: Localization
+  order: 6
 ---
 
 <!-- This file exists only to create a section heading.

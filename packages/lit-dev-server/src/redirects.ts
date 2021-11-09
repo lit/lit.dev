@@ -20,6 +20,8 @@ export const pageRedirects = new Map([
   ['/msg/request-update-promise',     '/docs/releases/upgrade/#litelement'],
   ['/msg/expression-in-template',     '/docs/templates/expressions/#invalid-locations'],
   ['/msg/expression-in-textarea',     '/docs/templates/expressions/#invalid-locations'],
+  // Relocated pages
+  ['/docs/libraries/localization',    '/docs/localization/overview/'],
 ].map(([path, redir]) => [
   // Trailing slashes are required because this redirect map is consulted after
   // standard lit.dev path canonicalization.
