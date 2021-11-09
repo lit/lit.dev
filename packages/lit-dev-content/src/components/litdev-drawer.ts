@@ -49,6 +49,10 @@ export class LitDevDrawer extends LitElement {
       overflow-y: hidden !important;
     }
 
+    :host(:not([open])) > #content {
+      display: none;
+    }
+
     #header {
       flex: 0 0 var(--litdev-drawer-header-height);
       box-sizing: border-box;
