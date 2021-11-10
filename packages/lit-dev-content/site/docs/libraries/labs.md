@@ -16,4 +16,4 @@ Current Lit Labs projects include:
 * [SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr#lit-labsssr). A package for server-side rendering Lit templates and components.
 * [Task](https://github.com/lit/lit/blob/main/packages/labs/task/README.md#lit-labstask). A reactive controller for handling asynchronous tasks.
 
-When a Lit Labs project is ready for production it may be migrated to a new location outside of Lit Labs. For example, the [`@lit/localize`](https://www.npmjs.com/package/@lit/localize) package started out as a Lit Labs project.
+When a Lit Labs project is ready for production it may be migrated to a new location outside of Lit Labs. For example, the [`@lit/localize`](/docs/localization/overview/) package started out as a Lit Labs project.
