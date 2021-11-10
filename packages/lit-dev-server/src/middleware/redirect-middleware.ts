@@ -11,6 +11,13 @@ import type Koa from 'koa';
  * Creates a Koa middleware that performs lit.dev redirection logic.
  */
 export const redirectMiddleware = (): Koa.Middleware => async (ctx, next) => {
+  if (ctx.host === 'www.lit.dev') {
+    const url = new URL(ctx.URL);
+    url.hostname = 'lit.dev';
+    ctx.status = 301;
+    ctx.redirect(url.href);
+    return;
+  }
   // If there would be multiple redirects, resolve them all here so that we
   // serve just one HTTP redirect instead of a chain.
   let path = ctx.path;
