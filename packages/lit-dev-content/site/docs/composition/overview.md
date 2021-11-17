@@ -12,7 +12,7 @@ Composition is a strategy for managing complexity and organizing code into reusa
 *   Reactive controllers.
 *   Class mixins.
 
-_Component composition_ is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
+[_Component composition_](/docs/composition/component-composition/) is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
 
 Although component composition is the default way to think about breaking a complex Lit project down into smaller units, there are two other notable code patterns useful for factoring your Lit code:
 

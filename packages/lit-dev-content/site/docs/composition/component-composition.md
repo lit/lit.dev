@@ -31,18 +31,18 @@ render() {
 ```
 
 
-In addition to the nodes in your shadow DOM, you can render child nodes, provided by the component user. For example, the `top-bar` element in the previous example has two children supplied by the user: a navigation button, and a title.
+## Light DOM children
 
-Interacting with child nodes is different from interacting with nodes in the shadow DOM. Nodes in a component's shadow DOM are managed by the component, and shouldn't be accessed from outside the component. Child nodes are managed by the component's user, but may be manipulated by the component, as well. (For example, the `top-bar` component might add an event listener to the navigation button.)
+In addition to the nodes in your shadow DOM, you can render child nodes provided by the component user. Child nodes are sometimes referred to as "light DOM" to distinguish them from the component's shadow DOM. For example, the `top-bar` element in the previous example has two light DOM children supplied by the user: a navigation button, and a title.
 
-You can use slots to [control how child nodes render](/docs/components/shadow-dom/#slots).
+Interacting with light DOM children is different from interacting with nodes in the shadow DOM. Nodes in a component's shadow DOM are managed by the component, and shouldn't be accessed from outside the component. Light DOM children are managed by the component's user, but can be accessed by the component as well. The component has control over whether and where the child nodes are rendered.
+
+For more information, see the sections on [rendering children with slots](/docs/components/shadow-dom/#slots) and [accessing slotted children](/docs/components/shadow-dom/#accessing-slotted-children).
 
 
 ##  What makes a good component
 
 When deciding how to break up functionality, there are several things that help identify when to make a new component. A piece of UI may be a good candidate for a component if one or more of the following applies:
-
-
 
 *   It has its own state.
 *   It has its own template.
@@ -53,10 +53,9 @@ When deciding how to break up functionality, there are several things that help 
 Reusable controls like buttons, checkboxes, and input fields can make great components. But more complex UI pieces like drawers and carousels are also great candidates for componentization.
 
 
-##  Exchanging data with subcomponents
+##  Passing data up and down the tree
 
 When exchanging data with subcomponents, the general rule is to follow the model of the DOM: _properties down_, _events up_.
-
 
 *   Properties down. Setting properties on a subcomponent is usually preferable to calling methods on the subcomponent. It's easy to set properties with Lit expressions.
 *   Events up. In the web platform, firing events is the default method for elements to send information up the tree, often in response to user interactions. This lets the host component respond to the event, or transform or re-fire the event for ancestors farther up the tree.
@@ -72,7 +71,6 @@ Consider a menu component that includes a set of menu items and exposes `items` 
 
 ![A hierarchy of DOM nodes representing a menu. The top node, my-menu, has a ShadowRoot, which contains three my-item elements.](/images/docs/composition/composition-menu-component.png)
 
-
 When the user selects an item, the `my-menu` element should update its `selectedItem` property. It should also fire an event to notify any owning component that the selection has changed. The complete sequence would be something like this:
 
 - The user interacts with an item, causing an event to fire (either a standard event like `click`, or some event specific to the `my-item` component).
@@ -81,9 +79,14 @@ When the user selects an item, the `my-menu` element should update its `selected
 
 For more information on dispatching and listening for events, see [Events](/docs/components/events/).
 
-## Using the mediator pattern
 
-A component that's made up of subcomponents can use the _mediator pattern_ to manage complexity. Subcomponents shouldn't communicate with each other directly. Instead, interactions should be _mediated._ A simple way to implement the mediator pattern is by having the owning component handle events from its children, and in turn update the state of its children as necessary by passing changed data back down the tree.
+## Passing data across the tree
+
+Properties down and events up is a good rule to start with. But what if you need to exchange data between two components that don't have a direct descendant relationship? For example, two components that are siblings in the shadow tree?
+
+One solution to this problem is to use the _mediator pattern_. In the mediator pattern, peer components don't communicate with each other directly. Instead, interactions are _mediated_ by a third party.
+
+A simple way to implement the mediator pattern is by having the owning component handle events from its children, and in turn update the state of its children as necessary by passing changed data back down the tree. By adding a mediator, you can pass data across the tree using the familiar events-up, properties-down principle.
 
 In the following example, the mediator element listens for events from the input and button elements in its shadow DOM. It controls the enabled state of the button so the user can only click **Submit** when there's text in the input.
 
