@@ -636,7 +636,7 @@ class Transformer {
     }
     (
       source as ExtendedSourceReference
-    ).gitHubUrl = `${this.config.repo}/blob/${this.config.sha}/${source.fileName}#L${source.line}`;
+    ).gitHubUrl = `${this.config.repo}/blob/${this.config.commit}/${source.fileName}#L${source.line}`;
   }
 
   /**

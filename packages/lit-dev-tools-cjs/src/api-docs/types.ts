@@ -45,9 +45,9 @@ export interface ApiDocsConfig {
   repo: string;
 
   /**
-   * Git commit SHA.
+   * Git commit reference (SHA or tag).
    */
-  sha: string;
+  commit: string;
 
   /**
    * Location where Git repo will be cloned.
