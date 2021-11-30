@@ -6,8 +6,8 @@
 
 import * as typedoc from 'typedoc';
 import * as fs from 'fs/promises';
-import {ApiDocsTransformer} from './api-docs/transformer.js';
-import {lit2Config} from './api-docs/configs/lit-2.js';
+import {ApiDocsTransformer} from './transformer.js';
+import {lit2Config} from './configs/lit-2.js';
 
 async function main() {
   const app = new typedoc.Application();
