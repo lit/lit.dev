@@ -87,12 +87,15 @@ const analyze = async (config: ApiDocsConfig) => {
   const transformer = new ApiDocsTransformer(json, config);
   const {pages, symbolMap} = await transformer.transform();
 
+  await fs.mkdir(pathlib.dirname(config.pagesOutPath), {recursive: true});
   await fs.writeFile(
     config.pagesOutPath,
     JSON.stringify(pages, null, 2),
     'utf8'
   );
   console.log(`Wrote ${config.pagesOutPath}`);
+
+  await fs.mkdir(pathlib.dirname(config.symbolsOutPath), {recursive: true});
   await fs.writeFile(
     config.symbolsOutPath,
     JSON.stringify(symbolMap, null, 2),

@@ -18,6 +18,7 @@ module.exports = async () =>
         '..',
         'lit-dev-api',
         'api-data',
+        'lit-2',
         'pages.json'
       ),
       'utf8'

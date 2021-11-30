@@ -3034,7 +3034,7 @@
                         "flags": {},
                         "sources": [
                           {
-                            "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                            "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                             "line": 309,
                             "character": 8
                           }
@@ -3052,7 +3052,7 @@
                         "flags": {},
                         "sources": [
                           {
-                            "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                            "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                             "line": 310,
                             "character": 8
                           }
@@ -5385,7 +5385,7 @@
                             "flags": {},
                             "sources": [
                               {
-                                "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                                 "line": 309,
                                 "character": 8
                               }
@@ -5403,7 +5403,7 @@
                             "flags": {},
                             "sources": [
                               {
-                                "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                                 "line": 310,
                                 "character": 8
                               }
@@ -10261,7 +10261,7 @@
                         "flags": {},
                         "sources": [
                           {
-                            "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                            "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                             "line": 309,
                             "character": 8
                           }
@@ -10279,7 +10279,7 @@
                         "flags": {},
                         "sources": [
                           {
-                            "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                            "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                             "line": 310,
                             "character": 8
                           }
@@ -12480,7 +12480,7 @@
                             "flags": {},
                             "sources": [
                               {
-                                "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                                 "line": 309,
                                 "character": 8
                               }
@@ -12498,7 +12498,7 @@
                             "flags": {},
                             "sources": [
                               {
-                                "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                                 "line": 310,
                                 "character": 8
                               }
@@ -15123,7 +15123,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                     "line": 128,
                     "character": 4
                   }
@@ -15146,7 +15146,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                     "line": 129,
                     "character": 4
                   }
@@ -15173,7 +15173,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                     "line": 127,
                     "character": 4
                   }
@@ -15230,7 +15230,7 @@
             ],
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                 "line": 125,
                 "character": 29
               }
@@ -15539,7 +15539,7 @@
             },
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                 "line": 29,
                 "character": 39
               }
@@ -15737,7 +15737,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                     "line": 50,
                     "character": 4
                   }
@@ -15755,7 +15755,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                     "line": 51,
                     "character": 4
                   }
@@ -15773,7 +15773,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                     "line": 52,
                     "character": 4
                   }
@@ -15800,7 +15800,7 @@
             ],
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                 "line": 49,
                 "character": 72
               }
@@ -16746,7 +16746,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/event-options.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/event-options.d.ts",
                     "line": 37,
                     "character": 72
                   }
@@ -16898,7 +16898,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/property.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/property.d.ts",
                     "line": 40,
                     "character": 65
                   }
@@ -17044,7 +17044,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/query.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query.d.ts",
                     "line": 32,
                     "character": 66
                   }
@@ -17178,7 +17178,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/query-all.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query-all.d.ts",
                     "line": 31,
                     "character": 52
                   }
@@ -17346,7 +17346,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/query-assigned-nodes.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query-assigned-nodes.d.ts",
                     "line": 33,
                     "character": 101
                   }
@@ -17480,7 +17480,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/query-async.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query-async.d.ts",
                     "line": 39,
                     "character": 54
                   }
@@ -17620,7 +17620,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/reactive-element/decorators/state.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/state.d.ts",
                     "line": 24,
                     "character": 70
                   }
@@ -22474,7 +22474,7 @@
                 "flags": {},
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directives/ref.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/ref.d.ts",
                     "line": 23,
                     "character": 43
                   }
@@ -23443,7 +23443,7 @@
             "flags": {},
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/directives/repeat.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/repeat.d.ts",
                 "line": 9,
                 "character": 38
               }
@@ -23532,7 +23532,7 @@
             "flags": {},
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/directives/repeat.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/repeat.d.ts",
                 "line": 8,
                 "character": 31
               }
@@ -28451,7 +28451,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive-helpers.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive-helpers.d.ts",
                     "line": 16,
                     "character": 13
                   }
@@ -28471,7 +28471,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive-helpers.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive-helpers.d.ts",
                     "line": 17,
                     "character": 13
                   }
@@ -28494,7 +28494,7 @@
             ],
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/directive-helpers.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive-helpers.d.ts",
                 "line": 15,
                 "character": 41
               }
@@ -31355,7 +31355,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                     "line": 23,
                     "character": 13
                   }
@@ -31375,7 +31375,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                     "line": 26,
                     "character": 13
                   }
@@ -31395,7 +31395,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                     "line": 24,
                     "character": 13
                   }
@@ -31415,7 +31415,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                     "line": 28,
                     "character": 13
                   }
@@ -31435,7 +31435,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                     "line": 27,
                     "character": 13
                   }
@@ -31455,7 +31455,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                     "line": 25,
                     "character": 13
                   }
@@ -31482,7 +31482,7 @@
             ],
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/directive.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive.d.ts",
                 "line": 22,
                 "character": 31
               }
@@ -32999,7 +32999,7 @@
                     "flags": {},
                     "sources": [
                       {
-                        "fileName": "lit-dev-api/lit/packages/lit-html/static.d.ts",
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/static.d.ts",
                         "line": 39,
                         "character": 4
                       }
@@ -33193,7 +33193,7 @@
                     "flags": {},
                     "sources": [
                       {
-                        "fileName": "lit-dev-api/lit/packages/lit-html/static.d.ts",
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/static.d.ts",
                         "line": 22,
                         "character": 4
                       }
@@ -34582,7 +34582,7 @@
             "flags": {},
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/reactive-element/reactive-element.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
                 "line": 131,
                 "character": 34
               }
@@ -35137,7 +35137,7 @@
             },
             "sources": [
               {
-                "fileName": "lit-dev-api/lit/packages/lit-html/lit-html.d.ts",
+                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
                 "line": 41,
                 "character": 37
               }
