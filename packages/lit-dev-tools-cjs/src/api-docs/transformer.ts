@@ -81,7 +81,7 @@ type SymbolMap = {
  * Eleventy template, and generate a symbol map that can be used to locate an
  * API within our custom page structure.
  */
-export class Transformer {
+export class ApiDocsTransformer {
   private config: ApiDocsConfig;
   private project: typedoc.JSONOutput.ProjectReflection;
   private symbolMap: SymbolMap = {};

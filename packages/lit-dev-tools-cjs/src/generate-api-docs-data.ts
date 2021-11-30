@@ -6,7 +6,7 @@
 
 import * as typedoc from 'typedoc';
 import * as fs from 'fs/promises';
-import {Transformer} from './api-docs/transformer.js';
+import {ApiDocsTransformer} from './api-docs/transformer.js';
 import {lit2Config} from './api-docs/configs/lit-2.js';
 
 async function main() {
@@ -22,7 +22,7 @@ async function main() {
   }
 
   const json = await app.serializer.projectToObject(root);
-  const transformer = new Transformer(json, lit2Config);
+  const transformer = new ApiDocsTransformer(json, lit2Config);
   const {pages, symbolMap} = await transformer.transform();
 
   await fs.writeFile(
