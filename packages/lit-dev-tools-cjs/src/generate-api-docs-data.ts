@@ -8,106 +8,16 @@ import * as typedoc from 'typedoc';
 import * as fs from 'fs/promises';
 import * as pathlib from 'path';
 import * as sourceMap from 'source-map';
-
-const litDevMonorepoPath = pathlib.resolve(__dirname, '..', '..', '..');
-
-const litMonorepoPath = pathlib.resolve(
-  litDevMonorepoPath,
-  'packages',
-  'lit-dev-api',
-  'lit'
-);
-
-const litSrcDir = pathlib.resolve(litMonorepoPath, 'packages', 'lit', 'src');
-
-/**
- * Entrypoint TypeScript modules for TypeDoc to analyze.
- *
- * The modules listed here should be the preferred modules that users should
- * import from, because import statements will be generated using these
- * entrypoints as the module specifier (e.g. `import {LitElement} from 'lit'`).
- * GitHub source links will be generated pointing at the ultimate location where
- * the symbol is concretely defined (e.g.
- * `packages/lit-element/src/lit-element.ts`).
- *
- * If a directory, all .ts files within it are included.
- */
-const entrypointModules = [
-  pathlib.resolve(litSrcDir, 'async-directive.ts'),
-  pathlib.resolve(litSrcDir, 'decorators.ts'),
-  pathlib.resolve(litSrcDir, 'directives/'), // Entire directory
-  pathlib.resolve(litSrcDir, 'directive.ts'),
-  pathlib.resolve(litSrcDir, 'directive-helpers.ts'),
-  // Don't include html.ts because it is already re-exported by index.ts.
-  //   pathlib.resolve(litSrcDir, 'html.ts'),
-  // Don't include hydration because it's not ready yet.
-  //   pathlib.resolve(litSrcDir, 'hydrate.ts'),
-  //   pathlib.resolve(litSrcDir, 'hydrate-support.ts'),
-  pathlib.resolve(litSrcDir, 'index.ts'),
-  // Don't include polyfill-support.ts because it doesn't export anything.
-  //   pathlib.resolve(litSrcDir, 'polyfill-support.ts'),
-  pathlib.resolve(litSrcDir, 'static-html.ts'),
-];
-
-/**
- * Path to the tsconfig.json that owns the entrypoint modules.
- */
-const tsConfigPath = pathlib.resolve(
-  litMonorepoPath,
-  'packages',
-  'lit',
-  'tsconfig.json'
-);
-
-/**
- * Where to write the API data that is consumed by our Eleventy template.
- */
-const pagesOutPath = pathlib.resolve(
-  litDevMonorepoPath,
-  'packages',
-  'lit-dev-api',
-  'api-data',
-  'pages.json'
-);
-
-/**
- * Where to write the index from $symbol to location object.
- */
-const symbolsOutPath = pathlib.resolve(
-  litDevMonorepoPath,
-  'packages',
-  'lit-dev-api',
-  'api-data',
-  'symbols.json'
-);
-
-/**
- * Pages in the order they will appear in the navigation.
- */
-const pages = [
-  {slug: 'LitElement', title: 'LitElement'},
-  {slug: 'ReactiveElement', title: 'ReactiveElement'},
-  {slug: 'templates', title: 'Templates'},
-  {slug: 'styles', title: 'Styles'},
-  {slug: 'decorators', title: 'Decorators'},
-  {
-    slug: 'directives',
-    title: 'Directives',
-    anchorFilter: (node: DeclarationReflection) =>
-      node.kindString === 'Function',
-  },
-  {slug: 'custom-directives', title: 'Custom directives'},
-  {slug: 'static-html', title: 'Static HTML'},
-  {slug: 'controllers', title: 'Controllers'},
-  {slug: 'misc', title: 'Misc'},
-] as const;
-
-/**
- * Order that items in an API docs page will appear. Falls back to
- * lexicographic. (Note this doesn't distinguish between pages, but we don't
- * have any overlapping export names for now so it doesn't matter).
- */
-const symbolOrder = ['LitElement', 'ReactiveElement'];
+import {
+  ApiDocsConfig,
+  DeclarationReflection,
+  ExtendedDeclarationReflection,
+  SourceReference,
+  ExtendedSourceReference,
+  Location,
+  ExternalLocation,
+} from './api-docs/types.js';
+import {lit2Config} from './api-docs/configs/lit-2.js';
 
 const findIndexOrInfinity = <T>(
   array: ReadonlyArray<T>,
@@ -119,138 +29,6 @@ const findIndexOrInfinity = <T>(
 
 const isType = (node: DeclarationReflection) => {
   return node.kindString === 'Type alias' || node.kindString === 'Interface';
-};
-
-/**
- * Determines order of symbols within a page, and of properties/methods appear
- * within a class/interface.
- */
-const symbolSortFn = (a: DeclarationReflection, b: DeclarationReflection) => {
-  // By entrypoint (e.g. a type from a directive module should be adjacent to
-  // the directive function).
-  const aEntrypoint =
-    (a as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ?? '';
-  const bEntrypoint =
-    (b as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ?? '';
-  if (aEntrypoint !== bEntrypoint) {
-    return aEntrypoint.localeCompare(bEntrypoint);
-  }
-
-  // Hard-coded orderings
-  const idxA = findIndexOrInfinity(
-    symbolOrder,
-    (s) => s === (a as ExtendedDeclarationReflection).location?.anchor ?? a.name
-  );
-  const idxB = findIndexOrInfinity(
-    symbolOrder,
-    (s) => s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
-  );
-  if (idxA !== idxB) {
-    return idxA - idxB;
-  }
-
-  // Types after values
-  if (isType(a) && !isType(b)) {
-    return 1;
-  }
-  if (!isType(a) && isType(b)) {
-    return -1;
-  }
-
-  // Lexicographic
-  if (a.name === 'createRef' || b.name === 'createRef') {
-  }
-  return a.name.localeCompare(b.name);
-};
-
-/**
- * Determine which generated API docs page the given TypeDoc reflection object
- * belongs in.
- *
- * Note that only top-level exports of each entrypoint module are passed here
- * (i.e. the methods of a class always go on the same page as the class).
- */
-const pageForSymbol = (
-  node: ExtendedDeclarationReflection
-): typeof pages[number]['slug'] => {
-  const entrypoint = node.entrypointSources?.[0]?.fileName ?? '';
-  if (entrypoint.includes('/directives/')) {
-    return 'directives';
-  }
-
-  if (entrypoint.endsWith('/decorators.ts')) {
-    return 'decorators';
-  }
-
-  if (
-    entrypoint.endsWith('/directive.ts') ||
-    entrypoint.endsWith('/directive-helpers.ts') ||
-    entrypoint.endsWith('/async-directive.ts') ||
-    node.name === 'noChange' ||
-    node.name === 'Part' ||
-    node.name === 'AttributePart' ||
-    node.name === 'BooleanAttributePart' ||
-    node.name === 'ChildPart' ||
-    node.name === 'ElementPart' ||
-    node.name === 'EventPart' ||
-    node.name === 'PropertyPart'
-  ) {
-    return 'custom-directives';
-  }
-
-  if (entrypoint.endsWith('/static-html.ts')) {
-    return 'static-html';
-  }
-
-  if (node.name === 'LitElement' || node.name === 'RenderOptions') {
-    return 'LitElement';
-  }
-
-  if (
-    node.name === 'ReactiveElement' ||
-    node.name === 'PropertyDeclaration' ||
-    node.name === 'PropertyDeclarations' ||
-    node.name === 'UpdatingElement' ||
-    node.name === 'PropertyValues' ||
-    node.name === 'ComplexAttributeConverter'
-  ) {
-    return 'ReactiveElement';
-  }
-
-  if (
-    node.name === 'html' ||
-    node.name === 'svg' ||
-    node.name === 'render' ||
-    node.name === 'nothing' ||
-    node.name === 'SanitizerFactory' ||
-    node.name === 'Template' ||
-    node.name === 'TemplateResult' ||
-    node.name === 'SVGTemplateResult'
-  ) {
-    return 'templates';
-  }
-
-  if (
-    node.name === 'css' ||
-    node.name === 'adoptStyles' ||
-    node.name === 'getCompatibleStyle' ||
-    node.name === 'unsafeCSS' ||
-    node.name === 'supportsAdoptingStyleSheets' ||
-    node.name.startsWith('CSS')
-  ) {
-    return 'styles';
-  }
-
-  if (
-    node.name === 'ReactiveController' ||
-    node.name === 'ReactiveControllerHost'
-  ) {
-    return 'controllers';
-  }
-
-  // TODO(aomarks) Make sure everything has a good final location, and then
-  // throw if we get here.
-  return 'misc';
 };
 
 /**
@@ -282,42 +60,6 @@ const symbolToExternalLink = new Map([
 ]);
 
 /**
- * Generate a relative URL for the given location.
- */
-const locationToUrl = ({page, anchor}: Location) =>
-  `/docs/api/${page}/#${anchor}`;
-
-type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
-interface ExtendedDeclarationReflection extends DeclarationReflection {
-  location?: Location;
-  externalLocation?: ExternalLocation;
-  entrypointSources?: Array<ExtendedSourceReference>;
-  heritage?: Array<{name: string; location?: Location}>;
-  expandedCategories?: Array<{
-    title: string;
-    anchor: string;
-    children: Array<DeclarationReflection>;
-  }>;
-}
-
-type SourceReference = typedoc.JSONOutput.SourceReference;
-interface ExtendedSourceReference extends SourceReference {
-  gitHubUrl?: string;
-  moduleSpecifier?: string;
-}
-
-/** Where to find a symbol in our custom API docs page structure. */
-interface Location {
-  page: typeof pages[number]['slug'];
-  anchor: string;
-}
-
-/** A link to e.g. MDN. */
-interface ExternalLocation {
-  url: string;
-}
-
-/**
  * Data consumed by lit.dev API docs Eleventy template. Each item is a separate
  * page.
  */
@@ -341,17 +83,20 @@ type SymbolMap = {
  * API within our custom page structure.
  */
 class Transformer {
+  private config: ApiDocsConfig;
   private project: typedoc.JSONOutput.ProjectReflection;
   private symbolMap: SymbolMap = {};
   /** Map from every numeric TypeDoc ID to its TypeDoc reflection object. */
   private reflectionById = new Map<number, ExtendedDeclarationReflection>();
   /** Cache of .d.ts -> .ts sourcemaps. */
   private sourceMaps = new Map<string, sourceMap.SourceMapConsumer>();
-  private commit: string;
 
-  constructor(project: typedoc.JSONOutput.ProjectReflection, commit: string) {
+  constructor(
+    project: typedoc.JSONOutput.ProjectReflection,
+    config: ApiDocsConfig
+  ) {
     this.project = project;
-    this.commit = commit;
+    this.config = config;
   }
 
   async transform(): Promise<{
@@ -517,7 +262,7 @@ class Transformer {
 
     const page = nearestAncestorLocation
       ? nearestAncestorLocation.page
-      : pageForSymbol(node);
+      : this.config.pageForSymbol(node);
 
     const anchor = nearestAncestorLocation
       ? nearestAncestorLocation.anchor + '.' + node.name
@@ -710,10 +455,57 @@ class Transformer {
         a.localeCompare(b)
       );
       for (const category of node.expandedCategories) {
-        category.children.sort(symbolSortFn);
+        category.children.sort(this.symbolSortFn);
       }
     }
   }
+
+  /**
+   * Determines order of symbols within a page, and of properties/methods appear
+   * within a class/interface.
+   */
+  symbolSortFn = (
+    a: DeclarationReflection,
+    b: DeclarationReflection
+  ): number => {
+    // By entrypoint (e.g. a type from a directive module should be adjacent to
+    // the directive function).
+    const aEntrypoint =
+      (a as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ??
+      '';
+    const bEntrypoint =
+      (b as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ??
+      '';
+    if (aEntrypoint !== bEntrypoint) {
+      return aEntrypoint.localeCompare(bEntrypoint);
+    }
+
+    // Hard-coded orderings
+    const idxA = findIndexOrInfinity(
+      this.config.symbolOrder,
+      (s) =>
+        s === (a as ExtendedDeclarationReflection).location?.anchor ?? a.name
+    );
+    const idxB = findIndexOrInfinity(
+      this.config.symbolOrder,
+      (s) =>
+        s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
+    );
+    if (idxA !== idxB) {
+      return idxA - idxB;
+    }
+
+    // Types after values
+    if (isType(a) && !isType(b)) {
+      return 1;
+    }
+    if (!isType(a) && isType(b)) {
+      return -1;
+    }
+
+    // Lexicographic
+    return a.name.localeCompare(b.name);
+  };
 
   /**
    * Convert [[ symbol ]] references in comments into hyperlinks.
@@ -749,7 +541,9 @@ class Transformer {
             }
           }
           if (results && results.length === 1) {
-            return `[\`${label || symbol}\`](${locationToUrl(results[0])})`;
+            return `[\`${label || symbol}\`](${this.config.locationToUrl(
+              results[0]
+            )})`;
           }
           return '`' + (label || symbol) + '`';
         }
@@ -768,17 +562,10 @@ class Transformer {
    * for some reason. Update them to be relative to the Lit monorepo root.
    */
   private async makeSourceRelativeToMonorepoRoot(source: SourceReference) {
-    const prefix =
-      pathlib.relative(
-        pathlib.join(litDevMonorepoPath, 'packages'),
-        litMonorepoPath
-      ) + '/';
-    if (!source.fileName.startsWith(prefix)) {
-      throw new Error(
-        `Expected source to start with ${prefix}, but was ${source.fileName}`
-      );
-    }
-    source.fileName = source.fileName.substring(prefix.length);
+    source.fileName = pathlib.relative(
+      this.config.gitDir,
+      pathlib.resolve(this.config.typedocRoot, source.fileName)
+    );
   }
 
   /**
@@ -793,7 +580,7 @@ class Transformer {
         return;
       }
       const mapFilename = pathlib.join(
-        litMonorepoPath,
+        this.config.gitDir,
         source.fileName + '.map'
       );
       let mapStr;
@@ -849,26 +636,18 @@ class Transformer {
     }
     (
       source as ExtendedSourceReference
-    ).gitHubUrl = `https://github.com/lit/lit/blob/${this.commit}/${source.fileName}#L${source.line}`;
+    ).gitHubUrl = `${this.config.repo}/blob/${this.config.commit}/${source.fileName}#L${source.line}`;
   }
 
   /**
    * Augment a source with its best import statement module specifier.
    */
   private setImportModuleSpecifier(source: SourceReference) {
-    const match = source.fileName.match(/^packages\/(.+?)\/src\/(.+)\.ts$/);
-    if (!match) {
-      return;
+    const specifier = this.config.fileToImportSpecifier(source.fileName);
+    if (specifier) {
+      (source as ExtendedSourceReference).moduleSpecifier =
+        this.config.fileToImportSpecifier(source.fileName);
     }
-    // TODO(aomarks) This pkg is only our local directory name, which isn't
-    // necessarily our NPM package name (e.g. it's @lit/reactive-element, not
-    // reactive-element). Right now all our exports are from 'lit', so this is
-    // fine in practice, but when we add e.g. @lit/localize we'll need to be
-    // smarter here.
-    let [_, pkg, pathMinusExtension] = match;
-    // TODO(aomarks) This wrongly assumes index.ts is always the package main.
-    (source as ExtendedSourceReference).moduleSpecifier =
-      pathMinusExtension === 'index' ? pkg : `${pkg}/${pathMinusExtension}.js`;
   }
 
   /**
@@ -876,7 +655,7 @@ class Transformer {
    */
   private reorganizeExportsIntoPages() {
     const slugToPage = new Map<
-      typeof pages[number]['slug'],
+      string,
       {
         slug: string;
         title: string;
@@ -893,7 +672,9 @@ class Transformer {
         }
         let page = slugToPage.get(location.page);
         if (page === undefined) {
-          const match = pages.find(({slug}) => slug === location.page);
+          const match = this.config.pages.find(
+            ({slug}) => slug === location.page
+          );
           if (!match) {
             throw new Error(`No page definition for ${location.page}`);
           }
@@ -911,8 +692,14 @@ class Transformer {
 
     // Sort pages
     pagesArray.sort(({slug: a}, {slug: b}) => {
-      const idxA = findIndexOrInfinity(pages, ({slug}) => slug === a);
-      const idxB = findIndexOrInfinity(pages, ({slug}) => slug === b);
+      const idxA = findIndexOrInfinity(
+        this.config.pages,
+        ({slug}) => slug === a
+      );
+      const idxB = findIndexOrInfinity(
+        this.config.pages,
+        ({slug}) => slug === b
+      );
       if (idxA !== idxB) {
         return idxA - idxB;
       }
@@ -921,7 +708,7 @@ class Transformer {
 
     // Sort items within pages
     for (const page of pagesArray) {
-      page.items.sort(symbolSortFn);
+      page.items.sort(this.symbolSortFn);
 
       if (page.anchorFilter) {
         for (const item of page.items) {
@@ -940,8 +727,8 @@ async function main() {
   const app = new typedoc.Application();
   app.options.addReader(new typedoc.TSConfigReader());
   app.bootstrap({
-    tsconfig: tsConfigPath,
-    entryPoints: entrypointModules,
+    tsconfig: lit2Config.tsConfigPath,
+    entryPoints: lit2Config.entrypointModules,
   });
   const root = app.convert();
   if (!root) {
@@ -949,25 +736,21 @@ async function main() {
   }
 
   const json = await app.serializer.projectToObject(root);
-  const transformer = new Transformer(
-    json,
-    (
-      await fs.readFile(
-        pathlib.join(litDevMonorepoPath, 'packages', 'lit-dev-api', 'lit.sha'),
-        'utf8'
-      )
-    ).trim()
-  );
+  const transformer = new Transformer(json, lit2Config);
   const {pages, symbolMap} = await transformer.transform();
 
-  await fs.writeFile(pagesOutPath, JSON.stringify(pages, null, 2), 'utf8');
-  console.log(`Wrote ${pagesOutPath}`);
   await fs.writeFile(
-    symbolsOutPath,
+    lit2Config.pagesOutPath,
+    JSON.stringify(pages, null, 2),
+    'utf8'
+  );
+  console.log(`Wrote ${lit2Config.pagesOutPath}`);
+  await fs.writeFile(
+    lit2Config.symbolsOutPath,
     JSON.stringify(symbolMap, null, 2),
     'utf8'
   );
-  console.log(`Wrote ${symbolsOutPath}`);
+  console.log(`Wrote ${lit2Config.symbolsOutPath}`);
 }
 
 main();
