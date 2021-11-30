@@ -6,10 +6,68 @@
 
 import * as typedoc from 'typedoc';
 import * as fs from 'fs/promises';
+import * as pathlib from 'path';
+import {execFile} from 'child_process';
+import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
 
+const execFileAsync = promisify(execFile);
+
+/**
+ * Check whether the given file path exists.
+ */
+const fileExists = async (path: string): Promise<boolean> => {
+  try {
+    await fs.stat(path);
+    return true;
+  } catch (err) {
+    if ((err as {code?: string}).code !== 'ENOENT') {
+      throw err;
+    }
+  }
+  return false;
+};
+
+/**
+ * Clone the given Git repo URL at the given commit into the given directory. If
+ * the directory already exists, do nothing.
+ */
+const cloneIfNeeded = async (repo: string, commit: string, dir: string) => {
+  if (await fileExists(dir)) {
+    console.log(`${dir} already exists, skipping git clone`);
+    return;
+  }
+  console.log(`cloning git repo ${repo} to ${dir}`);
+  await execFileAsync('git', ['clone', repo, dir]);
+  console.log(`checking out commit ${commit}`);
+  await execFileAsync('git', ['checkout', commit], {cwd: dir});
+};
+
+/**
+ * Run NPM install and other given setup commands. If a node_modules/ directory
+ * already exists in the given directory, do nothing.
+ */
+const setupIfNeeded = async (
+  dir: string,
+  extraCommands?: Array<{cmd: string; args: string[]}>
+) => {
+  if (await fileExists(pathlib.join(dir, 'node_modules'))) {
+    console.log(`${dir}/node_modules already exists, skipping setup`);
+    return;
+  }
+  console.log(`running npm ci in ${dir}`);
+  await execFileAsync('npm', ['ci'], {cwd: dir});
+  for (const {cmd, args} of extraCommands ?? []) {
+    console.log(`running ${cmd} ${args.join(' ')} in ${dir}`);
+    await execFileAsync(cmd, args, {cwd: dir});
+  }
+};
+
 async function main() {
+  await cloneIfNeeded(lit2Config.repo, lit2Config.commit, lit2Config.gitDir);
+  await setupIfNeeded(lit2Config.gitDir, lit2Config.extraSetupCommands);
+
   const app = new typedoc.Application();
   app.options.addReader(new typedoc.TSConfigReader());
   app.bootstrap({

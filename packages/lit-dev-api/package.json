@@ -6,14 +6,8 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "(ls lit 2>/dev/null || npm run monorepo:init) && npm run build:generate",
-    "build:generate": "node ../lit-dev-tools-cjs/lib/api-docs/generate.js",
-    "build:watch": "chokidar 'lit/packages/*/src/**/*.ts' '../lit-dev-tools-cjs/lib/api-docs/**/*.js' -c 'npm run monorepo:build && npm run build:generate' --initial",
-    "monorepo:init": "npm run monorepo:clone && npm run monorepo:install && npm run monorepo:build",
-    "monorepo:clone": "git clone https://github.com/lit/lit --branch main lit && cd lit && git checkout $(cat ../lit.sha)",
-    "monorepo:update": "cd lit && git checkout main && git pull && git rev-parse HEAD > ../lit.sha && cd .. && npm run monorepo:install && npm run monorepo:build",
-    "monorepo:install": "cd lit && npm ci && npm run bootstrap",
-    "monorepo:build": "cd lit && npx lerna run build:ts --scope lit --include-dependencies"
+    "build": "node ../lit-dev-tools-cjs/lib/api-docs/generate.js",
+    "build:watch": "chokidar 'lit/packages/*/src/**/*.ts' '../lit-dev-tools-cjs/lib/api-docs/**/*.js' -c 'npm run build' --initial"
   },
   "dependencies": {
     "chokidar-cli": "^2.1.0",

@@ -27,6 +27,21 @@ export const lit2Config: ApiDocsConfig = {
   symbolsOutPath: pathlib.resolve(outDir, 'symbols.json'),
   typedocRoot: pathlib.join(root, 'packages'),
 
+  extraSetupCommands: [
+    {cmd: 'npm', args: ['run', 'bootstrap']},
+    {
+      cmd: 'npx',
+      args: [
+        'lerna',
+        'run',
+        'build:ts',
+        '--scope',
+        'lit',
+        '--include-dependencies',
+      ],
+    },
+  ],
+
   entrypointModules: [
     pathlib.join(srcDir, 'async-directive.ts'),
     pathlib.join(srcDir, 'decorators.ts'),
