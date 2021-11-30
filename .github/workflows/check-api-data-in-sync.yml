@@ -2,7 +2,8 @@
 # been committed.
 
 # We check generated API data into the Git repo because otherwise it is very
-# difficult to tell when something has changed or broken in them.
+# difficult to tell when something has changed or broken in them. It also makes
+# deploying faster, since we don't need to clone and analyze repos every time.
 
 name: Check API data in sync
 on: [push, pull_request]

@@ -35,13 +35,8 @@ COPY packages/lit-dev-tools-esm/ ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/ ./packages/lit-dev-server/
 RUN npx lerna run build:ts --scope lit-dev-tools-cjs --scope lit-dev-tools-esm --scope lit-dev-server --stream
 
-# Generated API docs
+# Pre-generated API docs data
 COPY packages/lit-dev-api/ ./packages/lit-dev-api/
-RUN npx lerna run build --scope lit-dev-api --stream && \
-  # By cloning and deleting the Lit monorepo checkout all within the same RUN
-  # command, we avoid ever including any Lit monorepo files in our Docker
-  # filesystem layers.
-  rm -rf packages/lit-dev-api/lit/
 
 # Site content
 COPY packages/lit-dev-content/ ./packages/lit-dev-content/
