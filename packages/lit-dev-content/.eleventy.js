@@ -69,7 +69,7 @@ module.exports = function (eleventyConfig) {
   }
   eleventyConfig.addPassthroughCopy('api/**/*');
 
-  eleventyConfig.addWatchTarget('../lit-dev-api/api-data');
+  eleventyConfig.addWatchTarget('../lit-dev-api/api-data/*/*.json');
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
@@ -246,7 +246,7 @@ ${content}
 
   // Don't use require() because of Node caching in watch mode.
   const apiSymbolMap = JSON.parse(
-    fsSync.readFileSync('../lit-dev-api/api-data/symbols.json', 'utf8')
+    fsSync.readFileSync('../lit-dev-api/api-data/lit-2/symbols.json', 'utf8')
   );
 
   /**

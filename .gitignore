@@ -11,7 +11,7 @@ packages/lit-dev-content/site/fonts
 packages/lit-dev-content/temp
 packages/lit-dev-content/samples/js
 
-packages/lit-dev-api/lit/
+packages/lit-dev-api/api-data/*/repo/
 
 # We only want to keep '-linux' screenshots which are tested by Github Actions.
 packages/lit-dev-tests/src/playwright/**/*.png

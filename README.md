@@ -79,13 +79,9 @@ code packages/lit-dev-api/lit/
 
 The `lit` directory is a regular cloned git repo, so you can make changes
 directly here, and push PRs from it as normal. It's configured to track the
-`main` branch, but is pinned to a particular commit via the `lit.sha` file. To
-update the current commit, run:
-
-```sh
-cd packages/lit-dev-tools
-npm run monorepo:update
-```
+`main` branch, but is pinned to a particular commit. To update the current
+commit, update the `sha` field in
+[`packages/lit-dev-tools-cjs/src/api-docs/configs/lit-2.ts`](https://github.com/lit/lit.dev/blob/main/packages/lit-dev-tools-cjs/src/api-docs/configs/lit-2.ts).
 
 ### Serve production mode
 

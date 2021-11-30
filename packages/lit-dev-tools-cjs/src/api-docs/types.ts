@@ -66,6 +66,12 @@ export interface ApiDocsConfig {
   typedocRoot: string;
 
   /**
+   * Extra setup/build commands to run after NPM install and before running
+   * TypeDoc.
+   */
+  extraSetupCommands?: Array<{cmd: string; args: string[]}>;
+
+  /**
    * Entrypoint TypeScript modules for TypeDoc to analyze.
    *
    * The modules listed here should be the preferred modules that users should

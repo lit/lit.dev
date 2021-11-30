@@ -9,11 +9,11 @@ import * as pathlib from 'path';
 import type {ApiDocsConfig} from '../types.js';
 
 const root = pathlib.resolve(__dirname, '..', '..', '..', '..', '..');
-const workDir = pathlib.join(root, 'packages', 'lit-dev-api');
-const gitDir = pathlib.join(workDir, 'lit');
+const dataDir = pathlib.join(root, 'packages', 'lit-dev-api', 'api-data');
+const workDir = pathlib.join(dataDir, 'lit-2');
+const gitDir = pathlib.join(workDir, 'repo');
 const litDir = pathlib.join(gitDir, 'packages', 'lit');
 const srcDir = pathlib.join(litDir, 'src');
-const outDir = pathlib.join(workDir, 'api-data');
 
 /**
  * lit.dev API docs configuration for Lit 2.x
@@ -23,9 +23,24 @@ export const lit2Config: ApiDocsConfig = {
   commit: 'f8ee010bc515e4bb319e98408d38ef3d971cc08b',
   gitDir,
   tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
-  pagesOutPath: pathlib.resolve(outDir, 'pages.json'),
-  symbolsOutPath: pathlib.resolve(outDir, 'symbols.json'),
+  pagesOutPath: pathlib.resolve(workDir, 'pages.json'),
+  symbolsOutPath: pathlib.resolve(workDir, 'symbols.json'),
   typedocRoot: pathlib.join(root, 'packages'),
+
+  extraSetupCommands: [
+    {cmd: 'npm', args: ['run', 'bootstrap']},
+    {
+      cmd: 'npx',
+      args: [
+        'lerna',
+        'run',
+        'build:ts',
+        '--scope',
+        'lit',
+        '--include-dependencies',
+      ],
+    },
+  ],
 
   entrypointModules: [
     pathlib.join(srcDir, 'async-directive.ts'),
