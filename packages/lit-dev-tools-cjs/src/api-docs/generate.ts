@@ -12,7 +12,11 @@ import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
 
+import type {ApiDocsConfig} from './types.js';
+
 const execFileAsync = promisify(execFile);
+
+const configs = [lit2Config];
 
 /**
  * Check whether the given file path exists.
@@ -64,15 +68,15 @@ const setupIfNeeded = async (
   }
 };
 
-async function main() {
-  await cloneIfNeeded(lit2Config.repo, lit2Config.commit, lit2Config.gitDir);
-  await setupIfNeeded(lit2Config.gitDir, lit2Config.extraSetupCommands);
+const analyze = async (config: ApiDocsConfig) => {
+  await cloneIfNeeded(config.repo, config.commit, config.gitDir);
+  await setupIfNeeded(config.gitDir, config.extraSetupCommands);
 
   const app = new typedoc.Application();
   app.options.addReader(new typedoc.TSConfigReader());
   app.bootstrap({
-    tsconfig: lit2Config.tsConfigPath,
-    entryPoints: lit2Config.entrypointModules,
+    tsconfig: config.tsConfigPath,
+    entryPoints: config.entrypointModules,
   });
   const root = app.convert();
   if (!root) {
@@ -80,21 +84,25 @@ async function main() {
   }
 
   const json = await app.serializer.projectToObject(root);
-  const transformer = new ApiDocsTransformer(json, lit2Config);
+  const transformer = new ApiDocsTransformer(json, config);
   const {pages, symbolMap} = await transformer.transform();
 
   await fs.writeFile(
-    lit2Config.pagesOutPath,
+    config.pagesOutPath,
     JSON.stringify(pages, null, 2),
     'utf8'
   );
-  console.log(`Wrote ${lit2Config.pagesOutPath}`);
+  console.log(`Wrote ${config.pagesOutPath}`);
   await fs.writeFile(
-    lit2Config.symbolsOutPath,
+    config.symbolsOutPath,
     JSON.stringify(symbolMap, null, 2),
     'utf8'
   );
-  console.log(`Wrote ${lit2Config.symbolsOutPath}`);
-}
+  console.log(`Wrote ${config.symbolsOutPath}`);
+};
+
+const main = async () => {
+  await Promise.all(configs.map((config) => analyze(config)));
+};
 
 main();
