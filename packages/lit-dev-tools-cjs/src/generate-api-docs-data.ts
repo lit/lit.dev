@@ -8,6 +8,14 @@ import * as typedoc from 'typedoc';
 import * as fs from 'fs/promises';
 import * as pathlib from 'path';
 import * as sourceMap from 'source-map';
+import {
+  DeclarationReflection,
+  ExtendedDeclarationReflection,
+  SourceReference,
+  ExtendedSourceReference,
+  Location,
+  ExternalLocation,
+} from './api-docs/types.js';
 
 const litDevMonorepoPath = pathlib.resolve(__dirname, '..', '..', '..');
 
@@ -286,36 +294,6 @@ const symbolToExternalLink = new Map([
  */
 const locationToUrl = ({page, anchor}: Location) =>
   `/docs/api/${page}/#${anchor}`;
-
-type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
-interface ExtendedDeclarationReflection extends DeclarationReflection {
-  location?: Location;
-  externalLocation?: ExternalLocation;
-  entrypointSources?: Array<ExtendedSourceReference>;
-  heritage?: Array<{name: string; location?: Location}>;
-  expandedCategories?: Array<{
-    title: string;
-    anchor: string;
-    children: Array<DeclarationReflection>;
-  }>;
-}
-
-type SourceReference = typedoc.JSONOutput.SourceReference;
-interface ExtendedSourceReference extends SourceReference {
-  gitHubUrl?: string;
-  moduleSpecifier?: string;
-}
-
-/** Where to find a symbol in our custom API docs page structure. */
-interface Location {
-  page: typeof pages[number]['slug'];
-  anchor: string;
-}
-
-/** A link to e.g. MDN. */
-interface ExternalLocation {
-  url: string;
-}
 
 /**
  * Data consumed by lit.dev API docs Eleventy template. Each item is a separate
@@ -876,7 +854,7 @@ class Transformer {
    */
   private reorganizeExportsIntoPages() {
     const slugToPage = new Map<
-      typeof pages[number]['slug'],
+      string,
       {
         slug: string;
         title: string;
