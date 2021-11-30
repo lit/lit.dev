@@ -34,12 +34,37 @@ const fileExists = async (path: string): Promise<boolean> => {
 };
 
 /**
+ * Return the SHA of the given commit reference.
+ */
+const shaOfReference = async (
+  gitDir: string,
+  reference: string
+): Promise<string> => {
+  const {stdout} = await execFileAsync(
+    'git',
+    ['show', '-s', '--format=%H', reference],
+    {
+      cwd: gitDir,
+    }
+  );
+  return stdout.trim();
+};
+
+/**
  * Clone the given Git repo URL at the given commit into the given directory. If
  * the directory already exists, do nothing.
  */
 const cloneIfNeeded = async (repo: string, commit: string, dir: string) => {
   if (await fileExists(dir)) {
     console.log(`${dir} already exists, skipping git clone`);
+    const expectedSha = await shaOfReference(dir, commit);
+    const actualSha = await shaOfReference(dir, 'HEAD');
+    if (actualSha !== expectedSha) {
+      throw new Error(
+        `Git repo ${dir} is at commit ${actualSha}, but is configured for ${commit}. ` +
+          `Update the config, or delete ${dir} and re-run this script to fix.`
+      );
+    }
     return;
   }
   console.log(`cloning git repo ${repo} to ${dir}`);
