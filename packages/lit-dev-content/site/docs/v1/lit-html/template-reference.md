@@ -277,9 +277,9 @@ JavaScript asynchronous iterators provide a generic interface for asynchronous s
 
 lit-html offers two directives to consume asynchronous iterators:
 
- * `asyncAppend` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), appending each new value after the previous.
+ * `asyncAppend` renders the values of an <a href="https://github.com/tc39/proposal-async-iteration" target="_blank" rel="noopener">async iterable</a>, appending each new value after the previous.
 
- * `asyncReplace` renders the values of an [async iterable](https://github.com/tc39/proposal-async-iteration), replacing the previous value with the new value.
+ * `asyncReplace` renders the values of an <a href="https://github.com/tc39/proposal-async-iteration" target="_blank" rel="noopener">async iterable</a>, replacing the previous value with the new value.
 
 Example:
 

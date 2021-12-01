@@ -289,7 +289,7 @@ my-element div {
 
 <div class="alert alert-info">
 
-**Watch out for limitations in the Shady CSS polyfill around slotted content!** See the [Shady CSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for details on how to use the `::slotted()` syntax in a polyfill-friendly way. 
+**Watch out for limitations in the Shady CSS polyfill around slotted content!** See the <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations" target="_blank" rel="noopener">Shady CSS limitations</a> for details on how to use the `::slotted()` syntax in a polyfill-friendly way. 
 
 </div>
 
@@ -364,7 +364,7 @@ render() {
 }
 ```
 
-Expressions inside a `<style>` element won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. See the [ShadyCSS readme](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for more information.
+Expressions inside a `<style>` element won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. See the <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations" target="_blank" rel="noopener">ShadyCSS readme</a> for more information.
 
 Additionally, evaluating an expression inside a `<style>` element is inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work. 
 
@@ -394,7 +394,7 @@ We recommend placing your styles in a static `styles` property for optimal perfo
 
 There are some important caveats though:
 
-*  The [ShadyCSS polyfill](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations) doesn't support external style sheets.
+*  The <a href="https://github.com/webcomponents/shadycss/blob/master/README.md#limitations" target="_blank" rel="noopener">ShadyCSS polyfill</a> doesn't support external style sheets.
 
 *   External styles can cause a flash-of-unstyled-content (FOUC) while they load.
 
@@ -571,7 +571,7 @@ Not all CSS properties inherit. Inherited CSS properties include:
 * `font-family` and other `font-*` properties
 * All CSS custom properties (`--*`)
 
-See [CSS Inheritance on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) for more information.
+See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance" target="_blank" rel="noopener">CSS Inheritance on MDN</a> for more information.
 
 You can use CSS inheritance to set styles on an ancestor element that are inherited by its descendents:
 
@@ -709,7 +709,7 @@ If a component user has an existing app theme, they can easily set the host's co
 
 {% include project.html folder="style/customproperties" openFile="index.html" %}
 
-See [CSS Custom Properties on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) for more information.
+See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="_blank" rel="noopener">CSS Custom Properties on MDN</a> for more information.
 
 ### A simple example theme {#example-theme}
 

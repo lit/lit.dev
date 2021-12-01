@@ -12,7 +12,7 @@ We recommend publishing JavaScript modules in standard ES2017. If you're writing
 
 ## Publishing to npm
 
-To publish your component to npm, [see the instructions on contributing npm packages](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+To publish your component to npm, <a href="https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry" target="_blank" rel="noopener">see the instructions on contributing npm packages</a>.
 
 Your package.json configuration should have both the `main` and `module` fields:
 
@@ -43,7 +43,7 @@ The following JSON sample is a partial tsconfig.json that uses recommended optio
   }
 ```
 
-See the [tsconfig.json documentation](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for more information.
+See the <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html" target="_blank" rel="noopener">tsconfig.json documentation</a> for more information.
 
 ## Transpiling with Babel
 
@@ -70,4 +70,4 @@ const plugins = [
 module.exports = { plugins };
 ```
 
-You can run Babel via a bundler plugin such as [rollup-plugin-babel](https://www.npmjs.com/package/rollup-plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
+You can run Babel via a bundler plugin such as <a href="https://www.npmjs.com/package/rollup-plugin-babel" target="_blank" rel="noopener">rollup-plugin-babel</a>, or from the command line. See the <a href="https://babeljs.io/docs/en/" target="_blank" rel="noopener">Babel documentation</a> for more information.

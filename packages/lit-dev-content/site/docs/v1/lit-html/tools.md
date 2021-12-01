@@ -49,24 +49,24 @@ There are a number of IDE plugins that may be useful when developing with lit-ht
 
 The following VS Code and TypeScript plugins check lit-html templates for errors:
 
-* [VS Code plugin](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin)
+* <a href="https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin" target="_blank" rel="noopener">VS Code plugin</a>
 
-* [TypeScript plugin (works with Sublime and Atom)](https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin)
+* <a href="https://github.com/runem/lit-analyzer/tree/master/packages/ts-lit-plugin" target="_blank" rel="noopener">TypeScript plugin (works with Sublime and Atom)</a>
 
 More plugins
 
-The [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) repo lists other IDE plugins.
+The <a href="https://github.com/web-padawan/awesome-lit-html#ide-plugins" target="_blank" rel="noopener">awesome-lit-html</a> repo lists other IDE plugins.
 
 
 ### Linting
 
 ESLint is recommended for linting lit-html code.  The following ESLint plugin can be added to check for some common issues in lit-html templates:
 
-* [https://github.com/43081j/eslint-plugin-lit](https://github.com/43081j/eslint-plugin-lit)
+* <a href="https://github.com/43081j/eslint-plugin-lit" target="_blank" rel="noopener">https://github.com/43081j/eslint-plugin-lit</a>
 
 Another alternative is to use the `lit-analyzer` CLI alongside ESLint to detect issues in your lit-html templates:
 
-* [https://github.com/runem/lit-analyzer/tree/master/packages/lit-analyzer](https://github.com/runem/lit-analyzer/tree/master/packages/lit-analyzer)
+* <a href="https://github.com/runem/lit-analyzer/tree/master/packages/lit-analyzer" target="_blank" rel="noopener">https://github.com/runem/lit-analyzer/tree/master/packages/lit-analyzer</a>
 
 `lit-analyzer` uses the same backend as the VS Code and TypeScript plugins listed in [IDE plugins](#ide-plugins).
 
@@ -78,7 +78,7 @@ lit-html is packaged as JavaScript modules. Many developers prefer to import mod
 import {html, render} from 'lit-html';
 ```
 
-To run in the browser, the bare identifier ('lit-html') needs to be transformed to a path or URL that the browser can load (such as '/node_modules/lit-html/lit-html.js'). [ES dev server](https://open-wc.org/developing/es-dev-server.html) is an open-source dev server that handles this and other transforms.
+To run in the browser, the bare identifier ('lit-html') needs to be transformed to a path or URL that the browser can load (such as '/node_modules/lit-html/lit-html.js'). <a href="https://open-wc.org/developing/es-dev-server.html" target="_blank" rel="noopener">ES dev server</a> is an open-source dev server that handles this and other transforms.
 
 You can also use the Polymer CLI dev server, if you already have it installed. For new projects, we recommend the ES dev server.
 
@@ -108,7 +108,7 @@ Run the dev server:
 npm run start
 ```
 
-For full installation and usage instructions, see the [open-wc website](https://open-wc.org/developing/es-dev-server.html). 
+For full installation and usage instructions, see the <a href="https://open-wc.org/developing/es-dev-server.html" target="_blank" rel="noopener">open-wc website</a>. 
 
 ## Testing
 
@@ -116,10 +116,10 @@ lit-html doesn't have many special testing requirements. If you already have a t
 
 Web Component Tester (WCT) is an end-to-end testing environment that supports node-style module specifiers. works with the Mocha testing framework and (optionally) the Chai assertion library. There are two ways to add WCT to your project:
 
-* [web-component-tester](https://www.npmjs.com/package/web-component-tester).  Installing the full WCT package gives you Mocha and Chai, as well as some other add-ons.
-* [wct-mocha](https://www.npmjs.com/package/wct-mocha). Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
+* <a href="https://www.npmjs.com/package/web-component-tester" target="_blank" rel="noopener">web-component-tester</a>.  Installing the full WCT package gives you Mocha and Chai, as well as some other add-ons.
+* <a href="https://www.npmjs.com/package/wct-mocha" target="_blank" rel="noopener">wct-mocha</a>. Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
 
-Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a [Karma setup](https://open-wc.org/testing/testing-karma.html#browser-testing) that resolves module dependencies by bundling with webpack before running tests. 
+Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a <a href="https://open-wc.org/testing/testing-karma.html#browser-testing" target="_blank" rel="noopener">Karma setup</a> that resolves module dependencies by bundling with webpack before running tests. 
 
 ## Build
 
@@ -130,7 +130,7 @@ Build tools take your code and make it production-ready. Among the things you ma
 * Transform code for legacy browsers: compile ES6 code to ES5, and transform JavaScript modules into other formats.
 * Add required polyfills (may be done manually).
 
-Many build tools can do this for you. Currently we recommend Rollup, and provide a [sample project using Rollup](https://github.com/PolymerLabs/lit-html-build). 
+Many build tools can do this for you. Currently we recommend Rollup, and provide a <a href="https://github.com/PolymerLabs/lit-html-build" target="_blank" rel="noopener">sample project using Rollup</a>. 
 
 If you're using another tool or creating your own Rollup configuration, see the section on [Build considerations](#build-consderations).
 
@@ -138,17 +138,17 @@ For more details on the build steps, see the LitElement [Build for production](/
 
 ### Build your project with Rollup
 
-Rollup works well with lit-html. The [lit-html-build](https://github.com/PolymerLabs/lit-html-build) repository is a simple example project using lit-html with a Rollup build.
+Rollup works well with lit-html. The <a href="https://github.com/PolymerLabs/lit-html-build" target="_blank" rel="noopener">lit-html-build</a> repository is a simple example project using lit-html with a Rollup build.
 
 For more information on the build steps, see the LitElement [Build for production](/docs/v1/tools/build/) guide.
 
-open-wc also has [Rollup build resources](https://open-wc.org/building/building-rollup.html). 
+open-wc also has <a href="https://open-wc.org/building/building-rollup.html" target="_blank" rel="noopener">Rollup build resources</a>. 
 
 ### Build your project with webpack
 
 webpack is a powerful build tool with a large ecosystem of plugins. 
 
-See the open-wc default webpack configuration provides a great starting point for building projects that use lit-html. See their [webpack page](https://github.com/open-wc/open-wc/tree/master/packages/building-webpack) for instructions on getting started. 
+See the open-wc default webpack configuration provides a great starting point for building projects that use lit-html. See their <a href="https://github.com/open-wc/open-wc/tree/master/packages/building-webpack" target="_blank" rel="noopener">webpack page</a> for instructions on getting started. 
 
 ### Build considerations  {#build-considerations}
 
@@ -183,8 +183,8 @@ For example, if you have a `tsconfig.json` file, you'd include the following opt
 
 As part of the build process, you'll probably want to minify the HTML templates. Most HTML minifiers don't support HTML inside template literals, as used by lit-html, so you'll need to use a build plugin that supports minifying lit-html templates. Minifying lit-html templates can improve performance by reducing the number of nodes in a template. 
 
-* [Babel plugin](https://github.com/cfware/babel-plugin-template-html-minifier). For build chains that use Babel for compilation. The open-wc webpack default configuration uses this plugin.
-* [Rollup plugin](https://github.com/asyncLiz/rollup-plugin-minify-html-literals). If you're building your own Rollup configuration.
+* <a href="https://github.com/cfware/babel-plugin-template-html-minifier" target="_blank" rel="noopener">Babel plugin</a>. For build chains that use Babel for compilation. The open-wc webpack default configuration uses this plugin.
+* <a href="https://github.com/asyncLiz/rollup-plugin-minify-html-literals" target="_blank" rel="noopener">Rollup plugin</a>. If you're building your own Rollup configuration.
 
 Template minification is a fairly small optimization compared to other common optimizations like JavaScript minification, bundling, and compression. 
 
@@ -204,5 +204,5 @@ Use the template polyfill:
 <script src="./node_modules/@webcomponents/template/template.js"></script>
 ```
 
-Note: when transpiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill. This is demonstrated in the [`index-prod.html`](https://github.com/PolymerLabs/lit-html-build/blob/master/index-prod.html) file in the Rollup sample project.
+Note: when transpiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill. This is demonstrated in the <a href="https://github.com/PolymerLabs/lit-html-build/blob/master/index-prod.html" target="_blank" rel="noopener">`index-prod.html`</a> file in the Rollup sample project.
 

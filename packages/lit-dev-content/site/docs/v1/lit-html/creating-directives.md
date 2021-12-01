@@ -140,7 +140,7 @@ Here, the rendered template shows "Waiting for promise to resolve," followed one
 
 If your directive needs to maintain state between renders, you can rely on the fact that the `Part` object representing a given location in the DOM stays the same between calls to `render`. In the `renderCounter` example, the part's value serves as the state.
 
-If you need to store more complicated state, you can can use a [`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap), using the `Part` as a key.
+If you need to store more complicated state, you can can use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank" rel="noopener">`WeakMap`</a>, using the `Part` as a key.
 
 ```js
 import {directive} from 'lit-html';
@@ -161,7 +161,7 @@ const statefulDirective = directive(() => (part) => {
 
 <div class="alert alert-info">
 
-**Why a WeakMap?** Using a weak map ensures that the `Part` objects and state data can  be garbage collected when they're no longer in use, preventing a memory leak. For more information, see the [MDN page on WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap).
+**Why a WeakMap?** Using a weak map ensures that the `Part` objects and state data can  be garbage collected when they're no longer in use, preventing a memory leak. For more information, see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank" rel="noopener">MDN page on WeakMap</a>.
 
 </div>
 

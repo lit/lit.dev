@@ -107,6 +107,6 @@ import {html, render} from '../node_modules/lit-html/lit-html.js';
 
 For more information on JavaScript modules:
 
-*   [Using JavaScript Modules on the Web](https://developers.google.com/web/fundamentals/primers/modules) on Web Fundementals.
+*   <a href="https://developers.google.com/web/fundamentals/primers/modules" target="_blank" rel="noopener">Using JavaScript Modules on the Web</a> on Web Fundementals.
 
-*   [import statement reference page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) on MDN.
+*   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener">import statement reference page</a> on MDN.

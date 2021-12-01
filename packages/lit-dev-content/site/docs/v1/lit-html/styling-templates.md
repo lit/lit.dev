@@ -76,7 +76,7 @@ html`
 
 This pattern may seem inefficient, since the same style sheet is reproduced in each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once. 
 
-A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](/docs/v1/components/styles/#add-styles).
+A new feature available in some browsers is <a href="https://wicg.github.io/construct-stylesheets/" target="_blank" rel="noopener">Constructable Stylesheets Objects</a>. This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](/docs/v1/components/styles/#add-styles).
 
 ### Bindings in style sheets 
 
@@ -95,7 +95,7 @@ html`
 
 Alternatives to using bindings in a style sheet:
 
-*   Use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) to pass values down the tree.
+*   Use <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="_blank" rel="noopener">CSS custom properties</a> to pass values down the tree.
 *   Use bindings in the `class` and `style` attributes to control the styling of child elements.
 
 See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap](#classmap) for examples of binding to the `style` and `class` attributes.
@@ -103,11 +103,11 @@ See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap]
 
 ### Polyfilled shadow DOM: ShadyDOM and ShadyCSS
 
-If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. [ShadyDOM](https://github.com/webcomponents/shadydom) and [ShadyCSS](https://github.com/webcomponents/shadycss) are polyfills, or shims, that emulate shadow DOM isolation and style scoping. 
+If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. <a href="https://github.com/webcomponents/shadydom" target="_blank" rel="noopener">ShadyDOM</a> and <a href="https://github.com/webcomponents/shadycss" target="_blank" rel="noopener">ShadyCSS</a> are polyfills, or shims, that emulate shadow DOM isolation and style scoping. 
 
 The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own. 
 
-The [ShadyCSS README](https://github.com/webcomponents/shadycss#usage) provides some directions for using shady CSS. When using it with `lit-html`:
+The <a href="https://github.com/webcomponents/shadycss#usage" target="_blank" rel="noopener">ShadyCSS README</a> provides some directions for using shady CSS. When using it with `lit-html`:
 
 *   Import `render` and `TemplateResult` from the `shady-render` library.
 *   You **don't** need to call `ShadyCSS.prepareTemplate`.  Instead pass the scope name as a render option. For custom elements, use the element name as a scope name. For example:

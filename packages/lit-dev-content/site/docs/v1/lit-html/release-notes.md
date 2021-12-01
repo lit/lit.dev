@@ -10,7 +10,7 @@ eleventyNavigation:
 
 ### Trusted Types
 
-[Trusted Types](https://web.dev/trusted-types/) helps eliminate cross-site scripting (XSS) attacks by limiting the ability to use unsafe DOM APIs, like `innerHTML`. When Trusted Types is enabled, unsafe APIs disallow use with easily user-controlled types like strings, and instead require values be one of a small set of trusted types, like `TrustedHTML`, that can only be created by a Trusted Type policy.
+<a href="https://web.dev/trusted-types/" target="_blank" rel="noopener">Trusted Types</a> helps eliminate cross-site scripting (XSS) attacks by limiting the ability to use unsafe DOM APIs, like `innerHTML`. When Trusted Types is enabled, unsafe APIs disallow use with easily user-controlled types like strings, and instead require values be one of a small set of trusted types, like `TrustedHTML`, that can only be created by a Trusted Type policy.
 
 This prevents application code from accidentally passing unsanitized user-controlled values directly to unsafe APIs and makes it easier to review security sensitive code that uses the Trusted Type policies.
 
@@ -100,4 +100,4 @@ const renderShape = (shape) => html`
 
 ## Releases prior to 1.2.0
 
-We don't have written release notes for releases prior to 1.2.0. Please see the [changelog](https://github.com/Polymer/lit-html/blob/master/CHANGELOG.md) for those releases.
+We don't have written release notes for releases prior to 1.2.0. Please see the <a href="https://github.com/Polymer/lit-html/blob/master/CHANGELOG.md" target="_blank" rel="noopener">changelog</a> for those releases.

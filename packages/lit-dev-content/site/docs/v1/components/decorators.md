@@ -60,13 +60,13 @@ To use decorators, you need to use a compiler such as Babel or the TypeScript co
 
 <div class="alert alert-info">
 
-**The decorators proposal**. Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like Babel and TypeScript provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
+**The decorators proposal**. Decorators are a <a href="https://github.com/tc39/proposal-decorators" target="_blank" rel="noopener">stage 2 proposal</a> for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like Babel and TypeScript provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
 
 </div>
 
 ### To use decorators with TypeScript
 
-To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html), enable the `experimentalDecorators` compiler option.
+To use decorators with <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" target="_blank" rel="noopener">TypeScript</a>, enable the `experimentalDecorators` compiler option.
 
 ```json
 "experimentalDecorators": true,
@@ -76,10 +76,10 @@ Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 ### To use decorators with Babel
 
-If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding  the following plugins:
+If you're compiling JavaScript with <a href="https://babeljs.io/docs/en/" target="_blank" rel="noopener">Babel</a>, you can enable decorators by adding  the following plugins:
 
-*   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators). 
-*   [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
+*   <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators" target="_blank" rel="noopener">`@babel/plugin-proposal-decorators`</a>. 
+*   <a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties" target="_blank" rel="noopener">`@babel/plugin-proposal-class-properties`</a>
 
 To enable the plugins, you'd add code like this to your Babel configuration:
 

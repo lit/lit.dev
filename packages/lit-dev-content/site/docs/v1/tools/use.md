@@ -56,13 +56,13 @@ However, LitElement and elements built with it import their dependencies using b
 
 At the time of writing, browsers must still be provided with the full path to a standard JavaScript module in order to load it. To convert bare module specifiers to full paths, a light transform is required.
 
-For a local server that does this automatically, try the [Open Web Components ES dev server](https://open-wc.org/developing/es-dev-server.html). 
+For a local server that does this automatically, try the <a href="https://open-wc.org/developing/es-dev-server.html" target="_blank" rel="noopener">Open Web Components ES dev server</a>. 
 
 ## Build for production {#build}
 
 To build for production, you can use a bundler such as WebPack or Rollup.
 
-The following example configuration for [Rollup](https://rollupjs.org/guide/en) resolves dependencies, converts bare module specifers to paths, and bundles the output.
+The following example configuration for <a href="https://rollupjs.org/guide/en" target="_blank" rel="noopener">Rollup</a> resolves dependencies, converts bare module specifers to paths, and bundles the output.
 
 **rollup.config.js**
 
@@ -84,7 +84,7 @@ export default {
 };
 ```
 
-See a [sample build configuration for LitElement with Babel and Rollup](https://github.com/PolymerLabs/lit-element-build-rollup/blob/master/src/index.html).
+See a <a href="https://github.com/PolymerLabs/lit-element-build-rollup/blob/master/src/index.html" target="_blank" rel="noopener">sample build configuration for LitElement with Babel and Rollup</a>.
 
 ## Load the WebComponents polyfills {#polyfills}
 
@@ -150,4 +150,4 @@ To load the WebComponents polyfills:
 
 </div>
 
-See [the Webcomponentsjs documentation](https://github.com/webcomponents/webcomponentsjs) for more information.
+See <a href="https://github.com/webcomponents/webcomponentsjs" target="_blank" rel="noopener">the Webcomponentsjs documentation</a> for more information.

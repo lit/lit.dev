@@ -21,7 +21,7 @@ At a high level, the update lifecycle is:
 
 ####  LitElement and the browser event loop
 
-The browser executes JavaScript code by processing a queue of tasks in the [event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop). In each iteration of the event loop, the browser takes a task from the queue and runs it to completion.
+The browser executes JavaScript code by processing a queue of tasks in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">event loop</a>. In each iteration of the event loop, the browser takes a task from the queue and runs it to completion.
 
 When the task completes, before taking the next task from the queue, the browser allocates time to perform work from other sources—including DOM updates, user interactions, and the microtask queue.
 
@@ -29,11 +29,11 @@ By default, LitElement updates are requested asynchronously, and queued as micro
 
 You can change this behavior so that Step 3 awaits a Promise before performing the update. See [`performUpdate`](#performUpdate) for more information.
 
-For a more detailed explanation of the browser event loop, see [Jake Archibald's article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/).
+For a more detailed explanation of the browser event loop, see <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="noopener">Jake Archibald's article</a>.
 
 #### Lifecycle callbacks {#lifecyclecallbacks}
 
-LitElement also inherits the default [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) from the Web Component standard:
+LitElement also inherits the default <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks" target="_blank" rel="noopener">lifecycle callbacks</a> from the Web Component standard:
 * `connectedCallback`: Invoked when a component is added to the document's DOM.
 * `disconnectedCallback`: Invoked when a component is removed from the document's DOM.
 * `adoptedCallback`: Invoked when a component is moved to a new document.
@@ -59,7 +59,7 @@ connectedCallback() {
 
 #### Promises and asynchronous functions
 
-LitElement uses [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) objects to schedule and respond to element updates.
+LitElement uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise</a> objects to schedule and respond to element updates.
 
 Using `async` and `await` makes it easy to work with Promises. For example, you can await the `updateComplete` Promise:
 
@@ -83,17 +83,17 @@ let result = await myFunc('stuff');
 // `result` is resolved! You can do something with it
 ```
 
-See the [Web Fundamentals primer on Promises](https://developers.google.com/web/fundamentals/primers/promises) for a more in-depth tutorial.
+See the <a href="https://developers.google.com/web/fundamentals/primers/promises" target="_blank" rel="noopener">Web Fundamentals primer on Promises</a> for a more in-depth tutorial.
 
 ## Assorted use cases
 
 Common reasons to hook into the custom element lifecycle or the LitElement update lifecycle are initializations, managing derived data, and dealing with events that originate outside of your element's template. The following list provides some common use cases and approaches. In several cases there is more than one way to achieve a certain goal. Reading this list along with the detailed [technical reference](#reference) will provide you with a rather complete picture and enable you to decide what fits your component's needs best.
 
 - Use [property.hasChanged](#haschanged) for **checking** "Is this a change? Do I want to run the update lifecycle?".
-- Use the element [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) for [initializing LitElement properties](./properties#initialize) with **default values**. (*Attribute values* from the DOM are *not available* when the constructor runs.)
+- Use the element <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor" target="_blank" rel="noopener">constructor</a> for [initializing LitElement properties](./properties#initialize) with **default values**. (*Attribute values* from the DOM are *not available* when the constructor runs.)
 - Use [firstUpdated](#firstupdated) for **initializing private fields from DOM attributes** (as the constructor doesn't have access to them). Note that [render](#render) has already run at this point and your changes might trigger another update lifecycle. If it's imperative that you get access to attribute values *before* the first render happens, consider using [connectedCallback](#lifecyclecallbacks), but you'll need to do the extra logic for figuring out the "first" update yourself as [connectedCallback](#lifecyclecallbacks) can be called multiple times.
 - Use [updated](#updated) for keeping **derived data** up to date or **reacting to changes**. If you find, that you're causing re-renders, consider using [update](#update) instead.
-- Use custom [JS property getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) for **derived data** that is "cheap" to calculate and if its not likely to change often and your element doesn't re-[render](#render) often.
+- Use custom <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get" target="_blank" rel="noopener">JS property getters</a> for **derived data** that is "cheap" to calculate and if its not likely to change often and your element doesn't re-[render](#render) often.
 - Use [requestUpdate](#requestupdate) to **trigger an update lifecycle** when LitElement cannot pick it up. (E.g. if you have an [observed property](./properties) that is an array, and you add an item to that array instead of replacing the entire array, LitElement won't "see" this change, because the *reference* to the array *didn't change*.)
 - Use [connectedCallback](#lifecyclecallbacks) to register **event handlers** for outside your element's template, but don't forget to remove them in [disconnectedCallback](#lifecyclecallbacks)!
 
@@ -301,7 +301,7 @@ The `updateComplete` Promise resolves when the element has finished updating. Us
 
 To await additional state before fulfilling the `updateComplete` promise, override the `_getUpdateComplete` method. For example, it may be useful to await the update of a child element here. First await `super._getUpdateComplete()`, then any subsequent state.
 
-It's recommended to override the `_getUpdateComplete` method instead of the `updateComplete` getter to ensure compatibility with users who are using TypeScript's ES5 output (see [TypeScript#338](https://github.com/microsoft/TypeScript/issues/338)).
+It's recommended to override the `_getUpdateComplete` method instead of the `updateComplete` getter to ensure compatibility with users who are using TypeScript's ES5 output (see <a href="https://github.com/microsoft/TypeScript/issues/338" target="_blank" rel="noopener">TypeScript#338</a>).
 
   ```js
   class MyElement extends LitElement {

@@ -25,7 +25,7 @@ const myTemplate = html`<div>Hello World</div>`;
 render(myTemplate, document.body);
 ```
 
-The lit-html template is a [_tagged template literal_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals). The template itself looks like a regular JavaScript string, but enclosed in backticks (`` ` ``) instead of quotes. The browser passes the string to lit-html's `html` tag function. 
+The lit-html template is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="noopener">_tagged template literal_</a>. The template itself looks like a regular JavaScript string, but enclosed in backticks (`` ` ``) instead of quotes. The browser passes the string to lit-html's `html` tag function. 
 
 The `html` tag function returns a `TemplateResult`—a lightweight object that represents the template to be rendered.
 
@@ -302,7 +302,7 @@ In this case, when `user.isAdmin` is false, no text node is rendered.
 
 One specific use case where an empty text node causes issues is when you're using a `<slot>` element inside a shadow root. 
 
-This use case is very specific to [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), and you probably won't encounter it unless you're using lit-html as part of LitElement or another web components base class.
+This use case is very specific to <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank" rel="noopener">shadow DOM</a>, and you probably won't encounter it unless you're using lit-html as part of LitElement or another web components base class.
 
 Imagine you have a custom element, `example-element`, that has a slot in
 its shadow DOM:

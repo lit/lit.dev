@@ -49,7 +49,7 @@ constructor() {
 
 ### Add event listeners in `connectedCallback`
 
-`connectedCallback` is a lifecycle callback in the custom elements API. `connectedCallback` fires each time a custom element is appended into a document-connected element. See [the MDN documentation on using custom elements lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) for more information.
+`connectedCallback` is a lifecycle callback in the custom elements API. `connectedCallback` fires each time a custom element is appended into a document-connected element. See <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks" target="_blank" rel="noopener">the MDN documentation on using custom elements lifecycle callbacks</a> for more information.
 
 If your component adds an event listener to anything except itself or its children–for example, to `Window`, `Document`, or some element in the main DOM–you should add the listener in `connectedCallback` and remove it in `disconnectedCallback`.
 
@@ -125,7 +125,7 @@ export class MyElement extends LitElement {
 }
 ```
 
-See the [documentation for `this` on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) for more information.
+See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener">documentation for `this` on MDN</a> for more information.
 
 ## Setting event listener options
 
@@ -163,7 +163,7 @@ The object passed to `eventOptions` is used as the `options` parameter to `addEv
 
 More information:
 
-*   [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on MDN for a description of the event listener options.
+*   <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">EventTarget.addEventListener()</a> on MDN for a description of the event listener options.
 
 
 ## Use cases
@@ -240,7 +240,7 @@ handleEvent(e){
 }
 ```
 
-See the MDN documentation on the [Event interface](https://developer.mozilla.org/en-US/docs/Web/API/Event) for more information.
+See the MDN documentation on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event" target="_blank" rel="noopener">Event interface</a> for more information.
 
 ### Event retargeting
 
@@ -285,4 +285,4 @@ firstUpdated(changedProperties) {
 }
 ```
 
-See the [MDN documentation on custom events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) for more information.
+See the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="noopener">MDN documentation on custom events</a> for more information.

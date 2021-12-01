@@ -9,7 +9,7 @@ eleventyNavigation:
 Add a template to your component to define internal DOM to implement your component.
 
 To encapsulate the templated DOM LitElement uses
-[shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom).
+<a href="https://developers.google.com/web/fundamentals/web-components/shadowdom" target="_blank" rel="noopener">shadow DOM</a>.
 Shadow DOM provides three benefits:
 
 * DOM scoping. DOM APIs like `document.querySelector` won't find elements in the
@@ -19,7 +19,7 @@ Shadow DOM provides three benefits:
 * Composition. The component's shadow DOM (managed by the component) is separate from the component's children. You can choose how children are rendered in your templated DOM. Component users can add and remove children using standard DOM APIs without accidentally breaking anything in your shadow DOM.
 
 Where native shadow DOM isn't available, LitElement
-uses the [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill.
+uses the <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadycss" target="_blank" rel="noopener">Shady CSS</a> polyfill.
 
 
 ## Define and render a template
@@ -36,7 +36,7 @@ class MyElement extends LitElement {
 }
 ```
 
-*   Write your template in HTML inside a JavaScript [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) by enclosing the raw HTML in back-ticks
+*   Write your template in HTML inside a JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="noopener">template literal</a> by enclosing the raw HTML in back-ticks
     (<code>``</code>).
 
 
@@ -261,7 +261,7 @@ Your component may accept children (like a `<ul>` element can have `<li>` childr
 ```
 By default, if an element has a shadow tree, its children don't render at all.
 
-To render children, your template needs to include one or more [`<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot), which act as placeholders for child nodes.
+To render children, your template needs to include one or more <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot" target="_blank" rel="noopener">`<slot>` elements</a>, which act as placeholders for child nodes.
 
 <div class="alert alert-info">
 
@@ -596,8 +596,8 @@ LitElement supplies a set of decorators that provide a shorthand way of defining
 
 More information:
 
-*   [Element.querySelector()](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector) on MDN.
-*   [Element.querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll) on MDN.
+*   <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" target="_blank" rel="noopener">Element.querySelector()</a> on MDN.
+*   <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll" target="_blank" rel="noopener">Element.querySelectorAll()</a> on MDN.
 
 ### @query, @queryAll, and @queryAsync decorators
 
@@ -670,7 +670,7 @@ Here, `divs` would return both `<div>` elements in the template. For TypeScript,
 _buttons!: NodeListOf<HTMLButtonElement>
 ```
 
-The exclamation point (`!`) after `buttons` is TypeScript's [non-null assertion operator](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator). It tells the compiler to treat `buttons` as always being defined, never `null` or `undefined`.
+The exclamation point (`!`) after `buttons` is TypeScript's <a href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator" target="_blank" rel="noopener">non-null assertion operator</a>. It tells the compiler to treat `buttons` as always being defined, never `null` or `undefined`.
 
 Finally, `@queryAsync` works like `@query`, except that instead of returning a node directly, it returns a `Promise` that resolves to that node. Code can use this instead of waiting for the `updateComplete` promise.
 
@@ -708,7 +708,7 @@ render() {
 
 More information:
 
-*   [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
+*   <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement" target="_blank" rel="noopener">HTMLSlotElement</a> on MDN.
 
 
 ### @queryAssignedNodes decorator
@@ -747,8 +747,8 @@ For TypeScript, the typing of a `queryAssignedNodes` property is `NodeListOf<HTM
 
 For more information on shadow DOM:
 
-* [Shadow DOM v1: Self-Contained Web Components](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
-* [Using shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) on MDN.
+* <a href="https://developers.google.com/web/fundamentals/web-components/shadowdom" target="_blank" rel="noopener">Shadow DOM v1: Self-Contained Web Components</a> on Web Fundamentals.
+* <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank" rel="noopener">Using shadow DOM</a> on MDN.
 
 For more information on lit-html templates:
 

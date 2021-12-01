@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-When building an app that includes LitElement components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/). 
+When building an app that includes LitElement components, you can use common JavaScript build tools like <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a> or <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a>. 
 
 We recommend Rollup because it's designed to work with the standard ES module format.
 
@@ -27,17 +27,17 @@ The last part of this section discusses ways to use the two builds together to p
 
 The example configurations here use the Shop demo app as an example. You can find all of the configurations described here in a branch of the Shop repo:
 
-*  [https://github.com/Polymer/shop/tree/rollup-examples-v2](https://github.com/Polymer/shop/tree/rollup-examples-v2)
+*  <a href="https://github.com/Polymer/shop/tree/rollup-examples-v2" target="_blank" rel="noopener">https://github.com/Polymer/shop/tree/rollup-examples-v2</a>
 
 ### Modern browser build {#modern-browser-build}
 
 The modern browser build uses the following npm packages:
 
-*   [`rollup`](https://www.npmjs.com/package/rollup). The Rollup bundler.
-*   [`@rollup/plugin-node-resolve`](https://www.npmjs.com/package/@rollup/plugin-node-resolve). For resolving bare module specifiers. (See [Bare module specifiers](#bare-module-specifiers) for more information.)
-*   [`rollup-plugin-terser`](https://www.npmjs.com/package/rollup-plugin-terser). To minify JavaScript. This isn't strictly required, but if you're bundling for production, you probably want to minify JavaScript.
-*   [`rollup-plugin-copy`](https://www.npmjs.com/package/rollup-plugin-copy). For copying static assets to the build folder.
-*   [`rollup-plugin-minify-html-literals`](https://www.npmjs.com/package/rollup-plugin-minify-html-literals). An optional optimization.
+*   <a href="https://www.npmjs.com/package/rollup" target="_blank" rel="noopener">`rollup`</a>. The Rollup bundler.
+*   <a href="https://www.npmjs.com/package/@rollup/plugin-node-resolve" target="_blank" rel="noopener">`@rollup/plugin-node-resolve`</a>. For resolving bare module specifiers. (See [Bare module specifiers](#bare-module-specifiers) for more information.)
+*   <a href="https://www.npmjs.com/package/rollup-plugin-terser" target="_blank" rel="noopener">`rollup-plugin-terser`</a>. To minify JavaScript. This isn't strictly required, but if you're bundling for production, you probably want to minify JavaScript.
+*   <a href="https://www.npmjs.com/package/rollup-plugin-copy" target="_blank" rel="noopener">`rollup-plugin-copy`</a>. For copying static assets to the build folder.
+*   <a href="https://www.npmjs.com/package/rollup-plugin-minify-html-literals" target="_blank" rel="noopener">`rollup-plugin-minify-html-literals`</a>. An optional optimization.
 
 The Rollup configuration file for this build looks like this: \
 
@@ -82,9 +82,9 @@ export default config;
 
 #### Even simpler starter {#even-simpler-starter}
 
-The [rollup-starter-app](https://github.com/rollup/rollup-starter-app) repo is a bare-bones starter project for building an app with Rollup. Although the repo doesn't include LitElement, it includes everything you need to bundle a LitElement app. If you want to use this project as a model for your own project, the most important files to look at are [`package.json`](https://github.com/rollup/rollup-starter-app/blob/master/package.json) and [`rollup.config.js`](https://github.com/rollup/rollup-starter-app/blob/master/rollup.config.js).
+The <a href="https://github.com/rollup/rollup-starter-app" target="_blank" rel="noopener">rollup-starter-app</a> repo is a bare-bones starter project for building an app with Rollup. Although the repo doesn't include LitElement, it includes everything you need to bundle a LitElement app. If you want to use this project as a model for your own project, the most important files to look at are <a href="https://github.com/rollup/rollup-starter-app/blob/master/package.json" target="_blank" rel="noopener">`package.json`</a> and <a href="https://github.com/rollup/rollup-starter-app/blob/master/rollup.config.js" target="_blank" rel="noopener">`rollup.config.js`</a>.
 
-Note that in addition to the required plugins, [rollup-starter-app](https://github.com/rollup/rollup-starter-app) includes the CommonJS plugin, [@rollup/plugin-commonjs](https://www.npmjs.com/package/@rollup/plugin-commonjs). This plugin **isn't** required for LitElement, but can be useful if you want to import packages that are only distributed as CommonJS modules.
+Note that in addition to the required plugins, <a href="https://github.com/rollup/rollup-starter-app" target="_blank" rel="noopener">rollup-starter-app</a> includes the CommonJS plugin, <a href="https://www.npmjs.com/package/@rollup/plugin-commonjs" target="_blank" rel="noopener">@rollup/plugin-commonjs</a>. This plugin **isn't** required for LitElement, but can be useful if you want to import packages that are only distributed as CommonJS modules.
 
 ### Universal build {#universal-build}
 
@@ -94,28 +94,28 @@ The universal build requires all of the packages used by the modern build, plus 
 
 Babel:
 
-*   [`@babel/core`](https://www.npmjs.com/package/@babel/core) 
-*   [`@babel/cli`](https://babeljs.io/docs/en/babel-cli) 
-*   [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env)
+*   <a href="https://www.npmjs.com/package/@babel/core" target="_blank" rel="noopener">`@babel/core`</a> 
+*   <a href="https://babeljs.io/docs/en/babel-cli" target="_blank" rel="noopener">`@babel/cli`</a> 
+*   <a href="https://babeljs.io/docs/en/babel-preset-env" target="_blank" rel="noopener">`@babel/preset-env`</a>
 
 Polyfills used by Babel:
 
-*   [`corejs`](https://www.npmjs.com/package/core-js)
-*   [`regenerator-runtime`](https://www.npmjs.com/package/core-js)
+*   <a href="https://www.npmjs.com/package/core-js" target="_blank" rel="noopener">`corejs`</a>
+*   <a href="https://www.npmjs.com/package/core-js" target="_blank" rel="noopener">`regenerator-runtime`</a>
 
 Rollup plugins:
 
-*   [`rollup-plugin-babel`](https://www.npmjs.com/package/@rollup/plugin-babel)
-*   [`rollup-plugin-commonjs`](https://www.npmjs.com/package/@rollup/plugin-babel)
+*   <a href="https://www.npmjs.com/package/@rollup/plugin-babel" target="_blank" rel="noopener">`rollup-plugin-babel`</a>
+*   <a href="https://www.npmjs.com/package/@rollup/plugin-babel" target="_blank" rel="noopener">`rollup-plugin-commonjs`</a>
 
 SystemJS module loader:
 
-*   [`systemjs`](https://www.npmjs.com/package/systemjs)
+*   <a href="https://www.npmjs.com/package/systemjs" target="_blank" rel="noopener">`systemjs`</a>
 
 If you just want to look at the code, here are the most important parts of the universal build:
 
-*   Rollup configuration: [https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js](https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js)
-*   `index.html`: [https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html](https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js)
+*   Rollup configuration: <a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js" target="_blank" rel="noopener">https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js</a>
+*   `index.html`: <a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js" target="_blank" rel="noopener">https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html</a>
 
 The following sections describe aspects of the build. 
 
@@ -252,7 +252,7 @@ These approaches are discussed in the following sections.
 
 Since browsers that don't support modules won't execute module scripts (`<script type="module">`), and browsers that support modules won't load `nomodule` scripts (`<script nomodule>`), you can include the legacy bundles using `nomodule`.  In practice, the browsers that support modules also support the other ES6 language features used by LitElement, and don't require transpilation.
 
-You can see this in practice in the Shop example app. See the [`index-modnomod.html`](https://github.com/Polymer/shop/blob/rollup-examples-v2/index-modnomod.html) file.
+You can see this in practice in the Shop example app. See the <a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/index-modnomod.html" target="_blank" rel="noopener">`index-modnomod.html`</a> file.
 The advantage of this technique is that it doesn't require any logic on the server side.
 
 The main drawback to this technique is that Edge versions 16–18 support JavaScript modules, but _don't_ support dynamic imports. That's not an issue if your application can be packaged in a single bundle, but if you have a larger application that uses dynamic imports and you need to support older versions of Edge, this technique won't work for you. 
@@ -269,7 +269,7 @@ This is another technique that doesn't require any server logic. However, it can
 
 In this technique, the server uses the User-Agent request header to determine which bundle to serve to the browser. This technique (also called "browser sniffing") has drawbacks. It's less correct than client-side feature detection, in that it relies on a static list of features supported by each browser. Also, some browsers may send an incorrect User-Agent header. However, it tends to have a performance advantage over the other approaches, since the browser only receives the bundles it needs.
 
-The [prpl-server](https://github.com/Polymer/prpl-server) project is a Node.js web server that supports differential serving. 
+The <a href="https://github.com/Polymer/prpl-server" target="_blank" rel="noopener">prpl-server</a> project is a Node.js web server that supports differential serving. 
 
 ## Build requirements {#build-requirements}
 
@@ -298,9 +298,9 @@ import {html} from 'lit-html';
 
 Browsers currently only support loading modules from URLs or relative paths, not bare names referring to e.g. an npm package, so the build system needs to handle them: either by transforming the specifier to one that works for ES modules in the browser, or by producing a different type of module as output.
 
-Webpack automatically handles bare module specifiers; for Rollup, you'll need a plugin ([@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)).
+Webpack automatically handles bare module specifiers; for Rollup, you'll need a plugin (<a href="https://github.com/rollup/plugins/tree/master/packages/node-resolve" target="_blank" rel="noopener">@rollup/plugin-node-resolve</a>).
 
-**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called [Import maps](https://github.com/WICG/import-maps) would let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps. 
+**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called <a href="https://github.com/WICG/import-maps" target="_blank" rel="noopener">Import maps</a> would let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps. 
 
 ### Supporting older browsers {#supporting-older-browsers}
 
@@ -316,11 +316,11 @@ You may need other polyfills depending on your application.
 
 #### Transpiling to ES5 {#transpiling-to-es5}
 
-Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used transpiler. 
+Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. <a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a> is the most commonly used transpiler. 
 
 Unlike some libraries, LitElement is delivered as a set of ES modules using modern JavaScript. When you build your app, you need to compile LitElement as well as your own code. 
 
-If you have a build already set up, it may be configured to ignore the `node_modules` folder when transpiling. If this is the case, we recommend updating this to transpile LitElement and lit-html. For example, if you're using the [Rollup Babel plugin](https://github.com/rollup/rollup-plugin-babel), you might have a configuration like this to exclude the `node_modules` folder from transpilation:
+If you have a build already set up, it may be configured to ignore the `node_modules` folder when transpiling. If this is the case, we recommend updating this to transpile LitElement and lit-html. For example, if you're using the <a href="https://github.com/rollup/rollup-plugin-babel" target="_blank" rel="noopener">Rollup Babel plugin</a>, you might have a configuration like this to exclude the `node_modules` folder from transpilation:
 
 ```js
 exclude: [ 'node_modules/**' ]
@@ -344,14 +344,14 @@ If LitElement included multiple builds, individual elements could end up dependi
 When producing output for IE11, there are three common output formats:
 
 *   No modules (IIFE). Code is bundled as a single file, wrapped in an immediately-invoked function expression (IIFE).
-*   AMD modules. Uses the Asynchronous Module Definition format; requires a module loader script, such as [require.js](https://requirejs.org/).
-*   SystemJS modules. [SystemJS](https://github.com/systemjs/systemjs) is a module loader that defines its own module format. It also supports AMD, CommonJS, and standard JavaScript modules.
+*   AMD modules. Uses the Asynchronous Module Definition format; requires a module loader script, such as <a href="https://requirejs.org/" target="_blank" rel="noopener">require.js</a>.
+*   SystemJS modules. <a href="https://github.com/systemjs/systemjs" target="_blank" rel="noopener">SystemJS</a> is a module loader that defines its own module format. It also supports AMD, CommonJS, and standard JavaScript modules.
 
 The IIFE format works fine if all of your code can be bundled into a single file. To use code splitting with older browsers like IE11, you'll need to produce output in either the AMD or SystemJS module format.
 
 The universal build in the [Building with Rollup](#building-with-rollup) section uses SystemJS format. You can see an example of loading the main SystemJS module here:
 
-[https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html#L109](https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html#L109)
+<a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html#L109" target="_blank" rel="noopener">https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html#L109</a>
 
 #### Polyfills {#polyfills}
 
@@ -378,7 +378,7 @@ The example builds presented in [Building with Rollup](#building-with-rollup) in
 
 ### Code minification {#code-minification}
 
-There are many options for code minification. Terser works well with the modern JavaScript used by LitElement. For more information, the [terser](https://www.npmjs.com/package/terser) package description is an excellent overview.
+There are many options for code minification. Terser works well with the modern JavaScript used by LitElement. For more information, the <a href="https://www.npmjs.com/package/terser" target="_blank" rel="noopener">terser</a> package description is an excellent overview.
 
 ### Minify template literals {#minify-template-literals}
 
@@ -386,8 +386,8 @@ Lit-html templates are defined using template literals, which don't get processe
 
 Several packages are available to perform this optimization:
 
-*   Rollup: [rollup-plugin-minify-html-literals](https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme)
-*   Webpack: [minify-template-literal-loader](https://www.npmjs.com/package/minify-template-literal-loader)
+*   Rollup: <a href="https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme" target="_blank" rel="noopener">rollup-plugin-minify-html-literals</a>
+*   Webpack: <a href="https://www.npmjs.com/package/minify-template-literal-loader" target="_blank" rel="noopener">minify-template-literal-loader</a>
 
 
 ### Compile out the shady-render module {#compile-out-the-shady-render-module}
