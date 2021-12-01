@@ -82,8 +82,7 @@ If you must use an expression in a `css` literal that is not itself a `css` lite
 
 {% include project.html folder="style/unsafecss" openFile="my-element.js" %}
 
-{:.alert .alert-warning}
-<div>
+<div class="alert alert-warning">
 
 **Only use the `unsafeCSS` tag with trusted input.** Injecting unsanitized CSS is a security risk. For example,
 malicious CSS can "phone home" by adding an image URL that points to a third-party server.
@@ -288,8 +287,7 @@ my-element div {
 ```
 
 
-{:.alert .alert-info}
-<div>
+<div class="alert alert-info">
 
 **Watch out for limitations in the Shady CSS polyfill around slotted content!** See the [Shady CSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for details on how to use the `::slotted()` syntax in a polyfill-friendly way. 
 
@@ -628,8 +626,7 @@ render() {
 
 {% include project.html folder="style/inherited" openFile="my-element.js" %}
 
-{:.alert .alert-info}
-<div id="specificity">
+<div class="alert alert-info">
 
 **Type selectors have higher specificity than :host.**
 

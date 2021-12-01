@@ -17,8 +17,7 @@ LitElement manages your declared properties and their corresponding attributes. 
 * Use direct comparison (`oldValue !== newValue`) to test for property changes.
 * Apply any property options and accessors declared by a superclass. 
 
-{:.alert .alert-warning}
-<div>
+<div class="alert alert-warning">
 
 **Remember to declare all of the properties that you want LitElement to manage.** For the property features above to be applied, you must [declare the property](#declare). 
 
@@ -233,8 +232,7 @@ constructor() {
 }
 ```
 
-{:.alert .alert-warning}
-<div> 
+<div class="alert alert-warning">
 
 Remember to call `super()` first in your constructor, or your element won't render at all.
 
@@ -429,8 +427,7 @@ When the property changes, LitElement uses the `toAttribute` function in the pro
 
 * If `toAttribute` itself is undefined, the attribute value is set to the property value without conversion.
 
-{:.alert .alert-info}
-<div>
+<div class="alert alert-info">
 
 **LitElement tracks reflection state during updates.** LitElement keeps track of  state information to avoid creating an infinite loop of changes between a property and an observed, reflected attribute.
 
