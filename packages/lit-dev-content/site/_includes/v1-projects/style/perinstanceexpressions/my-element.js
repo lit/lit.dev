@@ -5,7 +5,7 @@ const perClassStyle = html`
     :host {
       display: block;
       font-family: Roboto;
-      font-size: 14px; 
+      font-size: 14px;
     }
   </style>
 `;

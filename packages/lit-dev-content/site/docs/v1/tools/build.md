@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-When building an app that includes LitElement components, you can use common JavaScript build tools like <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a> or <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a>. 
+When building an app that includes LitElement components, you can use common JavaScript build tools like <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a> or <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a>.
 
 We recommend Rollup because it's designed to work with the standard ES module format.
 
@@ -16,7 +16,7 @@ If you're interested in building with a different tool, or integrating LitElemen
 
 ## Building with Rollup {#building-with-rollup}
 
-There are many ways to set up Rollup to bundle your project. This section describes a two basic builds: 
+There are many ways to set up Rollup to bundle your project. This section describes a two basic builds:
 
 *   A modern build that runs on evergreen browsers.
 *   A universal build that runs on browsers back to Internet Explorer 11.
@@ -94,8 +94,8 @@ The universal build requires all of the packages used by the modern build, plus 
 
 Babel:
 
-*   <a href="https://www.npmjs.com/package/@babel/core" target="_blank" rel="noopener">`@babel/core`</a> 
-*   <a href="https://babeljs.io/docs/en/babel-cli" target="_blank" rel="noopener">`@babel/cli`</a> 
+*   <a href="https://www.npmjs.com/package/@babel/core" target="_blank" rel="noopener">`@babel/core`</a>
+*   <a href="https://babeljs.io/docs/en/babel-cli" target="_blank" rel="noopener">`@babel/cli`</a>
 *   <a href="https://babeljs.io/docs/en/babel-preset-env" target="_blank" rel="noopener">`@babel/preset-env`</a>
 
 Polyfills used by Babel:
@@ -117,11 +117,11 @@ If you just want to look at the code, here are the most important parts of the u
 *   Rollup configuration: <a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js" target="_blank" rel="noopener">https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js</a>
 *   `index.html`: <a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/rollup-universal.js" target="_blank" rel="noopener">https://github.com/Polymer/shop/blob/rollup-examples-v2/index-universal.html</a>
 
-The following sections describe aspects of the build. 
+The following sections describe aspects of the build.
 
 #### Babel build and polyfill bundle {#babel-build-and-polyfill-bundle}
 
-Unlike the modern build, this build produces two separate bundles: one for the application code, and one for the polyfills required by Babel. Many Babel configurations produce a single bundle, which includes the polyfills as well as the application code. However, this can cause problems with other polyfills, including the Web Components polyfills. Loading the Babel polyfills separately, prior to loading the Web Components polyfills, allows both sets of polyfills to work correctly. The Babel polyfills are supplied as separate Common JS modules. 
+Unlike the modern build, this build produces two separate bundles: one for the application code, and one for the polyfills required by Babel. Many Babel configurations produce a single bundle, which includes the polyfills as well as the application code. However, this can cause problems with other polyfills, including the Web Components polyfills. Loading the Babel polyfills separately, prior to loading the Web Components polyfills, allows both sets of polyfills to work correctly. The Babel polyfills are supplied as separate Common JS modules.
 
 #### Babel configuration {#babel-configuration}
 
@@ -192,7 +192,7 @@ The Rollup config bundles all of these modules into a single file:
 ```js
 const configs = [
 
-   ... 
+   ...
 
   // Babel polyfills for older browsers that don't support ES2015+.
   {
@@ -220,7 +220,7 @@ The `index.html` file loads all of the bundles in the correct order:
 With extra material removed, the portion of `index.html` that loads script looks like this:
 
 ```html
-<!-- Babel polyfills--need to be loaded _before_ Web 
+<!-- Babel polyfills--need to be loaded _before_ Web
      Components polyfills -->
 <script src="nomodule/src/babel-polyfills-nomodule.js"></script>
 
@@ -240,11 +240,11 @@ With extra material removed, the portion of `index.html` that loads script looks
 
 In theory, it's ideal to deliver a modern ES6 bundle to modern browsers and the larger ES5 bundle to older browsers. In practice, this can be challenging. Here are three possible techniques for delivering different builds to different browsers:
 
-*   `module` and `nomodule` script tags. 
+*   `module` and `nomodule` script tags.
 
-*   Client-side feature detection. 
+*   Client-side feature detection.
 
-*   Differential serving. 
+*   Differential serving.
 
 These approaches are discussed in the following sections.
 
@@ -255,21 +255,21 @@ Since browsers that don't support modules won't execute module scripts (`<script
 You can see this in practice in the Shop example app. See the <a href="https://github.com/Polymer/shop/blob/rollup-examples-v2/index-modnomod.html" target="_blank" rel="noopener">`index-modnomod.html`</a> file.
 The advantage of this technique is that it doesn't require any logic on the server side.
 
-The main drawback to this technique is that Edge versions 16–18 support JavaScript modules, but _don't_ support dynamic imports. That's not an issue if your application can be packaged in a single bundle, but if you have a larger application that uses dynamic imports and you need to support older versions of Edge, this technique won't work for you. 
+The main drawback to this technique is that Edge versions 16–18 support JavaScript modules, but _don't_ support dynamic imports. That's not an issue if your application can be packaged in a single bundle, but if you have a larger application that uses dynamic imports and you need to support older versions of Edge, this technique won't work for you.
 
 Another drawback is that IE 11 (and possibly some other older browsers) may download (but not execute) `<script type="module">` bundles, and Edge 16-18 may download (but not execute) `<script nomodule>` bundles. This represents a performance penalty on these older browsers.
 
 #### Client-side feature detection
 
-In this technique, the initial page load includes a small script that runs feature detection code and then imperatively loads one of the bundles. 
+In this technique, the initial page load includes a small script that runs feature detection code and then imperatively loads one of the bundles.
 
-This is another technique that doesn't require any server logic. However, it can introduce delays, since the browser won't start downloading the application bundle until after the initial JavaScript payload has downloaded and executed. 
+This is another technique that doesn't require any server logic. However, it can introduce delays, since the browser won't start downloading the application bundle until after the initial JavaScript payload has downloaded and executed.
 
 #### Differential serving
 
 In this technique, the server uses the User-Agent request header to determine which bundle to serve to the browser. This technique (also called "browser sniffing") has drawbacks. It's less correct than client-side feature detection, in that it relies on a static list of features supported by each browser. Also, some browsers may send an incorrect User-Agent header. However, it tends to have a performance advantage over the other approaches, since the browser only receives the bundles it needs.
 
-The <a href="https://github.com/Polymer/prpl-server" target="_blank" rel="noopener">prpl-server</a> project is a Node.js web server that supports differential serving. 
+The <a href="https://github.com/Polymer/prpl-server" target="_blank" rel="noopener">prpl-server</a> project is a Node.js web server that supports differential serving.
 
 ## Build requirements {#build-requirements}
 
@@ -286,7 +286,7 @@ When building an app using LitElement, your build system will need to handle the
 For older browsers, you'll also need to load certain polyfills:
 
 *   Web Components polyfills
-*   Dynamic imports polyfill. Required by browsers (in particular, Edge 16 through 18) that support static imports for ES modules, but not dynamic imports. 
+*   Dynamic imports polyfill. Required by browsers (in particular, Edge 16 through 18) that support static imports for ES modules, but not dynamic imports.
 
 ### Bare module specifiers {#bare-module-specifiers}
 
@@ -300,7 +300,7 @@ Browsers currently only support loading modules from URLs or relative paths, not
 
 Webpack automatically handles bare module specifiers; for Rollup, you'll need a plugin (<a href="https://github.com/rollup/plugins/tree/master/packages/node-resolve" target="_blank" rel="noopener">@rollup/plugin-node-resolve</a>).
 
-**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called <a href="https://github.com/WICG/import-maps" target="_blank" rel="noopener">Import maps</a> would let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps. 
+**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called <a href="https://github.com/WICG/import-maps" target="_blank" rel="noopener">Import maps</a> would let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps.
 
 ### Supporting older browsers {#supporting-older-browsers}
 
@@ -312,13 +312,13 @@ Supporting older browsers (specifically Internet Explorer 11), requires a number
     *   Babel polyfills.
     *   Web Components polyfills.
 
-You may need other polyfills depending on your application. 
+You may need other polyfills depending on your application.
 
 #### Transpiling to ES5 {#transpiling-to-es5}
 
-Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. <a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a> is the most commonly used transpiler. 
+Rollup, webpack and other build tools have plugins to support transpiling modern JavaScript for older browsers. <a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a> is the most commonly used transpiler.
 
-Unlike some libraries, LitElement is delivered as a set of ES modules using modern JavaScript. When you build your app, you need to compile LitElement as well as your own code. 
+Unlike some libraries, LitElement is delivered as a set of ES modules using modern JavaScript. When you build your app, you need to compile LitElement as well as your own code.
 
 If you have a build already set up, it may be configured to ignore the `node_modules` folder when transpiling. If this is the case, we recommend updating this to transpile LitElement and lit-html. For example, if you're using the <a href="https://github.com/rollup/rollup-plugin-babel" target="_blank" rel="noopener">Rollup Babel plugin</a>, you might have a configuration like this to exclude the `node_modules` folder from transpilation:
 
@@ -332,9 +332,9 @@ You can replace this with a rule to explicitly include folders to transpile:
 include: [ 'src/**', 'node_modules/lit-element/**', 'node_modules/lit-html/**']
 ```
 
-Babel uses a set of helpers and polyfills for implementing various modern JavaScript features. Babel can package these polyfills in with your application code. However, this causes issues with the Web Components polyfills. To avoid issues, bundle the Babel polyfills separately. See [Polyfill bundle](#polyfill-bundle) for an example of building this bundle with Rollup, and see [Loading it all](#loading-it-all) for an example `index.html` showing the load order. 
+Babel uses a set of helpers and polyfills for implementing various modern JavaScript features. Babel can package these polyfills in with your application code. However, this causes issues with the Web Components polyfills. To avoid issues, bundle the Babel polyfills separately. See [Polyfill bundle](#polyfill-bundle) for an example of building this bundle with Rollup, and see [Loading it all](#loading-it-all) for an example `index.html` showing the load order.
 
-**Why no ES5 build?** The LitElement npm package doesn't include an ES5 build because modern JavaScript is smaller and generally faster. When building an application, you can compile modern JavaScript down to create the exact build (or builds) you need based on the browsers you need to support. 
+**Why no ES5 build?** The LitElement npm package doesn't include an ES5 build because modern JavaScript is smaller and generally faster. When building an application, you can compile modern JavaScript down to create the exact build (or builds) you need based on the browsers you need to support.
 
 If LitElement included multiple builds, individual elements could end up depending on different builds of LitElement—resulting in multiple versions of the library being shipped down to the browser.
 
@@ -404,7 +404,7 @@ For a Rollup build:
     npm i -D @rollup/plugin-alias
     ```
 
-2.  Configure the alias plugin to replace references to the `shady-render` module with references to the main `lit-html` module. 
+2.  Configure the alias plugin to replace references to the `shady-render` module with references to the main `lit-html` module.
 
     ```js
     alias({
@@ -431,7 +431,7 @@ For a webpack build:
 
 The TypeScript language extends JavaScript by adding types and type checking. The TypeScript compiler, `tsc`, compiles TypeScript into standard JavaScript.
 
-While it's possible to run the TypeScript compiler as part of the bundling process, we recommend running it separately, to generate an intermediate JavaScript version of your project. Because of issues with the TypeScript compiler's output for older browsers. **We recommend configuring TypeScript to output modern JavaScript (ES2017 target and ES modules).** 
+While it's possible to run the TypeScript compiler as part of the bundling process, we recommend running it separately, to generate an intermediate JavaScript version of your project. Because of issues with the TypeScript compiler's output for older browsers. **We recommend configuring TypeScript to output modern JavaScript (ES2017 target and ES modules).**
 
 For example, if you have a `tsconfig.json` file, you'd include the following options to output modern JavaScript:
 

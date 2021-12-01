@@ -1,12 +1,12 @@
 import { LitElement, html, css } from 'lit-element';
 
 class MyElement extends LitElement {
-  static get styles() { 
+  static get styles() {
     return css`
-      :host { 
+      :host {
         display: block;
-        color: var(--my-element-text-color, black); 
-        background: var(--my-element-background-color, white);  
+        color: var(--my-element-text-color, black);
+        background: var(--my-element-background-color, white);
         font-family: var(--my-element-font-family, Roboto);
       }
       :host([hidden]) {

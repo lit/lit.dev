@@ -7,7 +7,7 @@ class MyElement extends LitElement {
       .alert {
         font-family: Roboto;
         font-size: 16px;
-        padding: 24px; 
+        padding: 24px;
         margin: 12px;
         background-color: whitesmoke;
       }
@@ -19,15 +19,15 @@ class MyElement extends LitElement {
       }
     `;
   }
-  
-  render() { 
+
+  render() {
     return html`
       <div class=${classMap({alert:true,info:true})}>Content.</div>
     `;
   }
 
-  // Equivalent: 
-  /* 
+  // Equivalent:
+  /*
   render() {
     return html`
       <div class="alert info">Content.</div>

@@ -5,7 +5,7 @@ import './my-button.js';
 class MyElement extends LitElement {
 
   static get properties() {
-    return { 
+    return {
       alerttype: { type: String },
       myClassMap: { type: Object }
     };
@@ -14,11 +14,11 @@ class MyElement extends LitElement {
   static styles = css`
     :host {
       font-family: Roboto;
-      font-size: 14px; 
+      font-size: 14px;
     }
     .alert {
       font-size: 16px;
-      padding: 24px; 
+      padding: 24px;
       margin: 12px;
       background-color: whitesmoke;
     }

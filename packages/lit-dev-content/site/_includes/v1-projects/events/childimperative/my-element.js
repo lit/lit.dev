@@ -1,6 +1,6 @@
 import { LitElement, html } from '@polymer/lit-element';
 
-class MyElement extends LitElement {  
+class MyElement extends LitElement {
 
   firstUpdated() {
     let button = this.shadowRoot.getElementById('mybutton');

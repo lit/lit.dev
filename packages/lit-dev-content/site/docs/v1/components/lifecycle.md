@@ -41,11 +41,11 @@ LitElement also inherits the default <a href="https://developer.mozilla.org/en-U
 
 <div class="alert alert-info">
 
-**Be aware that adoptedCallback is not polyfilled.** 
+**Be aware that adoptedCallback is not polyfilled.**
 
 </div>
 
-**All lifecycle methods need to call the super method.** 
+**All lifecycle methods need to call the super method.**
 
 Example:
 

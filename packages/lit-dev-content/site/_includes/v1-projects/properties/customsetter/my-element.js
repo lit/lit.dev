@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
-  static get properties() { 
+  static get properties() {
     return { prop: { type: Number } };
   }
 

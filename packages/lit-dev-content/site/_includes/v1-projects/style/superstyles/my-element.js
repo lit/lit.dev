@@ -7,7 +7,7 @@ class MyElement extends SuperElement {
       super.styles,
       css`button { color: red; }`
     ];
-  } 
+  }
 }
 
 customElements.define('my-element', MyElement);

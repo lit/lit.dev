@@ -58,8 +58,8 @@ import {html, render} from 'lit-html';
 
 For simplicity, the examples in these docs use package names (also known as node-style module specifiers).
 
-See [Tools](/docs/v1/lit-html/tools/) for information on build tools and dev servers you can use to convert node-style module specifiers to 
-browser-style module specifiers. 
+See [Tools](/docs/v1/lit-html/tools/) for information on build tools and dev servers you can use to convert node-style module specifiers to
+browser-style module specifiers.
 
 **Why JavaScript modules?** For more information on why lit-html is distributed using JavaScript modules, see [JavaScript Modules](/docs/v1/lit-html/concepts/#javascript-modules).
 

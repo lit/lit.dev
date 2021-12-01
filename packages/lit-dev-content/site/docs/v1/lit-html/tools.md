@@ -13,7 +13,7 @@ lit-html is delivered as a set of JavaScript modules. If you aren't already usin
 
 ## Setup
 
-The simplest way to add lit-html to a project is to install it from the npm registry. 
+The simplest way to add lit-html to a project is to install it from the npm registry.
 
 1. If you're starting a brand-new project, run the following command in your project area to set up npm:
 
@@ -32,7 +32,7 @@ The simplest way to add lit-html to a project is to install it from the npm regi
 
 3. If you're working on a project with many front-end dependencies, you may want to use the npm  `dedupe` command to try and reduce duplicated modules:
 
-    `npm dedupe` 
+    `npm dedupe`
 
 ## Development
 
@@ -86,7 +86,7 @@ If you already have a dev server that integrates with your build process, you ca
 
 #### ES Dev Server
 
-The ES dev server enables a build-free development process. It handles rewriting bare module specifiers to valid paths or URLs, as required by the browser. For IE11, ES dev server also transforms JavaScript modules to use the backwards-compatible SystemJS module loader. 
+The ES dev server enables a build-free development process. It handles rewriting bare module specifiers to valid paths or URLs, as required by the browser. For IE11, ES dev server also transforms JavaScript modules to use the backwards-compatible SystemJS module loader.
 
 Install ES dev server:
 
@@ -108,7 +108,7 @@ Run the dev server:
 npm run start
 ```
 
-For full installation and usage instructions, see the <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">open-wc website</a>. 
+For full installation and usage instructions, see the <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">open-wc website</a>.
 
 ## Testing
 
@@ -119,18 +119,18 @@ Web Component Tester (WCT) is an end-to-end testing environment that supports no
 * <a href="https://www.npmjs.com/package/web-component-tester" target="_blank" rel="noopener">web-component-tester</a>.  Installing the full WCT package gives you Mocha and Chai, as well as some other add-ons.
 * <a href="https://www.npmjs.com/package/wct-mocha" target="_blank" rel="noopener">wct-mocha</a>. Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
 
-Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a <a href="https://github.com/open-wc/legacy/tree/master/packages/testing-karma#readme" target="_blank" rel="noopener">Karma setup</a> that resolves module dependencies by bundling with webpack before running tests. 
+Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a <a href="https://github.com/open-wc/legacy/tree/master/packages/testing-karma#readme" target="_blank" rel="noopener">Karma setup</a> that resolves module dependencies by bundling with webpack before running tests.
 
 ## Build
 
 Build tools take your code and make it production-ready. Among the things you may need build tools to do:
 
-* Bundle modules together to improve performance by reducing the number of files that need to be transferred. 
+* Bundle modules together to improve performance by reducing the number of files that need to be transferred.
 * Minify JavaScript, HTML, and CSS.
 * Transform code for legacy browsers: compile ES6 code to ES5, and transform JavaScript modules into other formats.
 * Add required polyfills (may be done manually).
 
-Many build tools can do this for you. Currently we recommend Rollup, and provide a <a href="https://github.com/PolymerLabs/lit-html-build" target="_blank" rel="noopener">sample project using Rollup</a>. 
+Many build tools can do this for you. Currently we recommend Rollup, and provide a <a href="https://github.com/PolymerLabs/lit-html-build" target="_blank" rel="noopener">sample project using Rollup</a>.
 
 If you're using another tool or creating your own Rollup configuration, see the section on [Build considerations](#build-consderations).
 
@@ -142,13 +142,13 @@ Rollup works well with lit-html. The <a href="https://github.com/PolymerLabs/lit
 
 For more information on the build steps, see the LitElement [Build for production](/docs/v1/tools/build/) guide.
 
-open-wc also has <a href="https://open-wc.org/docs/building/rollup/#building-rollup" target="_blank" rel="noopener">Rollup build resources</a>. 
+open-wc also has <a href="https://open-wc.org/docs/building/rollup/#building-rollup" target="_blank" rel="noopener">Rollup build resources</a>.
 
 ### Build your project with webpack
 
-webpack is a powerful build tool with a large ecosystem of plugins. 
+webpack is a powerful build tool with a large ecosystem of plugins.
 
-See the open-wc default webpack configuration provides a great starting point for building projects that use lit-html. See their <a href="https://github.com/open-wc/legacy/tree/master/packages/building-webpack#readme" target="_blank" rel="noopener">webpack page</a> for instructions on getting started. 
+See the open-wc default webpack configuration provides a great starting point for building projects that use lit-html. See their <a href="https://github.com/open-wc/legacy/tree/master/packages/building-webpack#readme" target="_blank" rel="noopener">webpack page</a> for instructions on getting started.
 
 ### Build considerations  {#build-considerations}
 
@@ -165,9 +165,9 @@ For more details on these considerations, see the LitElement [Build for producti
 
 To support legacy browsers, your build tools need to compile ES6 features to ES5. In general, ES6 is faster than the ES5 equivalent, so try to serve ES6 to browsers that support it.
 
-Your build tools need to accept JavaScript modules (also called ES modules) and transform them to another module format, such as SystemJS, if necessary. If you use node-style module specifiers, your build will also need to transform them to browser-ready modules specifiers. 
+Your build tools need to accept JavaScript modules (also called ES modules) and transform them to another module format, such as SystemJS, if necessary. If you use node-style module specifiers, your build will also need to transform them to browser-ready modules specifiers.
 
-If you're working in TypeScript, the TypeScript compiler, `tsc`, can generate different output for different browsers. However, there are known issues with the compiled output for older browsers. **We recommend configuring TypeScript to output modern JavaScript (ES2017 target and ES modules) and using Babel to compile the output for older browsers.** 
+If you're working in TypeScript, the TypeScript compiler, `tsc`, can generate different output for different browsers. However, there are known issues with the compiled output for older browsers. **We recommend configuring TypeScript to output modern JavaScript (ES2017 target and ES modules) and using Babel to compile the output for older browsers.**
 
 For example, if you have a `tsconfig.json` file, you'd include the following options to output modern JavaScript:
 
@@ -181,12 +181,12 @@ For example, if you have a `tsconfig.json` file, you'd include the following opt
 
 #### Template minification
 
-As part of the build process, you'll probably want to minify the HTML templates. Most HTML minifiers don't support HTML inside template literals, as used by lit-html, so you'll need to use a build plugin that supports minifying lit-html templates. Minifying lit-html templates can improve performance by reducing the number of nodes in a template. 
+As part of the build process, you'll probably want to minify the HTML templates. Most HTML minifiers don't support HTML inside template literals, as used by lit-html, so you'll need to use a build plugin that supports minifying lit-html templates. Minifying lit-html templates can improve performance by reducing the number of nodes in a template.
 
 * <a href="https://github.com/cfware/babel-plugin-template-html-minifier" target="_blank" rel="noopener">Babel plugin</a>. For build chains that use Babel for compilation. The open-wc webpack default configuration uses this plugin.
 * <a href="https://github.com/asyncLiz/rollup-plugin-minify-html-literals" target="_blank" rel="noopener">Rollup plugin</a>. If you're building your own Rollup configuration.
 
-Template minification is a fairly small optimization compared to other common optimizations like JavaScript minification, bundling, and compression. 
+Template minification is a fairly small optimization compared to other common optimizations like JavaScript minification, bundling, and compression.
 
 #### Template polyfill
 

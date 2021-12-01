@@ -8,18 +8,18 @@ eleventyNavigation:
 
 ## Overview {#overview}
 
-LitElement manages your declared properties and their corresponding attributes. By default, LitElement will: 
+LitElement manages your declared properties and their corresponding attributes. By default, LitElement will:
 
 * Ensure that an element update is scheduled when any declared property changes.
 * Capture instance values for declared properties. Apply any property values that are set before the browser registers a custom element definition.
 * Set up an observed (not reflected) attribute with the lowercased name of each property.
 * Handle attribute conversion for properties declared as type `String`, `Number`, `Boolean`, `Array`, and `Object`.
 * Use direct comparison (`oldValue !== newValue`) to test for property changes.
-* Apply any property options and accessors declared by a superclass. 
+* Apply any property options and accessors declared by a superclass.
 
 <div class="alert alert-warning">
 
-**Remember to declare all of the properties that you want LitElement to manage.** For the property features above to be applied, you must [declare the property](#declare). 
+**Remember to declare all of the properties that you want LitElement to manage.** For the property features above to be applied, you must [declare the property](#declare).
 
 </div>
 
@@ -32,7 +32,7 @@ _Properties field_
 <div class="language-js">
 <pre class="highlight">
 static get properties() {
-  return { 
+  return {
     <var>propertyName</var>: <var>options</var>
   };
 }
@@ -44,12 +44,12 @@ _Decorator (requires TypeScript or Babel)_
 <div class="language-ts">
 <pre class="highlight">
 export class MyElement extends LitElement {
-  @property(<var>options</var>) 
+  @property(<var>options</var>)
   <var>propertyName</var>;
 </pre>
 </div>
 
-In either case, you can pass an options object to configure features for the property. 
+In either case, you can pass an options object to configure features for the property.
 
 ### Property options
 
@@ -63,7 +63,7 @@ The options object can have the following properties:
 </dt>
 <dd>
 
-Whether the property is associated with an attribute, or a custom name for the associated attribute. Default: true. See [Configure observed attributes](#observed-attributes). If `attribute` is false, the `converter`, `reflect` and `type` options are ignored. 
+Whether the property is associated with an attribute, or a custom name for the associated attribute. Default: true. See [Configure observed attributes](#observed-attributes). If `attribute` is false, the `converter`, `reflect` and `type` options are ignored.
 
 </dd>
 <dt>
@@ -113,7 +113,7 @@ Whether property value is reflected back to the associated attribute. Default: f
 </dt>
 <dd>
 
-A type hint for converting between properties and attributes. This hint is used by LitElement's default attribute converter, and is ignored if `converter` is set. If `type` is unspecified, behaves like `type: String`. See [Use LitElement's default attribute converter](#conversion-type). 
+A type hint for converting between properties and attributes. This hint is used by LitElement's default attribute converter, and is ignored if `converter` is set. If `type` is unspecified, behaves like `type: String`. See [Use LitElement's default attribute converter](#conversion-type).
 
 </dd>
 
@@ -130,8 +130,8 @@ An empty options object is equivalent to specifying the default value for all op
 To declare properties in a static `properties` field:
 
 ```js
-static get properties() { 
-  return { 
+static get properties() {
+  return {
     greeting: {type: String},
     data: {attribute: false},
     items: {}
@@ -147,7 +147,7 @@ Declared properties are initialized like standard class fields—either in the c
 
 </div>
 
-**Example: Declare properties with a static `properties` field** 
+**Example: Declare properties with a static `properties` field**
 
 ```js
 {% include v1-projects/properties/declare/my-element.js %}
@@ -186,7 +186,7 @@ The `@internalProperty` decorator automatically sets `attribute` to false; **the
 
 The `@internalProperty` decorator can serve as a hint to a code minifier that the property name can be changed during minification.
 
-**Example: Declare properties with decorators** 
+**Example: Declare properties with decorators**
 
 ```js
 {% include v1-projects/properties/declaretypescript/my-element.ts %}
@@ -210,7 +210,7 @@ There are many ways to hook into and modify the update lifecycle. For more infor
 
 ## Initialize property values {#initialize}
 
-Typically, you initialize property values in the element constructor. 
+Typically, you initialize property values in the element constructor.
 
 When using decorators, you can initialize the property value as part of the declaration (equivalent to setting the value in the constructor).
 
@@ -221,13 +221,13 @@ You may want to defer initializing a property if the value is expensive to compu
 If you implement a static properties field, initialize your property values in the element constructor:
 
 ```js
-static get properties() { return { /* Property declarations */ }; } 
+static get properties() { return { /* Property declarations */ }; }
 
 constructor() {
   // Always call super() first
   super();
 
-  // Initialize properties 
+  // Initialize properties
   this.greeting = 'Hello';
 }
 ```
@@ -238,7 +238,7 @@ Remember to call `super()` first in your constructor, or your element won't rend
 
 </div>
 
-**Example: Initialize property values in the element constructor** 
+**Example: Initialize property values in the element constructor**
 
 {% include project.html folder="properties/declare" openFile="my-element.js" %}
 
@@ -247,11 +247,11 @@ Remember to call `super()` first in your constructor, or your element won't rend
 When using the `@property` decorator, you can initialize a property as part of the declaration:
 
 ```ts
-@property({type : String}) 
+@property({type : String})
 greeting = 'Hello';
 ```
 
-**Example: Initialize property values when using decorators** 
+**Example: Initialize property values when using decorators**
 
 {% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
 
@@ -263,7 +263,7 @@ greeting = 'Hello';
 
 While element properties can be of any type, attributes are always strings. This impacts the [observed attributes](#observed-attributes) and [reflected attributes](#reflected-attributes) of non-string properties:
 
-  * To **observe** an attribute (set a property from an attribute), the attribute value must be converted from a string to match the property type. 
+  * To **observe** an attribute (set a property from an attribute), the attribute value must be converted from a string to match the property type.
 
   * To **reflect** an attribute (set an attribute from a property), the property value must be converted to a string.
 
@@ -274,7 +274,7 @@ LitElement has a default converter which handles `String`, `Number`, `Boolean`, 
 To use the default converter, specify the `type` option in your property declaration:
 
 ```js
-// Use LitElement's default converter 
+// Use LitElement's default converter
 prop1: { type: String },
 prop2: { type: Number },
 prop3: { type: Boolean },
@@ -294,7 +294,7 @@ The information below shows how the default converter handles conversion for eac
 * For **Objects and Arrays**, when the attribute is:
   * Defined, set the property value to `JSON.parse(attributeValue)`.
 
-**Convert from property to attribute** 
+**Convert from property to attribute**
 
 * For **Strings**, when the property is:
   * `null`, remove the attribute.
@@ -311,7 +311,7 @@ The information below shows how the default converter handles conversion for eac
   * `null` or `undefined`, remove the attribute.
   * Defined and not `null`, set the attribute value to `JSON.stringify(propertyValue)`.
 
-**Example: Use the default converter** 
+**Example: Use the default converter**
 
 ```js
 {% include v1-projects/properties/defaultconverter/my-element.js %}
@@ -324,22 +324,22 @@ The information below shows how the default converter handles conversion for eac
 You can specify a custom property converter in your property declaration with the `converter` option:
 
 ```js
-myProp: { 
+myProp: {
   converter: // Custom property converter
-} 
+}
 ```
 
-`converter` can be an object or a function. If it is an object, it can have keys for `fromAttribute` and `toAttribute`: 
+`converter` can be an object or a function. If it is an object, it can have keys for `fromAttribute` and `toAttribute`:
 
 ```js
-prop1: { 
-  converter: { 
-    fromAttribute: (value, type) => { 
+prop1: {
+  converter: {
+    fromAttribute: (value, type) => {
       // `value` is a string
       // Convert it to a value of type `type` and return it
     },
-    toAttribute: (value, type) => { 
-      // `value` is of type `type` 
+    toAttribute: (value, type) => {
+      // `value` is of type `type`
       // Convert it to a string and return it
     }
   }
@@ -349,23 +349,23 @@ prop1: {
 If `converter` is a function, it is used in place of `fromAttribute`:
 
 ```js
-myProp: { 
-  converter: (value, type) => { 
+myProp: {
+  converter: (value, type) => {
     // `value` is a string
     // Convert it to a value of type `type` and return it
   }
-} 
+}
 ```
 
 If no `toAttribute` function is supplied for a reflected attribute, the attribute is set to the property value without conversion.
 
-During an update: 
+During an update:
 
-  * If `toAttribute` returns `null`, the attribute is removed. 
+  * If `toAttribute` returns `null`, the attribute is removed.
 
   * If `toAttribute` returns `undefined`, the attribute is not changed.
 
-**Example: Configure a custom converter** 
+**Example: Configure a custom converter**
 
 ```js
 {% include v1-projects/properties/attributeconverter/my-element.js %}
@@ -384,7 +384,7 @@ By default, LitElement creates a corresponding observed attribute for all declar
 myProp: { type: Number }
 ```
 
-To create an observed attribute with a different name, set `attribute` to a string: 
+To create an observed attribute with a different name, set `attribute` to a string:
 
 ```js
 // Observed attribute will be called my-prop
@@ -419,7 +419,7 @@ You can configure a property so that whenever it changes, its value is reflected
 myProp: {reflect: true}
 ```
 
-When the property changes, LitElement uses the `toAttribute` function in the property's converter to set the attribute value from the new property value. 
+When the property changes, LitElement uses the `toAttribute` function in the property's converter to set the attribute value from the new property value.
 
 * If `toAttribute` returns `null`, the attribute is removed.
 
@@ -445,10 +445,10 @@ When the property changes, LitElement uses the `toAttribute` function in the pro
 
 If a property is configured with `attribute: true` (the default), users can set the property values from observed attributes in static markup:
 
-_index.html_ 
+_index.html_
 
 ```html
-<my-element 
+<my-element
   mystring="hello world"
   mynumber="5"
   mybool
@@ -486,10 +486,10 @@ To specify how getting and setting works for a property, you can define your get
 static get properties() { return { myProp: { type: String } }; }
 
 set myProp(value) {
-  // Implement setter logic here... 
+  // Implement setter logic here...
   // retrieve the old property value and store the new one
   this.requestUpdate('myProp', oldValue);
-} 
+}
 get myProp() { ... }
 
 ...
@@ -498,7 +498,7 @@ get myProp() { ... }
 this.myProp = 'hi'; // Invokes your setter
 ```
 
-If your class defines its own accessors for a property, LitElement will not overwrite them with generated accessors. If your class does not define accessors for a property, LitElement will generate them, even if a superclass has defined the property or accessors. 
+If your class defines its own accessors for a property, LitElement will not overwrite them with generated accessors. If your class does not define accessors for a property, LitElement will generate them, even if a superclass has defined the property or accessors.
 
 The setters that LitElement generates automatically call `requestUpdate`. If you write your own setter you must call `requestUpdate` manually, supplying the property name and its old value.
 
@@ -533,14 +533,14 @@ In rare cases, a subclass may need to change or add property options for a prope
 To prevent LitElement from generating a property accessor that overwrites the superclass's defined accessor, set `noAccessor` to `true` in the property declaration:
 
 ```js
-static get properties() { 
-  return { myProp: { type: Number, noAccessor: true } }; 
+static get properties() {
+  return { myProp: { type: Number, noAccessor: true } };
 }
 ```
 
-You don't need to set `noAccessor` when defining your own accessors. 
+You don't need to set `noAccessor` when defining your own accessors.
 
-**Example** 
+**Example**
 
 **Subclass element**
 
@@ -552,7 +552,7 @@ You don't need to set `noAccessor` when defining your own accessors.
 
 ## Configure property changes {#haschanged}
 
-All declared properties have a function, `hasChanged`, which is called when the property is set. 
+All declared properties have a function, `hasChanged`, which is called when the property is set.
 
 `hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update if one is not already scheduled. See the [Element update lifecycle documentation](/docs/v1/components/lifecycle/) for more information on how updates work.
 
@@ -576,7 +576,7 @@ myProp: { hasChanged(newVal, oldVal) {
 
 </div>
 
-**Example: Configure property changes** 
+**Example: Configure property changes**
 
 ```js
 {% include v1-projects/properties/haschanged/my-element.js %}

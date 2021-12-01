@@ -62,23 +62,23 @@ More information: see [styleMap](/docs/v1/lit-html/template-reference/#stylemap)
 
 ## Rendering in shadow DOM
 
-When rendering into a shadow root, you usually want to add a style sheet inside the shadow root to the template, so you can style the contents of the shadow root. 
+When rendering into a shadow root, you usually want to add a style sheet inside the shadow root to the template, so you can style the contents of the shadow root.
 
 ```js
 html`
   <style>
-    :host { ... } 
+    :host { ... }
     .test { ... }
-  </style> 
-  <div class="test">...</div> 
+  </style>
+  <div class="test">...</div>
 `;
 ```
 
-This pattern may seem inefficient, since the same style sheet is reproduced in each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once. 
+This pattern may seem inefficient, since the same style sheet is reproduced in each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once.
 
 A new feature available in some browsers is <a href="https://wicg.github.io/construct-stylesheets/" target="_blank" rel="noopener">Constructable Stylesheets Objects</a>. This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](/docs/v1/components/styles/#add-styles).
 
-### Bindings in style sheets 
+### Bindings in style sheets
 
 Binding to values in the style sheet is an antipattern, because it defeats the browser's style sheet optimizations. It's also not supported by the ShadyCSS polyfill.
 
@@ -103,9 +103,9 @@ See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap]
 
 ### Polyfilled shadow DOM: ShadyDOM and ShadyCSS
 
-If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. <a href="https://github.com/webcomponents/shadydom" target="_blank" rel="noopener">ShadyDOM</a> and <a href="https://github.com/webcomponents/shadycss" target="_blank" rel="noopener">ShadyCSS</a> are polyfills, or shims, that emulate shadow DOM isolation and style scoping. 
+If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. <a href="https://github.com/webcomponents/shadydom" target="_blank" rel="noopener">ShadyDOM</a> and <a href="https://github.com/webcomponents/shadycss" target="_blank" rel="noopener">ShadyCSS</a> are polyfills, or shims, that emulate shadow DOM isolation and style scoping.
 
-The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own. 
+The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own.
 
 The <a href="https://github.com/webcomponents/shadycss#usage" target="_blank" rel="noopener">ShadyCSS README</a> provides some directions for using shady CSS. When using it with `lit-html`:
 
@@ -121,7 +121,7 @@ The <a href="https://github.com/webcomponents/shadycss#usage" target="_blank" re
 
       _update() {
         render(this.myTemplate(), this.shadowRoot, { scopeName: this.tagName.toLowerCase() });
-      } 
+      }
     }
     ```
 
@@ -129,7 +129,7 @@ The <a href="https://github.com/webcomponents/shadycss#usage" target="_blank" re
 
 *   You **do** need to call `ShadyCSS.styleElement` when the element is connected to the DOM, and in case of any dynamic changes that might affect custom property values.
 
-	For example, consider a set of rules like this: 
+	For example, consider a set of rules like this:
     ```js
     my-element { --theme-color: blue; }
 	main my-element { --theme-color: red; }

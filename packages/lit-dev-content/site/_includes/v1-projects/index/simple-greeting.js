@@ -9,7 +9,7 @@ class SimpleGreeting extends LitElement {
     super();
     this.name = 'World';
   }
-  
+
   render() {
     return html`<p>Hello, ${this.name}!</p>`;
   }

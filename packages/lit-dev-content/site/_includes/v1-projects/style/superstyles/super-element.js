@@ -5,7 +5,7 @@ export class SuperElement extends LitElement {
     return css`
       button { width: 200px; }
     `;
-  } 
+  }
 
   render() {
     return html`

@@ -30,7 +30,7 @@ class MyPage extends LitElement {
   render() {
     return html`
       ${headerTemplate(this.article.title)}
-      ${articleTemplate(this.article.text)} 
+      ${articleTemplate(this.article.text)}
       ${footerTemplate()}
     `;
   }

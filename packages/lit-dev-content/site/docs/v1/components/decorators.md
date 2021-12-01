@@ -78,7 +78,7 @@ Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 If you're compiling JavaScript with <a href="https://babeljs.io/docs/en/" target="_blank" rel="noopener">Babel</a>, you can enable decorators by adding  the following plugins:
 
-*   <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators" target="_blank" rel="noopener">`@babel/plugin-proposal-decorators`</a>. 
+*   <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators" target="_blank" rel="noopener">`@babel/plugin-proposal-decorators`</a>.
 *   <a href="https://babeljs.io/docs/en/babel-plugin-proposal-class-properties" target="_blank" rel="noopener">`@babel/plugin-proposal-class-properties`</a>
 
 To enable the plugins, you'd add code like this to your Babel configuration:
@@ -98,7 +98,7 @@ LitElement provides the following decorators:
 *   [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions). Add event listener options for a declarative event listener.
 *   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property) and [`internalProperty`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Define properties.
 *   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query), [`queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll), and [`queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Create a property getter that returns specific elements from your component's render root.
-*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Create a property getter that returns the children assigned to a specific slot. 
+*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Create a property getter that returns the children assigned to a specific slot.
 
 
 All of the decorators can be imported directly from the <code>lit-element</code> module.

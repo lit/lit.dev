@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 2
 ---
 
-There are two main ways to use LitElement: 
+There are two main ways to use LitElement:
 
 
 *   **Creating reusable components to share with other developers.** Individual components or sets of related components are usually published to npm. To create a reusable component project, see [Create a LitElement component project](#component-project).
@@ -15,7 +15,7 @@ There are two main ways to use LitElement:
 
 ## Create a LitElement component project {#component-project}
 
-Get started writing a reusable LitElement component that could be published for others to use. 
+Get started writing a reusable LitElement component that could be published for others to use.
 
 To get started working on a component locally, you can use one of these starter projects:
 
@@ -30,17 +30,17 @@ Both projects define a LitElement component. They also add a set of optional too
 *   Testing with <a href="https://karma-runner.github.io/latest/index.html" target="_blank" rel="noopener">Karma</a>.
 *   A static doc site built with <a href="https://www.npmjs.com/package/web-component-analyzer" target="_blank" rel="noopener">web component analyzer</a> and <a href="https://www.11ty.dev/" target="_blank" rel="noopener">eleventy</a>.
 
-None of these tools is _required_ to work with LitElement. They represent one possible set of tools for a good developer experience. 
+None of these tools is _required_ to work with LitElement. They represent one possible set of tools for a good developer experience.
 
 <div class="alert alert-info">
 
-**Alternative starting point.** As an alternative to the official LitElement starter projects, the open-wc project has a <a href="https://open-wc.org/docs/development/generator/" target="_blank" rel="noopener">project generator</a> for web components using LitElement. The open-wc script asks a series of questions and scaffolds out a project for you. 
+**Alternative starting point.** As an alternative to the official LitElement starter projects, the open-wc project has a <a href="https://open-wc.org/docs/development/generator/" target="_blank" rel="noopener">project generator</a> for web components using LitElement. The open-wc script asks a series of questions and scaffolds out a project for you.
 
 </div>
 
 ### Download the starter project
 
-The quickest way to try out a project locally is to download one of the starter projects as a zip file. 
+The quickest way to try out a project locally is to download one of the starter projects as a zip file.
 
 1.  Download the starter project from GitHub as a zip file:
 
@@ -106,16 +106,16 @@ A couple of things to look for in the code:
     _JavaScript_
 
     ```js
-    export class MyElement extends LitElement { ... } 
+    export class MyElement extends LitElement { ... }
 
     customElements.define('my-element', MyElement);
-    ``` 
+    ```
 
     _TypeScript_
 
     ```ts
     @customElement('my-element')
-    export class MyElement extends LitElement { ... } 
+    export class MyElement extends LitElement { ... }
     ```
 
 
@@ -136,7 +136,7 @@ A couple of things to look for in the code:
     }
     ```
 
-*   The component defines some [properties](/docs/v1/components/properties/). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/v1/components/properties/). 
+*   The component defines some [properties](/docs/v1/components/properties/). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/v1/components/properties/).
 
     _JavaScript_
 
@@ -240,12 +240,12 @@ Webpack automatically handles bare module specifiers; for Rollup, you'll need a 
 LitElement is available from npm:
 
 ```bash
-npm i lit-element 
+npm i lit-element
 ```
 
 ### Add an element
 
-Pick a location to store your LitElement components, and create a test element: 
+Pick a location to store your LitElement components, and create a test element:
 
 _components/my-element.js_
 
@@ -297,7 +297,7 @@ If you already have a dev server that works with your build system, it should wo
     npm i -D es-dev-server
     ```
 
-1. Add a dev server command to `package.json`: 
+1. Add a dev server command to `package.json`:
 
 
     ```json
@@ -316,7 +316,7 @@ If you already have a dev server that works with your build system, it should wo
 
 ### Supporting older browsers
 
-To support older browsers that don't support ES6 and the web components specifications, you'll need to take a few extra steps to produce code that will run on the older browsers. 
+To support older browsers that don't support ES6 and the web components specifications, you'll need to take a few extra steps to produce code that will run on the older browsers.
 
 See [Build for production](/docs/v1/tools/build/) for more information.
 

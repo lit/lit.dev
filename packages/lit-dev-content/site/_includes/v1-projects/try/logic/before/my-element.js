@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 
 class MyElement extends LitElement {
   static get properties() {
-    return { 
-      message: { type: String } 
+    return {
+      message: { type: String }
       // TODO: Add a boolean property
       // TODO: Add an array property
     };
@@ -23,4 +23,3 @@ class MyElement extends LitElement {
   }
 }
 customElements.define('my-element', MyElement);
-  

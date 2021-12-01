@@ -6,16 +6,16 @@ const defaultStyleMap = {
   backgroundColor: 'lightgray',
   fontSize: '14px',
   border: '1px solid black',
-  padding: '12px', 
-  margin: '12px' 
+  padding: '12px',
+  margin: '12px'
 };
 
 const optionalStyleMaps = {
-  info: { 
+  info: {
     backgroundColor: 'lightblue',
     border: '1px solid blue'
   },
-  warning: { 
+  warning: {
     backgroundColor: 'pink',
     border: '1px solid red'
   }
@@ -24,15 +24,15 @@ const optionalStyleMaps = {
 class MyButton extends LitElement {
 
   static get properties() {
-    return { 
+    return {
       alerttype: { type: String },
-      myStyleMap: { type: Object } 
+      myStyleMap: { type: Object }
     };
   }
 
   firstUpdated() {
-    this.myStyleMap = Object.assign({}, 
-      defaultStyleMap, 
+    this.myStyleMap = Object.assign({},
+      defaultStyleMap,
       optionalStyleMaps[this.alerttype]);
   }
 

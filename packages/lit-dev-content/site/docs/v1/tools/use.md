@@ -22,7 +22,7 @@ To use a LitElement component in your code:
 
 2.  Import the component.
 
-    In a JavaScript module: 
+    In a JavaScript module:
 
     ```js
     import 'some-package-name';
@@ -50,13 +50,13 @@ To use a LitElement component in your code:
 
 ## Develop {#develop}
 
-Elements built with LitElement are published to npm as standard JavaScript modules, which all major browsers can now load. 
+Elements built with LitElement are published to npm as standard JavaScript modules, which all major browsers can now load.
 
-However, LitElement and elements built with it import their dependencies using bare module specifiers (for example, `import { ... } from 'module-name'`) instead of full paths (`import {...} from '../path/to/module-name'`). 
+However, LitElement and elements built with it import their dependencies using bare module specifiers (for example, `import { ... } from 'module-name'`) instead of full paths (`import {...} from '../path/to/module-name'`).
 
 At the time of writing, browsers must still be provided with the full path to a standard JavaScript module in order to load it. To convert bare module specifiers to full paths, a light transform is required.
 
-For a local server that does this automatically, try the <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">Open Web Components ES dev server</a>. 
+For a local server that does this automatically, try the <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">Open Web Components ES dev server</a>.
 
 ## Build for production {#build}
 
@@ -88,7 +88,7 @@ See a <a href="https://github.com/PolymerLabs/lit-element-build-rollup/blob/mast
 
 ## Load the WebComponents polyfills {#polyfills}
 
-Elements built with LitElement use the Web Components set of standards, which are currently supported by all major browsers with the exception of Edge. 
+Elements built with LitElement use the Web Components set of standards, which are currently supported by all major browsers with the exception of Edge.
 
 For compatibility with older browsers and Edge, load the Web Components polyfills.
 
@@ -104,34 +104,34 @@ To load the WebComponents polyfills:
 
     ```html
     <head>
-      <!-- 
-        If you are loading es5 code you will need 
-        custom-elements-es5-loader to make the element work in 
-        es6-capable browsers. 
-        
-        If you are not loading es5 code, you don't need 
-        custom-elements-es5-loader. 
-      --> 
-      <!-- 
+      <!--
+        If you are loading es5 code you will need
+        custom-elements-es5-loader to make the element work in
+        es6-capable browsers.
+
+        If you are not loading es5 code, you don't need
+        custom-elements-es5-loader.
+      -->
+      <!--
       <script src="./path-to/custom-elements-es5-loader.js"></script>
       -->
 
       <!-- Load polyfills -->
-      <script 
+      <script
         src="path-to/webcomponents-loader.js"
         defer>
-      </script> 
+      </script>
 
       <!-- Load component when polyfills are definitely ready -->
       <script type="module">
         // Take care of cases in which the browser runs this
-        // script before it has finished running 
+        // script before it has finished running
         // webcomponents-loader.js (e.g. Firefox script execution order)
-        window.WebComponents = window.WebComponents || { 
+        window.WebComponents = window.WebComponents || {
           waitFor(cb){ addEventListener('WebComponentsReady', cb) }
         }
 
-        WebComponents.waitFor(async () => { 
+        WebComponents.waitFor(async () => {
           import('./path-to/some-element.js');
         });
       </script>
@@ -144,7 +144,7 @@ To load the WebComponents polyfills:
 
 3.  Ensure that `node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js` and `node_modules/@webcomponents/webcomponentsjs/bundles/**.*` are included in your build.
 
-<div class="alert"> 
+<div class="alert">
 
 **Do not transpile the polyfills.** Bundling them is okay.
 

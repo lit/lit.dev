@@ -19,7 +19,7 @@ export class SuperElement extends LitElement {
   }
 
   render() {
-    return html`  
+    return html`
       <p>prop: ${this.prop}</p>
       <button @click="${() => { this.prop = Math.random()*10; }}">
         change prop

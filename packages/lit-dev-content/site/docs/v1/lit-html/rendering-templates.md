@@ -26,7 +26,7 @@ The `render` method also takes an `options` argument that allows you to specify 
 
 *   `templateFactory`: The `TemplateFactory` to use. This is an advanced option. A `TemplateFactory` creates a template element from a `TemplateResult`, typically caching templates based on their static content. Users won't usually supply their own `TemplateFactory`, but libraries that use lit-html may implement custom template factories to customize template handling.
 
-    The `shady-render` module provides its own template factory, which it uses to preprocess templates to integrate with the shadow DOM polyfills (shadyDOM and shadyCSS). 
+    The `shady-render` module provides its own template factory, which it uses to preprocess templates to integrate with the shadow DOM polyfills (shadyDOM and shadyCSS).
 
 For example, if you're creating a component class, you might use render options like this:
 
@@ -42,4 +42,4 @@ class MyComponent extends HTMLElement {
 
 ```
 
-Render options should *not* change between subsequent `render` calls. 
+Render options should *not* change between subsequent `render` calls.

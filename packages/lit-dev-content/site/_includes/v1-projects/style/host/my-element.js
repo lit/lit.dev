@@ -4,17 +4,17 @@ class MyElement extends LitElement {
   static get styles() {
     return css`
       /* Selects the host */
-      :host { 
-        display: block; 
+      :host {
+        display: block;
       }
 
       /* Selects the host element if it is hidden */
-      :host([hidden]) { 
-        display: none; 
+      :host([hidden]) {
+        display: none;
       }
 
       /* Selects the host element if it has class "blue" */
-      :host(.blue) { 
+      :host(.blue) {
         background-color: aliceblue;
         color: blue;
       }

@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 
 /**
- * This element renders its template contents as children, instead of 
+ * This element renders its template contents as children, instead of
  * rendering into a shadow tree.
  */
 class LightDom extends LitElement {

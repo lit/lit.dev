@@ -1,6 +1,6 @@
 import { LitElement, html } from '@polymer/lit-element';
 
-class MyElement extends LitElement {  
+class MyElement extends LitElement {
   render() {
     return html`
       <button @click="${this.doThing}">click me</button>

@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { styleMap } from 'lit-html/directives/style-map';
 
 class MyButton extends LitElement {
-  render() { 
+  render() {
     return html`
       <button style=${styleMap({
         backgroundColor: 'blue',
@@ -11,7 +11,7 @@ class MyButton extends LitElement {
     `;
   }
 
-  //Equivalent: 
+  //Equivalent:
   /*
   render() {
     return html`
