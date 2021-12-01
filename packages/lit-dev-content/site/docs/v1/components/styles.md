@@ -67,7 +67,7 @@ To allow for theming or per-instance style customization, use CSS variables and 
 To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only  allows nested expressions that are themselves `css` tagged strings or numbers.
 
 ```js
-{% include projects/style/nestedcss/my-element.js %}
+{% include v1-projects/style/nestedcss/my-element.js %}
 ```
 
 {% include project.html folder="style/nestedcss" openFile="my-element.js" %}
@@ -77,7 +77,7 @@ This restriction exists to protect applications from security vulnerabilities wh
 If you must use an expression in a `css` literal that is not itself a `css` literal, **and** you are confident that the expression is from a fully trusted source such as a constant defined in your own code, then you can wrap the expression with the `unsafeCSS` function:
 
 ```js
-{% include projects/style/unsafecss/my-element.js %}
+{% include v1-projects/style/unsafecss/my-element.js %}
 ```
 
 {% include project.html folder="style/unsafecss" openFile="my-element.js" %}
@@ -260,7 +260,7 @@ Use the `::slotted()` CSS pseudo-element to select children that are included in
     ```
 
 ```js
-{% include projects/style/slottedselector/my-element.js %}
+{% include v1-projects/style/slottedselector/my-element.js %}
 ```
 
 {% include project.html folder="style/slottedselector" openFile="my-element.js" %}
@@ -379,7 +379,7 @@ If you need to evaluate expressions inside a `<style>` element, use the followin
 **Example**
 
 ```js
-{% include projects/style/perinstanceexpressions/my-element.js %}
+{% include v1-projects/style/perinstanceexpressions/my-element.js %}
 ```
 
 {% include project.html folder="style/perinstanceexpressions" openFile="my-element.js" %}
@@ -389,7 +389,7 @@ If you need to evaluate expressions inside a `<style>` element, use the followin
 We recommend placing your styles in a static `styles` property for optimal performance. However, you can include an external style sheet in your template with a `<link>`:
 
 ```js
-{% include projects/style/where/my-element.js %}
+{% include v1-projects/style/where/my-element.js %}
 ```
 
 {% include project.html folder="style/where" openFile="my-element.js" %}
@@ -707,7 +707,7 @@ Users of this component can set the value of `--my-background`, using the `my-el
 If a component user has an existing app theme, they can easily set the host's configurable properties to use theme properties:
 
 ```html
-{% include projects/style/customproperties/index.html %}
+{% include v1-projects/style/customproperties/index.html %}
 ```
 
 {% include project.html folder="style/customproperties" openFile="index.html" %}
@@ -719,13 +719,13 @@ See [CSS Custom Properties on MDN](https://developer.mozilla.org/en-US/docs/Web/
 _index.html_
 
 ```html
-{% include projects/style/theming/index.html %}
+{% include v1-projects/style/theming/index.html %}
 ```
 
 _my-element.js_
 
 ```js
-{% include projects/style/theming/my-element.js %}
+{% include v1-projects/style/theming/my-element.js %}
 ```
 
 {% include project.html folder="style/theming" openFile="theme.css" %}

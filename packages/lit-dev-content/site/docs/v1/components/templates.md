@@ -49,7 +49,7 @@ class MyElement extends LitElement {
 Example
 
 ```js
-{% include projects/docs/templates/define/my-element.js %}
+{% include v1-projects/docs/templates/define/my-element.js %}
 ```
 
 {% include project.html folder="docs/templates/define" openFile="my-element.js" %}
@@ -175,7 +175,7 @@ html`
 #### Examples
 
 ```js
-{% include projects/docs/templates/expressions/my-element.js %}
+{% include v1-projects/docs/templates/expressions/my-element.js %}
 ```
 
 {% include project.html folder="docs/templates/expressions" openFile="my-element.js" %}
@@ -245,7 +245,7 @@ The default event context for `@event` expressions is `this`, so there is no nee
 _my-element.js_
 
 ```js
-{% include projects/docs/templates/databinding/my-element.js %}
+{% include v1-projects/docs/templates/databinding/my-element.js %}
 ```
 
 {% include project.html folder="docs/templates/databinding" openFile="my-element.js" %}
@@ -340,13 +340,13 @@ _index.html_
 _my-element.js_
 
 ```js
-{% include projects/docs/templates/namedslots/my-element.js %}
+{% include v1-projects/docs/templates/namedslots/my-element.js %}
 ```
 
 _index.html_
 
 ```html
-{% include projects/docs/templates/namedslots/index.html %}
+{% include v1-projects/docs/templates/namedslots/index.html %}
 ```
 
 {% include project.html folder="docs/templates/namedslots" openFile="my-element.js" %}

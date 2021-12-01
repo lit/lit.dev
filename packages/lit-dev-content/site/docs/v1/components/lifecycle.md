@@ -140,7 +140,7 @@ To implement a custom property setter that supports property options, pass the p
 **Example: Manually start an element update**
 
 ```js
-{% include projects/lifecycle/requestupdate/my-element.js %}
+{% include v1-projects/lifecycle/requestupdate/my-element.js %}
 ```
 
 {% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
@@ -148,7 +148,7 @@ To implement a custom property setter that supports property options, pass the p
 **Example: Call `requestUpdate` from a custom property setter**
 
 ```js
-{% include projects/properties/customsetter/my-element.js %}
+{% include v1-projects/properties/customsetter/my-element.js %}
 ```
 
 {% include project.html folder="properties/customsetter" openFile="my-element.js" %}
@@ -194,7 +194,7 @@ Controls whether an update should proceed. Implement `shouldUpdate` to specify w
 **Example: Customize which property changes should cause updates**
 
 ```js
-{% include projects/lifecycle/shouldupdate/my-element.js %}
+{% include v1-projects/lifecycle/shouldupdate/my-element.js %}
 ```
 
 {% include project.html folder="lifecycle/shouldupdate" openFile="my-element.js" %}
@@ -241,7 +241,7 @@ Implement `firstUpdated` to perform one-time work after the element's template h
 **Example: Focus an input element on first update**
 
 ```js
-{% include projects/lifecycle/firstupdated/my-element.js %}
+{% include v1-projects/lifecycle/firstupdated/my-element.js %}
 ```
 
 {% include project.html folder="lifecycle/firstupdated" openFile="my-element.js" %}
@@ -263,7 +263,7 @@ Called when the element's DOM has been updated and rendered. Implement to perfor
 **Example: Focus an element after update**
 
 ```js
-{% include projects/lifecycle/updated/my-element.js %}
+{% include v1-projects/lifecycle/updated/my-element.js %}
 ```
 
 {% include project.html folder="lifecycle/updated" openFile="my-element.js" %}
@@ -292,7 +292,7 @@ The `updateComplete` Promise resolves when the element has finished updating. Us
 **Example**
 
 ```js
-{% include projects/lifecycle/updatecomplete/my-element.js %}
+{% include v1-projects/lifecycle/updatecomplete/my-element.js %}
 ```
 
 {% include project.html folder="lifecycle/updatecomplete" openFile="my-element.js" %}
