@@ -48,7 +48,7 @@
 
       {{ content | safe }}
 
-      {% set navItems = collections.docs | eleventyNavigation | flattenNavigationAndAddNextPrev %}
+      {% set navItems = collections[collection] | eleventyNavigation | flattenNavigationAndAddNextPrev %}
       {% for item in navItems %}
         {% if item.url === page.url and item.parent %}
           {% set prev = item.prev %}
