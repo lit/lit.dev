@@ -19,13 +19,13 @@ Get started writing a reusable LitElement component that could be published for 
 
 To get started working on a component locally, you can use one of these starter projects:
 
-*   <a href="https://github.com/PolymerLabs/lit-element-starter-js" target="_blank" rel="noopener">LitElement JavaScript starter project </a>
-*   <a href="https://github.com/PolymerLabs/lit-element-starter-ts" target="_blank" rel="noopener">LitElement TypeScript starter project</a>
+*   <a href="https://github.com/lit/lit-element-starter-js/tree/lit-element-2.x#readme" target="_blank" rel="noopener">LitElement JavaScript starter project </a>
+*   <a href="https://github.com/lit/lit-element-starter-ts/tree/lit-element-2.x#readme" target="_blank" rel="noopener">LitElement TypeScript starter project</a>
 
 Both projects define a LitElement component. They also add a set of optional tools for developing, linting, and testing the component:
 
 *   Node.js and npm for managing dependencies. _Requires Node.js 10 or greater._
-*   A local dev server,  <a href="https://open-wc.org/developing/es-dev-server.html#getting-started" target="_blank" rel="noopener">ES dev server</a>.
+*   A local dev server,  <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">ES dev server</a>.
 *   Linting with <a href="https://eslint.org/" target="_blank" rel="noopener">ESLint</a> and <a href="https://www.npmjs.com/package/lit-analyzer" target="_blank" rel="noopener">lit-analyzer</a>.
 *   Testing with <a href="https://karma-runner.github.io/latest/index.html" target="_blank" rel="noopener">Karma</a>.
 *   A static doc site built with <a href="https://www.npmjs.com/package/web-component-analyzer" target="_blank" rel="noopener">web component analyzer</a> and <a href="https://www.11ty.dev/" target="_blank" rel="noopener">eleventy</a>.
@@ -44,8 +44,8 @@ The quickest way to try out a project locally is to download one of the starter 
 
 1.  Download the starter project from GitHub as a zip file:
 
-    *   <a href="https://github.com/PolymerLabs/lit-element-starter-js/archive/master.zip" target="_blank" rel="noopener">JavaScript starter project</a>
-    *   <a href="https://github.com/PolymerLabs/lit-element-starter-ts/archive/master.zip" target="_blank" rel="noopener">TypeScript starter project</a>
+    *   <a href="https://github.com/lit/lit-element-starter-js/archive/lit-element-2.x.zip" target="_blank" rel="noopener">JavaScript starter project</a>
+    *   <a href="https://github.com/lit/lit-element-starter-ts/archive/lit-element-2.x.zip" target="_blank" rel="noopener">TypeScript starter project</a>
 
 1.  Uncompress the zip file.
 
@@ -59,7 +59,7 @@ The quickest way to try out a project locally is to download one of the starter 
 <div class="alert alert-info">
 
 **Want it on GitHub?** If you're familiar with git you may want to create a GitHub repository for your starter project,
-instead of just downloading the zip file. You can use the <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template" target="_blank" rel="noopener">GitHub template repository</a> feature to create your own repository from the <a href="https://github.com/PolymerLabs/lit-element-starter-js" target="_blank" rel="noopener">JavaScript starter project </a> or the <a href="https://github.com/PolymerLabs/lit-element-starter-ts" target="_blank" rel="noopener">TypeScript starter project</a>. Then clone your new repository and install dependencies, as above.
+instead of just downloading the zip file. You can use the <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template" target="_blank" rel="noopener">GitHub template repository</a> feature to create your own repository from the <a href="https://github.com/lit/lit-element-starter-js/tree/lit-element-2.x#readme" target="_blank" rel="noopener">JavaScript starter project </a> or the <a href="https://github.com/lit/lit-element-starter-ts/tree/lit-element-2.x#readme" target="_blank" rel="noopener">TypeScript starter project</a>. Then clone your new repository and install dependencies, as above.
 
 </div>
 
@@ -210,8 +210,8 @@ Ready to add features to your new component? Head over to [Templates](/docs/v1/c
 
 For details on running tests and using other tools, see the starter project README:
 
-*   <a href="https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/README.md" target="_blank" rel="noopener">TypeScript project README</a>
-*   <a href="https://github.com/PolymerLabs/lit-element-starter-js/blob/master/README.md" target="_blank" rel="noopener">JavaScript project README</a>
+*   <a href="https://github.com/lit/lit-element-starter-ts/tree/lit-element-2.x#readme" target="_blank" rel="noopener">TypeScript project README</a>
+*   <a href="https://github.com/lit/lit-element-starter-js/tree/lit-element-2.x#readme" target="_blank" rel="noopener">JavaScript project README</a>
 
 ## Add LitElement to an existing project {#existing-project}
 
@@ -283,13 +283,13 @@ At this point, you should be able to build and run your project and see the "Hel
 
 ### Adjust for your build system
 
-How you import the component may vary slightly depending on your build system and project structure. If you're writing in TypeScript, you'll use TypeScript files and use LitElement's decorators. (You can find a sample TypeScript element in the <a href="https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/src/my-element.ts" target="_blank" rel="noopener">TypeScript starter project</a>).
+How you import the component may vary slightly depending on your build system and project structure. If you're writing in TypeScript, you'll use TypeScript files and use LitElement's decorators. (You can find a sample TypeScript element in the <a href="https://github.com/lit/lit-element-starter-ts/blob/lit-element-2.x/src/my-element.ts" target="_blank" rel="noopener">TypeScript starter project</a>).
 
 For more details and sample build configurations, see [Build for production](/docs/v1/tools/build/).
 
 ### Optional: Use ES dev server
 
-If you already have a dev server that works with your build system, it should work with LitElement. <a href="https://open-wc.org/developing/es-dev-server.html" target="_blank" rel="noopener">ES dev server</a> is an alternative dev server that provides a simple, bundler-free workflow. It performs a small number of useful transforms, including transforming bare module specifiers, transpiling to ES5 when needed, and adding polyfills for older browsers.
+If you already have a dev server that works with your build system, it should work with LitElement. <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">ES dev server</a> is an alternative dev server that provides a simple, bundler-free workflow. It performs a small number of useful transforms, including transforming bare module specifiers, transpiling to ES5 when needed, and adding polyfills for older browsers.
 
 1. Install es-dev-server
 
@@ -324,4 +324,4 @@ See [Build for production](/docs/v1/tools/build/) for more information.
 
 Ready to add features to your project? Head over to [Templates](/docs/v1/components/templates/) for details on writing templates for your LitElement component.
 
-For more on building applications that use web components, see the open-wc recommendations on <a href="https://open-wc.org/building/" target="_blank" rel="noopener">Building</a>.
+For more on building applications that use web components, see the open-wc recommendations on <a href="https://open-wc.org/docs/building/overview/" target="_blank" rel="noopener">Building</a>.

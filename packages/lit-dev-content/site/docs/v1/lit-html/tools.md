@@ -78,7 +78,7 @@ lit-html is packaged as JavaScript modules. Many developers prefer to import mod
 import {html, render} from 'lit-html';
 ```
 
-To run in the browser, the bare identifier ('lit-html') needs to be transformed to a path or URL that the browser can load (such as '/node_modules/lit-html/lit-html.js'). <a href="https://open-wc.org/developing/es-dev-server.html" target="_blank" rel="noopener">ES dev server</a> is an open-source dev server that handles this and other transforms.
+To run in the browser, the bare identifier ('lit-html') needs to be transformed to a path or URL that the browser can load (such as '/node_modules/lit-html/lit-html.js'). <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">ES dev server</a> is an open-source dev server that handles this and other transforms.
 
 You can also use the Polymer CLI dev server, if you already have it installed. For new projects, we recommend the ES dev server.
 
@@ -108,7 +108,7 @@ Run the dev server:
 npm run start
 ```
 
-For full installation and usage instructions, see the <a href="https://open-wc.org/developing/es-dev-server.html" target="_blank" rel="noopener">open-wc website</a>. 
+For full installation and usage instructions, see the <a href="https://www.npmjs.com/package/es-dev-server" target="_blank" rel="noopener">open-wc website</a>. 
 
 ## Testing
 
@@ -119,7 +119,7 @@ Web Component Tester (WCT) is an end-to-end testing environment that supports no
 * <a href="https://www.npmjs.com/package/web-component-tester" target="_blank" rel="noopener">web-component-tester</a>.  Installing the full WCT package gives you Mocha and Chai, as well as some other add-ons.
 * <a href="https://www.npmjs.com/package/wct-mocha" target="_blank" rel="noopener">wct-mocha</a>. Just the WCT client-side library. You'll need to install your own version of Mocha, and any other add-ons you want.
 
-Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a <a href="https://open-wc.org/testing/testing-karma.html#browser-testing" target="_blank" rel="noopener">Karma setup</a> that resolves module dependencies by bundling with webpack before running tests. 
+Alternately, you can also use the Karma test runner. The Open Web Components recommendations includes a <a href="https://github.com/open-wc/legacy/tree/master/packages/testing-karma#readme" target="_blank" rel="noopener">Karma setup</a> that resolves module dependencies by bundling with webpack before running tests. 
 
 ## Build
 
@@ -142,13 +142,13 @@ Rollup works well with lit-html. The <a href="https://github.com/PolymerLabs/lit
 
 For more information on the build steps, see the LitElement [Build for production](/docs/v1/tools/build/) guide.
 
-open-wc also has <a href="https://open-wc.org/building/building-rollup.html" target="_blank" rel="noopener">Rollup build resources</a>. 
+open-wc also has <a href="https://open-wc.org/docs/building/rollup/#building-rollup" target="_blank" rel="noopener">Rollup build resources</a>. 
 
 ### Build your project with webpack
 
 webpack is a powerful build tool with a large ecosystem of plugins. 
 
-See the open-wc default webpack configuration provides a great starting point for building projects that use lit-html. See their <a href="https://github.com/open-wc/open-wc/tree/master/packages/building-webpack" target="_blank" rel="noopener">webpack page</a> for instructions on getting started. 
+See the open-wc default webpack configuration provides a great starting point for building projects that use lit-html. See their <a href="https://github.com/open-wc/legacy/tree/master/packages/building-webpack#readme" target="_blank" rel="noopener">webpack page</a> for instructions on getting started. 
 
 ### Build considerations  {#build-considerations}
 
