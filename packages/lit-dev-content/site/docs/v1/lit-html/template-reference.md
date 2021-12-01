@@ -20,9 +20,9 @@ html`<h1>Hello ${name}</h1>`
 
 ## Template Structure
 
-lit-html templates must be well-formed HTML, and bindings can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated. 
+lit-html templates must be well-formed HTML, and bindings can only occur in certain places. The templates are parsed by the browser's built-in HTML parser before any values are interpolated.
 
-**No warnings.** Most cases of malformed templates are not detectable by lit-html, so you won't see any warnings—just templates that don't behave as you expect—so take extra care to structure templates properly. 
+**No warnings.** Most cases of malformed templates are not detectable by lit-html, so you won't see any warnings—just templates that don't behave as you expect—so take extra care to structure templates properly.
 
 Follow these rules for well-formed templates:
 
@@ -40,12 +40,12 @@ Follow these rules for well-formed templates:
 
 
  *  Expressions **_cannot_** appear where tag or attribute names would appear.
-    
-    ```html
-    <!-- ERROR --> 
-    <${tagName}></${tagName}> 
 
-    <!-- ERROR --> 
+    ```html
+    <!-- ERROR -->
+    <${tagName}></${tagName}>
+
+    <!-- ERROR -->
     <div ${attrName}=true></div>
     ```
 
@@ -170,12 +170,12 @@ const page = html`
 
 Arrays and Iterables of supported types are supported as well. They can be mixed values of different supported types.
 
-```javascript
+```js
 const items = [1, 2, 3];
 const list = () => html`items = ${items.map((i) => `item: ${i}`)}`;
 ```
 
-```javascript
+```js
 const items = {
   a: 1,
   b: 23,
@@ -283,7 +283,7 @@ lit-html offers two directives to consume asynchronous iterators:
 
 Example:
 
-```javascript
+```js
 import {asyncReplace} from 'lit-html/directives/async-replace.js';
 
 const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));
@@ -305,7 +305,7 @@ render(html`
 
 In the near future, `ReadableStream`s will be async iterables, enabling streaming `fetch()` directly into a template:
 
-```javascript
+```js
 import {asyncAppend} from 'lit-html/directives/async-append.js';
 
 // Endpoint that returns a billion digits of PI, streamed.
@@ -326,23 +326,23 @@ render(html`π is: ${asyncAppend(streamingResponse)}`, document.body);
 Location: text bindings
 
 Caches the rendered DOM nodes for templates when they're not in use. The `conditionalTemplate` argument is an expression that can return one of several templates. `cache` renders the current
-value of `conditionalTemplate`. When the template changes, the directive caches the _current_ DOM nodes before switching to the new value. 
+value of `conditionalTemplate`. When the template changes, the directive caches the _current_ DOM nodes before switching to the new value.
 
 Example:
 
 ```js
 import {cache} from 'lit-html/directives/cache.js';
 
-const detailView = (data) => html`<div>...</div>`; 
+const detailView = (data) => html`<div>...</div>`;
 const summaryView = (data) => html`<div>...</div>`;
 
 html`${cache(data.showDetails
-  ? detailView(data) 
+  ? detailView(data)
   : summaryView(data)
 )}`
 ```
 
-When lit-html re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, lit-html needs to remove the old DOM and render a new DOM tree. 
+When lit-html re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than it needs to. But when you switch from one template to another, lit-html needs to remove the old DOM and render a new DOM tree.
 
 The `cache` directive caches the generated DOM for a given binding and input template. In the example above, it would cache the DOM for both the `summaryView` and `detailView` templates. When you switch from one view to another, lit-html just needs to swap in the cached version of the new view, and update it with the latest data.
 
@@ -363,7 +363,7 @@ html`<div class=${classMap(classes)}>Classy text</div>`;
 // renders as <div class="highlight enabled">Classy text</div>
 ```
 
-The `classMap` must be the only binding in the `class` attribute, but it can 
+The `classMap` must be the only binding in the `class` attribute, but it can
 be combined with static values:
 
 ```js
@@ -382,7 +382,7 @@ For other part types, this directive is a no-op.
 
 Example:
 
-```javascript
+```js
 import {ifDefined} from 'lit-html/directives/if-defined';
 
 const myTemplate = () => html`
@@ -396,12 +396,12 @@ const myTemplate = () => html`
 
 Location: any
 
-Renders the value returned by `valueFn`. Only re-evaluates `valueFn` when one of the 
-dependencies changes identity. 
+Renders the value returned by `valueFn`. Only re-evaluates `valueFn` when one of the
+dependencies changes identity.
 
 Where:
 
--   `dependencies` is an array of values to monitor for changes. (For backwards compatibility, 
+-   `dependencies` is an array of values to monitor for changes. (For backwards compatibility,
      `dependencies` can be a single, non-array value.)
 -   `valueFn` is a function that returns a renderable value.
 
@@ -454,7 +454,7 @@ you use `live()` with an attribute binding, make sure that only strings are
 passed in, or the binding will update every render.
 
 
-### repeat 
+### repeat
 
 `repeat(items, keyfn, template)`<br>
 `repeat(items, template)`
@@ -484,7 +484,7 @@ If no `keyFn` is provided, `repeat` will perform similar to a simple map of
 items to values, and DOM will be reused against potentially different items.
 
 See [Repeating templates with the repeat directive](writing-templates#repeating-templates-with-the-repeat-directive) for a discussion
-of when to use `repeat` and when to use standard JavaScript flow control. 
+of when to use `repeat` and when to use standard JavaScript flow control.
 
 ### styleMap
 
@@ -508,7 +508,7 @@ For CSS properties that contain dashes, you can either use the camel-case equiva
 { 'font-family': 'roboto' }
 ```
 
-The `styleMap` must be the only binding in the `style` attribute, but it can 
+The `styleMap` must be the only binding in the `style` attribute, but it can
 be combined with static values:
 
 ```js
@@ -522,7 +522,7 @@ html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 Location: text bindings
 
  Renders the content of a `<template>` element as HTML.
- 
+
 Note, the template contents should be developer controlled and not
 user controlled. User controlled templates rendered with this directive
 could lead to XSS vulnerabilities.
@@ -596,10 +596,10 @@ const template = html`
 
 Location: any
 
-Renders placeholder content until the final content is available. 
+Renders placeholder content until the final content is available.
 
-Takes a series of values, including Promises. Values are rendered in priority order, 
- with the first argument having the highest priority and the last argument having the 
+Takes a series of values, including Promises. Values are rendered in priority order,
+ with the first argument having the highest priority and the last argument having the
  lowest priority. If a value is a Promise, a lower-priority value will be rendered until it resolves.
 
 The priority of values can be used to create placeholder content for async
@@ -611,7 +611,7 @@ resolves.
 
 Example:
 
-```javascript
+```js
 import {until} from 'lit-html/directives/until.js';
 
 const content = fetch('./content.txt').then(r => r.text());

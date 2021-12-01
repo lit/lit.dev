@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Directives are functions that can customize how lit-html renders values. Template authors can use directives in their templates like other functions:
 
-```javascript
+```js
 html`<div>
      ${fancyDirective('some text')}
   </div>`
@@ -20,7 +20,7 @@ Internally, lit-html uses the [`Part`](/api/interfaces/_lit_html_.part.html) int
 
 To create a directive, pass a factory function to lit-html's `directive` function:
 
-```javascript
+```js
 const helloDirective = directive(() => (part) => { part.setValue('Hello')});
 
 const helloTemplate = html`<div>${helloDirective()}</div>`
@@ -28,7 +28,7 @@ const helloTemplate = html`<div>${helloDirective()}</div>`
 
 The factory function can take optional arguments for configuration and values to be passed in by the template author.
 
-The returned function is called each time the part is rendered. The `part` argument is a `Part` object with an API for directly managing the dynamic DOM associated with expressions. Each type of binding has its own specific Part object: 
+The returned function is called each time the part is rendered. The `part` argument is a `Part` object with an API for directly managing the dynamic DOM associated with expressions. Each type of binding has its own specific Part object:
 
 *   [`NodePart`](/api/classes/_lit_html_.nodepart.html) for content bindings.
 *   [`AttributePart`](/api/classes/_lit_html_.attributepart.html) for standard attribute bindings.
@@ -44,7 +44,7 @@ Each of these part types implement a common API:
 
 Here's an example of a directive that takes a function, and evaluates it in a try/catch block to implement exception-safe expressions:
 
-```javascript
+```js
 const safe = directive((f) => (part) => {
   try {
     part.setValue(f());
@@ -56,7 +56,7 @@ const safe = directive((f) => (part) => {
 
 Now the `safe` directive can be used to wrap a function:
 
-```javascript
+```js
 let data;
 
 // Don't throw an exception if data.foo doesn't exist.
@@ -65,7 +65,7 @@ const myTemplate = () => html`foo = ${safe(() => data.foo)}`;
 
 This example increments a counter on every render:
 
-```javascript
+```js
 const renderCounter = directive((initialValue) => (part) =>
   part.setValue(part.value === undefined
      ? initialValue
@@ -75,7 +75,7 @@ const renderCounter = directive((initialValue) => (part) =>
 
 The user uses it in a template by passing in an initial value:
 
-```javascript
+```js
 const myTemplate = () => html`
   <div>
     ${renderCounter(0)}
@@ -88,7 +88,7 @@ Some directives are only useful in one context, such as an attribute binding or 
 
 This example shows a directive that should only work in a content binding (that is, a `NodePart`).
 
-```javascript 
+```js
 const myListDirective = directive((items) => (part) => {
   if (!(part instanceof NodePart)) {
     throw new Error('myListDirective can only be used in content bindings');
@@ -101,7 +101,7 @@ const myListDirective = directive((items) => (part) => {
 
 Directives are invoked during the render process. The previous example directives are synchronous: they call `setValue` on their parts before returning, so their results are written to the DOM during the render call.
 
-Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request. 
+Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
 When a directive sets a value asynchronously, it needs to call the part's `commit` method to write the updated value to the DOM.
 
@@ -109,7 +109,7 @@ Here's a trivial example of an asynchronous directive:
 
 ```js
 const resolvePromise = directive((promise) => (part) => {
-  // This first setValue call is synchronous, so 
+  // This first setValue call is synchronous, so
   // doesn't need the commit
   part.setValue("Waiting for promise to resolve.");
 
@@ -129,8 +129,8 @@ const waitForIt = new Promise((resolve, reject) => {
   }, 1000);
 });
 
-const myTemplate = () => 
-   html`<div>${resolvePromise(waitForIt)}</div>`; 
+const myTemplate = () =>
+   html`<div>${resolvePromise(waitForIt)}</div>`;
 ```
 
 Here, the rendered template shows "Waiting for promise to resolve," followed one second later by "Promise is resolved."
@@ -173,7 +173,7 @@ To create nested parts, you construct [`NodePart`](/api/classes/_lit_html_.nodep
 
 <img alt="Diagram showing a tree of DOM nodes and a NodePart object. The DOM tree consists of a parent node and several child nodes, with two of the child nodes identified as 'marker nodes.' The NodePart object has a startNode property, which points to the first marker node, and an endNode property, which points to the second marker node. Child nodes between the two marker nodes are identified as 'nodes managed by NodePart.'" src="/images/v1/node-part-markers.png" style="max-width: 515px;">
 
-As shown in the diagram, the nodes managed by the `NodePart` appear between its `startNode` and `endNode`. The following code creates and adds a new, nested part inside an existing part (the "container part"). 
+As shown in the diagram, the nodes managed by the `NodePart` appear between its `startNode` and `endNode`. The following code creates and adds a new, nested part inside an existing part (the "container part").
 
 ```js
 import {NodePart} from 'lit-html';
