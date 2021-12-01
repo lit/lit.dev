@@ -25,7 +25,7 @@ Your package.json configuration should have both the `main` and `module` fields:
 }
 ```
 
-You should also create a README describing how to consume your component. A basic guide to consuming LitElement components is documented at [Use a component](use).
+You should also create a README describing how to consume your component. A basic guide to consuming LitElement components is documented at [Use a component](/docs/v1/tools/use/).
 
 ## Transpiling with TypeScript
 

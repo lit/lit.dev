@@ -15,8 +15,8 @@ In general, how you style HTML will depend on whether you're using shadow DOM:
 
 To help with dynamic styling, lit-html provides two directives for manipulating an element's `class` and `style` attributes:
 
-*   [`classMap`](template-reference#classmap) sets classes on an element based on the properties of an object.
-*   [`styleMap`](template-reference#stylemap) sets the styles on an element based on a map of style properties and values.
+*   [`classMap`](/docs/v1/lit-html/template-reference/#classmap) sets classes on an element based on the properties of an object.
+*   [`styleMap`](/docs/v1/lit-html/template-reference/#stylemap) sets the styles on an element based on a map of style properties and values.
 
 ## Setting classes with classMap {#classmap}
 
@@ -32,7 +32,7 @@ const itemTemplate = (item) => {
 }
 ```
 
-More information: see [classMap](template-reference#classmap) in the Template syntax reference.
+More information: see [classMap](/docs/v1/lit-html/template-reference/#classmap) in the Template syntax reference.
 
 ## Inline styles with styleMap {#stylemap}
 
@@ -58,7 +58,7 @@ const myTemplate = () => {
 };
 ```
 
-More information: see [styleMap](template-reference#stylemap) in the Template syntax reference.
+More information: see [styleMap](/docs/v1/lit-html/template-reference/#stylemap) in the Template syntax reference.
 
 ## Rendering in shadow DOM
 
@@ -76,7 +76,7 @@ html`
 
 This pattern may seem inefficient, since the same style sheet is reproduced in each instance of an element. However, the browser can deduplicate multiple instances of the same style sheet, so the cost of parsing the style sheet is only paid once. 
 
-A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](https://lit-element.polymer-project.org/guide/styles#define-styles-in-a-static-styles-property). 
+A new feature available in some browsers is [Constructable Stylesheets Objects](https://wicg.github.io/construct-stylesheets/). This proposed standard allows multiple shadow roots to explicitly share style sheets. LitElement uses this feature in its [static `styles` property](/docs/v1/components/styles/#add-styles).
 
 ### Bindings in style sheets 
 

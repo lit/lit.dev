@@ -22,7 +22,7 @@ render(sayHi('Zoe'), document.body);
 
 The `render` method also takes an `options` argument that allows you to specify the following options:
 
-*   `eventContext`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Add event listeners](writing-templates#add-event-listeners) for more on event listeners.
+*   `eventContext`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Add event listeners](/docs/v1/lit-html/writing-templates/#add-event-listeners) for more on event listeners.
 
 *   `templateFactory`: The `TemplateFactory` to use. This is an advanced option. A `TemplateFactory` creates a template element from a `TemplateResult`, typically caching templates based on their static content. Users won't usually supply their own `TemplateFactory`, but libraries that use lit-html may implement custom template factories to customize template handling.
 

@@ -86,7 +86,7 @@ async firstUpdated() {
 
 `firstUpdated` fires after the first time your component has been updated and called its `render` method, but **before the browser has had a chance to paint**. The `Promise`/`setTimeout` line yields to the browser
     
-See [firstUpdated](/guide/lifecycle#firstupdated) in the Lifecycle documentation for more information.
+See [firstUpdated](/docs/v1/components/lifecycle/#firstupdated) in the Lifecycle documentation for more information.
 
 
 ## Using `this` in event listeners
@@ -153,7 +153,7 @@ render() {
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v1/components/decorators/) for details.
 
 </div>
 

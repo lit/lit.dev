@@ -32,7 +32,7 @@ Please note that we will likely remove template factories in a future major vers
 
 ### `live` directive
 
-[Documentation](/guide/template-reference#live)
+[Documentation](/docs/v1/lit-html/template-reference/#live)
 
 The `live` directive solves the problem of DOM state changing from underneath lit-html, for example with an `<input>` that a user can type into:
 
@@ -61,7 +61,7 @@ go();
 
 ### `templateContent` directive
 
-[Documentation](/guide/template-reference#templatecontent)
+[Documentation](/docs/v1/lit-html/template-reference/#templatecontent)
 
 The `templateContent` directive lets you stamp out HTML templates into lit-html templates. This is useful in a number of cases where HTML `<template>` elements are provided by users of elements or parts of a build system.
 
@@ -83,11 +83,11 @@ html`
 
 ### `unsafeSVG` directive
 
-[Documentation](/guide/template-reference#unsafesvg)
+[Documentation](/docs/v1/lit-html/template-reference/#unsafehtml)
 
-`unsaveSVG` is the missing partner of [`unsafeHTML`](../template-reference#unsafehtml). It lets you render a frangment of SVG text as SVG elements rather than text. As with `unsafeHTML` this directive not safe to use with user-provided input, since if the input has `<script>` tags in it, there may be ways to get them to execute, etc.
+`unsaveSVG` is the missing partner of [`unsafeHTML`](/docs/v1/lit-html/template-reference/#unsafehtml). It lets you render a frangment of SVG text as SVG elements rather than text. As with `unsafeHTML` this directive not safe to use with user-provided input, since if the input has `<script>` tags in it, there may be ways to get them to execute, etc.
 
-`unsafeSVG` creates elements in the SVG namespace, so it's for use inside of `<svg>` tags or inside of lit-html [`svg`](/api/modules/_lit_html_.html#svg) templates. If the input contains an `<svg>` tag itself, continute to use `unsafeHTML`.
+`unsafeSVG` creates elements in the SVG namespace, so it's for use inside of `<svg>` tags or inside of lit-html [`svg`](https://lit-html.polymer-project.org/api/modules/_lit_html_.html#svg) templates. If the input contains an `<svg>` tag itself, continute to use `unsafeHTML`.
 
 ```js
 // shape is SVG partial text, with no <svg> element

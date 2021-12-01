@@ -115,7 +115,7 @@ In call order, the methods and properties in the update lifecycle are:
 
 All declared properties have a function, `hasChanged`, which is called whenever the property is set; if `hasChanged` returns true, an update is scheduled.
 
-See the Properties documentation for information on [configuring `hasChanged` to customize what constitutes a property change](/guide/properties#haschanged).
+See the Properties documentation for information on [configuring `hasChanged` to customize what constitutes a property change](/docs/v1/components/properties/#haschanged).
 
 ### requestUpdate {#requestupdate}
 
@@ -220,7 +220,7 @@ render() { ... }
 
 Uses lit-html to render the element template. You must implement `render` for any component that extends the LitElement base class.
 
-See the documentation on [Templates](/guide/templates) for more information.
+See the documentation on [Templates](/docs/v1/components/templates/) for more information.
 
 ### firstUpdated {#firstupdated}
 
@@ -341,7 +341,7 @@ shouldUpdate(changedProps) {
 
 #### Customize what constitutes a property change
 
-Specify [`hasChanged`](#haschanged) for the property. See the [Properties documentation](properties#haschanged).
+Specify [`hasChanged`](#haschanged) for the property. See the [Properties documentation](/docs/v1/components/properties/#haschanged).
 
 #### Manage property changes and updates for object subproperties
 

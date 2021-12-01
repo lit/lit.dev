@@ -58,10 +58,10 @@ import {html, render} from 'lit-html';
 
 For simplicity, the examples in these docs use package names (also known as node-style module specifiers).
 
-See [Tools](tools) for information on build tools and dev servers you can use to convert node-style module specifiers to 
+See [Tools](/docs/v1/lit-html/tools/) for information on build tools and dev servers you can use to convert node-style module specifiers to 
 browser-style module specifiers. 
 
-**Why JavaScript modules?** For more information on why lit-html is distributed using JavaScript modules, see [JavaScript Modules](concepts#javascript-modules).
+**Why JavaScript modules?** For more information on why lit-html is distributed using JavaScript modules, see [JavaScript Modules](/docs/v1/lit-html/concepts/#javascript-modules).
 
 ## Rendering a Template
 
@@ -81,6 +81,6 @@ const myTemplate = (name) => html`<p>Hello ${name}</p>`;
 render(myTemplate('World'), document.body);
 ```
 
-To learn more about templates, see [Writing Templates](./writing-templates).
+To learn more about templates, see [Writing Templates](/docs/v1/lit-html/writing-templates/).
 
 [lit-html package]: https://www.npmjs.com/package/lit-html

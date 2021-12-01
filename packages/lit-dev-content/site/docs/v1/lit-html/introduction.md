@@ -12,7 +12,7 @@ lit-html is a simple, modern, safe, small and fast HTML templating library for J
 
 lit-html lets you write HTML templates in JavaScript using [template literals] with embedded JavaScript expressions. lit-html identifies the static and dynamic parts of your templates so it can efficiently update just the changed portions.
 
-**Building components?** lit-html is not tied to any component model, it focuses only on creating and updating DOM. If you want to build components, check out [LitElement](https://lit-element.polymer-project.org/), a library for building web components using lit-html templates.
+**Building components?** lit-html is not tied to any component model, it focuses only on creating and updating DOM. If you want to build components, check out [LitElement](/docs/v1/), a library for building web components using lit-html templates.
 
 ## lit-html Templates
 
@@ -42,6 +42,6 @@ render(result, document.body);
 ```
 
 
-Ready to try it yourself? Head over to [Getting Started](/guide/getting-started).
+Ready to try it yourself? Head over to [Getting Started](/docs/v1/lit-html/getting-started/).
 
 [template literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals

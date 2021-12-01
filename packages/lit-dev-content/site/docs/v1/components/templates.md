@@ -55,8 +55,8 @@ Example
 {% include project.html folder="docs/templates/define" openFile="my-element.js" %}
 
 LitElement uses lit-html templates; this page summarizes the features of lit-html templates,
-for more details, see [Writing templates](https://lit-html.polymer-project.org/guide/writing-templates)
-and the [Template syntax reference](https://lit-html.polymer-project.org/guide/template-reference)
+for more details, see [Writing templates](/docs/v1/lit-html/writing-templates/)
+and the [Template syntax reference](/docs/v1/lit-html/template-reference/)
 in the lit-html documentation.
 
 ### Design a performant template
@@ -122,7 +122,7 @@ render() {
 
 {% include project.html folder="docs/templates/design" openFile="update-properties.js" %}
 
-The following sections discuss different types of property bindings. See [Properties](properties) for information on declaring properties.
+The following sections discuss different types of property bindings. See [Properties](/docs/v1/components/properties/) for information on declaring properties.
 
 ### Use properties, loops, and conditionals in a template
 
@@ -157,7 +157,7 @@ html`<ul>
 
 <div class="alert alert-info">
 
-**repeat directive**. In most cases, `Array.map` is the most efficient way to create a repeating template. In some cases, you may want to consider lit-html's `repeat` directive. In particular, if the repeated elements are stateful, or very expensive to regenerate. For more information, see [Repeating templates with the repeat directive](https://lit-html.polymer-project.org/guide/writing-templates#repeating-templates-with-the-repeat-directive) in the lit-html docs.
+**repeat directive**. In most cases, `Array.map` is the most efficient way to create a repeating template. In some cases, you may want to consider lit-html's `repeat` directive. In particular, if the repeated elements are stateful, or very expensive to regenerate. For more information, see [Repeating templates with the repeat directive](/docs/v1/lit-html/writing-templates/#repeating-templates) in the lit-html docs.
 
 </div>
 #### Conditionals
@@ -567,7 +567,7 @@ npm i lit-html@^1.0.0
 
 ### Import and use a lit-html directive
 
-You can import and use a lit-html directive and use it as shown in the [lit-html documentation](https://lit-html.polymer-project.org/guide/template-reference#built-in-directives).
+You can import and use a lit-html directive and use it as shown in the [lit-html documentation](/docs/v1/lit-html/template-reference/#built-in-directives).
 
 ```js
 import { LitElement, html } from 'lit-element';
@@ -578,7 +578,7 @@ const content = fetch('./content.txt').then(r => r.text());
 html`${until(content, html`<span>Loading...</span>`)}`
 ```
 
-For a list of directives supplied with lit-html, see [Built-in directives](https://lit-html.polymer-project.org/guide/template-reference#built-in-directives) in the Template syntax reference.
+For a list of directives supplied with lit-html, see [Built-in directives](/docs/v1/lit-html/template-reference/#built-in-directives) in the Template syntax reference.
 
 ## Accessing nodes in the shadow DOM
 The `render()` method result is usually rendered into shadow DOM, so the nodes are not direct children of the component. Use `this.shadowRoot.querySelector()` or `this.shadowRoot.querySelectorAll()` to find nodes in the
@@ -605,7 +605,7 @@ The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v1/components/decorators/) for details.
 
 </div>
 
@@ -639,7 +639,7 @@ get first() {
 
 <div class="alert alert-info">
 
-**shadowRoot and renderRoot**. The [`renderRoot`](/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Specify the render root](#renderroot)
+**shadowRoot and renderRoot**. The [`renderRoot`](https://lit-element.polymer-project.org/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Specify the render root](#renderroot)
 
 </div>
 
@@ -717,7 +717,7 @@ The `@queryAssignedNodes` decorator converts a class property into a getter that
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v1/components/decorators/) for details.
 
 </div>
 
@@ -752,6 +752,6 @@ For more information on shadow DOM:
 
 For more information on lit-html templates:
 
-* [Writing templates](https://lit-html.polymer-project.org/guide/writing-templates)
-* [Template syntax reference](https://lit-html.polymer-project.org/guide/template-reference)
+* [Writing templates](/docs/v1/lit-html/writing-templates/)
+* [Template syntax reference](/docs/v1/lit-html/template-reference/)
 

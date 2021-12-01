@@ -119,7 +119,7 @@ A couple of things to look for in the code:
     ```
 
 
-*   The component's `render` method defines a [template](templates) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](templates).
+*   The component's `render` method defines a [template](/docs/v1/components/templates/) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](/docs/v1/components/templates/).
 
     ```js
     export class MyElement extends LitElement {
@@ -136,7 +136,7 @@ A couple of things to look for in the code:
     }
     ```
 
-*   The component defines some [properties](properties). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](properties). 
+*   The component defines some [properties](/docs/v1/components/properties/). The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/v1/components/properties/). 
 
     _JavaScript_
 
@@ -206,7 +206,7 @@ You'll probably want to change the component name from "my-element" to something
 
 ### Next steps
 
-Ready to add features to your new component? Head over to [Templates](templates) for details on writing templates for your LitElement component.
+Ready to add features to your new component? Head over to [Templates](/docs/v1/components/templates/) for details on writing templates for your LitElement component.
 
 For details on running tests and using other tools, see the starter project README:
 
@@ -217,7 +217,7 @@ For details on running tests and using other tools, see the starter project READ
 
 You don't need a lot of tooling for LitElement projects. Chances are if you have an existing set of tools, you can integrate LitElement into it with very limited changes. These instructions assume you're using npm for package management, and using a tool like Rollup or webpack to bundle your code for production.
 
-For details on building projects, including some sample Rollup configurations, see [Build for production](build).
+For details on building projects, including some sample Rollup configurations, see [Build for production](/docs/v1/tools/build/).
 
 <div class="alert alert-info">
 
@@ -285,7 +285,7 @@ At this point, you should be able to build and run your project and see the "Hel
 
 How you import the component may vary slightly depending on your build system and project structure. If you're writing in TypeScript, you'll use TypeScript files and use LitElement's decorators. (You can find a sample TypeScript element in the [TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/src/my-element.ts)).
 
-For more details and sample build configurations, see [Build for production](build).
+For more details and sample build configurations, see [Build for production](/docs/v1/tools/build/).
 
 ### Optional: Use ES dev server
 
@@ -318,10 +318,10 @@ If you already have a dev server that works with your build system, it should wo
 
 To support older browsers that don't support ES6 and the web components specifications, you'll need to take a few extra steps to produce code that will run on the older browsers. 
 
-See [Build for production](build) for more information.
+See [Build for production](/docs/v1/tools/build/) for more information.
 
 ### Next steps
 
-Ready to add features to your project? Head over to [Templates](templates) for details on writing templates for your LitElement component.
+Ready to add features to your project? Head over to [Templates](/docs/v1/components/templates/) for details on writing templates for your LitElement component.
 
 For more on building applications that use web components, see the open-wc recommendations on [Building](https://open-wc.org/building/).

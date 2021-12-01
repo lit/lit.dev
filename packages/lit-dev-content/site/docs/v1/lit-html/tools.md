@@ -134,13 +134,13 @@ Many build tools can do this for you. Currently we recommend Rollup, and provide
 
 If you're using another tool or creating your own Rollup configuration, see the section on [Build considerations](#build-consderations).
 
-For more details on the build steps, see the LitElement [Build for production](https://lit-element.polymer-project.org/guide/build) guide. lit-html has the same requirements as LitElement, except that lit-html requires only the [Template polyfill](#template-polyfill), not the full Web Components polyfills.
+For more details on the build steps, see the LitElement [Build for production](/docs/v1/tools/build/) guide. lit-html has the same requirements as LitElement, except that lit-html requires only the [Template polyfill](#template-polyfill), not the full Web Components polyfills.
 
 ### Build your project with Rollup
 
 Rollup works well with lit-html. The [lit-html-build](https://github.com/PolymerLabs/lit-html-build) repository is a simple example project using lit-html with a Rollup build.
 
-For more information on the build steps, see the LitElement [Build for production](https://lit-element.polymer-project.org/guide/build) guide.
+For more information on the build steps, see the LitElement [Build for production](/docs/v1/tools/build/) guide.
 
 open-wc also has [Rollup build resources](https://open-wc.org/building/building-rollup.html). 
 
@@ -159,7 +159,7 @@ If you're creating your own configuration for webpack, Rollup, or another tool, 
 * lit-html template minification.
 * Polyfills.
 
-For more details on these considerations, see the LitElement [Build for production](https://lit-element.polymer-project.org/guide/build) guide. lit-html has the same requirements as LitElement, except that lit-html requires only the [Template polyfill](#template-polyfill), not the full Web Components polyfills.
+For more details on these considerations, see the LitElement [Build for production](/docs/v1/tools/build/) guide. lit-html has the same requirements as LitElement, except that lit-html requires only the [Template polyfill](#template-polyfill), not the full Web Components polyfills.
 
 #### Compilation and module transform {#transpilation-and-module-transform}
 

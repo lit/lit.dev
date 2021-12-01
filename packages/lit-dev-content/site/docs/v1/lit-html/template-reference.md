@@ -483,7 +483,7 @@ const myTemplate = () => html`
 If no `keyFn` is provided, `repeat` will perform similar to a simple map of
 items to values, and DOM will be reused against potentially different items.
 
-See [Repeating templates with the repeat directive](writing-templates#repeating-templates-with-the-repeat-directive) for a discussion
+See [Repeating templates with the repeat directive](/docs/v1/lit-html/writing-templates/#repeating-templates-with-the-repeat-directive) for a discussion
 of when to use `repeat` and when to use standard JavaScript flow control.
 
 ### styleMap

@@ -171,7 +171,7 @@ The argument to the `@property` decorator is an [options object](#property-optio
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a transpiler like Babel or the TypeScript compiler to use decorators. See [Using decorators](/docs/v1/components/decorators/) for details.
 
 </div>
 
@@ -205,7 +205,7 @@ When a property changes, the following sequence occurs:
 1.  If `hasChanged` returns true, the setter calls `requestUpdate` to schedule an update. The update itself happens asynchronously, so if several properties are updated at once, they only trigger a single update.
 1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
 
-There are many ways to hook into and modify the update lifecycle. For more information, see [Lifecycle](lifecycle).
+There are many ways to hook into and modify the update lifecycle. For more information, see [Lifecycle](/docs/v1/components/lifecycle/).
 
 
 ## Initialize property values {#initialize}
@@ -460,7 +460,7 @@ See [observed attributes](#observed-attributes) and [converting between properti
 
 <div class="alert alert-info">
 
-**Attributes versus property bindings.** Setting a static attribute value is not the same as binding to a property. See [Bind to a property](templates#bind-to-a-property).
+**Attributes versus property bindings.** Setting a static attribute value is not the same as binding to a property. See [Bind to a property](/docs/v1/components/templates/#bind-to-a-property).
 
 </div>
 
@@ -554,7 +554,7 @@ You don't need to set `noAccessor` when defining your own accessors.
 
 All declared properties have a function, `hasChanged`, which is called when the property is set. 
 
-`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update if one is not already scheduled. See the [Element update lifecycle documentation](lifecycle) for more information on how updates work.
+`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged` returns true, LitElement starts an element update if one is not already scheduled. See the [Element update lifecycle documentation](/docs/v1/components/lifecycle/) for more information on how updates work.
 
 By default:
 
