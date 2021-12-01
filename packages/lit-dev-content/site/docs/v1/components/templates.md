@@ -1,13 +1,10 @@
 ---
-layout: guide
 title: Templates
-slug: templates
-lit_dev_path: /docs/components/rendering/
+eleventyNavigation:
+  key: Templates
+  parent: Components
+  order: 1
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 Add a template to your component to define internal DOM to implement your component.
 

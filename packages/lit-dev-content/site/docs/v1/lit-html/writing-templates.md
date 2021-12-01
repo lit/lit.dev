@@ -1,6 +1,9 @@
 ---
 title: Writing templates
-slug: writing-templates
+eleventyNavigation:
+  key: Writing templates
+  parent: lit-html
+  order: 3
 ---
 
 lit-html is a templating library that provides fast, efficient rendering and updating of HTML. It lets you express web UI as a function of data. 

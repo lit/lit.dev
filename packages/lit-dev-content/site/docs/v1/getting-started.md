@@ -1,13 +1,10 @@
 ---
-layout: guide
-title: Getting Started
-slug: start
-lit_dev_path: /docs/getting-started/
+title: Getting started
+eleventyNavigation:
+  key: Getting started
+  parent: Introduction
+  order: 2
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 There are two main ways to use LitElement: 
 

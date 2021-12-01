@@ -1,6 +1,9 @@
 ---
 title: Template syntax reference
-slug: template-reference
+eleventyNavigation:
+  key: Template syntax reference
+  parent: lit-html
+  order: 7
 ---
 
 lit-html templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:

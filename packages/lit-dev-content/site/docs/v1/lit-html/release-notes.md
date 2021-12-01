@@ -1,7 +1,9 @@
 ---
-title: Release Notes
-slug: release-notes
-layout: release-notes
+title: Release notes
+eleventyNavigation:
+  key: Release notes
+  parent: lit-html
+  order: 10
 ---
 
 <ul>

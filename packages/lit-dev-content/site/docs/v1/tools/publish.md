@@ -1,13 +1,10 @@
 ---
-layout: guide
-title: Publish an element
-slug: publish
-lit_dev_path: /docs/tools/publishing/
+title: Publish a component
+eleventyNavigation:
+  key: Publish a component
+  parent: Tools
+  order: 1
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 This page describes how to publish a LitElement component to npm.
 

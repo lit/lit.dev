@@ -1,8 +1,9 @@
 ---
-layout: guide
 title: Using decorators
-slug: decorators
-lit_dev_path: /docs/components/decorators/
+eleventyNavigation:
+  key: Decorators
+  parent: Components
+  order: 6
 ---
 
 Decorators are special expressions that can alter the behavior of class, class method, and class field declarations. LitElement supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component.

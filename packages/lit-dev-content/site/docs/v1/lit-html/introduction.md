@@ -1,6 +1,9 @@
 ---
-layout: post
 title: Introduction
+eleventyNavigation:
+  key: Introduction
+  parent: lit-html
+  order: 1
 ---
 
 ## What is lit-html?

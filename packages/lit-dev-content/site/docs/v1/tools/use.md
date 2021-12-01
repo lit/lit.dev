@@ -1,13 +1,10 @@
 ---
-layout: guide
 title: Use a component
-slug: use
-lit_dev_path: /docs/
+eleventyNavigation:
+  key: Use a component
+  parent: Tools
+  order: 2
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 This page describes how to [use a LitElement component in your application](#use). It also describes how to make sure your deployed code is browser-ready by [building it for production](#build) and [loading the Web Components polyfills](#polyfills).
 

@@ -1,14 +1,10 @@
 ---
-layout: guide
 title: Events
-slug: events
-lit_dev_path: /docs/components/events/
+eleventyNavigation:
+  key: Events
+  parent: Components
+  order: 4
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
-
 
 ## Where to add your event listeners
 

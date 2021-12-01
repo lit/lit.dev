@@ -1,13 +1,10 @@
 ---
-layout: guide
-title: Introduction
-permalink: /guide
-lit_dev_path: /docs/
+title: What is LitElement?
+eleventyNavigation:
+  key: What is LitElement?
+  parent: Introduction
+  order: 1
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 ## What is LitElement?
 

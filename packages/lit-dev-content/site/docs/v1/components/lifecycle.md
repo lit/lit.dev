@@ -1,13 +1,10 @@
 ---
-layout: guide
 title: Lifecycle
-slug: lifecycle
-lit_dev_path: /docs/components/lifecycle/
+eleventyNavigation:
+  key: Lifecycle
+  parent: Components
+  order: 5
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 ## Overview
 

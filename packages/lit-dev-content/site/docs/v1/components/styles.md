@@ -1,13 +1,10 @@
 ---
-layout: guide
 title: Styles
-slug: styles
-lit_dev_path: /docs/components/styles/
+eleventyNavigation:
+  key: Styles
+  parent: Components
+  order: 2
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 This page describes how to add styles to your component.
 

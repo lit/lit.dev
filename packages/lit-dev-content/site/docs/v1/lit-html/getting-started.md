@@ -1,6 +1,9 @@
 ---
-title: Getting Started
-slug: getting-started
+title: Getting started
+eleventyNavigation:
+  key: Getting started
+  parent: lit-html
+  order: 2
 ---
 
 ## Installation

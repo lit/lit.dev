@@ -1,6 +1,9 @@
 ---
 title: Concepts
-slug: concepts
+eleventyNavigation:
+  key: Concepts
+  parent: lit-html
+  order: 8
 ---
 
 lit-html utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.

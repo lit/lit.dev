@@ -1,13 +1,10 @@
 ---
-layout: guide
 title: Properties
-slug: properties
-lit_dev_path: /docs/components/properties/
+eleventyNavigation:
+  key: Properties
+  parent: Components
+  order: 3
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 ## Overview {#overview}
 

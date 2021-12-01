@@ -1,13 +1,10 @@
 ---
-layout: guide
 title: Build for production
-slug: build
-lit_dev_path: /docs/tools/production/
+eleventyNavigation:
+  key: Build for production
+  parent: Tools
+  order: 3
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
 
 When building an app that includes LitElement components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/). 
 

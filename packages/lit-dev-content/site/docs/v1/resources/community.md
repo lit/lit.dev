@@ -1,14 +1,10 @@
 ---
-layout: guide
 title: Community
-slug: community
-lit_dev_path: /docs/tools/publishing/
+eleventyNavigation:
+  key: Community
+  parent: Resources
+  order: 1
 ---
-
-{::options toc_levels="1..3" /}
-* ToC
-{:toc}
-
 
 There are many great resources and locations to learn about LitElement and web components,
 share what you've built, and more. All community participation is subject to the Lit
