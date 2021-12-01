@@ -171,7 +171,7 @@ Sometimes you want a directive to manage multiple nested parts. For example, a d
 
 To create nested parts, you construct [`NodePart`](/api/classes/_lit_html_.nodepart.html) instances and associate them with specific locations in the DOM. The section of DOM controlled by a given `NodePart` needs to be delimited by static nodes that serve as markers. (lit-html usually uses comment nodes for these markers.)
 
-<img alt="Diagram showing a tree of DOM nodes and a NodePart object. The DOM tree consists of a parent node and several child nodes, with two of the child nodes identified as 'marker nodes.' The NodePart object has a startNode property, which points to the first marker node, and an endNode property, which points to the second marker node. Child nodes between the two marker nodes are identified as 'nodes managed by NodePart.'" src="/images/guides/node-part-markers.png" style="max-width: 515px;">
+<img alt="Diagram showing a tree of DOM nodes and a NodePart object. The DOM tree consists of a parent node and several child nodes, with two of the child nodes identified as 'marker nodes.' The NodePart object has a startNode property, which points to the first marker node, and an endNode property, which points to the second marker node. Child nodes between the two marker nodes are identified as 'nodes managed by NodePart.'" src="/images/v1/node-part-markers.png" style="max-width: 515px;">
 
 As shown in the diagram, the nodes managed by the `NodePart` appear between its `startNode` and `endNode`. The following code creates and adds a new, nested part inside an existing part (the "container part"). 
 
@@ -184,7 +184,7 @@ newPart.appendIntoPart(containerPart);
 
 The end result looks something like this:
 
-<img alt="Diagram showing a tree of DOM nodes and a two NodePart objects. The DOM tree consists of a parent node and several child nodes, with two pairs of child nodes identified as 'marker nodes.' The container NodePart object has a startNode property, which points to the first marker node, and an endNode property, which points to the last marker node. The nested NodePart object has startNode and endNode properties that point to the second and third marker nodes. Child nodes between the second and third marker nodes are identified as 'nodes managed by nested NodePart.'" src="/images/guides/nested-node-parts.png" style="max-width: 535px;">
+<img alt="Diagram showing a tree of DOM nodes and a two NodePart objects. The DOM tree consists of a parent node and several child nodes, with two pairs of child nodes identified as 'marker nodes.' The container NodePart object has a startNode property, which points to the first marker node, and an endNode property, which points to the last marker node. The nested NodePart object has startNode and endNode properties that point to the second and third marker nodes. Child nodes between the second and third marker nodes are identified as 'nodes managed by nested NodePart.'" src="/images/v1/nested-node-parts.png" style="max-width: 535px;">
 
 The `appendIntoPart` method creates the marker nodes and inserts the nested part for you. In some cases, you may need to manually manage the marker nodes (for example, if you're inserting a nested part into the middle of the child list). In this case, you can use code like this:
 
