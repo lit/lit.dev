@@ -168,8 +168,7 @@ ${content}
 
   eleventyConfig.addCollection('docs-v2', function (collection) {
     const docs = collection
-      .getFilteredByGlob('site/docs/**')
-      .filter((page) => !page.url.includes('v1'))
+      .getFilteredByGlob(['site/docs/*', 'site/docs/!(v1)/**'])
       .sort(sortDocs);
     for (const page of docs) {
       docsByUrl.set(page.url, page);
