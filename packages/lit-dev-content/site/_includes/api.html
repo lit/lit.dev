@@ -1,17 +1,5 @@
 ---
-pagination:
-    data: api-docs-pages
-    size: 1
-    alias: data
-    addAllPagesToCollections: true
-
-permalink: "docs/api/{{ data.slug }}/"
-
-eleventyComputed:
-    title: "{{ data.title }}"
-    eleventyNavigation:
-        key: "{{ data.title }}"
-        parent: API
+layout: docs
 ---
 
 {% macro importStatement(symbol) -%}
@@ -19,7 +7,7 @@ eleventyComputed:
 {%- endmacro %}
 
 {% macro locationLink(location, label) -%}
-  <a href="{{ site.baseurl }} /docs/api/{{ location.page }}#{{ location.anchor }}">{{label}}</a>
+  <a href="{{ site.baseurl }}{{ apiPath }}/{{ location.page }}#{{ location.anchor }}">{{label}}</a>
 {%- endmacro %}
 
 {%- macro externalLink(url, label) -%}
