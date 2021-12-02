@@ -12,12 +12,13 @@ import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
 import {litElement2Config} from './configs/lit-element-2.js';
+import {litHtml1Config} from './configs/lit-html-1.js';
 
 import type {ApiDocsConfig} from './types.js';
 
 const execFileAsync = promisify(execFile);
 
-const configs = [lit2Config, litElement2Config];
+const configs = [lit2Config, litElement2Config, litHtml1Config];
 
 /**
  * Check whether the given file path exists.
