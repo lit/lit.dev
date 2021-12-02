@@ -150,4 +150,4 @@ To load the WebComponents polyfills:
 
 </div>
 
-See <a href="https://github.com/webcomponents/webcomponentsjs" target="_blank" rel="noopener">the Webcomponentsjs documentation</a> for more information.
+See <a href="https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#readme" target="_blank" rel="noopener">the Webcomponentsjs documentation</a> for more information.

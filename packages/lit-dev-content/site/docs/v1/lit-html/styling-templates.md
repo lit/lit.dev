@@ -103,11 +103,11 @@ See [Inline styles with styleMap](#stylemap) and [Setting classes with classMap]
 
 ### Polyfilled shadow DOM: ShadyDOM and ShadyCSS
 
-If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. <a href="https://github.com/webcomponents/shadydom" target="_blank" rel="noopener">ShadyDOM</a> and <a href="https://github.com/webcomponents/shadycss" target="_blank" rel="noopener">ShadyCSS</a> are polyfills, or shims, that emulate shadow DOM isolation and style scoping.
+If you're using shadow DOM, you'll probably need to use polyfills to support older browsers that don't implement shadow DOM natively. <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadydom" target="_blank" rel="noopener">ShadyDOM</a> and <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadycss" target="_blank" rel="noopener">ShadyCSS</a> are polyfills, or shims, that emulate shadow DOM isolation and style scoping.
 
 The lit-html `shady-render` module provides necessary integration with the shady CSS shim. If you're writing your own custom element base class that uses lit-html and shadow DOM, you'll need to use `shady-render` and also take some steps on your own.
 
-The <a href="https://github.com/webcomponents/shadycss#usage" target="_blank" rel="noopener">ShadyCSS README</a> provides some directions for using shady CSS. When using it with `lit-html`:
+The <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#usage" target="_blank" rel="noopener">ShadyCSS README</a> provides some directions for using shady CSS. When using it with `lit-html`:
 
 *   Import `render` and `TemplateResult` from the `shady-render` library.
 *   You **don't** need to call `ShadyCSS.prepareTemplate`.  Instead pass the scope name as a render option. For custom elements, use the element name as a scope name. For example:

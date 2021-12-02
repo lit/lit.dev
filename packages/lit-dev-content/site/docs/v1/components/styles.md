@@ -394,7 +394,7 @@ We recommend placing your styles in a static `styles` property for optimal perfo
 
 There are some important caveats though:
 
-*  The <a href="https://github.com/webcomponents/shadycss/blob/master/README.md#limitations" target="_blank" rel="noopener">ShadyCSS polyfill</a> doesn't support external style sheets.
+*  The <a href="https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations" target="_blank" rel="noopener">ShadyCSS polyfill</a> doesn't support external style sheets.
 
 *   External styles can cause a flash-of-unstyled-content (FOUC) while they load.
 
