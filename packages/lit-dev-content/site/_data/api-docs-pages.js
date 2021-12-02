@@ -7,20 +7,29 @@
 const fs = require('fs/promises');
 const pathlib = require('path');
 
-module.exports = async () =>
-  // Don't use require() because of Node caching in watch mode.
-  JSON.parse(
-    await fs.readFile(
-      pathlib.resolve(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        'lit-dev-api',
-        'api-data',
-        'lit-2',
-        'pages.json'
-      ),
-      'utf8'
-    )
+const apiDataDir = pathlib.resolve(
+  __dirname,
+  '..',
+  '..',
+  '..',
+  'lit-dev-api',
+  'api-data'
+);
+
+const subdirs = ['lit-2', 'lit-element-2', 'lit-html-1'];
+
+module.exports = async () => {
+  const data = {};
+  await Promise.all(
+    subdirs.map(async (subdir) => {
+      data[subdir] = JSON.parse(
+        // Don't use require() because of Node caching in watch mode.
+        await fs.readFile(
+          pathlib.join(apiDataDir, subdir, 'pages.json'),
+          'utf8'
+        )
+      );
+    })
   );
+  return data;
+};
