@@ -16,7 +16,7 @@ const apiDataDir = pathlib.resolve(
   'api-data'
 );
 
-const subdirs = ['lit-2'];
+const subdirs = ['lit-2', 'lit-element-2'];
 
 module.exports = async () => {
   const data = {};

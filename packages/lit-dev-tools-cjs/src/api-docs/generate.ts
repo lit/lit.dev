@@ -11,12 +11,13 @@ import {execFile} from 'child_process';
 import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
+import {litElement2Config} from './configs/lit-element-2.js';
 
 import type {ApiDocsConfig} from './types.js';
 
 const execFileAsync = promisify(execFile);
 
-const configs = [lit2Config];
+const configs = [lit2Config, litElement2Config];
 
 /**
  * Check whether the given file path exists.
