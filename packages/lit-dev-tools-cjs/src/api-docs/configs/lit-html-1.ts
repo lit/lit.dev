@@ -72,6 +72,9 @@ export const litHtml1Config: ApiDocsConfig = {
   pageForSymbol(node): string {
     const entrypoint = node.entrypointSources?.[0]?.fileName ?? '';
     const source = node.sources?.[0].fileName;
+    if (entrypoint.includes('shady-render')) {
+      return 'shady';
+    }
     if (
       source === 'src/lib/template-result.ts' ||
       node.name === 'html' ||
@@ -110,9 +113,6 @@ export const litHtml1Config: ApiDocsConfig = {
       node.name === 'TemplateProcessor'
     ) {
       return 'custom-directives';
-    }
-    if (entrypoint.includes('shady-render')) {
-      return 'shady';
     }
     return 'misc';
   },
