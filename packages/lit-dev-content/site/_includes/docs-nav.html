@@ -1,5 +1,5 @@
 {% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
-{%- set navSections = collections.docs | eleventyNavigation -%}
+{%- set navSections = collections[collection] | eleventyNavigation -%}
 
 {%- for section in navSections %}
 

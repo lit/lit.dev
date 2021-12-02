@@ -63,6 +63,12 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
       // Skip internal pages.
       continue;
     }
+    if (filePath.includes('/docs/v1')) {
+      // Don't index the old versions of the docs.
+      // TODO(aomarks) In theory we could switch between two different versions
+      // of the search index, but it might not be worth the complexity.
+      continue;
+    }
 
     const pageContent = fs.readFileSync(filePath, {encoding: 'utf8'});
     try {

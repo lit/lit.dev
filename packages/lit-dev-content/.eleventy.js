@@ -143,22 +143,33 @@ ${content}
     return url.substring(0, url.length - extension.length);
   });
 
+  const sortDocs = (a, b) => {
+    if (a.fileSlug == 'docs') {
+      return -1;
+    }
+    if (a.fileSlug < b.fileSlug) {
+      return -1;
+    }
+    if (b.fileSlug < a.fileSlug) {
+      return 1;
+    }
+    return 0;
+  };
+
   const docsByUrl = new Map();
-  eleventyConfig.addCollection('docs', function (collection) {
+
+  eleventyConfig.addCollection('docs-v1', function (collection) {
+    const docs = collection.getFilteredByGlob('site/docs/v1/**').sort(sortDocs);
+    for (const page of docs) {
+      docsByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
+  eleventyConfig.addCollection('docs-v2', function (collection) {
     const docs = collection
-      .getFilteredByGlob('site/docs/**')
-      .sort(function (a, b) {
-        if (a.fileSlug == 'docs') {
-          return -1;
-        }
-        if (a.fileSlug < b.fileSlug) {
-          return -1;
-        }
-        if (b.fileSlug < a.fileSlug) {
-          return 1;
-        }
-        return 0;
-      });
+      .getFilteredByGlob(['site/docs/*', 'site/docs/!(v1)/**'])
+      .sort(sortDocs);
     for (const page of docs) {
       docsByUrl.set(page.url, page);
     }
@@ -378,10 +389,15 @@ ${content}
     // generated from them so that users can't somehow navigate to some
     // "index.html" and see a weird empty page.
     const emptyDocsIndexFiles = (
-      await fastGlob([
-        ENV.eleventyOutDir + '/docs/introduction.html',
-        ENV.eleventyOutDir + '/docs/*/index.html',
-      ])
+      await fastGlob(
+        [
+          ENV.eleventyOutDir + '/docs/introduction.html',
+          ENV.eleventyOutDir + '/docs/*/index.html',
+          ENV.eleventyOutDir + '/docs/v1/introduction.html',
+          ENV.eleventyOutDir + '/docs/v1/*/index.html',
+        ],
+        {ignore: ENV.eleventyOutDir + '/docs/v1/index.html'}
+      )
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
       // file that a page shouldn't be generated.

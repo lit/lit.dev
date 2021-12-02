@@ -7,7 +7,7 @@ layout: default
   <nav class="side-nav">
     <button id="toggleNavButton">Menu</button>
     <ul>
-      {% for docs in collections.docs %}
+      {% for docs in collections[collection] %}
         <li class="{% if page.url == docs.url %}active{% endif %}">
           <a href="{{site.baseurl}}{{ docs.url | removeExtension }}">{{docs.data.title}}</a>
         </li>
@@ -26,5 +26,5 @@ layout: default
   toggleNavButton.addEventListener('click', function(event) {
     const nav = event.target.parentElement;
     nav.classList.toggle('open');
-  });
+});
 </script>
