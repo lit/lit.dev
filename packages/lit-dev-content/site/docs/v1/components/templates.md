@@ -162,6 +162,7 @@ html`<ul>
 **repeat directive**. In most cases, `Array.map` is the most efficient way to create a repeating template. In some cases, you may want to consider lit-html's `repeat` directive. In particular, if the repeated elements are stateful, or very expensive to regenerate. For more information, see [Repeating templates with the repeat directive](/docs/v1/lit-html/writing-templates/#repeating-templates) in the lit-html docs.
 
 </div>
+
 #### Conditionals
 
 Render based on a Boolean condition:
