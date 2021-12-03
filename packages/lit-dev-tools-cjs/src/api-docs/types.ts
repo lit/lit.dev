@@ -109,6 +109,7 @@ export interface ApiDocsConfig {
     slug: string;
     title: string;
     anchorFilter?: (node: DeclarationReflection) => boolean;
+    versionLinks?: {[version: string]: string};
   }>;
 
   /**

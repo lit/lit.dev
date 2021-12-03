@@ -2,6 +2,9 @@
   {
     "slug": "LitElement",
     "title": "LitElement",
+    "versionLinks": {
+      "v2": "api/LitElement/"
+    },
     "items": [
       {
         "id": 252,
@@ -3038,6 +3041,9 @@
   {
     "slug": "UpdatingElement",
     "title": "UpdatingElement",
+    "versionLinks": {
+      "v2": "api/ReactiveElement/"
+    },
     "items": [
       {
         "id": 1142,
@@ -6197,6 +6203,9 @@
   {
     "slug": "styles",
     "title": "Styles",
+    "versionLinks": {
+      "v2": "api/styles/"
+    },
     "items": [
       {
         "id": 2169,
@@ -6941,6 +6950,9 @@
   {
     "slug": "decorators",
     "title": "Decorators",
+    "versionLinks": {
+      "v2": "api/decorators/"
+    },
     "items": [
       {
         "id": 2135,

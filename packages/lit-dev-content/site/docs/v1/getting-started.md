@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Getting started
   parent: Introduction
   order: 2
+versionLinks:
+  v2: getting-started/
 ---
 
 There are two main ways to use LitElement:

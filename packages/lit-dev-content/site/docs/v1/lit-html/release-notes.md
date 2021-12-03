@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Release notes
   parent: lit-html
   order: 10
+versionLinks:
+  v2: releases/upgrade/
 ---
 
 ## lit-html 1.3.0

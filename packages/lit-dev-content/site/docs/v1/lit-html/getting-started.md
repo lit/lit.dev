@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Getting started
   parent: lit-html
   order: 2
+versionLinks:
+  v2: getting-started/
 ---
 
 ## Installation

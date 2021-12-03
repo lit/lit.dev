@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Rendering templates
   parent: lit-html
   order: 5
+versionLinks:
+  v2: components/rendering/
 ---
 
 A lit-html template expression does not cause any DOM to be created or updated. It's only a description of DOM, called a `TemplateResult`. To actually create or update DOM, you need to pass the `TemplateResult` to the `render()` function, along with a container to render to:

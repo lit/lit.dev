@@ -65,8 +65,8 @@
     {% if showOldDocsBanner %}
       <litdev-banner>
         You're viewing docs for an older version of Lit. Click
-        <a href="{{ versions[latestVersion].path }}">here</a>
-        for the latest version.
+        <a href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+        here</a> for the latest version.
       </litdev-banner>
     {% endif %}
 

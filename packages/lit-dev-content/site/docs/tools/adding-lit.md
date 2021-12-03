@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Adding Lit
   parent: Tools
   order: 8
+versionLinks:
+  v1: tools/use/
 ---
 
 Lit doesn't require any specialized tools, and Lit components work in any JavaScript framework or with any server templating system or CMS, so Lit is ideal for adding to existing projects and applications.

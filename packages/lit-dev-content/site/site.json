@@ -3,11 +3,11 @@
   "latestVersion": "v2",
   "versions": {
     "v1": {
-      "path": "/docs/v1/",
+      "path": "/docs/v1",
       "label": "v1"
     },
     "v2": {
-      "path": "/docs/",
+      "path": "/docs",
       "label": "v2"
     }
   }

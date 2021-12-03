@@ -38,22 +38,37 @@ export const litElement2Config: ApiDocsConfig = {
     {
       slug: 'LitElement',
       title: 'LitElement',
+      versionLinks: {
+        v2: 'api/LitElement/',
+      },
     },
     {
       slug: 'UpdatingElement',
       title: 'UpdatingElement',
+      versionLinks: {
+        v2: 'api/ReactiveElement/',
+      },
     },
     {
       slug: 'styles',
       title: 'Styles',
+      versionLinks: {
+        v2: 'api/styles/',
+      },
     },
     {
       slug: 'decorators',
       title: 'Decorators',
+      versionLinks: {
+        v2: 'api/decorators/',
+      },
     },
     {
       slug: 'misc',
       title: 'Misc',
+      versionLinks: {
+        v2: 'api/misc/',
+      },
     },
   ],
 

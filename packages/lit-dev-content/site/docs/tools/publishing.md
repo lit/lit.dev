@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Publishing
   parent: Tools
   order: 5
+versionLinks:
+  v1: tools/publish/
 ---
 
 This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of Javascript libraries and developers. See [Starter Kits](/docs/tools/starter-kits/) for reusable component templates set up for publishing to npm.

@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Properties
   parent: Components
   order: 3
+versionLinks:
+  v2: components/properties/
 ---
 
 ## Overview {#overview}

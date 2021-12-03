@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Overview
   parent: Components
   order: 0
+versionLinks:
+  v1: components/templates/
 ---
 
 A Lit component is a reusable piece of UI. You can think of a Lit component as a container that has some state and that displays a UI based on its state. It can also react to user input, fire events—anything you'd expect a UI component to do. And a Lit component is an HTML element, so it has all of the standard element APIs.

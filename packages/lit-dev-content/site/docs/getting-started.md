@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Getting Started
   parent: Introduction
   order: 3
+versionLinks:
+  v1: getting-started/
 ---
 
 There are many ways to get started using Lit, from our Playground and interactive tutorial to installing into an existing project.
