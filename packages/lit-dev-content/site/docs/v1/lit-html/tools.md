@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Tools
   parent: lit-html
   order: 9
+versionLinks:
+  v2: tools/overview/
 ---
 
 lit-html is available from the npm registry. If you're already using npm to manage dependencies, you can use lit-html much like any other JavaScript library you install from npm. This section describes some additional tools or plugins you might want to add to your workflow to make it easier to work with lit-html.

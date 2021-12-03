@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Styles
   parent: Components
   order: 2
+versionLinks:
+  v2: components/styles/
 ---
 
 This page describes how to add styles to your component.

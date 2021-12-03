@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Publish a component
   parent: Tools
   order: 1
+versionLinks:
+  v2: tools/publishing/
 ---
 
 This page describes how to publish a LitElement component to npm.

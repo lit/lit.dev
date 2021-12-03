@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Events
   parent: Components
   order: 4
+versionLinks:
+  v2: components/events/
 ---
 
 ## Where to add your event listeners

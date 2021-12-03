@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Lifecycle
   parent: Components
   order: 5
+versionLinks:
+  v2: components/lifecycle/
 ---
 
 ## Overview

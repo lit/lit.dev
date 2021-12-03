@@ -4,6 +4,8 @@ eleventyNavigation:
   key: What is LitElement?
   parent: Introduction
   order: 1
+versionLinks:
+  v2:
 ---
 
 LitElement is a simple base class for creating fast, lightweight web components that work in any web page with any framework.

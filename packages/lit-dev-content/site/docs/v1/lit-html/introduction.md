@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Introduction
   parent: lit-html
   order: 1
+versionLinks:
+  v2: libraries/standalone-templates/
 ---
 
 ## What is lit-html?

@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Templates
   parent: Components
   order: 1
+versionLinks:
+  v2: components/rendering/
 ---
 
 Add a template to your component to define internal DOM to implement your component.
