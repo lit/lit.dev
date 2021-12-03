@@ -1,3 +1,5 @@
 {
-  "collection": "docs-v1"
+  "collection": "docs-v1",
+  "selectedVersion": "v1",
+  "showOldDocsBanner": true
 }
