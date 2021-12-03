@@ -1,5 +1,13 @@
 {% extends 'default.html' %}
 
+<!-- When we're rendering API docs, our "versionLinks" data doesn't come from
+     markdown frontmatter, instead it comes from the API JSON data.
+     TODO(aomarks) There must be some way to assign "versionLinks" to
+     "data.otherVersions" from api.html, but I haven't figure out how! -->
+{% if not versionLinks %}
+  {% set versionLinks = data.versionLinks %}
+{% endif %}
+
 {% block head %}
   {% inlinecss "docs.css" %}
   {% inlinejs "pages/docs.js" %}

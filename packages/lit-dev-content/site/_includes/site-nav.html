@@ -4,11 +4,11 @@
    <litdev-version-selector>
       <select name="version">
         {% for version, versionData in versions %}
-          <option value="{{ key }}"
+          <option value="{{ version }}"
             {% if version == selectedVersion %}
               selected
             {% else %}
-              data-path="{{ versionData.path }}/"
+              data-path="{{ versionData.path }}/{{ versionLinks[version] }}"
             {% endif %}>
             {{ versionData.label }}
           </option>
