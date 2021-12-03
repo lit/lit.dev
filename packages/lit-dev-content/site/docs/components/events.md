@@ -18,7 +18,7 @@ In addition to the standard `addEventListener` API, Lit introduces a declarative
 
 ### Adding event listeners in the element template
 
-You can use `@` expressions in your template to add event listeners to element's in your component template. Declarative event listeners are added when the template is rendered.
+You can use `@` expressions in your template to add event listeners to elements in your component's template. Declarative event listeners are added when the template is rendered.
 
 {% playground-example "docs/components/events/child/" "my-element.ts" %}
 
