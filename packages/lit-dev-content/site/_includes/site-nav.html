@@ -1,5 +1,22 @@
 <li class="navItem{% if page.url.includes('/docs') %} active{% endif %}">
-   <a href="{{ site.baseurl }}/docs/">Documentation</a></li>
+   <a href="{{ site.baseurl }}/docs/">Documentation</a>
+
+   <litdev-version-selector>
+      <select name="version">
+        {% for version, versionData in versions %}
+          <option value="{{ key }}"
+            {% if version == selectedVersion %}
+              selected
+            {% else %}
+              data-path="{{ versionData.path }}/"
+            {% endif %}>
+            {{ versionData.label }}
+          </option>
+        {% endfor %}
+      </select>
+    </litdev-version-selector>
+</li>
+
 <li class="navItem{% if page.url.includes('/tutorial') %} active{% endif %}">
    <a href="{{ site.baseurl }}/tutorial/">Tutorial</a></li>
 <li class="navItem{% if page.url.includes('/playground') %} active{% endif %}">

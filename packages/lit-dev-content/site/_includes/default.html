@@ -26,6 +26,7 @@
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-search.js"></script>
 
     <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/components/litdev-version-selector.js"></script>
 
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
@@ -64,7 +65,8 @@
     {% if showOldDocsBanner %}
       <litdev-banner>
         You're viewing docs for an older version of Lit. Click
-        <a href="/docs/">here</a> for the latest version.
+        <a href="{{ versions[latestVersion].path }}">here</a>
+        for the latest version.
       </litdev-banner>
     {% endif %}
 
