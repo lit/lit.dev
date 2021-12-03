@@ -50,22 +50,37 @@ export const litHtml1Config: ApiDocsConfig = {
     {
       slug: 'templates',
       title: 'Templates',
+      versionLinks: {
+        v2: 'api/templates/',
+      },
     },
     {
       slug: 'directives',
       title: 'Directives',
+      versionLinks: {
+        v2: 'api/directives/',
+      },
     },
     {
       slug: 'custom-directives',
       title: 'Custom directives',
+      versionLinks: {
+        v2: 'api/custom-directives/',
+      },
     },
     {
       slug: 'misc',
       title: 'Misc',
+      versionLinks: {
+        v2: 'api/misc/',
+      },
     },
     {
       slug: 'shady',
       title: 'ShadyCSS/DOM',
+      versionLinks: {
+        v2: 'api/templates/',
+      },
     },
   ],
 
