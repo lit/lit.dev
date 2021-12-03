@@ -161,7 +161,7 @@
   ],
   "$render": [
     {
-      "page": "templates",
+      "page": "shady",
       "anchor": "render"
     },
     {

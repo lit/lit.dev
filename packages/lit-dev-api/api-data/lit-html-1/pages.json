@@ -2,9 +2,12 @@
   {
     "slug": "templates",
     "title": "Templates",
+    "versionLinks": {
+      "v2": "api/templates/"
+    },
     "items": [
       {
-        "id": 2,
+        "id": 4884,
         "name": "html",
         "kind": 64,
         "kindString": "Function",
@@ -26,7 +29,7 @@
         ],
         "signatures": [
           {
-            "id": 3,
+            "id": 4885,
             "name": "html",
             "kind": 4096,
             "kindString": "Call signature",
@@ -36,7 +39,7 @@
             },
             "parameters": [
               {
-                "id": 4,
+                "id": 4886,
                 "name": "strings",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -47,7 +50,7 @@
                 }
               },
               {
-                "id": 5,
+                "id": 4887,
                 "name": "values",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -65,7 +68,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 396,
+              "id": 5278,
               "name": "TemplateResult",
               "location": {
                 "page": "templates",
@@ -89,7 +92,7 @@
         }
       },
       {
-        "id": 187,
+        "id": 5069,
         "name": "nothing",
         "kind": 32,
         "kindString": "Variable",
@@ -112,7 +115,7 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 188,
+            "id": 5070,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -135,7 +138,7 @@
         }
       },
       {
-        "id": 347,
+        "id": 5229,
         "name": "render",
         "kind": 64,
         "kindString": "Function",
@@ -158,7 +161,7 @@
         ],
         "signatures": [
           {
-            "id": 348,
+            "id": 5230,
             "name": "render",
             "kind": 4096,
             "kindString": "Call signature",
@@ -169,7 +172,7 @@
             },
             "parameters": [
               {
-                "id": 349,
+                "id": 5231,
                 "name": "result",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -183,7 +186,7 @@
                 }
               },
               {
-                "id": 350,
+                "id": 5232,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -212,7 +215,7 @@
                 }
               },
               {
-                "id": 351,
+                "id": 5233,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -227,7 +230,7 @@
                   "typeArguments": [
                     {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -260,7 +263,7 @@
         }
       },
       {
-        "id": 6,
+        "id": 4888,
         "name": "svg",
         "kind": 64,
         "kindString": "Function",
@@ -282,7 +285,7 @@
         ],
         "signatures": [
           {
-            "id": 7,
+            "id": 4889,
             "name": "svg",
             "kind": 4096,
             "kindString": "Call signature",
@@ -292,7 +295,7 @@
             },
             "parameters": [
               {
-                "id": 8,
+                "id": 4890,
                 "name": "strings",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -303,7 +306,7 @@
                 }
               },
               {
-                "id": 9,
+                "id": 4891,
                 "name": "values",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -321,7 +324,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 381,
+              "id": 5263,
               "name": "SVGTemplateResult",
               "location": {
                 "page": "templates",
@@ -345,7 +348,7 @@
         }
       },
       {
-        "id": 381,
+        "id": 5263,
         "name": "SVGTemplateResult",
         "kind": 128,
         "kindString": "Class",
@@ -356,7 +359,7 @@
         },
         "children": [
           {
-            "id": 382,
+            "id": 5264,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -364,14 +367,14 @@
             "children": [],
             "signatures": [
               {
-                "id": 383,
+                "id": 5265,
                 "name": "new SVGTemplateResult",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 384,
+                    "id": 5266,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -382,7 +385,7 @@
                     }
                   },
                   {
-                    "id": 385,
+                    "id": 5267,
                     "name": "values",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -400,7 +403,7 @@
                     }
                   },
                   {
-                    "id": 386,
+                    "id": 5268,
                     "name": "type",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -411,14 +414,14 @@
                     }
                   },
                   {
-                    "id": 387,
+                    "id": 5269,
                     "name": "processor",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 371,
+                      "id": 5253,
                       "name": "TemplateProcessor",
                       "location": {
                         "page": "custom-directives",
@@ -429,7 +432,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 381,
+                  "id": 5263,
                   "name": "SVGTemplateResult",
                   "location": {
                     "page": "templates",
@@ -438,14 +441,14 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 398,
+                  "id": 5280,
                   "name": "TemplateResult.constructor"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 397,
+              "id": 5279,
               "name": "TemplateResult.constructor",
               "location": {
                 "page": "templates",
@@ -467,7 +470,7 @@
             }
           },
           {
-            "id": 395,
+            "id": 5277,
             "name": "processor",
             "kind": 1024,
             "kindString": "Property",
@@ -486,7 +489,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 371,
+              "id": 5253,
               "name": "TemplateProcessor",
               "location": {
                 "page": "custom-directives",
@@ -495,7 +498,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 406,
+              "id": 5288,
               "name": "TemplateResult.processor",
               "location": {
                 "page": "templates",
@@ -517,7 +520,7 @@
             }
           },
           {
-            "id": 392,
+            "id": 5274,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
@@ -540,7 +543,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 403,
+              "id": 5285,
               "name": "TemplateResult.strings",
               "location": {
                 "page": "templates",
@@ -562,7 +565,7 @@
             }
           },
           {
-            "id": 394,
+            "id": 5276,
             "name": "type",
             "kind": 1024,
             "kindString": "Property",
@@ -585,7 +588,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 405,
+              "id": 5287,
               "name": "TemplateResult.type",
               "location": {
                 "page": "templates",
@@ -607,7 +610,7 @@
             }
           },
           {
-            "id": 393,
+            "id": 5275,
             "name": "values",
             "kind": 1024,
             "kindString": "Property",
@@ -637,7 +640,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 404,
+              "id": 5286,
               "name": "TemplateResult.values",
               "location": {
                 "page": "templates",
@@ -659,7 +662,7 @@
             }
           },
           {
-            "id": 388,
+            "id": 5270,
             "name": "getHTML",
             "kind": 2048,
             "kindString": "Method",
@@ -679,7 +682,7 @@
             ],
             "signatures": [
               {
-                "id": 389,
+                "id": 5271,
                 "name": "getHTML",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -693,14 +696,14 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 408,
+                  "id": 5290,
                   "name": "TemplateResult.getHTML"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 407,
+              "id": 5289,
               "name": "TemplateResult.getHTML",
               "location": {
                 "page": "templates",
@@ -722,7 +725,7 @@
             }
           },
           {
-            "id": 390,
+            "id": 5272,
             "name": "getTemplateElement",
             "kind": 2048,
             "kindString": "Method",
@@ -739,7 +742,7 @@
             ],
             "signatures": [
               {
-                "id": 391,
+                "id": 5273,
                 "name": "getTemplateElement",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -753,14 +756,14 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 410,
+                  "id": 5292,
                   "name": "TemplateResult.getTemplateElement"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 409,
+              "id": 5291,
               "name": "TemplateResult.getTemplateElement",
               "location": {
                 "page": "templates",
@@ -787,25 +790,25 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              382
+              5264
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              395,
-              392,
-              394,
-              393
+              5277,
+              5274,
+              5276,
+              5275
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              388,
-              390
+              5270,
+              5272
             ]
           }
         ],
@@ -821,7 +824,7 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 396,
+            "id": 5278,
             "name": "TemplateResult",
             "location": {
               "page": "templates",
@@ -845,7 +848,7 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 396,
+            "id": 5278,
             "name": "TemplateResult",
             "location": {
               "page": "templates",
@@ -855,7 +858,7 @@
         ]
       },
       {
-        "id": 396,
+        "id": 5278,
         "name": "TemplateResult",
         "kind": 128,
         "kindString": "Class",
@@ -865,7 +868,7 @@
         },
         "children": [
           {
-            "id": 397,
+            "id": 5279,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -882,14 +885,14 @@
             ],
             "signatures": [
               {
-                "id": 398,
+                "id": 5280,
                 "name": "new TemplateResult",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 399,
+                    "id": 5281,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -900,7 +903,7 @@
                     }
                   },
                   {
-                    "id": 400,
+                    "id": 5282,
                     "name": "values",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -918,7 +921,7 @@
                     }
                   },
                   {
-                    "id": 401,
+                    "id": 5283,
                     "name": "type",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -929,14 +932,14 @@
                     }
                   },
                   {
-                    "id": 402,
+                    "id": 5284,
                     "name": "processor",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 371,
+                      "id": 5253,
                       "name": "TemplateProcessor",
                       "location": {
                         "page": "custom-directives",
@@ -947,7 +950,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 396,
+                  "id": 5278,
                   "name": "TemplateResult",
                   "location": {
                     "page": "templates",
@@ -971,7 +974,7 @@
             }
           },
           {
-            "id": 406,
+            "id": 5288,
             "name": "processor",
             "kind": 1024,
             "kindString": "Property",
@@ -990,7 +993,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 371,
+              "id": 5253,
               "name": "TemplateProcessor",
               "location": {
                 "page": "custom-directives",
@@ -1012,7 +1015,7 @@
             }
           },
           {
-            "id": 403,
+            "id": 5285,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
@@ -1048,7 +1051,7 @@
             }
           },
           {
-            "id": 405,
+            "id": 5287,
             "name": "type",
             "kind": 1024,
             "kindString": "Property",
@@ -1084,7 +1087,7 @@
             }
           },
           {
-            "id": 404,
+            "id": 5286,
             "name": "values",
             "kind": 1024,
             "kindString": "Property",
@@ -1127,7 +1130,7 @@
             }
           },
           {
-            "id": 407,
+            "id": 5289,
             "name": "getHTML",
             "kind": 2048,
             "kindString": "Method",
@@ -1147,7 +1150,7 @@
             ],
             "signatures": [
               {
-                "id": 408,
+                "id": 5290,
                 "name": "getHTML",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1176,7 +1179,7 @@
             }
           },
           {
-            "id": 409,
+            "id": 5291,
             "name": "getTemplateElement",
             "kind": 2048,
             "kindString": "Method",
@@ -1193,7 +1196,7 @@
             ],
             "signatures": [
               {
-                "id": 410,
+                "id": 5292,
                 "name": "getTemplateElement",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1227,25 +1230,25 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              397
+              5279
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              406,
-              403,
-              405,
-              404
+              5288,
+              5285,
+              5287,
+              5286
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              407,
-              409
+              5289,
+              5291
             ]
           }
         ],
@@ -1261,7 +1264,7 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 381,
+            "id": 5263,
             "name": "SVGTemplateResult",
             "location": {
               "page": "templates",
@@ -1284,14 +1287,14 @@
         }
       },
       {
-        "id": 343,
+        "id": 5225,
         "name": "RenderOptions",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 345,
+            "id": 5227,
             "name": "eventContext",
             "kind": 1024,
             "kindString": "Property",
@@ -1328,7 +1331,7 @@
             }
           },
           {
-            "id": 344,
+            "id": 5226,
             "name": "templateFactory",
             "kind": 1024,
             "kindString": "Property",
@@ -1369,8 +1372,8 @@
             "title": "Properties",
             "kind": 1024,
             "children": [
-              345,
-              344
+              5227,
+              5226
             ]
           }
         ],
@@ -1402,9 +1405,12 @@
   {
     "slug": "directives",
     "title": "Directives",
+    "versionLinks": {
+      "v2": "api/directives/"
+    },
     "items": [
       {
-        "id": 27,
+        "id": 4909,
         "name": "asyncAppend",
         "kind": 64,
         "kindString": "Function",
@@ -1427,7 +1433,7 @@
         ],
         "signatures": [
           {
-            "id": 28,
+            "id": 4910,
             "name": "asyncAppend",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1438,7 +1444,7 @@
             },
             "typeParameter": [
               {
-                "id": 29,
+                "id": 4911,
                 "name": "T",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -1447,7 +1453,7 @@
             ],
             "parameters": [
               {
-                "id": 30,
+                "id": 4912,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1467,7 +1473,7 @@
                 }
               },
               {
-                "id": 31,
+                "id": 4913,
                 "name": "mapper",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1480,21 +1486,21 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 32,
+                    "id": 4914,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "signatures": [
                       {
-                        "id": 33,
+                        "id": 4915,
                         "name": "__type",
                         "kind": 4096,
                         "kindString": "Call signature",
                         "flags": {},
                         "parameters": [
                           {
-                            "id": 34,
+                            "id": 4916,
                             "name": "v",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1505,7 +1511,7 @@
                             }
                           },
                           {
-                            "id": 35,
+                            "id": 4917,
                             "name": "index",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1531,28 +1537,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 36,
+                "id": 4918,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 37,
+                    "id": 4919,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 38,
+                        "id": 4920,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1592,7 +1598,7 @@
         }
       },
       {
-        "id": 40,
+        "id": 4922,
         "name": "asyncReplace",
         "kind": 64,
         "kindString": "Function",
@@ -1615,7 +1621,7 @@
         ],
         "signatures": [
           {
-            "id": 41,
+            "id": 4923,
             "name": "asyncReplace",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1626,7 +1632,7 @@
             },
             "typeParameter": [
               {
-                "id": 42,
+                "id": 4924,
                 "name": "T",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -1635,7 +1641,7 @@
             ],
             "parameters": [
               {
-                "id": 43,
+                "id": 4925,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1655,7 +1661,7 @@
                 }
               },
               {
-                "id": 44,
+                "id": 4926,
                 "name": "mapper",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1668,21 +1674,21 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 45,
+                    "id": 4927,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "signatures": [
                       {
-                        "id": 46,
+                        "id": 4928,
                         "name": "__type",
                         "kind": 4096,
                         "kindString": "Call signature",
                         "flags": {},
                         "parameters": [
                           {
-                            "id": 47,
+                            "id": 4929,
                             "name": "v",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1693,7 +1699,7 @@
                             }
                           },
                           {
-                            "id": 48,
+                            "id": 4930,
                             "name": "index",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1719,28 +1725,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 49,
+                "id": 4931,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 50,
+                    "id": 4932,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 51,
+                        "id": 4933,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1780,7 +1786,7 @@
         }
       },
       {
-        "id": 53,
+        "id": 4935,
         "name": "cache",
         "kind": 64,
         "kindString": "Function",
@@ -1803,7 +1809,7 @@
         ],
         "signatures": [
           {
-            "id": 54,
+            "id": 4936,
             "name": "cache",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1814,7 +1820,7 @@
             },
             "parameters": [
               {
-                "id": 55,
+                "id": 4937,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1828,28 +1834,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 56,
+                "id": 4938,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 57,
+                    "id": 4939,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 58,
+                        "id": 4940,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1883,7 +1889,7 @@
         }
       },
       {
-        "id": 63,
+        "id": 4945,
         "name": "classMap",
         "kind": 64,
         "kindString": "Function",
@@ -1905,7 +1911,7 @@
         ],
         "signatures": [
           {
-            "id": 64,
+            "id": 4946,
             "name": "classMap",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1915,7 +1921,7 @@
             },
             "parameters": [
               {
-                "id": 65,
+                "id": 4947,
                 "name": "classInfo",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1925,7 +1931,7 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 60,
+                  "id": 4942,
                   "name": "ClassInfo",
                   "location": {
                     "page": "directives",
@@ -1937,28 +1943,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 66,
+                "id": 4948,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 67,
+                    "id": 4949,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 68,
+                        "id": 4950,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1992,7 +1998,7 @@
         }
       },
       {
-        "id": 60,
+        "id": 4942,
         "name": "ClassInfo",
         "kind": 256,
         "kindString": "Interface",
@@ -2008,14 +2014,14 @@
           }
         ],
         "indexSignature": {
-          "id": 61,
+          "id": 4943,
           "name": "__index",
           "kind": 8192,
           "kindString": "Index signature",
           "flags": {},
           "parameters": [
             {
-              "id": 62,
+              "id": 4944,
               "name": "name",
               "kind": 32768,
               "flags": {},
@@ -2058,7 +2064,7 @@
         }
       },
       {
-        "id": 70,
+        "id": 4952,
         "name": "guard",
         "kind": 64,
         "kindString": "Function",
@@ -2081,7 +2087,7 @@
         ],
         "signatures": [
           {
-            "id": 71,
+            "id": 4953,
             "name": "guard",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2092,7 +2098,7 @@
             },
             "parameters": [
               {
-                "id": 72,
+                "id": 4954,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2106,7 +2112,7 @@
                 }
               },
               {
-                "id": 73,
+                "id": 4955,
                 "name": "f",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2117,14 +2123,14 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 74,
+                    "id": 4956,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "signatures": [
                       {
-                        "id": 75,
+                        "id": 4957,
                         "name": "__type",
                         "kind": 4096,
                         "kindString": "Call signature",
@@ -2142,28 +2148,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 76,
+                "id": 4958,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 77,
+                    "id": 4959,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 78,
+                        "id": 4960,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -2197,7 +2203,7 @@
         }
       },
       {
-        "id": 80,
+        "id": 4962,
         "name": "ifDefined",
         "kind": 64,
         "kindString": "Function",
@@ -2220,7 +2226,7 @@
         ],
         "signatures": [
           {
-            "id": 81,
+            "id": 4963,
             "name": "ifDefined",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2231,7 +2237,7 @@
             },
             "parameters": [
               {
-                "id": 82,
+                "id": 4964,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2245,28 +2251,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 83,
+                "id": 4965,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 84,
+                    "id": 4966,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 85,
+                        "id": 4967,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -2300,7 +2306,7 @@
         }
       },
       {
-        "id": 87,
+        "id": 4969,
         "name": "live",
         "kind": 64,
         "kindString": "Function",
@@ -2323,7 +2329,7 @@
         ],
         "signatures": [
           {
-            "id": 88,
+            "id": 4970,
             "name": "live",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2334,7 +2340,7 @@
             },
             "parameters": [
               {
-                "id": 89,
+                "id": 4971,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2348,21 +2354,21 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 90,
+                "id": 4972,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 91,
+                    "id": 4973,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 92,
+                        "id": 4974,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -2372,7 +2378,7 @@
                           "types": [
                             {
                               "type": "reference",
-                              "id": 213,
+                              "id": 5095,
                               "name": "AttributePart",
                               "location": {
                                 "page": "custom-directives",
@@ -2381,7 +2387,7 @@
                             },
                             {
                               "type": "reference",
-                              "id": 332,
+                              "id": 5214,
                               "name": "PropertyPart",
                               "location": {
                                 "page": "custom-directives",
@@ -2390,7 +2396,7 @@
                             },
                             {
                               "type": "reference",
-                              "id": 224,
+                              "id": 5106,
                               "name": "BooleanAttributePart",
                               "location": {
                                 "page": "custom-directives",
@@ -2426,7 +2432,7 @@
         }
       },
       {
-        "id": 106,
+        "id": 4988,
         "name": "repeat",
         "kind": 64,
         "kindString": "Function",
@@ -2449,7 +2455,7 @@
         ],
         "signatures": [
           {
-            "id": 107,
+            "id": 4989,
             "name": "repeat",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2460,7 +2466,7 @@
             },
             "typeParameter": [
               {
-                "id": 108,
+                "id": 4990,
                 "name": "T",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -2469,7 +2475,7 @@
             ],
             "parameters": [
               {
-                "id": 109,
+                "id": 4991,
                 "name": "items",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2486,7 +2492,7 @@
                 }
               },
               {
-                "id": 110,
+                "id": 4992,
                 "name": "keyFnOrTemplate",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2496,7 +2502,7 @@
                   "types": [
                     {
                       "type": "reference",
-                      "id": 94,
+                      "id": 4976,
                       "typeArguments": [
                         {
                           "type": "reference",
@@ -2511,7 +2517,7 @@
                     },
                     {
                       "type": "reference",
-                      "id": 100,
+                      "id": 4982,
                       "typeArguments": [
                         {
                           "type": "reference",
@@ -2528,7 +2534,7 @@
                 }
               },
               {
-                "id": 111,
+                "id": 4993,
                 "name": "template",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2537,7 +2543,7 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 100,
+                  "id": 4982,
                   "typeArguments": [
                     {
                       "type": "reference",
@@ -2554,7 +2560,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 167,
+              "id": 5049,
               "name": "DirectiveFn",
               "location": {
                 "page": "custom-directives",
@@ -2578,7 +2584,7 @@
         }
       },
       {
-        "id": 100,
+        "id": 4982,
         "name": "ItemTemplate",
         "kind": 4194304,
         "kindString": "Type alias",
@@ -2595,7 +2601,7 @@
         ],
         "typeParameter": [
           {
-            "id": 105,
+            "id": 4987,
             "name": "T",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -2605,7 +2611,7 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 101,
+            "id": 4983,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -2619,14 +2625,14 @@
             ],
             "signatures": [
               {
-                "id": 102,
+                "id": 4984,
                 "name": "__type",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 103,
+                    "id": 4985,
                     "name": "item",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2637,7 +2643,7 @@
                     }
                   },
                   {
-                    "id": 104,
+                    "id": 4986,
                     "name": "index",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2671,7 +2677,7 @@
         }
       },
       {
-        "id": 94,
+        "id": 4976,
         "name": "KeyFn",
         "kind": 4194304,
         "kindString": "Type alias",
@@ -2688,7 +2694,7 @@
         ],
         "typeParameter": [
           {
-            "id": 99,
+            "id": 4981,
             "name": "T",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -2698,7 +2704,7 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 95,
+            "id": 4977,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -2712,14 +2718,14 @@
             ],
             "signatures": [
               {
-                "id": 96,
+                "id": 4978,
                 "name": "__type",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 97,
+                    "id": 4979,
                     "name": "item",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2730,7 +2736,7 @@
                     }
                   },
                   {
-                    "id": 98,
+                    "id": 4980,
                     "name": "index",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2764,7 +2770,7 @@
         }
       },
       {
-        "id": 116,
+        "id": 4998,
         "name": "styleMap",
         "kind": 64,
         "kindString": "Function",
@@ -2787,7 +2793,7 @@
         ],
         "signatures": [
           {
-            "id": 117,
+            "id": 4999,
             "name": "styleMap",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2798,7 +2804,7 @@
             },
             "parameters": [
               {
-                "id": 118,
+                "id": 5000,
                 "name": "styleInfo",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2808,7 +2814,7 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 113,
+                  "id": 4995,
                   "name": "StyleInfo",
                   "location": {
                     "page": "directives",
@@ -2820,28 +2826,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 119,
+                "id": 5001,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 120,
+                    "id": 5002,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 121,
+                        "id": 5003,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -2875,7 +2881,7 @@
         }
       },
       {
-        "id": 113,
+        "id": 4995,
         "name": "StyleInfo",
         "kind": 256,
         "kindString": "Interface",
@@ -2891,14 +2897,14 @@
           }
         ],
         "indexSignature": {
-          "id": 114,
+          "id": 4996,
           "name": "__index",
           "kind": 8192,
           "kindString": "Index signature",
           "flags": {},
           "parameters": [
             {
-              "id": 115,
+              "id": 4997,
               "name": "name",
               "kind": 32768,
               "flags": {},
@@ -2928,7 +2934,7 @@
         }
       },
       {
-        "id": 123,
+        "id": 5005,
         "name": "templateContent",
         "kind": 64,
         "kindString": "Function",
@@ -2951,7 +2957,7 @@
         ],
         "signatures": [
           {
-            "id": 124,
+            "id": 5006,
             "name": "templateContent",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2962,7 +2968,7 @@
             },
             "parameters": [
               {
-                "id": 125,
+                "id": 5007,
                 "name": "template",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2979,28 +2985,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 126,
+                "id": 5008,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 127,
+                    "id": 5009,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 128,
+                        "id": 5010,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3034,7 +3040,7 @@
         }
       },
       {
-        "id": 130,
+        "id": 5012,
         "name": "unsafeHTML",
         "kind": 64,
         "kindString": "Function",
@@ -3057,7 +3063,7 @@
         ],
         "signatures": [
           {
-            "id": 131,
+            "id": 5013,
             "name": "unsafeHTML",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3068,7 +3074,7 @@
             },
             "parameters": [
               {
-                "id": 132,
+                "id": 5014,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3082,28 +3088,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 133,
+                "id": 5015,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 134,
+                    "id": 5016,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 135,
+                        "id": 5017,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3137,7 +3143,7 @@
         }
       },
       {
-        "id": 137,
+        "id": 5019,
         "name": "unsafeSVG",
         "kind": 64,
         "kindString": "Function",
@@ -3160,7 +3166,7 @@
         ],
         "signatures": [
           {
-            "id": 138,
+            "id": 5020,
             "name": "unsafeSVG",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3171,7 +3177,7 @@
             },
             "parameters": [
               {
-                "id": 139,
+                "id": 5021,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3185,28 +3191,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 140,
+                "id": 5022,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 141,
+                    "id": 5023,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 142,
+                        "id": 5024,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3240,7 +3246,7 @@
         }
       },
       {
-        "id": 144,
+        "id": 5026,
         "name": "until",
         "kind": 64,
         "kindString": "Function",
@@ -3263,7 +3269,7 @@
         ],
         "signatures": [
           {
-            "id": 145,
+            "id": 5027,
             "name": "until",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3274,7 +3280,7 @@
             },
             "parameters": [
               {
-                "id": 146,
+                "id": 5028,
                 "name": "args",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3293,28 +3299,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 147,
+                "id": 5029,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 148,
+                    "id": 5030,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 149,
+                        "id": 5031,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 189,
+                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3352,9 +3358,12 @@
   {
     "slug": "custom-directives",
     "title": "Custom directives",
+    "versionLinks": {
+      "v2": "api/custom-directives/"
+    },
     "items": [
       {
-        "id": 196,
+        "id": 5078,
         "name": "AttributeCommitter",
         "kind": 128,
         "kindString": "Class",
@@ -3364,7 +3373,7 @@
         },
         "children": [
           {
-            "id": 197,
+            "id": 5079,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -3381,14 +3390,14 @@
             ],
             "signatures": [
               {
-                "id": 198,
+                "id": 5080,
                 "name": "new AttributeCommitter",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 199,
+                    "id": 5081,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3402,7 +3411,7 @@
                     }
                   },
                   {
-                    "id": 200,
+                    "id": 5082,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3413,7 +3422,7 @@
                     }
                   },
                   {
-                    "id": 201,
+                    "id": 5083,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3433,7 +3442,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 196,
+                  "id": 5078,
                   "name": "AttributeCommitter",
                   "location": {
                     "page": "custom-directives",
@@ -3457,7 +3466,7 @@
             }
           },
           {
-            "id": 206,
+            "id": 5088,
             "name": "dirty",
             "kind": 1024,
             "kindString": "Property",
@@ -3492,7 +3501,7 @@
             }
           },
           {
-            "id": 202,
+            "id": 5084,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
@@ -3531,7 +3540,7 @@
             }
           },
           {
-            "id": 203,
+            "id": 5085,
             "name": "name",
             "kind": 1024,
             "kindString": "Property",
@@ -3567,7 +3576,7 @@
             }
           },
           {
-            "id": 205,
+            "id": 5087,
             "name": "parts",
             "kind": 1024,
             "kindString": "Property",
@@ -3591,7 +3600,7 @@
                 "type": "array",
                 "elementType": {
                   "type": "reference",
-                  "id": 213,
+                  "id": 5095,
                   "name": "AttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -3615,7 +3624,7 @@
             }
           },
           {
-            "id": 204,
+            "id": 5086,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
@@ -3658,7 +3667,7 @@
             }
           },
           {
-            "id": 211,
+            "id": 5093,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -3675,7 +3684,7 @@
             ],
             "signatures": [
               {
-                "id": 212,
+                "id": 5094,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3706,27 +3715,27 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              197
+              5079
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              206,
-              202,
-              203,
-              205,
-              204
+              5088,
+              5084,
+              5085,
+              5087,
+              5086
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              207,
-              209,
-              211
+              5089,
+              5091,
+              5093
             ]
           }
         ],
@@ -3742,7 +3751,7 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 314,
+            "id": 5196,
             "name": "PropertyCommitter",
             "location": {
               "page": "custom-directives",
@@ -3765,7 +3774,7 @@
         }
       },
       {
-        "id": 213,
+        "id": 5095,
         "name": "AttributePart",
         "kind": 128,
         "kindString": "Class",
@@ -3775,7 +3784,7 @@
         },
         "children": [
           {
-            "id": 214,
+            "id": 5096,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -3792,21 +3801,21 @@
             ],
             "signatures": [
               {
-                "id": 215,
+                "id": 5097,
                 "name": "new AttributePart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 216,
+                    "id": 5098,
                     "name": "committer",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 196,
+                      "id": 5078,
                       "name": "AttributeCommitter",
                       "location": {
                         "page": "custom-directives",
@@ -3817,7 +3826,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 213,
+                  "id": 5095,
                   "name": "AttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -3841,7 +3850,7 @@
             }
           },
           {
-            "id": 217,
+            "id": 5099,
             "name": "committer",
             "kind": 1024,
             "kindString": "Property",
@@ -3860,7 +3869,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 196,
+              "id": 5078,
               "name": "AttributeCommitter",
               "location": {
                 "page": "custom-directives",
@@ -3882,7 +3891,7 @@
             }
           },
           {
-            "id": 218,
+            "id": 5100,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
@@ -3904,7 +3913,7 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 190,
+              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -3926,7 +3935,7 @@
             }
           },
           {
-            "id": 222,
+            "id": 5104,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -3947,7 +3956,7 @@
             ],
             "signatures": [
               {
-                "id": 223,
+                "id": 5105,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3962,14 +3971,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 195,
+                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 194,
+              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -3991,7 +4000,7 @@
             }
           },
           {
-            "id": 219,
+            "id": 5101,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -4011,7 +4020,7 @@
             ],
             "signatures": [
               {
-                "id": 220,
+                "id": 5102,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4021,7 +4030,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 221,
+                    "id": 5103,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4038,14 +4047,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 192,
+                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 191,
+              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -4072,23 +4081,23 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              214
+              5096
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              217,
-              218
+              5099,
+              5100
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              222,
-              219
+              5104,
+              5101
             ]
           }
         ],
@@ -4104,7 +4113,7 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 332,
+            "id": 5214,
             "name": "PropertyPart",
             "location": {
               "page": "custom-directives",
@@ -4115,7 +4124,7 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 189,
+            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -4138,7 +4147,7 @@
         }
       },
       {
-        "id": 224,
+        "id": 5106,
         "name": "BooleanAttributePart",
         "kind": 128,
         "kindString": "Class",
@@ -4149,7 +4158,7 @@
         },
         "children": [
           {
-            "id": 225,
+            "id": 5107,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -4166,14 +4175,14 @@
             ],
             "signatures": [
               {
-                "id": 226,
+                "id": 5108,
                 "name": "new BooleanAttributePart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 227,
+                    "id": 5109,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4187,7 +4196,7 @@
                     }
                   },
                   {
-                    "id": 228,
+                    "id": 5110,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4198,7 +4207,7 @@
                     }
                   },
                   {
-                    "id": 229,
+                    "id": 5111,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4218,7 +4227,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 224,
+                  "id": 5106,
                   "name": "BooleanAttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -4242,7 +4251,7 @@
             }
           },
           {
-            "id": 230,
+            "id": 5112,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
@@ -4281,7 +4290,7 @@
             }
           },
           {
-            "id": 231,
+            "id": 5113,
             "name": "name",
             "kind": 1024,
             "kindString": "Property",
@@ -4317,7 +4326,7 @@
             }
           },
           {
-            "id": 232,
+            "id": 5114,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
@@ -4360,7 +4369,7 @@
             }
           },
           {
-            "id": 233,
+            "id": 5115,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
@@ -4382,7 +4391,7 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 190,
+              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -4404,7 +4413,7 @@
             }
           },
           {
-            "id": 238,
+            "id": 5120,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -4425,7 +4434,7 @@
             ],
             "signatures": [
               {
-                "id": 239,
+                "id": 5121,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4440,14 +4449,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 195,
+                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 194,
+              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -4469,7 +4478,7 @@
             }
           },
           {
-            "id": 235,
+            "id": 5117,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -4489,7 +4498,7 @@
             ],
             "signatures": [
               {
-                "id": 236,
+                "id": 5118,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4499,7 +4508,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 237,
+                    "id": 5119,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4516,14 +4525,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 192,
+                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 191,
+              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -4550,26 +4559,26 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              225
+              5107
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              234,
-              230,
-              231,
-              232,
-              233
+              5116,
+              5112,
+              5113,
+              5114,
+              5115
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              238,
-              235
+              5120,
+              5117
             ]
           }
         ],
@@ -4585,7 +4594,7 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 189,
+            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -4608,7 +4617,7 @@
         }
       },
       {
-        "id": 411,
+        "id": 5293,
         "name": "createMarker",
         "kind": 64,
         "kindString": "Function",
@@ -4627,7 +4636,7 @@
         ],
         "signatures": [
           {
-            "id": 412,
+            "id": 5294,
             "name": "createMarker",
             "kind": 4096,
             "kindString": "Call signature",
@@ -4653,7 +4662,7 @@
         }
       },
       {
-        "id": 162,
+        "id": 5044,
         "name": "defaultTemplateProcessor",
         "kind": 32,
         "kindString": "Variable",
@@ -4672,7 +4681,7 @@
         ],
         "type": {
           "type": "reference",
-          "id": 150,
+          "id": 5032,
           "name": "DefaultTemplateProcessor",
           "location": {
             "page": "custom-directives",
@@ -4695,7 +4704,7 @@
         }
       },
       {
-        "id": 150,
+        "id": 5032,
         "name": "DefaultTemplateProcessor",
         "kind": 128,
         "kindString": "Class",
@@ -4705,7 +4714,7 @@
         },
         "children": [
           {
-            "id": 151,
+            "id": 5033,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -4713,14 +4722,14 @@
             "children": [],
             "signatures": [
               {
-                "id": 152,
+                "id": 5034,
                 "name": "new DefaultTemplateProcessor",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 150,
+                  "id": 5032,
                   "name": "DefaultTemplateProcessor",
                   "location": {
                     "page": "custom-directives",
@@ -4744,7 +4753,7 @@
             }
           },
           {
-            "id": 153,
+            "id": 5035,
             "name": "handleAttributeExpressions",
             "kind": 2048,
             "kindString": "Method",
@@ -4764,7 +4773,7 @@
             ],
             "signatures": [
               {
-                "id": 154,
+                "id": 5036,
                 "name": "handleAttributeExpressions",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4774,7 +4783,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 155,
+                    "id": 5037,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4791,7 +4800,7 @@
                     }
                   },
                   {
-                    "id": 156,
+                    "id": 5038,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4805,7 +4814,7 @@
                     }
                   },
                   {
-                    "id": 157,
+                    "id": 5039,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4822,14 +4831,14 @@
                     }
                   },
                   {
-                    "id": 158,
+                    "id": 5040,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -4845,7 +4854,7 @@
                     "type": "array",
                     "elementType": {
                       "type": "reference",
-                      "id": 189,
+                      "id": 5071,
                       "name": "Part",
                       "location": {
                         "page": "custom-directives",
@@ -4856,14 +4865,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 373,
+                  "id": 5255,
                   "name": "TemplateProcessor.handleAttributeExpressions"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 372,
+              "id": 5254,
               "name": "TemplateProcessor.handleAttributeExpressions",
               "location": {
                 "page": "custom-directives",
@@ -4885,7 +4894,7 @@
             }
           },
           {
-            "id": 159,
+            "id": 5041,
             "name": "handleTextExpression",
             "kind": 2048,
             "kindString": "Method",
@@ -4905,7 +4914,7 @@
             ],
             "signatures": [
               {
-                "id": 160,
+                "id": 5042,
                 "name": "handleTextExpression",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4915,14 +4924,14 @@
                 },
                 "parameters": [
                   {
-                    "id": 161,
+                    "id": 5043,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -4933,7 +4942,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 270,
+                  "id": 5152,
                   "name": "NodePart",
                   "location": {
                     "page": "custom-directives",
@@ -4942,14 +4951,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 379,
+                  "id": 5261,
                   "name": "TemplateProcessor.handleTextExpression"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 378,
+              "id": 5260,
               "name": "TemplateProcessor.handleTextExpression",
               "location": {
                 "page": "custom-directives",
@@ -4976,15 +4985,15 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              151
+              5033
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              153,
-              159
+              5035,
+              5041
             ]
           }
         ],
@@ -5000,7 +5009,7 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 371,
+            "id": 5253,
             "name": "TemplateProcessor",
             "location": {
               "page": "custom-directives",
@@ -5023,7 +5032,7 @@
         }
       },
       {
-        "id": 163,
+        "id": 5045,
         "name": "directive",
         "kind": 64,
         "kindString": "Function",
@@ -5052,7 +5061,7 @@
         ],
         "signatures": [
           {
-            "id": 164,
+            "id": 5046,
             "name": "directive",
             "kind": 4096,
             "kindString": "Call signature",
@@ -5069,7 +5078,7 @@
             },
             "typeParameter": [
               {
-                "id": 165,
+                "id": 5047,
                 "name": "F",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -5082,7 +5091,7 @@
             ],
             "parameters": [
               {
-                "id": 166,
+                "id": 5048,
                 "name": "f",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5117,14 +5126,14 @@
         }
       },
       {
-        "id": 240,
+        "id": 5122,
         "name": "EventPart",
         "kind": 128,
         "kindString": "Class",
         "flags": {},
         "children": [
           {
-            "id": 241,
+            "id": 5123,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -5141,14 +5150,14 @@
             ],
             "signatures": [
               {
-                "id": 242,
+                "id": 5124,
                 "name": "new EventPart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 243,
+                    "id": 5125,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5162,7 +5171,7 @@
                     }
                   },
                   {
-                    "id": 244,
+                    "id": 5126,
                     "name": "eventName",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5173,7 +5182,7 @@
                     }
                   },
                   {
-                    "id": 245,
+                    "id": 5127,
                     "name": "eventContext",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5188,7 +5197,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 240,
+                  "id": 5122,
                   "name": "EventPart",
                   "location": {
                     "page": "custom-directives",
@@ -5212,7 +5221,7 @@
             }
           },
           {
-            "id": 246,
+            "id": 5128,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
@@ -5251,7 +5260,7 @@
             }
           },
           {
-            "id": 248,
+            "id": 5130,
             "name": "eventContext",
             "kind": 1024,
             "kindString": "Property",
@@ -5288,7 +5297,7 @@
             }
           },
           {
-            "id": 247,
+            "id": 5129,
             "name": "eventName",
             "kind": 1024,
             "kindString": "Property",
@@ -5324,7 +5333,7 @@
             }
           },
           {
-            "id": 249,
+            "id": 5131,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
@@ -5355,7 +5364,7 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 190,
+              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -5377,7 +5386,7 @@
             }
           },
           {
-            "id": 259,
+            "id": 5141,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -5398,7 +5407,7 @@
             ],
             "signatures": [
               {
-                "id": 260,
+                "id": 5142,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5413,14 +5422,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 195,
+                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 194,
+              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -5442,7 +5451,7 @@
             }
           },
           {
-            "id": 261,
+            "id": 5143,
             "name": "handleEvent",
             "kind": 2048,
             "kindString": "Method",
@@ -5459,14 +5468,14 @@
             ],
             "signatures": [
               {
-                "id": 262,
+                "id": 5144,
                 "name": "handleEvent",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 263,
+                    "id": 5145,
                     "name": "event",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5498,7 +5507,7 @@
             }
           },
           {
-            "id": 256,
+            "id": 5138,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -5518,7 +5527,7 @@
             ],
             "signatures": [
               {
-                "id": 257,
+                "id": 5139,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5528,7 +5537,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 258,
+                    "id": 5140,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5554,14 +5563,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 192,
+                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 191,
+              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -5588,29 +5597,29 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              241
+              5123
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              252,
-              250,
-              251,
-              246,
-              248,
-              247,
-              249
+              5134,
+              5132,
+              5133,
+              5128,
+              5130,
+              5129,
+              5131
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              259,
-              261,
-              256
+              5141,
+              5143,
+              5138
             ]
           }
         ],
@@ -5626,7 +5635,7 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 189,
+            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -5649,7 +5658,7 @@
         }
       },
       {
-        "id": 171,
+        "id": 5053,
         "name": "isDirective",
         "kind": 64,
         "kindString": "Function",
@@ -5668,14 +5677,14 @@
         ],
         "signatures": [
           {
-            "id": 172,
+            "id": 5054,
             "name": "isDirective",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 173,
+                "id": 5055,
                 "name": "o",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5692,7 +5701,7 @@
               "asserts": false,
               "targetType": {
                 "type": "reference",
-                "id": 167,
+                "id": 5049,
                 "name": "DirectiveFn",
                 "location": {
                   "page": "custom-directives",
@@ -5717,7 +5726,7 @@
         }
       },
       {
-        "id": 264,
+        "id": 5146,
         "name": "isIterable",
         "kind": 64,
         "kindString": "Function",
@@ -5736,14 +5745,14 @@
         ],
         "signatures": [
           {
-            "id": 265,
+            "id": 5147,
             "name": "isIterable",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 266,
+                "id": 5148,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5786,7 +5795,7 @@
         }
       },
       {
-        "id": 267,
+        "id": 5149,
         "name": "isPrimitive",
         "kind": 64,
         "kindString": "Function",
@@ -5805,14 +5814,14 @@
         ],
         "signatures": [
           {
-            "id": 268,
+            "id": 5150,
             "name": "isPrimitive",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 269,
+                "id": 5151,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5849,7 +5858,7 @@
         }
       },
       {
-        "id": 413,
+        "id": 5295,
         "name": "isTemplatePartActive",
         "kind": 64,
         "kindString": "Function",
@@ -5868,14 +5877,14 @@
         ],
         "signatures": [
           {
-            "id": 414,
+            "id": 5296,
             "name": "isTemplatePartActive",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 415,
+                "id": 5297,
                 "name": "part",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5907,7 +5916,7 @@
         }
       },
       {
-        "id": 185,
+        "id": 5067,
         "name": "noChange",
         "kind": 32,
         "kindString": "Variable",
@@ -5930,7 +5939,7 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 186,
+            "id": 5068,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -5953,7 +5962,7 @@
         }
       },
       {
-        "id": 270,
+        "id": 5152,
         "name": "NodePart",
         "kind": 128,
         "kindString": "Class",
@@ -5964,7 +5973,7 @@
         },
         "children": [
           {
-            "id": 271,
+            "id": 5153,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -5981,21 +5990,21 @@
             ],
             "signatures": [
               {
-                "id": 272,
+                "id": 5154,
                 "name": "new NodePart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 273,
+                    "id": 5155,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -6006,7 +6015,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 270,
+                  "id": 5152,
                   "name": "NodePart",
                   "location": {
                     "page": "custom-directives",
@@ -6030,7 +6039,7 @@
             }
           },
           {
-            "id": 276,
+            "id": 5158,
             "name": "endNode",
             "kind": 1024,
             "kindString": "Property",
@@ -6064,7 +6073,7 @@
             }
           },
           {
-            "id": 274,
+            "id": 5156,
             "name": "options",
             "kind": 1024,
             "kindString": "Property",
@@ -6083,7 +6092,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 343,
+              "id": 5225,
               "name": "RenderOptions",
               "location": {
                 "page": "templates",
@@ -6105,7 +6114,7 @@
             }
           },
           {
-            "id": 275,
+            "id": 5157,
             "name": "startNode",
             "kind": 1024,
             "kindString": "Property",
@@ -6139,7 +6148,7 @@
             }
           },
           {
-            "id": 277,
+            "id": 5159,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
@@ -6161,7 +6170,7 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 190,
+              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -6183,7 +6192,7 @@
             }
           },
           {
-            "id": 279,
+            "id": 5161,
             "name": "appendInto",
             "kind": 2048,
             "kindString": "Method",
@@ -6204,7 +6213,7 @@
             ],
             "signatures": [
               {
-                "id": 280,
+                "id": 5162,
                 "name": "appendInto",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6215,7 +6224,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 281,
+                    "id": 5163,
                     "name": "container",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6247,7 +6256,7 @@
             }
           },
           {
-            "id": 285,
+            "id": 5167,
             "name": "appendIntoPart",
             "kind": 2048,
             "kindString": "Method",
@@ -6268,7 +6277,7 @@
             ],
             "signatures": [
               {
-                "id": 286,
+                "id": 5168,
                 "name": "appendIntoPart",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6279,14 +6288,14 @@
                 },
                 "parameters": [
                   {
-                    "id": 287,
+                    "id": 5169,
                     "name": "part",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 270,
+                      "id": 5152,
                       "name": "NodePart",
                       "location": {
                         "page": "custom-directives",
@@ -6316,7 +6325,7 @@
             }
           },
           {
-            "id": 311,
+            "id": 5193,
             "name": "clear",
             "kind": 2048,
             "kindString": "Method",
@@ -6333,14 +6342,14 @@
             ],
             "signatures": [
               {
-                "id": 312,
+                "id": 5194,
                 "name": "clear",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 313,
+                    "id": 5195,
                     "name": "startNode",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6373,7 +6382,7 @@
             }
           },
           {
-            "id": 294,
+            "id": 5176,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -6394,7 +6403,7 @@
             ],
             "signatures": [
               {
-                "id": 295,
+                "id": 5177,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6409,14 +6418,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 195,
+                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 194,
+              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -6438,7 +6447,7 @@
             }
           },
           {
-            "id": 282,
+            "id": 5164,
             "name": "insertAfterNode",
             "kind": 2048,
             "kindString": "Method",
@@ -6459,7 +6468,7 @@
             ],
             "signatures": [
               {
-                "id": 283,
+                "id": 5165,
                 "name": "insertAfterNode",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6470,7 +6479,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 284,
+                    "id": 5166,
                     "name": "ref",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6502,7 +6511,7 @@
             }
           },
           {
-            "id": 288,
+            "id": 5170,
             "name": "insertAfterPart",
             "kind": 2048,
             "kindString": "Method",
@@ -6523,7 +6532,7 @@
             ],
             "signatures": [
               {
-                "id": 289,
+                "id": 5171,
                 "name": "insertAfterPart",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6534,14 +6543,14 @@
                 },
                 "parameters": [
                   {
-                    "id": 290,
+                    "id": 5172,
                     "name": "ref",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 270,
+                      "id": 5152,
                       "name": "NodePart",
                       "location": {
                         "page": "custom-directives",
@@ -6571,7 +6580,7 @@
             }
           },
           {
-            "id": 291,
+            "id": 5173,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -6591,7 +6600,7 @@
             ],
             "signatures": [
               {
-                "id": 292,
+                "id": 5174,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6601,7 +6610,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 293,
+                    "id": 5175,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6618,14 +6627,14 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 192,
+                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 191,
+              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -6652,36 +6661,36 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              271
+              5153
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              278,
-              276,
-              274,
-              275,
-              277
+              5160,
+              5158,
+              5156,
+              5157,
+              5159
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              308,
-              299,
-              305,
-              302,
-              296,
-              279,
-              285,
-              311,
-              294,
-              282,
-              288,
-              291
+              5190,
+              5181,
+              5187,
+              5184,
+              5178,
+              5161,
+              5167,
+              5193,
+              5176,
+              5164,
+              5170,
+              5173
             ]
           }
         ],
@@ -6697,7 +6706,7 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 189,
+            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -6720,7 +6729,7 @@
         }
       },
       {
-        "id": 346,
+        "id": 5228,
         "name": "parts",
         "kind": 32,
         "kindString": "Variable",
@@ -6746,7 +6755,7 @@
             },
             {
               "type": "reference",
-              "id": 270,
+              "id": 5152,
               "name": "NodePart",
               "location": {
                 "page": "custom-directives",
@@ -6772,7 +6781,7 @@
         }
       },
       {
-        "id": 314,
+        "id": 5196,
         "name": "PropertyCommitter",
         "kind": 128,
         "kindString": "Class",
@@ -6783,7 +6792,7 @@
         },
         "children": [
           {
-            "id": 315,
+            "id": 5197,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -6800,14 +6809,14 @@
             ],
             "signatures": [
               {
-                "id": 316,
+                "id": 5198,
                 "name": "new PropertyCommitter",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 317,
+                    "id": 5199,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6821,7 +6830,7 @@
                     }
                   },
                   {
-                    "id": 318,
+                    "id": 5200,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6832,7 +6841,7 @@
                     }
                   },
                   {
-                    "id": 319,
+                    "id": 5201,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6852,7 +6861,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 314,
+                  "id": 5196,
                   "name": "PropertyCommitter",
                   "location": {
                     "page": "custom-directives",
@@ -6861,14 +6870,14 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 198,
+                  "id": 5080,
                   "name": "AttributeCommitter.constructor"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 197,
+              "id": 5079,
               "name": "AttributeCommitter.constructor",
               "location": {
                 "page": "custom-directives",
@@ -6890,7 +6899,7 @@
             }
           },
           {
-            "id": 331,
+            "id": 5213,
             "name": "dirty",
             "kind": 1024,
             "kindString": "Property",
@@ -6912,7 +6921,7 @@
             "defaultValue": "true",
             "inheritedFrom": {
               "type": "reference",
-              "id": 206,
+              "id": 5088,
               "name": "AttributeCommitter.dirty",
               "location": {
                 "page": "custom-directives",
@@ -6934,7 +6943,7 @@
             }
           },
           {
-            "id": 327,
+            "id": 5209,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
@@ -6960,7 +6969,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 202,
+              "id": 5084,
               "name": "AttributeCommitter.element",
               "location": {
                 "page": "custom-directives",
@@ -6982,7 +6991,7 @@
             }
           },
           {
-            "id": 328,
+            "id": 5210,
             "name": "name",
             "kind": 1024,
             "kindString": "Property",
@@ -7005,7 +7014,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 203,
+              "id": 5085,
               "name": "AttributeCommitter.name",
               "location": {
                 "page": "custom-directives",
@@ -7027,7 +7036,7 @@
             }
           },
           {
-            "id": 330,
+            "id": 5212,
             "name": "parts",
             "kind": 1024,
             "kindString": "Property",
@@ -7051,7 +7060,7 @@
                 "type": "array",
                 "elementType": {
                   "type": "reference",
-                  "id": 213,
+                  "id": 5095,
                   "name": "AttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -7062,7 +7071,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 205,
+              "id": 5087,
               "name": "AttributeCommitter.parts",
               "location": {
                 "page": "custom-directives",
@@ -7084,7 +7093,7 @@
             }
           },
           {
-            "id": 320,
+            "id": 5202,
             "name": "single",
             "kind": 1024,
             "kindString": "Property",
@@ -7120,7 +7129,7 @@
             }
           },
           {
-            "id": 329,
+            "id": 5211,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
@@ -7150,7 +7159,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 204,
+              "id": 5086,
               "name": "AttributeCommitter.strings",
               "location": {
                 "page": "custom-directives",
@@ -7172,7 +7181,7 @@
             }
           },
           {
-            "id": 325,
+            "id": 5207,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -7189,7 +7198,7 @@
             ],
             "signatures": [
               {
-                "id": 326,
+                "id": 5208,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -7200,14 +7209,14 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 212,
+                  "id": 5094,
                   "name": "AttributeCommitter.commit"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 211,
+              "id": 5093,
               "name": "AttributeCommitter.commit",
               "location": {
                 "page": "custom-directives",
@@ -7234,28 +7243,28 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              315
+              5197
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              331,
-              327,
-              328,
-              330,
-              320,
-              329
+              5213,
+              5209,
+              5210,
+              5212,
+              5202,
+              5211
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              321,
-              323,
-              325
+              5203,
+              5205,
+              5207
             ]
           }
         ],
@@ -7271,7 +7280,7 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 196,
+            "id": 5078,
             "name": "AttributeCommitter",
             "location": {
               "page": "custom-directives",
@@ -7295,7 +7304,7 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 196,
+            "id": 5078,
             "name": "AttributeCommitter",
             "location": {
               "page": "custom-directives",
@@ -7305,14 +7314,14 @@
         ]
       },
       {
-        "id": 332,
+        "id": 5214,
         "name": "PropertyPart",
         "kind": 128,
         "kindString": "Class",
         "flags": {},
         "children": [
           {
-            "id": 333,
+            "id": 5215,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -7320,21 +7329,21 @@
             "children": [],
             "signatures": [
               {
-                "id": 334,
+                "id": 5216,
                 "name": "new PropertyPart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 335,
+                    "id": 5217,
                     "name": "committer",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 196,
+                      "id": 5078,
                       "name": "AttributeCommitter",
                       "location": {
                         "page": "custom-directives",
@@ -7345,7 +7354,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 332,
+                  "id": 5214,
                   "name": "PropertyPart",
                   "location": {
                     "page": "custom-directives",
@@ -7354,14 +7363,14 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 215,
+                  "id": 5097,
                   "name": "AttributePart.constructor"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 214,
+              "id": 5096,
               "name": "AttributePart.constructor",
               "location": {
                 "page": "custom-directives",
@@ -7383,7 +7392,7 @@
             }
           },
           {
-            "id": 336,
+            "id": 5218,
             "name": "committer",
             "kind": 1024,
             "kindString": "Property",
@@ -7402,7 +7411,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 196,
+              "id": 5078,
               "name": "AttributeCommitter",
               "location": {
                 "page": "custom-directives",
@@ -7411,7 +7420,7 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 217,
+              "id": 5099,
               "name": "AttributePart.committer",
               "location": {
                 "page": "custom-directives",
@@ -7433,7 +7442,7 @@
             }
           },
           {
-            "id": 337,
+            "id": 5219,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
@@ -7455,7 +7464,7 @@
             "defaultValue": "...",
             "inheritedFrom": {
               "type": "reference",
-              "id": 218,
+              "id": 5100,
               "name": "AttributePart.value",
               "location": {
                 "page": "custom-directives",
@@ -7477,7 +7486,7 @@
             }
           },
           {
-            "id": 341,
+            "id": 5223,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -7498,7 +7507,7 @@
             ],
             "signatures": [
               {
-                "id": 342,
+                "id": 5224,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -7513,14 +7522,14 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 223,
+                  "id": 5105,
                   "name": "AttributePart.commit"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 222,
+              "id": 5104,
               "name": "AttributePart.commit",
               "location": {
                 "page": "custom-directives",
@@ -7542,7 +7551,7 @@
             }
           },
           {
-            "id": 338,
+            "id": 5220,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -7562,7 +7571,7 @@
             ],
             "signatures": [
               {
-                "id": 339,
+                "id": 5221,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -7572,7 +7581,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 340,
+                    "id": 5222,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7589,14 +7598,14 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 220,
+                  "id": 5102,
                   "name": "AttributePart.setValue"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 219,
+              "id": 5101,
               "name": "AttributePart.setValue",
               "location": {
                 "page": "custom-directives",
@@ -7623,23 +7632,23 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              333
+              5215
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              336,
-              337
+              5218,
+              5219
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              341,
-              338
+              5223,
+              5220
             ]
           }
         ],
@@ -7655,7 +7664,7 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 213,
+            "id": 5095,
             "name": "AttributePart",
             "location": {
               "page": "custom-directives",
@@ -7679,7 +7688,7 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 213,
+            "id": 5095,
             "name": "AttributePart",
             "location": {
               "page": "custom-directives",
@@ -7689,7 +7698,7 @@
         ]
       },
       {
-        "id": 174,
+        "id": 5056,
         "name": "removeNodes",
         "kind": 64,
         "kindString": "Function",
@@ -7711,7 +7720,7 @@
         ],
         "signatures": [
           {
-            "id": 175,
+            "id": 5057,
             "name": "removeNodes",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7721,7 +7730,7 @@
             },
             "parameters": [
               {
-                "id": 176,
+                "id": 5058,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7732,7 +7741,7 @@
                 }
               },
               {
-                "id": 177,
+                "id": 5059,
                 "name": "start",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7752,7 +7761,7 @@
                 }
               },
               {
-                "id": 178,
+                "id": 5060,
                 "name": "end",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7794,7 +7803,7 @@
         }
       },
       {
-        "id": 179,
+        "id": 5061,
         "name": "reparentNodes",
         "kind": 64,
         "kindString": "Function",
@@ -7816,7 +7825,7 @@
         ],
         "signatures": [
           {
-            "id": 180,
+            "id": 5062,
             "name": "reparentNodes",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7826,7 +7835,7 @@
             },
             "parameters": [
               {
-                "id": 181,
+                "id": 5063,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7837,7 +7846,7 @@
                 }
               },
               {
-                "id": 182,
+                "id": 5064,
                 "name": "start",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7857,7 +7866,7 @@
                 }
               },
               {
-                "id": 183,
+                "id": 5065,
                 "name": "end",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7878,7 +7887,7 @@
                 "defaultValue": "null"
               },
               {
-                "id": 184,
+                "id": 5066,
                 "name": "before",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7920,7 +7929,7 @@
         }
       },
       {
-        "id": 416,
+        "id": 5298,
         "name": "Template",
         "kind": 128,
         "kindString": "Class",
@@ -7930,7 +7939,7 @@
         },
         "children": [
           {
-            "id": 417,
+            "id": 5299,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -7947,21 +7956,21 @@
             ],
             "signatures": [
               {
-                "id": 418,
+                "id": 5300,
                 "name": "new Template",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 419,
+                    "id": 5301,
                     "name": "result",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 396,
+                      "id": 5278,
                       "name": "TemplateResult",
                       "location": {
                         "page": "templates",
@@ -7970,7 +7979,7 @@
                     }
                   },
                   {
-                    "id": 420,
+                    "id": 5302,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7986,7 +7995,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 416,
+                  "id": 5298,
                   "name": "Template",
                   "location": {
                     "page": "custom-directives",
@@ -8010,7 +8019,7 @@
             }
           },
           {
-            "id": 422,
+            "id": 5304,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
@@ -8049,7 +8058,7 @@
             }
           },
           {
-            "id": 421,
+            "id": 5303,
             "name": "parts",
             "kind": 1024,
             "kindString": "Property",
@@ -8094,15 +8103,15 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              417
+              5299
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              422,
-              421
+              5304,
+              5303
             ]
           }
         ],
@@ -8130,7 +8139,7 @@
         }
       },
       {
-        "id": 352,
+        "id": 5234,
         "name": "templateCaches",
         "kind": 32,
         "kindString": "Variable",
@@ -8177,7 +8186,7 @@
         }
       },
       {
-        "id": 353,
+        "id": 5235,
         "name": "templateFactory",
         "kind": 64,
         "kindString": "Function",
@@ -8197,7 +8206,7 @@
         ],
         "signatures": [
           {
-            "id": 354,
+            "id": 5236,
             "name": "templateFactory",
             "kind": 4096,
             "kindString": "Call signature",
@@ -8207,14 +8216,14 @@
             },
             "parameters": [
               {
-                "id": 355,
+                "id": 5237,
                 "name": "result",
                 "kind": 32768,
                 "kindString": "Parameter",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 396,
+                  "id": 5278,
                   "name": "TemplateResult",
                   "location": {
                     "page": "templates",
@@ -8225,7 +8234,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 416,
+              "id": 5298,
               "name": "Template",
               "location": {
                 "page": "custom-directives",
@@ -8249,7 +8258,7 @@
         }
       },
       {
-        "id": 356,
+        "id": 5238,
         "name": "TemplateInstance",
         "kind": 128,
         "kindString": "Class",
@@ -8259,7 +8268,7 @@
         },
         "children": [
           {
-            "id": 357,
+            "id": 5239,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
@@ -8276,21 +8285,21 @@
             ],
             "signatures": [
               {
-                "id": 358,
+                "id": 5240,
                 "name": "new TemplateInstance",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 359,
+                    "id": 5241,
                     "name": "template",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 416,
+                      "id": 5298,
                       "name": "Template",
                       "location": {
                         "page": "custom-directives",
@@ -8299,14 +8308,14 @@
                     }
                   },
                   {
-                    "id": 360,
+                    "id": 5242,
                     "name": "processor",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 371,
+                      "id": 5253,
                       "name": "TemplateProcessor",
                       "location": {
                         "page": "custom-directives",
@@ -8315,14 +8324,14 @@
                     }
                   },
                   {
-                    "id": 361,
+                    "id": 5243,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -8333,7 +8342,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 356,
+                  "id": 5238,
                   "name": "TemplateInstance",
                   "location": {
                     "page": "custom-directives",
@@ -8357,7 +8366,7 @@
             }
           },
           {
-            "id": 364,
+            "id": 5246,
             "name": "options",
             "kind": 1024,
             "kindString": "Property",
@@ -8376,7 +8385,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 343,
+              "id": 5225,
               "name": "RenderOptions",
               "location": {
                 "page": "templates",
@@ -8398,7 +8407,7 @@
             }
           },
           {
-            "id": 363,
+            "id": 5245,
             "name": "processor",
             "kind": 1024,
             "kindString": "Property",
@@ -8417,7 +8426,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 371,
+              "id": 5253,
               "name": "TemplateProcessor",
               "location": {
                 "page": "custom-directives",
@@ -8439,7 +8448,7 @@
             }
           },
           {
-            "id": 365,
+            "id": 5247,
             "name": "template",
             "kind": 1024,
             "kindString": "Property",
@@ -8458,7 +8467,7 @@
             ],
             "type": {
               "type": "reference",
-              "id": 416,
+              "id": 5298,
               "name": "Template",
               "location": {
                 "page": "custom-directives",
@@ -8480,7 +8489,7 @@
             }
           },
           {
-            "id": 366,
+            "id": 5248,
             "name": "update",
             "kind": 2048,
             "kindString": "Method",
@@ -8497,14 +8506,14 @@
             ],
             "signatures": [
               {
-                "id": 367,
+                "id": 5249,
                 "name": "update",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 368,
+                    "id": 5250,
                     "name": "values",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8548,25 +8557,25 @@
             "title": "Constructors",
             "kind": 512,
             "children": [
-              357
+              5239
             ]
           },
           {
             "title": "Properties",
             "kind": 1024,
             "children": [
-              362,
-              364,
-              363,
-              365
+              5244,
+              5246,
+              5245,
+              5247
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              369,
-              366
+              5251,
+              5248
             ]
           }
         ],
@@ -8594,7 +8603,7 @@
         }
       },
       {
-        "id": 167,
+        "id": 5049,
         "name": "DirectiveFn",
         "kind": 4194304,
         "kindString": "Type alias",
@@ -8612,7 +8621,7 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 168,
+            "id": 5050,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -8626,21 +8635,21 @@
             ],
             "signatures": [
               {
-                "id": 169,
+                "id": 5051,
                 "name": "__type",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 170,
+                    "id": 5052,
                     "name": "part",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 189,
+                      "id": 5071,
                       "name": "Part",
                       "location": {
                         "page": "custom-directives",
@@ -8672,7 +8681,7 @@
         }
       },
       {
-        "id": 189,
+        "id": 5071,
         "name": "Part",
         "kind": 256,
         "kindString": "Interface",
@@ -8682,7 +8691,7 @@
         },
         "children": [
           {
-            "id": 190,
+            "id": 5072,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
@@ -8718,7 +8727,7 @@
             }
           },
           {
-            "id": 194,
+            "id": 5076,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -8730,7 +8739,7 @@
             "children": [],
             "signatures": [
               {
-                "id": 195,
+                "id": 5077,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8760,7 +8769,7 @@
             }
           },
           {
-            "id": 191,
+            "id": 5073,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -8771,7 +8780,7 @@
             "children": [],
             "signatures": [
               {
-                "id": 192,
+                "id": 5074,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8781,7 +8790,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 193,
+                    "id": 5075,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8821,15 +8830,15 @@
             "title": "Properties",
             "kind": 1024,
             "children": [
-              190
+              5072
             ]
           },
           {
             "title": "Methods",
             "kind": 2048,
             "children": [
-              194,
-              191
+              5076,
+              5073
             ]
           }
         ],
@@ -8845,7 +8854,7 @@
         "implementedBy": [
           {
             "type": "reference",
-            "id": 213,
+            "id": 5095,
             "name": "AttributePart",
             "location": {
               "page": "custom-directives",
@@ -8854,7 +8863,7 @@
           },
           {
             "type": "reference",
-            "id": 224,
+            "id": 5106,
             "name": "BooleanAttributePart",
             "location": {
               "page": "custom-directives",
@@ -8863,7 +8872,7 @@
           },
           {
             "type": "reference",
-            "id": 240,
+            "id": 5122,
             "name": "EventPart",
             "location": {
               "page": "custom-directives",
@@ -8872,7 +8881,7 @@
           },
           {
             "type": "reference",
-            "id": 270,
+            "id": 5152,
             "name": "NodePart",
             "location": {
               "page": "custom-directives",
@@ -8895,14 +8904,14 @@
         }
       },
       {
-        "id": 371,
+        "id": 5253,
         "name": "TemplateProcessor",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 372,
+            "id": 5254,
             "name": "handleAttributeExpressions",
             "kind": 2048,
             "kindString": "Method",
@@ -8913,7 +8922,7 @@
             "children": [],
             "signatures": [
               {
-                "id": 373,
+                "id": 5255,
                 "name": "handleAttributeExpressions",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8923,7 +8932,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 374,
+                    "id": 5256,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8940,7 +8949,7 @@
                     }
                   },
                   {
-                    "id": 375,
+                    "id": 5257,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8954,7 +8963,7 @@
                     }
                   },
                   {
-                    "id": 376,
+                    "id": 5258,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8975,14 +8984,14 @@
                     }
                   },
                   {
-                    "id": 377,
+                    "id": 5259,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -8998,7 +9007,7 @@
                     "type": "array",
                     "elementType": {
                       "type": "reference",
-                      "id": 189,
+                      "id": 5071,
                       "name": "Part",
                       "location": {
                         "page": "custom-directives",
@@ -9024,7 +9033,7 @@
             }
           },
           {
-            "id": 378,
+            "id": 5260,
             "name": "handleTextExpression",
             "kind": 2048,
             "kindString": "Method",
@@ -9035,7 +9044,7 @@
             "children": [],
             "signatures": [
               {
-                "id": 379,
+                "id": 5261,
                 "name": "handleTextExpression",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -9045,14 +9054,14 @@
                 },
                 "parameters": [
                   {
-                    "id": 380,
+                    "id": 5262,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 343,
+                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -9063,7 +9072,7 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 270,
+                  "id": 5152,
                   "name": "NodePart",
                   "location": {
                     "page": "custom-directives",
@@ -9092,8 +9101,8 @@
             "title": "Methods",
             "kind": 2048,
             "children": [
-              372,
-              378
+              5254,
+              5260
             ]
           }
         ],
@@ -9109,7 +9118,7 @@
         "implementedBy": [
           {
             "type": "reference",
-            "id": 150,
+            "id": 5032,
             "name": "DefaultTemplateProcessor",
             "location": {
               "page": "custom-directives",
@@ -9136,9 +9145,12 @@
   {
     "slug": "shady",
     "title": "ShadyCSS/DOM",
+    "versionLinks": {
+      "v2": "api/templates/"
+    },
     "items": [
       {
-        "id": 21,
+        "id": 4903,
         "name": "render",
         "kind": 64,
         "kindString": "Function",
@@ -9161,7 +9173,7 @@
         ],
         "signatures": [
           {
-            "id": 22,
+            "id": 4904,
             "name": "render",
             "kind": 4096,
             "kindString": "Call signature",
@@ -9172,7 +9184,7 @@
             },
             "parameters": [
               {
-                "id": 23,
+                "id": 4905,
                 "name": "result",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -9183,7 +9195,7 @@
                 }
               },
               {
-                "id": 24,
+                "id": 4906,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -9216,14 +9228,14 @@
                 }
               },
               {
-                "id": 25,
+                "id": 4907,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 17,
+                  "id": 4899,
                   "name": "ShadyRenderOptions",
                   "location": {
                     "page": "shady",
@@ -9253,7 +9265,7 @@
         }
       },
       {
-        "id": 11,
+        "id": 4893,
         "name": "shadyTemplateFactory",
         "kind": 64,
         "kindString": "Function",
@@ -9275,7 +9287,7 @@
         ],
         "signatures": [
           {
-            "id": 12,
+            "id": 4894,
             "name": "shadyTemplateFactory",
             "kind": 4096,
             "kindString": "Call signature",
@@ -9285,7 +9297,7 @@
             },
             "parameters": [
               {
-                "id": 13,
+                "id": 4895,
                 "name": "scopeName",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -9302,28 +9314,28 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 14,
+                "id": 4896,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 15,
+                    "id": 4897,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 16,
+                        "id": 4898,
                         "name": "result",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 396,
+                          "id": 5278,
                           "name": "TemplateResult",
                           "location": {
                             "page": "templates",
@@ -9334,7 +9346,7 @@
                     ],
                     "type": {
                       "type": "reference",
-                      "id": 416,
+                      "id": 5298,
                       "name": "Template",
                       "location": {
                         "page": "custom-directives",
@@ -9362,14 +9374,14 @@
         }
       },
       {
-        "id": 17,
+        "id": 4899,
         "name": "ShadyRenderOptions",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 20,
+            "id": 4902,
             "name": "eventContext",
             "kind": 1024,
             "kindString": "Property",
@@ -9410,7 +9422,7 @@
             }
           },
           {
-            "id": 18,
+            "id": 4900,
             "name": "scopeName",
             "kind": 1024,
             "kindString": "Property",
@@ -9444,7 +9456,7 @@
             }
           },
           {
-            "id": 19,
+            "id": 4901,
             "name": "templateFactory",
             "kind": 1024,
             "kindString": "Property",
@@ -9490,9 +9502,9 @@
             "title": "Properties",
             "kind": 1024,
             "children": [
-              20,
-              18,
-              19
+              4902,
+              4900,
+              4901
             ]
           }
         ],
@@ -9511,7 +9523,7 @@
             "typeArguments": [
               {
                 "type": "reference",
-                "id": 343,
+                "id": 5225,
                 "name": "RenderOptions",
                 "location": {
                   "page": "templates",
@@ -9541,7 +9553,7 @@
             "typeArguments": [
               {
                 "type": "reference",
-                "id": 343,
+                "id": 5225,
                 "name": "RenderOptions",
                 "location": {
                   "page": "templates",
