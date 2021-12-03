@@ -10,7 +10,14 @@
 
 html {
   font-size: 18px;
-  --header-height: 60px;
+  --header-nav-height: 60px;
+  /* The litdev-banner component will automatically update this variable if
+     there is a banner present. */
+  --banner-height: 0px;
+  /* It's helpful to consider the banner part of the header, because the
+     --header-height variable is used in many places to determine where the main
+     content begins (e.g. other sticky elements, scroll-margin-top). */
+  --header-height: calc(var(--header-nav-height) + var(--banner-height));
   --footer-top-height: 12rem;
   --footer-bottom-height: 6rem;
   --content-max-width: 76rem;

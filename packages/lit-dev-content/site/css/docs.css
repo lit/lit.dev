@@ -627,6 +627,28 @@ td {
 }
 
 /* ------------------------------------
+ * Old version of docs banner
+ * ------------------------------------ */
+
+litdev-banner {
+  display: block;
+  background: #ffe133;
+  padding: 8px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  top: var(--header-nav-height);
+  z-index: 4;
+  box-sizing: border-box;
+}
+
+litdev-banner > a {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* ------------------------------------
  * Narrow layouts
  * ------------------------------------ */
 

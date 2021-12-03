@@ -16,6 +16,10 @@
     {% inlinejs "global/initialize-typescript-attribute.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
 
+    {% if showOldDocsBanner %}
+      {% inlinejs "components/litdev-banner.js" %}
+    {% endif %}
+
     <!-- We need to load litdev-search first because @lion/core loads the
          scoped-custom-element-registry polyfill. If MWC components are loaded
          first the polyfill currently throws errors. -->
@@ -56,6 +60,13 @@
     </mwc-drawer>
 
     {% include 'header.html' %}
+
+    {% if showOldDocsBanner %}
+      <litdev-banner>
+        You're viewing docs for an older version of Lit. Click
+        <a href="/docs/">here</a> for the latest version.
+      </litdev-banner>
+    {% endif %}
 
     <main {% if not page.url.includes('/docs/')
             and not page.url.includes('/playground/') %}

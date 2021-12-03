@@ -31,6 +31,7 @@ export default [
   {
     input: [
       'lib/components/copy-button.js',
+      'lib/components/litdev-banner.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
       'lib/components/litdev-switchable-sample.js',
