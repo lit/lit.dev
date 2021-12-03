@@ -65,43 +65,73 @@ export const lit2Config: ApiDocsConfig = {
     {
       slug: 'LitElement',
       title: 'LitElement',
+      versionLinks: {
+        v1: 'api/lit-element/LitElement/',
+      },
     },
     {
       slug: 'ReactiveElement',
       title: 'ReactiveElement',
+      versionLinks: {
+        v1: 'api/lit-element/UpdatingElement/',
+      },
     },
     {
       slug: 'templates',
       title: 'Templates',
+      versionLinks: {
+        v1: 'api/lit-html/templates/',
+      },
     },
     {
       slug: 'styles',
       title: 'Styles',
+      versionLinks: {
+        v1: 'api/lit-element/styles/',
+      },
     },
     {
       slug: 'decorators',
       title: 'Decorators',
+      versionLinks: {
+        v1: 'api/lit-element/decorators/',
+      },
     },
     {
       slug: 'directives',
       title: 'Directives',
       anchorFilter: (node) => node.kindString === 'Function',
+      versionLinks: {
+        v1: 'api/lit-html/directives/',
+      },
     },
     {
       slug: 'custom-directives',
       title: 'Custom directives',
+      versionLinks: {
+        v1: 'api/lit-html/custom-directives/',
+      },
     },
     {
       slug: 'static-html',
       title: 'Static HTML',
+      versionLinks: {
+        v1: 'api/lit-html/templates/',
+      },
     },
     {
       slug: 'controllers',
       title: 'Controllers',
+      versionLinks: {
+        v1: 'api/lit-element/LitElement/',
+      },
     },
     {
       slug: 'misc',
       title: 'Misc',
+      versionLinks: {
+        v1: 'api/lit-element/LitElement/',
+      },
     },
   ],
 
