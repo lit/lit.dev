@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Built-in directives
   parent: Templates
   order: 5
+versionLinks:
+  v1: lit-html/template-reference/#built-in-directives
 ---
 
 Directives are functions that can extend Lit by customizing the way an expression renders.

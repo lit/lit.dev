@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Requirements
   parent: Tools
   order: 2
+versionLinks:
+  v1: tools/build/#build-requirements
 ---
 
 The most important things to know about Lit in order to work with various browsers and tools are that:

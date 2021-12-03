@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Overview
   parent: Templates
   order: 1
+versionLinks:
+  v1: components/templates/
 ---
 
 {% todo %}

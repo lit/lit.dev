@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Events
   parent: Components
   order: 7
+versionLinks:
+  v1: components/events/
 ---
 
 Events are the standard way that elements communicate changes. These changes typically occur due to user interaction. For example, a button dispatches a click event when a user clicks on it; an input dispatches a change event when the user enters a value in it.

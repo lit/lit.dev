@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Conditionals
   parent: Templates
   order: 3
+versionLinks:
+  v1: components/templates/#use-properties-loops-and-conditionals-in-a-template
 ---
 
 Since Lit leverages normal Javascript expressions, you can use standard Javascript control flow constructs like [conditional operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator), function calls, and `if` or `switch` statements to render conditional content.

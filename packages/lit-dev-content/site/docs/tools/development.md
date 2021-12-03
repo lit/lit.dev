@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Development
   parent: Tools
   order: 3
+versionLinks:
+  v1: lit-html/tools/#development
 ---
 
 During the development phase of your projects, when you're writing Lit components, the following tools can help boost your productivity:

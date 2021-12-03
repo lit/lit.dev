@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Shadow DOM
   parent: Components
   order: 6
+versionLinks:
+  v1: components/templates/#accessing-nodes-in-the-shadow-dom
 ---
 
 Lit components use [shadow DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom) to encapsulate their DOM. Shadow DOM provides a way to add a separate isolated and encapsulated DOM tree to an element. DOM encapsulation is the key to unlocking interoperability with any other code—including other web components or Lit components—functioning on the page.

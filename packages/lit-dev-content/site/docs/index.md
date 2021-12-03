@@ -4,6 +4,8 @@ eleventyNavigation:
   key: What is Lit?
   parent: Introduction
   order: 1
+versionLinks:
+  v1:
 ---
 
 ![Lit Logo]({{ site.baseurl }}/images/logo.svg){.logo width="425" height="200"}
