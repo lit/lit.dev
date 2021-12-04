@@ -71,9 +71,9 @@ if (mode === 'playground') {
       clientSecret: ENV.githubClientSecret,
     })
   );
+  app.use(redirectMiddleware());
 }
 
-app.use(redirectMiddleware());
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
 app.use(
