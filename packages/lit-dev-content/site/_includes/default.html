@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>{% if title %}{{ title }} &ndash;{% endif %} Lit</title>
     <meta name="description" content="Simple. Fast. Web Components.">
-    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg"></link>
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
 
     {% inlinecss "global.css" %}
@@ -16,7 +16,8 @@
     {% inlinejs "global/initialize-typescript-attribute.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
 
-    {% if showOldDocsBanner %}
+    {% if selectedVersion !== latestVersion %}
+      <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
       {% inlinejs "components/litdev-banner.js" %}
     {% endif %}
 
@@ -62,7 +63,7 @@
 
     {% include 'header.html' %}
 
-    {% if showOldDocsBanner %}
+    {% if selectedVersion !== latestVersion %}
       <litdev-banner>
         You're viewing docs for an older version of Lit. Click
         <a href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
