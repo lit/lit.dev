@@ -219,6 +219,7 @@ export class ApiDocsTransformer {
     secondPassVisit(this.project);
 
     const pages = this.reorganizeExportsIntoPages();
+    this.prunePageData(pages);
 
     return {
       symbolMap: this.symbolMap,
@@ -408,6 +409,36 @@ export class ApiDocsTransformer {
         // We already recurse into children of top-level reflections in our main
         // traversal, no need to also do it here.
         this.addLocationsForAllIds(val, false);
+      }
+    }
+  }
+
+  /**
+   * Remove fields that we don't need for rendering. This makes reading diffs
+   * much easier, since we check the generated JSON file in.
+   */
+  private prunePageData(node: unknown) {
+    if (node instanceof Array) {
+      for (const item of node) {
+        this.prunePageData(item);
+      }
+    } else if (typeof node === 'object' && node !== null) {
+      for (const [key, val] of Object.entries(node)) {
+        if (
+          // We instead use the "location" field which tells us the page/anchor,
+          // instead of the internal numeric TypeDoc id. This id is
+          // non-deterministic, so it creates meaningless churn!
+          key === 'id' ||
+          // We do use some "children" fields, but not the ones that are just
+          // lists of numeric IDs.
+          (key === 'children' &&
+            val instanceof Array &&
+            val.every((i) => typeof i === 'number'))
+        ) {
+          delete node[key as keyof typeof node];
+        } else {
+          this.prunePageData(val);
+        }
       }
     }
   }

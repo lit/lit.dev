@@ -7,7 +7,6 @@
     },
     "items": [
       {
-        "id": 252,
         "name": "LitElement",
         "kind": 128,
         "kindString": "Class",
@@ -18,22 +17,18 @@
         },
         "children": [
           {
-            "id": 292,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "signatures": [
               {
-                "id": 293,
                 "name": "new LitElement",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 252,
                   "name": "LitElement",
                   "location": {
                     "page": "LitElement",
@@ -42,14 +37,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1200,
                   "name": "UpdatingElement.constructor"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1199,
               "name": "UpdatingElement.constructor",
               "location": {
                 "page": "UpdatingElement",
@@ -71,7 +64,6 @@
             }
           },
           {
-            "id": 295,
             "name": "renderRoot",
             "kind": 1024,
             "kindString": "Property",
@@ -81,7 +73,6 @@
             "comment": {
               "shortText": "Node or ShadowRoot into which element DOM should be rendered. Defaults\nto an open shadowRoot."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -125,7 +116,6 @@
             }
           },
           {
-            "id": 253,
             "name": "finalized",
             "kind": 1024,
             "kindString": "Property",
@@ -137,7 +127,6 @@
               "shortText": "Ensure this class is marked as `finalized` as an optimization ensuring\nit will not needlessly try to `finalize`.",
               "text": "Note this property name is a string to prevent breaking Closure JS Compiler\noptimizations. See updating-element.ts for more information.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -154,7 +143,6 @@
             "defaultValue": "true",
             "overwrites": {
               "type": "reference",
-              "id": 1198,
               "name": "UpdatingElement.finalized",
               "location": {
                 "page": "UpdatingElement",
@@ -176,7 +164,6 @@
             }
           },
           {
-            "id": 267,
             "name": "properties",
             "kind": 1024,
             "kindString": "Property",
@@ -186,7 +173,6 @@
             "comment": {
               "shortText": "User-supplied object that maps property names to `PropertyDeclaration`\nobjects containing options for configuring the property."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -198,7 +184,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 1137,
               "name": "PropertyDeclarations",
               "location": {
                 "page": "UpdatingElement",
@@ -207,7 +192,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 1154,
               "name": "UpdatingElement.properties",
               "location": {
                 "page": "UpdatingElement",
@@ -229,7 +213,6 @@
             }
           },
           {
-            "id": 254,
             "name": "render",
             "kind": 1024,
             "kindString": "Property",
@@ -246,7 +229,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -259,14 +241,12 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 255,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 256,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
@@ -283,7 +263,6 @@
                     },
                     "parameters": [
                       {
-                        "id": 257,
                         "name": "result",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -294,7 +273,6 @@
                         }
                       },
                       {
-                        "id": 258,
                         "name": "container",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -320,7 +298,6 @@
                         }
                       },
                       {
-                        "id": 259,
                         "name": "options",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -355,7 +332,6 @@
             }
           },
           {
-            "id": 261,
             "name": "shadowRootOptions",
             "kind": 1024,
             "kindString": "Property",
@@ -370,7 +346,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -403,7 +378,6 @@
             }
           },
           {
-            "id": 260,
             "name": "styles",
             "kind": 1024,
             "kindString": "Property",
@@ -414,7 +388,6 @@
             "comment": {
               "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/v1/api/lit-element/styles/#css) tag function or via constructible stylesheets."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -426,7 +399,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 251,
               "name": "CSSResultGroup",
               "location": {
                 "page": "styles",
@@ -448,14 +420,12 @@
             }
           },
           {
-            "id": 329,
             "name": "hasUpdated",
             "kind": 262144,
             "kindString": "Accessor",
             "flags": {
               "isProtected": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -471,7 +441,6 @@
             },
             "getSignature": [
               {
-                "id": 330,
                 "name": "hasUpdated",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -484,7 +453,6 @@
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1249,
               "name": "UpdatingElement.hasUpdated",
               "location": {
                 "page": "UpdatingElement",
@@ -506,7 +474,6 @@
             }
           },
           {
-            "id": 333,
             "name": "updateComplete",
             "kind": 262144,
             "kindString": "Accessor",
@@ -516,7 +483,6 @@
               "text": "To await additional asynchronous work, override the `_getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super._getUpdateComplete()`, then any subsequent state.\n",
               "returns": "The Promise returns a boolean that indicates if the\nupdate resolved without triggering another update.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -538,7 +504,6 @@
             },
             "getSignature": [
               {
-                "id": 334,
                 "name": "updateComplete",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -562,7 +527,6 @@
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1255,
               "name": "UpdatingElement.updateComplete",
               "location": {
                 "page": "UpdatingElement",
@@ -584,7 +548,6 @@
             }
           },
           {
-            "id": 268,
             "name": "observedAttributes",
             "kind": 262144,
             "kindString": "Accessor",
@@ -600,7 +563,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -619,7 +581,6 @@
             },
             "getSignature": [
               {
-                "id": 269,
                 "name": "observedAttributes",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -644,7 +605,6 @@
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1155,
               "name": "UpdatingElement.observedAttributes",
               "location": {
                 "page": "UpdatingElement",
@@ -666,7 +626,6 @@
             }
           },
           {
-            "id": 300,
             "name": "adoptStyles",
             "kind": 2048,
             "kindString": "Method",
@@ -676,7 +635,6 @@
             "comment": {
               "shortText": "Applies styling to the element shadowRoot using the [`styles`](/docs/v1/api/lit-element/LitElement/#LitElement.styles)\nproperty. Styling will apply using `shadowRoot.adoptedStyleSheets` where\navailable and will fallback otherwise. When Shadow DOM is polyfilled,\nShadyCSS scopes styles and adds them to the document. When Shadow DOM\nis available but `adoptedStyleSheets` is not, styles are appended to the\nend of the `shadowRoot` to [mimic spec\nbehavior](https://wicg.github.io/construct-stylesheets/#using-constructed-stylesheets)."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -688,7 +646,6 @@
             ],
             "signatures": [
               {
-                "id": 301,
                 "name": "adoptStyles",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -717,7 +674,6 @@
             }
           },
           {
-            "id": 313,
             "name": "attributeChangedCallback",
             "kind": 2048,
             "kindString": "Method",
@@ -725,7 +681,6 @@
             "comment": {
               "shortText": "Synchronizes property values when attributes change."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -737,7 +692,6 @@
             ],
             "signatures": [
               {
-                "id": 314,
                 "name": "attributeChangedCallback",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -747,7 +701,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 315,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -758,7 +711,6 @@
                     }
                   },
                   {
-                    "id": 316,
                     "name": "old",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -778,7 +730,6 @@
                     }
                   },
                   {
-                    "id": 317,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -804,14 +755,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1223,
                   "name": "UpdatingElement.attributeChangedCallback"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1222,
               "name": "UpdatingElement.attributeChangedCallback",
               "location": {
                 "page": "UpdatingElement",
@@ -833,12 +782,10 @@
             }
           },
           {
-            "id": 302,
             "name": "connectedCallback",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -850,7 +797,6 @@
             ],
             "signatures": [
               {
-                "id": 303,
                 "name": "connectedCallback",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -861,14 +807,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 1217,
                   "name": "UpdatingElement.connectedCallback"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 1216,
               "name": "UpdatingElement.connectedCallback",
               "location": {
                 "page": "UpdatingElement",
@@ -890,7 +834,6 @@
             }
           },
           {
-            "id": 298,
             "name": "createRenderRoot",
             "kind": 2048,
             "kindString": "Method",
@@ -901,7 +844,6 @@
               "shortText": "Returns the node into which the element should render and by default\ncreates and returns an open shadowRoot. Implement to customize where the\nelement's DOM is rendered. For example, to render into the element's\nchildNodes, return `this`.",
               "returns": "Returns a node into which to render.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -913,7 +855,6 @@
             ],
             "signatures": [
               {
-                "id": 299,
                 "name": "createRenderRoot",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -958,7 +899,6 @@
             }
           },
           {
-            "id": 311,
             "name": "disconnectedCallback",
             "kind": 2048,
             "kindString": "Method",
@@ -966,7 +906,6 @@
             "comment": {
               "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -978,7 +917,6 @@
             ],
             "signatures": [
               {
-                "id": 312,
                 "name": "disconnectedCallback",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -992,14 +930,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1221,
                   "name": "UpdatingElement.disconnectedCallback"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1220,
               "name": "UpdatingElement.disconnectedCallback",
               "location": {
                 "page": "UpdatingElement",
@@ -1021,14 +957,12 @@
             }
           },
           {
-            "id": 309,
             "name": "enableUpdating",
             "kind": 2048,
             "kindString": "Method",
             "flags": {
               "isProtected": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1040,7 +974,6 @@
             ],
             "signatures": [
               {
-                "id": 310,
                 "name": "enableUpdating",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1051,14 +984,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1219,
                   "name": "UpdatingElement.enableUpdating"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1218,
               "name": "UpdatingElement.enableUpdating",
               "location": {
                 "page": "UpdatingElement",
@@ -1080,7 +1011,6 @@
             }
           },
           {
-            "id": 345,
             "name": "firstUpdated",
             "kind": 2048,
             "kindString": "Method",
@@ -1091,7 +1021,6 @@
               "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
               "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1103,7 +1032,6 @@
             ],
             "signatures": [
               {
-                "id": 346,
                 "name": "firstUpdated",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1114,7 +1042,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 347,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1157,14 +1084,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1271,
                   "name": "UpdatingElement.firstUpdated"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1270,
               "name": "UpdatingElement.firstUpdated",
               "location": {
                 "page": "UpdatingElement",
@@ -1186,7 +1111,6 @@
             }
           },
           {
-            "id": 337,
             "name": "getUpdateComplete",
             "kind": 2048,
             "kindString": "Method",
@@ -1197,7 +1121,6 @@
               "shortText": "Override point for the `updateComplete` promise.",
               "text": "It is not safe to override the `updateComplete` getter directly due to a\nlimitation in TypeScript which means it is not possible to call a\nsuperclass getter (e.g. `super.updateComplete.then(...)`) when the target\nlanguage is ES5 (https://github.com/microsoft/TypeScript/issues/338).\nThis method should be overridden instead. For example:\n\n  class MyElement extends LitElement {\n    async getUpdateComplete() {\n      await super.getUpdateComplete();\n      await this._myChild.updateComplete;\n    }\n  }\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1209,7 +1132,6 @@
             ],
             "signatures": [
               {
-                "id": 338,
                 "name": "getUpdateComplete",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1230,14 +1152,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1260,
                   "name": "UpdatingElement.getUpdateComplete"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1259,
               "name": "UpdatingElement.getUpdateComplete",
               "location": {
                 "page": "UpdatingElement",
@@ -1259,7 +1179,6 @@
             }
           },
           {
-            "id": 296,
             "name": "initialize",
             "kind": 2048,
             "kindString": "Method",
@@ -1269,7 +1188,6 @@
             "comment": {
               "shortText": "Performs element initialization. By default this calls\n[`createRenderRoot`](/docs/v1/api/lit-element/LitElement/#LitElement.createRenderRoot) to create the element [`renderRoot`](/docs/v1/api/lit-element/LitElement/#LitElement.renderRoot) node and\ncaptures any pre-set values for registered properties."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -1281,7 +1199,6 @@
             ],
             "signatures": [
               {
-                "id": 297,
                 "name": "initialize",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1295,14 +1212,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 1211,
                   "name": "UpdatingElement.initialize"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 1210,
               "name": "UpdatingElement.initialize",
               "location": {
                 "page": "UpdatingElement",
@@ -1324,7 +1239,6 @@
             }
           },
           {
-            "id": 331,
             "name": "performUpdate",
             "kind": 2048,
             "kindString": "Method",
@@ -1335,7 +1249,6 @@
               "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
               "text": "You can override this method to change the timing of updates. If this\nmethod is overridden, `super.performUpdate()` must be called.\n\nFor instance, to schedule updates to occur just before the next frame:\n\n```\nprotected async performUpdate(): Promise<unknown> {\n  await new Promise((resolve) => requestAnimationFrame(() => resolve()));\n  super.performUpdate();\n}\n```\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1347,7 +1260,6 @@
             ],
             "signatures": [
               {
-                "id": 332,
                 "name": "performUpdate",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1377,14 +1289,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1252,
                   "name": "UpdatingElement.performUpdate"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1251,
               "name": "UpdatingElement.performUpdate",
               "location": {
                 "page": "UpdatingElement",
@@ -1406,7 +1316,6 @@
             }
           },
           {
-            "id": 307,
             "name": "render",
             "kind": 2048,
             "kindString": "Method",
@@ -1416,7 +1325,6 @@
             "comment": {
               "shortText": "Invoked on each update to perform rendering tasks. This method may return\nany value renderable by lit-html's `NodePart` - typically a\n`TemplateResult`. Setting properties inside this method will *not* trigger\nthe element to update."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -1428,7 +1336,6 @@
             ],
             "signatures": [
               {
-                "id": 308,
                 "name": "render",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1457,7 +1364,6 @@
             }
           },
           {
-            "id": 323,
             "name": "requestUpdate",
             "kind": 2048,
             "kindString": "Method",
@@ -1466,7 +1372,6 @@
               "shortText": "Requests an update which is processed asynchronously. This should\nbe called when an element should update based on some state not triggered\nby setting a property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored. Returns the `updateComplete` Promise which is resolved\nwhen the update completes.",
               "returns": "A Promise that is resolved when the update completes.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1478,7 +1383,6 @@
             ],
             "signatures": [
               {
-                "id": 324,
                 "name": "requestUpdate",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1489,7 +1393,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 325,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1505,7 +1408,6 @@
                     }
                   },
                   {
-                    "id": 326,
                     "name": "oldValue",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1533,14 +1435,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1242,
                   "name": "UpdatingElement.requestUpdate"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1241,
               "name": "UpdatingElement.requestUpdate",
               "location": {
                 "page": "UpdatingElement",
@@ -1562,7 +1462,6 @@
             }
           },
           {
-            "id": 318,
             "name": "requestUpdateInternal",
             "kind": 2048,
             "kindString": "Method",
@@ -1572,7 +1471,6 @@
             "comment": {
               "shortText": "This protected version of `requestUpdate` does not access or return the\n`updateComplete` promise. This promise can be overridden and is therefore\nnot free to access."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1584,7 +1482,6 @@
             ],
             "signatures": [
               {
-                "id": 319,
                 "name": "requestUpdateInternal",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1594,7 +1491,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 320,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1607,7 +1503,6 @@
                     }
                   },
                   {
-                    "id": 321,
                     "name": "oldValue",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1620,7 +1515,6 @@
                     }
                   },
                   {
-                    "id": 322,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1629,7 +1523,6 @@
                     },
                     "type": {
                       "type": "reference",
-                      "id": 1125,
                       "typeArguments": [
                         {
                           "type": "intrinsic",
@@ -1654,14 +1547,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1237,
                   "name": "UpdatingElement.requestUpdateInternal"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1236,
               "name": "UpdatingElement.requestUpdateInternal",
               "location": {
                 "page": "UpdatingElement",
@@ -1683,7 +1574,6 @@
             }
           },
           {
-            "id": 339,
             "name": "shouldUpdate",
             "kind": 2048,
             "kindString": "Method",
@@ -1693,7 +1583,6 @@
             "comment": {
               "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1705,7 +1594,6 @@
             ],
             "signatures": [
               {
-                "id": 340,
                 "name": "shouldUpdate",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1715,7 +1603,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 341,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1758,14 +1645,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1262,
                   "name": "UpdatingElement.shouldUpdate"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1261,
               "name": "UpdatingElement.shouldUpdate",
               "location": {
                 "page": "UpdatingElement",
@@ -1787,7 +1672,6 @@
             }
           },
           {
-            "id": 304,
             "name": "update",
             "kind": 2048,
             "kindString": "Method",
@@ -1797,7 +1681,6 @@
             "comment": {
               "shortText": "Updates the element. This method reflects property values to attributes\nand calls `render` to render DOM via lit-html. Setting properties inside\nthis method will *not* trigger another update."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -1809,7 +1692,6 @@
             ],
             "signatures": [
               {
-                "id": 305,
                 "name": "update",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1819,7 +1701,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 306,
                     "name": "changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1859,14 +1740,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 1265,
                   "name": "UpdatingElement.update"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 1264,
               "name": "UpdatingElement.update",
               "location": {
                 "page": "UpdatingElement",
@@ -1888,7 +1767,6 @@
             }
           },
           {
-            "id": 342,
             "name": "updated",
             "kind": 2048,
             "kindString": "Method",
@@ -1899,7 +1777,6 @@
               "shortText": "Invoked whenever the element is updated. Implement to perform\npost-updating tasks via DOM APIs, for example, focusing an element.",
               "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -1911,7 +1788,6 @@
             ],
             "signatures": [
               {
-                "id": 343,
                 "name": "updated",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1922,7 +1798,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 344,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -1965,14 +1840,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1268,
                   "name": "UpdatingElement.updated"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1267,
               "name": "UpdatingElement.updated",
               "location": {
                 "page": "UpdatingElement",
@@ -1994,7 +1867,6 @@
             }
           },
           {
-            "id": 270,
             "name": "createProperty",
             "kind": 2048,
             "kindString": "Method",
@@ -2011,7 +1883,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -2023,7 +1894,6 @@
             ],
             "signatures": [
               {
-                "id": 271,
                 "name": "createProperty",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -2040,7 +1910,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 272,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2051,14 +1920,12 @@
                     }
                   },
                   {
-                    "id": 273,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 1125,
                       "typeArguments": [
                         {
                           "type": "intrinsic",
@@ -2084,14 +1951,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1160,
                   "name": "UpdatingElement.createProperty"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1159,
               "name": "UpdatingElement.createProperty",
               "location": {
                 "page": "UpdatingElement",
@@ -2113,7 +1978,6 @@
             }
           },
           {
-            "id": 290,
             "name": "finalize",
             "kind": 2048,
             "kindString": "Method",
@@ -2130,7 +1994,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -2142,7 +2005,6 @@
             ],
             "signatures": [
               {
-                "id": 291,
                 "name": "finalize",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -2162,14 +2024,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1180,
                   "name": "UpdatingElement.finalize"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1179,
               "name": "UpdatingElement.finalize",
               "location": {
                 "page": "UpdatingElement",
@@ -2191,7 +2051,6 @@
             }
           },
           {
-            "id": 274,
             "name": "getPropertyDescriptor",
             "kind": 2048,
             "kindString": "Method",
@@ -2209,7 +2068,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -2221,7 +2079,6 @@
             ],
             "signatures": [
               {
-                "id": 275,
                 "name": "getPropertyDescriptor",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -2238,7 +2095,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 276,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2249,7 +2105,6 @@
                     }
                   },
                   {
-                    "id": 277,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2269,14 +2124,12 @@
                     }
                   },
                   {
-                    "id": 278,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 1125,
                       "typeArguments": [
                         {
                           "type": "intrinsic",
@@ -2298,14 +2151,12 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 279,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "children": [
                       {
-                        "id": 285,
                         "name": "configurable",
                         "kind": 1024,
                         "kindString": "Property",
@@ -2317,7 +2168,6 @@
                         "defaultValue": "true"
                       },
                       {
-                        "id": 286,
                         "name": "enumerable",
                         "kind": 1024,
                         "kindString": "Property",
@@ -2329,7 +2179,6 @@
                         "defaultValue": "true"
                       },
                       {
-                        "id": 280,
                         "name": "get",
                         "kind": 2048,
                         "kindString": "Method",
@@ -2343,7 +2192,6 @@
                         ],
                         "signatures": [
                           {
-                            "id": 281,
                             "name": "get",
                             "kind": 4096,
                             "kindString": "Call signature",
@@ -2356,7 +2204,6 @@
                         ]
                       },
                       {
-                        "id": 282,
                         "name": "set",
                         "kind": 2048,
                         "kindString": "Method",
@@ -2370,14 +2217,12 @@
                         ],
                         "signatures": [
                           {
-                            "id": 283,
                             "name": "set",
                             "kind": 4096,
                             "kindString": "Call signature",
                             "flags": {},
                             "parameters": [
                               {
-                                "id": 284,
                                 "name": "value",
                                 "kind": 32768,
                                 "kindString": "Parameter",
@@ -2399,33 +2244,23 @@
                     "groups": [
                       {
                         "title": "Properties",
-                        "kind": 1024,
-                        "children": [
-                          285,
-                          286
-                        ]
+                        "kind": 1024
                       },
                       {
                         "title": "Methods",
-                        "kind": 2048,
-                        "children": [
-                          280,
-                          282
-                        ]
+                        "kind": 2048
                       }
                     ]
                   }
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1164,
                   "name": "UpdatingElement.getPropertyDescriptor"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1163,
               "name": "UpdatingElement.getPropertyDescriptor",
               "location": {
                 "page": "UpdatingElement",
@@ -2447,7 +2282,6 @@
             }
           },
           {
-            "id": 287,
             "name": "getPropertyOptions",
             "kind": 2048,
             "kindString": "Method",
@@ -2469,7 +2303,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -2481,7 +2314,6 @@
             ],
             "signatures": [
               {
-                "id": 288,
                 "name": "getPropertyOptions",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -2502,7 +2334,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 289,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2515,7 +2346,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 1125,
                   "typeArguments": [
                     {
                       "type": "intrinsic",
@@ -2534,14 +2364,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 1177,
                   "name": "UpdatingElement.getPropertyOptions"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 1176,
               "name": "UpdatingElement.getPropertyOptions",
               "location": {
                 "page": "UpdatingElement",
@@ -2563,7 +2391,6 @@
             }
           },
           {
-            "id": 263,
             "name": "getStyles",
             "kind": 2048,
             "kindString": "Method",
@@ -2579,7 +2406,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -2591,7 +2417,6 @@
             ],
             "signatures": [
               {
-                "id": 264,
                 "name": "getStyles",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -2614,7 +2439,6 @@
                     },
                     {
                       "type": "reference",
-                      "id": 251,
                       "name": "CSSResultGroup",
                       "location": {
                         "page": "styles",
@@ -2643,345 +2467,19 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              292
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              630,
-              631,
-              632,
-              633,
-              634,
-              635,
-              636,
-              637,
-              638,
-              639,
-              640,
-              641,
-              642,
-              643,
-              644,
-              645,
-              646,
-              647,
-              294,
-              348,
-              349,
-              651,
-              652,
-              653,
-              654,
-              655,
-              656,
-              657,
-              658,
-              659,
-              660,
-              661,
-              662,
-              663,
-              664,
-              665,
-              666,
-              667,
-              668,
-              669,
-              670,
-              671,
-              672,
-              673,
-              674,
-              675,
-              676,
-              677,
-              678,
-              679,
-              680,
-              681,
-              682,
-              683,
-              684,
-              685,
-              686,
-              741,
-              393,
-              350,
-              568,
-              708,
-              569,
-              709,
-              394,
-              395,
-              396,
-              397,
-              398,
-              399,
-              755,
-              1104,
-              351,
-              352,
-              756,
-              570,
-              710,
-              353,
-              400,
-              705,
-              354,
-              757,
-              571,
-              758,
-              355,
-              572,
-              711,
-              401,
-              402,
-              706,
-              573,
-              574,
-              575,
-              576,
-              1105,
-              356,
-              357,
-              358,
-              359,
-              360,
-              759,
-              763,
-              767,
-              771,
-              775,
-              779,
-              783,
-              787,
-              791,
-              795,
-              799,
-              803,
-              807,
-              742,
-              811,
-              746,
-              815,
-              819,
-              823,
-              827,
-              831,
-              835,
-              839,
-              843,
-              847,
-              851,
-              855,
-              859,
-              860,
-              864,
-              403,
-              407,
-              868,
-              872,
-              876,
-              880,
-              884,
-              888,
-              892,
-              896,
-              900,
-              904,
-              908,
-              912,
-              916,
-              920,
-              924,
-              928,
-              932,
-              936,
-              750,
-              940,
-              944,
-              948,
-              952,
-              956,
-              960,
-              964,
-              968,
-              972,
-              976,
-              980,
-              984,
-              988,
-              992,
-              996,
-              1000,
-              1004,
-              1008,
-              1012,
-              1016,
-              1020,
-              1024,
-              1028,
-              1032,
-              1036,
-              1040,
-              1044,
-              1048,
-              1052,
-              1056,
-              1060,
-              1064,
-              1068,
-              1072,
-              1076,
-              1080,
-              1084,
-              1088,
-              1092,
-              1096,
-              1100,
-              411,
-              361,
-              412,
-              577,
-              578,
-              413,
-              414,
-              707,
-              579,
-              295,
-              415,
-              416,
-              417,
-              418,
-              419,
-              420,
-              362,
-              754,
-              1106,
-              421,
-              580,
-              363,
-              364,
-              262,
-              253,
-              267,
-              254,
-              261,
-              260
-            ]
+            "kind": 1024
           },
           {
             "title": "Accessors",
-            "kind": 262144,
-            "children": [
-              327,
-              329,
-              333,
-              268
-            ]
+            "kind": 262144
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              335,
-              367,
-              300,
-              694,
-              687,
-              712,
-              581,
-              422,
-              313,
-              697,
-              1107,
-              365,
-              585,
-              425,
-              588,
-              302,
-              591,
-              298,
-              311,
-              648,
-              309,
-              345,
-              1109,
-              691,
-              435,
-              438,
-              442,
-              444,
-              447,
-              451,
-              453,
-              455,
-              458,
-              467,
-              594,
-              337,
-              477,
-              480,
-              484,
-              597,
-              486,
-              296,
-              489,
-              493,
-              497,
-              599,
-              604,
-              607,
-              610,
-              613,
-              616,
-              501,
-              619,
-              331,
-              715,
-              718,
-              728,
-              504,
-              700,
-              507,
-              510,
-              514,
-              621,
-              380,
-              307,
-              625,
-              738,
-              702,
-              517,
-              520,
-              323,
-              318,
-              522,
-              528,
-              534,
-              537,
-              543,
-              547,
-              552,
-              555,
-              558,
-              339,
-              561,
-              304,
-              342,
-              565,
-              265,
-              270,
-              290,
-              274,
-              287,
-              263
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -2996,7 +2494,6 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 1151,
             "name": "UpdatingElement",
             "location": {
               "page": "UpdatingElement",
@@ -3020,7 +2517,6 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 1151,
             "name": "UpdatingElement",
             "location": {
               "page": "UpdatingElement",
@@ -3046,14 +2542,12 @@
     },
     "items": [
       {
-        "id": 1142,
         "name": "defaultConverter",
         "kind": 32,
         "kindString": "Variable",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/updating-element.ts",
@@ -3065,7 +2559,6 @@
         ],
         "type": {
           "type": "reference",
-          "id": 1114,
           "name": "ComplexAttributeConverter",
           "location": {
             "page": "UpdatingElement",
@@ -3088,7 +2581,6 @@
         }
       },
       {
-        "id": 1147,
         "name": "notEqual",
         "kind": 64,
         "kindString": "Function",
@@ -3098,7 +2590,6 @@
         "comment": {
           "shortText": "Change function that returns true if `value` is different from `oldValue`.\nThis method is used as the default for a property's `hasChanged` function."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/updating-element.ts",
@@ -3110,7 +2601,6 @@
         ],
         "signatures": [
           {
-            "id": 1148,
             "name": "notEqual",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3120,7 +2610,6 @@
             },
             "parameters": [
               {
-                "id": 1149,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3131,7 +2620,6 @@
                 }
               },
               {
-                "id": 1150,
                 "name": "old",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3163,7 +2651,6 @@
         }
       },
       {
-        "id": 1151,
         "name": "UpdatingElement",
         "kind": 128,
         "kindString": "Class",
@@ -3181,12 +2668,10 @@
         },
         "children": [
           {
-            "id": 1199,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3198,14 +2683,12 @@
             ],
             "signatures": [
               {
-                "id": 1200,
                 "name": "new UpdatingElement",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 1151,
                   "name": "UpdatingElement",
                   "location": {
                     "page": "UpdatingElement",
@@ -3237,7 +2720,6 @@
             }
           },
           {
-            "id": 1198,
             "name": "finalized",
             "kind": 1024,
             "kindString": "Property",
@@ -3248,7 +2730,6 @@
             "comment": {
               "shortText": "Marks class as having finished creating properties."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3278,7 +2759,6 @@
             }
           },
           {
-            "id": 1154,
             "name": "properties",
             "kind": 1024,
             "kindString": "Property",
@@ -3288,7 +2768,6 @@
             "comment": {
               "shortText": "User-supplied object that maps property names to `PropertyDeclaration`\nobjects containing options for configuring the property."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3300,7 +2779,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 1137,
               "name": "PropertyDeclarations",
               "location": {
                 "page": "UpdatingElement",
@@ -3322,14 +2800,12 @@
             }
           },
           {
-            "id": 1249,
             "name": "hasUpdated",
             "kind": 262144,
             "kindString": "Accessor",
             "flags": {
               "isProtected": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3345,7 +2821,6 @@
             },
             "getSignature": [
               {
-                "id": 1250,
                 "name": "hasUpdated",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -3371,7 +2846,6 @@
             }
           },
           {
-            "id": 1255,
             "name": "updateComplete",
             "kind": 262144,
             "kindString": "Accessor",
@@ -3381,7 +2855,6 @@
               "text": "To await additional asynchronous work, override the `_getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super._getUpdateComplete()`, then any subsequent state.\n",
               "returns": "The Promise returns a boolean that indicates if the\nupdate resolved without triggering another update.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3403,7 +2876,6 @@
             },
             "getSignature": [
               {
-                "id": 1256,
                 "name": "updateComplete",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -3440,7 +2912,6 @@
             }
           },
           {
-            "id": 1155,
             "name": "observedAttributes",
             "kind": 262144,
             "kindString": "Accessor",
@@ -3456,7 +2927,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3475,7 +2945,6 @@
             },
             "getSignature": [
               {
-                "id": 1156,
                 "name": "observedAttributes",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -3513,7 +2982,6 @@
             }
           },
           {
-            "id": 1222,
             "name": "attributeChangedCallback",
             "kind": 2048,
             "kindString": "Method",
@@ -3521,7 +2989,6 @@
             "comment": {
               "shortText": "Synchronizes property values when attributes change."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3533,7 +3000,6 @@
             ],
             "signatures": [
               {
-                "id": 1223,
                 "name": "attributeChangedCallback",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3543,7 +3009,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1224,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3554,7 +3019,6 @@
                     }
                   },
                   {
-                    "id": 1225,
                     "name": "old",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3574,7 +3038,6 @@
                     }
                   },
                   {
-                    "id": 1226,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3615,12 +3078,10 @@
             }
           },
           {
-            "id": 1216,
             "name": "connectedCallback",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3632,7 +3093,6 @@
             ],
             "signatures": [
               {
-                "id": 1217,
                 "name": "connectedCallback",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3658,7 +3118,6 @@
             }
           },
           {
-            "id": 1220,
             "name": "disconnectedCallback",
             "kind": 2048,
             "kindString": "Method",
@@ -3666,7 +3125,6 @@
             "comment": {
               "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3678,7 +3136,6 @@
             ],
             "signatures": [
               {
-                "id": 1221,
                 "name": "disconnectedCallback",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3707,14 +3164,12 @@
             }
           },
           {
-            "id": 1218,
             "name": "enableUpdating",
             "kind": 2048,
             "kindString": "Method",
             "flags": {
               "isProtected": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3726,7 +3181,6 @@
             ],
             "signatures": [
               {
-                "id": 1219,
                 "name": "enableUpdating",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3752,7 +3206,6 @@
             }
           },
           {
-            "id": 1270,
             "name": "firstUpdated",
             "kind": 2048,
             "kindString": "Method",
@@ -3763,7 +3216,6 @@
               "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
               "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3775,7 +3227,6 @@
             ],
             "signatures": [
               {
-                "id": 1271,
                 "name": "firstUpdated",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3786,7 +3237,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1272,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3844,7 +3294,6 @@
             }
           },
           {
-            "id": 1259,
             "name": "getUpdateComplete",
             "kind": 2048,
             "kindString": "Method",
@@ -3855,7 +3304,6 @@
               "shortText": "Override point for the `updateComplete` promise.",
               "text": "It is not safe to override the `updateComplete` getter directly due to a\nlimitation in TypeScript which means it is not possible to call a\nsuperclass getter (e.g. `super.updateComplete.then(...)`) when the target\nlanguage is ES5 (https://github.com/microsoft/TypeScript/issues/338).\nThis method should be overridden instead. For example:\n\n  class MyElement extends LitElement {\n    async getUpdateComplete() {\n      await super.getUpdateComplete();\n      await this._myChild.updateComplete;\n    }\n  }\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3867,7 +3315,6 @@
             ],
             "signatures": [
               {
-                "id": 1260,
                 "name": "getUpdateComplete",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3903,7 +3350,6 @@
             }
           },
           {
-            "id": 1210,
             "name": "initialize",
             "kind": 2048,
             "kindString": "Method",
@@ -3913,7 +3359,6 @@
             "comment": {
               "shortText": "Performs element initialization. By default captures any pre-set values for\nregistered properties."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3925,7 +3370,6 @@
             ],
             "signatures": [
               {
-                "id": 1211,
                 "name": "initialize",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3954,7 +3398,6 @@
             }
           },
           {
-            "id": 1251,
             "name": "performUpdate",
             "kind": 2048,
             "kindString": "Method",
@@ -3965,7 +3408,6 @@
               "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
               "text": "You can override this method to change the timing of updates. If this\nmethod is overridden, `super.performUpdate()` must be called.\n\nFor instance, to schedule updates to occur just before the next frame:\n\n```\nprotected async performUpdate(): Promise<unknown> {\n  await new Promise((resolve) => requestAnimationFrame(() => resolve()));\n  super.performUpdate();\n}\n```\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -3977,7 +3419,6 @@
             ],
             "signatures": [
               {
-                "id": 1252,
                 "name": "performUpdate",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4022,7 +3463,6 @@
             }
           },
           {
-            "id": 1241,
             "name": "requestUpdate",
             "kind": 2048,
             "kindString": "Method",
@@ -4031,7 +3471,6 @@
               "shortText": "Requests an update which is processed asynchronously. This should\nbe called when an element should update based on some state not triggered\nby setting a property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored. Returns the `updateComplete` Promise which is resolved\nwhen the update completes.",
               "returns": "A Promise that is resolved when the update completes.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4043,7 +3482,6 @@
             ],
             "signatures": [
               {
-                "id": 1242,
                 "name": "requestUpdate",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4054,7 +3492,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1243,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4070,7 +3507,6 @@
                     }
                   },
                   {
-                    "id": 1244,
                     "name": "oldValue",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4113,7 +3549,6 @@
             }
           },
           {
-            "id": 1236,
             "name": "requestUpdateInternal",
             "kind": 2048,
             "kindString": "Method",
@@ -4123,7 +3558,6 @@
             "comment": {
               "shortText": "This protected version of `requestUpdate` does not access or return the\n`updateComplete` promise. This promise can be overridden and is therefore\nnot free to access."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4135,7 +3569,6 @@
             ],
             "signatures": [
               {
-                "id": 1237,
                 "name": "requestUpdateInternal",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4145,7 +3578,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1238,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4158,7 +3590,6 @@
                     }
                   },
                   {
-                    "id": 1239,
                     "name": "oldValue",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4171,7 +3602,6 @@
                     }
                   },
                   {
-                    "id": 1240,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4180,7 +3610,6 @@
                     },
                     "type": {
                       "type": "reference",
-                      "id": 1125,
                       "typeArguments": [
                         {
                           "type": "intrinsic",
@@ -4220,7 +3649,6 @@
             }
           },
           {
-            "id": 1261,
             "name": "shouldUpdate",
             "kind": 2048,
             "kindString": "Method",
@@ -4230,7 +3658,6 @@
             "comment": {
               "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4242,7 +3669,6 @@
             ],
             "signatures": [
               {
-                "id": 1262,
                 "name": "shouldUpdate",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4252,7 +3678,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1263,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4310,7 +3735,6 @@
             }
           },
           {
-            "id": 1264,
             "name": "update",
             "kind": 2048,
             "kindString": "Method",
@@ -4320,7 +3744,6 @@
             "comment": {
               "shortText": "Updates the element. This method reflects property values to attributes.\nIt can be overridden to render and keep updated element DOM.\nSetting properties inside this method will *not* trigger\nanother update."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4332,7 +3755,6 @@
             ],
             "signatures": [
               {
-                "id": 1265,
                 "name": "update",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4342,7 +3764,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1266,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4400,7 +3821,6 @@
             }
           },
           {
-            "id": 1267,
             "name": "updated",
             "kind": 2048,
             "kindString": "Method",
@@ -4411,7 +3831,6 @@
               "shortText": "Invoked whenever the element is updated. Implement to perform\npost-updating tasks via DOM APIs, for example, focusing an element.",
               "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4423,7 +3842,6 @@
             ],
             "signatures": [
               {
-                "id": 1268,
                 "name": "updated",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4434,7 +3852,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1269,
                     "name": "_changedProperties",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4492,7 +3909,6 @@
             }
           },
           {
-            "id": 1159,
             "name": "createProperty",
             "kind": 2048,
             "kindString": "Method",
@@ -4509,7 +3925,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4521,7 +3936,6 @@
             ],
             "signatures": [
               {
-                "id": 1160,
                 "name": "createProperty",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4538,7 +3952,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1161,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4549,14 +3962,12 @@
                     }
                   },
                   {
-                    "id": 1162,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 1125,
                       "typeArguments": [
                         {
                           "type": "intrinsic",
@@ -4597,7 +4008,6 @@
             }
           },
           {
-            "id": 1179,
             "name": "finalize",
             "kind": 2048,
             "kindString": "Method",
@@ -4614,7 +4024,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4626,7 +4035,6 @@
             ],
             "signatures": [
               {
-                "id": 1180,
                 "name": "finalize",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4661,7 +4069,6 @@
             }
           },
           {
-            "id": 1163,
             "name": "getPropertyDescriptor",
             "kind": 2048,
             "kindString": "Method",
@@ -4679,7 +4086,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4691,7 +4097,6 @@
             ],
             "signatures": [
               {
-                "id": 1164,
                 "name": "getPropertyDescriptor",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4708,7 +4113,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1165,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4719,7 +4123,6 @@
                     }
                   },
                   {
-                    "id": 1166,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4739,14 +4142,12 @@
                     }
                   },
                   {
-                    "id": 1167,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 1125,
                       "typeArguments": [
                         {
                           "type": "intrinsic",
@@ -4768,14 +4169,12 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 1168,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "children": [
                       {
-                        "id": 1174,
                         "name": "configurable",
                         "kind": 1024,
                         "kindString": "Property",
@@ -4787,7 +4186,6 @@
                         "defaultValue": "true"
                       },
                       {
-                        "id": 1175,
                         "name": "enumerable",
                         "kind": 1024,
                         "kindString": "Property",
@@ -4799,7 +4197,6 @@
                         "defaultValue": "true"
                       },
                       {
-                        "id": 1169,
                         "name": "get",
                         "kind": 2048,
                         "kindString": "Method",
@@ -4813,7 +4210,6 @@
                         ],
                         "signatures": [
                           {
-                            "id": 1170,
                             "name": "get",
                             "kind": 4096,
                             "kindString": "Call signature",
@@ -4826,7 +4222,6 @@
                         ]
                       },
                       {
-                        "id": 1171,
                         "name": "set",
                         "kind": 2048,
                         "kindString": "Method",
@@ -4840,14 +4235,12 @@
                         ],
                         "signatures": [
                           {
-                            "id": 1172,
                             "name": "set",
                             "kind": 4096,
                             "kindString": "Call signature",
                             "flags": {},
                             "parameters": [
                               {
-                                "id": 1173,
                                 "name": "value",
                                 "kind": 32768,
                                 "kindString": "Parameter",
@@ -4869,19 +4262,11 @@
                     "groups": [
                       {
                         "title": "Properties",
-                        "kind": 1024,
-                        "children": [
-                          1174,
-                          1175
-                        ]
+                        "kind": 1024
                       },
                       {
                         "title": "Methods",
-                        "kind": 2048,
-                        "children": [
-                          1169,
-                          1171
-                        ]
+                        "kind": 2048
                       }
                     ]
                   }
@@ -4903,7 +4288,6 @@
             }
           },
           {
-            "id": 1176,
             "name": "getPropertyOptions",
             "kind": 2048,
             "kindString": "Method",
@@ -4925,7 +4309,6 @@
                 }
               ]
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -4937,7 +4320,6 @@
             ],
             "signatures": [
               {
-                "id": 1177,
                 "name": "getPropertyOptions",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4958,7 +4340,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1178,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4971,7 +4352,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 1125,
                   "typeArguments": [
                     {
                       "type": "intrinsic",
@@ -5008,353 +4388,19 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              1199
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              1555,
-              1556,
-              1557,
-              1558,
-              1559,
-              1560,
-              1561,
-              1562,
-              1563,
-              1564,
-              1565,
-              1566,
-              1567,
-              1568,
-              1569,
-              1570,
-              1571,
-              1572,
-              1208,
-              1204,
-              1202,
-              1209,
-              1203,
-              1201,
-              1273,
-              1274,
-              1576,
-              1577,
-              1578,
-              1579,
-              1580,
-              1581,
-              1582,
-              1583,
-              1584,
-              1585,
-              1586,
-              1587,
-              1588,
-              1589,
-              1590,
-              1591,
-              1592,
-              1593,
-              1594,
-              1595,
-              1596,
-              1597,
-              1598,
-              1599,
-              1600,
-              1601,
-              1602,
-              1603,
-              1604,
-              1605,
-              1606,
-              1607,
-              1608,
-              1609,
-              1610,
-              1611,
-              1666,
-              1318,
-              1275,
-              1493,
-              1633,
-              1494,
-              1634,
-              1319,
-              1320,
-              1321,
-              1322,
-              1323,
-              1324,
-              1680,
-              2029,
-              1276,
-              1277,
-              1681,
-              1495,
-              1635,
-              1278,
-              1325,
-              1630,
-              1279,
-              1682,
-              1496,
-              1683,
-              1280,
-              1497,
-              1636,
-              1326,
-              1327,
-              1631,
-              1498,
-              1499,
-              1500,
-              1501,
-              2030,
-              1281,
-              1282,
-              1283,
-              1284,
-              1285,
-              1684,
-              1688,
-              1692,
-              1696,
-              1700,
-              1704,
-              1708,
-              1712,
-              1716,
-              1720,
-              1724,
-              1728,
-              1732,
-              1667,
-              1736,
-              1671,
-              1740,
-              1744,
-              1748,
-              1752,
-              1756,
-              1760,
-              1764,
-              1768,
-              1772,
-              1776,
-              1780,
-              1784,
-              1785,
-              1789,
-              1328,
-              1332,
-              1793,
-              1797,
-              1801,
-              1805,
-              1809,
-              1813,
-              1817,
-              1821,
-              1825,
-              1829,
-              1833,
-              1837,
-              1841,
-              1845,
-              1849,
-              1853,
-              1857,
-              1861,
-              1675,
-              1865,
-              1869,
-              1873,
-              1877,
-              1881,
-              1885,
-              1889,
-              1893,
-              1897,
-              1901,
-              1905,
-              1909,
-              1913,
-              1917,
-              1921,
-              1925,
-              1929,
-              1933,
-              1937,
-              1941,
-              1945,
-              1949,
-              1953,
-              1957,
-              1961,
-              1965,
-              1969,
-              1973,
-              1977,
-              1981,
-              1985,
-              1989,
-              1993,
-              1997,
-              2001,
-              2005,
-              2009,
-              2013,
-              2017,
-              2021,
-              2025,
-              1336,
-              1286,
-              1337,
-              1502,
-              1503,
-              1338,
-              1339,
-              1632,
-              1504,
-              1340,
-              1341,
-              1342,
-              1343,
-              1344,
-              1345,
-              1287,
-              1679,
-              2031,
-              1346,
-              1505,
-              1288,
-              1289,
-              1152,
-              1153,
-              1198,
-              1154
-            ]
+            "kind": 1024
           },
           {
             "title": "Accessors",
-            "kind": 262144,
-            "children": [
-              1247,
-              1249,
-              1255,
-              1155
-            ]
+            "kind": 262144
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              1214,
-              1232,
-              1245,
-              1257,
-              1253,
-              1227,
-              1212,
-              1292,
-              1619,
-              1612,
-              1637,
-              1506,
-              1347,
-              1222,
-              1622,
-              2032,
-              1290,
-              1510,
-              1350,
-              1513,
-              1216,
-              1516,
-              1220,
-              1573,
-              1218,
-              1270,
-              2034,
-              1616,
-              1360,
-              1363,
-              1367,
-              1369,
-              1372,
-              1376,
-              1378,
-              1380,
-              1383,
-              1392,
-              1519,
-              1259,
-              1402,
-              1405,
-              1409,
-              1522,
-              1411,
-              1210,
-              1414,
-              1418,
-              1422,
-              1524,
-              1529,
-              1532,
-              1535,
-              1538,
-              1541,
-              1426,
-              1544,
-              1251,
-              1640,
-              1643,
-              1653,
-              1429,
-              1625,
-              1432,
-              1435,
-              1439,
-              1546,
-              1305,
-              1550,
-              1663,
-              1627,
-              1442,
-              1445,
-              1241,
-              1236,
-              1447,
-              1453,
-              1459,
-              1462,
-              1468,
-              1472,
-              1477,
-              1480,
-              1483,
-              1261,
-              1486,
-              1264,
-              1267,
-              1490,
-              1181,
-              1157,
-              1190,
-              1194,
-              1185,
-              1159,
-              1179,
-              1163,
-              1176
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -5378,7 +4424,6 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 252,
             "name": "LitElement",
             "location": {
               "page": "LitElement",
@@ -5410,7 +4455,6 @@
         ]
       },
       {
-        "id": 1114,
         "name": "ComplexAttributeConverter",
         "kind": 256,
         "kindString": "Interface",
@@ -5420,7 +4464,6 @@
         },
         "children": [
           {
-            "id": 1115,
             "name": "fromAttribute",
             "kind": 2048,
             "kindString": "Method",
@@ -5430,10 +4473,8 @@
             "comment": {
               "shortText": "Function called to convert an attribute value to a property\nvalue."
             },
-            "children": [],
             "signatures": [
               {
-                "id": 1116,
                 "name": "fromAttribute",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5443,7 +4484,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1117,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5463,7 +4503,6 @@
                     }
                   },
                   {
-                    "id": 1118,
                     "name": "type",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5497,7 +4536,6 @@
             }
           },
           {
-            "id": 1119,
             "name": "toAttribute",
             "kind": 2048,
             "kindString": "Method",
@@ -5508,10 +4546,8 @@
               "shortText": "Function called to convert a property value to an attribute\nvalue.",
               "text": "It returns unknown instead of string, to be compatible with\nhttps://github.com/WICG/trusted-types (and similar efforts).\n"
             },
-            "children": [],
             "signatures": [
               {
-                "id": 1120,
                 "name": "toAttribute",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5522,7 +4558,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1121,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5533,7 +4568,6 @@
                     }
                   },
                   {
-                    "id": 1122,
                     "name": "type",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5570,11 +4604,7 @@
         "groups": [
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              1115,
-              1119
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -5588,7 +4618,6 @@
         ],
         "typeParameter": [
           {
-            "id": 1123,
             "name": "Type",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -5599,7 +4628,6 @@
             }
           },
           {
-            "id": 1124,
             "name": "TypeHint",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -5625,12 +4653,10 @@
         }
       },
       {
-        "id": 1143,
         "name": "HasChanged",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/updating-element.ts",
@@ -5642,14 +4668,12 @@
         ],
         "signatures": [
           {
-            "id": 1144,
             "name": "HasChanged",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 1145,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5660,7 +4684,6 @@
                 }
               },
               {
-                "id": 1146,
                 "name": "old",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5692,7 +4715,6 @@
         }
       },
       {
-        "id": 1125,
         "name": "PropertyDeclaration",
         "kind": 256,
         "kindString": "Interface",
@@ -5702,7 +4724,6 @@
         },
         "children": [
           {
-            "id": 1126,
             "name": "attribute",
             "kind": 1024,
             "kindString": "Property",
@@ -5713,7 +4734,6 @@
             "comment": {
               "shortText": "Indicates how and whether the property becomes an observed attribute.\nIf the value is `false`, the property is not added to `observedAttributes`.\nIf true or absent, the lowercased property name is observed (e.g. `fooBar`\nbecomes `foobar`). If a string, the string value is observed (e.g\n`attribute: 'foo-bar'`)."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -5751,7 +4771,6 @@
             }
           },
           {
-            "id": 1128,
             "name": "converter",
             "kind": 1024,
             "kindString": "Property",
@@ -5762,7 +4781,6 @@
             "comment": {
               "shortText": "Indicates how to convert the attribute to/from a property. If this value\nis a function, it is used to convert the attribute value a the property\nvalue. If it's an object, it can have keys for `fromAttribute` and\n`toAttribute`. If no `toAttribute` function is provided and\n`reflect` is set to `true`, the property value is set directly to the\nattribute. A default `converter` is used if none is provided; it supports\n`Boolean`, `String`, `Number`, `Object`, and `Array`. Note,\nwhen a property changes and the converter is used to update the attribute,\nthe property is never updated again as a result of the attribute changing,\nand vice versa."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -5801,7 +4819,6 @@
             }
           },
           {
-            "id": 1134,
             "name": "noAccessor",
             "kind": 1024,
             "kindString": "Property",
@@ -5812,7 +4829,6 @@
             "comment": {
               "shortText": "Indicates whether an accessor will be created for this property. By\ndefault, an accessor will be generated for this property that requests an\nupdate when set. If this flag is `true`, no accessor will be created, and\nit will be the user's responsibility to call\n`this.requestUpdate(propertyName, oldValue)` to request an update when\nthe property changes."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -5841,7 +4857,6 @@
             }
           },
           {
-            "id": 1129,
             "name": "reflect",
             "kind": 1024,
             "kindString": "Property",
@@ -5852,7 +4867,6 @@
             "comment": {
               "shortText": "Indicates if the property should reflect to an attribute.\nIf `true`, when the property is set, the attribute is set using the\nattribute name determined according to the rules for the `attribute`\nproperty option and the value of the property converted using the rules\nfrom the `converter` property option."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -5881,7 +4895,6 @@
             }
           },
           {
-            "id": 1127,
             "name": "type",
             "kind": 1024,
             "kindString": "Property",
@@ -5892,7 +4905,6 @@
             "comment": {
               "shortText": "Indicates the type of the property. This is used only as a hint for the\n`converter` to determine how to convert the attribute\nto/from a property."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -5921,7 +4933,6 @@
             }
           },
           {
-            "id": 1130,
             "name": "hasChanged",
             "kind": 2048,
             "kindString": "Method",
@@ -5931,10 +4942,8 @@
             "comment": {
               "shortText": "A function that indicates if a property should be considered changed when\nit is set. The function should take the `newValue` and `oldValue` and\nreturn `true` if an update should be requested."
             },
-            "children": [],
             "signatures": [
               {
-                "id": 1131,
                 "name": "hasChanged",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5944,7 +4953,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 1132,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5955,7 +4963,6 @@
                     }
                   },
                   {
-                    "id": 1133,
                     "name": "oldValue",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5990,21 +4997,11 @@
         "groups": [
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              1126,
-              1128,
-              1134,
-              1129,
-              1127
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              1130
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -6018,7 +5015,6 @@
         ],
         "typeParameter": [
           {
-            "id": 1135,
             "name": "Type",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -6029,7 +5025,6 @@
             }
           },
           {
-            "id": 1136,
             "name": "TypeHint",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -6055,7 +5050,6 @@
         }
       },
       {
-        "id": 1137,
         "name": "PropertyDeclarations",
         "kind": 256,
         "kindString": "Interface",
@@ -6063,7 +5057,6 @@
         "comment": {
           "shortText": "Map of properties to PropertyDeclaration options. For each property an\naccessor is made, and the property is processed according to the\nPropertyDeclaration options."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/updating-element.ts",
@@ -6074,14 +5067,12 @@
           }
         ],
         "indexSignature": {
-          "id": 1138,
           "name": "__index",
           "kind": 8192,
           "kindString": "Index signature",
           "flags": {},
           "parameters": [
             {
-              "id": 1139,
               "name": "key",
               "kind": 32768,
               "flags": {},
@@ -6093,7 +5084,6 @@
           ],
           "type": {
             "type": "reference",
-            "id": 1125,
             "name": "PropertyDeclaration",
             "location": {
               "page": "UpdatingElement",
@@ -6116,7 +5106,6 @@
         }
       },
       {
-        "id": 1140,
         "name": "PropertyValues",
         "kind": 4194304,
         "kindString": "Type alias",
@@ -6124,7 +5113,6 @@
         "comment": {
           "shortText": "Map of changed properties with old values. Takes an optional generic\ninterface corresponding to the declared element properties."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/updating-element.ts",
@@ -6136,7 +5124,6 @@
         ],
         "typeParameter": [
           {
-            "id": 1141,
             "name": "T",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -6208,7 +5195,6 @@
     },
     "items": [
       {
-        "id": 2169,
         "name": "css",
         "kind": 64,
         "kindString": "Function",
@@ -6218,7 +5204,6 @@
         "comment": {
           "shortText": "Template tag which which can be used with LitElement's [`styles`](/docs/v1/api/lit-element/LitElement/#LitElement.styles) property to set element styles. For security reasons, only literal\nstring values may be used. To incorporate non-literal values [`unsafeCSS`](/docs/v1/api/lit-element/styles/#unsafeCSS)\nmay be used inside a template string part."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/css-tag.ts",
@@ -6230,7 +5215,6 @@
         ],
         "signatures": [
           {
-            "id": 2170,
             "name": "css",
             "kind": 4096,
             "kindString": "Call signature",
@@ -6240,7 +5224,6 @@
             },
             "parameters": [
               {
-                "id": 2171,
                 "name": "strings",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6251,7 +5234,6 @@
                 }
               },
               {
-                "id": 2172,
                 "name": "values",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6269,7 +5251,6 @@
                       },
                       {
                         "type": "reference",
-                        "id": 2155,
                         "name": "CSSResult",
                         "location": {
                           "page": "styles",
@@ -6283,7 +5264,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 2155,
               "name": "CSSResult",
               "location": {
                 "page": "styles",
@@ -6307,19 +5287,16 @@
         }
       },
       {
-        "id": 2155,
         "name": "CSSResult",
         "kind": 128,
         "kindString": "Class",
         "flags": {},
         "children": [
           {
-            "id": 2156,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -6331,14 +5308,12 @@
             ],
             "signatures": [
               {
-                "id": 2157,
                 "name": "new CSSResult",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 2158,
                     "name": "cssText",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6349,7 +5324,6 @@
                     }
                   },
                   {
-                    "id": 2159,
                     "name": "safeToken",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6362,7 +5336,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 2155,
                   "name": "CSSResult",
                   "location": {
                     "page": "styles",
@@ -6386,14 +5359,12 @@
             }
           },
           {
-            "id": 2161,
             "name": "cssText",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -6422,12 +5393,10 @@
             }
           },
           {
-            "id": 2162,
             "name": "styleSheet",
             "kind": 262144,
             "kindString": "Accessor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -6455,7 +5424,6 @@
             },
             "getSignature": [
               {
-                "id": 2163,
                 "name": "styleSheet",
                 "kind": 524288,
                 "kindString": "Get signature",
@@ -6493,12 +5461,10 @@
             }
           },
           {
-            "id": 2164,
             "name": "toString",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -6510,7 +5476,6 @@
             ],
             "signatures": [
               {
-                "id": 2165,
                 "name": "toString",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6539,32 +5504,19 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              2156
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              2160,
-              2161
-            ]
+            "kind": 1024
           },
           {
             "title": "Accessors",
-            "kind": 262144,
-            "children": [
-              2162
-            ]
+            "kind": 262144
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              2164
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -6591,7 +5543,6 @@
         }
       },
       {
-        "id": 2154,
         "name": "supportsAdoptingStyleSheets",
         "kind": 32,
         "kindString": "Variable",
@@ -6601,7 +5552,6 @@
         "comment": {
           "shortText": "Whether the current browser supports `adoptedStyleSheets`."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/css-tag.ts",
@@ -6631,7 +5581,6 @@
         }
       },
       {
-        "id": 2166,
         "name": "unsafeCSS",
         "kind": 64,
         "kindString": "Function",
@@ -6642,7 +5591,6 @@
           "shortText": "Wrap a value for interpolation in a [`css`](/docs/v1/api/lit-element/styles/#css) tagged template literal.",
           "text": "This is unsafe because untrusted CSS text can be used to phone home\nor exfiltrate data to an attacker controlled site. Take care to only use\nthis with trusted input.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/css-tag.ts",
@@ -6654,7 +5602,6 @@
         ],
         "signatures": [
           {
-            "id": 2167,
             "name": "unsafeCSS",
             "kind": 4096,
             "kindString": "Call signature",
@@ -6665,7 +5612,6 @@
             },
             "parameters": [
               {
-                "id": 2168,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6678,7 +5624,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 2155,
               "name": "CSSResult",
               "location": {
                 "page": "styles",
@@ -6702,58 +5647,18 @@
         }
       },
       {
-        "id": 3,
         "name": "CSSResultArray",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
-        "children": [],
         "groups": [
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              4
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              239,
-              241,
-              14,
-              208,
-              213,
-              56,
-              203,
-              102,
-              176,
-              194,
-              234,
-              223,
-              83,
-              219,
-              48,
-              19,
-              215,
-              52,
-              92,
-              9,
-              11,
-              120,
-              148,
-              22,
-              24,
-              26,
-              74,
-              30,
-              37,
-              7,
-              5,
-              45,
-              217
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -6774,7 +5679,6 @@
                 "types": [
                   {
                     "type": "reference",
-                    "id": 2,
                     "name": "CSSResultOrNative",
                     "location": {
                       "page": "styles",
@@ -6783,7 +5687,6 @@
                   },
                   {
                     "type": "reference",
-                    "id": 3,
                     "name": "CSSResultArray",
                     "location": {
                       "page": "styles",
@@ -6818,7 +5721,6 @@
                 "types": [
                   {
                     "type": "reference",
-                    "id": 2,
                     "name": "CSSResultOrNative",
                     "location": {
                       "page": "styles",
@@ -6827,7 +5729,6 @@
                   },
                   {
                     "type": "reference",
-                    "id": 3,
                     "name": "CSSResultArray",
                     "location": {
                       "page": "styles",
@@ -6842,12 +5743,10 @@
         ]
       },
       {
-        "id": 251,
         "name": "CSSResultGroup",
         "kind": 4194304,
         "kindString": "Type alias",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/lit-element.ts",
@@ -6862,7 +5761,6 @@
           "types": [
             {
               "type": "reference",
-              "id": 2,
               "name": "CSSResultOrNative",
               "location": {
                 "page": "styles",
@@ -6871,7 +5769,6 @@
             },
             {
               "type": "reference",
-              "id": 3,
               "name": "CSSResultArray",
               "location": {
                 "page": "styles",
@@ -6895,12 +5792,10 @@
         }
       },
       {
-        "id": 2,
         "name": "CSSResultOrNative",
         "kind": 4194304,
         "kindString": "Type alias",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/lit-element.ts",
@@ -6915,7 +5810,6 @@
           "types": [
             {
               "type": "reference",
-              "id": 2155,
               "name": "CSSResult",
               "location": {
                 "page": "styles",
@@ -6955,7 +5849,6 @@
     },
     "items": [
       {
-        "id": 2135,
         "name": "customElement",
         "kind": 64,
         "kindString": "Function",
@@ -6966,7 +5859,6 @@
           "shortText": "Class decorator factory that defines the decorated class as a custom element.",
           "text": "```\n@customElement('my-element')\nclass MyElement {\n  render() {\n    return html``;\n  }\n}\n```"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -6978,7 +5870,6 @@
         ],
         "signatures": [
           {
-            "id": 2136,
             "name": "customElement",
             "kind": 4096,
             "kindString": "Call signature",
@@ -6989,7 +5880,6 @@
             },
             "parameters": [
               {
-                "id": 2137,
                 "name": "tagName",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7006,21 +5896,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2138,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2139,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2140,
                         "name": "classOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7030,7 +5917,6 @@
                           "types": [
                             {
                               "type": "reference",
-                              "id": 2132,
                               "typeArguments": [
                                 {
                                   "type": "reference",
@@ -7079,7 +5965,6 @@
         }
       },
       {
-        "id": 2120,
         "name": "eventOptions",
         "kind": 64,
         "kindString": "Function",
@@ -7093,7 +5978,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7105,7 +5989,6 @@
         ],
         "signatures": [
           {
-            "id": 2121,
             "name": "eventOptions",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7121,7 +6004,6 @@
             },
             "parameters": [
               {
-                "id": 2122,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7156,7 +6038,6 @@
         }
       },
       {
-        "id": 2091,
         "name": "internalProperty",
         "kind": 64,
         "kindString": "Function",
@@ -7171,7 +6052,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7183,7 +6063,6 @@
         ],
         "signatures": [
           {
-            "id": 2092,
             "name": "internalProperty",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7200,7 +6079,6 @@
             },
             "parameters": [
               {
-                "id": 2093,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7209,7 +6087,6 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 2141,
                   "name": "InternalPropertyDeclaration",
                   "location": {
                     "page": "decorators",
@@ -7221,21 +6098,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2094,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2095,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2096,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7255,7 +6129,6 @@
                         }
                       },
                       {
-                        "id": 2097,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7293,7 +6166,6 @@
         }
       },
       {
-        "id": 2084,
         "name": "property",
         "kind": 64,
         "kindString": "Function",
@@ -7312,7 +6184,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7324,7 +6195,6 @@
         ],
         "signatures": [
           {
-            "id": 2085,
             "name": "property",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7345,7 +6215,6 @@
             },
             "parameters": [
               {
-                "id": 2086,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7354,7 +6223,6 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 1125,
                   "name": "PropertyDeclaration",
                   "location": {
                     "page": "UpdatingElement",
@@ -7366,21 +6234,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2087,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2088,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2089,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7400,7 +6265,6 @@
                         }
                       },
                       {
-                        "id": 2090,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7438,7 +6302,6 @@
         }
       },
       {
-        "id": 2098,
         "name": "query",
         "kind": 64,
         "kindString": "Function",
@@ -7452,7 +6315,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7464,7 +6326,6 @@
         ],
         "signatures": [
           {
-            "id": 2099,
             "name": "query",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7480,7 +6341,6 @@
             },
             "parameters": [
               {
-                "id": 2100,
                 "name": "selector",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7494,7 +6354,6 @@
                 }
               },
               {
-                "id": 2101,
                 "name": "cache",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7513,21 +6372,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2102,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2103,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2104,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7547,7 +6403,6 @@
                         }
                       },
                       {
-                        "id": 2105,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7585,7 +6440,6 @@
         }
       },
       {
-        "id": 2113,
         "name": "queryAll",
         "kind": 64,
         "kindString": "Function",
@@ -7599,7 +6453,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7611,7 +6464,6 @@
         ],
         "signatures": [
           {
-            "id": 2114,
             "name": "queryAll",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7627,7 +6479,6 @@
             },
             "parameters": [
               {
-                "id": 2115,
                 "name": "selector",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7644,21 +6495,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2116,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2117,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2118,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7678,7 +6526,6 @@
                         }
                       },
                       {
-                        "id": 2119,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7716,7 +6563,6 @@
         }
       },
       {
-        "id": 2123,
         "name": "queryAssignedNodes",
         "kind": 64,
         "kindString": "Function",
@@ -7724,7 +6570,6 @@
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`. Note, the type of\nthis property should be annotated as `NodeListOf<HTMLElement>`."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7736,7 +6581,6 @@
         ],
         "signatures": [
           {
-            "id": 2124,
             "name": "queryAssignedNodes",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7746,7 +6590,6 @@
             },
             "parameters": [
               {
-                "id": 2125,
                 "name": "slotName",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7761,7 +6604,6 @@
                 "defaultValue": "''"
               },
               {
-                "id": 2126,
                 "name": "flatten",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7776,7 +6618,6 @@
                 "defaultValue": "false"
               },
               {
-                "id": 2127,
                 "name": "selector",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7794,21 +6635,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2128,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2129,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2130,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7828,7 +6666,6 @@
                         }
                       },
                       {
-                        "id": 2131,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7866,7 +6703,6 @@
         }
       },
       {
-        "id": 2106,
         "name": "queryAsync",
         "kind": 64,
         "kindString": "Function",
@@ -7880,7 +6716,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -7892,7 +6727,6 @@
         ],
         "signatures": [
           {
-            "id": 2107,
             "name": "queryAsync",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7908,7 +6742,6 @@
             },
             "parameters": [
               {
-                "id": 2108,
                 "name": "selector",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7925,21 +6758,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2109,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2110,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2111,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7959,7 +6789,6 @@
                         }
                       },
                       {
-                        "id": 2112,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -7997,7 +6826,6 @@
         }
       },
       {
-        "id": 2147,
         "name": "state",
         "kind": 64,
         "kindString": "Function",
@@ -8008,7 +6836,6 @@
           "shortText": "Declares a private or protected property that still triggers updates to the\nelement when it changes.",
           "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -8020,7 +6847,6 @@
         ],
         "signatures": [
           {
-            "id": 2148,
             "name": "state",
             "kind": 4096,
             "kindString": "Call signature",
@@ -8031,7 +6857,6 @@
             },
             "parameters": [
               {
-                "id": 2149,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -8040,7 +6865,6 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 2141,
                   "typeArguments": [
                     {
                       "type": "intrinsic",
@@ -8058,21 +6882,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 2150,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 2151,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 2152,
                         "name": "protoOrDescriptor",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -8092,7 +6913,6 @@
                         }
                       },
                       {
-                        "id": 2153,
                         "name": "name",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -8130,12 +6950,10 @@
         }
       },
       {
-        "id": 2132,
         "name": "Constructor",
         "kind": 4194304,
         "kindString": "Type alias",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -8147,7 +6965,6 @@
         ],
         "typeParameter": [
           {
-            "id": 2134,
             "name": "T",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -8157,7 +6974,6 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 2133,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -8186,14 +7002,12 @@
         }
       },
       {
-        "id": 2141,
         "name": "InternalPropertyDeclaration",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 2142,
             "name": "hasChanged",
             "kind": 2048,
             "kindString": "Method",
@@ -8203,10 +7017,8 @@
             "comment": {
               "shortText": "A function that indicates if a property should be considered changed when\nit is set. The function should take the `newValue` and `oldValue` and\nreturn `true` if an update should be requested."
             },
-            "children": [],
             "signatures": [
               {
-                "id": 2143,
                 "name": "hasChanged",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8216,7 +7028,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 2144,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8227,7 +7038,6 @@
                     }
                   },
                   {
-                    "id": 2145,
                     "name": "oldValue",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8262,10 +7072,7 @@
         "groups": [
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              2142
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -8279,7 +7086,6 @@
         ],
         "typeParameter": [
           {
-            "id": 2146,
             "name": "Type",
             "kind": 131072,
             "kindString": "Type parameter",

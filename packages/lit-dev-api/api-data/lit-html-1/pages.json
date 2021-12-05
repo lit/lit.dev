@@ -7,7 +7,6 @@
     },
     "items": [
       {
-        "id": 4884,
         "name": "html",
         "kind": 64,
         "kindString": "Function",
@@ -17,7 +16,6 @@
         "comment": {
           "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lit-html.ts",
@@ -29,7 +27,6 @@
         ],
         "signatures": [
           {
-            "id": 4885,
             "name": "html",
             "kind": 4096,
             "kindString": "Call signature",
@@ -39,7 +36,6 @@
             },
             "parameters": [
               {
-                "id": 4886,
                 "name": "strings",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -50,7 +46,6 @@
                 }
               },
               {
-                "id": 4887,
                 "name": "values",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -68,7 +63,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5278,
               "name": "TemplateResult",
               "location": {
                 "page": "templates",
@@ -92,7 +86,6 @@
         }
       },
       {
-        "id": 5069,
         "name": "nothing",
         "kind": 32,
         "kindString": "Variable",
@@ -102,7 +95,6 @@
         "comment": {
           "shortText": "A sentinel value that signals a NodePart to fully clear its content."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/part.ts",
@@ -115,7 +107,6 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 5070,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -138,7 +129,6 @@
         }
       },
       {
-        "id": 5229,
         "name": "render",
         "kind": 64,
         "kindString": "Function",
@@ -149,7 +139,6 @@
           "shortText": "Renders a template result or other value to a container.",
           "text": "To update a container with new values, reevaluate the template literal and\ncall `render` with the new result.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/render.ts",
@@ -161,7 +150,6 @@
         ],
         "signatures": [
           {
-            "id": 5230,
             "name": "render",
             "kind": 4096,
             "kindString": "Call signature",
@@ -172,7 +160,6 @@
             },
             "parameters": [
               {
-                "id": 5231,
                 "name": "result",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -186,7 +173,6 @@
                 }
               },
               {
-                "id": 5232,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -215,7 +201,6 @@
                 }
               },
               {
-                "id": 5233,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -230,7 +215,6 @@
                   "typeArguments": [
                     {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -263,7 +247,6 @@
         }
       },
       {
-        "id": 4888,
         "name": "svg",
         "kind": 64,
         "kindString": "Function",
@@ -273,7 +256,6 @@
         "comment": {
           "shortText": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lit-html.ts",
@@ -285,7 +267,6 @@
         ],
         "signatures": [
           {
-            "id": 4889,
             "name": "svg",
             "kind": 4096,
             "kindString": "Call signature",
@@ -295,7 +276,6 @@
             },
             "parameters": [
               {
-                "id": 4890,
                 "name": "strings",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -306,7 +286,6 @@
                 }
               },
               {
-                "id": 4891,
                 "name": "values",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -324,7 +303,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5263,
               "name": "SVGTemplateResult",
               "location": {
                 "page": "templates",
@@ -348,7 +326,6 @@
         }
       },
       {
-        "id": 5263,
         "name": "SVGTemplateResult",
         "kind": 128,
         "kindString": "Class",
@@ -359,22 +336,18 @@
         },
         "children": [
           {
-            "id": 5264,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "signatures": [
               {
-                "id": 5265,
                 "name": "new SVGTemplateResult",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5266,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -385,7 +358,6 @@
                     }
                   },
                   {
-                    "id": 5267,
                     "name": "values",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -403,7 +375,6 @@
                     }
                   },
                   {
-                    "id": 5268,
                     "name": "type",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -414,14 +385,12 @@
                     }
                   },
                   {
-                    "id": 5269,
                     "name": "processor",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5253,
                       "name": "TemplateProcessor",
                       "location": {
                         "page": "custom-directives",
@@ -432,7 +401,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5263,
                   "name": "SVGTemplateResult",
                   "location": {
                     "page": "templates",
@@ -441,14 +409,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 5280,
                   "name": "TemplateResult.constructor"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 5279,
               "name": "TemplateResult.constructor",
               "location": {
                 "page": "templates",
@@ -470,14 +436,12 @@
             }
           },
           {
-            "id": 5277,
             "name": "processor",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -489,7 +453,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5253,
               "name": "TemplateProcessor",
               "location": {
                 "page": "custom-directives",
@@ -498,7 +461,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5288,
               "name": "TemplateResult.processor",
               "location": {
                 "page": "templates",
@@ -520,14 +482,12 @@
             }
           },
           {
-            "id": 5274,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -543,7 +503,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5285,
               "name": "TemplateResult.strings",
               "location": {
                 "page": "templates",
@@ -565,14 +524,12 @@
             }
           },
           {
-            "id": 5276,
             "name": "type",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -588,7 +545,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5287,
               "name": "TemplateResult.type",
               "location": {
                 "page": "templates",
@@ -610,14 +566,12 @@
             }
           },
           {
-            "id": 5275,
             "name": "values",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -640,7 +594,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5286,
               "name": "TemplateResult.values",
               "location": {
                 "page": "templates",
@@ -662,7 +615,6 @@
             }
           },
           {
-            "id": 5270,
             "name": "getHTML",
             "kind": 2048,
             "kindString": "Method",
@@ -670,7 +622,6 @@
             "comment": {
               "shortText": "Returns a string of HTML used to create a `<template>` element."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -682,7 +633,6 @@
             ],
             "signatures": [
               {
-                "id": 5271,
                 "name": "getHTML",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -696,14 +646,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 5290,
                   "name": "TemplateResult.getHTML"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 5289,
               "name": "TemplateResult.getHTML",
               "location": {
                 "page": "templates",
@@ -725,12 +673,10 @@
             }
           },
           {
-            "id": 5272,
             "name": "getTemplateElement",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -742,7 +688,6 @@
             ],
             "signatures": [
               {
-                "id": 5273,
                 "name": "getTemplateElement",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -756,14 +701,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 5292,
                   "name": "TemplateResult.getTemplateElement"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 5291,
               "name": "TemplateResult.getTemplateElement",
               "location": {
                 "page": "templates",
@@ -788,28 +731,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5264
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5277,
-              5274,
-              5276,
-              5275
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5270,
-              5272
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -824,7 +754,6 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 5278,
             "name": "TemplateResult",
             "location": {
               "page": "templates",
@@ -848,7 +777,6 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 5278,
             "name": "TemplateResult",
             "location": {
               "page": "templates",
@@ -858,7 +786,6 @@
         ]
       },
       {
-        "id": 5278,
         "name": "TemplateResult",
         "kind": 128,
         "kindString": "Class",
@@ -868,12 +795,10 @@
         },
         "children": [
           {
-            "id": 5279,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -885,14 +810,12 @@
             ],
             "signatures": [
               {
-                "id": 5280,
                 "name": "new TemplateResult",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5281,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -903,7 +826,6 @@
                     }
                   },
                   {
-                    "id": 5282,
                     "name": "values",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -921,7 +843,6 @@
                     }
                   },
                   {
-                    "id": 5283,
                     "name": "type",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -932,14 +853,12 @@
                     }
                   },
                   {
-                    "id": 5284,
                     "name": "processor",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5253,
                       "name": "TemplateProcessor",
                       "location": {
                         "page": "custom-directives",
@@ -950,7 +869,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5278,
                   "name": "TemplateResult",
                   "location": {
                     "page": "templates",
@@ -974,14 +892,12 @@
             }
           },
           {
-            "id": 5288,
             "name": "processor",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -993,7 +909,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5253,
               "name": "TemplateProcessor",
               "location": {
                 "page": "custom-directives",
@@ -1015,14 +930,12 @@
             }
           },
           {
-            "id": 5285,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -1051,14 +964,12 @@
             }
           },
           {
-            "id": 5287,
             "name": "type",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -1087,14 +998,12 @@
             }
           },
           {
-            "id": 5286,
             "name": "values",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -1130,7 +1039,6 @@
             }
           },
           {
-            "id": 5289,
             "name": "getHTML",
             "kind": 2048,
             "kindString": "Method",
@@ -1138,7 +1046,6 @@
             "comment": {
               "shortText": "Returns a string of HTML used to create a `<template>` element."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -1150,7 +1057,6 @@
             ],
             "signatures": [
               {
-                "id": 5290,
                 "name": "getHTML",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1179,12 +1085,10 @@
             }
           },
           {
-            "id": 5291,
             "name": "getTemplateElement",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
@@ -1196,7 +1100,6 @@
             ],
             "signatures": [
               {
-                "id": 5292,
                 "name": "getTemplateElement",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -1228,28 +1131,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5279
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5288,
-              5285,
-              5287,
-              5286
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5289,
-              5291
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -1264,7 +1154,6 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 5263,
             "name": "SVGTemplateResult",
             "location": {
               "page": "templates",
@@ -1287,14 +1176,12 @@
         }
       },
       {
-        "id": 5225,
         "name": "RenderOptions",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 5227,
             "name": "eventContext",
             "kind": 1024,
             "kindString": "Property",
@@ -1302,7 +1189,6 @@
               "isOptional": true,
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/render-options.ts",
@@ -1331,14 +1217,12 @@
             }
           },
           {
-            "id": 5226,
             "name": "templateFactory",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/render-options.ts",
@@ -1370,11 +1254,7 @@
         "groups": [
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5227,
-              5226
-            ]
+            "kind": 1024
           }
         ],
         "sources": [
@@ -1410,7 +1290,6 @@
     },
     "items": [
       {
-        "id": 4909,
         "name": "asyncAppend",
         "kind": 64,
         "kindString": "Function",
@@ -1421,7 +1300,6 @@
           "shortText": "A directive that renders the items of an async iterable[1], appending new\nvalues after previous values, similar to the built-in support for iterables.",
           "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is appended to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/async-append.ts",
@@ -1433,7 +1311,6 @@
         ],
         "signatures": [
           {
-            "id": 4910,
             "name": "asyncAppend",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1444,7 +1321,6 @@
             },
             "typeParameter": [
               {
-                "id": 4911,
                 "name": "T",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -1453,7 +1329,6 @@
             ],
             "parameters": [
               {
-                "id": 4912,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1473,7 +1348,6 @@
                 }
               },
               {
-                "id": 4913,
                 "name": "mapper",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1486,21 +1360,18 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 4914,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "signatures": [
                       {
-                        "id": 4915,
                         "name": "__type",
                         "kind": 4096,
                         "kindString": "Call signature",
                         "flags": {},
                         "parameters": [
                           {
-                            "id": 4916,
                             "name": "v",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1511,7 +1382,6 @@
                             }
                           },
                           {
-                            "id": 4917,
                             "name": "index",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1537,28 +1407,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4918,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4919,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4920,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1598,7 +1464,6 @@
         }
       },
       {
-        "id": 4922,
         "name": "asyncReplace",
         "kind": 64,
         "kindString": "Function",
@@ -1609,7 +1474,6 @@
           "shortText": "A directive that renders the items of an async iterable[1], replacing\nprevious values with new values, so that only one value is ever rendered\nat a time.",
           "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is rendered to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/async-replace.ts",
@@ -1621,7 +1485,6 @@
         ],
         "signatures": [
           {
-            "id": 4923,
             "name": "asyncReplace",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1632,7 +1495,6 @@
             },
             "typeParameter": [
               {
-                "id": 4924,
                 "name": "T",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -1641,7 +1503,6 @@
             ],
             "parameters": [
               {
-                "id": 4925,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1661,7 +1522,6 @@
                 }
               },
               {
-                "id": 4926,
                 "name": "mapper",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1674,21 +1534,18 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 4927,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "signatures": [
                       {
-                        "id": 4928,
                         "name": "__type",
                         "kind": 4096,
                         "kindString": "Call signature",
                         "flags": {},
                         "parameters": [
                           {
-                            "id": 4929,
                             "name": "v",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1699,7 +1556,6 @@
                             }
                           },
                           {
-                            "id": 4930,
                             "name": "index",
                             "kind": 32768,
                             "kindString": "Parameter",
@@ -1725,28 +1581,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4931,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4932,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4933,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1786,7 +1638,6 @@
         }
       },
       {
-        "id": 4935,
         "name": "cache",
         "kind": 64,
         "kindString": "Function",
@@ -1797,7 +1648,6 @@
           "shortText": "Enables fast switching between multiple templates by caching the DOM nodes\nand TemplateInstances produced by the templates.",
           "text": "Example:\n\n```\nlet checked = false;\n\nhtml`\n  ${cache(checked ? html`input is checked` : html`input is not checked`)}\n`\n```\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/cache.ts",
@@ -1809,7 +1659,6 @@
         ],
         "signatures": [
           {
-            "id": 4936,
             "name": "cache",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1820,7 +1669,6 @@
             },
             "parameters": [
               {
-                "id": 4937,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1834,28 +1682,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4938,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4939,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4940,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1889,7 +1733,6 @@
         }
       },
       {
-        "id": 4945,
         "name": "classMap",
         "kind": 64,
         "kindString": "Function",
@@ -1899,7 +1742,6 @@
         "comment": {
           "shortText": "A directive that applies CSS classes. This must be used in the `class`\nattribute and must be the only part used in the attribute. It takes each\nproperty in the `classInfo` argument and adds the property name to the\nelement's `class` if the property value is truthy; if the property value is\nfalsey, the property name is removed from the element's `class`. For example\n`{foo: bar}` applies the class `foo` if the value of `bar` is truthy."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/class-map.ts",
@@ -1911,7 +1753,6 @@
         ],
         "signatures": [
           {
-            "id": 4946,
             "name": "classMap",
             "kind": 4096,
             "kindString": "Call signature",
@@ -1921,7 +1762,6 @@
             },
             "parameters": [
               {
-                "id": 4947,
                 "name": "classInfo",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -1931,7 +1771,6 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 4942,
                   "name": "ClassInfo",
                   "location": {
                     "page": "directives",
@@ -1943,28 +1782,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4948,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4949,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4950,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -1998,12 +1833,10 @@
         }
       },
       {
-        "id": 4942,
         "name": "ClassInfo",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/class-map.ts",
@@ -2014,14 +1847,12 @@
           }
         ],
         "indexSignature": {
-          "id": 4943,
           "name": "__index",
           "kind": 8192,
           "kindString": "Index signature",
           "flags": {},
           "parameters": [
             {
-              "id": 4944,
               "name": "name",
               "kind": 32768,
               "flags": {},
@@ -2064,7 +1895,6 @@
         }
       },
       {
-        "id": 4952,
         "name": "guard",
         "kind": 64,
         "kindString": "Function",
@@ -2075,7 +1905,6 @@
           "shortText": "Prevents re-render of a template function until a single value or an array of\nvalues changes.",
           "text": "Example:\n\n```js\nhtml`\n  <div>\n    ${guard([user.id, company.id], () => html`...`)}\n  </div>\n```\n\nIn this case, the template only renders if either `user.id` or `company.id`\nchanges.\n\nguard() is useful with immutable data patterns, by preventing expensive work\nuntil data updates.\n\nExample:\n\n```js\nhtml`\n  <div>\n    ${guard([immutableItems], () => immutableItems.map(i => html`${i}`))}\n  </div>\n```\n\nIn this case, items are mapped over only when the array reference changes.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/guard.ts",
@@ -2087,7 +1916,6 @@
         ],
         "signatures": [
           {
-            "id": 4953,
             "name": "guard",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2098,7 +1926,6 @@
             },
             "parameters": [
               {
-                "id": 4954,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2112,7 +1939,6 @@
                 }
               },
               {
-                "id": 4955,
                 "name": "f",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2123,14 +1949,12 @@
                 "type": {
                   "type": "reflection",
                   "declaration": {
-                    "id": 4956,
                     "name": "__type",
                     "kind": 65536,
                     "kindString": "Type literal",
                     "flags": {},
                     "signatures": [
                       {
-                        "id": 4957,
                         "name": "__type",
                         "kind": 4096,
                         "kindString": "Call signature",
@@ -2148,28 +1972,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4958,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4959,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4960,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -2203,7 +2023,6 @@
         }
       },
       {
-        "id": 4962,
         "name": "ifDefined",
         "kind": 64,
         "kindString": "Function",
@@ -2214,7 +2033,6 @@
           "shortText": "For AttributeParts, sets the attribute if the value is defined and removes\nthe attribute if the value is undefined.",
           "text": "For other part types, this directive is a no-op.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/if-defined.ts",
@@ -2226,7 +2044,6 @@
         ],
         "signatures": [
           {
-            "id": 4963,
             "name": "ifDefined",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2237,7 +2054,6 @@
             },
             "parameters": [
               {
-                "id": 4964,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2251,28 +2067,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4965,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4966,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4967,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -2306,7 +2118,6 @@
         }
       },
       {
-        "id": 4969,
         "name": "live",
         "kind": 64,
         "kindString": "Function",
@@ -2317,7 +2128,6 @@
           "shortText": "Checks binding values against live DOM values, instead of previously bound\nvalues, when determining whether to update the value.",
           "text": "This is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an `<input>` element's `value` property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want—if you want to overwrite the DOM\nvalue with the bound value no matter what—use the `live()` directive:\n\n    html`<input .value=${live(x)}>`\n\n`live()` performs a strict equality check agains the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n`live()` should not be used when the binding will cause a type conversion. If\nyou use `live()` with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/live.ts",
@@ -2329,7 +2139,6 @@
         ],
         "signatures": [
           {
-            "id": 4970,
             "name": "live",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2340,7 +2149,6 @@
             },
             "parameters": [
               {
-                "id": 4971,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2354,21 +2162,18 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4972,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4973,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4974,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
@@ -2378,7 +2183,6 @@
                           "types": [
                             {
                               "type": "reference",
-                              "id": 5095,
                               "name": "AttributePart",
                               "location": {
                                 "page": "custom-directives",
@@ -2387,7 +2191,6 @@
                             },
                             {
                               "type": "reference",
-                              "id": 5214,
                               "name": "PropertyPart",
                               "location": {
                                 "page": "custom-directives",
@@ -2396,7 +2199,6 @@
                             },
                             {
                               "type": "reference",
-                              "id": 5106,
                               "name": "BooleanAttributePart",
                               "location": {
                                 "page": "custom-directives",
@@ -2432,7 +2234,6 @@
         }
       },
       {
-        "id": 4988,
         "name": "repeat",
         "kind": 64,
         "kindString": "Function",
@@ -2443,7 +2244,6 @@
           "shortText": "A directive that repeats a series of values (usually `TemplateResults`)\ngenerated from an iterable, and updates those items efficiently when the\niterable changes based on user-provided `keys` associated with each item.",
           "text": "Note that if a `keyFn` is provided, strict key-to-DOM mapping is maintained,\nmeaning previous DOM for a given key is moved into the new position if\nneeded, and DOM will never be reused with values for different keys (new DOM\nwill always be created for new keys). This is generally the most efficient\nway to use `repeat` since it performs minimum unnecessary work for insertions\nand removals.\n\nIMPORTANT: If providing a `keyFn`, keys *must* be unique for all items in a\ngiven call to `repeat`. The behavior when two or more items have the same key\nis undefined.\n\nIf no `keyFn` is provided, this directive will perform similar to mapping\nitems to values, and DOM will be reused against potentially different items.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/repeat.ts",
@@ -2455,7 +2255,6 @@
         ],
         "signatures": [
           {
-            "id": 4989,
             "name": "repeat",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2466,7 +2265,6 @@
             },
             "typeParameter": [
               {
-                "id": 4990,
                 "name": "T",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -2475,7 +2273,6 @@
             ],
             "parameters": [
               {
-                "id": 4991,
                 "name": "items",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2492,7 +2289,6 @@
                 }
               },
               {
-                "id": 4992,
                 "name": "keyFnOrTemplate",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2502,7 +2298,6 @@
                   "types": [
                     {
                       "type": "reference",
-                      "id": 4976,
                       "typeArguments": [
                         {
                           "type": "reference",
@@ -2517,7 +2312,6 @@
                     },
                     {
                       "type": "reference",
-                      "id": 4982,
                       "typeArguments": [
                         {
                           "type": "reference",
@@ -2534,7 +2328,6 @@
                 }
               },
               {
-                "id": 4993,
                 "name": "template",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2543,7 +2336,6 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 4982,
                   "typeArguments": [
                     {
                       "type": "reference",
@@ -2560,7 +2352,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5049,
               "name": "DirectiveFn",
               "location": {
                 "page": "custom-directives",
@@ -2584,12 +2375,10 @@
         }
       },
       {
-        "id": 4982,
         "name": "ItemTemplate",
         "kind": 4194304,
         "kindString": "Type alias",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/repeat.ts",
@@ -2601,7 +2390,6 @@
         ],
         "typeParameter": [
           {
-            "id": 4987,
             "name": "T",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -2611,7 +2399,6 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 4983,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -2625,14 +2412,12 @@
             ],
             "signatures": [
               {
-                "id": 4984,
                 "name": "__type",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 4985,
                     "name": "item",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2643,7 +2428,6 @@
                     }
                   },
                   {
-                    "id": 4986,
                     "name": "index",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2677,12 +2461,10 @@
         }
       },
       {
-        "id": 4976,
         "name": "KeyFn",
         "kind": 4194304,
         "kindString": "Type alias",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/repeat.ts",
@@ -2694,7 +2476,6 @@
         ],
         "typeParameter": [
           {
-            "id": 4981,
             "name": "T",
             "kind": 131072,
             "kindString": "Type parameter",
@@ -2704,7 +2485,6 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 4977,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -2718,14 +2498,12 @@
             ],
             "signatures": [
               {
-                "id": 4978,
                 "name": "__type",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 4979,
                     "name": "item",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2736,7 +2514,6 @@
                     }
                   },
                   {
-                    "id": 4980,
                     "name": "index",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -2770,7 +2547,6 @@
         }
       },
       {
-        "id": 4998,
         "name": "styleMap",
         "kind": 64,
         "kindString": "Function",
@@ -2781,7 +2557,6 @@
           "shortText": "A directive that applies CSS properties to an element.",
           "text": "`styleMap` can only be used in the `style` attribute and must be the only\nexpression in the attribute. It takes the property names in the `styleInfo`\nobject and adds the property values as CSS properties. Property names with\ndashes (`-`) are assumed to be valid CSS property names and set on the\nelement's style object using `setProperty()`. Names without dashes are\nassumed to be camelCased JavaScript property names and set on the element's\nstyle object using property assignment, allowing the style object to\ntranslate JavaScript-style names to CSS property names.\n\nFor example `styleMap({backgroundColor: 'red', 'border-top': '5px', '--size':\n'0'})` sets the `background-color`, `border-top` and `--size` properties.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/style-map.ts",
@@ -2793,7 +2568,6 @@
         ],
         "signatures": [
           {
-            "id": 4999,
             "name": "styleMap",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2804,7 +2578,6 @@
             },
             "parameters": [
               {
-                "id": 5000,
                 "name": "styleInfo",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2814,7 +2587,6 @@
                 },
                 "type": {
                   "type": "reference",
-                  "id": 4995,
                   "name": "StyleInfo",
                   "location": {
                     "page": "directives",
@@ -2826,28 +2598,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 5001,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 5002,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 5003,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -2881,12 +2649,10 @@
         }
       },
       {
-        "id": 4995,
         "name": "StyleInfo",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/style-map.ts",
@@ -2897,14 +2663,12 @@
           }
         ],
         "indexSignature": {
-          "id": 4996,
           "name": "__index",
           "kind": 8192,
           "kindString": "Index signature",
           "flags": {},
           "parameters": [
             {
-              "id": 4997,
               "name": "name",
               "kind": 32768,
               "flags": {},
@@ -2934,7 +2698,6 @@
         }
       },
       {
-        "id": 5005,
         "name": "templateContent",
         "kind": 64,
         "kindString": "Function",
@@ -2945,7 +2708,6 @@
           "shortText": "Renders the content of a template element as HTML.",
           "text": "Note, the template should be developer controlled and not user controlled.\nRendering a user-controlled template with this directive\ncould lead to cross-site-scripting vulnerabilities.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/template-content.ts",
@@ -2957,7 +2719,6 @@
         ],
         "signatures": [
           {
-            "id": 5006,
             "name": "templateContent",
             "kind": 4096,
             "kindString": "Call signature",
@@ -2968,7 +2729,6 @@
             },
             "parameters": [
               {
-                "id": 5007,
                 "name": "template",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -2985,28 +2745,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 5008,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 5009,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 5010,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3040,7 +2796,6 @@
         }
       },
       {
-        "id": 5012,
         "name": "unsafeHTML",
         "kind": 64,
         "kindString": "Function",
@@ -3051,7 +2806,6 @@
           "shortText": "Renders the result as HTML, rather than text.",
           "text": "Note, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/unsafe-html.ts",
@@ -3063,7 +2817,6 @@
         ],
         "signatures": [
           {
-            "id": 5013,
             "name": "unsafeHTML",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3074,7 +2827,6 @@
             },
             "parameters": [
               {
-                "id": 5014,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3088,28 +2840,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 5015,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 5016,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 5017,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3143,7 +2891,6 @@
         }
       },
       {
-        "id": 5019,
         "name": "unsafeSVG",
         "kind": 64,
         "kindString": "Function",
@@ -3154,7 +2901,6 @@
           "shortText": "Renders the result as SVG, rather than text.",
           "text": "Note, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/unsafe-svg.ts",
@@ -3166,7 +2912,6 @@
         ],
         "signatures": [
           {
-            "id": 5020,
             "name": "unsafeSVG",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3177,7 +2922,6 @@
             },
             "parameters": [
               {
-                "id": 5021,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3191,28 +2935,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 5022,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 5023,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 5024,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3246,7 +2986,6 @@
         }
       },
       {
-        "id": 5026,
         "name": "until",
         "kind": 64,
         "kindString": "Function",
@@ -3257,7 +2996,6 @@
           "shortText": "Renders one of a series of values, including Promises, to a Part.",
           "text": "Values are rendered in priority order, with the first argument having the\nhighest priority and the last argument having the lowest priority. If a\nvalue is a Promise, low-priority values will be rendered until it resolves.\n\nThe priority of values can be used to create placeholder content for async\ndata. For example, a Promise with pending content can be the first,\nhighest-priority, argument, and a non_promise loading indicator template can\nbe used as the second, lower-priority, argument. The loading indicator will\nrender immediately, and the primary content will render when the Promise\nresolves.\n\nExample:\n\n    const content = fetch('./content.txt').then(r => r.text());\n    html`${until(content, html`<span>Loading...</span>`)}`\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/directives/until.ts",
@@ -3269,7 +3007,6 @@
         ],
         "signatures": [
           {
-            "id": 5027,
             "name": "until",
             "kind": 4096,
             "kindString": "Call signature",
@@ -3280,7 +3017,6 @@
             },
             "parameters": [
               {
-                "id": 5028,
                 "name": "args",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -3299,28 +3035,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 5029,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 5030,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 5031,
                         "name": "part",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5071,
                           "name": "Part",
                           "location": {
                             "page": "custom-directives",
@@ -3363,7 +3095,6 @@
     },
     "items": [
       {
-        "id": 5078,
         "name": "AttributeCommitter",
         "kind": 128,
         "kindString": "Class",
@@ -3373,12 +3104,10 @@
         },
         "children": [
           {
-            "id": 5079,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3390,14 +3119,12 @@
             ],
             "signatures": [
               {
-                "id": 5080,
                 "name": "new AttributeCommitter",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5081,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3411,7 +3138,6 @@
                     }
                   },
                   {
-                    "id": 5082,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3422,7 +3148,6 @@
                     }
                   },
                   {
-                    "id": 5083,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -3442,7 +3167,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5078,
                   "name": "AttributeCommitter",
                   "location": {
                     "page": "custom-directives",
@@ -3466,12 +3190,10 @@
             }
           },
           {
-            "id": 5088,
             "name": "dirty",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3501,14 +3223,12 @@
             }
           },
           {
-            "id": 5084,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3540,14 +3260,12 @@
             }
           },
           {
-            "id": 5085,
             "name": "name",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3576,14 +3294,12 @@
             }
           },
           {
-            "id": 5087,
             "name": "parts",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3600,7 +3316,6 @@
                 "type": "array",
                 "elementType": {
                   "type": "reference",
-                  "id": 5095,
                   "name": "AttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -3624,14 +3339,12 @@
             }
           },
           {
-            "id": 5086,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3667,12 +3380,10 @@
             }
           },
           {
-            "id": 5093,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3684,7 +3395,6 @@
             ],
             "signatures": [
               {
-                "id": 5094,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3713,30 +3423,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5079
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5088,
-              5084,
-              5085,
-              5087,
-              5086
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5089,
-              5091,
-              5093
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -3751,7 +3446,6 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 5196,
             "name": "PropertyCommitter",
             "location": {
               "page": "custom-directives",
@@ -3774,7 +3468,6 @@
         }
       },
       {
-        "id": 5095,
         "name": "AttributePart",
         "kind": 128,
         "kindString": "Class",
@@ -3784,12 +3477,10 @@
         },
         "children": [
           {
-            "id": 5096,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3801,21 +3492,18 @@
             ],
             "signatures": [
               {
-                "id": 5097,
                 "name": "new AttributePart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5098,
                     "name": "committer",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5078,
                       "name": "AttributeCommitter",
                       "location": {
                         "page": "custom-directives",
@@ -3826,7 +3514,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5095,
                   "name": "AttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -3850,14 +3537,12 @@
             }
           },
           {
-            "id": 5099,
             "name": "committer",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3869,7 +3554,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5078,
               "name": "AttributeCommitter",
               "location": {
                 "page": "custom-directives",
@@ -3891,12 +3575,10 @@
             }
           },
           {
-            "id": 5100,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3913,7 +3595,6 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -3935,7 +3616,6 @@
             }
           },
           {
-            "id": 5104,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -3944,7 +3624,6 @@
               "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
               "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -3956,7 +3635,6 @@
             ],
             "signatures": [
               {
-                "id": 5105,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -3971,14 +3649,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -4000,7 +3676,6 @@
             }
           },
           {
-            "id": 5101,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -4008,7 +3683,6 @@
             "comment": {
               "shortText": "Sets the current part value, but does not write it to the DOM."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4020,7 +3694,6 @@
             ],
             "signatures": [
               {
-                "id": 5102,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4030,7 +3703,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5103,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4047,14 +3719,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -4079,26 +3749,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5096
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5099,
-              5100
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5104,
-              5101
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -4113,7 +3772,6 @@
         "extendedBy": [
           {
             "type": "reference",
-            "id": 5214,
             "name": "PropertyPart",
             "location": {
               "page": "custom-directives",
@@ -4124,7 +3782,6 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -4147,7 +3804,6 @@
         }
       },
       {
-        "id": 5106,
         "name": "BooleanAttributePart",
         "kind": 128,
         "kindString": "Class",
@@ -4158,12 +3814,10 @@
         },
         "children": [
           {
-            "id": 5107,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4175,14 +3829,12 @@
             ],
             "signatures": [
               {
-                "id": 5108,
                 "name": "new BooleanAttributePart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5109,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4196,7 +3848,6 @@
                     }
                   },
                   {
-                    "id": 5110,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4207,7 +3858,6 @@
                     }
                   },
                   {
-                    "id": 5111,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4227,7 +3877,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5106,
                   "name": "BooleanAttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -4251,14 +3900,12 @@
             }
           },
           {
-            "id": 5112,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4290,14 +3937,12 @@
             }
           },
           {
-            "id": 5113,
             "name": "name",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4326,14 +3971,12 @@
             }
           },
           {
-            "id": 5114,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4369,12 +4012,10 @@
             }
           },
           {
-            "id": 5115,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4391,7 +4032,6 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -4413,7 +4053,6 @@
             }
           },
           {
-            "id": 5120,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -4422,7 +4061,6 @@
               "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
               "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4434,7 +4072,6 @@
             ],
             "signatures": [
               {
-                "id": 5121,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4449,14 +4086,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -4478,7 +4113,6 @@
             }
           },
           {
-            "id": 5117,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -4486,7 +4120,6 @@
             "comment": {
               "shortText": "Sets the current part value, but does not write it to the DOM."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -4498,7 +4131,6 @@
             ],
             "signatures": [
               {
-                "id": 5118,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4508,7 +4140,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5119,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4525,14 +4156,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -4557,29 +4186,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5107
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5116,
-              5112,
-              5113,
-              5114,
-              5115
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5120,
-              5117
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -4594,7 +4209,6 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -4617,14 +4231,12 @@
         }
       },
       {
-        "id": 5293,
         "name": "createMarker",
         "kind": 64,
         "kindString": "Function",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/template.ts",
@@ -4636,7 +4248,6 @@
         ],
         "signatures": [
           {
-            "id": 5294,
             "name": "createMarker",
             "kind": 4096,
             "kindString": "Call signature",
@@ -4662,14 +4273,12 @@
         }
       },
       {
-        "id": 5044,
         "name": "defaultTemplateProcessor",
         "kind": 32,
         "kindString": "Variable",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/default-template-processor.ts",
@@ -4681,7 +4290,6 @@
         ],
         "type": {
           "type": "reference",
-          "id": 5032,
           "name": "DefaultTemplateProcessor",
           "location": {
             "page": "custom-directives",
@@ -4704,7 +4312,6 @@
         }
       },
       {
-        "id": 5032,
         "name": "DefaultTemplateProcessor",
         "kind": 128,
         "kindString": "Class",
@@ -4714,22 +4321,18 @@
         },
         "children": [
           {
-            "id": 5033,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "signatures": [
               {
-                "id": 5034,
                 "name": "new DefaultTemplateProcessor",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 5032,
                   "name": "DefaultTemplateProcessor",
                   "location": {
                     "page": "custom-directives",
@@ -4753,7 +4356,6 @@
             }
           },
           {
-            "id": 5035,
             "name": "handleAttributeExpressions",
             "kind": 2048,
             "kindString": "Method",
@@ -4761,7 +4363,6 @@
             "comment": {
               "shortText": "Create parts for an attribute-position binding, given the event, attribute\nname, and string literals."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/default-template-processor.ts",
@@ -4773,7 +4374,6 @@
             ],
             "signatures": [
               {
-                "id": 5036,
                 "name": "handleAttributeExpressions",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4783,7 +4383,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5037,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4800,7 +4399,6 @@
                     }
                   },
                   {
-                    "id": 5038,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4814,7 +4412,6 @@
                     }
                   },
                   {
-                    "id": 5039,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -4831,14 +4428,12 @@
                     }
                   },
                   {
-                    "id": 5040,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -4854,7 +4449,6 @@
                     "type": "array",
                     "elementType": {
                       "type": "reference",
-                      "id": 5071,
                       "name": "Part",
                       "location": {
                         "page": "custom-directives",
@@ -4865,14 +4459,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5255,
                   "name": "TemplateProcessor.handleAttributeExpressions"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5254,
               "name": "TemplateProcessor.handleAttributeExpressions",
               "location": {
                 "page": "custom-directives",
@@ -4894,7 +4486,6 @@
             }
           },
           {
-            "id": 5041,
             "name": "handleTextExpression",
             "kind": 2048,
             "kindString": "Method",
@@ -4902,7 +4493,6 @@
             "comment": {
               "shortText": "Create parts for a text-position binding."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/default-template-processor.ts",
@@ -4914,7 +4504,6 @@
             ],
             "signatures": [
               {
-                "id": 5042,
                 "name": "handleTextExpression",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -4924,14 +4513,12 @@
                 },
                 "parameters": [
                   {
-                    "id": 5043,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -4942,7 +4529,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5152,
                   "name": "NodePart",
                   "location": {
                     "page": "custom-directives",
@@ -4951,14 +4537,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5261,
                   "name": "TemplateProcessor.handleTextExpression"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5260,
               "name": "TemplateProcessor.handleTextExpression",
               "location": {
                 "page": "custom-directives",
@@ -4983,18 +4567,11 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5033
-            ]
+            "kind": 512
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5035,
-              5041
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -5009,7 +4586,6 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 5253,
             "name": "TemplateProcessor",
             "location": {
               "page": "custom-directives",
@@ -5032,7 +4608,6 @@
         }
       },
       {
-        "id": 5045,
         "name": "directive",
         "kind": 64,
         "kindString": "Function",
@@ -5049,7 +4624,6 @@
             }
           ]
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/directive.ts",
@@ -5061,7 +4635,6 @@
         ],
         "signatures": [
           {
-            "id": 5046,
             "name": "directive",
             "kind": 4096,
             "kindString": "Call signature",
@@ -5078,7 +4651,6 @@
             },
             "typeParameter": [
               {
-                "id": 5047,
                 "name": "F",
                 "kind": 131072,
                 "kindString": "Type parameter",
@@ -5091,7 +4663,6 @@
             ],
             "parameters": [
               {
-                "id": 5048,
                 "name": "f",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5126,19 +4697,16 @@
         }
       },
       {
-        "id": 5122,
         "name": "EventPart",
         "kind": 128,
         "kindString": "Class",
         "flags": {},
         "children": [
           {
-            "id": 5123,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5150,14 +4718,12 @@
             ],
             "signatures": [
               {
-                "id": 5124,
                 "name": "new EventPart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5125,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5171,7 +4737,6 @@
                     }
                   },
                   {
-                    "id": 5126,
                     "name": "eventName",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5182,7 +4747,6 @@
                     }
                   },
                   {
-                    "id": 5127,
                     "name": "eventContext",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5197,7 +4761,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5122,
                   "name": "EventPart",
                   "location": {
                     "page": "custom-directives",
@@ -5221,14 +4784,12 @@
             }
           },
           {
-            "id": 5128,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5260,7 +4821,6 @@
             }
           },
           {
-            "id": 5130,
             "name": "eventContext",
             "kind": 1024,
             "kindString": "Property",
@@ -5268,7 +4828,6 @@
               "isOptional": true,
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5297,14 +4856,12 @@
             }
           },
           {
-            "id": 5129,
             "name": "eventName",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5333,12 +4890,10 @@
             }
           },
           {
-            "id": 5131,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5364,7 +4919,6 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -5386,7 +4940,6 @@
             }
           },
           {
-            "id": 5141,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -5395,7 +4948,6 @@
               "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
               "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5407,7 +4959,6 @@
             ],
             "signatures": [
               {
-                "id": 5142,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5422,14 +4973,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -5451,12 +5000,10 @@
             }
           },
           {
-            "id": 5143,
             "name": "handleEvent",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5468,14 +5015,12 @@
             ],
             "signatures": [
               {
-                "id": 5144,
                 "name": "handleEvent",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5145,
                     "name": "event",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5507,7 +5052,6 @@
             }
           },
           {
-            "id": 5138,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -5515,7 +5059,6 @@
             "comment": {
               "shortText": "Sets the current part value, but does not write it to the DOM."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5527,7 +5070,6 @@
             ],
             "signatures": [
               {
-                "id": 5139,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -5537,7 +5079,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5140,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -5563,14 +5104,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -5595,32 +5134,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5123
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5134,
-              5132,
-              5133,
-              5128,
-              5130,
-              5129,
-              5131
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5141,
-              5143,
-              5138
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -5635,7 +5157,6 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -5658,14 +5179,12 @@
         }
       },
       {
-        "id": 5053,
         "name": "isDirective",
         "kind": 64,
         "kindString": "Function",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/directive.ts",
@@ -5677,14 +5196,12 @@
         ],
         "signatures": [
           {
-            "id": 5054,
             "name": "isDirective",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 5055,
                 "name": "o",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5701,7 +5218,6 @@
               "asserts": false,
               "targetType": {
                 "type": "reference",
-                "id": 5049,
                 "name": "DirectiveFn",
                 "location": {
                   "page": "custom-directives",
@@ -5726,14 +5242,12 @@
         }
       },
       {
-        "id": 5146,
         "name": "isIterable",
         "kind": 64,
         "kindString": "Function",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
@@ -5745,14 +5259,12 @@
         ],
         "signatures": [
           {
-            "id": 5147,
             "name": "isIterable",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 5148,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5795,14 +5307,12 @@
         }
       },
       {
-        "id": 5149,
         "name": "isPrimitive",
         "kind": 64,
         "kindString": "Function",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
@@ -5814,14 +5324,12 @@
         ],
         "signatures": [
           {
-            "id": 5150,
             "name": "isPrimitive",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 5151,
                 "name": "value",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5858,14 +5366,12 @@
         }
       },
       {
-        "id": 5295,
         "name": "isTemplatePartActive",
         "kind": 64,
         "kindString": "Function",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/template.ts",
@@ -5877,14 +5383,12 @@
         ],
         "signatures": [
           {
-            "id": 5296,
             "name": "isTemplatePartActive",
             "kind": 4096,
             "kindString": "Call signature",
             "flags": {},
             "parameters": [
               {
-                "id": 5297,
                 "name": "part",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -5916,7 +5420,6 @@
         }
       },
       {
-        "id": 5067,
         "name": "noChange",
         "kind": 32,
         "kindString": "Variable",
@@ -5926,7 +5429,6 @@
         "comment": {
           "shortText": "A sentinel value that signals that a value was handled by a directive and\nshould not be written to the DOM."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/part.ts",
@@ -5939,7 +5441,6 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 5068,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -5962,7 +5463,6 @@
         }
       },
       {
-        "id": 5152,
         "name": "NodePart",
         "kind": 128,
         "kindString": "Class",
@@ -5973,12 +5473,10 @@
         },
         "children": [
           {
-            "id": 5153,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -5990,21 +5488,18 @@
             ],
             "signatures": [
               {
-                "id": 5154,
                 "name": "new NodePart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5155,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -6015,7 +5510,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5152,
                   "name": "NodePart",
                   "location": {
                     "page": "custom-directives",
@@ -6039,12 +5533,10 @@
             }
           },
           {
-            "id": 5158,
             "name": "endNode",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6073,14 +5565,12 @@
             }
           },
           {
-            "id": 5156,
             "name": "options",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6092,7 +5582,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5225,
               "name": "RenderOptions",
               "location": {
                 "page": "templates",
@@ -6114,12 +5603,10 @@
             }
           },
           {
-            "id": 5157,
             "name": "startNode",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6148,12 +5635,10 @@
             }
           },
           {
-            "id": 5159,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6170,7 +5655,6 @@
             "defaultValue": "...",
             "implementationOf": {
               "type": "reference",
-              "id": 5072,
               "name": "Part.value",
               "location": {
                 "page": "custom-directives",
@@ -6192,7 +5676,6 @@
             }
           },
           {
-            "id": 5161,
             "name": "appendInto",
             "kind": 2048,
             "kindString": "Method",
@@ -6201,7 +5684,6 @@
               "shortText": "Appends this part into a container.",
               "text": "This part must be empty, as its contents are not automatically moved.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6213,7 +5695,6 @@
             ],
             "signatures": [
               {
-                "id": 5162,
                 "name": "appendInto",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6224,7 +5705,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5163,
                     "name": "container",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6256,7 +5736,6 @@
             }
           },
           {
-            "id": 5167,
             "name": "appendIntoPart",
             "kind": 2048,
             "kindString": "Method",
@@ -6265,7 +5744,6 @@
               "shortText": "Appends this part into a parent part.",
               "text": "This part must be empty, as its contents are not automatically moved.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6277,7 +5755,6 @@
             ],
             "signatures": [
               {
-                "id": 5168,
                 "name": "appendIntoPart",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6288,14 +5765,12 @@
                 },
                 "parameters": [
                   {
-                    "id": 5169,
                     "name": "part",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5152,
                       "name": "NodePart",
                       "location": {
                         "page": "custom-directives",
@@ -6325,12 +5800,10 @@
             }
           },
           {
-            "id": 5193,
             "name": "clear",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6342,14 +5815,12 @@
             ],
             "signatures": [
               {
-                "id": 5194,
                 "name": "clear",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5195,
                     "name": "startNode",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6382,7 +5853,6 @@
             }
           },
           {
-            "id": 5176,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -6391,7 +5861,6 @@
               "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
               "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6403,7 +5872,6 @@
             ],
             "signatures": [
               {
-                "id": 5177,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6418,14 +5886,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5077,
                   "name": "Part.commit"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5076,
               "name": "Part.commit",
               "location": {
                 "page": "custom-directives",
@@ -6447,7 +5913,6 @@
             }
           },
           {
-            "id": 5164,
             "name": "insertAfterNode",
             "kind": 2048,
             "kindString": "Method",
@@ -6456,7 +5921,6 @@
               "shortText": "Inserts this part after the `ref` node (between `ref` and `ref`'s next\nsibling). Both `ref` and its next sibling must be static, unchanging nodes\nsuch as those that appear in a literal section of a template.",
               "text": "This part must be empty, as its contents are not automatically moved.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6468,7 +5932,6 @@
             ],
             "signatures": [
               {
-                "id": 5165,
                 "name": "insertAfterNode",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6479,7 +5942,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5166,
                     "name": "ref",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6511,7 +5973,6 @@
             }
           },
           {
-            "id": 5170,
             "name": "insertAfterPart",
             "kind": 2048,
             "kindString": "Method",
@@ -6520,7 +5981,6 @@
               "shortText": "Inserts this part after the `ref` part.",
               "text": "This part must be empty, as its contents are not automatically moved.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6532,7 +5992,6 @@
             ],
             "signatures": [
               {
-                "id": 5171,
                 "name": "insertAfterPart",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6543,14 +6002,12 @@
                 },
                 "parameters": [
                   {
-                    "id": 5172,
                     "name": "ref",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5152,
                       "name": "NodePart",
                       "location": {
                         "page": "custom-directives",
@@ -6580,7 +6037,6 @@
             }
           },
           {
-            "id": 5173,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -6588,7 +6044,6 @@
             "comment": {
               "shortText": "Sets the current part value, but does not write it to the DOM."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6600,7 +6055,6 @@
             ],
             "signatures": [
               {
-                "id": 5174,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -6610,7 +6064,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5175,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6627,14 +6080,12 @@
                 },
                 "implementationOf": {
                   "type": "reference",
-                  "id": 5074,
                   "name": "Part.setValue"
                 }
               }
             ],
             "implementationOf": {
               "type": "reference",
-              "id": 5073,
               "name": "Part.setValue",
               "location": {
                 "page": "custom-directives",
@@ -6659,39 +6110,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5153
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5160,
-              5158,
-              5156,
-              5157,
-              5159
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5190,
-              5181,
-              5187,
-              5184,
-              5178,
-              5161,
-              5167,
-              5193,
-              5176,
-              5164,
-              5170,
-              5173
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -6706,7 +6133,6 @@
         "implementedTypes": [
           {
             "type": "reference",
-            "id": 5071,
             "name": "Part",
             "location": {
               "page": "custom-directives",
@@ -6729,14 +6155,12 @@
         }
       },
       {
-        "id": 5228,
         "name": "parts",
         "kind": 32,
         "kindString": "Variable",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/render.ts",
@@ -6755,7 +6179,6 @@
             },
             {
               "type": "reference",
-              "id": 5152,
               "name": "NodePart",
               "location": {
                 "page": "custom-directives",
@@ -6781,7 +6204,6 @@
         }
       },
       {
-        "id": 5196,
         "name": "PropertyCommitter",
         "kind": 128,
         "kindString": "Class",
@@ -6792,12 +6214,10 @@
         },
         "children": [
           {
-            "id": 5197,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6809,14 +6229,12 @@
             ],
             "signatures": [
               {
-                "id": 5198,
                 "name": "new PropertyCommitter",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5199,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6830,7 +6248,6 @@
                     }
                   },
                   {
-                    "id": 5200,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6841,7 +6258,6 @@
                     }
                   },
                   {
-                    "id": 5201,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -6861,7 +6277,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5196,
                   "name": "PropertyCommitter",
                   "location": {
                     "page": "custom-directives",
@@ -6870,14 +6285,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 5080,
                   "name": "AttributeCommitter.constructor"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 5079,
               "name": "AttributeCommitter.constructor",
               "location": {
                 "page": "custom-directives",
@@ -6899,12 +6312,10 @@
             }
           },
           {
-            "id": 5213,
             "name": "dirty",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6921,7 +6332,6 @@
             "defaultValue": "true",
             "inheritedFrom": {
               "type": "reference",
-              "id": 5088,
               "name": "AttributeCommitter.dirty",
               "location": {
                 "page": "custom-directives",
@@ -6943,14 +6353,12 @@
             }
           },
           {
-            "id": 5209,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -6969,7 +6377,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5084,
               "name": "AttributeCommitter.element",
               "location": {
                 "page": "custom-directives",
@@ -6991,14 +6398,12 @@
             }
           },
           {
-            "id": 5210,
             "name": "name",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7014,7 +6419,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5085,
               "name": "AttributeCommitter.name",
               "location": {
                 "page": "custom-directives",
@@ -7036,14 +6440,12 @@
             }
           },
           {
-            "id": 5212,
             "name": "parts",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7060,7 +6462,6 @@
                 "type": "array",
                 "elementType": {
                   "type": "reference",
-                  "id": 5095,
                   "name": "AttributePart",
                   "location": {
                     "page": "custom-directives",
@@ -7071,7 +6472,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5087,
               "name": "AttributeCommitter.parts",
               "location": {
                 "page": "custom-directives",
@@ -7093,14 +6493,12 @@
             }
           },
           {
-            "id": 5202,
             "name": "single",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7129,14 +6527,12 @@
             }
           },
           {
-            "id": 5211,
             "name": "strings",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7159,7 +6555,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5086,
               "name": "AttributeCommitter.strings",
               "location": {
                 "page": "custom-directives",
@@ -7181,12 +6576,10 @@
             }
           },
           {
-            "id": 5207,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7198,7 +6591,6 @@
             ],
             "signatures": [
               {
-                "id": 5208,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -7209,14 +6601,12 @@
                 },
                 "overwrites": {
                   "type": "reference",
-                  "id": 5094,
                   "name": "AttributeCommitter.commit"
                 }
               }
             ],
             "overwrites": {
               "type": "reference",
-              "id": 5093,
               "name": "AttributeCommitter.commit",
               "location": {
                 "page": "custom-directives",
@@ -7241,31 +6631,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5197
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5213,
-              5209,
-              5210,
-              5212,
-              5202,
-              5211
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5203,
-              5205,
-              5207
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -7280,7 +6654,6 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 5078,
             "name": "AttributeCommitter",
             "location": {
               "page": "custom-directives",
@@ -7304,7 +6677,6 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 5078,
             "name": "AttributeCommitter",
             "location": {
               "page": "custom-directives",
@@ -7314,36 +6686,30 @@
         ]
       },
       {
-        "id": 5214,
         "name": "PropertyPart",
         "kind": 128,
         "kindString": "Class",
         "flags": {},
         "children": [
           {
-            "id": 5215,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "signatures": [
               {
-                "id": 5216,
                 "name": "new PropertyPart",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5217,
                     "name": "committer",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5078,
                       "name": "AttributeCommitter",
                       "location": {
                         "page": "custom-directives",
@@ -7354,7 +6720,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5214,
                   "name": "PropertyPart",
                   "location": {
                     "page": "custom-directives",
@@ -7363,14 +6728,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 5097,
                   "name": "AttributePart.constructor"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 5096,
               "name": "AttributePart.constructor",
               "location": {
                 "page": "custom-directives",
@@ -7392,14 +6755,12 @@
             }
           },
           {
-            "id": 5218,
             "name": "committer",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7411,7 +6772,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5078,
               "name": "AttributeCommitter",
               "location": {
                 "page": "custom-directives",
@@ -7420,7 +6780,6 @@
             },
             "inheritedFrom": {
               "type": "reference",
-              "id": 5099,
               "name": "AttributePart.committer",
               "location": {
                 "page": "custom-directives",
@@ -7442,12 +6801,10 @@
             }
           },
           {
-            "id": 5219,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7464,7 +6821,6 @@
             "defaultValue": "...",
             "inheritedFrom": {
               "type": "reference",
-              "id": 5100,
               "name": "AttributePart.value",
               "location": {
                 "page": "custom-directives",
@@ -7486,7 +6842,6 @@
             }
           },
           {
-            "id": 5223,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -7495,7 +6850,6 @@
               "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
               "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7507,7 +6861,6 @@
             ],
             "signatures": [
               {
-                "id": 5224,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -7522,14 +6875,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 5105,
                   "name": "AttributePart.commit"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 5104,
               "name": "AttributePart.commit",
               "location": {
                 "page": "custom-directives",
@@ -7551,7 +6902,6 @@
             }
           },
           {
-            "id": 5220,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -7559,7 +6909,6 @@
             "comment": {
               "shortText": "Sets the current part value, but does not write it to the DOM."
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
@@ -7571,7 +6920,6 @@
             ],
             "signatures": [
               {
-                "id": 5221,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -7581,7 +6929,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5222,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7598,14 +6945,12 @@
                 },
                 "inheritedFrom": {
                   "type": "reference",
-                  "id": 5102,
                   "name": "AttributePart.setValue"
                 }
               }
             ],
             "inheritedFrom": {
               "type": "reference",
-              "id": 5101,
               "name": "AttributePart.setValue",
               "location": {
                 "page": "custom-directives",
@@ -7630,26 +6975,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5215
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5218,
-              5219
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5223,
-              5220
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -7664,7 +6998,6 @@
         "extendedTypes": [
           {
             "type": "reference",
-            "id": 5095,
             "name": "AttributePart",
             "location": {
               "page": "custom-directives",
@@ -7688,7 +7021,6 @@
         "heritage": [
           {
             "type": "reference",
-            "id": 5095,
             "name": "AttributePart",
             "location": {
               "page": "custom-directives",
@@ -7698,7 +7030,6 @@
         ]
       },
       {
-        "id": 5056,
         "name": "removeNodes",
         "kind": 64,
         "kindString": "Function",
@@ -7708,7 +7039,6 @@
         "comment": {
           "shortText": "Removes nodes, starting from `start` (inclusive) to `end` (exclusive), from\n`container`."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/dom.ts",
@@ -7720,7 +7050,6 @@
         ],
         "signatures": [
           {
-            "id": 5057,
             "name": "removeNodes",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7730,7 +7059,6 @@
             },
             "parameters": [
               {
-                "id": 5058,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7741,7 +7069,6 @@
                 }
               },
               {
-                "id": 5059,
                 "name": "start",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7761,7 +7088,6 @@
                 }
               },
               {
-                "id": 5060,
                 "name": "end",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7803,7 +7129,6 @@
         }
       },
       {
-        "id": 5061,
         "name": "reparentNodes",
         "kind": 64,
         "kindString": "Function",
@@ -7813,7 +7138,6 @@
         "comment": {
           "shortText": "Reparents nodes, starting from `start` (inclusive) to `end` (exclusive),\ninto another container (could be the same container), before `before`. If\n`before` is null, it appends the nodes to the container."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/dom.ts",
@@ -7825,7 +7149,6 @@
         ],
         "signatures": [
           {
-            "id": 5062,
             "name": "reparentNodes",
             "kind": 4096,
             "kindString": "Call signature",
@@ -7835,7 +7158,6 @@
             },
             "parameters": [
               {
-                "id": 5063,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7846,7 +7168,6 @@
                 }
               },
               {
-                "id": 5064,
                 "name": "start",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7866,7 +7187,6 @@
                 }
               },
               {
-                "id": 5065,
                 "name": "end",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7887,7 +7207,6 @@
                 "defaultValue": "null"
               },
               {
-                "id": 5066,
                 "name": "before",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -7929,7 +7248,6 @@
         }
       },
       {
-        "id": 5298,
         "name": "Template",
         "kind": 128,
         "kindString": "Class",
@@ -7939,12 +7257,10 @@
         },
         "children": [
           {
-            "id": 5299,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template.ts",
@@ -7956,21 +7272,18 @@
             ],
             "signatures": [
               {
-                "id": 5300,
                 "name": "new Template",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5301,
                     "name": "result",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5278,
                       "name": "TemplateResult",
                       "location": {
                         "page": "templates",
@@ -7979,7 +7292,6 @@
                     }
                   },
                   {
-                    "id": 5302,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7995,7 +7307,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5298,
                   "name": "Template",
                   "location": {
                     "page": "custom-directives",
@@ -8019,14 +7330,12 @@
             }
           },
           {
-            "id": 5304,
             "name": "element",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template.ts",
@@ -8058,14 +7367,12 @@
             }
           },
           {
-            "id": 5303,
             "name": "parts",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template.ts",
@@ -8101,18 +7408,11 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5299
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5304,
-              5303
-            ]
+            "kind": 1024
           }
         ],
         "sources": [
@@ -8139,14 +7439,12 @@
         }
       },
       {
-        "id": 5234,
         "name": "templateCaches",
         "kind": 32,
         "kindString": "Variable",
         "flags": {
           "isConst": true
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/template-factory.ts",
@@ -8186,7 +7484,6 @@
         }
       },
       {
-        "id": 5235,
         "name": "templateFactory",
         "kind": 64,
         "kindString": "Function",
@@ -8194,7 +7491,6 @@
         "comment": {
           "shortText": "The default TemplateFactory which caches Templates keyed on\nresult.type and result.strings."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/template-factory.ts",
@@ -8206,7 +7502,6 @@
         ],
         "signatures": [
           {
-            "id": 5236,
             "name": "templateFactory",
             "kind": 4096,
             "kindString": "Call signature",
@@ -8216,14 +7511,12 @@
             },
             "parameters": [
               {
-                "id": 5237,
                 "name": "result",
                 "kind": 32768,
                 "kindString": "Parameter",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 5278,
                   "name": "TemplateResult",
                   "location": {
                     "page": "templates",
@@ -8234,7 +7527,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5298,
               "name": "Template",
               "location": {
                 "page": "custom-directives",
@@ -8258,7 +7550,6 @@
         }
       },
       {
-        "id": 5238,
         "name": "TemplateInstance",
         "kind": 128,
         "kindString": "Class",
@@ -8268,12 +7559,10 @@
         },
         "children": [
           {
-            "id": 5239,
             "name": "constructor",
             "kind": 512,
             "kindString": "Constructor",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-instance.ts",
@@ -8285,21 +7574,18 @@
             ],
             "signatures": [
               {
-                "id": 5240,
                 "name": "new TemplateInstance",
                 "kind": 16384,
                 "kindString": "Constructor signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5241,
                     "name": "template",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5298,
                       "name": "Template",
                       "location": {
                         "page": "custom-directives",
@@ -8308,14 +7594,12 @@
                     }
                   },
                   {
-                    "id": 5242,
                     "name": "processor",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5253,
                       "name": "TemplateProcessor",
                       "location": {
                         "page": "custom-directives",
@@ -8324,14 +7608,12 @@
                     }
                   },
                   {
-                    "id": 5243,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -8342,7 +7624,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5238,
                   "name": "TemplateInstance",
                   "location": {
                     "page": "custom-directives",
@@ -8366,14 +7647,12 @@
             }
           },
           {
-            "id": 5246,
             "name": "options",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-instance.ts",
@@ -8385,7 +7664,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5225,
               "name": "RenderOptions",
               "location": {
                 "page": "templates",
@@ -8407,14 +7685,12 @@
             }
           },
           {
-            "id": 5245,
             "name": "processor",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-instance.ts",
@@ -8426,7 +7702,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5253,
               "name": "TemplateProcessor",
               "location": {
                 "page": "custom-directives",
@@ -8448,14 +7723,12 @@
             }
           },
           {
-            "id": 5247,
             "name": "template",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-instance.ts",
@@ -8467,7 +7740,6 @@
             ],
             "type": {
               "type": "reference",
-              "id": 5298,
               "name": "Template",
               "location": {
                 "page": "custom-directives",
@@ -8489,12 +7761,10 @@
             }
           },
           {
-            "id": 5248,
             "name": "update",
             "kind": 2048,
             "kindString": "Method",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/template-instance.ts",
@@ -8506,14 +7776,12 @@
             ],
             "signatures": [
               {
-                "id": 5249,
                 "name": "update",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5250,
                     "name": "values",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8555,28 +7823,15 @@
         "groups": [
           {
             "title": "Constructors",
-            "kind": 512,
-            "children": [
-              5239
-            ]
+            "kind": 512
           },
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5244,
-              5246,
-              5245,
-              5247
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5251,
-              5248
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -8603,12 +7858,10 @@
         }
       },
       {
-        "id": 5049,
         "name": "DirectiveFn",
         "kind": 4194304,
         "kindString": "Type alias",
         "flags": {},
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/directive.ts",
@@ -8621,7 +7874,6 @@
         "type": {
           "type": "reflection",
           "declaration": {
-            "id": 5050,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -8635,21 +7887,18 @@
             ],
             "signatures": [
               {
-                "id": 5051,
                 "name": "__type",
                 "kind": 4096,
                 "kindString": "Call signature",
                 "flags": {},
                 "parameters": [
                   {
-                    "id": 5052,
                     "name": "part",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5071,
                       "name": "Part",
                       "location": {
                         "page": "custom-directives",
@@ -8681,7 +7930,6 @@
         }
       },
       {
-        "id": 5071,
         "name": "Part",
         "kind": 256,
         "kindString": "Interface",
@@ -8691,14 +7939,12 @@
         },
         "children": [
           {
-            "id": 5072,
             "name": "value",
             "kind": 1024,
             "kindString": "Property",
             "flags": {
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/part.ts",
@@ -8727,7 +7973,6 @@
             }
           },
           {
-            "id": 5076,
             "name": "commit",
             "kind": 2048,
             "kindString": "Method",
@@ -8736,10 +7981,8 @@
               "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
               "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
             },
-            "children": [],
             "signatures": [
               {
-                "id": 5077,
                 "name": "commit",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8769,7 +8012,6 @@
             }
           },
           {
-            "id": 5073,
             "name": "setValue",
             "kind": 2048,
             "kindString": "Method",
@@ -8777,10 +8019,8 @@
             "comment": {
               "shortText": "Sets the current part value, but does not write it to the DOM."
             },
-            "children": [],
             "signatures": [
               {
-                "id": 5074,
                 "name": "setValue",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8790,7 +8030,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5075,
                     "name": "value",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8828,18 +8067,11 @@
         "groups": [
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              5072
-            ]
+            "kind": 1024
           },
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5076,
-              5073
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -8854,7 +8086,6 @@
         "implementedBy": [
           {
             "type": "reference",
-            "id": 5095,
             "name": "AttributePart",
             "location": {
               "page": "custom-directives",
@@ -8863,7 +8094,6 @@
           },
           {
             "type": "reference",
-            "id": 5106,
             "name": "BooleanAttributePart",
             "location": {
               "page": "custom-directives",
@@ -8872,7 +8102,6 @@
           },
           {
             "type": "reference",
-            "id": 5122,
             "name": "EventPart",
             "location": {
               "page": "custom-directives",
@@ -8881,7 +8110,6 @@
           },
           {
             "type": "reference",
-            "id": 5152,
             "name": "NodePart",
             "location": {
               "page": "custom-directives",
@@ -8904,14 +8132,12 @@
         }
       },
       {
-        "id": 5253,
         "name": "TemplateProcessor",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 5254,
             "name": "handleAttributeExpressions",
             "kind": 2048,
             "kindString": "Method",
@@ -8919,10 +8145,8 @@
             "comment": {
               "shortText": "Create parts for an attribute-position binding, given the element,\nattribute name, and string literals."
             },
-            "children": [],
             "signatures": [
               {
-                "id": 5255,
                 "name": "handleAttributeExpressions",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -8932,7 +8156,6 @@
                 },
                 "parameters": [
                   {
-                    "id": 5256,
                     "name": "element",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8949,7 +8172,6 @@
                     }
                   },
                   {
-                    "id": 5257,
                     "name": "name",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8963,7 +8185,6 @@
                     }
                   },
                   {
-                    "id": 5258,
                     "name": "strings",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -8984,14 +8205,12 @@
                     }
                   },
                   {
-                    "id": 5259,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -9007,7 +8226,6 @@
                     "type": "array",
                     "elementType": {
                       "type": "reference",
-                      "id": 5071,
                       "name": "Part",
                       "location": {
                         "page": "custom-directives",
@@ -9033,7 +8251,6 @@
             }
           },
           {
-            "id": 5260,
             "name": "handleTextExpression",
             "kind": 2048,
             "kindString": "Method",
@@ -9041,10 +8258,8 @@
             "comment": {
               "shortText": "Create parts for a text-position binding."
             },
-            "children": [],
             "signatures": [
               {
-                "id": 5261,
                 "name": "handleTextExpression",
                 "kind": 4096,
                 "kindString": "Call signature",
@@ -9054,14 +8269,12 @@
                 },
                 "parameters": [
                   {
-                    "id": 5262,
                     "name": "options",
                     "kind": 32768,
                     "kindString": "Parameter",
                     "flags": {},
                     "type": {
                       "type": "reference",
-                      "id": 5225,
                       "name": "RenderOptions",
                       "location": {
                         "page": "templates",
@@ -9072,7 +8285,6 @@
                 ],
                 "type": {
                   "type": "reference",
-                  "id": 5152,
                   "name": "NodePart",
                   "location": {
                     "page": "custom-directives",
@@ -9099,11 +8311,7 @@
         "groups": [
           {
             "title": "Methods",
-            "kind": 2048,
-            "children": [
-              5254,
-              5260
-            ]
+            "kind": 2048
           }
         ],
         "sources": [
@@ -9118,7 +8326,6 @@
         "implementedBy": [
           {
             "type": "reference",
-            "id": 5032,
             "name": "DefaultTemplateProcessor",
             "location": {
               "page": "custom-directives",
@@ -9150,7 +8357,6 @@
     },
     "items": [
       {
-        "id": 4903,
         "name": "render",
         "kind": 64,
         "kindString": "Function",
@@ -9161,7 +8367,6 @@
           "shortText": "Extension to the standard `render` method which supports rendering\nto ShadowRoots when the ShadyDOM (https://github.com/webcomponents/shadydom)\nand ShadyCSS (https://github.com/webcomponents/shadycss) polyfills are used\nor when the webcomponentsjs\n(https://github.com/webcomponents/webcomponentsjs) polyfill is used.",
           "text": "Adds a `scopeName` option which is used to scope element DOM and stylesheets\nwhen native ShadowDOM is unavailable. The `scopeName` will be added to\nthe class attribute of all rendered DOM. In addition, any style elements will\nbe automatically re-written with this `scopeName` selector and moved out\nof the rendered DOM and into the document `<head>`.\n\nIt is common to use this render method in conjunction with a custom element\nwhich renders a shadowRoot. When this is done, typically the element's\n`localName` should be used as the `scopeName`.\n\nIn addition to DOM scoping, ShadyCSS also supports a basic shim for css\ncustom properties (needed only on older browsers like IE11) and a shim for\na deprecated feature called `@apply` that supports applying a set of css\ncustom properties to a given location.\n\nUsage considerations:\n\n* Part values in `<style>` elements are only applied the first time a given\n`scopeName` renders. Subsequent changes to parts in style elements will have\nno effect. Because of this, parts in style elements should only be used for\nvalues that will never change, for example parts that set scope-wide theme\nvalues or parts which render shared style elements.\n\n* Note, due to a limitation of the ShadyDOM polyfill, rendering in a\ncustom element's `constructor` is not supported. Instead rendering should\neither done asynchronously, for example at microtask timing (for example\n`Promise.resolve()`), or be deferred until the first time the element's\n`connectedCallback` runs.\n\nUsage considerations when using shimmed custom properties or `@apply`:\n\n* Whenever any dynamic changes are made which affect\ncss custom properties, `ShadyCSS.styleElement(element)` must be called\nto update the element. There are two cases when this is needed:\n(1) the element is connected to a new parent, (2) a class is added to the\nelement that causes it to match different custom properties.\nTo address the first case when rendering a custom element, `styleElement`\nshould be called in the element's `connectedCallback`.\n\n* Shimmed custom properties may only be defined either for an entire\nshadowRoot (for example, in a `:host` rule) or via a rule that directly\nmatches an element with a shadowRoot. In other words, instead of flowing from\nparent to child as do native css custom properties, shimmed custom properties\nflow only from shadowRoots to nested shadowRoots.\n\n* When using `@apply` mixing css shorthand property names with\nnon-shorthand names (for example `border` and `border-width`) is not\nsupported.\n"
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/shady-render.ts",
@@ -9173,7 +8378,6 @@
         ],
         "signatures": [
           {
-            "id": 4904,
             "name": "render",
             "kind": 4096,
             "kindString": "Call signature",
@@ -9184,7 +8388,6 @@
             },
             "parameters": [
               {
-                "id": 4905,
                 "name": "result",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -9195,7 +8398,6 @@
                 }
               },
               {
-                "id": 4906,
                 "name": "container",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -9228,14 +8430,12 @@
                 }
               },
               {
-                "id": 4907,
                 "name": "options",
                 "kind": 32768,
                 "kindString": "Parameter",
                 "flags": {},
                 "type": {
                   "type": "reference",
-                  "id": 4899,
                   "name": "ShadyRenderOptions",
                   "location": {
                     "page": "shady",
@@ -9265,7 +8465,6 @@
         }
       },
       {
-        "id": 4893,
         "name": "shadyTemplateFactory",
         "kind": 64,
         "kindString": "Function",
@@ -9275,7 +8474,6 @@
         "comment": {
           "shortText": "Template factory which scopes template DOM using ShadyCSS."
         },
-        "children": [],
         "sources": [
           {
             "fileName": "src/lib/shady-render.ts",
@@ -9287,7 +8485,6 @@
         ],
         "signatures": [
           {
-            "id": 4894,
             "name": "shadyTemplateFactory",
             "kind": 4096,
             "kindString": "Call signature",
@@ -9297,7 +8494,6 @@
             },
             "parameters": [
               {
-                "id": 4895,
                 "name": "scopeName",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -9314,28 +8510,24 @@
             "type": {
               "type": "reflection",
               "declaration": {
-                "id": 4896,
                 "name": "__type",
                 "kind": 65536,
                 "kindString": "Type literal",
                 "flags": {},
                 "signatures": [
                   {
-                    "id": 4897,
                     "name": "__type",
                     "kind": 4096,
                     "kindString": "Call signature",
                     "flags": {},
                     "parameters": [
                       {
-                        "id": 4898,
                         "name": "result",
                         "kind": 32768,
                         "kindString": "Parameter",
                         "flags": {},
                         "type": {
                           "type": "reference",
-                          "id": 5278,
                           "name": "TemplateResult",
                           "location": {
                             "page": "templates",
@@ -9346,7 +8538,6 @@
                     ],
                     "type": {
                       "type": "reference",
-                      "id": 5298,
                       "name": "Template",
                       "location": {
                         "page": "custom-directives",
@@ -9374,14 +8565,12 @@
         }
       },
       {
-        "id": 4899,
         "name": "ShadyRenderOptions",
         "kind": 256,
         "kindString": "Interface",
         "flags": {},
         "children": [
           {
-            "id": 4902,
             "name": "eventContext",
             "kind": 1024,
             "kindString": "Property",
@@ -9389,7 +8578,6 @@
               "isOptional": true,
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/render-options.ts",
@@ -9422,12 +8610,10 @@
             }
           },
           {
-            "id": 4900,
             "name": "scopeName",
             "kind": 1024,
             "kindString": "Property",
             "flags": {},
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/shady-render.ts",
@@ -9456,7 +8642,6 @@
             }
           },
           {
-            "id": 4901,
             "name": "templateFactory",
             "kind": 1024,
             "kindString": "Property",
@@ -9464,7 +8649,6 @@
               "isOptional": true,
               "isReadonly": true
             },
-            "children": [],
             "sources": [
               {
                 "fileName": "src/lib/render-options.ts",
@@ -9500,12 +8684,7 @@
         "groups": [
           {
             "title": "Properties",
-            "kind": 1024,
-            "children": [
-              4902,
-              4900,
-              4901
-            ]
+            "kind": 1024
           }
         ],
         "sources": [
@@ -9523,7 +8702,6 @@
             "typeArguments": [
               {
                 "type": "reference",
-                "id": 5225,
                 "name": "RenderOptions",
                 "location": {
                   "page": "templates",
@@ -9553,7 +8731,6 @@
             "typeArguments": [
               {
                 "type": "reference",
-                "id": 5225,
                 "name": "RenderOptions",
                 "location": {
                   "page": "templates",
