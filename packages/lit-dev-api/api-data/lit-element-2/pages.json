@@ -289,7 +289,6 @@
             "flags": {
               "isStatic": true
             },
-            "comment": {},
             "sources": [
               {
                 "fileName": "src/lit-element.ts",

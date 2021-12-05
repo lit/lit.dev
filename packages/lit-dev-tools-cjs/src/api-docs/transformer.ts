@@ -423,6 +423,9 @@ export class ApiDocsTransformer {
       }
     } else if (typeof node === 'object' && node !== null) {
       for (const [key, val] of Object.entries(node)) {
+        // Prune the child first, so that our "empty arrays and objects" check
+        // works more aggressively.
+        this.prunePageData(val);
         if (
           // We instead use the "location" field which tells us the page/anchor,
           // instead of the internal numeric TypeDoc id. This id is
@@ -454,8 +457,6 @@ export class ApiDocsTransformer {
           key === 'tags'
         ) {
           delete node[key as keyof typeof node];
-        } else {
-          this.prunePageData(val);
         }
       }
     }
