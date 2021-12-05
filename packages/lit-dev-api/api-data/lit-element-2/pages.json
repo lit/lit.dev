@@ -11,7 +11,6 @@
       {
         "name": "LitElement",
         "kindString": "Class",
-        "flags": {},
         "comment": {
           "shortText": "Base element class that manages element properties and attributes, and\nrenders a lit-html template.",
           "text": "To define a component, subclass `LitElement` and implement a\n`render` method to provide the component's template. Define properties\nusing the [`properties`](/docs/v1/api/lit-element/LitElement/#LitElement.properties) property or the [`property`](/docs/v1/api/lit-element/decorators/#property) decorator.\n"
@@ -20,12 +19,10 @@
           {
             "name": "constructor",
             "kindString": "Constructor",
-            "flags": {},
             "signatures": [
               {
                 "name": "new LitElement",
                 "kindString": "Constructor signature",
-                "flags": {},
                 "type": {
                   "type": "reference",
                   "name": "LitElement",
@@ -222,12 +219,10 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "comment": {
                       "shortText": "Reference to the underlying library method used to render the element's\nDOM. By default, points to the `render` method from lit-html's shady-render\nmodule.",
                       "text": "**Most users will never need to touch this property.**\n\nThis  property should not be confused with the `render` instance method,\nwhich should be overridden to define a template for the element.\n\nAdvanced users creating a new base class based on LitElement can override\nthis property to point to a custom render method with a signature that\nmatches [shady-render's `render`\nmethod](https://lit-html.polymer-project.org/api/modules/shady_render.html#render).\n",
@@ -242,7 +237,6 @@
                       {
                         "name": "result",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "intrinsic",
                           "name": "unknown"
@@ -251,7 +245,6 @@
                       {
                         "name": "container",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -275,7 +268,6 @@
                       {
                         "name": "options",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "reference",
                           "name": "ShadyRenderOptions"
@@ -402,7 +394,6 @@
               {
                 "name": "hasUpdated",
                 "kindString": "Get signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "number"
@@ -432,7 +423,6 @@
           {
             "name": "updateComplete",
             "kindString": "Accessor",
-            "flags": {},
             "comment": {
               "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
               "text": "To await additional asynchronous work, override the `_getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super._getUpdateComplete()`, then any subsequent state.\n",
@@ -459,7 +449,6 @@
               {
                 "name": "updateComplete",
                 "kindString": "Get signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
                   "text": "To await additional asynchronous work, override the `_getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super._getUpdateComplete()`, then any subsequent state.\n",
@@ -530,7 +519,6 @@
               {
                 "name": "observedAttributes",
                 "kindString": "Get signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns a list of attributes corresponding to the registered properties.",
                   "tags": [
@@ -589,7 +577,6 @@
               {
                 "name": "adoptStyles",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Applies styling to the element shadowRoot using the [`styles`](/docs/v1/api/lit-element/LitElement/#LitElement.styles)\nproperty. Styling will apply using `shadowRoot.adoptedStyleSheets` where\navailable and will fallback otherwise. When Shadow DOM is polyfilled,\nShadyCSS scopes styles and adds them to the document. When Shadow DOM\nis available but `adoptedStyleSheets` is not, styles are appended to the\nend of the `shadowRoot` to [mimic spec\nbehavior](https://wicg.github.io/construct-stylesheets/#using-constructed-stylesheets)."
                 },
@@ -614,7 +601,6 @@
           {
             "name": "attributeChangedCallback",
             "kindString": "Method",
-            "flags": {},
             "comment": {
               "shortText": "Synchronizes property values when attributes change."
             },
@@ -629,7 +615,6 @@
               {
                 "name": "attributeChangedCallback",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Synchronizes property values when attributes change."
                 },
@@ -637,7 +622,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "intrinsic",
                       "name": "string"
@@ -646,7 +630,6 @@
                   {
                     "name": "old",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -664,7 +647,6 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -713,7 +695,6 @@
           {
             "name": "connectedCallback",
             "kindString": "Method",
-            "flags": {},
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -725,7 +706,6 @@
               {
                 "name": "connectedCallback",
                 "kindString": "Call signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -777,7 +757,6 @@
               {
                 "name": "createRenderRoot",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns the node into which the element should render and by default\ncreates and returns an open shadowRoot. Implement to customize where the\nelement's DOM is rendered. For example, to render into the element's\nchildNodes, return `this`.",
                   "returns": "Returns a node into which to render.\n"
@@ -818,7 +797,6 @@
           {
             "name": "disconnectedCallback",
             "kindString": "Method",
-            "flags": {},
             "comment": {
               "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
             },
@@ -833,7 +811,6 @@
               {
                 "name": "disconnectedCallback",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
                 },
@@ -884,7 +861,6 @@
               {
                 "name": "enableUpdating",
                 "kindString": "Call signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -936,7 +912,6 @@
               {
                 "name": "firstUpdated",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
                   "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
@@ -945,7 +920,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -1029,7 +1003,6 @@
               {
                 "name": "getUpdateComplete",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Override point for the `updateComplete` promise.",
                   "text": "It is not safe to override the `updateComplete` getter directly due to a\nlimitation in TypeScript which means it is not possible to call a\nsuperclass getter (e.g. `super.updateComplete.then(...)`) when the target\nlanguage is ES5 (https://github.com/microsoft/TypeScript/issues/338).\nThis method should be overridden instead. For example:\n\n  class MyElement extends LitElement {\n    async getUpdateComplete() {\n      await super.getUpdateComplete();\n      await this._myChild.updateComplete;\n    }\n  }\n"
@@ -1090,7 +1063,6 @@
               {
                 "name": "initialize",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Performs element initialization. By default this calls\n[`createRenderRoot`](/docs/v1/api/lit-element/LitElement/#LitElement.createRenderRoot) to create the element [`renderRoot`](/docs/v1/api/lit-element/LitElement/#LitElement.renderRoot) node and\ncaptures any pre-set values for registered properties."
                 },
@@ -1145,7 +1117,6 @@
               {
                 "name": "performUpdate",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
                   "text": "You can override this method to change the timing of updates. If this\nmethod is overridden, `super.performUpdate()` must be called.\n\nFor instance, to schedule updates to occur just before the next frame:\n\n```\nprotected async performUpdate(): Promise<unknown> {\n  await new Promise((resolve) => requestAnimationFrame(() => resolve()));\n  super.performUpdate();\n}\n```\n"
@@ -1215,7 +1186,6 @@
               {
                 "name": "render",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Invoked on each update to perform rendering tasks. This method may return\nany value renderable by lit-html's `NodePart` - typically a\n`TemplateResult`. Setting properties inside this method will *not* trigger\nthe element to update."
                 },
@@ -1240,7 +1210,6 @@
           {
             "name": "requestUpdate",
             "kindString": "Method",
-            "flags": {},
             "comment": {
               "shortText": "Requests an update which is processed asynchronously. This should\nbe called when an element should update based on some state not triggered\nby setting a property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored. Returns the `updateComplete` Promise which is resolved\nwhen the update completes.",
               "returns": "A Promise that is resolved when the update completes.\n"
@@ -1256,7 +1225,6 @@
               {
                 "name": "requestUpdate",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Requests an update which is processed asynchronously. This should\nbe called when an element should update based on some state not triggered\nby setting a property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored. Returns the `updateComplete` Promise which is resolved\nwhen the update completes.",
                   "returns": "A Promise that is resolved when the update completes.\n"
@@ -1347,7 +1315,6 @@
               {
                 "name": "requestUpdateInternal",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "This protected version of `requestUpdate` does not access or return the\n`updateComplete` promise. This promise can be overridden and is therefore\nnot free to access."
                 },
@@ -1450,7 +1417,6 @@
               {
                 "name": "shouldUpdate",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
                 },
@@ -1458,7 +1424,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -1541,7 +1506,6 @@
               {
                 "name": "update",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Updates the element. This method reflects property values to attributes\nand calls `render` to render DOM via lit-html. Setting properties inside\nthis method will *not* trigger another update."
                 },
@@ -1549,7 +1513,6 @@
                   {
                     "name": "changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -1630,7 +1593,6 @@
               {
                 "name": "updated",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Invoked whenever the element is updated. Implement to perform\npost-updating tasks via DOM APIs, for example, focusing an element.",
                   "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
@@ -1639,7 +1601,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -1729,7 +1690,6 @@
               {
                 "name": "createProperty",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n",
@@ -1744,7 +1704,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "PropertyKey"
@@ -1753,7 +1712,6 @@
                   {
                     "name": "options",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -1832,7 +1790,6 @@
               {
                 "name": "finalize",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized.",
                   "tags": [
@@ -1900,7 +1857,6 @@
               {
                 "name": "getPropertyDescriptor",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
                   "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n",
@@ -1915,7 +1871,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "PropertyKey"
@@ -1924,7 +1879,6 @@
                   {
                     "name": "key",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -1942,7 +1896,6 @@
                   {
                     "name": "options",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -1968,12 +1921,10 @@
                   "declaration": {
                     "name": "__type",
                     "kindString": "Type literal",
-                    "flags": {},
                     "children": [
                       {
                         "name": "configurable",
                         "kindString": "Property",
-                        "flags": {},
                         "type": {
                           "type": "intrinsic",
                           "name": "boolean"
@@ -1983,7 +1934,6 @@
                       {
                         "name": "enumerable",
                         "kindString": "Property",
-                        "flags": {},
                         "type": {
                           "type": "intrinsic",
                           "name": "boolean"
@@ -1993,7 +1943,6 @@
                       {
                         "name": "get",
                         "kindString": "Method",
-                        "flags": {},
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
@@ -2004,7 +1953,6 @@
                           {
                             "name": "get",
                             "kindString": "Call signature",
-                            "flags": {},
                             "type": {
                               "type": "intrinsic",
                               "name": "any"
@@ -2015,7 +1963,6 @@
                       {
                         "name": "set",
                         "kindString": "Method",
-                        "flags": {},
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
@@ -2026,12 +1973,10 @@
                           {
                             "name": "set",
                             "kindString": "Call signature",
-                            "flags": {},
                             "parameters": [
                               {
                                 "name": "value",
                                 "kindString": "Parameter",
-                                "flags": {},
                                 "type": {
                                   "type": "intrinsic",
                                   "name": "unknown"
@@ -2106,7 +2051,6 @@
               {
                 "name": "getPropertyOptions",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
                   "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
@@ -2125,7 +2069,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "PropertyKey"
@@ -2202,7 +2145,6 @@
               {
                 "name": "getStyles",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Return the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
                   "tags": [
@@ -2355,7 +2297,6 @@
           {
             "name": "notEqual",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Change function that returns true if `value` is different from `oldValue`.\nThis method is used as the default for a property's `hasChanged` function."
             },
@@ -2363,7 +2304,6 @@
               {
                 "name": "value",
                 "kindString": "Parameter",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "unknown"
@@ -2372,7 +2312,6 @@
               {
                 "name": "old",
                 "kindString": "Parameter",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "unknown"
@@ -2416,7 +2355,6 @@
           {
             "name": "constructor",
             "kindString": "Constructor",
-            "flags": {},
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -2428,7 +2366,6 @@
               {
                 "name": "new UpdatingElement",
                 "kindString": "Constructor signature",
-                "flags": {},
                 "type": {
                   "type": "reference",
                   "name": "UpdatingElement",
@@ -2550,7 +2487,6 @@
               {
                 "name": "hasUpdated",
                 "kindString": "Get signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "number"
@@ -2572,7 +2508,6 @@
           {
             "name": "updateComplete",
             "kindString": "Accessor",
-            "flags": {},
             "comment": {
               "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
               "text": "To await additional asynchronous work, override the `_getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super._getUpdateComplete()`, then any subsequent state.\n",
@@ -2599,7 +2534,6 @@
               {
                 "name": "updateComplete",
                 "kindString": "Get signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
                   "text": "To await additional asynchronous work, override the `_getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super._getUpdateComplete()`, then any subsequent state.\n",
@@ -2662,7 +2596,6 @@
               {
                 "name": "observedAttributes",
                 "kindString": "Get signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns a list of attributes corresponding to the registered properties.",
                   "tags": [
@@ -2696,7 +2629,6 @@
           {
             "name": "attributeChangedCallback",
             "kindString": "Method",
-            "flags": {},
             "comment": {
               "shortText": "Synchronizes property values when attributes change."
             },
@@ -2711,7 +2643,6 @@
               {
                 "name": "attributeChangedCallback",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Synchronizes property values when attributes change."
                 },
@@ -2719,7 +2650,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "intrinsic",
                       "name": "string"
@@ -2728,7 +2658,6 @@
                   {
                     "name": "old",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -2746,7 +2675,6 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -2783,7 +2711,6 @@
           {
             "name": "connectedCallback",
             "kindString": "Method",
-            "flags": {},
             "sources": [
               {
                 "fileName": "src/lib/updating-element.ts",
@@ -2795,7 +2722,6 @@
               {
                 "name": "connectedCallback",
                 "kindString": "Call signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -2817,7 +2743,6 @@
           {
             "name": "disconnectedCallback",
             "kindString": "Method",
-            "flags": {},
             "comment": {
               "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
             },
@@ -2832,7 +2757,6 @@
               {
                 "name": "disconnectedCallback",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
                 },
@@ -2871,7 +2795,6 @@
               {
                 "name": "enableUpdating",
                 "kindString": "Call signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -2911,7 +2834,6 @@
               {
                 "name": "firstUpdated",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
                   "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
@@ -2920,7 +2842,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -2992,7 +2913,6 @@
               {
                 "name": "getUpdateComplete",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Override point for the `updateComplete` promise.",
                   "text": "It is not safe to override the `updateComplete` getter directly due to a\nlimitation in TypeScript which means it is not possible to call a\nsuperclass getter (e.g. `super.updateComplete.then(...)`) when the target\nlanguage is ES5 (https://github.com/microsoft/TypeScript/issues/338).\nThis method should be overridden instead. For example:\n\n  class MyElement extends LitElement {\n    async getUpdateComplete() {\n      await super.getUpdateComplete();\n      await this._myChild.updateComplete;\n    }\n  }\n"
@@ -3041,7 +2961,6 @@
               {
                 "name": "initialize",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Performs element initialization. By default captures any pre-set values for\nregistered properties."
                 },
@@ -3084,7 +3003,6 @@
               {
                 "name": "performUpdate",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
                   "text": "You can override this method to change the timing of updates. If this\nmethod is overridden, `super.performUpdate()` must be called.\n\nFor instance, to schedule updates to occur just before the next frame:\n\n```\nprotected async performUpdate(): Promise<unknown> {\n  await new Promise((resolve) => requestAnimationFrame(() => resolve()));\n  super.performUpdate();\n}\n```\n"
@@ -3125,7 +3043,6 @@
           {
             "name": "requestUpdate",
             "kindString": "Method",
-            "flags": {},
             "comment": {
               "shortText": "Requests an update which is processed asynchronously. This should\nbe called when an element should update based on some state not triggered\nby setting a property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored. Returns the `updateComplete` Promise which is resolved\nwhen the update completes.",
               "returns": "A Promise that is resolved when the update completes.\n"
@@ -3141,7 +3058,6 @@
               {
                 "name": "requestUpdate",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Requests an update which is processed asynchronously. This should\nbe called when an element should update based on some state not triggered\nby setting a property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored. Returns the `updateComplete` Promise which is resolved\nwhen the update completes.",
                   "returns": "A Promise that is resolved when the update completes.\n"
@@ -3220,7 +3136,6 @@
               {
                 "name": "requestUpdateInternal",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "This protected version of `requestUpdate` does not access or return the\n`updateComplete` promise. This promise can be overridden and is therefore\nnot free to access."
                 },
@@ -3311,7 +3226,6 @@
               {
                 "name": "shouldUpdate",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
                 },
@@ -3319,7 +3233,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -3390,7 +3303,6 @@
               {
                 "name": "update",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Updates the element. This method reflects property values to attributes.\nIt can be overridden to render and keep updated element DOM.\nSetting properties inside this method will *not* trigger\nanother update."
                 },
@@ -3398,7 +3310,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -3470,7 +3381,6 @@
               {
                 "name": "updated",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Invoked whenever the element is updated. Implement to perform\npost-updating tasks via DOM APIs, for example, focusing an element.",
                   "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
@@ -3479,7 +3389,6 @@
                   {
                     "name": "_changedProperties",
                     "kindString": "Parameter",
-                    "flags": {},
                     "comment": {
                       "text": "Map of changed properties with old values\n"
                     },
@@ -3557,7 +3466,6 @@
               {
                 "name": "createProperty",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n",
@@ -3572,7 +3480,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "PropertyKey"
@@ -3581,7 +3488,6 @@
                   {
                     "name": "options",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -3648,7 +3554,6 @@
               {
                 "name": "finalize",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized.",
                   "tags": [
@@ -3704,7 +3609,6 @@
               {
                 "name": "getPropertyDescriptor",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
                   "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n",
@@ -3719,7 +3623,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "PropertyKey"
@@ -3728,7 +3631,6 @@
                   {
                     "name": "key",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -3746,7 +3648,6 @@
                   {
                     "name": "options",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -3772,12 +3673,10 @@
                   "declaration": {
                     "name": "__type",
                     "kindString": "Type literal",
-                    "flags": {},
                     "children": [
                       {
                         "name": "configurable",
                         "kindString": "Property",
-                        "flags": {},
                         "type": {
                           "type": "intrinsic",
                           "name": "boolean"
@@ -3787,7 +3686,6 @@
                       {
                         "name": "enumerable",
                         "kindString": "Property",
-                        "flags": {},
                         "type": {
                           "type": "intrinsic",
                           "name": "boolean"
@@ -3797,7 +3695,6 @@
                       {
                         "name": "get",
                         "kindString": "Method",
-                        "flags": {},
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
@@ -3808,7 +3705,6 @@
                           {
                             "name": "get",
                             "kindString": "Call signature",
-                            "flags": {},
                             "type": {
                               "type": "intrinsic",
                               "name": "any"
@@ -3819,7 +3715,6 @@
                       {
                         "name": "set",
                         "kindString": "Method",
-                        "flags": {},
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
@@ -3830,12 +3725,10 @@
                           {
                             "name": "set",
                             "kindString": "Call signature",
-                            "flags": {},
                             "parameters": [
                               {
                                 "name": "value",
                                 "kindString": "Parameter",
-                                "flags": {},
                                 "type": {
                                   "type": "intrinsic",
                                   "name": "unknown"
@@ -3898,7 +3791,6 @@
               {
                 "name": "getPropertyOptions",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
                   "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
@@ -3917,7 +3809,6 @@
                   {
                     "name": "name",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "PropertyKey"
@@ -4007,7 +3898,6 @@
       {
         "name": "ComplexAttributeConverter",
         "kindString": "Interface",
-        "flags": {},
         "comment": {
           "shortText": "Converts property values to and from attribute values."
         },
@@ -4025,7 +3915,6 @@
               {
                 "name": "fromAttribute",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Function called to convert an attribute value to a property\nvalue."
                 },
@@ -4033,7 +3922,6 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "union",
                       "types": [
@@ -4092,7 +3980,6 @@
               {
                 "name": "toAttribute",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "Function called to convert a property value to an attribute\nvalue.",
                   "text": "It returns unknown instead of string, to be compatible with\nhttps://github.com/WICG/trusted-types (and similar efforts).\n"
@@ -4101,7 +3988,6 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "Type"
@@ -4149,7 +4035,6 @@
           {
             "name": "Type",
             "kindString": "Type parameter",
-            "flags": {},
             "default": {
               "type": "intrinsic",
               "name": "unknown"
@@ -4158,7 +4043,6 @@
           {
             "name": "TypeHint",
             "kindString": "Type parameter",
-            "flags": {},
             "default": {
               "type": "intrinsic",
               "name": "unknown"
@@ -4180,7 +4064,6 @@
       {
         "name": "HasChanged",
         "kindString": "Interface",
-        "flags": {},
         "sources": [
           {
             "fileName": "src/lib/updating-element.ts",
@@ -4192,12 +4075,10 @@
           {
             "name": "HasChanged",
             "kindString": "Call signature",
-            "flags": {},
             "parameters": [
               {
                 "name": "value",
                 "kindString": "Parameter",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "unknown"
@@ -4206,7 +4087,6 @@
               {
                 "name": "old",
                 "kindString": "Parameter",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "unknown"
@@ -4234,7 +4114,6 @@
       {
         "name": "PropertyDeclaration",
         "kindString": "Interface",
-        "flags": {},
         "comment": {
           "shortText": "Defines options for a property accessor."
         },
@@ -4436,7 +4315,6 @@
               {
                 "name": "hasChanged",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "A function that indicates if a property should be considered changed when\nit is set. The function should take the `newValue` and `oldValue` and\nreturn `true` if an update should be requested."
                 },
@@ -4444,7 +4322,6 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "Type"
@@ -4453,7 +4330,6 @@
                   {
                     "name": "oldValue",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "Type"
@@ -4490,7 +4366,6 @@
           {
             "name": "Type",
             "kindString": "Type parameter",
-            "flags": {},
             "default": {
               "type": "intrinsic",
               "name": "unknown"
@@ -4499,7 +4374,6 @@
           {
             "name": "TypeHint",
             "kindString": "Type parameter",
-            "flags": {},
             "default": {
               "type": "intrinsic",
               "name": "unknown"
@@ -4521,7 +4395,6 @@
       {
         "name": "PropertyDeclarations",
         "kindString": "Interface",
-        "flags": {},
         "comment": {
           "shortText": "Map of properties to PropertyDeclaration options. For each property an\naccessor is made, and the property is processed according to the\nPropertyDeclaration options."
         },
@@ -4535,11 +4408,9 @@
         "indexSignature": {
           "name": "__index",
           "kindString": "Index signature",
-          "flags": {},
           "parameters": [
             {
               "name": "key",
-              "flags": {},
               "type": {
                 "type": "intrinsic",
                 "name": "string"
@@ -4570,7 +4441,6 @@
       {
         "name": "PropertyValues",
         "kindString": "Type alias",
-        "flags": {},
         "comment": {
           "shortText": "Map of changed properties with old values. Takes an optional generic\ninterface corresponding to the declared element properties."
         },
@@ -4585,7 +4455,6 @@
           {
             "name": "T",
             "kindString": "Type parameter",
-            "flags": {},
             "default": {
               "type": "intrinsic",
               "name": "any"
@@ -4672,7 +4541,6 @@
           {
             "name": "css",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Template tag which which can be used with LitElement's [`styles`](/docs/v1/api/lit-element/LitElement/#LitElement.styles) property to set element styles. For security reasons, only literal\nstring values may be used. To incorporate non-literal values [`unsafeCSS`](/docs/v1/api/lit-element/styles/#unsafeCSS)\nmay be used inside a template string part."
             },
@@ -4680,7 +4548,6 @@
               {
                 "name": "strings",
                 "kindString": "Parameter",
-                "flags": {},
                 "type": {
                   "type": "reference",
                   "name": "TemplateStringsArray"
@@ -4739,12 +4606,10 @@
       {
         "name": "CSSResult",
         "kindString": "Class",
-        "flags": {},
         "children": [
           {
             "name": "constructor",
             "kindString": "Constructor",
-            "flags": {},
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -4756,12 +4621,10 @@
               {
                 "name": "new CSSResult",
                 "kindString": "Constructor signature",
-                "flags": {},
                 "parameters": [
                   {
                     "name": "cssText",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "intrinsic",
                       "name": "string"
@@ -4770,7 +4633,6 @@
                   {
                     "name": "safeToken",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "intrinsic",
                       "name": "symbol"
@@ -4831,7 +4693,6 @@
           {
             "name": "styleSheet",
             "kindString": "Accessor",
-            "flags": {},
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -4859,7 +4720,6 @@
               {
                 "name": "styleSheet",
                 "kindString": "Get signature",
-                "flags": {},
                 "type": {
                   "type": "union",
                   "types": [
@@ -4893,7 +4753,6 @@
           {
             "name": "toString",
             "kindString": "Method",
-            "flags": {},
             "sources": [
               {
                 "fileName": "src/lib/css-tag.ts",
@@ -4905,7 +4764,6 @@
               {
                 "name": "toString",
                 "kindString": "Call signature",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "string"
@@ -4998,7 +4856,6 @@
           {
             "name": "unsafeCSS",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Wrap a value for interpolation in a [`css`](/docs/v1/api/lit-element/styles/#css) tagged template literal.",
               "text": "This is unsafe because untrusted CSS text can be used to phone home\nor exfiltrate data to an attacker controlled site. Take care to only use\nthis with trusted input.\n"
@@ -5007,7 +4864,6 @@
               {
                 "name": "value",
                 "kindString": "Parameter",
-                "flags": {},
                 "type": {
                   "type": "intrinsic",
                   "name": "unknown"
@@ -5039,7 +4895,6 @@
       {
         "name": "CSSResultArray",
         "kindString": "Interface",
-        "flags": {},
         "sources": [
           {
             "fileName": "src/lit-element.ts",
@@ -5120,7 +4975,6 @@
       {
         "name": "CSSResultGroup",
         "kindString": "Type alias",
-        "flags": {},
         "sources": [
           {
             "fileName": "src/lit-element.ts",
@@ -5164,7 +5018,6 @@
       {
         "name": "CSSResultOrNative",
         "kindString": "Type alias",
-        "flags": {},
         "sources": [
           {
             "fileName": "src/lit-element.ts",
@@ -5236,7 +5089,6 @@
           {
             "name": "customElement",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Class decorator factory that defines the decorated class as a custom element.",
               "text": "```\n@customElement('my-element')\nclass MyElement {\n  render() {\n    return html``;\n  }\n}\n```"
@@ -5245,7 +5097,6 @@
               {
                 "name": "tagName",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "The name of the custom element to define.\n"
                 },
@@ -5260,17 +5111,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "classOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -5324,7 +5172,6 @@
       {
         "name": "eventOptions",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template.",
           "tags": [
@@ -5345,7 +5192,6 @@
           {
             "name": "eventOptions",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template.",
               "tags": [
@@ -5359,7 +5205,6 @@
               {
                 "name": "options",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "An object that specifies event listener options as accepted by\n`EventTarget#addEventListener` and `EventTarget#removeEventListener`.\n\nCurrent browsers support the `capture`, `passive`, and `once` options. See:\nhttps://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters\n"
                 },
@@ -5390,7 +5235,6 @@
       {
         "name": "internalProperty",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "Declares a private or protected property that still triggers updates to the\nelement when it changes.",
           "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler.",
@@ -5412,7 +5256,6 @@
           {
             "name": "internalProperty",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Declares a private or protected property that still triggers updates to the\nelement when it changes.",
               "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler.",
@@ -5445,17 +5288,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -5507,7 +5347,6 @@
       {
         "name": "property",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "A property decorator which creates a LitElement property which reflects a\ncorresponding attribute value. A [`PropertyDeclaration`](/docs/v1/api/lit-element/UpdatingElement/#PropertyDeclaration) may optionally be\nsupplied to configure property features.",
           "text": "This decorator should only be used for public fields. Private or protected\nfields should use the [`internalProperty`](/docs/v1/api/lit-element/decorators/#internalProperty) decorator.\n",
@@ -5533,7 +5372,6 @@
           {
             "name": "property",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "A property decorator which creates a LitElement property which reflects a\ncorresponding attribute value. A [`PropertyDeclaration`](/docs/v1/api/lit-element/UpdatingElement/#PropertyDeclaration) may optionally be\nsupplied to configure property features.",
               "text": "This decorator should only be used for public fields. Private or protected\nfields should use the [`internalProperty`](/docs/v1/api/lit-element/decorators/#internalProperty) decorator.\n",
@@ -5570,17 +5408,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -5632,7 +5467,6 @@
       {
         "name": "query",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot.",
           "tags": [
@@ -5653,7 +5487,6 @@
           {
             "name": "query",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot.",
               "tags": [
@@ -5667,7 +5500,6 @@
               {
                 "name": "selector",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "A DOMString containing one or more selectors to match."
                 },
@@ -5696,17 +5528,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -5758,7 +5587,6 @@
       {
         "name": "queryAll",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot.",
           "tags": [
@@ -5779,7 +5607,6 @@
           {
             "name": "queryAll",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot.",
               "tags": [
@@ -5793,7 +5620,6 @@
               {
                 "name": "selector",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "A DOMString containing one or more selectors to match.\n\nSee:\nhttps://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll\n"
                 },
@@ -5808,17 +5634,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -5870,7 +5693,6 @@
       {
         "name": "queryAssignedNodes",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`. Note, the type of\nthis property should be annotated as `NodeListOf<HTMLElement>`."
         },
@@ -5885,7 +5707,6 @@
           {
             "name": "queryAssignedNodes",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`. Note, the type of\nthis property should be annotated as `NodeListOf<HTMLElement>`."
             },
@@ -5893,7 +5714,6 @@
               {
                 "name": "slotName",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "A string name of the slot."
                 },
@@ -5906,7 +5726,6 @@
               {
                 "name": "flatten",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "A boolean which when true flattens the assigned nodes,\nmeaning any assigned nodes that are slot elements are replaced with their\nassigned nodes."
                 },
@@ -5919,7 +5738,6 @@
               {
                 "name": "selector",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "A string which filters the results to elements that match\nthe given css selector.\n\n* @example\n```ts\nclass MyElement {\n  @queryAssignedNodes('list', true, '.item')\n  listItems;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```"
                 },
@@ -5935,17 +5753,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -5997,7 +5812,6 @@
       {
         "name": "queryAsync",
         "kindString": "Function",
-        "flags": {},
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property.",
           "tags": [
@@ -6018,7 +5832,6 @@
           {
             "name": "queryAsync",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property.",
               "tags": [
@@ -6032,7 +5845,6 @@
               {
                 "name": "selector",
                 "kindString": "Parameter",
-                "flags": {},
                 "comment": {
                   "text": "A DOMString containing one or more selectors to match.\n\nSee: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector\n"
                 },
@@ -6047,17 +5859,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -6127,7 +5936,6 @@
           {
             "name": "state",
             "kindString": "Call signature",
-            "flags": {},
             "comment": {
               "shortText": "Declares a private or protected property that still triggers updates to the\nelement when it changes.",
               "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler."
@@ -6160,17 +5968,14 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
-                "flags": {},
                 "signatures": [
                   {
                     "name": "__type",
                     "kindString": "Call signature",
-                    "flags": {},
                     "parameters": [
                       {
                         "name": "protoOrDescriptor",
                         "kindString": "Parameter",
-                        "flags": {},
                         "type": {
                           "type": "union",
                           "types": [
@@ -6222,7 +6027,6 @@
       {
         "name": "Constructor",
         "kindString": "Type alias",
-        "flags": {},
         "sources": [
           {
             "fileName": "src/lib/decorators.ts",
@@ -6233,8 +6037,7 @@
         "typeParameter": [
           {
             "name": "T",
-            "kindString": "Type parameter",
-            "flags": {}
+            "kindString": "Type parameter"
           }
         ],
         "type": {
@@ -6242,7 +6045,6 @@
           "declaration": {
             "name": "__type",
             "kindString": "Type literal",
-            "flags": {},
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/decorators.ts",
@@ -6266,7 +6068,6 @@
       {
         "name": "InternalPropertyDeclaration",
         "kindString": "Interface",
-        "flags": {},
         "children": [
           {
             "name": "hasChanged",
@@ -6281,7 +6082,6 @@
               {
                 "name": "hasChanged",
                 "kindString": "Call signature",
-                "flags": {},
                 "comment": {
                   "shortText": "A function that indicates if a property should be considered changed when\nit is set. The function should take the `newValue` and `oldValue` and\nreturn `true` if an update should be requested."
                 },
@@ -6289,7 +6089,6 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "Type"
@@ -6298,7 +6097,6 @@
                   {
                     "name": "oldValue",
                     "kindString": "Parameter",
-                    "flags": {},
                     "type": {
                       "type": "reference",
                       "name": "Type"
@@ -6335,7 +6133,6 @@
           {
             "name": "Type",
             "kindString": "Type parameter",
-            "flags": {},
             "default": {
               "type": "intrinsic",
               "name": "unknown"

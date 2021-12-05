@@ -444,7 +444,11 @@ export class ApiDocsTransformer {
             (node as ExtendedDeclarationReflection).expandedCategories) ||
           // We use "groups" to generate "expandedCategories", but don't render
           // it directly.
-          key === 'groups'
+          key === 'groups' ||
+          // Empty arrays and objects.
+          (typeof val === 'object' &&
+            val !== null &&
+            Object.keys(val).length === 0)
         ) {
           delete node[key as keyof typeof node];
         } else {
