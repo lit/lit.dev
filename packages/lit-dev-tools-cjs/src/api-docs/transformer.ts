@@ -434,7 +434,10 @@ export class ApiDocsTransformer {
             val instanceof Array &&
             val.every((i) => typeof i === 'number')) ||
           // We only need the line number for GitHub URLs.
-          key === 'character'
+          key === 'character' ||
+          // We render the readable "kindString" field instead of the numeric
+          // "kind" field.
+          key === 'kind'
         ) {
           delete node[key as keyof typeof node];
         } else {
