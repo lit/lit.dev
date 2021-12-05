@@ -199,13 +199,7 @@
             },
             "comment": {
               "shortText": "Reference to the underlying library method used to render the element's\nDOM. By default, points to the `render` method from lit-html's shady-render\nmodule.",
-              "text": "**Most users will never need to touch this property.**\n\nThis  property should not be confused with the `render` instance method,\nwhich should be overridden to define a template for the element.\n\nAdvanced users creating a new base class based on LitElement can override\nthis property to point to a custom render method with a signature that\nmatches [shady-render's `render`\nmethod](https://lit-html.polymer-project.org/api/modules/shady_render.html#render).\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "text": "**Most users will never need to touch this property.**\n\nThis  property should not be confused with the `render` instance method,\nwhich should be overridden to define a template for the element.\n\nAdvanced users creating a new base class based on LitElement can override\nthis property to point to a custom render method with a signature that\nmatches [shady-render's `render`\nmethod](https://lit-html.polymer-project.org/api/modules/shady_render.html#render).\n"
             },
             "sources": [
               {
@@ -225,13 +219,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Reference to the underlying library method used to render the element's\nDOM. By default, points to the `render` method from lit-html's shady-render\nmodule.",
-                      "text": "**Most users will never need to touch this property.**\n\nThis  property should not be confused with the `render` instance method,\nwhich should be overridden to define a template for the element.\n\nAdvanced users creating a new base class based on LitElement can override\nthis property to point to a custom render method with a signature that\nmatches [shady-render's `render`\nmethod](https://lit-html.polymer-project.org/api/modules/shady_render.html#render).\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": "\n"
-                        }
-                      ]
+                      "text": "**Most users will never need to touch this property.**\n\nThis  property should not be confused with the `render` instance method,\nwhich should be overridden to define a template for the element.\n\nAdvanced users creating a new base class based on LitElement can override\nthis property to point to a custom render method with a signature that\nmatches [shady-render's `render`\nmethod](https://lit-html.polymer-project.org/api/modules/shady_render.html#render).\n"
                     },
                     "parameters": [
                       {
@@ -301,14 +289,7 @@
             "flags": {
               "isStatic": true
             },
-            "comment": {
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": ""
-                }
-              ]
-            },
+            "comment": {},
             "sources": [
               {
                 "fileName": "src/lit-element.ts",
@@ -493,13 +474,7 @@
               "isStatic": true
             },
             "comment": {
-              "shortText": "Returns a list of attributes corresponding to the registered properties.",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "shortText": "Returns a list of attributes corresponding to the registered properties."
             },
             "sources": [
               {
@@ -520,13 +495,7 @@
                 "name": "observedAttributes",
                 "kindString": "Get signature",
                 "comment": {
-                  "shortText": "Returns a list of attributes corresponding to the registered properties.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Returns a list of attributes corresponding to the registered properties."
                 },
                 "type": {
                   "type": "array",
@@ -1671,13 +1640,7 @@
             },
             "comment": {
               "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-              "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n"
             },
             "sources": [
               {
@@ -1692,13 +1655,7 @@
                 "kindString": "Call signature",
                 "comment": {
                   "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n"
                 },
                 "parameters": [
                   {
@@ -1771,13 +1728,7 @@
               "isStatic": true
             },
             "comment": {
-              "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized.",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized."
             },
             "sources": [
               {
@@ -1791,13 +1742,7 @@
                 "name": "finalize",
                 "kindString": "Call signature",
                 "comment": {
-                  "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized."
                 },
                 "type": {
                   "type": "intrinsic",
@@ -1838,13 +1783,7 @@
             },
             "comment": {
               "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-              "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n"
             },
             "sources": [
               {
@@ -1859,13 +1798,7 @@
                 "kindString": "Call signature",
                 "comment": {
                   "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                  "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n"
                 },
                 "parameters": [
                   {
@@ -2028,17 +1961,7 @@
             },
             "comment": {
               "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-              "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": ""
-                },
-                {
-                  "tag": "final",
-                  "text": "\n"
-                }
-              ]
+              "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
             },
             "sources": [
               {
@@ -2053,17 +1976,7 @@
                 "kindString": "Call signature",
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    },
-                    {
-                      "tag": "final",
-                      "text": "\n"
-                    }
-                  ]
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
                 },
                 "parameters": [
                   {
@@ -2126,13 +2039,7 @@
               "isStatic": true
             },
             "comment": {
-              "shortText": "Return the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "shortText": "Return the array of styles to apply to the element.\nOverride this method to integrate into a style management system."
             },
             "sources": [
               {
@@ -2146,13 +2053,7 @@
                 "name": "getStyles",
                 "kindString": "Call signature",
                 "comment": {
-                  "shortText": "Return the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Return the array of styles to apply to the element.\nOverride this method to integrate into a style management system."
                 },
                 "type": {
                   "type": "union",
@@ -2343,13 +2244,7 @@
           "isAbstract": true
         },
         "comment": {
-          "shortText": "Base element class which manages element properties and attributes. When\nproperties change, the `update` method is asynchronously called. This method\nshould be supplied by subclassers to render updates as desired.",
-          "tags": [
-            {
-              "tag": "noinheritdoc",
-              "text": "\n"
-            }
-          ]
+          "shortText": "Base element class which manages element properties and attributes. When\nproperties change, the `update` method is asynchronously called. This method\nshould be supplied by subclassers to render updates as desired."
         },
         "children": [
           {
@@ -2570,13 +2465,7 @@
               "isStatic": true
             },
             "comment": {
-              "shortText": "Returns a list of attributes corresponding to the registered properties.",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "shortText": "Returns a list of attributes corresponding to the registered properties."
             },
             "sources": [
               {
@@ -2597,13 +2486,7 @@
                 "name": "observedAttributes",
                 "kindString": "Get signature",
                 "comment": {
-                  "shortText": "Returns a list of attributes corresponding to the registered properties.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Returns a list of attributes corresponding to the registered properties."
                 },
                 "type": {
                   "type": "array",
@@ -3447,13 +3330,7 @@
             },
             "comment": {
               "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-              "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n"
             },
             "sources": [
               {
@@ -3468,13 +3345,7 @@
                 "kindString": "Call signature",
                 "comment": {
                   "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n"
                 },
                 "parameters": [
                   {
@@ -3535,13 +3406,7 @@
               "isStatic": true
             },
             "comment": {
-              "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized.",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized."
             },
             "sources": [
               {
@@ -3555,13 +3420,7 @@
                 "name": "finalize",
                 "kindString": "Call signature",
                 "comment": {
-                  "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Creates property accessors for registered properties and ensures\nany superclasses are also finalized."
                 },
                 "type": {
                   "type": "intrinsic",
@@ -3590,13 +3449,7 @@
             },
             "comment": {
               "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-              "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": "\n"
-                }
-              ]
+              "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n"
             },
             "sources": [
               {
@@ -3611,13 +3464,7 @@
                 "kindString": "Call signature",
                 "comment": {
                   "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                  "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "text": "  class MyElement extends LitElement {\n    static getPropertyDescriptor(name, key, options) {\n      const defaultDescriptor =\n          super.getPropertyDescriptor(name, key, options);\n      const setter = defaultDescriptor.set;\n      return {\n        get: defaultDescriptor.get,\n        set(value) {\n          setter.call(this, value);\n          // custom action.\n        },\n        configurable: true,\n        enumerable: true\n      }\n    }\n  }\n"
                 },
                 "parameters": [
                   {
@@ -3768,17 +3615,7 @@
             },
             "comment": {
               "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-              "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-              "tags": [
-                {
-                  "tag": "nocollapse",
-                  "text": ""
-                },
-                {
-                  "tag": "final",
-                  "text": "\n"
-                }
-              ]
+              "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
             },
             "sources": [
               {
@@ -3793,17 +3630,7 @@
                 "kindString": "Call signature",
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    },
-                    {
-                      "tag": "final",
-                      "text": "\n"
-                    }
-                  ]
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
                 },
                 "parameters": [
                   {
@@ -5173,13 +5000,7 @@
         "name": "eventOptions",
         "kindString": "Function",
         "comment": {
-          "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template.",
-          "tags": [
-            {
-              "tag": "example",
-              "text": "\n```ts\nclass MyElement {\n  clicked = false;\n\n  render() {\n    return html`\n      <div @click=${this._onClick}`>\n        <button></button>\n      </div>\n    `;\n  }\n\n  @eventOptions({capture: true})\n  _onClick(e) {\n    this.clicked = true;\n  }\n}\n```"
-            }
-          ]
+          "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template."
         },
         "sources": [
           {
@@ -5193,13 +5014,7 @@
             "name": "eventOptions",
             "kindString": "Call signature",
             "comment": {
-              "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template.",
-              "tags": [
-                {
-                  "tag": "example",
-                  "text": "\n```ts\nclass MyElement {\n  clicked = false;\n\n  render() {\n    return html`\n      <div @click=${this._onClick}`>\n        <button></button>\n      </div>\n    `;\n  }\n\n  @eventOptions({capture: true})\n  _onClick(e) {\n    this.clicked = true;\n  }\n}\n```"
-                }
-              ]
+              "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template."
             },
             "parameters": [
               {
@@ -5237,13 +5052,7 @@
         "kindString": "Function",
         "comment": {
           "shortText": "Declares a private or protected property that still triggers updates to the\nelement when it changes.",
-          "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler.",
-          "tags": [
-            {
-              "tag": "deprecated",
-              "text": "`internalProperty` has been renamed to `state` in lit-element\n    3.0. Please update to `state` now to be compatible with 3.0.\n"
-            }
-          ]
+          "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler."
         },
         "sources": [
           {
@@ -5258,13 +5067,7 @@
             "kindString": "Call signature",
             "comment": {
               "shortText": "Declares a private or protected property that still triggers updates to the\nelement when it changes.",
-              "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler.",
-              "tags": [
-                {
-                  "tag": "deprecated",
-                  "text": "`internalProperty` has been renamed to `state` in lit-element\n    3.0. Please update to `state` now to be compatible with 3.0.\n"
-                }
-              ]
+              "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like the Closure Compiler."
             },
             "parameters": [
               {
@@ -5349,17 +5152,7 @@
         "kindString": "Function",
         "comment": {
           "shortText": "A property decorator which creates a LitElement property which reflects a\ncorresponding attribute value. A [`PropertyDeclaration`](/docs/v1/api/lit-element/UpdatingElement/#PropertyDeclaration) may optionally be\nsupplied to configure property features.",
-          "text": "This decorator should only be used for public fields. Private or protected\nfields should use the [`internalProperty`](/docs/v1/api/lit-element/decorators/#internalProperty) decorator.\n",
-          "tags": [
-            {
-              "tag": "example",
-              "text": "\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
-            },
-            {
-              "tag": "exportdecorateditems",
-              "text": "\n"
-            }
-          ]
+          "text": "This decorator should only be used for public fields. Private or protected\nfields should use the [`internalProperty`](/docs/v1/api/lit-element/decorators/#internalProperty) decorator.\n"
         },
         "sources": [
           {
@@ -5374,17 +5167,7 @@
             "kindString": "Call signature",
             "comment": {
               "shortText": "A property decorator which creates a LitElement property which reflects a\ncorresponding attribute value. A [`PropertyDeclaration`](/docs/v1/api/lit-element/UpdatingElement/#PropertyDeclaration) may optionally be\nsupplied to configure property features.",
-              "text": "This decorator should only be used for public fields. Private or protected\nfields should use the [`internalProperty`](/docs/v1/api/lit-element/decorators/#internalProperty) decorator.\n",
-              "tags": [
-                {
-                  "tag": "example",
-                  "text": "\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
-                },
-                {
-                  "tag": "exportdecorateditems",
-                  "text": "\n"
-                }
-              ]
+              "text": "This decorator should only be used for public fields. Private or protected\nfields should use the [`internalProperty`](/docs/v1/api/lit-element/decorators/#internalProperty) decorator.\n"
             },
             "parameters": [
               {
@@ -5468,13 +5251,7 @@
         "name": "query",
         "kindString": "Function",
         "comment": {
-          "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot.",
-          "tags": [
-            {
-              "tag": "example",
-              "text": "\n\n```ts\nclass MyElement {\n  @query('#first')\n  first;\n\n  render() {\n    return html`\n      <div id=\"first\"></div>\n      <div id=\"second\"></div>\n    `;\n  }\n}\n```"
-            }
-          ]
+          "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot."
         },
         "sources": [
           {
@@ -5488,13 +5265,7 @@
             "name": "query",
             "kindString": "Call signature",
             "comment": {
-              "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot.",
-              "tags": [
-                {
-                  "tag": "example",
-                  "text": "\n\n```ts\nclass MyElement {\n  @query('#first')\n  first;\n\n  render() {\n    return html`\n      <div id=\"first\"></div>\n      <div id=\"second\"></div>\n    `;\n  }\n}\n```"
-                }
-              ]
+              "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot."
             },
             "parameters": [
               {
@@ -5588,13 +5359,7 @@
         "name": "queryAll",
         "kindString": "Function",
         "comment": {
-          "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot.",
-          "tags": [
-            {
-              "tag": "example",
-              "text": "\n```ts\nclass MyElement {\n  @queryAll('div')\n  divs;\n\n  render() {\n    return html`\n      <div id=\"first\"></div>\n      <div id=\"second\"></div>\n    `;\n  }\n}\n```"
-            }
-          ]
+          "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot."
         },
         "sources": [
           {
@@ -5608,13 +5373,7 @@
             "name": "queryAll",
             "kindString": "Call signature",
             "comment": {
-              "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot.",
-              "tags": [
-                {
-                  "tag": "example",
-                  "text": "\n```ts\nclass MyElement {\n  @queryAll('div')\n  divs;\n\n  render() {\n    return html`\n      <div id=\"first\"></div>\n      <div id=\"second\"></div>\n    `;\n  }\n}\n```"
-                }
-              ]
+              "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot."
             },
             "parameters": [
               {
@@ -5813,13 +5572,7 @@
         "name": "queryAsync",
         "kindString": "Function",
         "comment": {
-          "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property.",
-          "tags": [
-            {
-              "tag": "example",
-              "text": "\n```ts\nclass MyElement {\n  @queryAsync('#first')\n  first;\n\n  render() {\n    return html`\n      <div id=\"first\"></div>\n      <div id=\"second\"></div>\n    `;\n  }\n}\n\n// external usage\nasync doSomethingWithFirst() {\n (await aMyElement.first).doSomething();\n}\n```"
-            }
-          ]
+          "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property."
         },
         "sources": [
           {
@@ -5833,13 +5586,7 @@
             "name": "queryAsync",
             "kindString": "Call signature",
             "comment": {
-              "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property.",
-              "tags": [
-                {
-                  "tag": "example",
-                  "text": "\n```ts\nclass MyElement {\n  @queryAsync('#first')\n  first;\n\n  render() {\n    return html`\n      <div id=\"first\"></div>\n      <div id=\"second\"></div>\n    `;\n  }\n}\n\n// external usage\nasync doSomethingWithFirst() {\n (await aMyElement.first).doSomething();\n}\n```"
-                }
-              ]
+              "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property."
             },
             "parameters": [
               {

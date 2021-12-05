@@ -166,13 +166,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Returns a list of attributes corresponding to the registered properties.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Returns a list of attributes corresponding to the registered properties."
                 },
                 "sources": [
                   {
@@ -193,17 +187,7 @@
                     "name": "observedAttributes",
                     "kindString": "Get signature",
                     "comment": {
-                      "shortText": "Returns a list of attributes corresponding to the registered properties.",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        },
-                        {
-                          "tag": "category",
-                          "text": "attributes\n"
-                        }
-                      ]
+                      "shortText": "Returns a list of attributes corresponding to the registered properties."
                     },
                     "type": {
                       "type": "array",
@@ -371,13 +355,7 @@
                 },
                 "comment": {
                   "shortText": "Disable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
@@ -397,17 +375,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Disable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n",
-                          "tags": [
-                            {
-                              "tag": "nocollapse",
-                              "text": ""
-                            },
-                            {
-                              "tag": "category",
-                              "text": "dev-mode\n"
-                            }
-                          ]
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -460,13 +428,7 @@
                 },
                 "comment": {
                   "shortText": "Read or set all the enabled warning kinds for this class.",
-                  "text": "This property is only used in development builds.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This property is only used in development builds.\n"
                 },
                 "sources": [
                   {
@@ -515,13 +477,7 @@
                 },
                 "comment": {
                   "shortText": "Enable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
@@ -541,17 +497,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Enable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n",
-                          "tags": [
-                            {
-                              "tag": "nocollapse",
-                              "text": ""
-                            },
-                            {
-                              "tag": "category",
-                              "text": "dev-mode\n"
-                            }
-                          ]
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -712,14 +658,7 @@
                   {
                     "name": "addInitializer",
                     "kindString": "Call signature",
-                    "comment": {
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": "\n"
-                        }
-                      ]
-                    },
+                    "comment": {},
                     "parameters": [
                       {
                         "name": "initializer",
@@ -772,13 +711,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized."
                 },
                 "sources": [
                   {
@@ -792,13 +725,7 @@
                     "name": "finalize",
                     "kindString": "Call signature",
                     "comment": {
-                      "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized.",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": "\n"
-                        }
-                      ]
+                      "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized."
                     },
                     "type": {
                       "type": "intrinsic",
@@ -886,13 +813,7 @@
                 },
                 "comment": {
                   "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
                   {
@@ -907,13 +828,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                      "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        }
-                      ]
+                      "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                     },
                     "parameters": [
                       {
@@ -987,13 +902,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Memoized list of all element properties, including any superclass properties.\nCreated lazily on user subclasses when finalizing the class.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Memoized list of all element properties, including any superclass properties.\nCreated lazily on user subclasses when finalizing the class."
                 },
                 "sources": [
                   {
@@ -1035,13 +944,7 @@
                 },
                 "comment": {
                   "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                  "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n"
                 },
                 "sources": [
                   {
@@ -1056,13 +959,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                      "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        }
-                      ]
+                      "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n"
                     },
                     "parameters": [
                       {
@@ -1223,17 +1120,7 @@
                 },
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    },
-                    {
-                      "tag": "final",
-                      "text": ""
-                    }
-                  ]
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
                 },
                 "sources": [
                   {
@@ -1248,17 +1135,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                      "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        },
-                        {
-                          "tag": "final",
-                          "text": ""
-                        }
-                      ]
+                      "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
                     },
                     "parameters": [
                       {
@@ -1322,13 +1199,7 @@
                 },
                 "comment": {
                   "shortText": "User-supplied object that maps property names to `PropertyDeclaration`\nobjects containing options for configuring reactive properties. When\na reactive property is set the element will update and render.",
-                  "text": "By default properties are public fields, and as such, they should be\nconsidered as primarily settable by element users, either via attribute or\nthe property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state: true` option. Properties\nmarked as `state` do not reflect from the corresponding attribute\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating\npublic properties should typically not be done for non-primitive (object or\narray) properties. In other cases when an element needs to manage state, a\nprivate property set with the `state: true` option should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "By default properties are public fields, and as such, they should be\nconsidered as primarily settable by element users, either via attribute or\nthe property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state: true` option. Properties\nmarked as `state` do not reflect from the corresponding attribute\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating\npublic properties should typically not be done for non-primitive (object or\narray) properties. In other cases when an element needs to manage state, a\nprivate property set with the `state: true` option should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions."
                 },
                 "sources": [
                   {
@@ -1570,13 +1441,7 @@
                 },
                 "comment": {
                   "shortText": "Options used when calling `attachShadow`. Set this property to customize\nthe options for the shadowRoot; for example, to create a closed\nshadowRoot: `{mode: 'closed'}`.",
-                  "text": "Note, these options are used in `createRenderRoot`. If this method\nis customized, options should be respected if possible.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "Note, these options are used in `createRenderRoot`. If this method\nis customized, options should be respected if possible."
                 },
                 "sources": [
                   {
@@ -1625,13 +1490,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Memoized list of all element styles.\nCreated lazily on user subclasses when finalizing the class.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Memoized list of all element styles.\nCreated lazily on user subclasses when finalizing the class."
                 },
                 "sources": [
                   {
@@ -1680,13 +1539,7 @@
                 },
                 "comment": {
                   "shortText": "Takes the styles the user supplied via the `static styles` property and\nreturns the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                  "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n"
                 },
                 "sources": [
                   {
@@ -1701,13 +1554,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Takes the styles the user supplied via the `static styles` property and\nreturns the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                      "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        }
-                      ]
+                      "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n"
                     },
                     "parameters": [
                       {
@@ -1771,13 +1618,7 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function or via constructible stylesheets.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function or via constructible stylesheets."
                 },
                 "sources": [
                   {
@@ -2563,13 +2404,7 @@
                     "comment": {
                       "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
                       "text": "To await additional asynchronous work, override the `getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super.getUpdateComplete()`, then any subsequent state.\n",
-                      "returns": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update.",
-                      "tags": [
-                        {
-                          "tag": "category",
-                          "text": "updates\n"
-                        }
-                      ]
+                      "returns": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update."
                     },
                     "type": {
                       "type": "reference",
@@ -2997,13 +2832,7 @@
           "isAbstract": true
         },
         "comment": {
-          "shortText": "Base element class which manages element properties and attributes. When\nproperties change, the `update` method is asynchronously called. This method\nshould be supplied by subclassers to render updates as desired.",
-          "tags": [
-            {
-              "tag": "noinheritdoc",
-              "text": "\n"
-            }
-          ]
+          "shortText": "Base element class which manages element properties and attributes. When\nproperties change, the `update` method is asynchronously called. This method\nshould be supplied by subclassers to render updates as desired."
         },
         "sources": [
           {
@@ -3155,13 +2984,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Returns a list of attributes corresponding to the registered properties.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Returns a list of attributes corresponding to the registered properties."
                 },
                 "sources": [
                   {
@@ -3182,17 +3005,7 @@
                     "name": "observedAttributes",
                     "kindString": "Get signature",
                     "comment": {
-                      "shortText": "Returns a list of attributes corresponding to the registered properties.",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        },
-                        {
-                          "tag": "category",
-                          "text": "attributes\n"
-                        }
-                      ]
+                      "shortText": "Returns a list of attributes corresponding to the registered properties."
                     },
                     "type": {
                       "type": "array",
@@ -3352,13 +3165,7 @@
                 },
                 "comment": {
                   "shortText": "Disable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
@@ -3378,17 +3185,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Disable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n",
-                          "tags": [
-                            {
-                              "tag": "nocollapse",
-                              "text": ""
-                            },
-                            {
-                              "tag": "category",
-                              "text": "dev-mode\n"
-                            }
-                          ]
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -3433,13 +3230,7 @@
                 },
                 "comment": {
                   "shortText": "Read or set all the enabled warning kinds for this class.",
-                  "text": "This property is only used in development builds.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This property is only used in development builds.\n"
                 },
                 "sources": [
                   {
@@ -3480,13 +3271,7 @@
                 },
                 "comment": {
                   "shortText": "Enable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
@@ -3506,17 +3291,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Enable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n",
-                          "tags": [
-                            {
-                              "tag": "nocollapse",
-                              "text": ""
-                            },
-                            {
-                              "tag": "category",
-                              "text": "dev-mode\n"
-                            }
-                          ]
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -3657,14 +3432,7 @@
                   {
                     "name": "addInitializer",
                     "kindString": "Call signature",
-                    "comment": {
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": "\n"
-                        }
-                      ]
-                    },
+                    "comment": {},
                     "parameters": [
                       {
                         "name": "initializer",
@@ -3705,13 +3473,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": "\n"
-                    }
-                  ]
+                  "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized."
                 },
                 "sources": [
                   {
@@ -3725,13 +3487,7 @@
                     "name": "finalize",
                     "kindString": "Call signature",
                     "comment": {
-                      "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized.",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": "\n"
-                        }
-                      ]
+                      "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized."
                     },
                     "type": {
                       "type": "intrinsic",
@@ -3798,13 +3554,7 @@
                 },
                 "comment": {
                   "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
                   {
@@ -3819,13 +3569,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                      "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        }
-                      ]
+                      "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                     },
                     "parameters": [
                       {
@@ -3887,13 +3631,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Memoized list of all element properties, including any superclass properties.\nCreated lazily on user subclasses when finalizing the class.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Memoized list of all element properties, including any superclass properties.\nCreated lazily on user subclasses when finalizing the class."
                 },
                 "sources": [
                   {
@@ -3927,13 +3665,7 @@
                 },
                 "comment": {
                   "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                  "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n"
                 },
                 "sources": [
                   {
@@ -3948,13 +3680,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                      "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        }
-                      ]
+                      "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n"
                     },
                     "parameters": [
                       {
@@ -4103,17 +3829,7 @@
                 },
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    },
-                    {
-                      "tag": "final",
-                      "text": ""
-                    }
-                  ]
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
                 },
                 "sources": [
                   {
@@ -4128,17 +3844,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                      "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        },
-                        {
-                          "tag": "final",
-                          "text": ""
-                        }
-                      ]
+                      "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
                     },
                     "parameters": [
                       {
@@ -4190,13 +3896,7 @@
                 },
                 "comment": {
                   "shortText": "User-supplied object that maps property names to `PropertyDeclaration`\nobjects containing options for configuring reactive properties. When\na reactive property is set the element will update and render.",
-                  "text": "By default properties are public fields, and as such, they should be\nconsidered as primarily settable by element users, either via attribute or\nthe property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state: true` option. Properties\nmarked as `state` do not reflect from the corresponding attribute\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating\npublic properties should typically not be done for non-primitive (object or\narray) properties. In other cases when an element needs to manage state, a\nprivate property set with the `state: true` option should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "By default properties are public fields, and as such, they should be\nconsidered as primarily settable by element users, either via attribute or\nthe property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state: true` option. Properties\nmarked as `state` do not reflect from the corresponding attribute\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating\npublic properties should typically not be done for non-primitive (object or\narray) properties. In other cases when an element needs to manage state, a\nprivate property set with the `state: true` option should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions."
                 },
                 "sources": [
                   {
@@ -4344,13 +4044,7 @@
                 },
                 "comment": {
                   "shortText": "Options used when calling `attachShadow`. Set this property to customize\nthe options for the shadowRoot; for example, to create a closed\nshadowRoot: `{mode: 'closed'}`.",
-                  "text": "Note, these options are used in `createRenderRoot`. If this method\nis customized, options should be respected if possible.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "Note, these options are used in `createRenderRoot`. If this method\nis customized, options should be respected if possible."
                 },
                 "sources": [
                   {
@@ -4391,13 +4085,7 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Memoized list of all element styles.\nCreated lazily on user subclasses when finalizing the class.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Memoized list of all element styles.\nCreated lazily on user subclasses when finalizing the class."
                 },
                 "sources": [
                   {
@@ -4438,13 +4126,7 @@
                 },
                 "comment": {
                   "shortText": "Takes the styles the user supplied via the `static styles` property and\nreturns the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                  "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n"
                 },
                 "sources": [
                   {
@@ -4459,13 +4141,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "Takes the styles the user supplied via the `static styles` property and\nreturns the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                      "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n",
-                      "tags": [
-                        {
-                          "tag": "nocollapse",
-                          "text": ""
-                        }
-                      ]
+                      "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n"
                     },
                     "parameters": [
                       {
@@ -4517,13 +4193,7 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function or via constructible stylesheets.",
-                  "tags": [
-                    {
-                      "tag": "nocollapse",
-                      "text": ""
-                    }
-                  ]
+                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function or via constructible stylesheets."
                 },
                 "sources": [
                   {
@@ -5201,13 +4871,7 @@
                     "comment": {
                       "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
                       "text": "To await additional asynchronous work, override the `getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super.getUpdateComplete()`, then any subsequent state.\n",
-                      "returns": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update.",
-                      "tags": [
-                        {
-                          "tag": "category",
-                          "text": "updates\n"
-                        }
-                      ]
+                      "returns": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update."
                     },
                     "type": {
                       "type": "reference",
@@ -7524,13 +7188,7 @@
         "kindString": "Function",
         "comment": {
           "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) may\noptionally be supplied to configure property features.",
-          "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```",
-          "tags": [
-            {
-              "tag": "exportdecorateditems",
-              "text": "\n"
-            }
-          ]
+          "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
         },
         "sources": [
           {
@@ -7545,13 +7203,7 @@
             "kindString": "Call signature",
             "comment": {
               "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) may\noptionally be supplied to configure property features.",
-              "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```",
-              "tags": [
-                {
-                  "tag": "exportdecorateditems",
-                  "text": "\n"
-                }
-              ]
+              "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
             },
             "parameters": [
               {
@@ -8227,14 +7879,7 @@
       {
         "name": "InternalPropertyDeclaration",
         "kindString": "Interface",
-        "comment": {
-          "tags": [
-            {
-              "tag": "license",
-              "text": "\nCopyright 2017 Google LLC\nSPDX-License-Identifier: BSD-3-Clause\n"
-            }
-          ]
-        },
+        "comment": {},
         "children": [
           {
             "name": "hasChanged",
@@ -20579,13 +20224,7 @@
               "isReadonly": true
             },
             "comment": {
-              "shortText": "Returns a Promise that resolves when the host has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
-              "tags": [
-                {
-                  "tag": "returns",
-                  "text": "A promise of a boolean that indicates if the update resolved\n    without triggering another update.\n"
-                }
-              ]
+              "shortText": "Returns a Promise that resolves when the host has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update."
             },
             "sources": [
               {

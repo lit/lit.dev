@@ -3885,13 +3885,7 @@
         },
         "comment": {
           "shortText": "Brands a function as a directive factory function so that lit-html will call\nthe function during template rendering, rather than passing as a value.",
-          "text": "A _directive_ is a function that takes a Part as an argument. It has the\nsignature: `(part: Part) => void`.\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the `repeat()` directive factory that takes an\narray and a function to render an item:\n\n```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```\n\nWhen `repeat` is invoked, it returns a directive function that closes over\n`items` and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n`repeat` then performs it's custom logic to render multiple items.\n",
-          "tags": [
-            {
-              "tag": "example",
-              "text": "\n\nimport {directive, html} from 'lit-html';\n\nconst immutable = directive((v) => (part) => {\n  if (part.value !== v) {\n    part.setValue(v)\n  }\n});\n"
-            }
-          ]
+          "text": "A _directive_ is a function that takes a Part as an argument. It has the\nsignature: `(part: Part) => void`.\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the `repeat()` directive factory that takes an\narray and a function to render an item:\n\n```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```\n\nWhen `repeat` is invoked, it returns a directive function that closes over\n`items` and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n`repeat` then performs it's custom logic to render multiple items.\n"
         },
         "sources": [
           {
@@ -3906,13 +3900,7 @@
             "kindString": "Call signature",
             "comment": {
               "shortText": "Brands a function as a directive factory function so that lit-html will call\nthe function during template rendering, rather than passing as a value.",
-              "text": "A _directive_ is a function that takes a Part as an argument. It has the\nsignature: `(part: Part) => void`.\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the `repeat()` directive factory that takes an\narray and a function to render an item:\n\n```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```\n\nWhen `repeat` is invoked, it returns a directive function that closes over\n`items` and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n`repeat` then performs it's custom logic to render multiple items.\n",
-              "tags": [
-                {
-                  "tag": "example",
-                  "text": "\n\nimport {directive, html} from 'lit-html';\n\nconst immutable = directive((v) => (part) => {\n  if (part.value !== v) {\n    part.setValue(v)\n  }\n});\n"
-                }
-              ]
+              "text": "A _directive_ is a function that takes a Part as an argument. It has the\nsignature: `(part: Part) => void`.\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the `repeat()` directive factory that takes an\narray and a function to render an item:\n\n```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```\n\nWhen `repeat` is invoked, it returns a directive function that closes over\n`items` and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n`repeat` then performs it's custom logic to render multiple items.\n"
             },
             "typeParameter": [
               {

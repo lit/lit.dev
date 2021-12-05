@@ -448,7 +448,10 @@ export class ApiDocsTransformer {
           // Empty arrays and objects.
           (typeof val === 'object' &&
             val !== null &&
-            Object.keys(val).length === 0)
+            Object.keys(val).length === 0) ||
+          // We don't render JSDoc tags directly, the ones we care about are
+          // already extracted into e.g. "parameters".
+          key === 'tags'
         ) {
           delete node[key as keyof typeof node];
         } else {
