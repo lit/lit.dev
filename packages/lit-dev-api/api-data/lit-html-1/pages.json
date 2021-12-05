@@ -28,9 +28,6 @@
           {
             "name": "html",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container."
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -134,10 +131,6 @@
           {
             "name": "render",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders a template result or other value to a container.",
-              "text": "To update a container with new values, reevaluate the template literal and\ncall `render` with the new result.\n"
-            },
             "parameters": [
               {
                 "name": "result",
@@ -239,9 +232,6 @@
           {
             "name": "svg",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container."
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -558,9 +548,6 @@
               {
                 "name": "getHTML",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Returns a string of HTML used to create a `<template>` element."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "string"
@@ -910,9 +897,6 @@
               {
                 "name": "getHTML",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Returns a string of HTML used to create a `<template>` element."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "string"
@@ -1111,10 +1095,6 @@
           {
             "name": "asyncAppend",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that renders the items of an async iterable[1], appending new\nvalues after previous values, similar to the built-in support for iterables.",
-              "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is appended to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration\n"
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -1260,10 +1240,6 @@
           {
             "name": "asyncReplace",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that renders the items of an async iterable[1], replacing\nprevious values with new values, so that only one value is ever rendered\nat a time.",
-              "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is rendered to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration\n"
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -1409,10 +1385,6 @@
           {
             "name": "cache",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Enables fast switching between multiple templates by caching the DOM nodes\nand TemplateInstances produced by the templates.",
-              "text": "Example:\n\n```\nlet checked = false;\n\nhtml`\n  ${cache(checked ? html`input is checked` : html`input is not checked`)}\n`\n```\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -1488,9 +1460,6 @@
           {
             "name": "classMap",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that applies CSS classes. This must be used in the `class`\nattribute and must be the only part used in the attribute. It takes each\nproperty in the `classInfo` argument and adds the property name to the\nelement's `class` if the property value is truthy; if the property value is\nfalsey, the property name is removed from the element's `class`. For example\n`{foo: bar}` applies the class `foo` if the value of `bar` is truthy."
-            },
             "parameters": [
               {
                 "name": "classInfo",
@@ -1626,10 +1595,6 @@
           {
             "name": "guard",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Prevents re-render of a template function until a single value or an array of\nvalues changes.",
-              "text": "Example:\n\n```js\nhtml`\n  <div>\n    ${guard([user.id, company.id], () => html`...`)}\n  </div>\n```\n\nIn this case, the template only renders if either `user.id` or `company.id`\nchanges.\n\nguard() is useful with immutable data patterns, by preventing expensive work\nuntil data updates.\n\nExample:\n\n```js\nhtml`\n  <div>\n    ${guard([immutableItems], () => immutableItems.map(i => html`${i}`))}\n  </div>\n```\n\nIn this case, items are mapped over only when the array reference changes.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -1733,10 +1698,6 @@
           {
             "name": "ifDefined",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "For AttributeParts, sets the attribute if the value is defined and removes\nthe attribute if the value is undefined.",
-              "text": "For other part types, this directive is a no-op.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -1813,10 +1774,6 @@
           {
             "name": "live",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Checks binding values against live DOM values, instead of previously bound\nvalues, when determining whether to update the value.",
-              "text": "This is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an `<input>` element's `value` property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want—if you want to overwrite the DOM\nvalue with the bound value no matter what—use the `live()` directive:\n\n    html`<input .value=${live(x)}>`\n\n`live()` performs a strict equality check agains the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n`live()` should not be used when the binding will cause a type conversion. If\nyou use `live()` with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -1914,10 +1871,6 @@
           {
             "name": "repeat",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that repeats a series of values (usually `TemplateResults`)\ngenerated from an iterable, and updates those items efficiently when the\niterable changes based on user-provided `keys` associated with each item.",
-              "text": "Note that if a `keyFn` is provided, strict key-to-DOM mapping is maintained,\nmeaning previous DOM for a given key is moved into the new position if\nneeded, and DOM will never be reused with values for different keys (new DOM\nwill always be created for new keys). This is generally the most efficient\nway to use `repeat` since it performs minimum unnecessary work for insertions\nand removals.\n\nIMPORTANT: If providing a `keyFn`, keys *must* be unique for all items in a\ngiven call to `repeat`. The behavior when two or more items have the same key\nis undefined.\n\nIf no `keyFn` is provided, this directive will perform similar to mapping\nitems to values, and DOM will be reused against potentially different items.\n"
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -2179,10 +2132,6 @@
           {
             "name": "styleMap",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that applies CSS properties to an element.",
-              "text": "`styleMap` can only be used in the `style` attribute and must be the only\nexpression in the attribute. It takes the property names in the `styleInfo`\nobject and adds the property values as CSS properties. Property names with\ndashes (`-`) are assumed to be valid CSS property names and set on the\nelement's style object using `setProperty()`. Names without dashes are\nassumed to be camelCased JavaScript property names and set on the element's\nstyle object using property assignment, allowing the style object to\ntranslate JavaScript-style names to CSS property names.\n\nFor example `styleMap({backgroundColor: 'red', 'border-top': '5px', '--size':\n'0'})` sets the `background-color`, `border-top` and `--size` properties.\n"
-            },
             "parameters": [
               {
                 "name": "styleInfo",
@@ -2305,10 +2254,6 @@
           {
             "name": "templateContent",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders the content of a template element as HTML.",
-              "text": "Note, the template should be developer controlled and not user controlled.\nRendering a user-controlled template with this directive\ncould lead to cross-site-scripting vulnerabilities.\n"
-            },
             "parameters": [
               {
                 "name": "template",
@@ -2388,10 +2333,6 @@
           {
             "name": "unsafeHTML",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders the result as HTML, rather than text.",
-              "text": "Note, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -2468,10 +2409,6 @@
           {
             "name": "unsafeSVG",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders the result as SVG, rather than text.",
-              "text": "Note, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -2548,10 +2485,6 @@
           {
             "name": "until",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders one of a series of values, including Promises, to a Part.",
-              "text": "Values are rendered in priority order, with the first argument having the\nhighest priority and the last argument having the lowest priority. If a\nvalue is a Promise, low-priority values will be rendered until it resolves.\n\nThe priority of values can be used to create placeholder content for async\ndata. For example, a Promise with pending content can be the first,\nhighest-priority, argument, and a non_promise loading indicator template can\nbe used as the second, lower-priority, argument. The loading indicator will\nrender immediately, and the primary content will render when the Promise\nresolves.\n\nExample:\n\n    const content = fetch('./content.txt').then(r => r.text());\n    html`${until(content, html`<span>Loading...</span>`)}`\n"
-            },
             "parameters": [
               {
                 "name": "args",
@@ -3072,10 +3005,6 @@
               {
                 "name": "commit",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-                  "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -3123,9 +3052,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the current part value, but does not write it to the DOM."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -3436,10 +3362,6 @@
               {
                 "name": "commit",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-                  "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -3487,9 +3409,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the current part value, but does not write it to the DOM."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -3682,9 +3601,6 @@
               {
                 "name": "handleAttributeExpressions",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Create parts for an attribute-position binding, given the event, attribute\nname, and string literals."
-                },
                 "parameters": [
                   {
                     "name": "element",
@@ -3796,9 +3712,6 @@
               {
                 "name": "handleTextExpression",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Create parts for a text-position binding."
-                },
                 "parameters": [
                   {
                     "name": "options",
@@ -3898,10 +3811,6 @@
           {
             "name": "directive",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Brands a function as a directive factory function so that lit-html will call\nthe function during template rendering, rather than passing as a value.",
-              "text": "A _directive_ is a function that takes a Part as an argument. It has the\nsignature: `(part: Part) => void`.\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the `repeat()` directive factory that takes an\narray and a function to render an item:\n\n```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```\n\nWhen `repeat` is invoked, it returns a directive function that closes over\n`items` and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n`repeat` then performs it's custom logic to render multiple items.\n"
-            },
             "typeParameter": [
               {
                 "name": "F",
@@ -4168,10 +4077,6 @@
               {
                 "name": "commit",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-                  "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -4261,9 +4166,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the current part value, but does not write it to the DOM."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -4780,10 +4682,6 @@
               {
                 "name": "appendInto",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Appends this part into a container.",
-                  "text": "This part must be empty, as its contents are not automatically moved.\n"
-                },
                 "parameters": [
                   {
                     "name": "container",
@@ -4830,10 +4728,6 @@
               {
                 "name": "appendIntoPart",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Appends this part into a parent part.",
-                  "text": "This part must be empty, as its contents are not automatically moved.\n"
-                },
                 "parameters": [
                   {
                     "name": "part",
@@ -4927,10 +4821,6 @@
               {
                 "name": "commit",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-                  "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -4979,10 +4869,6 @@
               {
                 "name": "insertAfterNode",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Inserts this part after the `ref` node (between `ref` and `ref`'s next\nsibling). Both `ref` and its next sibling must be static, unchanging nodes\nsuch as those that appear in a literal section of a template.",
-                  "text": "This part must be empty, as its contents are not automatically moved.\n"
-                },
                 "parameters": [
                   {
                     "name": "ref",
@@ -5029,10 +4915,6 @@
               {
                 "name": "insertAfterPart",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Inserts this part after the `ref` part.",
-                  "text": "This part must be empty, as its contents are not automatically moved.\n"
-                },
                 "parameters": [
                   {
                     "name": "ref",
@@ -5082,9 +4964,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the current part value, but does not write it to the DOM."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -5761,10 +5640,6 @@
               {
                 "name": "commit",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-                  "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -5812,9 +5687,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the current part value, but does not write it to the DOM."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -5915,9 +5787,6 @@
           {
             "name": "removeNodes",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Removes nodes, starting from `start` (inclusive) to `end` (exclusive), from\n`container`."
-            },
             "parameters": [
               {
                 "name": "container",
@@ -6001,9 +5870,6 @@
           {
             "name": "reparentNodes",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Reparents nodes, starting from `start` (inclusive) to `end` (exclusive),\ninto another container (could be the same container), before `before`. If\n`before` is null, it appends the nodes to the container."
-            },
             "parameters": [
               {
                 "name": "container",
@@ -6295,9 +6161,6 @@
           {
             "name": "templateFactory",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "The default TemplateFactory which caches Templates keyed on\nresult.type and result.strings."
-            },
             "parameters": [
               {
                 "name": "result",
@@ -6689,10 +6552,6 @@
               {
                 "name": "commit",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-                  "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -6721,9 +6580,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the current part value, but does not write it to the DOM."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -6823,9 +6679,6 @@
               {
                 "name": "handleAttributeExpressions",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Create parts for an attribute-position binding, given the element,\nattribute name, and string literals."
-                },
                 "parameters": [
                   {
                     "name": "element",
@@ -6922,9 +6775,6 @@
               {
                 "name": "handleTextExpression",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Create parts for a text-position binding."
-                },
                 "parameters": [
                   {
                     "name": "options",
@@ -7023,10 +6873,6 @@
           {
             "name": "render",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Extension to the standard `render` method which supports rendering\nto ShadowRoots when the ShadyDOM (https://github.com/webcomponents/shadydom)\nand ShadyCSS (https://github.com/webcomponents/shadycss) polyfills are used\nor when the webcomponentsjs\n(https://github.com/webcomponents/webcomponentsjs) polyfill is used.",
-              "text": "Adds a `scopeName` option which is used to scope element DOM and stylesheets\nwhen native ShadowDOM is unavailable. The `scopeName` will be added to\nthe class attribute of all rendered DOM. In addition, any style elements will\nbe automatically re-written with this `scopeName` selector and moved out\nof the rendered DOM and into the document `<head>`.\n\nIt is common to use this render method in conjunction with a custom element\nwhich renders a shadowRoot. When this is done, typically the element's\n`localName` should be used as the `scopeName`.\n\nIn addition to DOM scoping, ShadyCSS also supports a basic shim for css\ncustom properties (needed only on older browsers like IE11) and a shim for\na deprecated feature called `@apply` that supports applying a set of css\ncustom properties to a given location.\n\nUsage considerations:\n\n* Part values in `<style>` elements are only applied the first time a given\n`scopeName` renders. Subsequent changes to parts in style elements will have\nno effect. Because of this, parts in style elements should only be used for\nvalues that will never change, for example parts that set scope-wide theme\nvalues or parts which render shared style elements.\n\n* Note, due to a limitation of the ShadyDOM polyfill, rendering in a\ncustom element's `constructor` is not supported. Instead rendering should\neither done asynchronously, for example at microtask timing (for example\n`Promise.resolve()`), or be deferred until the first time the element's\n`connectedCallback` runs.\n\nUsage considerations when using shimmed custom properties or `@apply`:\n\n* Whenever any dynamic changes are made which affect\ncss custom properties, `ShadyCSS.styleElement(element)` must be called\nto update the element. There are two cases when this is needed:\n(1) the element is connected to a new parent, (2) a class is added to the\nelement that causes it to match different custom properties.\nTo address the first case when rendering a custom element, `styleElement`\nshould be called in the element's `connectedCallback`.\n\n* Shimmed custom properties may only be defined either for an entire\nshadowRoot (for example, in a `:host` rule) or via a rule that directly\nmatches an element with a shadowRoot. In other words, instead of flowing from\nparent to child as do native css custom properties, shimmed custom properties\nflow only from shadowRoots to nested shadowRoots.\n\n* When using `@apply` mixing css shorthand property names with\nnon-shorthand names (for example `border` and `border-width`) is not\nsupported.\n"
-            },
             "parameters": [
               {
                 "name": "result",
@@ -7117,9 +6963,6 @@
           {
             "name": "shadyTemplateFactory",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Template factory which scopes template DOM using ShadyCSS."
-            },
             "parameters": [
               {
                 "name": "scopeName",

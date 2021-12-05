@@ -422,6 +422,14 @@ export class ApiDocsTransformer {
         this.prunePageData(item);
       }
     } else if (typeof node === 'object' && node !== null) {
+      // Method comments are duplicated both at the root of the node, and also
+      // inside its signature. Remove the one from the signature.
+      if (
+        (node as ExtendedDeclarationReflection).comment &&
+        (node as ExtendedDeclarationReflection).signatures?.[0]?.comment
+      ) {
+        delete (node as ExtendedDeclarationReflection).signatures?.[0]?.comment;
+      }
       for (const [key, val] of Object.entries(node)) {
         // Prune the child first, so that our "empty arrays and objects" check
         // works more aggressively.

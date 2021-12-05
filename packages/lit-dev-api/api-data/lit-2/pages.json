@@ -82,9 +82,6 @@
                   {
                     "name": "attributeChangedCallback",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Synchronizes property values when attributes change."
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -723,9 +720,6 @@
                   {
                     "name": "finalize",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized."
-                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "boolean"
@@ -825,10 +819,6 @@
                   {
                     "name": "createProperty",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                      "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -956,10 +946,6 @@
                   {
                     "name": "getPropertyDescriptor",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                      "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n"
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -1132,10 +1118,6 @@
                   {
                     "name": "getPropertyOptions",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                      "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -1323,9 +1305,6 @@
                   {
                     "name": "render",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Invoked on each update to perform rendering tasks. This method may return\nany value renderable by lit-html's `ChildPart` - typically a\n`TemplateResult`. Setting properties inside this method will *not* trigger\nthe element to update."
-                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "unknown"
@@ -1551,10 +1530,6 @@
                   {
                     "name": "finalizeStyles",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Takes the styles the user supplied via the `static styles` property and\nreturns the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                      "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n"
-                    },
                     "parameters": [
                       {
                         "name": "styles",
@@ -1680,9 +1655,6 @@
                   {
                     "name": "enableUpdating",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Note, this method should be considered final and not overridden. It is\noverridden on the element instance with a function that triggers the first\nupdate."
-                    },
                     "parameters": [
                       {
                         "name": "_requestedUpdate",
@@ -1744,10 +1716,6 @@
                   {
                     "name": "firstUpdated",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
-                      "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -1836,11 +1804,6 @@
                   {
                     "name": "getUpdateComplete",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Override point for the `updateComplete` promise.",
-                      "text": "It is not safe to override the `updateComplete` getter directly due to a\nlimitation in TypeScript which means it is not possible to call a\nsuperclass getter (e.g. `super.updateComplete.then(...)`) when the target\nlanguage is ES5 (https://github.com/microsoft/TypeScript/issues/338).\nThis method should be overridden instead. For example:\n\n```ts\nclass MyElement extends LitElement {\n  override async getUpdateComplete() {\n    const result = await super.getUpdateComplete();\n    await this._myChild.updateComplete;\n    return result;\n  }\n}\n```\n",
-                      "returns": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update."
-                    },
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -1966,10 +1929,6 @@
                   {
                     "name": "performUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
-                      "text": "Call performUpdate() to immediately process a pending update. This should\ngenerally not be needed, but it can be done in rare cases when you need to\nupdate synchronously.\n\nNote: To ensure `performUpdate()` synchronously completes a pending update,\nit should not be overridden. In LitElement 2.x it was suggested to override\n`performUpdate()` to also customizing update scheduling. Instead, you should now\noverride `scheduleUpdate()`. For backwards compatibility with LitElement 2.x,\nscheduling updates via `performUpdate()` continues to work, but will make\nalso calling `performUpdate()` to synchronously process updates difficult.\n"
-                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -2032,9 +1991,6 @@
                   {
                     "name": "requestUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Requests an update which is processed asynchronously. This should be called\nwhen an element should update based on some state not triggered by setting\na reactive property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored."
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -2144,10 +2100,6 @@
                   {
                     "name": "scheduleUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Schedules an element update. You can override this method to change the\ntiming of updates by returning a Promise. The update will await the\nreturned Promise, and you should resolve the Promise to allow the update\nto proceed. If this method is overridden, `super.scheduleUpdate()`\nmust be called.",
-                      "text": "For instance, to schedule updates to occur just before the next frame:\n\n```ts\noverride protected async scheduleUpdate(): Promise<unknown> {\n  await new Promise((resolve) => requestAnimationFrame(() => resolve()));\n  super.scheduleUpdate();\n}\n```"
-                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -2213,9 +2165,6 @@
                   {
                     "name": "shouldUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -2302,9 +2251,6 @@
                   {
                     "name": "update",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Updates the element. This method reflects property values to attributes\nand calls `render` to render DOM via lit-html. Setting properties inside\nthis method will *not* trigger another update."
-                    },
                     "parameters": [
                       {
                         "name": "changedProperties",
@@ -2458,10 +2404,6 @@
                   {
                     "name": "updated",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Invoked whenever the element is updated. Implement to perform\npost-updating tasks via DOM APIs, for example, focusing an element.",
-                      "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -2911,9 +2853,6 @@
                   {
                     "name": "attributeChangedCallback",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Synchronizes property values when attributes change."
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -3349,9 +3288,6 @@
                   {
                     "name": "connectedCallback",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "On first connection, creates the element's renderRoot, sets up\nelement styling, and enables updating."
-                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "void"
@@ -3387,9 +3323,6 @@
                   {
                     "name": "disconnectedCallback",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Allows for `super.disconnectedCallback()` in extensions while\nreserving the possibility of making non-breaking feature additions\nwhen disconnecting at some point in the future."
-                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "void"
@@ -3484,9 +3417,6 @@
                   {
                     "name": "finalize",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Creates property accessors for registered properties, sets up element\nstyling, and ensures any superclasses are also finalized. Returns true if\nthe element was finalized."
-                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "boolean"
@@ -3565,10 +3495,6 @@
                   {
                     "name": "createProperty",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
-                      "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -3676,10 +3602,6 @@
                   {
                     "name": "getPropertyDescriptor",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Returns a property descriptor to be defined on the given named property.\nIf no descriptor is returned, the property will not become an accessor.\nFor example,",
-                      "text": "```ts\nclass MyElement extends LitElement {\n  static getPropertyDescriptor(name, key, options) {\n    const defaultDescriptor =\n        super.getPropertyDescriptor(name, key, options);\n    const setter = defaultDescriptor.set;\n    return {\n      get: defaultDescriptor.get,\n      set(value) {\n        setter.call(this, value);\n        // custom action.\n      },\n      configurable: true,\n      enumerable: true\n    }\n  }\n}\n```\n"
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -3840,10 +3762,6 @@
                   {
                     "name": "getPropertyOptions",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                      "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -3950,10 +3868,6 @@
                   {
                     "name": "createRenderRoot",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Returns the node into which the element should render and by default\ncreates and returns an open shadowRoot. Implement to customize where the\nelement's DOM is rendered. For example, to render into the element's\nchildNodes, return `this`.",
-                      "returns": "Returns a node into which to render."
-                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -4137,10 +4051,6 @@
                   {
                     "name": "finalizeStyles",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Takes the styles the user supplied via the `static styles` property and\nreturns the array of styles to apply to the element.\nOverride this method to integrate into a style management system.",
-                      "text": "Styles are deduplicated preserving the _last_ instance in the list. This\nis a performance optimization to avoid duplicated styles that can occur\nespecially when composing via subclassing. The last item is kept to try\nto preserve the cascade order with the assumption that it's most important\nthat last added styles override previous styles.\n"
-                    },
                     "parameters": [
                       {
                         "name": "styles",
@@ -4246,9 +4156,6 @@
                   {
                     "name": "enableUpdating",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Note, this method should be considered final and not overridden. It is\noverridden on the element instance with a function that triggers the first\nupdate."
-                    },
                     "parameters": [
                       {
                         "name": "_requestedUpdate",
@@ -4298,10 +4205,6 @@
                   {
                     "name": "firstUpdated",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
-                      "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -4378,11 +4281,6 @@
                   {
                     "name": "getUpdateComplete",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Override point for the `updateComplete` promise.",
-                      "text": "It is not safe to override the `updateComplete` getter directly due to a\nlimitation in TypeScript which means it is not possible to call a\nsuperclass getter (e.g. `super.updateComplete.then(...)`) when the target\nlanguage is ES5 (https://github.com/microsoft/TypeScript/issues/338).\nThis method should be overridden instead. For example:\n\n```ts\nclass MyElement extends LitElement {\n  override async getUpdateComplete() {\n    const result = await super.getUpdateComplete();\n    await this._myChild.updateComplete;\n    return result;\n  }\n}\n```\n",
-                      "returns": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update."
-                    },
                     "type": {
                       "type": "reference",
                       "typeArguments": [
@@ -4480,10 +4378,6 @@
                   {
                     "name": "performUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
-                      "text": "Call performUpdate() to immediately process a pending update. This should\ngenerally not be needed, but it can be done in rare cases when you need to\nupdate synchronously.\n\nNote: To ensure `performUpdate()` synchronously completes a pending update,\nit should not be overridden. In LitElement 2.x it was suggested to override\n`performUpdate()` to also customizing update scheduling. Instead, you should now\noverride `scheduleUpdate()`. For backwards compatibility with LitElement 2.x,\nscheduling updates via `performUpdate()` continues to work, but will make\nalso calling `performUpdate()` to synchronously process updates difficult.\n"
-                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -4534,9 +4428,6 @@
                   {
                     "name": "requestUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Requests an update which is processed asynchronously. This should be called\nwhen an element should update based on some state not triggered by setting\na reactive property. In this case, pass no arguments. It should also be\ncalled when manually implementing a property setter. In this case, pass the\nproperty `name` and `oldValue` to ensure that any configured property\noptions are honored."
-                    },
                     "parameters": [
                       {
                         "name": "name",
@@ -4646,10 +4537,6 @@
                   {
                     "name": "scheduleUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Schedules an element update. You can override this method to change the\ntiming of updates by returning a Promise. The update will await the\nreturned Promise, and you should resolve the Promise to allow the update\nto proceed. If this method is overridden, `super.scheduleUpdate()`\nmust be called.",
-                      "text": "For instance, to schedule updates to occur just before the next frame:\n\n```ts\noverride protected async scheduleUpdate(): Promise<unknown> {\n  await new Promise((resolve) => requestAnimationFrame(() => resolve()));\n  super.scheduleUpdate();\n}\n```"
-                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -4703,9 +4590,6 @@
                   {
                     "name": "shouldUpdate",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -4780,9 +4664,6 @@
                   {
                     "name": "update",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Updates the element. This method reflects property values to attributes.\nIt can be overridden to render and keep updated element DOM.\nSetting properties inside this method will *not* trigger\nanother update."
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -4932,10 +4813,6 @@
                   {
                     "name": "updated",
                     "kindString": "Call signature",
-                    "comment": {
-                      "shortText": "Invoked whenever the element is updated. Implement to perform\npost-updating tasks via DOM APIs, for example, focusing an element.",
-                      "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
-                    },
                     "parameters": [
                       {
                         "name": "_changedProperties",
@@ -5115,9 +4992,6 @@
               {
                 "name": "fromAttribute",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Function called to convert an attribute value to a property\nvalue."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -5180,10 +5054,6 @@
               {
                 "name": "toAttribute",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Function called to convert a property value to an attribute\nvalue.",
-                  "text": "It returns unknown instead of string, to be compatible with\nhttps://github.com/WICG/trusted-types (and similar efforts).\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -5498,9 +5368,6 @@
               {
                 "name": "hasChanged",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "A function that indicates if a property should be considered changed when\nit is set. The function should take the `newValue` and `oldValue` and\nreturn `true` if an update should be requested."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -5724,9 +5591,6 @@
           {
             "name": "html",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container."
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -5920,9 +5784,6 @@
               {
                 "name": "render",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Renders a value, usually a lit-html TemplateResult, to the container."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -5990,9 +5851,6 @@
           {
             "name": "render",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders a value, usually a lit-html TemplateResult, to the container."
-            },
             "parameters": [
               {
                 "name": "value",
@@ -6086,9 +5944,6 @@
           {
             "name": "svg",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container."
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -6171,11 +6026,6 @@
               {
                 "name": "__type",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Used to sanitize any value before it is written into the DOM. This can be\nused to implement a security policy of allowed and disallowed values in\norder to prevent XSS attacks.",
-                  "text": "One way of using this callback would be to check attributes and properties\nagainst a list of high risk fields, and require that values written to such\nfields be instances of a class which is safe by construction. Closure's Safe\nHTML Types is one implementation of this technique (\nhttps://github.com/google/safe-html-types/blob/master/doc/safehtml-types.md).\nThe TrustedTypes polyfill in API-only mode could also be used as a basis\nfor this technique (https://github.com/WICG/trusted-types).\n",
-                  "returns": "A function that will sanitize this class of writes.\n"
-                },
                 "parameters": [
                   {
                     "name": "node",
@@ -6413,9 +6263,6 @@
           {
             "name": "adoptStyles",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Applies the given styles to a `shadowRoot`. When Shadow DOM is\navailable but `adoptedStyleSheets` is not, styles are appended to the\n`shadowRoot` to [mimic spec behavior](https://wicg.github.io/construct-stylesheets/#using-constructed-stylesheets).\nNote, when shimming is used, any styles that are subsequently placed into\nthe shadowRoot should be placed *before* any shimmed adopted styles. This\nwill match spec behavior that gives adopted sheets precedence over styles in\nshadowRoot."
-            },
             "parameters": [
               {
                 "name": "renderRoot",
@@ -6483,10 +6330,6 @@
           {
             "name": "css",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A template literal tag which can be used with LitElement's\n[`styles`](/docs/api/LitElement/#LitElement.styles) property to set element styles.",
-              "text": "For security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values [`unsafeCSS`](/docs/api/styles/#unsafeCSS) may\nbe used inside an expression.\n"
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -6801,10 +6644,6 @@
           {
             "name": "unsafeCSS",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Wrap a value for interpolation in a [`css`](/docs/api/styles/#css) tagged template literal.",
-              "text": "This is unsafe because untrusted CSS text can be used to phone home\nor exfiltrate data to an attacker controlled site. Take care to only use\nthis with trusted input.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -7007,10 +6846,6 @@
           {
             "name": "customElement",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Class decorator factory that defines the decorated class as a custom element.",
-              "text": "```js\n@customElement('my-element')\nclass MyElement extends LitElement {\n  render() {\n    return html``;\n  }\n}\n```"
-            },
             "parameters": [
               {
                 "name": "tagName",
@@ -7091,9 +6926,6 @@
           {
             "name": "eventOptions",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Adds event listener options to a method used as an event listener in a\nlit-html template."
-            },
             "parameters": [
               {
                 "name": "options",
@@ -7199,10 +7031,6 @@
           {
             "name": "property",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) may\noptionally be supplied to configure property features.",
-              "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
-            },
             "parameters": [
               {
                 "name": "options",
@@ -7308,9 +7136,6 @@
           {
             "name": "query",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A property decorator that converts a class property into a getter that\nexecutes a querySelector on the element's renderRoot."
-            },
             "parameters": [
               {
                 "name": "selector",
@@ -7429,9 +7254,6 @@
           {
             "name": "queryAll",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A property decorator that converts a class property into a getter\nthat executes a querySelectorAll on the element's renderRoot."
-            },
             "parameters": [
               {
                 "name": "selector",
@@ -7536,9 +7358,6 @@
           {
             "name": "queryAssignedNodes",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`. Note, the type of\nthis property should be annotated as `NodeListOf<HTMLElement>`."
-            },
             "parameters": [
               {
                 "name": "slotName",
@@ -7674,9 +7493,6 @@
           {
             "name": "queryAsync",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A property decorator that converts a class property into a getter that\nreturns a promise that resolves to the result of a querySelector on the\nelement's renderRoot done after the element's `updateComplete` promise\nresolves. When the queried property may change with element state, this\ndecorator can be used instead of requiring users to await the\n`updateComplete` before accessing the property."
-            },
             "parameters": [
               {
                 "name": "selector",
@@ -7782,10 +7598,6 @@
           {
             "name": "state",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Declares a private or protected reactive property that still triggers\nupdates to the element when it changes. It does not reflect from the\ncorresponding attribute.",
-              "text": "Properties declared this way must not be used from HTML or HTML templating\nsystems, they're solely for properties internal to the element. These\nproperties may be renamed by optimization tools like closure compiler."
-            },
             "parameters": [
               {
                 "name": "options",
@@ -7891,9 +7703,6 @@
               {
                 "name": "hasChanged",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "A function that indicates if a property should be considered changed when\nit is set. The function should take the `newValue` and `oldValue` and\nreturn `true` if an update should be requested."
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -7992,10 +7801,6 @@
           {
             "name": "asyncAppend",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that renders the items of an async iterable[1], appending new\nvalues after previous values, similar to the built-in support for iterables.\nThis directive is usable only in child expressions.",
-              "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is appended to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -8282,9 +8087,6 @@
               {
                 "name": "disconnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "User callbacks for implementing logic to release any resources/subscriptions\nthat may have been retained by this directive. Since directives may also be\nre-connected, `reconnected` should also be implemented to restore the\nworking state of the directive prior to the next render."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -8460,10 +8262,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the value of the directive's Part outside the normal `update`/`render`\nlifecycle of a directive.",
-                  "text": "This method should not be called synchronously from a directive's `update`\nor `render`.\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -8693,10 +8491,6 @@
           {
             "name": "asyncReplace",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that renders the items of an async iterable[1], replacing\nprevious values with new values, so that only one value is ever rendered\nat a time. This directive may be used in any expression type.",
-              "text": "Async iterables are objects with a `[Symbol.asyncIterator]` method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is rendered to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -8934,9 +8728,6 @@
               {
                 "name": "disconnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "User callbacks for implementing logic to release any resources/subscriptions\nthat may have been retained by this directive. Since directives may also be\nre-connected, `reconnected` should also be implemented to restore the\nworking state of the directive prior to the next render."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -9112,10 +8903,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the value of the directive's Part outside the normal `update`/`render`\nlifecycle of a directive.",
-                  "text": "This method should not be called synchronously from a directive's `update`\nor `render`.\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -9347,10 +9134,6 @@
           {
             "name": "cache",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Enables fast switching between multiple templates by caching the DOM nodes\nand TemplateInstances produced by the templates.",
-              "text": "Example:\n\n```js\nlet checked = false;\n\nhtml`\n  ${cache(checked ? html`input is checked` : html`input is not checked`)}\n`\n```\n"
-            },
             "parameters": [
               {
                 "name": "v",
@@ -9657,10 +9440,6 @@
           {
             "name": "classMap",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that applies dynamic CSS classes.",
-              "text": "This must be used in the `class` attribute and must be the only part used in\nthe attribute. It takes each property in the `classInfo` argument and adds\nthe property name to the element's `classList` if the property value is\ntruthy; if the property value is falsey, the property name is removed from\nthe element's `class`.\n\nFor example `{foo: bar}` applies the class `foo` if the value of `bar` is\ntruthy.\n"
-            },
             "parameters": [
               {
                 "name": "classInfo",
@@ -10043,10 +9822,6 @@
           {
             "name": "guard",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Prevents re-render of a template function until a single value or an array of\nvalues changes.",
-              "text": "Values are checked against previous values with strict equality (`===`), and\nso the check won't detect nested property changes inside objects or arrays.\nArrays values have each item checked against the previous value at the same\nindex with strict equality. Nested arrays are also checked only by strict\nequality.\n\nExample:\n\n```js\nhtml`\n  <div>\n    ${guard([user.id, company.id], () => html`...`)}\n  </div>\n`\n```\n\nIn this case, the template only rerenders if either `user.id` or `company.id`\nchanges.\n\nguard() is useful with immutable data patterns, by preventing expensive work\nuntil data updates.\n\nExample:\n\n```js\nhtml`\n  <div>\n    ${guard([immutableItems], () => immutableItems.map(i => html`${i}`))}\n  </div>\n`\n```\n\nIn this case, items are mapped over only when the array reference changes.\n"
-            },
             "parameters": [
               {
                 "name": "_value",
@@ -10408,10 +10183,6 @@
           {
             "name": "ifDefined",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "For AttributeParts, sets the attribute if the value is defined and removes\nthe attribute if the value is undefined.",
-              "text": "For other part types, this directive is a no-op.\n"
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -10489,10 +10260,6 @@
           {
             "name": "live",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Checks binding values against live DOM values, instead of previously bound\nvalues, when determining whether to update the value.",
-              "text": "This is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an `<input>` element's `value` property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want--if you want to overwrite the DOM\nvalue with the bound value no matter what--use the `live()` directive:\n\n```js\nhtml`<input .value=${live(x)}>`\n```\n\n`live()` performs a strict equality check agains the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n`live()` should not be used when the binding will cause a type conversion. If\nyou use `live()` with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -10792,9 +10559,6 @@
           {
             "name": "createRef",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Creates a new Ref object, which is container for a reference to an element."
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -10857,10 +10621,6 @@
           {
             "name": "ref",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Sets the value of a Ref object or calls a ref callback with the element it's\nbound to.",
-              "text": "A Ref object acts as a container for a reference to an element. A ref\ncallback is a function that takes an element as its only argument.\n\nThe ref directive sets the value of the Ref object or calls the ref callback\nduring rendering, if the referenced element changed.\n\nNote: If a ref callback is rendered to a different element position or is\nremoved in a subsequent render, it will first be called with `undefined`,\nfollowed by another call with the new element it was rendered to (if any).\n\n```js\n// Using Ref object\nconst inputRef = createRef();\nrender(html`<input ${ref(inputRef)}>`, container);\ninputRef.value.focus();\n\n// Using callback\nconst callback = (inputElement) => inputElement.focus();\nrender(html`<input ${ref(callback)}>`, container);\n```\n"
-            },
             "parameters": [
               {
                 "name": "_ref",
@@ -11143,9 +10903,6 @@
               {
                 "name": "disconnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "User callbacks for implementing logic to release any resources/subscriptions\nthat may have been retained by this directive. Since directives may also be\nre-connected, `reconnected` should also be implemented to restore the\nworking state of the directive prior to the next render."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -11296,10 +11053,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the value of the directive's Part outside the normal `update`/`render`\nlifecycle of a directive.",
-                  "text": "This method should not be called synchronously from a directive's `update`\nor `render`.\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -11564,10 +11317,6 @@
           {
             "name": "repeat",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that repeats a series of values (usually `TemplateResults`)\ngenerated from an iterable, and updates those items efficiently when the\niterable changes based on user-provided `keys` associated with each item.",
-              "text": "Note that if a `keyFn` is provided, strict key-to-DOM mapping is maintained,\nmeaning previous DOM for a given key is moved into the new position if\nneeded, and DOM will never be reused with values for different keys (new DOM\nwill always be created for new keys). This is generally the most efficient\nway to use `repeat` since it performs minimum unnecessary work for insertions\nand removals.\n\nThe `keyFn` takes two parameters, the item and its index, and returns a unique key value.\n\n```js\nhtml`\n  <ol>\n    ${repeat(this.items, (item) => item.id, (item, index) => {\n      return html`<li>${index}: ${item.name}</li>`;\n    })}\n  </ol>\n`\n```\n\n**Important**: If providing a `keyFn`, keys *must* be unique for all items in a\ngiven call to `repeat`. The behavior when two or more items have the same key\nis undefined.\n\nIf no `keyFn` is provided, this directive will perform similar to mapping\nitems to values, and DOM will be reused against potentially different items.\n"
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -12631,10 +12380,6 @@
           {
             "name": "styleMap",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "A directive that applies CSS properties to an element.",
-              "text": "`styleMap` can only be used in the `style` attribute and must be the only\nexpression in the attribute. It takes the property names in the `styleInfo`\nobject and adds the property values as CSS properties. Property names with\ndashes (`-`) are assumed to be valid CSS property names and set on the\nelement's style object using `setProperty()`. Names without dashes are\nassumed to be camelCased JavaScript property names and set on the element's\nstyle object using property assignment, allowing the style object to\ntranslate JavaScript-style names to CSS property names.\n\nFor example `styleMap({backgroundColor: 'red', 'border-top': '5px', '--size':\n'0'})` sets the `background-color`, `border-top` and `--size` properties.\n"
-            },
             "parameters": [
               {
                 "name": "styleInfo",
@@ -13018,10 +12763,6 @@
           {
             "name": "templateContent",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders the content of a template element as HTML.",
-              "text": "Note, the template should be developer controlled and not user controlled.\nRendering a user-controlled template with this directive\ncould lead to cross-site-scripting vulnerabilities.\n"
-            },
             "parameters": [
               {
                 "name": "template",
@@ -13340,10 +13081,6 @@
           {
             "name": "unsafeHTML",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders the result as HTML, rather than text.",
-              "text": "The values `undefined`, `null`, and `nothing`, will all result in no content\n(empty string) being rendered.\n\nNote, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -13826,10 +13563,6 @@
           {
             "name": "unsafeSVG",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders the result as SVG, rather than text.",
-              "text": "The values `undefined`, `null`, and `nothing`, will all result in no content\n(empty string) being rendered.\n\nNote, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -14323,10 +14056,6 @@
           {
             "name": "until",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Renders one of a series of values, including Promises, to a Part.",
-              "text": "Values are rendered in priority order, with the first argument having the\nhighest priority and the last argument having the lowest priority. If a\nvalue is a Promise, low-priority values will be rendered until it resolves.\n\nThe priority of values can be used to create placeholder content for async\ndata. For example, a Promise with pending content can be the first,\nhighest-priority, argument, and a non_promise loading indicator template can\nbe used as the second, lower-priority, argument. The loading indicator will\nrender immediately, and the primary content will render when the Promise\nresolves.\n\nExample:\n\n```js\nconst content = fetch('./content.txt').then(r => r.text());\nhtml`${until(content, html`<span>Loading...</span>`)}`\n```\n"
-            },
             "parameters": [
               {
                 "name": "values",
@@ -14491,9 +14220,6 @@
               {
                 "name": "disconnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "User callbacks for implementing logic to release any resources/subscriptions\nthat may have been retained by this directive. Since directives may also be\nre-connected, `reconnected` should also be implemented to restore the\nworking state of the directive prior to the next render."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -14646,10 +14372,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the value of the directive's Part outside the normal `update`/`render`\nlifecycle of a directive.",
-                  "text": "This method should not be called synchronously from a directive's `update`\nor `render`.\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -14932,9 +14654,6 @@
               {
                 "name": "disconnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "User callbacks for implementing logic to release any resources/subscriptions\nthat may have been retained by this directive. Since directives may also be\nre-connected, `reconnected` should also be implemented to restore the\nworking state of the directive prior to the next render."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -15069,10 +14788,6 @@
               {
                 "name": "setValue",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the value of the directive's Part outside the normal `update`/`render`\nlifecycle of a directive.",
-                  "text": "This method should not be called synchronously from a directive's `update`\nor `render`.\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
@@ -15259,9 +14974,6 @@
           {
             "name": "directive",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Creates a user-facing directive function from a Directive class. This\nfunction has the same parameters as the directive's render() method."
-            },
             "typeParameter": [
               {
                 "name": "C",
@@ -15429,10 +15141,6 @@
           {
             "name": "getCommittedValue",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Returns the committed value of a ChildPart.",
-              "text": "The committed value is used for change detection and efficient updates of\nthe part. It can differ from the value set by the template or directive in\ncases where the template value is transformed before being commited.\n\n- `TemplateResult`s are committed as a `TemplateInstance`\n- Iterables are committed as `Array<ChildPart>`\n- All other types are committed as the template value or value returned or\n  set by a directive.\n"
-            },
             "parameters": [
               {
                 "name": "part",
@@ -15488,9 +15196,6 @@
           {
             "name": "getDirectiveClass",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Retrieves the Directive class for a DirectiveResult"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -15553,10 +15258,6 @@
           {
             "name": "insertPart",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Inserts a ChildPart into the given container ChildPart's DOM, either at the\nend of the container ChildPart, or before the optional `refPart`.",
-              "text": "This does not add the part to the containerPart's committed value. That must\nbe done by callers.\n"
-            },
             "parameters": [
               {
                 "name": "containerPart",
@@ -15652,9 +15353,6 @@
           {
             "name": "isDirectiveResult",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Tests if a value is a DirectiveResult."
-            },
             "parameters": [
               {
                 "name": "value",
@@ -15723,10 +15421,6 @@
           {
             "name": "isPrimitive",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Tests if a value is a primitive value.",
-              "text": "See https://tc39.github.io/ecma262/#sec-typeof-operator\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -15781,10 +15475,6 @@
           {
             "name": "isSingleExpression",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Tests whether a part has only a single-expression with no strings to\ninterpolate between.",
-              "text": "Only AttributePart and PropertyPart can have multiple expressions.\nMulti-expression parts have a `strings` property and single-expression\nparts do not.\n"
-            },
             "parameters": [
               {
                 "name": "part",
@@ -15837,9 +15527,6 @@
           {
             "name": "isTemplateResult",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Tests if a value is a TemplateResult."
-            },
             "parameters": [
               {
                 "name": "value",
@@ -15927,9 +15614,6 @@
           {
             "name": "removePart",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Removes a ChildPart from the DOM, including any of its content."
-            },
             "parameters": [
               {
                 "name": "part",
@@ -15986,10 +15670,6 @@
           {
             "name": "setChildPartValue",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Sets the value of a Part.",
-              "text": "Note that this should only be used to set/update the value of user-created\nparts (i.e. those created using `insertPart`); it should not be used\nby directives to set the value of the directive's container part. Directives\nshould return a value from `update`/`render` to update their part state.\n\nFor directives that require setting their part value asynchronously, they\nshould extend `AsyncDirective` and call `this.setValue()`.\n"
-            },
             "typeParameter": [
               {
                 "name": "T",
@@ -16091,10 +15771,6 @@
           {
             "name": "setCommittedValue",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Sets the committed value of a ChildPart directly without triggering the\ncommit stage of the part.",
-              "text": "This is useful in cases where a directive needs to update the part such\nthat the next update detects a value change or not. When value is omitted,\nthe next update will be guaranteed to be detected as a change.\n"
-            },
             "parameters": [
               {
                 "name": "part",
@@ -19538,10 +19214,6 @@
           {
             "name": "html",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container.",
-              "text": "Includes static value support from `lit-html/static.js`.\n"
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -19615,10 +19287,6 @@
           {
             "name": "literal",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Tags a string literal so that it behaves like part of the static template\nstrings instead of a dynamic value.",
-              "text": "The only values that may be used in template expressions are other tagged\n`literal` results or `unsafeStatic` values (note that untrusted content\nshould never be passed to `unsafeStatic`).\n\nUsers must take care to ensure that adding the static string to the template\nresults in well-formed HTML, or else templates may break unexpectedly.\n\nStatic values can be changed, but they will cause a complete re-render since\nthey effectively create a new template.\n"
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -19701,10 +19369,6 @@
           {
             "name": "svg",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container.",
-              "text": "Includes static value support from `lit-html/static.js`.\n"
-            },
             "parameters": [
               {
                 "name": "strings",
@@ -19778,10 +19442,6 @@
           {
             "name": "unsafeStatic",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Wraps a string so that it behaves like part of the static template\nstrings instead of a dynamic value.",
-              "text": "Users must take care to ensure that adding the static string to the template\nresults in well-formed HTML, or else templates may break unexpectedly.\n\nNote that this function is unsafe to use on untrusted content, as it will be\ndirectly parsed into HTML. Do not pass user input to this function\nwithout sanitizing it.\n\nStatic values can be changed, but they will cause a complete re-render\nsince they effectively create a new template.\n"
-            },
             "parameters": [
               {
                 "name": "value",
@@ -19849,9 +19509,6 @@
           {
             "name": "withStatic",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Wraps a lit-html template tag (`html` or `svg`) to add static value support."
-            },
             "parameters": [
               {
                 "name": "coreTag",
@@ -20062,9 +19719,6 @@
               {
                 "name": "hostConnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Called when the host is connected to the component tree. For custom\nelement hosts, this corresponds to the `connectedCallback()` lifecycle,\nwhich is only called when the component is connected to the document."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -20096,9 +19750,6 @@
               {
                 "name": "hostDisconnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Called when the host is disconnected from the component tree. For custom\nelement hosts, this corresponds to the `disconnectedCallback()` lifecycle,\nwhich is called the host or an ancestor component is disconnected from the\ndocument."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -20131,10 +19782,6 @@
               {
                 "name": "hostUpdate",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Called during the client-side host update, just before the host calls\nits own update.",
-                  "text": "Code in `update()` can depend on the DOM as it is not called in\nserver-side rendering.\n"
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -20166,9 +19813,6 @@
               {
                 "name": "hostUpdated",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Called after a host update, just before the host calls firstUpdated and\nupdated. It is not called in server-side rendering."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -20262,9 +19906,6 @@
               {
                 "name": "addController",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Adds a controller to the host, which sets up the controller's lifecycle\nmethods to be called with the host's lifecycle."
-                },
                 "parameters": [
                   {
                     "name": "controller",
@@ -20307,9 +19948,6 @@
               {
                 "name": "removeController",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Removes a controller from the host."
-                },
                 "parameters": [
                   {
                     "name": "controller",
@@ -20352,9 +19990,6 @@
               {
                 "name": "requestUpdate",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Requests a host update which is processed asynchronously. The update can\nbe waited on via the `updateComplete` property."
-                },
                 "type": {
                   "type": "intrinsic",
                   "name": "void"
@@ -20467,9 +20102,6 @@
           {
             "name": "notEqual",
             "kindString": "Call signature",
-            "comment": {
-              "shortText": "Change function that returns true if `value` is different from `oldValue`.\nThis method is used as the default for a property's `hasChanged` function."
-            },
             "parameters": [
               {
                 "name": "value",
@@ -21193,10 +20825,6 @@
               {
                 "name": "setConnected",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "Sets the connection state for `AsyncDirective`s contained within this root\nChildPart.",
-                  "text": "lit-html does not automatically monitor the connectedness of DOM rendered;\nas such, it is the responsibility of the caller to `render` to ensure that\n`part.setConnected(false)` is called before the part object is potentially\ndiscarded, to ensure that `AsyncDirective`s have a chance to dispose of\nany resources being held. If a `RootPart` that was prevously\ndisconnected is subsequently re-connected (and its `AsyncDirective`s should\nre-connect), `setConnected(true)` should be called.\n"
-                },
                 "parameters": [
                   {
                     "name": "isConnected",
@@ -21298,11 +20926,6 @@
               {
                 "name": "__type",
                 "kindString": "Call signature",
-                "comment": {
-                  "shortText": "A function which can sanitize values that will be written to a specific kind\nof DOM sink.",
-                  "text": "See SanitizerFactory.\n",
-                  "returns": "The value to write to the DOM. Usually the same as the input value,\n    unless sanitization is needed.\n"
-                },
                 "parameters": [
                   {
                     "name": "value",
