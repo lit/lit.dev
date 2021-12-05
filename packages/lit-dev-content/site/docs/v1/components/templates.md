@@ -42,8 +42,7 @@ class MyElement extends LitElement {
     (<code>``</code>).
 
 
-*   Tag your template literal with the [`html`](https://lit-html.polymer-project.org/api/modules/lit_html.html#html)
-    tag function.
+*   Tag your template literal with the {% api-lit-html-1 "html" %} tag function.
 
 *   The component's `render` method can return anything that lit-html can render. Typically, it
     returns a single `TemplateResult` object (the same type returned by the `html` tag function).
@@ -642,7 +641,7 @@ get first() {
 
 <div class="alert alert-info">
 
-**shadowRoot and renderRoot**. The [`renderRoot`](https://lit-element.polymer-project.org/api/classes/_lit_element_.litelement.html#renderroot) property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Specify the render root](#renderroot)
+**shadowRoot and renderRoot**. The {% api-lit-element-2 "renderRoot" %} property identifies the container that the template is rendered into. By default, this is the component's `shadowRoot`. The decorators use `renderRoot`, so they should work correctly even if you override `createRenderRoot` as described in [Specify the render root](#renderroot)
 
 </div>
 

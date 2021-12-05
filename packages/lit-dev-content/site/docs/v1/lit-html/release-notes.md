@@ -89,7 +89,7 @@ html`
 
 `unsaveSVG` is the missing partner of [`unsafeHTML`](/docs/v1/lit-html/template-reference/#unsafehtml). It lets you render a frangment of SVG text as SVG elements rather than text. As with `unsafeHTML` this directive not safe to use with user-provided input, since if the input has `<script>` tags in it, there may be ways to get them to execute, etc.
 
-`unsafeSVG` creates elements in the SVG namespace, so it's for use inside of `<svg>` tags or inside of lit-html [`svg`](https://lit-html.polymer-project.org/api/modules/_lit_html_.html#svg) templates. If the input contains an `<svg>` tag itself, continute to use `unsafeHTML`.
+`unsafeSVG` creates elements in the SVG namespace, so it's for use inside of `<svg>` tags or inside of lit-html {% api-lit-html-1 "svg" %} templates. If the input contains an `<svg>` tag itself, continute to use `unsafeHTML`.
 
 ```js
 // shape is SVG partial text, with no <svg> element
