@@ -96,7 +96,11 @@ const setupIfNeeded = async (
 };
 
 const analyze = async (config: ApiDocsConfig) => {
-  await cloneIfNeeded(config.repo, config.commit, config.gitDir);
+  await cloneIfNeeded(
+    `https://github.com/${config.repo}`,
+    config.commit,
+    config.gitDir
+  );
   await setupIfNeeded(config.gitDir, config.extraSetupCommands);
 
   const app = new typedoc.Application();

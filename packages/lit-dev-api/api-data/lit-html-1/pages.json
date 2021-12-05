@@ -5,6 +5,8 @@
     "versionLinks": {
       "v2": "api/templates/"
     },
+    "repo": "lit/lit",
+    "commit": "022f87d7d1f541738dfec130f3635a6962f53887",
     "items": [
       {
         "name": "html",
@@ -20,8 +22,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 66,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L66",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -75,8 +75,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -99,8 +97,6 @@
           {
             "fileName": "src/lib/part.ts",
             "line": 50,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/part.ts#L50",
             "moduleSpecifier": "lit-html/lib/part.js"
           }
         ],
@@ -118,8 +114,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -143,8 +137,6 @@
           {
             "fileName": "src/lib/render.ts",
             "line": 37,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render.ts#L37",
             "moduleSpecifier": "lit-html/lib/render.js"
           }
         ],
@@ -236,8 +228,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -260,8 +250,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 73,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L73",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -315,8 +303,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -425,8 +411,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -446,8 +430,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 45,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L45",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -471,8 +453,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -492,8 +472,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 42,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L42",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -513,8 +491,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -534,8 +510,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 44,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L44",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -555,8 +529,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -576,8 +548,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 43,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L43",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -604,8 +574,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -626,8 +594,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 136,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L136",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -662,8 +628,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -681,8 +645,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 140,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L140",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -717,8 +679,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -746,8 +706,6 @@
           {
             "fileName": "src/lib/template-result.ts",
             "line": 135,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L135",
             "moduleSpecifier": "lit-html/lib/template-result.js"
           }
         ],
@@ -765,8 +723,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -803,8 +759,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 47,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L47",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -881,8 +835,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -902,8 +854,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 45,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L45",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -919,8 +869,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -940,8 +888,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 42,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L42",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -953,8 +899,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -974,8 +918,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 44,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L44",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -987,8 +929,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1008,8 +948,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 43,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L43",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -1028,8 +966,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1050,8 +986,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 59,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L59",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -1074,8 +1008,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1093,8 +1025,6 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 113,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L113",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -1117,8 +1047,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1146,8 +1074,6 @@
           {
             "fileName": "src/lib/template-result.ts",
             "line": 41,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-result.ts#L41",
             "moduleSpecifier": "lit-html/lib/template-result.js"
           }
         ],
@@ -1165,8 +1091,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -1193,8 +1117,6 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 19,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render-options.ts#L19",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
@@ -1206,8 +1128,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1227,8 +1147,6 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 18,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render-options.ts#L18",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
@@ -1240,8 +1158,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1261,8 +1177,6 @@
           {
             "fileName": "src/lib/render-options.ts",
             "line": 17,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render-options.ts#L17",
             "moduleSpecifier": "lit-html/lib/render-options.js"
           }
         ],
@@ -1270,8 +1184,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -1288,6 +1200,8 @@
     "versionLinks": {
       "v2": "api/directives/"
     },
+    "repo": "lit/lit",
+    "commit": "022f87d7d1f541738dfec130f3635a6962f53887",
     "items": [
       {
         "name": "asyncAppend",
@@ -1304,8 +1218,6 @@
           {
             "fileName": "src/directives/async-append.ts",
             "line": 34,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/async-append.ts#L34",
             "moduleSpecifier": "lit-html/directives/async-append.js"
           }
         ],
@@ -1453,8 +1365,6 @@
           {
             "fileName": "src/directives/async-append.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/async-append.ts#L15",
             "moduleSpecifier": "lit-html/directives/async-append.js"
           }
         ],
@@ -1478,8 +1388,6 @@
           {
             "fileName": "src/directives/async-replace.ts",
             "line": 35,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/async-replace.ts#L35",
             "moduleSpecifier": "lit-html/directives/async-replace.js"
           }
         ],
@@ -1627,8 +1535,6 @@
           {
             "fileName": "src/directives/async-replace.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/async-replace.ts#L15",
             "moduleSpecifier": "lit-html/directives/async-replace.js"
           }
         ],
@@ -1652,8 +1558,6 @@
           {
             "fileName": "src/directives/cache.ts",
             "line": 40,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/cache.ts#L40",
             "moduleSpecifier": "lit-html/directives/cache.js"
           }
         ],
@@ -1722,8 +1626,6 @@
           {
             "fileName": "src/directives/cache.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/cache.ts#L15",
             "moduleSpecifier": "lit-html/directives/cache.js"
           }
         ],
@@ -1746,8 +1648,6 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 68,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/class-map.ts#L68",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1822,8 +1722,6 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/class-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1841,8 +1739,6 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 49,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/class-map.ts#L49",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1884,8 +1780,6 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/class-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1909,8 +1803,6 @@
           {
             "fileName": "src/directives/guard.ts",
             "line": 52,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/guard.ts#L52",
             "moduleSpecifier": "lit-html/directives/guard.js"
           }
         ],
@@ -2012,8 +1904,6 @@
           {
             "fileName": "src/directives/guard.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/guard.ts#L15",
             "moduleSpecifier": "lit-html/directives/guard.js"
           }
         ],
@@ -2037,8 +1927,6 @@
           {
             "fileName": "src/directives/if-defined.ts",
             "line": 25,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/if-defined.ts#L25",
             "moduleSpecifier": "lit-html/directives/if-defined.js"
           }
         ],
@@ -2107,8 +1995,6 @@
           {
             "fileName": "src/directives/if-defined.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/if-defined.ts#L15",
             "moduleSpecifier": "lit-html/directives/if-defined.js"
           }
         ],
@@ -2132,8 +2018,6 @@
           {
             "fileName": "src/directives/live.ts",
             "line": 39,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/live.ts#L39",
             "moduleSpecifier": "lit-html/directives/live.js"
           }
         ],
@@ -2223,8 +2107,6 @@
           {
             "fileName": "src/directives/live.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/live.ts#L15",
             "moduleSpecifier": "lit-html/directives/live.js"
           }
         ],
@@ -2248,8 +2130,6 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 90,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/repeat.ts#L90",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2364,8 +2244,6 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/repeat.ts#L15",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2383,8 +2261,6 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 19,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/repeat.ts#L19",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2406,8 +2282,7 @@
             "sources": [
               {
                 "fileName": "directives/repeat.ts",
-                "line": 19,
-                "character": 30
+                "line": 19
               }
             ],
             "signatures": [
@@ -2450,8 +2325,6 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/repeat.ts#L15",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2469,8 +2342,6 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 18,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/repeat.ts#L18",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2492,8 +2363,7 @@
             "sources": [
               {
                 "fileName": "directives/repeat.ts",
-                "line": 18,
-                "character": 23
+                "line": 18
               }
             ],
             "signatures": [
@@ -2536,8 +2406,6 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/repeat.ts#L15",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2561,8 +2429,6 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 44,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/style-map.ts#L44",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2638,8 +2504,6 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/style-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2657,8 +2521,6 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 17,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/style-map.ts#L17",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2687,8 +2549,6 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/style-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2712,8 +2572,6 @@
           {
             "fileName": "src/directives/template-content.ts",
             "line": 36,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/template-content.ts#L36",
             "moduleSpecifier": "lit-html/directives/template-content.js"
           }
         ],
@@ -2785,8 +2643,6 @@
           {
             "fileName": "src/directives/template-content.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/template-content.ts#L15",
             "moduleSpecifier": "lit-html/directives/template-content.js"
           }
         ],
@@ -2810,8 +2666,6 @@
           {
             "fileName": "src/directives/unsafe-html.ts",
             "line": 37,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/unsafe-html.ts#L37",
             "moduleSpecifier": "lit-html/directives/unsafe-html.js"
           }
         ],
@@ -2880,8 +2734,6 @@
           {
             "fileName": "src/directives/unsafe-html.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/unsafe-html.ts#L15",
             "moduleSpecifier": "lit-html/directives/unsafe-html.js"
           }
         ],
@@ -2905,8 +2757,6 @@
           {
             "fileName": "src/directives/unsafe-svg.ts",
             "line": 40,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/unsafe-svg.ts#L40",
             "moduleSpecifier": "lit-html/directives/unsafe-svg.js"
           }
         ],
@@ -2975,8 +2825,6 @@
           {
             "fileName": "src/directives/unsafe-svg.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/unsafe-svg.ts#L15",
             "moduleSpecifier": "lit-html/directives/unsafe-svg.js"
           }
         ],
@@ -3000,8 +2848,6 @@
           {
             "fileName": "src/directives/until.ts",
             "line": 51,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/until.ts#L51",
             "moduleSpecifier": "lit-html/directives/until.js"
           }
         ],
@@ -3075,8 +2921,6 @@
           {
             "fileName": "src/directives/until.ts",
             "line": 15,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/directives/until.ts#L15",
             "moduleSpecifier": "lit-html/directives/until.js"
           }
         ],
@@ -3093,6 +2937,8 @@
     "versionLinks": {
       "v2": "api/custom-directives/"
     },
+    "repo": "lit/lit",
+    "commit": "022f87d7d1f541738dfec130f3635a6962f53887",
     "items": [
       {
         "name": "AttributeCommitter",
@@ -3112,8 +2958,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 48,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L48",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3179,8 +3023,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3198,8 +3040,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 46,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L46",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3212,8 +3052,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3233,8 +3071,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 42,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L42",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3249,8 +3085,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3270,8 +3104,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 43,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L43",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3283,8 +3115,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3304,8 +3134,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 45,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L45",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3328,8 +3156,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3349,8 +3175,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 44,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L44",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3369,8 +3193,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3388,8 +3210,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 113,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L113",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3409,8 +3229,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3438,8 +3256,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 41,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L41",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -3457,8 +3273,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3485,8 +3299,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 128,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L128",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3526,8 +3338,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3547,8 +3357,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 125,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L125",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3564,8 +3372,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3583,8 +3389,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 126,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L126",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3605,8 +3409,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3628,8 +3430,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 144,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L144",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3665,8 +3465,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3687,8 +3485,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 132,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L132",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3735,8 +3531,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3764,8 +3558,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 124,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L124",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -3793,8 +3585,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3822,8 +3612,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 374,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L374",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3889,8 +3677,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3910,8 +3696,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 368,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L368",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3926,8 +3710,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3947,8 +3729,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 369,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L369",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3960,8 +3740,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3981,8 +3759,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 370,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L370",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4001,8 +3777,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4020,8 +3794,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 371,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L371",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4042,8 +3814,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4065,8 +3835,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 388,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L388",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4102,8 +3870,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4124,8 +3890,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 384,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L384",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4172,8 +3936,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4201,8 +3963,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 367,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L367",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -4220,8 +3980,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4241,8 +3999,6 @@
           {
             "fileName": "src/lib/template.ts",
             "line": 225,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template.ts#L225",
             "moduleSpecifier": "lit-html/lib/template.js"
           }
         ],
@@ -4262,8 +4018,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4283,8 +4037,6 @@
           {
             "fileName": "src/lib/default-template-processor.ts",
             "line": 59,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/default-template-processor.ts#L59",
             "moduleSpecifier": "lit-html/lib/default-template-processor.js"
           }
         ],
@@ -4301,8 +4053,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4345,8 +4095,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4367,8 +4115,6 @@
               {
                 "fileName": "src/lib/default-template-processor.ts",
                 "line": 33,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/default-template-processor.ts#L33",
                 "moduleSpecifier": "lit-html/lib/default-template-processor.js"
               }
             ],
@@ -4475,8 +4221,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4497,8 +4241,6 @@
               {
                 "fileName": "src/lib/default-template-processor.ts",
                 "line": 54,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/default-template-processor.ts#L54",
                 "moduleSpecifier": "lit-html/lib/default-template-processor.js"
               }
             ],
@@ -4553,8 +4295,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4578,8 +4318,6 @@
           {
             "fileName": "src/lib/default-template-processor.ts",
             "line": 23,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/default-template-processor.ts#L23",
             "moduleSpecifier": "lit-html/lib/default-template-processor.js"
           }
         ],
@@ -4597,8 +4335,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4628,8 +4364,6 @@
           {
             "fileName": "src/lib/directive.ts",
             "line": 64,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/directive.ts#L64",
             "moduleSpecifier": "lit-html/lib/directive.js"
           }
         ],
@@ -4686,8 +4420,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4711,8 +4443,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 486,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L486",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4773,8 +4503,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4794,8 +4522,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 478,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L478",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4810,8 +4536,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4832,8 +4556,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 480,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L480",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4845,8 +4567,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4866,8 +4586,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 479,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L479",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4879,8 +4597,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4898,8 +4614,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 481,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L481",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4929,8 +4643,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4952,8 +4664,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 497,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L497",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4989,8 +4699,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5008,8 +4716,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 530,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L530",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5041,8 +4747,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5063,8 +4767,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 493,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L493",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5120,8 +4822,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5149,8 +4849,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 477,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L477",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -5168,8 +4866,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5189,8 +4885,6 @@
           {
             "fileName": "src/lib/directive.ts",
             "line": 71,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/directive.ts#L71",
             "moduleSpecifier": "lit-html/lib/directive.js"
           }
         ],
@@ -5231,8 +4925,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5252,8 +4944,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 30,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L30",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -5296,8 +4986,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5317,8 +5005,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 25,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L25",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -5355,8 +5041,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5376,8 +5060,6 @@
           {
             "fileName": "src/lib/template.ts",
             "line": 221,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template.ts#L221",
             "moduleSpecifier": "lit-html/lib/template.js"
           }
         ],
@@ -5409,8 +5091,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5433,8 +5113,6 @@
           {
             "fileName": "src/lib/part.ts",
             "line": 45,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/part.ts#L45",
             "moduleSpecifier": "lit-html/lib/part.js"
           }
         ],
@@ -5452,8 +5130,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5481,8 +5157,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 172,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L172",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5522,8 +5196,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5541,8 +5213,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 168,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L168",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5554,8 +5224,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5575,8 +5243,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 166,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L166",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5592,8 +5258,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5611,8 +5275,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 167,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L167",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5624,8 +5286,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5643,8 +5303,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 169,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L169",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5665,8 +5323,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5688,8 +5344,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 181,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L181",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5725,8 +5379,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5748,8 +5400,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 203,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L203",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5789,8 +5439,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5808,8 +5456,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 354,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L354",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5842,8 +5488,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5865,8 +5509,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 223,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L223",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5902,8 +5544,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5925,8 +5565,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 193,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L193",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5962,8 +5600,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5985,8 +5621,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 213,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L213",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6026,8 +5660,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6048,8 +5680,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 219,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L219",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6096,8 +5726,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6125,8 +5753,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 165,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L165",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -6144,8 +5770,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6165,8 +5789,6 @@
           {
             "fileName": "src/lib/render.ts",
             "line": 20,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render.ts#L20",
             "moduleSpecifier": "lit-html/lib/render.js"
           }
         ],
@@ -6193,8 +5815,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6222,8 +5842,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 422,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L422",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6301,8 +5919,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6320,8 +5936,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 46,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L46",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6342,8 +5956,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6363,8 +5975,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 42,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L42",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6387,8 +5997,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6408,8 +6016,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 43,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L43",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6429,8 +6035,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6450,8 +6054,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 45,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L45",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6482,8 +6084,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6503,8 +6103,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 420,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L420",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6516,8 +6114,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6537,8 +6133,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 44,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L44",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6565,8 +6159,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6584,8 +6176,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 439,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L439",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6617,8 +6207,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6646,8 +6234,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 419,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L419",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -6665,8 +6251,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6744,8 +6328,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6765,8 +6347,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 125,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L125",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6790,8 +6370,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6809,8 +6387,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 126,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L126",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6831,8 +6407,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6854,8 +6428,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 144,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L144",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6891,8 +6463,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6913,8 +6483,6 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 132,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L132",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -6961,8 +6529,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6990,8 +6556,6 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 448,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/parts.ts#L448",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -7009,8 +6573,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7043,8 +6605,6 @@
           {
             "fileName": "src/lib/dom.ts",
             "line": 43,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/dom.ts#L43",
             "moduleSpecifier": "lit-html/lib/dom.js"
           }
         ],
@@ -7118,8 +6678,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7142,8 +6700,6 @@
           {
             "fileName": "src/lib/dom.ts",
             "line": 27,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/dom.ts#L27",
             "moduleSpecifier": "lit-html/lib/dom.js"
           }
         ],
@@ -7237,8 +6793,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7265,8 +6819,6 @@
               {
                 "fileName": "src/lib/template.ts",
                 "line": 43,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template.ts#L43",
                 "moduleSpecifier": "lit-html/lib/template.js"
               }
             ],
@@ -7319,8 +6871,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7340,8 +6890,6 @@
               {
                 "fileName": "src/lib/template.ts",
                 "line": 41,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template.ts#L41",
                 "moduleSpecifier": "lit-html/lib/template.js"
               }
             ],
@@ -7356,8 +6904,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7377,8 +6923,6 @@
               {
                 "fileName": "src/lib/template.ts",
                 "line": 40,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template.ts#L40",
                 "moduleSpecifier": "lit-html/lib/template.js"
               }
             ],
@@ -7394,8 +6938,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7419,8 +6961,6 @@
           {
             "fileName": "src/lib/template.ts",
             "line": 39,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template.ts#L39",
             "moduleSpecifier": "lit-html/lib/template.js"
           }
         ],
@@ -7428,8 +6968,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7449,8 +6987,6 @@
           {
             "fileName": "src/lib/template-factory.ts",
             "line": 92,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-factory.ts#L92",
             "moduleSpecifier": "lit-html/lib/template-factory.js"
           }
         ],
@@ -7473,8 +7009,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7495,8 +7029,6 @@
           {
             "fileName": "src/lib/template-factory.ts",
             "line": 44,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-factory.ts#L44",
             "moduleSpecifier": "lit-html/lib/template-factory.js"
           }
         ],
@@ -7539,8 +7071,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7567,8 +7097,6 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 31,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-instance.ts#L31",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -7636,8 +7164,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7657,8 +7183,6 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 28,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-instance.ts#L28",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -7674,8 +7198,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7695,8 +7217,6 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 27,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-instance.ts#L27",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -7712,8 +7232,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7733,8 +7251,6 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 29,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-instance.ts#L29",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -7750,8 +7266,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7769,8 +7283,6 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 39,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-instance.ts#L39",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -7809,8 +7321,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -7838,8 +7348,6 @@
           {
             "fileName": "src/lib/template-instance.ts",
             "line": 25,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-instance.ts#L25",
             "moduleSpecifier": "lit-html/lib/template-instance.js"
           }
         ],
@@ -7847,8 +7355,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7866,8 +7372,6 @@
           {
             "fileName": "src/lib/directive.ts",
             "line": 22,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/directive.ts#L22",
             "moduleSpecifier": "lit-html/lib/directive.js"
           }
         ],
@@ -7881,8 +7385,7 @@
             "sources": [
               {
                 "fileName": "lib/directive.ts",
-                "line": 22,
-                "character": 26
+                "line": 22
               }
             ],
             "signatures": [
@@ -7919,8 +7422,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -7949,8 +7450,6 @@
               {
                 "fileName": "src/lib/part.ts",
                 "line": 20,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/part.ts#L20",
                 "moduleSpecifier": "lit-html/lib/part.js"
               }
             ],
@@ -7962,8 +7461,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -8001,8 +7498,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -8053,8 +7548,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -8078,8 +7571,6 @@
           {
             "fileName": "src/lib/part.ts",
             "line": 19,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/part.ts#L19",
             "moduleSpecifier": "lit-html/lib/part.js"
           }
         ],
@@ -8121,8 +7612,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -8240,8 +7729,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -8297,8 +7784,6 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -8318,8 +7803,6 @@
           {
             "fileName": "src/lib/template-processor.ts",
             "line": 23,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/template-processor.ts#L23",
             "moduleSpecifier": "lit-html/lib/template-processor.js"
           }
         ],
@@ -8337,8 +7820,6 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -8355,6 +7836,8 @@
     "versionLinks": {
       "v2": "api/templates/"
     },
+    "repo": "lit/lit",
+    "commit": "022f87d7d1f541738dfec130f3635a6962f53887",
     "items": [
       {
         "name": "render",
@@ -8371,8 +7854,6 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 258,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L258",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -8454,8 +7935,6 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 26,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L26",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -8478,8 +7957,6 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 57,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L57",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -8554,8 +8031,6 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 26,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L26",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -8582,8 +8057,6 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 19,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render-options.ts#L19",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
@@ -8599,8 +8072,6 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 26,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L26",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -8618,8 +8089,6 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 199,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L199",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -8631,8 +8100,6 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 26,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L26",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -8653,8 +8120,6 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 18,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/render-options.ts#L18",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
@@ -8670,8 +8135,6 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 26,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L26",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -8691,8 +8154,6 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 198,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L198",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -8716,8 +8177,6 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 26,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit/blob/022f87d7d1f541738dfec130f3635a6962f53887/src/lib/shady-render.ts#L26",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],

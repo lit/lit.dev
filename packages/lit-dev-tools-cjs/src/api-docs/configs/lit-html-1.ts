@@ -18,7 +18,7 @@ const srcDir = pathlib.join(gitDir, 'src');
  * lit.dev API docs configuration for lit-html 1.x
  */
 export const litHtml1Config: ApiDocsConfig = {
-  repo: 'https://github.com/lit/lit',
+  repo: 'lit/lit',
   commit: '022f87d7d1f541738dfec130f3635a6962f53887',
   gitDir,
   tsConfigPath: pathlib.join(gitDir, 'tsconfig.json'),

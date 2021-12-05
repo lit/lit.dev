@@ -118,7 +118,6 @@ export class ApiDocsTransformer {
         for (const source of node.sources ?? []) {
           this.makeSourceRelativeToMonorepoRoot(source);
           await this.updateSourceFromDtsToTs(source);
-          this.setGithubUrl(source);
           this.setImportModuleSpecifier(source);
         }
         this.choosePageLocation(node, ancestry);
@@ -433,7 +432,9 @@ export class ApiDocsTransformer {
           // lists of numeric IDs.
           (key === 'children' &&
             val instanceof Array &&
-            val.every((i) => typeof i === 'number'))
+            val.every((i) => typeof i === 'number')) ||
+          // We only need the line number for GitHub URLs.
+          key === 'character'
         ) {
           delete node[key as keyof typeof node];
         } else {
@@ -649,27 +650,6 @@ export class ApiDocsTransformer {
   }
 
   /**
-   * Augment a source with a GitHub URL.
-   */
-  private setGithubUrl(source: SourceReference) {
-    if (!source.fileName.endsWith('.ts')) {
-      throw new Error(
-        `Unexpected source.fileName extension: ${source.fileName}`
-      );
-    }
-    if (source.fileName.endsWith('.d.ts')) {
-      // TODO(aomarks) For an unknown reason, TypeDoc sometimes resolves to d.ts
-      // files instead of original .ts source files, e.g. when a class inherits
-      // a constructor from a superclass. We can't link to these, since d.ts
-      // files aren't checked into GitHub.
-      return;
-    }
-    (
-      source as ExtendedSourceReference
-    ).gitHubUrl = `${this.config.repo}/blob/${this.config.commit}/${source.fileName}#L${source.line}`;
-  }
-
-  /**
    * Augment a source with its best import statement module specifier.
    */
   private setImportModuleSpecifier(source: SourceReference) {
@@ -691,6 +671,8 @@ export class ApiDocsTransformer {
         title: string;
         anchorFilter?: (node: DeclarationReflection) => boolean;
         items: Array<DeclarationReflection>;
+        repo: string;
+        commit: string;
       }
     >();
 
@@ -710,6 +692,8 @@ export class ApiDocsTransformer {
           }
           page = {
             ...match,
+            repo: this.config.repo,
+            commit: this.config.commit,
             items: [],
           };
           slugToPage.set(location.page, page);

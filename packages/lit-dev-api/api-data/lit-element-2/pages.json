@@ -5,6 +5,8 @@
     "versionLinks": {
       "v2": "api/LitElement/"
     },
+    "repo": "lit/lit-element",
+    "commit": "c9b40e6b26dd7a9361e32421a4343949d242e0ca",
     "items": [
       {
         "name": "LitElement",
@@ -53,8 +55,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -77,8 +77,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 216,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L216",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -105,8 +103,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -131,8 +127,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 109,
-                "character": 18,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L109",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -153,8 +147,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -177,8 +169,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 248,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L248",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -202,8 +192,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -233,8 +221,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 128,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L128",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -321,8 +307,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -350,8 +334,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 139,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L139",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -367,8 +349,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -392,8 +372,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 136,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L136",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -409,8 +387,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -430,8 +406,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 739,
-                "character": 16,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L739",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -463,8 +437,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -487,8 +459,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 816,
-                "character": 6,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L816",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -537,8 +507,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -567,8 +535,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 254,
-                "character": 13,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L254",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -615,8 +581,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -639,8 +603,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 258,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L258",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -663,8 +625,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -685,8 +645,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 597,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L597",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -771,8 +729,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -790,8 +746,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 281,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L281",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -823,8 +777,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -848,8 +800,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 244,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L244",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -888,8 +838,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -910,8 +858,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 591,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L591",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -946,8 +892,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -967,8 +911,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 579,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L579",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1000,8 +942,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1025,8 +965,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 914,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L914",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1100,8 +1038,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1125,8 +1061,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 858,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L858",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1168,8 +1102,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1192,8 +1124,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 223,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L223",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1228,8 +1158,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1253,8 +1181,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 759,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L759",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1305,8 +1231,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1329,8 +1253,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 329,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L329",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1353,8 +1275,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1376,8 +1296,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 707,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L707",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1451,8 +1369,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1475,8 +1391,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 661,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L661",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1563,8 +1477,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1587,8 +1499,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 869,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L869",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1661,8 +1571,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1685,8 +1593,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 296,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L296",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1756,8 +1662,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1781,8 +1685,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 902,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L902",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1856,8 +1758,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1887,8 +1787,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 314,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L314",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -1967,8 +1865,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -1998,8 +1894,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 402,
-                "character": 19,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L402",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2040,8 +1934,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -2072,8 +1964,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 361,
-                "character": 19,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L361",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2186,8 +2076,7 @@
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
-                            "line": 365,
-                            "character": 6
+                            "line": 365
                           }
                         ],
                         "signatures": [
@@ -2211,8 +2100,7 @@
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
-                            "line": 368,
-                            "character": 6
+                            "line": 368
                           }
                         ],
                         "signatures": [
@@ -2271,8 +2159,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -2307,8 +2193,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 392,
-                "character": 19,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L392",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2380,8 +2264,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -2410,8 +2292,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 149,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L149",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -2453,8 +2333,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -2486,8 +2364,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 101,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L101",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -2505,8 +2381,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -2540,6 +2414,8 @@
     "versionLinks": {
       "v2": "api/ReactiveElement/"
     },
+    "repo": "lit/lit-element",
+    "commit": "c9b40e6b26dd7a9361e32421a4343949d242e0ca",
     "items": [
       {
         "name": "defaultConverter",
@@ -2552,8 +2428,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 145,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L145",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -2570,8 +2444,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -2594,8 +2466,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 184,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L184",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -2640,8 +2510,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -2676,8 +2544,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 514,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L514",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2709,8 +2575,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2734,8 +2598,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 236,
-                "character": 18,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L236",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2748,8 +2610,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2772,8 +2632,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 248,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L248",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2789,8 +2647,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2810,8 +2666,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 739,
-                "character": 16,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L739",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2835,8 +2689,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2859,8 +2711,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 816,
-                "character": 6,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L816",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2901,8 +2751,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2931,8 +2779,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 254,
-                "character": 13,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L254",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2971,8 +2817,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -2993,8 +2837,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 597,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L597",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3067,8 +2909,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3086,8 +2926,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 573,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L573",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3107,8 +2945,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3129,8 +2965,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 591,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L591",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3153,8 +2987,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3174,8 +3006,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 579,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L579",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3195,8 +3025,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3220,8 +3048,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 914,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L914",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3283,8 +3109,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3308,8 +3132,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 858,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L858",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3339,8 +3161,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3363,8 +3183,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 523,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L523",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3387,8 +3205,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3412,8 +3228,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 759,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L759",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3452,8 +3266,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3475,8 +3287,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 707,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L707",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3538,8 +3348,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3562,8 +3370,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 661,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L661",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3638,8 +3444,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3662,8 +3466,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 869,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L869",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3724,8 +3526,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3748,8 +3548,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 881,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L881",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3810,8 +3608,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3835,8 +3631,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 902,
-                "character": 12,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L902",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3898,8 +3692,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3929,8 +3721,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 314,
-                "character": 9,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L314",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -3997,8 +3787,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4028,8 +3816,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 402,
-                "character": 19,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L402",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4058,8 +3844,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4090,8 +3874,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 361,
-                "character": 19,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L361",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4204,8 +3986,7 @@
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
-                            "line": 365,
-                            "character": 6
+                            "line": 365
                           }
                         ],
                         "signatures": [
@@ -4229,8 +4010,7 @@
                         "sources": [
                           {
                             "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/updating-element.ts",
-                            "line": 368,
-                            "character": 6
+                            "line": 368
                           }
                         ],
                         "signatures": [
@@ -4277,8 +4057,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4313,8 +4091,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 392,
-                "character": 19,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L392",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4374,8 +4150,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4407,8 +4181,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 219,
-            "character": 22,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L219",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -4435,8 +4207,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -4525,8 +4295,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4590,8 +4358,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4611,8 +4377,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 42,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L42",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -4642,8 +4406,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -4661,8 +4423,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 176,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L176",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -4704,8 +4464,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -4738,8 +4496,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 74,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L74",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4760,8 +4516,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4785,8 +4539,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 95,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L95",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4808,8 +4560,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4833,8 +4583,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 121,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L121",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4846,8 +4594,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4871,8 +4617,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 104,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L104",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4884,8 +4628,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4909,8 +4651,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 81,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L81",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4922,8 +4662,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -4983,8 +4721,6 @@
               {
                 "fileName": "src/lib/updating-element.ts",
                 "line": 27,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
                 "moduleSpecifier": "lit-element/lib/updating-element.js"
               }
             ],
@@ -5008,8 +4744,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 66,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L66",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -5039,8 +4773,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -5061,8 +4793,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 129,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L129",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -5095,8 +4825,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -5117,8 +4845,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 142,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L142",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -5175,8 +4901,6 @@
           {
             "fileName": "src/lib/updating-element.ts",
             "line": 27,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/updating-element.ts#L27",
             "moduleSpecifier": "lit-element/lib/updating-element.js"
           }
         ],
@@ -5193,6 +4917,8 @@
     "versionLinks": {
       "v2": "api/styles/"
     },
+    "repo": "lit/lit-element",
+    "commit": "c9b40e6b26dd7a9361e32421a4343949d242e0ca",
     "items": [
       {
         "name": "css",
@@ -5208,8 +4934,6 @@
           {
             "fileName": "src/lib/css-tag.ts",
             "line": 87,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L87",
             "moduleSpecifier": "lit-element/lib/css-tag.js"
           }
         ],
@@ -5276,8 +5000,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5301,8 +5023,6 @@
               {
                 "fileName": "src/lib/css-tag.ts",
                 "line": 27,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L27",
                 "moduleSpecifier": "lit-element/lib/css-tag.js"
               }
             ],
@@ -5348,8 +5068,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -5369,8 +5087,6 @@
               {
                 "fileName": "src/lib/css-tag.ts",
                 "line": 25,
-                "character": 11,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L25",
                 "moduleSpecifier": "lit-element/lib/css-tag.js"
               }
             ],
@@ -5382,8 +5098,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -5401,8 +5115,6 @@
               {
                 "fileName": "src/lib/css-tag.ts",
                 "line": 38,
-                "character": 6,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L38",
                 "moduleSpecifier": "lit-element/lib/css-tag.js"
               }
             ],
@@ -5450,8 +5162,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -5469,8 +5179,6 @@
               {
                 "fileName": "src/lib/css-tag.ts",
                 "line": 52,
-                "character": 2,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L52",
                 "moduleSpecifier": "lit-element/lib/css-tag.js"
               }
             ],
@@ -5490,8 +5198,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -5523,8 +5229,6 @@
           {
             "fileName": "src/lib/css-tag.ts",
             "line": 22,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L22",
             "moduleSpecifier": "lit-element/lib/css-tag.js"
           }
         ],
@@ -5532,8 +5236,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5556,8 +5258,6 @@
           {
             "fileName": "src/lib/css-tag.ts",
             "line": 15,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L15",
             "moduleSpecifier": "lit-element/lib/css-tag.js"
           }
         ],
@@ -5570,8 +5270,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5595,8 +5293,6 @@
           {
             "fileName": "src/lib/css-tag.ts",
             "line": 64,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/css-tag.ts#L64",
             "moduleSpecifier": "lit-element/lib/css-tag.js"
           }
         ],
@@ -5636,8 +5332,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5665,8 +5359,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 82,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L82",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5703,8 +5395,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5751,8 +5441,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 85,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L85",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5781,8 +5469,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5800,8 +5486,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 80,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L80",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5829,8 +5513,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5847,6 +5529,8 @@
     "versionLinks": {
       "v2": "api/decorators/"
     },
+    "repo": "lit/lit-element",
+    "commit": "c9b40e6b26dd7a9361e32421a4343949d242e0ca",
     "items": [
       {
         "name": "customElement",
@@ -5863,8 +5547,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 88,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L88",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -5954,8 +5636,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -5982,8 +5662,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 422,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L422",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6027,8 +5705,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6056,8 +5732,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 189,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L189",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6155,8 +5829,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6188,8 +5860,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 161,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L161",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6291,8 +5961,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6319,8 +5987,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 232,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L232",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6429,8 +6095,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6457,8 +6121,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 344,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L344",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6552,8 +6214,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6574,8 +6234,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 470,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L470",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6692,8 +6350,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6720,8 +6376,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 301,
-            "character": 16,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L301",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6815,8 +6469,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6840,8 +6492,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 202,
-            "character": 13,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L202",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6939,8 +6589,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -6958,8 +6606,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 26,
-            "character": 12,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L26",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -6981,8 +6627,7 @@
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-element-2/repo/src/lib/decorators.ts",
-                "line": 26,
-                "character": 29
+                "line": 26
               }
             ]
           }
@@ -6991,8 +6636,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],
@@ -7058,8 +6701,6 @@
               {
                 "fileName": "src/lit-element.ts",
                 "line": 57,
-                "character": 0,
-                "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
                 "moduleSpecifier": "lit-element"
               }
             ],
@@ -7079,8 +6720,6 @@
           {
             "fileName": "src/lib/decorators.ts",
             "line": 169,
-            "character": 17,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lib/decorators.ts#L169",
             "moduleSpecifier": "lit-element/lib/decorators.js"
           }
         ],
@@ -7100,8 +6739,6 @@
           {
             "fileName": "src/lit-element.ts",
             "line": 57,
-            "character": 0,
-            "gitHubUrl": "https://github.com/lit/lit-element/blob/c9b40e6b26dd7a9361e32421a4343949d242e0ca/src/lit-element.ts#L57",
             "moduleSpecifier": "lit-element"
           }
         ],

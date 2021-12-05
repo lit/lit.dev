@@ -19,7 +19,7 @@ const srcDir = pathlib.join(litDir, 'src');
  * lit.dev API docs configuration for Lit 2.x
  */
 export const lit2Config: ApiDocsConfig = {
-  repo: 'https://github.com/lit/lit',
+  repo: 'lit/lit',
   commit: 'f8ee010bc515e4bb319e98408d38ef3d971cc08b',
   gitDir,
   tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
