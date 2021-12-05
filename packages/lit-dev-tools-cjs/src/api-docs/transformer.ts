@@ -437,7 +437,11 @@ export class ApiDocsTransformer {
           key === 'character' ||
           // We render the readable "kindString" field instead of the numeric
           // "kind" field.
-          key === 'kind'
+          key === 'kind' ||
+          // If we've created an "expandedCategories" field, then we don't also
+          // render the normal "children" field.
+          (key === 'children' &&
+            (node as ExtendedDeclarationReflection).expandedCategories)
         ) {
           delete node[key as keyof typeof node];
         } else {
