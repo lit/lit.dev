@@ -658,17 +658,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/template-result.ts",
@@ -1008,17 +997,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/template-result.ts",
@@ -1111,11 +1089,6 @@
               "page": "templates",
               "anchor": "RenderOptions.templateFactory"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
           }
         ],
         "sources": [
@@ -3059,17 +3032,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
@@ -3345,17 +3307,6 @@
               "page": "custom-directives",
               "anchor": "AttributePart.setValue"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -3734,17 +3685,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
@@ -4073,14 +4013,6 @@
               "page": "custom-directives",
               "anchor": "DefaultTemplateProcessor.handleTextExpression"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -4576,17 +4508,6 @@
               "page": "custom-directives",
               "anchor": "EventPart.setValue"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -5437,17 +5358,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
@@ -5900,17 +5810,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
@@ -6206,17 +6105,6 @@
               "page": "custom-directives",
               "anchor": "PropertyPart.setValue"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -6596,14 +6484,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/template.ts",
@@ -6961,17 +6841,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/template-instance.ts",
@@ -7172,14 +7041,6 @@
               "page": "custom-directives",
               "anchor": "Part.setValue"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -7396,11 +7257,6 @@
               "page": "custom-directives",
               "anchor": "TemplateProcessor.handleTextExpression"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -7731,11 +7587,6 @@
               "page": "shady",
               "anchor": "ShadyRenderOptions.templateFactory"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
           }
         ],
         "sources": [

@@ -16,74 +16,6 @@
           "shortText": "Base element class that manages element properties and attributes, and\nrenders a lit-html template.",
           "text": "To define a component, subclass `LitElement` and implement a\n`render` method to provide the component's template. Define properties\nusing the [`properties`](/docs/api/LitElement/#LitElement.properties) property or the [`property`](/docs/api/decorators/#property) decorator.\n"
         },
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties",
-            "categories": [
-              {
-                "title": "Other"
-              },
-              {
-                "title": "dev-mode"
-              },
-              {
-                "title": "properties"
-              },
-              {
-                "title": "rendering"
-              },
-              {
-                "title": "styles"
-              },
-              {
-                "title": "updates"
-              }
-            ]
-          },
-          {
-            "title": "Accessors",
-            "categories": [
-              {
-                "title": "attributes"
-              },
-              {
-                "title": "updates"
-              }
-            ]
-          },
-          {
-            "title": "Methods",
-            "categories": [
-              {
-                "title": "Other"
-              },
-              {
-                "title": "attributes"
-              },
-              {
-                "title": "controllers"
-              },
-              {
-                "title": "lifecycle"
-              },
-              {
-                "title": "properties"
-              },
-              {
-                "title": "rendering"
-              },
-              {
-                "title": "styles"
-              },
-              {
-                "title": "updates"
-              }
-            ]
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-element/src/lit-element.ts",
@@ -1296,14 +1228,6 @@
                                 }
                               }
                             ]
-                          }
-                        ],
-                        "groups": [
-                          {
-                            "title": "Properties"
-                          },
-                          {
-                            "title": "Methods"
                           }
                         ]
                       }
@@ -2996,11 +2920,6 @@
                       }
                     ]
                   }
-                ],
-                "groups": [
-                  {
-                    "title": "Methods"
-                  }
                 ]
               }
             },
@@ -3122,11 +3041,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -3172,74 +3086,6 @@
             }
           ]
         },
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties",
-            "categories": [
-              {
-                "title": "Other"
-              },
-              {
-                "title": "dev-mode"
-              },
-              {
-                "title": "properties"
-              },
-              {
-                "title": "rendering"
-              },
-              {
-                "title": "styles"
-              },
-              {
-                "title": "updates"
-              }
-            ]
-          },
-          {
-            "title": "Accessors",
-            "categories": [
-              {
-                "title": "attributes"
-              },
-              {
-                "title": "updates"
-              }
-            ]
-          },
-          {
-            "title": "Methods",
-            "categories": [
-              {
-                "title": "Other"
-              },
-              {
-                "title": "attributes"
-              },
-              {
-                "title": "controllers"
-              },
-              {
-                "title": "lifecycle"
-              },
-              {
-                "title": "properties"
-              },
-              {
-                "title": "rendering"
-              },
-              {
-                "title": "styles"
-              },
-              {
-                "title": "updates"
-              }
-            ]
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -4352,14 +4198,6 @@
                                 }
                               }
                             ]
-                          }
-                        ],
-                        "groups": [
-                          {
-                            "title": "Properties"
-                          },
-                          {
-                            "title": "Methods"
                           }
                         ]
                       }
@@ -5880,11 +5718,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -6203,14 +6036,6 @@
               "page": "ReactiveElement",
               "anchor": "PropertyDeclaration.hasChanged"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -6599,14 +6424,6 @@
                     }
                   }
                 ]
-              }
-            ],
-            "groups": [
-              {
-                "title": "Properties"
-              },
-              {
-                "title": "Methods"
               }
             ],
             "sources": [
@@ -7086,11 +6903,6 @@
                 }
               }
             ],
-            "groups": [
-              {
-                "title": "Properties"
-              }
-            ],
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
@@ -7413,20 +7225,6 @@
               "page": "styles",
               "anchor": "CSSResult.toString"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -8759,11 +8557,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/state.ts",
@@ -9483,20 +9276,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/async-append.ts",
@@ -10174,20 +9953,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/async-replace.ts",
@@ -10527,20 +10292,6 @@
               "page": "directives",
               "anchor": "CacheDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -10889,20 +10640,6 @@
               "page": "directives",
               "anchor": "ClassMapDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -11345,20 +11082,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/guard.ts",
@@ -11760,17 +11483,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/live.ts",
@@ -12039,14 +11751,6 @@
               "page": "directives",
               "anchor": "Ref.value"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
           }
         ],
         "sources": [
@@ -12492,20 +12196,6 @@
               "page": "directives",
               "anchor": "RefDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -13324,20 +13014,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/repeat.ts",
@@ -14083,20 +13759,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/style-map.ts",
@@ -14485,20 +14147,6 @@
               "page": "directives",
               "anchor": "TemplateContentDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -14988,20 +14636,6 @@
               "page": "directives",
               "anchor": "UnsafeHTMLDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -15514,20 +15148,6 @@
               "page": "directives",
               "anchor": "UnsafeSVGDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -16053,20 +15673,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directives/until.ts",
@@ -16490,20 +16096,6 @@
               "page": "custom-directives",
               "anchor": "AsyncDirective.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -17558,11 +17150,6 @@
                 }
               }
             ],
-            "groups": [
-              {
-                "title": "Properties"
-              }
-            ],
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directive-helpers.d.ts",
@@ -17925,17 +17512,6 @@
               "page": "custom-directives",
               "anchor": "AttributePart.tagName"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
           }
         ],
         "sources": [
@@ -18375,17 +17951,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -18787,20 +18352,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -19014,17 +18565,6 @@
               "page": "custom-directives",
               "anchor": "Directive.update"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -19320,20 +18860,6 @@
               "page": "custom-directives",
               "anchor": "ElementPart.type"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -19798,20 +19324,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -19972,11 +19484,6 @@
                   "type": "literal",
                   "value": 3
                 }
-              }
-            ],
-            "groups": [
-              {
-                "title": "Properties"
               }
             ],
             "sources": [
@@ -20381,17 +19888,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -20578,11 +20074,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive.ts",
@@ -20635,11 +20126,6 @@
               "page": "custom-directives",
               "anchor": "ChildPartInfo.type"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
           }
         ],
         "sources": [
@@ -20711,11 +20197,6 @@
               "page": "custom-directives",
               "anchor": "DirectiveClass.constructor"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
           }
         ],
         "sources": [
@@ -20877,11 +20358,6 @@
               "page": "custom-directives",
               "anchor": "ElementPartInfo.type"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
           }
         ],
         "sources": [
@@ -21234,11 +20710,6 @@
                       "name": "unknown"
                     }
                   }
-                ],
-                "groups": [
-                  {
-                    "title": "Properties"
-                  }
                 ]
               }
             }
@@ -21393,11 +20864,6 @@
                       "type": "intrinsic",
                       "name": "string"
                     }
-                  }
-                ],
-                "groups": [
-                  {
-                    "title": "Properties"
                   }
                 ]
               }
@@ -21791,11 +21257,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-controller.ts",
@@ -21995,14 +21456,6 @@
               "page": "controllers",
               "anchor": "ReactiveControllerHost.requestUpdate"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -22205,11 +21658,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -22297,11 +21745,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -22325,11 +21768,6 @@
         "name": "DirectiveParent",
         "kindString": "Interface",
         "flags": {},
-        "groups": [
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -22353,11 +21791,6 @@
         "name": "Disconnectable",
         "kindString": "Interface",
         "flags": {},
-        "groups": [
-          {
-            "title": "Properties"
-          }
-        ],
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -22906,17 +22339,6 @@
               "page": "misc",
               "anchor": "RootPart.setConnected"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [

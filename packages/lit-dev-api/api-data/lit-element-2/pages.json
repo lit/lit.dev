@@ -2045,14 +2045,6 @@
                           }
                         ]
                       }
-                    ],
-                    "groups": [
-                      {
-                        "title": "Properties"
-                      },
-                      {
-                        "title": "Methods"
-                      }
                     ]
                   }
                 },
@@ -2250,20 +2242,6 @@
               "page": "LitElement",
               "anchor": "LitElement.getStyles"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -3871,14 +3849,6 @@
                           }
                         ]
                       }
-                    ],
-                    "groups": [
-                      {
-                        "title": "Properties"
-                      },
-                      {
-                        "title": "Methods"
-                      }
                     ]
                   }
                 }
@@ -3985,20 +3955,6 @@
               "page": "UpdatingElement",
               "anchor": "UpdatingElement.getPropertyOptions"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -4180,11 +4136,6 @@
               "page": "UpdatingElement",
               "anchor": "ComplexAttributeConverter.toAttribute"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -4526,14 +4477,6 @@
               "page": "UpdatingElement",
               "anchor": "PropertyDeclaration.hasChanged"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
           }
         ],
         "sources": [
@@ -4982,20 +4925,6 @@
             }
           }
         ],
-        "groups": [
-          {
-            "title": "Constructors"
-          },
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Accessors"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lib/css-tag.ts",
@@ -5111,14 +5040,6 @@
         "name": "CSSResultArray",
         "kindString": "Interface",
         "flags": {},
-        "groups": [
-          {
-            "title": "Properties"
-          },
-          {
-            "title": "Methods"
-          }
-        ],
         "sources": [
           {
             "fileName": "src/lit-element.ts",
@@ -6401,11 +6322,6 @@
               "page": "decorators",
               "anchor": "InternalPropertyDeclaration.hasChanged"
             }
-          }
-        ],
-        "groups": [
-          {
-            "title": "Methods"
           }
         ],
         "sources": [

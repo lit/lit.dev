@@ -441,7 +441,10 @@ export class ApiDocsTransformer {
           // If we've created an "expandedCategories" field, then we don't also
           // render the normal "children" field.
           (key === 'children' &&
-            (node as ExtendedDeclarationReflection).expandedCategories)
+            (node as ExtendedDeclarationReflection).expandedCategories) ||
+          // We use "groups" to generate "expandedCategories", but don't render
+          // it directly.
+          key === 'groups'
         ) {
           delete node[key as keyof typeof node];
         } else {
