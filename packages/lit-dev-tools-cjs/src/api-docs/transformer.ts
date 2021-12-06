@@ -118,7 +118,6 @@ export class ApiDocsTransformer {
         for (const source of node.sources ?? []) {
           this.makeSourceRelativeToMonorepoRoot(source);
           await this.updateSourceFromDtsToTs(source);
-          this.setGithubUrl(source);
           this.setImportModuleSpecifier(source);
         }
         this.choosePageLocation(node, ancestry);
@@ -219,6 +218,7 @@ export class ApiDocsTransformer {
     secondPassVisit(this.project);
 
     const pages = this.reorganizeExportsIntoPages();
+    this.prunePageData(pages);
 
     return {
       symbolMap: this.symbolMap,
@@ -408,6 +408,64 @@ export class ApiDocsTransformer {
         // We already recurse into children of top-level reflections in our main
         // traversal, no need to also do it here.
         this.addLocationsForAllIds(val, false);
+      }
+    }
+  }
+
+  /**
+   * Remove fields that we don't need for rendering. This makes reading diffs
+   * much easier, since we check the generated JSON file in.
+   */
+  private prunePageData(node: unknown) {
+    if (node instanceof Array) {
+      for (const item of node) {
+        this.prunePageData(item);
+      }
+    } else if (typeof node === 'object' && node !== null) {
+      // Method comments are duplicated both at the root of the node, and also
+      // inside its signature. Remove the one from the signature.
+      if (
+        (node as ExtendedDeclarationReflection).comment &&
+        (node as ExtendedDeclarationReflection).signatures?.[0]?.comment
+      ) {
+        delete (node as ExtendedDeclarationReflection).signatures?.[0]?.comment;
+      }
+      for (const [key, val] of Object.entries(node)) {
+        // Prune the child first, so that our "empty arrays and objects" check
+        // works more aggressively.
+        this.prunePageData(val);
+        if (
+          // We instead use the "location" field which tells us the page/anchor,
+          // instead of the internal numeric TypeDoc id. This id is
+          // non-deterministic, so it creates meaningless churn!
+          key === 'id' ||
+          // We do use some "children" fields, but not the ones that are just
+          // lists of numeric IDs.
+          (key === 'children' &&
+            val instanceof Array &&
+            val.every((i) => typeof i === 'number')) ||
+          // We only need the line number for GitHub URLs.
+          key === 'character' ||
+          // We render the readable "kindString" field instead of the numeric
+          // "kind" field.
+          key === 'kind' ||
+          // If we've created an "expandedCategories" field, then we don't also
+          // render the normal "children" field.
+          (key === 'children' &&
+            (node as ExtendedDeclarationReflection).expandedCategories) ||
+          // We use "groups" to generate "expandedCategories", but don't render
+          // it directly.
+          key === 'groups' ||
+          // Empty arrays and objects.
+          (typeof val === 'object' &&
+            val !== null &&
+            Object.keys(val).length === 0) ||
+          // We don't render JSDoc tags directly, the ones we care about are
+          // already extracted into e.g. "parameters".
+          key === 'tags'
+        ) {
+          delete node[key as keyof typeof node];
+        }
       }
     }
   }
@@ -618,27 +676,6 @@ export class ApiDocsTransformer {
   }
 
   /**
-   * Augment a source with a GitHub URL.
-   */
-  private setGithubUrl(source: SourceReference) {
-    if (!source.fileName.endsWith('.ts')) {
-      throw new Error(
-        `Unexpected source.fileName extension: ${source.fileName}`
-      );
-    }
-    if (source.fileName.endsWith('.d.ts')) {
-      // TODO(aomarks) For an unknown reason, TypeDoc sometimes resolves to d.ts
-      // files instead of original .ts source files, e.g. when a class inherits
-      // a constructor from a superclass. We can't link to these, since d.ts
-      // files aren't checked into GitHub.
-      return;
-    }
-    (
-      source as ExtendedSourceReference
-    ).gitHubUrl = `${this.config.repo}/blob/${this.config.commit}/${source.fileName}#L${source.line}`;
-  }
-
-  /**
    * Augment a source with its best import statement module specifier.
    */
   private setImportModuleSpecifier(source: SourceReference) {
@@ -660,6 +697,8 @@ export class ApiDocsTransformer {
         title: string;
         anchorFilter?: (node: DeclarationReflection) => boolean;
         items: Array<DeclarationReflection>;
+        repo: string;
+        commit: string;
       }
     >();
 
@@ -679,6 +718,8 @@ export class ApiDocsTransformer {
           }
           page = {
             ...match,
+            repo: this.config.repo,
+            commit: this.config.commit,
             items: [],
           };
           slugToPage.set(location.page, page);
