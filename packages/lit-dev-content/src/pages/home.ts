@@ -1,7 +1,3 @@
-// TODO(aomarks) This is only here for some mods. Remove it and mods when home
-// page design finalized.
-document.body.classList.add('home');
-
 window.addEventListener('DOMContentLoaded', () => {
   fadeInLogoOnScroll();
   fadeHeaderOnScroll();
