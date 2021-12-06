@@ -32,7 +32,3 @@ litdev-playground-share-button {
 .gists #shareButton {
   display: none;
 }
-
-body:not(.old-docs) litdev-version-selector {
-  display: none;
-}
