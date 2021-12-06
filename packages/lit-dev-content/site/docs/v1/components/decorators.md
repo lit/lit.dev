@@ -96,11 +96,11 @@ plugins = [
 
 LitElement provides the following decorators:
 
-*   [`@customElement`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#customelement). Define a custom element.
-*   [`@eventOptions`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#eventoptions). Add event listener options for a declarative event listener.
-*   [`@property`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#property) and [`internalProperty`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#internalproperty). Define properties.
-*   [`@query`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#query), [`queryAll`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAll), and [`queryAsync`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAsync). Create a property getter that returns specific elements from your component's render root.
-*   [`@queryAssignedNodes`](https://lit-element.polymer-project.org/api/modules/_lit_element_.html#queryAssignedNodes). Create a property getter that returns the children assigned to a specific slot.
+*   {% api-lit-element-2 "@customElement" %}. Define a custom element.
+*   {% api-lit-element-2 "@eventOptions" %}. Add event listener options for a declarative event listener.
+*   {% api-lit-element-2 "@property" %} and {% api-lit-element-2 "@internalProperty" %}. Define properties.
+*   {% api-lit-element-2 "@query" %}, {% api-lit-element-2 "@queryAll" %}, and {% api-lit-element-2 "@queryAsync" %}. Create a property getter that returns specific elements from your component's render root.
+*   {% api-lit-element-2 "@queryAssignedNodes" %}. Create a property getter that returns the children assigned to a specific slot.
 
 
 All of the decorators can be imported directly from the <code>lit-element</code> module.
