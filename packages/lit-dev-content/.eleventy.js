@@ -232,13 +232,22 @@ ${content}
   });
 
   /**
-   * Render the given content as markdown.
+   * Render the given content as markdown, with HTML disabled.
    */
-  eleventyConfig.addFilter('markdown', (content) => {
+  eleventyConfig.addFilter('markdownWithoutHtml', (content) => {
     if (!content) {
       return '';
     }
-    return md.render(content);
+    // We should be able to create two markdownit instances -- one that allows
+    // HTML and one that doesn't -- but for some reason having two (even when
+    // configured the same way!) disables syntax highlighting. Maybe there's a
+    // bug in markdownit where there's some global state? Toggling HTML off and
+    // on in here does work, though.
+    const htmlBefore = md.options.html;
+    md.set({html: false});
+    const result = md.render(content);
+    md.set({html: htmlBefore});
+    return result;
   });
 
   /**
