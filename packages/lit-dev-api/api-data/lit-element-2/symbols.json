@@ -1,0 +1,914 @@
+{
+  "$UpdatingElement": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement"
+    }
+  ],
+  "$constructor": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.constructor"
+    },
+    {
+      "page": "styles",
+      "anchor": "CSSResult.constructor"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.constructor"
+    }
+  ],
+  "$UpdatingElement.constructor": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.constructor"
+    }
+  ],
+  "$finalized": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.finalized"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalized"
+    }
+  ],
+  "$UpdatingElement.finalized": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.finalized"
+    }
+  ],
+  "$properties": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.properties"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.properties"
+    }
+  ],
+  "$UpdatingElement.properties": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.properties"
+    }
+  ],
+  "$hasUpdated": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.hasUpdated"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.hasUpdated"
+    }
+  ],
+  "$UpdatingElement.hasUpdated": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.hasUpdated"
+    }
+  ],
+  "$updateComplete": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.updateComplete"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updateComplete"
+    }
+  ],
+  "$UpdatingElement.updateComplete": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.updateComplete"
+    }
+  ],
+  "$observedAttributes": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.observedAttributes"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.observedAttributes"
+    }
+  ],
+  "$UpdatingElement.observedAttributes": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.observedAttributes"
+    }
+  ],
+  "$attributeChangedCallback": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.attributeChangedCallback"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.attributeChangedCallback"
+    }
+  ],
+  "$UpdatingElement.attributeChangedCallback": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.attributeChangedCallback"
+    }
+  ],
+  "$connectedCallback": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.connectedCallback"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.connectedCallback"
+    }
+  ],
+  "$UpdatingElement.connectedCallback": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.connectedCallback"
+    }
+  ],
+  "$disconnectedCallback": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.disconnectedCallback"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.disconnectedCallback"
+    }
+  ],
+  "$UpdatingElement.disconnectedCallback": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.disconnectedCallback"
+    }
+  ],
+  "$enableUpdating": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.enableUpdating"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enableUpdating"
+    }
+  ],
+  "$UpdatingElement.enableUpdating": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.enableUpdating"
+    }
+  ],
+  "$firstUpdated": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.firstUpdated"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.firstUpdated"
+    }
+  ],
+  "$UpdatingElement.firstUpdated": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.firstUpdated"
+    }
+  ],
+  "$getUpdateComplete": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.getUpdateComplete"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getUpdateComplete"
+    }
+  ],
+  "$UpdatingElement.getUpdateComplete": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.getUpdateComplete"
+    }
+  ],
+  "$initialize": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.initialize"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.initialize"
+    }
+  ],
+  "$UpdatingElement.initialize": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.initialize"
+    }
+  ],
+  "$performUpdate": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.performUpdate"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.performUpdate"
+    }
+  ],
+  "$UpdatingElement.performUpdate": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.performUpdate"
+    }
+  ],
+  "$requestUpdate": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.requestUpdate"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.requestUpdate"
+    }
+  ],
+  "$UpdatingElement.requestUpdate": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.requestUpdate"
+    }
+  ],
+  "$requestUpdateInternal": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.requestUpdateInternal"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.requestUpdateInternal"
+    }
+  ],
+  "$UpdatingElement.requestUpdateInternal": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.requestUpdateInternal"
+    }
+  ],
+  "$shouldUpdate": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.shouldUpdate"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shouldUpdate"
+    }
+  ],
+  "$UpdatingElement.shouldUpdate": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.shouldUpdate"
+    }
+  ],
+  "$update": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.update"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.update"
+    }
+  ],
+  "$UpdatingElement.update": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.update"
+    }
+  ],
+  "$updated": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.updated"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updated"
+    }
+  ],
+  "$UpdatingElement.updated": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.updated"
+    }
+  ],
+  "$createProperty": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.createProperty"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createProperty"
+    }
+  ],
+  "$UpdatingElement.createProperty": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.createProperty"
+    }
+  ],
+  "$finalize": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.finalize"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalize"
+    }
+  ],
+  "$UpdatingElement.finalize": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.finalize"
+    }
+  ],
+  "$getPropertyDescriptor": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.getPropertyDescriptor"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyDescriptor"
+    }
+  ],
+  "$UpdatingElement.getPropertyDescriptor": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.getPropertyDescriptor"
+    }
+  ],
+  "$getPropertyOptions": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.getPropertyOptions"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyOptions"
+    }
+  ],
+  "$UpdatingElement.getPropertyOptions": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "UpdatingElement.getPropertyOptions"
+    }
+  ],
+  "$ComplexAttributeConverter": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "ComplexAttributeConverter"
+    }
+  ],
+  "$fromAttribute": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "ComplexAttributeConverter.fromAttribute"
+    }
+  ],
+  "$ComplexAttributeConverter.fromAttribute": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "ComplexAttributeConverter.fromAttribute"
+    }
+  ],
+  "$toAttribute": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "ComplexAttributeConverter.toAttribute"
+    }
+  ],
+  "$ComplexAttributeConverter.toAttribute": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "ComplexAttributeConverter.toAttribute"
+    }
+  ],
+  "$HasChanged": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "HasChanged"
+    }
+  ],
+  "$PropertyDeclaration": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration"
+    }
+  ],
+  "$attribute": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.attribute"
+    }
+  ],
+  "$PropertyDeclaration.attribute": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.attribute"
+    }
+  ],
+  "$converter": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.converter"
+    }
+  ],
+  "$PropertyDeclaration.converter": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.converter"
+    }
+  ],
+  "$noAccessor": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.noAccessor"
+    }
+  ],
+  "$PropertyDeclaration.noAccessor": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.noAccessor"
+    }
+  ],
+  "$reflect": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.reflect"
+    }
+  ],
+  "$PropertyDeclaration.reflect": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.reflect"
+    }
+  ],
+  "$type": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.type"
+    }
+  ],
+  "$PropertyDeclaration.type": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.type"
+    }
+  ],
+  "$hasChanged": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.hasChanged"
+    },
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    }
+  ],
+  "$PropertyDeclaration.hasChanged": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclaration.hasChanged"
+    }
+  ],
+  "$PropertyDeclarations": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyDeclarations"
+    }
+  ],
+  "$PropertyValues": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "PropertyValues"
+    }
+  ],
+  "$defaultConverter": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "defaultConverter"
+    }
+  ],
+  "$notEqual": [
+    {
+      "page": "UpdatingElement",
+      "anchor": "notEqual"
+    }
+  ],
+  "$CSSResult": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult"
+    }
+  ],
+  "$CSSResult.constructor": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.constructor"
+    }
+  ],
+  "$cssText": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.cssText"
+    }
+  ],
+  "$CSSResult.cssText": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.cssText"
+    }
+  ],
+  "$styleSheet": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.styleSheet"
+    }
+  ],
+  "$CSSResult.styleSheet": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.styleSheet"
+    }
+  ],
+  "$toString": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.toString"
+    }
+  ],
+  "$CSSResult.toString": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.toString"
+    }
+  ],
+  "$LitElement": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement"
+    }
+  ],
+  "$LitElement.constructor": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.constructor"
+    }
+  ],
+  "$renderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.renderRoot"
+    }
+  ],
+  "$LitElement.renderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.renderRoot"
+    }
+  ],
+  "$LitElement.finalized": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalized"
+    }
+  ],
+  "$LitElement.properties": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.properties"
+    }
+  ],
+  "$render": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.render"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.render"
+    }
+  ],
+  "$LitElement.render": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.render"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.render"
+    }
+  ],
+  "$shadowRootOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shadowRootOptions"
+    }
+  ],
+  "$LitElement.shadowRootOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shadowRootOptions"
+    }
+  ],
+  "$styles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.styles"
+    }
+  ],
+  "$LitElement.styles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.styles"
+    }
+  ],
+  "$LitElement.hasUpdated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.hasUpdated"
+    }
+  ],
+  "$LitElement.updateComplete": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updateComplete"
+    }
+  ],
+  "$LitElement.observedAttributes": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.observedAttributes"
+    }
+  ],
+  "$adoptStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.adoptStyles"
+    }
+  ],
+  "$LitElement.adoptStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.adoptStyles"
+    }
+  ],
+  "$LitElement.attributeChangedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.attributeChangedCallback"
+    }
+  ],
+  "$LitElement.connectedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.connectedCallback"
+    }
+  ],
+  "$createRenderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createRenderRoot"
+    }
+  ],
+  "$LitElement.createRenderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createRenderRoot"
+    }
+  ],
+  "$LitElement.disconnectedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.disconnectedCallback"
+    }
+  ],
+  "$LitElement.enableUpdating": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enableUpdating"
+    }
+  ],
+  "$LitElement.firstUpdated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.firstUpdated"
+    }
+  ],
+  "$LitElement.getUpdateComplete": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getUpdateComplete"
+    }
+  ],
+  "$LitElement.initialize": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.initialize"
+    }
+  ],
+  "$LitElement.performUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.performUpdate"
+    }
+  ],
+  "$LitElement.requestUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.requestUpdate"
+    }
+  ],
+  "$LitElement.requestUpdateInternal": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.requestUpdateInternal"
+    }
+  ],
+  "$LitElement.shouldUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shouldUpdate"
+    }
+  ],
+  "$LitElement.update": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.update"
+    }
+  ],
+  "$LitElement.updated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updated"
+    }
+  ],
+  "$LitElement.createProperty": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createProperty"
+    }
+  ],
+  "$LitElement.finalize": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalize"
+    }
+  ],
+  "$LitElement.getPropertyDescriptor": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyDescriptor"
+    }
+  ],
+  "$LitElement.getPropertyOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyOptions"
+    }
+  ],
+  "$getStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getStyles"
+    }
+  ],
+  "$LitElement.getStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getStyles"
+    }
+  ],
+  "$CSSResultArray": [
+    {
+      "page": "styles",
+      "anchor": "CSSResultArray"
+    }
+  ],
+  "$InternalPropertyDeclaration": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration"
+    }
+  ],
+  "$InternalPropertyDeclaration.hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    }
+  ],
+  "$CSSResultGroup": [
+    {
+      "page": "styles",
+      "anchor": "CSSResultGroup"
+    }
+  ],
+  "$CSSResultOrNative": [
+    {
+      "page": "styles",
+      "anchor": "CSSResultOrNative"
+    }
+  ],
+  "$Constructor": [
+    {
+      "page": "decorators",
+      "anchor": "Constructor"
+    }
+  ],
+  "$supportsAdoptingStyleSheets": [
+    {
+      "page": "styles",
+      "anchor": "supportsAdoptingStyleSheets"
+    }
+  ],
+  "$css": [
+    {
+      "page": "styles",
+      "anchor": "css"
+    }
+  ],
+  "$customElement": [
+    {
+      "page": "decorators",
+      "anchor": "customElement"
+    }
+  ],
+  "$eventOptions": [
+    {
+      "page": "decorators",
+      "anchor": "eventOptions"
+    }
+  ],
+  "$internalProperty": [
+    {
+      "page": "decorators",
+      "anchor": "internalProperty"
+    }
+  ],
+  "$property": [
+    {
+      "page": "decorators",
+      "anchor": "property"
+    }
+  ],
+  "$query": [
+    {
+      "page": "decorators",
+      "anchor": "query"
+    }
+  ],
+  "$queryAll": [
+    {
+      "page": "decorators",
+      "anchor": "queryAll"
+    }
+  ],
+  "$queryAssignedNodes": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedNodes"
+    }
+  ],
+  "$queryAsync": [
+    {
+      "page": "decorators",
+      "anchor": "queryAsync"
+    }
+  ],
+  "$state": [
+    {
+      "page": "decorators",
+      "anchor": "state"
+    }
+  ],
+  "$unsafeCSS": [
+    {
+      "page": "styles",
+      "anchor": "unsafeCSS"
+    }
+  ]
+}

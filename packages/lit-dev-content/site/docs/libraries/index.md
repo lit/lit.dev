@@ -3,6 +3,8 @@ title: Related libraries
 eleventyNavigation:
   key: Related libraries
   order: 9
+versionLinks:
+  v1: lit-html/introduction/
 ---
 
 <!-- This file exists only to create a section heading.

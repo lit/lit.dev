@@ -1,7 +1,7 @@
 header {
   position: sticky;
   top: 0;
-  height: var(--header-height);
+  height: var(--header-nav-height);
   /* CodeMirrors have a very high z-index for some reason. */
   z-index: 4;
   background: white;

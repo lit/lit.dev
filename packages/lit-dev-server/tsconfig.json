@@ -1,24 +1,11 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
     "incremental": true,
-    "tsBuildInfoFile": "./lib/.tsbuildinfo",
-    "target": "es2020",
-    "module": "esnext",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./lib",
-    "rootDir": "./src",
     "composite": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true
+    "tsBuildInfoFile": "lib/.tsbuildinfo"
   },
   "include": ["src/**/*.ts"],
   "exclude": []

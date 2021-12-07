@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Expressions
   parent: Templates
   order: 2
+versionLinks:
+  v1: components/templates/#bind-properties-to-templated-elements
 ---
 
 Lit templates can include dynamic values called expressions. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>{% if title %}{{ title }} &ndash;{% endif %} Lit</title>
     <meta name="description" content="Simple. Fast. Web Components.">
-    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg"></link>
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
 
     {% inlinecss "global.css" %}
@@ -14,6 +14,12 @@
     {% inlinecss "mods.css" %}
     {% inlinejs "global/apply-mods.js" %}
     {% inlinejs "global/initialize-typescript-attribute.js" %}
+    {% inlinejs "global/mobile-drawer.js" %}
+
+    {% if selectedVersion !== latestVersion %}
+      <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+      {% inlinejs "components/litdev-banner.js" %}
+    {% endif %}
 
     <!-- We need to load litdev-search first because @lion/core loads the
          scoped-custom-element-registry polyfill. If MWC components are loaded
@@ -21,6 +27,7 @@
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-search.js"></script>
 
     <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/components/litdev-version-selector.js"></script>
 
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
@@ -55,6 +62,14 @@
     </mwc-drawer>
 
     {% include 'header.html' %}
+
+    {% if selectedVersion !== latestVersion %}
+      <litdev-banner>
+        You're viewing docs for an older version of Lit. Click
+        <a href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+        here</a> for the latest version.
+      </litdev-banner>
+    {% endif %}
 
     <main {% if not page.url.includes('/docs/')
             and not page.url.includes('/playground/') %}

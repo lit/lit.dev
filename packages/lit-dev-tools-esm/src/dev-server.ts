@@ -9,11 +9,13 @@ import {fileURLToPath} from 'url';
 import * as pathlib from 'path';
 import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middleware.js';
 import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
+import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
+import {fakeGitHubMiddleware} from './fake-github-middleware.js';
+import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware/github-token-exchange-middleware.js';
+import {dev as ENV} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
-const MAIN_PORT = 5415;
-const PLAYGROUND_PORT = 5416;
 
 type DevServerPlugin = Exclude<DevServerConfig['plugins'], undefined>[number];
 
@@ -71,13 +73,26 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
 
 startDevServer({
   config: {
-    port: MAIN_PORT,
-    rootDir: pathlib.join(CONTENT_PKG, '_dev'),
+    port: ENV.mainPort,
+    rootDir: pathlib.join(CONTENT_PKG, ENV.eleventyOutDir),
     plugins: [
       dontResolveBareModulesInPlaygroundFiles,
       removeWatchScriptFromPlaygroundFiles,
     ],
-    middleware: [redirectMiddleware()],
+    middleware: [
+      contentSecurityPolicyMiddleware({
+        devMode: true,
+        playgroundPreviewOrigin: ENV.playgroundSandboxUrl,
+        githubApiOrigin: ENV.githubApiUrl,
+        githubAvatarOrigin: ENV.githubAvatarUrl,
+      }),
+      createGitHubTokenExchangeMiddleware({
+        clientId: ENV.githubClientId,
+        clientSecret: ENV.githubClientSecret,
+        githubMainUrl: ENV.githubMainUrl,
+      }),
+      redirectMiddleware(),
+    ],
     watch: true,
     nodeResolve: true,
     preserveSymlinks: true,
@@ -86,13 +101,29 @@ startDevServer({
 
 startDevServer({
   config: {
-    port: PLAYGROUND_PORT,
+    port: ENV.playgroundPort,
     rootDir: pathlib.resolve(
       CONTENT_PKG,
       'node_modules',
       'playground-elements'
     ),
     middleware: [playgroundMiddleware()],
+  },
+  // Ignore any CLI flags. In particular we only want --open to apply to the
+  // main server.
+  readCliArgs: false,
+});
+
+startDevServer({
+  config: {
+    port: ENV.fakeGithubPort,
+    middleware: [
+      fakeGitHubMiddleware({
+        clientId: ENV.githubClientId,
+        clientSecret: ENV.githubClientSecret,
+        redirectUrl: ENV.githubAuthorizeRedirectUrl,
+      }),
+    ],
   },
   // Ignore any CLI flags. In particular we only want --open to apply to the
   // main server.

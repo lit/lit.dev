@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Testing
   parent: Tools
   order: 4
+versionLinks:
+  v1: lit-html/tools/#testing
 ---
 
 Testing ensures your code functions as you intend and saves you from tedious debugging.

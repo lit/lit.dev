@@ -9,13 +9,21 @@ import '@material/mwc-snackbar';
 import 'playground-elements/playground-ide.js';
 import '../components/litdev-example-controls.js';
 import '../components/litdev-playground-change-guard.js';
+import '../components/litdev-playground-share-button.js';
+import '../components/litdev-playground-download-button.js';
+import '../components/litdev-error-notifier.js';
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
-
-import Tar from 'tarts';
+import {getGist} from '../github/github-gists.js';
+import {GitHubError} from '../github/github-util.js';
 import {Snackbar} from '@material/mwc-snackbar';
+import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
+import {compactPlaygroundFile} from '../util/compact-playground-file.js';
+import {modEnabled} from '../mods.js';
+import {LitDevError, showError} from '../errors.js';
+import {gistToPlayground} from '../util/gist-conversion.js';
 
 interface CompactProjectFile {
   name: string;
@@ -25,77 +33,23 @@ interface CompactProjectFile {
 
 // TODO(aomarks) This whole thing should probably be a custom element.
 window.addEventListener('DOMContentLoaded', () => {
-  /**
-   * Encode the given string to base64url, with support for all UTF-16 code
-   * points, and '=' padding omitted.
-   *
-   * Built-in btoa throws on non-latin code points (>0xFF), so this function
-   * first converts the input to a binary UTF-8 string.
-   *
-   * Outputs base64url (https://tools.ietf.org/html/rfc4648#section-5), where
-   * '+' and '/' are replaced with '-' and '_' respectively, so that '+' doesn't
-   * need to be percent-encoded (since it would otherwise be mis-interpreted as
-   * a space).
-   *
-   * TODO(aomarks) Make this a method on <playground-project>? It's likely to be
-   * needed by other projects too.
-   */
-  const encodeSafeBase64 = (str: string) => {
-    // Adapted from suggestions in https://stackoverflow.com/a/30106551
-    //
-    // Example:
-    //
-    //   [1] Given UTF-16 input: "😃" {D83D DE03}
-    //   [2] Convert to UTF-8 escape sequences: "%F0%9F%98%83"
-    //   [3] Extract UTF-8 code points, and re-interpret as UTF-16 code points,
-    //       creating a string where all code points are <= 0xFF and hence safe
-    //       to base64 encode: {F0 9F 98 83}
-    const percentEscaped = encodeURIComponent(str);
-    const utf8 = percentEscaped.replace(/%([0-9A-F]{2})/g, (_, hex) =>
-      String.fromCharCode(parseInt(hex, 16))
-    );
-    const base64 = btoa(utf8);
-    const base64url = base64.replace(/\+/g, '-').replace(/\//g, '_');
-    // Padding is confirmed optional on Chrome 88, Firefox 85, and Safari 14.
-    const padIdx = base64url.indexOf('=');
-    return padIdx >= 0 ? base64url.slice(0, padIdx) : base64url;
-  };
-
-  const decodeSafeBase64 = (base64url: string) => {
-    const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
-    const utf8 = atob(base64);
-    const percentEscaped = utf8
-      .split('')
-      .map((char) => '%' + char.charCodeAt(0).toString(16).padStart(2, '0'))
-      .join('');
-    const str = decodeURIComponent(percentEscaped);
-    return str;
-  };
-
   const $ = document.body.querySelector.bind(document.body);
   const project = $('playground-project')!;
-
   const shareButton = $('#shareButton')!;
   const shareSnackbar = $('#shareSnackbar')! as Snackbar;
 
+  // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
+  // needs to be refactored, probably into one or two custom elements.
+  const newShareButton = $('litdev-playground-share-button');
+  const githubApiUrl = newShareButton?.githubApiUrl ?? '';
+  if (newShareButton) {
+    newShareButton.getProjectFiles = () => project.files;
+  } else {
+    console.error('Missing litdev-playground-share-button');
+  }
+
   const share = async () => {
-    const files = [];
-    for (const [name, {content, hidden}] of Object.entries(
-      project.config?.files ?? {}
-    )) {
-      // We don't directly encode the Playground project's files data structure
-      // because we want something more compact to reduce URL bloat. There's no
-      // need to include contentType (will be inferred from filename) or labels
-      // (unused), and hidden should be omitted instead of false.
-      const compactFile: CompactProjectFile = {
-        name,
-        content: content ?? '',
-      };
-      if (hidden) {
-        compactFile.hidden = true;
-      }
-      files.push(compactFile);
-    }
+    const files = (project.files ?? []).map(compactPlaygroundFile);
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
@@ -104,32 +58,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
   shareButton.addEventListener('click', share);
 
-  const downloadButton = $('#downloadButton')!;
-  downloadButton.addEventListener('click', () => {
-    const tarFiles = Object.entries(project.config?.files ?? {}).map(
-      ([name, {content}]) => ({
-        name,
-        content: content ?? '',
-      })
-    );
-    const tar = Tar(tarFiles);
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([tar], {type: 'application/tar'}));
-    a.download = 'lit-playground.tar';
-    a.click();
-  });
+  const downloadButton = $('litdev-playground-download-button');
+  if (downloadButton) {
+    downloadButton.getProjectFiles = () => project.files;
+  } else {
+    console.error('Missing litdev-playground-download-button');
+  }
 
-  const syncStateFromUrlHash = async () => {
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.slice(1));
-
-    let urlFiles: Array<CompactProjectFile> | undefined;
-    const base64 = params.get('project');
+  const loadBase64 = (
+    base64: string
+  ): Array<CompactProjectFile> | undefined => {
     if (base64) {
       try {
         const json = decodeSafeBase64(base64);
         try {
-          urlFiles = JSON.parse(json);
+          return JSON.parse(json) as Array<CompactProjectFile>;
         } catch {
           console.error('Invalid JSON in URL', JSON.stringify(json));
         }
@@ -137,7 +80,49 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error('Invalid project base64 in URL');
       }
     }
+    return undefined;
+  };
 
+  const loadGist = async (
+    gistId: string
+  ): Promise<Array<CompactProjectFile>> => {
+    const gist = await getGist(gistId, {apiBaseUrl: githubApiUrl});
+    if (newShareButton) {
+      newShareButton.activeGist = gist;
+    }
+    return gistToPlayground(gist.files).map(compactPlaygroundFile);
+  };
+
+  const syncStateFromUrlHash = async () => {
+    const hash = window.location.hash;
+    const params = new URLSearchParams(hash.slice(1));
+    let urlFiles: Array<CompactProjectFile> | undefined;
+    const gist = params.get('gist');
+    const base64 = params.get('project');
+    if (newShareButton && newShareButton.activeGist?.id !== gist) {
+      // We're about to switch to a new gist, or to something that's not a gist
+      // at all (a pre-made sample or a base64 project). Either way, the active
+      // gist is now outdated.
+      newShareButton.activeGist = undefined;
+    }
+    if (gist) {
+      try {
+        urlFiles = await loadGist(gist);
+      } catch (error: unknown) {
+        if (error instanceof GitHubError && error.status === 404) {
+          error = new LitDevError({
+            heading: 'Gist not found',
+            message: 'The given GitHub gist could not be found.',
+            stack: (error as Error).stack,
+          });
+        }
+        // TODO(aomarks) Use @showErrors decorator after refactoring this into a
+        // component.
+        showError(error);
+      }
+    } else if (base64) {
+      urlFiles = loadBase64(base64);
+    }
     $('.exampleItem.active')?.classList.remove('active');
 
     if (urlFiles) {
@@ -176,29 +161,31 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener(CODE_LANGUAGE_CHANGE, syncStateFromUrlHash);
 
   // Trigger URL sharing when Control-s or Command-s is pressed.
-  let controlDown = false;
-  let commandDown = false;
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Control') {
-      controlDown = true;
-    } else if (event.key === 'Meta') {
-      commandDown = true;
-    } else if (event.key === 's' && (controlDown || commandDown)) {
-      share();
-      event.preventDefault(); // Don't trigger "Save page as"
-    }
-  });
-  window.addEventListener('keyup', (event) => {
-    if (event.key === 'Control') {
+  if (!modEnabled('gists')) {
+    let controlDown = false;
+    let commandDown = false;
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Control') {
+        controlDown = true;
+      } else if (event.key === 'Meta') {
+        commandDown = true;
+      } else if (event.key === 's' && (controlDown || commandDown)) {
+        share();
+        event.preventDefault(); // Don't trigger "Save page as"
+      }
+    });
+    window.addEventListener('keyup', (event) => {
+      if (event.key === 'Control') {
+        controlDown = false;
+      } else if (event.key === 'Meta') {
+        commandDown = false;
+      }
+    });
+    window.addEventListener('blur', () => {
       controlDown = false;
-    } else if (event.key === 'Meta') {
       commandDown = false;
-    }
-  });
-  window.addEventListener('blur', () => {
-    controlDown = false;
-    commandDown = false;
-  });
+    });
+  }
 });
 
 const exampleControls = document.body.querySelector('litdev-example-controls');

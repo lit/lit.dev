@@ -49,6 +49,10 @@ export class LitDevDrawer extends LitElement {
       overflow-y: hidden !important;
     }
 
+    :host(:not([open])) > #content {
+      display: none;
+    }
+
     #header {
       flex: 0 0 var(--litdev-drawer-header-height);
       box-sizing: border-box;
@@ -112,7 +116,7 @@ export class LitDevDrawer extends LitElement {
 
         <mwc-icon-button-toggle
           id="openCloseButton"
-          label="Open or close examples drawer"
+          aria-label="Open or close examples drawer"
           .on=${!this.open}
           @click=${this._onClickToggleButton}
         >

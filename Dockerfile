@@ -21,8 +21,8 @@ WORKDIR /usr/src/app
 # to execute the final Eleventy build step.
 
 # External dependencies
-COPY package*.json lerna.json ./
-COPY packages/lit-dev-tools/package*.json ./packages/lit-dev-tools/
+COPY package*.json lerna.json tsconfig.base.json ./
+COPY packages/lit-dev-tools-cjs/package*.json ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/package*.json ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
 COPY packages/lit-dev-api/package*.json ./packages/lit-dev-api/
@@ -30,25 +30,21 @@ COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
 RUN npm ci && npm run bootstrap
 
 # Tooling code
-COPY packages/lit-dev-tools/ ./packages/lit-dev-tools/
+COPY packages/lit-dev-tools-cjs/ ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/ ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/ ./packages/lit-dev-server/
-RUN npx lerna run build:ts --scope lit-dev-tools --scope lit-dev-tools-esm --scope lit-dev-server --stream
+RUN npx lerna run build:ts --scope lit-dev-tools-cjs --scope lit-dev-tools-esm --scope lit-dev-server --stream
 
-# Generated API docs
+# Pre-generated API docs data
 COPY packages/lit-dev-api/ ./packages/lit-dev-api/
-RUN npx lerna run build --scope lit-dev-api --stream && \
-  # By cloning and deleting the Lit monorepo checkout all within the same RUN
-  # command, we avoid ever including any Lit monorepo files in our Docker
-  # filesystem layers.
-  rm -rf packages/lit-dev-api/lit/
 
 # Site content
 COPY packages/lit-dev-content/ ./packages/lit-dev-content/
 
 # Environment variables used by Eleventy build
-ARG PLAYGROUND_SANDBOX
-ARG GOOGLE_ANALYTICS_ID
+ARG LITDEV_ENV
+ARG REVISION_TAG
+ARG SHORT_SHA
 
 # Kaniko doesn't include ARG values in the layer cache key (see
 # https://github.com/GoogleContainerTools/kaniko/pull/1085). This is different
@@ -56,11 +52,12 @@ ARG GOOGLE_ANALYTICS_ID
 # declaration if the value changes. So, we need to write it to the file system
 # to force a cache invalidation. Otherwise, we might re-use the most recent
 # Eleventy build output, even when our build environment variables have changed.
-RUN echo "PLAYGROUND_SANDBOX=$PLAYGROUND_SANDBOX" >> env \
-  && echo "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> env
+RUN echo "LITDEV_ENV=$LITDEV_ENV" >> env \
+  && echo "REVISION_TAG=$REVISION_TAG" >> env \
+  && echo "SHORT_SHA=$SHORT_SHA" >> env
 
 # Eleventy build
-RUN npx lerna run build --scope lit-dev-content --stream
+RUN npx lerna run prod:build --scope lit-dev-content --stream
 
 # Run the web service on container startup.
 #

@@ -110,28 +110,15 @@ litdev-tutorial {
   justify-content: center;
 }
 
-#tutorialFooter > button {
-  color: white;
-  background: transparent;
-  font-size: 1em;
-  border: 1px solid white;
-  margin-bottom: 0.5em;
-  padding: 0.3em 0.6em;
-  text-align: center;
+#tutorialFooter > litdev-icon-button {
   margin-right: 1em;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  outline-color: var(--color-dark-cyan);
-  font-family: "Open Sans", sans-serif;
 }
 
-#tutorialFooter > button > svg {
+#tutorialFooter > litdev-icon-button > svg {
   margin-right: 0.5em;
 }
 
-#tutorialFooter > button:hover {
-  text-decoration: none;
+#tutorialFooter > litdev-icon-button:hover {
   background: #2a2a2a;
 }
 

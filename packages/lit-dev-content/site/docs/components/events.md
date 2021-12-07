@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Events
   parent: Components
   order: 7
+versionLinks:
+  v1: components/events/
 ---
 
 Events are the standard way that elements communicate changes. These changes typically occur due to user interaction. For example, a button dispatches a click event when a user clicks on it; an input dispatches a change event when the user enters a value in it.
@@ -18,7 +20,7 @@ In addition to the standard `addEventListener` API, Lit introduces a declarative
 
 ### Adding event listeners in the element template
 
-You can use `@` expressions in your template to add event listeners to element's in your component template. Declarative event listeners are added when the template is rendered.
+You can use `@` expressions in your template to add event listeners to elements in your component's template. Declarative event listeners are added when the template is rendered.
 
 {% playground-example "docs/components/events/child/" "my-element.ts" %}
 

@@ -31,6 +31,8 @@ export default [
   {
     input: [
       'lib/components/copy-button.js',
+      'lib/components/litdev-banner.js',
+      'lib/components/litdev-version-selector.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
       'lib/components/litdev-switchable-sample.js',
@@ -38,6 +40,7 @@ export default [
       'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
+      'lib/github/github-signin-receiver-page.js',
       'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
@@ -94,11 +97,12 @@ export default [
   // We compile them separately here because they include imports for a small
   // amount of code that we want to inline directly (again, because we want to
   // execute immediately), even though that code is technically duplicated into
-  // the asyncronously-loaded module bundles above.
+  // the asynchronously-loaded module bundles above.
   {
     input: [
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-attribute.js',
+      'lib/global/mobile-drawer.js',
     ],
     output: {
       dir: 'rollupout',

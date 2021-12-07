@@ -13,14 +13,17 @@ steps:
   # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
   # https://cloud.google.com/build/docs/kaniko-cache
   - id: build
-    name: gcr.io/kaniko-project/executor
+    # Kaniko pinned to earlier version due to
+    # https://github.com/GoogleContainerTools/kaniko/issues/1786
+    name: gcr.io/kaniko-project/executor:v1.6.0
     args:
       - --dockerfile=./Dockerfile
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA
       - --cache=true
       - --cache-ttl=168h # 1 week
-      # Bake in this revision's corresponding playground sandbox url
-      - --build-arg=PLAYGROUND_SANDBOX=https://pr$_PR_NUMBER-$SHORT_SHA---lit-dev-playground-5ftespv5na-uc.a.run.app/
+      - --build-arg=LITDEV_ENV=pr
+      - --build-arg=REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA
+      - --build-arg=SHORT_SHA=$SHORT_SHA
 
   # Create a new Cloud Run revision for the main site.
   #
@@ -48,8 +51,9 @@ steps:
       - '--concurrency=default' # unlimited
       - '--min-instances=0'
       - '--max-instances=1'
+      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-test:1'
       # Serve the main site
-      - '--update-env-vars=MODE=main'
+      - '--update-env-vars=LITDEV_ENV=pr,REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA,MODE=main'
 
   # Create a new Cloud Run revision for the playground sandbox.
   #
@@ -81,7 +85,7 @@ steps:
       - '--min-instances=0'
       - '--max-instances=1'
       # Serve the playground
-      - '--update-env-vars=MODE=playground'
+      - '--update-env-vars=LITDEV_ENV=pr,MODE=playground'
 
 tags:
   - lit-dev

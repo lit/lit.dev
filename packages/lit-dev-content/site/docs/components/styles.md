@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Styles
   parent: Components
   order: 4
+versionLinks:
+  v1: components/styles/
 ---
 
 Your component's template is rendered to its shadow root. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root.
@@ -75,11 +77,15 @@ Using an array of tagged template literals, a component can inherit the styles f
 
 {% playground-ide "docs/components/style/superstyles" %}
 
-<div class="alert alert-info">
+You can also use `super.styles` to reference the superclass's styles property, but TypeScript doesn't convert this correctly when compiling for ES5. Explicitly referencing the superclass, as shown in the example, avoids this issue.
 
-**Using super.styles**. You can also use `super.styles` to reference the superclass's styles property, but TypeScript doesn't convert this correctly when compiling for ES5. Explicitly referencing the superclass, as shown in the example, avoids this issue.
+When writing components intended to be subclassed in TypeScript, the `static styles` field should be explicitly typed as `CSSResultGroup` to allow flexibility for users to override `styles` with an array:
 
-</div>
+```ts
+// Prevent typescript from narrowing the type of `styles` to `CSSResult`
+// so that subclassers can assign e.g. `[SuperElement.styles, css`...`]`;
+static styles: CSSResultGroup = css`...`;
+```
 
 ### Sharing styles
 

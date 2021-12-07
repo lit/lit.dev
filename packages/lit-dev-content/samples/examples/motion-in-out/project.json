@@ -1,0 +1,16 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Lit Logo Animation",
+  "description": "Animate elements when they go in and out of the page.",
+  "section": "Motion",
+  "files": {
+    "motion-lit.ts": {},
+    "styles.ts": {},
+    "index.html": {},
+    "package.json": {
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit-labs/motion\": \"^1.0.1\",  }\n}",
+      "hidden": true
+    }
+  },
+  "order": 1
+}

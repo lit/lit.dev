@@ -5,6 +5,8 @@ eleventyNavigation:
   title: Custom directives
   key: Custom directives
   order: 6
+versionLinks:
+  v1: lit-html/creating-directives/
 ---
 
 Directives are objects that customize how Lit renders expressions. Using a directive in your template is like calling a function:

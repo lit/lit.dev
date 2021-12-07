@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Getting Started
   parent: Introduction
   order: 3
+versionLinks:
+  v1: getting-started/
 ---
 
 There are many ways to get started using Lit, from our Playground and interactive tutorial to installing into an existing project.
@@ -49,4 +51,4 @@ See [Adding Lit to an existing project](/docs/tools/adding-lit) for instructions
 
 ## Open WC project generator
 
-The Open WC project has a [project generator](https://open-wc.org/docs/development/generator/) that can scaffold out an application project using LitElement.
+The Open WC project has a [project generator](https://open-wc.org/docs/development/generator/) that can scaffold out an application project using Lit.

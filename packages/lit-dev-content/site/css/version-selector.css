@@ -1,0 +1,28 @@
+litdev-version-selector > select {
+  background: transparent;
+  border-radius: 8px;
+  border: 1.5px solid #cacaca;
+  color: #636363;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  margin-left: -3px;
+  padding: 1px 3px;
+}
+
+litdev-version-selector > select:hover,
+litdev-version-selector > select:focus,
+.active > litdev-version-selector > select {
+  color: var(--color-blue);
+}
+
+#mobileSiteNav litdev-version-selector > select {
+  border-color: #fff;
+  color: #fff;
+  margin-left: 5px;
+}
+
+#mobileSiteNav litdev-version-selector > select > option {
+  background: #fff;
+  color: #000;
+}

@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Defining
   parent: Components
   order: 1
+versionLinks:
+  v1: components/templates/
 ---
 
 Define a Lit component by creating a class extending `LitElement` and registering your class with the browser:

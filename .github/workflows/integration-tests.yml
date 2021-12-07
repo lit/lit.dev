@@ -1,0 +1,45 @@
+name: Integration tests
+
+on: [push, pull_request]
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+      - run: npx playwright install-deps
+      - run: npm run bootstrap
+      - run: npm run build
+
+      - id: test
+        run: npm run test:integration
+
+      # This step needs to come before the :update-golden-screenshots step
+      # below, since that will delete the output files.
+      - name: Upload screenshot-diffs.zip artifact
+        if: ${{ always() && steps.test.outcome == 'failure' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshot-diffs
+          path: packages/lit-dev-tests/test-results/**/*.png
+          # Only exists if it was screenshot tests that failed. Other kinds of
+          # tests could also fail.
+          if-no-files-found: ignore
+
+      - if: ${{ always() && steps.test.outcome == 'failure' }}
+        run: npm run test:integration:update-golden-screenshots
+
+      - name: Upload screenshot-goldens.zip artifact
+        if: ${{ always() && steps.test.outcome == 'failure' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshot-goldens
+          path: packages/lit-dev-tests/src/playwright/**/**.png
+          if-no-files-found: error

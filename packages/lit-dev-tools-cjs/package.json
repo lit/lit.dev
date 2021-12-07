@@ -1,0 +1,31 @@
+{
+  "name": "lit-dev-tools-cjs",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Misc tools for lit.dev (CommonJS)",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "build": "npm run build:ts",
+    "build:ts": "../../node_modules/.bin/tsc",
+    "test": "uvu ./lib \".spec.js$\""
+  },
+  "dependencies": {
+    "@types/jsdom": "^16.2.13",
+    "@types/source-map": "^0.5.7",
+    "@types/strip-comments": "^2.0.1",
+    "@web/dev-server": "^0.1.6",
+    "@web/dev-server-core": "^0.3.5",
+    "fast-glob": "^3.2.5",
+    "jsdom": "^17.0.0",
+    "minisearch": "^3.0.4",
+    "outdent": "^0.8.0",
+    "playground-elements": "^0.14.6",
+    "playwright": "^1.8.0",
+    "source-map": "^0.7.3",
+    "strip-comments": "^2.0.1",
+    "striptags": "^3.2.0",
+    "typedoc": "^0.21.9",
+    "uvu": "^0.5.1"
+  }
+}
