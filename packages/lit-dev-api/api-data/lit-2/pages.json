@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "LitElement",
@@ -74,7 +74,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 878,
+                    "line": 968,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -168,7 +168,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 440,
+                    "line": 509,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -224,10 +224,14 @@
               {
                 "name": "addController",
                 "kindString": "Method",
+                "comment": {
+                  "shortText": "Registers a `ReactiveController` to participate in the element's reactive\nupdate cycle. The element automatically calls into any registered\ncontrollers during its lifecycle callbacks.",
+                  "text": "If the element is connected when `addController()` is called, the\ncontroller's `hostConnected()` callback will be immediately called."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 771,
+                    "line": 860,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -282,10 +286,13 @@
               {
                 "name": "removeController",
                 "kindString": "Method",
+                "comment": {
+                  "shortText": "Removes a `ReactiveController` from the element."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 785,
+                    "line": 875,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -351,13 +358,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Disable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
+                  "shortText": "Disable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 353,
+                    "line": 365,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -371,8 +378,8 @@
                         "name": "__type",
                         "kindString": "Call signature",
                         "comment": {
-                          "shortText": "Disable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
+                          "shortText": "Disable the given warning category for this class.",
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -424,13 +431,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Read or set all the enabled warning kinds for this class.",
+                  "shortText": "Read or set all the enabled warning categories for this class.",
                   "text": "This property is only used in development builds.\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 315,
+                    "line": 327,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -473,13 +480,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Enable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
+                  "shortText": "Enable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 334,
+                    "line": 346,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -493,8 +500,8 @@
                         "name": "__type",
                         "kindString": "Call signature",
                         "comment": {
-                          "shortText": "Enable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
+                          "shortText": "Enable the given warning category for this class.",
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -547,10 +554,14 @@
               {
                 "name": "connectedCallback",
                 "kindString": "Method",
+                "comment": {
+                  "shortText": "Invoked when the component is added to the document's DOM.",
+                  "text": "In `connectedCallback()` you should setup tasks that should only occur when\nthe element is connected to the document. The most common of these is\nadding event listeners to nodes external to the element, like a keydown\nevent handler added to the window.\n\n```ts\nconnectedCallback() {\n  super.connectedCallback();\n  addEventListener('keydown', this._handleKeydown);\n}\n```\n\nTypically, anything done in `connectedCallback()` should be undone when the\nelement is disconnected, in `disconnectedCallback()`.\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 142,
+                    "line": 159,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -591,10 +602,14 @@
               {
                 "name": "disconnectedCallback",
                 "kindString": "Method",
+                "comment": {
+                  "shortText": "Invoked when the component is removed from the document's DOM.",
+                  "text": "This callback is the main signal to the element that it may no longer be\nused. `disconnectedCallback()` should ensure that nothing is holding a\nreference to the element (such as event listeners added to nodes external\nto the element), so that it is free to be garbage collected.\n\n```ts\ndisconnectedCallback() {\n  super.disconnectedCallback();\n  window.removeEventListener('keydown', this._handleKeydown);\n}\n```\n\nAn element may be re-connected after being disconnected.\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 150,
+                    "line": 183,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -644,10 +659,14 @@
                 "flags": {
                   "isStatic": true
                 },
+                "comment": {
+                  "shortText": "Adds an initializer function to the class that is called during instance\nconstruction.",
+                  "text": "This is useful for code that runs against a `ReactiveElement`\nsubclass, such as a decorator, that needs to do work for each\ninstance, such as setting up a `ReactiveController`.\n\n```ts\nconst myDecorator = (target: typeof ReactiveElement, key: string) => {\n  target.addInitializer((instance: ReactiveElement) => {\n    // This is run during construction of the element\n    new MyController(instance);\n  });\n}\n```\n\nDecorating a field will then cause each instance to run an initializer\nthat adds a controller:\n\n```ts\nclass MyElement extends LitElement {\n  @myDecorator foo;\n}\n```\n\nInitializers are stored per-constructor. Adding an initializer to a\nsubclass does not add it to a superclass. Since initializers are run in\nconstructors, initializers will run in order of the class hierarchy,\nstarting with superclasses and progressing to the instance's class.\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 358,
+                    "line": 400,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -712,7 +731,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 585,
+                    "line": 664,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -805,13 +824,13 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
+                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a `PropertyDeclaration` for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 481,
+                    "line": 550,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -896,7 +915,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 390,
+                    "line": 432,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -938,7 +957,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 536,
+                    "line": 615,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -996,79 +1015,17 @@
                       }
                     ],
                     "type": {
-                      "type": "reflection",
-                      "declaration": {
-                        "name": "__type",
-                        "kindString": "Type literal",
-                        "children": [
-                          {
-                            "name": "configurable",
-                            "kindString": "Property",
-                            "sources": [
-                              {
-                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
-                                "line": 309
-                              }
-                            ],
-                            "type": {
-                              "type": "intrinsic",
-                              "name": "boolean"
-                            }
-                          },
-                          {
-                            "name": "enumerable",
-                            "kindString": "Property",
-                            "sources": [
-                              {
-                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
-                                "line": 310
-                              }
-                            ],
-                            "type": {
-                              "type": "intrinsic",
-                              "name": "boolean"
-                            }
-                          },
-                          {
-                            "name": "get",
-                            "kindString": "Method",
-                            "signatures": [
-                              {
-                                "name": "get",
-                                "kindString": "Call signature",
-                                "type": {
-                                  "type": "intrinsic",
-                                  "name": "any"
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            "name": "set",
-                            "kindString": "Method",
-                            "signatures": [
-                              {
-                                "name": "set",
-                                "kindString": "Call signature",
-                                "parameters": [
-                                  {
-                                    "name": "value",
-                                    "kindString": "Parameter",
-                                    "type": {
-                                      "type": "intrinsic",
-                                      "name": "unknown"
-                                    }
-                                  }
-                                ],
-                                "type": {
-                                  "type": "intrinsic",
-                                  "name": "void"
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "undefined"
+                        },
+                        {
+                          "type": "reference",
+                          "name": "PropertyDescriptor"
+                        }
+                      ]
                     },
                     "inheritedFrom": {
                       "type": "reference",
@@ -1104,13 +1061,13 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
+                  "shortText": "Returns the property options associated with the given property.\nThese options are defined with a `PropertyDeclaration` via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override [`createProperty`](/docs/api/LitElement/#LitElement.createProperty).\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 575,
+                    "line": 654,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1185,7 +1142,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 417,
+                    "line": 459,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1297,7 +1254,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 162,
+                    "line": 195,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -1368,7 +1325,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 685,
+                    "line": 764,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1424,7 +1381,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 645,
+                    "line": 724,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1473,7 +1430,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 425,
+                    "line": 467,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1522,7 +1479,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 661,
+                    "line": 740,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1592,12 +1549,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function or via constructible stylesheets."
+                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function, via constructible stylesheets, or\nimported from native CSS module scripts.",
+                  "text": "Note on Content Security Policy:\n\nElement styles are implemented with `<style>` tags when the browser doesn't\nsupport adopted StyleSheets. To use such `<style>` tags with the style-src\nCSP directive, the style-src value must either include 'unsafe-inline' or\n'nonce-<base64-value>' with <base64-value> replaced be a server-generated\nnonce.\n\nTo provide a nonce to use on generated <style> elements, set\n`window.litNonce` to a server-generated nonce in your page's HTML, before\nloading application code:\n\n```html\n<script>\n  // Generated and unique per request:\n  window.litNonce = 'a1b2c3d4';\n</script>\n```"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 433,
+                    "line": 495,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1647,7 +1605,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 862,
+                    "line": 952,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1708,7 +1666,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1282,
+                    "line": 1372,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1796,7 +1754,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1223,
+                    "line": 1313,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1843,10 +1801,13 @@
               {
                 "name": "hasUpdated",
                 "kindString": "Property",
+                "comment": {
+                  "shortText": "Is set to `true` after the first update. The element code cannot assume\nthat `renderRoot` exists before the element `hasUpdated`."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 718,
+                    "line": 801,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1877,10 +1838,13 @@
               {
                 "name": "isUpdatePending",
                 "kindString": "Property",
+                "comment": {
+                  "shortText": "True if there is a pending update as a result of calling `requestUpdate()`.\nShould only be read."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 713,
+                    "line": 794,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1916,12 +1880,12 @@
                 },
                 "comment": {
                   "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
-                  "text": "Call performUpdate() to immediately process a pending update. This should\ngenerally not be needed, but it can be done in rare cases when you need to\nupdate synchronously.\n\nNote: To ensure `performUpdate()` synchronously completes a pending update,\nit should not be overridden. In LitElement 2.x it was suggested to override\n`performUpdate()` to also customizing update scheduling. Instead, you should now\noverride `scheduleUpdate()`. For backwards compatibility with LitElement 2.x,\nscheduling updates via `performUpdate()` continues to work, but will make\nalso calling `performUpdate()` to synchronously process updates difficult.\n"
+                  "text": "Call `performUpdate()` to immediately process a pending update. This should\ngenerally not be needed, but it can be done in rare cases when you need to\nupdate synchronously.\n\nNote: To ensure `performUpdate()` synchronously completes a pending update,\nit should not be overridden. In LitElement 2.x it was suggested to override\n`performUpdate()` to also customizing update scheduling. Instead, you should now\noverride `scheduleUpdate()`. For backwards compatibility with LitElement 2.x,\nscheduling updates via `performUpdate()` continues to work, but will make\nalso calling `performUpdate()` to synchronously process updates difficult.\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1078,
+                    "line": 1168,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1983,7 +1947,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 973,
+                    "line": 1063,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2092,7 +2056,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1057,
+                    "line": 1147,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2152,12 +2116,12 @@
                   "isProtected": true
                 },
                 "comment": {
-                  "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
+                  "shortText": "Controls whether or not `update()` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1235,
+                    "line": 1325,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2328,7 +2292,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1196,
+                    "line": 1286,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2396,7 +2360,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1270,
+                    "line": 1360,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2476,7 +2440,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1146,
+                    "line": 1236,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2570,7 +2534,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 365,
+                "line": 390,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2642,7 +2606,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 355,
+                "line": 380,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2674,7 +2638,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 374,
+                "line": 399,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2706,7 +2670,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 359,
+                "line": 384,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2739,7 +2703,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 350,
+            "line": 375,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -2764,7 +2728,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "ReactiveElement",
@@ -2778,7 +2742,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 302,
+            "line": 314,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -2845,7 +2809,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 878,
+                    "line": 968,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2927,7 +2891,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 440,
+                    "line": 509,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2975,10 +2939,14 @@
               {
                 "name": "addController",
                 "kindString": "Method",
+                "comment": {
+                  "shortText": "Registers a `ReactiveController` to participate in the element's reactive\nupdate cycle. The element automatically calls into any registered\ncontrollers during its lifecycle callbacks.",
+                  "text": "If the element is connected when `addController()` is called, the\ncontroller's `hostConnected()` callback will be immediately called."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 771,
+                    "line": 860,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3033,10 +3001,13 @@
               {
                 "name": "removeController",
                 "kindString": "Method",
+                "comment": {
+                  "shortText": "Removes a `ReactiveController` from the element."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 785,
+                    "line": 875,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3102,13 +3073,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Disable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
+                  "shortText": "Disable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 353,
+                    "line": 365,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3122,8 +3093,8 @@
                         "name": "__type",
                         "kindString": "Call signature",
                         "comment": {
-                          "shortText": "Disable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement classes\nReactiveElement.disableWarning.?('migration');\n\n// Disable for all MyElement only\nMyElement.disableWarning.?('migration');\n```\n"
+                          "shortText": "Disable the given warning category for this class.",
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -3167,13 +3138,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Read or set all the enabled warning kinds for this class.",
+                  "shortText": "Read or set all the enabled warning categories for this class.",
                   "text": "This property is only used in development builds.\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 315,
+                    "line": 327,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3208,13 +3179,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Enable the given warning kind for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
+                  "shortText": "Enable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 334,
+                    "line": 346,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3228,8 +3199,8 @@
                         "name": "__type",
                         "kindString": "Call signature",
                         "comment": {
-                          "shortText": "Enable the given warning kind for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement classes\nReactiveElement.enableWarning.?('migration');\n\n// Enable for all MyElement only\nMyElement.enableWarning.?('migration');\n```\n"
+                          "shortText": "Enable the given warning category for this class.",
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -3280,7 +3251,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 843,
+                    "line": 933,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3315,7 +3286,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 870,
+                    "line": 960,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3353,10 +3324,14 @@
                 "flags": {
                   "isStatic": true
                 },
+                "comment": {
+                  "shortText": "Adds an initializer function to the class that is called during instance\nconstruction.",
+                  "text": "This is useful for code that runs against a `ReactiveElement`\nsubclass, such as a decorator, that needs to do work for each\ninstance, such as setting up a `ReactiveController`.\n\n```ts\nconst myDecorator = (target: typeof ReactiveElement, key: string) => {\n  target.addInitializer((instance: ReactiveElement) => {\n    // This is run during construction of the element\n    new MyController(instance);\n  });\n}\n```\n\nDecorating a field will then cause each instance to run an initializer\nthat adds a controller:\n\n```ts\nclass MyElement extends LitElement {\n  @myDecorator foo;\n}\n```\n\nInitializers are stored per-constructor. Adding an initializer to a\nsubclass does not add it to a superclass. Since initializers are run in\nconstructors, initializers will run in order of the class hierarchy,\nstarting with superclasses and progressing to the instance's class.\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 358,
+                    "line": 400,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3409,7 +3384,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 585,
+                    "line": 664,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3448,7 +3423,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 382,
+                    "line": 424,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3481,13 +3456,13 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a PropertyDeclaration for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
+                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a `PropertyDeclaration` for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 481,
+                    "line": 550,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3560,7 +3535,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 390,
+                    "line": 432,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3594,7 +3569,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 536,
+                    "line": 615,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3652,79 +3627,17 @@
                       }
                     ],
                     "type": {
-                      "type": "reflection",
-                      "declaration": {
-                        "name": "__type",
-                        "kindString": "Type literal",
-                        "children": [
-                          {
-                            "name": "configurable",
-                            "kindString": "Property",
-                            "sources": [
-                              {
-                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
-                                "line": 309
-                              }
-                            ],
-                            "type": {
-                              "type": "intrinsic",
-                              "name": "boolean"
-                            }
-                          },
-                          {
-                            "name": "enumerable",
-                            "kindString": "Property",
-                            "sources": [
-                              {
-                                "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
-                                "line": 310
-                              }
-                            ],
-                            "type": {
-                              "type": "intrinsic",
-                              "name": "boolean"
-                            }
-                          },
-                          {
-                            "name": "get",
-                            "kindString": "Method",
-                            "signatures": [
-                              {
-                                "name": "get",
-                                "kindString": "Call signature",
-                                "type": {
-                                  "type": "intrinsic",
-                                  "name": "any"
-                                }
-                              }
-                            ]
-                          },
-                          {
-                            "name": "set",
-                            "kindString": "Method",
-                            "signatures": [
-                              {
-                                "name": "set",
-                                "kindString": "Call signature",
-                                "parameters": [
-                                  {
-                                    "name": "value",
-                                    "kindString": "Parameter",
-                                    "type": {
-                                      "type": "intrinsic",
-                                      "name": "unknown"
-                                    }
-                                  }
-                                ],
-                                "type": {
-                                  "type": "intrinsic",
-                                  "name": "void"
-                                }
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "undefined"
+                        },
+                        {
+                          "type": "reference",
+                          "name": "PropertyDescriptor"
+                        }
+                      ]
                     }
                   }
                 ],
@@ -3748,13 +3661,13 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Returns the property options associated with the given property.\nThese options are defined with a PropertyDeclaration via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override `createProperty`.\n"
+                  "shortText": "Returns the property options associated with the given property.\nThese options are defined with a `PropertyDeclaration` via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override [`createProperty`](/docs/api/ReactiveElement/#ReactiveElement.createProperty).\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 575,
+                    "line": 654,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3817,7 +3730,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 417,
+                    "line": 459,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3860,7 +3773,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 825,
+                    "line": 915,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3913,7 +3826,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 685,
+                    "line": 764,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3961,7 +3874,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 645,
+                    "line": 724,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4002,7 +3915,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 425,
+                    "line": 467,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4043,7 +3956,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 661,
+                    "line": 740,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4101,12 +4014,13 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function or via constructible stylesheets."
+                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function, via constructible stylesheets, or\nimported from native CSS module scripts.",
+                  "text": "Note on Content Security Policy:\n\nElement styles are implemented with `<style>` tags when the browser doesn't\nsupport adopted StyleSheets. To use such `<style>` tags with the style-src\nCSP directive, the style-src value must either include 'unsafe-inline' or\n'nonce-<base64-value>' with <base64-value> replaced be a server-generated\nnonce.\n\nTo provide a nonce to use on generated <style> elements, set\n`window.litNonce` to a server-generated nonce in your page's HTML, before\nloading application code:\n\n```html\n<script>\n  // Generated and unique per request:\n  window.litNonce = 'a1b2c3d4';\n</script>\n```"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 433,
+                    "line": 495,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4148,7 +4062,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 862,
+                    "line": 952,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4197,7 +4111,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1282,
+                    "line": 1372,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4273,7 +4187,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1223,
+                    "line": 1313,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4308,10 +4222,13 @@
               {
                 "name": "hasUpdated",
                 "kindString": "Property",
+                "comment": {
+                  "shortText": "Is set to `true` after the first update. The element code cannot assume\nthat `renderRoot` exists before the element `hasUpdated`."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 718,
+                    "line": 801,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4334,10 +4251,13 @@
               {
                 "name": "isUpdatePending",
                 "kindString": "Property",
+                "comment": {
+                  "shortText": "True if there is a pending update as a result of calling `requestUpdate()`.\nShould only be read."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 713,
+                    "line": 794,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4365,12 +4285,12 @@
                 },
                 "comment": {
                   "shortText": "Performs an element update. Note, if an exception is thrown during the\nupdate, `firstUpdated` and `updated` will not be called.",
-                  "text": "Call performUpdate() to immediately process a pending update. This should\ngenerally not be needed, but it can be done in rare cases when you need to\nupdate synchronously.\n\nNote: To ensure `performUpdate()` synchronously completes a pending update,\nit should not be overridden. In LitElement 2.x it was suggested to override\n`performUpdate()` to also customizing update scheduling. Instead, you should now\noverride `scheduleUpdate()`. For backwards compatibility with LitElement 2.x,\nscheduling updates via `performUpdate()` continues to work, but will make\nalso calling `performUpdate()` to synchronously process updates difficult.\n"
+                  "text": "Call `performUpdate()` to immediately process a pending update. This should\ngenerally not be needed, but it can be done in rare cases when you need to\nupdate synchronously.\n\nNote: To ensure `performUpdate()` synchronously completes a pending update,\nit should not be overridden. In LitElement 2.x it was suggested to override\n`performUpdate()` to also customizing update scheduling. Instead, you should now\noverride `scheduleUpdate()`. For backwards compatibility with LitElement 2.x,\nscheduling updates via `performUpdate()` continues to work, but will make\nalso calling `performUpdate()` to synchronously process updates difficult.\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1078,
+                    "line": 1168,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4420,7 +4340,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 973,
+                    "line": 1063,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4529,7 +4449,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1057,
+                    "line": 1147,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4577,12 +4497,12 @@
                   "isProtected": true
                 },
                 "comment": {
-                  "shortText": "Controls whether or not `update` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
+                  "shortText": "Controls whether or not `update()` should be called when the element requests\nan update. By default, this method always returns `true`, but this can be\ncustomized to control when to update."
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1235,
+                    "line": 1325,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4656,7 +4576,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1248,
+                    "line": 1338,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4729,7 +4649,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1196,
+                    "line": 1286,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4805,7 +4725,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1270,
+                    "line": 1360,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4873,7 +4793,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1146,
+                    "line": 1236,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4986,7 +4906,7 @@
               "isOptional": true
             },
             "comment": {
-              "shortText": "Function called to convert an attribute value to a property\nvalue."
+              "shortText": "Called to convert an attribute value to a property\nvalue."
             },
             "signatures": [
               {
@@ -5047,7 +4967,7 @@
               "isOptional": true
             },
             "comment": {
-              "shortText": "Function called to convert a property value to an attribute\nvalue.",
+              "shortText": "Called to convert a property value to an attribute\nvalue.",
               "text": "It returns unknown instead of string, to be compatible with\nhttps://github.com/WICG/trusted-types (and similar efforts).\n"
             },
             "signatures": [
@@ -5097,7 +5017,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 105,
+            "line": 117,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -5151,7 +5071,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/reactive-element.ts",
-                "line": 146,
+                "line": 158,
                 "moduleSpecifier": "reactive-element/reactive-element.js"
               }
             ],
@@ -5193,7 +5113,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/reactive-element.ts",
-                "line": 167,
+                "line": 179,
                 "moduleSpecifier": "reactive-element/reactive-element.js"
               }
             ],
@@ -5236,7 +5156,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/reactive-element.ts",
-                "line": 193,
+                "line": 205,
                 "moduleSpecifier": "reactive-element/reactive-element.js"
               }
             ],
@@ -5269,7 +5189,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/reactive-element.ts",
-                "line": 176,
+                "line": 188,
                 "moduleSpecifier": "reactive-element/reactive-element.js"
               }
             ],
@@ -5302,7 +5222,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/reactive-element.ts",
-                "line": 137,
+                "line": 149,
                 "moduleSpecifier": "reactive-element/reactive-element.js"
               }
             ],
@@ -5335,7 +5255,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/reactive-element.ts",
-                "line": 153,
+                "line": 165,
                 "moduleSpecifier": "reactive-element/reactive-element.js"
               }
             ],
@@ -5408,7 +5328,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 129,
+            "line": 141,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -5451,7 +5371,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 201,
+            "line": 213,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -5497,7 +5417,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 214,
+            "line": 226,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -5569,7 +5489,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "html",
@@ -5578,12 +5498,13 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container."
+          "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container.",
+          "text": "```ts\nconst header = (title: string) => html`<h1>${title}</h1>`;\n```\n\nThe `html` tag returns a description of the DOM to render as a value. It is\nlazy, meaning no work is done until the template is rendered. When rendering,\nif a template comes from the same expression as a previously rendered result,\nit's efficiently updated instead of replaced.\n"
         },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 314,
+            "line": 323,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5650,12 +5571,13 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "A sentinel value that signals a ChildPart to fully clear its content."
+          "shortText": "A sentinel value that signals a ChildPart to fully clear its content.",
+          "text": "```ts\nconst button = html`${\n user.isAdmin\n   ? html`<button>DELETE</button>`\n   : nothing\n}`;\n```\n\nPrefer using `nothing` over other falsy values as it provides a consistent\nbehavior between various expression binding contexts.\n\nIn child expressions, `undefined`, `null`, `''`, and `nothing` all behave the\nsame and render no nodes. In attribute expressions, `nothing` _removes_ the\nattribute, while `undefined` and `null` will render an empty string. In\nproperty expressions `nothing` becomes `undefined`.\n"
         },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 331,
+            "line": 356,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5691,7 +5613,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 395,
+            "line": 420,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5707,7 +5629,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 128
+                    "line": 153
                   }
                 ],
                 "type": {
@@ -5725,7 +5647,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 129
+                    "line": 154
                   }
                 ],
                 "signatures": [
@@ -5745,7 +5667,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 127
+                    "line": 152
                   }
                 ],
                 "signatures": [
@@ -5777,7 +5699,7 @@
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                "line": 125
+                "line": 150
               }
             ],
             "signatures": [
@@ -5936,7 +5858,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 320,
+            "line": 329,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6241,7 +6163,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "adoptStyles",
@@ -6547,7 +6469,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/css-tag.ts",
-            "line": 163,
+            "line": 168,
             "moduleSpecifier": "reactive-element/css-tag.js"
           }
         ],
@@ -6823,7 +6745,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "customElement",
@@ -7778,7 +7700,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "asyncAppend",
@@ -14537,7 +14459,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "AsyncDirective",
@@ -15901,7 +15823,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 241
+                "line": 266
               }
             ],
             "signatures": [
@@ -16008,7 +15930,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1389,
+                "line": 1414,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16040,7 +15962,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1390,
+                "line": 1415,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16069,7 +15991,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1391,
+                "line": 1416,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16115,7 +16037,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1398,
+                "line": 1423,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16151,7 +16073,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1384,
+                "line": 1409,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16194,7 +16116,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1410,
+                "line": 1435,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16228,7 +16150,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1383,
+            "line": 1408,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -16403,7 +16325,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1389,
+                "line": 1414,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16443,7 +16365,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1390,
+                "line": 1415,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16480,7 +16402,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1391,
+                "line": 1416,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16534,7 +16456,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1398,
+                "line": 1423,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16578,7 +16500,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1559,
+                "line": 1592,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16613,7 +16535,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1410,
+                "line": 1435,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16655,7 +16577,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1558,
+            "line": 1591,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -16701,7 +16623,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 167
+                "line": 192
               }
             ],
             "signatures": [
@@ -16812,7 +16734,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1008,
+                "line": 1033,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16854,7 +16776,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1007,
+                "line": 1032,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16884,7 +16806,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1115,
+                "line": 1140,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16945,7 +16867,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1088,
+                "line": 1113,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16988,7 +16910,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1107,
+                "line": 1132,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17043,7 +16965,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1006,
+            "line": 1031,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17360,7 +17282,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 274
+                "line": 299
               }
             ],
             "signatures": [
@@ -17441,7 +17363,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1686,
+                "line": 1722,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17470,7 +17392,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1683,
+                "line": 1719,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17512,7 +17434,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1669,
+                "line": 1705,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17537,7 +17459,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1668,
+            "line": 1704,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17573,7 +17495,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 265
+                "line": 290
               }
             ],
             "signatures": [
@@ -17692,7 +17614,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1389,
+                "line": 1414,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17732,7 +17654,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1390,
+                "line": 1415,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17769,7 +17691,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1391,
+                "line": 1416,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17823,7 +17745,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1398,
+                "line": 1423,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17867,7 +17789,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1587,
+                "line": 1623,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17902,7 +17824,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1410,
+                "line": 1435,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17946,7 +17868,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1658,
+                "line": 1694,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17986,7 +17908,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1586,
+            "line": 1622,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18287,7 +18209,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1389,
+                "line": 1414,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18327,7 +18249,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1390,
+                "line": 1415,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18364,7 +18286,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1391,
+                "line": 1416,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18418,7 +18340,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1398,
+                "line": 1423,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18462,7 +18384,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1538,
+                "line": 1563,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18497,7 +18419,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1410,
+                "line": 1435,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18539,7 +18461,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1537,
+            "line": 1562,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19022,7 +18944,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 997,
+            "line": 1022,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19158,7 +19080,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 326,
+            "line": 335,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19191,7 +19113,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "html",
@@ -19696,7 +19618,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "ReactiveController",
@@ -20047,7 +19969,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "f8ee010bc515e4bb319e98408d38ef3d971cc08b",
+    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
     "items": [
       {
         "name": "defaultConverter",
@@ -20058,7 +19980,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 218,
+            "line": 230,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -20094,7 +20016,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 268,
+            "line": 280,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -20311,7 +20233,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 460,
+            "line": 485,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20333,7 +20255,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 806,
+            "line": 831,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20389,7 +20311,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 260,
+            "line": 272,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -20478,7 +20400,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 294,
+            "line": 306,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -20547,7 +20469,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1008,
+                "line": 1033,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20597,7 +20519,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1007,
+                "line": 1032,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20635,7 +20557,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1115,
+                "line": 1140,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20704,7 +20626,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1088,
+                "line": 1113,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20755,7 +20677,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1107,
+                "line": 1132,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20860,7 +20782,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1363,
+            "line": 1388,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20963,12 +20885,12 @@
         "name": "WarningKind",
         "kindString": "Type alias",
         "comment": {
-          "shortText": "A string representing one of the supported dev mode warnings classes."
+          "shortText": "A string representing one of the supported dev mode warning categories."
         },
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 292,
+            "line": 304,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
