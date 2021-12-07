@@ -34,7 +34,7 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
     copy-button {
       color: #3e3e3e;
       margin: 0 -5px 0 10px;
-      opacity: 0.5;
+      opacity: 0.75;
     }
     copy-button:hover {
       opacity: 1;
