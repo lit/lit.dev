@@ -188,7 +188,7 @@ layout: docs
       </dt>
       <dd class="paramDetails">
         <code class="paramType">{{ type(param.type) }}</code>
-        {{ param.comment.text | markdown | safe }}
+        {{ param.comment.text | markdownWithoutHtml | safe }}
       </dd>
     {% endfor %}
   </dl>
@@ -240,14 +240,14 @@ layout: docs
     </div>
 
     <div class="propertyDetails">
-      {{ prop.comment.shortText | markdown | safe }}
+      {{ prop.comment.shortText | markdownWithoutHtml | safe }}
       {% if prop.signatures[0].parameters.length > 0 %}
         <h5>Parameters</h5>
         {{ params(prop) }}
       {% endif %}
       {% if prop.comment.text %}
         <h5>Details</h5>
-        {{ prop.comment.text | markdown | safe }}
+        {{ prop.comment.text | markdownWithoutHtml | safe }}
       {% endif %}
     </div>
   {% endfor %}
@@ -267,7 +267,7 @@ layout: docs
     {{ viewSourceLink(export) }}
   </div>
 
-  {{ export.comment.shortText | markdown | safe }}
+  {{ export.comment.shortText | markdownWithoutHtml | safe }}
 
   <h3>Import</h3>
   <div class="import">
@@ -294,7 +294,7 @@ layout: docs
 
   {% if export.comment.text %}
     <h3>Details</h3>
-    {{ export.comment.text | markdown | safe }}
+    {{ export.comment.text | markdownWithoutHtml | safe }}
   {% endif %}
 
   {% if export.expandedCategories.length > 0 %}
