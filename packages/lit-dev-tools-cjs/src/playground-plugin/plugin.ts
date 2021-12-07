@@ -169,6 +169,7 @@ export const playgroundPlugin = (
           `Usage {% playground-ide "path/to/project" %}`
       );
     }
+    project = trimTrailingSlash(project);
     const config = await readProjectConfig(project);
     const firstFilename = Object.keys(config.files ?? {})[0];
     const numVisibleLines = await getNumVisibleLinesForProjectFile(
@@ -205,6 +206,7 @@ export const playgroundPlugin = (
             `Usage {% playground-example "project/dir" "filename.js" %}`
         );
       }
+      project = trimTrailingSlash(project);
       const config = await readProjectConfig(project);
       if (!config.files?.[filename]) {
         throw new Error(
@@ -265,3 +267,6 @@ export const playgroundPlugin = (
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 };
+
+const trimTrailingSlash = (str: string) =>
+  str.endsWith('/') ? str.slice(0, str.length - 1) : str;
