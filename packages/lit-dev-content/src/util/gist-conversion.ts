@@ -59,7 +59,7 @@ export const playgroundToGist = (playgroundFiles: SampleFile[]): GistFiles => {
       .map(({name, content}) => [name, {content}])
   );
   gistFiles[METADATA_FILENAME] = {
-    content: JSON.stringify(metadata),
+    content: JSON.stringify(metadata, null, 2),
   };
   return gistFiles;
 };
