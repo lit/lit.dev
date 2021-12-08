@@ -71,7 +71,7 @@ export class LitDevFlyout extends LitElement {
       if (this.open) {
         this._addEventListeners();
         this.dispatchEvent(new Event('open'));
-      } else {
+      } else if (changed.get('open')) {
         this._removeEventListeners();
         this.dispatchEvent(new Event('closed'));
       }

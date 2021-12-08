@@ -93,6 +93,11 @@ export class LitDevPlaygroundShareButton extends LitElement {
   private _mostRecentSaveType: 'longurl' | 'gist' | undefined = undefined;
 
   /**
+   * When true, clicking on this button will not open the flyout.
+   */
+  private _ignoreClick = false;
+
+  /**
    * A function to allow this component to access the project upon save.
    */
   @property({attribute: false})
@@ -115,15 +120,20 @@ export class LitDevPlaygroundShareButton extends LitElement {
   }
 
   override update(changes: PropertyValues) {
-    if (changes.has('_open') && this._open) {
-      this._longUrl?.generateUrl();
+    if (changes.has('_open')) {
+      if (this._open) {
+        this._longUrl?.generateUrl();
+        this.dispatchEvent(new Event('opened'));
+      } else {
+        this.dispatchEvent(new Event('closed'));
+      }
     }
     super.update(changes);
   }
 
   override render() {
     return html`
-      <litdev-icon-button @click=${this._toggleOpen}>
+      <litdev-icon-button @click=${this._onClick}>
         ${shareIcon} Share
       </litdev-icon-button>
 
@@ -140,7 +150,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
       id="menu"
       .anchor=${this}
       .open=${this._open}
-      @closed=${this._close}
+      @closed=${this._onFlyoutClosed}
       @status=${this._showStatus}
     >
       <section>
@@ -166,8 +176,25 @@ export class LitDevPlaygroundShareButton extends LitElement {
     </litdev-flyout>`;
   }
 
-  private _toggleOpen() {
-    this._open = !this._open;
+  private _onFlyoutClosed() {
+    this._open = false;
+    // The flyout closes itself whenever a "mouseup" event fires outside of the
+    // flyout. However, that includes clicking on this "Share" button! So if
+    // we're not careful, we'll immediately re-open the flyout when that
+    // happens. If the flyout has just closed itself, then we should ignore the
+    // next button click. We can reset to normal after a rAF, because when this
+    // happens it will be within the same microtask (because it's the same
+    // click).
+    this._ignoreClick = true;
+    requestAnimationFrame(() => {
+      this._ignoreClick = false;
+    });
+  }
+
+  private _onClick() {
+    if (!this._ignoreClick) {
+      this._open = true;
+    }
   }
 
   private _close() {

@@ -389,4 +389,34 @@ test.describe('Playground', () => {
       'backendErrorWritingGist.png'
     );
   });
+
+  test('close share flyout by clicking outside of the flyout', async ({
+    page,
+  }) => {
+    await page.goto('/playground/?mods=gists');
+
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'visible',
+    });
+
+    await page.click('main');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'hidden',
+    });
+  });
+
+  test('close share flyout by clicking share button again', async ({page}) => {
+    await page.goto('/playground/?mods=gists');
+
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'visible',
+    });
+
+    await page.click('litdev-playground-share-button');
+    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
+      state: 'hidden',
+    });
+  });
 });
