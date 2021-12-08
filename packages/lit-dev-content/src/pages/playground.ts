@@ -37,6 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const project = $('playground-project')!;
   const shareButton = $('#shareButton')!;
   const shareSnackbar = $('#shareSnackbar')! as Snackbar;
+  const playgroundPreview = $('playground-preview')!;
 
   // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
   // needs to be refactored, probably into one or two custom elements.
@@ -44,6 +45,19 @@ window.addEventListener('DOMContentLoaded', () => {
   const githubApiUrl = newShareButton?.githubApiUrl ?? '';
   if (newShareButton) {
     newShareButton.getProjectFiles = () => project.files;
+
+    // Clicks made on the playground-preview iframe will be handled entirely by
+    // the iframe window, and don't propagate to the host window. That means
+    // that the normal behavior where the share flyout detects clicks outside of
+    // itself in order to close won't work, since it will never see the click
+    // event. To work around this, we temporarily disable pointer-events on the
+    // preview, so that clicks go to our host window instead.
+    newShareButton.addEventListener('opened', () => {
+      playgroundPreview.style.pointerEvents = 'none';
+    });
+    newShareButton.addEventListener('closed', () => {
+      playgroundPreview.style.pointerEvents = 'unset';
+    });
   } else {
     console.error('Missing litdev-playground-share-button');
   }

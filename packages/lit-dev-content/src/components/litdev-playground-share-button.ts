@@ -115,8 +115,13 @@ export class LitDevPlaygroundShareButton extends LitElement {
   }
 
   override update(changes: PropertyValues) {
-    if (changes.has('_open') && this._open) {
-      this._longUrl?.generateUrl();
+    if (changes.has('_open')) {
+      if (this._open) {
+        this._longUrl?.generateUrl();
+        this.dispatchEvent(new Event('opened'));
+      } else {
+        this.dispatchEvent(new Event('closed'));
+      }
     }
     super.update(changes);
   }
