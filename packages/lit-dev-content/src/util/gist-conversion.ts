@@ -24,8 +24,15 @@ type GistPlaygroundMetadata = {
 
 /**
  * Filename for gist playground metadata.
+ *
+ * Note that the "zzzzzzzzzz" prefix is chosen to encourage this file to come
+ * last in the list of Gist files. GitHub uses the first file as title of the
+ * Gist, so it's better for that to be one of the user's files. GitHub uses an
+ * unusual sorting scheme where characters like _-@#$ come before letters (see
+ * https://gist.github.com/fliedonion/6057f4a3a533f7992c60), so we can't use any
+ * of those.
  */
-const METADATA_FILENAME = '__lit-dev-playground-metadata__.json';
+const METADATA_FILENAME = 'zzzzzzzzzz-lit-dev-playground-metadata.json';
 
 /**
  * Convert an array of Playground files to a GitHub gist.
