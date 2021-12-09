@@ -12,8 +12,8 @@ apps and components. Lit has first-party support for localization through the
 good choice over third-party localization libraries:
 
 - Native support for expressions and HTML markup inside localized templates. No
-  need for a new syntax and interpolation runtime for variable substitution —
-  just use the templates you already have.
+  need for a new syntax and interpolation runtime for variable substitution—just
+  use the templates you already have.
 
 - Automatic re-rendering of Lit components when the locale switches.
 
@@ -135,9 +135,11 @@ html`<button>${msg('Hello World')}</button>`;
 
 ### Strings with expressions
 
-If a string contains an expression and doesn't need to be tagged with `html`,
-then it must be tagged with `str` in order to be localizable. An error will be
-raised during extraction if you forget to include the `str` tag.
+Strings that contain an expression must be tagged with either `html` or `str` in
+order to be localizable. You should prefer `str` over `html` when your string
+doesn't contain any HTML markup, because it has slightly less performance
+overhead. An error will be raised when you run the `lit-localize` command if you
+forget the `html` or `str` tag on a string with an expression.
 
 Incorrect:
 <strike>
@@ -172,11 +174,15 @@ href="https://www.w3.org/International/articles/language-tags/index.en"
 target="_blank" rel="noopener">BCP 47 language tag standard</a>. Some examples
 of BCP 47 language tags are:
 
-- `en`: English
-- `es-419`: Spanish spoken in Latin America
-- `zh-Hans`: Chinese written in Simplified script
+- en: English
+- es-419: Spanish spoken in Latin America
+- zh-Hans: Chinese written in Simplified script
 
-Lit Localize defines a few important locale values:
+### Terms
+
+Lit Localize defines a few terms that refer to locale codes. These terms are
+used in this documentation, in the Lit Localize config file, and in the Lit
+Localize API:
 
 <dl class="params">
   <dt class="paramName">Source locale</dt>
@@ -203,9 +209,8 @@ their own advantages.
 
 <div class="alert alert-info">
 
-Don't worry too much about which mode to use at first. It's easy to switch
-between the two because the core `msg` API is identical. If unsure, start with
-runtime mode.
+**Unsure which mode to use?** Start with runtime mode. It's easy to switch modes
+later because the core `msg` API is identical.
 
 </div>
 
@@ -214,7 +219,7 @@ runtime mode.
 In runtime mode, one JavaScript or TypeScript module is generated for each of
 your locales. Each module contains the localized templates for that locale. When
 the active locale switches, the module for that locale is imported, and all
-components are re-rendered.
+localized components are re-rendered.
 
 Runtime mode makes switching locales very fast because a page reload is not
 required. However, there is a slight performance cost to rendering performance
@@ -266,14 +271,63 @@ details about transform mode.
 <!-- TODO(aomarks) Default CSS doesn't have a margin above table -->
 <br>
 
-|                           | Runtime mode                                                                | Transform mode                                          |
-| ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------- |
-| Output                    | A dynamically loaded module for each target locale.                         | A standalone app build for each locale.                 |
-| Switch locales            | Call `setLocale()`                                                          | Reload page                                             |
-| JS bytes                  | 1.27 KiB (minified + compressed)                                            | 0 KiB                                                   |
-| Make template localizable | `msg()`                                                                     | `msg()`                                                 |
-| Configure                 | `configureLocalization()`                                                   | `configureTransformLocalization()`                      |
-| Advantages                | - Faster locale switching<br>- Fewer _marginal_ bytes when switching locale | - Faster rendering<br>- Fewer bytes for a single locale |
+<table>
+<thead>
+<tr>
+  <th></th>
+  <th>Runtime mode</th>
+  <th>Transform mode</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+  <td>Output</td>
+  <td>A dynamically loaded module for each target locale.</td>
+  <td>A standalone app build for each locale.</td>
+</tr>
+
+<tr>
+  <td>Switch locales</td>
+  <td>Call <code>setLocale()</code></td>
+  <td>Reload page</td>
+</tr>
+
+<tr>
+  <td>JS bytes</td>
+  <td>1.27 KiB (minified + compressed)</td>
+  <td>0 KiB</td>
+</tr>
+
+<tr>
+  <td>Make template localizable</td>
+  <td><code>msg()</code></td>
+  <td><code>msg()</code></td>
+</tr>
+
+<tr>
+  <td>Configure</td>
+  <td><code>configureLocalization()</code></td>
+  <td><code>configureTransformLocalization()</code></td>
+</tr>
+
+<tr>
+  <td>Advantages</td>
+  <td>
+    <ul>
+      <li>Faster locale switching.</li>
+      <li>Fewer <em>marginal</em> bytes when switching locale.</li>
+    </ul>
+  </td>
+  <td>
+    <ul>
+      <li>Faster rendering.</li>
+      <li>Fewer bytes for a single locale.</li>
+    </ul>
+  </td>
+</tr>
+</tbody>
+</table>
 
 ## Config file
 
@@ -371,16 +425,16 @@ Then a `<xliffDir>/<locale>.xlf` file will be generated for each target locale:
 ## Translation with XLIFF
 
 XLIFF files can be edited manually, but more typically they are sent to a
-third-party translation service, where they are edited by language experts using
+third-party translation service where they are edited by language experts using
 specialized tools.
 
-After uploading an XLIFF file to your chosen translation service, you will
-eventually receive a new XLIFF file in response. The new XLIFF file will look
-just like the one you uploaded, but with `<target>` tags inserted into each
+After uploading your XLIFF files to your chosen translation service, you will
+eventually receive new XLIFF files in response. The new XLIFF files will look
+just like the ones you uploaded, but with `<target>` tags inserted into each
 `<trans-unit>`.
 
-When you receive a new translation XLIFF file, save it to your `xliff/`
-directory, overwriting your original version.
+When you receive new translation XLIFF files, save them to your configured
+`interchange.xliffDir` directory, overwriting the original versions.
 
 ```xml
 <!-- xliff/es-419.xlf -->
@@ -404,7 +458,7 @@ directory, overwriting your original version.
 ## Building localized templates
 
 Use the `lit-localize build` command to incorporate translations back into your
-application. The behavior of this command depends on the [mode](#output-modes)
+application. The behavior of this command depends on the [output mode](#output-modes)
 you have configured.
 
 ```sh
@@ -432,7 +486,7 @@ render() {
 }
 ```
 
-Descriptions will be represented in XLIFF files using `<note>` elements.
+Descriptions are represented in XLIFF files using `<note>` elements.
 
 ```xml
 <trans-unit id="s512957aa09384646">
@@ -444,7 +498,7 @@ Descriptions will be represented in XLIFF files using `<note>` elements.
 ## Message ids
 
 Lit Localize automatically generates an id for every `msg` call using a hash of
-the string contents, including HTML markup.
+the string.
 
 If two `msg` calls share the same id, then they are treated as the same message,
 meaning they will be translated as a single unit and the same translations will
@@ -461,17 +515,37 @@ msg('Hello World')
 msg('Hello World')
 ```
 
-If a string contains an expression (e.g. `${foo}`), then the content of the
-expression does **not** affect the id, though the presence and position of the
-expression does.
+### Id generation
 
-For example, these two messages have the same id:
+The following content affects id generation:
+
+- String content
+- HTML markup
+- The position of expressions
+- Whether the string is tagged with `html`
+
+The following content **does not** affect id generation:
+
+- The code inside an expression
+- The computed value of an expression
+- Descriptions
+- File location
+
+For example, all of these messages share the same id:
 
 ```js
-// Same id
-msg(`Hello ${name}`)
-msg(`Hello ${this.name}`);
+msg(html`Hello <b>${name}</b>`);
+msg(html`Hello <b>${this.name}</b>`);
+msg(html`Hello <b>${this.name}</b>`, {desc: 'A friendly greeting'});
 ```
+
+But this message has a different id:
+
+```js
+msg(html`Hello <i>${name}</i>`);
+```
+
+### Overriding ids
 
 Message ids can be overridden by specifying the `id` option to the `msg`
 function. In some cases this may be necessary, such as when an identical string

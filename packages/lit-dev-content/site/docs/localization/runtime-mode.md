@@ -9,7 +9,7 @@ eleventyNavigation:
 In Lit Localize runtime mode, one JavaScript or TypeScript module is generated
 for each of your locales. Each generated module contains the localized templates
 for that locale. When your application switches locales, the module for that
-locale is imported, and all components are re-rendered.
+locale is imported, and all localized components are re-rendered.
 
 See [output modes](/docs/localization/overview/#output-modes) for a comparison
 of Lit Localize output modes.
@@ -37,43 +37,51 @@ of Lit Localize runtime mode that you can use as templates.
 
 ## Configuring runtime mode
 
-In your `lit-localize.json` config, set the `mode` property to `runtime`, and
-set the `output.outputDir` property to the location where you would like your
-localized template modules to be generated. See [runtime mode
+In your `lit-localize.json` config, set the `output.mode` property to `runtime`,
+and set the `output.outputDir` property to the location where you would like
+your localized template modules to be generated. See [runtime mode
 settings](/docs/localization/cli-and-config#runtime-mode-settings) for more
 details.
 
-In your JavaScript or TypeScript project, call `configureLocalization` function,
+Next, set `output.localeCodesModule` to a filepath of your chosing. Lit Localize
+will generate a `.js` or `.ts` module here which mirrors the `sourceLocale` and
+`targetLocales` settings in your config file as exported variables. The
+generated module will look something like this:
+
+```js
+export const sourceLocale = 'en';
+export const targetLocales = ['es-419', 'zh-Hans'];
+export const allLocales = ['en', 'es-419', 'zh-Hans'];
+```
+
+Finally, in your JavaScript or TypeScript project, call `configureLocalization`,
 passing an object with the following properties:
 
-- `sourceLocale: string`: Required locale code in which source templates in this
-  project are written, and the initial active locale.
+- `sourceLocale: string`: The `sourceLocale` variable exported by your generated
+  `output.localeCodesModule` module.
 
-- `targetLocales: string[]`: Required locale codes that are supported by
-  this project. Should not include the `sourceLocale` code.
+- `targetLocales: string[]`: The `targetLocales` variable exported by your
+  generated `output.localeCodesModule` module.
 
-- `loadLocale: (locale: string) => Promise<LocaleModule>`: Required function
-  that returns a promise of the localized templates for the given locale code.
+- `loadLocale: (locale: string) => Promise<LocaleModule>`: A function that loads
+  a localized template. Returns a promise that resolves to the generated
+  localized template module for the given locale code. See [Approaches for
+  loading locale modules](#approaches-for-loading-locale-modules) for examples
+  of functions you can use here.
+
+For example:
 
 ```js
 import {configureLocalization} from '@lit/localize';
+// Generated via output.localeCodesModule
+import {sourceLocale, targetLocales} from './generated/locales.js';
 
 export const {getLocale, setLocale} = configureLocalization({
-  sourceLocale: 'en',
-  targetLocales: ['es-419', 'zh_CN'],
+  sourceLocale,
+  targetLocales,
   loadLocale: (locale) => import(`/locales/${locale}.js`),
 });
 ```
-
-<div class="alert alert-info">
-
-Use the
-[`output.localeCodesModule`](/docs/localization/cli-and-config/#general-settings)
-setting to generate a module which exports a `sourceLocale` string and
-`targetLocales` array that can be passed to `configureLocalization`, to ensure
-that your runtime code remains in sync with your config file.
-
-</div>
 
 `configureLocalization` returns an object with the following properties:
 
