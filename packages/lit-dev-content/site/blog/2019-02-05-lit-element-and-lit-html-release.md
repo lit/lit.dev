@@ -5,6 +5,7 @@ title: "Lightning-fast templates & Web Components: lit-html & LitElement"
 summary: "Announcing the stable releases of our next-generation web development libraries."
 date: 2019-02-05
 author: justin-fagnani
+splash: blue-swirl.jpg
 ---
 
 <div id="preamble">

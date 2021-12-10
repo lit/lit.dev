@@ -1,85 +1,98 @@
 @import url('./blog-common.css');
 
-#preamble {
-  font-size: 1.18em;
-  border-bottom: 1.5px solid var(--color-cyan);
-  padding-bottom: 1em;
+h1 {
+  margin-bottom: 12px;
 }
 
-#frontMatter a {
-  color: white;
-}
-#frontMatter a:hover {
-  text-decoration: underline;
+#summary {
+  font-style: italic;
 }
 
-#imageNameDate {
+#date {
+  color: #666;
+}
+
+.author {
   display: flex;
-  margin-top: 1.5em;
-  align-items: center;
+  margin: 0 32px;
+  border-bottom: 1.5px solid var(--color-blue);
+  padding: 0 0 32px 0;
+  margin: 32px 0;
 }
 
-#imageNameDate > img {
-  width: 3em;
-  height: 3em;
-  margin-right: 1em;
+.author > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
 }
 
-#frontMatter > h1 > img {
-  vertical-align: middle;
-  margin-right: 0.5em;
+.authorRhs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px;
+  justify-content: space-around;
 }
 
-#frontMatter > h1 > img {
-  width: 1.2em;
-  height: 1.2em;
-  background: white;
-  padding: 0.1em;
+cite.authorName {
+  font-style: normal;
+  color: #222;
+  font-weight: 500;
 }
 
-#nameDate > * {
+ul.authorLinks {
+  padding-left: 0;
   margin: 0;
 }
 
-#authorName {
-  font-weight: 600;
-  font-size: 1.1em;
+ul.authorLinks > li {
+  display: inline-block;
+  text-indent: 0;
 }
 
-#blogContent {
-  padding: var(--blog-top-padding) 3em;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.88889em;
+ul.authorLinks > li:not(:first-of-type)::before {
+  content: "·";
+  margin: 0 8px 0 4px;
 }
 
-#blogContent > :first-child {
-  margin-top: 0;
-}
-
-#blogContent h2 {
-  text-transform: uppercase;
-  color: var(--color-cyan);
-  font-weight: 600;
-  font-size: 1.2em;
-  margin-top: 2em;
-}
-
-#blogContent a {
-  color: var(--color-dark-cyan);
-}
-
-#blogContent a:hover {
+ul.authorLinks > li > a {
+  font-size: 16px;
   text-decoration: underline;
 }
 
-#blogContent .CodeMirror {
-  padding: 1em 1.5em;
+h2 {
+  font-size: 26px;
+  font-weight: 400;
+  color: #0043c0;
+  margin-top: 38px;
+}
+
+p {
+  line-height: 32px;
+}
+
+p strong {
+ font-weight: 600;
+}
+
+code > figure {
+  --playground-code-background: #fafafa;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   margin: 0;
 }
 
-#blogContent code:not([class]) {
-  background: rgb(0 0 0 / 25%);
-  font-size: 0.85em;
-  padding: 0.2em 0.4em;
-  font-family: var(--playground-code-font-family, monospace);
+#blogIndexLink {
+  display: block;
+  padding: 16px;
+  color: #0043c0;
+  font-weight: 500;
+  font-size: 24px;
+  border: 1px solid gray;
+  text-align: center;
+  margin-top: 64px;
+  margin-bottom: 32px;
+}
+
+#blogIndexLink:hover {
+  text-decoration: underline;
 }

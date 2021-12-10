@@ -1,62 +1,29 @@
-main {
-  background: var(--color-dark-gray);
-  line-height: 1.8em;
-  --blog-top-padding: 2em;
+#splash {
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 5px 2px;
+  display: block;
+  height: 80px;
+  object-fit: cover;
+  width: 100%;
 }
 
 article {
-  color: white;
-  display: flex;
-  max-width: var(--content-max-width);
-  min-height: inherit;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 24px 32px 24px;
 }
 
-#frontMatter {
-  background: var(--color-blue);
-  padding: var(--blog-top-padding) 1.5em 2em 2em;
-  flex: 0 0 14em;
-  position: relative;
-  z-index: 0;
+h1 {
+  color: #555;
+  font-size: 42px;
+  font-weight: 400;
 }
 
-#frontMatter::before {
-  position: absolute;
-  background: url('/images/texture-white.png');
-  content: '';
-  opacity: 30%;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -1;
-}
-
-#frontMatter > h1 {
-  font-weight: 500;
-  line-height: 1.5em;
-  margin-top: 0;
-  font-size: 1.5em;
-}
-
-#blogContent {
-  padding: var(--blog-top-padding) 3em;
-}
-
-#blogContent > :first-child {
-  margin-top: 0;
-}
-
-main img.flame {
-  padding: 0.2em;
+img.flame {
+  background: #eee;
   box-sizing: border-box;
-  background: white;
+  padding: 1%;
 }
 
-@media (max-width: 864px) {
-  article {
-    display: block;
-  }
-  #blogContent {
-    padding-left: 2em;
-  }
+#footerTop {
+  border-top: 1px solid var(--color-blue);
 }

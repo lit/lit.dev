@@ -1,5 +1,6 @@
 ---
 title: Blog
+splash: lit-shapes.svg
 ---
 
 {% extends 'default.html' %}
@@ -9,23 +10,21 @@ title: Blog
 {% endblock %}
 
 {% block content %}
+  <img id="splash" src="{{ site.baseurl }}/images/blog/{{ splash }}">
+
   <article>
     <div id="frontMatter">
-      <h1>
-        <img alt="" class="flame" src="{{ site.baseurl }}/images/logo.svg#flame">
-        Blog
-      </h1>
+      <h1>Lit Blog</h1>
 
       <p>Hear from our team on the latest with Lit and the community. Our blog covers
-         major release announcements and showcases cool stuff being built with Lit.</p>
+          major release announcements and showcases cool stuff being built with Lit.</p>
 
-      <p>Have an idea for an article?</p>
-      <a id="suggestLink" target="_blank" rel="noopener"
-         href="https://twitter.com/intent/tweet?text=Hey+@buildWithLit+I'd+like+to+see+a+blog+post+about"
-         >Suggest it!</a>
+      <p>For updates, follow <a href="https://twitter.com/buildWithLit">@buildWithLit</a>
+      on Twitter or add our <a href="{{ site.baseurl }}/blog/feed.xml">Atom
+      feed</a> to your feed reader.</p>
     </div>
 
-    <div id="blogContent">
+    <div id="posts">
       {% for post in collections.blogPosts | reverse %}
         {% set authorData = authors[post.data.author] %}
         <div class="post">
@@ -44,8 +43,9 @@ title: Blog
 
             <p class="author">
               <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
-              {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
-              alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+                   width="80" height="80"
+                   {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+                   alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
 
               {{ authorData.name }}
             </p>
