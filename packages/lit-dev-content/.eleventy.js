@@ -31,6 +31,7 @@ const {
 const {preCompress} = require('../lit-dev-tools-cjs/lib/pre-compress.js');
 const luxon = require('luxon');
 const crypto = require('crypto');
+const pluginRss = require('@11ty/eleventy-plugin-rss');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -84,6 +85,8 @@ ${content}
 
 </div>`;
   });
+
+  eleventyConfig.addPlugin(pluginRss);
 
   const linkAfterHeaderBase = markdownItAnchor.permalink.linkAfterHeader({
     style: 'visually-hidden',

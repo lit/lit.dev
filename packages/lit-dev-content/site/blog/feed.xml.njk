@@ -1,0 +1,36 @@
+---
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Lit Blog</title>
+  <subtitle>Latest news, announcements, and highlights from the Lit team and community.</subtitle>
+  <link href="https://lit.dev/blog/"/>
+  <link href="https://lit.dev/blog/feed.xml" rel="self"/>
+  <id>https://lit.dev/blog/</id>
+  <icon>https://lit.dev/images/flame-favicon.svg</icon>
+  <logo>https://lit.dev/images/logo.svg</logo>
+  <updated>{{ collections.blogPosts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  {%- for post in collections.blogPosts %}
+    {% set absolutePostUrl %}{{ post.url | url | absoluteUrl("https://lit.dev/") }}{% endset %}
+    {% set author = authors[post.data.author] %}
+    <entry>
+      <title>{{ post.data.title }}</title>
+      <link href="{{ absolutePostUrl }}"/>
+      <updated>{{ post.date | dateToRfc3339 }}</updated>
+      <id>{{ absolutePostUrl }}</id>
+      <summary>{{ post.data.summary }}</summary>
+      <author>
+        <name>{{ author.name }}</name>
+        {% if author.twitter %}
+          <uri>https://twitter.com/{{ author.links.twitter }}</uri>
+        {% elif author.links.github %}
+          <uri>https://github.com/{{ author.links.github }}</uri>
+        {% endif %}
+      </author>
+      <content type="html">
+        {{ post.templateContent | removeHeadingAnchors | htmlToAbsoluteUrls(absolutePostUrl) }}
+      </content>
+    </entry>
+  {%- endfor %}
+</feed>
