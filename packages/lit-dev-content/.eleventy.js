@@ -138,6 +138,16 @@ ${content}
     });
   eleventyConfig.setLibrary('md', md);
 
+  /**
+   * Sometimes we don't want automatically generated heading anchors, like blog
+   * articles. But it's not possible to change markdown settings on a per-page
+   * basis (!). This filter just removes the anchor elements after rendering
+   * instead.
+   */
+  eleventyConfig.addFilter('removeHeadingAnchors', function (content) {
+    return content.replace(/<a class="anchor".*<\/a>/g, '');
+  });
+
   eleventyConfig.addFilter('removeExtension', function (url) {
     const extension = path.extname(url);
     return url.substring(0, url.length - extension.length);

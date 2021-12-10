@@ -83,10 +83,3 @@
   padding: 0.2em 0.4em;
   font-family: var(--playground-code-font-family, monospace);
 }
-
-/* TODO(aomarks) All markdown headings get a # hover permalink with a slightly
-complex DOM structure for accessibility, designed for the docs pages. Rather
-than applying the docs styles for that here, just hide them for now. */
-a.anchor {
-  display: none;
-}

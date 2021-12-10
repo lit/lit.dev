@@ -47,7 +47,7 @@ authorImage: logo.svg#flame
     </div>
 
     <div id="blogContent">
-      {{ content | safe }}
+      {{ content | removeHeadingAnchors | safe }}
     </div>
   </article>
 {% endblock %}
