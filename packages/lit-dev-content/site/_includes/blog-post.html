@@ -1,7 +1,5 @@
 ---
-author: Lit Team
-authorLink: https://twitter.com/buildWithLit
-authorImage: logo.svg#flame
+author: lit-team
 ---
 
 {% extends 'default.html' %}
@@ -14,6 +12,8 @@ authorImage: logo.svg#flame
 {% block drawer %}
 {% endblock %}
 
+{% set authorData = authors[author] %}
+
 {% block content %}
   <article>
     <div id="frontMatter">
@@ -22,20 +22,19 @@ authorImage: logo.svg#flame
       <p>{{ summary }}</p>
 
       <div id="imageNameDate">
-        {% if authorImage == "logo.svg#flame" %}
-          <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ authorImage }}">
-        {% else %}
-          <img alt="Photo of {{ author }}" src="{{ site.baseurl }}/images/{{ authorImage }}">
-        {% endif %}
+        <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+        {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+        alt="{% if authorData.imageAlt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
 
         <div id="nameDate">
           <p>
-            {% if authorLink %}
-              <a id="authorName" href="{{ authorLink }}" target="_blank" rel="noopener">
-                {{ author }}
+            {% if author.links.twitter %}
+              <a id="authorName" href="https://twitter.com{{ author.links.twitter }}"
+                 target="_blank" rel="noopener">
+                {{ authorData.name }}
               </a>
             {% else %}
-              <span id="authorName">{{ author }}</span>
+              <span id="authorName">{{ authorData.name }}</span>
             {% endif %}
           </p>
 

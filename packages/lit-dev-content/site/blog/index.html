@@ -27,6 +27,7 @@ title: Blog
 
     <div id="blogContent">
       {% for post in collections.blogPosts | reverse %}
+        {% set authorData = authors[post.data.author] %}
         <div class="post">
           <h2 class="date">
             <time datetime="{{ post.data.date | htmlDateString }}">
@@ -42,12 +43,11 @@ title: Blog
             <p>{{ post.data.summary }}</p>
 
             <p class="author">
-              {% if post.data.authorImage == "logo.svg#flame" %}
-                <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
-              {% else %}
-                <img alt="Photo of {{ post.data.author }}" src="{{ site.baseurl }}/images/{{ post.data.authorImage }}">
-              {% endif %}
-              {{ post.data.author }}
+              <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+              {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+              alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+
+              {{ authorData.name }}
             </p>
           </div>
         </div>

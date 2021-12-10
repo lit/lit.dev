@@ -1,0 +1,35 @@
+{
+  "authors": {
+    "lit-team": {
+      "name": "Lit Team",
+      "links": {
+        "twitter": "buildWithLit"
+      },
+      "image": {
+        "url": "logo.svg#flame",
+        "alt": "",
+        "class": "flame"
+      }
+    },
+    "gray-norton": {
+      "name": "Gray Norton",
+      "links": {
+        "twitter": "graynorton",
+        "github": "graynorton"
+      },
+      "image": {
+        "url": "authors/gray-norton.jpg"
+      }
+    },
+    "justin-fagnani": {
+      "name": "Justin Fagnani",
+      "links": {
+        "twitter": "justinfagnani",
+        "github": "justinfagnani"
+      },
+      "image": {
+        "url": "authors/justin-fagnani.jpg"
+      }
+    }
+  }
+}
