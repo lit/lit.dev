@@ -35,7 +35,7 @@ export const oldLitHtmlSiteRedirects = new Map([
   ['/guide',                     '/docs/v1/lit-html/introduction/'],
   ['/guide/getting-started',     '/docs/v1/lit-html/getting-started/'],
   ['/guide/writing-templates',   '/docs/v1/lit-html/writing-templates/'],
-  ['/guide/styling-templates',   '/docs/v1/lit-html/styles/'],
+  ['/guide/styling-templates',   '/docs/v1/lit-html/styling-templates/'],
   ['/guide/rendering-templates', '/docs/v1/lit-html/rendering-templates/'],
   ['/guide/creating-directives', '/docs/v1/lit-html/creating-directives/'],
   ['/guide/template-reference',  '/docs/v1/lit-html/template-reference/'],
