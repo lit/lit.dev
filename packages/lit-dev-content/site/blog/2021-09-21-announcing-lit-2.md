@@ -6,8 +6,6 @@ summary: "Lit 2: smaller, better, faster, SSR-ready, and ready for production."
 date: 2021-09-21
 ---
 
-<div id="preamble">
-
 Today we're announcing the stable release of Lit 2. Lit 2 is a major update: it's smaller, faster and better than before, it lays the foundation for server-side rendering, and it's all wrapped up in the new `lit` package on npm.
 
 Lit has come a long way since April when we [announced](https://lit.dev/blog/2021-04-21-lit-2.0-meet-lit-all-over-again/) the first release candidate for Lit 2.  Since then, many partners have tested the release candidates on big applications and reported easy upgrades, better performance, and smaller bundles. In addition, some partners and community members have been exploring new features like reactive controllers and experimental server-side rendering support.
@@ -17,8 +15,6 @@ Meanwhile, at Google, we've extensively tested Lit 2 by upgrading thousands of G
 Today we're happy to announce that Lit 2 is ready to go.
 
 **Correction:** _The lit-analyzer CLI and VS Code Lit plugin are being updated to work with Lit 2. The original version of this post incorrectly stated that these had already been released._
-
-</div>
 
 
 ## What’s in Lit 2?

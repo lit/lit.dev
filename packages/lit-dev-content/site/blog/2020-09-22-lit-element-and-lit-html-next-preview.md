@@ -6,8 +6,6 @@ summary: "Preview the next major versions of LitElement and lit-html."
 date: 2020-09-22
 ---
 
-<div id="preamble">
-
 Today we’re publishing the first preview releases of the next major versions of
 our flagship libraries, LitElement and lit-html.
 
@@ -15,8 +13,6 @@ These releases include most of the breaking changes we intend to make, and most
 of the functionality we want to carry over from the previous versions. They are
 not yet feature complete or fully API stable. Notably, they don’t yet support
 legacy browsers like IE11, or browsers requiring the web components polyfill.
-
-</div>
 
 ## Motivation
 

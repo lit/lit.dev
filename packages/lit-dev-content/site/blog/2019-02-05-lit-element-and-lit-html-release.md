@@ -7,8 +7,6 @@ date: 2019-02-05
 author: justin-fagnani
 ---
 
-<div id="preamble">
-
 Today we're excited to announce the first stable releases of our two
 next-generation web development libraries:
 [lit-html](https://lit-html.polymer-project.org) and
@@ -20,8 +18,6 @@ a simple base class for creating Web Components with lit-html templates.
 If you've been following the projects, you probably know what lit-html and
 LitElement are all about (and you can [skip to the end](#get-started) if you
 like). If you're new to lit-html and LitElement, read on for an overview.
-
-</div>
 
 ## lit-html: a tiny, fast library for HTML templating
 
