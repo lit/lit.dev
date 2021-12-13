@@ -4,12 +4,8 @@ layout: blog-post.html
 title: "Lightning-fast templates & Web Components: lit-html & LitElement"
 summary: "Announcing the stable releases of our next-generation web development libraries."
 date: 2019-02-05
-author: Justin Fagnani
-authorImage: authors/justin-fagnani.jpg
-authorLink: https://twitter.com/justinfagnani
+author: justin-fagnani
 ---
-
-<div id="preamble">
 
 Today we're excited to announce the first stable releases of our two
 next-generation web development libraries:
@@ -22,8 +18,6 @@ a simple base class for creating Web Components with lit-html templates.
 If you've been following the projects, you probably know what lit-html and
 LitElement are all about (and you can [skip to the end](#get-started) if you
 like). If you're new to lit-html and LitElement, read on for an overview.
-
-</div>
 
 ## lit-html: a tiny, fast library for HTML templating
 

@@ -1,77 +1,53 @@
 @import url('./blog-common.css');
 
-#frontMatter > h1 {
+#frontMatter {
+  padding-bottom: 32px;
+}
+
+.post {
   display: flex;
-  align-items: center;
+  padding: 1.5em 0;
+  border-top: 1.5px solid #ccc;
 }
 
-#frontMatter > h1 > img {
-  margin-right: 0.7em;
-  width: 1.5em;
-  height: 1.5em;
+@media (max-width: 864px) {
+  .post {
+    display: block;
+  }
 }
 
-#suggestLink {
-  color: white;
-  text-transform: uppercase;
-  font-weight: 700;
-  padding: 0.7em 0;
-  font-size: 0.88889em;
-  border-bottom: 2px solid var(--color-cyan);
-}
-
-a#suggestLink:hover {
-  color: var(--color-dark-cyan);
-  border-color: white;
-  text-decoration: none;
-}
-
-#blogContent .date {
-  color: var(--color-dark-cyan);
-  font-size: 1.1em;
-  font-weight: 600;
+.date {
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
   flex: 0 0 10em;
   margin-top: 0;
 }
 
-#blogContent .title {
-  font-size: 1.2em;
-  font-weight: 600;
+.title {
+  font-size: 24px;
   margin-top: 0;
 }
 
-#blogContent a {
-  color: white;
+.title > a {
+  color: #0043c0;
+  font-weight: 500;
 }
 
-#blogContent a:hover {
+a:hover {
   text-decoration: underline;
 }
 
-#blogContent .author {
+.author {
   display: flex;
-  font-weight: 600;
+  font-weight: 500;
+  align-items: center;
+  color: #555;
 }
 
-#blogContent .author > img {
-  width: 2em;
-  height: 2em;
-  margin-right: 1em;
-}
-
-#blogContent > .post {
-  display: flex;
-  padding: 1.5em 0;
-  border-top: 1.5px solid var(--color-dark-cyan);
-}
-
-#blogContent > .post:first-of-type {
-  padding-top: 0;
-  border-top: none;
-}
-
-@media (max-width: 864px) {
-  #blogContent > .post {
-    display: block;
-  }
+.author > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 18px;
 }

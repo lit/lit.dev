@@ -31,6 +31,7 @@ const {
 const {preCompress} = require('../lit-dev-tools-cjs/lib/pre-compress.js');
 const luxon = require('luxon');
 const crypto = require('crypto');
+const pluginRss = require('@11ty/eleventy-plugin-rss');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -85,6 +86,8 @@ ${content}
 </div>`;
   });
 
+  eleventyConfig.addPlugin(pluginRss);
+
   const linkAfterHeaderBase = markdownItAnchor.permalink.linkAfterHeader({
     style: 'visually-hidden',
     class: 'anchor',
@@ -137,6 +140,16 @@ ${content}
       level: [2, 3],
     });
   eleventyConfig.setLibrary('md', md);
+
+  /**
+   * Sometimes we don't want automatically generated heading anchors, like blog
+   * articles. But it's not possible to change markdown settings on a per-page
+   * basis (!). This filter just removes the anchor elements after rendering
+   * instead.
+   */
+  eleventyConfig.addFilter('removeHeadingAnchors', function (content) {
+    return content.replace(/<a class="anchor".*<\/a>/g, '');
+  });
 
   eleventyConfig.addFilter('removeExtension', function (url) {
     const extension = path.extname(url);

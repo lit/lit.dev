@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 600" preserveAspectRatio="xMaxYMid slice">
+<rect height="100%" fill="#283198" width="100%"/>
+<rect height="100%" fill="#324fff" width="78%" transform="skewX(-45)"/>
+<rect height="100%" fill="#00ffff" width="100%" transform="skewX(45)" x="65%"/>
+<rect height="100%" fill="#00e8ff" width="100%" transform="skewX(45)" x="75%"/>
+</svg>

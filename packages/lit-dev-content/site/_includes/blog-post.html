@@ -1,7 +1,6 @@
 ---
-author: Lit Team
-authorLink: https://twitter.com/buildWithLit
-authorImage: logo.svg#flame
+author: lit-team
+splash: lit-shapes.svg
 ---
 
 {% extends 'default.html' %}
@@ -11,43 +10,47 @@ authorImage: logo.svg#flame
   <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
 {% endblock %}
 
-{% block drawer %}
-{% endblock %}
+{% set authorData = authors[author] %}
 
 {% block content %}
+  <img id="splash" src="{{ site.baseurl }}/images/blog/{{ splash }}">
+
   <article>
-    <div id="frontMatter">
-      <h1>{{ title }}</h1>
+    <h1>{{ title }}</h1>
+    <p id="summary">{{ summary }}</p>
 
-      <p>{{ summary }}</p>
+    <time id="date" datetime="{{ date | htmlDateString }}">
+      {{ date | readableDate }}
+    </time>
 
-      <div id="imageNameDate">
-        {% if authorImage == "logo.svg#flame" %}
-          <img alt="" class="flame" src="{{ site.baseurl }}/images/{{ authorImage }}">
-        {% else %}
-          <img alt="Photo of {{ author }}" src="{{ site.baseurl }}/images/{{ authorImage }}">
-        {% endif %}
+    <div class="author">
+      <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+           width="80" height="80"
+           {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+           alt="{% if authorData.imageAlt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
 
-        <div id="nameDate">
-          <p>
-            {% if authorLink %}
-              <a id="authorName" href="{{ authorLink }}" target="_blank" rel="noopener">
-                {{ author }}
-              </a>
-            {% else %}
-              <span id="authorName">{{ author }}</span>
+      <div class="authorRhs">
+        <cite class="authorName">{{ authorData.name }}</cite>
+
+        {% if authorData.links %}
+          <ul class="authorLinks">
+            {% if authorData.links.twitter %}
+              <li><a href="https://twitter.com/{{ authorData.links.twitter }}"
+                    target="_blank" rel="noopener">Twitter</a></li>
             {% endif %}
-          </p>
-
-          <time datetime="{{ date | htmlDateString }}">
-            {{ date | readableDate }}
-          </time>
-        </div>
+            {% if authorData.links.github %}
+              <li><a href="https://github.com/{{ authorData.links.github }}"
+                    target="_blank" rel="noopener">GitHub</a></li>
+            {% endif %}
+          </ul>
+        {% endif %}
       </div>
     </div>
 
     <div id="blogContent">
-      {{ content | safe }}
+      {{ content | removeHeadingAnchors | safe }}
     </div>
+
+    <a id="blogIndexLink" href="{{ site.baseurl }}/blog/">Read more posts</a>
   </article>
 {% endblock %}
