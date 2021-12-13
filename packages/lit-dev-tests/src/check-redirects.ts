@@ -8,7 +8,11 @@ import * as pathLib from 'path';
 import * as fs from 'fs/promises';
 import ansi from 'ansi-escape-sequences';
 import fetch from 'node-fetch';
-import {pageRedirects} from 'lit-dev-server/lib/redirects.js';
+import {
+  pageRedirects,
+  oldLitElementSiteRedirects,
+  oldLitHtmlSiteRedirects,
+} from 'lit-dev-server/lib/redirects.js';
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -91,18 +95,21 @@ const checkAllRedirects = async () => {
 
   let fail = false;
   const promises = [];
-  for (const [from, to] of pageRedirects) {
+  const allRedirectTargets = new Set([
+    ...pageRedirects.values(),
+    ...oldLitElementSiteRedirects.values(),
+    ...oldLitHtmlSiteRedirects.values(),
+  ]);
+  for (const target of allRedirectTargets) {
     promises.push(
       (async () => {
-        const result = await checkRedirect(to);
+        const result = await checkRedirect(target);
         if (result === OK) {
-          console.log(`${bold + green}OK${reset} ${from} -> ${to}`);
+          console.log(`${bold + green}OK${reset} ${target}`);
         } else {
           console.log();
           console.log(
-            `${bold + red}BROKEN REDIRECT${reset} ${from} -> ${
-              yellow + to + reset
-            }`
+            `${bold + red}BROKEN REDIRECT${reset} ${yellow + target + reset}`
           );
           console.log(result);
           console.log();
