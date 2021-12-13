@@ -195,7 +195,13 @@ ${content}
   });
 
   eleventyConfig.addTransform('htmlMinify', function (content, outputPath) {
-    if (DEV || !outputPath.endsWith('.html')) {
+    if (
+      DEV ||
+      !outputPath.endsWith('.html') ||
+      // TODO(aomarks) How can we get Eleventy to not treat this XML file as a
+      // directory with an index.html?
+      outputPath.includes('feed.xml')
+    ) {
       return content;
     }
     const minified = htmlMinifier.minify(content, {
