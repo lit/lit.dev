@@ -42,6 +42,7 @@ cite.authorName {
 ul.authorLinks {
   padding-left: 0;
   margin: 0;
+  display: flex;
 }
 
 ul.authorLinks > li {
@@ -51,7 +52,7 @@ ul.authorLinks > li {
 
 ul.authorLinks > li:not(:first-of-type)::before {
   content: "·";
-  margin: 0 8px 0 4px;
+  margin: 0 8px;
 }
 
 ul.authorLinks > li > a {
