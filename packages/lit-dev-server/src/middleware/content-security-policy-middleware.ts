@@ -202,6 +202,15 @@ export const contentSecurityPolicyMiddleware = (
   // discussion of why this is a good practice.
   const strictFallbackCsp = makePolicy(`default-src 'none'`);
 
+  // Chrome automatically displays XML files with its own little XML viewer. But
+  // that viewer is affected by our CSP! Let it work for when people look at our
+  // blog Atom XML feed directly.
+  const atomXmlFeedCsp = makePolicy(
+    `style-src 'unsafe-inline'`,
+    `img-src data:`,
+    `default-src 'none'`
+  );
+
   return async (ctx, next) => {
     let policy: string;
     // Note we can't rely on ctx.type being set by the downstream middleware,
@@ -218,6 +227,8 @@ export const contentSecurityPolicyMiddleware = (
       policy = entrypointsCsp;
     } else if (ctx.path.endsWith('/playground-typescript-worker.js')) {
       policy = playgroundWorkerCsp;
+    } else if (ctx.path.endsWith('/atom.xml')) {
+      policy = atomXmlFeedCsp;
     } else {
       policy = strictFallbackCsp;
     }
