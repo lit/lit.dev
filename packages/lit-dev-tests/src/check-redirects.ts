@@ -62,16 +62,23 @@ const checkRedirect = async (
     // need to actually run the server, we can just look directly in the built
     // HTML output directory.
     const {pathname, hash} = new URL(redirect, 'http://lit.dev');
-    const diskPath = pathLib.relative(
+    const indexHtmlPath = pathLib.relative(
       process.cwd(),
       pathLib.join(siteOutputDir, trimTrailingSlash(pathname), 'index.html')
     );
+    const directPath = pathLib.relative(
+      process.cwd(),
+      pathLib.join(siteOutputDir, trimTrailingSlash(pathname))
+    );
     let data;
     try {
-      data = await fs.readFile(diskPath, {encoding: 'utf8'});
+      data = await Promise.any([
+        fs.readFile(indexHtmlPath, {encoding: 'utf8'}),
+        fs.readFile(directPath, {encoding: 'utf8'}),
+      ]);
     } catch {
       return `Could not find file matching path ${pathname}
-Searched for file ${diskPath}`;
+Searched for file ${indexHtmlPath} or ${directPath}`;
     }
     if (hash) {
       // Another hack. Just do a regexp search for e.g. id="somesection" instead
@@ -80,7 +87,7 @@ Searched for file ${diskPath}`;
       const idAttrRegExp = new RegExp(`\\sid=["']?${hash.slice(1)}["']?[\\s>]`);
       if (data.match(idAttrRegExp) === null) {
         return `Could not find section matching hash ${hash}.
-Searched in file ${diskPath}`;
+Searched in file ${indexHtmlPath}`;
       }
     }
   }
