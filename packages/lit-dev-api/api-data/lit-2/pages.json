@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "LitElement",
@@ -2731,7 +2731,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "ReactiveElement",
@@ -5495,7 +5495,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "html",
@@ -6169,7 +6169,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "adoptStyles",
@@ -6751,7 +6751,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "customElement",
@@ -7274,12 +7274,12 @@
         "kindString": "Function",
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`slot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
-          "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
+          "text": "Can be passed an optional [`QueryAssignedElementsOptions`](/docs/api/decorators/#QueryAssignedElementsOptions) object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
         },
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
-            "line": 63,
+            "line": 62,
             "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
           }
         ],
@@ -7293,9 +7293,6 @@
                 "kindString": "Parameter",
                 "flags": {
                   "isOptional": true
-                },
-                "comment": {
-                  "text": "Object that sets options for nodes to be returned. See\n    [MDN parameters section](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements#parameters)\n    for available options. Also accepts two more optional properties,\n    `slot` and `selector`."
                 },
                 "type": {
                   "type": "reference",
@@ -7315,7 +7312,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query-assigned-elements.d.ts",
-                    "line": 50
+                    "line": 49
                   }
                 ],
                 "signatures": [
@@ -7324,7 +7321,7 @@
                     "kindString": "Call signature",
                     "comment": {
                       "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`slot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
-                      "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
+                      "text": "Can be passed an optional [[`QueryAssignedElementsOptions`]] object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
                     },
                     "parameters": [
                       {
@@ -7387,12 +7384,12 @@
         "kindString": "Function",
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given `slot`.",
-          "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>`.\n"
+          "text": "Can be passed an optional [`QueryAssignedNodesOptions`](/docs/api/decorators/#QueryAssignedNodesOptions) object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>`.\n"
         },
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
-            "line": 57,
+            "line": 58,
             "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
           }
         ],
@@ -7406,9 +7403,6 @@
                 "kindString": "Parameter",
                 "flags": {
                   "isOptional": true
-                },
-                "comment": {
-                  "text": "Object that sets options for nodes to be returned. See\n    [MDN parameters section](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes#parameters)\n    for available options."
                 },
                 "type": {
                   "type": "reference",
@@ -7790,6 +7784,9 @@
       {
         "name": "QueryAssignedElementsOptions",
         "kindString": "Interface",
+        "comment": {
+          "shortText": "Options for the [`queryAssignedElements`](/docs/api/decorators/#queryAssignedElements) decorator. Extends the options\nthat can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
+        },
         "children": [
           {
             "name": "selector",
@@ -7798,12 +7795,12 @@
               "isOptional": true
             },
             "comment": {
-              "shortText": "CSS selector used to filter the elements returned."
+              "shortText": "CSS selector used to filter the elements returned. For example, a selector\nof `\".item\"` will only include elements with the `item` class."
             },
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
-                "line": 24,
+                "line": 30,
                 "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
               }
             ],
@@ -7830,12 +7827,12 @@
               "isOptional": true
             },
             "comment": {
-              "shortText": "Name of the slot. Leave empty for the default slot."
+              "shortText": "Name of the slot to query. Leave empty for the default slot."
             },
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
-                "line": 22,
+                "line": 27,
                 "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
               }
             ],
@@ -7867,7 +7864,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
-            "line": 19,
+            "line": 24,
             "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
           }
         ],
@@ -7910,6 +7907,9 @@
       {
         "name": "QueryAssignedNodesOptions",
         "kindString": "Interface",
+        "comment": {
+          "shortText": "Options for the [`queryAssignedNodes`](/docs/api/decorators/#queryAssignedNodes) decorator. Extends the options that\ncan be passed into\n[HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
+        },
         "children": [
           {
             "name": "slot",
@@ -7918,12 +7918,12 @@
               "isOptional": true
             },
             "comment": {
-              "shortText": "Name of the slot. Leave empty for the default slot."
+              "shortText": "Name of the slot to query. Leave empty for the default slot."
             },
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
-                "line": 22,
+                "line": 27,
                 "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
               }
             ],
@@ -7947,7 +7947,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
-            "line": 18,
+            "line": 23,
             "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
           }
         ],
@@ -7994,7 +7994,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "asyncAppend",
@@ -15656,7 +15656,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "AsyncDirective",
@@ -20310,7 +20310,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "html",
@@ -20815,7 +20815,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "ReactiveController",
@@ -21166,7 +21166,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
+    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
     "items": [
       {
         "name": "defaultConverter",
