@@ -37,10 +37,55 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <tr>
   <td>
 
+  [`when`](#when)
+
+  </td>
+  <td>Renders one of two templates based on a condition</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`choose`](#choose)
+
+  </td>
+  <td>Renders one of many templates based on a key value</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`map`](#map)
+
+  </td>
+  <td>Transforms an iterable with a function</td>
+  </tr>
+
+  <tr>
+  <td>
+
   [`repeat`](#repeat)
 
   </td>
   <td>Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`join`](#join)
+
+  </td>
+  <td>Alternative values from an iterable with a joiner value</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`range`](#range)
+
+  </td>
+  <td>Creates an iterable of numbers in a sequence, useful for iterating a specific number of times</td>
   </tr>
 
   <tr>
@@ -355,6 +400,178 @@ Explore `styleMap` more in the [playground](/playground/#sample=examples/directi
 
 ## Loops and conditionals
 
+### when
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {when} from 'lit/directives/when.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+choose<T, V>(
+  value: T,
+  cases: Array<[T, () => V]>,
+  defaultCase?: () => V
+)
+```
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any
+
+</td>
+</tr>
+</tbody>
+</table>
+
+When `condition` is true, returns the result of calling `trueCase()`, else returns the result of calling `falseCase()` if `falseCase` is defined.
+
+This is a convenience wrapper around a ternary expression that makes it a
+little nicer to write an inline conditional without an else.
+
+```ts
+class MyElement extends LitElement {
+  render() {
+    return html`
+      ${when(this.user, () => html`User: ${this.user.username}`, () => html`Sign In...`)}
+    `;
+  }
+}
+```
+
+### choose
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {choose} from 'lit/directives/choose.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+choose<T, V>(
+  value: T,
+  cases: Array<[T, () => V]>,
+  defaultCase?: () => V
+)
+```
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any
+
+</td>
+</tr>
+</tbody>
+</table>
+
+Chooses and evaluates a template function from a list of cases based on matching
+the given `value` to a case.
+
+Cases are structured as `[caseValue, func]`. `value` is matched to
+`caseValue` by strict equality. The first match is selected. Case values
+can be of any type including primitives, objects, and symbols.
+
+This is similar to a switch statement, but as an expression and without
+fallthrough.
+
+```ts
+class MyElement extends LitElement {
+  render() {
+    return html`
+      ${choose(this.section, [
+        ['home', () => <h1>Home</h1>]
+        ['about', () => <h1>About</h1>]
+      ],
+      () => html`<h1>Error</h1>)}
+    `;
+  }
+}
+```
+
+### map
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {map} from 'lit/directives/map.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+map<T>(
+  items: Iterable<T> | undefined,
+  f: (value: T, index: number) => unknown
+)
+```
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any
+
+</td>
+</tr>
+</tbody>
+</table>
+
+Returns an iterable containing the result of calling `f(value)` on each value in `items`.
+
+`map()` is a simple wrapper around a [for/of loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) that makes working with iterables in expressions a bit easier. `map()` always updates any DOM created in place - it does not do any diffing or DOM movement. If you need that see [repeat](#repeat). `map()` is smaller and faster than `repeat()`, so if you don't need diffing and DOM stability, prefer `map()`.
+
+
+```ts
+class MyElement extends LitElement {
+  render() {
+    return html`
+      <ul>
+        ${map(items, (i) => html`<li>${i}</li>`)}
+      </ul>
+    `;
+  }
+}
+```
+
 ### repeat
 
 Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability.
@@ -400,6 +617,8 @@ Repeats a series of values (usually `TemplateResults`) generated from an
 iterable, and updates those items efficiently when the iterable changes. When
 the `keyFn` is provided, key-to-DOM association is maintained between updates by
 moving generated DOM when required, and is generally the most efficient way to use `repeat` since it performs minimum unnecessary work for insertions and removals.
+
+If you're not using a key function, you should consider using [`map()`](#map).
 
 {% switchable-sample %}
 
@@ -453,6 +672,124 @@ See [When to use map or repeat](/docs/templates/lists/#when-to-use-map-or-repeat
 of when to use `repeat` and when to use standard JavaScript flow control.
 
 Explore `repeat` more in the [playground](/playground/#sample=examples/directive-repeat).
+
+### join
+
+Returns an iterable containing the values in `items` interleaved with the `joiner` value.
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {join} from 'lit/directives/join.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+join<I, J>(
+  items: Iterable<I> | undefined,
+  joiner: J
+): Iterable<I | J>;
+
+join<I, J>(
+  items: Iterable<I> | undefined,
+  joiner: (index: number) => J
+): Iterable<I | J>;
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any
+
+</td>
+</tr>
+</tbody>
+</table>
+
+```ts
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      ${join(
+        map(menuItems, (i) => html`<a href=${i.href}>${i.label}</a>`),
+        html`<span class="separator">|</span>`
+      )}
+    `;
+  }
+}
+```
+
+### range
+
+Returns an iterable of integers from `start` to `end` (exclusive) incrementing by `step`.
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {range} from 'lit/directives/range.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+range(end: number): Iterable<number>;
+
+range(
+  start: number,
+  end: number,
+  step?: number
+): Iterable<number>;
+
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any
+
+</td>
+</tr>
+</tbody>
+</table>
+
+```ts
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      ${map(range(8), (i) => html`${i + 1}`)}
+    `;
+  }
+}
+```
 
 ### ifDefined
 
@@ -1516,3 +1853,4 @@ customElements.define('my-element', MyElement);
 {% endswitchable-sample %}
 
 Explore `asyncReplace` more in the [playground](/playground/#sample=examples/directive-async-replace).
+
