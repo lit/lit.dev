@@ -11,33 +11,155 @@ versionLinks:
 Directives are functions that can extend Lit by customizing the way an expression renders.
 Lit includes a number of built-in directives to help with a variety of rendering needs:
 
-**Styling:**
-*   [`classMap`](#classmap) - sets a list of classes to an element based on an object
-*   [`styleMap`](#stylemap) - sets a list of style properties to an element based on an object
+<table>
+  <tr><th>Directive</th><th>Summary</th></tr>
+  <tr><th colspan="2">Styling </th></tr>
+  <tr>
+  <td>
 
-**Rendering special values:**
-*   [`repeat`](#repeat) - renders values from an iterable into the DOM, with optional keying
-*   [`templateContent`](#templatecontent) - renders the content of a `<template>` element
-*   [`unsafeHTML`](#unsafehtml) - renders a string as HTML rather than text
-*   [`unsafeSVG`](#unsafesvg) - renders a string as SVG rather than text
+  [`classMap`](#classmap)
 
-**Conditional rendering:**
-*   [`cache`](#cache) - caches rendered DOM when changing templates rather than discarding the DOM
-*   [`guard`](#guard) - only re-evaluates the template when one of its dependencies changes
-*   [`ifDefined`](#ifdefined) - sets an attribute if the value is defined and removes the attribute if undefined
-*   [`live`](#live) - sets an attribute or property if it differs from the live DOM value rather than the last-rendered value
+  </td>
+  <td>Sets a list of classes to an element based on an object </td>
+  </tr>
 
-**Referencing the rendered DOM:**
-*   [`ref`](#ref) - gets a reference to an element rendered in the template
+  <tr>
+  <td>
 
-**Asynchronous rendering:**
-*   [`until`](#until) - renders placeholder content until one or more promises resolve
-*   [`asyncAppend`](#asyncappend) - appends values from an `AsyncIterable` into the DOM as they are yielded
-*   [`asyncReplace`](#asyncreplace) - renders the latest value from an `AsyncIterable` into the DOM as it is yielded
+  [`styleMap`](#stylemap)
+
+  </td>
+  <td>Sets a list of style properties to an element based on an object</td>
+  </tr>
+
+  <tr><th colspan="2">Loops and Conditionals</th></tr>
+
+  <tr>
+  <td>
+
+  [`repeat`](#repeat)
+
+  </td>
+  <td>Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`ifDefined`](#ifdefined)
+
+  </td>
+  <td>Sets an attribute if the value is defined and removes the attribute if undefined</td>
+  </tr>
+
+  <tr><th colspan="2">Caching and change detection</th></tr>
+
+  <tr>
+  <td>
+
+  [`cache`](#cache)
+
+  </td>
+  <td>Caches rendered DOM when changing templates rather than discarding the DOM</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`guard`](#guard)
+
+  </td>
+  <td>Only re-evaluates the template when one of its dependencies changes</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`live`](#live)
+
+  </td>
+  <td>Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value</td>
+  </tr>
+
+  <tr><th colspan="2">Referencing rendered DOM</th></tr>
+
+  <tr>
+  <td>
+
+  [`ref`](#ref)
+
+  </td>
+  <td>Gets a reference to an element rendered in the template</td>
+  </tr>
+
+  <tr><th colspan="2">Rendering special values</th></tr>
+
+  <tr>
+  <td>
+
+  [`templateContent`](#templatecontent)
+
+  </td>
+  <td>
+
+  renders the content of a `<template>` element
+
+  </td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`unsafeHTML`](#unsafehtml)
+
+  </td>
+  <td>Renders a string as HTML rather than text</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`unsafeSVG`](#unsafesvg)
+
+  </td>
+  <td>Renders a string as SVG rather than text</td>
+  </tr>
+
+  <tr><th colspan="2">Asynchronous rendering</th></tr>
+
+  <tr>
+  <td>
+
+  [`until`](#until)
+
+  </td>
+  <td>Renders placeholder content until one or more promises resolve</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`asyncAppend`](#asyncappend)
+
+  </td>
+  <td>Appends values from an `AsyncIterable` into the DOM as they are yielded</td>
+  </tr>
+
+  <tr>
+  <td>
+
+  [`asyncReplace`](#asyncreplace)
+
+  </td>
+  <td>Renders the latest value from an `AsyncIterable` into the DOM as it is yielded</td>
+  </tr>
+</table>
 
 You can also build your own directives. For more information, see [Custom directives](/docs/templates/custom-directives/).
 
-## classMap
+## Styling
+
+### classMap
 
 Sets a list of classes to an element based on an object.
 
@@ -127,7 +249,7 @@ html`<div class="my-widget ${classMap(dynamicClasses)}">Static and dynamic</div>
 
 Explore `classMap` more in the [playground](/playground/#sample=examples/directive-class-map).
 
-## styleMap
+### styleMap
 
 Sets a list of style properties to an element based on an object.
 
@@ -231,9 +353,11 @@ html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 
 Explore `styleMap` more in the [playground](/playground/#sample=examples/directive-style-map).
 
-## repeat
+## Loops and conditionals
 
-Renders values from an iterable into the DOM, with optional keying.
+### repeat
+
+Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability.
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -275,8 +399,7 @@ Child expression
 Repeats a series of values (usually `TemplateResults`) generated from an
 iterable, and updates those items efficiently when the iterable changes. When
 the `keyFn` is provided, key-to-DOM association is maintained between updates by
-moving DOM when required, and is generally the most efficient way to use
-`repeat` since it performs minimum unnecessary work for insertions and removals.
+moving generated DOM when required, and is generally the most efficient way to use `repeat` since it performs minimum unnecessary work for insertions and removals.
 
 {% switchable-sample %}
 
@@ -331,97 +454,9 @@ of when to use `repeat` and when to use standard JavaScript flow control.
 
 Explore `repeat` more in the [playground](/playground/#sample=examples/directive-repeat).
 
-## templateContent
+### ifDefined
 
-Renders the content of a `<template>` element.
-
-<table>
-<thead><tr><th></th><th></th></tr></thead>
-<tbody>
-<tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
-<td class="wide-cell">
-
-```js
-import {templateContent} from 'lit/directives/template-content.js';
-```
-
-</td>
-</tr>
-<tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
-<td class="wide-cell">
-
-```ts
-templateContent(templateElement: HTMLTemplateElement)
-```
-
-</td>
-</tr>
-<tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
-<td class="wide-cell">
-
-Child expression
-
-</td>
-</tr>
-</tbody>
-</table>
-
-Lit templates are encoded in Javascript, so that they can embed Javascript
-expressions that make them dynamic. If you have a static HTML `<template>` that
-you need to include in your Lit template, you can use the `templateContent`
-directive to clone the template content and include it in your Lit template. As
-long as the template element reference does not change between renders,
-subsequent renders will no-op.
-
-<div class="alert alert-warning">
-
-Note, the template content should be developer-controlled and must not be
-created using an untrusted string. Examples of untrusted content include query
-string parameters and values from user inputs. Untrusted templates rendered with
-this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
-
-</div>
-
-{% switchable-sample %}
-
-```ts
-const templateEl = document.querySelector('template#myContent') as HTMLTemplateElement;
-
-@customElement('my-element')
-class MyElement extends LitElement {
-
-  render() {
-    return  html`
-      Here's some content from a template element:
-      ${templateContent(templateEl)}`;
-  }
-}
-```
-
-```js
-const templateEl = document.querySelector('template#myContent');
-
-class MyElement extends LitElement {
-
-  render() {
-    return  html`
-      Here's some content from a template element:
-      ${templateContent(templateEl)}`;
-  }
-}
-customElements.define('my-element', MyElement);
-```
-
-{% endswitchable-sample %}
-
-Explore `templateContent` more in the [playground](/playground/#sample=examples/directive-template-content).
-
-## unsafeHTML
-
-Renders a string as HTML rather than text.
+Sets an attribute if the value is defined and removes the attribute if undefined.
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -431,7 +466,7 @@ Renders a string as HTML rather than text.
 <td class="wide-cell">
 
 ```js
-import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {ifDefined} from 'lit/directives/if-defined.js';
 ```
 
 </td>
@@ -441,7 +476,7 @@ import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 <td class="wide-cell">
 
 ```ts
-unsafeHTML(value: string | typeof nothing | typeof noChange)
+ifDefined(value: unknown)
 ```
 
 </td>
@@ -450,160 +485,64 @@ unsafeHTML(value: string | typeof nothing | typeof noChange)
 <td class="no-wrap-cell vcenter-cell">Usable location</td>
 <td class="wide-cell">
 
-Child expression
+Attribute expression
 
 </td>
 </tr>
 </tbody>
 </table>
 
-A key feature of Lit's templating syntax is that only strings originating in
-template literals are parsed as HTML. Because template literals can only be
-authored in trusted script files, this acts as a natural safeguard against XSS
-attacks injecting untrusted HTML. However, there may be cases when HTML not
-originating in script files needs to be rendered in a Lit template, for example
-trusted HTML content fetched from a database. The `unsafeHTML` directive will
-parse such a string as HTML and render it in a Lit template.
+For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined (`undefined` or `null`). For other part types, this directive is a no-op.
 
-<div class="alert alert-warning">
-
-Note, the string passed to `unsafeHTML` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
-
-</div>
+When more than one expression exists in a single attribute value, the attribute will be removed if _any_ expression uses `ifDefined` and evaluates to `undefined`/`null`. This is especially useful for setting URL attributes, when the attribute should not be set if required parts of the URL are not defined, to prevent 404's.
 
 {% switchable-sample %}
 
 ```ts
-const markup = '<h3>Some HTML to render.</h3>';
-
 @customElement('my-element')
 class MyElement extends LitElement {
 
+  @property()
+  filename: string | undefined = undefined;
+
+  @property()
+  size: string | undefined = undefined;
+
   render() {
-    return html`
-      Look out, potentially unsafe HTML ahead:
-      ${unsafeHTML(markup)}
-    `;
+    // src attribute not rendered if either size or filename are undefined
+    return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
   }
 }
 ```
 
 ```js
-const markup = '<h3>Some HTML to render.</h3>';
-
 class MyElement extends LitElement {
+  static properties = {
+    filename: {},
+    size: {},
+  };
+
+  constructor() {
+    super();
+    this.filename = undefined;
+    this.size = undefined;
+  }
 
   render() {
-    return html`
-      Look out, potentially unsafe HTML ahead:
-      ${unsafeHTML(markup)}
-    `;
+    // src attribute not rendered if either size or filename are undefined
+    return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
   }
 }
-customElements.define('my-element', MyElement);
+customElements.define('my-element', MyEleent);
 ```
 
 {% endswitchable-sample %}
 
+Explore `ifDefined` more in the [playground](/playground/#sample=examples/directive-if-defined).
 
-Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/directive-unsafe-html).
+## Caching and change detection
 
-## unsafeSVG
-
-Renders a string as SVG rather than text.
-
-<table>
-<thead><tr><th></th><th></th></tr></thead>
-<tbody>
-<tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
-<td class="wide-cell">
-
-```js
-import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
-```
-
-</td>
-</tr>
-<tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
-<td class="wide-cell">
-
-```ts
-unsafeSVG(value: string | typeof nothing | typeof noChange)
-```
-
-</td>
-</tr>
-<tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
-<td class="wide-cell">
-
-Child expression
-
-</td>
-</tr>
-</tbody>
-</table>
-
-Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when SVG content
-not originating in script files needs to be rendered in a Lit template, for
-example trusted SVG content fetched from a database. The `unsafeSVG` directive
-will parse such a string as SVG and render it in a Lit template.
-
-<div class="alert alert-warning">
-
-Note, the string passed to `unsafeSVG` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
-
-</div>
-
-{% switchable-sample %}
-
-```ts
-const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
-
-@customElement('my-element')
-class MyElement extends LitElement {
-
-  render() {
-    return html`
-      Look out, potentially unsafe SVG ahead:
-      <svg width="40" height="40" viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg" version="1.1">
-        ${unsafeSVG(svg)}
-      </svg> `;
-  }
-}
-```
-
-```js
-const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
-
-class MyElement extends LitElement {
-
-  render() {
-    return html`
-      Look out, potentially unsafe SVG ahead:
-      <svg width="40" height="40" viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg" version="1.1">
-        ${unsafeSVG(svg)}
-      </svg> `;
-  }
-}
-customElements.define('my-element', MyElement);
-```
-
-{% endswitchable-sample %}
-
-Explore `unsafeSVG` more in the [playground](/playground/#sample=examples/directive-unsafe-svg).
-
-## cache
+### cache
 
 Caches rendered DOM when changing templates rather than discarding the DOM. You
 can use this directive to optimize rendering performance when frequently
@@ -702,7 +641,7 @@ The `cache` directive caches the generated DOM for a given expression and input 
 
 Explore `cache` more in the [playground](/playground/#sample=examples/directive-cache).
 
-## guard
+### guard
 
 Only re-evaluates the template when one of its dependencies changes, to optimize
 rendering performance by preventing unnecessary work.
@@ -797,7 +736,7 @@ In this case, the expensive `calculateSHA` function is only run when the `value`
 
 Explore `guard` more in the [playground](/playground/#sample=examples/directive-guard).
 
-## live
+### live
 
 Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value.
 
@@ -892,9 +831,12 @@ passed in, or the expression will update every render.
 
 Explore `live` more in the [playground](/playground/#sample=examples/directive-live).
 
-## ifDefined
 
-Sets an attribute if the value is defined and removes the attribute if undefined.
+## Rendering special values
+
+### templateContent
+
+Renders the content of a `<template>` element.
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -904,7 +846,7 @@ Sets an attribute if the value is defined and removes the attribute if undefined
 <td class="wide-cell">
 
 ```js
-import {ifDefined} from 'lit/directives/if-defined.js';
+import {templateContent} from 'lit/directives/template-content.js';
 ```
 
 </td>
@@ -914,7 +856,7 @@ import {ifDefined} from 'lit/directives/if-defined.js';
 <td class="wide-cell">
 
 ```ts
-ifDefined(value: unknown)
+templateContent(templateElement: HTMLTemplateElement)
 ```
 
 </td>
@@ -923,62 +865,251 @@ ifDefined(value: unknown)
 <td class="no-wrap-cell vcenter-cell">Usable location</td>
 <td class="wide-cell">
 
-Attribute expression
+Child expression
 
 </td>
 </tr>
 </tbody>
 </table>
 
-For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined (`undefined` or `null`). For other part types, this directive is a no-op.
+Lit templates are encoded in Javascript, so that they can embed Javascript
+expressions that make them dynamic. If you have a static HTML `<template>` that
+you need to include in your Lit template, you can use the `templateContent`
+directive to clone the template content and include it in your Lit template. As
+long as the template element reference does not change between renders,
+subsequent renders will no-op.
 
-When more than one expression exists in a single attribute value, the attribute will be removed if _any_ expression uses `ifDefined` and evaluates to `undefined`/`null`. This is especially useful for setting URL attributes, when the attribute should not be set if required parts of the URL are not defined, to prevent 404's.
+<div class="alert alert-warning">
+
+Note, the template content should be developer-controlled and must not be
+created using an untrusted string. Examples of untrusted content include query
+string parameters and values from user inputs. Untrusted templates rendered with
+this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+
+</div>
 
 {% switchable-sample %}
 
 ```ts
+const templateEl = document.querySelector('template#myContent') as HTMLTemplateElement;
+
 @customElement('my-element')
 class MyElement extends LitElement {
 
-  @property()
-  filename: string | undefined = undefined;
-
-  @property()
-  size: string | undefined = undefined;
-
   render() {
-    // src attribute not rendered if either size or filename are undefined
-    return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
+    return  html`
+      Here's some content from a template element:
+      ${templateContent(templateEl)}`;
   }
 }
 ```
 
 ```js
-class MyElement extends LitElement {
-  static properties = {
-    filename: {},
-    size: {},
-  };
+const templateEl = document.querySelector('template#myContent');
 
-  constructor() {
-    super();
-    this.filename = undefined;
-    this.size = undefined;
-  }
+class MyElement extends LitElement {
 
   render() {
-    // src attribute not rendered if either size or filename are undefined
-    return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
+    return  html`
+      Here's some content from a template element:
+      ${templateContent(templateEl)}`;
   }
 }
-customElements.define('my-element', MyEleent);
+customElements.define('my-element', MyElement);
 ```
 
 {% endswitchable-sample %}
 
-Explore `ifDefined` more in the [playground](/playground/#sample=examples/directive-if-defined).
+Explore `templateContent` more in the [playground](/playground/#sample=examples/directive-template-content).
 
-## ref
+### unsafeHTML
+
+Renders a string as HTML rather than text.
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+unsafeHTML(value: string | typeof nothing | typeof noChange)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
+
+A key feature of Lit's templating syntax is that only strings originating in
+template literals are parsed as HTML. Because template literals can only be
+authored in trusted script files, this acts as a natural safeguard against XSS
+attacks injecting untrusted HTML. However, there may be cases when HTML not
+originating in script files needs to be rendered in a Lit template, for example
+trusted HTML content fetched from a database. The `unsafeHTML` directive will
+parse such a string as HTML and render it in a Lit template.
+
+<div class="alert alert-warning">
+
+Note, the string passed to `unsafeHTML` must be developer-controlled and not
+include untrusted content. Examples of untrusted content include query string
+parameters and values from user inputs. Untrusted content rendered with this
+directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+
+</div>
+
+{% switchable-sample %}
+
+```ts
+const markup = '<h3>Some HTML to render.</h3>';
+
+@customElement('my-element')
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe HTML ahead:
+      ${unsafeHTML(markup)}
+    `;
+  }
+}
+```
+
+```js
+const markup = '<h3>Some HTML to render.</h3>';
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe HTML ahead:
+      ${unsafeHTML(markup)}
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
+
+Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/directive-unsafe-html).
+
+### unsafeSVG
+
+Renders a string as SVG rather than text.
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+unsafeSVG(value: string | typeof nothing | typeof noChange)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
+
+Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when SVG content
+not originating in script files needs to be rendered in a Lit template, for
+example trusted SVG content fetched from a database. The `unsafeSVG` directive
+will parse such a string as SVG and render it in a Lit template.
+
+<div class="alert alert-warning">
+
+Note, the string passed to `unsafeSVG` must be developer-controlled and not
+include untrusted content. Examples of untrusted content include query string
+parameters and values from user inputs. Untrusted content rendered with this
+directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+
+</div>
+
+{% switchable-sample %}
+
+```ts
+const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
+
+@customElement('my-element')
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe SVG ahead:
+      <svg width="40" height="40" viewBox="0 0 100 100"
+        xmlns="http://www.w3.org/2000/svg" version="1.1">
+        ${unsafeSVG(svg)}
+      </svg> `;
+  }
+}
+```
+
+```js
+const svg = '<circle cx="50" cy="50" r="40" fill="red" />';
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe SVG ahead:
+      <svg width="40" height="40" viewBox="0 0 100 100"
+        xmlns="http://www.w3.org/2000/svg" version="1.1">
+        ${unsafeSVG(svg)}
+      </svg> `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
+Explore `unsafeSVG` more in the [playground](/playground/#sample=examples/directive-unsafe-svg).
+
+
+## Referencing rendered DOM
+
+### ref
 
 Retrieves a reference to an element rendered into the DOM.
 
@@ -1114,8 +1245,9 @@ customElements.define('my-element', MyElement);
 
 Explore `ref` more in the [playground](/playground/#sample=examples/directive-ref).
 
+## Asynchronous rendering
 
-## until
+### until
 
 Renders placeholder content until one or more promises resolve.
 
@@ -1201,7 +1333,7 @@ customElements.define('my-element', MyElement);
 
 Explore `until` more in the [playground](/playground/#sample=examples/directive-until).
 
-## asyncAppend
+### asyncAppend
 
 Appends values from an `AsyncIterable` into the DOM as they are yielded.
 
@@ -1294,7 +1426,7 @@ customElements.define('my-element', MyElement);
 
 Explore `asyncAppend` more in the [playground](/playground/#sample=examples/directive-async-append).
 
-## asyncReplace
+### asyncReplace
 
 Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.
 
@@ -1384,4 +1516,3 @@ customElements.define('my-element', MyElement);
 {% endswitchable-sample %}
 
 Explore `asyncReplace` more in the [playground](/playground/#sample=examples/directive-async-replace).
-
