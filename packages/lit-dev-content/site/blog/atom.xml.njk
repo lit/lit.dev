@@ -25,7 +25,7 @@ eleventyExcludeFromCollections: true
       <summary>{{ post.data.summary }}</summary>
       <author>
         <name>{{ author.name }}</name>
-        {% if author.twitter %}
+        {% if author.links.twitter %}
           <uri>https://twitter.com/{{ author.links.twitter }}</uri>
         {% elif author.links.github %}
           <uri>https://github.com/{{ author.links.github }}</uri>
