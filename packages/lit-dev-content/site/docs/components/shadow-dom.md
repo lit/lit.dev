@@ -205,7 +205,7 @@ render() {
 
 For more information, see [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
 
-### @queryAssignedElements and @queryAssignedNodes decorator { #query-assigned-elements }
+### @queryAssignedElements and @queryAssignedNodes decorator { #query-assigned-nodes }
 
 `@queryAssignedElements` and `@queryAssignedNodes` convert a class property into a getter that returns the result of calling
 [`HTMLSlot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements) or [`HTMLSlot.assignedNodes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) respectively on a given slot in the component's shadow tree.
@@ -224,8 +224,6 @@ Deciding which decorator to use depends on whether you want to query for text no
 
 </div>
 
-{% switchable-sample %}
-
 ```ts
 @queryAssignedNodes({slot: 'list', selector: '.item'})
 _listItems!: Array<HTMLElement>;
@@ -234,10 +232,12 @@ _listItems!: Array<HTMLElement>;
 _headerNodes!: Array<Node>;
 ```
 
+The examples above are equivalent to the following code:
+
 ```js
 get _listItems() {
   const slot = this.shadowRoot.querySelector('slot[name=list]');
-  return slot.assignedElements().filter((node) => node.matches('.item');
+  return slot.assignedElements().filter((node) => node.matches('.item'));
 }
 
 get _headerNodes() {
@@ -245,8 +245,6 @@ get _headerNodes() {
   return slot.assignedNodes({flatten: true});
 }
 ```
-
-{% endswitchable-sample %}
 
 ## Customizing the render root {#renderroot}
 

@@ -48,8 +48,8 @@ See [Reactive properties](/docs/components/properties/) for more information abo
 | {% api "@query" "query" %} | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/components/shadow-dom/#query) |
 | {% api "@queryAll" "queryAll" %} | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/components/shadow-dom/#query-all) |
 | {% api "@queryAsync" "queryAsync" %} | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/components/shadow-dom/#query-async) |
-| {% api "@queryAssignedElements" "queryAssignedElements" %} | Defines a property that returns the child elements assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom/#query-assigned-elements) |
-| {% api "@queryAssignedNodes" "queryAssignedNodes" %} | Defines a property that returns the child nodes assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom/#query-assigned-elements) |
+| {% api "@queryAssignedElements" "queryAssignedElements" %} | Defines a property that returns the child elements assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom/#query-assigned-nodes) |
+| {% api "@queryAssignedNodes" "queryAssignedNodes" %} | Defines a property that returns the child nodes assigned to a specific slot. | [Shadow DOM](/docs/components/shadow-dom/#query-assigned-nodes) |
 
 ## Importing decorators
 
