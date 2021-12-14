@@ -209,13 +209,14 @@ For more information, see [HTMLSlotElement](https://developer.mozilla.org/en-US/
 
 `@queryAssignedElements` and `@queryAssignedNodes` convert a class property into a getter that returns the result of calling
 [`HTMLSlot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements) or [`HTMLSlot.assignedNodes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) respectively on a given slot in the component's shadow tree.
+Use these to query the elements or nodes assigned to the given slot.
 
-They both accept an options object similar to what the native browser API accepts, with the addition of `slot`.
+Both accept an options object similar to what the native browser API accepts, with the addition of `slot`.
 Use `slot` to specify the slot to query, or leave undefined for the default slot.
 
-Setting `flatten` to true flattens any assigned slot elements, meaning assigned slot elements are replaced with their assigned nodes or elements.
-
 `@queryAssignedElements` also supports an optional `selector` option for filtering the returned elements by a CSS selector.
+
+Deciding which decorator to use depends on whether you want to query for text nodes assigned to the slot, or only element nodes. This decision is specific to your use case.
 
 <div class="alert alert-info">
 
@@ -246,9 +247,6 @@ get _headerNodes() {
 ```
 
 {% endswitchable-sample %}
-
-`_listItems` is a getter for assigned elements in the slot named `list` that have the `item` class.
-
 
 ## Customizing the render root {#renderroot}
 
