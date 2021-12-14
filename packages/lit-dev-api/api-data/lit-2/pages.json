@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "LitElement",
@@ -2437,6 +2437,9 @@
               {
                 "name": "willUpdate",
                 "kindString": "Method",
+                "flags": {
+                  "isProtected": true
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -2728,7 +2731,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "ReactiveElement",
@@ -4790,6 +4793,9 @@
               {
                 "name": "willUpdate",
                 "kindString": "Method",
+                "flags": {
+                  "isProtected": true
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -5489,7 +5495,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "html",
@@ -6163,7 +6169,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "adoptStyles",
@@ -6745,7 +6751,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "customElement",
@@ -7264,63 +7270,40 @@
         }
       },
       {
-        "name": "queryAssignedNodes",
+        "name": "queryAssignedElements",
         "kindString": "Function",
         "comment": {
-          "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`. Note, the type of\nthis property should be annotated as `NodeListOf<HTMLElement>`."
+          "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`slot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
+          "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
         },
         "sources": [
           {
-            "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
-            "line": 43,
-            "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
+            "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
+            "line": 63,
+            "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
           }
         ],
         "signatures": [
           {
-            "name": "queryAssignedNodes",
+            "name": "queryAssignedElements",
             "kindString": "Call signature",
             "parameters": [
               {
-                "name": "slotName",
+                "name": "options",
                 "kindString": "Parameter",
                 "flags": {
                   "isOptional": true
                 },
                 "comment": {
-                  "text": "A string name of the slot."
+                  "text": "Object that sets options for nodes to be returned. See\n    [MDN parameters section](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements#parameters)\n    for available options. Also accepts two more optional properties,\n    `slot` and `selector`."
                 },
                 "type": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              },
-              {
-                "name": "flatten",
-                "kindString": "Parameter",
-                "flags": {
-                  "isOptional": true
-                },
-                "comment": {
-                  "text": "A boolean which when true flattens the assigned nodes,\n    meaning any assigned nodes that are slot elements are replaced with their\n    assigned nodes."
-                },
-                "type": {
-                  "type": "intrinsic",
-                  "name": "boolean"
-                }
-              },
-              {
-                "name": "selector",
-                "kindString": "Parameter",
-                "flags": {
-                  "isOptional": true
-                },
-                "comment": {
-                  "text": "A string which filters the results to elements that match\n    the given css selector.\n\n```ts\nclass MyElement {\n  @queryAssignedNodes('list', true, '.item')\n  listItems;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```"
-                },
-                "type": {
-                  "type": "intrinsic",
-                  "name": "string"
+                  "type": "reference",
+                  "name": "QueryAssignedElementsOptions",
+                  "location": {
+                    "page": "decorators",
+                    "anchor": "QueryAssignedElementsOptions"
+                  }
                 }
               }
             ],
@@ -7331,8 +7314,8 @@
                 "kindString": "Type literal",
                 "sources": [
                   {
-                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query-assigned-nodes.d.ts",
-                    "line": 33
+                    "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/decorators/query-assigned-elements.d.ts",
+                    "line": 50
                   }
                 ],
                 "signatures": [
@@ -7340,7 +7323,8 @@
                     "name": "__type",
                     "kindString": "Call signature",
                     "comment": {
-                      "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`. Note, the type of\nthis property should be annotated as `NodeListOf<HTMLElement>`."
+                      "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`slot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
+                      "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
                     },
                     "parameters": [
                       {
@@ -7383,6 +7367,118 @@
                   }
                 ]
               }
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/decorators.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/decorators.js"
+          }
+        ],
+        "location": {
+          "page": "decorators",
+          "anchor": "queryAssignedElements"
+        }
+      },
+      {
+        "name": "queryAssignedNodes",
+        "kindString": "Function",
+        "comment": {
+          "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given `slot`.",
+          "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>`.\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
+            "line": 57,
+            "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "queryAssignedNodes",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "options",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "comment": {
+                  "text": "Object that sets options for nodes to be returned. See\n    [MDN parameters section](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes#parameters)\n    for available options."
+                },
+                "type": {
+                  "type": "reference",
+                  "name": "QueryAssignedNodesOptions",
+                  "location": {
+                    "page": "decorators",
+                    "anchor": "QueryAssignedNodesOptions"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "TSDecoratorReturnType"
+            }
+          },
+          {
+            "name": "queryAssignedNodes",
+            "kindString": "Call signature",
+            "comment": {
+              "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`.",
+              "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes('list', true, '.item')\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>` if used\nwithout a `selector` or `Array<HTMLElement>` if a selector is provided.\nPlease use `@queryAssignedElements` if using a CSS selector is desired.\n"
+            },
+            "parameters": [
+              {
+                "name": "slotName",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "comment": {
+                  "text": "A string name of the slot."
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              },
+              {
+                "name": "flatten",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "comment": {
+                  "text": "A boolean which when true flattens the assigned nodes,\n    meaning any assigned nodes that are slot elements are replaced with their\n    assigned nodes."
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "boolean"
+                }
+              },
+              {
+                "name": "selector",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "comment": {
+                  "text": "A CSS selector used to filter the elements returned.\n"
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "TSDecoratorReturnType"
             }
           }
         ],
@@ -7690,6 +7786,204 @@
           "page": "decorators",
           "anchor": "InternalPropertyDeclaration"
         }
+      },
+      {
+        "name": "QueryAssignedElementsOptions",
+        "kindString": "Interface",
+        "children": [
+          {
+            "name": "selector",
+            "kindString": "Property",
+            "flags": {
+              "isOptional": true
+            },
+            "comment": {
+              "shortText": "CSS selector used to filter the elements returned."
+            },
+            "sources": [
+              {
+                "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
+                "line": 24,
+                "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "string"
+            },
+            "entrypointSources": [
+              {
+                "fileName": "packages/lit/src/decorators.ts",
+                "line": 7,
+                "moduleSpecifier": "lit/decorators.js"
+              }
+            ],
+            "location": {
+              "page": "decorators",
+              "anchor": "QueryAssignedElementsOptions.selector"
+            }
+          },
+          {
+            "name": "slot",
+            "kindString": "Property",
+            "flags": {
+              "isOptional": true
+            },
+            "comment": {
+              "shortText": "Name of the slot. Leave empty for the default slot."
+            },
+            "sources": [
+              {
+                "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
+                "line": 22,
+                "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "string"
+            },
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "QueryAssignedNodesOptions.slot",
+              "location": {
+                "page": "decorators",
+                "anchor": "QueryAssignedNodesOptions.slot"
+              }
+            },
+            "entrypointSources": [
+              {
+                "fileName": "packages/lit/src/decorators.ts",
+                "line": 7,
+                "moduleSpecifier": "lit/decorators.js"
+              }
+            ],
+            "location": {
+              "page": "decorators",
+              "anchor": "QueryAssignedElementsOptions.slot"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
+            "line": 19,
+            "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
+          }
+        ],
+        "extendedTypes": [
+          {
+            "type": "reference",
+            "name": "QueryAssignedNodesOptions",
+            "location": {
+              "page": "decorators",
+              "anchor": "QueryAssignedNodesOptions"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/decorators.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/decorators.js"
+          }
+        ],
+        "location": {
+          "page": "decorators",
+          "anchor": "QueryAssignedElementsOptions"
+        },
+        "heritage": [
+          {
+            "type": "reference",
+            "name": "QueryAssignedNodesOptions",
+            "location": {
+              "page": "decorators",
+              "anchor": "QueryAssignedNodesOptions"
+            }
+          },
+          {
+            "type": "reference",
+            "name": "AssignedNodesOptions"
+          }
+        ]
+      },
+      {
+        "name": "QueryAssignedNodesOptions",
+        "kindString": "Interface",
+        "children": [
+          {
+            "name": "slot",
+            "kindString": "Property",
+            "flags": {
+              "isOptional": true
+            },
+            "comment": {
+              "shortText": "Name of the slot. Leave empty for the default slot."
+            },
+            "sources": [
+              {
+                "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
+                "line": 22,
+                "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "string"
+            },
+            "entrypointSources": [
+              {
+                "fileName": "packages/lit/src/decorators.ts",
+                "line": 7,
+                "moduleSpecifier": "lit/decorators.js"
+              }
+            ],
+            "location": {
+              "page": "decorators",
+              "anchor": "QueryAssignedNodesOptions.slot"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/reactive-element/src/decorators/query-assigned-nodes.ts",
+            "line": 18,
+            "moduleSpecifier": "reactive-element/decorators/query-assigned-nodes.js"
+          }
+        ],
+        "extendedTypes": [
+          {
+            "type": "reference",
+            "name": "AssignedNodesOptions"
+          }
+        ],
+        "extendedBy": [
+          {
+            "type": "reference",
+            "name": "QueryAssignedElementsOptions",
+            "location": {
+              "page": "decorators",
+              "anchor": "QueryAssignedElementsOptions"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/decorators.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/decorators.js"
+          }
+        ],
+        "location": {
+          "page": "decorators",
+          "anchor": "QueryAssignedNodesOptions"
+        },
+        "heritage": [
+          {
+            "type": "reference",
+            "name": "AssignedNodesOptions"
+          }
+        ]
       }
     ]
   },
@@ -7700,7 +7994,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "asyncAppend",
@@ -9342,6 +9636,131 @@
         ]
       },
       {
+        "name": "choose",
+        "kindString": "Function",
+        "flags": {
+          "isConst": true
+        },
+        "comment": {
+          "shortText": "Chooses and evaluates a template function from a list based on matching\nthe given `value` to a case.",
+          "text": "Cases are structured as `[caseValue, func]`. `value` is matched to\n`caseValue` by strict equality. The first match is selected. Case values\ncan be of any type including primitives, objects, and symbols.\n\nThis is similar to a switch statement, but as an expression and without\nfallthrough.\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/lit-html/src/directives/choose.ts",
+            "line": 32,
+            "moduleSpecifier": "lit-html/directives/choose.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "choose",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "T",
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "V",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "value",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "name": "T"
+                }
+              },
+              {
+                "name": "cases",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "array",
+                  "elementType": {
+                    "type": "tuple",
+                    "elements": [
+                      {
+                        "type": "reference",
+                        "name": "T"
+                      },
+                      {
+                        "type": "reflection",
+                        "declaration": {
+                          "name": "__type",
+                          "kindString": "Type literal",
+                          "signatures": [
+                            {
+                              "name": "__type",
+                              "kindString": "Call signature",
+                              "type": {
+                                "type": "reference",
+                                "name": "V"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "defaultCase",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "V"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "union",
+              "types": [
+                {
+                  "type": "intrinsic",
+                  "name": "undefined"
+                },
+                {
+                  "type": "reference",
+                  "name": "V"
+                }
+              ]
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/directives/choose.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/directives/choose.js"
+          }
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "choose"
+        }
+      },
+      {
         "name": "classMap",
         "kindString": "Function",
         "flags": {
@@ -10162,6 +10581,264 @@
         }
       },
       {
+        "name": "join",
+        "kindString": "Function",
+        "comment": {
+          "shortText": "Returns an iterable containing the values in `items` interleaved with the\n`joiner` value."
+        },
+        "sources": [
+          {
+            "fileName": "packages/lit-html/src/directives/join.ts",
+            "line": 20,
+            "moduleSpecifier": "lit-html/directives/join.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "join",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "I",
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "J",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "items",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "union",
+                  "types": [
+                    {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "I"
+                        }
+                      ],
+                      "name": "Iterable"
+                    },
+                    {
+                      "type": "intrinsic",
+                      "name": "undefined"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "joiner",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/join.d.ts",
+                        "line": 19
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "parameters": [
+                          {
+                            "name": "index",
+                            "kindString": "Parameter",
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "number"
+                            }
+                          }
+                        ],
+                        "type": {
+                          "type": "reference",
+                          "name": "J"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "union",
+                  "types": [
+                    {
+                      "type": "reference",
+                      "name": "I"
+                    },
+                    {
+                      "type": "reference",
+                      "name": "J"
+                    }
+                  ]
+                }
+              ],
+              "name": "Iterable"
+            }
+          },
+          {
+            "name": "join",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "I",
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "J",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "items",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "union",
+                  "types": [
+                    {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "I"
+                        }
+                      ],
+                      "name": "Iterable"
+                    },
+                    {
+                      "type": "intrinsic",
+                      "name": "undefined"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "joiner",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "name": "J"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "union",
+                  "types": [
+                    {
+                      "type": "reference",
+                      "name": "I"
+                    },
+                    {
+                      "type": "reference",
+                      "name": "J"
+                    }
+                  ]
+                }
+              ],
+              "name": "Iterable"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/directives/join.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/directives/join.js"
+          }
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "join"
+        }
+      },
+      {
+        "name": "keyed",
+        "kindString": "Function",
+        "flags": {
+          "isConst": true
+        },
+        "comment": {
+          "shortText": "Associates a renderable value with a unique key. When the key changes, the\nprevious DOM is removed and disposed before rendering the next value, even\nif the value - such as a template - is the same.",
+          "text": "This is useful for forcing re-renders of stateful components, or working\nwith code that expects new data to generate new HTML elements, such as some\nanimation techniques.\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/lit-html/src/directives/keyed.ts",
+            "line": 45,
+            "moduleSpecifier": "lit-html/directives/keyed.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "keyed",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "k",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              },
+              {
+                "name": "v",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "query",
+                  "queryType": {
+                    "type": "reference",
+                    "name": "Keyed"
+                  }
+                }
+              ],
+              "name": "DirectiveResult",
+              "location": {
+                "page": "custom-directives",
+                "anchor": "DirectiveResult"
+              }
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/directives/keyed.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/directives/keyed.js"
+          }
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "keyed"
+        }
+      },
+      {
         "name": "live",
         "kindString": "Function",
         "flags": {
@@ -10460,6 +11137,226 @@
             }
           }
         ]
+      },
+      {
+        "name": "map",
+        "kindString": "Function",
+        "comment": {
+          "shortText": "Returns an iterable containing the result of calling `f(value)` on each\nvalue in `items`."
+        },
+        "sources": [
+          {
+            "fileName": "packages/lit-html/src/directives/map.ts",
+            "line": 23,
+            "moduleSpecifier": "lit-html/directives/map.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "map",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "T",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "items",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "union",
+                  "types": [
+                    {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      ],
+                      "name": "Iterable"
+                    },
+                    {
+                      "type": "intrinsic",
+                      "name": "undefined"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "f",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/map.d.ts",
+                        "line": 22
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "parameters": [
+                          {
+                            "name": "value",
+                            "kindString": "Parameter",
+                            "type": {
+                              "type": "reference",
+                              "name": "T"
+                            }
+                          },
+                          {
+                            "name": "index",
+                            "kindString": "Parameter",
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "number"
+                            }
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "unknown"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Generator"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/directives/map.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/directives/map.js"
+          }
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "map"
+        }
+      },
+      {
+        "name": "range",
+        "kindString": "Function",
+        "comment": {
+          "shortText": "Returns an iterable of integers from `start` to `end` (exclusive)\nincrementing by `step`.",
+          "text": "If `start` is omitted, the range starts at `0`. `step` defaults to `1`.\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/lit-html/src/directives/range.ts",
+            "line": 23,
+            "moduleSpecifier": "lit-html/directives/range.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "range",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "end",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "number"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "number"
+                }
+              ],
+              "name": "Iterable"
+            }
+          },
+          {
+            "name": "range",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "start",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "end",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "number"
+                }
+              },
+              {
+                "name": "step",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "number"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "number"
+                }
+              ],
+              "name": "Iterable"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/directives/range.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/directives/range.js"
+          }
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "range"
+        }
       },
       {
         "name": "createRef",
@@ -14449,6 +15346,306 @@
             }
           }
         ]
+      },
+      {
+        "name": "when",
+        "kindString": "Function",
+        "comment": {
+          "shortText": "When `condition` is true, returns the result of calling `trueCase()`, else\nreturns the result of calling `falseCase()` if `falseCase` is defined.",
+          "text": "This is a convenience wrapper around a ternary expression that makes it a\nlittle nicer to write an inline conditional without an else.\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/lit-html/src/directives/when.ts",
+            "line": 24,
+            "moduleSpecifier": "lit-html/directives/when.js"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "when",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "T",
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "F",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "condition",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "literal",
+                  "value": true
+                }
+              },
+              {
+                "name": "trueCase",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/when.d.ts",
+                        "line": 23
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "falseCase",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/when.d.ts",
+                        "line": 23
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "F"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "T"
+            }
+          },
+          {
+            "name": "when",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "T",
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "F",
+                "kindString": "Type parameter",
+                "default": {
+                  "type": "intrinsic",
+                  "name": "undefined"
+                }
+              }
+            ],
+            "parameters": [
+              {
+                "name": "condition",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "literal",
+                  "value": false
+                }
+              },
+              {
+                "name": "trueCase",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/when.d.ts",
+                        "line": 24
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "falseCase",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/when.d.ts",
+                        "line": 24
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "F"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "F"
+            }
+          },
+          {
+            "name": "when",
+            "kindString": "Call signature",
+            "typeParameter": [
+              {
+                "name": "T",
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "F",
+                "kindString": "Type parameter",
+                "default": {
+                  "type": "intrinsic",
+                  "name": "undefined"
+                }
+              }
+            ],
+            "parameters": [
+              {
+                "name": "condition",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              },
+              {
+                "name": "trueCase",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/when.d.ts",
+                        "line": 25
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "falseCase",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/directives/when.d.ts",
+                        "line": 25
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "type": {
+                          "type": "reference",
+                          "name": "F"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "union",
+              "types": [
+                {
+                  "type": "reference",
+                  "name": "T"
+                },
+                {
+                  "type": "reference",
+                  "name": "F"
+                }
+              ]
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "packages/lit/src/directives/when.ts",
+            "line": 7,
+            "moduleSpecifier": "lit/directives/when.js"
+          }
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "when"
+        }
       }
     ]
   },
@@ -14459,7 +15656,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "AsyncDirective",
@@ -15930,7 +17127,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1414,
+                "line": 1430,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -15962,7 +17159,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1415,
+                "line": 1431,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -15991,7 +17188,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1416,
+                "line": 1432,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16037,7 +17234,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1423,
+                "line": 1439,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16073,7 +17270,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1409,
+                "line": 1425,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16116,7 +17313,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1435,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16150,7 +17347,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1408,
+            "line": 1424,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -16325,7 +17522,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1414,
+                "line": 1430,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16365,7 +17562,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1415,
+                "line": 1431,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16402,7 +17599,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1416,
+                "line": 1432,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16456,7 +17653,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1423,
+                "line": 1439,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16500,7 +17697,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1592,
+                "line": 1608,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16535,7 +17732,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1435,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16577,7 +17774,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1591,
+            "line": 1607,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -16734,7 +17931,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1033,
+                "line": 1049,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16776,7 +17973,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1032,
+                "line": 1048,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16806,7 +18003,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1140,
+                "line": 1156,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16867,7 +18064,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1113,
+                "line": 1129,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16910,7 +18107,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1132,
+                "line": 1148,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -16965,7 +18162,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1031,
+            "line": 1047,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17363,7 +18560,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1722,
+                "line": 1738,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17392,7 +18589,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1719,
+                "line": 1735,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17434,7 +18631,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1705,
+                "line": 1721,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17459,7 +18656,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1704,
+            "line": 1720,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17614,7 +18811,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1414,
+                "line": 1430,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17654,7 +18851,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1415,
+                "line": 1431,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17691,7 +18888,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1416,
+                "line": 1432,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17745,7 +18942,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1423,
+                "line": 1439,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17789,7 +18986,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1623,
+                "line": 1639,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17824,7 +19021,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1435,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17868,7 +19065,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1694,
+                "line": 1710,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17908,7 +19105,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1622,
+            "line": 1638,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18209,7 +19406,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1414,
+                "line": 1430,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18249,7 +19446,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1415,
+                "line": 1431,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18286,7 +19483,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1416,
+                "line": 1432,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18340,7 +19537,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1423,
+                "line": 1439,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18384,7 +19581,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1563,
+                "line": 1579,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18419,7 +19616,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1435,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18461,7 +19658,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1562,
+            "line": 1578,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18944,7 +20141,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1022,
+            "line": 1038,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19113,7 +20310,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "html",
@@ -19128,7 +20325,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 124,
+            "line": 129,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -19283,7 +20480,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 132,
+            "line": 137,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -19618,7 +20815,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "ReactiveController",
@@ -19969,7 +21166,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "8c4c845b016bdbe93bf644d0160415d011166faa",
+    "commit": "483943034a62bded13eca0c982ff7c93ac6639b6",
     "items": [
       {
         "name": "defaultConverter",
@@ -20255,7 +21452,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 831,
+            "line": 847,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20469,7 +21666,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1033,
+                "line": 1049,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20519,7 +21716,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1032,
+                "line": 1048,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20557,7 +21754,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1140,
+                "line": 1156,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20626,7 +21823,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1113,
+                "line": 1129,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20677,7 +21874,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1132,
+                "line": 1148,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -20782,7 +21979,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1388,
+            "line": 1404,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],

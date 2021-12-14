@@ -409,6 +409,52 @@
       "anchor": "InternalPropertyDeclaration.hasChanged"
     }
   ],
+  "$QueryAssignedElementsOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions"
+    }
+  ],
+  "$selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$QueryAssignedElementsOptions.selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    },
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$QueryAssignedElementsOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    }
+  ],
+  "$QueryAssignedNodesOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions"
+    }
+  ],
+  "$QueryAssignedNodesOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
   "$customElement": [
     {
       "page": "decorators",
@@ -437,6 +483,12 @@
     {
       "page": "decorators",
       "anchor": "queryAll"
+    }
+  ],
+  "$queryAssignedElements": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedElements"
     }
   ],
   "$queryAssignedNodes": [
@@ -1291,6 +1343,12 @@
       "anchor": "cache"
     }
   ],
+  "$choose": [
+    {
+      "page": "directives",
+      "anchor": "choose"
+    }
+  ],
   "$ClassMapDirective": [
     {
       "page": "directives",
@@ -1363,6 +1421,18 @@
       "anchor": "ifDefined"
     }
   ],
+  "$join": [
+    {
+      "page": "directives",
+      "anchor": "join"
+    }
+  ],
+  "$keyed": [
+    {
+      "page": "directives",
+      "anchor": "keyed"
+    }
+  ],
   "$LiveDirective": [
     {
       "page": "directives",
@@ -1391,6 +1461,18 @@
     {
       "page": "directives",
       "anchor": "live"
+    }
+  ],
+  "$map": [
+    {
+      "page": "directives",
+      "anchor": "map"
+    }
+  ],
+  "$range": [
+    {
+      "page": "directives",
+      "anchor": "range"
     }
   ],
   "$Ref": [
@@ -1753,6 +1835,12 @@
     {
       "page": "directives",
       "anchor": "until"
+    }
+  ],
+  "$when": [
+    {
+      "page": "directives",
+      "anchor": "when"
     }
   ],
   "$CSSResult": [
