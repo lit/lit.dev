@@ -22,6 +22,7 @@ export const pageRedirects = new Map([
   ['/msg/expression-in-textarea',     '/docs/templates/expressions/#invalid-locations'],
   // Relocated pages
   ['/docs/libraries/localization',    '/docs/localization/overview/'],
+  ['/blog/feed.xml',                  '/blog/atom.xml'],
 ].map(([path, redir]) => [
   // Trailing slashes are required because this redirect map is consulted after
   // standard lit.dev path canonicalization.
