@@ -30,16 +30,6 @@ render() {
 }
 ```
 
-
-## Light DOM children
-
-In addition to the nodes in your shadow DOM, you can render child nodes provided by the component user. Child nodes are sometimes referred to as "light DOM" to distinguish them from the component's shadow DOM. For example, the `top-bar` element in the previous example has two light DOM children supplied by the user: a navigation button, and a title.
-
-Interacting with light DOM children is different from interacting with nodes in the shadow DOM. Nodes in a component's shadow DOM are managed by the component, and shouldn't be accessed from outside the component. Light DOM children are managed by the component's user, but can be accessed by the component as well. The component has control over whether and where the child nodes are rendered.
-
-For more information, see the sections on [rendering children with slots](/docs/components/shadow-dom/#slots) and [accessing slotted children](/docs/components/shadow-dom/#accessing-slotted-children).
-
-
 ##  What makes a good component
 
 When deciding how to break up functionality, there are several things that help identify when to make a new component. A piece of UI may be a good candidate for a component if one or more of the following applies:
@@ -94,5 +84,27 @@ In the following example, the mediator element listens for events from the input
 {% playground-example "docs/composition/mediator-pattern" "mediator-element.ts" %}
 
 Other mediator patterns include flux/Redux-style patterns where a store mediates changes and updates components via subscriptions. Having components directly subscribe to changes can help avoid needing every parent to pass along all data required by its children.
+
+## Light DOM children
+
+In addition to the nodes in your shadow DOM, you can render child nodes provided by the component user, like the standard `<select>` element can take a set of `<option>` elements as children and render them as menu items.
+
+Child nodes are sometimes referred to as "light DOM" to distinguish them from the component's shadow DOM. For example:
+
+```html
+<top-bar>
+  <icon-button icon="menu" slot="nav-button"></icon-button>
+  <span slot="title">Fuzzy</span>
+</top-bar>
+```
+
+Here the `top-bar` element has two light DOM children supplied by the user: a navigation button, and a title.
+
+Interacting with light DOM children is different from interacting with nodes in the shadow DOM. Nodes in a component's shadow DOM are managed by the component, and shouldn't be accessed from outside the component. Light DOM children are managed from outside the component, but can be accessed by the component as well. The component's user can add or remove light DOM children at any time, so the component can't assume a static set of child nodes.
+
+The component has control over whether and where the child nodes are rendered, using the `<slot>` element in its shadow DOM. And it can receive notifications when child nodes are added and removed by listening for the `slotchange` event.
+
+For more information, see the sections on [rendering children with slots](/docs/components/shadow-dom/#slots) and [accessing slotted children](/docs/components/shadow-dom/#accessing-slotted-children).
+
 
 _Meerkat photo by [Anggit Rizkianto](https://unsplash.com/@anggit_mr) on [Unsplash](https://unsplash.com/photos/x3-OP_X0aH0)._
