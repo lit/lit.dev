@@ -36,6 +36,7 @@ The value of the static `styles` class field can be:
 
 The static `styles` class field is _almost always_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
 
+
 ### Using expressions in static styles {#expressions}
 
 Static styles apply to all instances of a component. Any expressions in CSS are evaluated **once**, then reused for all instances.
@@ -76,7 +77,9 @@ Using an array of tagged template literals, a component can inherit the styles f
 
 {% playground-ide "docs/components/style/superstyles" %}
 
-Note that when writing components intended to be subclassed in TypeScript, the `static styles` field should be explicitly typed as `CSSResultGroup` to allow flexibility for users to override `styles` with an array:
+You can also use `super.styles` to reference the superclass's styles property in JavaScript. If you're using TypeScript, we recommend avoiding `super.styles` since the compiler doesn't always convert it correctly. Explicitly referencing the superclass, as shown in the example, avoids this issue.
+
+When writing components intended to be subclassed in TypeScript, the `static styles` field should be explicitly typed as `CSSResultGroup` to allow flexibility for users to override `styles` with an array:
 
 ```ts
 // Prevent typescript from narrowing the type of `styles` to `CSSResult`
@@ -113,6 +116,22 @@ class MyElement extends LitElement {
       }`
   ];
 }
+```
+
+### Using unicode escapes in styles
+
+CSS's unicode escape sequence is a backslash followed by four or six hex digits: for example, `\2022` for a bullet character. This similar to the format of JavaScript's deprecated _octal_ escape sequences, so using these sequences in a `css` tagged template literal causes an error.
+
+There are two work-arounds for adding a unicode escape to your styles:
+
+*   Add a second backslash (for example, `\\2022`).
+*   Use the JavaScript escape sequence, starting with `\u` (for example, `\u2022`).
+
+```js
+static styles = css`
+  div::before {
+    content: '\u2022';
+  }
 ```
 
 ## Shadow DOM styling overview {#shadow-dom}
