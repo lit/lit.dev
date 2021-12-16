@@ -13,14 +13,18 @@ Lit includes a number of built-in directives to help with a variety of rendering
 
 <table>
   <tr><th>Directive</th><th>Summary</th></tr>
-  <tr><th colspan="2">Styling </th></tr>
+  <tr><td colspan="2">
+
+  **Styling**
+
+  </td></tr>
   <tr>
   <td>
 
   [`classMap`](#classmap)
 
   </td>
-  <td>Sets a list of classes to an element based on an object </td>
+  <td>Assigns a list of classes to an element based on an object </td>
   </tr>
 
   <tr>
@@ -32,7 +36,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Sets a list of style properties to an element based on an object</td>
   </tr>
 
-  <tr><th colspan="2">Loops and Conditionals</th></tr>
+  <tr><td colspan="2">
+
+  **Loops and Conditionals**
+
+  </td></tr>
 
   <tr>
   <td>
@@ -76,7 +84,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`join`](#join)
 
   </td>
-  <td>Alternative values from an iterable with a joiner value</td>
+  <td>Interleave values from an iterable with a joiner value</td>
   </tr>
 
   <tr>
@@ -97,7 +105,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Sets an attribute if the value is defined and removes the attribute if undefined</td>
   </tr>
 
-  <tr><th colspan="2">Caching and change detection</th></tr>
+  <tr><td colspan="2">
+
+  **Caching and change detection**
+
+  </td></tr>
 
   <tr>
   <td>
@@ -126,7 +138,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value</td>
   </tr>
 
-  <tr><th colspan="2">Referencing rendered DOM</th></tr>
+  <tr><td colspan="2">
+
+  **Referencing rendered DOM**
+
+  </td></tr>
 
   <tr>
   <td>
@@ -137,7 +153,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Gets a reference to an element rendered in the template</td>
   </tr>
 
-  <tr><th colspan="2">Rendering special values</th></tr>
+  <tr><td colspan="2">
+
+  **Rendering special values**
+
+  </td></tr>
 
   <tr>
   <td>
@@ -170,7 +190,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Renders a string as SVG rather than text</td>
   </tr>
 
-  <tr><th colspan="2">Asynchronous rendering</th></tr>
+  <tr><td colspan="2">
+
+  **Asynchronous rendering**
+
+  </td></tr>
 
   <tr>
   <td>
@@ -402,6 +426,8 @@ Explore `styleMap` more in the [playground](/playground/#sample=examples/directi
 
 ### when
 
+Renders one of two templates based on a condition.
+
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
@@ -456,6 +482,9 @@ class MyElement extends LitElement {
 
 ### choose
 
+Chooses and evaluates a template function from a list of cases based on matching
+the given `value` to a case.
+
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
@@ -493,8 +522,6 @@ Any
 </tbody>
 </table>
 
-Chooses and evaluates a template function from a list of cases based on matching
-the given `value` to a case.
 
 Cases are structured as `[caseValue, func]`. `value` is matched to
 `caseValue` by strict equality. The first match is selected. Case values
@@ -508,16 +535,18 @@ class MyElement extends LitElement {
   render() {
     return html`
       ${choose(this.section, [
-        ['home', () => <h1>Home</h1>]
-        ['about', () => <h1>About</h1>]
+        ['home', () => html`<h1>Home</h1>`]
+        ['about', () => html`<h1>About</h1>`]
       ],
-      () => html`<h1>Error</h1>)}
+      () => html`<h1>Error</h1>`)}
     `;
   }
 }
 ```
 
 ### map
+
+Returns an iterable containing the result of calling `f(value)` on each value in `items`.
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -554,8 +583,6 @@ Any
 </tr>
 </tbody>
 </table>
-
-Returns an iterable containing the result of calling `f(value)` on each value in `items`.
 
 `map()` is a simple wrapper around a [for/of loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) that makes working with iterables in expressions a bit easier. `map()` always updates any DOM created in place - it does not do any diffing or DOM movement. If you need that see [repeat](#repeat). `map()` is smaller and faster than `repeat()`, so if you don't need diffing and DOM stability, prefer `map()`.
 
