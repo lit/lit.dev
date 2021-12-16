@@ -52,10 +52,16 @@ details.
 
 In your JavaScript or TypeScript project, optionally call
 `configureTransformLocalization`, passing an object with the following
-properties:
+property:
 
-- `sourceLocale: string`: Required locale code in which source templates in this
-  project are written.
+- `sourceLocale: string`: Locale in which source templates are written.
+  Specified as a locale code (for example: `"en"`).
+
+`configureTransformLocalization` returns an object with the following property:
+
+- `getLocale`: Function that returns the active locale code.
+
+For example:
 
 ```js
 import {configureTransformLocalization} from '@lit/localize';
@@ -65,17 +71,10 @@ export const {getLocale} = configureTransformLocalization({
 });
 ```
 
-`configureTransformLocalization` returns an object with the following properties:
-
-### getLocale
-
-The `getLocale` function returns the active locale code.
-
 ## Setting the initial locale
 
-In transform mode, the active locale is determined simply by the JavaScript
-bundle you load. How you determine which bundle to load when your page loads is
-up to you.
+In transform mode, the active locale is determined by the JavaScript bundle you
+load. How you determine which bundle to load when your page loads is up to you.
 
 For example, if your application's locale is reflected in the URL path, you can
 include an inline script in your HTML file that checks the URL and inserts the
@@ -103,10 +102,9 @@ script.src = `/${locale}.js`;
 document.head.appendChild(script);
 ```
 
-Implementing logic similar to this on your server so that the appropriate script
-tag is statically rendered into your HTML file will usually result in the best
-performance, because the browser will start downloading your script as early as
-possible.
+For better performance, you can statically render the appropriate script tag
+into your HTML file on the server. This lets the browser start downloading your
+script as early as possible.
 
 ## Switching locales
 
@@ -183,7 +181,7 @@ customElements.define('locale-picker', LocalePicker);
 
 {% endswitchable-sample %}
 
-## Rollup
+## Rollup integration
 
 If you use <a href="https://rollupjs.org/" target="_blank"
 rel="noopener">Rollup</a>, and would prefer an integrated solution instead of
@@ -202,7 +200,7 @@ to generate a separate bundle for each locale.
 
 If you write JavaScript, don't worry about seeing the TypeScript compiler used
 here. Lit Localize depends on the TypeScript compiler to parse, analyze, and
-transform your source code — but it handles plain JavaScript files too!
+transform your source code, but it handles plain JavaScript files too!
 
 </div>
 

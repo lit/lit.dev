@@ -9,7 +9,7 @@ eleventyNavigation:
 In Lit Localize runtime mode, one JavaScript or TypeScript module is generated
 for each of your locales. Each generated module contains the localized templates
 for that locale. When your application switches locales, the module for that
-locale is imported, and all components are re-rendered.
+locale is imported, and all localized components are re-rendered.
 
 See [output modes](/docs/localization/overview/#output-modes) for a comparison
 of Lit Localize output modes.
@@ -37,61 +37,61 @@ of Lit Localize runtime mode that you can use as templates.
 
 ## Configuring runtime mode
 
-In your `lit-localize.json` config, set the `mode` property to `runtime`, and
-set the `output.outputDir` property to the location where you would like your
-localized template modules to be generated. See [runtime mode
+In your `lit-localize.json` config, set the `output.mode` property to `runtime`,
+and set the `output.outputDir` property to the location where you would like
+your localized template modules to be generated. See [runtime mode
 settings](/docs/localization/cli-and-config#runtime-mode-settings) for more
 details.
 
-In your JavaScript or TypeScript project, call `configureLocalization` function,
-passing an object with the following properties:
-
-- `sourceLocale: string`: Required locale code in which source templates in this
-  project are written, and the initial active locale.
-
-- `targetLocales: string[]`: Required locale codes that are supported by
-  this project. Should not include the `sourceLocale` code.
-
-- `loadLocale: (locale: string) => Promise<LocaleModule>`: Required function
-  that returns a promise of the localized templates for the given locale code.
+Next, set `output.localeCodesModule` to a filepath of your chosing. Lit Localize
+will generate a `.js` or `.ts` module here which mirrors the `sourceLocale` and
+`targetLocales` settings in your config file as exported variables. The
+generated module will look something like this:
 
 ```js
-import {configureLocalization} from '@lit/localize';
-
-export const {getLocale, setLocale} = configureLocalization({
-  sourceLocale: 'en',
-  targetLocales: ['es-419', 'zh_CN'],
-  loadLocale: (locale) => import(`/locales/${locale}.js`),
-});
+export const sourceLocale = 'en';
+export const targetLocales = ['es-419', 'zh-Hans'];
+export const allLocales = ['en', 'es-419', 'zh-Hans'];
 ```
 
-<div class="alert alert-info">
+Finally, in your JavaScript or TypeScript project, call `configureLocalization`,
+passing an object with the following properties:
 
-Use the
-[`output.localeCodesModule`](/docs/localization/cli-and-config/#general-settings)
-setting to generate a module which exports a `sourceLocale` string and
-`targetLocales` array that can be passed to `configureLocalization`, to ensure
-that your runtime code remains in sync with your config file.
+- `sourceLocale: string`: The `sourceLocale` variable exported by your generated
+  `output.localeCodesModule` module.
 
-</div>
+- `targetLocales: string[]`: The `targetLocales` variable exported by your
+  generated `output.localeCodesModule` module.
+
+- `loadLocale: (locale: string) => Promise<LocaleModule>`: A function that loads
+  a localized template. Returns a promise that resolves to the generated
+  localized template module for the given locale code. See [Approaches for
+  loading locale modules](#approaches-for-loading-locale-modules) for examples
+  of functions you can use here.
 
 `configureLocalization` returns an object with the following properties:
 
-### getLocale
+- `getLocale`: Function that returns the active locale code. If a new locale has
+  started loading, `getLocale` will continue to return the previous locale code
+  until the new one has finished loading.
 
-The `getLocale` function returns the active locale code. If a new locale has
-started loading, `getLocale` will continue to return the previous locale code
-until the new one has finished loading.
+- `setLocale`: Function that begins switching the active locale to the given
+  code, and returns a promise that resolves when the new locale has loaded.
+  Example usage:
 
-### setLocale
+For example:
 
-The `setLocale` function begins switching the active locale to the given code,
-and returns a promise that resolves when the new locale has loaded.
+```js
+import {configureLocalization} from '@lit/localize';
+// Generated via output.localeCodesModule
+import {sourceLocale, targetLocales} from './generated/locales.js';
 
-```ts
-const localeLoadedPromise = setLocale('es-419');
+export const {getLocale, setLocale} = configureLocalization({
+  sourceLocale,
+  targetLocales,
+  loadLocale: (locale) => import(`/locales/${locale}.js`),
+});
 ```
-
 ## Automatically re-render
 
 To automatically trigger a re-render of your component each time the active
