@@ -204,8 +204,13 @@ Localize API:
 
 ## Output modes
 
-Lit Localize supports two output modes: _runtime_ and _transform_, each with
-their own advantages.
+Lit Localize supports two output modes:
+
+-  _Runtime_ mode uses Lit Localize's APIs to load localized messages at
+   runtime.
+
+-  _Transform_ mode eliminates the Lit Localize runtime code by building a
+   separate JavaScript bundle for each locale.
 
 <div class="alert alert-info">
 
@@ -495,12 +500,12 @@ Descriptions are represented in XLIFF files using `<note>` elements.
 </trans-unit>
 ```
 
-## Message ids
+## Message IDs
 
-Lit Localize automatically generates an id for every `msg` call using a hash of
+Lit Localize automatically generates an ID for every `msg` call using a hash of
 the string.
 
-If two `msg` calls share the same id, then they are treated as the same message,
+If two `msg` calls share the same ID, then they are treated as the same message,
 meaning they will be translated as a single unit and the same translations will
 be substituted in both places.
 
@@ -515,23 +520,23 @@ msg('Hello World')
 msg('Hello World')
 ```
 
-### Id generation
+### ID generation
 
-The following content affects id generation:
+The following content affects ID generation:
 
 - String content
 - HTML markup
 - The position of expressions
 - Whether the string is tagged with `html`
 
-The following content **does not** affect id generation:
+The following content **does not** affect ID generation:
 
 - The code inside an expression
 - The computed value of an expression
 - Descriptions
 - File location
 
-For example, all of these messages share the same id:
+For example, all of these messages share the same ID:
 
 ```js
 msg(html`Hello <b>${name}</b>`);
@@ -539,15 +544,15 @@ msg(html`Hello <b>${this.name}</b>`);
 msg(html`Hello <b>${this.name}</b>`, {desc: 'A friendly greeting'});
 ```
 
-But this message has a different id:
+But this message has a different ID:
 
 ```js
 msg(html`Hello <i>${name}</i>`);
 ```
 
-### Overriding ids
+### Overriding IDs
 
-Message ids can be overridden by specifying the `id` option to the `msg`
+Message IDs can be overridden by specifying the `id` option to the `msg`
 function. In some cases this may be necessary, such as when an identical string
 has multiple meanings, because each might be written differently in another
 language:

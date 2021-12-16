@@ -69,6 +69,16 @@ passing an object with the following properties:
   loading locale modules](#approaches-for-loading-locale-modules) for examples
   of functions you can use here.
 
+`configureLocalization` returns an object with the following properties:
+
+- `getLocale`: Function that returns the active locale code. If a new locale has
+  started loading, `getLocale` will continue to return the previous locale code
+  until the new one has finished loading.
+
+- `setLocale`: Function that begins switching the active locale to the given
+  code, and returns a promise that resolves when the new locale has loaded.
+  Example usage:
+
 For example:
 
 ```js
@@ -82,24 +92,6 @@ export const {getLocale, setLocale} = configureLocalization({
   loadLocale: (locale) => import(`/locales/${locale}.js`),
 });
 ```
-
-`configureLocalization` returns an object with the following properties:
-
-### getLocale
-
-The `getLocale` function returns the active locale code. If a new locale has
-started loading, `getLocale` will continue to return the previous locale code
-until the new one has finished loading.
-
-### setLocale
-
-The `setLocale` function begins switching the active locale to the given code,
-and returns a promise that resolves when the new locale has loaded.
-
-```ts
-const localeLoadedPromise = setLocale('es-419');
-```
-
 ## Automatically re-render
 
 To automatically trigger a re-render of your component each time the active

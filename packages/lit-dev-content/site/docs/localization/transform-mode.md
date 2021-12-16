@@ -52,10 +52,16 @@ details.
 
 In your JavaScript or TypeScript project, optionally call
 `configureTransformLocalization`, passing an object with the following
-properties:
+property:
 
 - `sourceLocale: string`: Locale in which source templates are written.
   Specified as a locale code (for example: `"en"`).
+
+`configureTransformLocalization` returns an object with the following property:
+
+- `getLocale`: Function that returns the active locale code.
+
+For example:
 
 ```js
 import {configureTransformLocalization} from '@lit/localize';
@@ -64,12 +70,6 @@ export const {getLocale} = configureTransformLocalization({
   sourceLocale: 'en',
 });
 ```
-
-`configureTransformLocalization` returns an object with the following properties:
-
-### getLocale
-
-The `getLocale` function returns the active locale code.
 
 ## Setting the initial locale
 
