@@ -225,7 +225,7 @@ Deciding which decorator to use depends on whether you want to query for text no
 </div>
 
 ```ts
-@queryAssignedNodes({slot: 'list', selector: '.item'})
+@queryAssignedElements({slot: 'list', selector: '.item'})
 _listItems!: Array<HTMLElement>;
 
 @queryAssignedNodes({slot: 'header', flatten: true})
