@@ -12,12 +12,14 @@ h1 {
   color: #666;
 }
 
-.author {
-  display: flex;
-  margin: 0 32px;
+#authors {
   border-bottom: 1.5px solid var(--color-blue);
-  padding: 0 0 32px 0;
   margin: 32px 0;
+}
+
+.author {
+  display: inline-flex;
+  padding: 0 64px 32px 0;
 }
 
 .author > img {

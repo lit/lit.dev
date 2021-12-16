@@ -39,10 +39,11 @@ a:hover {
 }
 
 .author {
-  display: flex;
+  display: inline-flex;
   font-weight: 500;
   align-items: center;
   color: #555;
+  padding-right: 32px;
 }
 
 .author > img {

@@ -427,7 +427,7 @@ ${content}
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
+  eleventyConfig.addFilter('yyyymmdd', (dateObj) => {
     return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
       'yyyy-LL-dd'
     );
