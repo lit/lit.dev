@@ -24,7 +24,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`classMap`](#classmap)
 
   </td>
-  <td>Assigns a list of classes to an element based on an object </td>
+  <td>Assigns a list of classes to an element based on an object.</td>
   </tr>
 
   <tr>
@@ -33,7 +33,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`styleMap`](#stylemap)
 
   </td>
-  <td>Sets a list of style properties to an element based on an object</td>
+  <td>Sets a list of style properties to an element based on an object.</td>
   </tr>
 
   <tr><td colspan="2">
@@ -48,7 +48,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`when`](#when)
 
   </td>
-  <td>Renders one of two templates based on a condition</td>
+  <td>Renders one of two templates based on a condition.</td>
   </tr>
 
   <tr>
@@ -57,7 +57,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`choose`](#choose)
 
   </td>
-  <td>Renders one of many templates based on a key value</td>
+  <td>Renders one of many templates based on a key value.</td>
   </tr>
 
   <tr>
@@ -66,7 +66,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`map`](#map)
 
   </td>
-  <td>Transforms an iterable with a function</td>
+  <td>Transforms an iterable with a function.</td>
   </tr>
 
   <tr>
@@ -75,7 +75,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`repeat`](#repeat)
 
   </td>
-  <td>Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability</td>
+  <td>Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability.</td>
   </tr>
 
   <tr>
@@ -84,7 +84,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`join`](#join)
 
   </td>
-  <td>Interleave values from an iterable with a joiner value</td>
+  <td>Interleave values from an iterable with a joiner value.</td>
   </tr>
 
   <tr>
@@ -93,7 +93,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`range`](#range)
 
   </td>
-  <td>Creates an iterable of numbers in a sequence, useful for iterating a specific number of times</td>
+  <td>Creates an iterable of numbers in a sequence, useful for iterating a specific number of times.</td>
   </tr>
 
   <tr>
@@ -102,7 +102,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`ifDefined`](#ifdefined)
 
   </td>
-  <td>Sets an attribute if the value is defined and removes the attribute if undefined</td>
+  <td>Sets an attribute if the value is defined and removes the attribute if undefined.</td>
   </tr>
 
   <tr><td colspan="2">
@@ -117,7 +117,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`cache`](#cache)
 
   </td>
-  <td>Caches rendered DOM when changing templates rather than discarding the DOM</td>
+  <td>Caches rendered DOM when changing templates rather than discarding the DOM.</td>
   </tr>
 
   <tr>
@@ -126,7 +126,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`guard`](#guard)
 
   </td>
-  <td>Only re-evaluates the template when one of its dependencies changes</td>
+  <td>Only re-evaluates the template when one of its dependencies changes.</td>
   </tr>
 
   <tr>
@@ -135,7 +135,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`live`](#live)
 
   </td>
-  <td>Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value</td>
+  <td>Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value.</td>
   </tr>
 
   <tr><td colspan="2">
@@ -150,7 +150,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`ref`](#ref)
 
   </td>
-  <td>Gets a reference to an element rendered in the template</td>
+  <td>Gets a reference to an element rendered in the template.</td>
   </tr>
 
   <tr><td colspan="2">
@@ -167,7 +167,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   </td>
   <td>
 
-  renders the content of a `<template>` element
+  Renders the content of a `<template>` element.
 
   </td>
   </tr>
@@ -178,7 +178,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`unsafeHTML`](#unsafehtml)
 
   </td>
-  <td>Renders a string as HTML rather than text</td>
+  <td>Renders a string as HTML rather than text.</td>
   </tr>
 
   <tr>
@@ -187,7 +187,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`unsafeSVG`](#unsafesvg)
 
   </td>
-  <td>Renders a string as SVG rather than text</td>
+  <td>Renders a string as SVG rather than text.</td>
   </tr>
 
   <tr><td colspan="2">
@@ -202,7 +202,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`until`](#until)
 
   </td>
-  <td>Renders placeholder content until one or more promises resolve</td>
+  <td>Renders placeholder content until one or more promises resolve.</td>
   </tr>
 
   <tr>
@@ -211,7 +211,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`asyncAppend`](#asyncappend)
 
   </td>
-  <td>Appends values from an `AsyncIterable` into the DOM as they are yielded</td>
+  <td>Appends values from an `AsyncIterable` into the DOM as they are yielded.</td>
   </tr>
 
   <tr>
@@ -220,7 +220,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`asyncReplace`](#asyncreplace)
 
   </td>
-  <td>Renders the latest value from an `AsyncIterable` into the DOM as it is yielded</td>
+  <td>Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.</td>
   </tr>
 </table>
 
