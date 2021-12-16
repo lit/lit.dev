@@ -2,6 +2,10 @@
 author:
   - lit-team
 splash: lit-shapes.svg
+social:
+  image:
+    url: logo-whitebg-padded-1600x800.png
+    alt: Lit Logo
 ---
 
 {% extends 'default.html' %}
@@ -9,9 +13,34 @@ splash: lit-shapes.svg
 {% block head %}
   {% inlinecss "blog-post.css" %}
   <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
-{% endblock %}
 
-{% set authorData = authors[author] %}
+  <!--
+    References:
+      https://ogp.me/
+      https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
+
+    Validators:
+      https://cards-dev.twitter.com/validator
+      https://developers.facebook.com/tools/debug/
+      https://www.linkedin.com/post-inspector
+  -->
+  <meta property="og:url" content="{{ env.MAIN_URL }}{{ page.url }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ summary }}">
+  <meta property="og:site_name" content="lit.dev">
+  <meta property="og:image" content="{{ env.MAIN_URL }}/images/{{ social.image.url }}">
+  <meta property="og:image:alt" content="{{ social.image.alt }}">
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ date | yyyymmdd }}">
+  {% for authorId in author %}
+    {% set authorData = authors[authorId] %}
+    <meta property="article:author" content="{{ authorData.name }}">
+  {% endfor %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@buildWithLit">
+{% endblock %}
 
 {% block content %}
   <img id="splash" src="{{ site.baseurl }}/images/blog/{{ splash }}">
