@@ -11,11 +11,11 @@ versionLinks:
 Directives are functions that can extend Lit by customizing the way an expression renders.
 Lit includes a number of built-in directives to help with a variety of rendering needs:
 
-<table>
+<table class="directory">
   <tr><th>Directive</th><th>Summary</th></tr>
-  <tr><td colspan="2">
+  <tr class="subheading"><td colspan="2">
 
-  **Styling**
+  Styling
 
   </td></tr>
   <tr>
@@ -24,7 +24,9 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`classMap`](#classmap)
 
   </td>
-  <td>Assigns a list of classes to an element based on an object.</td>
+  <td>
+
+  Assigns a list of classes to an element based on an object.</td>
   </tr>
 
   <tr>
@@ -33,12 +35,14 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`styleMap`](#stylemap)
 
   </td>
-  <td>Sets a list of style properties to an element based on an object.</td>
+  <td>
+
+  Sets a list of style properties to an element based on an object.</td>
   </tr>
 
-  <tr><td colspan="2">
+  <tr class="subheading"><td colspan="2">
 
-  **Loops and Conditionals**
+  Loops and Conditionals
 
   </td></tr>
 
@@ -105,9 +109,9 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Sets an attribute if the value is defined and removes the attribute if undefined.</td>
   </tr>
 
-  <tr><td colspan="2">
+  <tr class="subheading"><td colspan="2">
 
-  **Caching and change detection**
+  Caching and change detection
 
   </td></tr>
 
@@ -138,9 +142,9 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value.</td>
   </tr>
 
-  <tr><td colspan="2">
+  <tr class="subheading"><td colspan="2">
 
-  **Referencing rendered DOM**
+  Referencing rendered DOM
 
   </td></tr>
 
@@ -153,9 +157,9 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Gets a reference to an element rendered in the template.</td>
   </tr>
 
-  <tr><td colspan="2">
+  <tr class="subheading"><td colspan="2">
 
-  **Rendering special values**
+  Rendering special values
 
   </td></tr>
 
@@ -190,9 +194,9 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Renders a string as SVG rather than text.</td>
   </tr>
 
-  <tr><td colspan="2">
+  <tr class="subheading"><td colspan="2">
 
-  **Asynchronous rendering**
+  Asynchronous rendering
 
   </td></tr>
 
