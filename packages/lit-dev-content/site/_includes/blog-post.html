@@ -1,5 +1,6 @@
 ---
-author: lit-team
+author:
+  - lit-team
 splash: lit-shapes.svg
 ---
 
@@ -23,28 +24,33 @@ splash: lit-shapes.svg
       {{ date | readableDate }}
     </time>
 
-    <div class="author">
-      <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
-           width="80" height="80"
-           {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
-           alt="{% if authorData.imageAlt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+    <div id="authors">
+      {% for authorId in author %}
+        {% set authorData = authors[authorId] %}
+        <div class="author">
+          <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+              width="80" height="80"
+              {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+              alt="{% if authorData.imageAlt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
 
-      <div class="authorRhs">
-        <cite class="authorName">{{ authorData.name }}</cite>
+          <div class="authorRhs">
+            <cite class="authorName">{{ authorData.name }}</cite>
 
-        {% if authorData.links %}
-          <ul class="authorLinks">
-            {% if authorData.links.twitter %}
-              <li><a href="https://twitter.com/{{ authorData.links.twitter }}"
-                    target="_blank" rel="noopener">Twitter</a></li>
+            {% if authorData.links %}
+              <ul class="authorLinks">
+                {% if authorData.links.twitter %}
+                  <li><a href="https://twitter.com/{{ authorData.links.twitter }}"
+                        target="_blank" rel="noopener">Twitter</a></li>
+                {% endif %}
+                {% if authorData.links.github %}
+                  <li><a href="https://github.com/{{ authorData.links.github }}"
+                        target="_blank" rel="noopener">GitHub</a></li>
+                {% endif %}
+              </ul>
             {% endif %}
-            {% if authorData.links.github %}
-              <li><a href="https://github.com/{{ authorData.links.github }}"
-                    target="_blank" rel="noopener">GitHub</a></li>
-            {% endif %}
-          </ul>
-        {% endif %}
-      </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
 
     <div id="blogContent">

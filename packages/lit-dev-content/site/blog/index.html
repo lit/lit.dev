@@ -26,9 +26,8 @@ splash: lit-shapes.svg
 
     <div id="posts">
       {% for post in collections.blogPosts | reverse %}
-        {% set authorData = authors[post.data.author] %}
-        <div class="post">
-          <h2 class="date">
+      <div class="post">
+        <h2 class="date">
             <time datetime="{{ post.data.date | yyyymmdd }}">
               {{ post.data.date | readableDate }}
             </time>
@@ -41,14 +40,19 @@ splash: lit-shapes.svg
 
             <p>{{ post.data.summary }}</p>
 
-            <p class="author">
-              <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
-                   width="80" height="80"
-                   {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
-                   alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+            <div id="authors">
+              {% for authorId in post.data.author %}
+                {% set authorData = authors[authorId] %}
+                <div class="author">
+                  <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+                      width="80" height="80"
+                      {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+                      alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
 
-              {{ authorData.name }}
-            </p>
+                  {{ authorData.name }}
+                </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
       {% endfor %}
