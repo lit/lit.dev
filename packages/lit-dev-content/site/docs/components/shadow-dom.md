@@ -209,12 +209,15 @@ For more information, see [HTMLSlotElement](https://developer.mozilla.org/en-US/
 
 `@queryAssignedElements` and `@queryAssignedNodes` convert a class property into a getter that returns the result of calling
 [`HTMLSlot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements) or [`HTMLSlot.assignedNodes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) respectively on a given slot in the component's shadow tree.
-Use these to query the elements or nodes assigned to the given slot.
+Use these to query the elements or nodes assigned to a given slot.
 
-Both accept an options object similar to what the native browser API accepts, with the addition of `slot`.
-Use `slot` to specify the slot to query, or leave undefined for the default slot.
+Both accept an optional object with the following properties:
 
-`@queryAssignedElements` also supports an optional `selector` option for filtering the returned elements by a CSS selector.
+| Property       | Description                                                             |
+| -------------- | ----------------------------------------------------------------------- |
+| `flatten` | Boolean specifying whether to flatten the assigned nodes by replacing any child `<slot>` elements with their assigned nodes. |
+| `slot` | Slot name specifying the slot to query. Leave undefined to select the default slot. |
+| `selector` (`queryAssignedElements` only) | If specified, only return assigned elements that match this CSS selector. |
 
 Deciding which decorator to use depends on whether you want to query for text nodes assigned to the slot, or only element nodes. This decision is specific to your use case.
 
