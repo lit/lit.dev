@@ -98,6 +98,7 @@ Child nodes are sometimes referred to as "light DOM" to distinguish them from th
 </top-bar>
 ```
 
+
 Here the `top-bar` element has two light DOM children supplied by the user: a navigation button, and a title.
 
 Interacting with light DOM children is different from interacting with nodes in the shadow DOM. Nodes in a component's shadow DOM are managed by the component, and shouldn't be accessed from outside the component. Light DOM children are managed from outside the component, but can be accessed by the component as well. The component's user can add or remove light DOM children at any time, so the component can't assume a static set of child nodes.
