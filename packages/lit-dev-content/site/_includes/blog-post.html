@@ -19,7 +19,7 @@ splash: lit-shapes.svg
     <h1>{{ title }}</h1>
     <p id="summary">{{ summary }}</p>
 
-    <time id="date" datetime="{{ date | htmlDateString }}">
+    <time id="date" datetime="{{ date | yyyymmdd }}">
       {{ date | readableDate }}
     </time>
 

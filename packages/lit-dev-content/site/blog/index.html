@@ -29,7 +29,7 @@ splash: lit-shapes.svg
         {% set authorData = authors[post.data.author] %}
         <div class="post">
           <h2 class="date">
-            <time datetime="{{ post.data.date | htmlDateString }}">
+            <time datetime="{{ post.data.date | yyyymmdd }}">
               {{ post.data.date | readableDate }}
             </time>
           </h2>
