@@ -205,7 +205,7 @@ render() {
 
 For more information, see [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
 
-### @queryAssignedElements and @queryAssignedNodes decorator { #query-assigned-nodes }
+### @queryAssignedElements and @queryAssignedNodes decorators { #query-assigned-nodes }
 
 `@queryAssignedElements` and `@queryAssignedNodes` convert a class property into a getter that returns the result of calling
 [`HTMLSlot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements) or [`HTMLSlot.assignedNodes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) respectively on a given slot in the component's shadow tree.
