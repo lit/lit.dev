@@ -16,6 +16,7 @@ const trimTrailingSlash = (str) =>
 // https://www.11ty.dev/docs/data-js/#example-exposing-environment-variables
 module.exports = {
   DEV: ENV.eleventyMode === 'dev',
+  MAIN_URL: ENV.mainUrl,
   PLAYGROUND_SANDBOX: ENV.playgroundSandboxUrl,
   GOOGLE_ANALYTICS_ID: ENV.googleAnalyticsId,
   GITHUB_CLIENT_ID: ENV.githubClientId,
