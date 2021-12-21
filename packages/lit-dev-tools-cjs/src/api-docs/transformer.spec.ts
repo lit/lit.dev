@@ -8,7 +8,7 @@ import {test} from 'uvu';
 import * as assert from 'uvu/assert';
 import {linkifySymbolsInCommentsBuilder} from './transformer.js';
 
-const symbolMapFixture1 = {
+const symbolMap = {
   $LitElement: [
     {
       page: 'LitElement',
@@ -23,82 +23,72 @@ const symbolMapFixture1 = {
   ],
 };
 
-test('simple [[`symbol`]] hyperlink', () => {
-  const r = linkifySymbolsInCommentsBuilder({
-    node: {},
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
-  });
+const locationToUrl = ({page, anchor}: {page: string; anchor: string}) =>
+  `${page}#${anchor}`;
 
-  assert.equal(
-    r('Simple [[`LitElement`]] symbol reference'),
-    'Simple [`LitElement`](LitElement#LitElement) symbol reference'
-  );
+/**
+ * Simple replacer where comment node doesn't add any additional context.
+ */
+const simpleReplacer = linkifySymbolsInCommentsBuilder({
+  node: {},
+  symbolMap,
+  locationToUrl,
 });
 
-test('simple @link', () => {
-  const r = linkifySymbolsInCommentsBuilder({
-    node: {},
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
-  });
+type TestLabel = string;
+type Input = string;
+type Expected = string;
 
-  assert.equal(
-    r('Simple {@link LitElement} symbol reference'),
-    'Simple [LitElement](LitElement#LitElement) symbol reference'
-  );
-});
+/**
+ * Simple comment transformation tests, that don't use any node context.
+ */
+const simpleTests: Array<[TestLabel, Input, Expected]> = [
+  [
+    'simple [[`symbol`]] hyperlink',
+    '[[`LitElement`]]',
+    '[`LitElement`](LitElement#LitElement)',
+  ],
+  ['simple @link', '{@link LitElement}', '[LitElement](LitElement#LitElement)'],
+  [
+    'labeled @link',
+    '{@link LitElement symbol}',
+    '[symbol](LitElement#LitElement)',
+  ],
+  [
+    'simple @linkcode',
+    '{@linkcode LitElement}',
+    '[`LitElement`](LitElement#LitElement)',
+  ],
+  [
+    'labeled @linkcode',
+    '{@linkcode LitElement label with spaces}',
+    '[`label with spaces`](LitElement#LitElement)',
+  ],
+  [
+    'labeled @linkcode handles backticks',
+    '{@linkcode LitElement `backticks`}',
+    '[`backticks`](LitElement#LitElement)',
+  ],
+  [
+    'labeled @link handles backticks',
+    '{@link LitElement has `some` backticks}',
+    '[has `some` backticks](LitElement#LitElement)',
+  ],
+  [
+    'simple [[`symbol` | label]] hyperlink',
+    '[[`LitElement`| custom label]] reference',
+    '[`custom label`](LitElement#LitElement) reference',
+  ],
+  [
+    'multiple replacements',
+    '[[`LitElement`]] {@linkcode LitElement.attributeChangedCallback}',
+    '[`LitElement`](LitElement#LitElement) [`LitElement.attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)',
+  ],
+];
 
-test('labeled @link', () => {
-  const r = linkifySymbolsInCommentsBuilder({
-    node: {},
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
-  });
-
-  assert.equal(
-    r('Simple {@link LitElement symbol} reference'),
-    'Simple [symbol](LitElement#LitElement) reference'
-  );
-});
-
-test('simple @linkcode', () => {
-  const r = linkifySymbolsInCommentsBuilder({
-    node: {},
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
-  });
-
-  assert.equal(
-    r('Simple {@linkcode LitElement symbol} reference'),
-    'Simple [`symbol`](LitElement#LitElement) reference'
-  );
-});
-
-test('simple [[`symbol` | label]] hyperlink', () => {
-  const r = linkifySymbolsInCommentsBuilder({
-    node: {},
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
-  });
-  assert.equal(
-    r('[[`LitElement`| custom label]] reference'),
-    '[`custom label`](LitElement#LitElement) reference'
-  );
-});
-
-test('multiple replacements', () => {
-  const r = linkifySymbolsInCommentsBuilder({
-    node: {},
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
-  });
-
-  assert.equal(
-    r('[[`LitElement`]] {@linkcode LitElement.attributeChangedCallback}'),
-    '[`LitElement`](LitElement#LitElement) [`LitElement.attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)'
-  );
-});
+simpleTests.forEach(([label, input, expected]: [TestLabel, Input, Expected]) =>
+  test(label, () => assert.equal(simpleReplacer(input), expected))
+);
 
 test('[[`symbol`]] hyperlink with node context', () => {
   const r = linkifySymbolsInCommentsBuilder({
@@ -107,8 +97,8 @@ test('[[`symbol`]] hyperlink with node context', () => {
         anchor: 'LitElement',
       },
     },
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
+    symbolMap,
+    locationToUrl,
   });
 
   assert.equal(
@@ -117,15 +107,15 @@ test('[[`symbol`]] hyperlink with node context', () => {
   );
 });
 
-test('@link hyperlink with node context', () => {
+test('@linkcode hyperlink with node context', () => {
   const r = linkifySymbolsInCommentsBuilder({
     node: {
       location: {
         anchor: 'LitElement',
       },
     },
-    symbolMap: symbolMapFixture1,
-    locationToUrl: ({page, anchor}) => `${page}#${anchor}`,
+    symbolMap,
+    locationToUrl,
   });
 
   assert.equal(
@@ -133,3 +123,5 @@ test('@link hyperlink with node context', () => {
     '[`attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)'
   );
 });
+
+test.run();

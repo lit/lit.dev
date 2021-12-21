@@ -565,15 +565,17 @@ export class ApiDocsTransformer {
   };
 
   /**
-   * Convert [[ symbol ]] references in comments into hyperlinks.
+   * Convert [[ symbol ]], `@link`, and `@linkcode` comments into hyperlinks.
    *
-   * Also support `@link` and `@linkcode`, with optional label
-   * after a pipe. See these real examples and how the show up in
-   * your IDE:
+   * Suppports the following examples:
+   *  * Example link to {@link ApiDocsTransformer} symbol.
+   *  * Example monospace link to {@linkcode ApiDocsTransformer}.
+   *  * {@link ApiDocsTransformer Example labeled link.}
+   *  * {@linkcode ApiDocsTransformer Example monospace labeled link.}
    *
-   *  * Link to {@link ApiDocsTransformer}.
-   *  * Code link for {@linkcode ApiDocsTransformer}.
-   *  * {@link ApiDocsTransformer Click here for transformer.}
+   * Also supports these deprecated examples which don't have IDE hyperlinks:
+   *  * [[`ApiDocsTransformer`]]
+   *  * [[`ApiDocsTransformer`| Example labeled link.]]
    *
    * TODO(aomarks) This should probably technically be factored out and called
    * directly from Eleventy, because the URL we generate depends on the
@@ -745,9 +747,10 @@ export class ApiDocsTransformer {
 }
 
 /**
- * Returns a replace function that converts `[[symbol]]` doc links into markdown
- * anchor links.
- * See https://typedoc.org/guides/doccomments/#symbol-references for formats.
+ * Returns a string replacer function that converts jsdoc links into markdown
+ * hyperlinks that are used in the generated API documentation.
+ *
+ * See {@linkcode ApiDocsTransformer.linkifySymbolsInComments} for more info.
  */
 export function linkifySymbolsInCommentsBuilder({
   node,
@@ -781,15 +784,18 @@ export function linkifySymbolsInCommentsBuilder({
         break;
       }
     }
+
     const isCodeFenced = (anchorText: string) =>
       from.startsWith('{@linkcode') || from.startsWith('[[`')
         ? `\`${anchorText}\``
         : anchorText;
+
     if (results && results.length === 1) {
       return `[${isCodeFenced(label || symbol)}](${locationToUrl(results[0])})`;
     }
     return isCodeFenced(label || symbol);
   };
+
   return (comment: string) =>
     comment
       .replace(/\[\[[\s`]*(.+?)(?:[\s`]*\|[\s`]*(.+?))?[\s`]*\]\]/g, replacer)
