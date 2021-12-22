@@ -785,15 +785,17 @@ export function linkifySymbolsInCommentsBuilder({
       }
     }
 
-    const isCodeFenced = (anchorText: string) =>
-      from.startsWith('{@linkcode') || from.startsWith('[[`')
+    const hyperlinkTextFormat = (anchorText: string) =>
+      from.startsWith('{@linkcode') || from.startsWith('[[')
         ? `\`${anchorText}\``
         : anchorText;
 
     if (results && results.length === 1) {
-      return `[${isCodeFenced(label || symbol)}](${locationToUrl(results[0])})`;
+      return `[${hyperlinkTextFormat(label || symbol)}](${locationToUrl(
+        results[0]
+      )})`;
     }
-    return isCodeFenced(label || symbol);
+    return hyperlinkTextFormat(label || symbol);
   };
 
   return (comment: string) =>

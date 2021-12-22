@@ -84,6 +84,31 @@ const simpleTests: Array<[TestLabel, Input, Expected]> = [
     '[[`LitElement`]] {@linkcode LitElement.attributeChangedCallback}',
     '[`LitElement`](LitElement#LitElement) [`LitElement.attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)',
   ],
+  [
+    '[[symbol | `label`] backticks correctly handled',
+    '[[LitElement | `styles`]]',
+    '[`styles`](LitElement#LitElement)',
+  ],
+  [
+    'No symbol reference - @link',
+    'No {@link MissingSymbol} ref',
+    'No MissingSymbol ref',
+  ],
+  [
+    'No symbol reference - @linkcode',
+    'No {@linkcode MissingSymbol} ref',
+    'No `MissingSymbol` ref',
+  ],
+  [
+    'No symbol reference - labeled @link',
+    'No {@link MissingSymbol symbol} ref',
+    'No symbol ref',
+  ],
+  [
+    'No symbol reference - labeled @linkcode',
+    'No {@linkcode MissingSymbol symbol} ref',
+    'No `symbol` ref',
+  ],
 ];
 
 simpleTests.forEach(([label, input, expected]: [TestLabel, Input, Expected]) =>
