@@ -23,6 +23,12 @@ export const pageRedirects = new Map([
   // Relocated pages
   ['/docs/libraries/localization',    '/docs/localization/overview/'],
   ['/blog/feed.xml',                  '/blog/atom.xml'],
+  // Urls not ending with '/' violate CSP policies.
+  ['/docs/releases/release-notes/1.3.0.html', '/docs/releases/release-notes/1.3.0/'],
+  ['/docs/releases/release-notes/1.2.0.html', '/docs/releases/release-notes/1.2.0/'],
+  // `.0` is treated as a file extension, ensure it resolves correctly.
+  ['/docs/releases/release-notes/1.3.0',      '/docs/releases/release-notes/1.3.0/'],
+  ['/docs/releases/release-notes/1.2.0',      '/docs/releases/release-notes/1.2.0/']
 ].map(([path, redir]) => [
   // Trailing slashes are required because this redirect map is consulted after
   // standard lit.dev path canonicalization.
