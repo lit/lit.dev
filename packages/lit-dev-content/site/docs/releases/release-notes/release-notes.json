@@ -1,5 +1,4 @@
 
 {
-  "layout": "docs",
-  "permalink": "{{page.filePathStem}}.html"
+  "layout": "docs"
 }
