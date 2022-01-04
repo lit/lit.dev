@@ -567,7 +567,7 @@ export class ApiDocsTransformer {
   /**
    * Convert [[ symbol ]], `@link`, and `@linkcode` comments into hyperlinks.
    *
-   * Suppports the following examples:
+   * Supports the following examples:
    *  * Example link to {@link ApiDocsTransformer} symbol.
    *  * Example monospace link to {@linkcode ApiDocsTransformer}.
    *  * {@link ApiDocsTransformer Example labeled link.}
