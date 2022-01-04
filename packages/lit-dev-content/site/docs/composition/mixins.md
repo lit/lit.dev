@@ -163,7 +163,7 @@ Lit.
 
 ### Typing the subclass
 
-Although TypesScript has basic support for inferring the return type for the
+Although TypeScript has basic support for inferring the return type for the
 subclass generated using the mixin pattern, it has a severe limitation in that
 the inferred class must not contain members with `private` or `protected`
 access modifiers.
