@@ -17,7 +17,7 @@ html`<div>
   </div>`
 ```
 
-While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. There are two kinds of directive:
+While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. There are two kinds of directives:
 
 *   Simple functions
 
