@@ -175,25 +175,25 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 ## Accessing slotted children { #accessing-slotted-children }
 
-To access children assigned to slots in your shadow root, you can use the standard `slot.assignedNodes` method and the `slotchange` event.
+To access children assigned to slots in your shadow root, you can use the standard `slot.assignedNodes` or `slot.assignedElements` methods with the `slotchange` event.
 
-For example, you can create a getter to access assigned nodes for a particular slot:
+For example, you can create a getter to access assigned elements for a particular slot:
 
 ```js
 get _slottedChildren() {
   const slot = this.shadowRoot.querySelector('slot');
-  const childNodes = slot.assignedNodes({flatten: true});
-  return Array.prototype.filter.call(childNodes, (node) => node.nodeType == Node.ELEMENT_NODE);
+  return slot.assignedElements({flatten: true});
 }
 ```
 
-You can also use the `slotchange` event to take action when the assigned nodes change. The following example extracts the text content of all of the slotted children.
+You can also use the `slotchange` event to take action when the assigned nodes change.
+The following example extracts the text content of all of the slotted children.
 
 ```js
 handleSlotchange(e) {
   const childNodes = e.target.assignedNodes({flatten: true});
   // ... do something with childNodes ...
-  this.allText = Array.prototype.map.call(childNodes, (node) => {
+  this.allText = childNodes.map((node) => {
     return node.textContent ? node.textContent : ''
   }).join('');
 }
@@ -205,9 +205,21 @@ render() {
 
 For more information, see [HTMLSlotElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement) on MDN.
 
-### @queryAssignedNodes decorator { #query-assigned-nodes }
+### @queryAssignedElements and @queryAssignedNodes decorators { #query-assigned-nodes }
 
-The `@queryAssignedNodes` decorator converts a class property into a getter that returns all of the assigned nodes for a given slot in the component's shadow tree. The optional second boolean argument when true flattens the assigned nodes, meaning any assigned nodes that are slot elements are replaced with their assigned nodes. The optional third argument is a css selector which filters the results to matching elements.
+`@queryAssignedElements` and `@queryAssignedNodes` convert a class property into a getter that returns the result of calling
+[`HTMLSlot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements) or [`HTMLSlot.assignedNodes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes) respectively on a given slot in the component's shadow tree.
+Use these to query the elements or nodes assigned to a given slot.
+
+Both accept an optional object with the following properties:
+
+| Property       | Description                                                             |
+| -------------- | ----------------------------------------------------------------------- |
+| `flatten` | Boolean specifying whether to flatten the assigned nodes by replacing any child `<slot>` elements with their assigned nodes. |
+| `slot` | Slot name specifying the slot to query. Leave undefined to select the default slot. |
+| `selector` (`queryAssignedElements` only) | If specified, only return assigned elements that match this CSS selector. |
+
+Deciding which decorator to use depends on whether you want to query for text nodes assigned to the slot, or only element nodes. This decision is specific to your use case.
 
 <div class="alert alert-info">
 
@@ -215,27 +227,27 @@ The `@queryAssignedNodes` decorator converts a class property into a getter that
 
 </div>
 
-```js
-// First argument is the slot name
-// Second argument is `true` to flatten the assigned nodes.
-@queryAssignedNodes('header', true)
-_headerNodes;
+```ts
+@queryAssignedElements({slot: 'list', selector: '.item'})
+_listItems!: Array<HTMLElement>;
 
-// If the first argument is absent or an empty string, list nodes for the default slot.
-@queryAssignedNodes()
-_defaultSlotNodes;
+@queryAssignedNodes({slot: 'header', flatten: true})
+_headerNodes!: Array<Node>;
 ```
 
-The first example above is equivalent to the following code:
+The examples above are equivalent to the following code:
 
 ```js
+get _listItems() {
+  const slot = this.shadowRoot.querySelector('slot[name=list]');
+  return slot.assignedElements().filter((node) => node.matches('.item'));
+}
+
 get _headerNodes() {
   const slot = this.shadowRoot.querySelector('slot[name=header]');
   return slot.assignedNodes({flatten: true});
 }
 ```
-
-For TypeScript, the typing of a `queryAssignedNodes` property is `NodeListOf<HTMLElement>`.
 
 ## Customizing the render root {#renderroot}
 
