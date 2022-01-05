@@ -30,6 +30,16 @@
       "image": {
         "url": "authors/justin-fagnani.jpg"
       }
+    },
+    "arthur-evans": {
+      "name": "Arthur Evans",
+      "links": {
+        "twitter": "devdocdude",
+        "github": "arthurevans"
+      },
+      "image": {
+        "url": "authors/arthur-evans.jpg"
+      }
     }
   }
 }
