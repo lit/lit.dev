@@ -309,6 +309,10 @@ td {
   vertical-align: top;
 }
 
+th:empty {
+  padding: 1px;
+}
+
 .wide-table, .wide-cell {
   width: 100%;
 }
@@ -319,6 +323,24 @@ td {
 
 .vcenter-cell {
   vertical-align: middle;
+}
+
+table.directory td > p {
+  margin: 0;
+}
+
+table.directory td code {
+  background: transparent;
+  font-size: inherit;
+  padding: 0;
+}
+
+table.directory tr:not(.subheading) td {
+  padding: 1em 1em;
+}
+
+table.directory tr.subheading {
+  font-weight: bold;
 }
 
 /* -----------------------------------
@@ -752,12 +774,3 @@ litdev-banner > a {
   margin: auto;
 }
 
-th,
-td {
-  padding: 0.3em 1em;
-  vertical-align: top;
-}
-
-th:empty {
-  padding: 1px;
-}
