@@ -565,7 +565,17 @@ export class ApiDocsTransformer {
   };
 
   /**
-   * Convert [[ symbol ]] references in comments into hyperlinks.
+   * Convert [[ symbol ]], `@link`, and `@linkcode` comments into hyperlinks.
+   *
+   * Supports the following examples:
+   *  * Example link to {@link ApiDocsTransformer} symbol.
+   *  * Example monospace link to {@linkcode ApiDocsTransformer}.
+   *  * {@link ApiDocsTransformer Example labeled link.}
+   *  * {@linkcode ApiDocsTransformer Example monospace labeled link.}
+   *
+   * Also supports these deprecated examples which don't have IDE hyperlinks:
+   *  * [[`ApiDocsTransformer`]]
+   *  * [[`ApiDocsTransformer`| Example labeled link.]]
    *
    * TODO(aomarks) This should probably technically be factored out and called
    * directly from Eleventy, because the URL we generate depends on the
@@ -573,38 +583,11 @@ export class ApiDocsTransformer {
    * it doesn't matter.
    */
   private linkifySymbolsInComments(node: DeclarationReflection) {
-    const replace = (comment: string) =>
-      // TODO(aomarks) Maybe we also/instead support @link syntax?
-      comment.replace(
-        /\[\[[\s`]*(.+?)(?:[\s`]*\|[\s`]*(.+?))?[\s`]*\]\]/g,
-        (_: string, symbol: string, label: string): string => {
-          const context =
-            (node as ExtendedDeclarationReflection).location?.anchor?.split(
-              '.'
-            ) ?? [];
-          let results;
-
-          // If this node is "foo.bar", and we saw "[[ baz ]]", then look for a
-          // match from closest to furthest:
-          //
-          // 1. $foo.bar.baz
-          // 2. $foo.baz
-          // 3. $baz
-          for (let i = context.length; i >= 0; i--) {
-            const key = '$' + [...context.slice(0, i), symbol].join('.');
-            results = this.symbolMap[key];
-            if (results) {
-              break;
-            }
-          }
-          if (results && results.length === 1) {
-            return `[\`${label || symbol}\`](${this.config.locationToUrl(
-              results[0]
-            )})`;
-          }
-          return '`' + (label || symbol) + '`';
-        }
-      );
+    const replace = linkifySymbolsInCommentsBuilder({
+      node: node as ExtendedDeclarationReflection,
+      symbolMap: this.symbolMap,
+      locationToUrl: this.config.locationToUrl.bind(this),
+    });
 
     if (node.comment?.shortText) {
       node.comment.shortText = replace(node.comment.shortText);
@@ -761,4 +744,65 @@ export class ApiDocsTransformer {
 
     return pagesArray;
   }
+}
+
+/**
+ * Returns a string replacer function that converts jsdoc links into markdown
+ * hyperlinks that are used in the generated API documentation.
+ *
+ * See {@linkcode ApiDocsTransformer.linkifySymbolsInComments} for more info.
+ */
+export function linkifySymbolsInCommentsBuilder({
+  node,
+  symbolMap,
+  locationToUrl,
+}: {
+  node: {
+    location?: {
+      anchor?: string;
+    };
+  };
+  symbolMap: SymbolMap;
+  locationToUrl: (location: Location) => string;
+}) {
+  const replacer = (from: string, symbol: string, label: string): string => {
+    const context =
+      (node as ExtendedDeclarationReflection).location?.anchor?.split('.') ??
+      [];
+    let results;
+
+    // If this node is "foo.bar", and we saw "[[ baz ]]", then look for a
+    // match from closest to furthest:
+    //
+    // 1. $foo.bar.baz
+    // 2. $foo.baz
+    // 3. $baz
+    for (let i = context.length; i >= 0; i--) {
+      const key = '$' + [...context.slice(0, i), symbol].join('.');
+      results = symbolMap[key];
+      if (results) {
+        break;
+      }
+    }
+
+    const hyperlinkTextFormat = (anchorText: string) =>
+      from.startsWith('{@linkcode') || from.startsWith('[[')
+        ? `\`${anchorText}\``
+        : anchorText;
+
+    if (results && results.length === 1) {
+      return `[${hyperlinkTextFormat(label || symbol)}](${locationToUrl(
+        results[0]
+      )})`;
+    }
+    return hyperlinkTextFormat(label || symbol);
+  };
+
+  return (comment: string) =>
+    comment
+      .replace(/\[\[[\s`]*(.+?)(?:[\s`]*\|[\s`]*(.+?))?[\s`]*\]\]/g, replacer)
+      .replace(
+        /\{\@(?:link\b|linkcode\b)[\s`]*(.+?)(?:[\s`]*[\|\s][\s`]*(.+?))?[\s`]*\}/g,
+        replacer
+      );
 }
