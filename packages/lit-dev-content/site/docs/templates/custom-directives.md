@@ -9,7 +9,7 @@ versionLinks:
   v1: lit-html/creating-directives/
 ---
 
-Directives are objects that customize how Lit renders expressions. Using a directive in your template is like calling a function:
+Directives are functions that can extend Lit by customizing how an expression renders. Using a directive in your template is as simple as calling a function:
 
 ```js
 html`<div>
@@ -17,9 +17,29 @@ html`<div>
   </div>`
 ```
 
-However, instead of simply _returning_ a value to render, a directive gets special access to the underlying DOM associated with its expression. And a directive instance is persisted across multiple renders so it can maintain state. A directive can even update the DOM asynchronously, outside of the main update cycle.
+While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. There are two kinds of directive:
 
-While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. To create a directive:
+*   Simple functions
+
+*   Class-based directives
+
+A simple function returns a value to render. It can take any number of arguments, or no arguments at all.
+
+```js
+export noVowels = (str) => str.replaceAll(/[aeiou]/ig,'x');
+```
+
+A class-based directive lets you do things that a simple function can't. Use a class based directive to:
+
+-   Manipulate the rendered DOM directly (for example, add, remove, or reorder rendered DOM nodes).
+-   Persist state between renders.
+-   Update the DOM asynchronously, outside of the main update cycle.
+
+The rest of this page describes class-based directives.
+
+## Creating class-based directives
+
+To create a class-based directive:
 
 *   Implement the directive as a class that extends the {% api "Directive" %} class.
 *   Pass your class to the {% api "directive()" "directive" %} factory to create a directive function that can be used in Lit template expressions.
@@ -44,7 +64,7 @@ When this template is evaluated, the directive _function_  (`hello()`) returns a
 
 Some directives need to update the DOM asynchronously, outside of the normal update cycle. To create an _async directive_, extend the `AsyncDirective` base class instead of `Directive`. See [Async directives](#async-directives) for details.
 
-## Lifecycle of a directive
+## Lifecycle of a class-based directive
 
 The directive class has a few built-in lifecycle methods:
 
