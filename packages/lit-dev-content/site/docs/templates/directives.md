@@ -228,6 +228,12 @@ Lit includes a number of built-in directives to help with a variety of rendering
   </tr>
 </table>
 
+<div class="alert alert-info">
+
+**Only bundle what you use.** These are called "built-in" directives because they're part of the Lit package. But each directive is a separate module, so your app only bundles the directives you import.
+
+</div>
+
 You can also build your own directives. For more information, see [Custom directives](/docs/templates/custom-directives/).
 
 ## Styling
