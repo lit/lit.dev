@@ -359,16 +359,28 @@ Expressions should generally not appear in the following locations:
   <template id="${attrValue}">static content ok</template>
   ```
 
-* Inside `<textarea>` element content (attribute expressions on the textarea element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update, and Lit will warn in development mode. Instead, bind to the `.value` property of textarea instead.
+* Inside `<textarea>` element content (attribute expressions on the textarea element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update, and Lit will warn in development mode. Instead, bind to the `.value` property of textarea.
   ```html
   <!-- BEWARE -->
-  <textarea>${content}</template>
+  <textarea>${content}</textarea>
 
   <!-- OK -->
   <textarea .value=${content}></textarea>
 
   <!-- OK -->
   <textarea id="${attrValue}">static content ok</textarea>
+  ```
+
+* Similarly, inside elements with the `contenteditable` attribute. Instead, bind to the `.innerText` property of the element.
+  ```html
+  <!-- BEWARE -->
+  <div contenteditable>${content}</div>
+
+  <!-- OK -->
+  <div contenteditable .innerText=${content}></div>
+
+  <!-- OK -->
+  <div contenteditable id="${attrValue}">static content ok</div>
   ```
 
 * Inside HTML comments. Lit will not update expressions in comments, and the expressions will instead be rendered with a Lit token string. However, this will not break subsequent expressions, so commenting out blocks of HTML during development that may contain expressions is safe.
