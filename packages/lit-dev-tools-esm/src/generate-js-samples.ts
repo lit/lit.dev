@@ -141,7 +141,7 @@ const nonTsFilesWatcher = chokidar
     [
       '.',
       // Don't watch our own output dir.
-      '!js/',
+      '!js/**/*',
       // TypeScript files are handled separately
       '!*.ts',
       '!**/*.ts',
