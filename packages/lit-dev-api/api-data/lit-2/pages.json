@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "LitElement",
@@ -2731,7 +2731,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "ReactiveElement",
@@ -5495,7 +5495,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "html",
@@ -6169,7 +6169,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "adoptStyles",
@@ -6751,7 +6751,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "customElement",
@@ -7994,7 +7994,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "asyncAppend",
@@ -15656,7 +15656,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "AsyncDirective",
@@ -20310,7 +20310,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "html",
@@ -20325,7 +20325,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 129,
+            "line": 133,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -20398,7 +20398,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 51,
+            "line": 55,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -20480,7 +20480,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 137,
+            "line": 141,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -20553,7 +20553,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 22,
+            "line": 26,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -20620,7 +20620,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/static.ts",
-            "line": 68,
+            "line": 72,
             "moduleSpecifier": "lit-html/static.js"
           }
         ],
@@ -20815,7 +20815,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "ReactiveController",
@@ -21166,7 +21166,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "08e7fc566894d1916dc768c0843fce962ca4d6d4",
+    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
     "items": [
       {
         "name": "defaultConverter",
