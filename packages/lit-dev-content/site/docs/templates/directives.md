@@ -545,7 +545,7 @@ class MyElement extends LitElement {
   render() {
     return html`
       ${choose(this.section, [
-        ['home', () => html`<h1>Home</h1>`]
+        ['home', () => html`<h1>Home</h1>`],
         ['about', () => html`<h1>About</h1>`]
       ],
       () => html`<h1>Error</h1>`)}
