@@ -456,10 +456,10 @@ import {when} from 'lit/directives/when.js';
 <td class="wide-cell">
 
 ```ts
-choose<T, V>(
-  value: T,
-  cases: Array<[T, () => V]>,
-  defaultCase?: () => V
+when<T, F>(
+  condition: boolean,
+  trueCase: () => T,
+  falseCase?: () => F
 )
 ```
 </td>
