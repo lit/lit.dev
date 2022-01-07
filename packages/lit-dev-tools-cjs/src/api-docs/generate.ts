@@ -36,73 +36,60 @@ const fileExists = async (path: string): Promise<boolean> => {
 };
 
 /**
- * Return the SHA of the given commit reference.
+ * Clone the given Git repo URL at the given commit into the given directory.
  */
-const shaOfReference = async (
-  gitDir: string,
-  reference: string
-): Promise<string> => {
-  const {stdout} = await execFileAsync(
+const clone = async ({repo, gitDir, commit}: ApiDocsConfig) => {
+  console.log(`cloning git repo ${repo} to ${gitDir} at ${commit}`);
+  // This is the leanest way to shallow fetch just one commit without fetching
+  // any other git history.
+  await execFileAsync('git', ['init', gitDir]);
+  await execFileAsync(
     'git',
-    ['show', '-s', '--format=%H', reference],
-    {
-      cwd: gitDir,
-    }
+    ['remote', 'add', 'origin', `https://github.com/${repo}`],
+    {cwd: gitDir}
   );
-  return stdout.trim();
+  await execFileAsync('git', ['fetch', 'origin', '--depth=1', commit], {
+    cwd: gitDir,
+  });
+  await execFileAsync('git', ['checkout', commit], {cwd: gitDir});
 };
 
-/**
- * Clone the given Git repo URL at the given commit into the given directory. If
- * the directory already exists, do nothing.
- */
-const cloneIfNeeded = async (repo: string, commit: string, dir: string) => {
-  if (await fileExists(dir)) {
-    console.log(`${dir} already exists, skipping git clone`);
-    const expectedSha = await shaOfReference(dir, commit);
-    const actualSha = await shaOfReference(dir, 'HEAD');
-    if (actualSha !== expectedSha) {
-      throw new Error(
-        `Git repo ${dir} is at commit ${actualSha}, but is configured for ${commit}. ` +
-          `Update the config, or delete ${dir} and re-run this script to fix.`
-      );
-    }
-    return;
-  }
-  console.log(`cloning git repo ${repo} to ${dir}`);
-  await execFileAsync('git', ['clone', repo, dir]);
-  console.log(`checking out commit ${commit}`);
-  await execFileAsync('git', ['checkout', commit], {cwd: dir});
-};
+const INSTALLED_FILE = 'INSTALLED';
 
 /**
- * Run NPM install and other given setup commands. If a node_modules/ directory
- * already exists in the given directory, do nothing.
+ * Run NPM install and other given setup commands.
  */
-const setupIfNeeded = async (
-  dir: string,
-  extraCommands?: Array<{cmd: string; args: string[]}>
-) => {
-  if (await fileExists(pathlib.join(dir, 'node_modules'))) {
-    console.log(`${dir}/node_modules already exists, skipping setup`);
-    return;
+const setup = async (config: ApiDocsConfig) => {
+  console.log(`running npm ci in ${config.gitDir}`);
+  await execFileAsync('npm', ['ci'], {cwd: config.gitDir});
+  for (const {cmd, args} of config.extraSetupCommands ?? []) {
+    console.log(`running ${cmd} ${args.join(' ')} in ${config.gitDir}`);
+    await execFileAsync(cmd, args, {cwd: config.gitDir});
   }
-  console.log(`running npm ci in ${dir}`);
-  await execFileAsync('npm', ['ci'], {cwd: dir});
-  for (const {cmd, args} of extraCommands ?? []) {
-    console.log(`running ${cmd} ${args.join(' ')} in ${dir}`);
-    await execFileAsync(cmd, args, {cwd: dir});
-  }
+  await fs.writeFile(pathlib.join(config.workDir, INSTALLED_FILE), '', 'utf8');
 };
 
 const analyze = async (config: ApiDocsConfig) => {
-  await cloneIfNeeded(
-    `https://github.com/${config.repo}`,
-    config.commit,
-    config.gitDir
-  );
-  await setupIfNeeded(config.gitDir, config.extraSetupCommands);
+  const installedFilename = pathlib.join(config.workDir, INSTALLED_FILE);
+  const installedFileExists = await fileExists(installedFilename);
+  if (
+    !installedFileExists ||
+    (await fs.readFile(installedFilename, 'utf8')).trim() !== config.commit
+  ) {
+    if (installedFileExists) {
+      await fs.rm(installedFilename);
+    }
+    if (await fileExists(config.gitDir)) {
+      await fs.rm(config.gitDir, {recursive: true});
+    }
+    await clone(config);
+    await setup(config);
+    await fs.writeFile(installedFilename, config.commit, 'utf8');
+  } else {
+    console.log(`Re-using git repo ${config.gitDir}`);
+  }
 
+  console.log(`Analyzing ${config.gitDir}`);
   const app = new typedoc.Application();
   app.options.addReader(new typedoc.TSConfigReader());
   app.bootstrap({
