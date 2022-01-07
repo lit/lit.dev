@@ -23,6 +23,7 @@ import {
   BLANK_LINE_PLACEHOLDER_COMMENT_REGEXP,
 } from '@lit/ts-transformers';
 import prettier from 'prettier';
+import fastGlob from 'fast-glob';
 
 import type {ProjectManifest} from 'playground-elements/shared/worker-api';
 
@@ -136,42 +137,6 @@ for (const arg of process.argv.slice(2)) {
 const isProjectConfig = (path: string) =>
   pathlib.basename(path) === 'project.json';
 
-const nonTsFilesWatcher = chokidar
-  .watch(
-    [
-      '.',
-      // Don't watch our own output dir.
-      '!js/**/*',
-      // TypeScript files are handled separately
-      '!*.ts',
-      '!**/*.ts',
-      // These config files are unnecessary.
-      '!tsconfig.json',
-      '!base.json',
-    ],
-    {cwd: TS_SAMPLES_DIR}
-  )
-  .on('add', (path) => {
-    if (isProjectConfig(path)) {
-      updateAndWriteProjectConfig(path, watchMode);
-    } else {
-      symlinkProjectFile(path);
-    }
-  })
-  .on('change', async (path) => {
-    if (isProjectConfig(path)) {
-      updateAndWriteProjectConfig(path, watchMode);
-    }
-  })
-  .on('unlink', (path) => {
-    deleteProjectFile(path);
-  });
-
-// The ready event is fired after the first initial scan completes.
-await new Promise<void>((resolve) => {
-  nonTsFilesWatcher.on('ready', () => resolve());
-});
-
 const tsCompileOpts: InvokeTypeScriptOpts = {
   tsConfigPath: pathlib.join(TS_SAMPLES_DIR, 'tsconfig.json'),
 
@@ -229,10 +194,46 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
   },
 };
 
+const nonTsFileGlobs = [
+  '**/*',
+  // Don't watch our own output dir.
+  '!js/**/*',
+  // TypeScript files are handled separately
+  '!*.ts',
+  '!**/*.ts',
+  // These config files are unnecessary.
+  '!tsconfig.json',
+  '!base.json',
+];
+
 if (watchMode) {
   compileTypeScriptWatch(tsCompileOpts);
+  chokidar
+    .watch(nonTsFileGlobs, {cwd: TS_SAMPLES_DIR})
+    .on('add', (path) => {
+      if (isProjectConfig(path)) {
+        updateAndWriteProjectConfig(path, watchMode);
+      } else {
+        symlinkProjectFile(path);
+      }
+    })
+    .on('change', async (path) => {
+      if (isProjectConfig(path)) {
+        updateAndWriteProjectConfig(path, watchMode);
+      }
+    })
+    .on('unlink', (path) => {
+      deleteProjectFile(path);
+    });
 } else {
-  await nonTsFilesWatcher.close();
+  const files = await fastGlob(nonTsFileGlobs, {cwd: TS_SAMPLES_DIR});
+  for (const path of files) {
+    if (isProjectConfig(path)) {
+      updateAndWriteProjectConfig(path, watchMode);
+    } else {
+      symlinkProjectFile(path);
+    }
+  }
   if (!compileTypeScriptOnce(tsCompileOpts)) {
     console.error('TypeScript compilation failed');
     process.exitCode = 1;
