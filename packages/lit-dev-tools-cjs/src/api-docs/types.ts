@@ -50,6 +50,11 @@ export interface ApiDocsConfig {
   commit: string;
 
   /**
+   * Directory we can use for storing data about this repo.
+   */
+  workDir: string;
+
+  /**
    * Location where Git repo will be cloned.
    */
   gitDir: string;
