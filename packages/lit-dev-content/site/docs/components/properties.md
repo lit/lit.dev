@@ -415,7 +415,7 @@ For any case except `Boolean`, if the element doesn't have the corresponding att
 |:--------|:-----------|
 | `String`, `Number` | If property is defined and non-null, set the attribute to the property value.<br>If property is null or undefined, remove the attribute. |
 | `Boolean` | If property is truthy, create the attribute and set its value to an empty string. <br>If property is falsy, remove the attribute |
-| `Object`, `Arrray` | If property is defined and non-null, set the attribute to `JSON.stringify(propertyValue)`.<br>If property is null or undefined, remove the attribute. |
+| `Object`, `Array` | If property is defined and non-null, set the attribute to `JSON.stringify(propertyValue)`.<br>If property is null or undefined, remove the attribute. |
 
 
 ### Providing a custom converter {#conversion-converter}
