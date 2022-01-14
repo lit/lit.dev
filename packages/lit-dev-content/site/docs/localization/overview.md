@@ -359,7 +359,8 @@ blank.
   "targetLocales": ["es-419", "zh-Hans"],
   "tsConfig": "./tsconfig.json",
   "output": {
-    "mode": "runtime"
+    "mode": "runtime",
+    "outputDir": "./src/generated/locales"
   },
   "interchange": {
     "format": "xliff",
@@ -377,7 +378,8 @@ blank.
     "src/**/*.js",
   ]
   "output": {
-    "mode": "runtime"
+    "mode": "runtime",
+    "outputDir": "./src/generated/locales"
   },
   "interchange": {
     "format": "xliff",
