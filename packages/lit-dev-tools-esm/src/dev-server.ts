@@ -9,6 +9,7 @@ import {fileURLToPath} from 'url';
 import * as pathlib from 'path';
 import {redirectMiddleware} from 'lit-dev-server/lib/middleware/redirect-middleware.js';
 import {playgroundMiddleware} from 'lit-dev-server/lib/middleware/playground-middleware.js';
+import {tutorialsMiddleware} from 'lit-dev-server/lib/middleware/tutorials-middleware.js';
 import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/content-security-policy-middleware.js';
 import {fakeGitHubMiddleware} from './fake-github-middleware.js';
 import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware/github-token-exchange-middleware.js';
@@ -71,10 +72,12 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
   },
 };
 
+const staticRoot = pathlib.join(CONTENT_PKG, ENV.eleventyOutDir);
+
 startDevServer({
   config: {
     port: ENV.mainPort,
-    rootDir: pathlib.join(CONTENT_PKG, ENV.eleventyOutDir),
+    rootDir: staticRoot,
     plugins: [
       dontResolveBareModulesInPlaygroundFiles,
       removeWatchScriptFromPlaygroundFiles,
@@ -92,6 +95,7 @@ startDevServer({
         githubMainUrl: ENV.githubMainUrl,
       }),
       redirectMiddleware(),
+      tutorialsMiddleware(),
     ],
     watch: true,
     nodeResolve: true,

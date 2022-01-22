@@ -13,6 +13,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import {redirectMiddleware} from './middleware/redirect-middleware.js';
 import {playgroundMiddleware} from './middleware/playground-middleware.js';
+import {tutorialsMiddleware} from './middleware/tutorials-middleware.js';
 import {contentSecurityPolicyMiddleware} from './middleware/content-security-policy-middleware.js';
 import {createGitHubTokenExchangeMiddleware} from './middleware/github-token-exchange-middleware.js';
 import {getEnvironment} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
@@ -76,6 +77,7 @@ if (mode === 'playground') {
 
 app.use(koaConditionalGet()); // Needed for etag
 app.use(koaEtag());
+app.use(tutorialsMiddleware());
 app.use(
   koaStatic(staticRoot, {
     // Serve pre-compressed .br and .gz files if available.
