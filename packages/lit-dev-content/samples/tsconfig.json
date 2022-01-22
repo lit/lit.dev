@@ -13,6 +13,8 @@
   },
   "include": ["./**/*.ts"],
   "exclude": [
+    // These must be commonjs as they are imported by 11ty data sources
+    "./**/*.cjs.ts",
     // Intentionally contains unused imports. This one's .js output is
     // hand-rolled becuase TypeScript will elide imports.
     "tutorial/02-define/before/my-element.ts",

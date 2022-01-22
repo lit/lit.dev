@@ -1,0 +1,18 @@
+{
+  "extends": "../../../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "rootDir": ".",
+    "outDir": "../js/tutorials",
+    "types": ["@types/node"],
+    "module": "CommonJS",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["./**/*.cjs.ts"],
+  "exclude": [
+  ]
+}

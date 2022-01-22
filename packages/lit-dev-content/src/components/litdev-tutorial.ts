@@ -4,11 +4,11 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, PropertyValues} from 'lit';
+import {LitElement, html} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {when} from 'lit/directives/when.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
-import {manifest, TutorialStep} from './litdev-tutorial-manifest.js';
 import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import {
   getCodeLanguagePreference,
@@ -16,19 +16,38 @@ import {
 } from '../code-language-preference.js';
 import {solveIcon} from '../icons/solve-icon.js';
 import {resetIcon} from '../icons/reset-icon.js';
+import {catalogIcon} from '../icons/catalog-icon.js';
+import {forwardArrowIcon} from '../icons/forward-arrow-icon.js';
+import {backArrowIcon} from '../icons/back-arrow-icon.js';
 
 import '@material/mwc-icon-button';
 import './litdev-example-controls.js';
 import './litdev-playground-change-guard.js';
 import './litdev-icon-button.js';
+import {Task, TaskStatus} from '@lit-labs/task';
 
-interface ExpandedTutorialStep extends TutorialStep {
+export interface TutorialStep {
+  title: string;
+}
+
+/* TODO(e111077): find a way to make a single source of truth for this.
+ * Lives here and in /samples/tutorials/utils.cjs but samples is not in the 11ty
+ * root so they can't be imported
+ */
+export interface TutorialManifest {
+  steps: TutorialStep[];
+}
+
+interface ExpandedTutorialStep {
   idx: number;
   url: string;
   htmlSrc: string;
   projectSrcBefore: string;
   projectSrcAfter: string;
 }
+
+const samplesRoot =
+  getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
 
 /**
  * Tutorial controller and text display.
@@ -45,22 +64,27 @@ export class LitDevTutorial extends LitElement {
   project?: string;
 
   /**
+   * Whether or not to display the catalog back button.
+   *
+   * TODO(e111077): remove once we decide to go public with the catalog
+   */
+  @property({type: Boolean, attribute: 'show-catalog-button'})
+  showCatalogButton = false;
+
+  /**
+   * Whether or not the forwards and back button should point to
+   * /tutorial(s/tutorial-name)
+   *
+   * TODO(e111077): remove once we decide to go public with the catalog
+   */
+  @property({type: Boolean, attribute: 'use-old-url'})
+  useOldUrl = false;
+
+  /**
    * The 0-indexed step that's currently active.
    */
   @state()
   private _idx = 0;
-
-  /**
-   * Whether the active step content is currently loading.
-   */
-  @state()
-  private _loading = true;
-
-  /**
-   * The dynamically fetched HTML content to display.
-   */
-  @state()
-  private _html?: string;
 
   /**
    * Preloaded HTML content for the next step (idx is explicit to ensure we
@@ -70,9 +94,105 @@ export class LitDevTutorial extends LitElement {
   private _preloadedHtml?: {idx: number; promise: Promise<string>};
 
   /**
+   * Tutorial manifest json file
+   */
+  @state()
+  private _manifest: TutorialManifest = {steps: [{title: ''}]};
+
+  /**
    * Whether the tutorial is currently in its "solved" state.
    */
   private _solved = false;
+
+  private get _projectLocation() {
+    // TODO(e111077): delete this once we go public with tutorials catalog
+    if (window.location.pathname === '/tutorial/') {
+      return 'intro-to-lit';
+    }
+    return window.location.pathname.replace('/tutorials/', '');
+  }
+
+  /**
+   * Playground project element generated from this.project
+   */
+  private get _project(): PlaygroundProject | undefined {
+    if (!this.project) {
+      return undefined;
+    }
+    return (this.getRootNode() as ShadowRoot | Document).getElementById(
+      this.project
+    ) as PlaygroundProject | undefined;
+  }
+
+  /**
+   * Generates an info from the _idx. May result in a 404 request if the index
+   * does not result in an actual file location
+   */
+  private get _info() {
+    return this._idxToInfo(this._idx);
+  }
+
+  /**
+   * Info for the next step. May result in a 404 request if the index + 1
+   * does not result in an actual file location
+   */
+  private get _nextInfo() {
+    return this._idxToInfo(this._idx + 1);
+  }
+
+  /**
+   * Fetches the tutorial manifest on projectLocation change
+   */
+  private _manifestTask = new Task(
+    this,
+    async ([projectLocation]) => {
+      const manifestRes = await fetch(
+        `${samplesRoot}/js/tutorials/${projectLocation}/manifest.json`
+      );
+
+      const manifest = (await manifestRes.json()) as TutorialManifest;
+      this._manifest = manifest;
+
+      return manifest;
+    },
+    () => [this._projectLocation]
+  );
+
+  /**
+   * Fetches the HTML-rendered markdown tutorial text on _manifest or _idx
+   * change.
+   */
+  private _htmlTask = new Task(
+    this,
+    async ([idx]) => {
+      this._solved = false;
+      const active = this._info;
+
+      // Either use the preloaded html or fetch the new HTML (going back)
+      const html =
+        this._preloadedHtml?.idx === idx
+          ? await this._preloadedHtml.promise
+          : await this._fetchHtml(active.htmlSrc);
+      this._setProjectSrc(active.projectSrcBefore);
+      // Use scrollTop instead of scrollIntoView, because scrollIntoView also
+      // changes focus.
+      this.renderRoot.querySelector('#tutorialContent')!.scrollTop = 0;
+
+      // Start loading the next step's HTML content. If it's in bounds.
+      // We can generally assume _manifest is loaded by now. If not,
+      // we'll just fetch it normally anyway when it's active
+      if (this._idx + 1 < this._manifest.steps.length - 1) {
+        const next = this._nextInfo;
+        this._preloadedHtml = {
+          idx: next.idx,
+          promise: this._fetchHtml(next.htmlSrc),
+        };
+      }
+
+      return html;
+    },
+    () => [this._idx]
+  );
 
   createRenderRoot() {
     // This is a site-specific component, and we want to inherit site-wide
@@ -80,78 +200,110 @@ export class LitDevTutorial extends LitElement {
     return this;
   }
 
+  protected willUpdate(_changedProperties: Map<string, unknown>): void {
+    if (_changedProperties.has('_manifest')) {
+      this._readUrl();
+    }
+  }
+
   render() {
-    return html`
-      <div id="tutorialHeader">
-        <div>
-          Step <span class="number">${this._idx + 1}</span> /
-          <span class="number">${manifest.steps.length}</span>
-        </div>
+    return html`${this.renderHeader()}${this.renderContent()}`;
+  }
 
-        <nav>
-          <mwc-icon-button
-            id="prevButton"
-            aria-label="Previous step"
-            .disabled=${this._idx <= 0}
-            @click=${this._onClickPrevButton}
-          >
-            <!-- Source: https://material.io/resources/icons/?icon=arrow_back -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
-              <path
-                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-              />
-            </svg>
-          </mwc-icon-button>
-
-          <mwc-icon-button
-            id="nextButton"
-            aria-label="Next step"
-            .disabled=${this._idx >= manifest.steps.length - 1}
-            @click=${this._onClickNextButton}
-          >
-            <!-- Source: https://material.io/resources/icons/?icon=arrow_forward -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentcolor">
-              <path
-                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
-              />
-            </svg>
-          </mwc-icon-button>
-        </nav>
+  protected renderHeader() {
+    return html`<div
+      id="tutorialHeader"
+      class=${this.showCatalogButton ? 'hasCatalogButton' : ''}
+    >
+      <div class="lhs">
+        ${when(
+          this.showCatalogButton,
+          () => html`
+            <a href="/tutorials/" tabindex="-1">
+              <mwc-icon-button aria-label="Tutorial Catalog">
+                ${catalogIcon}
+              </mwc-icon-button>
+            </a>
+          `
+        )}
+        <span>
+          ${this._manifestTask.render({
+            complete: (manifest) => html`Step
+              <span class="number">${this._idx + 1}</span>
+              / <span class="number">${manifest.steps.length}</span>`,
+          })}
+        </span>
       </div>
 
-      <div
-        id="tutorialContent"
-        class="minimalScroller"
-        ?loading=${this._loading}
+      ${this.renderHeaderNav()}
+    </div>`;
+  }
+
+  protected renderHeaderNav() {
+    return html`<nav>
+      <mwc-icon-button
+        id="prevButton"
+        aria-label="Previous step"
+        .disabled=${this._idx <= 0}
+        @click=${this._onClickPrevButton}
       >
-        <h1>${this._info?.title}</h1>
-        ${unsafeHTML(this._html)}
+        ${backArrowIcon}
+      </mwc-icon-button>
 
-        <div id="tutorialFooter">
-          <litdev-icon-button @click=${this._onClickSolve}>
-            ${solveIcon} Solve
-          </litdev-icon-button>
+      <mwc-icon-button
+        id="nextButton"
+        aria-label="Next step"
+        .disabled=${this._idx >= this._manifest.steps.length - 1}
+        @click=${this._onClickNextButton}
+      >
+        ${forwardArrowIcon}
+      </mwc-icon-button>
+    </nav>`;
+  }
 
-          <litdev-icon-button @click=${this._onClickReset}>
-            ${resetIcon} Reset
-          </litdev-icon-button>
+  protected renderContent() {
+    return html`<div
+      id="tutorialContent"
+      class="minimalScroller"
+      ?loading=${this._htmlTask.status === TaskStatus.PENDING ||
+      this._htmlTask.status === TaskStatus.INITIAL}
+    >
+      <h1>
+        ${when(
+          this._idx < this._manifest.steps.length,
+          () => this._manifest.steps[this._idx].title
+        )}
+      </h1>
+      ${this._htmlTask.render({
+        complete: (description) => html`${unsafeHTML(description)}`,
+      })}
+      ${this.renderFooter()}
+    </div>`;
+  }
 
-          <span id="nextStep">
-            ${this._nextInfo
-              ? html`Next:
-                  <a href="" tabindex="0" @click=${this._onClickNextButton}
-                    >${this._nextInfo.title}</a
-                  >`
-              : html`<em>Tutorial complete!</em>`}
-          </span>
-        </div>
-      </div>
-    `;
+  protected renderFooter() {
+    return html`<div id="tutorialFooter">
+      <litdev-icon-button @click=${this._onClickSolve}>
+        ${solveIcon} Solve
+      </litdev-icon-button>
+
+      <litdev-icon-button @click=${this._onClickReset}>
+        ${resetIcon} Reset
+      </litdev-icon-button>
+
+      <span id="nextStep">
+        ${this._idx + 1 < this._manifest.steps.length
+          ? html`Next:
+              <a href="" tabindex="0" @click=${this._onClickNextButton}
+                >${this._manifest.steps[this._idx + 1].title}</a
+              >`
+          : html`<em>Tutorial complete!</em>`}
+      </span>
+    </div>`;
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this._readUrl();
     window.addEventListener('hashchange', this._readUrl);
     window.addEventListener(
       CODE_LANGUAGE_CHANGE,
@@ -169,32 +321,37 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _onCodeLanguagePreferenceChanged = () => {
+    if (!this._info) {
+      return;
+    }
+
     this._setProjectSrc(
       this._solved ? this._info.projectSrcAfter : this._info.projectSrcBefore,
       true
     );
   };
 
-  update(changedProperties: PropertyValues) {
-    super.update(changedProperties);
-    if (changedProperties.has('_idx')) {
-      this._loadStep();
-    }
-  }
-
   private _onClickSolve() {
+    if (!this._info) {
+      return;
+    }
+
     this._solved = true;
     this._setProjectSrc(this._info.projectSrcAfter, true);
   }
 
   private _onClickReset() {
+    if (!this._info) {
+      return;
+    }
+
     this._solved = false;
     this._setProjectSrc(this._info.projectSrcBefore, true);
   }
 
   private _onClickNextButton(event: Event) {
     event.preventDefault();
-    if (this._idx < manifest.steps.length - 1) {
+    if (this._idx < this._manifest.steps.length - 1) {
       this._idx++;
       this._writeUrl();
     }
@@ -208,26 +365,10 @@ export class LitDevTutorial extends LitElement {
     }
   }
 
-  private get _project(): PlaygroundProject | undefined {
-    if (!this.project) {
-      return undefined;
-    }
-    return (this.getRootNode() as ShadowRoot | Document).getElementById(
-      this.project
-    ) as PlaygroundProject | undefined;
-  }
-
-  private get _info() {
-    // Since we carefully control that this._idx is always a valid index, we can
-    // assert not undefined here.
-    return this._idxToInfo(this._idx)!;
-  }
-
-  private get _nextInfo() {
-    return this._idxToInfo(this._idx + 1);
-  }
-
   // Arrow function syntax so that we can remove listener on disconnect.
+  /**
+   * Reads the hash and calculates the _idx
+   */
   private _readUrl = () => {
     let hash = window.location.hash;
     if (hash.startsWith('#')) {
@@ -236,7 +377,14 @@ export class LitDevTutorial extends LitElement {
     this._idx = hash === '' ? 0 : this._slugToIdx(hash) ?? this._idx;
   };
 
+  /**
+   * Sets the URL and history to the current _info's URL
+   */
   private _writeUrl() {
+    if (!this._info) {
+      return;
+    }
+
     window.history.pushState(
       null,
       '',
@@ -244,6 +392,13 @@ export class LitDevTutorial extends LitElement {
     );
   }
 
+  /**
+   * Sets the projectSrc on the given <playground-project> queried by
+   * this._project.
+   *
+   * @param src src to be set on the <playground-project>
+   * @param force force a change in <playground-project>'s projectSrc
+   */
   private _setProjectSrc(src: string, force = false) {
     const project = this._project;
     if (project === undefined) {
@@ -255,53 +410,53 @@ export class LitDevTutorial extends LitElement {
     project.projectSrc = src;
   }
 
-  private async _loadStep() {
-    this._loading = true;
-    this._solved = false;
-    const active = this._info;
-    this._html =
-      this._preloadedHtml?.idx === this._idx
-        ? await this._preloadedHtml.promise
-        : await this._fetchHtml(active.htmlSrc);
-    this._setProjectSrc(active.projectSrcBefore);
-    this._loading = false;
-    // Use scrollTop instead of scrollIntoView, because scrollIntoView also
-    // changes focus.
-    this.renderRoot.querySelector('#tutorialContent')!.scrollTop = 0;
-
-    // Start loading the next step's HTML content.
-    const next = this._nextInfo;
-    if (next !== undefined) {
-      this._preloadedHtml = {
-        idx: next.idx,
-        promise: this._fetchHtml(next.htmlSrc),
-      };
-    }
-  }
-
+  /**
+   * Fetches the text of a file. Typically expected to be the rendered HTML of
+   * the markdown tutorial step descriptions
+   *
+   * @param src URL to fetch
+   * @returns stringified text of the file at the given location
+   */
   private async _fetchHtml(src: string): Promise<string> {
     return (await fetch(src)).text();
   }
 
+  /**
+   * Finds the index of the given slug. e.g. "" -> 0, "03" -> 3
+   *
+   * @param slug slug of the step
+   * @returns The index with the given slug
+   */
   private _slugToIdx(slug: string): number | undefined {
-    const idx = manifest.steps.findIndex((step) => step.slug === slug);
-    return idx === -1 ? undefined : idx;
+    const idx = Number(slug);
+    return isNaN(idx) ? undefined : idx;
   }
 
-  private _idxToInfo(idx: number): ExpandedTutorialStep | undefined {
-    const info = manifest.steps[idx];
-    if (info === undefined) {
-      return undefined;
-    }
-    const samplesRoot =
-      getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
+  /**
+   * Generates a formatted object of data relevant to this tutorial for the
+   * given step index.
+   *
+   * @param idx Step index to load
+   * @returns A formatted info object of the given step. 404s if the step
+   *   does not exist in the file system
+   */
+  private _idxToInfo(idx: number): ExpandedTutorialStep {
+    const slug = `${idx}`.length == 1 ? `0${idx}` : `${idx}`;
+
+    const firstUrl = this.useOldUrl
+      ? '/tutorial/'
+      : `/tutorials/${this._projectLocation}`;
+
+    const nextUrl = this.useOldUrl
+      ? `/tutorial/#${slug}`
+      : `/tutorials/${this._projectLocation}#${slug}`;
+
     return {
-      ...info,
       idx,
-      url: idx === 0 ? `/tutorial/` : `/tutorial/#${info.slug}`,
-      htmlSrc: `/tutorial/content/${info.slug}/`,
-      projectSrcBefore: `${samplesRoot}/tutorial/${info.slug}/before/project.json`,
-      projectSrcAfter: `${samplesRoot}/tutorial/${info.slug}/after/project.json`,
+      url: idx === 0 ? firstUrl : nextUrl,
+      htmlSrc: `/tutorials/content/${this._projectLocation}/${slug}/`,
+      projectSrcBefore: `${samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
+      projectSrcAfter: `${samplesRoot}/tutorials/${this._projectLocation}/${slug}/after/project.json`,
     };
   }
 }
