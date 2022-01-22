@@ -1,7 +1,0 @@
-{
-  "extends": "/samples/base.json",
-  "files": {
-    "name-tag.ts": {},
-    "index.html": {}
-  }
-}
