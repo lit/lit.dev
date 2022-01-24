@@ -65,7 +65,7 @@ constructor()
 {% endswitchable-sample %}
 
 The component manipulates its own internal reactive state.
-In some cases, internal reactive state may be initialized from public properties—for example, if there is a expensive transformation between the user-visible property and the internal state.
+In some cases, internal reactive state may be initialized from public properties—for example, if there is an expensive transformation between the user-visible property and the internal state.
 
 As with public reactive properties, updating internal reactive state triggers an update cycle. For more information, see [Internal reactive state](#internal-reactive-state).
 
