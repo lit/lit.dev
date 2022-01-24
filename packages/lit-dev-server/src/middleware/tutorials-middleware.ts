@@ -8,13 +8,11 @@ import type Koa from 'koa';
 
 /**
  * Koa Middleware to serve '/tutorials/view.html' from '/tutorials/*'.
- *
- * @param staticRoot Root of the static server
  */
 export const tutorialsMiddleware = (): Koa.Middleware => async (ctx, next) => {
   const path = ctx.request.path;
 
-  /**
+  /*
    * We want to intercept /tutorials/* but not /tutorials/ itself or the place
    * where we are currently rendering the markdown to html so not
    * /tutorials/content/*
@@ -24,7 +22,6 @@ export const tutorialsMiddleware = (): Koa.Middleware => async (ctx, next) => {
     !path.startsWith('/tutorials/content/') &&
     path !== '/tutorials/'
   ) {
-    // Serve /tutorials/view/
     ctx.path = '/tutorials/view/index.html';
   }
   await next();
