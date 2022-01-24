@@ -1,0 +1,33 @@
+{
+  "header": "Intro to Lit",
+  "difficulty": "Beginner",
+  "size": "small",
+  "duration": 20,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Lit tutorial"
+    },
+    {
+      "title": "Define a component"
+    },
+    {
+      "title": "Properties and expressions"
+    },
+    {
+      "title": "Declarative event listeners"
+    },
+    {
+      "title": "More expressions"
+    },
+    {
+      "title": "Template logic"
+    },
+    {
+      "title": "Styles"
+    },
+    {
+      "title": "Finishing touches"
+    }
+  ]
+}

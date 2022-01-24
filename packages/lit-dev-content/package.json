@@ -17,7 +17,7 @@
     "build:ts:watch": "../../node_modules/.bin/tsc --watch",
     "build:rollup": "rm -rf rollupout && rollup -c",
     "build:rollup:watch": "rm -rf rollupout && rollup -c --watch",
-    "build:samples": "rm -rf samples/js && node ../lit-dev-tools-esm/lib/generate-js-samples.js & tsc -p samples/tutorials/tsconfig.json",
+    "build:samples": "rm -rf samples/js && node ../lit-dev-tools-esm/lib/generate-js-samples.js",
     "build:samples:watch": "npm run build:samples -- --watch & tsc -p samples/tutorials/tsconfig.json --watch",
     "clean": "rm -rf lib rollupout _site _dev samples/js",
     "dev:build": "npm run build:not-site && npm run dev:build:site",
