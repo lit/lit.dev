@@ -106,7 +106,7 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
-   * Playground project element generated from this.project
+   * Playground project element discovered using the id from this.project
    */
   private get _project(): PlaygroundProject | undefined {
     if (!this.project) {
