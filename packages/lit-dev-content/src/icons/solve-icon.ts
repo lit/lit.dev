@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {svg} from 'lit';
+import {html} from 'lit';
 
 // Source: https://material.io/resources/icons/?icon=auto_fix_high
-export const solveIcon = svg`
+export const solveIcon = html`
   <svg
     width="24"
     height="24"
