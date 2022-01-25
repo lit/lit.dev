@@ -30,10 +30,6 @@ export interface TutorialStep {
   title: string;
 }
 
-/* TODO(e111077): find a way to make a single source of truth for this.
- * Lives here and in /samples/tutorials/utils.cjs but samples is not in the 11ty
- * root so they can't be imported
- */
 export interface TutorialManifest {
   steps: TutorialStep[];
 }
@@ -45,9 +41,6 @@ interface ExpandedTutorialStep {
   projectSrcBefore: string;
   projectSrcAfter: string;
 }
-
-const samplesRoot =
-  getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
 
 /**
  * Tutorial controller and text display.
@@ -141,13 +134,20 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
+   * The root URI of the samples directory based on language preference.
+   */
+  private get _samplesRoot() {
+    return getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
+  }
+
+  /**
    * Fetches the tutorial manifest on projectLocation change
    */
   private _manifestTask = new Task(
     this,
     async ([projectLocation]) => {
       const manifestRes = await fetch(
-        `${samplesRoot}/tutorials/${projectLocation}/tutorial.json`
+        `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`
       );
 
       const manifest = (await manifestRes.json()) as TutorialManifest;
@@ -455,8 +455,8 @@ export class LitDevTutorial extends LitElement {
       idx,
       url: idx === 0 ? firstUrl : nextUrl,
       htmlSrc: `/tutorials/content/${this._projectLocation}/${slug}/`,
-      projectSrcBefore: `${samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
-      projectSrcAfter: `${samplesRoot}/tutorials/${this._projectLocation}/${slug}/after/project.json`,
+      projectSrcBefore: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
+      projectSrcAfter: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/after/project.json`,
     };
   }
 }
