@@ -147,7 +147,7 @@ export class LitDevTutorial extends LitElement {
     this,
     async ([projectLocation]) => {
       const manifestRes = await fetch(
-        `${samplesRoot}/js/tutorials/${projectLocation}/manifest.json`
+        `${samplesRoot}/tutorials/${projectLocation}/tutorial.json`
       );
 
       const manifest = (await manifestRes.json()) as TutorialManifest;
