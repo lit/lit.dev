@@ -12,11 +12,9 @@ import type Koa from 'koa';
 export const tutorialsMiddleware = (): Koa.Middleware => async (ctx, next) => {
   const path = ctx.request.path;
 
-  /*
-   * We want to intercept /tutorials/* but not /tutorials/ itself or the place
-   * where we are currently rendering the markdown to html so not
-   * /tutorials/content/*
-   */
+  // We want to intercept /tutorials/* but not /tutorials/ itself or the place
+  // where we are currently rendering the markdown to html so not
+  // /tutorials/content/*
   if (
     path.startsWith('/tutorials/') &&
     !path.startsWith('/tutorials/content/') &&
