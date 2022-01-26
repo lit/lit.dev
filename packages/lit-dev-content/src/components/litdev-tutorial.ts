@@ -89,8 +89,9 @@ export class LitDevTutorial extends LitElement {
   /**
    * Tutorial manifest json file
    */
-  @state()
-  private _manifest: TutorialManifest = {steps: [{title: ''}]};
+  private get _manifest(): TutorialManifest {
+    return this._manifestTask.value ?? {steps: [{title: ''}]};
+  }
 
   /**
    * Whether the tutorial is currently in its "solved" state.
@@ -141,7 +142,12 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
-   * Fetches the tutorial manifest on projectLocation change
+   * Last resolved value of the manifest task.
+   */
+  private _oldManifestValue: TutorialManifest | undefined = undefined;
+
+  /**
+   * Fetches the tutorial manifest on _projectLocation change
    */
   private _manifestTask = new Task(
     this,
@@ -150,17 +156,18 @@ export class LitDevTutorial extends LitElement {
         `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`
       );
 
-      const manifest = (await manifestRes.json()) as TutorialManifest;
-      this._manifest = manifest;
-
-      return manifest;
+      return (await manifestRes.json()) as TutorialManifest;
     },
     () => [this._projectLocation]
   );
 
   /**
-   * Fetches the HTML-rendered markdown tutorial text on _manifest or _idx
-   * change.
+   * Last resolved value of the html task.
+   */
+  private _oldHtmlValue: string | undefined = undefined;
+
+  /**
+   * Fetches the HTML-rendered markdown tutorial text on _idx change.
    */
   private _htmlTask = new Task(
     this,
@@ -173,21 +180,6 @@ export class LitDevTutorial extends LitElement {
         this._preloadedHtml?.idx === idx
           ? await this._preloadedHtml.promise
           : await this._fetchHtml(active.htmlSrc);
-      this._setProjectSrc(active.projectSrcBefore);
-      // Use scrollTop instead of scrollIntoView, because scrollIntoView also
-      // changes focus.
-      this.renderRoot.querySelector('#tutorialContent')!.scrollTop = 0;
-
-      // Start loading the next step's HTML content. If it's in bounds.
-      // We can generally assume _manifest is loaded by now. If not,
-      // we'll just fetch it normally anyway when it's active
-      if (this._idx + 1 < this._manifest.steps.length - 1) {
-        const next = this._nextInfo;
-        this._preloadedHtml = {
-          idx: next.idx,
-          promise: this._fetchHtml(next.htmlSrc),
-        };
-      }
 
       return html;
     },
@@ -200,9 +192,45 @@ export class LitDevTutorial extends LitElement {
     return this;
   }
 
-  protected willUpdate(_changedProperties: Map<string, unknown>): void {
-    if (_changedProperties.has('_manifest')) {
+  protected willUpdate(): void {
+    const manifestTaskValue = this._manifestTask.value;
+
+    /**
+     * When the manifest task has just finished resolving, read the URL
+     */
+    if (
+      manifestTaskValue !== undefined &&
+      this._oldManifestValue !== manifestTaskValue
+    ) {
+      this._oldManifestValue = manifestTaskValue;
       this._readUrl();
+    }
+
+    const htmlTaskValue = this._htmlTask.value;
+
+    /**
+     * When the html task has just finished resolving fetch the next step's html
+     */
+    if (htmlTaskValue !== undefined && this._oldHtmlValue !== htmlTaskValue) {
+      this._oldHtmlValue = htmlTaskValue;
+      this._setProjectSrc(this._info.projectSrcBefore);
+      // Use scrollTop instead of scrollIntoView, because scrollIntoView also
+      // changes focus.
+      const contentNode = this.renderRoot?.querySelector('#tutorialContent');
+      if (contentNode) {
+        contentNode.scrollTop = 0;
+      }
+
+      // Start loading the next step's HTML content. If it's in bounds.
+      // We can generally assume _manifest is loaded by now. If not,
+      // we'll just fetch it normally anyway when it's active
+      if (this._idx + 1 < this._manifest.steps.length - 1) {
+        const next = this._nextInfo;
+        this._preloadedHtml = {
+          idx: next.idx,
+          promise: this._fetchHtml(next.htmlSrc),
+        };
+      }
     }
   }
 
