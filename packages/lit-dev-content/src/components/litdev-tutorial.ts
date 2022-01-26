@@ -192,7 +192,7 @@ export class LitDevTutorial extends LitElement {
     return this;
   }
 
-  protected willUpdate(): void {
+  willUpdate(): void {
     const manifestTaskValue = this._manifestTask.value;
 
     /**
