@@ -4,10 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {svg} from 'lit';
+import {html} from 'lit';
 
 // Source: https://material.io/resources/icons/?icon=restart_alt
-export const resetIcon = svg`
+export const resetIcon = html`
   <svg
     width="24"
     height="24"

@@ -62,7 +62,7 @@
     "@material/mwc-icon-button-toggle": "^0.25.1",
     "@material/mwc-snackbar": "^0.25.1",
     "@material/mwc-textfield": "^0.25.1",
-    "lit": "^2.0.0",
+    "lit": "^2.1.0",
     "minisearch": "^3.0.4",
     "playground-elements": "^0.14.7",
     "tarts": "^1.0.0",

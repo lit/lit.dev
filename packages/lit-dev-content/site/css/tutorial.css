@@ -80,9 +80,38 @@ litdev-tutorial {
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
-  padding: 0.5em 3.75em 0.3em 2em;
+  padding: 0.5em calc(3em - 16px) 0.3em 2em;
   /* Disabled buttons are very dark by default, lighten a bit. */
   --mdc-theme-text-disabled-on-light: #777;
+}
+
+#tutorialHeader.hasCatalogButton {
+  /* need to reduce padding to account for the 16px of whitespace around icon */
+  padding-inline-start: calc(2em - 16px);
+}
+
+#tutorialHeader .lhs {
+  display: flex;
+  align-items: center;
+}
+
+#tutorialHeader .lhs mwc-icon-button {
+  margin-inline-end: .5em;
+}
+
+#tutorialHeader a {
+  color: currentColor;
+}
+
+#tutorialHeader nav {
+  /* TODO(e111077): I don't know why this nav will not encapsulate the width
+  of the buttons inside of it otherwise */
+  width: 96px;
+}
+
+#tutorialHeader nav > * {
+  width: 48px;
+  display: inline-flex;
 }
 
 #tutorialHeader .number {
