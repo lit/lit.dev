@@ -498,7 +498,7 @@ export class LitDevTutorial extends LitElement {
    * @returns A 2-length stringified number
    */
   private _idxToSlug(idx: number): string {
-    return `${idx}`.length == 1 ? `0${idx}` : `${idx}`;
+    return `${idx}`.padStart(2, '0');
   }
 
   /**
