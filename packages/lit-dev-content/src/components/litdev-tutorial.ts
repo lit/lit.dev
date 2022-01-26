@@ -84,7 +84,10 @@ export class LitDevTutorial extends LitElement {
    * don't get out of sync).
    */
   @state()
-  private _preloadedHtml?: {idx: number; promise: Promise<{html: string, isOk: boolean}>};
+  private _preloadedHtml?: {
+    idx: number;
+    promise: Promise<{html: string; isOk: boolean}>;
+  };
 
   /**
    * Tutorial manifest json file
@@ -96,17 +99,21 @@ export class LitDevTutorial extends LitElement {
   /**
    * Message to be displayed if there was an error loading
    */
-   private get _manifestLoadError() {
-    return this._manifestTask.value?.isOk === false ? `Could not fetch tutorial manifest. Invalid URL /${this._projectLocation}/` : '';
+  private get _manifestLoadError() {
+    return this._manifestTask.value?.isOk === false
+      ? `Could not fetch tutorial manifest. Invalid URL /${this._projectLocation}/`
+      : '';
   }
 
   /**
    * Message to be displayed if there was an error loading
    */
-   private get _htmlLoadError() {
-    return this._htmlTask.value?.isOk === false ? `Could not fetch step description. Invalid URL /${
-      this._projectLocation
-    }/#${this._idxToSlug(this._idx)}` : '';
+  private get _htmlLoadError() {
+    return this._htmlTask.value?.isOk === false
+      ? `Could not fetch step description. Invalid URL /${
+          this._projectLocation
+        }/#${this._idxToSlug(this._idx)}`
+      : '';
   }
 
   /**
@@ -161,7 +168,9 @@ export class LitDevTutorial extends LitElement {
   /**
    * Last resolved value of the manifest task.
    */
-  private _oldManifestValue: {manifest: TutorialManifest|undefined, isOk: boolean} | undefined = undefined;
+  private _oldManifestValue:
+    | {manifest: TutorialManifest | undefined; isOk: boolean}
+    | undefined = undefined;
 
   /**
    * Fetches the tutorial manifest on _projectLocation change
@@ -169,11 +178,15 @@ export class LitDevTutorial extends LitElement {
   private _manifestTask = new Task(
     this,
     async ([projectLocation]) => {
-      const manifestRes = await fetch(`${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`);
+      const manifestRes = await fetch(
+        `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`
+      );
 
       if (manifestRes.ok) {
-      return {manifest: (await manifestRes.json()) as TutorialManifest, isOk: manifestRes.ok};
-
+        return {
+          manifest: (await manifestRes.json()) as TutorialManifest,
+          isOk: manifestRes.ok,
+        };
       } else {
         return {manifest: undefined, isOk: manifestRes.ok};
       }
@@ -184,7 +197,7 @@ export class LitDevTutorial extends LitElement {
   /**
    * Last resolved value of the html task.
    */
-  private _oldHtmlValue: {html: string, isOk: boolean} | undefined = undefined;
+  private _oldHtmlValue: {html: string; isOk: boolean} | undefined = undefined;
 
   /**
    * Fetches the HTML-rendered markdown tutorial text on _idx change.
@@ -466,7 +479,9 @@ export class LitDevTutorial extends LitElement {
    * @param src URL to fetch
    * @returns stringified text of the file at the given location
    */
-  private async _fetchHtml(src: string): Promise<{html: string, isOk: boolean}> {
+  private async _fetchHtml(
+    src: string
+  ): Promise<{html: string; isOk: boolean}> {
     const response = await fetch(src);
 
     return {html: await response.text(), isOk: response.ok};
