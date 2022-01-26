@@ -80,6 +80,18 @@ export class LitDevTutorial extends LitElement {
   private _idx = 0;
 
   /**
+   * Message to be displayed if there was an error loading
+   */
+  @state()
+  private _htmlLoadError = '';
+
+  /**
+   * Message to be displayed if there was an error loading
+   */
+  @state()
+  private _manifestLoadError = '';
+
+  /**
    * Preloaded HTML content for the next step (idx is explicit to ensure we
    * don't get out of sync).
    */
@@ -103,7 +115,8 @@ export class LitDevTutorial extends LitElement {
     if (window.location.pathname === '/tutorial/') {
       return 'intro-to-lit';
     }
-    return window.location.pathname.replace('/tutorials/', '');
+    const locationEnding = window.location.pathname.replace('/tutorials/', '');
+    return locationEnding.replace(/\/$/, '');
   }
 
   /**
@@ -152,11 +165,17 @@ export class LitDevTutorial extends LitElement {
   private _manifestTask = new Task(
     this,
     async ([projectLocation]) => {
+      this._manifestLoadError = '';
       const manifestRes = await fetch(
         `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`
       );
 
-      return (await manifestRes.json()) as TutorialManifest;
+      if (manifestRes.ok) {
+        return (await manifestRes.json()) as TutorialManifest;
+      } else {
+        this._manifestLoadError = `Could not fetch tutorial manifest. Invalid URL /${projectLocation}/`;
+        return undefined;
+      }
     },
     () => [this._projectLocation]
   );
@@ -174,6 +193,8 @@ export class LitDevTutorial extends LitElement {
     async ([idx]) => {
       this._solved = false;
       const active = this._info;
+
+      this._htmlLoadError = '';
 
       // Either use the preloaded html or fetch the new HTML (going back)
       const html =
@@ -195,9 +216,10 @@ export class LitDevTutorial extends LitElement {
   willUpdate(): void {
     const manifestTaskValue = this._manifestTask.value;
 
-    /**
-     * When the manifest task has just finished resolving, read the URL
-     */
+    // TODO(e111077): clean up willUpdate depending on how
+    // https://github.com/lit/lit/issues/2454 resolves
+
+    // When the manifest task has just finished resolving, read the URL
     if (
       manifestTaskValue !== undefined &&
       this._oldManifestValue !== manifestTaskValue
@@ -208,9 +230,7 @@ export class LitDevTutorial extends LitElement {
 
     const htmlTaskValue = this._htmlTask.value;
 
-    /**
-     * When the html task has just finished resolving fetch the next step's html
-     */
+    // When the html task has just finished resolving fetch the next step's html
     if (htmlTaskValue !== undefined && this._oldHtmlValue !== htmlTaskValue) {
       this._oldHtmlValue = htmlTaskValue;
       this._setProjectSrc(this._info.projectSrcBefore);
@@ -258,7 +278,7 @@ export class LitDevTutorial extends LitElement {
           ${this._manifestTask.render({
             complete: (manifest) => html`Step
               <span class="number">${this._idx + 1}</span>
-              / <span class="number">${manifest.steps.length}</span>`,
+              / <span class="number">${manifest?.steps.length}</span>`,
           })}
         </span>
       </div>
@@ -302,9 +322,11 @@ export class LitDevTutorial extends LitElement {
           () => this._manifest.steps[this._idx].title
         )}
       </h1>
-      ${this._htmlTask.render({
-        complete: (description) => html`${unsafeHTML(description)}`,
-      })}
+      ${this._htmlLoadError || this._manifestLoadError
+        ? html`${this._htmlLoadError}<br />${this._manifestLoadError}`
+        : this._htmlTask.render({
+            complete: (description) => html`${unsafeHTML(description)}`,
+          })}
       ${this.renderFooter()}
     </div>`;
   }
@@ -446,7 +468,17 @@ export class LitDevTutorial extends LitElement {
    * @returns stringified text of the file at the given location
    */
   private async _fetchHtml(src: string): Promise<string> {
-    return (await fetch(src)).text();
+    const response = await fetch(src);
+
+    if (response.ok) {
+      this._htmlLoadError = '';
+      return await response.text();
+    } else {
+      this._htmlLoadError = `Could not fetch step description. Invalid URL /${
+        this._projectLocation
+      }/#${this._idxToSlug(this._idx)}`;
+      return '';
+    }
   }
 
   /**
@@ -461,6 +493,15 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
+   * Turns an index into a 2-length stringified number for the slug.
+   * @param idx index to slugify
+   * @returns A 2-length stringified number
+   */
+  private _idxToSlug(idx: number): string {
+    return `${idx}`.length == 1 ? `0${idx}` : `${idx}`;
+  }
+
+  /**
    * Generates a formatted object of data relevant to this tutorial for the
    * given step index.
    *
@@ -469,7 +510,7 @@ export class LitDevTutorial extends LitElement {
    *   does not exist in the file system
    */
   private _idxToInfo(idx: number): ExpandedTutorialStep {
-    const slug = `${idx}`.length == 1 ? `0${idx}` : `${idx}`;
+    const slug = this._idxToSlug(idx);
 
     const firstUrl = this.useOldUrl
       ? '/tutorial/'
