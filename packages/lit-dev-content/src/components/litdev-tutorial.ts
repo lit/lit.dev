@@ -97,26 +97,6 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
-   * Message to be displayed if there was an error loading
-   */
-  private get _manifestLoadError() {
-    return this._manifestTask.status === TaskStatus.ERROR
-      ? `Could not fetch tutorial manifest. Invalid URL /${this._projectLocation}/`
-      : '';
-  }
-
-  /**
-   * Message to be displayed if there was an error loading
-   */
-  private get _htmlLoadError() {
-    return this._htmlTask.status === TaskStatus.ERROR
-      ? `Could not fetch step description. Invalid URL /${
-          this._projectLocation
-        }/#${this._idxToSlug(this._idx)}`
-      : '';
-  }
-
-  /**
    * Whether the tutorial is currently in its "solved" state.
    */
   private _solved = false;
@@ -330,10 +310,14 @@ export class LitDevTutorial extends LitElement {
         )}
       </h1>
       ${this._manifestTask.render({
-        error: () => html`${this._manifestLoadError}<br />`,
+        error: () =>
+          html`${`Could not fetch tutorial manifest. Invalid URL /${this._projectLocation}/`}<br />`,
       })}
       ${this._htmlTask.render({
-        error: () => html`${this._htmlLoadError}`,
+        error: () =>
+          html`${`Could not fetch step description. Invalid URL /${
+            this._projectLocation
+          }/#${this._idxToSlug(this._idx)}`}`,
         complete: (response) => html`${unsafeHTML(response)}`,
       })}
       ${this.renderFooter()}
