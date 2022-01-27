@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html} from 'lit';
+import {LitElement, html, nothing} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {when} from 'lit/directives/when.js';
@@ -80,23 +80,14 @@ export class LitDevTutorial extends LitElement {
   private _idx = 0;
 
   /**
-   * Message to be displayed if there was an error loading
-   */
-  @state()
-  private _htmlLoadError = '';
-
-  /**
-   * Message to be displayed if there was an error loading
-   */
-  @state()
-  private _manifestLoadError = '';
-
-  /**
    * Preloaded HTML content for the next step (idx is explicit to ensure we
    * don't get out of sync).
    */
   @state()
-  private _preloadedHtml?: {idx: number; promise: Promise<string>};
+  private _preloadedHtml?: {
+    idx: number;
+    promise: Promise<string>;
+  };
 
   /**
    * Tutorial manifest json file
@@ -165,7 +156,6 @@ export class LitDevTutorial extends LitElement {
   private _manifestTask = new Task(
     this,
     async ([projectLocation]) => {
-      this._manifestLoadError = '';
       const manifestRes = await fetch(
         `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`
       );
@@ -173,8 +163,7 @@ export class LitDevTutorial extends LitElement {
       if (manifestRes.ok) {
         return (await manifestRes.json()) as TutorialManifest;
       } else {
-        this._manifestLoadError = `Could not fetch tutorial manifest. Invalid URL /${projectLocation}/`;
-        return undefined;
+        throw new Error('Manifest fetch was unsuccessful');
       }
     },
     () => [this._projectLocation]
@@ -193,8 +182,6 @@ export class LitDevTutorial extends LitElement {
     async ([idx]) => {
       this._solved = false;
       const active = this._info;
-
-      this._htmlLoadError = '';
 
       // Either use the preloaded html or fetch the new HTML (going back)
       const html =
@@ -276,9 +263,9 @@ export class LitDevTutorial extends LitElement {
         )}
         <span>
           ${this._manifestTask.render({
-            complete: (manifest) => html`Step
+            complete: () => html`Step
               <span class="number">${this._idx + 1}</span>
-              / <span class="number">${manifest?.steps.length}</span>`,
+              / <span class="number">${this._manifest.steps.length}</span>`,
           })}
         </span>
       </div>
@@ -322,11 +309,19 @@ export class LitDevTutorial extends LitElement {
           () => this._manifest.steps[this._idx].title
         )}
       </h1>
-      ${this._htmlLoadError || this._manifestLoadError
-        ? html`${this._htmlLoadError}<br />${this._manifestLoadError}`
-        : this._htmlTask.render({
-            complete: (description) => html`${unsafeHTML(description)}`,
-          })}
+      ${this._manifestTask.render({
+        // TODO(e111077): Move these error messages out of content and into
+        // a toast or dialog
+        error: () =>
+          html`${`Could not fetch tutorial manifest. Invalid URL /${this._projectLocation}/`}<br />`,
+      })}
+      ${this._htmlTask.render({
+        error: () =>
+          html`${`Could not fetch step description. Invalid URL /${
+            this._projectLocation
+          }/#${this._idxToSlug(this._idx)}`}`,
+        complete: (response) => html`${unsafeHTML(response)}`,
+      })}
       ${this.renderFooter()}
     </div>`;
   }
@@ -341,15 +336,27 @@ export class LitDevTutorial extends LitElement {
         ${resetIcon} Reset
       </litdev-icon-button>
 
-      <span id="nextStep">
-        ${this._idx + 1 < this._manifest.steps.length
-          ? html`Next:
-              <a href="" tabindex="0" @click=${this._onClickNextButton}
-                >${this._manifest.steps[this._idx + 1].title}</a
-              >`
-          : html`<em>Tutorial complete!</em>`}
-      </span>
+      <span id="nextStep"> ${this._renderNextStepStatus()} </span>
     </div>`;
+  }
+
+  private _renderNextStepStatus() {
+    if (
+      this._htmlTask.status === TaskStatus.ERROR ||
+      this._manifestTask.status !== TaskStatus.COMPLETE ||
+      this._manifest.steps.length < this._idx + 1
+    ) {
+      return nothing;
+    }
+
+    if (this._idx + 1 === this._manifest.steps.length) {
+      return html`<em>Tutorial complete!</em>`;
+    }
+
+    return html`Next:
+      <a href="" tabindex="0" @click=${this._onClickNextButton}
+        >${this._manifest.steps[this._idx + 1].title}</a
+      >`;
   }
 
   connectedCallback() {
@@ -470,15 +477,11 @@ export class LitDevTutorial extends LitElement {
   private async _fetchHtml(src: string): Promise<string> {
     const response = await fetch(src);
 
-    if (response.ok) {
-      this._htmlLoadError = '';
-      return await response.text();
-    } else {
-      this._htmlLoadError = `Could not fetch step description. Invalid URL /${
-        this._projectLocation
-      }/#${this._idxToSlug(this._idx)}`;
-      return '';
+    if (!response.ok) {
+      throw new Error('HTML fetch was unsuccessful');
     }
+
+    return await response.text();
   }
 
   /**
@@ -498,7 +501,7 @@ export class LitDevTutorial extends LitElement {
    * @returns A 2-length stringified number
    */
   private _idxToSlug(idx: number): string {
-    return `${idx}`.length == 1 ? `0${idx}` : `${idx}`;
+    return `${idx}`.padStart(2, '0');
   }
 
   /**
