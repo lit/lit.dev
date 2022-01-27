@@ -310,7 +310,7 @@ export class LitDevTutorial extends LitElement {
         )}
       </h1>
       ${this._manifestTask.render({
-        // TODO(e111o77): Move these error messages out of content and into
+        // TODO(e111077): Move these error messages out of content and into
         // a toast or dialog
         error: () =>
           html`${`Could not fetch tutorial manifest. Invalid URL /${this._projectLocation}/`}<br />`,
