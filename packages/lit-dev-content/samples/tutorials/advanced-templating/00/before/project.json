@@ -1,0 +1,6 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "index.html": {}
+  }
+}
