@@ -26,15 +26,16 @@ const loadTutorialData = async (dirname) => {
  *   To be consumed by the tutorials catalog (/tutorials/index.html).
  */
 module.exports = async () => {
+  const tutorials = await Promise.all([
+    // Learn
+    loadTutorialData('intro-to-lit'),
+    loadTutorialData('advanced-templating'),
+
+    // Build
+    loadTutorialData('brick-viewer'),
+  ]);
   /*
    * tutorial data in order of rendering on the page
    */
-  return {eleventyComputed: {tutorials: [
-    // Learn
-    await loadTutorialData('intro-to-lit'),
-    await loadTutorialData('advanced-templating'),
-
-    // Build
-    await loadTutorialData('brick-viewer'),
-  ]}};
+  return {eleventyComputed: {tutorials}};
 }
