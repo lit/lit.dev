@@ -3,7 +3,7 @@ import {customElement, property} from 'lit/decorators.js';
 import {when} from 'lit/directives/when.js';
 
 export type CardSize = 'tiny' | 'small' | 'medium' | 'large';
-export type TutorialDifficulty = 'Beginner' | 'Intermediate' | 'Advanced';
+export type TutorialDifficulty = '' | 'Beginner' | 'Intermediate' | 'Advanced';
 
 @customElement('litdev-tutorial-card')
 export class LitdevTutorialCard extends LitElement {
@@ -209,7 +209,7 @@ export class LitdevTutorialCard extends LitElement {
   /**
    * Difficulty of the tutorial
    */
-  @property() difficulty = 'Beginner';
+  @property() difficulty: TutorialDifficulty = '';
 
   /**
    * Duration of the tutorial in minutes
@@ -235,12 +235,15 @@ export class LitdevTutorialCard extends LitElement {
       </section>
       ${when(this.imgSrc && this.size !== 'tiny', () => this.renderImg())}
       ${when(!this.hideDescription, () => this.renderDescription())}
-      <section id="metadata-container">
-        <div id="metadata">
-          <div id="difficulty">${this.difficulty}</div>
-          <div id="duration">${this.calculateDurationStr(this.duration)}</div>
-        </div>
-      </section>
+      ${when(
+        this.duration || this.difficulty,
+        () => html`<section id="metadata-container">
+          <div id="metadata">
+            <div id="difficulty">${this.difficulty}</div>
+            <div id="duration">${this.calculateDurationStr(this.duration)}</div>
+          </div>
+        </section>`
+      )}
     </a>`;
   }
 
@@ -260,12 +263,15 @@ export class LitdevTutorialCard extends LitElement {
 
   /**
    * Calculates the user readable string of "X Hrs Y Mins" or "Z Minutes" if
-   * under an hour given a duration in minutes.
+   * under an hour given a duration in minutes. Empty string if duration is 0.
    *
    * @param duration Duration in Minutes
    * @returns A user-readable string of hours and minutes
    */
   private calculateDurationStr(duration: number) {
+    if (duration === 0) {
+      return '';
+    }
     const hrs = Math.floor(duration / 60);
     const mins = duration % 60;
     const hrTrailingS = hrs !== 1 ? 's' : '';
