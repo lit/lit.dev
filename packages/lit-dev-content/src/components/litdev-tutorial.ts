@@ -271,7 +271,7 @@ export class LitDevTutorial extends LitElement {
               <span class="title-separator">${diamondIcon}</span>
               <span class="step-text">Step</span>
               <span class="number">${this._idx + 1}</span>
-              / <span class="number">${this._manifest.steps.length}</span>`,
+              / <span class="number">${manifest?.steps.length}</span>`,
           })}
         </span>
       </div>
