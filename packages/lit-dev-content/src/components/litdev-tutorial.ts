@@ -14,6 +14,7 @@ import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
+import {diamondIcon} from '../icons/diamond-icon.js';
 import {solveIcon} from '../icons/solve-icon.js';
 import {resetIcon} from '../icons/reset-icon.js';
 import {catalogIcon} from '../icons/catalog-icon.js';
@@ -31,6 +32,7 @@ export interface TutorialStep {
 }
 
 export interface TutorialManifest {
+  header: string;
   steps: TutorialStep[];
 }
 
@@ -93,7 +95,7 @@ export class LitDevTutorial extends LitElement {
    * Tutorial manifest json file
    */
   private get _manifest(): TutorialManifest {
-    return this._manifestTask.value ?? {steps: [{title: ''}]};
+    return this._manifestTask.value ?? {header: '', steps: [{title: ''}]};
   }
 
   /**
@@ -261,9 +263,12 @@ export class LitDevTutorial extends LitElement {
             </a>
           `
         )}
-        <span>
+        <span class="tutorial-metadata">
           ${this._manifestTask.render({
-            complete: () => html`Step
+            complete: (manifest) => html`
+              <span class="tutorial-title">${manifest?.header}</span>
+              <span class="title-separator">${diamondIcon}</span>
+              <span class="step-text">Step</span>
               <span class="number">${this._idx + 1}</span>
               / <span class="number">${this._manifest.steps.length}</span>`,
           })}
