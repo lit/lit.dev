@@ -37,6 +37,7 @@ export default [
       'lib/components/litdev-example.js',
       'lib/components/litdev-switchable-sample.js',
       'lib/components/litdev-tutorial.js',
+      'lib/components/litdev-tutorial-card.js',
       'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
