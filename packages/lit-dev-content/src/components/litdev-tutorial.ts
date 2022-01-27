@@ -265,8 +265,9 @@ export class LitDevTutorial extends LitElement {
         )}
         <span class="tutorial-metadata">
           ${this._manifestTask.render({
-            complete: (manifest) => html`
-              <span class="tutorial-title">${manifest?.header}</span>
+            complete: (manifest) => html` <span class="tutorial-title"
+                >${manifest?.header}</span
+              >
               <span class="title-separator">${diamondIcon}</span>
               <span class="step-text">Step</span>
               <span class="number">${this._idx + 1}</span>
