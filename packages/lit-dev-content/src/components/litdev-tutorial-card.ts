@@ -163,7 +163,7 @@ export class LitdevTutorialCard extends LitElement {
 
     :host(:hover) #root,
     :host(:focus-within) #root {
-      /* traslate the root / content to up right */
+      /* translate the root / content to up right */
       transform: translate(
         calc(var(--_unit) * 0.125),
         calc(var(--_unit) * -0.125)
@@ -277,8 +277,11 @@ export class LitdevTutorialCard extends LitElement {
     const hrTrailingS = hrs !== 1 ? 's' : '';
     const minuteTrailingS = mins !== 1 ? 's' : '';
 
+    // TODO(e111077): Make this localizable.
     if (hrs) {
-      return `${hrs} Hr${hrTrailingS} ${mins} Min${minuteTrailingS}`;
+      return `${hrs} Hr${hrTrailingS}${
+        mins ? ` ${mins} Min${minuteTrailingS}` : ''
+      }`;
     }
 
     return `${mins} Minute${minuteTrailingS}`;
