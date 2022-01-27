@@ -16,6 +16,7 @@ import {playgroundMiddleware} from './middleware/playground-middleware.js';
 import {tutorialsMiddleware} from './middleware/tutorials-middleware.js';
 import {contentSecurityPolicyMiddleware} from './middleware/content-security-policy-middleware.js';
 import {createGitHubTokenExchangeMiddleware} from './middleware/github-token-exchange-middleware.js';
+import {notFoundMiddleware} from './middleware/notfound-middleware.js';
 import {getEnvironment} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
 
 const ENV = getEnvironment();
@@ -92,6 +93,7 @@ app.use(
     },
   })
 );
+app.use(notFoundMiddleware(staticRoot));
 
 const server = app.listen(port);
 console.log(`server listening on port ${port}`);
