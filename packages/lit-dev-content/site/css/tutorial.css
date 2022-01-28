@@ -83,6 +83,7 @@ litdev-tutorial {
   padding: 0.5em calc(3em - 16px) 0.3em 2em;
   /* Disabled buttons are very dark by default, lighten a bit. */
   --mdc-theme-text-disabled-on-light: #777;
+  --diamond-icon-color: currentcolor;
 }
 
 #tutorialHeader.hasCatalogButton {
@@ -95,8 +96,32 @@ litdev-tutorial {
   align-items: center;
 }
 
+#tutorialHeader .tutorial-metadata {
+  display: flex;
+  align-items: center;
+}
+
 #tutorialHeader .lhs mwc-icon-button {
   margin-inline-end: .5em;
+}
+
+#tutorialHeader .lhs .tutorial-title {
+  font-weight: bold;
+}
+
+#tutorialHeader .lhs .title-separator {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-inline: .5em;
+}
+
+#tutorialHeader .lhs .title-separator > svg {
+  height: .5em;
+}
+
+#tutorialHeader .step-text {
+  margin-inline-end: .25em;
 }
 
 #tutorialHeader a {
@@ -104,9 +129,7 @@ litdev-tutorial {
 }
 
 #tutorialHeader nav {
-  /* TODO(e111077): I don't know why this nav will not encapsulate the width
-  of the buttons inside of it otherwise */
-  width: 96px;
+  display: flex;
 }
 
 #tutorialHeader nav > * {
@@ -120,11 +143,6 @@ litdev-tutorial {
 
 #tutorialHeader .number:first-of-type {
   margin-left: 0.3em;
-}
-
-#tutorialHeader #nextButton {
-  /** Shift tip of next arrow to edge of content. */
-  margin-right: -20px;
 }
 
 /* Solve/Reset/Next buttons */
