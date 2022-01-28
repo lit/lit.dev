@@ -74,6 +74,7 @@ if (mode === 'playground') {
     })
   );
   app.use(redirectMiddleware());
+  app.use(notFoundMiddleware(staticRoot));
 }
 
 app.use(koaConditionalGet()); // Needed for etag
@@ -93,7 +94,6 @@ app.use(
     },
   })
 );
-app.use(notFoundMiddleware(staticRoot));
 
 const server = app.listen(port);
 console.log(`server listening on port ${port}`);
