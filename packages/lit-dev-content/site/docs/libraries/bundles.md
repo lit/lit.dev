@@ -35,7 +35,7 @@ The bundles are standard JavaScript modules with no dependencies - any modern
 browser should be able to import and run the bundles directly.
 
 For example, if you put the bundles in a directory called `lit-bundles` next to
-one of your source files, you could use the *core* bundle in that source file
+one of your source files, you could use the `core` bundle in that source file
 like this:
 
 ```js
@@ -51,7 +51,7 @@ bundle, you also need to update its source map.
 
 ## Bundle variants
 
-Two bundles are currently available: *core* and *all*.
+Two bundles are currently available: `core` and `all`.
 
 <div class="alert alert-warning">
 
@@ -66,7 +66,7 @@ update every bundle reference in your project to point to the new bundle.
 - `lit-core.min.js`
 - `lit-core.min.js.map`
 
-The *core* bundle contains only the fundamental parts of Lit. It exports all of
+The `core` bundle contains only the fundamental parts of Lit. It exports all of
 the same items as the main module of the `lit` npm package - for example,
 [`html`](/docs/api/templates/#html), [`css`](/docs/api/styles/#css),
 [`render`](/docs/api/templates/#render), and
@@ -77,7 +77,7 @@ the same items as the main module of the `lit` npm package - for example,
 - `lit-all.min.js`
 - `lit-all.min.js.map`
 
-The *all* bundle includes everything in the *core* bundle as well as [all
+The `all` bundle includes everything in the `core` bundle as well as [all
 built-in directives](/docs/templates/directives/), [async and custom directive
 helpers](/docs/api/custom-directives/), and [static
 templating](/docs/api/static-html/). The static
