@@ -1,0 +1,69 @@
+---
+title: Tutorials
+---
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "tutorial-catalog.css" %}
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-tutorial-card.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="tutorial-category">
+  <h1 class="category-title" id="learn-section">Learn</h1>
+  <div class="category-subtitle">Learn the features of Lit!</div>
+  <div class="center">
+    <div class="card-grid">
+      {% for tutorial in tutorials %}
+        {% if tutorial.category == 'Learn' %}
+          <litdev-tutorial-card
+              size="{{ tutorial.size }}"
+              difficulty="{{ tutorial.difficulty }}"
+              duration="{{ tutorial.duration }}"
+              href="{{ site.baseurl }}/tutorials/{{ tutorial.location }}"
+              {% if tutorial.imgSrc %}
+                img-src="{{ site.baseurl }}/{{ tutorial.imgSrc }}"
+                img-alt="{{ tutorial.imgAlt }}"
+              {% endif %}
+              {% if tutorial.hideDescription %}
+              hide-description
+              {% endif %}>
+            <h1 slot="header">{{ tutorial.header }}</h1>
+            {{ tutorial.description|markdownWithoutHtml|safe }}
+          </litdev-tutorial-card>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="tutorial-category">
+  <h1 class="category-title" id="build-section">Build</h1>
+  <div class="category-subtitle">Build new things with Lit!</div>
+  <div class="center">
+    <div class="card-grid">
+      {% for tutorial in tutorials %}
+        {% if tutorial.category == 'Build' %}
+          <litdev-tutorial-card
+              size="{{ tutorial.size }}"
+              header="{{ tutorial.header }}"
+              difficulty="{{ tutorial.difficulty }}"
+              duration="{{ tutorial.duration }}"
+              href="{{ site.baseurl }}/tutorials/{{ tutorial.location }}"
+              {% if tutorial.imgSrc %}
+                img-src="{{ site.baseurl }}/{{ tutorial.imgSrc }}"
+                img-alt="{{ tutorial.imgAlt }}"
+              {% endif %}
+              {% if tutorial.hideDescription %}
+              hide-description
+              {% endif %}>
+            <h1 slot="header">{{ tutorial.header }}</h1>
+            {{ tutorial.description|markdownWithoutHtml|safe }}
+          </litdev-tutorial-card>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-title {
+  padding-block-start: 0.3em;
+  font-size: 2.2em;
+  font-weight: 400;
+  margin: 0;
+}
+
+.category-subtitle {
+  padding-block-end: 0.8em;
+  margin-block-end: 1.3em;
+  border-block-end: 2px solid var(--color-blue);
+}
+
+.tutorial-category {
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.card-grid {
+  --tutorial-card-width: 300px;
+  --_unit: calc(var(--tutorial-card-width) / 10);
+  padding: var(--_unit);
+  display: grid;
+  gap: var(--_unit);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Help prevent janky layout */
+.card-grid > *:not(:defined) {
+  width: var(--tutorial-card-width);
+  border: 1px solid #3e3e3e;
+  padding: calc(var(--_unit) * 0.5);
+  box-sizing: border-box;
+}
+
+litdev-tutorial-card[size=tiny]:not(:defined) {
+  grid-row: span 1;
+  height: calc(var(--_unit) * 4);
+}
+
+litdev-tutorial-card[size=small]:not(:defined) {
+  grid-row: span 2;
+  height: calc(var(--_unit) * 9);
+}
+
+litdev-tutorial-card[size=medium]:not(:defined) {
+  grid-row: span 3;
+  height: calc(var(--_unit) * 14);
+}
+
+litdev-tutorial-card[size=large]:not(:defined) {
+  grid-row: span 4;
+  height: calc(var(--_unit) * 19);
+}
+
+@media (max-width: 1021px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 690px) {
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
