@@ -1,19 +1,19 @@
 # Authoring a lit.dev Tutorial
 
-Lit tutorials are a way to provide a guided, interactive learning experience to Lit users. Under the hood it leverages playground elements as well as our markdown renderer.
+Lit tutorials are a way to provide a guided, interactive learning experience to Lit users. Under the hood they leverage playground elements as well as our markdown renderer.
 
 ## Steps for Authoring
 
 <details>
   <summary>Create a directory in <code>/packages/lit-dev-content/tutorials/</code></summary>
 
-This directory name is also going to be a part of the URL e.g. `https://lit.dev/tutorials/tutorial-name`
+* This directory name is also going to be a part of the URL e.g. `https://lit.dev/tutorials/tutorial-name`
 </details>
 
 <details>
   <summary>In that directory create a <code>tutorial.json</code></summary>
 
-See format in following section
+* See format in following section.
 </details>
 
 <details>
@@ -26,11 +26,11 @@ See format in following section
 <details>
   <summary>Create a directory for each step in your tutorial</summary>
 
-Directory names must start from `00/` and increase numerically as a 2 digit number e.g. `01/` will follow `00/`
+* Directory names must start from `00/` and increase numerically as a 2 digit number e.g. `01/` will follow `00/`
 </details>
 
 <details>
-  <summary>Each step must have a <code>before/</code> and <code>after/</code> subdirectory</summary>
+  <summary>Each step must have <code>before/</code> and <code>after/</code> subdirectories</summary>
 
 * `before/` holds the playground project for what is first presented to the user
 * `after/` holds the playground project for when the user clicks the `solve` button.
@@ -39,25 +39,25 @@ Directory names must start from `00/` and increase numerically as a 2 digit numb
 <details>
   <summary>Create a playground project for that step's before and after sections</summary>
 
-See [playground-elements](https://github.com/google/playground-elements#option-2-json-configuration) docs for playground project authoring.
+* See [playground-elements](https://github.com/google/playground-elements#option-2-json-configuration) docs for playground project authoring.
 </details>
 
 <details>
   <summary>Create a directory with the same tutorial name in <code>/packages/lit-dev-content/site/tutorials/content/</code></summary>
 
-This will hold the step instructions markdown files.
+* This will hold the step instructions markdown files.
 </details>
 
 <details>
   <summary>For step <code>xy/</code> create a markdown file named <code>xy.md</code> in the <code>content/</code> directory</summary>
 
-These are the instructinos for each step. See the Step Instruction Authoring section for more info.
+* These are the instructinos for each step. See the Step Instruction Authoring section for more info.
 </details>
 
 <details>
   <summary>Add your tutorial to the catalog by including the tutorial directory name in <code>/packages/lit-dev-content/site/tutorials/tutorials.11tydata.js</code></summary>
 
-For example, if you want to add the tutorial directory `tutorial-name` to the catalog, invoke the `loadTutorialData` function. e.g.
+* For example, if you want to add the tutorial directory `tutorial-name` to the catalog, invoke the `loadTutorialData` function. e.g.
 
 ```js
 const tutorials = await Promise.all([
@@ -104,9 +104,9 @@ interface TutorialManifest {
 
 ## Step Instruction Authoring
 
-When authoring user instruction for a tutorial step, you must create a markdown file with the steup number in its name in the `/packages/lit-dev-content/site/tutorials/content/` directory. e.g. the instructions for step `my-tutorial/05/` should be named `content/my-tutorial/05.md`.
+When authoring user instructions for a tutorial step, create a markdown file with the step number in its name in the `/packages/lit-dev-content/site/tutorials/content/` directory. For example, the instructions for step `my-tutorial/05/` should be named `content/my-tutorial/05.md`.
 
-To display code in a step's instructions you can use the `switchable-sample` macro
+To display code in the instructions you can use the `switchable-sample` macro
 
 <pre>
 {% switchable-sample %}
@@ -150,7 +150,7 @@ customElements.define('my-element', MyElement);
 <details>
   <summary>The first step should describe to the user what they are going to learn in the tutorial</summary>
 
-Code can be an empty `index.html` or a quick view at the final product.
+* Code can be an empty `index.html` or a quick view at the final product.
 </details>
 
 <details>
@@ -163,7 +163,7 @@ Code can be an empty `index.html` or a quick view at the final product.
 <details>
   <summary>You're on the docs site, link out to relevant documentation</summary>
 
-Teach the user how to empower themselves if they get stuck!
+* Teach the user how to empower themselves if they get stuck!
 </details>
 
 <details>
