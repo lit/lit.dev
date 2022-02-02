@@ -22,11 +22,11 @@ use, which means your users may download more code than they strictly need.
 
 ## Download
 
-The bundles can be found on GitHub in the
-[lit/dist](https://github.com/lit/dist) repository. To download a particular
-version, go to the [repository's tags](https://github.com/lit/dist/tags), find
-the version you want, and click either the "zip" or "tar.gz" link to download an
-archive of the bundles in the chosen format.
+The bundles can be found on GitHub in [the lit/dist
+repository](https://github.com/lit/dist). To download a particular version, go
+to [the repository's tags](https://github.com/lit/dist/tags), find the version
+you want, and click either the "zip" or "tar.gz" link to download an archive of
+the bundles in the chosen format.
 
 ## Usage
 
@@ -34,9 +34,9 @@ The archive has multiple folders, each containing a bundle and its source map.
 The bundles are standard JavaScript modules with no dependencies - any modern
 browser should be able to import and run the bundles directly.
 
-For example, if you put the bundles in a directory called `lit-bundles` next to
-one of your source files, you could use the `core` bundle in that source file
-like this:
+For example, if you extracted the bundles into a directory called `lit-bundles`
+next to one of your source files, you could use the `core` bundle in that source
+file like this:
 
 ```js
 import {LitElement, html} from './lit-bundles/core/lit-core.min.js';
@@ -79,24 +79,24 @@ update every bundle reference in your project to point to the new bundle.
 
 ### `core/`
 
-- `lit-core.min.js`
-- `lit-core.min.js.map`
+- `lit-core.min.js` - the `core` bundle
+- `lit-core.min.js.map` - the `core` bundle's source map
 
-The `core` bundle contains only the fundamental parts of Lit. It exports all of
-the same items as the main module of the `lit` npm package - for example,
+The `core` bundle contains only a critical subset of Lit's features. It exports
+all of the same items as the main module of the `lit` npm package:
 [`html`](/docs/api/templates/#html), [`css`](/docs/api/styles/#css),
 [`render`](/docs/api/templates/#render), and
 [`LitElement`](/docs/api/LitElement/#LitElement), among others.
 
 ### `all/`
 
-- `lit-all.min.js`
-- `lit-all.min.js.map`
+- `lit-all.min.js` - the `all` bundle
+- `lit-all.min.js.map` - the `all` bundle's source map
 
 The `all` bundle includes everything in the `core` bundle as well as [all
 built-in directives](/docs/templates/directives/), [async and custom directive
 helpers](/docs/api/custom-directives/), and [static
-templating](/docs/api/static-html/). The static
+templating](/docs/api/static-html/). In this bundle, the static
 [`html`](/docs/api/static-html/#html) and [`svg`](/docs/api/static-html/#svg)
 template tags are renamed to `staticHtml` and `staticSvg` to avoid colliding
 with the names of the normal [`html`](/docs/api/templates/#html) and
