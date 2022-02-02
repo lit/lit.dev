@@ -67,7 +67,7 @@ information on how to format the URL.
 
 ## Bundle variants
 
-Two bundles are currently available: `core` and `all`.
+The bundles are currently available in two variants: `core` and `all`.
 
 <div class="alert alert-warning">
 
@@ -86,7 +86,7 @@ The `core` bundle contains only a critical subset of Lit's features. It exports
 all of the same items as the main module of the `lit` npm package:
 [`html`](/docs/api/templates/#html), [`css`](/docs/api/styles/#css),
 [`render`](/docs/api/templates/#render), and
-[`LitElement`](/docs/api/LitElement/#LitElement), among others.
+[`LitElement`](/docs/api/LitElement/#LitElement), for example.
 
 ### `all/`
 
