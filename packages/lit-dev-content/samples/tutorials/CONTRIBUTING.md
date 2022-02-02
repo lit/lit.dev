@@ -5,7 +5,7 @@ Lit tutorials are a way to provide a guided, interactive learning experience to 
 ## Steps for Authoring
 
 <details>
-  <summary>Create a directory in <code>/packages/lit-dev-content/tutorials/</code></summary>
+  <summary>Create a directory in <code>/packages/lit-dev-content/samples/tutorials/</code></summary>
 
 * This directory name is also going to be a part of the URL e.g. `https://lit.dev/tutorials/tutorial-name`
 </details>
