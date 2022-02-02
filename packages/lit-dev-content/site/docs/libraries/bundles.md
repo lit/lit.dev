@@ -49,6 +49,22 @@ Lit's unminified sources while debugging, keep this file in the same directory
 as its associated bundle and don't rename it. If you update your project's
 bundle, you also need to update its source map.
 
+## CDN
+
+As an alternative to hosting your own copy of Lit's bundles, you can also import
+them from CDNs that serve assets directly from repositories hosted on GitHub.
+
+For example, you could import the latest `v2` release of [the `core`
+bundle](#core) from [jsDelivr](https://jsdelivr.com) like this:
+
+```js
+import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+```
+
+See [jsDelivr's features
+page](https://www.jsdelivr.com/features#:~:text=GitHub%20CDN) for more
+information on how to format the URL.
+
 ## Bundle variants
 
 Two bundles are currently available: `core` and `all`.
