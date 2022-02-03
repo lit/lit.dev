@@ -45,6 +45,48 @@ import {LitElement, html} from 'lit';
 
 {% endswitchable-sample %}
 
+## Use bundles
+
+Lit is also available as pre-built, single-file bundles. The bundles are
+standard JavaScript modules with no dependencies - any modern browser should be
+able to import and run the bundles directly.
+
+<div class="alert alert-warning">
+
+**If you're using npm for client-side dependencies, you should use [the `lit`
+package](#install-locally-from-npm), not these bundles.** The bundles
+intentionally combine most or all of Lit into a single file, which can cause
+your page to download more code than it needs.
+
+</div>
+
+To browse the bundles, go to <https://cdn.jsdelivr.net/gh/lit/dist/> and use the
+dropdown menu to choose a version. There are two types of bundle:
+
+<dl class="params">
+  <dt class="paramName">core</dt>
+  <dd class="paramDetails">
+    <a href="https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js">
+      https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js
+    </a>
+    <br>
+    <code>core</code> exports the same items as the main module of the
+    <code>lit</code> package.
+  </dd>
+
+  <dt class="paramName">all</dt>
+  <dd class="paramDetails">
+    <a href="https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js">
+      https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js
+    </a>
+    <br>
+    <code>all</code> exports everything in <code>core</code> plus
+    <a href="https://github.com/lit/lit/blob/main/packages/lit/src/index.all.ts">
+    most other modules in <code>lit</code></a>.
+  </dd>
+  </dd>
+</dl>
+
 ## Add Lit to an existing project
 
 See [Adding Lit to an existing project](/docs/tools/adding-lit) for instructions on adding Lit to an existing project or application.
