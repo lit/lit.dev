@@ -152,15 +152,15 @@ customElements.define('my-element', MyElement);
 You can also insert an aside in your instructions by using the following format:
 
 ```html
-<aside class="aside aside-positive">
+<aside class="positive">
   Make sure to do <code>this</code>!
 </aside>
 
-<aside class="aside aside-negative">
+<aside class="negative">
   Make sure <b>NOT</b> to do <code>this</code>!
 </aside>
 
-<aside class="aside aside-info">
+<aside class="info">
   Check out more info <a href="https://lit.dev/docs/templates/expressions/?mods=tutorialCatalog#well-formed-html">in this docs section</a>.
 </aside>
 ```
@@ -169,11 +169,11 @@ You can also insert an aside in your instructions by using the following format:
 
 The available asides are:
 
-* `aside-positive`
-* `aside-warning`
-* `aside-negative`
-* `aside-info`
-* `aside-labs`
+* `positive`
+* `warning`
+* `negative`
+* `info`
+* `labs`
 
 ## Good tutorial Habits
 
