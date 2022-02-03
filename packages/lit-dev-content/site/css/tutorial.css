@@ -290,39 +290,39 @@ resize-bar[active] {
 /* Notes and warnings
 /* ------------------------------------ */
 
-#tutorial-content aside {
+#tutorialContent aside {
   position: relative;
   margin: 1em 0;
   padding: 1em 1em 1em 3.5em;
   border: 1px solid #ccc;
 }
 
-#tutorial-content aside > p {
+#tutorialContent aside > p {
   margin: 0;
 }
 
-#tutorial-content aside::before {
+#tutorialContent aside::before {
   position: absolute;
   top: 1.15em;
   left: 1em;
 }
 
-#tutorial-content aside.info::before {
+#tutorialContent aside.info::before {
   content: url(/images/alerts/info.svg);
 }
 
-#tutorial-content aside.warning::before {
+#tutorialContent aside.warning::before {
   content: url(/images/alerts/warning-yellow.svg);
 }
 
-#tutorial-content aside.labs::before {
+#tutorialContent aside.labs::before {
   content: url(/images/alerts/labs.svg);
 }
 
-#tutorial-content aside.positive::before {
+#tutorialContent aside.positive::before {
   content: url(/images/alerts/positive.svg);
 }
 
-#tutorial-content aside.negative::before {
+#tutorialContent aside.negative::before {
   content: url(/images/alerts/negative.svg);
 }
