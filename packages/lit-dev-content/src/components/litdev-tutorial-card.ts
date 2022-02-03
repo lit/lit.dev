@@ -92,7 +92,7 @@ export class LitdevTutorialCard extends LitElement {
     }
 
     #image-wrapper {
-      --_height: calc(var(--_unit) * 4);
+      --_height: calc(var(--_unit) * 5);
       display: flex;
       align-items: center;
       justify-content: center;
