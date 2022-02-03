@@ -106,6 +106,8 @@ interface TutorialManifest {
 
 When authoring user instructions for a tutorial step, create a markdown file with the step number in its name in the `/packages/lit-dev-content/site/tutorials/content/` directory. For example, the instructions for step `my-tutorial/05/` should be named `content/my-tutorial/05.md`.
 
+### Switchable samples
+
 To display code in the instructions you can use the `switchable-sample` macro
 
 <pre>
@@ -144,6 +146,34 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 </pre>
+
+### Asides
+
+You can also insert an aside in your instructions by using the following format:
+
+```html
+<aside class="positive">
+  Make sure to do <code>this</code>!
+</aside>
+
+<aside class="negative">
+  Make sure <b>NOT</b> to do <code>this</code>!
+</aside>
+
+<aside class="info">
+  Check out more info <a href="https://lit.dev/docs/templates/expressions/?mods=tutorialCatalog#well-formed-html">in this docs section</a>.
+</aside>
+```
+
+*Note:* markdown is not rendered inside an aside, you must use HTML.
+
+The available asides are:
+
+* `positive`
+* `warning`
+* `negative`
+* `info`
+* `labs`
 
 ## Good tutorial Habits
 
