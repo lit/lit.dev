@@ -61,7 +61,7 @@ your page to download more code than it needs.
 </div>
 
 To browse the bundles, go to <https://cdn.jsdelivr.net/gh/lit/dist/> and use the
-dropdown menu to choose a version. There are two types of bundle:
+dropdown menu to choose a version. There are two types of bundles:
 
 <dl class="params">
   <dt class="paramName">core</dt>
