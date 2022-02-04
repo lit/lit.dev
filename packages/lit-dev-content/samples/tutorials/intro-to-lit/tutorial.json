@@ -6,28 +6,36 @@
   "category": "Learn",
   "steps": [
     {
-      "title": "Lit tutorial"
+      "title": "Lit tutorial",
+      "hasAfter": true
     },
     {
-      "title": "Define a component"
+      "title": "Define a component",
+      "hasAfter": true
     },
     {
-      "title": "Properties and expressions"
+      "title": "Properties and expressions",
+      "hasAfter": true
     },
     {
-      "title": "Declarative event listeners"
+      "title": "Declarative event listeners",
+      "hasAfter": true
     },
     {
-      "title": "More expressions"
+      "title": "More expressions",
+      "hasAfter": true
     },
     {
-      "title": "Template logic"
+      "title": "Template logic",
+      "hasAfter": true
     },
     {
-      "title": "Styles"
+      "title": "Styles",
+      "hasAfter": true
     },
     {
-      "title": "Finishing touches"
+      "title": "Finishing touches",
+      "hasAfter": true
     }
   ]
 }

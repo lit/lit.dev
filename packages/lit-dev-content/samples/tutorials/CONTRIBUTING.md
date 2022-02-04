@@ -34,6 +34,7 @@ Lit tutorials are a way to provide a guided, interactive learning experience to 
 
 * `before/` holds the playground project for what is first presented to the user
 * `after/` holds the playground project for when the user clicks the `solve` button.
+  * If `hasAfter` is `false` or `undefined` for this step's metadata in `tutorial.json`, then the `after/` directory is optional and the step will load the next step's `before/` directory
 </details>
 
 <details>
@@ -98,6 +99,13 @@ interface TutorialManifest {
   steps: {
     // Title of the current step
     title: string;
+    // If false or omitted, the "after" code will be set to the "before" code of
+    // the next step. This is useful for reducing code duplication when the
+    // next step is the "solved" code for the previous step.
+    //
+    // Set to true if there is an "after" directory for this step or if it is
+    // the last step in the tutorial.
+    hasAfter?: boolean;
   }[]
 }
 ```

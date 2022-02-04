@@ -8,10 +8,12 @@
   "imgAlt": "This is the Lit icon",
   "steps": [
     {
-      "title": "Build a Brick Viewer"
+      "title": "Build a Brick Viewer",
+      "hasAfter": true
     },
     {
-      "title": "Ya Bricked it!"
+      "title": "Ya Bricked it!",
+      "hasAfter": true
     }
   ]
 }
