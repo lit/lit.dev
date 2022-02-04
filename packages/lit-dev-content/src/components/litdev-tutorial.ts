@@ -29,6 +29,7 @@ import {Task, TaskStatus} from '@lit-labs/task';
 
 export interface TutorialStep {
   title: string;
+  hasAfter?: boolean;
 }
 
 export interface TutorialManifest {
@@ -520,6 +521,13 @@ export class LitDevTutorial extends LitElement {
    */
   private _idxToInfo(idx: number): ExpandedTutorialStep {
     const slug = this._idxToSlug(idx);
+    // The "after"'s code is located in the before dir of the next step
+    let afterSlug = `${this._idxToSlug(idx + 1)}/before`;
+
+    // if the user specified this step has an after, use that
+    if (this._manifest.steps[idx].hasAfter) {
+      afterSlug = `${slug}/after`;
+    }
 
     const firstUrl = this.useOldUrl
       ? '/tutorial/'
@@ -534,7 +542,7 @@ export class LitDevTutorial extends LitElement {
       url: idx === 0 ? firstUrl : nextUrl,
       htmlSrc: `/tutorials/content/${this._projectLocation}/${slug}/`,
       projectSrcBefore: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
-      projectSrcAfter: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/after/project.json`,
+      projectSrcAfter: `${this._samplesRoot}/tutorials/${this._projectLocation}/${afterSlug}/project.json`,
     };
   }
 }
