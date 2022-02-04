@@ -99,9 +99,10 @@ interface TutorialManifest {
   steps: {
     // Title of the current step
     title: string;
-    // If false or omitted, the "after" code will beset to the "before" code of
+    // If false or omitted, the "after" code will be set to the "before" code of
     // the next step. This is useful for reducing code duplication when the
-    // next step is the resolved code for the previous step.
+    // next step is the "solved" code for the previous step.
+    //
     // Set to true if there is an "after" directory for this step or if it is
     // the last step in the tutorial.
     hasAfter?: boolean;
