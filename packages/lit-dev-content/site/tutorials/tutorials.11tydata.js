@@ -39,6 +39,7 @@ module.exports = async () => {
     loadTutorialData('async-directive'),
 
     // Build
+    loadTutorialData('wc-to-lit'),
     loadTutorialData('brick-viewer'),
   ]);
   /*
