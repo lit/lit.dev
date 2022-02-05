@@ -126,3 +126,10 @@ aside > p:last-of-type {
 aside.warning {
   border-color: #ffe133
 }
+
+.block {
+  display: block;
+}
+.centered {
+  margin: auto;
+}
