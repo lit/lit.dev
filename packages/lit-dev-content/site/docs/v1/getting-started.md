@@ -61,7 +61,7 @@ The quickest way to try out a project locally is to download one of the starter 
 <div class="alert alert-info">
 
 **Want it on GitHub?** If you're familiar with git you may want to create a GitHub repository for your starter project,
-instead of just downloading the zip file. You can use the <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template" target="_blank" rel="noopener">GitHub template repository</a> feature to create your own repository from the <a href="https://github.com/lit/lit-element-starter-js/tree/lit-element-2.x#readme" target="_blank" rel="noopener">JavaScript starter project </a> or the <a href="https://github.com/lit/lit-element-starter-ts/tree/lit-element-2.x#readme" target="_blank" rel="noopener">TypeScript starter project</a>. Then clone your new repository and install dependencies, as above.
+instead of just downloading the zip file. You can use the <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template" target="_blank" rel="noopener">GitHub template repository</a> feature to create your own repository from the <a href="https://github.com/lit/lit-element-starter-js/tree/lit-element-2.x#readme" target="_blank" rel="noopener">JavaScript starter project </a> or the <a href="https://github.com/lit/lit-element-starter-ts/tree/lit-element-2.x#readme" target="_blank" rel="noopener">TypeScript starter project</a>. Then clone your new repository and install dependencies, as above.
 
 </div>
 
