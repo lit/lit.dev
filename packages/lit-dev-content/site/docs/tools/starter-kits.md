@@ -52,7 +52,7 @@ The quickest way to try out a project locally is to download one of the starter 
 <div class="alert alert-info">
 
 **Want it on GitHub?** If you're familiar with git you may want to create a GitHub repository for your starter project,
-instead of just downloading the zip file. You can use the [GitHub template repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) feature to create your own repository from the [JavaScript starter project ](https://github.com/PolymerLabs/lit-element-starter-js) or the [TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts). Then clone your new repository and install dependencies, as above.
+instead of just downloading the zip file. You can use the [GitHub template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) feature to create your own repository from the [JavaScript starter project ](https://github.com/PolymerLabs/lit-element-starter-js) or the [TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts). Then clone your new repository and install dependencies, as above.
 
 </div>
 
