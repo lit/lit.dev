@@ -1,6 +1,6 @@
 import {render, html} from 'lit';
 
-class RatingElement extends HTMLElement {
+export class RatingElement extends HTMLElement {
   private _rating = 0;
   private _vote: 'up'|'down'|null = null;
 

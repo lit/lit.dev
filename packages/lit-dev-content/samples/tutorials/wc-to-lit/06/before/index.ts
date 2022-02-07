@@ -1,4 +1,4 @@
-class RatingElement extends HTMLElement {
+export class RatingElement extends HTMLElement {
   private _rating = 0;
 
   connectedCallback() {
