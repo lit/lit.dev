@@ -70,8 +70,9 @@ dropdown menu to choose a version. There are two types of bundles:
       https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js
     </a>
     <br>
-    <code>core</code> exports the same items as the main module of the
-    <code>lit</code> package.
+    <code>core</code> exports the same items as
+    <a href="https://github.com/lit/lit/blob/main/packages/lit/src/index.ts">
+    the main module of the <code>lit</code> package</a>.
   </dd>
 
   <dt class="paramName">all</dt>
