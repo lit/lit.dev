@@ -49,7 +49,7 @@ import {LitElement, html} from 'lit';
 
 Lit is also available as pre-built, single-file bundles. The bundles are
 standard JavaScript modules with no dependencies - any modern browser should be
-able to import and run the bundles directly.
+able to import and run the bundles from within a `<script type="module">`.
 
 <div class="alert alert-warning">
 
