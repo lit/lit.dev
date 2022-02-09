@@ -2899,6 +2899,48 @@
       "anchor": "PropertyDeclarations"
     }
   ],
+  "$PropertyValues": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues"
+    }
+  ],
+  "$forEach": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues.forEach"
+    }
+  ],
+  "$PropertyValues.forEach": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues.forEach"
+    }
+  ],
+  "$get": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues.get"
+    }
+  ],
+  "$PropertyValues.get": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues.get"
+    }
+  ],
+  "$set": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues.set"
+    }
+  ],
+  "$PropertyValues.set": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues.set"
+    }
+  ],
   "$ReactiveController": [
     {
       "page": "controllers",
@@ -3107,12 +3149,6 @@
     {
       "page": "misc",
       "anchor": "Initializer"
-    }
-  ],
-  "$PropertyValues": [
-    {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues"
     }
   ],
   "$SVGTemplateResult": [

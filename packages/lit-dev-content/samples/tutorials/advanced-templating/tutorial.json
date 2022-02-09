@@ -11,7 +11,8 @@
         "title": "Advanced Templating!"
       },
       {
-        "title": "Yer done!"
+        "title": "Yer done!",
+        "hasAfter": true
       }
     ]
 }

@@ -6,19 +6,19 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "LitElement",
         "kindString": "Class",
         "comment": {
           "shortText": "Base element class that manages element properties and attributes, and\nrenders a lit-html template.",
-          "text": "To define a component, subclass `LitElement` and implement a\n`render` method to provide the component's template. Define properties\nusing the [`properties`](/docs/api/LitElement/#LitElement.properties) property or the [`property`](/docs/api/decorators/#property) decorator.\n"
+          "text": "To define a component, subclass `LitElement` and implement a\n`render` method to provide the component's template. Define properties\nusing the [`properties`](/docs/api/LitElement/#LitElement.properties) property or the\n[`property`](/docs/api/decorators/#property) decorator.\n"
         },
         "sources": [
           {
             "fileName": "packages/lit-element/src/lit-element.ts",
-            "line": 86,
+            "line": 87,
             "moduleSpecifier": "lit-element/lit-element.js"
           }
         ],
@@ -69,12 +69,13 @@
                 "name": "attributeChangedCallback",
                 "kindString": "Method",
                 "comment": {
-                  "shortText": "Synchronizes property values when attributes change."
+                  "shortText": "Synchronizes property values when attributes change.",
+                  "text": "Specifically, when an attribute is set, the corresponding property is set.\nYou should rarely need to implement this callback. If this method is\noverridden, `super.attributeChangedCallback(name, _old, value)` must be\ncalled.\n\nSee [using the lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks)\non MDN for more information about the `attributeChangedCallback`."
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 968,
+                    "line": 986,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -168,7 +169,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 509,
+                    "line": 518,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -231,7 +232,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 860,
+                    "line": 870,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -292,7 +293,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 875,
+                    "line": 885,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -359,12 +360,12 @@
                 },
                 "comment": {
                   "shortText": "Disable the given warning category for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning?.('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning?.('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 365,
+                    "line": 374,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -379,7 +380,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Disable the given warning category for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning?.('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning?.('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -437,7 +438,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 327,
+                    "line": 336,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -481,12 +482,12 @@
                 },
                 "comment": {
                   "shortText": "Enable the given warning category for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning?.('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning?.('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 346,
+                    "line": 355,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -501,7 +502,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Enable the given warning category for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning?.('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning?.('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -561,7 +562,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 159,
+                    "line": 160,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -609,7 +610,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 183,
+                    "line": 184,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -666,7 +667,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 400,
+                    "line": 409,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -731,7 +732,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 664,
+                    "line": 674,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -783,7 +784,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 94,
+                    "line": 95,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -824,13 +825,13 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a `PropertyDeclaration` for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
+                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) for the property with the\ngiven options. The property setter calls the property's `hasChanged`\nproperty option or uses a strict identity check to determine whether or not\nto request an update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 550,
+                    "line": 559,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -915,7 +916,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 432,
+                    "line": 441,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -957,7 +958,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 615,
+                    "line": 624,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1057,17 +1058,16 @@
                 "name": "getPropertyOptions",
                 "kindString": "Method",
                 "flags": {
-                  "isProtected": true,
                   "isStatic": true
                 },
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a `PropertyDeclaration` via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override [`createProperty`](/docs/api/LitElement/#LitElement.createProperty).\n"
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override\n[`createProperty`](/docs/api/LitElement/#LitElement.createProperty).\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 654,
+                    "line": 664,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1142,7 +1142,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 459,
+                    "line": 468,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1189,7 +1189,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 109,
+                    "line": 110,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -1254,7 +1254,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 195,
+                    "line": 196,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -1289,7 +1289,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 102,
+                    "line": 103,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -1325,7 +1325,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 764,
+                    "line": 774,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1381,7 +1381,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 724,
+                    "line": 734,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1430,7 +1430,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 467,
+                    "line": 476,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1479,7 +1479,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 740,
+                    "line": 750,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1555,7 +1555,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 495,
+                    "line": 504,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1605,7 +1605,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 952,
+                    "line": 962,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1661,12 +1661,12 @@
                 },
                 "comment": {
                   "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
-                  "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
+                  "text": "```ts\nfirstUpdated() {\n  this.renderRoot.getElementById('my-text-area').focus();\n}\n```\n\nSetting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1372,
+                    "line": 1414,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1685,28 +1685,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -1754,7 +1741,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1313,
+                    "line": 1349,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1807,7 +1794,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 801,
+                    "line": 811,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1844,7 +1831,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 794,
+                    "line": 804,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1885,7 +1872,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1168,
+                    "line": 1186,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -1947,7 +1934,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1063,
+                    "line": 1081,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2056,7 +2043,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1147,
+                    "line": 1165,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2121,7 +2108,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1325,
+                    "line": 1361,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2140,28 +2127,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -2207,7 +2181,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-element/src/lit-element.ts",
-                    "line": 127,
+                    "line": 128,
                     "moduleSpecifier": "lit-element/lit-element.js"
                   }
                 ],
@@ -2226,28 +2200,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -2292,7 +2253,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1286,
+                    "line": 1322,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2360,7 +2321,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1360,
+                    "line": 1396,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2379,28 +2340,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -2440,10 +2388,14 @@
                 "flags": {
                   "isProtected": true
                 },
+                "comment": {
+                  "shortText": "Invoked before `update()` to compute values needed during the update.",
+                  "text": "Implement `willUpdate` to compute property values that depend on other\nproperties and are used in the rest of the update process.\n\n```ts\nwillUpdate(changedProperties) {\n  // only need to check changed properties for an expensive computation.\n  if (changedProperties.has('firstName') || changedProperties.has('lastName')) {\n    this.sha = computeSHA(`${this.firstName} ${this.lastName}`);\n  }\n}\n\nrender() {\n  return html`SHA: ${this.sha}`;\n}\n```\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1236,
+                    "line": 1272,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2459,28 +2411,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -2537,7 +2476,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 390,
+                "line": 409,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2609,7 +2548,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 380,
+                "line": 399,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2641,7 +2580,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 399,
+                "line": 418,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2673,7 +2612,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 384,
+                "line": 403,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2706,7 +2645,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 375,
+            "line": 394,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -2731,7 +2670,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "ReactiveElement",
@@ -2745,7 +2684,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 314,
+            "line": 323,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -2807,12 +2746,13 @@
                 "name": "attributeChangedCallback",
                 "kindString": "Method",
                 "comment": {
-                  "shortText": "Synchronizes property values when attributes change."
+                  "shortText": "Synchronizes property values when attributes change.",
+                  "text": "Specifically, when an attribute is set, the corresponding property is set.\nYou should rarely need to implement this callback. If this method is\noverridden, `super.attributeChangedCallback(name, _old, value)` must be\ncalled.\n\nSee [using the lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks)\non MDN for more information about the `attributeChangedCallback`."
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 968,
+                    "line": 986,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2894,7 +2834,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 509,
+                    "line": 518,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -2949,7 +2889,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 860,
+                    "line": 870,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3010,7 +2950,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 875,
+                    "line": 885,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3077,12 +3017,12 @@
                 },
                 "comment": {
                   "shortText": "Disable the given warning category for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning?.('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning?.('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 365,
+                    "line": 374,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3097,7 +3037,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Disable the given warning category for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning.?('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning.?('migration');\n```\n"
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning?.('migration');\n\n// Disable for only MyElement and subclasses\nMyElement.disableWarning?.('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -3147,7 +3087,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 327,
+                    "line": 336,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3183,12 +3123,12 @@
                 },
                 "comment": {
                   "shortText": "Enable the given warning category for this class.",
-                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning?.('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning?.('migration');\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 346,
+                    "line": 355,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3203,7 +3143,7 @@
                         "kindString": "Call signature",
                         "comment": {
                           "shortText": "Enable the given warning category for this class.",
-                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning.?('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning.?('migration');\n```\n"
+                          "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning?.('migration');\n\n// Enable for only MyElement and subclasses\nMyElement.enableWarning?.('migration');\n```\n"
                         },
                         "parameters": [
                           {
@@ -3254,7 +3194,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 933,
+                    "line": 943,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3289,7 +3229,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 960,
+                    "line": 970,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3334,7 +3274,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 400,
+                    "line": 409,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3387,7 +3327,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 664,
+                    "line": 674,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3426,7 +3366,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 424,
+                    "line": 433,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3459,13 +3399,13 @@
                   "isStatic": true
                 },
                 "comment": {
-                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a `PropertyDeclaration` for the property with the given options.\nThe property setter calls the property's `hasChanged` property option\nor uses a strict identity check to determine whether or not to request\nan update.",
+                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) for the property with the\ngiven options. The property setter calls the property's `hasChanged`\nproperty option or uses a strict identity check to determine whether or not\nto request an update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 550,
+                    "line": 559,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3538,7 +3478,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 432,
+                    "line": 441,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3572,7 +3512,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 615,
+                    "line": 624,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3660,17 +3600,16 @@
                 "name": "getPropertyOptions",
                 "kindString": "Method",
                 "flags": {
-                  "isProtected": true,
                   "isStatic": true
                 },
                 "comment": {
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a `PropertyDeclaration` via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override [`createProperty`](/docs/api/ReactiveElement/#ReactiveElement.createProperty).\n"
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override\n[`createProperty`](/docs/api/ReactiveElement/#ReactiveElement.createProperty).\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 654,
+                    "line": 664,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3733,7 +3672,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 459,
+                    "line": 468,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3776,7 +3715,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 915,
+                    "line": 925,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3829,7 +3768,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 764,
+                    "line": 774,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3877,7 +3816,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 724,
+                    "line": 734,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3918,7 +3857,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 467,
+                    "line": 476,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -3959,7 +3898,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 740,
+                    "line": 750,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4023,7 +3962,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 495,
+                    "line": 504,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4065,7 +4004,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 952,
+                    "line": 962,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4109,12 +4048,12 @@
                 },
                 "comment": {
                   "shortText": "Invoked when the element is first updated. Implement to perform one time\nwork on the element after update.",
-                  "text": "Setting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
+                  "text": "```ts\nfirstUpdated() {\n  this.renderRoot.getElementById('my-text-area').focus();\n}\n```\n\nSetting properties inside this method will trigger the element to update\nagain after this update cycle completes.\n"
                 },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1372,
+                    "line": 1414,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4133,28 +4072,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -4190,7 +4116,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1313,
+                    "line": 1349,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4231,7 +4157,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 801,
+                    "line": 811,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4260,7 +4186,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 794,
+                    "line": 804,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4293,7 +4219,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1168,
+                    "line": 1186,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4343,7 +4269,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1063,
+                    "line": 1081,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4452,7 +4378,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1147,
+                    "line": 1165,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4505,7 +4431,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1325,
+                    "line": 1361,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4524,28 +4450,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -4579,7 +4492,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1338,
+                    "line": 1374,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4598,28 +4511,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -4652,7 +4552,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1286,
+                    "line": 1322,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4728,7 +4628,7 @@
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1360,
+                    "line": 1396,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4747,28 +4647,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -4796,10 +4683,14 @@
                 "flags": {
                   "isProtected": true
                 },
+                "comment": {
+                  "shortText": "Invoked before `update()` to compute values needed during the update.",
+                  "text": "Implement `willUpdate` to compute property values that depend on other\nproperties and are used in the rest of the update process.\n\n```ts\nwillUpdate(changedProperties) {\n  // only need to check changed properties for an expensive computation.\n  if (changedProperties.has('firstName') || changedProperties.has('lastName')) {\n    this.sha = computeSHA(`${this.firstName} ${this.lastName}`);\n  }\n}\n\nrender() {\n  return html`SHA: ${this.sha}`;\n}\n```\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
-                    "line": 1236,
+                    "line": 1272,
                     "moduleSpecifier": "reactive-element/reactive-element.js"
                   }
                 ],
@@ -4815,28 +4706,15 @@
                           "type": "reference",
                           "typeArguments": [
                             {
-                              "type": "union",
-                              "types": [
-                                {
-                                  "type": "intrinsic",
-                                  "name": "string"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "number"
-                                },
-                                {
-                                  "type": "intrinsic",
-                                  "name": "symbol"
-                                }
-                              ]
-                            },
-                            {
                               "type": "intrinsic",
-                              "name": "unknown"
+                              "name": "any"
                             }
                           ],
-                          "name": "Map"
+                          "name": "PropertyValues",
+                          "location": {
+                            "page": "ReactiveElement",
+                            "anchor": "PropertyValues"
+                          }
                         }
                       }
                     ],
@@ -5416,10 +5294,320 @@
       },
       {
         "name": "PropertyValues",
-        "kindString": "Type alias",
+        "kindString": "Interface",
         "comment": {
           "shortText": "Map of changed properties with old values. Takes an optional generic\ninterface corresponding to the declared element properties."
         },
+        "children": [
+          {
+            "name": "forEach",
+            "kindString": "Method",
+            "signatures": [
+              {
+                "name": "forEach",
+                "kindString": "Call signature",
+                "parameters": [
+                  {
+                    "name": "callbackfn",
+                    "kindString": "Parameter",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "kindString": "Type literal",
+                        "signatures": [
+                          {
+                            "name": "__type",
+                            "kindString": "Call signature",
+                            "typeParameter": [
+                              {
+                                "name": "K",
+                                "kindString": "Type parameter",
+                                "type": {
+                                  "type": "union",
+                                  "types": [
+                                    {
+                                      "type": "intrinsic",
+                                      "name": "string"
+                                    },
+                                    {
+                                      "type": "intrinsic",
+                                      "name": "number"
+                                    },
+                                    {
+                                      "type": "intrinsic",
+                                      "name": "symbol"
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "parameters": [
+                              {
+                                "name": "value",
+                                "kindString": "Parameter",
+                                "type": {
+                                  "type": "indexedAccess",
+                                  "indexType": {
+                                    "type": "reference",
+                                    "name": "K"
+                                  },
+                                  "objectType": {
+                                    "type": "reference",
+                                    "name": "T"
+                                  }
+                                }
+                              },
+                              {
+                                "name": "key",
+                                "kindString": "Parameter",
+                                "type": {
+                                  "type": "reference",
+                                  "name": "K"
+                                }
+                              },
+                              {
+                                "name": "map",
+                                "kindString": "Parameter",
+                                "type": {
+                                  "type": "reference",
+                                  "typeArguments": [
+                                    {
+                                      "type": "reference",
+                                      "name": "K"
+                                    },
+                                    {
+                                      "type": "indexedAccess",
+                                      "indexType": {
+                                        "type": "typeOperator",
+                                        "operator": "keyof",
+                                        "target": {
+                                          "type": "reference",
+                                          "name": "T"
+                                        }
+                                      },
+                                      "objectType": {
+                                        "type": "reference",
+                                        "name": "T"
+                                      }
+                                    }
+                                  ],
+                                  "name": "Map"
+                                }
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "void"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "thisArg",
+                    "kindString": "Parameter",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "type": {
+                      "type": "intrinsic",
+                      "name": "unknown"
+                    }
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "Map.forEach"
+                }
+              }
+            ],
+            "overwrites": {
+              "type": "reference",
+              "name": "Map.forEach"
+            },
+            "entrypointSources": [
+              {
+                "fileName": "packages/lit/src/index.ts",
+                "line": 10,
+                "moduleSpecifier": "lit"
+              }
+            ],
+            "location": {
+              "page": "ReactiveElement",
+              "anchor": "PropertyValues.forEach"
+            }
+          },
+          {
+            "name": "get",
+            "kindString": "Method",
+            "signatures": [
+              {
+                "name": "get",
+                "kindString": "Call signature",
+                "typeParameter": [
+                  {
+                    "name": "K",
+                    "kindString": "Type parameter",
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "string"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "number"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "symbol"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "k",
+                    "kindString": "Parameter",
+                    "type": {
+                      "type": "reference",
+                      "name": "K"
+                    }
+                  }
+                ],
+                "type": {
+                  "type": "indexedAccess",
+                  "indexType": {
+                    "type": "reference",
+                    "name": "K"
+                  },
+                  "objectType": {
+                    "type": "reference",
+                    "name": "T"
+                  }
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "Map.get"
+                }
+              }
+            ],
+            "overwrites": {
+              "type": "reference",
+              "name": "Map.get"
+            },
+            "entrypointSources": [
+              {
+                "fileName": "packages/lit/src/index.ts",
+                "line": 10,
+                "moduleSpecifier": "lit"
+              }
+            ],
+            "location": {
+              "page": "ReactiveElement",
+              "anchor": "PropertyValues.get"
+            }
+          },
+          {
+            "name": "set",
+            "kindString": "Method",
+            "signatures": [
+              {
+                "name": "set",
+                "kindString": "Call signature",
+                "typeParameter": [
+                  {
+                    "name": "K",
+                    "kindString": "Type parameter",
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "string"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "number"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "symbol"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "key",
+                    "kindString": "Parameter",
+                    "type": {
+                      "type": "reference",
+                      "name": "K"
+                    }
+                  },
+                  {
+                    "name": "value",
+                    "kindString": "Parameter",
+                    "type": {
+                      "type": "indexedAccess",
+                      "indexType": {
+                        "type": "reference",
+                        "name": "K"
+                      },
+                      "objectType": {
+                        "type": "reference",
+                        "name": "T"
+                      }
+                    }
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "T"
+                    }
+                  ],
+                  "name": "PropertyValues",
+                  "location": {
+                    "page": "ReactiveElement",
+                    "anchor": "PropertyValues"
+                  }
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "Map.set"
+                }
+              }
+            ],
+            "overwrites": {
+              "type": "reference",
+              "name": "Map.set"
+            },
+            "entrypointSources": [
+              {
+                "fileName": "packages/lit/src/index.ts",
+                "line": 10,
+                "moduleSpecifier": "lit"
+              }
+            ],
+            "location": {
+              "page": "ReactiveElement",
+              "anchor": "PropertyValues.set"
+            }
+          }
+        ],
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -5437,21 +5625,8 @@
             }
           }
         ],
-        "type": {
-          "type": "conditional",
-          "checkType": {
-            "type": "typeOperator",
-            "operator": "keyof",
-            "target": {
-              "type": "reference",
-              "name": "T"
-            }
-          },
-          "extendsType": {
-            "type": "reference",
-            "name": "PropertyKey"
-          },
-          "trueType": {
+        "extendedTypes": [
+          {
             "type": "reference",
             "typeArguments": [
               {
@@ -5463,17 +5638,24 @@
                 }
               },
               {
-                "type": "intrinsic",
-                "name": "unknown"
+                "type": "indexedAccess",
+                "indexType": {
+                  "type": "typeOperator",
+                  "operator": "keyof",
+                  "target": {
+                    "type": "reference",
+                    "name": "T"
+                  }
+                },
+                "objectType": {
+                  "type": "reference",
+                  "name": "T"
+                }
               }
             ],
             "name": "Map"
-          },
-          "falseType": {
-            "type": "intrinsic",
-            "name": "never"
           }
-        },
+        ],
         "entrypointSources": [
           {
             "fileName": "packages/lit/src/index.ts",
@@ -5484,7 +5666,38 @@
         "location": {
           "page": "ReactiveElement",
           "anchor": "PropertyValues"
-        }
+        },
+        "heritage": [
+          {
+            "type": "reference",
+            "typeArguments": [
+              {
+                "type": "typeOperator",
+                "operator": "keyof",
+                "target": {
+                  "type": "reference",
+                  "name": "T"
+                }
+              },
+              {
+                "type": "indexedAccess",
+                "indexType": {
+                  "type": "typeOperator",
+                  "operator": "keyof",
+                  "target": {
+                    "type": "reference",
+                    "name": "T"
+                  }
+                },
+                "objectType": {
+                  "type": "reference",
+                  "name": "T"
+                }
+              }
+            ],
+            "name": "Map"
+          }
+        ]
       }
     ]
   },
@@ -5495,7 +5708,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "html",
@@ -5583,7 +5796,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 356,
+            "line": 375,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5619,7 +5832,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 420,
+            "line": 439,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5635,7 +5848,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 153
+                    "line": 172
                   }
                 ],
                 "type": {
@@ -5653,7 +5866,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 154
+                    "line": 173
                   }
                 ],
                 "signatures": [
@@ -5673,7 +5886,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 152
+                    "line": 171
                   }
                 ],
                 "signatures": [
@@ -5705,7 +5918,7 @@
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                "line": 150
+                "line": 169
               }
             ],
             "signatures": [
@@ -5859,12 +6072,13 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container."
+          "shortText": "Interprets a template literal as an SVG fragment that can efficiently\nrender to and update a container.",
+          "text": "```ts\nconst rect = svg`<rect width=\"10\" height=\"10\"></rect>`;\n\nconst myImage = html`\n  <svg viewBox=\"0 0 10 10\" xmlns=\"http://www.w3.org/2000/svg\">\n    ${rect}\n  </svg>`;\n```\n\nThe `svg` *tag function* should only be used for SVG fragments, or elements\nthat would be contained **inside** an `<svg>` HTML element. A common error is\nplacing an `<svg>` *element* in a template tagged with the `svg` tag\nfunction. The `<svg>` element is an HTML element and should be used within a\ntemplate tagged with the `html` tag function.\n\nIn LitElement usage, it's invalid to return an SVG fragment from the\n`render()` method, as the SVG fragment will be contained within the element's\nshadow root and thus cannot be used within an `<svg>` HTML element.\n"
         },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 329,
+            "line": 348,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6169,7 +6383,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "adoptStyles",
@@ -6244,8 +6458,8 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "A template literal tag which can be used with LitElement's\n[`styles`](/docs/api/LitElement/#LitElement.styles) property to set element styles.",
-          "text": "For security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values [`unsafeCSS`](/docs/api/styles/#unsafeCSS) may\nbe used inside an expression.\n"
+          "shortText": "A template literal tag which can be used with LitElement's\n[`LitElement.styles`](/docs/api/LitElement/#LitElement.styles) property to set element styles.",
+          "text": "For security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values [`unsafeCSS`](/docs/api/styles/#unsafeCSS)\nmay be used inside an expression.\n"
         },
         "sources": [
           {
@@ -6751,7 +6965,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "customElement",
@@ -6859,7 +7073,7 @@
                 "name": "options",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "An object that specifies event listener options as accepted by\n`EventTarget#addEventListener` and `EventTarget#removeEventListener`.\n\nCurrent browsers support the `capture`, `passive`, and `once` options. See:\nhttps://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters\n\n```ts\nclass MyElement {\n  clicked = false;\n\n  render() {\n    return html`\n      <div @click=${this._onClick}`>\n        <button></button>\n      </div>\n    `;\n  }\n\n  @eventOptions({capture: true})\n  _onClick(e) {\n    this.clicked = true;\n  }\n}\n```"
+                  "text": "An object that specifies event listener options as accepted by\n`EventTarget#addEventListener` and `EventTarget#removeEventListener`.\n\nCurrent browsers support the `capture`, `passive`, and `once` options. See:\nhttps://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters\n\n```ts\nclass MyElement {\n  clicked = false;\n\n  render() {\n    return html`\n      <div @click=${this._onClick}>\n        <button></button>\n      </div>\n    `;\n  }\n\n  @eventOptions({capture: true})\n  _onClick(e) {\n    this.clicked = true;\n  }\n}\n```"
                 },
                 "type": {
                   "type": "reference",
@@ -6946,7 +7160,7 @@
         "kindString": "Function",
         "comment": {
           "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) may\noptionally be supplied to configure property features.",
-          "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
+          "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
         },
         "sources": [
           {
@@ -6992,8 +7206,8 @@
                     "name": "__type",
                     "kindString": "Call signature",
                     "comment": {
-                      "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [[`PropertyDeclaration`]] may\noptionally be supplied to configure property features.",
-                      "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the [[`state`]] decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the [[`state`]] decorator should be used. When needed,\nstate properties can be initialized via public properties to facilitate\ncomplex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
+                      "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A {@linkcode PropertyDeclaration} may\noptionally be supplied to configure property features.",
+                      "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\n\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the {@linkcode state} decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the {@linkcode state} decorator should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.\n\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```"
                     },
                     "parameters": [
                       {
@@ -7273,13 +7487,13 @@
         "name": "queryAssignedElements",
         "kindString": "Function",
         "comment": {
-          "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`slot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
+          "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`HTMLSlotElement.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
           "text": "Can be passed an optional [`QueryAssignedElementsOptions`](/docs/api/decorators/#QueryAssignedElementsOptions) object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
         },
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
-            "line": 62,
+            "line": 76,
             "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
           }
         ],
@@ -7320,8 +7534,8 @@
                     "name": "__type",
                     "kindString": "Call signature",
                     "comment": {
-                      "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`slot.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
-                      "text": "Can be passed an optional [[`QueryAssignedElementsOptions`]] object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
+                      "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`HTMLSlotElement.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
+                      "text": "Can be passed an optional {@linkcode QueryAssignedElementsOptions} object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\n\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
                     },
                     "parameters": [
                       {
@@ -7384,7 +7598,7 @@
         "kindString": "Function",
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given `slot`.",
-          "text": "Can be passed an optional [`QueryAssignedNodesOptions`](/docs/api/decorators/#QueryAssignedNodesOptions) object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>`.\n"
+          "text": "Can be passed an optional [`QueryAssignedNodesOptions`](/docs/api/decorators/#QueryAssignedNodesOptions) object.\n\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<Node>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>`.\n"
         },
         "sources": [
           {
@@ -7424,7 +7638,7 @@
             "kindString": "Call signature",
             "comment": {
               "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given named `slot`.",
-              "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes('list', true, '.item')\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>` if used\nwithout a `selector` or `Array<HTMLElement>` if a selector is provided.\nPlease use `@queryAssignedElements` if using a CSS selector is desired.\n"
+              "text": "Example usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes('list', true, '.item')\n  listItems!: Array<HTMLElement>;\n\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\n\nNote the type of this property should be annotated as `Array<Node>` if used\nwithout a `selector` or `Array<HTMLElement>` if a selector is provided.\nUse {@linkcode queryAssignedElements @queryAssignedElements} to list only\nelements, and optionally filter the element list using a CSS selector.\n"
             },
             "parameters": [
               {
@@ -7785,7 +7999,7 @@
         "name": "QueryAssignedElementsOptions",
         "kindString": "Interface",
         "comment": {
-          "shortText": "Options for the [`queryAssignedElements`](/docs/api/decorators/#queryAssignedElements) decorator. Extends the options\nthat can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
+          "shortText": "Options for the [`queryAssignedElements`](/docs/api/decorators/#queryAssignedElements) decorator. Extends the\noptions that can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
         },
         "children": [
           {
@@ -7800,7 +8014,7 @@
             "sources": [
               {
                 "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
-                "line": 30,
+                "line": 44,
                 "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
               }
             ],
@@ -7864,7 +8078,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/decorators/query-assigned-elements.ts",
-            "line": 24,
+            "line": 38,
             "moduleSpecifier": "reactive-element/decorators/query-assigned-elements.js"
           }
         ],
@@ -7908,7 +8122,7 @@
         "name": "QueryAssignedNodesOptions",
         "kindString": "Interface",
         "comment": {
-          "shortText": "Options for the [`queryAssignedNodes`](/docs/api/decorators/#queryAssignedNodes) decorator. Extends the options that\ncan be passed into\n[HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
+          "shortText": "Options for the [`queryAssignedNodes`](/docs/api/decorators/#queryAssignedNodes) decorator. Extends the options\nthat can be passed into [HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
         },
         "children": [
           {
@@ -7994,7 +8208,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "asyncAppend",
@@ -15656,7 +15870,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "AsyncDirective",
@@ -17020,7 +17234,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 266
+                "line": 285
               }
             ],
             "signatures": [
@@ -17127,7 +17341,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1430,
+                "line": 1449,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17159,7 +17373,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1431,
+                "line": 1450,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17188,7 +17402,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1432,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17234,7 +17448,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1439,
+                "line": 1458,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17270,7 +17484,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1425,
+                "line": 1444,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17313,7 +17527,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1451,
+                "line": 1470,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17347,7 +17561,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1424,
+            "line": 1443,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17522,7 +17736,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1430,
+                "line": 1449,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17562,7 +17776,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1431,
+                "line": 1450,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17599,7 +17813,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1432,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17653,7 +17867,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1439,
+                "line": 1458,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17697,7 +17911,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1608,
+                "line": 1627,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17732,7 +17946,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1451,
+                "line": 1470,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17774,7 +17988,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1607,
+            "line": 1626,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17820,7 +18034,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 192
+                "line": 211
               }
             ],
             "signatures": [
@@ -17931,7 +18145,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1049,
+                "line": 1068,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17973,7 +18187,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1048,
+                "line": 1067,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18003,7 +18217,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1156,
+                "line": 1175,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18064,7 +18278,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1129,
+                "line": 1148,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18107,7 +18321,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1148,
+                "line": 1167,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18162,7 +18376,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1047,
+            "line": 1066,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18479,7 +18693,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 299
+                "line": 318
               }
             ],
             "signatures": [
@@ -18560,7 +18774,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1738,
+                "line": 1757,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18589,7 +18803,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1735,
+                "line": 1754,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18631,7 +18845,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1721,
+                "line": 1740,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18656,7 +18870,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1720,
+            "line": 1739,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18692,7 +18906,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 290
+                "line": 309
               }
             ],
             "signatures": [
@@ -18811,7 +19025,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1430,
+                "line": 1449,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18851,7 +19065,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1431,
+                "line": 1450,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18888,7 +19102,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1432,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18942,7 +19156,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1439,
+                "line": 1458,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18986,7 +19200,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1639,
+                "line": 1658,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19021,7 +19235,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1451,
+                "line": 1470,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19065,7 +19279,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1710,
+                "line": 1729,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19105,7 +19319,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1638,
+            "line": 1657,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19406,7 +19620,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1430,
+                "line": 1449,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19446,7 +19660,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1431,
+                "line": 1450,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19483,7 +19697,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1432,
+                "line": 1451,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19537,7 +19751,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1439,
+                "line": 1458,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19581,7 +19795,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1579,
+                "line": 1598,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19616,7 +19830,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1451,
+                "line": 1470,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19658,7 +19872,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1578,
+            "line": 1597,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20141,7 +20355,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1038,
+            "line": 1057,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20277,7 +20491,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 335,
+            "line": 354,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20310,7 +20524,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "html",
@@ -20815,7 +21029,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "ReactiveController",
@@ -21166,7 +21380,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "4a5369c8c9b282c4f47a70126da11810e9754745",
+    "commit": "ff9d64eeff66f7b6c2a33283eb79d571f2e63728",
     "items": [
       {
         "name": "defaultConverter",
@@ -21177,7 +21391,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 230,
+            "line": 239,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -21213,7 +21427,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 280,
+            "line": 289,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -21430,7 +21644,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 485,
+            "line": 504,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -21452,7 +21666,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 847,
+            "line": 866,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -21508,7 +21722,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 272,
+            "line": 281,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -21597,7 +21811,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 306,
+            "line": 315,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],
@@ -21609,7 +21823,7 @@
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/reactive-element/reactive-element.d.ts",
-                "line": 131
+                "line": 135
               }
             ],
             "signatures": [
@@ -21666,7 +21880,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1049,
+                "line": 1068,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -21716,7 +21930,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1048,
+                "line": 1067,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -21754,7 +21968,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1156,
+                "line": 1175,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -21823,7 +22037,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1129,
+                "line": 1148,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -21874,7 +22088,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1148,
+                "line": 1167,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -21979,7 +22193,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1404,
+            "line": 1423,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -22087,7 +22301,7 @@
         "sources": [
           {
             "fileName": "packages/reactive-element/src/reactive-element.ts",
-            "line": 304,
+            "line": 313,
             "moduleSpecifier": "reactive-element/reactive-element.js"
           }
         ],

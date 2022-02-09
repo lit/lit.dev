@@ -61,6 +61,10 @@ litdev-tutorial {
   padding: 1em 1.5em;
 }
 
+#tutorialContent img {
+  max-width: 100%;
+}
+
 #tutorialContent code:not([class]) {
   background: rgb(0 0 0 / 25%);
   font-size: 0.85em;
@@ -275,4 +279,50 @@ resize-bar[active] {
   resize-bar {
     display: none;
   }
+}
+
+/* Anchors point to wrong links in tutorials */
+.anchor {
+  display: none;
+}
+
+/* -----------------------------------
+/* Notes and warnings
+/* ------------------------------------ */
+
+#tutorialContent aside {
+  position: relative;
+  margin: 1em 0;
+  padding: 1em 1em 1em 3.5em;
+  border: 1px solid #ccc;
+}
+
+#tutorialContent aside > p {
+  margin: 0;
+}
+
+#tutorialContent aside::before {
+  position: absolute;
+  top: 1.15em;
+  left: 1em;
+}
+
+#tutorialContent aside.info::before {
+  content: url(/images/alerts/info.svg);
+}
+
+#tutorialContent aside.warning::before {
+  content: url(/images/alerts/warning-yellow.svg);
+}
+
+#tutorialContent aside.labs::before {
+  content: url(/images/alerts/labs.svg);
+}
+
+#tutorialContent aside.positive::before {
+  content: url(/images/alerts/positive.svg);
+}
+
+#tutorialContent aside.negative::before {
+  content: url(/images/alerts/negative.svg);
 }
