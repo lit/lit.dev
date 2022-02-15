@@ -253,52 +253,52 @@ layout: docs
   {% endfor %}
 {% endmacro %}
 
-{% for export in data.items %}
+{% for item in data.items %}
   <div class="heading h2">
-    <h2 id="{{ export.location.anchor }}">
-      {{ export.name }}
+    <h2 id="{{ item.location.anchor }}">
+      {{ item.name }}
     </h2>
-    <span class="kindTag {{ kind(export) }}">
-      {{ kind(export) }}
+    <span class="kindTag {{ kind(item) }}">
+      {{ kind(item) }}
     </span>
-    {% if export.location.anchor %}
-      {{ anchor(export.location.anchor, export.name) }}
+    {% if item.location.anchor %}
+      {{ anchor(item.location.anchor, item.name) }}
     {% endif %}
-    {{ viewSourceLink(export) }}
+    {{ viewSourceLink(item) }}
   </div>
 
-  {{ export.comment.shortText | markdownWithoutHtml | safe }}
+  {{ item.comment.shortText | markdownWithoutHtml | safe }}
 
   <h3>Import</h3>
   <div class="import">
-    {% highlight "ts" -%}{{ importStatement(export) }}{%- endhighlight -%}
-    <copy-button text="{{ importStatement(export) }}"></copy-button>
+    {% highlight "ts" -%}{{ importStatement(item) }}{%- endhighlight -%}
+    <copy-button text="{{ importStatement(item) }}"></copy-button>
   </div>
 
-  {% if export.signatures[0] %}
+  {% if item.signatures[0] %}
     <h3>Signature</h3>
     <p class="signature">
-      <code>{{ signature(export.signatures[0]) }}</code>
+      <code>{{ signature(item.signatures[0]) }}</code>
     </p>
 
-    {% if export.signatures[0].parameters.length > 0 %}
+    {% if item.signatures[0].parameters.length > 0 %}
       <h3>Parameters</h3>
-      {{ params(export) }}
+      {{ params(item) }}
     {% endif %}
 
-  {% elif export.type %}
+  {% elif item.type %}
     <h3>Type</h3>
-    <code class="typeSignature">{{ type(export.type) }}</code>
+    <code class="typeSignature">{{ type(item.type) }}</code>
   {% endif %}
 
 
-  {% if export.comment.text %}
+  {% if item.comment.text %}
     <h3>Details</h3>
-    {{ export.comment.text | markdownWithoutHtml | safe }}
+    {{ item.comment.text | markdownWithoutHtml | safe }}
   {% endif %}
 
-  {% if export.expandedCategories.length > 0 %}
-    {% for category in export.expandedCategories %}
+  {% if item.expandedCategories.length > 0 %}
+    {% for category in item.expandedCategories %}
       <div class="properties">
         <div class="heading h3">
           <h3 id="{{ category.anchor }}">
@@ -310,10 +310,10 @@ layout: docs
       </div>
     {% endfor %}
 
-  {% elif export.children.length > 0 %}
+  {% elif item.children.length > 0 %}
     <div class="properties">
       <h3>Methods and properties</h3>
-      {{ properties(export.children) }}
+      {{ properties(item.children) }}
     </div>
   {% endif %}
 {% endfor %}
