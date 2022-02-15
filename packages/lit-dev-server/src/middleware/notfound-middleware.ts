@@ -18,9 +18,7 @@ export const notFoundMiddleware =
     await next();
 
     if (ctx.status === 404) {
-      // 404-csp-intercept communicates to the CSP middleware that a 404 page
-      // was sent, allowing an adequate CSP policy to be set.
-      ctx['404-csp-intercept'] = true;
       await send(ctx, '/404/index.html', {root: staticRoot});
+      ctx.status = 404;
     }
   };

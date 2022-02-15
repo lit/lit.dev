@@ -234,8 +234,8 @@ export const contentSecurityPolicyMiddleware = (
     }
     ctx.set('Content-Security-Policy', policy);
     await next();
-    if (ctx['404-csp-intercept']) {
-      // If the 404 middleware has run, use a more forgiving CSP policy.
+    if (ctx.status === 404) {
+      // Ensure 404 page can render with less strict policy.
       ctx.set('Content-Security-Policy', entrypointsCsp);
     }
   };
