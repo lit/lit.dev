@@ -433,11 +433,11 @@ ${content}
     );
   });
 
-  eleventyConfig.on('beforeBuild', () => {
+  eleventyConfig.on('eleventy.before', () => {
     cspInlineScriptHashes.clear();
   });
 
-  eleventyConfig.on('afterBuild', async () => {
+  eleventyConfig.on('eleventy.after', async () => {
     // The eleventyNavigation plugin requires that each section heading in our
     // docs has its own actual markdown file. But we don't actually use these
     // for content, they only exist to generate sections. Delete the HTML files

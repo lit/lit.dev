@@ -152,10 +152,10 @@ Declared properties are initialized like standard class fields—either in the c
 **Example: Declare properties with a static `properties` field**
 
 ```js
-{% include v1-projects/properties/declare/my-element.js %}
+{% include "v1-projects/properties/declare/my-element.js" %}
 ```
 
-{% include project.html folder="properties/declare" openFile="my-element.js" %}
+{% include "project.html" folder="properties/declare" openFile="my-element.js" %}
 
 ### Declare properties with decorators {#declare-with-decorators}
 
@@ -191,10 +191,10 @@ The `@internalProperty` decorator can serve as a hint to a code minifier that th
 **Example: Declare properties with decorators**
 
 ```js
-{% include v1-projects/properties/declaretypescript/my-element.ts %}
+{% include "v1-projects/properties/declaretypescript/my-element.ts" %}
 ```
 
-{% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
+{% include "project.html" folder="properties/declaretypescript" openFile="my-element.ts" %}
 
 ## What happens when properties change
 
@@ -242,7 +242,7 @@ Remember to call `super()` first in your constructor, or your element won't rend
 
 **Example: Initialize property values in the element constructor**
 
-{% include project.html folder="properties/declare" openFile="my-element.js" %}
+{% include "project.html" folder="properties/declare" openFile="my-element.js" %}
 
 ### Initialize property values when using decorators
 
@@ -255,7 +255,7 @@ greeting = 'Hello';
 
 **Example: Initialize property values when using decorators**
 
-{% include project.html folder="properties/declaretypescript" openFile="my-element.ts" %}
+{% include "project.html" folder="properties/declaretypescript" openFile="my-element.ts" %}
 
 
 
@@ -316,10 +316,10 @@ The information below shows how the default converter handles conversion for eac
 **Example: Use the default converter**
 
 ```js
-{% include v1-projects/properties/defaultconverter/my-element.js %}
+{% include "v1-projects/properties/defaultconverter/my-element.js" %}
 ```
 
-{% include project.html folder="properties/defaultconverter" openFile="my-element.js" %}
+{% include "project.html" folder="properties/defaultconverter" openFile="my-element.js" %}
 
 #### Configure a custom converter {#conversion-converter}
 
@@ -370,10 +370,10 @@ During an update:
 **Example: Configure a custom converter**
 
 ```js
-{% include v1-projects/properties/attributeconverter/my-element.js %}
+{% include "v1-projects/properties/attributeconverter/my-element.js" %}
 ```
 
-{% include project.html folder="properties/attributeconverter" openFile="my-element.js" %}
+{% include "project.html" folder="properties/attributeconverter" openFile="my-element.js" %}
 
 ### Configure observed attributes {#observed-attributes}
 
@@ -405,10 +405,10 @@ An observed attribute can be used to provide an initial value for a property via
 **Example: Configure observed attributes**
 
 ```js
-{% include v1-projects/properties/attributeobserve/my-element.js %}
+{% include "v1-projects/properties/attributeobserve/my-element.js" %}
 ```
 
-{% include project.html folder="properties/attributeobserve" openFile="my-element.js" %}
+{% include "project.html" folder="properties/attributeobserve" openFile="my-element.js" %}
 
 
 
@@ -438,10 +438,10 @@ When the property changes, LitElement uses the `toAttribute` function in the pro
 **Example: Configure reflected attributes**
 
 ```js
-{% include v1-projects/properties/attributereflect/my-element.js %}
+{% include "v1-projects/properties/attributereflect/my-element.js" %}
 ```
 
-{% include project.html folder="properties/attributereflect" openFile="my-element.js" %}
+{% include "project.html" folder="properties/attributereflect" openFile="my-element.js" %}
 
 ### Set property values from attributes in markup {#initialize-markup}
 
@@ -509,7 +509,7 @@ The setters that LitElement generates automatically call `requestUpdate`. If you
 A common pattern for accessors is to store the property value using a private property that's only accessed inside the component. This example uses an underscore prefix (`_prop`) to identify the private property—you could also use TypeScript's `private` or `protected` keywords.
 
 ```js
-{% include v1-projects/properties/customsetter/my-element.js %}
+{% include "v1-projects/properties/customsetter/my-element.js" %}
 ```
 
 If you want to use your own property accessor with the `@property` decorator, you can achieve this by putting the decorator on the getter:
@@ -547,10 +547,10 @@ You don't need to set `noAccessor` when defining your own accessors.
 **Subclass element**
 
 ```js
-{% include v1-projects/properties/accessorssubclassing/sub-element.js %}
+{% include "v1-projects/properties/accessorssubclassing/sub-element.js" %}
 ```
 
-{% include project.html folder="properties/accessorssubclassing" openFile="sub-element.js" %}
+{% include "project.html" folder="properties/accessorssubclassing" openFile="sub-element.js" %}
 
 ## Configure property changes {#haschanged}
 
@@ -581,7 +581,7 @@ myProp: { hasChanged(newVal, oldVal) {
 **Example: Configure property changes**
 
 ```js
-{% include v1-projects/properties/haschanged/my-element.js %}
+{% include "v1-projects/properties/haschanged/my-element.js" %}
 ```
 
-{% include project.html folder="properties/haschanged" openFile="my-element.js" %}
+{% include "project.html" folder="properties/haschanged" openFile="my-element.js" %}

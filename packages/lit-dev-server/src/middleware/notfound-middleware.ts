@@ -19,5 +19,6 @@ export const notFoundMiddleware =
 
     if (ctx.status === 404) {
       await send(ctx, '/404/index.html', {root: staticRoot});
+      ctx.status = 404;
     }
   };

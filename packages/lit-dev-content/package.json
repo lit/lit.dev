@@ -26,13 +26,13 @@
     "prod:build": "npm run build:not-site && eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^1.0.0",
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "clean-css": "^5.1.0",
     "codemirror": "^5.58.2",
-    "eleventy-plugin-nesting-toc": "^1.1.0",
+    "eleventy-plugin-nesting-toc": "^1.3.0",
     "fast-glob": "^3.2.5",
     "html-minifier": "^4.0.0",
     "lit-dev-api": "^0.0.0",

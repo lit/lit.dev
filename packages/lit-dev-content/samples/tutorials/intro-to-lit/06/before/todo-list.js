@@ -1,34 +1,28 @@
 import {LitElement, html, css} from 'lit';
-import {customElement, property, query} from 'lit/decorators.js';
 
-type ToDoItem = {
-  text: string,
-  completed: boolean
-}
-
-@customElement('todo-list')
 export class ToDoList extends LitElement {
-  static styles = css`
-    .completed {
-      text-decoration-line: line-through;
-      color: #777;
-    }
-  `;
+  static properties = {
+    listItems: {attribute: false},
+  };
+  
+  // TODO: Add styles here
 
-  @property({attribute: false})
-  listItems = [
-    { text: 'Make to-do list', completed: true },
-    { text: 'Add some styles', completed: true }
-  ];
+  constructor() {
+    super();
+    this.listItems = [
+      {text: 'Make to-do list', completed: true},
+      {text: 'Add some styles', completed: false},
+    ];
+  }
 
   render() {
     return html`
       <h2>To Do</h2>
       <ul>
-        ${this.listItems.map((item) =>
-          html`
+        ${this.listItems.map(
+          (item) => html`
             <li
-                class=${item.completed ? 'completed' : ''}
+                class="TODO"
                 @click=${() => this.toggleCompleted(item)}>
               ${item.text}
             </li>`
@@ -39,13 +33,14 @@ export class ToDoList extends LitElement {
     `;
   }
 
-  toggleCompleted(item: ToDoItem) {
+  toggleCompleted(item) {
     item.completed = !item.completed;
     this.requestUpdate();
   }
 
-  @query('#newitem')
-  input!: HTMLInputElement;
+  get input() {
+    return this.renderRoot?.querySelector('#newitem') ?? null;
+  }
 
   addToDo() {
     this.listItems.push({text: this.input.value, completed: false});
@@ -53,3 +48,4 @@ export class ToDoList extends LitElement {
     this.requestUpdate();
   }
 }
+customElements.define('todo-list', ToDoList);

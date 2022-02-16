@@ -50,10 +50,10 @@ class MyElement extends LitElement {
 Example
 
 ```js
-{% include v1-projects/docs/templates/define/my-element.js %}
+{% include "v1-projects/docs/templates/define/my-element.js" %}
 ```
 
-{% include project.html folder="docs/templates/define" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/define" openFile="my-element.js" %}
 
 LitElement uses lit-html templates; this page summarizes the features of lit-html templates,
 for more details, see [Writing templates](/docs/v1/lit-html/writing-templates/)
@@ -121,7 +121,7 @@ render() {
 }
 ```
 
-{% include project.html folder="docs/templates/design" openFile="update-properties.js" %}
+{% include "project.html" folder="docs/templates/design" openFile="update-properties.js" %}
 
 The following sections discuss different types of property bindings. See [Properties](/docs/v1/components/properties/) for information on declaring properties.
 
@@ -177,10 +177,10 @@ html`
 #### Examples
 
 ```js
-{% include v1-projects/docs/templates/expressions/my-element.js %}
+{% include "v1-projects/docs/templates/expressions/my-element.js" %}
 ```
 
-{% include project.html folder="docs/templates/expressions" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/expressions" openFile="my-element.js" %}
 
 ### Bind properties to templated elements
 
@@ -247,10 +247,10 @@ The default event context for `@event` expressions is `this`, so there is no nee
 _my-element.js_
 
 ```js
-{% include v1-projects/docs/templates/databinding/my-element.js %}
+{% include "v1-projects/docs/templates/databinding/my-element.js" %}
 ```
 
-{% include project.html folder="docs/templates/databinding" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/databinding" openFile="my-element.js" %}
 
 ### Render children with the slot element {#slots}
 
@@ -305,7 +305,7 @@ Arbitrarily many children can populate a single slot:
 </my-element>
 ```
 
-{% include project.html folder="docs/templates/slots" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/slots" openFile="my-element.js" %}
 
 #### Use named slots
 
@@ -342,16 +342,16 @@ _index.html_
 _my-element.js_
 
 ```js
-{% include v1-projects/docs/templates/namedslots/my-element.js %}
+{% include "v1-projects/docs/templates/namedslots/my-element.js" %}
 ```
 
 _index.html_
 
 ```html
-{% include v1-projects/docs/templates/namedslots/index.html %}
+{% include "v1-projects/docs/templates/namedslots/index.html" %}
 ```
 
-{% include project.html folder="docs/templates/namedslots" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/namedslots" openFile="my-element.js" %}
 
 **Use `name`, not `id`, to select slots.**
 
@@ -378,7 +378,7 @@ _index.html_
 </my-element>
 ```
 
-{% include project.html folder="docs/templates/slotid" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/slotid" openFile="my-element.js" %}
 
 ## Compose a template from other templates
 
@@ -407,7 +407,7 @@ class MyPage extends LitElement {
 }
 ```
 
-{% include project.html folder="docs/templates/compose" openFile="my-page.js" %}
+{% include "project.html" folder="docs/templates/compose" openFile="my-page.js" %}
 
 You can also compose templates by importing other elements and using them in your template:
 
@@ -427,7 +427,7 @@ class MyPage extends LitElement {
 }
 ```
 
-{% include project.html folder="docs/templates/composeimports" openFile="my-page.js" %}
+{% include "project.html" folder="docs/templates/composeimports" openFile="my-page.js" %}
 
 ## Specify the render root {#renderroot}
 
@@ -471,7 +471,7 @@ class LightDom extends LitElement {
 }
 ```
 
-{% include project.html folder="docs/templates/renderroot" openFile="my-element.js" %}
+{% include "project.html" folder="docs/templates/renderroot" openFile="my-element.js" %}
 
 ## Template syntax cheat sheet
 

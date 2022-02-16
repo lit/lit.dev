@@ -212,6 +212,7 @@ export const contentSecurityPolicyMiddleware = (
   );
 
   return async (ctx, next) => {
+    await next();
     let policy: string;
     // Note we can't rely on ctx.type being set by the downstream middleware,
     // because for a 304 Not Modified response, the Content-Type header will not
@@ -223,7 +224,7 @@ export const contentSecurityPolicyMiddleware = (
     // 304 responses, we cover the case where the CSP has changed, but the
     // file's content (and hence ETag) has not. Note this approach would not
     // work if we were using nonces instead of hashes.
-    if (ctx.path.endsWith('/')) {
+    if (ctx.path.endsWith('/') || ctx.status === 404) {
       policy = entrypointsCsp;
     } else if (ctx.path.endsWith('/playground-typescript-worker.js')) {
       policy = playgroundWorkerCsp;
@@ -233,6 +234,5 @@ export const contentSecurityPolicyMiddleware = (
       policy = strictFallbackCsp;
     }
     ctx.set('Content-Security-Policy', policy);
-    return next();
   };
 };
