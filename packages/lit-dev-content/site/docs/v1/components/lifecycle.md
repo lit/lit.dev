@@ -142,18 +142,18 @@ To implement a custom property setter that supports property options, pass the p
 **Example: Manually start an element update**
 
 ```js
-{% include v1-projects/lifecycle/requestupdate/my-element.js %}
+{% include "v1-projects/lifecycle/requestupdate/my-element.js" %}
 ```
 
-{% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/requestupdate" openFile="my-element.js" %}
 
 **Example: Call `requestUpdate` from a custom property setter**
 
 ```js
-{% include v1-projects/properties/customsetter/my-element.js %}
+{% include "v1-projects/properties/customsetter/my-element.js" %}
 ```
 
-{% include project.html folder="properties/customsetter" openFile="my-element.js" %}
+{% include "project.html" folder="properties/customsetter" openFile="my-element.js" %}
 
 ### performUpdate {#performupdate}
 
@@ -176,7 +176,7 @@ async performUpdate() {
 }
 ```
 
-{% include project.html folder="lifecycle/performupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/performupdate" openFile="my-element.js" %}
 
 ### shouldUpdate {#shouldupdate}
 
@@ -196,10 +196,10 @@ Controls whether an update should proceed. Implement `shouldUpdate` to specify w
 **Example: Customize which property changes should cause updates**
 
 ```js
-{% include v1-projects/lifecycle/shouldupdate/my-element.js %}
+{% include "v1-projects/lifecycle/shouldupdate/my-element.js" %}
 ```
 
-{% include project.html folder="lifecycle/shouldupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/shouldupdate" openFile="my-element.js" %}
 
 ### update {#update}
 
@@ -243,10 +243,10 @@ Implement `firstUpdated` to perform one-time work after the element's template h
 **Example: Focus an input element on first update**
 
 ```js
-{% include v1-projects/lifecycle/firstupdated/my-element.js %}
+{% include "v1-projects/lifecycle/firstupdated/my-element.js" %}
 ```
 
-{% include project.html folder="lifecycle/firstupdated" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/firstupdated" openFile="my-element.js" %}
 
 ### updated {#updated}
 
@@ -265,10 +265,10 @@ Called when the element's DOM has been updated and rendered. Implement to perfor
 **Example: Focus an element after update**
 
 ```js
-{% include v1-projects/lifecycle/updated/my-element.js %}
+{% include "v1-projects/lifecycle/updated/my-element.js" %}
 ```
 
-{% include project.html folder="lifecycle/updated" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/updated" openFile="my-element.js" %}
 
 ### updateComplete {#updatecomplete}
 
@@ -294,10 +294,10 @@ The `updateComplete` Promise resolves when the element has finished updating. Us
 **Example**
 
 ```js
-{% include v1-projects/lifecycle/updatecomplete/my-element.js %}
+{% include "v1-projects/lifecycle/updatecomplete/my-element.js" %}
 ```
 
-{% include project.html folder="lifecycle/updatecomplete" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/updatecomplete" openFile="my-element.js" %}
 
 #### Overriding updateComplete {#overriding-updatecomplete}
 
@@ -327,7 +327,7 @@ async performUpdate() {
 }
 ```
 
-{% include project.html folder="lifecycle/performupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/performupdate" openFile="my-element.js" %}
 
 #### Customize which property changes should cause an update
 
@@ -339,7 +339,7 @@ shouldUpdate(changedProps) {
 }
 ```
 
-{% include project.html folder="lifecycle/shouldupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/shouldupdate" openFile="my-element.js" %}
 
 #### Customize what constitutes a property change
 
@@ -358,7 +358,7 @@ this.prop1.subProp = 'data';
 this.requestUpdate();
 ```
 
-{% include project.html folder="lifecycle/subproperties" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/subproperties" openFile="my-element.js" %}
 
 #### Update in response to something that isn't a property change
 
@@ -372,7 +372,7 @@ this.addEventListener('load-complete', async (e) => {
 });
 ```
 
-{% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/requestupdate" openFile="my-element.js" %}
 
 #### Request an update regardless of property changes
 
@@ -392,7 +392,7 @@ this.prop1 = 'new value';
 this.requestUpdate('prop1', oldValue);
 ```
 
-{% include project.html folder="lifecycle/requestupdate" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/requestupdate" openFile="my-element.js" %}
 
 #### Do something after the first update
 
@@ -404,7 +404,7 @@ firstUpdated(changedProps) {
 }
 ```
 
-{% include project.html folder="lifecycle/firstupdated" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/firstupdated" openFile="my-element.js" %}
 
 #### Do something after every update
 
@@ -416,7 +416,7 @@ updated(changedProps) {
 }
 ```
 
-{% include project.html folder="lifecycle/updated" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/updated" openFile="my-element.js" %}
 
 #### Do something when the element next updates
 
@@ -447,4 +447,4 @@ updateComplete.then(() => {
 });
 ```
 
-{% include project.html folder="lifecycle/updatecomplete" openFile="my-element.js" %}
+{% include "project.html" folder="lifecycle/updatecomplete" openFile="my-element.js" %}

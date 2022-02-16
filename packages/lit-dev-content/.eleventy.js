@@ -42,9 +42,6 @@ const DEV = ENV.eleventyMode === 'dev';
 const cspInlineScriptHashes = new Set();
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.setLiquidOptions({
-    dynamicPartials: false, // fixes issues caused by MD id header syntax
-  });
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ['h2', 'h3'],
