@@ -92,11 +92,11 @@ export const playgroundPlugin = (
 ) => {
   let renderer: BlockingRenderer | undefined;
 
-  eleventyConfig.on('beforeBuild', () => {
+  eleventyConfig.on('eleventy.before', () => {
     renderer = new BlockingRenderer();
   });
 
-  eleventyConfig.on('afterBuild', async () => {
+  eleventyConfig.on('eleventy.after', async () => {
     if (renderer) {
       const old = renderer;
       renderer = undefined;
@@ -108,7 +108,7 @@ export const playgroundPlugin = (
     if (!renderer) {
       throw new Error(
         'Internal error: expected Playground renderer to have been ' +
-          'initialized in "beforeBuild" event.'
+          'initialized in "eleventy.before" event.'
       );
     }
     const {html} = renderer.render(lang, outdent`${code}`);

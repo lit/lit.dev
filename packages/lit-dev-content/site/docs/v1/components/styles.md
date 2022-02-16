@@ -69,20 +69,20 @@ To allow for theming or per-instance style customization, use CSS variables and 
 To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only  allows nested expressions that are themselves `css` tagged strings or numbers.
 
 ```js
-{% include v1-projects/style/nestedcss/my-element.js %}
+{% include "v1-projects/style/nestedcss/my-element.js" %}
 ```
 
-{% include project.html folder="style/nestedcss" openFile="my-element.js" %}
+{% include "project.html" folder="style/nestedcss" openFile="my-element.js" %}
 
 This restriction exists to protect applications from security vulnerabilities whereby malicious styles, or even malicious code, can be injected from untrusted sources such as URL parameters or database values.
 
 If you must use an expression in a `css` literal that is not itself a `css` literal, **and** you are confident that the expression is from a fully trusted source such as a constant defined in your own code, then you can wrap the expression with the `unsafeCSS` function:
 
 ```js
-{% include v1-projects/style/unsafecss/my-element.js %}
+{% include "v1-projects/style/unsafecss/my-element.js" %}
 ```
 
-{% include project.html folder="style/unsafecss" openFile="my-element.js" %}
+{% include "project.html" folder="style/unsafecss" openFile="my-element.js" %}
 
 <div class="alert alert-warning">
 
@@ -106,7 +106,7 @@ class MyElement extends SuperElement {
 }
 ```
 
-{% include project.html folder="style/superstyles" openFile="my-element.js" %}
+{% include "project.html" folder="style/superstyles" openFile="my-element.js" %}
 
 ### Sharing styles
 
@@ -187,7 +187,7 @@ class MyElement extends LitElement {
 }
 ```
 
-{% include project.html folder="style/styleatemplate" openFile="my-element.js" %}
+{% include "project.html" folder="style/styleatemplate" openFile="my-element.js" %}
 
 ### Style the component itself
 
@@ -215,7 +215,7 @@ static get styles() {
 }
 ```
 
-{% include project.html folder="style/host" openFile="my-element.js" %}
+{% include "project.html" folder="style/host" openFile="my-element.js" %}
 
 Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider
 the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
@@ -244,7 +244,7 @@ class MyElement extends LitElement {
 <my-element><p>Slotted content</p></my-element>
 ```
 
-{% include project.html folder="style/slottedbase" openFile="my-element.js" %}
+{% include "project.html" folder="style/slottedbase" openFile="my-element.js" %}
 
 Use the `::slotted()` CSS pseudo-element to select children that are included in your template via `<slot>`s.
 
@@ -261,10 +261,10 @@ Use the `::slotted()` CSS pseudo-element to select children that are included in
     ```
 
 ```js
-{% include v1-projects/style/slottedselector/my-element.js %}
+{% include "v1-projects/style/slottedselector/my-element.js" %}
 ```
 
-{% include project.html folder="style/slottedselector" openFile="my-element.js" %}
+{% include "project.html" folder="style/slottedselector" openFile="my-element.js" %}
 
 Note that **only direct slotted children** can be styled with `::slotted()`.
 
@@ -379,20 +379,20 @@ If you need to evaluate expressions inside a `<style>` element, use the followin
 **Example**
 
 ```js
-{% include v1-projects/style/perinstanceexpressions/my-element.js %}
+{% include "v1-projects/style/perinstanceexpressions/my-element.js" %}
 ```
 
-{% include project.html folder="style/perinstanceexpressions" openFile="my-element.js" %}
+{% include "project.html" folder="style/perinstanceexpressions" openFile="my-element.js" %}
 
 ### Import an external stylesheet {#external-stylesheet}
 
 We recommend placing your styles in a static `styles` property for optimal performance. However, you can include an external style sheet in your template with a `<link>`:
 
 ```js
-{% include v1-projects/style/where/my-element.js %}
+{% include "v1-projects/style/where/my-element.js" %}
 ```
 
-{% include project.html folder="style/where" openFile="my-element.js" %}
+{% include "project.html" folder="style/where" openFile="my-element.js" %}
 
 There are some important caveats though:
 
@@ -436,7 +436,7 @@ To use `styleMap` and/or `classMap`:
     }
     ```
 
-{% include project.html folder="style/maps" openFile="my-element.js" %}
+{% include "project.html" folder="style/maps" openFile="my-element.js" %}
 
 ### classMap syntax {#classmap}
 
@@ -447,7 +447,7 @@ To use `styleMap` and/or `classMap`:
 <!-- Equivalent: <div class="alert info">Content.</div> -->
 ```
 
-{% include project.html folder="style/classmap" openFile="my-element.js" %}
+{% include "project.html" folder="style/classmap" openFile="my-element.js" %}
 
 ### styleMap syntax {#stylemap}
 
@@ -467,7 +467,7 @@ To use `styleMap` and/or `classMap`:
 -->
 ```
 
-{% include project.html folder="style/stylemap" openFile="my-button.js" %}
+{% include "project.html" folder="style/stylemap" openFile="my-button.js" %}
 
 To refer to hyphenated properties such as `font-family`, use the camelCase equivalent (`fontFamily`) or place the hyphenated property name in quotes (`'font-family'`).
 
@@ -518,7 +518,7 @@ html`
 `
 ```
 
-{% include project.html folder="style/stylemap2" openFile="index.html" %}
+{% include "project.html" folder="style/stylemap2" openFile="index.html" %}
 
 ## Theming
 
@@ -607,7 +607,7 @@ class MyElement extends LitElement {
 }
 ```
 
-{% include project.html folder="style/inherited3" openFile="index.html" %}
+{% include "project.html" folder="style/inherited3" openFile="index.html" %}
 
 You can also use the `:host` CSS pseudo-class to style the host from inside its own template:
 
@@ -626,7 +626,7 @@ render() {
 }
 ```
 
-{% include project.html folder="style/inherited" openFile="my-element.js" %}
+{% include "project.html" folder="style/inherited" openFile="my-element.js" %}
 
 <div class="alert alert-info">
 
@@ -652,7 +652,7 @@ class MyElement extends LitElement {
 }
 ```
 
-{% include project.html folder="style/specificity" openFile="index.html" %}
+{% include "project.html" folder="style/specificity" openFile="index.html" %}
 
 </div>
 
@@ -706,10 +706,10 @@ Users of this component can set the value of `--my-background`, using the `my-el
 If a component user has an existing app theme, they can easily set the host's configurable properties to use theme properties:
 
 ```html
-{% include v1-projects/style/customproperties/index.html %}
+{% include "v1-projects/style/customproperties/index.html" %}
 ```
 
-{% include project.html folder="style/customproperties" openFile="index.html" %}
+{% include "project.html" folder="style/customproperties" openFile="index.html" %}
 
 See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="_blank" rel="noopener">CSS Custom Properties on MDN</a> for more information.
 
@@ -718,13 +718,13 @@ See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="_blan
 _index.html_
 
 ```html
-{% include v1-projects/style/theming/index.html %}
+{% include "v1-projects/style/theming/index.html" %}
 ```
 
 _my-element.js_
 
 ```js
-{% include v1-projects/style/theming/my-element.js %}
+{% include "v1-projects/style/theming/my-element.js" %}
 ```
 
-{% include project.html folder="style/theming" openFile="theme.css" %}
+{% include "project.html" folder="style/theming" openFile="theme.css" %}
