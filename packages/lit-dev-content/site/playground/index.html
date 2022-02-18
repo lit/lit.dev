@@ -15,6 +15,9 @@ title: Playground
 
 {% block content %}
 
+<litdev-playground-page
+  githubApiUrl="{{ env.GITHUB_API_URL }}">
+
 <litdev-drawer>
   <h1 id="exampleHeading" slot="header">Examples</h1>
 
@@ -121,5 +124,7 @@ title: Playground
 </mwc-snackbar>
 
 <litdev-error-notifier siteVersion="{{ env.SITE_VERSION }}"></litdev-error-notifier>
+
+</litdev-playground-page>
 
 {% endblock %}
