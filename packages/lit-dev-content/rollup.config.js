@@ -48,8 +48,8 @@ export default [
       'lib/pages/home.js',
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
-      'lib/util/lit-hydrate-support.js',
-      'lib/util/dsd-polyfill.js',
+      'lib/global/lit-hydrate-support.js',
+      'lib/global/dsd-polyfill.js',
     ],
     output: {
       dir: 'rollupout',
@@ -106,11 +106,41 @@ export default [
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-attribute.js',
       'lib/global/mobile-drawer.js',
-      'lib/global/dsd-native.js',
     ],
     output: {
       dir: 'rollupout',
       format: 'esm',
+      // Preserve directory structure for entrypoints.
+      entryFileNames: ({facadeModuleId}) =>
+        facadeModuleId.replace(`${__dirname}/lib/`, ''),
+    },
+    plugins: [
+      terser({
+        ...terserOptions,
+        output: {
+          ...terserOptions.output,
+          // Remove license comment for inline script.
+          comments: false,
+        },
+      }),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
+    ],
+  },
+
+  /**
+   * Creates an iife for scripts that need to be inlined with inlinesyncjs and
+   * without [type="module"].
+   */
+  {
+    input: [
+      'lib/global/dsd-native.js',
+    ],
+    output: {
+      dir: 'rollupout',
+      format: 'iife',
       // Preserve directory structure for entrypoints.
       entryFileNames: ({facadeModuleId}) =>
         facadeModuleId.replace(`${__dirname}/lib/`, ''),
