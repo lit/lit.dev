@@ -135,9 +135,7 @@ export default [
    * without [type="module"].
    */
   {
-    input: [
-      'lib/global/dsd-native.js',
-    ],
+    input: ['lib/global/dsd-native.js'],
     output: {
       dir: 'rollupout',
       format: 'iife',
