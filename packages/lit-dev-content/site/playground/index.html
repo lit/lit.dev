@@ -7,13 +7,16 @@ title: Playground
 {% block head %}
   {% inlinecss "playground.css" %}
   {% inlinejs "pages/playground-inline.js" %}
-  <script type="module" src="{{ site.baseurl }}/js/pages/playground.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-playground-page.js"></script>
   <script type="module" src="{{ site.baseurl }}/js/components/litdev-drawer.js"></script>
   <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
   <script type="module" src="{{ site.baseurl }}/js/components/resize-bar.js"></script>
 {% endblock %}
 
 {% block content %}
+
+<litdev-playground-page
+  githubApiUrl="{{ env.GITHUB_API_URL }}">
 
 <litdev-drawer>
   <h1 id="exampleHeading" slot="header">Examples</h1>
@@ -121,5 +124,7 @@ title: Playground
 </mwc-snackbar>
 
 <litdev-error-notifier siteVersion="{{ env.SITE_VERSION }}"></litdev-error-notifier>
+
+</litdev-playground-page>
 
 {% endblock %}
