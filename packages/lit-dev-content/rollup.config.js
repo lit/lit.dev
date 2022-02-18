@@ -48,6 +48,8 @@ export default [
       'lib/pages/home.js',
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
+      'lib/util/lit-hydrate-support.js',
+      'lib/util/dsd-polyfill.js',
     ],
     output: {
       dir: 'rollupout',
@@ -104,6 +106,7 @@ export default [
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-attribute.js',
       'lib/global/mobile-drawer.js',
+      'lib/global/dsd-native.js',
     ],
     output: {
       dir: 'rollupout',

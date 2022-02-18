@@ -9,6 +9,10 @@
 @import url('./code.css');
 @import url('./version-selector.css');
 
+body[dsd-pending] {
+  display: none;
+}
+
 html {
   font-size: 18px;
   --header-nav-height: 60px;

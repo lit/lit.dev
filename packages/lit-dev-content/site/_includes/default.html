@@ -15,6 +15,12 @@
     {% inlinejs "global/apply-mods.js" %}
     {% inlinejs "global/initialize-typescript-attribute.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
+    {% if ssr %}
+      {% if not nohydrate %}
+        <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
+      {% endif %}
+      <script type="module" src="{{ site.baseurl }}/js/global/dsd-polyfill.js"></script>
+    {% endif %}
 
     {% if selectedVersion !== latestVersion %}
       <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
@@ -43,10 +49,10 @@
     <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
     {% block head %}{% endblock %}
   </head>
-  <body>
-    <a href="#content" id="bypassNavLink">
-      Skip to main content
-    </a>
+  <body {% if ssr %}dsd-pending{% endif %}>
+    {% if ssr %}
+      {% inlinesyncjs "global/dsd-native.js" %}
+    {% endif %}
 
     <mwc-drawer type="modal" id="mobileDrawer">
       <nav>

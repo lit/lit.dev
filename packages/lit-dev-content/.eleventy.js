@@ -32,6 +32,8 @@ const {preCompress} = require('../lit-dev-tools-cjs/lib/pre-compress.js');
 const luxon = require('luxon');
 const crypto = require('crypto');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
+const litPlugin = require('@lit-labs/eleventy-plugin-lit');
+const {componentsToSSR} = require('./src/components/ssr.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -399,6 +401,23 @@ ${content}
     return `<style>${result.styles}</style>`;
   });
 
+  const inlinejs =
+    (isSync = false) =>
+    (path) => {
+      if (DEV) {
+        return `<script ${
+          isSync ? '' : `type="module"`
+        } src="/js/${path}"></script>`;
+      }
+      // Note we must trim before hashing, because our html-minifier will trim
+      // inline script trailing newlines, and otherwise our hash will be wrong.
+      const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
+      const hash =
+        'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
+      cspInlineScriptHashes.add(hash);
+      return `<script ${isSync ? '' : `type="module"`}>${script}</script>`;
+    };
+
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
    * to ./rollupout.
@@ -406,18 +425,16 @@ ${content}
    * In dev mode, instead directly import the module, which has already been
    * symlinked directly to the TypeScript output directory.
    */
-  eleventyConfig.addShortcode('inlinejs', (path) => {
-    if (DEV) {
-      return `<script type="module" src="/js/${path}"></script>`;
-    }
-    // Note we must trim before hashing, because our html-minifier will trim
-    // inline script trailing newlines, and otherwise our hash will be wrong.
-    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
-    const hash =
-      'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
-    cspInlineScriptHashes.add(hash);
-    return `<script type="module">${script}</script>`;
-  });
+  eleventyConfig.addShortcode('inlinejs', inlinejs());
+
+  /**
+   * Inline the Rollup-bundled version of a JavaScript module without
+   * type="module". Path is relative to ./rollupout.
+   *
+   * In dev mode, instead directly import the module, which has already been
+   * symlinked directly to the TypeScript output directory.
+   */
+  eleventyConfig.addShortcode('inlinesyncjs', inlinejs(true));
 
   // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
   eleventyConfig.addFilter('readableDate', (dateObj) => {
@@ -529,6 +546,10 @@ ${content}
         }
         return 0;
       });
+  });
+
+  eleventyConfig.addPlugin(litPlugin, {
+    componentModules: componentsToSSR,
   });
 
   return {

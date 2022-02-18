@@ -38,34 +38,6 @@ main {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* Help prevent janky layout */
-.card-grid > *:not(:defined) {
-  width: var(--tutorial-card-width);
-  border: 1px solid #3e3e3e;
-  padding: calc(var(--_unit) * 0.5);
-  box-sizing: border-box;
-}
-
-litdev-tutorial-card[size=tiny]:not(:defined) {
-  grid-row: span 1;
-  height: calc(var(--_unit) * 4);
-}
-
-litdev-tutorial-card[size=small]:not(:defined) {
-  grid-row: span 2;
-  height: calc(var(--_unit) * 9);
-}
-
-litdev-tutorial-card[size=medium]:not(:defined) {
-  grid-row: span 3;
-  height: calc(var(--_unit) * 14);
-}
-
-litdev-tutorial-card[size=large]:not(:defined) {
-  grid-row: span 4;
-  height: calc(var(--_unit) * 19);
-}
-
 @media (max-width: 1021px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
