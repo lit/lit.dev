@@ -41,7 +41,7 @@ splash: lit-shapes.svg
             <p>{{ post.data.summary }}</p>
 
             <div id="authors">
-              {% for authorId in post.data.author %}
+              {% for authorId in post.data.author or post.data.defaultAuthor %}
                 {% set authorData = authors[authorId] %}
                 <div class="author">
                   <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
