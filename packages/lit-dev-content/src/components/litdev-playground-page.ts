@@ -12,18 +12,29 @@ import '../components/litdev-playground-change-guard.js';
 import '../components/litdev-playground-share-button.js';
 import '../components/litdev-playground-download-button.js';
 import '../components/litdev-error-notifier.js';
+
+import {LitElement, html, css} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
+
 import {
   getCodeLanguagePreference,
   CODE_LANGUAGE_CHANGE,
 } from '../code-language-preference.js';
 import {getGist} from '../github/github-gists.js';
 import {GitHubError} from '../github/github-util.js';
-import {Snackbar} from '@material/mwc-snackbar';
 import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
 import {modEnabled} from '../mods.js';
 import {LitDevError, showError} from '../errors.js';
 import {gistToPlayground} from '../util/gist-conversion.js';
+
+import type {Snackbar} from '@material/mwc-snackbar';
+import type {LitDevPlaygroundShareButton} from './litdev-playground-share-button.js';
+import type {LitDevPlaygroundDownloadButton} from './litdev-playground-download-button.js';
+import type {LitDevDrawer} from './litdev-drawer.js';
+import type {LitDevExampleControls} from './litdev-example-controls.js';
+import type {PlaygroundProject} from 'playground-elements/playground-project.js';
+import type {PlaygroundPreview} from 'playground-elements/playground-preview.js';
 
 interface CompactProjectFile {
   name: string;
@@ -31,20 +42,86 @@ interface CompactProjectFile {
   hidden?: true;
 }
 
-// TODO(aomarks) This whole thing should probably be a custom element.
-window.addEventListener('DOMContentLoaded', () => {
-  const $ = document.body.querySelector.bind(document.body);
-  const project = $('playground-project')!;
-  const shareButton = $('#shareButton')!;
-  const shareSnackbar = $('#shareSnackbar')! as Snackbar;
-  const playgroundPreview = $('playground-preview')!;
+/**
+ * Top-level component for the Lit.dev Playground page.
+ *
+ * TODO(aomarks) This component is mid-refactoring. In particular, the way it
+ * assumes and queries for child elements will be changing.
+ */
+@customElement('litdev-playground-page')
+export class LitDevPlaygroundPage extends LitElement {
+  static styles = css`
+    :host {
+      display: contents;
+    }
+  `;
 
-  // TODO(aomarks) A quite gross and fragile loose coupling! This entire module
-  // needs to be refactored, probably into one or two custom elements.
-  const newShareButton = $('litdev-playground-share-button');
-  const githubApiUrl = newShareButton?.githubApiUrl ?? '';
-  if (newShareButton) {
-    newShareButton.getProjectFiles = () => project.files;
+  private _playgroundProject!: PlaygroundProject;
+  private _playgroundPreview!: PlaygroundPreview;
+  private _shareButton!: HTMLElement;
+  private _shareSnackbar!: Snackbar;
+  private _newShareButton!: LitDevPlaygroundShareButton;
+  private _downloadButton!: LitDevPlaygroundDownloadButton;
+  private _examplesDrawer!: LitDevDrawer;
+  private _examplesDrawerScroller!: HTMLElement;
+  private _exampleControls!: LitDevExampleControls;
+
+  /**
+   * Base URL for the GitHub API.
+   */
+  @property()
+  githubApiUrl!: string;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._checkRequiredParameters();
+    this._discoverChildElements();
+    this._activateChildElements();
+    this._syncStateFromUrlHash();
+    window.addEventListener('hashchange', () => this._syncStateFromUrlHash());
+    window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
+      this._syncStateFromUrlHash()
+    );
+    this._activateKeyboardShortcuts();
+  }
+
+  render() {
+    return html`<slot></slot>`;
+  }
+
+  private _checkRequiredParameters() {
+    if (!this.githubApiUrl) {
+      throw new Error('GitHub configuration parameter missing');
+    }
+  }
+
+  private _discoverChildElements() {
+    // TODO(aomarks) This is very unconventional. We should be rendering these
+    // elements ourselves, or slotting them in with names.
+    const mustFindChild: typeof this['querySelector'] = (
+      selector: string
+    ): HTMLElement => {
+      const el = this.querySelector(selector);
+      if (el === null) {
+        throw new Error(`Missing element ${selector}`);
+      }
+      return el as HTMLElement;
+    };
+    this._playgroundProject = mustFindChild('playground-project')!;
+    this._playgroundPreview = mustFindChild('playground-preview')!;
+    this._shareButton = mustFindChild('#shareButton')!;
+    this._shareSnackbar = mustFindChild('#shareSnackbar')!;
+    this._newShareButton = mustFindChild('litdev-playground-share-button')!;
+    this._downloadButton = mustFindChild('litdev-playground-download-button')!;
+    this._examplesDrawer = mustFindChild('litdev-drawer')!;
+    this._exampleControls = mustFindChild('litdev-example-controls')!;
+    this._examplesDrawerScroller = mustFindChild(
+      'litdev-drawer .minimalScroller'
+    )!;
+  }
+
+  private _activateChildElements() {
+    this._newShareButton.getProjectFiles = () => this._playgroundProject.files;
 
     // Clicks made on the playground-preview iframe will be handled entirely by
     // the iframe window, and don't propagate to the host window. That means
@@ -52,36 +129,28 @@ window.addEventListener('DOMContentLoaded', () => {
     // itself in order to close won't work, since it will never see the click
     // event. To work around this, we temporarily disable pointer-events on the
     // preview, so that clicks go to our host window instead.
-    newShareButton.addEventListener('opened', () => {
-      playgroundPreview.style.pointerEvents = 'none';
+    this._newShareButton.addEventListener('opened', () => {
+      this._playgroundPreview.style.pointerEvents = 'none';
     });
-    newShareButton.addEventListener('closed', () => {
-      playgroundPreview.style.pointerEvents = 'unset';
+    this._newShareButton.addEventListener('closed', () => {
+      this._playgroundPreview.style.pointerEvents = 'unset';
     });
-  } else {
-    console.error('Missing litdev-playground-share-button');
+
+    this._shareButton.addEventListener('click', () => this._share());
+    this._downloadButton.getProjectFiles = () => this._playgroundProject.files;
   }
 
-  const share = async () => {
-    const files = (project.files ?? []).map(compactPlaygroundFile);
+  private async _share() {
+    const files = (this._playgroundProject.files ?? []).map(
+      compactPlaygroundFile
+    );
     const base64 = encodeSafeBase64(JSON.stringify(files));
     window.location.hash = '#project=' + base64;
     await navigator.clipboard.writeText(window.location.toString());
-    shareSnackbar.open = true;
-  };
-
-  shareButton.addEventListener('click', share);
-
-  const downloadButton = $('litdev-playground-download-button');
-  if (downloadButton) {
-    downloadButton.getProjectFiles = () => project.files;
-  } else {
-    console.error('Missing litdev-playground-download-button');
+    this._shareSnackbar.open = true;
   }
 
-  const loadBase64 = (
-    base64: string
-  ): Array<CompactProjectFile> | undefined => {
+  private _loadBase64(base64: string): Array<CompactProjectFile> | undefined {
     if (base64) {
       try {
         const json = decodeSafeBase64(base64);
@@ -95,33 +164,31 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
     return undefined;
-  };
+  }
 
-  const loadGist = async (
-    gistId: string
-  ): Promise<Array<CompactProjectFile>> => {
-    const gist = await getGist(gistId, {apiBaseUrl: githubApiUrl});
-    if (newShareButton) {
-      newShareButton.activeGist = gist;
+  private async _loadGist(gistId: string): Promise<Array<CompactProjectFile>> {
+    const gist = await getGist(gistId, {apiBaseUrl: this.githubApiUrl});
+    if (this._newShareButton) {
+      this._newShareButton.activeGist = gist;
     }
     return gistToPlayground(gist.files).map(compactPlaygroundFile);
-  };
+  }
 
-  const syncStateFromUrlHash = async () => {
+  private async _syncStateFromUrlHash() {
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(1));
     let urlFiles: Array<CompactProjectFile> | undefined;
     const gist = params.get('gist');
     const base64 = params.get('project');
-    if (newShareButton && newShareButton.activeGist?.id !== gist) {
+    if (this._newShareButton.activeGist?.id !== gist) {
       // We're about to switch to a new gist, or to something that's not a gist
       // at all (a pre-made sample or a base64 project). Either way, the active
       // gist is now outdated.
-      newShareButton.activeGist = undefined;
+      this._newShareButton.activeGist = undefined;
     }
     if (gist) {
       try {
-        urlFiles = await loadGist(gist);
+        urlFiles = await this._loadGist(gist);
       } catch (error: unknown) {
         if (error instanceof GitHubError && error.status === 404) {
           error = new LitDevError({
@@ -135,20 +202,22 @@ window.addEventListener('DOMContentLoaded', () => {
         showError(error);
       }
     } else if (base64) {
-      urlFiles = loadBase64(base64);
+      urlFiles = this._loadBase64(base64);
     }
-    $('.exampleItem.active')?.classList.remove('active');
+    this._examplesDrawer
+      .querySelector('.exampleItem.active')
+      ?.classList.remove('active');
 
     if (urlFiles) {
-      hideCodeLanguageSwitch();
-      project.config = {
+      this._hideCodeLanguageSwitch();
+      this._playgroundProject.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
           urlFiles.map(({name, content, hidden}) => [name, {content, hidden}])
         ),
       };
     } else {
-      showCodeLanguageSwitch();
+      this._showCodeLanguageSwitch();
       let sample = 'examples/hello-world';
       const urlSample = params.get('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
@@ -156,26 +225,30 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       const samplesRoot =
         getCodeLanguagePreference() === 'ts' ? '/samples' : '/samples/js';
-      project.projectSrc = `${samplesRoot}/${sample}/project.json`;
+      this._playgroundProject.projectSrc = `${samplesRoot}/${sample}/project.json`;
 
-      const link = $(`.exampleItem[data-sample="${sample}"]`);
+      const link = this._examplesDrawer.querySelector(
+        `.exampleItem[data-sample="${sample}"]`
+      );
       if (link) {
         link.classList.add('active');
         // Wait for the drawer to upgrade and render before scrolling.
         await customElements.whenDefined('litdev-drawer');
         requestAnimationFrame(() => {
-          scrollToCenter(link, document.querySelector('#exampleContent')!);
+          this._scrollToCenter(link, this._examplesDrawerScroller);
         });
       }
     }
-  };
+  }
 
-  syncStateFromUrlHash();
-  window.addEventListener('hashchange', syncStateFromUrlHash);
-  window.addEventListener(CODE_LANGUAGE_CHANGE, syncStateFromUrlHash);
-
-  // Trigger URL sharing when Control-s or Command-s is pressed.
-  if (!modEnabled('gists')) {
+  /**
+   * Trigger URL sharing when Control-s or Command-s is pressed.
+   */
+  private _activateKeyboardShortcuts() {
+    if (modEnabled('gists')) {
+      // The new gists mode uses another component to handle keyboard shortcuts.
+      return;
+    }
     let controlDown = false;
     let commandDown = false;
     window.addEventListener('keydown', (event) => {
@@ -184,7 +257,7 @@ window.addEventListener('DOMContentLoaded', () => {
       } else if (event.key === 'Meta') {
         commandDown = true;
       } else if (event.key === 's' && (controlDown || commandDown)) {
-        share();
+        this._share();
         event.preventDefault(); // Don't trigger "Save page as"
       }
     });
@@ -200,42 +273,42 @@ window.addEventListener('DOMContentLoaded', () => {
       commandDown = false;
     });
   }
-});
 
-const exampleControls = document.body.querySelector('litdev-example-controls');
-
-/**
- * Set the opacity of the TypeScript/JavaScript language switch.
- *
- * When a Playground is comes from a base64-encoded project in the URL (i.e.
- * through the "Share" button), it's not possible to automatically translate
- * between JS and TS forms. Only pre-built TS samples have a generated JS
- * version available.
- */
-const hideCodeLanguageSwitch = () => {
-  if (exampleControls) {
-    exampleControls.hideCodeLanguageSwitch = true;
+  /**
+   * Set the opacity of the TypeScript/JavaScript language switch.
+   *
+   * When a Playground is comes from a base64-encoded project in the URL (i.e.
+   * through the "Share" button), it's not possible to automatically translate
+   * between JS and TS forms. Only pre-built TS samples have a generated JS
+   * version available.
+   */
+  private _hideCodeLanguageSwitch() {
+    this._exampleControls.hideCodeLanguageSwitch = true;
   }
-};
 
-const showCodeLanguageSwitch = () => {
-  if (exampleControls) {
-    exampleControls.hideCodeLanguageSwitch = false;
+  private _showCodeLanguageSwitch() {
+    this._exampleControls.hideCodeLanguageSwitch = false;
   }
-};
 
-/**
- * Note we don't use scrollIntoView() because it also steals focus.
- */
-const scrollToCenter = (target: Element, parent: Element) => {
-  const parentRect = parent.getBoundingClientRect();
-  const targetRect = target.getBoundingClientRect();
-  if (
-    targetRect.bottom > parentRect.bottom ||
-    targetRect.top < parentRect.top
-  ) {
-    parent.scroll({
-      top: targetRect.top - parentRect.top - parentRect.height / 2,
-    });
+  /**
+   * Note we don't use scrollIntoView() because it also steals focus.
+   */
+  private _scrollToCenter(target: Element, parent: Element) {
+    const parentRect = parent.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    if (
+      targetRect.bottom > parentRect.bottom ||
+      targetRect.top < parentRect.top
+    ) {
+      parent.scroll({
+        top: targetRect.top - parentRect.top - parentRect.height / 2,
+      });
+    }
   }
-};
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'litdev-playground-page': LitDevPlaygroundPage;
+  }
+}
