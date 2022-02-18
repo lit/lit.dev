@@ -98,7 +98,9 @@ test.describe('Playground', () => {
     // Because of shadow dom piercing, Playwright finds multiple '#content'
     // nodes, i.e. the page, and within the playground shadow DOM.
     await expect(
-      await page.locator('main > #content').screenshot()
+      await page
+        .locator('main > litdev-playground-page > #content')
+        .screenshot()
     ).toMatchSnapshot('helloWorldPlaygroundProject.png');
   });
 
