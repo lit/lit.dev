@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "cd ../.. && npm run start",
     "test:integration": "playwright test --config=lib/playwright.config.js",
-    "test:integration:update-golden-screenshots": "playwright test --update-snapshots",
+    "test:integration:update-golden-screenshots": "npm run test:integration -- --update-snapshots",
     "test:links:redirects": "node lib/check-redirects.js",
     "test:links:internal": "run-p --race start test:links:internal:cmd",
     "test:links:internal:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --recursive --exclude-external --ordered",
