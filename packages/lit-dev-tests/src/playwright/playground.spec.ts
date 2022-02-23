@@ -11,7 +11,7 @@ import {
   freezeDialogs,
   closeSnackbars,
   readClipboardText,
-} from './util';
+} from './util.js';
 
 const signInToGithub = async (page: Page): Promise<void> => {
   const [popup] = await Promise.all([

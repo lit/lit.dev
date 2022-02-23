@@ -6,7 +6,9 @@
 
 import {PlaywrightTestConfig} from '@playwright/test';
 const config: PlaywrightTestConfig = {
-  testDir: 'src/playwright',
+  testDir: 'playwright',
+  testMatch: /.spec.js/,
+  retries: 3,
   use: {
     screenshot: 'off',
     baseURL: 'http://localhost:6415/',

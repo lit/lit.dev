@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "start": "cd ../.. && npm run start",
-    "test:integration": "playwright test",
+    "test:integration": "playwright test --config=lib/playwright.config.js",
     "test:integration:update-golden-screenshots": "playwright test --update-snapshots",
     "test:links:redirects": "node lib/check-redirects.js",
     "test:links:internal": "run-p --race start test:links:internal:cmd",
@@ -18,13 +18,13 @@
     "test:links:external:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --exclude 'http://localhost:8000/dev/' --exclude 'https://www.npmjs.com/*' --get --recursive --host-requests 1"
   },
   "dependencies": {
-    "@playwright/test": "^1.14.1",
+    "@playwright/test": "^1.19.1",
     "@types/ansi-escape-sequences": "^4.0.0",
-    "@types/node": "^15.0.0",
-    "ansi-escape-sequences": "^6.2.0",
+    "@types/node": "^16.0.0",
+    "ansi-escape-sequences": "^6.2.1",
     "broken-link-checker": "^0.7.8",
     "lit-dev-server": "^0.0.0",
-    "node-fetch": "^3.0.0",
-    "wait-on": "^6.0.0"
+    "node-fetch": "^3.2.0",
+    "wait-on": "^6.0.1"
   }
 }
