@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {test, expect, Page, Browser} from '@playwright/test';
+import {test, expect} from '@playwright/test';
 import {
   waitForPlaygroundPreviewToLoad,
   freezeSnackbars,
@@ -12,6 +12,8 @@ import {
   closeSnackbars,
   readClipboardText,
 } from './util.js';
+
+import type {Page, Browser} from '@playwright/test';
 
 const signInToGithub = async (page: Page): Promise<void> => {
   const [popup] = await Promise.all([
