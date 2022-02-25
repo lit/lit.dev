@@ -19,7 +19,7 @@
       {% if not nohydrate %}
         <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
       {% endif %}
-      <script type="module" src="{{ site.baseurl }}/js/global/dsd-polyfill.js"></script>
+      {% inlinejs "global/dsd-polyfill.js" %}
     {% endif %}
 
     {% if selectedVersion !== latestVersion %}
@@ -50,10 +50,6 @@
     {% block head %}{% endblock %}
   </head>
   <body {% if ssr %}dsd-pending{% endif %}>
-    {% if ssr %}
-      {% inlinesyncjs "global/dsd-native.js" %}
-    {% endif %}
-
     <mwc-drawer type="modal" id="mobileDrawer">
       <nav>
         <div id="mobileSiteNav">

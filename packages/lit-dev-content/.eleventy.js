@@ -401,23 +401,6 @@ ${content}
     return `<style>${result.styles}</style>`;
   });
 
-  const inlinejs =
-    (isSync = false) =>
-    (path) => {
-      if (DEV) {
-        return `<script ${
-          isSync ? '' : `type="module"`
-        } src="/js/${path}"></script>`;
-      }
-      // Note we must trim before hashing, because our html-minifier will trim
-      // inline script trailing newlines, and otherwise our hash will be wrong.
-      const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
-      const hash =
-        'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
-      cspInlineScriptHashes.add(hash);
-      return `<script ${isSync ? '' : `type="module"`}>${script}</script>`;
-    };
-
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
    * to ./rollupout.
@@ -425,16 +408,18 @@ ${content}
    * In dev mode, instead directly import the module, which has already been
    * symlinked directly to the TypeScript output directory.
    */
-  eleventyConfig.addShortcode('inlinejs', inlinejs());
-
-  /**
-   * Inline the Rollup-bundled version of a JavaScript module without
-   * type="module". Path is relative to ./rollupout.
-   *
-   * In dev mode, instead directly import the module, which has already been
-   * symlinked directly to the TypeScript output directory.
-   */
-  eleventyConfig.addShortcode('inlinesyncjs', inlinejs(true));
+  eleventyConfig.addShortcode('inlinejs', (path) => {
+    if (DEV) {
+      return `<script type="module" src="/js/${path}"></script>`;
+    }
+    // Note we must trim before hashing, because our html-minifier will trim
+    // inline script trailing newlines, and otherwise our hash will be wrong.
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
+    const hash =
+      'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
+    cspInlineScriptHashes.add(hash);
+    return `<script type="module">${script}</script>`;
+  });
 
   // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
   eleventyConfig.addFilter('readableDate', (dateObj) => {
