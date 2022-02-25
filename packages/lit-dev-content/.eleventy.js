@@ -532,9 +532,15 @@ ${content}
         return 0;
       });
   });
+  let componentModules = componentsToSSR;
+
+  // In prod SSR should use the lit templates run through the minifier.
+  if (!DEV) {
+    componentModules = componentsToSSR.map((componentPath) => componentPath.replace(/^lib\//, 'rollupout/'));
+  }
 
   eleventyConfig.addPlugin(litPlugin, {
-    componentModules: componentsToSSR,
+    componentModules,
   });
 
   return {

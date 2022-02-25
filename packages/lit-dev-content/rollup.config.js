@@ -7,6 +7,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import summary from 'rollup-plugin-summary';
 import {terser} from 'rollup-plugin-terser';
+import minifyHTML from 'rollup-plugin-minify-html-literals';
 
 const terserOptions = {
   warnings: true,
@@ -86,6 +87,7 @@ export default [
     },
     plugins: [
       resolve(),
+      minifyHTML(),
       terser(terserOptions),
       summary({
         // Already minified.
@@ -115,6 +117,7 @@ export default [
         facadeModuleId.replace(`${__dirname}/lib/`, ''),
     },
     plugins: [
+      minifyHTML(),
       terser({
         ...terserOptions,
         output: {
