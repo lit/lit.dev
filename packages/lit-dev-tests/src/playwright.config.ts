@@ -4,9 +4,16 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {PlaywrightTestConfig} from '@playwright/test';
+import type {PlaywrightTestConfig} from '@playwright/test';
+
 const config: PlaywrightTestConfig = {
-  testDir: 'src/playwright',
+  testDir: 'playwright',
+  testMatch: /.spec.js/,
+  // Snapshots need to be generated into a directory that is checked into
+  // version control. Default `config.testDir` generates snapshots into the
+  // built `lib` directory which is ignored.
+  snapshotDir: '../src/playwright',
+  retries: 3,
   use: {
     screenshot: 'off',
     baseURL: 'http://localhost:6415/',
