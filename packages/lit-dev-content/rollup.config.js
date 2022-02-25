@@ -49,6 +49,7 @@ export default [
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
       'lib/global/lit-hydrate-support.js',
+      'lib/global/dsd-polyfill.js',
     ],
     output: {
       dir: 'rollupout',
