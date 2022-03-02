@@ -155,7 +155,7 @@ in TypeScript.
 
     declare global {
       interface HTMLElementTagNameMap {
-        "my-element": MyElement,
+        "my-element": MyElement;
       }
     }
     ```
