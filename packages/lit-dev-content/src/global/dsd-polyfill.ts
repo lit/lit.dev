@@ -2,5 +2,5 @@ import {hydrateShadowRoots} from '@webcomponents/template-shadowroot/template-sh
 
 if (!HTMLTemplateElement.prototype.hasOwnProperty('shadowRoot')) {
   hydrateShadowRoots(document.body);
-};
+}
 document.body.removeAttribute('dsd-pending');
