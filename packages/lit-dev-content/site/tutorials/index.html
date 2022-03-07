@@ -1,12 +1,13 @@
 ---
 title: Tutorials
+ssr: true
+nohydrate: true
 ---
 
 {% extends 'default.html' %}
 
 {% block head %}
   {% inlinecss "tutorial-catalog.css" %}
-  <script type="module" src="{{ site.baseurl }}/js/components/litdev-tutorial-card.js"></script>
 {% endblock %}
 
 {% block content %}

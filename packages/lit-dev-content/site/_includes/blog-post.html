@@ -1,5 +1,5 @@
 ---
-author:
+defaultAuthor:
   - lit-team
 splash: lit-shapes.svg
 social:
@@ -7,6 +7,10 @@ social:
     url: logo-whitebg-padded-1600x800.png
     alt: Lit Logo
 ---
+
+{% if not author %}
+  {% set author = defaultAuthor %}
+{% endif %}
 
 {% extends 'default.html' %}
 

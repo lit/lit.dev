@@ -5,7 +5,7 @@
  */
 
 import {test, expect} from '@playwright/test';
-import {waitForPlaygroundPreviewToLoad} from './util';
+import {waitForPlaygroundPreviewToLoad} from './util.js';
 
 test.describe('Tutorial page', () => {
   test('intro first step', async ({browser}) => {

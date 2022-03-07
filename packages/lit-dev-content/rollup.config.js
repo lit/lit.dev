@@ -7,6 +7,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import summary from 'rollup-plugin-summary';
 import {terser} from 'rollup-plugin-terser';
+import minifyHTML from 'rollup-plugin-minify-html-literals';
 
 const terserOptions = {
   warnings: true,
@@ -41,13 +42,15 @@ export default [
       'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
+      'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
       'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/home-components.js',
-      'lib/pages/playground.js',
       'lib/pages/playground-inline.js',
+      'lib/global/lit-hydrate-support.js',
+      'lib/global/dsd-polyfill.js',
     ],
     output: {
       dir: 'rollupout',
@@ -84,6 +87,7 @@ export default [
     },
     plugins: [
       resolve(),
+      minifyHTML(),
       terser(terserOptions),
       summary({
         // Already minified.
@@ -113,6 +117,7 @@ export default [
         facadeModuleId.replace(`${__dirname}/lib/`, ''),
     },
     plugins: [
+      minifyHTML(),
       terser({
         ...terserOptions,
         output: {

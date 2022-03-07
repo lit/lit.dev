@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {Page} from '@playwright/test';
+import type {Page} from '@playwright/test';
 
 export async function waitForPlaygroundPreviewToLoad(page: Page) {
   // We could get a series of iframe reloads, e.g. if we're typing multiple

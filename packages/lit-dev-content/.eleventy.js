@@ -32,6 +32,8 @@ const {preCompress} = require('../lit-dev-tools-cjs/lib/pre-compress.js');
 const luxon = require('luxon');
 const crypto = require('crypto');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
+const litPlugin = require('@lit-labs/eleventy-plugin-lit');
+const {componentsToSSR} = require('./src/components/ssr.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -529,6 +531,18 @@ ${content}
         }
         return 0;
       });
+  });
+  let componentModules = componentsToSSR;
+
+  // In prod SSR should use the lit templates run through the minifier.
+  if (!DEV) {
+    componentModules = componentsToSSR.map((componentPath) =>
+      componentPath.replace(/^lib\//, 'rollupout/')
+    );
+  }
+
+  eleventyConfig.addPlugin(litPlugin, {
+    componentModules,
   });
 
   return {

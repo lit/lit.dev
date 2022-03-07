@@ -39,7 +39,8 @@ export const tutorialsMiddleware = (): Koa.Middleware => async (ctx, next) => {
     !path.startsWith('/tutorials/content/') &&
     path !== '/tutorials/'
   ) {
-    ctx.path = '/tutorials/view/index.html';
+    // must end in / and not /index.html in order to fit CSP middleware filter.
+    ctx.path = '/tutorials/view/';
   }
   await next();
 };

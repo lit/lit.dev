@@ -4,14 +4,16 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {test, expect, Page, Browser} from '@playwright/test';
+import {test, expect} from '@playwright/test';
 import {
   waitForPlaygroundPreviewToLoad,
   freezeSnackbars,
   freezeDialogs,
   closeSnackbars,
   readClipboardText,
-} from './util';
+} from './util.js';
+
+import type {Page, Browser} from '@playwright/test';
 
 const signInToGithub = async (page: Page): Promise<void> => {
   const [popup] = await Promise.all([
@@ -98,7 +100,9 @@ test.describe('Playground', () => {
     // Because of shadow dom piercing, Playwright finds multiple '#content'
     // nodes, i.e. the page, and within the playground shadow DOM.
     await expect(
-      await page.locator('main > #content').screenshot()
+      await page
+        .locator('main > litdev-playground-page > #content')
+        .screenshot()
     ).toMatchSnapshot('helloWorldPlaygroundProject.png');
   });
 
