@@ -47,7 +47,9 @@ import {LitElement, html} from 'lit';
 
 ## Use bundles
 
-Lit is also available as pre-built, single-file bundles. The bundles are
+Lit is also available as pre-built, single-file bundles. These are provided for
+more flexibility around development workflows: for example, if you would prefer
+to download a single file rather than use npm and build tools. The bundles are
 standard JavaScript modules with no dependencies - any modern browser should be
 able to import and run the bundles from within a `<script type="module">`.
 
