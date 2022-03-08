@@ -20,7 +20,7 @@
     "fast-glob": "^3.2.9",
     "lit-dev-server": "^0.0.0",
     "lit-dev-tools-cjs": "^0.0.0",
-    "playground-elements": "^0.15.0-pre.5",
+    "playground-elements": "^0.15.0",
     "prettier": "^2.3.2"
   }
 }
