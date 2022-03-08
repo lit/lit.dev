@@ -2,6 +2,6 @@
   "extends": "/samples/base.json",
   "files": {
     "index.html": {},
-    "index.ts": {}
+    "rating-element.ts": {}
   }
 }
