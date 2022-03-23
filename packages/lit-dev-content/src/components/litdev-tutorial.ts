@@ -443,7 +443,9 @@ export class LitDevTutorial extends LitElement {
   protected renderFooter() {
     const snackbarLabel = `The code has ${
       this._checkPassed ? 'passed' : 'failed'
-    } the checks${this._validationMessage ? ` – ${this._validationMessage}` : '.'}`;
+    } the checks${
+      this._validationMessage ? ` – ${this._validationMessage}` : '.'
+    }`;
 
     return html`<div id="tutorialFooter">
       ${when(
