@@ -41,9 +41,12 @@ Lit tutorials are a way to provide a guided, interactive learning experience to 
 <details>
   <summary>If <code>checkable: true</code> in tutorial.json add code checking</summary>
 
-* create a `_check-code.js` file in the `before/` directorie
-* add it as a `hidden` file to the step's `project.json`.
-  * e.g. `"_check-code.js": { "hiden": true }`
+* create a `_check-code.js` file in the `before/` directory
+* In your `project.json`
+  * set your `"extends"` field to `"/samples/checkable-tutorial-base.json"`
+    * e.g. `"extends": "/samples/checkable-tutorial-base.json"`
+  * add the code-checking file it as a `hidden` file to the step's `project.json`.
+    * e.g. `"_check-code.js": { "hiden": true }`
 * import the new file in `index.html`
   * e.g.
 ```html
@@ -219,12 +222,14 @@ Next create a file which you will run your code checking. In this example we wil
 
 Then add this code check file as a `hidden` file to the `project.json` of the before directory.
 
+Additionally make sure your `project.json` extends from `/samples/checkable-tutorial-base.json` to include the hidden `_check-code-helpers.js` communication file.
+
 <details open>
   <summary>example: <code>/before/project.json</code></summary>
 
 ```json
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/checkable-tutorial-base.json",
   "files": {
     "index.html": {},
     "my-element.ts": {},
@@ -252,7 +257,7 @@ Next, import this new file into your `index.html` file. And feel free to add the
 ```
 </details>
 
-In your `_check-code.js` file, import and call the `installCodeChecker` from the hidden `'./_check-code-helpers.js'` file which is injected by playground elements.
+In your `_check-code.js` file, import and call the `installCodeChecker` from the hidden `'./_check-code-helpers.js'` file which is injected by playground elements in `checkable-tutorial-base.json`.
 
 `installCodeChecker` will set up communications between the tutorial page and the playground and call an async callback when the user requests code checking.
 
