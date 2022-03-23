@@ -5,7 +5,7 @@
  */
 
 import {LitElement, html, nothing} from 'lit';
-import {property, state} from 'lit/decorators.js';
+import {property, query, state} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {when} from 'lit/directives/when.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
@@ -20,17 +20,27 @@ import {resetIcon} from '../icons/reset-icon.js';
 import {catalogIcon} from '../icons/catalog-icon.js';
 import {forwardArrowIcon} from '../icons/forward-arrow-icon.js';
 import {backArrowIcon} from '../icons/back-arrow-icon.js';
+import {checkFailedIcon} from '../icons/check-failed-icon.js';
+import {checkPassedIcon} from '../icons/check-passed-icon.js';
+import {checkCodeIcon} from '../icons/check-code-icon.js';
+import {loopIcon} from '../icons/loop-icon.js';
 
 import '@material/mwc-icon-button';
+import '@material/mwc-snackbar';
+import {Snackbar} from '@material/mwc-snackbar';
 import './litdev-example-controls.js';
 import './litdev-playground-change-guard.js';
 import './litdev-icon-button.js';
 import {Task, TaskStatus} from '@lit-labs/task';
+import {PostDoc} from 'postdoc-lib';
+import {PlaygroundPreview} from 'playground-elements/playground-preview';
 
+const CHECK_TIMEOUT_MS = 10000;
 export interface TutorialStep {
   title: string;
   hasAfter?: boolean;
   noSolve?: boolean;
+  checkable?: boolean;
 }
 
 export interface TutorialManifest {
@@ -59,6 +69,13 @@ export class LitDevTutorial extends LitElement {
    */
   @property()
   project?: string;
+
+  /**
+   * ID of the <playground-preivew> in the host scope whose iframe we must
+   * access in order to communicate across to and from the playground.
+   */
+  @property()
+  preview?: string;
 
   /**
    * Whether or not to display the catalog back button.
@@ -94,6 +111,34 @@ export class LitDevTutorial extends LitElement {
   };
 
   /**
+   * Whether or not we are in the midst of checking the code.
+   */
+  @state() private _isChecking = false;
+
+  /**
+   * Whether or not the code check has passed.
+   */
+  @state() private _checkPassed = false;
+
+  /**
+   * Whether we've yet to determine a code check.
+   */
+  @state() private _checkIndeterminate = true;
+
+  /**
+   * The message returned by the code check to display on the success or error
+   * snackbar.
+   */
+  @state() private _validationMessage = '';
+
+  @query('mwc-snackbar') private snackbar!: Snackbar;
+
+  /**
+   * Timeout ID for the code check timeout timer.
+   */
+  private _currentCheckTimeout: number | null = null;
+
+  /**
    * Tutorial manifest json file
    */
   private get _manifest(): TutorialManifest {
@@ -101,9 +146,58 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
-   * Whether the tutorial is currently in its "solved" state.
+   * Whether the user has requested the solved code by clicking the solve button
+   * or not if clicked the reset button.
    */
-  private _solved = false;
+  @state() private _requestSolvedCode = false;
+
+  /**
+   * Receives check status messages from the playground and updates the check
+   * UI accordingly.
+   *
+   * @param e Message event from the playground. Has status and possible
+   *     validation message
+   */
+  private onPlaygroundMessage = (
+    e: MessageEvent<{status: string; message?: string}>
+  ) => {
+    if (!this._isChecking) {
+      return;
+    }
+
+    const {status, message} = e.data;
+    this._validationMessage = message ?? '';
+
+    switch (status) {
+      // show snackbar success
+      case 'PASSED':
+        this._checkPassed = true;
+        this._isChecking = false;
+        this.snackbar.show();
+        break;
+      // show snackbar error
+      case 'FAILED':
+        this._checkPassed = false;
+        this._isChecking = false;
+        this.snackbar.show();
+        break;
+      // the preview has reloaded in the middle of checking. Reset the UI.
+      case 'READY':
+        this._isChecking = false;
+        this._checkIndeterminate = true;
+        break;
+    }
+
+    this._clearCheckingTimeout();
+  };
+
+  /**
+   * Utility library that communicates with the playground iframe.
+   */
+  private postdoc = new PostDoc({
+    messageReceiver: window,
+    onMessage: this.onPlaygroundMessage,
+  });
 
   private get _projectLocation() {
     // TODO(e111077): delete this once we go public with tutorials catalog
@@ -124,6 +218,18 @@ export class LitDevTutorial extends LitElement {
     return (this.getRootNode() as ShadowRoot | Document).getElementById(
       this.project
     ) as PlaygroundProject | undefined;
+  }
+
+  /**
+   * Playground preview element discovered using the id from this.preview
+   */
+  private get _preview(): PlaygroundPreview | undefined {
+    if (!this.preview) {
+      return undefined;
+    }
+    return (this.getRootNode() as ShadowRoot | Document).getElementById(
+      this.preview
+    ) as PlaygroundPreview | undefined;
   }
 
   /**
@@ -184,7 +290,7 @@ export class LitDevTutorial extends LitElement {
   private _htmlTask = new Task(
     this,
     async ([idx]) => {
-      this._solved = false;
+      this._requestSolvedCode = false;
       const active = this._info;
 
       // Either use the preloaded html or fetch the new HTML (going back)
@@ -335,6 +441,10 @@ export class LitDevTutorial extends LitElement {
   }
 
   protected renderFooter() {
+    const snackbarLabel = `The code has ${
+      this._checkPassed ? 'passed' : 'failed'
+    } the checks${this._validationMessage ? ` – ${this._validationMessage}` : '.'}`;
+
     return html`<div id="tutorialFooter">
       ${when(
         !this._manifest.steps[this._idx].noSolve,
@@ -343,12 +453,38 @@ export class LitDevTutorial extends LitElement {
         </litdev-icon-button>`
       )}
 
-      <litdev-icon-button @click=${this._onClickReset}>
-        ${resetIcon} Reset
-      </litdev-icon-button>
+        ${this._manifestTask.render({
+          complete: (manifest) =>
+            !manifest.steps[this._idx].checkable
+              ? nothing
+              : html` <litdev-icon-button
+                  class="checkButton ${this._isChecking ? 'checking' : ''}"
+                  @click=${this._onClickCheck}
+                  ?disabled=${this._isChecking || this._requestSolvedCode}
+                >
+                  ${this._renderCheckIcon()} Check
+                </litdev-icon-button>`,
+        })}
 
-      <span id="nextStep"> ${this._renderNextStepStatus()} </span>
-    </div>`;
+        <litdev-icon-button @click=${this._onClickReset}>
+          ${resetIcon} Reset
+        </litdev-icon-button>
+
+        <span id="nextStep"> ${this._renderNextStepStatus()} </span>
+      </div>
+      <mwc-snackbar .labelText=${snackbarLabel}></mwc-snackbar>`;
+  }
+
+  private _renderCheckIcon() {
+    if (this._checkIndeterminate) {
+      return checkCodeIcon;
+    } else if (this._isChecking) {
+      return loopIcon;
+    } else if (this._checkPassed) {
+      return checkPassedIcon;
+    } else {
+      return checkFailedIcon;
+    }
   }
 
   private _renderNextStepStatus() {
@@ -377,6 +513,19 @@ export class LitDevTutorial extends LitElement {
       CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
+
+    const previewElement = this._preview!;
+    // must be lowercase or else always undefined
+    const tagname = previewElement.tagName.toLowerCase();
+    const isPreviewDefined = !!customElements.get(tagname);
+
+    if (isPreviewDefined) {
+      this._whenPreviewDefined();
+    } else {
+      customElements.whenDefined(tagname).then(() => {
+        this._whenPreviewDefined();
+      });
+    }
   }
 
   disconnectedCallback() {
@@ -386,7 +535,33 @@ export class LitDevTutorial extends LitElement {
       CODE_LANGUAGE_CHANGE,
       this._onCodeLanguagePreferenceChanged
     );
+
+    const iframe = this._preview!.iframe!;
+    iframe.removeEventListener('load', this._onPreviewIFrameLoad);
   }
+
+  /**
+   * Called when the preview element is defined and sets an event listener on
+   * the preview's internal iframe that sets up postdoc on each load.
+   */
+  private async _whenPreviewDefined() {
+    const preview = this._preview!;
+    await preview.updateComplete;
+    const iframe = preview.iframe!;
+    iframe.addEventListener('load', this._onPreviewIFrameLoad);
+  }
+
+  /**
+   * Sets up postdoc with the preview iframe and clears any pending check
+   * timeouts.
+   *
+   * @param e Load event from iframe
+   */
+  private _onPreviewIFrameLoad = (e: Event) => {
+    const iframe = e.target as HTMLIFrameElement;
+    this.postdoc.messageTarget = iframe.contentWindow;
+    this._clearCheckingTimeout();
+  };
 
   private _onCodeLanguagePreferenceChanged = () => {
     if (!this._info) {
@@ -394,7 +569,9 @@ export class LitDevTutorial extends LitElement {
     }
 
     this._setProjectSrc(
-      this._solved ? this._info.projectSrcAfter : this._info.projectSrcBefore,
+      this._requestSolvedCode
+        ? this._info.projectSrcAfter
+        : this._info.projectSrcBefore,
       true
     );
   };
@@ -404,8 +581,36 @@ export class LitDevTutorial extends LitElement {
       return;
     }
 
-    this._solved = true;
+    this._checkIndeterminate = false;
+    this._checkPassed = true;
+    this._isChecking = false;
+    this._clearCheckingTimeout();
+    this._requestSolvedCode = true;
     this._setProjectSrc(this._info.projectSrcAfter, true);
+  }
+
+  private _clearCheckingTimeout() {
+    if (this._currentCheckTimeout) {
+      clearTimeout(this._currentCheckTimeout);
+      this._currentCheckTimeout = null;
+    }
+  }
+
+  private async _onClickCheck() {
+    this._checkIndeterminate = false;
+    this._isChecking = true;
+
+    // Set a timeout to fail the check if it takes too long.
+    this._currentCheckTimeout = setTimeout(async () => {
+      this._isChecking = false;
+      this._checkPassed = false;
+      this._validationMessage = 'The check has timed out!';
+      this.snackbar.show();
+    }, CHECK_TIMEOUT_MS) as unknown as number;
+
+    await this.postdoc.handshake;
+    // request to run the code checker in the playground preview
+    this.postdoc.postMessage('CHECK');
   }
 
   private _onClickReset() {
@@ -413,13 +618,16 @@ export class LitDevTutorial extends LitElement {
       return;
     }
 
-    this._solved = false;
+    this._checkIndeterminate = true;
+    this._requestSolvedCode = false;
     this._setProjectSrc(this._info.projectSrcBefore, true);
   }
 
   private _onClickNextButton(event: Event) {
     event.preventDefault();
     if (this._idx < this._manifest.steps.length - 1) {
+      this._checkIndeterminate = true;
+      this._clearCheckingTimeout();
       this._idx++;
       this._writeUrl();
     }
@@ -428,6 +636,8 @@ export class LitDevTutorial extends LitElement {
   private _onClickPrevButton(event: Event) {
     event.preventDefault();
     if (this._idx > 0) {
+      this._checkIndeterminate = true;
+      this._clearCheckingTimeout();
       this._idx--;
       this._writeUrl();
     }

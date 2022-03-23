@@ -69,6 +69,7 @@
     "minisearch": "^3.0.4",
     "playground-elements": "^0.15.4",
     "tarts": "^1.0.0",
-    "tslib": "^2.2.0"
+    "tslib": "^2.2.0",
+    "postdoc-lib": "^1.0.3"
   }
 }
