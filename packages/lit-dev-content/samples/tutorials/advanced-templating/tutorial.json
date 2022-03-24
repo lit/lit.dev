@@ -13,7 +13,8 @@
       },
       {
         "title": "Yer done!",
-        "hasAfter": true
+        "hasAfter": true,
+        "checkable": true
       }
     ]
 }
