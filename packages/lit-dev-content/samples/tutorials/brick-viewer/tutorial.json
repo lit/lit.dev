@@ -2,17 +2,37 @@
   "header": "Build a Brick Viewer",
   "difficulty": "Intermediate",
   "size": "medium",
-  "duration": 70,
+  "duration": 60,
   "category": "Build",
-  "imgSrc": "images/logo-whitebg-padded-1600x800.png",
-  "imgAlt": "This is the Lit icon",
+  "imgSrc": "images/tutorials/brick-viewer/preview.gif",
+  "imgAlt": "This is the demo of the brick viewer component assembling the lego bricks",
   "steps": [
     {
-      "title": "Build a Brick Viewer",
+      "title": "Introduction",
       "hasAfter": true
     },
     {
-      "title": "Ya Bricked it!",
+      "title": "Define a Custom Element",
+      "hasAfter": true
+    },
+    {
+      "title": "Specifying the LDraw File",
+      "hasAfter": true
+    },
+    {
+      "title": "Set the Scene with Three.js",
+      "hasAfter": true
+    },
+    {
+      "title": "Displaying Partial Models",
+      "hasAfter": true
+    },
+    {
+      "title": "Brick Set Navigation",
+      "hasAfter": true
+    },
+    {
+      "title": "Conclusion",
       "hasAfter": true
     }
   ]
