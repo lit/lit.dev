@@ -73,6 +73,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('api/**/*');
 
   eleventyConfig.addWatchTarget('../lit-dev-api/api-data/*/*.json');
+  eleventyConfig.addWatchTarget(
+    '../lit-dev-content/samples/tutorials/**/tutorial.json'
+  );
+  eleventyConfig.addWatchTarget('../lit-dev-content/samples/tutorials/**/*.md');
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
