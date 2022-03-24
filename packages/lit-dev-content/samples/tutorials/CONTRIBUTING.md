@@ -46,7 +46,7 @@ Lit tutorials are a way to provide a guided, interactive learning experience to 
   * set your `"extends"` field to `"/samples/checkable-tutorial-base.json"`
     * e.g. `"extends": "/samples/checkable-tutorial-base.json"`
   * add the code-checking file as a `hidden` file to the step's `project.json`.
-    * e.g. `"_check-code.js": { "hiden": true }`
+    * e.g. `"_check-code.js": { "hidden": true }`
 * import the new file in `index.html`
   * e.g.
 ```html
