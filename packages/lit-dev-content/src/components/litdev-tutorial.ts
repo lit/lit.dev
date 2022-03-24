@@ -71,7 +71,7 @@ export class LitDevTutorial extends LitElement {
   project?: string;
 
   /**
-   * ID of the <playground-preivew> in the host scope whose iframe we must
+   * ID of the <playground-preview> in the host scope whose iframe we must
    * access in order to communicate across to and from the playground.
    */
   @property()
