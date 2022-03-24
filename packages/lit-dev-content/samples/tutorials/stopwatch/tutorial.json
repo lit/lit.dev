@@ -1,0 +1,18 @@
+{
+  "header": "Stopwatch",
+  "difficulty": "Advanced",
+  "size": "medium",
+  "duration": 50,
+  "category": "Learn",
+  "imgSrc": "images/logo-whitebg-padded-1600x800.png",
+  "imgAlt": "This is the Lit icon",
+  "steps": [
+      {
+        "title": "Stopwatch!"
+      },
+      {
+        "title": "Yer done!",
+        "hasAfter": true
+      }
+    ]
+}
