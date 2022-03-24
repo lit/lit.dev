@@ -56,7 +56,7 @@ Lit tutorials are a way to provide a guided, interactive learning experience to 
   <script type="module" src="./my-element.js"></script>
 </head>
 ```
-* Install the code checker from `'./check-code-heper.js'` and pass it an async callback that returns an object of type `{passed: boolean, message?: string}`
+* Install the code checker from `'./_check-code-helpers.js'` and pass it an async callback that returns an object of type `{passed: boolean, message?: string}`
 * See [Code Checking](#code-checking) for more details
 </details>
 
