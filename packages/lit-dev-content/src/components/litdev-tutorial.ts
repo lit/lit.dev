@@ -72,7 +72,7 @@ export class LitDevTutorial extends LitElement {
 
   /**
    * ID of the <playground-preview> in the host scope whose iframe we must
-   * access in order to communicate across to and from the playground.
+   * access in order to communicate to and from the playground.
    */
   @property()
   preview?: string;
