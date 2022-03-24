@@ -239,7 +239,7 @@ Additionally make sure your `project.json` extends from `/samples/checkable-tuto
 ```
 </details>
 
-Next, import this new file into your `index.html` file. And feel free to add the `<!-- playground-fold(-end) -->` comments to hide the import.
+Next, import this new file into your `index.html` file. And feel free to add the `<!-- playground-hide(-end) -->` comments to hide the import.
 
 
 <details open>
@@ -247,8 +247,7 @@ Next, import this new file into your `index.html` file. And feel free to add the
 
 ```html
 <head>
-  <!-- playground-fold --><script type="module" src="./_check-code.js"></script><!-- playground-fold-end -->
-
+  <!-- playground-hide --><script type="module" src="./_check-code.js"></script><!-- playground-hide-end -->
   <script type="module" src="./my-element.js"></script>
 </head>
 <body>

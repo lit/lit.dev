@@ -56,6 +56,8 @@ interface ExpandedTutorialStep {
   projectSrcAfter: string;
 }
 
+type CheckStatus = 'INDETERMINATE' | 'CHECKING' | 'PASSED' | 'FAILED';
+
 /**
  * Tutorial controller and text display.
  *
@@ -111,19 +113,9 @@ export class LitDevTutorial extends LitElement {
   };
 
   /**
-   * Whether or not we are in the midst of checking the code.
+   * The current status of the code check
    */
-  @state() private _isChecking = false;
-
-  /**
-   * Whether or not the code check has passed.
-   */
-  @state() private _checkPassed = false;
-
-  /**
-   * Whether we've yet to determine a code check.
-   */
-  @state() private _checkIndeterminate = true;
+  @state() private _checkStatus: CheckStatus = 'INDETERMINATE';
 
   /**
    * The message returned by the code check to display on the success or error
@@ -136,7 +128,7 @@ export class LitDevTutorial extends LitElement {
   /**
    * Timeout ID for the code check timeout timer.
    */
-  private _currentCheckTimeout: number | null = null;
+  private _currentCheckTimeout: number | undefined;
 
   /**
    * Tutorial manifest json file
@@ -161,7 +153,7 @@ export class LitDevTutorial extends LitElement {
   private onPlaygroundMessage = (
     e: MessageEvent<{status: string; message?: string}>
   ) => {
-    if (!this._isChecking) {
+    if (this._checkStatus !== 'CHECKING') {
       return;
     }
 
@@ -171,20 +163,17 @@ export class LitDevTutorial extends LitElement {
     switch (status) {
       // show snackbar success
       case 'PASSED':
-        this._checkPassed = true;
-        this._isChecking = false;
+        this._checkStatus = 'PASSED';
         this.snackbar.show();
         break;
       // show snackbar error
       case 'FAILED':
-        this._checkPassed = false;
-        this._isChecking = false;
+        this._checkStatus = 'FAILED';
         this.snackbar.show();
         break;
       // the preview has reloaded in the middle of checking. Reset the UI.
       case 'READY':
-        this._isChecking = false;
-        this._checkIndeterminate = true;
+        this._checkStatus = 'INDETERMINATE';
         break;
     }
 
@@ -442,7 +431,7 @@ export class LitDevTutorial extends LitElement {
 
   protected renderFooter() {
     const snackbarLabel = `The code has ${
-      this._checkPassed ? 'passed' : 'failed'
+      this._checkStatus === 'PASSED' ? 'passed' : 'failed'
     } the checks${
       this._validationMessage ? ` – ${this._validationMessage}` : '.'
     }`;
@@ -460,9 +449,12 @@ export class LitDevTutorial extends LitElement {
             !manifest.steps[this._idx].checkable
               ? nothing
               : html` <litdev-icon-button
-                  class="checkButton ${this._isChecking ? 'checking' : ''}"
+                  class="checkButton ${this._checkStatus === 'CHECKING'
+                    ? 'checking'
+                    : ''}"
                   @click=${this._onClickCheck}
-                  ?disabled=${this._isChecking || this._requestSolvedCode}
+                  ?disabled=${this._checkStatus === 'CHECKING' ||
+                  this._requestSolvedCode}
                 >
                   ${this._renderCheckIcon()} Check
                 </litdev-icon-button>`,
@@ -478,14 +470,15 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _renderCheckIcon() {
-    if (this._checkIndeterminate) {
-      return checkCodeIcon;
-    } else if (this._isChecking) {
-      return loopIcon;
-    } else if (this._checkPassed) {
-      return checkPassedIcon;
-    } else {
-      return checkFailedIcon;
+    switch (this._checkStatus) {
+      case 'INDETERMINATE':
+        return checkCodeIcon;
+      case 'CHECKING':
+        return loopIcon;
+      case 'PASSED':
+        return checkPassedIcon;
+      case 'FAILED':
+        return checkFailedIcon;
     }
   }
 
@@ -583,29 +576,23 @@ export class LitDevTutorial extends LitElement {
       return;
     }
 
-    this._checkIndeterminate = false;
-    this._checkPassed = true;
-    this._isChecking = false;
+    this._checkStatus = 'PASSED';
     this._clearCheckingTimeout();
     this._requestSolvedCode = true;
     this._setProjectSrc(this._info.projectSrcAfter, true);
   }
 
   private _clearCheckingTimeout() {
-    if (this._currentCheckTimeout) {
-      clearTimeout(this._currentCheckTimeout);
-      this._currentCheckTimeout = null;
-    }
+    clearTimeout(this._currentCheckTimeout);
+    this._currentCheckTimeout = undefined;
   }
 
   private async _onClickCheck() {
-    this._checkIndeterminate = false;
-    this._isChecking = true;
+    this._checkStatus = 'CHECKING';
 
     // Set a timeout to fail the check if it takes too long.
     this._currentCheckTimeout = setTimeout(async () => {
-      this._isChecking = false;
-      this._checkPassed = false;
+      this._checkStatus = 'FAILED';
       this._validationMessage = 'The check has timed out!';
       this.snackbar.show();
     }, CHECK_TIMEOUT_MS) as unknown as number;
@@ -620,7 +607,7 @@ export class LitDevTutorial extends LitElement {
       return;
     }
 
-    this._checkIndeterminate = true;
+    this._checkStatus = 'INDETERMINATE';
     this._requestSolvedCode = false;
     this._setProjectSrc(this._info.projectSrcBefore, true);
   }
@@ -628,7 +615,7 @@ export class LitDevTutorial extends LitElement {
   private _onClickNextButton(event: Event) {
     event.preventDefault();
     if (this._idx < this._manifest.steps.length - 1) {
-      this._checkIndeterminate = true;
+      this._checkStatus = 'INDETERMINATE';
       this._clearCheckingTimeout();
       this._idx++;
       this._writeUrl();
@@ -638,7 +625,7 @@ export class LitDevTutorial extends LitElement {
   private _onClickPrevButton(event: Event) {
     event.preventDefault();
     if (this._idx > 0) {
-      this._checkIndeterminate = true;
+      this._checkStatus = 'INDETERMINATE';
       this._clearCheckingTimeout();
       this._idx--;
       this._writeUrl();
