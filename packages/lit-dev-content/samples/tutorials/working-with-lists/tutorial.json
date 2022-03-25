@@ -1,0 +1,25 @@
+{
+  "header": "Working with Lists",
+  "difficulty": "Beginner",
+  "size": "small",
+  "duration": 10,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Working with lists",
+      "hasAfter": true
+    },
+    {
+      "title": "Using an array of templates",
+      "hasAfter": true
+    },
+    {
+      "title": "The map directive",
+      "hasAfter": true
+    },
+    {
+      "title": "The repeat directive",
+      "hasAfter": true
+    }
+  ]
+}
