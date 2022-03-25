@@ -39,6 +39,7 @@ module.exports = async () => {
 
     // Build
     loadTutorialData('brick-viewer'),
+    loadTutorialData('clock'),
   ]);
   /*
    * tutorial data in order of rendering on the page

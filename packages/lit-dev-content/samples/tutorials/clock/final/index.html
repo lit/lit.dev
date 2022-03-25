@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module" src="./analog-clock.js"></script>
+    <script type="module" src="./digital-clock.js"></script>
+    <style>
+      html, body {
+        margin: 0;
+      }
+      body {
+        font-family: 'Open Sans', sans-serif;
+        padding: 8px;
+        background: lightskyblue;
+        display: flex;
+        align-items: center;
+      }
+      body > * {
+        flex: 1;
+      }
+      #custom::part(face) {
+        fill: greenyellow;
+        stroke: blue;
+      }
+      #custom::part(second-hand) {
+        stroke: yellow;
+      }
+      #custom::part(minutes) {
+        display: none;
+      }
+      #custom::part(hours) {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <analog-clock></analog-clock>
+    <analog-clock time="3:45:13"></analog-clock>
+    <analog-clock id="custom"></analog-clock>
+    <digital-clock></digital-clock>
+  </body>
+</html>

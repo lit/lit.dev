@@ -1,5 +1,5 @@
 {
-  "header": "Stopwatch",
+  "header": "Lit Clocks",
   "difficulty": "Advanced",
   "size": "medium",
   "duration": 50,
@@ -8,10 +8,10 @@
   "imgAlt": "This is the Lit icon",
   "steps": [
       {
-        "title": "Stopwatch!"
+        "title": "Lit Clocks"
       },
       {
-        "title": "Yer done!",
+        "title": "Render the Time",
         "hasAfter": true
       }
     ]

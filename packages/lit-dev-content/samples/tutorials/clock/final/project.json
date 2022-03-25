@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "analog-clock.ts": {},
+    "clock-controller.ts": {},
+    "digital-clock.ts": {},
+    "index.html": {}
+  }
+}
