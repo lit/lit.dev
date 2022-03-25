@@ -15,10 +15,10 @@
       "title": "Pointer Event Properties"
     },
     {
-      "title": "CSS touch-action"
+      "title": "Pointer Capturing"
     },
     {
-      "title": "Pointer Capturing"
+      "title": "Controlling scrolling with touch-action"
     }
   ]
 }
