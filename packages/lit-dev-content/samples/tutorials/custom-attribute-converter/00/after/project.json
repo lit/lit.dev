@@ -1,0 +1,8 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "date-converter.ts": {},
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}
