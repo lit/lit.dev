@@ -69,6 +69,7 @@
     "minisearch": "^3.0.4",
     "playground-elements": "^0.15.0",
     "tarts": "^1.0.0",
+    "timeago.js": "^4.0.2",
     "tslib": "^2.2.0"
   }
 }
