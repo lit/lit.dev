@@ -8,6 +8,11 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lit/lit.dev/",
+    "directory": "packages/lit-dev-tutorial-extension"
+  },
   "engines": {
     "vscode": "^1.65.0"
   },
