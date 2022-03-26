@@ -1,0 +1,175 @@
+{
+  "name": "lit-dev-tutorial-editor",
+  "private": true,
+  "displayName": "lit.dev Tutorial Editor",
+  "description": "Helps you create tutorials for lit.dev",
+  "version": "0.0.1",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.65.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:litDevTutorial"
+  ],
+  "contributes": {
+    "views": {
+      "litDevTutorial": [
+        {
+          "id": "litDevTutorial",
+          "name": "lit.dev Tutorial Editor"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "litDevTutorial",
+          "title": "lit.dev Tutorial Editor",
+          "icon": "$(flame)"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "litDevTutorial.refreshEntry",
+          "when": "view == litDevTutorial",
+          "group": "navigation"
+        },
+        {
+          "command": "litDevTutorial.createTutorial",
+          "when": "view == litDevTutorial",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "litDevTutorial.refreshEntry",
+          "when": "view == litDevTutorial",
+          "group": "navigation"
+        },
+        {
+          "command": "litDevTutorial.createTutorial",
+          "when": "view == litDevTutorial",
+          "group": "tutorials"
+        },
+        {
+          "command": "litDevTutorial.delete",
+          "when": "view == litDevTutorial && viewItem == tutorial || viewItem =~ /^tutorial-step/ || viewItem =~ /^generic-file.*-deletable/ || viewItem == playground-file || viewItem == afterDir",
+          "group": "files"
+        },
+        {
+          "command": "litDevTutorial.addStep",
+          "when": "view == litDevTutorial && viewItem == tutorial",
+          "group": "inline"
+        },
+        {
+          "command": "litDevTutorial.addAfterStep",
+          "when": "view == litDevTutorial && viewItem =~ /^tutorial-step.*-add/",
+          "group": "inline"
+        },
+        {
+          "command": "litDevTutorial.moveStepUp",
+          "when": "view == litDevTutorial && viewItem =~ /^tutorial-step.*-up/",
+          "group": "inline"
+        },
+        {
+          "command": "litDevTutorial.moveStepDown",
+          "when": "view == litDevTutorial && viewItem =~ /^tutorial-step.*-down/",
+          "group": "inline"
+        },
+        {
+          "command": "litDevTutorial.createPlaygroundFile",
+          "when": "view == litDevTutorial && viewItem == beforeDir || viewItem == afterDir",
+          "group": "inline"
+        },
+        {
+          "command": "litDevTutorial.revealInSidebar",
+          "when": "view == litDevTutorial && viewItem =~ /^generic-file/ || viewItem == playground-file",
+          "group": "navigation"
+        },
+        {
+          "command": "litDevTutorial.renameStep",
+          "when": "view == litDevTutorial && viewItem =~ /^tutorial-step/",
+          "group": "files"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "litDevTutorial.createTutorial",
+        "title": "Create Tutorial",
+        "icon": "$(add)"
+      },
+      {
+        "command": "litDevTutorial.refreshEntry",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "litDevTutorial.delete",
+        "title": "Delete",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "litDevTutorial.addStep",
+        "title": "Add Step",
+        "icon": "$(add)"
+      },
+      {
+        "command": "litDevTutorial.addAfterStep",
+        "title": "Add Step",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "litDevTutorial.moveStepUp",
+        "title": "Move Step Up",
+        "icon": "$(arrow-up)"
+      },
+      {
+        "command": "litDevTutorial.moveStepDown",
+        "title": "Move Step Down",
+        "icon": "$(arrow-down)"
+      },
+      {
+        "command": "litDevTutorial.createPlaygroundFile",
+        "title": "Create File",
+        "icon": "$(plus)"
+      },
+      {
+        "command": "litDevTutorial.revealInSidebar",
+        "title": "Reveal in Sidebar",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "litDevTutorial.renameStep",
+        "title": "Rename",
+        "icon": "$(edit)"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run build",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.65.0",
+    "@vscode/test-electron": "^2.1.2",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.1",
+    "playground-elements": "^0.15.2",
+    "typescript": "^4.5.5"
+  }
+}
