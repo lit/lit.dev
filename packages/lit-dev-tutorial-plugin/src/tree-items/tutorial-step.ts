@@ -18,6 +18,10 @@ export class TutorialStep extends vscode.TreeItem {
   private _hasAfter = false;
   checkable = false;
 
+  get dirName() {
+    return `${this.step}`.padStart(2, '0');
+  }
+
   get path() {
     return path.join(this.tutorial.path, this.dirName);
   }
@@ -28,11 +32,23 @@ export class TutorialStep extends vscode.TreeItem {
 
   set step(value: number) {
     const oldPath = this.path;
+    const oldInstructionsPath = path.join(
+      this.provider.siteTutorialsContentPath,
+      this.tutorial.dirName,
+      `${this.dirName}.md`
+    );
     const previousStep = this._step;
+
     this._step = value;
+    const newInstructionsPath = path.join(
+      this.provider.siteTutorialsContentPath,
+      this.tutorial.dirName,
+      `${this.dirName}.md`
+    );
 
     if (previousStep !== -1) {
       fs.renameSync(oldPath, this.path);
+      fs.renameSync(oldInstructionsPath, newInstructionsPath);
     }
 
     this.contextValue = this.generateContextValue();
@@ -54,9 +70,7 @@ export class TutorialStep extends vscode.TreeItem {
     step: string
   ) {
     super(
-      vscode.Uri.file(
-        path.join(tutorial.path, step)
-      ),
+      vscode.Uri.file(path.join(tutorial.path, step)),
       vscode.TreeItemCollapsibleState.Collapsed
     );
 
@@ -79,17 +93,13 @@ export class TutorialStep extends vscode.TreeItem {
     );
 
     if (tutorialJson) {
-      this.label = tutorialJson.steps[this.step].title;
+      this.label = tutorialJson.steps[this.step]?.title;
       this.description = `[${this.dirName}]`;
-      this.hasAfter = !!tutorialJson.steps[this.step].hasAfter;
-      this.checkable = !!tutorialJson.steps[this.step].checkable;
+      this.hasAfter = !!tutorialJson.steps[this.step]?.hasAfter;
+      this.checkable = !!tutorialJson.steps[this.step]?.checkable;
     } else {
       this.label = this.dirName;
     }
-  }
-
-  get dirName() {
-    return `${this.step}`.padStart(2, '0');
   }
 
   private generateContextValue() {
@@ -180,7 +190,6 @@ export class TutorialStep extends vscode.TreeItem {
     }
     tutorialJson.steps.push(jsonStep);
 
-
     fs.writeFileSync(tutorialJsonPath, JSON.stringify(tutorialJson, null, 2));
 
     const step = new TutorialStep(provider, tutorial, dirName);
@@ -202,7 +211,7 @@ export class TutorialStep extends vscode.TreeItem {
           return 'Name is required.';
         }
         return null;
-      }
+      },
     });
 
     if (!newName) {

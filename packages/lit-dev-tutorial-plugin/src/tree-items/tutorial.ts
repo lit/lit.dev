@@ -20,7 +20,6 @@ import {
   getJson,
   removeTutorialFrom11tyData,
 } from '../fs-helpers';
-import { dirname } from 'path';
 
 export class Tutorial extends vscode.TreeItem {
   steps: TutorialStep[] = [];
@@ -64,7 +63,7 @@ export class Tutorial extends vscode.TreeItem {
   }
 
   static async create(provider: LitDevTutorialTreeProvider) {
-    const dirName = await vscode.window.showInputBox({
+    let dirName = await vscode.window.showInputBox({
       prompt: 'Directory name',
       placeHolder: 'my-tutorial',
       validateInput: (value) => {
@@ -87,6 +86,8 @@ export class Tutorial extends vscode.TreeItem {
     if (dirName === undefined) {
       return;
     }
+
+    dirName = dirName.split(' ').join('-');
 
     const name = await vscode.window.showInputBox({
       prompt: 'Tutorial name',
@@ -207,7 +208,7 @@ export class Tutorial extends vscode.TreeItem {
       JSON.stringify(tutorialJson, null, 2)
     );
 
-    fs.writeFileSync(path.join(tutorialPath, 'Catalog Description'), '');
+    fs.writeFileSync(path.join(tutorialPath, 'description.md'), '');
 
     await addTutorialTo11tyData(
       dirName,
@@ -241,9 +242,8 @@ export class Tutorial extends vscode.TreeItem {
 
     for (let i = stepItem.step; i < this.steps.length; i++) {
       const step = this.steps[i];
-      step.step -= -1;
+      step.step -= 1;
     }
-
 
     this.provider.refresh();
   }
