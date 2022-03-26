@@ -1,3 +1,5 @@
+⚠️⚠️ BEWARE This package is in Alpha ⚠️⚠️
+
 # lit.dev Tutorial Editor README
 
 This extension provides an editor for tutorials on lit.dev.
