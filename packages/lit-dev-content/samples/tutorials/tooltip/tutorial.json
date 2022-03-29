@@ -1,0 +1,19 @@
+{
+  "header": "Build a Tooltip element",
+  "difficulty": "Intermediate",
+  "size": "medium",
+  "duration": 70,
+  "category": "Build",
+  "imgSrc": "images/logo-whitebg-padded-1600x800.png",
+  "imgAlt": "This is the Lit icon",
+  "steps": [
+    {
+      "title": "Build a Tooltip element",
+      "hasAfter": true
+    },
+    {
+      "title": "Ya built it!",
+      "hasAfter": true
+    }
+  ]
+}
