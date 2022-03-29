@@ -1,0 +1,35 @@
+{
+  "header": "SVG Templates",
+  "difficulty": "Beginner",
+  "size": "medium",
+  "duration": 70,
+  "category": "Build",
+  "imgSrc": "images/logo-whitebg-padded-1600x800.png",
+  "imgAlt": "This is the Lit icon",
+  "steps": [
+    {
+      "title": "Intro to SVG, Lit, and Patterns",
+      "hasAfter": false
+    },
+    {
+      "title": "Create a Pattern Element",
+      "hasAfter": false
+    },
+    {
+      "title": "Create a pattern with rotation",
+      "hasAfter": false
+    },
+    {
+      "title": "Create a tile with a pattern",
+      "hasAfter": false
+    },
+    {
+      "title": "Repeat a tile with <pattern>",
+      "hasAfter": false
+    },
+    {
+      "title": "Theme pattern",
+      "hasAfter": false
+    }
+  ]
+}
