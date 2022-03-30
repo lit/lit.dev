@@ -330,3 +330,7 @@ resize-bar[active] {
 #tutorialContent aside.negative::before {
   content: url(/images/alerts/negative.svg);
 }
+
+#tutorialContent details summary {
+  cursor: pointer;
+}

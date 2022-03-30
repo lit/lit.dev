@@ -12,13 +12,21 @@
       "hasAfter": true
     },
     {
-      "title": "Attributes Without a Converter"
+      "title": "Built-in String Attribute Converter",
+      "hasAfter": true
     },
     {
-      "title": "Attribute Converters"
+      "title": "Built-in Attribute Converter – Synchronization",
+      "hasAfter": true
     },
     {
-      "title": "Congratulations!",
+      "title": "Defining a Custom Attribute Converter"
+    },
+    {
+      "title": "Using a Custom Attribute Converter"
+    },
+    {
+      "title": "Recap",
       "hasAfter": true
     }
   ]

@@ -4,6 +4,10 @@
     <script type="module" src="./my-element.js"></script>
   </head>
   <body>
-    <my-element date-str="05/05/22"></my-element>
+    <my-element></my-element>
+    <script>
+      const myElement = document.querySelector('my-element');
+      myElement.date = new Date('05/05/22');
+    </script>
   </body>
 </html>

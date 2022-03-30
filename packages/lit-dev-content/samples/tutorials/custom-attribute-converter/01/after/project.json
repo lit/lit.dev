@@ -1,7 +1,6 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "my-element.ts": {},
     "index.html": {}
   }
 }

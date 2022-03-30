@@ -1,13 +1,13 @@
-import {LitElement, html, PropertyValues} from 'lit';
+import {html, LitElement, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @property({type: String, attribute: 'date-str'})
-  dateStr = (new Date()).toString();
-
   @property({attribute: false})
-  date = new Date(this.dateStr);
+  date = new Date();
+
+  @property({type: String, attribute: 'date-str'})
+  dateStr = this.date.toString();
 
   willUpdate(changed: PropertyValues<this>) {
     if (changed.has('dateStr') && this.dateStr) {
@@ -16,8 +16,11 @@ export class MyElement extends LitElement {
   }
 
   render() {
+    const locale = 'en-US';
+    const options: Intl.DateTimeFormatOptions =
+        {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     return html`
-      <p>The given date is: ${this.date.toLocaleDateString()}</p>
+      <p>The given date is: ${this.date.toLocaleDateString(locale, options)}</p>
     `;
   }
 }
