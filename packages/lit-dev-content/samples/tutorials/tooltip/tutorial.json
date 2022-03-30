@@ -1,6 +1,6 @@
 {
   "header": "Build a Tooltip element",
-  "difficulty": "Intermediate",
+  "difficulty": "Advanced",
   "size": "medium",
   "duration": 70,
   "category": "Build",
@@ -12,7 +12,28 @@
       "hasAfter": true
     },
     {
-      "title": "Ya built it!",
+      "title": "Get started with styling"
+    },
+    {
+      "title": "Add show/hide"
+    },
+    {
+      "title": "Interactivity"
+    },
+    {
+      "title": "Positioning"
+    },
+    {
+      "title": "Better Positioning"
+    },
+    {
+      "title": "Animation"
+    },
+    {
+      "title": "Lazy Creation"
+    },
+    {
+      "title": "Using a Directive",
       "hasAfter": true
     }
   ]

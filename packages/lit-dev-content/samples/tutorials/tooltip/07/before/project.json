@@ -4,5 +4,8 @@
     "simple-tooltip.ts": {},
     "my-content.ts": {},
     "index.html": {}
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^0.4.1"
   }
 }

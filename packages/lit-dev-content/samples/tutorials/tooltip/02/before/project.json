@@ -1,6 +1,8 @@
 {
   "extends": "/samples/base.json",
   "files": {
+    "simple-tooltip.ts": {},
+    "my-content.ts": {},
     "index.html": {}
   }
 }
