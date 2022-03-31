@@ -16,12 +16,16 @@ const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
 export class SimpleTooltip extends LitElement {
 
   // Lazy creation
-  static lazy(target: Element, callback: (target: Element) => void) {
+  static lazy(target: Element, callback: (target: Element) => SimpleTooltip|undefined) {
     let called = false;
     enterEvents.forEach(name => target.addEventListener(name, () => {
       if (!called) {
         called = true;
-        callback(target);
+        const tooltip  = callback(target);
+        if (tooltip) {
+          target.parentNode!.insertBefore(tooltip, target.nextSibling);
+          tooltip.show();
+        }
       }
     }, {once: true}));
   }
@@ -35,10 +39,11 @@ export class SimpleTooltip extends LitElement {
       padding: 4px;
       border-radius: 4px;
       display: inline-block;
+      pointer-events: none;
 
       /* Fade in */
       opacity: 0;
-      transform: scale(0.5);
+      transform: scale(0.75);
       transition: opacity, transform;
       transition-duration:  0.33s;
     }
@@ -132,26 +137,20 @@ export class SimpleTooltip extends LitElement {
 
 // Directive!
 class TooltipDirective extends Directive {
-  el?: Element;
   isSetup = false;
   renderPart?: ChildPart;
-  result: unknown;
   render(value: unknown = '') {}
   update(part: ElementPart, [value]: Parameters<this['render']>) {
-    this.result = html`<simple-tooltip>${value}</simple-tooltip>`;
+    const result = html`<simple-tooltip>${value}</simple-tooltip>`;
     if (!this.isSetup) {
       this.isSetup = true;
-      const el = part.element;
-      SimpleTooltip.lazy(el, () => {
+      SimpleTooltip.lazy(part.element, () => {
         const fragment = document.createDocumentFragment();
-        this.renderPart = render(this.result, fragment, part.options);
-        const tip = fragment.firstElementChild as SimpleTooltip;
-        tip.target = el;
-        el.parentNode!.insertBefore(tip, el.nextSibling);
-        tip.show();
+        this.renderPart = render(result, fragment, part.options);
+        return fragment.firstElementChild as SimpleTooltip;
       });
     } else if (this.renderPart) {
-      setChildPartValue(this.renderPart, this.result);
+      setChildPartValue(this.renderPart, result);
     }
   }
 }

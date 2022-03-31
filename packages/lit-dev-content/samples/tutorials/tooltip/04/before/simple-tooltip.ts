@@ -1,5 +1,5 @@
 import {html, css, LitElement} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 
 // Events to turn on/off the tooltip
 const enterEvents = ['mouseenter', 'focus'];
@@ -16,6 +16,7 @@ export class SimpleTooltip extends LitElement {
       border: 1px solid darkgray;
       border-radius: 4px;
       background: #ccc;
+      pointer-events: none;
     }
   `;
 

@@ -18,6 +18,7 @@ export class SimpleTooltip extends LitElement {
       border: 1px solid darkgray;
       border-radius: 4px;
       background: #ccc;
+      pointer-events: none;
     }
   `;
 

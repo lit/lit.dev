@@ -1,6 +1,10 @@
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import {Directive, directive} from 'lit/directive.js';
+import {ElementPart, ChildPart, render} from 'lit';
+import {setChildPartValue} from 'lit/directive-helpers.js';
 
+/* playground-fold */
 import {computePosition, autoPlacement, offset, shift} from '@floating-ui/dom';
 
 const enterEvents = ['mouseenter', 'focus'];
@@ -10,12 +14,16 @@ const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
 export class SimpleTooltip extends LitElement {
 
   // Lazy creation
-  static lazy(target: Element, callback: (target: Element) => void) {
+  static lazy(target: Element, callback: (target: Element) => SimpleTooltip|undefined) {
     let called = false;
     enterEvents.forEach(name => target.addEventListener(name, () => {
       if (!called) {
         called = true;
-        callback(target);
+        const tooltip  = callback(target);
+        if (tooltip) {
+          target.parentNode!.insertBefore(tooltip, target.nextSibling);
+          tooltip.show();
+        }
       }
     }, {once: true}));
   }
@@ -28,9 +36,10 @@ export class SimpleTooltip extends LitElement {
       border: 1px solid darkgray;
       border-radius: 4px;
       background: #ccc;
-      /* Fade in */
+      pointer-events: none;
+      /* Animate in */
       opacity: 0;
-      transform: scale(0.5);
+      transform: scale(0.75);
       transition: opacity, transform;
       transition-duration:  0.33s;
     }
@@ -114,3 +123,26 @@ export class SimpleTooltip extends LitElement {
   }
 
 }
+
+/* playground-fold-end */
+
+class TooltipDirective extends Directive {
+  isSetup = false;
+  renderPart?: ChildPart;
+  render(value: unknown = '') {}
+  update(part: ElementPart, [value]: Parameters<this['render']>) {
+    // 1. Make a TemplateResult that will render a tooltip with provided content.
+
+    if (!this.isSetup) {
+      this.isSetup = true;
+      // 2. Call the `lazy` API and render and return a tooltip,
+      // saving the `renderPart`.
+
+    // 3. If the tooltip has rendered, update it by setting `renderPart`'s value.
+    } else if (this.renderPart) {
+
+    }
+  }
+}
+
+export const tooltip = directive(TooltipDirective);

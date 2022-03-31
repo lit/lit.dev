@@ -2,7 +2,7 @@
   "header": "Build a Tooltip element",
   "difficulty": "Advanced",
   "size": "medium",
-  "duration": 70,
+  "duration": 30,
   "category": "Build",
   "imgSrc": "images/logo-whitebg-padded-1600x800.png",
   "imgAlt": "This is the Lit icon",
@@ -30,7 +30,8 @@
       "title": "Animation"
     },
     {
-      "title": "Lazy Creation"
+      "title": "Lazy Creation",
+      "hasAfter": true
     },
     {
       "title": "Using a Directive",

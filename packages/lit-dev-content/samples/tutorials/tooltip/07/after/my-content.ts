@@ -1,7 +1,7 @@
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import './simple-tooltip.js';
-import {SimpleTooltip, tooltip} from './simple-tooltip.js';
+import {SimpleTooltip} from './simple-tooltip.js';
 
 @customElement('my-content')
 export class MyContent extends LitElement {
@@ -32,7 +32,7 @@ export class MyContent extends LitElement {
       <input .value=${this.name} @input=${this._inputChange}>
       <simple-tooltip>Enter your name...</simple-tooltip>
       <p>
-        <span>Hello, ${this.name}!</span>
+        <span id="greeting">Hello, ${this.name}!</span>
       </p>
       <h3>Here's an activity</h3>
       <section>
@@ -55,4 +55,13 @@ export class MyContent extends LitElement {
     this.name = (e.target as HTMLInputElement).value;
   }
 
+  firstUpdated() {
+    const greeting = this.shadowRoot!.getElementById('greeting')!;
+    SimpleTooltip.lazy(greeting, () => {
+      const tip = document.createElement('simple-tooltip') as SimpleTooltip;
+      tip.innerHTML = `${this.name}, there's coffee available in the lounge.`;
+      return tip;
+    });
+
+  }
 }
