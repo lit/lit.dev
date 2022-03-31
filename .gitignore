@@ -21,6 +21,8 @@ packages/lit-dev-api/api-data/*/INSTALLED
 
 packages/lit-dev-tutorial-plugin/out
 packages/lit-dev-tutorial-plugin/lit-dev-tutorial-editor*.vsix
+.vscode-test
+.test-bin
 
 # We only want to keep '-linux' screenshots which are tested by Github Actions.
 packages/lit-dev-tests/src/playwright/**/*.png

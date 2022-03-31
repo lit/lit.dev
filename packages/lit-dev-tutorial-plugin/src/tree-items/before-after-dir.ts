@@ -37,7 +37,7 @@ export class BeforeAfterDir extends vscode.TreeItem {
       return;
     }
 
-    fs.rmdirSync(this.path, {recursive: true});
+    fs.rmSync(this.path, {recursive: true});
 
     this.tutorialStep.hasAfter = false;
 

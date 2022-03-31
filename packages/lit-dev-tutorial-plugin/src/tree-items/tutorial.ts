@@ -222,8 +222,8 @@ export class Tutorial extends vscode.TreeItem {
   }
 
   delete() {
-    fs.rmdirSync(this.path, {recursive: true});
-    fs.rmdirSync(
+    fs.rmSync(this.path, {recursive: true});
+    fs.rmSync(
       path.join(this.provider.siteTutorialsContentPath, this.dirName),
       {recursive: true}
     );

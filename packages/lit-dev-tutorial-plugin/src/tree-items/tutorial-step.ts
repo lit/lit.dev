@@ -117,7 +117,7 @@ export class TutorialStep extends vscode.TreeItem {
 
     fs.writeFileSync(tutorialJsonPath, JSON.stringify(tutorialJson, null, 2));
 
-    fs.rmdirSync(this.path, {recursive: true});
+    fs.rmSync(this.path, {recursive: true});
     fs.rmSync(
       path.join(
         this.provider.siteTutorialsContentPath,

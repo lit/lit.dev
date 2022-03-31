@@ -163,7 +163,8 @@
     "build": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run build",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "clean": "rm -rf out .vscode-test .test-bin"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",

@@ -12,7 +12,7 @@ import { TutorialStep } from './tree-items/tutorial-step.js';
 import { Tutorial } from './tree-items/tutorial.js';
 import {LitDevTutorialTreeProvider, TutorialTreeItem} from './tree-provider.js';
 
-export async function activate(context: vscode.ExtensionContext) {
+export async function activate() {
   const rootPath =
   vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0
     ? vscode.workspace.workspaceFolders[0].uri.fsPath
