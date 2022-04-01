@@ -57,10 +57,8 @@ export class MyContent extends LitElement {
 
   firstUpdated() {
     const greeting = this.shadowRoot!.getElementById('greeting')!;
-    SimpleTooltip.lazy(greeting, () => {
-      const tip = document.createElement('simple-tooltip') as SimpleTooltip;
-      tip.innerHTML = `${this.name}, there's coffee available in the lounge.`;
-      return tip;
+    SimpleTooltip.lazy(greeting, (tooltip: SimpleTooltip) => {
+      tooltip.textContent = `${this.name}, there's coffee available in the lounge.`;
     });
 
   }

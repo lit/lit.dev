@@ -1,9 +1,8 @@
 /* playground-fold */
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import {Directive, directive} from 'lit/directive.js';
-import {ElementPart, ChildPart, render} from 'lit';
-import {setChildPartValue} from 'lit/directive-helpers.js';
+import {Directive, DirectiveParameters, directive} from 'lit/directive.js';
+import {ElementPart, render} from 'lit';
 
 // Positioning library
 import {computePosition, autoPlacement, offset, shift} from '@floating-ui/dom';
@@ -16,16 +15,15 @@ const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
 export class SimpleTooltip extends LitElement {
 
   // Lazy creation
-  static lazy(target: Element, callback: (target: Element) => SimpleTooltip|undefined) {
+  static lazy(target: Element, callback: (target: SimpleTooltip) => void) {
     let called = false;
     enterEvents.forEach(name => target.addEventListener(name, () => {
       if (!called) {
         called = true;
-        const tooltip  = callback(target);
-        if (tooltip) {
-          target.parentNode!.insertBefore(tooltip, target.nextSibling);
-          tooltip.show();
-        }
+        const tooltip = document.createElement('simple-tooltip') as SimpleTooltip;
+        callback(tooltip);
+        target.parentNode!.insertBefore(tooltip, target.nextSibling);
+        tooltip.show();
       }
     }, {once: true}));
   }
@@ -41,7 +39,7 @@ export class SimpleTooltip extends LitElement {
       display: inline-block;
       pointer-events: none;
 
-      /* Fade in */
+      /* Animate in */
       opacity: 0;
       transform: scale(0.75);
       transition: opacity, transform;
@@ -97,12 +95,6 @@ export class SimpleTooltip extends LitElement {
 
   show = () => {
     this.style.display = '';
-    // Simple positioning
-    // const {x, y, height, width} = this.target!.getBoundingClientRect();
-    // this.style.left = `${x}px`;
-    // this.style.top = `${y + height + this.offset}px`;
-    //
-    // Robust positioning
     computePosition(this.target, this, {
       strategy: 'fixed',
       middleware: [
@@ -119,8 +111,6 @@ export class SimpleTooltip extends LitElement {
 
   hide = () => {
     this.showing = false;
-    // Hide without animation
-    // this.style.display = 'none';
   }
 
   finishHide = () => {
@@ -135,25 +125,34 @@ export class SimpleTooltip extends LitElement {
 
 }
 
-// Directive!
 class TooltipDirective extends Directive {
-  isSetup = false;
-  renderPart?: ChildPart;
-  render(value: unknown = '') {}
-  update(part: ElementPart, [value]: Parameters<this['render']>) {
-    const result = html`<simple-tooltip>${value}</simple-tooltip>`;
-    if (!this.isSetup) {
-      this.isSetup = true;
-      SimpleTooltip.lazy(part.element, () => {
-        const fragment = document.createDocumentFragment();
-        this.renderPart = render(result, fragment, part.options);
-        return fragment.firstElementChild as SimpleTooltip;
-      });
-    } else if (this.renderPart) {
-      setChildPartValue(this.renderPart, result);
+  didSetupLazy = false;
+  tooltipContent?: unknown;
+  part?: ElementPart;
+  tooltip?: SimpleTooltip;
+  render(tooltipContent: unknown = '') {}
+  update(part: ElementPart, [tooltipContent]: DirectiveParameters<this>) {
+    this.tooltipContent = tooltipContent;
+    this.part = part;
+    if (!this.didSetupLazy) {
+      this.setupLazy();
     }
+    if (this.tooltip) {
+      this.renderTooltipContent();
+    }
+  }
+  setupLazy() {
+    this.didSetupLazy = true;
+    SimpleTooltip.lazy(this.part!.element, (tooltip: SimpleTooltip) => {
+      this.tooltip = tooltip;
+      this.renderTooltipContent();
+    });
+  }
+  renderTooltipContent() {
+    render(this.tooltipContent, this.tooltip!, this.part!.options);
   }
 }
 
 export const tooltip = directive(TooltipDirective);
+
 /* playground-fold-end */

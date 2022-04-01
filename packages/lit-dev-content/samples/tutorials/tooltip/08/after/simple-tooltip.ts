@@ -1,8 +1,7 @@
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import {Directive, directive} from 'lit/directive.js';
-import {ElementPart, ChildPart, render} from 'lit';
-import {setChildPartValue} from 'lit/directive-helpers.js';
+import {Directive, DirectiveParameters, directive} from 'lit/directive.js';
+import {ElementPart, render} from 'lit';
 
 /* playground-fold */
 import {computePosition, autoPlacement, offset, shift} from '@floating-ui/dom';
@@ -14,16 +13,15 @@ const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
 export class SimpleTooltip extends LitElement {
 
   // Lazy creation
-  static lazy(target: Element, callback: (target: Element) => SimpleTooltip|undefined) {
+  static lazy(target: Element, callback: (target: SimpleTooltip) => void) {
     let called = false;
     enterEvents.forEach(name => target.addEventListener(name, () => {
       if (!called) {
         called = true;
-        const tooltip  = callback(target);
-        if (tooltip) {
-          target.parentNode!.insertBefore(tooltip, target.nextSibling);
-          tooltip.show();
-        }
+        const tooltip = document.createElement('simple-tooltip') as SimpleTooltip;
+        callback(tooltip);
+        target.parentNode!.insertBefore(tooltip, target.nextSibling);
+        tooltip.show();
       }
     }, {once: true}));
   }
@@ -126,25 +124,30 @@ export class SimpleTooltip extends LitElement {
 
 /* playground-fold-end */
 class TooltipDirective extends Directive {
-  isSetup = false;
-  renderPart?: ChildPart;
-  render(value: unknown = '') {}
-  update(part: ElementPart, [value]: Parameters<this['render']>) {
-    // 1. Make a TemplateResult that will render a tooltip with provided content.
-    const result = html`<simple-tooltip>${value}</simple-tooltip>`;
-    if (!this.isSetup) {
-      this.isSetup = true;
-      // 2. Call the `lazy` API and render and return a tooltip,
-      // saving the `renderPart`.
-      SimpleTooltip.lazy(part.element, () => {
-        const fragment = document.createDocumentFragment();
-        this.renderPart = render(result, fragment, part.options);
-        return fragment.firstElementChild as SimpleTooltip;
-      });
-    // 3. If the tooltip has rendered, update it by setting `renderPart`'s value.
-    } else if (this.renderPart) {
-      setChildPartValue(this.renderPart, result);
+  didSetupLazy = false;
+  tooltipContent?: unknown;
+  part?: ElementPart;
+  tooltip?: SimpleTooltip;
+  render(tooltipContent: unknown = '') {}
+  update(part: ElementPart, [tooltipContent]: DirectiveParameters<this>) {
+    this.tooltipContent = tooltipContent;
+    this.part = part;
+    if (!this.didSetupLazy) {
+      this.setupLazy();
     }
+    if (this.tooltip) {
+      this.renderTooltipContent();
+    }
+  }
+  setupLazy() {
+    this.didSetupLazy = true;
+    SimpleTooltip.lazy(this.part!.element, (tooltip: SimpleTooltip) => {
+      this.tooltip = tooltip;
+      this.renderTooltipContent();
+    });
+  }
+  renderTooltipContent() {
+    render(this.tooltipContent, this.tooltip!, this.part!.options);
   }
 }
 

@@ -10,16 +10,15 @@ const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
 export class SimpleTooltip extends LitElement {
 
   // Lazy creation
-  static lazy(target: Element, callback: (target: Element) => SimpleTooltip|undefined) {
+  static lazy(target: Element, callback: (target: SimpleTooltip) => void) {
     let called = false;
     enterEvents.forEach(name => target.addEventListener(name, () => {
       if (!called) {
         called = true;
-        const tooltip  = callback(target);
-        if (tooltip) {
-          target.parentNode!.insertBefore(tooltip, target.nextSibling);
-          tooltip.show();
-        }
+        const tooltip = document.createElement('simple-tooltip') as SimpleTooltip;
+        callback(tooltip);
+        target.parentNode!.insertBefore(tooltip, target.nextSibling);
+        tooltip.show();
       }
     }, {once: true}));
   }
