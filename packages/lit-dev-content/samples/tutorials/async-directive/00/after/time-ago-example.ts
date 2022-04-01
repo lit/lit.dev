@@ -29,7 +29,7 @@ export class TimeAgoExample extends LitElement {
       <hr>
 
       <comment-card user="litdeveloper"
-                    .time=${timeAgo(timeNow)}
+                    time=${timeAgo(timeNow)}
                     subject="Just tried AsyncDirectives!"
                     content="I just tried out these AsyncDirectives in Lit and they're pretty powerful!">
       </comment-card>

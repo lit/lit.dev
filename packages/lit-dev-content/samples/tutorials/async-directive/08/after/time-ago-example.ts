@@ -14,7 +14,7 @@ export class TimeAgoExample extends LitElement {
       <p>This page was rendered ${timeAgo(timeCreated)}.</p>
 
       <comment-card user="litdeveloper"
-                .time=${timeAgo(timeCreated)}
+                time=${timeAgo(timeCreated)}
                 subject="Just tried AsyncDirectives!"
                 content="Cool stuff, they're really powerful!">
       </comment-card>

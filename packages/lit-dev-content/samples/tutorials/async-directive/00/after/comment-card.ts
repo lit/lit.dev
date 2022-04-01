@@ -13,6 +13,7 @@ export class CommentCard extends LitElement {
       display: flex;
       font-family: sans-serif;
       padding: 5px;
+      max-width: 500px;
     }
     .avatar {
       height: 40px;
@@ -37,7 +38,7 @@ export class CommentCard extends LitElement {
   @property() content = 'Lorem ipsum dolor sit amet.';
   @property() user = 'username';
   @property() time = 'one minute ago';
-  @property() avatar = '//joeschmoe.io/api/v1/jon';
+  @property() avatar = '//joeschmoe.io/api/v1/jess';
 
   render() {
     return html`
@@ -45,7 +46,7 @@ export class CommentCard extends LitElement {
       <div class="body">
         <div class="header">
           <span class="subject">${this.subject}</span>
-          <span class="usertime">@${this.user} · ${this.time}</span>
+          <span class="usertime">@${this.user} • ${this.time}</span>
         </div>
         <div class="content">${this.content}</div>
       </div>

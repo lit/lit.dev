@@ -36,7 +36,7 @@ class TimeAgoDirective extends AsyncDirective {
     this.ensureTimerStopped();
   }
 
-  resconnected() {
+  reconnected() {
     this.ensureTimerStarted();
   }
 
