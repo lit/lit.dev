@@ -27,19 +27,6 @@ class TimeAgoDirective extends AsyncDirective {
     }
   }
 
-  ensureTimerStopped() {
-    clearInterval(this.timer);
-    this.timer = undefined;
-  }
-
-  disconnected() {
-    this.ensureTimerStopped();
-  }
-
-  resconnected() {
-    this.ensureTimerStarted();
-  }
-
 }
 
 export const timeAgo = directive(TimeAgoDirective);

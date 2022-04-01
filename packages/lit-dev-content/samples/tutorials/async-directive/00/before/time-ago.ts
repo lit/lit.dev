@@ -6,42 +6,40 @@ class TimeAgoDirective extends AsyncDirective {
 
   timer: number | undefined;
   time!: Date;
-  frequency!: number;
 
-  render(time: Date, frequency = 1000) {
+  render(time: Date) {
     return format(time);
   }
 
-  update(part: Part, [time, frequency = 1000]: DirectiveParameters<this>) {
+  update(part: Part, [time]: DirectiveParameters<this>) {
     this.time = time;
-    if (this.frequency !== frequency) {
-      this.ensureStopped();
-      this.frequency = frequency;
+    if (this.isConnected) {
+      this.ensureTimerStarted();
     }
-    this.ensureStarted();
-    return format(time);
+    return this.render(time);
   }
 
-  ensureStarted() {
+  ensureTimerStarted() {
     if (this.timer === undefined) {
       this.timer = setInterval(() => {
-        this.setValue(format(this.time));
-      }, this.frequency);
+        this.setValue(this.render(this.time));
+      }, 1000);
     }
   }
 
-  ensureStopped() {
+  ensureTimerStopped() {
     clearInterval(this.timer);
     this.timer = undefined;
   }
 
   disconnected() {
-    this.ensureStopped();
+    this.ensureTimerStopped();
   }
 
-  reconnected() {
-    this.ensureStarted();
+  resconnected() {
+    this.ensureTimerStarted();
   }
+
 }
 
 export const timeAgo = directive(TimeAgoDirective);
