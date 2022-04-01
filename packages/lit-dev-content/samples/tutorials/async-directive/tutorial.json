@@ -8,7 +8,7 @@
   "imgAlt": "This is the Lit icon",
   "steps": [
     {
-      "title": "Introduction to AsyncDirectives",
+      "title": "Introduction to AsyncDirective",
       "hasAfter": true
     },
     {
