@@ -95,7 +95,7 @@ export class SimpleTooltip extends LitElement {
   }
 
   show = () => {
-    this.style.display = '';
+    this.style.cssText = '';
     computePosition(this.target, this, {
       strategy: 'fixed',
       middleware: [

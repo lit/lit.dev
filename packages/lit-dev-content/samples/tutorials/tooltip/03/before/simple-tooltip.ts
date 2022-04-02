@@ -26,7 +26,7 @@ export class SimpleTooltip extends LitElement {
   }
 
   show = () => {
-    this.style.display = '';
+    this.style.cssText = '';
   }
 
   hide = () => {

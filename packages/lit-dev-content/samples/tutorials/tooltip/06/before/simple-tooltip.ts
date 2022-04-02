@@ -59,7 +59,7 @@ export class SimpleTooltip extends LitElement {
   }
 
   show = () => {
-    this.style.display = '';
+    this.style.cssText = '';
     // Robust positioning
     computePosition(this.target, this, {
       strategy: 'fixed',

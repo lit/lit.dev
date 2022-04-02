@@ -21,32 +21,46 @@ export class MyContent extends LitElement {
       right: 16px;
     }
 
+    .container, #greeting {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .icon {
+      font-family: 'Material Icons';
+      font-size: 20px;
+      margin: 0 0.25em;
+      cursor: pointer;
+    }
+
   `;
 
   @property()
-  name = 'Somebody';
+  name = 'Katara';
   /* playground-fold-end */
+
   render() {
     return html`
       <h3>Welcome</h3>
-      <input .value=${this.name} @input=${this._inputChange}>
-      <simple-tooltip>Enter your name...</simple-tooltip>
-      <p>
-        <span>Hello, ${this.name}!</span>
+      <p>Who are you?
+        <span class="container">
+          <input .value=${this.name} @input=${this._inputChange}>
+          <span class="icon">help_outline</span>
+        </span>
+        <simple-tooltip>Enter your name...</simple-tooltip>
       </p>
-      <h3>Here's an activity</h3>
-      <section>
-        <button>Do something...</button>
-        <simple-tooltip>This button actually doesn't do anything!</simple-tooltip>
-      </section>
-      <h3>And something else to look at</h3>
+      <p>
+        <span id="greeting">Hello, ${this.name}! <span class="icon">info_outline</span></span>
+      </p>
+
+      <h3>Some boxes hinted with tooltips</h3>
       <section>
         <div class="box">1</div>
         <simple-tooltip>This is box 1.</simple-tooltip>
         <div class="box">2</div>
         <simple-tooltip>This is box 2.</simple-tooltip>
         <div class="box right">3</div>
-        <simple-tooltip>This is box 3.</simple-tooltip>
+        <simple-tooltip>This is box 3 and it's way off on its own.</simple-tooltip>
       </section>
     `;
   }

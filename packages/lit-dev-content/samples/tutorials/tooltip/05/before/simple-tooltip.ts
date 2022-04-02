@@ -58,7 +58,7 @@ export class SimpleTooltip extends LitElement {
   }
 
   show = () => {
-    this.style.display = '';
+    this.style.cssText = '';
     // Position the tooltip near the target.
     const {x, y, height} = this.target!.getBoundingClientRect();
     this.style.left = `${x}px`;
