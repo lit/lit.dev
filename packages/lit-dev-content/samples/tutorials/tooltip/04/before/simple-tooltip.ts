@@ -2,8 +2,8 @@ import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 // Events to turn on/off the tooltip
-const enterEvents = ['mouseenter', 'focus'];
-const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
+const enterEvents = ['pointerenter', 'focus'];
+const leaveEvents = ['pointerleave', 'blur', 'keydown', 'click'];
 
 @customElement('simple-tooltip')
 export class SimpleTooltip extends LitElement {
@@ -53,10 +53,10 @@ export class SimpleTooltip extends LitElement {
 
   show = () => {
     this.style.cssText = '';
-  }
+  };
 
   hide = () => {
     this.style.display = 'none';
-  }
+  };
 
 }

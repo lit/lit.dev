@@ -1,13 +1,12 @@
-import {html, css, LitElement} from 'lit';
+import {html, css, LitElement, ElementPart, render} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {Directive, DirectiveParameters, directive} from 'lit/directive.js';
-import {ElementPart, render} from 'lit';
 
 /* playground-fold */
 import {computePosition, autoPlacement, offset, shift} from '@floating-ui/dom';
 
-const enterEvents = ['mouseenter', 'focus'];
-const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
+const enterEvents = ['pointerenter', 'focus'];
+const leaveEvents = ['pointerleave', 'blur', 'keydown', 'click'];
 
 @customElement('simple-tooltip')
 export class SimpleTooltip extends LitElement {
@@ -108,27 +107,31 @@ export class SimpleTooltip extends LitElement {
       this.style.top = `${y}px`;
     });
     this.showing = true;
-  }
+  };
 
   hide = () => {
     this.showing = false;
-  }
+  };
 
   finishHide = () => {
     if (!this.showing) {
       this.style.display = 'none';
     }
-  }
+  };
 
 }
 
 /* playground-fold-end */
+
 class TooltipDirective extends Directive {
   didSetupLazy = false;
   tooltipContent?: unknown;
   part?: ElementPart;
   tooltip?: SimpleTooltip;
+
+  // A directive must define a render method.
   render(tooltipContent: unknown = '') {}
+
   update(part: ElementPart, [tooltipContent]: DirectiveParameters<this>) {
     this.tooltipContent = tooltipContent;
     this.part = part;
@@ -139,6 +142,7 @@ class TooltipDirective extends Directive {
       this.renderTooltipContent();
     }
   }
+
   setupLazy() {
     this.didSetupLazy = true;
     SimpleTooltip.lazy(this.part!.element, (tooltip: SimpleTooltip) => {
@@ -146,6 +150,7 @@ class TooltipDirective extends Directive {
       this.renderTooltipContent();
     });
   }
+
   renderTooltipContent() {
     render(this.tooltipContent, this.tooltip!, this.part!.options);
   }

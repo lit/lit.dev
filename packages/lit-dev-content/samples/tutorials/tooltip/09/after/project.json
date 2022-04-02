@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "my-content.ts": {},
+    "index.html": {},
+    "simple-tooltip.ts": {}
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^0.4.1"
+  }
+}

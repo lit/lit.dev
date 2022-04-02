@@ -3,8 +3,8 @@ import {customElement, property} from 'lit/decorators.js';
 
 import {computePosition, autoPlacement, offset, shift} from '@floating-ui/dom';
 
-const enterEvents = ['mouseenter', 'focus'];
-const leaveEvents = ['mouseleave', 'blur', 'keydown', 'click'];
+const enterEvents = ['pointerenter', 'focus'];
+const leaveEvents = ['pointerleave', 'blur', 'keydown', 'click'];
 
 @customElement('simple-tooltip')
 export class SimpleTooltip extends LitElement {
@@ -15,7 +15,7 @@ export class SimpleTooltip extends LitElement {
     enterEvents.forEach(name => target.addEventListener(name, () => {
       if (!called) {
         called = true;
-        const tooltip = document.createElement('simple-tooltip') as SimpleTooltip;
+        const tooltip = document.createElement('simple-tooltip');
         callback(tooltip);
         target.parentNode!.insertBefore(tooltip, target.nextSibling);
         tooltip.show();
@@ -105,16 +105,22 @@ export class SimpleTooltip extends LitElement {
       this.style.top = `${y}px`;
     });
     this.showing = true;
-  }
+  };
 
   hide = () => {
     this.showing = false;
-  }
+  };
 
   finishHide = () => {
     if (!this.showing) {
       this.style.display = 'none';
     }
-  }
+  };
 
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "simple-tooltip": SimpleTooltip;
+  }
 }

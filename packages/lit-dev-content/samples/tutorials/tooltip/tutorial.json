@@ -1,14 +1,12 @@
 {
-  "header": "Build a Tooltip element",
+  "header": "Build a Tooltip Element",
   "difficulty": "Advanced",
-  "size": "medium",
+  "size": "small",
   "duration": 30,
   "category": "Build",
-  "imgSrc": "images/logo-whitebg-padded-1600x800.png",
-  "imgAlt": "This is the Lit icon",
   "steps": [
     {
-      "title": "Build a Tooltip element",
+      "title": "Build a Tooltip Element",
       "hasAfter": true
     },
     {
@@ -35,6 +33,10 @@
     },
     {
       "title": "Using a Directive",
+      "hasAfter": true
+    },
+    {
+      "title": "Congratulations!",
       "hasAfter": true
     }
   ]

@@ -27,10 +27,10 @@ export class SimpleTooltip extends LitElement {
 
   show = () => {
     this.style.cssText = '';
-  }
+  };
 
   hide = () => {
     this.style.display = 'none';
-  }
+  };
 
 }
