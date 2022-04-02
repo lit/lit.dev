@@ -7,7 +7,7 @@ export class MyElement extends LitElement {
   date = new Date();
 
   @property({type: String, attribute: 'date-str'})
-  dateStr = (new Date()).toString();
+  dateStr = this.date.toString();
 
   render() {
     const locale = 'en-US';

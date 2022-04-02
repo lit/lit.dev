@@ -2,18 +2,17 @@
   "header": "Custom Attribute Converters",
   "difficulty": "Intermediate",
   "size": "medium",
-  "duration": 0,
+  "duration": 16,
   "category": "Learn",
   "imgSrc": "images/tutorials/custom-attribute-converter/card.png",
-  "imgAlt": "This is the Lit icon",
+  "imgAlt": "<my-calendar selected-date=\"03/24/22\"></my-calendar>",
   "steps": [
     {
       "title": "Custom Attribute Converters",
       "hasAfter": true
     },
     {
-      "title": "Built-in String Attribute Converter",
-      "hasAfter": true
+      "title": "Built-in String Attribute Converter"
     },
     {
       "title": "Built-in Attribute Converter – Synchronization",
