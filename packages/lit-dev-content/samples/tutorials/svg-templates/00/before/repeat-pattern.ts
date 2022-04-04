@@ -4,13 +4,6 @@ import {LitElement, html, svg, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 
-const textCSS = css`
-	text {
-		dominant-baseline: hanging;
-		font: bold 28px monospace;
-	}
-`;
-
 const themeCSS = css`
 	text {
 		fill: var(--pattern-text-color, #000000);
@@ -20,6 +13,14 @@ const themeCSS = css`
 	}
 	.background {
 		fill: var(--pattern-background-color, #6e2bcc);
+	}
+`;
+
+const textCSS = css`
+	text {
+		dominant-baseline: hanging;
+        font-family: monospace;
+        font-size: 24px;
 	}
 `;
 

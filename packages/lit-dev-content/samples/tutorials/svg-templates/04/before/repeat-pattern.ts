@@ -1,22 +1,31 @@
 import type {SVGTemplateResult} from "lit";
 
 import {LitElement, html, svg, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 
 
-const textCSS = css`
+const svgCSS = css`
+	svg {
+		height: 100%;
+		width: 100%;
+	}
+
 	text {
-    fill: #ffffff;
+		fill: #ffffff;
 		dominant-baseline: hanging;
-		font: bold 28px monospace;
+		font-family: monospace;
+		font-size: 24px;
 	}
 `;
 
-const createChars = (patternID: string, chars: string): SVGTemplateResult => svg`
-    <text id="${patternID}">${chars}</text>
+const createChars = (chars: string): SVGTemplateResult => svg`
+    <text id="chars">${chars}</text>
 `;
 
-const createPatternWithRotation = (groupID: string, patternID: string, numPrints: number, offset: number = 0): SVGTemplateResult => {
+const createPatternWithRotation = (
+	numPrints: number,
+	offset: number = 0,
+): SVGTemplateResult => {
 	const rotation = 360 / numPrints;
 
 	const prints = [];
@@ -24,52 +33,88 @@ const createPatternWithRotation = (groupID: string, patternID: string, numPrints
 	for (let index = 0; index < numPrints; index++) {
 		currRotation += rotation;
 		prints.push(svg`
-			<use href="#${patternID}" transform="rotate(${currRotation}, 0, 0)"></use>
-    	`);
+			<use
+				href="#chars"
+				transform="rotate(${currRotation}, 0, 0)">
+			</use>
+    	`)
 	}
 
-	return svg`<g id="${groupID}" transform="translate(50, 50)">${prints}</g>`;
+	return svg
+		`<g
+			id="chars-rotated"
+			transform="translate(50, 50)">
+				${prints}
+		</g>`;
 }
 
 const createClip = () => svg`
-  <clipPath id="myClip">
-    <rect width="200" height="200"></rect>
-  </clipPath>
+	<clipPath id="rect-clip">
+		<rect width="200" height="200"></rect>
+	</clipPath>
 `;
 
-const createMotif = () => svg`
-  <g clip-path="url(#myClip)" id="pattern-motif">
-    <use transform="translate(0, 0)" href="#l-group"></use>
-    <use transform="translate(0, 100)" href="#l-group"></use>
-    <use transform="translate(100, -75)" href="#l-group"></use>
-    <use transform="translate(100, 25)" href="#l-group"></use>
-    <use transform="translate(100, 125)" href="#l-group"></use>
-  </g>
+const createTile = () => svg`
+	<g clip-path="url(#rect-clip)" id="pattern-tile">
+		<use transform="translate(0, 0)" href="#chars-rotated"></use>
+		<use transform="translate(0, 100)" href="#chars-rotated"></use>
+		<use transform="translate(100, -50)" href="#chars-rotated"></use>
+		<use transform="translate(100, 50)" href="#chars-rotated"></use>
+		<use transform="translate(100, 150)" href="#chars-rotated"></use>
+	</g>
 `;
 
 const createRepeatPattern = () => svg`
-  <pattern id="pattern-rounds" x="-10" y="-10" width="200" height="200" patternUnits="userSpaceOnUse">
-    ${createMotif()}
-  </pattern>
+	<pattern
+		id="pattern-rounds"
+		x="-10"
+		y="-10"
+		width="200"
+		height="200"
+		patternUnits="userSpaceOnUse">
+			${createTile()}
+	</pattern>
 `;
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-  static styles = textCSS;
+	static styles = svgCSS;
 
-  render() {
-    return html`
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          ${createClip()}
-          ${createChars("l-char", "lit")}
-          ${createPatternWithRotation("l-group", "l-char", 8, 30)}
-          ${createRepeatPattern()}
-        </defs>
- 
-        <rect x="0" y="0" width="100%" height="100%" fill="#000000"></rect>
-        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-rounds)"></rect>
-      </svg>
-    `;
-  }
+	@property({type: String}) chars = "lit";
+	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
+	@property({
+		type: Number,
+		attribute: "rotation-offset",
+	}) rotationOffset = 0;
+
+	render() {
+		return html`
+			<svg>
+				<defs>
+					${createClip()}
+					${createChars(this.chars)}
+					${createPatternWithRotation(
+						this.numPrints,
+						this.rotationOffset,
+					)}
+					${createRepeatPattern()}
+				</defs>
+		
+				<rect
+					x="0"
+					y="0"
+					width="100%"
+					height="100%"
+					fill="#000000">
+				</rect>
+				<rect
+					x="0"
+					y="0"
+					width="100%"
+					height="100%"
+					fill="url(#pattern-rounds)">
+				</rect>
+			</svg>
+		`;
+	}
 }
