@@ -35,6 +35,10 @@
       "hasAfter": true
     },
     {
+      "title": "Test disconnection/reconnection",
+      "hasAfter": true
+    },
+    {
       "title": "Try using the directive",
       "hasAfter": true
     }

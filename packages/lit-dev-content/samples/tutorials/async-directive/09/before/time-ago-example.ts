@@ -1,5 +1,6 @@
 import {html, css, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
+import './comment-card.js';
 
 import {timeAgo} from './time-ago.js';
 
