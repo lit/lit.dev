@@ -1,15 +1,13 @@
 {
   "header": "Intro to AsyncDirectives",
   "difficulty": "Intermediate",
-  "size": "medium",
-  "duration": 70,
+  "size": "small",
+  "duration": 30,
   "category": "Learn",
-  "imgSrc": "images/logo-whitebg-padded-1600x800.png",
-  "imgAlt": "This is the Lit icon",
   "steps": [
     {
       "title": "Introduction to AsyncDirective",
-      "hasAfter": true
+      "noSolve": true
     },
     {
       "title": "Make a directive",
