@@ -9,27 +9,27 @@
   "steps": [
     {
       "title": "Intro to SVG, Lit, and Patterns",
-      "hasAfter": false
+      "hasAfter": true
     },
     {
-      "title": "Create a Pattern Element",
-      "hasAfter": false
+      "title": "Create a pattern Element",
+      "hasAfter": true
     },
     {
       "title": "Create a pattern with rotation",
-      "hasAfter": false
+      "hasAfter": true
     },
     {
       "title": "Create a tile with a pattern",
-      "hasAfter": false
+      "hasAfter": true
     },
     {
       "title": "Repeat a tile with <pattern>",
-      "hasAfter": false
+      "hasAfter": true
     },
     {
-      "title": "Theme pattern",
-      "hasAfter": false
+      "title": "Theme pattern with CSS",
+      "hasAfter": true
     }
   ]
 }

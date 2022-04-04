@@ -4,6 +4,11 @@ import {LitElement, html, svg, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 const svgCSS = css`
+	svg {
+		height: 100%;
+		width: 100%;
+	}
+
     text {
         dominant-baseline: hanging;
 		font-family: monospace;
