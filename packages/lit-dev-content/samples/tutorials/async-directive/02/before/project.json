@@ -1,7 +1,7 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "time-ago-example.ts": {},
+    "time-ago-example.ts": {"selected": true},
     "time-ago.ts": {},
     "index.html": {}
   }

@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "files": {
     "time-ago-example.ts": {},
-    "time-ago.ts": {},
+    "time-ago.ts": {"selected": true},
     "index.html": {},
     "package.json": {}
   }
