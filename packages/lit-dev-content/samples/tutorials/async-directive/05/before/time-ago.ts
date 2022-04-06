@@ -1,6 +1,5 @@
-import {directive} from 'lit/directive.js';
-import {AsyncDirective} from 'lit/async-directive.js';
 import {format} from 'timeago.js';
+import {directive, AsyncDirective} from 'lit/async-directive.js';
 
 class TimeAgoDirective extends AsyncDirective {
 

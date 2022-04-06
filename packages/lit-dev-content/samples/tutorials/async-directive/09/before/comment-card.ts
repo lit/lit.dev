@@ -37,7 +37,7 @@ export class CommentCard extends LitElement {
   @property() content = 'Lorem ipsum dolor sit amet.';
   @property() user = 'username';
   @property() time = 'one minute ago';
-  @property() avatar = '//joeschmoe.io/api/v1/jon';
+  @property() avatar = '//joeschmoe.io/api/v1/jess';
 
   render() {
     return html`

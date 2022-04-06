@@ -14,7 +14,8 @@
       "hasAfter": true
     },
     {
-      "title": "Add the directive to a template"
+      "title": "Add the directive to a template",
+      "hasAfter": true
     },
     {
       "title": "Import timeago from npm"
