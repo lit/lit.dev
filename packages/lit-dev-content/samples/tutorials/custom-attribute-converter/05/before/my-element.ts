@@ -4,7 +4,7 @@ import {dateConverter} from './date-converter.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @property({converter: dateConverter})
+  @property({type: String, converter: dateConverter, reflect: true})
   date = new Date();
 
   render() {
