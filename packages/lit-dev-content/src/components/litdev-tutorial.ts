@@ -30,6 +30,7 @@ import {Task, TaskStatus} from '@lit-labs/task';
 export interface TutorialStep {
   title: string;
   hasAfter?: boolean;
+  noSolve?: boolean;
 }
 
 export interface TutorialManifest {
@@ -335,9 +336,12 @@ export class LitDevTutorial extends LitElement {
 
   protected renderFooter() {
     return html`<div id="tutorialFooter">
-      <litdev-icon-button @click=${this._onClickSolve}>
-        ${solveIcon} Solve
-      </litdev-icon-button>
+      ${when(
+        !this._manifest.steps[this._idx].noSolve,
+        () => html`<litdev-icon-button @click=${this._onClickSolve}>
+          ${solveIcon} Solve
+        </litdev-icon-button>`
+      )}
 
       <litdev-icon-button @click=${this._onClickReset}>
         ${resetIcon} Reset
