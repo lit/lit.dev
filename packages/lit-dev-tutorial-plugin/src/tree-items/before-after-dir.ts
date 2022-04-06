@@ -39,6 +39,7 @@ export class BeforeAfterDir extends vscode.TreeItem {
 
     fs.rmSync(this.path, {recursive: true});
 
+    this.tutorialStep.afterDir = undefined;
     this.tutorialStep.hasAfter = false;
 
     const tutorialJsonPath = path.join(
@@ -51,10 +52,8 @@ export class BeforeAfterDir extends vscode.TreeItem {
       const steps = tutorialJson.steps;
       const step = steps[this.tutorialStep.step];
 
-      if (step) {
-        if (this.name === 'after') {
-          delete step.hasAfter;
-        }
+      if (step && this.name === 'after') {
+        delete step.hasAfter;
       }
 
       fs.writeFileSync(tutorialJsonPath, JSON.stringify(tutorialJson, null, 2));
@@ -78,6 +77,7 @@ export class BeforeAfterDir extends vscode.TreeItem {
 
       if (tutorialJson) {
         tutorialJson.steps[tutorialStep.step].hasAfter = true;
+        delete tutorialJson.steps[tutorialStep.step].noSolve;
       }
 
       tutorialStep.hasAfter = true;

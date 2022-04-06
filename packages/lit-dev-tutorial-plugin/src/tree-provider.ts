@@ -13,6 +13,7 @@ import {TutorialStep} from './tree-items/tutorial-step';
 import {getJson} from './fs-helpers';
 import {BeforeAfterDir} from './tree-items/before-after-dir';
 import {PlaygroundFile} from './tree-items/playground-file';
+import { TutorialJson } from './types';
 
 interface PackageJson {
   name?: string;
@@ -135,8 +136,14 @@ export class LitDevTutorialTreeProvider
       file.isFile()
     );
 
+    const tutorialJson = getJson<TutorialJson>(path.join(element.path, 'tutorial.json'))!;
+    const jsonSteps = tutorialJson.steps;
+
     const steps = tutorialStepEntries.map(
-      (step) => new TutorialStep(this, element, step.name)
+      (step, index) => {
+        const jsonStep = jsonSteps[index];
+        return new TutorialStep(this, element, step.name, !jsonStep.noSolve)
+      }
     );
     const files = tutorialFileEntries.map(
       (file) => new GenericFile(this, path.join(tutorialPath, file.name))
@@ -153,8 +160,16 @@ export class LitDevTutorialTreeProvider
     ).reverse();
 
     const beforeAfterDirs = tutorialDirEntries.map(
-      (entry) =>
-        new BeforeAfterDir(this, element, entry.name as 'before' | 'after')
+      (entry) => {
+        const dir = new BeforeAfterDir(this, element, entry.name as 'before' | 'after')
+        if (entry.name === 'before') {
+          element.beforeDir = dir;
+        } else if (entry.name === 'after') {
+          element.afterDir = dir;
+        }
+
+        return dir;
+      }
     );
 
     const stepInstructionsMdFile = new GenericFile(

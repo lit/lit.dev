@@ -102,6 +102,16 @@
           "command": "litDevTutorial.renameStep",
           "when": "view == litDevTutorial && viewItem =~ /^tutorial-step/",
           "group": "files"
+        },
+        {
+          "command": "litDevTutorial.makeSolvable",
+          "when": "view == litDevTutorial && viewItem =~ /^tutorial-step.*-unsolvable/",
+          "group": "files"
+        },
+        {
+          "command": "litDevTutorial.makeUnsolvable",
+          "when": "view == litDevTutorial && viewItem =~ /^tutorial-step.*-solvable/",
+          "group": "files"
         }
       ]
     },
@@ -155,6 +165,16 @@
         "command": "litDevTutorial.renameStep",
         "title": "Rename",
         "icon": "$(edit)"
+      },
+      {
+        "command": "litDevTutorial.makeSolvable",
+        "title": "Show Solve Button",
+        "icon": "$(verified)"
+      },
+      {
+        "command": "litDevTutorial.makeUnsolvable",
+        "title": "Hide Solve Button",
+        "icon": "$(unverified)"
       }
     ]
   },

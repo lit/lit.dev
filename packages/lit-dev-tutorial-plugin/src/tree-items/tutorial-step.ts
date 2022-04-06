@@ -17,6 +17,8 @@ export class TutorialStep extends vscode.TreeItem {
   private _step = -1;
   private _hasAfter = false;
   checkable = false;
+  beforeDir!: BeforeAfterDir;
+  afterDir: BeforeAfterDir|undefined = undefined;
 
   get dirName() {
     return `${this.step}`.padStart(2, '0');
@@ -60,24 +62,82 @@ export class TutorialStep extends vscode.TreeItem {
   }
 
   set hasAfter(value: boolean) {
+    if (this._hasAfter === value) {
+      return;
+    }
+
     this._hasAfter = value;
-    this.contextValue = this.generateContextValue();
+
+    const tutorialJsonPath = path.join(
+      this.tutorial.path,
+      'tutorial.json'
+    );
+    let tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
+
+    if (value) {
+      this.solvable = true;
+      tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
+      tutorialJson.steps[this.step].hasAfter = true;
+    } else {
+      if (this.afterDir) {
+        this.afterDir.delete();
+      }
+      delete tutorialJson.steps[this.step].hasAfter;
+    }
+
+    fs.writeFileSync(tutorialJsonPath, JSON.stringify(tutorialJson, null, 2));
+    this.updateContextValue();
+  }
+
+  private _solvable = false;
+
+  set solvable(solvable: boolean) {
+    if (this._solvable === solvable) {
+      return;
+    }
+
+    this._solvable = solvable;
+    const tutorialJsonPath = path.join(
+      this.tutorial.path,
+      'tutorial.json'
+    );
+    let tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
+
+    if (solvable) {
+      delete tutorialJson.steps[this.step].noSolve;
+
+    } else {
+      this.hasAfter = false;
+      tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
+
+      tutorialJson.steps[this.step].noSolve = true;
+    }
+
+    fs.writeFileSync(tutorialJsonPath, JSON.stringify(tutorialJson, null, 2));
+    this.updateContextValue();
+  }
+
+  get solvable() {
+    return this._solvable;
   }
 
   constructor(
     public provider: LitDevTutorialTreeProvider,
     public tutorial: Tutorial,
-    step: string
+    step: string,
+    solvable: boolean
   ) {
     super(
       vscode.Uri.file(path.join(tutorial.path, step)),
       vscode.TreeItemCollapsibleState.Collapsed
     );
 
+    this._solvable = solvable;
     this.tutorial.pushStep(this);
     this.step = Number(step);
     this.tooltip = this.dirName;
     this.fetchMetadata();
+    this.contextValue = this.generateContextValue();
   }
 
   updateContextValue() {
@@ -106,8 +166,9 @@ export class TutorialStep extends vscode.TreeItem {
     const first = this.step === 0 ? '' : '-up';
     const last = this.step === this.tutorial.steps.length - 1 ? '' : '-down';
     const afterVal = this.hasAfter ? '' : '-add';
+    const solvable = this.solvable ? '-solvable' : '-unsolvable';
 
-    return `tutorial-step${first}${last}${afterVal}`;
+    return `tutorial-step${first}${last}${afterVal}${solvable}`;
   }
 
   deleteFiles() {
@@ -158,11 +219,34 @@ export class TutorialStep extends vscode.TreeItem {
       return;
     }
 
+    const isSolvableStr = await vscode.window.showQuickPick(['Yes', 'No'],{
+      title: 'Should this step have a "solve" button?',
+    });
+
+    if (!isSolvableStr) {
+      return;
+    }
+
+    const hideSolve = isSolvableStr !== 'Yes';
+    let hasAfter = false;
+
+    if (!hideSolve) {
+      const hasAfterStr = await vscode.window.showQuickPick(['Yes', 'No'],{
+        title: 'Is "after" step the "before" of the next step?',
+      });
+
+      if (!hasAfterStr) {
+        return;
+      }
+
+      hasAfter = hasAfterStr === 'Yes';
+    }
+
     const checkableRaw = await vscode.window.showQuickPick(['Yes', 'No'], {
       placeHolder: 'Is this step checkable?',
     });
 
-    if (checkableRaw === undefined) {
+    if (!checkableRaw) {
       return;
     }
 
@@ -188,15 +272,29 @@ export class TutorialStep extends vscode.TreeItem {
     if (checkable) {
       jsonStep.checkable = true;
     }
+
+    if (hideSolve) {
+      jsonStep.noSolve = true;
+    }
+
+    if (hasAfter) {
+      jsonStep.hasAfter = true;
+    }
+
     tutorialJson.steps.push(jsonStep);
 
     fs.writeFileSync(tutorialJsonPath, JSON.stringify(tutorialJson, null, 2));
 
-    const step = new TutorialStep(provider, tutorial, dirName);
+    const step = new TutorialStep(provider, tutorial, dirName, hideSolve);
     tutorial.pushStep(step);
 
-    BeforeAfterDir.create(step, 'before');
-    BeforeAfterDir.create(step, 'after');
+    const beforeStep = BeforeAfterDir.create(step, 'before');
+    step.beforeDir = beforeStep;
+
+    if (hasAfter && !hideSolve) {
+      const afterStep = BeforeAfterDir.create(step, 'after');
+      step.afterDir = afterStep;
+    }
 
     provider.refresh();
     return step;

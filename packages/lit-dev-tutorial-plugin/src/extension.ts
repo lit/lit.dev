@@ -51,6 +51,14 @@ export async function activate() {
   vscode.commands.registerCommand('litDevTutorial.delete', (item: TutorialTreeItem) => {
     item.delete();
   });
+  vscode.commands.registerCommand('litDevTutorial.makeSolvable', (item: TutorialStep) => {
+    item.solvable = true;
+  item.provider.refresh();
+  });
+  vscode.commands.registerCommand('litDevTutorial.makeUnsolvable', (item: TutorialStep) => {
+    item.solvable = false;
+    item.provider.refresh();
+  });
   vscode.commands.registerCommand('litDevTutorial.createPlaygroundFile', (dir: BeforeAfterDir) => {
     PlaygroundFile.create(dir);
   });

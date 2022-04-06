@@ -13,6 +13,7 @@ export interface TutorialJsonStep {
   title: string;
   hasAfter?: boolean;
   checkable?: boolean;
+  noSolve?: boolean;
 }
 export interface TutorialJson {
   header: string;
