@@ -27,13 +27,13 @@ import {loopIcon} from '../icons/loop-icon.js';
 
 import '@material/mwc-icon-button';
 import '@material/mwc-snackbar';
-import {Snackbar} from '@material/mwc-snackbar';
+import type {Snackbar} from '@material/mwc-snackbar';
 import './litdev-example-controls.js';
 import './litdev-playground-change-guard.js';
 import './litdev-icon-button.js';
 import {Task, TaskStatus} from '@lit-labs/task';
 import {PostDoc} from 'postdoc-lib';
-import {PlaygroundPreview} from 'playground-elements/playground-preview';
+import type {PlaygroundPreview} from 'playground-elements/playground-preview';
 
 const CHECK_TIMEOUT_MS = 10000;
 export interface TutorialStep {
@@ -138,8 +138,9 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
-   * Whether the user has requested the solved code by clicking the solve button
-   * or not if clicked the reset button.
+   * Whether the user has requested the solved code by clicking the "Solve"
+   * button. Resets to false when the user clicks the "Reset" button or if they
+   * change the page. Used to disable the "Check" code button.
    */
   @state() private _requestSolvedCode = false;
 
@@ -150,7 +151,7 @@ export class LitDevTutorial extends LitElement {
    * @param e Message event from the playground. Has status and possible
    *     validation message
    */
-  private onPlaygroundMessage = (
+  private readonly onPlaygroundMessage = (
     e: MessageEvent<{status: string; message?: string}>
   ) => {
     if (this._checkStatus !== 'CHECKING') {
@@ -437,27 +438,14 @@ export class LitDevTutorial extends LitElement {
     }`;
 
     return html`<div id="tutorialFooter">
-      ${when(
-        !this._manifest.steps[this._idx].noSolve,
-        () => html`<litdev-icon-button @click=${this._onClickSolve}>
-          ${solveIcon} Solve
-        </litdev-icon-button>`
-      )}
-
+        ${when(
+          !this._manifest.steps[this._idx].noSolve,
+          () => html`<litdev-icon-button @click=${this._onClickSolve}>
+            ${solveIcon} Solve
+          </litdev-icon-button>`
+        )}
         ${this._manifestTask.render({
-          complete: (manifest) =>
-            !manifest.steps[this._idx].checkable
-              ? nothing
-              : html` <litdev-icon-button
-                  class="checkButton ${this._checkStatus === 'CHECKING'
-                    ? 'checking'
-                    : ''}"
-                  @click=${this._onClickCheck}
-                  ?disabled=${this._checkStatus === 'CHECKING' ||
-                  this._requestSolvedCode}
-                >
-                  ${this._renderCheckIcon()} Check
-                </litdev-icon-button>`,
+          complete: (manifest) => this._renderCodeCheckButton(manifest),
         })}
 
         <litdev-icon-button @click=${this._onClickReset}>
@@ -467,6 +455,24 @@ export class LitDevTutorial extends LitElement {
         <span id="nextStep"> ${this._renderNextStepStatus()} </span>
       </div>
       <mwc-snackbar .labelText=${snackbarLabel}></mwc-snackbar>`;
+  }
+
+  private _renderCodeCheckButton(manifest: TutorialManifest) {
+    if (!manifest.steps[this._idx].checkable) {
+      return nothing;
+    }
+
+    const checkingClass = this._checkStatus === 'CHECKING' ? 'checking' : '';
+    const isDisabled =
+      this._checkStatus === 'CHECKING' || this._requestSolvedCode;
+
+    return html`<litdev-icon-button
+      class="checkButton ${checkingClass}"
+      @click=${this._onClickCheck}
+      ?disabled=${isDisabled}
+    >
+      ${this._renderCheckIcon()} Check
+    </litdev-icon-button>`;
   }
 
   private _renderCheckIcon() {

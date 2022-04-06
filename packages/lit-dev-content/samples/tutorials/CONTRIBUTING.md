@@ -216,11 +216,11 @@ The available asides are:
 
 To enable code checking for a step, add the `checkable: true` flag to the step in `tutorial.json`.
 
-Next create a file which you will run your code checking. In this example we will call it `_check-code.js`.
+Next create a file which will run your code checking. In this example we will call it `_check-code.js`.
 
-> ⚠️ **N.B.** you **MUST** use a `.js` file extension or else this repo will not be able to TS build because we use playground-elements to inject the hidden `_check-code-helpers.js` file.
+> ⚠️ **Note:** you **MUST** use a `.js` file extension or else this repo will not be able to TS build because we use playground-elements to inject the hidden `_check-code-helpers.js` file.
 
-Then add this code check file as a `hidden` file to the `project.json` of the before directory.
+Then add this code check file as a `hidden` file to the `project.json` of the `before` directory.
 
 Additionally make sure your `project.json` extends from `/samples/checkable-tutorial-base.json` to include the hidden `_check-code-helpers.js` communication file.
 
@@ -256,7 +256,7 @@ Next, import this new file into your `index.html` file. And feel free to add the
 ```
 </details>
 
-In your `_check-code.js` file, import and call the `installCodeChecker` from the hidden `'./_check-code-helpers.js'` file which is injected by playground elements in `checkable-tutorial-base.json`.
+In your `_check-code.js` file, import and call `installCodeChecker` from the hidden `'./_check-code-helpers.js'` file which is injected by playground elements in `checkable-tutorial-base.json`.
 
 `installCodeChecker` will set up communications between the tutorial page and the playground and call an async callback when the user requests code checking.
 
@@ -264,7 +264,7 @@ The return type of the callback should be:
 
 `{passed: boolean, message?: string}`
 
-Where `passed` is whether the code has passed the checks and `message` is the optional error message to display`.
+Where `passed` is whether the code has passed the checks and `message` is the optional error message to display.
 
 <details open>
   <summary>example: <code>check-code.js</code></summary>

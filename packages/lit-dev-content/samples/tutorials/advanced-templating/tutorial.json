@@ -7,14 +7,14 @@
   "imgSrc": "images/logo-whitebg-padded-1600x800.png",
   "imgAlt": "This is the Lit icon",
   "steps": [
-      {
-        "title": "Advanced Templating!",
-        "checkable": true
-      },
-      {
-        "title": "Yer done!",
-        "hasAfter": true,
-        "checkable": true
-      }
-    ]
+    {
+      "title": "Advanced Templating!",
+      "checkable": true
+    },
+    {
+      "title": "Yer done!",
+      "hasAfter": true,
+      "checkable": true
+    }
+  ]
 }
