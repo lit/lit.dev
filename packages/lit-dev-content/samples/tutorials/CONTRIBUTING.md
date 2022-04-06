@@ -107,6 +107,9 @@ interface TutorialManifest {
     // Set to true if there is an "after" directory for this step or if it is
     // the last step in the tutorial.
     hasAfter?: boolean;
+    // Set to true if there should be no "solve" button for this step; in this
+    // case no "after" folder is required.
+    noSolve?: boolean;
   }[]
 }
 ```
