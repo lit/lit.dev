@@ -516,8 +516,7 @@ export class LitDevTutorial extends LitElement {
     );
 
     const previewElement = this._preview!;
-    // must be lowercase or else always undefined
-    const tagname = previewElement.tagName.toLowerCase();
+    const tagname = previewElement.localName;
     const isPreviewDefined = !!customElements.get(tagname);
 
     if (isPreviewDefined) {
