@@ -1,9 +1,8 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "_check-code-helpers.js": {
-      "content": "import {PostDoc} from 'postdoc-lib';\n\nexport const installCodeChecker = async (checkCode) => {\n  const postDoc = new PostDoc({\n    messageTarget: window.top,\n    messageReceiver: window,\n    onMessage: async (e) => {\n      const message = e.data;\n\n      switch (message) {\n        case 'CHECK':\n          const {passed, message} = await checkCode();\n          const status = passed ? 'PASSED' : 'FAILED';\n          await postDoc.handshake;\n          postDoc.postMessage({status, message});\n          break;\n      }\n    }\n  });\n\n  await postDoc.handshake;\n  postDoc.postMessage({status: 'READY'});\n}",
-      "hidden": true
+    "_check-code-helpers.ts": {
+      "hidden": false
     }
   }
 }
