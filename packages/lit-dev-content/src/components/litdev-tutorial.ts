@@ -20,9 +20,9 @@ import {resetIcon} from '../icons/reset-icon.js';
 import {catalogIcon} from '../icons/catalog-icon.js';
 import {forwardArrowIcon} from '../icons/forward-arrow-icon.js';
 import {backArrowIcon} from '../icons/back-arrow-icon.js';
-import {checkFailedIcon} from '../icons/check-failed-icon.js';
-import {checkPassedIcon} from '../icons/check-passed-icon.js';
-import {checkCodeIcon} from '../icons/check-code-icon.js';
+import {checkCircleCrossedIcon} from '../icons/check-circle-crossed-icon.js';
+import {checkCircleIcon} from '../icons/check-circle-icon.js';
+import {flakyIcon} from '../icons/flaky-icon.js';
 import {loopIcon} from '../icons/loop-icon.js';
 
 import '@material/mwc-icon-button';
@@ -478,13 +478,13 @@ export class LitDevTutorial extends LitElement {
   private _renderCheckIcon() {
     switch (this._checkStatus) {
       case 'INDETERMINATE':
-        return checkCodeIcon;
+        return flakyIcon;
       case 'CHECKING':
         return loopIcon;
       case 'PASSED':
-        return checkPassedIcon;
+        return checkCircleIcon;
       case 'FAILED':
-        return checkFailedIcon;
+        return checkCircleCrossedIcon;
     }
   }
 
