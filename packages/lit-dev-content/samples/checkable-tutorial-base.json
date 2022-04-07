@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "files": {
     "_check-code-helpers.ts": {
-      "hidden": false
+      "hidden": true
     }
   }
 }
