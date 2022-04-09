@@ -107,7 +107,6 @@ export const lit2Config: ApiDocsConfig = {
     {
       slug: 'directives',
       title: 'Directives',
-      anchorFilter: (node) => node.kindString === 'Function',
       versionLinks: {
         v1: 'api/lit-html/directives/',
       },

@@ -8731,6 +8731,10 @@
             "moduleSpecifier": "lit/directives/async-append.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "AsyncAppendDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -9382,6 +9386,10 @@
             "moduleSpecifier": "lit/directives/async-replace.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "AsyncReplaceDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -9696,6 +9704,10 @@
             "moduleSpecifier": "lit/directives/cache.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "CacheDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -10152,6 +10164,10 @@
             "moduleSpecifier": "lit/directives/class-map.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "ClassMapDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -10212,7 +10228,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/class-map.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "ClassInfo"
+        }
       },
       {
         "name": "guard",
@@ -10564,6 +10584,10 @@
             "moduleSpecifier": "lit/directives/guard.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "GuardDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -11199,6 +11223,10 @@
             "moduleSpecifier": "lit/directives/live.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "LiveDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -11676,7 +11704,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/ref.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "Ref"
+        }
       },
       {
         "name": "RefDirective",
@@ -12092,6 +12124,10 @@
             "moduleSpecifier": "lit/directives/ref.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "RefDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -12185,7 +12221,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/ref.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "RefOrCallback"
+        }
       },
       {
         "name": "repeat",
@@ -12868,6 +12908,10 @@
             "moduleSpecifier": "lit/directives/repeat.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "RepeatDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -12942,7 +12986,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/repeat.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "ItemTemplate"
+        }
       },
       {
         "name": "KeyFn",
@@ -13007,7 +13055,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/repeat.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "KeyFn"
+        }
       },
       {
         "name": "RepeatDirectiveFn",
@@ -13248,7 +13300,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/repeat.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "RepeatDirectiveFn"
+        }
       },
       {
         "name": "styleMap",
@@ -13585,6 +13641,10 @@
             "moduleSpecifier": "lit/directives/style-map.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "StyleMapDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -13646,7 +13706,11 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/style-map.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "StyleInfo"
+        }
       },
       {
         "name": "templateContent",
@@ -13955,6 +14019,10 @@
             "moduleSpecifier": "lit/directives/template-content.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "TemplateContentDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -14437,6 +14505,10 @@
             "moduleSpecifier": "lit/directives/unsafe-html.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "UnsafeHTMLDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -14922,6 +14994,10 @@
             "moduleSpecifier": "lit/directives/unsafe-svg.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "UnsafeSVGDirective"
+        },
         "heritage": [
           {
             "type": "reference",
@@ -15415,6 +15491,10 @@
             "moduleSpecifier": "lit/directives/until.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "UntilDirective"
+        },
         "heritage": [
           {
             "type": "reference",
