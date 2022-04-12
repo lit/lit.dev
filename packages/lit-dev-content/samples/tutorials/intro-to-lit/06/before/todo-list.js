@@ -1,9 +1,11 @@
-import {LitElement, html} from 'lit';
+import {LitElement, html, css} from 'lit';
 
 export class ToDoList extends LitElement {
   static properties = {
     listItems: {attribute: false},
   };
+  
+  // TODO: Add styles here
 
   constructor() {
     super();
