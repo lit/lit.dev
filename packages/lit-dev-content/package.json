@@ -67,7 +67,7 @@
     "@material/mwc-textfield": "^0.25.1",
     "lit": "^2.1.0",
     "minisearch": "^3.0.4",
-    "playground-elements": "^0.15.2",
+    "playground-elements": "^0.15.4",
     "tarts": "^1.0.0",
     "tslib": "^2.2.0"
   }
