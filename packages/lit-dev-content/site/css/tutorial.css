@@ -290,6 +290,10 @@ resize-bar[active] {
 /* Notes and warnings
 /* ------------------------------------ */
 
+#tutorialContent litdev-aside {
+  --lit-dev-aside-border-color: #ccc;
+}
+
 #tutorialContent aside {
   position: relative;
   margin: 1em 0;
