@@ -7,11 +7,7 @@
 import {html} from 'lit';
 
 // Source: Ocupop Design
-export const greenCheckIcon = html`<svg
-  x="0px"
-  y="0px"
-  viewBox="0 0 125 125"
->
+export const greenCheckIcon = html`<svg x="0px" y="0px" viewBox="0 0 125 125">
   <desc>A white checkmark in a green circle</desc>
   <circle fill="#19D695" cx="62.5" cy="62.5" r="61.5" />
   <polygon

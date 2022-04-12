@@ -550,7 +550,7 @@ ${content}
 
   eleventyConfig.addPlugin(litPlugin, {
     componentModules,
-    ignoreGlobs: ['**/tutorials/content/**/*']
+    ignoreGlobs: ['**/tutorials/content/**/*'],
   });
 
   return {
