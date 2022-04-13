@@ -1,0 +1,24 @@
+{
+  "header": "Pointer Events",
+  "difficulty": "Beginner",
+  "size": "small",
+  "duration": 10,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Intro to Pointer Events"
+    },
+    {
+      "title": "Event Types"
+    },
+    {
+      "title": "Pointer Event Properties"
+    },
+    {
+      "title": "Pointer Capturing"
+    },
+    {
+      "title": "Controlling scrolling with touch-action"
+    }
+  ]
+}
