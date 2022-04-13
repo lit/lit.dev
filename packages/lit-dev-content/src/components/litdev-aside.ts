@@ -17,7 +17,6 @@ export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info';
 export class LitDevAside extends LitElement {
   static styles = css`
     :host {
-      color: currentColor;
       display: block;
       margin: 1em 0;
     }
@@ -49,7 +48,7 @@ export class LitDevAside extends LitElement {
     }
   `;
 
-  @property({type: String})
+  @property()
   type: AsideVariant = 'info';
 
   @property({type: Boolean, reflect: true, attribute: 'no-header'})
