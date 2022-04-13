@@ -7,7 +7,7 @@
 import {html} from 'lit';
 
 // Source: Ocupop Design
-export const yellowBangIcon = html`<svg x="0px" y="0px" viewBox="0 0 125 125">
+export const yellowBangIcon = html`<svg viewBox="0 0 125 125">
   <desc>A white exclamation mark in a yellow circle</desc>
   <g>
     <circle fill="#F9A012" cx="62.5" cy="62.5" r="61.5" />

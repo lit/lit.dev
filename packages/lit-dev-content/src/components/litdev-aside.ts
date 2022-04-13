@@ -8,8 +8,8 @@ import {css, html, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {greenCheckIcon} from '../icons/green-check-icon.js';
 import {redXIcon} from '../icons/red-x-icon.js';
-import {yellowBangIcon} from '../icons/yellow-bang-icon';
-import {blueInfoIcon} from '../icons/blue-info-icon';
+import {yellowBangIcon} from '../icons/yellow-bang-icon.js';
+import {blueInfoIcon} from '../icons/blue-info-icon.js';
 
 export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info';
 

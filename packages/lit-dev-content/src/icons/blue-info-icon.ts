@@ -7,7 +7,7 @@
 import {html} from 'lit';
 
 // Source: Ocupop Design
-export const blueInfoIcon = html`<svg x="0px" y="0px" viewBox="0 0 125 125">
+export const blueInfoIcon = html`<svg viewBox="0 0 125 125">
   <desc>A white letter i in a blue circle</desc>
   <g>
     <circle fill="#324fff" cx="62.5" cy="62.5" r="61.5" />
