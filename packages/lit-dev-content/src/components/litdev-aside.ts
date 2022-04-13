@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {css, html, LitElement} from 'lit';
+import {css, html, LitElement, nothing} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {greenCheckIcon} from '../icons/green-check-icon.js';
 import {redXIcon} from '../icons/red-x-icon.js';
@@ -74,6 +74,12 @@ export class LitDevAside extends LitElement {
         return yellowBangIcon;
       case 'info':
         return blueInfoIcon;
+      default:
+        const exhaustiveCheck: never = this.type;
+        console.warn(
+          `Received unexpected type for <litdev-aside>: ${exhaustiveCheck}`
+        );
+        return nothing;
     }
   }
 }
