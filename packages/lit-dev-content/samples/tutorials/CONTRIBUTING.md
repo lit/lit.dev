@@ -164,28 +164,47 @@ customElements.define('my-element', MyElement);
 You can also insert an aside in your instructions by using the following format:
 
 ```html
-<aside class="positive">
-  Make sure to do <code>this</code>!
-</aside>
+<litdev-aside type="positive">
 
-<aside class="negative">
-  Make sure <b>NOT</b> to do <code>this</code>!
-</aside>
+The first line is always a bolded header.
 
-<aside class="info">
-  Check out more info <a href="https://lit.dev/docs/templates/expressions/?mods=tutorialCatalog#well-formed-html">in this docs section</a>.
-</aside>
+Make sure to do `this`!
+
+</litdev-aside>
+
+<litdev-aside type="warn" no-header>
+
+The `no-header` will make sure that this line is not bolded.
+
+Beware of `this`!
+
+</litdev-aside>
+
+<litdev-aside type="negative">
+
+Make sure NOT to do `this`!
+
+The following non-header lines here make sense to explain the assertion in
+the header line above.
+
+</litdev-aside>
+
+<litdev-aside type="info">
+
+Check out more info [in this docs section](/docs/templates/expressions/#well-formed-html).
+
+</litdev-aside>
 ```
 
-*Note:* markdown is not rendered inside an aside, you must use HTML.
+*Note:* markdown will only be parsed as markdown if there is an empty line
+between the text and the HTML tag.
 
 The available asides are:
 
 * `positive`
-* `warning`
+* `warn`
 * `negative`
 * `info`
-* `labs`
 
 ## Good tutorial Habits
 
