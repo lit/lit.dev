@@ -2,7 +2,7 @@ import {LitElement, html, css, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 @customElement('rating-element')
-export class RatingElement extends LitElement {
+class RatingElement extends LitElement {
   static styles = css`
     :host {
       display: inline-flex;

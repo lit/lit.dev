@@ -7,50 +7,49 @@
   "imgSrc": "images/tutorials/wc-to-lit/wclogo.png",
   "imgAlt": "The Web Components logo",
   "steps": [
-      {
-        "title": "Introduction",
-        "hasAfter": true
-      },
-      {
-        "title": "Define A Custom Element"
-      },
-      {
-        "title": "Custom Element Lifecycle & Rendering"
-      },
-      {
-        "title": "Shadow DOM"
-      },
-      {
-        "title": "HTML Templates"
-      },
-      {
-        "title": "Adding Functionality - Properties"
-      },
-      {
-        "title": "Adding Functionality - Attributes"
-      },
-      {
-        "title": "Adding Functionality - Attribute Styling"
-      },
-      {
-        "title": "Adding Functionality - Listeners"
-      },
-      {
-        "title": "lit-html"
-      },
-      {
-        "title": "lit-html - Declarative Templating"
-      },
-      {
-        "title": "LitElement"
-      },
-      {
-        "title": "LitElement - Lifecycle and Properties",
-        "hasAfter": true
-      },
-      {
-        "title": "Recap",
-        "hasAfter": true
-      }
-    ]
+    {
+      "title": "Introduction",
+      "noSolve": true
+    },
+    {
+      "title": "Define a custom element"
+    },
+    {
+      "title": "Custom element lifecycle & rendering"
+    },
+    {
+      "title": "Shadow DOM"
+    },
+    {
+      "title": "HTML Templates"
+    },
+    {
+      "title": "Adding Functionality - Properties"
+    },
+    {
+      "title": "Adding Functionality - Attributes"
+    },
+    {
+      "title": "Adding Functionality - Attribute Styling"
+    },
+    {
+      "title": "Adding Functionality - Listeners"
+    },
+    {
+      "title": "Lit Templates"
+    },
+    {
+      "title": "Declarative Event Listeners"
+    },
+    {
+      "title": "LitElement"
+    },
+    {
+      "title": "LitElement - Lifecycle and Properties"
+    },
+    {
+      "title": "Recap",
+      "noSolve": true
+    }
+  ]
 }
