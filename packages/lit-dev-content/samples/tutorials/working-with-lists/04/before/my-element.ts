@@ -10,7 +10,7 @@ class MyElement extends LitElement {
     { id: 1, task: 'Go for a walk'},
     { id: 2, task: 'Learn Lit'},
     { id: 3, task: 'Take a nap'},
-]
+  ];
 
   render() {
     return html`

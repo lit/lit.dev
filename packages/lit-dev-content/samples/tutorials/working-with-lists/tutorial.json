@@ -10,7 +10,7 @@
       "hasAfter": true
     },
     {
-      "title": "Using an array of templates",
+      "title": "Building an array of templates",
       "hasAfter": true
     },
     {
@@ -19,7 +19,11 @@
     },
     {
       "title": "The repeat directive",
-      "hasAfter": true
+      "hasAfter": false
+    },
+    {
+      "title": "Recap",
+      "noSolve": true
     }
   ]
 }
