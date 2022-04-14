@@ -7,7 +7,7 @@
   "steps": [
     {
       "title": "Build a Tooltip Element",
-      "hasAfter": true
+      "noSolve": true
     },
     {
       "title": "Get started with styling"
@@ -37,7 +37,7 @@
     },
     {
       "title": "Congratulations!",
-      "hasAfter": true
+      "noSolve": true
     }
   ]
 }
