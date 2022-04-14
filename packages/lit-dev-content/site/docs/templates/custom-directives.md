@@ -363,7 +363,7 @@ The previous example directives are synchronous: they return values synchronousl
 
 Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
-To set a value asynchronously, a directive needs to extend the {% api "AsyncDirective" %} base class, which provides a `setValue()` API.
+To update a directive's result asynchronously, a directive needs to extend the {% api "AsyncDirective" %} base class, which provides a `setValue()` API. `setValue()` allows a directive to "push" a new value into its template expression, outside of the template's normal `update`/`render` cycle.
 
 Here's an example of a simple async directive that renders a Promise value:
 
