@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import {map} from 'lit/directives/map.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -7,14 +8,10 @@ class MyElement extends LitElement {
   items = new Set(['Apple', 'Banana', 'Grape', 'Orange', 'Lime'])
 
   render() {
-    const templates = [];
-    for (const item of this.items) {
-      templates.push(html`<li>${item}</li>`)
-    }
-
     return html`
+      <p>My unique fruits</p>
       <ul>
-        ${templates}
+        ${map(this.items, (item) => html`<li>${item}</li>`)}
       </ul>
     `;
   }

@@ -15,8 +15,8 @@ class MyElement extends LitElement {
   render() {
     return html`
       <p>Things to do today:</p>
-      <button @click=${() => this.sort(1)}>Sort ascending</button>
-      <button @click=${() => this.sort(-1)}>Sort descending</button>
+      <button @click=${() => this._sort(1)}>Sort ascending</button>
+      <button @click=${() => this._sort(-1)}>Sort descending</button>
       <ul>
         <!-- TODO: Replace below using repeat directive. -->
         ${this.items.map(
@@ -27,7 +27,7 @@ class MyElement extends LitElement {
     `;
   }
 
-  private sort(dir: number) {
+  private _sort(dir: number) {
     this.items = [...this.items.sort((a, b) => a.task.localeCompare(b.task) * dir)];
   }
 }

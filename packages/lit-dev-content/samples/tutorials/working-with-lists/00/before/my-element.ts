@@ -10,7 +10,8 @@ class MyElement extends LitElement {
     return html`
       <p>A list of my friends</p>
       <ul>
-        <!-- TODO: Render names. -->
+        <!-- TODO: Replace with mapped templates. -->
+        ${this.names}
       </ul>
     `;
   }
