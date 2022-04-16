@@ -13,13 +13,16 @@ class MyElement extends LitElement {
     return html`
       <p>The last city I've been to: ${this.items[this.lastIndex]}</p>
       <ul>
-        <!-- TODO: Add mouseenter event handlers for items below. -->
         ${this.items.map(
-          (item) => html`<li>${item}</li>`
+          (item, index) => html`
+            <li @mouseenter=${() => this._updateLastIndex(index)}>${item}</li>
+          `
         )}
       </ul>
     `;
   }
 
-  // TODO: Implement method to update `lastIndex`.
+  private _updateLastIndex(newIndex: number) {
+    this.lastIndex = newIndex;
+  }
 }

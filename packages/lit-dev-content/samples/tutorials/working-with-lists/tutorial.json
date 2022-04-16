@@ -19,6 +19,10 @@
     },
     {
       "title": "The repeat directive",
+      "hasAfter": true
+    },
+    {
+      "title": "Handling events in lists",
       "hasAfter": false
     },
     {
