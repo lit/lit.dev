@@ -6,9 +6,8 @@
 
 import {html} from 'lit';
 
-// Source: google fonts material icons
+// Source: https://fonts.google.com/icons?selected=Material+Icons+Outlined:sync
 export const loopIcon = html`<svg
-  xmlns="http://www.w3.org/2000/svg"
   height="24px"
   viewBox="0 0 24 24"
   width="24px"
