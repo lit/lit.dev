@@ -8163,7 +8163,8 @@
                     "name": "AsyncAppendDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "AsyncAppendDirective"
+                      "anchor": "AsyncAppendDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -8227,7 +8228,8 @@
                   "name": "AsyncAppendDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "AsyncAppendDirective"
+                    "anchor": "AsyncAppendDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -8720,7 +8722,8 @@
             "name": "AsyncReplaceDirective",
             "location": {
               "page": "directives",
-              "anchor": "AsyncReplaceDirective"
+              "anchor": "AsyncReplaceDirective",
+              "excludeFromTOC": true
             }
           }
         ],
@@ -8731,13 +8734,19 @@
             "moduleSpecifier": "lit/directives/async-append.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "AsyncAppendDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
             "name": "AsyncReplaceDirective",
             "location": {
               "page": "directives",
-              "anchor": "AsyncReplaceDirective"
+              "anchor": "AsyncReplaceDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -8825,7 +8834,8 @@
                     "name": "AsyncReplaceDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "AsyncReplaceDirective"
+                      "anchor": "AsyncReplaceDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -8880,7 +8890,8 @@
                   "name": "AsyncReplaceDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "AsyncReplaceDirective"
+                    "anchor": "AsyncReplaceDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "inheritedFrom": {
@@ -9371,7 +9382,8 @@
             "name": "AsyncAppendDirective",
             "location": {
               "page": "directives",
-              "anchor": "AsyncAppendDirective"
+              "anchor": "AsyncAppendDirective",
+              "excludeFromTOC": true
             }
           }
         ],
@@ -9382,6 +9394,11 @@
             "moduleSpecifier": "lit/directives/async-replace.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "AsyncReplaceDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -9442,7 +9459,8 @@
                     "name": "CacheDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "CacheDirective"
+                      "anchor": "CacheDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -9506,7 +9524,8 @@
                   "name": "CacheDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "CacheDirective"
+                    "anchor": "CacheDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -9696,6 +9715,11 @@
             "moduleSpecifier": "lit/directives/cache.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "CacheDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -9865,7 +9889,8 @@
                   "name": "ClassInfo",
                   "location": {
                     "page": "directives",
-                    "anchor": "ClassInfo"
+                    "anchor": "ClassInfo",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -9880,7 +9905,8 @@
                     "name": "ClassMapDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "ClassMapDirective"
+                      "anchor": "ClassMapDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -9944,7 +9970,8 @@
                   "name": "ClassMapDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "ClassMapDirective"
+                    "anchor": "ClassMapDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -9996,7 +10023,8 @@
                       "name": "ClassInfo",
                       "location": {
                         "page": "directives",
-                        "anchor": "ClassInfo"
+                        "anchor": "ClassInfo",
+                        "excludeFromTOC": true
                       }
                     }
                   }
@@ -10073,7 +10101,8 @@
                             "name": "ClassInfo",
                             "location": {
                               "page": "directives",
-                              "anchor": "ClassInfo"
+                              "anchor": "ClassInfo",
+                              "excludeFromTOC": true
                             }
                           }
                         }
@@ -10152,6 +10181,11 @@
             "moduleSpecifier": "lit/directives/class-map.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "ClassMapDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -10212,7 +10246,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/class-map.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "ClassInfo",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "guard",
@@ -10279,7 +10318,8 @@
                     "name": "GuardDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "GuardDirective"
+                      "anchor": "GuardDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -10337,7 +10377,8 @@
                   "name": "GuardDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "GuardDirective"
+                    "anchor": "GuardDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "inheritedFrom": {
@@ -10564,6 +10605,11 @@
             "moduleSpecifier": "lit/directives/guard.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "GuardDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -10951,7 +10997,8 @@
                     "name": "LiveDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "LiveDirective"
+                      "anchor": "LiveDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -11015,7 +11062,8 @@
                   "name": "LiveDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "LiveDirective"
+                    "anchor": "LiveDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -11199,6 +11247,11 @@
             "moduleSpecifier": "lit/directives/live.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "LiveDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -11474,7 +11527,8 @@
               "name": "Ref",
               "location": {
                 "page": "directives",
-                "anchor": "Ref"
+                "anchor": "Ref",
+                "excludeFromTOC": true
               }
             }
           }
@@ -11521,7 +11575,8 @@
                   "name": "RefOrCallback",
                   "location": {
                     "page": "directives",
-                    "anchor": "RefOrCallback"
+                    "anchor": "RefOrCallback",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -11536,7 +11591,8 @@
                     "name": "RefDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "RefDirective"
+                      "anchor": "RefDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -11599,7 +11655,8 @@
                   "name": "Ref",
                   "location": {
                     "page": "directives",
-                    "anchor": "Ref"
+                    "anchor": "Ref",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -11676,7 +11733,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/ref.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "Ref",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "RefDirective",
@@ -11711,7 +11773,8 @@
                   "name": "RefDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "RefDirective"
+                    "anchor": "RefDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "inheritedFrom": {
@@ -11891,7 +11954,8 @@
                       "name": "RefOrCallback",
                       "location": {
                         "page": "directives",
-                        "anchor": "RefOrCallback"
+                        "anchor": "RefOrCallback",
+                        "excludeFromTOC": true
                       }
                     }
                   }
@@ -12029,7 +12093,8 @@
                             "name": "RefOrCallback",
                             "location": {
                               "page": "directives",
-                              "anchor": "RefOrCallback"
+                              "anchor": "RefOrCallback",
+                              "excludeFromTOC": true
                             }
                           }
                         }
@@ -12092,6 +12157,11 @@
             "moduleSpecifier": "lit/directives/ref.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "RefDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -12129,7 +12199,8 @@
               "name": "Ref",
               "location": {
                 "page": "directives",
-                "anchor": "Ref"
+                "anchor": "Ref",
+                "excludeFromTOC": true
               }
             },
             {
@@ -12185,7 +12256,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/ref.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "RefOrCallback",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "repeat",
@@ -12246,7 +12322,8 @@
                       "name": "KeyFn",
                       "location": {
                         "page": "directives",
-                        "anchor": "KeyFn"
+                        "anchor": "KeyFn",
+                        "excludeFromTOC": true
                       }
                     },
                     {
@@ -12260,7 +12337,8 @@
                       "name": "ItemTemplate",
                       "location": {
                         "page": "directives",
-                        "anchor": "ItemTemplate"
+                        "anchor": "ItemTemplate",
+                        "excludeFromTOC": true
                       }
                     }
                   ]
@@ -12283,7 +12361,8 @@
                   "name": "ItemTemplate",
                   "location": {
                     "page": "directives",
-                    "anchor": "ItemTemplate"
+                    "anchor": "ItemTemplate",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -12335,7 +12414,8 @@
                   "name": "ItemTemplate",
                   "location": {
                     "page": "directives",
-                    "anchor": "ItemTemplate"
+                    "anchor": "ItemTemplate",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -12390,7 +12470,8 @@
                       "name": "KeyFn",
                       "location": {
                         "page": "directives",
-                        "anchor": "KeyFn"
+                        "anchor": "KeyFn",
+                        "excludeFromTOC": true
                       }
                     },
                     {
@@ -12404,7 +12485,8 @@
                       "name": "ItemTemplate",
                       "location": {
                         "page": "directives",
-                        "anchor": "ItemTemplate"
+                        "anchor": "ItemTemplate",
+                        "excludeFromTOC": true
                       }
                     }
                   ]
@@ -12424,7 +12506,8 @@
                   "name": "ItemTemplate",
                   "location": {
                     "page": "directives",
-                    "anchor": "ItemTemplate"
+                    "anchor": "ItemTemplate",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -12486,7 +12569,8 @@
                   "name": "RepeatDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "RepeatDirective"
+                    "anchor": "RepeatDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -12564,7 +12648,8 @@
                       "name": "ItemTemplate",
                       "location": {
                         "page": "directives",
-                        "anchor": "ItemTemplate"
+                        "anchor": "ItemTemplate",
+                        "excludeFromTOC": true
                       }
                     }
                   }
@@ -12622,7 +12707,8 @@
                           "name": "KeyFn",
                           "location": {
                             "page": "directives",
-                            "anchor": "KeyFn"
+                            "anchor": "KeyFn",
+                            "excludeFromTOC": true
                           }
                         },
                         {
@@ -12636,7 +12722,8 @@
                           "name": "ItemTemplate",
                           "location": {
                             "page": "directives",
-                            "anchor": "ItemTemplate"
+                            "anchor": "ItemTemplate",
+                            "excludeFromTOC": true
                           }
                         }
                       ]
@@ -12656,7 +12743,8 @@
                       "name": "ItemTemplate",
                       "location": {
                         "page": "directives",
-                        "anchor": "ItemTemplate"
+                        "anchor": "ItemTemplate",
+                        "excludeFromTOC": true
                       }
                     }
                   }
@@ -12757,7 +12845,8 @@
                               "name": "KeyFn",
                               "location": {
                                 "page": "directives",
-                                "anchor": "KeyFn"
+                                "anchor": "KeyFn",
+                                "excludeFromTOC": true
                               }
                             },
                             {
@@ -12771,7 +12860,8 @@
                               "name": "ItemTemplate",
                               "location": {
                                 "page": "directives",
-                                "anchor": "ItemTemplate"
+                                "anchor": "ItemTemplate",
+                                "excludeFromTOC": true
                               }
                             }
                           ]
@@ -12787,7 +12877,8 @@
                           "name": "ItemTemplate",
                           "location": {
                             "page": "directives",
-                            "anchor": "ItemTemplate"
+                            "anchor": "ItemTemplate",
+                            "excludeFromTOC": true
                           }
                         }
                       ]
@@ -12868,6 +12959,11 @@
             "moduleSpecifier": "lit/directives/repeat.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "RepeatDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -12942,7 +13038,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/repeat.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "ItemTemplate",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "KeyFn",
@@ -13007,7 +13108,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/repeat.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "KeyFn",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "RepeatDirectiveFn",
@@ -13061,7 +13167,8 @@
                       "name": "KeyFn",
                       "location": {
                         "page": "directives",
-                        "anchor": "KeyFn"
+                        "anchor": "KeyFn",
+                        "excludeFromTOC": true
                       }
                     },
                     {
@@ -13075,7 +13182,8 @@
                       "name": "ItemTemplate",
                       "location": {
                         "page": "directives",
-                        "anchor": "ItemTemplate"
+                        "anchor": "ItemTemplate",
+                        "excludeFromTOC": true
                       }
                     }
                   ]
@@ -13098,7 +13206,8 @@
                   "name": "ItemTemplate",
                   "location": {
                     "page": "directives",
-                    "anchor": "ItemTemplate"
+                    "anchor": "ItemTemplate",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -13146,7 +13255,8 @@
                   "name": "ItemTemplate",
                   "location": {
                     "page": "directives",
-                    "anchor": "ItemTemplate"
+                    "anchor": "ItemTemplate",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -13197,7 +13307,8 @@
                       "name": "KeyFn",
                       "location": {
                         "page": "directives",
-                        "anchor": "KeyFn"
+                        "anchor": "KeyFn",
+                        "excludeFromTOC": true
                       }
                     },
                     {
@@ -13211,7 +13322,8 @@
                       "name": "ItemTemplate",
                       "location": {
                         "page": "directives",
-                        "anchor": "ItemTemplate"
+                        "anchor": "ItemTemplate",
+                        "excludeFromTOC": true
                       }
                     }
                   ]
@@ -13231,7 +13343,8 @@
                   "name": "ItemTemplate",
                   "location": {
                     "page": "directives",
-                    "anchor": "ItemTemplate"
+                    "anchor": "ItemTemplate",
+                    "excludeFromTOC": true
                   }
                 }
               }
@@ -13248,7 +13361,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/repeat.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "RepeatDirectiveFn",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "styleMap",
@@ -13283,7 +13401,8 @@
                       "name": "StyleInfo",
                       "location": {
                         "page": "directives",
-                        "anchor": "StyleInfo"
+                        "anchor": "StyleInfo",
+                        "excludeFromTOC": true
                       }
                     }
                   ],
@@ -13301,7 +13420,8 @@
                     "name": "StyleMapDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "StyleMapDirective"
+                      "anchor": "StyleMapDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -13365,7 +13485,8 @@
                   "name": "StyleMapDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "StyleMapDirective"
+                    "anchor": "StyleMapDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -13420,7 +13541,8 @@
                           "name": "StyleInfo",
                           "location": {
                             "page": "directives",
-                            "anchor": "StyleInfo"
+                            "anchor": "StyleInfo",
+                            "excludeFromTOC": true
                           }
                         }
                       ],
@@ -13503,7 +13625,8 @@
                                 "name": "StyleInfo",
                                 "location": {
                                   "page": "directives",
-                                  "anchor": "StyleInfo"
+                                  "anchor": "StyleInfo",
+                                  "excludeFromTOC": true
                                 }
                               }
                             ],
@@ -13585,6 +13708,11 @@
             "moduleSpecifier": "lit/directives/style-map.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "StyleMapDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -13646,7 +13774,12 @@
             "line": 7,
             "moduleSpecifier": "lit/directives/style-map.js"
           }
-        ]
+        ],
+        "location": {
+          "page": "directives",
+          "anchor": "StyleInfo",
+          "excludeFromTOC": true
+        }
       },
       {
         "name": "templateContent",
@@ -13692,7 +13825,8 @@
                     "name": "TemplateContentDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "TemplateContentDirective"
+                      "anchor": "TemplateContentDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -13756,7 +13890,8 @@
                   "name": "TemplateContentDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "TemplateContentDirective"
+                    "anchor": "TemplateContentDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -13955,6 +14090,11 @@
             "moduleSpecifier": "lit/directives/template-content.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "TemplateContentDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -14042,7 +14182,8 @@
                     "name": "UnsafeHTMLDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "UnsafeHTMLDirective"
+                      "anchor": "UnsafeHTMLDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -14103,7 +14244,8 @@
                   "name": "UnsafeHTMLDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "UnsafeHTMLDirective"
+                    "anchor": "UnsafeHTMLDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "overwrites": {
@@ -14426,7 +14568,8 @@
             "name": "UnsafeSVGDirective",
             "location": {
               "page": "directives",
-              "anchor": "UnsafeSVGDirective"
+              "anchor": "UnsafeSVGDirective",
+              "excludeFromTOC": true
             }
           }
         ],
@@ -14437,6 +14580,11 @@
             "moduleSpecifier": "lit/directives/unsafe-html.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "UnsafeHTMLDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -14524,7 +14672,8 @@
                     "name": "UnsafeSVGDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "UnsafeSVGDirective"
+                      "anchor": "UnsafeSVGDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -14582,7 +14731,8 @@
                   "name": "UnsafeSVGDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "UnsafeSVGDirective"
+                    "anchor": "UnsafeSVGDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "inheritedFrom": {
@@ -14911,7 +15061,8 @@
             "name": "UnsafeHTMLDirective",
             "location": {
               "page": "directives",
-              "anchor": "UnsafeHTMLDirective"
+              "anchor": "UnsafeHTMLDirective",
+              "excludeFromTOC": true
             }
           }
         ],
@@ -14922,13 +15073,19 @@
             "moduleSpecifier": "lit/directives/unsafe-svg.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "UnsafeSVGDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
             "name": "UnsafeHTMLDirective",
             "location": {
               "page": "directives",
-              "anchor": "UnsafeHTMLDirective"
+              "anchor": "UnsafeHTMLDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -14988,7 +15145,8 @@
                     "name": "UntilDirective",
                     "location": {
                       "page": "directives",
-                      "anchor": "UntilDirective"
+                      "anchor": "UntilDirective",
+                      "excludeFromTOC": true
                     }
                   }
                 }
@@ -15043,7 +15201,8 @@
                   "name": "UntilDirective",
                   "location": {
                     "page": "directives",
-                    "anchor": "UntilDirective"
+                    "anchor": "UntilDirective",
+                    "excludeFromTOC": true
                   }
                 },
                 "inheritedFrom": {
@@ -15415,6 +15574,11 @@
             "moduleSpecifier": "lit/directives/until.js"
           }
         ],
+        "location": {
+          "page": "directives",
+          "anchor": "UntilDirective",
+          "excludeFromTOC": true
+        },
         "heritage": [
           {
             "type": "reference",
@@ -16118,7 +16282,8 @@
             "name": "AsyncReplaceDirective",
             "location": {
               "page": "directives",
-              "anchor": "AsyncReplaceDirective"
+              "anchor": "AsyncReplaceDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -16126,7 +16291,8 @@
             "name": "RefDirective",
             "location": {
               "page": "directives",
-              "anchor": "RefDirective"
+              "anchor": "RefDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -16134,7 +16300,8 @@
             "name": "UntilDirective",
             "location": {
               "page": "directives",
-              "anchor": "UntilDirective"
+              "anchor": "UntilDirective",
+              "excludeFromTOC": true
             }
           }
         ],
@@ -18474,7 +18641,8 @@
             "name": "CacheDirective",
             "location": {
               "page": "directives",
-              "anchor": "CacheDirective"
+              "anchor": "CacheDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18482,7 +18650,8 @@
             "name": "ClassMapDirective",
             "location": {
               "page": "directives",
-              "anchor": "ClassMapDirective"
+              "anchor": "ClassMapDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18490,7 +18659,8 @@
             "name": "GuardDirective",
             "location": {
               "page": "directives",
-              "anchor": "GuardDirective"
+              "anchor": "GuardDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18498,7 +18668,8 @@
             "name": "LiveDirective",
             "location": {
               "page": "directives",
-              "anchor": "LiveDirective"
+              "anchor": "LiveDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18506,7 +18677,8 @@
             "name": "RepeatDirective",
             "location": {
               "page": "directives",
-              "anchor": "RepeatDirective"
+              "anchor": "RepeatDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18514,7 +18686,8 @@
             "name": "StyleMapDirective",
             "location": {
               "page": "directives",
-              "anchor": "StyleMapDirective"
+              "anchor": "StyleMapDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18522,7 +18695,8 @@
             "name": "TemplateContentDirective",
             "location": {
               "page": "directives",
-              "anchor": "TemplateContentDirective"
+              "anchor": "TemplateContentDirective",
+              "excludeFromTOC": true
             }
           },
           {
@@ -18530,7 +18704,8 @@
             "name": "UnsafeHTMLDirective",
             "location": {
               "page": "directives",
-              "anchor": "UnsafeHTMLDirective"
+              "anchor": "UnsafeHTMLDirective",
+              "excludeFromTOC": true
             }
           }
         ],

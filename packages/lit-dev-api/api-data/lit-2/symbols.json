@@ -1278,7 +1278,8 @@
   "$AsyncAppendDirective": [
     {
       "page": "directives",
-      "anchor": "AsyncAppendDirective"
+      "anchor": "AsyncAppendDirective",
+      "excludeFromTOC": true
     }
   ],
   "$AsyncAppendDirective.constructor": [
@@ -1348,7 +1349,8 @@
   "$AsyncReplaceDirective": [
     {
       "page": "directives",
-      "anchor": "AsyncReplaceDirective"
+      "anchor": "AsyncReplaceDirective",
+      "excludeFromTOC": true
     }
   ],
   "$AsyncReplaceDirective.constructor": [
@@ -1408,7 +1410,8 @@
   "$CacheDirective": [
     {
       "page": "directives",
-      "anchor": "CacheDirective"
+      "anchor": "CacheDirective",
+      "excludeFromTOC": true
     }
   ],
   "$CacheDirective.constructor": [
@@ -1444,7 +1447,8 @@
   "$ClassMapDirective": [
     {
       "page": "directives",
-      "anchor": "ClassMapDirective"
+      "anchor": "ClassMapDirective",
+      "excludeFromTOC": true
     }
   ],
   "$ClassMapDirective.constructor": [
@@ -1468,7 +1472,8 @@
   "$ClassInfo": [
     {
       "page": "directives",
-      "anchor": "ClassInfo"
+      "anchor": "ClassInfo",
+      "excludeFromTOC": true
     }
   ],
   "$classMap": [
@@ -1480,7 +1485,8 @@
   "$GuardDirective": [
     {
       "page": "directives",
-      "anchor": "GuardDirective"
+      "anchor": "GuardDirective",
+      "excludeFromTOC": true
     }
   ],
   "$GuardDirective.constructor": [
@@ -1528,7 +1534,8 @@
   "$LiveDirective": [
     {
       "page": "directives",
-      "anchor": "LiveDirective"
+      "anchor": "LiveDirective",
+      "excludeFromTOC": true
     }
   ],
   "$LiveDirective.constructor": [
@@ -1570,7 +1577,8 @@
   "$Ref": [
     {
       "page": "directives",
-      "anchor": "Ref"
+      "anchor": "Ref",
+      "excludeFromTOC": true
     }
   ],
   "$Ref.constructor": [
@@ -1634,7 +1642,8 @@
   "$RefDirective": [
     {
       "page": "directives",
-      "anchor": "RefDirective"
+      "anchor": "RefDirective",
+      "excludeFromTOC": true
     }
   ],
   "$RefDirective.constructor": [
@@ -1682,7 +1691,8 @@
   "$RefOrCallback": [
     {
       "page": "directives",
-      "anchor": "RefOrCallback"
+      "anchor": "RefOrCallback",
+      "excludeFromTOC": true
     }
   ],
   "$createRef": [
@@ -1700,7 +1710,8 @@
   "$RepeatDirective": [
     {
       "page": "directives",
-      "anchor": "RepeatDirective"
+      "anchor": "RepeatDirective",
+      "excludeFromTOC": true
     }
   ],
   "$RepeatDirective.constructor": [
@@ -1724,19 +1735,22 @@
   "$RepeatDirectiveFn": [
     {
       "page": "directives",
-      "anchor": "RepeatDirectiveFn"
+      "anchor": "RepeatDirectiveFn",
+      "excludeFromTOC": true
     }
   ],
   "$ItemTemplate": [
     {
       "page": "directives",
-      "anchor": "ItemTemplate"
+      "anchor": "ItemTemplate",
+      "excludeFromTOC": true
     }
   ],
   "$KeyFn": [
     {
       "page": "directives",
-      "anchor": "KeyFn"
+      "anchor": "KeyFn",
+      "excludeFromTOC": true
     }
   ],
   "$repeat": [
@@ -1748,7 +1762,8 @@
   "$StyleMapDirective": [
     {
       "page": "directives",
-      "anchor": "StyleMapDirective"
+      "anchor": "StyleMapDirective",
+      "excludeFromTOC": true
     }
   ],
   "$StyleMapDirective.constructor": [
@@ -1772,7 +1787,8 @@
   "$StyleInfo": [
     {
       "page": "directives",
-      "anchor": "StyleInfo"
+      "anchor": "StyleInfo",
+      "excludeFromTOC": true
     }
   ],
   "$styleMap": [
@@ -1784,7 +1800,8 @@
   "$TemplateContentDirective": [
     {
       "page": "directives",
-      "anchor": "TemplateContentDirective"
+      "anchor": "TemplateContentDirective",
+      "excludeFromTOC": true
     }
   ],
   "$TemplateContentDirective.constructor": [
@@ -1814,7 +1831,8 @@
   "$UnsafeHTMLDirective": [
     {
       "page": "directives",
-      "anchor": "UnsafeHTMLDirective"
+      "anchor": "UnsafeHTMLDirective",
+      "excludeFromTOC": true
     }
   ],
   "$UnsafeHTMLDirective.constructor": [
@@ -1876,7 +1894,8 @@
   "$UnsafeSVGDirective": [
     {
       "page": "directives",
-      "anchor": "UnsafeSVGDirective"
+      "anchor": "UnsafeSVGDirective",
+      "excludeFromTOC": true
     }
   ],
   "$UnsafeSVGDirective.constructor": [
@@ -1918,7 +1937,8 @@
   "$UntilDirective": [
     {
       "page": "directives",
-      "anchor": "UntilDirective"
+      "anchor": "UntilDirective",
+      "excludeFromTOC": true
     }
   ],
   "$UntilDirective.constructor": [
