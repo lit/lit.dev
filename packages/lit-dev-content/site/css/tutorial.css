@@ -304,6 +304,10 @@ resize-bar[active] {
 /* Notes and warnings
 /* ------------------------------------ */
 
+#tutorialContent litdev-aside {
+  --lit-dev-aside-border-color: #ccc;
+}
+
 #tutorialContent aside {
   position: relative;
   margin: 1em 0;
@@ -339,4 +343,8 @@ resize-bar[active] {
 
 #tutorialContent aside.negative::before {
   content: url(/images/alerts/negative.svg);
+}
+
+#tutorialContent details summary {
+  cursor: pointer;
 }

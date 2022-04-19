@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "index.html": {"hidden": true},
+    "comment-card.ts": {"hidden": true},
+    "time-ago.ts": {"hidden": true},
+    "time-ago-example.ts": {}
+  }
+}

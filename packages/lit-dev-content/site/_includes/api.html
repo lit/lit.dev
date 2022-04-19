@@ -255,7 +255,7 @@ layout: docs
 
 {% for item in data.items %}
   <div class="heading h2">
-    <h2 id="{{ item.location.anchor }}">
+    <h2 id="{{ item.location.anchor }}" {{ "data-toc-exclude" if item.location.excludeFromTOC }}>
       {{ item.name }}
     </h2>
     <span class="kindTag {{ kind(item) }}">
