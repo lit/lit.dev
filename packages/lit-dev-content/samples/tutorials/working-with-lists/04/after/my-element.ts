@@ -1,6 +1,7 @@
 import {html, css, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
-// TODO: Import directives
+import {range} from 'lit/directives/range.js';
+import {map} from 'lit/directives/map.js';
 
 const ROWS = 8;
 const COLUMNS = 8;
@@ -41,7 +42,17 @@ export class MyElement extends LitElement {
     return html`
       <p>Let's play a game!</p>
       <div id="board">
-        <!-- TODO: Place squares here. -->
+        ${map(
+          range(ROWS),
+          (row) => map(
+            range(COLUMNS),
+            (col) => html`
+              <div class="square ${(row + col) % 2 ? 'white' : 'black'}">
+                ${String.fromCharCode(col + 65)}${ROWS - row}
+              </div>
+            `
+          )
+        )}
       </div>
     `;
   }

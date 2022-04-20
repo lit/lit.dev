@@ -7,14 +7,22 @@
   "steps": [
     {
       "title": "Introduction",
-      "hasAfter": true
+      "noSolve": true
     },
     {
       "title": "The map directive",
       "hasAfter": true
     },
     {
+      "title": "Using array methods",
+      "hasAfter": true
+    },
+    {
       "title": "Building an array of renderables",
+      "hasAfter": true
+    },
+    {
+      "title": "The range directive",
       "hasAfter": true
     },
     {

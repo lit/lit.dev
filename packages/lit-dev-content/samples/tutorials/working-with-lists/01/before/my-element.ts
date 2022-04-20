@@ -12,7 +12,6 @@ class MyElement extends LitElement {
       <p>My unique fruits</p>
       <ul>
         <!-- TODO: Utilize map directive to render items. -->
-        ${this.items}
       </ul>
     `;
   }

@@ -3,16 +3,25 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-  @property({type: Array})
-  names = ['Chandler', 'Phoebe', 'Joey', 'Monica', 'Rachel', 'Ross'];
-
   render() {
     return html`
-      <p>A list of my friends</p>
-      <ul>
-        <!-- TODO: Replace with mapped templates. -->
-        ${this.names}
-      </ul>
+      <h1>Rendering lists with Lit</h1>
+      <p>Lit has built in support for any iterables!</p>
+      <h2>Array</h2>
+      <p>
+        ${['✨', '🔥', '❤️']}
+      </p>
+      <h2>Set</h2>
+      <p>
+        ${new Set(['A', 'B', 'C'])}
+      </p>
+      <h2>Generator</h2>
+      <p>
+        ${(function* () {
+            for (let i = 1; i < 4; i++) yield i;
+        })()}
+      </p>
     `;
   }
 }
+

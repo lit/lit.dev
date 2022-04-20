@@ -1,33 +1,44 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
-import {repeat} from 'lit/directives/repeat.js';
+import {customElement, property, state} from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
   @property({attribute: false})
-  items = [
-    { id: 0, task: 'Feed the cat'},
-    { id: 1, task: 'Go for a walk'},
-    { id: 2, task: 'Learn Lit'},
-    { id: 3, task: 'Take a nap'},
+  friends = ['Harry', 'Ron', 'Hermione'];
+
+  @property({attribute: false})
+  pets = [
+    { name: "Hedwig", species: "Owl" },
+    { name: "Scabbers", species: "Rat" },
+    { name: "Crookshanks", species: "Cat" },
   ];
 
+  @state()
+  includePets = true;
+
   render() {
+    const listItems = [];
+    for (const friend of this.friends) {
+      listItems.push(html`<li>${friend}</li>`);
+    }
+    if (this.includePets) {
+      for (const pet of this.pets) {
+        listItems.push(html`<li>${pet.name} (${pet.species})</li>`);
+      }
+    }
+
     return html`
-      <p>Things to do today:</p>
-      <button @click=${() => this._sort(1)}>Sort ascending</button>
-      <button @click=${() => this._sort(-1)}>Sort descending</button>
+      <button @click=${() => this._togglePetVisibility()}>
+        ${this.includePets ? 'Hide' : 'Show'} pets
+      </button>
+      <p>My magical friends</p>
       <ul>
-        ${repeat(
-          this.items,
-          (item) => item.id,
-          (item) => html`<li><label><input type="checkbox">${item.task}</label></li>`
-        )}
+        ${listItems}
       </ul>
     `;
   }
 
-  private _sort(dir: number) {
-    this.items = [...this.items.sort((a, b) => a.task.localeCompare(b.task) * dir)];
+  private _togglePetVisibility() {
+    this.includePets = !this.includePets;
   }
 }
