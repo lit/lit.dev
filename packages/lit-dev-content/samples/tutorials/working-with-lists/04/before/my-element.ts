@@ -3,7 +3,7 @@ import {customElement} from 'lit/decorators.js';
 // TODO: Import directives
 
 @customElement('my-element')
-export class MyElement extends LitElement {
+class MyElement extends LitElement {
   static styles = css`
     /* playground-fold */
     :host {
@@ -44,5 +44,7 @@ export class MyElement extends LitElement {
   }
 }
 
-const getColor = (row: number, col: number) => (row + col) % 2 ? 'white' : 'black';
-const getLabel = (row: number, col: number) => `${String.fromCharCode(65 + col)}${8 - row}`;
+const getColor = (row: number, col: number) =>
+  (row + col) % 2 ? 'white' : 'black';
+const getLabel = (row: number, col: number) =>
+  `${String.fromCharCode(65 + col)}${8 - row}`;

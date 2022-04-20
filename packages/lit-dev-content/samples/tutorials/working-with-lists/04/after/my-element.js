@@ -1,9 +1,7 @@
 import {html, css, LitElement} from 'lit';
-import {customElement} from 'lit/decorators.js';
 import {range} from 'lit/directives/range.js';
 import {map} from 'lit/directives/map.js';
 
-@customElement('my-element')
 class MyElement extends LitElement {
   static styles = css`
     /* playground-fold */
@@ -46,8 +44,7 @@ class MyElement extends LitElement {
     `;
   }
 }
+customElements.define('my-element', MyElement);
 
-const getColor = (row: number, col: number) =>
-  (row + col) % 2 ? "white" : "black";
-const getLabel = (row: number, col: number) =>
-  `${String.fromCharCode(65 + col)}${8 - row}`;
+const getColor = (row, col) => ((row + col) % 2 ? 'white' : 'black');
+const getLabel = (row, col) => `${String.fromCharCode(65 + col)}${8 - row}`;
