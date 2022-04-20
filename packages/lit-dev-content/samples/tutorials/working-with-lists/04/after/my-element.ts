@@ -39,18 +39,15 @@ export class MyElement extends LitElement {
     return html`
       <p>Let's play a game!</p>
       <div id="board">
-        ${map(
-          range(8),
-          (row) => map(
-            range(8),
-            (col) => html`
-              <div class="square ${(row + col) % 2 ? 'white' : 'black'}">
-                ${String.fromCharCode(col + 65 /* A */)}${8 - row}
-              </div>
-            `
-          )
-        )}
+        ${map(range(8), (row) => map(range(8), (col) => html`
+          <div class="square ${getColor(row, col)}">${getLabel(row, col)}</div>
+        `))}
       </div>
     `;
   }
 }
+
+const getColor = (row: number, col: number) =>
+  (row + col) % 2 ? "white" : "black";
+const getLabel = (row: number, col: number) =>
+  `${String.fromCharCode(65 + col)}${8 - row}`;

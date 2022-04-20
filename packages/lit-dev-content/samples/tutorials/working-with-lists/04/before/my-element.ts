@@ -43,3 +43,6 @@ export class MyElement extends LitElement {
     `;
   }
 }
+
+const getColor = (row: number, col: number) => (row + col) % 2 ? 'white' : 'black';
+const getLabel = (row: number, col: number) => `${String.fromCharCode(65 + col)}${8 - row}`;
