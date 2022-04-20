@@ -19,12 +19,14 @@
     "build:ts": {
       "files": [
         "src/**",
-        "package.json"
+        "package.json",
+        "../../tsconfig.base.json"
       ],
       "output": [
         "lib"
       ],
-      "command": "../../node_modules/.bin/tsc"
+      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
     },
     "test": {
       "dependencies": [
