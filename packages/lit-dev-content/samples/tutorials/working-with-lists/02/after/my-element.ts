@@ -3,7 +3,7 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-  @property({type: Array})
+  @property({attribute: false})
   names = ['Chandler', 'Phoebe', 'Joey', 'Monica', 'Rachel', 'Ross'];
 
   render() {

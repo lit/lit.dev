@@ -6,10 +6,10 @@ import {repeat} from 'lit/directives/repeat.js';
 class MyElement extends LitElement {
   @property({attribute: false})
   tasks = [
-    { id: 0, label: 'Learn Lit'},
-    { id: 1, label: 'Feed the cat'},
-    { id: 2, label: 'Go for a walk'},
-    { id: 3, label: 'Take a nap'},
+    { id: 'a', label: 'Learn Lit'},
+    { id: 'b', label: 'Feed the cat'},
+    { id: 'c', label: 'Go for a walk'},
+    { id: 'd', label: 'Take a nap'},
   ];
 
   render() {
@@ -23,7 +23,7 @@ class MyElement extends LitElement {
           (task) => task.id,
           (task) => html`
             <li>
-              <label><input type="checkbox" />${task.label} (${task.id})</label>
+              <label><input type="checkbox" />${task.id}) ${task.label}</label>
             </li>
           `
         )}

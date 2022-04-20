@@ -6,7 +6,7 @@ class MyElement extends LitElement {
   render() {
     return html`
       <h1>Rendering lists with Lit</h1>
-      <p>Lit has built in support for any iterables!</p>
+      <p>Lit has built-in support for any iterables!</p>
       <h2>Array</h2>
       <p>
         ${['✨', '🔥', '❤️']}

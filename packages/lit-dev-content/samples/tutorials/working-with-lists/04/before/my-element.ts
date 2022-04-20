@@ -2,9 +2,6 @@ import {html, css, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
 // TODO: Import directives
 
-const ROWS = 8;
-const COLUMNS = 8;
-
 @customElement('my-element')
 export class MyElement extends LitElement {
   static styles = css`
@@ -16,8 +13,8 @@ export class MyElement extends LitElement {
     }
     #board {
       display: grid;
-      grid-template-columns: repeat(${COLUMNS}, ${100/COLUMNS}%);
-      grid-template-rows: repeat(${ROWS}, ${100/ROWS}%);
+      grid-template-columns: repeat(8, 12.5%);
+      grid-template-rows: repeat(8, 12.5%);
       border: 2px solid #404040;
       box-sizing: border-box;
       height: 100%;
