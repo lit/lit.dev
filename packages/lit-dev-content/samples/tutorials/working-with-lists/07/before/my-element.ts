@@ -7,7 +7,7 @@ class MyElement extends LitElement {
   @property({attribute: false})
   things = [
     "Raindrops on roses",
-    "Whiskers on kittes",
+    "Whiskers on kittens",
     "Bright copper kettles",
     "Warm woolen mittens",
   ];
