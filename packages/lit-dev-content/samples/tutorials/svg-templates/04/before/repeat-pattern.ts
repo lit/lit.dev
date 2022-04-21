@@ -4,25 +4,22 @@ import {LitElement, html, svg, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 
-const svgCSS = css`
-	svg {
-		height: 100%;
-		width: 100%;
-	}
+const styles = css`
 
-	text {
-		fill: #ffffff;
-		dominant-baseline: hanging;
-		font-family: monospace;
-		font-size: 24px;
+	pattern {
+		x: -10;
+		y: -10;
+		width: 200;
+		height: 200;
+		patternUnits: userSpaceOnUse;
 	}
 `;
 
-const createChars = (chars: string): SVGTemplateResult => svg`
-    <text id="chars">${chars}</text>
+const createElement = (chars: string): SVGTemplateResult => svg`
+    <text id="chars" fill="#fff" dominant-baseline="hanging" font-family="monospace" font-size="24px">${chars}</text>
 `;
 
-const createPatternWithRotation = (
+const createMotif = (
 	numPrints: number,
 	offset: number = 0,
 ): SVGTemplateResult => {
@@ -37,7 +34,7 @@ const createPatternWithRotation = (
 				href="#chars"
 				transform="rotate(${currRotation}, 0, 0)">
 			</use>
-    	`)
+    	`);
 	}
 
 	return svg
@@ -48,14 +45,14 @@ const createPatternWithRotation = (
 		</g>`;
 }
 
-const createClip = () => svg`
+const createClipPath = () => svg`
 	<clipPath id="rect-clip">
 		<rect width="200" height="200"></rect>
 	</clipPath>
 `;
 
 const createTile = () => svg`
-	<g clip-path="url(#rect-clip)" id="pattern-tile">
+	<g clip-path="url(#rect-clip)">
 		<use transform="translate(0, 0)" href="#chars-rotated"></use>
 		<use transform="translate(0, 100)" href="#chars-rotated"></use>
 		<use transform="translate(100, -50)" href="#chars-rotated"></use>
@@ -71,15 +68,13 @@ const createRepeatPattern = () => svg`
 		y="-10"
 		width="200"
 		height="200"
-		patternUnits="userSpaceOnUse">
-			${createTile()}
+		patternUnits="userSpaceOnUse;"
+		${createTile()}
 	</pattern>
 `;
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-	static styles = svgCSS;
-
 	@property({type: String}) chars = "lit";
 	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
 	@property({
@@ -89,31 +84,19 @@ export class RepeatPattern extends LitElement {
 
 	render() {
 		return html`
-			<svg>
+			<svg width="100%" height="100%">
 				<defs>
-					${createClip()}
-					${createChars(this.chars)}
-					${createPatternWithRotation(
+					${createClipPath()}
+					${createElement(this.chars)}
+					${createMotif(
 						this.numPrints,
 						this.rotationOffset,
 					)}
 					${createRepeatPattern()}
 				</defs>
 		
-				<rect
-					x="0"
-					y="0"
-					width="100%"
-					height="100%"
-					fill="#000000">
-				</rect>
-				<rect
-					x="0"
-					y="0"
-					width="100%"
-					height="100%"
-					fill="url(#pattern-rounds)">
-				</rect>
+				<rect fill="#000000" width="100%" height="100%"></rect>
+				<rect fill="url(#pattern-rounds)" width="100%" height="100%"></rect>
 			</svg>
 		`;
 	}

@@ -1,26 +1,18 @@
 import type {SVGTemplateResult} from "lit";
 
-import {LitElement, html, svg, css} from 'lit';
+import {LitElement, html, svg} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-const svgCSS = css`
-	svg {
-		height: 100%;
-		width: 100%;
-	}
+const createElement = (chars: string): SVGTemplateResult => svg`
+	<text
+		id="chars"
+		dominant-basline="hanging"
+		font-family="monospace"
+		font-size="24px">
+		${chars}
+	</text>`;
 
-    text {
-        dominant-baseline: hanging;
-		font-family: monospace;
-        font-size: 24px;
-    }
-`;
-
-const createChars = (chars: string): SVGTemplateResult => svg`
-    <text id="chars">${chars}</text>
-`;
-
-const createPatternWithRotation = (
+const createMotif = (
 	numPrints: number,
 	offset: number = 0,
 ): SVGTemplateResult => {
@@ -38,22 +30,22 @@ const createPatternWithRotation = (
     	`)
 	}
 
-	return svg
-		`<g
+	return svg`
+		<g
 			id="chars-rotated"
 			transform="translate(50, 50)">
 				${prints}
 		</g>`;
 }
 
-const createClip = () => svg`
+const createClipPath = () => svg`
 	<clipPath id="rect-clip">
 		<rect width="200" height="200"></rect>
 	</clipPath>
 `;
 
 const createTile = () => svg`
-	<g clip-path="url(#rect-clip)" id="pattern-tile">
+	<g clip-path="url(#rect-clip)">
 		<use transform="translate(0, 0)" href="#chars-rotated"></use>
 		<use transform="translate(0, 100)" href="#chars-rotated"></use>
 		<use transform="translate(100, -50)" href="#chars-rotated"></use>
@@ -64,8 +56,6 @@ const createTile = () => svg`
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-	static styles = svgCSS;
-
 	@property({type: String}) chars = "lit";
 	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
 	@property({
@@ -75,11 +65,11 @@ export class RepeatPattern extends LitElement {
 
 	render() {
 		return html`
-			<svg>
+			<svg height="100%" width="100%">
 				<defs>
-					${createClip()}
-					${createChars(this.chars)}
-					${createPatternWithRotation(
+					${createClipPath()}
+					${createElement(this.chars)}
+					${createMotif(
 						this.numPrints,
 						this.rotationOffset,
 					)}

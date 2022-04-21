@@ -1,26 +1,19 @@
 import type { SVGTemplateResult } from "lit";
 
-import { LitElement, html, svg, css } from 'lit';
+import { LitElement, html, svg } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-const svgCSS = css`
-    svg {
-        height: 100%;
-        width: 100%;
-    }
-
-    text {
-        dominant-baseline: hanging;
-        font-family: monospace;
-		font-size: 24px;
-    }
+const createElement = (chars: string): SVGTemplateResult => svg`
+	<text
+		id="chars"
+		dominant-basline="hanging"
+		font-family="monospace"
+		font-size="24px">
+		${chars}
+	</text>
 `;
 
-const createChars = (chars: string): SVGTemplateResult => svg`
-    <text id="chars">${chars}</text>
-`;
-
-const createPatternWithRotation = (numPrints: number, offset: number = 0): SVGTemplateResult => {
+const createMotif = (numPrints: number, offset: number = 0): SVGTemplateResult => {
 	const rotation = 360 / numPrints;
 
 	const prints = [];
@@ -40,8 +33,6 @@ const createPatternWithRotation = (numPrints: number, offset: number = 0): SVGTe
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-	static styles = svgCSS;
-
 	@property({type: String}) chars = "lit";
 	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
 	@property({
@@ -51,11 +42,11 @@ export class RepeatPattern extends LitElement {
 
 	render() {
 		return html`
-			<svg>
+			<svg width="100%" height="100%">
 				<defs>
-					${createChars(this.chars)}
+					${createElement(this.chars)}
 				</defs>
-				${createPatternWithRotation(this.numPrints, this.rotationOffset)}
+				${createMotif(this.numPrints, this.rotationOffset)}
 			</svg>
     	`;
 	}

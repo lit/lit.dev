@@ -1,30 +1,25 @@
 import type { SVGTemplateResult } from "lit";
 
-import { LitElement, html, svg, css } from 'lit';
+import { LitElement, html, svg } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-const svgCSS = css`
-    text {
-        dominant-baseline: hanging;
-        font-family: monospace;
-		font-size: 24px;
-    }
-`;
-
-const createChars = (chars: string): SVGTemplateResult => svg`
-    <text>${chars}</text>
+const createElement = (chars: string): SVGTemplateResult => svg`
+    <text
+        dominant-basline="hanging"
+        font-family="monospace"
+        font-size="24px">
+        ${chars}
+    </text>
 `;
 
 @customElement('repeat-pattern')
-export class RepeatPattern extends LitElement {
-    static styles = svgCSS;
-    
-    @property({type: String}) chars = "Compose SVGs in Lit!";
+export class RepeatPattern extends LitElement {    
+    @property({type: String}) chars = "lit";
     
     render() {
         return html`
             <svg>
-                ${createChars(this.chars)}
+                ${createElement(this.chars)}
             </svg>
         `;
     }
