@@ -6,8 +6,6 @@
     "incremental": true,
     "tsBuildInfoFile": "lib/.tsbuildinfo"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": []
 }
