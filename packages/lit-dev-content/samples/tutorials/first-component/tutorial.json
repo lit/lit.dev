@@ -1,0 +1,46 @@
+{
+    "header": "Build your first Lit Component!",
+    "difficulty": "Beginner",
+    "size": "small",
+    "duration": 30,
+    "category": "Build",
+    "steps": [
+      {
+        "title": "What we're building!",
+        "hasAfter": true
+      },
+      {
+        "title": "Defining the Word Viewer!",
+        "hasAfter": true
+      },
+      {
+        "title": "Passing in properties with attributes!",
+        "hasAfter": true
+      },
+      {
+        "title": "One single word at a time!",
+        "hasAfter": true
+      },
+      {
+        "title": "Lifecycle and cycling the words!",
+        "hasAfter": true
+      },
+      {
+        "title": "Some Styles!",
+        "hasAfter": true
+      },
+      {
+        "title": "Some Events!",
+        "hasAfter": true
+      },
+      {
+        "title": "Dynamic Styles!",
+        "hasAfter": true
+      },
+      {
+        "title": "Conclusion!",
+        "noSolve": true
+      }
+    ]
+  }
+  
