@@ -1,6 +1,8 @@
-main {
+main,
+.not-featured {
   display: flex;
   flex-direction: column;
+  z-index: 0;
 }
 
 .category-title {
@@ -36,6 +38,15 @@ main {
   display: grid;
   gap: var(--_unit);
   grid-template-columns: repeat(3, 1fr);
+}
+
+section.featured,
+.not-featured {
+  padding-block: 2em;
+}
+
+.not-featured {
+  background-color: var(--color-light-gray);
 }
 
 @media (max-width: 1021px) {
