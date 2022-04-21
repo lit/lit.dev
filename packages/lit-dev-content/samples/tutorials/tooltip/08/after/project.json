@@ -1,7 +1,7 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "simple-tooltip.ts": {},
+    "simple-tooltip.ts": {"selected": true},
     "my-content.ts": {},
     "index.html": {}
   },
