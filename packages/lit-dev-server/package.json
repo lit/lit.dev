@@ -24,7 +24,7 @@
       ],
       "files": [
         "src/**",
-        "package.json",
+        "tsconfig.json",
         "../../tsconfig.base.json"
       ],
       "output": [
