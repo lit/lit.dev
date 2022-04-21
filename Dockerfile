@@ -1,6 +1,6 @@
 # Official lightweight Node.js image
 # https://hub.docker.com/_/node
-FROM node:17-slim
+FROM node:18-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   # Dependencies of Playwright Chromium for Playground SSR
