@@ -17,7 +17,7 @@ nohydrate: true
   <div class="center">
     <div class="card-grid">
       {% for tutorial in tutorials | sort(false, false, 'featured.position') %}
-        {% if tutorial.featured.position !== undefined %}
+        {% if tutorial.featured.position !== undefined and tutorial.featured.position < 3 %}
           <litdev-tutorial-card
               size="small"
               difficulty="{{ tutorial.difficulty }}"
