@@ -30,12 +30,34 @@ Lit tutorials are a way to provide a guided, interactive learning experience to 
 </details>
 
 <details>
-  <summary>Each step must have <code>before/</code> and <code>after/</code> subdirectories</summary>
+  <summary>If <code>hasAfter: true</code> in tutorial.json the step must have <code>before/</code> and <code>after/</code> subdirectories</summary>
 
 * `before/` holds the playground project for what is first presented to the user
 * `after/` holds the playground project for when the user clicks the `solve` button.
   * If `noSolve` is `true` for this step's metadata in `tutorial.json`, then the `solve` will not be shown for the step, and the `after/` folder is not required.
   * If `hasAfter` is `false` or `undefined` for this step's metadata in `tutorial.json`, then the `after/` directory is optional and the solving the step will load the next step's `before/` directory
+</details>
+
+<details>
+  <summary>If <code>checkable: true</code> in tutorial.json add code checking</summary>
+
+* create a `_check-code.js` file in the `before/` directory
+* In your `project.json`
+  * set your `"extends"` field to `"/samples/checkable-tutorial-base.json"`
+    * e.g. `"extends": "/samples/checkable-tutorial-base.json"`
+  * add the code-checking file as a `hidden` file to the step's `project.json`.
+    * e.g. `"_check-code.js": { "hidden": true }`
+* import the new file in `index.html`
+  * e.g.
+```html
+<head>
+  <!-- playground-fold --><script type="module" src="./_check-code.js"></script><!-- playground-fold-end -->
+
+  <script type="module" src="./my-element.js"></script>
+</head>
+```
+* Install the code checker from `'./_check-code-helpers.js'` and pass it an async callback that returns an object of type `{passed: boolean, message?: string}`
+* See [Code Checking](#code-checking) for more details
 </details>
 
 <details>
@@ -110,6 +132,9 @@ interface TutorialManifest {
     // Set to true if there should be no "solve" button for this step; in this
     // case no "after" folder is required.
     noSolve?: boolean;
+    // Whether or not the step is code checkable. see the `Code Checking`
+    // section below for more details.
+    checkable?: boolean;
   }[]
 }
 ```
@@ -205,6 +230,86 @@ The available asides are:
 * `warn`
 * `negative`
 * `info`
+
+## Code Checking
+
+To enable code checking for a step, add the `checkable: true` flag to the step in `tutorial.json`.
+
+Next create a file which will run your code checking. In this example we will call it `_check-code.js`.
+
+> ⚠️ **Note:** you **MUST** use a `.js` file extension or else this repo will not be able to TS build because we use playground-elements to inject the hidden `_check-code-helpers.js` file.
+
+Then add this code check file as a `hidden` file to the `project.json` of the `before` directory.
+
+Additionally make sure your `project.json` extends from `/samples/checkable-tutorial-base.json` to include the hidden `_check-code-helpers.js` communication file.
+
+<details open>
+  <summary>example: <code>/before/project.json</code></summary>
+
+```json
+{
+  "extends": "/samples/checkable-tutorial-base.json",
+  "files": {
+    "index.html": {},
+    "my-element.ts": {},
+    "_check-code.js": {"hidden": true}
+  }
+}
+```
+</details>
+
+Next, import this new file into your `index.html` file. And feel free to add the `<!-- playground-hide(-end) -->` comments to hide the import.
+
+
+<details open>
+  <summary>example: <code>index.html</code></summary>
+
+```html
+<head>
+  <!-- playground-hide --><script type="module" src="./_check-code.js"></script><!-- playground-hide-end -->
+  <script type="module" src="./my-element.js"></script>
+</head>
+<body>
+  <my-element name="User"></my-element>
+</body>
+```
+</details>
+
+In your `_check-code.js` file, import and call `installCodeChecker` from the hidden `'./_check-code-helpers.js'` file which is injected by playground elements in `checkable-tutorial-base.json`.
+
+`installCodeChecker` will set up communications between the tutorial page and the playground and call an async callback when the user requests code checking.
+
+The return type of the callback should be:
+
+`{passed: boolean, message?: string}`
+
+Where `passed` is whether the code has passed the checks and `message` is the optional error message to display.
+
+<details open>
+  <summary>example: <code>check-code.js</code></summary>
+
+```js
+import {installCodeChecker} from './_check-code-helpers.js';
+
+installCodeChecker(async () => {
+  let passed = true;
+  let message = '';
+
+  const element = document.body.querySelector('my-element');
+  const nameAttribute = element.getAttribute('name');
+
+  if (element.name === undefined) {
+    passed = false;
+    message = `Define the 'name' property on the element.`;
+  } else if (element.name !== nameAttribute) {
+    passed = false;
+    message = `The element's name property is not a reactive property.`;
+  }
+
+  return {passed, message};
+});
+```
+</details>
 
 ## Good tutorial Habits
 

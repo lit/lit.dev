@@ -26,7 +26,7 @@
     "prod:build": "npm run build:not-site && NODE_OPTIONS=--experimental-vm-modules eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
     "@lit-labs/eleventy-plugin-lit": "^0.1.1",
@@ -68,6 +68,7 @@
     "lit": "^2.1.0",
     "minisearch": "^3.0.4",
     "playground-elements": "^0.15.4",
+    "postdoc-lib": "^1.0.3",
     "tarts": "^1.0.0",
     "timeago.js": "^4.0.2",
     "tslib": "^2.2.0"

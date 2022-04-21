@@ -268,7 +268,11 @@ export class ApiDocsTransformer {
       : node.name;
 
     if (page && anchor) {
-      const location = {page, anchor};
+      const location = {
+        page,
+        anchor,
+        excludeFromTOC: nearestAncestorLocation?.excludeFromTOC,
+      };
       (node as ExtendedDeclarationReflection).location = location;
       this.updateSymbolMap(node.name, location);
       if (location.anchor !== node.name) {
@@ -678,7 +682,7 @@ export class ApiDocsTransformer {
       {
         slug: string;
         title: string;
-        anchorFilter?: (node: DeclarationReflection) => boolean;
+        tocFilter?: (node: DeclarationReflection) => boolean;
         items: Array<DeclarationReflection>;
         repo: string;
         commit: string;
@@ -733,10 +737,10 @@ export class ApiDocsTransformer {
     for (const page of pagesArray) {
       page.items.sort(this.symbolSortFn);
 
-      if (page.anchorFilter) {
-        for (const item of page.items) {
-          if (!page.anchorFilter(item)) {
-            delete (item as ExtendedDeclarationReflection)['location'];
+      if (page.tocFilter) {
+        for (const item of page.items as ExtendedDeclarationReflection[]) {
+          if (!page.tocFilter(item) && item.location) {
+            item.location.excludeFromTOC = true;
           }
         }
       }
