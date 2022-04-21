@@ -10,9 +10,9 @@ const themeCSS = css`
 	}
 
 	text {
-		fill: var(--pattern-text-color, #000000);
+		fill: var(--pattern-text-color, #0000FF);
 		font-size: var(--pattern-text-font-size, 28px);
-		stroke-width: var(--pattern-text-stroke-width, 1.2);
+		stroke-width: var(--pattern-text-stroke-width, 1.15px);
 		stroke: var(--pattern-text-stroke-color, #80ffe5);
 	}
 `;

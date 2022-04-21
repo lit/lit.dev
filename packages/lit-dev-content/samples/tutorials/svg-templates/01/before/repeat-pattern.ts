@@ -5,7 +5,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 const createElement = (chars: string): SVGTemplateResult => svg`
     <text
-        dominant-basline="hanging"
+        dominant-baseline="hanging"
         font-family="monospace"
         font-size="24px">
         ${chars}

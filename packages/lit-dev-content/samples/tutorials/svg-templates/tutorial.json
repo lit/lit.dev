@@ -1,18 +1,18 @@
 {
   "header": "SVG Templates",
-  "difficulty": "Beginner",
+  "difficulty": "Intermediate",
   "size": "medium",
-  "duration": 70,
+  "duration": 120,
   "category": "Build",
   "imgSrc": "images/logo-whitebg-padded-1600x800.png",
   "imgAlt": "This is the Lit icon",
   "steps": [
     {
-      "title": "Intro to SVG, Lit, and Patterns",
+      "title": "Pattern making with SVG in lit",
       "hasAfter": true
     },
     {
-      "title": "Create a pattern Element",
+      "title": "Create a pattern element",
       "hasAfter": true
     },
     {
