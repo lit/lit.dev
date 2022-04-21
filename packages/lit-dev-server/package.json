@@ -35,9 +35,9 @@
     },
     "start": {
       "dependencies": [
-        "build"
+        "build",
+        "../lit-dev-content:build:site"
       ],
-      "#comment": "These deps aren't complete, this depends on lit-dev-content...",
       "command": "node lib/server.js"
     }
   },
