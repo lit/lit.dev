@@ -8,11 +8,13 @@
   "imgAlt": "This is the Lit icon",
   "steps": [
     {
-      "title": "Advanced Templating!"
+      "title": "Advanced Templating!",
+      "checkable": true
     },
     {
       "title": "Yer done!",
-      "hasAfter": true
+      "hasAfter": true,
+      "checkable": true
     }
   ]
 }
