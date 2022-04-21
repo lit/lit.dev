@@ -1,12 +1,14 @@
 # Official lightweight Node.js image
 # https://hub.docker.com/_/node
-FROM node:15-slim
+FROM node:17-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   # Dependencies of Playwright Chromium for Playground SSR
   libgtk-3-0 \
   libnss3 \
   libasound2 \
+  libdrm2 \
+  libgbm1 \
   # Git needed for cloning Lit monorepo for API docs generation
   git \
   # Certificates needed for Git HTTPS
