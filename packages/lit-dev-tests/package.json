@@ -15,7 +15,7 @@
     "test:links:internal": "run-p --race start test:links:internal:cmd",
     "test:links:internal:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --recursive --exclude-external --ordered",
     "test:links:external": "run-p --race start test:links:external:cmd",
-    "test:links:external:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --exclude 'http://localhost:8000/dev/' --exclude 'https://www.npmjs.com/*' --get --recursive --host-requests 1"
+    "test:links:external:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --exclude 'http://localhost:8000/dev/' --exclude 'https://www.npmjs.com/*' --exclude 'https://www.twitter.com/*' --get --recursive --host-requests 1"
   },
   "dependencies": {
     "@playwright/test": "^1.19.1",
