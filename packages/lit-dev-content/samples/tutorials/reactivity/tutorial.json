@@ -1,0 +1,17 @@
+{
+  "header": "Reactivity",
+  "difficulty": "Beginner",
+  "size": "medium",
+  "duration": 70,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "What's a reactive property?",
+      "noSolve": true
+    },
+    {
+      "title": "Mastering transdimensional reactivity",
+      "hasAfter": true
+    }
+  ]
+}

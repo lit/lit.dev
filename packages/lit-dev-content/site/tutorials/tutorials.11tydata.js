@@ -38,6 +38,7 @@ module.exports = async () => {
     loadTutorialData('advanced-templating'),
     loadTutorialData('async-directive'),
     loadTutorialData('custom-attribute-converter'),
+    loadTutorialData('reactivity'),
 
     // Build
     loadTutorialData('brick-viewer'),
