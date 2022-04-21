@@ -8,9 +8,9 @@
   "type": "module",
   "scripts": {
     "build": "wireit",
-    "start": "cd ../.. && npm run start",
-    "test:integration": "playwright install && playwright test --config=lib/playwright.config.js",
-    "test:integration:update-golden-screenshots": "npm run test:integration -- --update-snapshots",
+    "start": "wireit",
+    "test:integration": "wireit",
+    "test:integration:update-golden-screenshots": "wireit",
     "test:links:redirects": "node lib/check-redirects.js",
     "test:links:internal": "run-p --race start test:links:internal:cmd",
     "test:links:internal:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --recursive --exclude-external --ordered",
@@ -23,7 +23,7 @@
         "../lit-dev-server:build"
       ],
       "files": [
-        "src/**",
+        "src/**/*.ts",
         "tsconfig.json",
         "../../tsconfig.base.json"
       ],
@@ -32,6 +32,27 @@
       ],
       "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
+    },
+    "start": {
+      "dependencies": [
+        "../..:start"
+      ]
+    },
+    "test:integration": {
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "src/**/*.png"
+      ],
+      "command": "playwright install && playwright test --config=lib/playwright.config.js"
+    },
+    "test:integration:update-golden-screenshots": {
+      "dependencies": [
+        "build"
+      ],
+      "files": [],
+      "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots"
     },
     "test:links:external:cmd": {
       "dependencies": [
