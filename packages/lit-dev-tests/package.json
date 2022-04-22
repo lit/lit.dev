@@ -7,7 +7,7 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "wireit",
     "start": "cd ../.. && npm run start",
     "test:integration": "playwright install && playwright test --config=lib/playwright.config.js",
     "test:integration:update-golden-screenshots": "npm run test:integration -- --update-snapshots",
@@ -16,6 +16,23 @@
     "test:links:internal:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --recursive --exclude-external --ordered",
     "test:links:external": "run-p --race start test:links:external:cmd",
     "test:links:external:cmd": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --exclude 'http://localhost:8000/dev/' --exclude 'https://www.npmjs.com/*' --exclude 'https://twitter.com/*' --get --recursive --host-requests 1"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "../lit-dev-server:build"
+      ],
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
+    }
   },
   "dependencies": {
     "@playwright/test": "^1.19.1",
