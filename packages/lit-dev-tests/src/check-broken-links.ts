@@ -28,7 +28,7 @@ class KnownGoodUrlCache {
   #writeStream: fs.WriteStream;
   constructor() {
     const urls = fs
-      .readFileSync(goodUrlsFilename, { encoding: 'utf8' })
+      .readFileSync(goodUrlsFilename, {encoding: 'utf8'})
       .split('\n')
       // filter out blank lines, and lines that start with a # so we support
       // comments
@@ -36,7 +36,7 @@ class KnownGoodUrlCache {
     for (const url of urls) {
       this.#urls.add(url);
     }
-    this.#writeStream = fs.createWriteStream(goodUrlsFilename, { flags: 'a' });
+    this.#writeStream = fs.createWriteStream(goodUrlsFilename, {flags: 'a'});
   }
 
   excludedKeywords() {
