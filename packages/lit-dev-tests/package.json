@@ -65,6 +65,7 @@
         "build",
         "../lit-dev-content:build"
       ],
+      "files": [],
       "output": [],
       "command": "node lib/check-redirects.js"
     },
