@@ -35,6 +35,9 @@
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "search.exclude": {
+      "api-data/*/repo": true
+    },
   },
   "extensions": {
     "recommendations": ["esbenp.prettier-vscode"]
