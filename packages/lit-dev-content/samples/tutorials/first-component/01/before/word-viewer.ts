@@ -1,7 +1,6 @@
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-// TODO: Register this customElement
 class WordViewer extends LitElement {
   render() {
     // TODO: Render something!
