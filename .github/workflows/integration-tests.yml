@@ -16,7 +16,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install-deps
       - run: npm run bootstrap
-      - run: npm run build
 
       - id: test
         run: npm run test:integration
