@@ -56,7 +56,8 @@
     },
     "test:links:redirects": {
       "dependencies": [
-        "build"
+        "build",
+        "../lit-dev-content:build"
       ],
       "command": "node lib/check-redirects.js"
     },
