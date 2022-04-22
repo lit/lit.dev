@@ -11,11 +11,10 @@
     "start": "wireit",
     "test:integration": "wireit",
     "test:integration:update-golden-screenshots": "wireit",
+    "test:links": "wireit",
     "test:links:redirects": "wireit",
-    "test:links:internal": "wireit",
-    "test:links:internal:cmd": "wireit",
-    "test:links:external": "wireit",
-    "test:links:external:cmd": "wireit"
+    "test:links:internal-and-external": "wireit",
+    "test:links:cmd": "wireit"
   },
   "wireit": {
     "build": {
@@ -60,6 +59,24 @@
       ],
       "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots"
     },
+    "test:links": {
+      "dependencies": [
+        "test:links:redirects",
+        "test:links:internal-and-external"
+      ]
+    },
+    "test:links:internal-and-external": {
+      "dependencies": [
+        "build",
+        "../lit-dev-content:build"
+      ],
+      "#comment": "Work around a race condition when using run-p with wireit where it will run two builds at once, which step on each other. So instead we depend on lit-dev-content:build here so that we do the necessary shared build steps first.",
+      "files": [
+        "known-good-urls.txt"
+      ],
+      "output": [],
+      "command": "run-p --race start test:links:cmd"
+    },
     "test:links:redirects": {
       "dependencies": [
         "build",
@@ -69,23 +86,7 @@
       "output": [],
       "command": "node lib/check-redirects.js"
     },
-    "test:links:internal": {
-      "#comment": "Work around a race condition when using run-p with wireit where it will run two builds at once, which step on each other. So instead we depend on lit-dev-content:build here so that we do the necessary shared build steps first.",
-      "dependencies": [
-        "../lit-dev-content:build"
-      ],
-      "command": "run-p --race start test:links:internal:cmd"
-    },
-    "test:links:internal:cmd": {
-      "command": "wait-on tcp:6415 && broken-link-checker http://localhost:6415 --recursive --exclude-external --ordered"
-    },
-    "test:links:external": {
-      "dependencies": [
-        "../lit-dev-content:build"
-      ],
-      "command": "run-p --race start test:links:external:cmd"
-    },
-    "test:links:external:cmd": {
+    "test:links:cmd": {
       "dependencies": [
         "build"
       ],
