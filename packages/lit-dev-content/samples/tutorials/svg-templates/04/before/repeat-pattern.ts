@@ -1,23 +1,16 @@
 import type {SVGTemplateResult} from "lit";
 
-import {LitElement, html, svg, css} from 'lit';
+import {LitElement, html, svg} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-
-const styles = css`
-
-	pattern {
-		x: -10;
-		y: -10;
-		width: 200;
-		height: 200;
-		patternUnits: userSpaceOnUse;
-	}
-`;
-
 const createElement = (chars: string): SVGTemplateResult => svg`
-    <text id="chars" fill="#fff" dominant-baseline="hanging" font-family="monospace" font-size="24px">${chars}</text>
-`;
+	<text
+		id="chars"
+		dominant-basline="hanging"
+		font-family="monospace"
+		font-size="24px">
+		${chars}
+	</text>`;
 
 const createMotif = (
 	numPrints: number,
@@ -68,7 +61,7 @@ const createRepeatPattern = () => svg`
 		y="-10"
 		width="200"
 		height="200"
-		patternUnits="userSpaceOnUse;"
+		patternUnits="userSpaceOnUse">
 		${createTile()}
 	</pattern>
 `;
@@ -95,7 +88,7 @@ export class RepeatPattern extends LitElement {
 					${createRepeatPattern()}
 				</defs>
 		
-				<rect fill="#000000" width="100%" height="100%"></rect>
+				<rect fill="#fff" width="100%" height="100%"></rect>
 				<rect fill="url(#pattern-rounds)" width="100%" height="100%"></rect>
 			</svg>
 		`;

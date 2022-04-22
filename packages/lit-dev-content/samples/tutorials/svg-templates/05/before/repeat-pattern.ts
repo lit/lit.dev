@@ -6,13 +6,13 @@ import {customElement, property} from 'lit/decorators.js';
 
 const themeCSS = css`
 	.background {
-		fill: var(--background-color, #ff8800);
+		fill: var(--background-color, #ffa500);
 	}
 
 	text {
-		fill: var(--font-color, #ffffff);
-		font-size: var(--font-size, 28px);
-		stroke-width: var(--stroke-width, 3);
+		fill: var(--font-color, #eca1ff);
+		font-size: var(--font-size, 26px);
+		stroke-width: var(--stroke-width, 1.1);
 		stroke: var(--stroke-color, #0000dd);
 	}
 `;
@@ -31,18 +31,8 @@ const svgCSS = css`
 	}
 
 	rect {
-		x: 0;
-		y: 0;
 		width: 100%;
 		height: 100%;
-	}
-
-	pattern {
-		x: -10;
-		y: -10;
-		width: 200;
-		height: 200;
-		patternUnits: userSpaceOnUse;
 	}
 `;
 
@@ -82,8 +72,8 @@ const createClipPath = () => svg`
 	</clipPath>
 `;
 
-const createPattern = () => svg`
-	<g clip-path="url(#rect-clip)" id="pattern-tile">
+const createTile = () => svg`
+	<g clip-path="url(#rect-clip)">
 		<use transform="translate(0, 0)" href="#chars-rotated"></use>
 		<use transform="translate(0, 100)" href="#chars-rotated"></use>
 		<use transform="translate(100, -50)" href="#chars-rotated"></use>
@@ -93,8 +83,14 @@ const createPattern = () => svg`
 `;
 
 const createRepeatPattern = () => svg`
-	<pattern id="pattern-rounds">
-		${createPattern()}
+	<pattern
+		id="pattern-rounds"
+		x="-10"
+		y="-10"
+		width="200"
+		height="200"
+		patternUnits="userSpaceOnUse">
+		${createTile()}
 	</pattern>
 `;
 
