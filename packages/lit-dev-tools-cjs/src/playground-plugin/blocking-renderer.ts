@@ -45,7 +45,7 @@ export class BlockingRenderer {
   private exited = false;
   private renderTimeout: number;
 
-  constructor({renderTimeout = 30000, maxHtmlBytes = 1024 * 1024} = {}) {
+  constructor({renderTimeout = 60_000, maxHtmlBytes = 1024 * 1024} = {}) {
     this.renderTimeout = renderTimeout;
     this.sharedHtml = new Uint8Array(new SharedArrayBuffer(maxHtmlBytes));
     this.worker = new workerthreads.Worker(
