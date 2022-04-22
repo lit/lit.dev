@@ -40,18 +40,24 @@
     },
     "test:integration": {
       "dependencies": [
-        "build"
+        "build",
+        "../lit-dev-content:build"
       ],
       "files": [
         "src/**/*.png"
       ],
+      "output": [],
       "command": "playwright install && playwright test --config=lib/playwright.config.js"
     },
     "test:integration:update-golden-screenshots": {
       "dependencies": [
-        "build"
+        "build",
+        "../lit-dev-content:build"
       ],
       "files": [],
+      "output": [
+        "src/**/*.png"
+      ],
       "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots"
     },
     "test:links:redirects": {
@@ -59,6 +65,7 @@
         "build",
         "../lit-dev-content:build"
       ],
+      "output": [],
       "command": "node lib/check-redirects.js"
     },
     "test:links:external:cmd": {
