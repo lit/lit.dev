@@ -1,5 +1,7 @@
-import {LitElement, html, PropertyValues} from 'lit';
+/* playground-fold */
+import {LitElement, html, PropertyValues, noChange} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
+import {animate} from '@lit-labs/motion';
 import {styleMap} from 'lit/directives/style-map.js';
 import {styles} from './styles.js';
 
@@ -35,8 +37,25 @@ export class MotionCarousel extends LitElement {
   }
 
   private left = 0;
+/* playground-fold-end */
+
+  /**
+   * Handle corner cases!
+   *
+   * This flag is set via the `onStart` and `onComplete` callbacks of the
+   * `animate` directive. It's used to avoid moving again *while* animating
+   * to ensure the relative position of the previous item doesn't change when
+   * wrapping the selection value.
+   *
+   * When there is no move, the previous item would be positioned on top of
+   * the selected item. We avoid this by applying `noChange` to its `left`
+   * when not moving.
+   */
+  private isAnimating = false;
+
   render() {
     const shouldMove = this.hasUpdated &&
+        !this.isAnimating &&
         this.selected !== this.previous;
     const shouldAdvance = shouldMove && this.advancing;
     const delta = (shouldMove ? Number(shouldAdvance) || -1 : 0) * 100;
@@ -46,29 +65,25 @@ export class MotionCarousel extends LitElement {
     const previousLeft = `${-this.left - delta}%`;
     return html`
       <div class="fit"
+        ${animate(() => ({
+          onStart: () => this.isAnimating = true,
+          onComplete: () => this.isAnimating = false}))}
         @click=${this.clickHandler}
-        style=${styleMap({left: animateLeft})}
-      >
-        <div class="fit" style=${styleMap({left: previousLeft})}>
+        style=${styleMap({left: animateLeft})}>
+        <div class="fit" style=${shouldMove ? styleMap({left: previousLeft}) : noChange}>
           <slot name="previous"></slot>
         </div>
-        <div class="fit selected" style=${styleMap({left: selectedLeft})}>
+        <div class="fit selected" style=${shouldMove ? styleMap({left: selectedLeft}) : noChange}>
           <slot name="selected"></slot>
         </div>
       </div>
     `;
   }
 
-  private clickHandler(e: MouseEvent) {
-    this.selected += Number(!e.shiftKey) || -1;
-    const change = new CustomEvent('change',
-      {detail: this.selected, bubbles: true, composed: true});
-    this.dispatchEvent(change);
-  }
-
-  private previous?: number;
-  protected updated(changedProperties: PropertyValues) {
-    if (changedProperties.has('selected') ||  this.previous === undefined) {
+/* playground-fold */
+  private previous = -1;
+  protected async updated(changedProperties: PropertyValues) {
+    if (changedProperties.has('selected') || this.previous === -1) {
       this.updateSlots();
       this.previous = this.selected;
     }
@@ -79,8 +94,16 @@ export class MotionCarousel extends LitElement {
     this.selectedSlot.assignedElements()[0]?.removeAttribute('slot');
     this.previousSlot.assignedElements()[0]?.removeAttribute('slot');
     // set slots
-    this.children[this.previous!]?.setAttribute('slot', 'previous');
+    this.children[this.previous]?.setAttribute('slot', 'previous');
     this.children[this.selected]?.setAttribute('slot', 'selected');
   }
 
+  private clickHandler(e: MouseEvent) {
+    this.selected += Number(!e.shiftKey) || -1;
+    const change = new CustomEvent('change',
+      {detail: this.selected, bubbles: true, composed: true});
+    this.dispatchEvent(change);
+  }
+
 }
+/* playground-fold-end */

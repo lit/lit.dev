@@ -37,6 +37,18 @@ export class MotionCarousel extends LitElement {
   }
 
   private left = 0;
+  /**
+   * Handle corner cases!
+   *
+   * This flag is set via the `onStart` and `onComplete` callbacks of the
+   * `animate` directive. It's used to avoid moving again *while* animating
+   * to ensure the relative position of the previous item doesn't change when
+   * wrapping the selection value.
+   *
+   * When there is no move, the previous item would be positioned on top of
+   * the selected item. We avoid this by applying `noChange` to its `left`
+   * when not moving.
+   */
   private isAnimating = false;
 
   render() {

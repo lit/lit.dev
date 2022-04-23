@@ -22,16 +22,17 @@
       "title": "Change the selected item"
     },
     {
-      "title": "Prepare for animation!"
+      "title": "Prepare the template for animation!"
     },
     {
       "title": "Slot the previous item"
     },
     {
-      "title": "Use the animate directive"
+      "title": "Position the elements"
     },
     {
-      "title": "Add some finishing touches"
+      "title": "Use the animate directive!",
+      "hasAfter": true
     },
     {
       "title": "Congratulations!",
