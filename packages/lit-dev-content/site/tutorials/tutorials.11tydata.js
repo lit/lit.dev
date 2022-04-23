@@ -55,6 +55,7 @@ module.exports = async () => {
     // Build
     loadTutorialData('brick-viewer'),
     loadTutorialData('tooltip'),
+    loadTutorialData('carousel'),
   ]);
   /*
    * tutorial data in order of rendering on the page

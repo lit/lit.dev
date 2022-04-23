@@ -1,0 +1,41 @@
+{
+  "header": "Build a Carousel Element",
+  "difficulty": "Intermediate",
+  "size": "small",
+  "duration": 30,
+  "category": "Build",
+  "steps": [
+    {
+      "title": "Build a Carousel Element",
+      "noSolve": true
+    },
+    {
+      "title": "Add a slot and styling"
+    },
+    {
+      "title": "Create the selected property"
+    },
+    {
+      "title": "Render the selected item"
+    },
+    {
+      "title": "Change the selected item"
+    },
+    {
+      "title": "Prepare for animation!"
+    },
+    {
+      "title": "Slot the previous item"
+    },
+    {
+      "title": "Use the animate directive"
+    },
+    {
+      "title": "Add some finishing touches"
+    },
+    {
+      "title": "Congratulations!",
+      "noSolve": true
+    }
+  ]
+}
