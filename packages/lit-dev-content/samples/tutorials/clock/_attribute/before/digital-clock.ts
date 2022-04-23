@@ -1,6 +1,13 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
+const timeFormat = new Intl.DateTimeFormat('en-US', {
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  hour12: true
+});
+
 @customElement('digital-clock')
 export class DigitalClockElement extends LitElement {
 
@@ -17,6 +24,6 @@ export class DigitalClockElement extends LitElement {
   time = new Date();
 
   render() {
-    return html`${this.time}`;
+    return html`${timeFormat.format(this.time)}`;
   }
 }

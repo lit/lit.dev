@@ -7,12 +7,28 @@
   "imgSrc": "images/logo-whitebg-padded-1600x800.png",
   "imgAlt": "This is the Lit icon",
   "steps": [
-      {
-        "title": "Lit Clocks"
-      },
-      {
-        "title": "Render the Time",
-        "hasAfter": true
-      }
-    ]
+    {
+      "title": "Lit Clocks"
+    },
+    {
+      "title": "Render the Time",
+      "hasAfter": true
+    },
+    {
+      "title": "Format the Time",
+      "hasAfter": true
+    },
+    {
+      "title": "Update the time with a timer",
+      "hasAfter": true
+    },
+    {
+      "title": "Factor logic into a reactive controller",
+      "hasAfter": true
+    },
+    {
+      "title": "Set the time from an attribute",
+      "hasAfter": true
+    }
+  ]
 }

@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "digital-clock.ts": {},
+    "index.html": {}
+  }
+}
