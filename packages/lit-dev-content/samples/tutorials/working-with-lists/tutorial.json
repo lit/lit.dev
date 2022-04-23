@@ -10,7 +10,7 @@
       "noSolve": true
     },
     {
-      "title": "The map directive",
+      "title": "The map() directive",
       "hasAfter": true
     },
     {
@@ -22,11 +22,11 @@
       "hasAfter": true
     },
     {
-      "title": "The range directive",
+      "title": "The range() directive",
       "hasAfter": true
     },
     {
-      "title": "The repeat directive",
+      "title": "The repeat() directive",
       "hasAfter": true
     },
     {
