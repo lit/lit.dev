@@ -8,6 +8,7 @@ on:
 jobs:
   add-issue-to-project:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # Finds the global entity ID for the project and adds it to an environment variable
       # for the next step to consume.
@@ -25,7 +26,7 @@ jobs:
                 }
               }
             }' -f organization=$ORGANIZATION -F project_number=$PROJECT_NUMBER > project_data.json
-            
+
           echo 'PROJECT_ID='$(jq '.data.organization.projectNext.id' project_data.json) >> $GITHUB_ENV
 
       - name: Add issue to project

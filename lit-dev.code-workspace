@@ -31,7 +31,13 @@
   ],
   "settings": {
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "search.exclude": {
+      "api-data/*/repo": true
+    },
   },
   "extensions": {
     "recommendations": ["esbenp.prettier-vscode"]

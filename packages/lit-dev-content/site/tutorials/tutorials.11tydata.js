@@ -33,13 +33,26 @@ const defaultOptions = {featured: {position: undefined}};
  *     /tutorials/index.html
  */
 const loadTutorialData = async (dirname, options = defaultOptions) => {
-  options = {...defaultOptions, ...options};
-  const tutorialDir = path.resolve(__dirname, '../../samples/tutorials', dirname);
+  options = {...defaultOptions, ...options}
+  const tutorialDir = path.resolve(
+    __dirname,
+    '../../samples/tutorials',
+    dirname
+  );
   const encoding = {encoding: 'utf8'};
 
-  const manifestProm = fs.readFile(path.join(tutorialDir, 'tutorial.json'), encoding);
-  const descriptionProm = fs.readFile(path.join(tutorialDir, 'description.md'), encoding);
-  const [manifest, description] = await Promise.all([manifestProm, descriptionProm]);
+  const manifestProm = fs.readFile(
+    path.join(tutorialDir, 'tutorial.json'),
+    encoding
+  );
+  const descriptionProm = fs.readFile(
+    path.join(tutorialDir, 'description.md'),
+    encoding
+  );
+  const [manifest, description] = await Promise.all([
+    manifestProm,
+    descriptionProm,
+  ]);
   return {...options, ...JSON.parse(manifest), description, location: dirname};
 };
 
@@ -59,9 +72,10 @@ module.exports = async () => {
 
     // Build
     loadTutorialData('brick-viewer'),
+    loadTutorialData('tooltip'),
   ]);
   /*
    * tutorial data in order of rendering on the page
    */
   return {eleventyComputed: {tutorials}};
-}
+};
