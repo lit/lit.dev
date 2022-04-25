@@ -31,6 +31,12 @@ export interface ExtendedSourceReference extends SourceReference {
 export interface Location {
   page: string;
   anchor: string;
+  /**
+   * Prevents this Location from being referenced by the generated Table of
+   * Contents by adding the "data-toc-exclude" attribute to the DOM node.
+   * See https://github.com/JordanShurmer/eleventy-plugin-nesting-toc
+   */
+  excludeFromTOC?: boolean;
 }
 
 /** A link to e.g. MDN. */
@@ -113,7 +119,7 @@ export interface ApiDocsConfig {
   pages: Array<{
     slug: string;
     title: string;
-    anchorFilter?: (node: DeclarationReflection) => boolean;
+    tocFilter?: (node: DeclarationReflection) => boolean;
     versionLinks?: {[version: string]: string};
   }>;
 

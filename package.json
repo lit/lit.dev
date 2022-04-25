@@ -7,12 +7,12 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "bootstrap": "lerna bootstrap --ci",
-    "build": "lerna run build --stream",
+    "build": "wireit",
     "start": "run-p -r start:main start:playground start:fake-github",
     "start:main": "LITDEV_ENV=local MODE=main lerna run start --scope=lit-dev-server --stream",
     "start:playground": "LITDEV_ENV=local MODE=playground lerna run start --scope=lit-dev-server --stream",
-    "start:fake-github": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
-    "dev": "cd packages/lit-dev-content && (npm run build:ts:watch -- --preserveWatchOutput & npm run dev:build:site:watch & npm run dev:serve)",
+    "start:fake-github": "wireit",
+    "dev": "cd packages/lit-dev-content && (npm run dev:build:site:watch & npm run dev:serve)",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "nuke": "rm -rf node_modules && npm ci && lerna exec 'rm -rf node_modules' && lerna bootstrap --ci",
@@ -20,9 +20,25 @@
     "test:unit": "lerna run test --scope lit-dev-tools-cjs --scope lit-dev-tools-esm --stream",
     "test:integration": "lerna run test:integration --stream",
     "test:integration:update-golden-screenshots": "lerna run test:integration:update-golden-screenshots --stream",
-    "test:links:redirects": "lerna run test:links:redirects --stream",
-    "test:links:internal": "lerna run test:links:internal --stream",
-    "test:links:external": "lerna run test:links:external --stream"
+    "test:links": "lerna run test:links --stream"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "./packages/lit-dev-api:build",
+        "./packages/lit-dev-content:build",
+        "./packages/lit-dev-server:build",
+        "./packages/lit-dev-tests:build",
+        "./packages/lit-dev-tools-cjs:build",
+        "./packages/lit-dev-tools-esm:build"
+      ]
+    },
+    "start:fake-github": {
+      "dependencies": [
+        "./packages/lit-dev-tools-esm:build"
+      ],
+      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js"
+    }
   },
   "devDependencies": {
     "@material/mwc-icon-button": "^0.25.3",
@@ -30,6 +46,7 @@
     "lerna": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "wireit": "^0.1.1"
   }
 }

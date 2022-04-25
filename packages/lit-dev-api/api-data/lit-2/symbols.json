@@ -545,6 +545,26 @@
     {
       "page": "custom-directives",
       "anchor": "PropertyPart.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.element"
     }
   ],
   "$AttributePart.element": [
@@ -573,6 +593,22 @@
     {
       "page": "custom-directives",
       "anchor": "AttributePartInfo.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.name"
     }
   ],
   "$AttributePart.name": [
@@ -608,6 +644,58 @@
     },
     {
       "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.options"
+    },
+    {
+      "page": "misc",
       "anchor": "RootPart.options"
     }
   ],
@@ -637,6 +725,10 @@
     {
       "page": "custom-directives",
       "anchor": "AttributePartInfo.strings"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.strings"
     }
   ],
   "$AttributePart.strings": [
@@ -1186,7 +1278,8 @@
   "$AsyncAppendDirective": [
     {
       "page": "directives",
-      "anchor": "AsyncAppendDirective"
+      "anchor": "AsyncAppendDirective",
+      "excludeFromTOC": true
     }
   ],
   "$AsyncAppendDirective.constructor": [
@@ -1256,7 +1349,8 @@
   "$AsyncReplaceDirective": [
     {
       "page": "directives",
-      "anchor": "AsyncReplaceDirective"
+      "anchor": "AsyncReplaceDirective",
+      "excludeFromTOC": true
     }
   ],
   "$AsyncReplaceDirective.constructor": [
@@ -1316,7 +1410,8 @@
   "$CacheDirective": [
     {
       "page": "directives",
-      "anchor": "CacheDirective"
+      "anchor": "CacheDirective",
+      "excludeFromTOC": true
     }
   ],
   "$CacheDirective.constructor": [
@@ -1352,7 +1447,8 @@
   "$ClassMapDirective": [
     {
       "page": "directives",
-      "anchor": "ClassMapDirective"
+      "anchor": "ClassMapDirective",
+      "excludeFromTOC": true
     }
   ],
   "$ClassMapDirective.constructor": [
@@ -1376,7 +1472,8 @@
   "$ClassInfo": [
     {
       "page": "directives",
-      "anchor": "ClassInfo"
+      "anchor": "ClassInfo",
+      "excludeFromTOC": true
     }
   ],
   "$classMap": [
@@ -1388,7 +1485,8 @@
   "$GuardDirective": [
     {
       "page": "directives",
-      "anchor": "GuardDirective"
+      "anchor": "GuardDirective",
+      "excludeFromTOC": true
     }
   ],
   "$GuardDirective.constructor": [
@@ -1436,7 +1534,8 @@
   "$LiveDirective": [
     {
       "page": "directives",
-      "anchor": "LiveDirective"
+      "anchor": "LiveDirective",
+      "excludeFromTOC": true
     }
   ],
   "$LiveDirective.constructor": [
@@ -1478,7 +1577,8 @@
   "$Ref": [
     {
       "page": "directives",
-      "anchor": "Ref"
+      "anchor": "Ref",
+      "excludeFromTOC": true
     }
   ],
   "$Ref.constructor": [
@@ -1491,6 +1591,46 @@
     {
       "page": "directives",
       "anchor": "Ref.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
     }
   ],
   "$Ref.value": [
@@ -1502,7 +1642,8 @@
   "$RefDirective": [
     {
       "page": "directives",
-      "anchor": "RefDirective"
+      "anchor": "RefDirective",
+      "excludeFromTOC": true
     }
   ],
   "$RefDirective.constructor": [
@@ -1550,7 +1691,8 @@
   "$RefOrCallback": [
     {
       "page": "directives",
-      "anchor": "RefOrCallback"
+      "anchor": "RefOrCallback",
+      "excludeFromTOC": true
     }
   ],
   "$createRef": [
@@ -1568,7 +1710,8 @@
   "$RepeatDirective": [
     {
       "page": "directives",
-      "anchor": "RepeatDirective"
+      "anchor": "RepeatDirective",
+      "excludeFromTOC": true
     }
   ],
   "$RepeatDirective.constructor": [
@@ -1592,19 +1735,22 @@
   "$RepeatDirectiveFn": [
     {
       "page": "directives",
-      "anchor": "RepeatDirectiveFn"
+      "anchor": "RepeatDirectiveFn",
+      "excludeFromTOC": true
     }
   ],
   "$ItemTemplate": [
     {
       "page": "directives",
-      "anchor": "ItemTemplate"
+      "anchor": "ItemTemplate",
+      "excludeFromTOC": true
     }
   ],
   "$KeyFn": [
     {
       "page": "directives",
-      "anchor": "KeyFn"
+      "anchor": "KeyFn",
+      "excludeFromTOC": true
     }
   ],
   "$repeat": [
@@ -1616,7 +1762,8 @@
   "$StyleMapDirective": [
     {
       "page": "directives",
-      "anchor": "StyleMapDirective"
+      "anchor": "StyleMapDirective",
+      "excludeFromTOC": true
     }
   ],
   "$StyleMapDirective.constructor": [
@@ -1640,7 +1787,8 @@
   "$StyleInfo": [
     {
       "page": "directives",
-      "anchor": "StyleInfo"
+      "anchor": "StyleInfo",
+      "excludeFromTOC": true
     }
   ],
   "$styleMap": [
@@ -1652,7 +1800,8 @@
   "$TemplateContentDirective": [
     {
       "page": "directives",
-      "anchor": "TemplateContentDirective"
+      "anchor": "TemplateContentDirective",
+      "excludeFromTOC": true
     }
   ],
   "$TemplateContentDirective.constructor": [
@@ -1682,7 +1831,8 @@
   "$UnsafeHTMLDirective": [
     {
       "page": "directives",
-      "anchor": "UnsafeHTMLDirective"
+      "anchor": "UnsafeHTMLDirective",
+      "excludeFromTOC": true
     }
   ],
   "$UnsafeHTMLDirective.constructor": [
@@ -1744,7 +1894,8 @@
   "$UnsafeSVGDirective": [
     {
       "page": "directives",
-      "anchor": "UnsafeSVGDirective"
+      "anchor": "UnsafeSVGDirective",
+      "excludeFromTOC": true
     }
   ],
   "$UnsafeSVGDirective.constructor": [
@@ -1786,7 +1937,8 @@
   "$UntilDirective": [
     {
       "page": "directives",
-      "anchor": "UntilDirective"
+      "anchor": "UntilDirective",
+      "excludeFromTOC": true
     }
   ],
   "$UntilDirective.constructor": [
@@ -1841,6 +1993,1052 @@
     {
       "page": "directives",
       "anchor": "when"
+    }
+  ],
+  "$LitUnstable": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable"
+    }
+  ],
+  "$DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog"
+    },
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog"
+    },
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog"
+    }
+  ],
+  "$LitUnstable.DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog"
+    }
+  ],
+  "$BeginRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender"
+    }
+  ],
+  "$container": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.container"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.container"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.container": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.container"
+    }
+  ],
+  "$id": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.id"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.id"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.id": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.id"
+    }
+  ],
+  "$kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.options"
+    }
+  ],
+  "$part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.part"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.part"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.part"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.part"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.value"
+    }
+  ],
+  "$CommitAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.name"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
+    }
+  ],
+  "$CommitBooleanAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.name"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
+    }
+  ],
+  "$CommitEventListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener"
+    }
+  ],
+  "$addListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.addListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.addListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.addListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.name"
+    }
+  ],
+  "$oldListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.oldListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.oldListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.oldListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.options"
+    }
+  ],
+  "$removeListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.removeListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.removeListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.removeListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
+    }
+  ],
+  "$CommitNode": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.options"
+    }
+  ],
+  "$parent": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.parent"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.parent"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.parent": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.parent"
+    }
+  ],
+  "$start": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.start"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.start"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.start": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.start"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.value"
+    }
+  ],
+  "$CommitNothingToChildEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry"
+    }
+  ],
+  "$end": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.end"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.end": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.end"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.parent": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.parent"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.start": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.start"
+    }
+  ],
+  "$CommitProperty": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.name"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
+    }
+  ],
+  "$CommitText": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.kind"
+    }
+  ],
+  "$node": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.node"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.node": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.node"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.value"
+    }
+  ],
+  "$CommitToElementBinding": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
+    }
+  ],
+  "$EndRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.container": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.container"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.id": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.id"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.part"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.value"
+    }
+  ],
+  "$SetPartValue": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.part"
+    }
+  ],
+  "$templateInstance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.templateInstance"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.templateInstance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.templateInstance"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
+    }
+  ],
+  "$valueIndex": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.valueIndex"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.valueIndex": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.valueIndex"
+    }
+  ],
+  "$values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplateResult.values"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.values"
+    }
+  ],
+  "$TemplateInstantiated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated"
+    }
+  ],
+  "$fragment": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.fragment"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.fragment"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.fragment": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.fragment"
+    }
+  ],
+  "$instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.instance"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.instance"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.options"
+    }
+  ],
+  "$parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.parts"
+    }
+  ],
+  "$template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.template"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.template"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.template"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.values"
+    }
+  ],
+  "$TemplateInstantiatedAndUpdated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.fragment": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.fragment"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.values"
+    }
+  ],
+  "$TemplatePrep": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep"
+    }
+  ],
+  "$clonableTemplate": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.clonableTemplate"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.clonableTemplate": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.clonableTemplate"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.strings": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.strings"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.template"
+    }
+  ],
+  "$TemplateUpdating": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.values"
+    }
+  ],
+  "$CommitPartEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitPartEntry"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitPartEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitPartEntry"
+    }
+  ],
+  "$Entry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.Entry"
+    },
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Entry"
+    },
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog.Entry"
+    }
+  ],
+  "$LitUnstable.DebugLog.Entry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.Entry"
+    }
+  ],
+  "$ReactiveUnstable": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog"
+    }
+  ],
+  "$Update": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog.Update": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog.Update.kind": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update.kind"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog.Entry": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Entry"
+    }
+  ],
+  "$Unstable": [
+    {
+      "page": "misc",
+      "anchor": "Unstable"
+    }
+  ],
+  "$Unstable.DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog"
+    }
+  ],
+  "$Unstable.DebugLog.Entry": [
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog.Entry"
     }
   ],
   "$CSSResult": [
@@ -2761,12 +3959,6 @@
       "anchor": "CompiledTemplateResult"
     }
   ],
-  "$values": [
-    {
-      "page": "misc",
-      "anchor": "CompiledTemplateResult.values"
-    }
-  ],
   "$CompiledTemplateResult.values": [
     {
       "page": "misc",
@@ -2899,46 +4091,58 @@
       "anchor": "PropertyDeclarations"
     }
   ],
-  "$PropertyValues": [
+  "$PropertyValueMap": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues"
+      "page": "misc",
+      "anchor": "PropertyValueMap"
     }
   ],
-  "$forEach": [
+  "$delete": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues.forEach"
+      "page": "misc",
+      "anchor": "PropertyValueMap.delete"
     }
   ],
-  "$PropertyValues.forEach": [
+  "$PropertyValueMap.delete": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues.forEach"
+      "page": "misc",
+      "anchor": "PropertyValueMap.delete"
     }
   ],
   "$get": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues.get"
+      "page": "misc",
+      "anchor": "PropertyValueMap.get"
     }
   ],
-  "$PropertyValues.get": [
+  "$PropertyValueMap.get": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues.get"
+      "page": "misc",
+      "anchor": "PropertyValueMap.get"
+    }
+  ],
+  "$has": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.has"
+    }
+  ],
+  "$PropertyValueMap.has": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.has"
     }
   ],
   "$set": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues.set"
+      "page": "misc",
+      "anchor": "PropertyValueMap.set"
     }
   ],
-  "$PropertyValues.set": [
+  "$PropertyValueMap.set": [
     {
-      "page": "ReactiveElement",
-      "anchor": "PropertyValues.set"
+      "page": "misc",
+      "anchor": "PropertyValueMap.set"
     }
   ],
   "$ReactiveController": [
@@ -3149,6 +4353,12 @@
     {
       "page": "misc",
       "anchor": "Initializer"
+    }
+  ],
+  "$PropertyValues": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues"
     }
   ],
   "$SVGTemplateResult": [

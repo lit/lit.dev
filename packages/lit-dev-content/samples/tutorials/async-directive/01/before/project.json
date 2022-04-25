@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "index.html": {"hidden": true},
+    "time-ago.ts": {"selected": true}
+  }
+}

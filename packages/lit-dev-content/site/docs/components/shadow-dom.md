@@ -262,7 +262,7 @@ By default, LitElement creates an open `shadowRoot` and renders inside it, produ
     <p>child 2</p>
 ```
 
-There are two ways to customize the render root use by LitElement:
+There are two ways to customize the render root used by LitElement:
 
 * Setting `shadowRootOptions`.
 * Implementing the `createRenderRoot` method.
