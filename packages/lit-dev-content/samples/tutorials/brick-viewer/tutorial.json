@@ -8,10 +8,6 @@
   "imgAlt": "This is the demo of the brick viewer component assembling the lego bricks",
   "steps": [
     {
-      "title": "Introduction",
-      "hasAfter": true
-    },
-    {
       "title": "Define a Custom Element",
       "hasAfter": true
     },
@@ -33,7 +29,7 @@
     },
     {
       "title": "Conclusion",
-      "hasAfter": true
+      "hasAfter": false
     }
   ]
 }

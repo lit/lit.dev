@@ -6,10 +6,6 @@
   "category": "Learn",
   "steps": [
     {
-      "title": "Lit tutorial",
-      "hasAfter": true
-    },
-    {
       "title": "Define a component",
       "hasAfter": true
     },

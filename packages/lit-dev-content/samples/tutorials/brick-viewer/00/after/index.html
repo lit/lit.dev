@@ -1,1 +1,54 @@
-<div>Hello world step 1 completed!</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module" src="brick-viewer.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+    <style>
+       body {
+        margin: 0;
+        padding: 20px;
+        font-family: sans-serif;
+      }
+      brick-viewer {
+        margin: 20px 0;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+     <h1>Brick Viewer</h1>
+
+    <mwc-select id="select">
+      <mwc-list-item
+        selected
+        value="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/ldraw/officialLibrary/models/car.ldr_Packed.mpd"
+        >Car</mwc-list-item
+      >
+      <mwc-list-item
+        value="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/ldraw/officialLibrary/models/4915-1-MiniConstruction.mpd_Packed.mpd"
+        >Bulldozer</mwc-list-item
+      >
+      <mwc-list-item
+        value="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/ldraw/officialLibrary/models/889-1-RadarTruck.mpd_Packed.mpd"
+        >Radar Truck</mwc-list-item
+      >
+    </mwc-select>
+
+    <brick-viewer
+      src="https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/ldraw/officialLibrary/models/car.ldr_Packed.mpd"
+    >
+    </brick-viewer>
+
+    <p>
+      The &lt;brick-viewer&gt; element sits in your HTML like any other HTML
+      element!
+    </p>
+
+    <script>
+      const brickViewer = document.querySelector("brick-viewer");
+      select.addEventListener("action", function(e) {
+        brickViewer.src = e.target.selected.value;
+      });
+    </script>
+  </body>
+</html>
