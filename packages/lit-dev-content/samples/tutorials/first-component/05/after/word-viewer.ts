@@ -16,7 +16,7 @@ class WordViewer extends LitElement {
   `;
 
   @state() private idx = 0;
-  @property() words: string = 'initial value';
+  @property() words = 'initial value';
 
   private intervalTimer?: number;
 

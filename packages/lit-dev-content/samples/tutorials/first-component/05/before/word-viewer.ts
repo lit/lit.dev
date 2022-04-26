@@ -6,7 +6,7 @@ class WordViewer extends LitElement {
   // TODO: Add `static styles` using the `css` tag function.
 
   @state() private idx = 0;
-  @property() words: string = 'initial value';
+  @property() words = 'initial value';
 
   private intervalTimer?: number;
   

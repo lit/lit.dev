@@ -4,7 +4,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 @customElement('word-viewer')
 class WordViewer extends LitElement {
   // TODO: Add `idx` state
-  @property() words: string = 'initial value';
+  @property() words = 'initial value';
 
   render() {
     // TODO: Split the `words` by `'.'`, and from the resulting word array

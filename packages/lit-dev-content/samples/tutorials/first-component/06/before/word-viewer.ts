@@ -17,7 +17,7 @@ class WordViewer extends LitElement {
 
   // TODO: Add `playDirection` state.
   @state() private idx = 0;
-  @property() words: string = 'initial value';
+  @property() words = 'initial value';
 
   private intervalTimer?: number;
 
