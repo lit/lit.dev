@@ -41,7 +41,7 @@ export const styles = css`
     pointer-events: none;
   }
 
-   .indicator {
+  .indicator {
     position: relative;
     display: inline-block;
     height: 100%;
