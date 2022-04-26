@@ -28,7 +28,8 @@
       "title": "Slot the previous item"
     },
     {
-      "title": "Position the elements"
+      "title": "Position the elements",
+      "hasAfter": true
     },
     {
       "title": "Use the animate directive!",

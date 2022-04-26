@@ -44,6 +44,9 @@ export class MotionCarousel extends LitElement {
     const animateLeft = `${this.left}%`;
     const selectedLeft = `${-this.left}%`;
     const previousLeft = `${-this.left - delta}%`;
+    const w = 100 / this.childElementCount;
+    const indicatorLeft = `${w * this.selected}%`;
+    const indicatorWidth = `${w}%`;
     return html`
       <div class="fit"
         @click=${this.clickHandler}
@@ -55,6 +58,10 @@ export class MotionCarousel extends LitElement {
         <div class="fit selected" style=${styleMap({left: selectedLeft})}>
           <slot name="selected"></slot>
         </div>
+      </div>
+      <div class="bar">
+        <div class="indicator"
+          style=${styleMap({left: indicatorLeft, width: indicatorWidth})}></div>
       </div>
     `;
   }

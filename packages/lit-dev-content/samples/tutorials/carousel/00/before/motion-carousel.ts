@@ -37,6 +37,7 @@ export class MotionCarousel extends LitElement {
   }
 
   private left = 0;
+
   /**
    * Handle corner cases!
    *
@@ -61,6 +62,9 @@ export class MotionCarousel extends LitElement {
     const animateLeft = `${this.left}%`;
     const selectedLeft = `${-this.left}%`;
     const previousLeft = `${-this.left - delta}%`;
+    const w = 100 / this.childElementCount;
+    const indicatorLeft = `${w * this.selected}%`;
+    const indicatorWidth = `${w}%`;
     return html`
       <div class="fit"
         ${animate(() => ({
@@ -74,6 +78,11 @@ export class MotionCarousel extends LitElement {
         <div class="fit selected" style=${shouldMove ? styleMap({left: selectedLeft}) : noChange}>
           <slot name="selected"></slot>
         </div>
+      </div>
+      <div class="bar">
+        <div class="indicator"
+          ${animate()}
+          style=${styleMap({left: indicatorLeft, width: indicatorWidth})}></div>
       </div>
     `;
   }

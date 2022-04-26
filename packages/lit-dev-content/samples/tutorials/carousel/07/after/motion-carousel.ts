@@ -2,7 +2,6 @@ import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {styles} from './styles.js';
-import {animate} from '@lit-labs/motion';
 
 @customElement('motion-carousel')
 export class MotionCarousel extends LitElement {
@@ -45,12 +44,8 @@ export class MotionCarousel extends LitElement {
     const animateLeft = `${this.left}%`;
     const selectedLeft = `${-this.left}%`;
     const previousLeft = `${-this.left - delta}%`;
-    const w = 100 / this.childElementCount;
-    const indicatorLeft = `${w * this.selected}%`;
-    const indicatorWidth = `${w}%`;
     return html`
       <div class="fit"
-        ${animate()}
         @click=${this.clickHandler}
         style=${styleMap({left: animateLeft})}
       >
@@ -60,11 +55,6 @@ export class MotionCarousel extends LitElement {
         <div class="fit selected" style=${styleMap({left: selectedLeft})}>
           <slot name="selected"></slot>
         </div>
-      </div>
-      <div class="bar">
-        <div class="indicator"
-          ${animate()}
-          style=${styleMap({left: indicatorLeft, width: indicatorWidth})}></div>
       </div>
     `;
   }

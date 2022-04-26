@@ -4,6 +4,7 @@ export const styles = css`
   :host {
     display: inline-block;
     overflow: hidden;
+    position: relative;
     /* Defaults */
     width: 200px;
     height: 200px;
