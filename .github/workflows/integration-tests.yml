@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   integration-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -16,8 +17,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install-deps
       - run: npm run bootstrap
-      - run: npm run build
-
+      - run: npm run test:links
       - id: test
         run: npm run test:integration
 
