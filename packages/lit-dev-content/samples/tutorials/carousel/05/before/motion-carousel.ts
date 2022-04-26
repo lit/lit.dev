@@ -43,16 +43,16 @@ export class MotionCarousel extends LitElement {
     this.dispatchEvent(change);
   }
 
-  private previous?: number;
+  private previous = -1;
   protected updated(changedProperties: PropertyValues) {
-    if (changedProperties.has('selected') ||  this.previous === undefined) {
+    if (changedProperties.has('selected') ||  this.previous === -1) {
       this.updateSlots();
       this.previous = this.selected;
     }
   }
 
   private updateSlots() {
-    this.children[this.previous!]?.removeAttribute('slot');
+    this.children[this.previous]?.removeAttribute('slot');
     this.children[this.selected]?.setAttribute('slot', 'selected');
   }
 
