@@ -1,2 +1,1 @@
-Learn how to build a 3d brick viewer combining canvas and the best parts of Web
-Components!
+In this tutorial, you'll build a Brick Viewer web component with the help of lit.

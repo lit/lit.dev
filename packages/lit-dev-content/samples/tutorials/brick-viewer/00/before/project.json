@@ -1,6 +1,7 @@
 {
   "extends": "/samples/base.json",
   "files": {
+    "brick-viewer.ts": {},
     "index.html": {}
   }
 }
