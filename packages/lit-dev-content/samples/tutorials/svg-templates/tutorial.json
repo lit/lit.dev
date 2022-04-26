@@ -1,5 +1,5 @@
 {
-  "header": "SVG Templates",
+  "header": "Create repeat patterns with Lit & SVG",
   "difficulty": "Intermediate",
   "size": "medium",
   "duration": 120,
@@ -8,7 +8,7 @@
   "imgAlt": "This is the Lit icon",
   "steps": [
     {
-      "title": "Pattern making with SVG in lit",
+      "title": "Pattern making with SVG in Lit",
       "hasAfter": true
     },
     {

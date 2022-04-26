@@ -39,8 +39,6 @@ module.exports = async () => {
 
     // Build
     loadTutorialData('brick-viewer'),
-
-    // svg templates and patterns
     loadTutorialData('svg-templates'),
   ]);
   /*
