@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - uses: google/wireit@setup-github-actions-caching/v1
         with:
           node-version: 18
           # Don't cache because we don't fully bootstrap
