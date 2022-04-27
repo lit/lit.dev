@@ -5,11 +5,12 @@ on: [push, pull_request]
 jobs:
   check-format:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 18
           # Don't cache because we don't bootstrap
 
       - run: npm ci
