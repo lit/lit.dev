@@ -1,5 +1,5 @@
 {
-  "header": "Build repeat patterns with Lit & SVG",
+  "header": "Repeat patterns with SVG",
   "difficulty": "Intermediate",
   "size": "medium",
   "duration": 45,
@@ -9,7 +9,8 @@
   "steps": [
     {
       "title": "Pattern making with SVG in Lit",
-      "hasAfter": false
+      "hasAfter": false,
+      "noSolve": true
     },
     {
       "title": "Create a pattern element",
@@ -33,7 +34,8 @@
     },
     {
       "title": "More advanced topics",
-      "hasAfter": true
+      "hasAfter": false,
+      "noSolve": true
     }
   ]
 }

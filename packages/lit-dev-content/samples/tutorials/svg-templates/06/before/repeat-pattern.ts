@@ -1,16 +1,44 @@
 import type {SVGTemplateResult} from "lit";
 
-import {LitElement, html, svg} from 'lit';
+import {LitElement, html, svg, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
+
+const themeCSS = css`
+	.background {
+		fill: var(--background-color, #fff);
+	}
+
+	text {
+		fill: var(--font-color, #000);
+		font-size: var(--font-size, 24px);
+		stroke-width: var(--stroke-width, 1);
+		stroke: var(--stroke-color, #efefef);
+	}
+`;
+
+const svgCSS = css`
+	svg {
+		height: 100%;
+		width: 100%;
+	}
+
+	text {
+		fill: #fff;
+		dominant-baseline: hanging;
+		font-family: monospace;
+		font-size: 24px;
+	}
+
+	rect {
+		width: 100%;
+		height: 100%;
+	}
+`;
+
 const createElement = (chars: string): SVGTemplateResult => svg`
-	<text
-		id="chars"
-		dominant-basline="hanging"
-		font-family="monospace"
-		font-size="24px">
-		${chars}
-	</text>`;
+    <text id="chars">${chars}</text>
+`;
 
 const createMotif = (
 	numPrints: number,
@@ -27,7 +55,7 @@ const createMotif = (
 				href="#chars"
 				transform="rotate(${currRotation}, 0, 0)">
 			</use>
-    	`);
+    	`)
 	}
 
 	return svg
@@ -36,7 +64,7 @@ const createMotif = (
 			transform="translate(50, 50)">
 				${prints}
 		</g>`;
-}
+};
 
 const createClipPath = () => svg`
 	<clipPath id="rect-clip">
@@ -68,8 +96,10 @@ const createRepeatPattern = () => svg`
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
+	static styles = [svgCSS, themeCSS];
+
 	@property({type: String}) chars = "lit";
-	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
+	@property({type: Number, attribute: "num-prints"}) numPrints = 5;
 	@property({
 		type: Number,
 		attribute: "rotation-offset",
@@ -77,7 +107,7 @@ export class RepeatPattern extends LitElement {
 
 	render() {
 		return html`
-			<svg width="100%" height="100%">
+			<svg>
 				<defs>
 					${createClipPath()}
 					${createElement(this.chars)}
@@ -87,9 +117,9 @@ export class RepeatPattern extends LitElement {
 					)}
 					${createRepeatPattern()}
 				</defs>
-		
-				<rect fill="#fff" width="100%" height="100%"></rect>
-				<rect fill="url(#pattern-rounds)" width="100%" height="100%"></rect>
+
+				<rect class="background"></rect>
+				<rect fill="url(#pattern-rounds)"></rect>
 			</svg>
 		`;
 	}

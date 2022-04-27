@@ -6,14 +6,14 @@ import {customElement, property} from 'lit/decorators.js';
 
 const themeCSS = css`
 	.background {
-		fill: var(--pattern-background-color, #e3a7b2);
+		fill: var(--background-color, #fff);
 	}
 
 	text {
-		fill: var(--pattern-text-color, #fff);
-		font-size: var(--pattern-text-font-size, 26px);
-		stroke-width: var(--pattern-text-stroke-width, 1.5px);
-		stroke: var(--pattern-text-stroke-color, #7acbf1);
+		fill: var(--font-color, #000);
+		font-size: var(--font-size, 24px);
+		stroke-width: var(--stroke-width, 1);
+		stroke: var(--stroke-color, #efefef);
 	}
 `;
 
@@ -24,7 +24,7 @@ const svgCSS = css`
 	}
 
 	text {
-		fill: #ffffff;
+		fill: #fff;
 		dominant-baseline: hanging;
 		font-family: monospace;
 		font-size: 24px;
@@ -36,11 +36,11 @@ const svgCSS = css`
 	}
 `;
 
-const createAtom = (chars: string): SVGTemplateResult => svg`
+const createElement = (chars: string): SVGTemplateResult => svg`
     <text id="chars">${chars}</text>
 `;
 
-const createElement = (
+const createMotif = (
 	numPrints: number,
 	offset: number = 0,
 ): SVGTemplateResult => {
@@ -99,7 +99,7 @@ export class RepeatPattern extends LitElement {
 	static styles = [svgCSS, themeCSS];
 
 	@property({type: String}) chars = "lit";
-	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
+	@property({type: Number, attribute: "num-prints"}) numPrints = 5;
 	@property({
 		type: Number,
 		attribute: "rotation-offset",
@@ -110,8 +110,8 @@ export class RepeatPattern extends LitElement {
 			<svg>
 				<defs>
 					${createClipPath()}
-					${createAtom(this.chars)}
-					${createElement(
+					${createElement(this.chars)}
+					${createMotif(
 						this.numPrints,
 						this.rotationOffset,
 					)}
