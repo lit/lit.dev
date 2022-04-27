@@ -1,15 +1,15 @@
 {
-  "header": "Create repeat patterns with Lit & SVG",
+  "header": "Build repeat patterns with Lit & SVG",
   "difficulty": "Intermediate",
   "size": "medium",
-  "duration": 120,
+  "duration": 45,
   "category": "Build",
   "imgSrc": "images/logo-whitebg-padded-1600x800.png",
   "imgAlt": "This is the Lit icon",
   "steps": [
     {
       "title": "Pattern making with SVG in Lit",
-      "hasAfter": true
+      "hasAfter": false
     },
     {
       "title": "Create a pattern element",
@@ -25,6 +25,10 @@
     },
     {
       "title": "Repeat a tile with <pattern>",
+      "hasAfter": true
+    },
+    {
+      "title": "Theme pattern with CSS",
       "hasAfter": true
     },
     {

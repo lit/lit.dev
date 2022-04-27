@@ -6,14 +6,14 @@ import {customElement, property} from 'lit/decorators.js';
 
 const themeCSS = css`
 	.background {
-		fill: var(--pattern-background-color, #e3a7b2);
+		fill: var(--background-color, #ffa500);
 	}
 
 	text {
-		fill: var(--pattern-text-color, #fff);
-		font-size: var(--pattern-text-font-size, 26px);
-		stroke-width: var(--pattern-text-stroke-width, 1.5px);
-		stroke: var(--pattern-text-stroke-color, #7acbf1);
+		fill: var(--font-color, #eca1ff);
+		font-size: var(--font-size, 26px);
+		stroke-width: var(--stroke-width, 1.1);
+		stroke: var(--stroke-color, #0000dd);
 	}
 `;
 
@@ -105,6 +105,7 @@ export class RepeatPattern extends LitElement {
 		attribute: "rotation-offset",
 	}) rotationOffset = 0;
 
+	
 	render() {
 		return html`
 			<svg>
