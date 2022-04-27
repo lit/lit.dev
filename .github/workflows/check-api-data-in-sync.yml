@@ -11,11 +11,13 @@ on: [push, pull_request]
 jobs:
   check-api-data-in-sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - uses: google/wireit@setup-github-actions-caching/v1
         with:
-          node-version: 16
+          node-version: 18
           # Don't cache because we don't fully bootstrap
 
       - run: npm ci

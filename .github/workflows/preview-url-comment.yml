@@ -9,6 +9,7 @@ on:
 jobs:
   preview-url-comment:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Generate preview URL

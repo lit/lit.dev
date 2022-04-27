@@ -8,9 +8,38 @@
   "type": "module",
   "main": "lib/server.js",
   "scripts": {
-    "build": "npm run build:ts",
-    "build:ts": "../../node_modules/.bin/tsc",
-    "start": "node lib/server.js"
+    "build": "wireit",
+    "build:ts": "wireit",
+    "start": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "dependencies": [
+        "../lit-dev-tools-cjs:build"
+      ],
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
+    },
+    "start": {
+      "dependencies": [
+        "build",
+        "../lit-dev-content:build:site"
+      ],
+      "command": "node lib/server.js"
+    }
   },
   "dependencies": {
     "koa": "^2.13.0",
