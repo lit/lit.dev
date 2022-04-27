@@ -21,6 +21,6 @@
     "docs/templates/lists-arrays/my-element.ts",
     "docs/templates/lists-map/my-element.ts",
     // Intentionally doesn't compile for tutorial part.
-    "tutorials/first-component/02/before/word-viewer.ts"
+    "tutorials/word-viewer/02/before/word-viewer.ts"
   ]
 }
