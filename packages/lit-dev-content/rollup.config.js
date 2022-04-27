@@ -37,7 +37,7 @@ export default [
       'lib/components/litdev-version-selector.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
-      'lib/components/litdev-code-language-display.js',
+      'lib/components/ts-js.js',
       'lib/components/litdev-switchable-sample.js',
       'lib/components/litdev-tutorial.js',
       'lib/components/litdev-tutorial-card.js',

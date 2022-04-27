@@ -12,7 +12,7 @@ export class RatingElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['rating'];
+    return ['rating', 'vote'];
   }
 
   attributeChangedCallback(attributeName: string, _oldValue: string, newValue: string) {
@@ -20,6 +20,8 @@ export class RatingElement extends HTMLElement {
       const newRating = Number(newValue);
 
       this.rating = newRating;
+    } else if (attributeName === 'vote') {
+      this.vote = newValue as 'up'|'down';
     }
   }
 

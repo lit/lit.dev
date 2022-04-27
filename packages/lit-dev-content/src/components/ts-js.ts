@@ -13,15 +13,15 @@ import {
  * ```html
  * <article>
  *   The file that deals with the code's metadata is:
- *   index.<litdev-code-language-display
+ *   index.<ts-js
  *     ><span slot="js">min.js</span
  *     ><span slot="ts">d.ts</span
- *   ></litdev-code-language-display>
+ *   ></ts-js>
  *   <!-- Do not have whitespace to prevent awkward whitespace between "index."
- *   and the displayed output of litdev-code-language-display !-->
+ *   and the displayed output of ts-js !-->
  * ```
  */
-@customElement('litdev-code-language-display')
+@customElement('ts-js')
 export class LitDevCodeLanguageDisplay extends LitElement {
   @state() private codeLanguage: string = getCodeLanguagePreference();
 
