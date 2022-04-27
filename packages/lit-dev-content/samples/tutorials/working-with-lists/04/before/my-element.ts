@@ -13,20 +13,20 @@ class MyElement extends LitElement {
     }
     #board {
       display: grid;
-      grid-template-columns: repeat(8, 12.5%);
-      grid-template-rows: repeat(8, 12.5%);
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(8, 1fr);
       border: 2px solid #404040;
       box-sizing: border-box;
       height: 100%;
     }
-    .square {
+    #board > div {
       padding: 2px;
     }
-    .square.black {
+    .black {
       color: #ddd;
       background: black;
     }
-    .square.white {
+    .white {
       color: gray;
       background: white;
     }
