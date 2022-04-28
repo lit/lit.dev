@@ -32,10 +32,12 @@ export default [
   {
     input: [
       'lib/components/copy-button.js',
+      'lib/components/litdev-aside.js',
       'lib/components/litdev-banner.js',
       'lib/components/litdev-version-selector.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
+      'lib/components/ts-js.js',
       'lib/components/litdev-switchable-sample.js',
       'lib/components/litdev-tutorial.js',
       'lib/components/litdev-tutorial-card.js',

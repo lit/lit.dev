@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "rating-element.ts": {},
+    "index.html": {}
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "_check-code-helpers.ts": {
+      "hidden": true
+    }
+  }
+}

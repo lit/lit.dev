@@ -7,8 +7,31 @@
   "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
-    "build": "npm run build:ts",
-    "build:ts": "../../node_modules/.bin/tsc"
+    "build": "wireit",
+    "build:ts": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "dependencies": [
+        "../lit-dev-server:build",
+        "../lit-dev-tools-cjs:build"
+      ],
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
+    }
   },
   "dependencies": {
     "@lit/ts-transformers": "^1.0.0",
@@ -20,7 +43,7 @@
     "fast-glob": "^3.2.9",
     "lit-dev-server": "^0.0.0",
     "lit-dev-tools-cjs": "^0.0.0",
-    "playground-elements": "^0.15.0",
+    "playground-elements": "^0.15.3",
     "prettier": "^2.3.2"
   }
 }

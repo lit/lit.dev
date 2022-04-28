@@ -73,6 +73,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('api/**/*');
 
   eleventyConfig.addWatchTarget('../lit-dev-api/api-data/*/*.json');
+  eleventyConfig.addWatchTarget(
+    '../lit-dev-content/samples/tutorials/**/tutorial.json'
+  );
+  eleventyConfig.addWatchTarget('../lit-dev-content/samples/tutorials/**/*.md');
+  for (const component of componentsToSSR) {
+    eleventyConfig.addWatchTarget(component);
+  }
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
@@ -543,6 +550,7 @@ ${content}
 
   eleventyConfig.addPlugin(litPlugin, {
     componentModules,
+    ignoreGlobs: ['**/tutorials/content/**/*'],
   });
 
   return {
