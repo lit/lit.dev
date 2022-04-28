@@ -4,7 +4,7 @@
   "size": "medium",
   "duration": 43,
   "category": "Build",
-  "imgSrc": "images/tutorials/wc-to-lit/wclogo.png",
+  "imgSrc": "images/tutorials/wc-to-lit/wclogo.webp",
   "imgAlt": "The Web Components logo",
   "steps": [
     {
