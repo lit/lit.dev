@@ -99,7 +99,7 @@ export class RepeatPattern extends LitElement {
 	static styles = [svgCSS, themeCSS];
 
 	@property({type: String}) chars = "lit";
-	@property({type: Number, attribute: "num-prints"}) numPrints = 5;
+	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
 	@property({
 		type: Number,
 		attribute: "rotation-offset",
