@@ -3,8 +3,8 @@
     "difficulty": "Beginner",
     "size": "medium",
     "duration": 30,
-    "imgSrc": "images/tutorials/word-viewer/word-viewer-loop.webp",
-    "imgAlt": "An ascii art bouncing ball animation",
+    "imgSrc": "images/tutorials/word-viewer/word-viewer-ball-loop.webp",
+    "imgAlt": "An ascii art bouncing ball animation.",
     "category": "Build",
     "steps": [
       {
