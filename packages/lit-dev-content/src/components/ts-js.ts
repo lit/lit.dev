@@ -22,7 +22,7 @@ import {
  * ```
  */
 @customElement('ts-js')
-export class LitDevCodeLanguageDisplay extends LitElement {
+export class TsJsLanguageDisplay extends LitElement {
   @state() private codeLanguage: string = getCodeLanguagePreference();
 
   connectedCallback(): void {
