@@ -13,7 +13,7 @@ const themeCSS = css`
 		fill: var(--font-color, #000);
 		font-size: var(--font-size, 24px);
 		stroke-width: var(--stroke-width, 1);
-		stroke: var(--stroke-color, #efefef);
+		stroke: var(--stroke-color, #eee);
 	}
 `;
 
