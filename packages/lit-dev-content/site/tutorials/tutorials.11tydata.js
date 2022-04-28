@@ -66,13 +66,11 @@ module.exports = async () => {
   const tutorials = await Promise.all([
     // Learn
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
-    loadTutorialData('advanced-templating'),
     loadTutorialData('async-directive', {featured: {position: 1}}),
     loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
 
     // Build
     loadTutorialData('wc-to-lit'),
-    loadTutorialData('brick-viewer'),
     loadTutorialData('tooltip'),
   ]);
   /*
