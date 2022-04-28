@@ -255,7 +255,7 @@ export class LitdevTutorialCard extends LitElement {
 
   private renderImg() {
     return html` <div id="image-wrapper">
-      <img src=${this.imgSrc} alt=${this.imgAlt} />
+      <img src=${this.imgSrc} alt=${this.imgAlt} loading="lazy"/>
     </div>`;
   }
 
