@@ -68,6 +68,7 @@ module.exports = async () => {
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
     loadTutorialData('async-directive', {featured: {position: 1}}),
     loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
+    loadTutorialData('working-with-lists'),
 
     // Build
     loadTutorialData('svg-templates'),
