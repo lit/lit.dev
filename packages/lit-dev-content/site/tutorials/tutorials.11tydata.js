@@ -70,6 +70,7 @@ module.exports = async () => {
     loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
 
     // Build
+    loadTutorialData('wc-to-lit'),
     loadTutorialData('tooltip'),
   ]);
   /*
