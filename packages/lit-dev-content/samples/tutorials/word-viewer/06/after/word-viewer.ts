@@ -34,7 +34,8 @@ class WordViewer extends LitElement {
 
   render() {
     const splitWords = this.words.split('.');
-    const word = splitWords[((this.idx % splitWords.length) + splitWords.length) % splitWords.length];
+    const idx = ((this.idx % splitWords.length) + splitWords.length) % splitWords.length;
+    const word = splitWords[idx];
     return html`<pre
       @click=${this.switchPlayDirection}
     >${word}</pre>`;
