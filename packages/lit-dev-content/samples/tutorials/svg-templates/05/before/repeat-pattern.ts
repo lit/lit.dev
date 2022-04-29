@@ -56,7 +56,7 @@ const createTile = () => svg`
 
 const createRepeatPattern = () => svg`
 	<pattern
-		id="pattern-rounds"
+		id="repeat-pattern"
 		x="-10"
 		y="-10"
 		width="200"
@@ -89,7 +89,7 @@ export class RepeatPattern extends LitElement {
 				</defs>
 		
 				<rect fill="#fff" width="100%" height="100%"></rect>
-				<rect fill="url(#pattern-rounds)" width="100%" height="100%"></rect>
+				<rect fill="url(#repeat-pattern)" width="100%" height="100%"></rect>
 			</svg>
 		`;
 	}
