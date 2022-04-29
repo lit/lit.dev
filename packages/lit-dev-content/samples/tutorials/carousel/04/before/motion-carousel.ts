@@ -6,28 +6,22 @@ import {styles} from './styles.js';
 export class MotionCarousel extends LitElement {
   static styles = styles;
 
-  private isAdvancing = false;
-  private _selected = 0;
+  private selectedInternal = 0;
   @property({type: Number})
-  get selected() {
-    return this._selected;
+  selected = 0;
+
+  get maxSelected() {
+    return this.childElementCount - 1;
   }
 
-  set selected(i: number) {
-    const max = this.childElementCount - 1;
-    const old = this.selected;
-    const wrapToStart = old === max && i > old;
-    const wrapToEnd = old === 0 && i < old;
-    const selected = wrapToStart ? 0 : (wrapToEnd ? max :
-      Math.min(max, Math.max(0, i)));
-    if (selected !== old) {
-      this._selected = selected;
-      this.isAdvancing = i > old;
-      this.requestUpdate('selected', old);
-    }
+  hasValidSelected() {
+    return this.selected >= 0 && this.selected <= this.maxSelected;
   }
 
   render() {
+    if (this.hasValidSelected()) {
+      this.selectedInternal = this.selected;
+    }
     return html`
       <div class="fit">
         <slot name="selected"></slot>
@@ -35,9 +29,9 @@ export class MotionCarousel extends LitElement {
     `;
   }
 
-  private previous = -1
+  private previous = 0;
   protected updated(changedProperties: PropertyValues) {
-    if (changedProperties.has('selected') ||  this.previous === -1) {
+    if (changedProperties.has('selected') && this.hasValidSelected()) {
       this.updateSlots();
       this.previous = this.selected;
     }

@@ -1,35 +1,28 @@
 import {LitElement, html, PropertyValues} from 'lit';
-import {customElement, property, query} from 'lit/decorators.js';
-import {styleMap} from 'lit/directives/style-map.js';
+import {customElement, property} from 'lit/decorators.js';
 import {styles} from './styles.js';
-
+import {styleMap} from 'lit/directives/style-map.js';
 @customElement('motion-carousel')
 export class MotionCarousel extends LitElement {
   static styles = styles;
 
-  private isAdvancing = false;
-  private _selected = 0;
+  private selectedInternal = 0;
   @property({type: Number})
-  get selected() {
-    return this._selected;
+  selected = 0;
+
+  get maxSelected() {
+    return this.childElementCount - 1;
   }
 
-  set selected(i: number) {
-    const max = this.childElementCount - 1;
-    const old = this.selected;
-    const wrapToStart = old === max && i > old;
-    const wrapToEnd = old === 0 && i < old;
-    const selected = wrapToStart ? 0 : (wrapToEnd ? max :
-      Math.min(max, Math.max(0, i)));
-    if (selected !== old) {
-      this._selected = selected;
-      this.isAdvancing = i > old;
-      this.requestUpdate('selected', old);
-    }
+  hasValidSelected() {
+    return this.selected >= 0 && this.selected <= this.maxSelected;
   }
 
   private left = 0;
   render() {
+    if (this.hasValidSelected()) {
+      this.selectedInternal = this.selected;
+    }
     const animateLeft = ``;
     const selectedLeft = ``;
     const previousLeft = ``;
@@ -49,15 +42,16 @@ export class MotionCarousel extends LitElement {
   }
 
   private clickHandler(e: MouseEvent) {
-    this.selected += Number(!e.shiftKey) || -1;
+    const i = this.selected + (Number(!e.shiftKey) || -1);
+    this.selected = i > this.maxSelected ? 0 : i < 0 ? this.maxSelected : i;
     const change = new CustomEvent('change',
       {detail: this.selected, bubbles: true, composed: true});
     this.dispatchEvent(change);
   }
 
-  private previous = -1;
+  private previous = 0;
   protected updated(changedProperties: PropertyValues) {
-    if (changedProperties.has('selected') ||  this.previous === -1) {
+    if (changedProperties.has('selected') && this.hasValidSelected()) {
       this.updateSlots();
       this.previous = this.selected;
     }

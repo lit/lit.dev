@@ -1,8 +1,7 @@
 import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {styles} from './styles.js';
-
+import {styleMap} from 'lit/directives/style-map.js';
 @customElement('motion-carousel')
 export class MotionCarousel extends LitElement {
   static styles = styles;
@@ -13,32 +12,30 @@ export class MotionCarousel extends LitElement {
   @query('slot[name="previous"]', true)
   private previousSlot!: HTMLSlotElement;
 
-  private isAdvancing = false;
-  private _selected = 0;
+  private selectedInternal = 0;
   @property({type: Number})
-  get selected() {
-    return this._selected;
+  selected = 0;
+
+  get maxSelected() {
+    return this.childElementCount - 1;
   }
 
-  set selected(i: number) {
-    const max = this.childElementCount - 1;
-    const old = this.selected;
-    const wrapToStart = old === max && i > old;
-    const wrapToEnd = old === 0 && i < old;
-    const selected = wrapToStart ? 0 : (wrapToEnd ? max :
-      Math.min(max, Math.max(0, i)));
-    if (selected !== old) {
-      this._selected = selected;
-      this.isAdvancing = i > old;
-      this.requestUpdate('selected', old);
-    }
+  hasValidSelected() {
+    return this.selected >= 0 && this.selected <= this.maxSelected;
   }
 
   private left = 0;
   render() {
-    const shouldMove = this.hasUpdated &&
-        this.selected !== this.previous;
-    const shouldAdvance = shouldMove && this.isAdvancing;
+    const p = this.selectedInternal;
+    const s = (this.selectedInternal =
+      this.hasValidSelected() ? this.selected : this.selectedInternal);
+    const shouldMove = this.hasUpdated && s !== p;
+    const atStart = p === 0;
+    const toStart = s === 0;
+    const atEnd = p === this.maxSelected;
+    const toEnd = s == this.maxSelected;
+    const shouldAdvance = shouldMove &&
+      (atEnd ? toStart : atStart ? !toEnd : s > p);
     const delta = (shouldMove ? Number(shouldAdvance) || -1 : 0) * 100;
     this.left -= delta;
     const animateLeft = `${this.left}%`;
@@ -60,15 +57,16 @@ export class MotionCarousel extends LitElement {
   }
 
   private clickHandler(e: MouseEvent) {
-    this.selected += Number(!e.shiftKey) || -1;
+    const i = this.selected + (Number(!e.shiftKey) || -1);
+    this.selected = i > this.maxSelected ? 0 : i < 0 ? this.maxSelected : i;
     const change = new CustomEvent('change',
       {detail: this.selected, bubbles: true, composed: true});
     this.dispatchEvent(change);
   }
 
-  private previous = -1;
+  private previous = 0;
   protected updated(changedProperties: PropertyValues) {
-    if (changedProperties.has('selected') ||  this.previous === -1) {
+    if (changedProperties.has('selected') && this.hasValidSelected()) {
       this.updateSlots();
       this.previous = this.selected;
     }
