@@ -6,11 +6,31 @@
   "category": "Learn",
   "steps": [
     {
-      "title": "What's a reactive property?",
-      "noSolve": true
+      "title": "Reactivity",
+      "hasAfter": true
     },
     {
-      "title": "Mastering transdimensional reactivity",
+      "title": "Adding a reactive property",
+      "hasAfter": true
+    },
+    {
+      "title": "Triggering an update",
+      "hasAfter": true
+    },
+    {
+      "title": "Should the component update?",
+      "hasAfter": true
+    },
+    {
+      "title": "Computing values during an update",
+      "hasAfter": true
+    },
+    {
+      "title": "Customizing change detection",
+      "hasAfter": true
+    },
+    {
+      "title": "Recap",
       "hasAfter": true
     }
   ]

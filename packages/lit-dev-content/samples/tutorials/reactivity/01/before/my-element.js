@@ -1,10 +1,7 @@
 import {LitElement, html} from 'lit';
 
 class MyElement extends LitElement {
-  constructor() {
-    super();
-    this.result = '';
-  }
+  result = '';
 
   flipCoin() {
     if (Math.random() < 0.5) {
