@@ -1,7 +1,7 @@
-import type {SVGTemplateResult} from "lit";
+import type { SVGTemplateResult } from "lit";
 
-import {LitElement, html, svg} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { LitElement, html, svg } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 const createElement = (chars: string): SVGTemplateResult => svg`
 	<text
@@ -32,7 +32,7 @@ const createMotif = (
 
 	return svg
 		`<g
-			id="chars-rotated"
+			id="motif"
 			transform="translate(50, 50)">
 				${prints}
 		</g>`;
@@ -46,11 +46,11 @@ const createClipPath = () => svg`
 
 const createTile = () => svg`
 	<g clip-path="url(#rect-clip)">
-		<use transform="translate(0, 0)" href="#chars-rotated"></use>
-		<use transform="translate(0, 100)" href="#chars-rotated"></use>
-		<use transform="translate(100, -50)" href="#chars-rotated"></use>
-		<use transform="translate(100, 50)" href="#chars-rotated"></use>
-		<use transform="translate(100, 150)" href="#chars-rotated"></use>
+		<use transform="translate(0, 0)" href="#motif"></use>
+		<use transform="translate(0, 100)" href="#motif"></use>
+		<use transform="translate(100, -50)" href="#motif"></use>
+		<use transform="translate(100, 50)" href="#motif"></use>
+		<use transform="translate(100, 150)" href="#motif"></use>
 	</g>
 `;
 
@@ -68,8 +68,8 @@ const createRepeatPattern = () => svg`
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-	@property({type: String}) chars = "lit";
-	@property({type: Number, attribute: "num-prints"}) numPrints = 7;
+	@property({ type: String }) chars = "lit";
+	@property({ type: Number, attribute: "num-prints" }) numPrints = 7;
 	@property({
 		type: Number,
 		attribute: "rotation-offset",
@@ -82,9 +82,9 @@ export class RepeatPattern extends LitElement {
 					${createClipPath()}
 					${createElement(this.chars)}
 					${createMotif(
-						this.numPrints,
-						this.rotationOffset,
-					)}
+			this.numPrints,
+			this.rotationOffset,
+		)}
 					${createRepeatPattern()}
 				</defs>
 		

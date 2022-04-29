@@ -13,7 +13,7 @@ const themeCSS = css`
 		fill: var(--font-color, #000);
 		font-size: var(--font-size, 24px);
 		stroke-width: var(--stroke-width, 1);
-		stroke: var(--stroke-color, #efefef);
+		stroke: var(--stroke-color, #eee);
 	}
 `;
 
@@ -60,7 +60,7 @@ const createMotif = (
 
 	return svg
 		`<g
-			id="chars-rotated"
+			id="motif"
 			transform="translate(50, 50)">
 				${prints}
 		</g>`;
@@ -74,11 +74,11 @@ const createClipPath = () => svg`
 
 const createTile = () => svg`
 	<g clip-path="url(#rect-clip)">
-		<use transform="translate(0, 0)" href="#chars-rotated"></use>
-		<use transform="translate(0, 100)" href="#chars-rotated"></use>
-		<use transform="translate(100, -50)" href="#chars-rotated"></use>
-		<use transform="translate(100, 50)" href="#chars-rotated"></use>
-		<use transform="translate(100, 150)" href="#chars-rotated"></use>
+		<use transform="translate(0, 0)" href="#motif"></use>
+		<use transform="translate(0, 100)" href="#motif"></use>
+		<use transform="translate(100, -50)" href="#motif"></use>
+		<use transform="translate(100, 50)" href="#motif"></use>
+		<use transform="translate(100, 150)" href="#motif"></use>
 	</g>
 `;
 

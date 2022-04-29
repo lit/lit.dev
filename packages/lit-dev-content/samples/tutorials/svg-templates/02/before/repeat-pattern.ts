@@ -18,7 +18,7 @@ export class RepeatPattern extends LitElement {
     
     render() {
         return html`
-            <svg>
+            <svg width="100%" height="100%">
                 ${createElement(this.chars)}
             </svg>
         `;
