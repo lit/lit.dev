@@ -1,14 +1,13 @@
-import {LitElement, html, css} from 'lit';
+import {LitElement, html} from 'lit';
 
 export class ToDoList extends LitElement {
   static properties = {
     listItems: {attribute: false},
   };
-  
-  // TODO: Add styles here
 
   constructor() {
     super();
+    // TODO: Add styles here
     this.listItems = [
       {text: 'Make to-do list', completed: true},
       {text: 'Add some styles', completed: false},

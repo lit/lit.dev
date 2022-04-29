@@ -4,7 +4,7 @@
   "size": "medium",
   "duration": 16,
   "category": "Learn",
-  "imgSrc": "images/tutorials/custom-attribute-converter/card.png",
+  "imgSrc": "images/tutorials/custom-attribute-converter/card.webp",
   "imgAlt": "<my-calendar selected-date=\"03/24/22\"></my-calendar>",
   "steps": [
     {

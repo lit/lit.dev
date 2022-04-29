@@ -21,3 +21,5 @@ test-results
 
 *.tsbuildinfo
 lerna-debug.log
+
+.wireit

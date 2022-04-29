@@ -6,9 +6,36 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "npm run build:ts",
-    "build:ts": "../../node_modules/.bin/tsc",
-    "test": "uvu ./lib \".spec.js$\""
+    "build": "wireit",
+    "build:ts": "wireit",
+    "test": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
+    },
+    "test": {
+      "dependencies": [
+        "build"
+      ],
+      "files": [],
+      "output": [],
+      "command": "uvu ./lib \".spec.js$\""
+    }
   },
   "dependencies": {
     "@types/jsdom": "^16.2.13",
@@ -22,7 +49,7 @@
     "outdent": "^0.8.0",
     "playground-elements": "^0.15.3",
     "playwright": "^1.8.0",
-    "source-map": "^0.7.3",
+    "source-map": "^0.8.0-beta.0",
     "strip-comments": "^2.0.1",
     "striptags": "^3.2.0",
     "typedoc": "^0.21.9",
