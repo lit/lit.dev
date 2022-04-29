@@ -33,7 +33,7 @@ export class MotionCarousel extends LitElement {
     const atStart = p === 0;
     const toStart = s === 0;
     const atEnd = p === this.maxSelected;
-    const toEnd = s == this.maxSelected;
+    const toEnd = s === this.maxSelected;
     const shouldAdvance = shouldMove &&
       (atEnd ? toStart : atStart ? !toEnd : s > p);
     const delta = (shouldMove ? Number(shouldAdvance) || -1 : 0) * 100;
