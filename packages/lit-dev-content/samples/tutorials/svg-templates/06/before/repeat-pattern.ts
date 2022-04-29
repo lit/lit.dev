@@ -66,7 +66,7 @@ const createMotif = (
 		</g>`;
 };
 
-const createClipPath = () => svg`
+const createTileBoundary = () => svg`
 	<clipPath id="rect-clip">
 		<rect width="200" height="200"></rect>
 	</clipPath>
@@ -109,7 +109,7 @@ export class RepeatPattern extends LitElement {
 		return html`
 			<svg>
 				<defs>
-					${createClipPath()}
+					${createTileBoundary()}
 					${createElement(this.chars)}
 					${createMotif(
 						this.numPrints,

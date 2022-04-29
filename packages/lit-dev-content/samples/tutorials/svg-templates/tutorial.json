@@ -14,23 +14,23 @@
     },
     {
       "title": "Create a pattern element",
-      "hasAfter": true
+      "hasAfter": false
     },
     {
       "title": "Create a pattern with rotation",
-      "hasAfter": true
+      "hasAfter": false
     },
     {
       "title": "Create a tile with a pattern",
-      "hasAfter": true
+      "hasAfter": false
     },
     {
       "title": "Repeat a tile with <pattern>",
-      "hasAfter": true
+      "hasAfter": false
     },
     {
       "title": "Theme pattern with CSS",
-      "hasAfter": true
+      "hasAfter": false
     },
     {
       "title": "More advanced topics",

@@ -1,7 +1,0 @@
-{
-  "extends": "/samples/base.json",
-  "files": {
-    "repeat-pattern.ts": {},
-    "index.html": {}
-  }
-}
