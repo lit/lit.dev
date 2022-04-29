@@ -73,6 +73,7 @@ module.exports = async () => {
     // Build
     loadTutorialData('wc-to-lit'),
     loadTutorialData('tooltip'),
+    loadTutorialData('word-viewer'),
   ]);
   /*
    * tutorial data in order of rendering on the page
