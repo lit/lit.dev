@@ -65,15 +65,12 @@ const loadTutorialData = async (dirname, options = defaultOptions) => {
 module.exports = async () => {
   const tutorials = await Promise.all([
     // Learn
-    loadTutorialData('intro-to-lit'),
-    loadTutorialData('advanced-templating'),
-    loadTutorialData('async-directive'),
-    loadTutorialData('custom-attribute-converter'),
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
-    loadTutorialData('async-directive', {featured: {position: 1}}),
-    loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
     loadTutorialData('reactivity'),
     loadTutorialData('working-with-lists'),
+    loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
+    loadTutorialData('async-directive', {featured: {position: 1}}),
+
 
     // Build
     loadTutorialData('wc-to-lit'),
