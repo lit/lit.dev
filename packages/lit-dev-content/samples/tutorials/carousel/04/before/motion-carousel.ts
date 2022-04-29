@@ -6,7 +6,7 @@ import {styles} from './styles.js';
 export class MotionCarousel extends LitElement {
   static styles = styles;
 
-  private advancing = false;
+  private isAdvancing = false;
   private _selected = 0;
   @property({type: Number})
   get selected() {
@@ -22,7 +22,7 @@ export class MotionCarousel extends LitElement {
       Math.min(max, Math.max(0, i)));
     if (selected !== old) {
       this._selected = selected;
-      this.advancing = i > old;
+      this.isAdvancing = i > old;
       this.requestUpdate('selected', old);
     }
   }

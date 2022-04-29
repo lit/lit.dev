@@ -15,7 +15,7 @@ export class MotionCarousel extends LitElement {
   @query('slot[name="previous"]', true)
   private previousSlot!: HTMLSlotElement;
 
-  private advancing = false;
+  private isAdvancing = false;
   private _selected = 0;
   @property({type: Number})
   get selected() {
@@ -31,7 +31,7 @@ export class MotionCarousel extends LitElement {
       Math.min(max, Math.max(0, i)));
     if (selected !== old) {
       this._selected = selected;
-      this.advancing = i > old;
+      this.isAdvancing = i > old;
       this.requestUpdate('selected', old);
     }
   }
@@ -56,7 +56,7 @@ export class MotionCarousel extends LitElement {
     const shouldMove = this.hasUpdated &&
         !this.isAnimating &&
         this.selected !== this.previous;
-    const shouldAdvance = shouldMove && this.advancing;
+    const shouldAdvance = shouldMove && this.isAdvancing;
     const delta = (shouldMove ? Number(shouldAdvance) || -1 : 0) * 100;
     this.left -= delta;
     const animateLeft = `${this.left}%`;

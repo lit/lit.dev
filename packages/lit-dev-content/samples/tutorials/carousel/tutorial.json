@@ -1,12 +1,12 @@
 {
-  "header": "Build a Carousel Element",
+  "header": "Build an Animated Carousel Element",
   "difficulty": "Intermediate",
   "size": "small",
   "duration": 30,
   "category": "Build",
   "steps": [
     {
-      "title": "Build a Carousel Element",
+      "title": "Introduction",
       "noSolve": true
     },
     {
