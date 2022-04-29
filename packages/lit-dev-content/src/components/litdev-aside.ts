@@ -43,8 +43,14 @@ export class LitDevAside extends LitElement {
       font-weight: bold;
     }
 
-    ::slotted(*) {
-      margin: 0;
+    ::slotted(:first-of-type),
+    ::slotted(:nth-of-type(2)) {
+      margin-block-start: 0;
+    }
+
+    ::slotted(:first-of-type),
+    ::slotted(:last-of-type) {
+      margin-block-end: 0;
     }
   `;
 
