@@ -31,7 +31,7 @@ export class ParentElement extends LitElement {
   @state() _updating = false;
 
   willUpdate(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('currentList') {
+    if (changedProperties.has('currentList')) {
       this._updating = true;
     }
   }
