@@ -13,12 +13,12 @@ export class ElementTwo extends Highlightable(LitElement) {
       <label>
         <input type="checkbox"
           .checked=${this.highlight}
-          @change=${this.toglgleHighlight}>
+          @change=${this.toggleHighlight}>
         Toggleable highlight
       </label>
     `);
   }
-  private toglgleHighlight(event: Event) {
+  private toggleHighlight(event: Event) {
     this.highlight = (event.target as HTMLInputElement).checked;
   }
 }

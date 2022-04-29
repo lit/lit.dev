@@ -7,6 +7,7 @@ export class ToDoList extends LitElement {
 
   constructor() {
     super();
+    // TODO: Add styles here
     this.listItems = [
       {text: 'Make to-do list', completed: true},
       {text: 'Add some styles', completed: false},

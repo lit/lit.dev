@@ -66,14 +66,15 @@ module.exports = async () => {
   const tutorials = await Promise.all([
     // Learn
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
-    loadTutorialData('advanced-templating'),
     loadTutorialData('async-directive', {featured: {position: 1}}),
     loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
+    loadTutorialData('working-with-lists'),
 
     // Build
-    loadTutorialData('brick-viewer'),
+    loadTutorialData('wc-to-lit'),
     loadTutorialData('tooltip'),
     loadTutorialData('carousel'),
+    loadTutorialData('word-viewer'),
   ]);
   /*
    * tutorial data in order of rendering on the page

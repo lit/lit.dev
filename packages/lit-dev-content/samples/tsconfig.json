@@ -19,6 +19,8 @@
     // Comments in some locations get lost by TypeScript. See
     // https://github.com/lit/lit/issues/2158.
     "docs/templates/lists-arrays/my-element.ts",
-    "docs/templates/lists-map/my-element.ts"
+    "docs/templates/lists-map/my-element.ts",
+    // Intentionally doesn't compile for tutorial part.
+    "tutorials/word-viewer/02/before/word-viewer.ts"
   ]
 }

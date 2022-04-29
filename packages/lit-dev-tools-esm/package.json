@@ -34,7 +34,7 @@
     }
   },
   "dependencies": {
-    "@lit/ts-transformers": "^1.0.0",
+    "@lit/ts-transformers": "^1.1.1",
     "@types/co-body": "^6.1.0",
     "@types/prettier": "^2.3.2",
     "@web/dev-server": "^0.1.6",
