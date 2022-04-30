@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, nothing} from 'lit';
+import {LitElement, html, nothing, PropertyValues} from 'lit';
 import {property, query, state} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {when} from 'lit/directives/when.js';
@@ -301,6 +301,13 @@ export class LitDevTutorial extends LitElement {
     // This is a site-specific component, and we want to inherit site-wide
     // styles.
     return this;
+  }
+
+  update(changed: PropertyValues<this>): void {
+    if (this._manifest.header) {
+      document.title = `${this._manifest.header} Tutorial – Lit`;
+    }
+    super.update(changed);
   }
 
   willUpdate(): void {
