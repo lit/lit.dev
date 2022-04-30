@@ -58,6 +58,9 @@ interface ExpandedTutorialStep {
 
 type CheckStatus = 'INDETERMINATE' | 'CHECKING' | 'PASSED' | 'FAILED';
 
+let hasRecordedStart = false;
+let hasRecordedEnd = false;
+
 /**
  * Tutorial controller and text display.
  *
@@ -313,6 +316,8 @@ export class LitDevTutorial extends LitElement {
     ) {
       this._oldManifestValue = manifestTaskValue;
       this._readUrl();
+      // Manifest loaded. Good indicator that the tutorial has initially loaded.
+      this.reportMetrics(this._idx, this._projectLocation);
     }
 
     const htmlTaskValue = this._htmlTask.value;
@@ -624,6 +629,14 @@ export class LitDevTutorial extends LitElement {
       this._clearCheckingTimeout();
       this._idx++;
       this._writeUrl();
+      if (
+        this._manifest.steps.length > 1 &&
+        this._idx === this._manifest.steps.length - 1 &&
+        this._projectLocation
+      ) {
+        // User has advanced in the tutorial and we are on the last step.
+        this.reportMetrics(this._idx, this._projectLocation);
+      }
     }
   }
 
@@ -752,6 +765,23 @@ export class LitDevTutorial extends LitElement {
       projectSrcBefore: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
       projectSrcAfter: `${this._samplesRoot}/tutorials/${this._projectLocation}/${afterSlug}/project.json`,
     };
+  }
+
+  private reportMetrics(idx: number, tutorialUrl: string) {
+    if (idx === 0 || !hasRecordedStart) {
+      window.gtag?.('event', 'tutorial_start', {
+        category: 'tutorials',
+        event_label: tutorialUrl,
+        value: idx,
+      });
+      hasRecordedStart = true;
+    } else if (idx === this._manifest.steps.length - 1 && !hasRecordedEnd) {
+      window.gtag?.('event', 'tutorial_end', {
+        category: 'tutorials',
+        event_label: tutorialUrl,
+      });
+      hasRecordedEnd = true;
+    }
   }
 }
 
