@@ -71,6 +71,7 @@ module.exports = async () => {
     loadTutorialData('working-with-lists'),
 
     // Build
+    loadTutorialData('svg-templates'),
     loadTutorialData('wc-to-lit'),
     loadTutorialData('tooltip'),
     loadTutorialData('carousel'),
