@@ -13,7 +13,7 @@ test.describe('Tutorial page', () => {
     await page.goto('/tutorials/intro-to-lit');
     await waitForPlaygroundPreviewToLoad(page);
     await expect(await page.screenshot()).toMatchSnapshot(
-      'tutorialFirstStep.png'
+      'introToLitTutorialFirstStep.png'
     );
   });
 });
