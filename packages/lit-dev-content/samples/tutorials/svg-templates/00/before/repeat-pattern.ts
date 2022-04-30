@@ -12,15 +12,23 @@ const themeCSS = css`
   text {
     fill: var(--font-color, #000);
     font-size: var(--font-size, 24px);
-    stroke-width: var(--stroke-width, 1);
+    stroke-width: var(--stroke-width, 1px);
     stroke: var(--stroke-color, #eee);
   }
 `;
 
 const svgCSS = css`
-  .knobs {
-    position: absolute;
+  :host {
+	position: relative;
   }
+
+  .knobs {
+	position: absolute;
+	padding: 8px;
+	background: #efefef;
+    border-bottom-right-radius: 4px;
+  }
+
   svg {
     height: 100%;
     width: 100%;
