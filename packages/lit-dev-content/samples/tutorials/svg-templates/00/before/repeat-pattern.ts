@@ -19,13 +19,13 @@ const themeCSS = css`
 
 const svgCSS = css`
   :host {
-	position: relative;
+  position: relative;
   }
 
   .knobs {
-	position: absolute;
-	padding: 8px;
-	background: #efefef;
+  position: absolute;
+  padding: 8px;
+  background: #efefef;
     border-bottom-right-radius: 4px;
   }
 
