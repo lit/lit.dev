@@ -5,7 +5,7 @@
   "duration": 45,
   "category": "Build",
   "imgSrc": "images/repeat-patterns-lit-svg.webp",
-  "imgAlt": "This is the Lit icon",
+  "imgAlt": "The letts l-i-t are rotated around a circle as a tile pattern",
   "steps": [
     {
       "title": "Pattern making with SVG in Lit",
