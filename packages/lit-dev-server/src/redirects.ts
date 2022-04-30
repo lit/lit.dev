@@ -90,12 +90,12 @@ export const oldLitElementSiteRedirects = new Map([
   ['/guide/build',      '/docs/v1/tools/build/'],
   ['/guide/community',  '/docs/v1/resources/community/'],
 
-  ['/try',              '/tutorial/'],
-  ['/try/create',       '/tutorial/'],
-  ['/try/properties',   '/tutorial/'],
-  ['/try/logic',        '/tutorial/'],
-  ['/try/events',       '/tutorial/'],
-  ['/try/style',        '/tutorial/'],
+  ['/try',              '/tutorials/'],
+  ['/try/create',       '/tutorials/'],
+  ['/try/properties',   '/tutorials/'],
+  ['/try/logic',        '/tutorials/'],
+  ['/try/events',       '/tutorials/'],
+  ['/try/style',        '/tutorials/'],
 
   ['/api/index.html',                                                       '/docs/v1/api/lit-element/LitElement/'],
   ['/api/globals.html',                                                     '/docs/v1/api/lit-element/LitElement/'],

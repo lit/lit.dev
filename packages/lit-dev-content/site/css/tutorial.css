@@ -88,9 +88,6 @@ litdev-tutorial {
   /* Disabled buttons are very dark by default, lighten a bit. */
   --mdc-theme-text-disabled-on-light: #777;
   --diamond-icon-color: currentcolor;
-}
-
-#tutorialHeader.hasCatalogButton {
   /* need to reduce padding to account for the 16px of whitespace around icon */
   padding-inline-start: calc(2em - 16px);
 }

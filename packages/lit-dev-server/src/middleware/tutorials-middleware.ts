@@ -6,28 +6,19 @@
 
 import type Koa from 'koa';
 
-const TUTORIAL_MOD = 'tutorialCatalog';
-
 /**
  * Koa Middleware to serve '/tutorials/view.html' from '/tutorials/*' and to
- * redirect to tutorial if tutorialCatalog mod is not enabled.
+ * redirect from /tutorial to /tutorials.
  */
 export const tutorialsMiddleware = (): Koa.Middleware => async (ctx, next) => {
   const path = ctx.request.path;
-  const modsQuery = ctx.request.query.mods;
-  let hasTutorialsMod = false;
 
-  if (typeof modsQuery === 'string' || modsQuery instanceof String) {
-    hasTutorialsMod = modsQuery.split(' ').includes(TUTORIAL_MOD);
-  } else if (modsQuery instanceof Array) {
-    hasTutorialsMod = modsQuery.includes(TUTORIAL_MOD);
-  }
-
-  // If acccessing /tutorials or /tutorials/ but there is no
-  // ?mods=tutorialCatalog query, then redirect to /tutorial
-  if ((path === '/tutorials/' || path === '/tutorials') && !hasTutorialsMod) {
+  // If acccessing /tutorial or /tutorial/ then redirect to /tutorial
+  if (path === '/tutorial/' || path === '/tutorial') {
     ctx.redirect(
-      `/tutorial${ctx.request.querystring ? `?${ctx.request.querystring}` : ''}`
+      `/tutorials${
+        ctx.request.querystring ? `?${ctx.request.querystring}` : ''
+      }`
     );
   }
 
