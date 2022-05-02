@@ -1,13 +1,13 @@
 {
   "header": "Reactivity",
   "difficulty": "Beginner",
-  "size": "medium",
-  "duration": 70,
+  "size": "small",
+  "duration": 20,
   "category": "Learn",
   "steps": [
     {
       "title": "Reactivity",
-      "hasAfter": true
+      "noSolve": true
     },
     {
       "title": "Adding a reactive property",
