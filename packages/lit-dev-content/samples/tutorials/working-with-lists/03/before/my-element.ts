@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
+import type {TemplateResult} from 'lit';
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -17,7 +18,7 @@ class MyElement extends LitElement {
   includePets = true;
 
   render() {
-    const listItems = [];
+    const listItems: TemplateResult[] = [];
     // TODO: populate templates with items to render.
 
     return html`
