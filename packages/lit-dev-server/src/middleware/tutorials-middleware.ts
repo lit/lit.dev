@@ -7,23 +7,13 @@
 import type Koa from 'koa';
 
 /**
- * Koa Middleware to serve '/tutorials/view.html' from '/tutorials/*' and to
- * redirect from /tutorial to /tutorials.
+ * Koa Middleware to serve '/tutorials/view.html' from '/tutorials/*'
  */
 export const tutorialsMiddleware = (): Koa.Middleware => async (ctx, next) => {
   const path = ctx.request.path;
 
-  // If acccessing /tutorial or /tutorial/ then redirect to /tutorial
-  if (path === '/tutorial/' || path === '/tutorial') {
-    ctx.redirect(
-      `/tutorials${
-        ctx.request.querystring ? `?${ctx.request.querystring}` : ''
-      }`
-    );
-  }
-
   // We want to intercept /tutorials/* but not /tutorials/ itself or the place
-  // where we are currently rendering the markdown to html so not
+  // where we are currently rendering the markdown to html – so do not redirect
   // /tutorials/content/*
   if (
     path.startsWith('/tutorials/') &&
