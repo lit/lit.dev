@@ -34,6 +34,10 @@ import './litdev-icon-button.js';
 import {Task, TaskStatus} from '@lit-labs/task';
 import {PostDoc} from 'postdoc-lib';
 import type {PlaygroundPreview} from 'playground-elements/playground-preview';
+import {
+  reportTutorialMetrics,
+  TutorialMetricEvent,
+} from '../util/gtag-helpers.js';
 
 const CHECK_TIMEOUT_MS = 10000;
 export interface TutorialStep {
@@ -324,7 +328,15 @@ export class LitDevTutorial extends LitElement {
       this._oldManifestValue = manifestTaskValue;
       this._readUrl();
       // Manifest loaded. Good indicator that the tutorial has initially loaded.
-      this.reportMetrics(this._idx, this._projectLocation);
+      const eventFired = reportTutorialMetrics({
+        idx: this._idx,
+        numSteps: this._manifest.steps.length,
+        tutorialUrl: this._projectLocation,
+        hasRecordedStart,
+        hasRecordedEnd,
+      });
+
+      this._handleTutorialMetricEvent(eventFired);
     }
 
     const htmlTaskValue = this._htmlTask.value;
@@ -636,13 +648,17 @@ export class LitDevTutorial extends LitElement {
       this._clearCheckingTimeout();
       this._idx++;
       this._writeUrl();
-      if (
-        this._manifest.steps.length > 1 &&
-        this._idx === this._manifest.steps.length - 1 &&
-        this._projectLocation
-      ) {
+      if (this._manifest.steps.length > 1 && this._projectLocation) {
         // User has advanced in the tutorial and we are on the last step.
-        this.reportMetrics(this._idx, this._projectLocation);
+        const eventFired = reportTutorialMetrics({
+          idx: this._idx,
+          tutorialUrl: this._projectLocation,
+          numSteps: this._manifest.steps.length,
+          hasRecordedStart,
+          hasRecordedEnd,
+        });
+
+        this._handleTutorialMetricEvent(eventFired);
       }
     }
   }
@@ -774,20 +790,17 @@ export class LitDevTutorial extends LitElement {
     };
   }
 
-  private reportMetrics(idx: number, tutorialUrl: string) {
-    if (idx === 0 || !hasRecordedStart) {
-      window.gtag?.('event', 'tutorial_start', {
-        category: 'tutorials',
-        event_label: tutorialUrl,
-        value: idx,
-      });
-      hasRecordedStart = true;
-    } else if (idx === this._manifest.steps.length - 1 && !hasRecordedEnd) {
-      window.gtag?.('event', 'tutorial_end', {
-        category: 'tutorials',
-        event_label: tutorialUrl,
-      });
-      hasRecordedEnd = true;
+  private _handleTutorialMetricEvent(event: TutorialMetricEvent) {
+    switch (event) {
+      case 'tutorial_start':
+        hasRecordedStart = true;
+        break;
+      case 'tutorial_end':
+        hasRecordedEnd = true;
+        break;
+      case 'tutorial_progress':
+      default:
+        break;
     }
   }
 }
