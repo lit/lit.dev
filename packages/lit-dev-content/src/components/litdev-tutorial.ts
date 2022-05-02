@@ -649,7 +649,6 @@ export class LitDevTutorial extends LitElement {
       this._idx++;
       this._writeUrl();
       if (this._manifest.steps.length > 1 && this._projectLocation) {
-        // User has advanced in the tutorial and we are on the last step.
         const eventFired = reportTutorialMetrics({
           idx: this._idx,
           tutorialUrl: this._projectLocation,
