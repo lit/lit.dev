@@ -1,4 +1,4 @@
-import {LitElement, html, css, PropertyValues, PropertyValueMap} from 'lit';
+import {LitElement, html, css, PropertyValues} from 'lit';
 import {customElement, state, query} from 'lit/decorators.js';
 
 @customElement('my-element')

@@ -3,7 +3,7 @@ import {map} from 'lit/directives/map.js';
 import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
-class MyElement extends LitElement {
+export class MyElement extends LitElement {
   @property()
   groceries = ['tea', 'milk', 'honey', 'chocolate'];
 
