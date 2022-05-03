@@ -1,33 +1,32 @@
-import {LitElement, html, css, PropertyValues} from 'lit';
-import {customElement, property, query} from 'lit/decorators.js';
-import './blinky-box.js';
-
-// TODO: define hasChanged function
+import {LitElement, html, css, PropertyValues, PropertyValueMap} from 'lit';
+import {customElement, state, query} from 'lit/decorators.js';
 
 @customElement('my-element')
-class MyElement extends LitElement {
-  // TODO: add hasChanged function on the date property
-  @property()
-  date = new Date();
+export class MyElement extends LitElement {
+  static styles = css`
+    :host {
+      display: block;
+    }
+    #message {
+      position: fixed;
+      background-color: cornflowerblue;
+      color: white;
+      padding: 10px;
+    }
+  `;
+  @state()
+  _showMessage = false;
 
-  @query('input')
-  _input!: HTMLInputElement;
-
-
-  onDatePicked(): void {
-    const dateString = this._input.value;
-    this.date = new Date(dateString);
-  }
+  @query('#message')
+  _message!: HTMLParagraphElement;
 
   render() {
     return html`
-
-      <input type="date">
-      <button @click=${this.onDatePicked}>Set date</button>
-      <div>
-        Selected date:
-        <blinky-box .date=${this.date}></blinky-box>
+      <button @click=${() => this._showMessage = !this._showMessage}>Click me</button>
+      <div id="message" ?hidden=${!this._showMessage}>
+        TADA
       </div>
     `;
   }
+
 }

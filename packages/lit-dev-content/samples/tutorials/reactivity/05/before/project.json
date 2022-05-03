@@ -2,7 +2,6 @@
   "extends": "/samples/base.json",
   "files": {
     "index.html": {},
-    "my-element.ts": {},
-    "blinky-box.ts": {}
+    "my-element.ts": {}
   }
 }

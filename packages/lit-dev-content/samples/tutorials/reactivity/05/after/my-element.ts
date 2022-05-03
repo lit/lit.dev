@@ -1,38 +1,45 @@
-import {LitElement, html, css, PropertyValues} from 'lit';
-import {customElement, property, query} from 'lit/decorators.js';
-import './blinky-box.js';
-
-function dateHasChanged(newDate: Date, oldDate: Date|undefined): boolean {
-  const hasChanged = (oldDate == undefined) ||
-    !(newDate.getFullYear() == oldDate.getFullYear() &&
-    newDate.getMonth() == oldDate.getMonth() &&
-    newDate.getDate() == oldDate.getDate());
-  return hasChanged;
-}
+import {LitElement, html, css, PropertyValues, PropertyValueMap} from 'lit';
+import {customElement, state, query} from 'lit/decorators.js';
 
 @customElement('my-element')
-class MyElement extends LitElement {
-  @property({hasChanged: dateHasChanged})
-  date = new Date();
+export class MyElement extends LitElement {
+  static styles = css`
+    :host {
+      display: block;
+    }
+    #message {
+      position: fixed;
+      background-color: cornflowerblue;
+      color: white;
+      padding: 10px;
+    }
+  `;
+  @state()
+  _showMessage = false;
 
-  @query('input')
-  _input!: HTMLInputElement;
-
-
-  onDatePicked(): void {
-    const dateString = this._input.value;
-    this.date = new Date(dateString);
-  }
+  @query('#message')
+  _message!: HTMLDivElement;
 
   render() {
     return html`
-
-      <input type="date">
-      <button @click=${this.onDatePicked}>Set date</button>
-      <div>
-        Selected date:
-        <blinky-box .date=${this.date}></blinky-box>
+      <button @click=${() => this._showMessage = !this._showMessage}>Click me</button>
+      <div id="message" ?hidden=${!this._showMessage}>
+        TADA
       </div>
     `;
+  }
+
+  protected updated(changedProperties: PropertyValues<this>): void {
+    if (changedProperties.has('_showMessage')) {
+      const final = this._message.getBoundingClientRect().width;
+      const starting = 0 - final;
+      var player = this._message.animate([
+        { left: `${starting}px` },
+        { left: `0` }
+      ], {
+        duration: 500,
+        easing: 'ease-out',
+      });
+    }
   }
 }

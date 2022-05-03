@@ -1,5 +1,6 @@
 import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import {computeSHA} from './compute-sha.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -8,6 +9,13 @@ export class MyElement extends LitElement {
 
   @property()
   sha = '';
+
+  willUpdate(changedProperties: PropertyValues<this>) {
+    // Only need to check changed properties for an expensive computation.
+    if (changedProperties.has('name')) {
+      computeSHA(this.name).then((sha) => this.sha = sha);
+    }
+  }
 
   setName(e: Event) {
     this.name = (e.target as HTMLInputElement).value;
