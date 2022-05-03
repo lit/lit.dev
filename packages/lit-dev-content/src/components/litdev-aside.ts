@@ -41,9 +41,9 @@ export class LitDevAside extends LitElement {
 
     :host(:not([no-header])) ::slotted(:first-of-type) {
       font-weight: bold;
-      display: inline;
     }
 
+    :host(:not([no-header])) ::slotted(:first-of-type),
     :host(:not([no-header])) ::slotted(:nth-of-type(2)) {
       display: inline;
     }
