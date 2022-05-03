@@ -48,8 +48,7 @@ export class LitDevAside extends LitElement {
       display: inline;
     }
 
-    ::slotted(:first-of-type),
-    ::slotted(:nth-of-type(2)) {
+    ::slotted(:first-of-type) {
       margin-block-start: 0;
     }
 
