@@ -1,23 +1,90 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="module" src="repeat-pattern.js"></script>
     <style>
       html, body {
          height: 100%;
          padding: 0;
          margin: 0;
       }
-      body {
+      :root {
         --background-color: #7acbf1;
         --font-color: #fff;
         --font-size: 56px;
         --stroke-width: 3.5px;
         --stroke-color: #e3a7b2;
       }
+      .knobs {
+        position: absolute;
+        padding: 8px;
+        background: #efefef;
+        border-bottom-right-radius: 4px;
+      }
     </style>
+    <!-- <script type="module" src="repeat-pattern.js"></script> -->
+    <script type="module">
+      const body = document.querySelector("body");
+      const pattern = document.querySelector("repeat-pattern");
+      console.log(pattern);
+
+      function onChars(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        pattern.chars = e.target.value
+      }
+
+      function onNumPrints(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        pattern.numPrints = e.target.valueAsNumber;
+      }
+
+      function onRotationOffset(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        pattern.rotationOffset = e.target.valueAsNumber;
+      }
+
+      function onBackgroundColor(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        body.style.setProperty("--background-color", e.target.value);
+      }
+
+      function onStrokeColor(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        body.style.setProperty("--stroke-color", e.target.value);
+      }
+
+      function onTextColor(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        body.style.setProperty("--text-color", e.target.value);
+      }
+
+      const charInput = document.querySelector("#chars");
+      charInput.addEventListener("input", onChars);
+
+      const numPrintsInput = document.querySelector("#num-prints");
+      numPrintsInput.addEventListener("input", onNumPrints);
+
+      const rotationOffsetInput = document.querySelector("#rotation-offset");
+      numPrintsInput.addEventListener("input", onRotationOffset);
+
+      const backgroundColorInput = document.querySelector("#background-color");
+      backgroundColorInput.addEventListener("input", onBackgroundColor);
+
+      const strokeColorInput = document.querySelector("#stroke-color");
+      strokeColorInput.addEventListener("input", onStrokeColor);
+
+      const textColorInput = document.querySelector("#text-color");
+      textColorInput.addEventListener("input", onTextColor);
+    </script>
   </head>
   <body>
     <repeat-pattern chars="T" num-prints="8"></repeat-pattern>
+    <div class="knobs">
+      <input id="chars" value="T">
+      <input id="num-prints" type="range" min="2" max="29" value="8">
+      <input id="rotation-offset" type="range" min="0" max="360" value="0">
+      <input id="background-color" type="color" value="#7acbf1">
+      <input id="stroke-color" type="color" value="#e3a7b2">
+      <input id="text-color" type="color" value="#fff">
+    </div>
   </body>
 </html>
