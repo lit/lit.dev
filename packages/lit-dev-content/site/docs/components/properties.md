@@ -264,13 +264,40 @@ When a property changes, the following sequence occurs:
 
 1.  The property's setter is called.
 1.  The setter calls the component's `requestUpdate` method.
-1.  The property's old and new values are compared. If the property has a `hasChanged` function, it's called with the property's old and new values.
+1.  The property's old and new values are compared.
+    -  By default Lit uses a strict inequality test to determine if the value has changed (that is `newValue !== oldValue`).
+    -  If the property has a `hasChanged` function, it's called with the property's old and new values.
 1.  If the property change is detected, an update is scheduled asynchronously. If an update is already scheduled, only a single update is executed.
 1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
+
+Note that if you mutate an object or array property, it won't trigger an update, because the object itself hasn't changed. For more information, see [Mutating object and array properties](#mutatingobjectandarrayproperties).
 
 There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle).
 
 For more information about property change detection, see [Customizing change detection](#haschanged).
+
+### Mutating object and array properties
+
+Mutating an object or array doesn't change the object reference, so it won't trigger an update. You can handle object and array properties in one of two ways:
+
+-   Treat objects and arrays as immutable. For example, to remove an item from `myArray`, construct a new array:
+
+    ```js
+    this.myArray = [...this.myArray.slice(0, indexToRemove),
+                    ...this.myArray.slice(indexToRemove+1)];
+    ```
+
+    While this example is simple, using immutable data patterns with deeply nested objects can be complicated and error-prone, unless you're using an immutable data library like [Immer](https://immerjs.github.io/immer/).
+
+-   Call `requestUpdate()` to trigger an update directly.
+
+    ```js
+    this.myArray.splice(indexToRemove, 1);
+    this.requestUpdate();
+    ```
+
+    When called with no arguments, `requestUpdate()` schedules an update, without calling a `hasChanged()` function.
+
 
 ## Attributes {#attributes}
 
