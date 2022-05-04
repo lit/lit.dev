@@ -17,6 +17,7 @@ export type TutorialMetricEvent =
   | 'tutorial_progress'
   | 'tutorial_end'
   | null;
+
 export const reportTutorialMetrics = ({
   idx,
   tutorialUrl,
