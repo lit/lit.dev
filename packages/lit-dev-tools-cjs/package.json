@@ -54,8 +54,5 @@
     "striptags": "^3.2.0",
     "typedoc": "^0.21.9",
     "uvu": "^0.5.1"
-  },
-  "devDependencies": {
-    "lit-dev-content": "^0.0.0"
   }
 }

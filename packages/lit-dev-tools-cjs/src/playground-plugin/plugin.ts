@@ -9,7 +9,7 @@ import {outdent} from 'outdent';
 import * as fs from 'fs/promises';
 
 import type {ProjectManifest} from 'playground-elements/shared/worker-api.js';
-import type {AsideVariant} from 'lit-dev-content/src/components/litdev-aside.js';
+export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
