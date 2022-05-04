@@ -39,21 +39,21 @@ export class LitDevAside extends LitElement {
       margin-inline: 1em;
     }
 
-    :host(:not([no-header])) ::slotted(:first-of-type) {
+    :host(:not([no-header])) ::slotted(:first-child) {
       font-weight: bold;
     }
 
-    :host(:not([no-header])) ::slotted(:first-of-type),
-    :host(:not([no-header])) ::slotted(:nth-of-type(2)) {
+    :host(:not([no-header])) ::slotted(:first-child),
+    :host(:not([no-header])) ::slotted(:nth-child(2)) {
       display: inline;
     }
 
-    ::slotted(:first-of-type) {
+    ::slotted(:first-child) {
       margin-block-start: 0;
     }
 
-    ::slotted(:first-of-type),
-    ::slotted(:last-of-type) {
+    ::slotted(:first-child),
+    ::slotted(:last-child) {
       margin-block-end: 0;
     }
   `;
