@@ -197,7 +197,7 @@ Make sure to do `this`!
 
 {% endaside %}
 
-{% aside "warn" no-header %}
+{% aside "warn" "no-header" %}
 
 The `no-header` will make sure that this line is not bolded.
 
