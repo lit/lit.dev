@@ -21,7 +21,7 @@
 
   <div id="rhsTocWrapper">
     <nav id="rhsToc">
-      <h2>Contents</h2>
+      <h2>{{'Contents' | i18n}}</h2>
       {{ content | toc | safe }}
     </nav>
   </div>
@@ -31,7 +31,7 @@
 
     <nav id="inlineToc">
       <details>
-        <summary><h2>Contents</h2></summary>
+        <summary><h2>{{'Contents' | i18n}}</h2></summary>
         {{ content | toc | safe }}
       </details>
     </nav>
