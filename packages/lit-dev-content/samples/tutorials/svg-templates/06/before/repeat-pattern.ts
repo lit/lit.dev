@@ -118,11 +118,6 @@ export class RepeatPattern extends LitElement {
 
   render() {
     return html`
-    <div class="knobs">
-      <input .value=${this.chars} @input=${this.onChars}>
-      <input type="range" min="2" max="29" .value=${this.numPrints} @input=${this.onNumPrints}>
-      <input type="range" min="0" max="360" .value=${this.rotationOffset} @input=${this.onRotationOffset}>
-    </div>
       <svg>
         <defs>
           ${createTileBoundary()}
@@ -138,20 +133,5 @@ export class RepeatPattern extends LitElement {
         <rect fill="url(#repeat-pattern)"></rect>
       </svg>
     `;
-  }
-
-  onChars = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.chars = e.target.value
-  }
-
-  onNumPrints = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.numPrints = e.target.valueAsNumber;
-  }
-
-  onRotationOffset = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.rotationOffset = e.target.valueAsNumber;
   }
 }
