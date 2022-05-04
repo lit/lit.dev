@@ -62,9 +62,6 @@ interface ExpandedTutorialStep {
 
 type CheckStatus = 'INDETERMINATE' | 'CHECKING' | 'PASSED' | 'FAILED';
 
-let hasRecordedStart = false;
-let hasRecordedEnd = false;
-
 /**
  * Tutorial controller and text display.
  *
@@ -150,6 +147,16 @@ export class LitDevTutorial extends LitElement {
    * change the page. Used to disable the "Check" code button.
    */
   @state() private _requestSolvedCode = false;
+
+  /**
+   * Whether or not gtag has reported the start of the tutorial.
+   */
+  private _hasRecordedStart = false;
+
+  /**
+   * Whether or not gtag has reported the end of the tutorial.
+   */
+  private _hasRecordedEnd = false;
 
   /**
    * Receives check status messages from the playground and updates the check
@@ -332,8 +339,8 @@ export class LitDevTutorial extends LitElement {
         idx: this._idx,
         numSteps: this._manifest.steps.length,
         tutorialUrl: this._projectLocation,
-        hasRecordedStart,
-        hasRecordedEnd,
+        hasRecordedStart: this._hasRecordedStart,
+        hasRecordedEnd: this._hasRecordedEnd,
       });
 
       this._handleTutorialMetricEvent(eventFired);
@@ -653,8 +660,8 @@ export class LitDevTutorial extends LitElement {
           idx: this._idx,
           tutorialUrl: this._projectLocation,
           numSteps: this._manifest.steps.length,
-          hasRecordedStart,
-          hasRecordedEnd,
+          hasRecordedStart: this._hasRecordedStart,
+          hasRecordedEnd: this._hasRecordedEnd,
         });
 
         this._handleTutorialMetricEvent(eventFired);
@@ -790,15 +797,21 @@ export class LitDevTutorial extends LitElement {
   }
 
   private _handleTutorialMetricEvent(event: TutorialMetricEvent) {
+    if (!event) {
+      return;
+    }
+
     switch (event) {
       case 'tutorial_start':
-        hasRecordedStart = true;
+        this._hasRecordedStart = true;
         break;
       case 'tutorial_end':
-        hasRecordedEnd = true;
+        this._hasRecordedEnd = true;
         break;
       case 'tutorial_progress':
+        break;
       default:
+        ((_event: never) => {})(event);
         break;
     }
   }
