@@ -18,11 +18,7 @@ const themeCSS = css`
 `;
 
 const svgCSS = css`
-  :host {
-    position: relative;
-  }
-
-  svg {
+  svg, rect {
     height: 100%;
     width: 100%;
   }
@@ -32,11 +28,6 @@ const svgCSS = css`
     dominant-baseline: hanging;
     font-family: monospace;
     font-size: 24px;
-  }
-
-  rect {
-    width: 100%;
-    height: 100%;
   }
 `;
 
@@ -59,7 +50,7 @@ const createMotif = (
         href="#chars"
         transform="rotate(${currRotation}, 0, 0)">
       </use>
-      `)
+    `);
   }
 
   return svg
