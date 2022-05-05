@@ -13,7 +13,10 @@ const createElement = (chars: string): SVGTemplateResult => svg`
   </text>
 `;
 
-const createMotif = (numPrints: number, offset: number = 0): SVGTemplateResult => {
+const createMotif = (
+  numPrints: number,
+  offset: number = 0,
+): SVGTemplateResult => {
   const rotation = 360 / numPrints;
 
   const prints = [];
@@ -25,11 +28,11 @@ const createMotif = (numPrints: number, offset: number = 0): SVGTemplateResult =
         href="#chars"
         transform="rotate(${currRotation}, 0, 0)">
       </use>
-      `);
+    `);
   }
 
   return svg`<g transform="translate(50, 50)">${prints}</g>`;
-}
+};
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
@@ -46,8 +49,11 @@ export class RepeatPattern extends LitElement {
         <defs>
           ${createElement(this.chars)}
         </defs>
-        ${createMotif(this.numPrints, this.rotationOffset)}
+        ${createMotif(
+          this.numPrints,
+          this.rotationOffset,
+        )}
       </svg>
-      `;
+    `;
   }
 }
