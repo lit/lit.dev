@@ -73,8 +73,10 @@ module.exports = async () => {
 
 
     // Build
+    loadTutorialData('svg-templates'),
     loadTutorialData('wc-to-lit'),
     loadTutorialData('tooltip'),
+    loadTutorialData('carousel'),
     loadTutorialData('word-viewer'),
   ]);
   /*

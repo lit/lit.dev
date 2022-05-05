@@ -10,8 +10,8 @@ import {greenCheckIcon} from '../icons/green-check-icon.js';
 import {redXIcon} from '../icons/red-x-icon.js';
 import {yellowBangIcon} from '../icons/yellow-bang-icon.js';
 import {blueInfoIcon} from '../icons/blue-info-icon.js';
-
-export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info';
+import type {AsideVariant} from 'lit-dev-tools-cjs/src/playground-plugin/plugin.js';
+export type {AsideVariant};
 
 @customElement('litdev-aside')
 export class LitDevAside extends LitElement {
@@ -43,8 +43,18 @@ export class LitDevAside extends LitElement {
       font-weight: bold;
     }
 
-    ::slotted(*) {
-      margin: 0;
+    :host(:not([no-header])) ::slotted(:first-child),
+    :host(:not([no-header])) ::slotted(:nth-child(2)) {
+      display: inline;
+    }
+
+    ::slotted(:first-child) {
+      margin-block-start: 0;
+    }
+
+    ::slotted(:first-child),
+    ::slotted(:last-child) {
+      margin-block-end: 0;
     }
   `;
 

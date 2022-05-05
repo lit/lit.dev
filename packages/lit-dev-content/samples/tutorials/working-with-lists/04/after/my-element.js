@@ -37,9 +37,14 @@ class MyElement extends LitElement {
     return html`
       <p>Let's play a game!</p>
       <div id="board">
-        ${map(range(8), (row) => map(range(8), (col) => html`
+        ${map(range(8), (row) =>
+          map(
+            range(8),
+            (col) => html`
           <div class="${getColor(row, col)}">${getLabel(row, col)}</div>
-        `))}
+        `
+          )
+        )}
       </div>
     `;
   }

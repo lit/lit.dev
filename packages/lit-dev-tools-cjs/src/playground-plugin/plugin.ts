@@ -9,6 +9,7 @@ import {outdent} from 'outdent';
 import * as fs from 'fs/promises';
 
 import type {ProjectManifest} from 'playground-elements/shared/worker-api.js';
+export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
@@ -262,6 +263,73 @@ export const playgroundPlugin = (
     }
     return `<litdev-switchable-sample>${content}</litdev-switchable-sample>`;
   });
+
+  const neverReach = (_value: never, error: string): never => {
+    throw new Error(error);
+  };
+
+  /**
+   * An aside for extra information.
+   *
+   * Usage:
+   *
+   *   {% aside "positive" %}
+   *
+   *   Here is some content! This line is bolded.
+   *
+   *   This line is not bolded but on the same line as the previous one.
+   *
+   *   This line is another paragraph
+   *
+   *   {% endaside %}
+   *
+   *   {% aside "info" "no-header" %}
+   *
+   *   This one does not have a bolded header.
+   *
+   *   {% endaside %}
+   */
+  eleventyConfig.addPairedShortcode(
+    'aside',
+    (content: string, variant: AsideVariant, noHeader = '') => {
+      const acceptableVariants: ['info', 'warn', 'positive', 'negative'] = [
+        'info',
+        'warn',
+        'positive',
+        'negative',
+      ];
+
+      // If statement needs to be written this way to assert exhaustive check.
+      if (
+        acceptableVariants[0] !== variant &&
+        acceptableVariants[1] !== variant &&
+        acceptableVariants[2] !== variant &&
+        acceptableVariants[3] !== variant
+      ) {
+        // This will throw an error at runtime if it does not match and will
+        // throw a TS build time error if we add another variant and forget to
+        // update this file.
+        neverReach(
+          variant,
+          `Invalid {% aside ${variant} %}.` +
+            ` variant "${variant}" is not an acceptable variant of:` +
+            ` ${acceptableVariants.join(', ')}.`
+        );
+      }
+
+      const noHeaderAttribute = noHeader === 'no-header' ? ' no-header' : '';
+      // htmlmin:ignore will prevent minifier from formatting the contents.
+      // otherwise, in the prod build, there will not be a space between the
+      // bolded header and the second line.
+      return (
+        `<litdev-aside variant="${variant}"${noHeaderAttribute}>` +
+        '\n<!-- htmlmin:ignore -->\n\n' +
+        content +
+        '\n\n<!-- htmlmin:ignore -->' +
+        '\n</litdev-aside>'
+      );
+    }
+  );
 
   eleventyConfig.addMarkdownHighlighter(
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)

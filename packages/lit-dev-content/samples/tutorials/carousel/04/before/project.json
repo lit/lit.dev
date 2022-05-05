@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "motion-carousel.ts": {"selected": true},
+    "index.html": {},
+    "styles.ts": {}
+  },
+  "dependencies": {
+    "@lit-labs/motion": "^1.0.2"
+  }
+}
