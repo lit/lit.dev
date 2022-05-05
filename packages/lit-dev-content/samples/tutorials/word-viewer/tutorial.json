@@ -1,10 +1,8 @@
 {
     "header": "Build a Word Viewer!",
     "difficulty": "Beginner",
-    "size": "medium",
+    "size": "small",
     "duration": 30,
-    "imgSrc": "images/tutorials/word-viewer/word-viewer-ball-loop.webp",
-    "imgAlt": "An ascii art bouncing ball animation.",
     "category": "Build",
     "steps": [
       {
@@ -45,4 +43,3 @@
       }
     ]
   }
-  
