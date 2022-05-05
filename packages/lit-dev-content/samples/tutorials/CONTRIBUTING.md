@@ -189,36 +189,36 @@ customElements.define('my-element', MyElement);
 You can also insert an aside in your instructions by using the following format:
 
 ```html
-<litdev-aside type="positive">
+{% aside "positive" %}
 
 The first line is always a bolded header.
 
 Make sure to do `this`!
 
-</litdev-aside>
+{% endaside %}
 
-<litdev-aside type="warn" no-header>
+{% aside "warn" "no-header" %}
 
 The `no-header` will make sure that this line is not bolded.
 
 Beware of `this`!
 
-</litdev-aside>
+{% endaside %}
 
-<litdev-aside type="negative">
+{% aside "negative" %}
 
 Make sure NOT to do `this`!
 
 The following non-header lines here make sense to explain the assertion in
 the header line above.
 
-</litdev-aside>
+{% endaside %}
 
-<litdev-aside type="info">
+{% aside "info" %}
 
 Check out more info [in this docs section](/docs/templates/expressions/#well-formed-html).
 
-</litdev-aside>
+{% endaside %}
 ```
 
 *Note:* markdown will only be parsed as markdown if there is an empty line
