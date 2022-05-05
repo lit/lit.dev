@@ -23,7 +23,7 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      <label>Name: <input @change=${this.setName}></label>
+      <label>Name: <input @input=${this.setName}></label>
       <p>You entered: ${this.name}</p>
       SHA: ${this.sha}`;
   }
