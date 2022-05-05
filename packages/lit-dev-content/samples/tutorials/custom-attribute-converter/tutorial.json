@@ -13,6 +13,7 @@
     },
     {
       "title": "Built-in string attribute converter"
+      "checkable": true
     },
     {
       "title": "Built-in attribute converter – synchronization",
