@@ -77,7 +77,7 @@
         "site/**",
         ".eleventy.js"
       ],
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy --watch"
+      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
     },
     "dev:build:site": {
       "dependencies": [
