@@ -26,7 +26,7 @@ export const reportTutorialMetrics = ({
   numSteps,
 }: TutorialMetricsOptions): TutorialMetricEvent => {
   // A user can load a tutorial from a URL at a step that is not 0, hence
-  // we shoul consider whether start has not been recorded already.
+  // we should consider whether start has not been recorded already.
   if (idx === 0 || !hasRecordedStart) {
     // The first tutorial step viewed
     window.gtag?.('event', 'tutorial_start', {
