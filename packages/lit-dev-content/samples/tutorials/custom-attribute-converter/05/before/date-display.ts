@@ -3,7 +3,7 @@ import {customElement, property} from 'lit/decorators.js';
 import {dateConverter} from './date-converter.js';
 
 @customElement('date-display')
-export class MyElement extends LitElement {
+export class DateDisplay extends LitElement {
   @property({type: String, converter: dateConverter, reflect: true})
   date = new Date();
 

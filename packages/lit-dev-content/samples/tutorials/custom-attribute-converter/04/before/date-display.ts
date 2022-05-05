@@ -2,7 +2,7 @@ import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 @customElement('date-display')
-export class MyElement extends LitElement {
+export class DateDisplay extends LitElement {
   @property({attribute: false})
   date = new Date();
 
