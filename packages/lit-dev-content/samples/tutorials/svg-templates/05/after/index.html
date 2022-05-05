@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html, body {
+         height: 100%;
+         padding: 0;
+         margin: 0;
+      }
+      :root {
+        --background-color: #000;
+        --font-color: #fff;
+        --font-size: 26px;
+        --stroke-width: 1.1px;
+        --stroke-color: #7acbf1;
+      }
+      .knobs {
+        background: #efefef;
+        border-bottom-right-radius: 4px;
+        padding: 8px;
+        position: absolute;
+        top: 0;
+      }
+    </style>
+    <script type="module" src="repeat-pattern.js"></script>
+  </head>
+  <body>
+    <repeat-pattern chars="lit" num-prints="7"></repeat-pattern>
+  </body>
+</html>
