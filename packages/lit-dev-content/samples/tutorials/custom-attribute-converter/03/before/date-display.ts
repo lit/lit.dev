@@ -7,7 +7,7 @@ export class DateDisplay extends LitElement {
   date = new Date();
 
   @property({type: String, attribute: 'date-str'})
-  dateStr = this.date.toString();
+  dateStr = '';
 
   willUpdate(changed: PropertyValues<this>) {
     if (changed.has('dateStr') && this.dateStr) {
