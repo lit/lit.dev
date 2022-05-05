@@ -34,8 +34,8 @@ export class MyElement extends LitElement {
       const final = this._message.getBoundingClientRect().width;
       const starting = 0 - final;
       var player = this._message.animate([
-        { left: `${starting}px` },
-        { left: `0` }
+        { transform: `translateX(${starting}px)` },
+        { transform: `translateX(0)` }
       ], {
         duration: 500,
         easing: 'ease-out',
