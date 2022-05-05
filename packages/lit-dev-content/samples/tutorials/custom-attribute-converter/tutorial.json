@@ -12,7 +12,8 @@
       "hasAfter": true
     },
     {
-      "title": "Built-in String Attribute Converter"
+      "title": "Built-in String Attribute Converter",
+      "checkable": true
     },
     {
       "title": "Built-in Attribute Converter – Synchronization",

@@ -1,7 +1,8 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/checkable-tutorial-base.json",
   "files": {
-    "my-element.ts": {},
-    "index.html": {}
+    "date-display.ts": {},
+    "index.html": {},
+    "_check-code.js": {"hidden": true}
   }
 }
