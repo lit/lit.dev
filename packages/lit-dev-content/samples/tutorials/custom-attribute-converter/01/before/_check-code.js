@@ -16,7 +16,7 @@ installCodeChecker(async () => {
     } else if (element.dateStr === 'attribute not set') {
       passed = false;
       message = `Set the attribute of the 'dateStr' reactive property to 'date-str'.`;
-    } else if (element.dateStr === 5) {
+    } else if (element.dateStr === 5 || element.dateStr === true) {
       passed = false;
       message = `Make sure 'dateStr' is of 'type: String'`;
     } else if (element.dateStr !== '5') {
