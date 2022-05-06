@@ -6,6 +6,6 @@ import { customElement, property } from 'lit/decorators.js';
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {        
     render() {
-        return html`<svg></svg>`;
+        return html`<svg width="100%" height="100%"></svg>`;
     }
 }

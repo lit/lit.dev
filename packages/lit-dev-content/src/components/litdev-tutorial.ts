@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, nothing} from 'lit';
+import {LitElement, html, nothing, PropertyValues} from 'lit';
 import {property, query, state} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {when} from 'lit/directives/when.js';
@@ -34,6 +34,10 @@ import './litdev-icon-button.js';
 import {Task, TaskStatus} from '@lit-labs/task';
 import {PostDoc} from 'postdoc-lib';
 import type {PlaygroundPreview} from 'playground-elements/playground-preview';
+import {
+  reportTutorialMetrics,
+  TutorialMetricEvent,
+} from '../util/gtag-helpers.js';
 
 const CHECK_TIMEOUT_MS = 10000;
 export interface TutorialStep {
@@ -143,6 +147,16 @@ export class LitDevTutorial extends LitElement {
    * change the page. Used to disable the "Check" code button.
    */
   @state() private _requestSolvedCode = false;
+
+  /**
+   * Whether or not gtag has reported the start of the tutorial.
+   */
+  private _hasRecordedStart = false;
+
+  /**
+   * Whether or not gtag has reported the end of the tutorial.
+   */
+  private _hasRecordedEnd = false;
 
   /**
    * Receives check status messages from the playground and updates the check
@@ -300,6 +314,13 @@ export class LitDevTutorial extends LitElement {
     return this;
   }
 
+  update(changed: PropertyValues<this>): void {
+    if (this._manifest.header) {
+      document.title = `${this._manifest.header} Tutorial – Lit`;
+    }
+    super.update(changed);
+  }
+
   willUpdate(): void {
     const manifestTaskValue = this._manifestTask.value;
 
@@ -313,6 +334,16 @@ export class LitDevTutorial extends LitElement {
     ) {
       this._oldManifestValue = manifestTaskValue;
       this._readUrl();
+      // Manifest loaded. Good indicator that the tutorial has initially loaded.
+      const eventFired = reportTutorialMetrics({
+        idx: this._idx,
+        numSteps: this._manifest.steps.length,
+        tutorialUrl: this._projectLocation,
+        hasRecordedStart: this._hasRecordedStart,
+        hasRecordedEnd: this._hasRecordedEnd,
+      });
+
+      this._handleTutorialMetricEvent(eventFired);
     }
 
     const htmlTaskValue = this._htmlTask.value;
@@ -624,6 +655,17 @@ export class LitDevTutorial extends LitElement {
       this._clearCheckingTimeout();
       this._idx++;
       this._writeUrl();
+      if (this._manifest.steps.length > 1 && this._projectLocation) {
+        const eventFired = reportTutorialMetrics({
+          idx: this._idx,
+          tutorialUrl: this._projectLocation,
+          numSteps: this._manifest.steps.length,
+          hasRecordedStart: this._hasRecordedStart,
+          hasRecordedEnd: this._hasRecordedEnd,
+        });
+
+        this._handleTutorialMetricEvent(eventFired);
+      }
     }
   }
 
@@ -752,6 +794,26 @@ export class LitDevTutorial extends LitElement {
       projectSrcBefore: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
       projectSrcAfter: `${this._samplesRoot}/tutorials/${this._projectLocation}/${afterSlug}/project.json`,
     };
+  }
+
+  private _handleTutorialMetricEvent(event: TutorialMetricEvent) {
+    if (!event) {
+      return;
+    }
+
+    switch (event) {
+      case 'tutorial_start':
+        this._hasRecordedStart = true;
+        break;
+      case 'tutorial_end':
+        this._hasRecordedEnd = true;
+        break;
+      case 'tutorial_progress':
+        break;
+      default:
+        ((_event: never) => {})(event);
+        break;
+    }
   }
 }
 

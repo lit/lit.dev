@@ -1,10 +1,13 @@
 import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-@customElement('my-element')
-export class MyElement extends LitElement {
+@customElement('date-display')
+export class DateDisplay extends LitElement {
   @property({attribute: false})
   date = new Date();
+
+  @property({type: String, attribute: 'date-str'})
+  dateStr = '';
 
   render() {
     const locale = 'en-US';

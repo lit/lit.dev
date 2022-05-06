@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "files": {
     "index.html": {},
-    "my-element.ts": {},
+    "date-display.ts": {},
     "date-converter.ts": {}
   }
 }
