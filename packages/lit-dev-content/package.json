@@ -9,7 +9,6 @@
   "scripts": {
     "fonts:manrope": "wireit",
     "build": "wireit",
-    "build:assets": "wireit",
     "build:eleventy": "wireit",
     "build:eleventy:watch": "wireit",
     "build:ts": "wireit",
@@ -19,10 +18,12 @@
     "build:samples": "wireit",
     "build:samples:watch": "npm run build:samples -- watch",
     "dev:build": "wireit",
+    "dev:build:assets": "wireit",
     "dev:build:eleventy": "wireit",
     "dev:build:eleventy:watch": "wireit",
     "dev:serve": "wireit",
-    "prod:build": "wireit"
+    "prod:build": "wireit",
+    "prod:build:assets": "wireit"
   },
   "wireit": {
     "build": {
@@ -37,7 +38,7 @@
     },
     "prod:build": {
       "dependencies": [
-        "build:assets"
+        "prod:build:assets"
       ],
       "files": [
         "site/**",
@@ -54,7 +55,7 @@
     },
     "build:eleventy": {
       "dependencies": [
-        "build:assets"
+        "prod:build:assets"
       ],
       "output": [
         "_site"
@@ -67,7 +68,7 @@
     },
     "build:eleventy:watch": {
       "dependencies": [
-        "build:assets"
+        "prod:build:assets"
       ],
       "output": [
         "_site"
@@ -81,7 +82,7 @@
     },
     "dev:build:eleventy": {
       "dependencies": [
-        "build:assets"
+        "dev:build:assets"
       ],
       "output": [
         "_dev"
@@ -94,7 +95,7 @@
     },
     "dev:build:eleventy:watch": {
       "dependencies": [
-        "build:assets"
+        "dev:build:assets"
       ],
       "output": [
         "_dev"
@@ -105,12 +106,17 @@
       ],
       "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
     },
-    "build:assets": {
+    "dev:build:assets": {
       "dependencies": [
         "build:ts",
-        "build:rollup",
         "build:samples",
         "fonts:manrope"
+      ]
+    },
+    "prod:build:assets": {
+      "dependencies": [
+        "dev:build:assets",
+        "build:rollup"
       ]
     },
     "fonts:manrope": {
