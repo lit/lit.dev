@@ -22,13 +22,3 @@
   --playground-code-attribute-color: #9cdcfe;
   --playground-code-callee-color: #dcdcaa;
 }
-
-litdev-playground-share-button {
-  display: none;
-}
-.gists litdev-playground-share-button {
-  display: inline-block;
-}
-.gists #shareButton {
-  display: none;
-}
