@@ -107,7 +107,7 @@ test.describe('Playground', () => {
   });
 
   test('share long url', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
     await freezeSnackbars(page);
 
     // Type some new content
@@ -142,7 +142,7 @@ test.describe('Playground', () => {
   });
 
   test('share gist', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
 
     // Type some new content
     await page.click('playground-code-editor');
@@ -244,7 +244,7 @@ test.describe('Playground', () => {
   });
 
   test('share long URL with keyboard shortcuts', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
     await waitForPlaygroundPreviewToLoad(page);
 
     // On the first Ctrl+S, the share menu opens and we click the copy button
@@ -272,7 +272,7 @@ test.describe('Playground', () => {
   });
 
   test('share gist with keyboard shortcuts', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
     await waitForPlaygroundPreviewToLoad(page);
 
     // On the first Ctrl+S, the share menu opens and we click the new gist button
@@ -300,7 +300,7 @@ test.describe('Playground', () => {
   });
 
   test('user declines github auth', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
     await waitForPlaygroundPreviewToLoad(page);
 
     // Open the share menu
@@ -327,7 +327,7 @@ test.describe('Playground', () => {
   });
 
   test('user closes github auth window early', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
     await waitForPlaygroundPreviewToLoad(page);
 
     // Open the share menu
@@ -353,7 +353,7 @@ test.describe('Playground', () => {
   });
 
   test('gist does not exist', async ({page}) => {
-    await page.goto('/playground/?mods=gists#gist=not-a-real-gist');
+    await page.goto('/playground/#gist=not-a-real-gist');
     await waitForPlaygroundPreviewToLoad(page);
 
     // An informative dialog should display
@@ -365,7 +365,7 @@ test.describe('Playground', () => {
   });
 
   test('backend error writing gist', async ({page, browser}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
 
     // Type some new content
     await page.click('playground-code-editor');
@@ -397,7 +397,7 @@ test.describe('Playground', () => {
   test('close share flyout by clicking outside of the flyout', async ({
     page,
   }) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
 
     await page.click('litdev-playground-share-button');
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
@@ -411,7 +411,7 @@ test.describe('Playground', () => {
   });
 
   test('close share flyout by clicking share button again', async ({page}) => {
-    await page.goto('/playground/?mods=gists');
+    await page.goto('/playground/');
 
     await page.click('litdev-playground-share-button');
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {

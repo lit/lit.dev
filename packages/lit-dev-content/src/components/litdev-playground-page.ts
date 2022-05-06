@@ -22,13 +22,11 @@ import {
 } from '../code-language-preference.js';
 import {getGist} from '../github/github-gists.js';
 import {GitHubError} from '../github/github-util.js';
-import {encodeSafeBase64, decodeSafeBase64} from '../util/safe-base64.js';
+import {decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
-import {modEnabled} from '../mods.js';
 import {LitDevError, showError} from '../errors.js';
 import {gistToPlayground} from '../util/gist-conversion.js';
 
-import type {Snackbar} from '@material/mwc-snackbar';
 import type {LitDevPlaygroundShareButton} from './litdev-playground-share-button.js';
 import type {LitDevPlaygroundDownloadButton} from './litdev-playground-download-button.js';
 import type {LitDevDrawer} from './litdev-drawer.js';
@@ -58,9 +56,7 @@ export class LitDevPlaygroundPage extends LitElement {
 
   private _playgroundProject!: PlaygroundProject;
   private _playgroundPreview!: PlaygroundPreview;
-  private _shareButton!: HTMLElement;
-  private _shareSnackbar!: Snackbar;
-  private _newShareButton!: LitDevPlaygroundShareButton;
+  private _shareButton!: LitDevPlaygroundShareButton;
   private _downloadButton!: LitDevPlaygroundDownloadButton;
   private _examplesDrawer!: LitDevDrawer;
   private _examplesDrawerScroller!: HTMLElement;
@@ -82,7 +78,6 @@ export class LitDevPlaygroundPage extends LitElement {
     window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
       this._syncStateFromUrlHash()
     );
-    this._activateKeyboardShortcuts();
   }
 
   render() {
@@ -109,9 +104,7 @@ export class LitDevPlaygroundPage extends LitElement {
     };
     this._playgroundProject = mustFindChild('playground-project')!;
     this._playgroundPreview = mustFindChild('playground-preview')!;
-    this._shareButton = mustFindChild('#shareButton')!;
-    this._shareSnackbar = mustFindChild('#shareSnackbar')!;
-    this._newShareButton = mustFindChild('litdev-playground-share-button')!;
+    this._shareButton = mustFindChild('litdev-playground-share-button')!;
     this._downloadButton = mustFindChild('litdev-playground-download-button')!;
     this._examplesDrawer = mustFindChild('litdev-drawer')!;
     this._exampleControls = mustFindChild('litdev-example-controls')!;
@@ -121,7 +114,7 @@ export class LitDevPlaygroundPage extends LitElement {
   }
 
   private _activateChildElements() {
-    this._newShareButton.getProjectFiles = () => this._playgroundProject.files;
+    this._shareButton.getProjectFiles = () => this._playgroundProject.files;
 
     // Clicks made on the playground-preview iframe will be handled entirely by
     // the iframe window, and don't propagate to the host window. That means
@@ -129,25 +122,14 @@ export class LitDevPlaygroundPage extends LitElement {
     // itself in order to close won't work, since it will never see the click
     // event. To work around this, we temporarily disable pointer-events on the
     // preview, so that clicks go to our host window instead.
-    this._newShareButton.addEventListener('opened', () => {
+    this._shareButton.addEventListener('opened', () => {
       this._playgroundPreview.style.pointerEvents = 'none';
     });
-    this._newShareButton.addEventListener('closed', () => {
+    this._shareButton.addEventListener('closed', () => {
       this._playgroundPreview.style.pointerEvents = 'unset';
     });
 
-    this._shareButton.addEventListener('click', () => this._share());
     this._downloadButton.getProjectFiles = () => this._playgroundProject.files;
-  }
-
-  private async _share() {
-    const files = (this._playgroundProject.files ?? []).map(
-      compactPlaygroundFile
-    );
-    const base64 = encodeSafeBase64(JSON.stringify(files));
-    window.location.hash = '#project=' + base64;
-    await navigator.clipboard.writeText(window.location.toString());
-    this._shareSnackbar.open = true;
   }
 
   private _loadBase64(base64: string): Array<CompactProjectFile> | undefined {
@@ -168,9 +150,7 @@ export class LitDevPlaygroundPage extends LitElement {
 
   private async _loadGist(gistId: string): Promise<Array<CompactProjectFile>> {
     const gist = await getGist(gistId, {apiBaseUrl: this.githubApiUrl});
-    if (this._newShareButton) {
-      this._newShareButton.activeGist = gist;
-    }
+    this._shareButton.activeGist = gist;
     return gistToPlayground(gist.files).map(compactPlaygroundFile);
   }
 
@@ -180,11 +160,11 @@ export class LitDevPlaygroundPage extends LitElement {
     let urlFiles: Array<CompactProjectFile> | undefined;
     const gist = params.get('gist');
     const base64 = params.get('project');
-    if (this._newShareButton.activeGist?.id !== gist) {
+    if (this._shareButton.activeGist?.id !== gist) {
       // We're about to switch to a new gist, or to something that's not a gist
       // at all (a pre-made sample or a base64 project). Either way, the active
       // gist is now outdated.
-      this._newShareButton.activeGist = undefined;
+      this._shareButton.activeGist = undefined;
     }
     if (gist) {
       try {
@@ -239,39 +219,6 @@ export class LitDevPlaygroundPage extends LitElement {
         });
       }
     }
-  }
-
-  /**
-   * Trigger URL sharing when Control-s or Command-s is pressed.
-   */
-  private _activateKeyboardShortcuts() {
-    if (modEnabled('gists')) {
-      // The new gists mode uses another component to handle keyboard shortcuts.
-      return;
-    }
-    let controlDown = false;
-    let commandDown = false;
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Control') {
-        controlDown = true;
-      } else if (event.key === 'Meta') {
-        commandDown = true;
-      } else if (event.key === 's' && (controlDown || commandDown)) {
-        this._share();
-        event.preventDefault(); // Don't trigger "Save page as"
-      }
-    });
-    window.addEventListener('keyup', (event) => {
-      if (event.key === 'Control') {
-        controlDown = false;
-      } else if (event.key === 'Meta') {
-        commandDown = false;
-      }
-    });
-    window.addEventListener('blur', () => {
-      controlDown = false;
-      commandDown = false;
-    });
   }
 
   /**

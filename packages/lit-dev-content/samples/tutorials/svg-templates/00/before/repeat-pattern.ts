@@ -18,18 +18,7 @@ const themeCSS = css`
 `;
 
 const svgCSS = css`
-  :host {
-  position: relative;
-  }
-
-  .knobs {
-  position: absolute;
-  padding: 8px;
-  background: #efefef;
-    border-bottom-right-radius: 4px;
-  }
-
-  svg {
+  svg, rect {
     height: 100%;
     width: 100%;
   }
@@ -39,11 +28,6 @@ const svgCSS = css`
     dominant-baseline: hanging;
     font-family: monospace;
     font-size: 24px;
-  }
-
-  rect {
-    width: 100%;
-    height: 100%;
   }
 `;
 
@@ -66,7 +50,7 @@ const createMotif = (
         href="#chars"
         transform="rotate(${currRotation}, 0, 0)">
       </use>
-      `)
+    `);
   }
 
   return svg
@@ -118,11 +102,6 @@ export class RepeatPattern extends LitElement {
 
   render() {
     return html`
-    <div class="knobs">
-      <input .value=${this.chars} @input=${this.onChars}>
-      <input type="range" min="2" max="29" .value=${this.numPrints} @input=${this.onNumPrints}>
-      <input type="range" min="0" max="360" .value=${this.rotationOffset} @input=${this.onRotationOffset}>
-    </div>
       <svg>
         <defs>
           ${createTileBoundary()}
@@ -138,20 +117,5 @@ export class RepeatPattern extends LitElement {
         <rect fill="url(#repeat-pattern)"></rect>
       </svg>
     `;
-  }
-
-  onChars = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.chars = e.target.value
-  }
-
-  onNumPrints = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.numPrints = e.target.valueAsNumber;
-  }
-
-  onRotationOffset = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.rotationOffset = e.target.valueAsNumber;
   }
 }
