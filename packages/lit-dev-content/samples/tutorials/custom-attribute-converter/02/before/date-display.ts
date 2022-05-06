@@ -7,7 +7,7 @@ export class DateDisplay extends LitElement {
   date = new Date();
 
   @property({type: String, attribute: 'date-str'})
-  dateStr = this.date.toString();
+  dateStr = '';
 
   render() {
     const locale = 'en-US';

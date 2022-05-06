@@ -1,11 +1,9 @@
 {
   "header": "Custom attribute converters",
   "difficulty": "Intermediate",
-  "size": "medium",
+  "size": "small",
   "duration": 16,
   "category": "Learn",
-  "imgSrc": "images/tutorials/custom-attribute-converter/card.webp",
-  "imgAlt": "<my-calendar selected-date=\"03/24/22\"></my-calendar>",
   "steps": [
     {
       "title": "Custom attribute converters",
