@@ -12,7 +12,7 @@
     "start:main": "LITDEV_ENV=local MODE=main lerna run start --scope=lit-dev-server --stream",
     "start:playground": "LITDEV_ENV=local MODE=playground lerna run start --scope=lit-dev-server --stream",
     "start:fake-github": "wireit",
-    "dev": "cd packages/lit-dev-content && npm run build:not-site && (LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --incremental & npm run build:not-site watch & node ../lit-dev-tools-esm/lib/dev-server.js --open)",
+    "dev": "cd packages/lit-dev-server && npm run build && cd ../lit-dev-content && (npm run dev:build:assets watch & npm run dev:build:eleventy:watch & node ../lit-dev-tools-esm/lib/dev-server.js --open)",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "nuke": "rm -rf node_modules && npm ci && lerna exec 'rm -rf node_modules' && lerna bootstrap --ci",
@@ -37,7 +37,8 @@
       "dependencies": [
         "./packages/lit-dev-tools-esm:build"
       ],
-      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js"
+      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
+      "output": []
     }
   },
   "devDependencies": {
@@ -45,6 +46,6 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "typescript": "^4.4.3",
-    "wireit": "^0.2.0"
+    "wireit": "^0.4.0"
   }
 }
