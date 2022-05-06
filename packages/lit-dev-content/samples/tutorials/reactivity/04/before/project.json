@@ -2,7 +2,8 @@
   "extends": "/samples/base.json",
   "files": {
     "index.html": {},
-    "my-element.ts": {"selected": true},
-    "compute-sha.ts": {}
+    "my-element.ts": {
+      "selected": true
+    }
   }
 }

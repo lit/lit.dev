@@ -26,8 +26,8 @@ export class MyElement extends LitElement {
     this.duration = Number.parseInt(v);
   }
 
-  shouldUpdate(props: PropertyValues<this>): boolean {
-    return props.has('big');
+  shouldUpdate(changedProperties: PropertyValues<this>): boolean {
+    return !(changedProperties.size === 1 && changedProperties.has('duration'));
   }
 
   render() {

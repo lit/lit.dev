@@ -3,20 +3,24 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @property()
-  name = '';
+  @property() forward = '';
+  @property() backward = '';
 
-  @property()
-  sha = '';
-
-  setName(e: Event) {
-    this.name = (e.target as HTMLInputElement).value;
+  onInput(e: Event) {
+    const inputEl = e.target as HTMLInputElement;
+    if (inputEl.id === 'forward') {
+      this.forward = inputEl.value;
+    } else {
+      this.backward = inputEl.value;
+    }
   }
 
   render() {
     return html`
-      <label>Name: <input @input=${this.setName}></label>
-      <p>You entered: ${this.name}</p>
-      SHA: ${this.sha}`;
+      <label>Forward: <input id="forward" @input=${this.onInput} .value=${this.forward}></label>
+      <label>Backward: <input id="backward" @input=${this.onInput} .value=${this.backward}></label>
+      <div>Forward text: ${this.forward}</div>
+      <div>Backward text: ${this.backward}</div>
+    `
   }
 }

@@ -2,7 +2,8 @@
   "extends": "/samples/base.json",
   "files": {
     "index.html": {},
-    "list-element.ts": {},
-    "parent-element.ts": {}
+    "bye-element.ts": {
+      "selected": true
+    }
   }
 }
