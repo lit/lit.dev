@@ -10,9 +10,7 @@ export class RatingElement extends HTMLElement {
     this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText = `${this.rating}`;
   }
 
-  static get observedAttributes() {
-    return ['rating'];
-  }
+  static observedAttributes = ['rating'];
 
   attributeChangedCallback(attributeName: string, _oldValue: string, newValue: string) {
     if (attributeName === 'rating') {
@@ -22,7 +20,7 @@ export class RatingElement extends HTMLElement {
     }
   }
 
-  set rating(value) {
+  set rating(value: number) {
     this._rating = value;
 
     if (!this.shadowRoot) {

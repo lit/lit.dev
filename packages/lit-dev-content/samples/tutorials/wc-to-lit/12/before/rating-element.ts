@@ -27,19 +27,19 @@ export class RatingElement extends LitElement {
   private _rating = 0;
   private _vote: 'up'|'down'|null = null;
 
-  // static get observedAttributes() {
-  //   return ['rating'];
-  // }
+  // static observedAttributes = ['rating', 'vote'];
 
   attributeChangedCallback(attributeName: string, _oldValue: string, newValue: string) {
     if (attributeName === 'rating') {
       const newRating = Number(newValue);
 
       this.rating = newRating;
+    } else if (attributeName === 'vote') {
+      this.vote = newValue as 'up'|'down';
     }
   }
 
-  set rating(value) {
+  set rating(value: number) {
     this._rating = value;
     this.render();
   }
@@ -48,7 +48,7 @@ export class RatingElement extends LitElement {
     return this._rating;
   }
 
-  set vote(newValue) {
+  set vote(newValue: 'up'|'down'|null) {
     const oldValue = this._vote;
     if (newValue === oldValue) {
       return;

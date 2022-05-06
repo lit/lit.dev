@@ -11,9 +11,7 @@ export class RatingElement extends HTMLElement {
     this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText = `${this.rating}`;
   }
 
-  static get observedAttributes() {
-    return ['rating', 'vote'];
-  }
+  static observedAttributes = ['rating', 'vote'];
 
   attributeChangedCallback(attributeName: string, _oldValue: string, newValue: string) {
     if (attributeName === 'rating') {
@@ -25,7 +23,7 @@ export class RatingElement extends HTMLElement {
     }
   }
 
-  set rating(value) {
+  set rating(value: number) {
     this._rating = value;
 
     if (!this.shadowRoot) {
@@ -43,7 +41,7 @@ export class RatingElement extends HTMLElement {
     return this._rating;
   }
 
-  set vote(newValue) {
+  set vote(newValue: 'up'|'down'|null) {
     const oldValue = this._vote;
     if (newValue === oldValue) {
       return;

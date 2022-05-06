@@ -10,7 +10,7 @@ export class RatingElement extends HTMLElement {
     this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText = `${this.rating}`;
   }
 
-  set rating(value) {
+  set rating(value: number) {
     this._rating = value;
 
     if (!this.shadowRoot) {
