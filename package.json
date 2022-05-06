@@ -12,7 +12,7 @@
     "start:main": "LITDEV_ENV=local MODE=main lerna run start --scope=lit-dev-server --stream",
     "start:playground": "LITDEV_ENV=local MODE=playground lerna run start --scope=lit-dev-server --stream",
     "start:fake-github": "wireit",
-    "dev": "cd packages/lit-dev-content && npm run build:not-site && (LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --incremental & npm run build:not-site watch & node ../lit-dev-tools-esm/lib/dev-server.js --open)",
+    "dev": "cd packages/lit-dev-content && npm run build:assets && (LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules npx eleventy --watch --incremental & npm run build:assets watch & node ../lit-dev-tools-esm/lib/dev-server.js --open)",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "nuke": "rm -rf node_modules && npm ci && lerna exec 'rm -rf node_modules' && lerna bootstrap --ci",

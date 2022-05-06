@@ -9,7 +9,7 @@
   "scripts": {
     "fonts:manrope": "wireit",
     "build": "wireit",
-    "build:not-site": "wireit",
+    "build:assets": "wireit",
     "build:site": "wireit",
     "build:site:watch": "wireit",
     "build:ts": "wireit",
@@ -37,7 +37,7 @@
     },
     "prod:build": {
       "dependencies": [
-        "build:not-site"
+        "build:assets"
       ],
       "files": [
         "site/**",
@@ -54,7 +54,7 @@
     },
     "build:site": {
       "dependencies": [
-        "build:not-site"
+        "build:assets"
       ],
       "output": [
         "_site"
@@ -67,12 +67,12 @@
     },
     "build:site:watch": {
       "dependencies": [
-        "build:not-site"
+        "build:assets"
       ],
       "output": [
         "_site"
       ],
-      "#comment": "This is awkward. We want to do the watch part for build:not-site ourselves, but let eleventy do its own watch mode itself. Maybe --incremental will do a quick rebuild of just the changed parts, and we don't need --watch?",
+      "#comment": "This is awkward. We want to do the watch part for build:assets ourselves, but let eleventy do its own watch mode itself. Maybe --incremental will do a quick rebuild of just the changed parts, and we don't need --watch?",
       "files": [
         "site/**",
         ".eleventy.js"
@@ -81,7 +81,7 @@
     },
     "dev:build:site": {
       "dependencies": [
-        "build:not-site"
+        "build:assets"
       ],
       "output": [
         "_dev"
@@ -94,7 +94,7 @@
     },
     "dev:build:site:watch": {
       "dependencies": [
-        "build:not-site"
+        "build:assets"
       ],
       "output": [
         "_dev"
@@ -105,7 +105,7 @@
       ],
       "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
     },
-    "build:not-site": {
+    "build:assets": {
       "dependencies": [
         "build:ts",
         "build:rollup",
