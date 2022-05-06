@@ -276,28 +276,33 @@ There are many ways to hook into and modify the reactive update cycle. For more 
 
 For more information about property change detection, see [Customizing change detection](#haschanged).
 
-### Mutating object and array properties
+### Mutating object and array properties {#mutating-properties}
 
 Mutating an object or array doesn't change the object reference, so it won't trigger an update. You can handle object and array properties in one of two ways:
 
--   Treat objects and arrays as immutable. For example, to remove an item from `myArray`, construct a new array:
+-   **Immutable data pattern.** Treat objects and arrays as immutable. For example, to remove an item from `myArray`, construct a new array:
 
     ```js
     this.myArray = [...this.myArray.slice(0, indexToRemove),
                     ...this.myArray.slice(indexToRemove+1)];
     ```
 
-    While this example is simple, using immutable data patterns with deeply nested objects can be complicated and error-prone, unless you're using an immutable data library like [Immer](https://immerjs.github.io/immer/).
+    While this example is simple, it's often helpful to use a library like [Immer](https://immerjs.github.io/immer/) to manage immutable data. This can help avoid tricky boilerplate code when setting deeply nested objects.
 
--   Call `requestUpdate()` to trigger an update directly.
+-   **Manually triggering an update.** Mutate the data and `requestUpdate()` to trigger an update directly. For example:
 
     ```js
     this.myArray.splice(indexToRemove, 1);
     this.requestUpdate();
     ```
 
-    When called with no arguments, `requestUpdate()` schedules an update, without calling a `hasChanged()` function.
+    When called with no arguments, `requestUpdate()` schedules an update, without calling a `hasChanged()` function. But note that `requestUpdate()` only causes the _current_ component to update. That is, if a component uses the code shown above, **and** the component passes `this.myArray` to a subcomponent, the subcomponent will detect that the array reference hasn't changed, so it won't update.
 
+**In general, using top-down data flow with immutable objects is best for most applications.** It ensure that every component that needs to render a new value does (and does so as efficiently as possible, since parts of the data tree that didn't change won't cause components that rely on them to update).
+
+Mutating data directly and calling `requestUpdate()` should be considered an advanced use case. In this case, you the user (or some other system) needs to identify all the components that use the mutated data and call `requestUpdate()` on each one. When those components are spread across an application, this gets hard to manage. Not doing so robustly means that you might modify an object that's rendered in two parts of your application, but only have one part update.
+
+If you know that a given piece of data is only used in a single part of the application, mutating the data directly is practical, and in some cases may be the most efficient option.
 
 ## Attributes {#attributes}
 
