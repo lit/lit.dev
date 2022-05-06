@@ -37,7 +37,8 @@
       "dependencies": [
         "./packages/lit-dev-tools-esm:build"
       ],
-      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js"
+      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
+      "output": []
     }
   },
   "devDependencies": {

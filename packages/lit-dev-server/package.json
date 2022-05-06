@@ -38,7 +38,8 @@
         "build",
         "../lit-dev-content:build:eleventy"
       ],
-      "command": "node lib/server.js"
+      "command": "node lib/server.js",
+      "output": []
     }
   },
   "dependencies": {
