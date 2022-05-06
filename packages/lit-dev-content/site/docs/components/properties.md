@@ -270,7 +270,7 @@ When a property changes, the following sequence occurs:
 1.  If the property change is detected, an update is scheduled asynchronously. If an update is already scheduled, only a single update is executed.
 1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
 
-Note that if you mutate an object or array property, it won't trigger an update, because the object itself hasn't changed. For more information, see [Mutating object and array properties](#mutatingobjectandarrayproperties).
+Note that if you mutate an object or array property, it won't trigger an update, because the object itself hasn't changed. For more information, see [Mutating object and array properties](#mutating-properties).
 
 There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle).
 
