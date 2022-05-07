@@ -66,8 +66,8 @@ module.exports = async () => {
   const tutorials = await Promise.all([
     // Learn
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
-    loadTutorialData('reactivity'),
     loadTutorialData('working-with-lists'),
+    loadTutorialData('reactivity'),
     loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
     loadTutorialData('async-directive', {featured: {position: 1}}),
 
