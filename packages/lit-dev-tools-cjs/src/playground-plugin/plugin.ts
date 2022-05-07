@@ -321,7 +321,7 @@ export const playgroundPlugin = (
 
       // Matches the first line's leading whitespace and applies it to the other
       // HTML nodes to preserve the same indentaiton.
-      const contentIndent =  (content.match(/^\s*/)?? [''])[0];
+      const contentIndent = (content.match(/^\s*/) ?? [''])[0];
 
       // htmlmin:ignore will prevent minifier from formatting the contents.
       // otherwise, in the prod build, there will not be a space between the
