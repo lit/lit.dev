@@ -48,8 +48,8 @@ export class ToDoList extends LitElement {
   input!: HTMLInputElement;
 
   addToDo() {
-    this.listItems.push({text: this.input.value, completed: false});
+    this.listItems = [...this.listItems,
+        {text: this.input.value, completed: false}];
     this.input.value = '';
-    this.requestUpdate();
   }
 }

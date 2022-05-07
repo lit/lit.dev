@@ -2,12 +2,12 @@ import {LitElement, html} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 
 @customElement('todo-list')
-class ToDoList extends LitElement {
-  @property()
+export class ToDoList extends LitElement {
+  @property({attribute: false})
   listItems = [
-      { text: 'Start Lit tutorial', completed: true },
-      { text: 'Make to-do list', completed: false }
-    ];
+    { text: 'Start Lit tutorial', completed: true },
+    { text: 'Make to-do list', completed: false }
+  ];
 
   render() {
     return html`
@@ -25,9 +25,9 @@ class ToDoList extends LitElement {
   input!: HTMLInputElement;
 
   addToDo() {
-    this.listItems.push({text: this.input.value, completed: false});
+    this.listItems = [...this.listItems,
+        {text: this.input.value, completed: false}];
     this.input.value = '';
-    this.requestUpdate();
   }
 }
 

@@ -5,9 +5,10 @@ export class ToDoList extends LitElement {
     listItems: {attribute: false},
   };
 
+  // TODO: Add styles here
+
   constructor() {
     super();
-    // TODO: Add styles here
     this.listItems = [
       {text: 'Make to-do list', completed: true},
       {text: 'Add some styles', completed: false},
@@ -42,9 +43,9 @@ export class ToDoList extends LitElement {
   }
 
   addToDo() {
-    this.listItems.push({text: this.input.value, completed: false});
+    this.listItems = [...this.listItems,
+        {text: this.input.value, completed: false}];
     this.input.value = '';
-    this.requestUpdate();
   }
 }
 customElements.define('todo-list', ToDoList);
