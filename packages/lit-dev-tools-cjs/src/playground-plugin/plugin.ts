@@ -327,9 +327,7 @@ export const playgroundPlugin = (
       // otherwise, in the prod build, there will not be a space between the
       // bolded header and the second line.
       return (
-        // Indent not required for the first line, because shortcode preserves
-        // the indentation of the shortcode's location.
-        `<litdev-aside type="${variant}"${noHeaderAttribute}>` +
+        `${contentIndent}<litdev-aside type="${variant}"${noHeaderAttribute}>` +
         `\n${contentIndent}<!-- htmlmin:ignore -->\n\n` +
         content +
         `\n\n${contentIndent}<!-- htmlmin:ignore -->` +
