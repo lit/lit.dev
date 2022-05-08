@@ -117,24 +117,34 @@ class MyElement extends LitElement {
 
 选项对象是空的话，相当于给所有选项设置了默认值。
 
-### 在定义属性时需要避免一些类字段（Fileds）的问题{#avoiding-issues-with-class-fields}
+### 在定义属性时需要避免一些类字段(Fileds)的问题{#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance. Reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used. When a property is set, the element does not update.
+[类字段](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/Public_class_fields)与响应式属性的交互存在问题。类字段被定义在元素实例上，而响应式属性被定义为元素原型上的访问器。根据JavaScript的规则，实例属性的访问顺序优先于原型属性，也就是说，实例属属性会隐藏原型属性。所以当我们使用类字段时，反应式属性访问器不起作用。设置属性后，元素不会更新。
 
-[类字段](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/Public_class_fields)与反应属性的交互存在问题。类字段在元素实例上定义。反应性属性被定义为元素原型上的访问器。根据 JavaScript 的规则，实例属性优先于并有效地隐藏了原型属性。这意味着当使用类字段时，反应式属性访问器不起作用。设置属性后，元素不会更新。
-
-In **JavaScript** you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+在**JavaScript**中，你**不应该使用类字段**来定义响应式属性，相反，你必须在元素的构造函数中初始化属性。
 
 ```js
-constructor() {
-  super();
-  this.data = {};
+class MyElement extends LitElement {
+  static properties = {
+    mode: {type: String},
+    data: {attribute: false},
+  };
+
+  // 译者注：使用类字段声明的字段将被定义到元素实例上
+  private mode = "some thing";
+
+  constructor() {
+    super();
+    // 译者注：在构造函数中直接初始化的属性，将被Lit封装为访问器（getter/setter）
+    // 然后放到元素的原型上，从而使得属性具有响应式
+    this.data = {};
+  }
 }
 ```
 
-For **TypeScript**, you **may use class fields** for declaring reactive properties as long as the `useDefineForClassFields` setting in your `tsconfig` is set to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
+如果在使用**Typescript**的话，你**可以使用类字段**来声明响应式属性，但请记得把`tsconfig`中的`useDefineForClassFields`设置为`false`。虽然[有些情况下](https://www.typescriptlang.org/tsconfig#useDefineForClassFields)它默认就是`false`，但还是建议明确地把它设置为`false`。
 
-When compiling JavaScript with **Babel**, you **may use class fields** for declaring reactive properties as long as you set `setPublicClassFields` to `true` in the `assumptions` config of your `babelrc`. Note, for older versions of Babel, you also need to include the plugin `@babel/plugin-proposal-class-properties`:
+如果使用**Babel**编译JavaScript的话，你也**可以使用类字段**来声明响应式属性。同样的，你需要把babel的配置文件`babelrc`中的`assumptions`的`setPublicClassFields`设置为`true`。注意：对于旧版本的Babel，你还需要引入插件`@babel/plugin-proposal-class-properties`。
 
 ```js
 assumptions = {
@@ -146,11 +156,11 @@ plugins = [
 ];
 ```
 
-For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/components/decorators/#avoiding-issues-with-class-fields).
+查看[避免类字段和装饰器的问题]({{baseurl}}/docs/components/decorators/#avoiding-issues-with-class-fields)来了解更多关于如何使用装饰器装饰类属性的信息。
 
-### Property options
+### 属性选项
 
-The options object can have the following properties:
+属性对象可以包含下列属性：
 
 <dl>
 <dt>
@@ -160,7 +170,7 @@ The options object can have the following properties:
 </dt>
 <dd>
 
-Whether the property is associated with an attribute, or a custom name for the associated attribute. Default: true. If `attribute` is false, the `converter`, `reflect` and `type` options are ignored. For more information, see [Setting the attribute name](#observed-attributes).
+设置property是否与attribute关联，或者指定与property相关联的attribute的名称。默认值是true。如果`attribute`为false的话，则忽略`converter`、`reflect`和`type`选项。查看[设置属性名称](#observed-attributes)了解有关详细信息。
 
 </dd>
 <dt>
@@ -170,7 +180,7 @@ Whether the property is associated with an attribute, or a custom name for the a
 </dt>
 <dd>
 
-A [custom converter](#conversion-converter) for converting between properties and attributes. If unspecified, use the [default attribute converter](#conversion-type).
+设置用来在property和attribute之间做转换的[自定义转换器](#conversion-converter)。如果不设置的话，则使用[默认属性转换器](#conversion-type)。
 
 </dd>
 <dt>
@@ -180,8 +190,7 @@ A [custom converter](#conversion-converter) for converting between properties an
 </dt>
 <dd>
 
-A function called whenever the property is set to determine if the property has changed, and should trigger an update. If unspecified, LitElement uses a strict inequality check (`newValue !== oldValue`) to determine whether the property value has changed.
-For more information, see [Customizing change detection](#haschanged).
+设置一个函数用来检测property是否发生改变，如果该函数返回true，将触发一个更新。无论何时，只要property被设置了新的值，该函数就会被自动调用。如果未指定，LitElement将使用严格的不等式检查 (`newValue !== oldValue`) 来确定property值是否发生改变。查看[自定义更改检测](#haschanged)了解有关详细信息。
 
 </dd>
 <dt>
@@ -191,7 +200,7 @@ For more information, see [Customizing change detection](#haschanged).
 </dt>
 <dd>
 
-Set to true to avoid generating the default property accessors. This option is rarely necessary. Default: false. For more information, see [Preventing Lit from generating a property accessor](#accessors-noaccessor).
+设置是否禁止生成默认属性访问器。这个选项很少需要。默认值为false，也就是默认生产属性访问器。查看[防止Lit生成属性访问器](#accessors-noaccessor)了解有关详细信息。
 
 </dd>
 <dt>
@@ -201,7 +210,7 @@ Set to true to avoid generating the default property accessors. This option is r
 </dt>
 <dd>
 
-Whether property value is reflected back to the associated attribute. Default: false. For more information, see [Enabling attribute reflection](#reflected-attributes).
+设置property属性值是否反射回关联的atrribute。默认值：false。有关详细信息，查看[启用属性反射](#reflected-attributes)了解有关详细信息。
 
 </dd>
 <dt>
@@ -211,7 +220,7 @@ Whether property value is reflected back to the associated attribute. Default: f
 </dt>
 <dd>
 
-Set to true to declare the property as _internal reactive state_. Internal reactive state triggers updates like public reactive properties, but Lit doesn't generate an attribute for it, and users shouldn't access it from outside the component. Equivalent to using the `@state` decorator. Default: false. For more information, see [Internal reactive state](#internal-reactive-state).
+设置该property为内部响应式状态。内部响应式状态也会像公共响应式属性那样触发更新，但Lit不会为其生成attribute，因此用户不能从组件外部访问它。当该选项设置为true的时候，等效于使用`@state`装饰器。查看[内部反应状态](#internal-reactive-state)了解有关详细信息。
 
 </dd>
 <dt>
@@ -221,26 +230,27 @@ Set to true to declare the property as _internal reactive state_. Internal react
 </dt>
 <dd>
 
-When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is passed to the converter. If `type` is unspecified, the default converter treats it as `type: String`. See [Using the default converter](#conversion-type).
+当将值为字符串的attribute转换为property时，Lit的默认属性转换器会将字符串解析为type指定的类型，反之，将property反射为属性时也是如此。如果设置了`converter`，则该选项将被传递给转换器。如果`type`未指定，默认转换器将其视为`type: String`。查看[使用默认转换器](#conversion-type)了解更多信息。
 
-When using TypeScript, this field should generally match the TypeScript type declared for the field. However, the `type` option is used by the Lit's _runtime_ for string serialization/deserialization, and should not be confused with a _type-checking_ mechanism.
+使用TypeScript时，该选项通常应和为属性（property）声明的TypeScript类型一致。然而，`type`选项被Lit的“运行时”用于实现字符串序列化/反序列化，不应和Typescript的”类型检测“机制混淆。
 
 </dd>
 
 Omitting the options object or specifying an empty options object is equivalent to specifying the default value for all options.
+省略选项对象或者传入一个空的选项对象相当于给所有的选项指定默认值。
 
-## Internal reactive state
+## 内部响应式属性
 
-*Internal reactive state* refers to reactive properties that are  not part of the component's public API. These state properties don't have corresponding attributes, and aren't intended to be used from outside the component. Internal reactive state should be set by the component itself.
+*内部响应式状态*指的是不属于组件公共API的响应式属性。这些状态property没有与之对应的attibute，并且不允许从组件外部使用，只能由组件本身设置。
 
-Use the `@state` decorator to declare internal reactive state:
+可以使用`@state`装饰器声明一个内部响应式状态：
 
 ```ts
 @state()
 protected _active = false;
 ```
 
-Using the static `properties` class field, you can declare internal reactive state by using the `state: true` option.
+也可以使用静态`properties`类字段声明内部响应式状态，做法是将属性的`state`选项设置为true。
 
 ```js
 static properties = {
@@ -252,7 +262,7 @@ constructor() {
 }
 ```
 
-Internal reactive state shouldn't be referenced from outside the component. In TypeScript, these properties should be marked as private or protected. We also recommend using a convention like a leading underscore (`_`) to identify private or protected properties for JavaScript users.
+不应从组件外部引用内部响应式状态。在TypeScript中，这些属性应标记为私有或受保护。在Javascript中，我们建议约定使用下划线(`_`)作为私有或者受保护属性的前缀。
 
 Internal reactive state works just like public reactive properties, except that there is no attribute associated with the property. **The only option you can specify for internal reactive state is the `hasChanged` function.**
 
