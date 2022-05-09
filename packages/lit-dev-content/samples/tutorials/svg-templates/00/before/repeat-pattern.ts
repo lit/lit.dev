@@ -57,12 +57,13 @@ const createMotif = (
     `);
   }
 
-  return svg
-    `<g
+  return svg`
+    <g
       id="motif"
       transform="translate(50, 50)">
         ${prints}
-    </g>`;
+    </g>
+  `;
 };
 
 const createTileBoundary = () => svg`
