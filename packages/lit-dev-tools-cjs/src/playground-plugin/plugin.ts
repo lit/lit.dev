@@ -322,7 +322,7 @@ export const playgroundPlugin = (
       // otherwise, in the prod build, there will not be a space between the
       // bolded header and the second line.
       return (
-        `<litdev-aside variant="${variant}"${noHeaderAttribute}>` +
+        `<litdev-aside type="${variant}"${noHeaderAttribute}>` +
         '\n<!-- htmlmin:ignore -->\n\n' +
         content +
         '\n\n<!-- htmlmin:ignore -->' +

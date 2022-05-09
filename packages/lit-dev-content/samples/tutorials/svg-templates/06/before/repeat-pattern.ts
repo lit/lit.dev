@@ -18,18 +18,7 @@ const themeCSS = css`
 `;
 
 const svgCSS = css`
-  :host {
-  position: relative;
-  }
-
-  .knobs {
-  position: absolute;
-  padding: 8px;
-  background: #efefef;
-    border-bottom-right-radius: 4px;
-  }
-
-  svg {
+  svg, rect {
     height: 100%;
     width: 100%;
   }
@@ -40,15 +29,10 @@ const svgCSS = css`
     font-family: monospace;
     font-size: 24px;
   }
-
-  rect {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const createElement = (chars: string): SVGTemplateResult => svg`
-    <text id="chars">${chars}</text>
+  <text id="chars">${chars}</text>
 `;
 
 const createMotif = (
@@ -66,15 +50,16 @@ const createMotif = (
         href="#chars"
         transform="rotate(${currRotation}, 0, 0)">
       </use>
-      `)
+    `);
   }
 
-  return svg
-    `<g
+  return svg`
+    <g
       id="motif"
       transform="translate(50, 50)">
         ${prints}
-    </g>`;
+    </g>
+  `;
 };
 
 const createTileBoundary = () => svg`

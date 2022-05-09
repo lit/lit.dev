@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "index.html": {},
+    "bye-element.ts": {
+      "selected": true
+    }
+  }
+}

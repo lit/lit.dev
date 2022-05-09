@@ -13,6 +13,11 @@ import {customElement, property} from 'lit/decorators.js';
  */
 @customElement('litdev-flyout')
 export class LitDevFlyout extends LitElement {
+  static shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
+
   static override styles = css`
     :host {
       background: white;
@@ -71,6 +76,9 @@ export class LitDevFlyout extends LitElement {
       if (this.open) {
         this._addEventListeners();
         this.dispatchEvent(new Event('open'));
+        setTimeout(() => {
+          this.focus();
+        });
       } else if (changed.get('open')) {
         this._removeEventListeners();
         this.dispatchEvent(new Event('closed'));

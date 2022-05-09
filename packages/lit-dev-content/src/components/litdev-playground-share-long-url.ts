@@ -21,6 +21,11 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
  */
 @customElement('litdev-playground-share-long-url')
 export class LitDevPlaygroundShareLongUrl extends LitElement {
+  static shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
+
   static styles = css`
     :host {
       align-items: center;
