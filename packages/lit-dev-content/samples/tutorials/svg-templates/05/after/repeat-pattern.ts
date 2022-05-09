@@ -18,6 +18,10 @@ const themeCSS = css`
 `;
 
 const svgCSS = css`
+  :host {
+    display: block;
+  }
+
   svg, rect {
     height: 100%;
     width: 100%;
