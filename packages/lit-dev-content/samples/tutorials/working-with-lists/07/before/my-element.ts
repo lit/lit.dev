@@ -30,7 +30,6 @@ class MyElement extends LitElement {
   }
 
   private _deleteThing(index: number) {
-    this.things.splice(index, 1);
-    this.requestUpdate();
+    this.things = this.things.filter((_, i) => i !== index);
   }
 }
