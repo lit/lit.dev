@@ -5,10 +5,10 @@
   "duration": 45,
   "category": "Build",
   "imgSrc": "images/repeat-patterns-lit-svg.webp",
-  "imgAlt": "The letters l-i-t are rotated around a point as a tile pattern",
+  "imgAlt": "The letters l-i-t are rotated around a point and tiled as a pattern",
   "steps": [
     {
-      "title": "Pattern making with SVG in Lit",
+      "title": "Pattern making with SVG",
       "hasAfter": false,
       "noSolve": true
     },
@@ -29,7 +29,7 @@
       "hasAfter": false
     },
     {
-      "title": "Theme pattern with CSS",
+      "title": "Theme a pattern with CSS",
       "hasAfter": true
     },
     {
