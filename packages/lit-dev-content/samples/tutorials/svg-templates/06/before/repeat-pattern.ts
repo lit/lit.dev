@@ -6,13 +6,13 @@ import {customElement, property} from 'lit/decorators.js';
 
 const themeCSS = css`
   .background {
-    fill: var(--background-color, #fff);
+    fill: var(--background-color, #000);
   }
 
   text {
-    fill: var(--font-color, #000);
-    font-size: var(--font-size, 24px);
-    stroke-width: var(--stroke-width, 1px);
+    fill: var(--font-color, #fff);
+    font-size: var(--font-size, 26px);
+    stroke-width: var(--stroke-width, 1.2px);
     stroke: var(--stroke-color, #eee);
   }
 `;
