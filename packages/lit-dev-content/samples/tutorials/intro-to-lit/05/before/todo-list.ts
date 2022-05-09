@@ -1,10 +1,10 @@
 import {LitElement, html} from 'lit';
-import {customElement, property, query} from 'lit/decorators.js';
+import {customElement, state, query} from 'lit/decorators.js';
 
 @customElement('todo-list')
 export class ToDoList extends LitElement {
-  @property({attribute: false})
-  listItems = [
+  @state()
+  private _listItems = [
     { text: 'Start Lit tutorial', completed: true },
     { text: 'Make to-do list', completed: false }
   ];
