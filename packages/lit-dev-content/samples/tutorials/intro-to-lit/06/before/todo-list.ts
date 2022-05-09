@@ -1,5 +1,5 @@
 import {LitElement, html, css} from 'lit';
-import {customElement, property, query} from 'lit/decorators.js';
+import {customElement, state, query} from 'lit/decorators.js';
 
 type ToDoItem = {
   text: string,
@@ -11,8 +11,8 @@ export class ToDoList extends LitElement {
 
   // TODO: Add styles here
 
-  @property({attribute: false})
-  listItems = [
+  @state()
+  private _listItems = [
     { text: 'Make to-do list', completed: true },
     { text: 'Add some styles', completed: false }
   ];
@@ -21,7 +21,7 @@ export class ToDoList extends LitElement {
     return html`
       <h2>To Do</h2>
       <ul>
-        ${this.listItems.map((item) =>
+        ${this._listItems.map((item) =>
           html`
             <li
                 class="TODO"
@@ -44,9 +44,9 @@ export class ToDoList extends LitElement {
   input!: HTMLInputElement;
 
   addToDo() {
-    this.listItems.push({text: this.input.value, completed: false});
+    this._listItems = [...this._listItems,
+        {text: this.input.value, completed: false}];
     this.input.value = '';
-    this.requestUpdate();
   }
 }
 

@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 @customElement('more-expressions')
-class MoreExpressions extends LitElement {
+export class MoreExpressions extends LitElement {
   @property()
   checked: boolean = false;
 

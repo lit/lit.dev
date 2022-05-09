@@ -1,14 +1,15 @@
-import {LitElement, html} from 'lit';
+import {LitElement, html, css} from 'lit';
 
 export class ToDoList extends LitElement {
   static properties = {
-    listItems: {attribute: false},
+    _listItems: {state: true},
   };
+
+  // TODO: Add styles here
 
   constructor() {
     super();
-    // TODO: Add styles here
-    this.listItems = [
+    this._listItems = [
       {text: 'Make to-do list', completed: true},
       {text: 'Add some styles', completed: false},
     ];
@@ -18,7 +19,7 @@ export class ToDoList extends LitElement {
     return html`
       <h2>To Do</h2>
       <ul>
-        ${this.listItems.map(
+        ${this._listItems.map(
           (item) => html`
             <li
                 class="TODO"
@@ -42,9 +43,9 @@ export class ToDoList extends LitElement {
   }
 
   addToDo() {
-    this.listItems.push({text: this.input.value, completed: false});
+    this._listItems = [...this._listItems,
+        {text: this.input.value, completed: false}];
     this.input.value = '';
-    this.requestUpdate();
   }
 }
 customElements.define('todo-list', ToDoList);
