@@ -1,10 +1,10 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {map} from 'lit/directives/map.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-  @property({attribute: false})
+  @state()
   items = new Set(['Apple', 'Banana', 'Grape', 'Orange', 'Lime'])
 
   render() {

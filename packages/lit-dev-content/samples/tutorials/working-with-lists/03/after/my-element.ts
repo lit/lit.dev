@@ -1,13 +1,13 @@
 import {LitElement, html} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import type {TemplateResult} from 'lit';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-  @property({attribute: false})
+  @state()
   friends = ['Harry', 'Ron', 'Hermione'];
 
-  @property({attribute: false})
+  @state()
   pets = [
     { name: "Hedwig", species: "Owl" },
     { name: "Scabbers", species: "Rat" },

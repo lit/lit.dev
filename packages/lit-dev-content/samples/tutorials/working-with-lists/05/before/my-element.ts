@@ -1,11 +1,11 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {map} from 'lit/directives/map.js'
 // TODO: import repeat directive.
 
 @customElement('my-element')
 class MyElement extends LitElement {
-  @property({attribute: false})
+  @state()
   tasks = [
     { id: 'a', label: 'Learn Lit'},
     { id: 'b', label: 'Feed the cat'},
