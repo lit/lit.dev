@@ -264,52 +264,52 @@ constructor() {
 
 不应从组件外部引用内部响应式状态。在TypeScript中，这些属性应标记为私有或受保护。在Javascript中，我们建议约定使用下划线(`_`)作为私有或者受保护属性的前缀。
 
-Internal reactive state works just like public reactive properties, except that there is no attribute associated with the property. **The only option you can specify for internal reactive state is the `hasChanged` function.**
+内部响应式状态除了没有与之关联的atrribute之外，其他的和公共响应式属性property没有什么不同。**我们可以给内部响应式状态指定的唯一选项就是`hasChanged`函数**。
 
-The `@state` decorator can also serve as a hint to a code minifier that the property name can be changed during minification.
+`@state`装饰器还可以告诉代码压缩器：代码压缩过程中可以改变内部响应式状态的属性名。
 
-## What happens when properties change {#when-properties-change}
+## 属性（property）改变的时候会发生什么 {#when-properties-change}
 
-A property change can trigger a reactive update cycle, which causes the component to re-render its template.
+属性发生改变会触发一个响应式更新周期，进而触发组件重新渲染其模板。
 
-When a property changes, the following sequence occurs:
+下列步骤是属性发生变化后的过程：
 
-1.  The property's setter is called.
-1.  The setter calls the component's `requestUpdate` method.
-1.  The property's old and new values are compared. If the property has a `hasChanged` function, it's called with the property's old and new values.
-1.  If the property change is detected, an update is scheduled asynchronously. If an update is already scheduled, only a single update is executed.
-1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
+1.  属性的setter被调用。 
+1.  setter调用组件的`requestUpdate`的方法。 
+1.  比较属性的旧值和新值。如果设置了属性的`hasChanged`函数，那么就调用`hasChanged`函数并传入属性的旧值和新值进行比较。
+1.  如果监测到属性值发生了改变，就安排一次异步更新。但是如果此前已经安排了一次更新但是还没有执行，则不再安排更新。（译者注：一个同步任务可能会多次更新属性，而安排的异步更新只能在同步任务完成后执行，因此在同步任务中发生第二次更新时去安排更新的时候，就会存在一个已安排但未执行的更新）
+1.  调用组件的`update`方法，将组件的property反射回attribute并且更新组件的模板。
 
-There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle).
+有许多方法可以去绑定生命周期钩子和修改响应式更新周期。查看[响应式生命周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)了解更多信息。
 
-For more information about property change detection, see [Customizing change detection](#haschanged).
+查看[自定义更新检测](#haschanged)了解更多信息。
 
 ## Attributes {#attributes}
 
-While properties are great for receiving JavaScript data as input, attributes are the standard way HTML allows configuring elements from _markup_, without needing to use JavaScript to set properties. Providing both a property _and_ attribute interface for their reactive properties is a key way Lit components can be useful in a wide variety of environments, including those rendered without a client-side templating engine, such as static HTML pages served from CMSs.
+虽然property非常适合接收JavaScript数据作为输入，但attribute却是HTML允许从标签配置元素的标准方式，而无需使用JavaScript来设置property。为响应式属性提供property和attribute接口是Lit组件能适应各种环境的关键所在，包括那些没有客户端模板引擎的环境，例如：从CMS提供的静态HTML页面。
 
-By default, Lit sets up an observed attribute corresponding to each public reactive property, and updates the property when the attribute changes. Property values can also, optionally, be _reflected_ (written back to the attribute).
+默认情况下，Lit会给每个公共响应式属性property设置一个被观察的attribute，每当attribute发生变化的时候自动更新property的值。同时，property的值也可以（可选地）反射回attribute。
 
-While element properties can be of any type, attributes are always strings. This impacts the [observed attributes](#observed-attributes) and [reflected attributes](#reflected-attributes) of non-string properties:
+虽然元素的property可以是任何类型，但attribute始终是字符串，这就会影响到非字符串的property的[观察属性](#observed-attributes)和[反射属性](#reflected-attributes)。
 
-  * To **observe** an attribute (set a property from an attribute), the attribute value must be converted from a string to match the property type.
+  * 要**观察**属性（从属性设置属性），属性值必须从字符串转换以匹配属性类型。
 
-  * To **reflect** an attribute (set an attribute from a property), the property value must be converted to a string.
+  * 要**反射**属性（从属性设置属性），必须将属性值转换为字符串。
 
-### Setting the attribute name {#observed-attributes}
+### 设置属性（attribute）名 {#observed-attributes}
 
-By default, Lit creates a corresponding observed attribute for all public reactive properties. The name of the observed attribute is the property name, lowercased:
+默认情况下，Lit为所有公共响应式属性创建相应的观察属性（observed attribute）。观察属性（observed attribute）的名称是属性（property）的名称，并且是小写的：
 
 {% switchable-sample %}
 
 ```ts
-// observed attribute name is "myvalue"
+// 观察属性的名称是 "myvalue"
 @property({ type: Number })
 myValue = 0;
 ```
 
 ```js
-// observed attribute name is "myvalue"
+// 观察属性的名称是 "myvalue"
 static properties = {
   myValue: { type: Number },
 };
@@ -322,18 +322,18 @@ constructor() {
 
 {% endswitchable-sample %}
 
-To create an observed attribute with a different name, set `attribute` to a string:
+可以通过设置`attribute`为别字符串来设置观察属性为另外的名称。
 
 {% switchable-sample %}
 
 ```ts
-// Observed attribute will be called my-name
+// 观察属性的名称被设置为 my-name
 @property({ attribute: 'my-name' })
 myName = 'Ogden';
 ```
 
 ```js
-// Observed attribute will be called my-name
+// 观察属性的名称被设置为 my-name
 static properties = {
   myName: { attribute: 'my-name' },
 };
@@ -346,18 +346,18 @@ constructor() {
 
 {% endswitchable-sample %}
 
-To prevent an observed attribute from being created for a property, set `attribute` to `false`. The property will not be initialized from attributes in markup, and attribute changes won't affect it.
+可以设置`attribute`为`false`阻止创建property的时候自动创建观察属性，这样property就不会从标签中的attribute进行初始化，并且attribute更改不会影响它。
 
 {% switchable-sample %}
 
 ```ts
-// No observed attribute for this property
+// 不为这个property设置观察属性
 @property({ attribute: false })
 myData = {};
 ```
 
 ```js
-// No observed attribute for this property
+// 不为这个property设置观察属性
 static properties = {
   myData: { attribute: false },
 };
@@ -370,30 +370,30 @@ constructor() {
 
 {% endswitchable-sample %}
 
-Internal reactive state never has an associated attribute.
+内部响应式状态永远没有与之关联的attribute。
 
-An observed attribute can be used to provide an initial value for a property from markup. For example:
+写在标签中的观察属性可以用来为property做初始化。例如：
 
 ```html
 <my-element myvalue="99"></my-element>
 ```
 
-### Using the default converter {#conversion-type}
+### 使用默认转换器 {#conversion-type}
 
-Lit has a default converter that handles `String`, `Number`, `Boolean`, `Array`, and `Object` property types.
+Lit提供了用于处理`String`, `Number`, `Boolean`, `Array`, and `Object`等类型的默认属性转换器。
 
-To use the default converter, specify the `type` option in your property declaration:
+可以在属性声明中设置`type`选项来指定默认转换器。
 
 {% switchable-sample %}
 
 ```ts
-// Use the default converter
+// 使用默认转换器
 @property({ type: Number })
 count = 0;
 ```
 
 ```js
-// Use the default converter
+// 使用默认转换器
 static properties = {
   count: { type: Number },
 };
@@ -406,31 +406,31 @@ constructor() {
 
 {% endswitchable-sample %}
 
-If you don't specify a type _or_ a custom converter for a property, it behaves as if you'd specified `type: String`.
+如果没有为属性指定type或者自定义的转换器，则使用默认值`type: String`。
 
-The tables below shows how the default converter handles conversion for each type.
+下方表格显示了各种默认转换器是如何工作的。
 
-**From attribute to property**
+**从attribute到property**
 
-| Type    | Conversion |
+| Type    | 转换 |
 |:--------|:-----------|
-| `String`  | If the element has the corresponding attribute, set the property to the attribute value. |
-| `Number`  | If the element has the corresponding attribute, set the property to `Number(attributeValue)`. |
-| `Boolean` | If the element has the corresponding attribute, set the property to true.<br>If not, set the property to false. |
-| `Object`, `Array` | If the element has the corresponding attribute, set the property value to `JSON.parse(attributeValue)`. |
+| `String`  | 如果存在关联的attribute，则直接将attribute的值设置给property。 |
+| `Number`  | 如果存在关联的attribute，则设置property的值设置为`Number(attributeValue)`。 |
+| `Boolean` | 如果存在关联的attribute，则设置property的值为true，否则设置为false。 |
+| `Object`, `Array` | 如果存在关联的attribute，则设置property的值设置为`JSON.parse(attributeValue)`。 |
 
-For any case except `Boolean`, if the element doesn't have the corresponding attribute, the property keeps its default value, or `undefined` if no default is set.
+除`Boolean`类型外，如果元素没有关联的attribute，就用默认值给property赋值，如果没有设置默认值，就用`undefined`赋值。
 
-**From property to attribute**
+**从property到attribute**
 
-| Type    | Conversion |
+| Type    | 转换 |
 |:--------|:-----------|
 | `String`, `Number` | If property is defined and non-null, set the attribute to the property value.<br>If property is null or undefined, remove the attribute. |
 | `Boolean` | If property is truthy, create the attribute and set its value to an empty string. <br>If property is falsy, remove the attribute |
 | `Object`, `Array` | If property is defined and non-null, set the attribute to `JSON.stringify(propertyValue)`.<br>If property is null or undefined, remove the attribute. |
 
 
-### Providing a custom converter {#conversion-converter}
+### 提供自定义转换器 {#conversion-converter}
 
 You can specify a custom property converter in your property declaration with the `converter` option:
 
@@ -472,7 +472,7 @@ If no `toAttribute` function is supplied for a reflected attribute, the attribut
 
 If `toAttribute` returns `null` or `undefined`, the attribute is removed.
 
-### Enabling attribute reflection {#reflected-attributes}
+### 开启反射属性 {#reflected-attributes}
 
 You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
 
