@@ -29,7 +29,9 @@ export const pageRedirects = new Map([
   ['/docs/releases/release-notes/1.2.0.html', '/docs/releases/release-notes/1.2.0/'],
   // `.0` is treated as a file extension, ensure it resolves correctly.
   ['/docs/releases/release-notes/1.3.0',      '/docs/releases/release-notes/1.3.0/'],
-  ['/docs/releases/release-notes/1.2.0',      '/docs/releases/release-notes/1.2.0/']
+  ['/docs/releases/release-notes/1.2.0',      '/docs/releases/release-notes/1.2.0/'],
+  // Old Lit tutorial redirect to new tutorial catalog
+  ['/tutorial/', '/tutorials/'],
 ].map(([path, redir]) => [
   // Trailing slashes are required because this redirect map is consulted after
   // standard lit.dev path canonicalization.
@@ -90,12 +92,12 @@ export const oldLitElementSiteRedirects = new Map([
   ['/guide/build',      '/docs/v1/tools/build/'],
   ['/guide/community',  '/docs/v1/resources/community/'],
 
-  ['/try',              '/tutorial/'],
-  ['/try/create',       '/tutorial/'],
-  ['/try/properties',   '/tutorial/'],
-  ['/try/logic',        '/tutorial/'],
-  ['/try/events',       '/tutorial/'],
-  ['/try/style',        '/tutorial/'],
+  ['/try',              '/tutorials/'],
+  ['/try/create',       '/tutorials/'],
+  ['/try/properties',   '/tutorials/'],
+  ['/try/logic',        '/tutorials/'],
+  ['/try/events',       '/tutorials/'],
+  ['/try/style',        '/tutorials/'],
 
   ['/api/index.html',                                                       '/docs/v1/api/lit-element/LitElement/'],
   ['/api/globals.html',                                                     '/docs/v1/api/lit-element/LitElement/'],

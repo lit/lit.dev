@@ -84,23 +84,6 @@ export class LitDevTutorial extends LitElement {
   preview?: string;
 
   /**
-   * Whether or not to display the catalog back button.
-   *
-   * TODO(e111077): remove once we decide to go public with the catalog
-   */
-  @property({type: Boolean, attribute: 'show-catalog-button'})
-  showCatalogButton = false;
-
-  /**
-   * Whether or not the forwards and back button should point to
-   * /tutorial(s/tutorial-name)
-   *
-   * TODO(e111077): remove once we decide to go public with the catalog
-   */
-  @property({type: Boolean, attribute: 'use-old-url'})
-  useOldUrl = false;
-
-  /**
    * The 0-indexed step that's currently active.
    */
   @state()
@@ -204,10 +187,6 @@ export class LitDevTutorial extends LitElement {
   });
 
   private get _projectLocation() {
-    // TODO(e111077): delete this once we go public with tutorials catalog
-    if (window.location.pathname === '/tutorial/') {
-      return 'intro-to-lit';
-    }
     const locationEnding = window.location.pathname.replace('/tutorials/', '');
     return locationEnding.replace(/\/$/, '');
   }
@@ -377,21 +356,13 @@ export class LitDevTutorial extends LitElement {
   }
 
   protected renderHeader() {
-    return html`<div
-      id="tutorialHeader"
-      class=${this.showCatalogButton ? 'hasCatalogButton' : ''}
-    >
+    return html`<div id="tutorialHeader">
       <div class="lhs">
-        ${when(
-          this.showCatalogButton,
-          () => html`
-            <a href="/tutorials/" tabindex="-1">
-              <mwc-icon-button aria-label="Tutorial Catalog">
-                ${catalogIcon}
-              </mwc-icon-button>
-            </a>
-          `
-        )}
+        <a href="/tutorials/" tabindex="-1">
+          <mwc-icon-button aria-label="Tutorial Catalog">
+            ${catalogIcon}
+          </mwc-icon-button>
+        </a>
         <span class="tutorial-metadata">
           ${this._manifestTask.render({
             complete: (manifest) => html` <span class="tutorial-title"
@@ -779,13 +750,9 @@ export class LitDevTutorial extends LitElement {
       afterSlug = `${slug}/after`;
     }
 
-    const firstUrl = this.useOldUrl
-      ? '/tutorial/'
-      : `/tutorials/${this._projectLocation}`;
+    const firstUrl = `/tutorials/${this._projectLocation}`;
 
-    const nextUrl = this.useOldUrl
-      ? `/tutorial/#${slug}`
-      : `/tutorials/${this._projectLocation}#${slug}`;
+    const nextUrl = `/tutorials/${this._projectLocation}#${slug}`;
 
     return {
       idx,
