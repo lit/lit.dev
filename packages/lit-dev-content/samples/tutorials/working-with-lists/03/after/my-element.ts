@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
+import type {TemplateResult} from 'lit';
 
 @customElement('my-element')
 class MyElement extends LitElement {
@@ -17,14 +18,14 @@ class MyElement extends LitElement {
   includePets = true;
 
   render() {
-    const listItems = [];
-    for (const friend of this.friends) {
+    const listItems: TemplateResult[] = [];
+    this.friends.forEach((friend) => {
       listItems.push(html`<li>${friend}</li>`);
-    }
+    });
     if (this.includePets) {
-      for (const pet of this.pets) {
+      this.pets.forEach((pet) => {
         listItems.push(html`<li>${pet.name} (${pet.species})</li>`);
-      }
+      });
     }
 
     return html`

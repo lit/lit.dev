@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "index.html": {},
+    "word-viewer.ts": {}
+  }
+}

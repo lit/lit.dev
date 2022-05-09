@@ -264,13 +264,44 @@ When a property changes, the following sequence occurs:
 
 1.  The property's setter is called.
 1.  The setter calls the component's `requestUpdate` method.
-1.  The property's old and new values are compared. If the property has a `hasChanged` function, it's called with the property's old and new values.
+1.  The property's old and new values are compared.
+    -  By default Lit uses a strict inequality test to determine if the value has changed (that is `newValue !== oldValue`).
+    -  If the property has a `hasChanged` function, it's called with the property's old and new values.
 1.  If the property change is detected, an update is scheduled asynchronously. If an update is already scheduled, only a single update is executed.
 1.  The component's `update` method is called, reflecting changed properties to attributes and re-rendering the component's templates.
+
+Note that if you mutate an object or array property, it won't trigger an update, because the object itself hasn't changed. For more information, see [Mutating object and array properties](#mutating-properties).
 
 There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle).
 
 For more information about property change detection, see [Customizing change detection](#haschanged).
+
+### Mutating object and array properties {#mutating-properties}
+
+Mutating an object or array doesn't change the object reference, so it won't trigger an update. You can handle object and array properties in one of two ways:
+
+-   **Immutable data pattern.** Treat objects and arrays as immutable. For example, to remove an item from `myArray`, construct a new array:
+
+    ```js
+    this.myArray = this.myArray.filter((_, i) => i !== indexToRemove);
+    ```
+
+    While this example is simple, it's often helpful to use a library like [Immer](https://immerjs.github.io/immer/) to manage immutable data. This can help avoid tricky boilerplate code when setting deeply nested objects.
+
+-   **Manually triggering an update.** Mutate the data and `requestUpdate()` to trigger an update directly. For example:
+
+    ```js
+    this.myArray.splice(indexToRemove, 1);
+    this.requestUpdate();
+    ```
+
+    When called with no arguments, `requestUpdate()` schedules an update, without calling a `hasChanged()` function. But note that `requestUpdate()` only causes the _current_ component to update. That is, if a component uses the code shown above, **and** the component passes `this.myArray` to a subcomponent, the subcomponent will detect that the array reference hasn't changed, so it won't update.
+
+**In general, using top-down data flow with immutable objects is best for most applications.** It ensures that every component that needs to render a new value does (and does so as efficiently as possible, since parts of the data tree that didn't change won't cause components that rely on them to update).
+
+Mutating data directly and calling `requestUpdate()` should be considered an advanced use case. In this case, you (or some other system) need to identify all the components that use the mutated data and call `requestUpdate()` on each one. When those components are spread across an application, this gets hard to manage. Not doing so robustly means that you might modify an object that's rendered in two parts of your application, but only have one part update.
+
+In simple cases, when you know that a given piece of data is only used in a single component, it should be safe to mutate the data and call `requestUpdate()`, if you prefer.
 
 ## Attributes {#attributes}
 

@@ -1197,7 +1197,7 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-`live()` performs a strict equality check agains the live DOM value, and if
+`live()` performs a strict equality check against the live DOM value, and if
 the new value is equal to the live value, does nothing. This means that
 `live()` should not be used when the expression will cause a type conversion. If
 you use `live()` with an attribute expression, make sure that only strings are
