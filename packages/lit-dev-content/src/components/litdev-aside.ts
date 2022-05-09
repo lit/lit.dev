@@ -32,6 +32,7 @@ export class LitDevAside extends LitElement {
     slot {
       display: block;
       flex-grow: 1;
+      overflow: auto;
     }
 
     svg {

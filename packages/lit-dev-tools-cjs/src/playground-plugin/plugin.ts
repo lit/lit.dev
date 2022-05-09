@@ -318,15 +318,20 @@ export const playgroundPlugin = (
       }
 
       const noHeaderAttribute = noHeader === 'no-header' ? ' no-header' : '';
+
+      // Matches the first line's leading whitespace and applies it to the other
+      // HTML nodes to preserve the same indentation.
+      const contentIndent = (content.match(/^\s*/) ?? [''])[0];
+
       // htmlmin:ignore will prevent minifier from formatting the contents.
       // otherwise, in the prod build, there will not be a space between the
       // bolded header and the second line.
       return (
-        `<litdev-aside type="${variant}"${noHeaderAttribute}>` +
-        '\n<!-- htmlmin:ignore -->\n\n' +
+        `${contentIndent}<litdev-aside type="${variant}"${noHeaderAttribute}>` +
+        `\n${contentIndent}<!-- htmlmin:ignore -->\n\n` +
         content +
-        '\n\n<!-- htmlmin:ignore -->' +
-        '\n</litdev-aside>'
+        `\n\n${contentIndent}<!-- htmlmin:ignore -->` +
+        `\n${contentIndent}</litdev-aside>`
       );
     }
   );
