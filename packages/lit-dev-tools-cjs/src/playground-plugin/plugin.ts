@@ -320,7 +320,7 @@ export const playgroundPlugin = (
       const noHeaderAttribute = noHeader === 'no-header' ? ' no-header' : '';
 
       // Matches the first line's leading whitespace and applies it to the other
-      // HTML nodes to preserve the same indentaiton.
+      // HTML nodes to preserve the same indentation.
       const contentIndent = (content.match(/^\s*/) ?? [''])[0];
 
       // htmlmin:ignore will prevent minifier from formatting the contents.
