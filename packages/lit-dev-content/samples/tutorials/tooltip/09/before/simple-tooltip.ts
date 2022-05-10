@@ -1,4 +1,3 @@
-/* playground-fold */
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {Directive, DirectiveParameters, directive} from 'lit/directive.js';
@@ -154,5 +153,3 @@ class TooltipDirective extends Directive {
 }
 
 export const tooltip = directive(TooltipDirective);
-
-/* playground-fold-end */

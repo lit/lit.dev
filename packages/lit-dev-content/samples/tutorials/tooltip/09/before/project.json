@@ -1,9 +1,9 @@
 {
   "extends": "/samples/base.json",
   "files": {
-    "my-content.ts": {"selected": true},
-    "index.html": {},
-    "simple-tooltip.ts": {}
+    "simple-tooltip.ts": {"selected": true},
+    "my-content.ts": {},
+    "index.html": {}
   },
   "dependencies": {
     "@floating-ui/dom": "^0.4.1"
