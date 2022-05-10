@@ -1,0 +1,44 @@
+{
+  "name": "lit-dev-cloudbuild-cleanup",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Tool to cleanup cloudrun artifacts for lit.dev",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "build:ts": "wireit",
+    "start": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
+    },
+    "start": {
+      "dependencies": [
+        "build"
+      ],
+      "command": "node ./lib/cleanup.js"
+    }
+  },
+  "dependencies": {
+    "gaxios": "^5.0.0",
+    "googleapis": "^100.0.0",
+    "octokit": "^1.7.1"
+  }
+}

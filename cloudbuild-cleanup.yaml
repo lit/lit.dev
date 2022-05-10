@@ -1,0 +1,20 @@
+# lit.dev Cloud Build config for cleanup of build artifacts
+#
+# https://cloud.google.com/cloud-build/docs/build-config
+
+steps:
+  - id: cleanup
+    name: node:16
+    script: |
+      cd packages/lit-dev-cloudbuild-cleanup
+      npm ci
+      npm start
+
+tags:
+  - lit-dev
+  - cloudbuild-cleanup
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+timeout: 45m

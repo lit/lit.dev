@@ -119,8 +119,8 @@ steps:
       - beta
       - run
       - services
-      - update-traffic # Service name
-      - lit-dev-playground
+      - update-traffic
+      - lit-dev-playground # Service name
       - '--region=$_DEPLOY_REGION'
       - '--platform=managed'
       - '--quiet'
