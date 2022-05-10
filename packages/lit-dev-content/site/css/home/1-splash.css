@@ -8,12 +8,12 @@
   height: var(--header-height);
 }
 
-#new-banner > a {
+#new-banner a {
   color: white;
   font-style: italic;
 }
 
-#new-banner > a:hover {
+#new-banner a:hover {
   text-decoration: underline;
 }
 
