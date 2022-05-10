@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc --build",
-    "start": "node lib/index.js"
+    "start": "node lib/cleanup.js"
   },
   "dependencies": {
     "gaxios": "^5.0.0",
