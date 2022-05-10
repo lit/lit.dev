@@ -8,6 +8,7 @@ steps:
     script: |
       cd packages/lit-dev-cloudbuild-cleanup
       npm ci
+      npm run build
       npm start
 
 tags:
