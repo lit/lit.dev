@@ -1,3 +1,22 @@
+#new-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #325cff;
+  color: white;
+  font-weight: 800;
+  height: var(--header-height);
+}
+
+#new-banner > a {
+  color: white;
+  font-style: italic;
+}
+
+#new-banner > a:hover {
+  text-decoration: underline;
+}
+
 #intro {
   display: flex;
   align-items: center;
