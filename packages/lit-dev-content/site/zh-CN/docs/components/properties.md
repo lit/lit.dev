@@ -425,95 +425,98 @@ constructor() {
 
 | Type    | 转换 |
 |:--------|:-----------|
-| `String`, `Number` | If property is defined and non-null, set the attribute to the property value.<br>If property is null or undefined, remove the attribute. |
-| `Boolean` | If property is truthy, create the attribute and set its value to an empty string. <br>If property is falsy, remove the attribute |
-| `Object`, `Array` | If property is defined and non-null, set the attribute to `JSON.stringify(propertyValue)`.<br>If property is null or undefined, remove the attribute. |
+| `String`, `Number` | 如果property被定义且值不为null，则直接将property的值设置给attribute。<br>如果property是null或者为定义，则直接移除attribute。|
+| `Boolean` | 如果property是truthy值，则创建attribute并且设置其值为一个空字符串。<br>如果property是falsy值，则直接移除attribute。|
+| `Object`, `Array` | 如果property被定义且值不为null，则将`JSON.stringify(propertyValue)`设置给attribute。<br>如果property是null或者为定义，则直接移除attribute。|
 
 
 ### 提供自定义转换器 {#conversion-converter}
 
-You can specify a custom property converter in your property declaration with the `converter` option:
+在声明属性（property）的时候，可以通过`converter`选项来指定属性的自定义转换器：
 
 ```js
 myProp: {
-  converter: // Custom property converter
+  converter: // 自定义属性转换器
 }
 ```
 
-`converter` can be an object or a function. If it is an object, it can have keys for `fromAttribute` and `toAttribute`:
+`converter`选项可以是一个对象或者一个函数，如果是对象的话，该对象可以包含`fromAttribute`和`toAttribute`两个关键字：
 
 ```js
 prop1: {
   converter: {
     fromAttribute: (value, type) => {
-      // `value` is a string
-      // Convert it to a value of type `type` and return it
+      // `value`是一个字符串
+      // 将`value`转换为`type`指定的类型的值，并返回
     },
     toAttribute: (value, type) => {
-      // `value` is of type `type`
-      // Convert it to a string and return it
+      // `value`是一个`type`指定的类型的值
+      // 将`value`转换成string类型并返回
     }
   }
 }
 ```
 
 If `converter` is a function, it is used in place of `fromAttribute`:
+如果`converter`是一个函数，那么将`fromAttribute`设置为这个函数：
 
 ```js
 myProp: {
   converter: (value, type) => {
-    // `value` is a string
-    // Convert it to a value of type `type` and return it
+    // `value`是一个字符串
+    // 将`value`转换为`type`指定的类型的值，并返回
   }
 }
 ```
 
-If no `toAttribute` function is supplied for a reflected attribute, the attribute is set to the property value using the default converter.
+如果没有给`toAttribute`设置函数用于反射属性，就使用默认转换器转换property的值然后设置给attribute。
 
-If `toAttribute` returns `null` or `undefined`, the attribute is removed.
+如果`toAttribute`返回`null`或者`undefined`，则直接移除attribute。
 
 ### 开启反射属性 {#reflected-attributes}
 
-You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
+你可以配置property让它无论任何时候发生改变都会将其值反射回它的[关联属性](#observed-attributes)，反射属性非常有用，因为attribute对于CSS，DOM API（如：`querySelector`）是可见的。
 
-For example:
+例如:
 
 ```js
-// Value of property "active" will reflect to attribute "active"
+// 名为"active"的property的值将反射给名为"active"的attribute
 active: {reflect: true}
 ```
 
-When the property changes, Lit sets the corresponding attribute value as described in [Using the default converter](#conversion-type) or [Providing a custom converter](#conversion-converter).
+当property发生变化时，Lit会按照[使用默认转换器](#conversion-type)或[设置自定义转换器](#conversion-converter)中的说明设置与之关联的attribute的值。
 
 {% playground-example "properties/attributereflect" "my-element.ts" %}
 
-Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. It's necessary today for cases like styling and accessibility, but this is likely to change as the platform adds features like the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/), which fill these gaps.
+attribute通常应当被用于向元素输入内容，而不是受元素本身的控制，因此应谨慎地将property反射到attribute。
 
-Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance.
+虽然说反射属性对于样式和可访问性等是必要的特性，我们建议谨慎使用。随着平台添加[`:state`伪选择器](https://wicg.github.io/custom-state-pseudo-class/)和[Accessibility Object Model](https://wig.github.io/aom/spec/)等特性，我们将有更多的选择。
+
+我们不推荐将类型为对象或数组的property反射回attribute，因为这样做会把一个大对象序列化到DOM上，从而影响性能。
 
 <div class="alert alert-info">
 
-**Lit tracks reflection state during updates.** You may have realized that if property changes are reflected to an attribute and attribute changes update the property, it has the potential to create an infinite loop. However, Lit tracks when properties and attributes are set specifically to prevent this from happening
+**Lit在更新期间跟踪反射状态。** 你可能已经意识到，如果property更改反射到attribute，并且attribute更改会更新property，这就可能会陷入死循环。但是，Lit会在更新期间跟踪反射状态，确定何时专门设置property和attribute，防止发生死循环发生。
 
 </div>
 
-## Custom property accessors {#accessors}
+## 自定义属性（property）访问器 {#accessors}
 
-By default, LitElement generates a getter/setter pair for all reactive properties. The setter is invoked whenever you set the property:
+默认情况下，LitElement会为所有的响应式属性生成一个getter/setter对，setter将会在设置属性的时候被调用：
 
 {% switchable-sample %}
 
 ```ts
-// Declare a property
+// 声明一个属性
 @property()
 greeting: string = 'Hello';
 ...
-// Later, set the property
-this.greeting = 'Hola'; // invokes greeting's generated property accessor
+// 然后给属性赋值
+this.greeting = 'Hola'; // 调用为greeting生成的属性访问器
 ```
 
 ```js
-// Declare a property
+// 声明一个属性
 static properties = {
   greeting: {},
 }
@@ -522,17 +525,17 @@ constructor() {
   this.greeting = 'Hello';
 }
 ...
-// Later, set the property
-this.greeting = 'Hola'; // invokes greeting's generated property accessor
+// 然后给属性赋值
+this.greeting = 'Hola'; // 调用为greeting生成的属性访问器
 ```
 
 {% endswitchable-sample %}
 
-Generated accessors automatically call `requestUpdate()`, initiating an update if one has not already begun.
+生成的属性访问器会自动调用`requestUpdate()`，如果更新尚未开始，则启动更新（译者注：准确的说应该是如果不存在已安排的异步更新，则安排一个）。
 
-### Creating custom property accessors {#accessors-custom}
+### 创建自定义属性（property）访问器 {#accessors-custom}
 
-To specify how getting and setting works for a property, you can define your own getter/setter pair. For example:
+你可以自己定义getter/setter对来指定读取和设置属性的时候如何工作，例如：
 
 {% switchable-sample %}
 
@@ -567,19 +570,20 @@ get prop() { return this._prop; }
 
 {% endswitchable-sample %}
 
-To use custom property accessors with the `@property` or `@state` decorators, put the decorator on the getter, as shown above.
+想要通过`@property`或`@state`来使用自定义的属性访问器的话，只需要把装饰器放在getter之上就可以，就上上面例子那样。
 
-The setters that Lit generates automatically call `requestUpdate()`. If you write your own setter you must call `requestUpdate()` manually, supplying the property name and its old value.
+Lit生成的setter会自动调用`requestUpdate()`方法。因此，如果你自己定义setter的话，你就必须手动调用`requestUpdate()`并传入属性的名称和属性的旧值。
 
-In most cases, **you do not need to create custom property accessors.** To compute values from existing properties, we recommend using the [`willUpdate`](/docs/components/lifecycle/#willupdate) callback, which allows you to set values during the update cycle without triggering an additional update. To perform a custom action after the element updates, we recommend using the [`updated`](/docs/components/lifecycle/#updated) callback. A custom setter can be used in rare cases when it's important to synchronously validate any value the user sets.
+大多数情况下，**你没必要创建自定义属性访问器。** 我们推荐使用[`willUpdate`]({{baseurl}}/docs/components/lifecycle/#willupdate)回调来根据现有属性计算新值，因为`willUpdate`允许你在更新周期内更新属性值而不会触发一个额外的更细。元素更新完成后，我们推荐使用[`updated`]({{baseurl}}/docs/components/lifecycle/#updated)回调来执行一个自定义的后续操作。自定义的setter仅被使用在极少数的场景，如：当同步验证用户输入是一件非常重要的事情的时候。
 
-If your class defines its own accessors for a property, Lit will not overwrite them with generated accessors. If your class does not define accessors for a property, Lit will generate them, even if a superclass has defined the property or accessors.
+如果你的类已经为属性定义了访问器，那么Lit将不会再为它生成访问器，否则将为他们创建默认属性访问器，即使父类已经定义了同名属性或者同名属性的访问器。
 
-### Prevent Lit from generating a property accessor {#accessors-noaccessor}
+### 避免Lit生成属性反问器 {#accessors-noaccessor}
 
 In rare cases, a subclass may need to change or add property options for a property that exists on its superclass.
+少数情况下，子类可能需要修改或新增存在于父类的的属性的选项。
 
-To prevent Lit from generating a property accessor that overwrites the superclass's defined accessor, set `noAccessor` to `true` in the property declaration:
+为了避免Lit生成属性访问器覆盖父类定义的访问器，可以在属性声明中将`noAccessor`设置为`true`。
 
 ```js
 static properties = {
@@ -587,17 +591,17 @@ static properties = {
 };
 ```
 
-You don't need to set `noAccessor` when defining your own accessors.
+如果你已经给属性创建自定义访问器了的话，就没必要设置`noAccessor`了。
 
-## Customizing change detection {#haschanged}
+## 自定义更新检测 {#haschanged}
 
-All reactive properties have a function, `hasChanged()`, which is called when the property is set.
+所有响应式属性都有一个`hasChanged()`函数，只要属性被设置，该函数就会被调用。
 
-`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged()` returns true, Lit starts an element update if one is not already scheduled. For more information on updates, see [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle) .
+`hasChanged`的职责是比较属性的旧值和新值，并评估属性是否已更改。如果`hasChanged()`返回true并且尚未安排元素更新，Lit将安排一个异步更新。查看[响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)了解更多有关更新的信息。
 
-The default implementation of `hasChanged()` uses a strict inequality comparison: `hasChanged()` returns `true` if `newVal !== oldVal`.
+`hasChanged()`的默认实现使用严格的不等式比较：如果`newVal !== oldVal`，则`hasChanged()`返回`true`。
 
-To customize `hasChanged()` for a property, specify it as a property option:
+在声明属性的时候，在选项中为属性自定义 `hasChanged()`：
 
 {% switchable-sample %}
 
@@ -622,6 +626,6 @@ static properties = {
 
 {% endswitchable-sample %}
 
-In the following example, `hasChanged()` only returns true for odd values.
+在下面的例子中，值为偶数的时候`hasChanged()`返回true
 
 {% playground-example "properties/haschanged" "my-element.ts" %}
