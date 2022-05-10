@@ -2,18 +2,22 @@
 <html>
   <head>
     <style>
-      html, body {
-         height: 100%;
-         padding: 0;
-         margin: 0;
-      }
-      :root {
+      body {
         --background-color: #7acbf1;
-        --font-color: #fff;
+        --font-color: #ffffff;
         --font-size: 56px;
         --stroke-width: 3.5px;
         --stroke-color: #e3a7b2;
+
+        height: 100vh;
+        margin: 0;
       }
+
+      repeat-pattern {
+        height: 100vh;
+        width: 100vw;
+      }
+
       .knobs {
         background: #efefef;
         border-bottom-right-radius: 4px;
@@ -72,7 +76,7 @@
       <input value="T">
       <input type="range" min="2" max="29" value="8">
       <input type="range" min="0" max="360" value="0">
-      <input type="color" value="#000">
+      <input type="color" value="#000000">
       <input type="color" value="#7acbf1">
       <input type="color" value="#ffffff">
     </div>

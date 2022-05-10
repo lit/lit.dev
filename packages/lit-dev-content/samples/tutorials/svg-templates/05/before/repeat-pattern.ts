@@ -79,7 +79,7 @@ export class RepeatPattern extends LitElement {
 
   render() {
     return html`
-      <svg width="100%" height="100%">
+      <svg height="100%" width="100%">
         <defs>
           ${createTileBoundary()}
           ${createElement(this.chars)}
@@ -90,8 +90,8 @@ export class RepeatPattern extends LitElement {
           ${createRepeatPattern()}
         </defs>
     
-        <rect fill="#fff" width="100%" height="100%"></rect>
-        <rect fill="url(#repeat-pattern)" width="100%" height="100%"></rect>
+        <rect fill="#ffffff" height="100%" width="100%"></rect>
+        <rect fill="url(#repeat-pattern)" height="100%" width="100%"></rect>
       </svg>
     `;
   }

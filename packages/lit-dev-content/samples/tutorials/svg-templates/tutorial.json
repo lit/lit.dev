@@ -6,7 +6,7 @@
   "category": "Build",
   "steps": [
     {
-      "title": "Pattern making with SVG in Lit",
+      "title": "Pattern making with SVG",
       "hasAfter": false,
       "noSolve": true
     },
@@ -27,7 +27,7 @@
       "hasAfter": false
     },
     {
-      "title": "Theme pattern with CSS",
+      "title": "Theme a pattern with CSS",
       "hasAfter": true
     },
     {

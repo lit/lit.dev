@@ -6,25 +6,29 @@ import {customElement, property} from 'lit/decorators.js';
 
 const themeCSS = css`
   .background {
-    fill: var(--background-color, #ff8800);
+    fill: var(--background-color, #000000);
   }
 
   text {
-    fill: var(--font-color, #fff);
-    font-size: var(--font-size, 28px);
+    fill: var(--font-color, #ffffff);
+    font-size: var(--font-size, 26px);
     stroke-width: var(--stroke-width, 1.2px);
-    stroke: var(--stroke-color, #0000dd);
+    stroke: var(--stroke-color, #eeeeee);
   }
 `;
 
 const svgCSS = css`
-  svg, rect {
+  :host {
+    display: block;
+  }
+
+  svg {
     height: 100%;
     width: 100%;
   }
 
   text {
-    fill: #fff;
+    fill: #ffffff;
     dominant-baseline: hanging;
     font-family: monospace;
     font-size: 24px;
@@ -114,8 +118,8 @@ export class RepeatPattern extends LitElement {
           ${createRepeatPattern()}
         </defs>
 
-        <rect class="background"></rect>
-        <rect fill="url(#repeat-pattern)"></rect>
+        <rect class="background" height="100%" width="100%"></rect>
+        <rect fill="url(#repeat-pattern)" height="100%" width="100%"></rect>
       </svg>
     `;
   }
