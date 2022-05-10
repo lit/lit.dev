@@ -4,13 +4,12 @@
   justify-content: center;
   background: #325cff;
   color: white;
-  font-weight: 800;
   height: var(--header-height);
 }
 
 #new-banner a {
   color: white;
-  font-style: italic;
+  font-weight: 800;
 }
 
 #new-banner a:hover {
