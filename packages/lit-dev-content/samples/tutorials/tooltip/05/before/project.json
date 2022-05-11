@@ -1,9 +1,8 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "../../tooltip-base.json",
   "files": {
     "simple-tooltip.ts": {"selected": true},
     "my-content.ts": {},
-    "index.html": {},
-    "process.js": {"hidden": true}
+    "index.html": {}
   }
 }
