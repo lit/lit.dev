@@ -186,6 +186,8 @@ async function main() {
       tags: string[];
     };
 
+    console.log('image tag count', data.tags.length);
+
     for (const [digest, manifest] of Object.entries(data.manifest)) {
       if (
         !imageDigestsToKeep.has(digest) &&
@@ -216,6 +218,7 @@ async function main() {
 
   // clean up gcr lit-dev/cache images created by kaniko
   {
+    console.log('fetching cache images from gcr');
     const resp = await request({
       url: `https://us.gcr.io/v2/${PROJECT_ID}/${REPO_NAME}/lit-dev/cache/tags/list`,
       method: 'GET',
@@ -229,12 +232,14 @@ async function main() {
       tags: string[];
     };
 
+    console.log('cache image tag count', data.tags.length);
+
     for (const [digest, manifest] of Object.entries(data.manifest)) {
       if (new Date(Number(manifest.timeCreatedMs)) < ONE_WEEK_AGO) {
         for (const tag of manifest.tag) {
           console.log(`deleting tag ${tag}`);
           await request({
-            url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/cache/manifests/${digest}`,
+            url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/cache/manifests/${tag}`,
             method: 'DELETE',
             headers: {
               authorization: 'Bearer ' + token,
