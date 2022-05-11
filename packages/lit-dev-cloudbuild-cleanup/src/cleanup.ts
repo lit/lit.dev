@@ -8,6 +8,7 @@ const ONE_WEEK_AGO = new Date(Date.now() - ONE_WEEK_IN_MS);
 const {PROJECT_ID, REPO_NAME, _DEPLOY_REGION} = process.env;
 
 if ([PROJECT_ID, REPO_NAME, _DEPLOY_REGION].some((env) => env === undefined)) {
+  console.log({PROJECT_ID, REPO_NAME, _DEPLOY_REGION});
   throw new Error(
     'missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION'
   );
