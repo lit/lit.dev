@@ -66,16 +66,16 @@ module.exports = async () => {
   const tutorials = await Promise.all([
     // Learn
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
-    loadTutorialData('working-with-lists'),
+    loadTutorialData('working-with-lists', {featured: {position: 1}}),
     loadTutorialData('reactivity'),
-    loadTutorialData('custom-attribute-converter', {featured: {position: 2}}),
-    loadTutorialData('async-directive', {featured: {position: 1}}),
+    loadTutorialData('custom-attribute-converter'),
+    loadTutorialData('async-directive'),
 
 
     // Build
     loadTutorialData('svg-templates'),
     loadTutorialData('tooltip'),
-    loadTutorialData('carousel'),
+    loadTutorialData('carousel', {featured: {position: 2}}),
     loadTutorialData('word-viewer'),
 
     // Draft
