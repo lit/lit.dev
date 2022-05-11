@@ -5,7 +5,7 @@ import {Highlightable} from './highlightable.js'
 @customElement('element-two')
 export class ElementTwo extends Highlightable(LitElement) {
   static styles = [
-    super.styles || [],
+    Highlightable(LitElement).styles || [],
     css`:host { display: block; }`
   ];
   render(){
