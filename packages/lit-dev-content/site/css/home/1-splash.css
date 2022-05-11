@@ -1,3 +1,25 @@
+#new-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #325cff;
+  color: white;
+  height: var(--header-height);
+}
+
+#new-banner > p {
+  text-align: center;
+}
+
+#new-banner a {
+  color: white;
+  font-weight: 800;
+}
+
+#new-banner a:hover {
+  text-decoration: underline;
+}
+
 #intro {
   display: flex;
   align-items: center;

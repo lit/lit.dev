@@ -1,4 +1,3 @@
-/* playground-fold */
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import {Directive, DirectiveParameters, directive} from 'lit/directive.js';
@@ -16,16 +15,17 @@ export class SimpleTooltip extends LitElement {
 
   // Lazy creation
   static lazy(target: Element, callback: (target: SimpleTooltip) => void) {
-    let called = false;
-    enterEvents.forEach(name => target.addEventListener(name, () => {
-      if (!called) {
-        called = true;
-        const tooltip = document.createElement('simple-tooltip') as SimpleTooltip;
-        callback(tooltip);
-        target.parentNode!.insertBefore(tooltip, target.nextSibling);
-        tooltip.show();
-      }
-    }, {once: true}));
+    const createTooltip = () => {
+      const tooltip = document.createElement('simple-tooltip') as SimpleTooltip;
+      callback(tooltip);
+      target.parentNode!.insertBefore(tooltip, target.nextSibling);
+      tooltip.show();
+      // We only need to create the tooltip once, so ignore all future events.
+      enterEvents.forEach(
+        (eventName) => target.removeEventListener(eventName, createTooltip));
+    };
+    enterEvents.forEach(
+      (eventName) => target.addEventListener(eventName, createTooltip));
   }
 
   static styles = css`
@@ -154,5 +154,3 @@ class TooltipDirective extends Directive {
 }
 
 export const tooltip = directive(TooltipDirective);
-
-/* playground-fold-end */

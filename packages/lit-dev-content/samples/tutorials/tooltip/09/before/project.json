@@ -1,11 +1,8 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "../../tooltip-base.json",
   "files": {
-    "my-content.ts": {"selected": true},
-    "index.html": {},
-    "simple-tooltip.ts": {}
-  },
-  "dependencies": {
-    "@floating-ui/dom": "^0.4.1"
+    "simple-tooltip.ts": {"selected": true},
+    "my-content.ts": {},
+    "index.html": {}
   }
 }
