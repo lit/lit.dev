@@ -84,23 +84,6 @@ export class LitDevTutorial extends LitElement {
   preview?: string;
 
   /**
-   * Whether or not to display the catalog back button.
-   *
-   * TODO(e111077): remove once we decide to go public with the catalog
-   */
-  @property({type: Boolean, attribute: 'show-catalog-button'})
-  showCatalogButton = false;
-
-  /**
-   * Whether or not the forwards and back button should point to
-   * /tutorial(s/tutorial-name)
-   *
-   * TODO(e111077): remove once we decide to go public with the catalog
-   */
-  @property({type: Boolean, attribute: 'use-old-url'})
-  useOldUrl = false;
-
-  /**
    * The 0-indexed step that's currently active.
    */
   @state()
@@ -204,10 +187,6 @@ export class LitDevTutorial extends LitElement {
   });
 
   private get _projectLocation() {
-    // TODO(e111077): delete this once we go public with tutorials catalog
-    if (window.location.pathname === '/tutorial/') {
-      return 'intro-to-lit';
-    }
     const locationEnding = window.location.pathname.replace('/tutorials/', '');
     return locationEnding.replace(/\/$/, '');
   }
@@ -377,21 +356,13 @@ export class LitDevTutorial extends LitElement {
   }
 
   protected renderHeader() {
-    return html`<div
-      id="tutorialHeader"
-      class=${this.showCatalogButton ? 'hasCatalogButton' : ''}
-    >
+    return html`<div id="tutorialHeader">
       <div class="lhs">
-        ${when(
-          this.showCatalogButton,
-          () => html`
-            <a href="/tutorials/" tabindex="-1">
-              <mwc-icon-button aria-label="Tutorial Catalog">
-                ${catalogIcon}
-              </mwc-icon-button>
-            </a>
-          `
-        )}
+        <a href="/tutorials/" tabindex="-1">
+          <mwc-icon-button aria-label="Tutorial Catalog">
+            ${catalogIcon}
+          </mwc-icon-button>
+        </a>
         <span class="tutorial-metadata">
           ${this._manifestTask.render({
             complete: (manifest) => html` <span class="tutorial-title"
@@ -689,6 +660,16 @@ export class LitDevTutorial extends LitElement {
       hash = hash.slice(1);
     }
     this._idx = hash === '' ? 0 : this._slugToIdx(hash) ?? this._idx;
+    if (hash.startsWith('0')) {
+      // In an earlier URL scheme, we indexed steps from 0, and left-padded with
+      // "0"s. Now we index from 1, and conveniently use the fact that we also
+      // no longer left-pad to detect people still on the old scheme, and fix
+      // their URLs. Note we never published any tutorials with >10 steps on the
+      // old scheme, so there has never been a "#10" or higher in the old
+      // scheme, so this is never ambiguous.
+      this._idx++;
+      window.location.hash = `#${this._idxToSlug(this._idx)}`;
+    }
   };
 
   /**
@@ -742,23 +723,20 @@ export class LitDevTutorial extends LitElement {
   }
 
   /**
-   * Finds the index of the given slug. e.g. "" -> 0, "03" -> 3
-   *
-   * @param slug slug of the step
-   * @returns The index with the given slug
+   * Makes a 0-indexed step number from a 1-indexed URL slug.
+   * E.g. "" -> 0, "1" -> 0, "2" -> 1
    */
   private _slugToIdx(slug: string): number | undefined {
     const idx = Number(slug);
-    return isNaN(idx) ? undefined : idx;
+    return isNaN(idx) ? 0 : idx - 1;
   }
 
   /**
-   * Turns an index into a 2-length stringified number for the slug.
-   * @param idx index to slugify
-   * @returns A 2-length stringified number
+   * Makes a 1-indexed URL slug from a 0-indexed step number.
+   * E.g. 0 -> "1", 1 -> "2"
    */
   private _idxToSlug(idx: number): string {
-    return `${idx}`.padStart(2, '0');
+    return String(idx + 1);
   }
 
   /**
@@ -770,29 +748,40 @@ export class LitDevTutorial extends LitElement {
    *   does not exist in the file system
    */
   private _idxToInfo(idx: number): ExpandedTutorialStep {
-    const slug = this._idxToSlug(idx);
-    // The "after"'s code is located in the before dir of the next step
-    let afterSlug = `${this._idxToSlug(idx + 1)}/before`;
+    // Note URLs visible to the user are 1-indexed and non-padded, while the
+    // underlying resources are 0-indexed and zero-padded to 2 digits.
+    //
+    // TODO(aomarks) It would be nice to rename all of the tutorial files on
+    // disk to be 1-indexed instead of 0-indexed, so that it's easier to see
+    // which step they correspond to during development.
 
-    // if the user specified this step has an after, use that
-    if (this._manifest.steps[idx].hasAfter) {
-      afterSlug = `${slug}/after`;
-    }
+    const name = this._projectLocation;
 
-    const firstUrl = this.useOldUrl
-      ? '/tutorial/'
-      : `/tutorials/${this._projectLocation}`;
+    // On the first step, we don't include a #num anchor.
+    const url =
+      idx === 0
+        ? `/tutorials/${name}`
+        : `/tutorials/${name}/#${this._idxToSlug(idx)}`;
 
-    const nextUrl = this.useOldUrl
-      ? `/tutorial/#${slug}`
-      : `/tutorials/${this._projectLocation}#${slug}`;
+    const thisIdxPadded = String(idx).padStart(2, '0');
+    const nextIdxPadded = String(idx + 1).padStart(2, '0');
+
+    const htmlSrc = `/tutorials/content/${name}/${thisIdxPadded}/`;
+
+    const projectSrcRoot = `${this._samplesRoot}/tutorials/${name}`;
+    const projectSrcBefore = `${projectSrcRoot}/${thisIdxPadded}/before/project.json`;
+
+    // If there is no after, use the before of the next step.
+    const projectSrcAfter = this._manifest.steps[idx].hasAfter
+      ? `${projectSrcRoot}/${thisIdxPadded}/after/project.json`
+      : `${projectSrcRoot}/${nextIdxPadded}/before/project.json`;
 
     return {
       idx,
-      url: idx === 0 ? firstUrl : nextUrl,
-      htmlSrc: `/tutorials/content/${this._projectLocation}/${slug}/`,
-      projectSrcBefore: `${this._samplesRoot}/tutorials/${this._projectLocation}/${slug}/before/project.json`,
-      projectSrcAfter: `${this._samplesRoot}/tutorials/${this._projectLocation}/${afterSlug}/project.json`,
+      url,
+      htmlSrc,
+      projectSrcBefore,
+      projectSrcAfter,
     };
   }
 

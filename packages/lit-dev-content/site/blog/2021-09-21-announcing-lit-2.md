@@ -75,7 +75,7 @@ For a full list of changes, see the [changelog](https://github.com/lit/lit/blob/
 
 ## Get started with Lit 2
 
-Want to try out Lit 2? Visit [lit.dev](https://lit.dev/docs/getting-started/) to get started. The site features an [interactive tutorial](https://lit.dev/tutorial/) to get you started with Lit 2, an interactive [playground](https://lit.dev/playground/) for live coding, guides, and API docs.
+Want to try out Lit 2? Visit [lit.dev](https://lit.dev/docs/getting-started/) to get started. The site features a [catalog of interactive tutorials](https://lit.dev/tutorials) to get you started with Lit 2, an interactive [playground](https://lit.dev/playground/) for live coding, guides, and API docs.
 
 Want to talk Lit? Join the [Lit & Friends Slack](https://lit.dev/slack-invite/) for discussions on Lit and web components, or open a discussion on our [GitHub Discussions](https://github.com/lit/lit/discussions) board.
 

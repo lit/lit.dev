@@ -16,7 +16,7 @@ Get started right away with the interactive playground and examples. Start with 
 
 ## Interactive tutorial
 
-Take our [step-by-step tutorial](/tutorial/) to learn how to build a Lit component in minutes.
+Take our [step-by-step tutorial](/tutorials/intro-to-lit) to learn how to build a Lit component in minutes.
 
 ## Lit starter kits
 

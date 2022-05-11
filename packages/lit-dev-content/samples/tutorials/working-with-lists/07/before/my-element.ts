@@ -1,10 +1,10 @@
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import {map} from 'lit/directives/map.js';
 
 @customElement('my-element')
 class MyElement extends LitElement {
-  @property({attribute: false})
+  @state()
   things = [
     "Raindrops on roses",
     "Whiskers on kittens",
@@ -30,7 +30,6 @@ class MyElement extends LitElement {
   }
 
   private _deleteThing(index: number) {
-    this.things.splice(index, 1);
-    this.requestUpdate();
+    this.things = this.things.filter((_, i) => i !== index);
   }
 }
