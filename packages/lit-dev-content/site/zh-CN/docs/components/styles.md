@@ -1,18 +1,18 @@
 ---
-title: Styles
+title: 样式
 eleventyNavigation:
-  key: Styles
-  parent: Components
+  key: 样式
+  parent: 组件
   order: 4
 versionLinks:
   v1: components/styles/
 ---
 
-Your component's template is rendered to its shadow root. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root.
+组件的模板会被渲染到shadow root上，为组件添加的样式的影响范围将自动被限制在shadow root作用域内，只会影响shadow root内部的元素。
 
-Shadow DOM provides strong encapsulation for styling. If Lit did not use Shadow DOM, you would have to be extremely careful not to accidentally style elements outside of your component, either ancestors or children of your component. This might involve writing long, cumbersome to use class names. By using Shadow DOM, Lit ensures whatever selector you write only apply to elements in your Lit component's shadow root.
+Shadow DOM 提供了很强的样式封装能力。如果Lit没有使用Shadow DOM的话，那么你就要非常小心避免组件内的样式污染到组件外的元素，以及组件的祖先或孩子元素。这可能会导致我们写出非常冗长的类名。Lit通过使用Shadow DOM，确保无论怎么写样式选择器，都只会作用于Lit组件的shadow root内部的元素。
 
-## Adding styles to your component {#add-styles}
+## 为组件添加样式 {#add-styles}
 
 You define scoped styles in the static `styles` class field using the tagged template literal `css` function. Defining styles this way results in the most optimal performance:
 
