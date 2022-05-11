@@ -7,6 +7,10 @@
   height: var(--header-height);
 }
 
+#new-banner > p {
+  text-align: center;
+}
+
 #new-banner a {
   color: white;
   font-weight: 800;
