@@ -14,36 +14,35 @@ Shadow DOM 提供了很强的样式封装能力。如果Lit没有使用Shadow DO
 
 ## 为组件添加样式 {#add-styles}
 
-You define scoped styles in the static `styles` class field using the tagged template literal `css` function. Defining styles this way results in the most optimal performance:
+将模版字符串传给标签函数`css`，并将其然回值赋值给静态类字段`styles`来定义作用域样式。以这种方式定义样式可实现最佳性能：
 
 {% playground-example "docs/components/style/basic" "my-element.ts" %}
 
-The styles you add to your component are _scoped_ using shadow DOM. For a quick overview, see [Shadow DOM](#shadow-dom).
+添加到组件的样式通过shadow DOM来实现作用域。查看[Shadow DOM](#shadow-dom)快速了解概览。
 
-The value of the static `styles` class field can be:
+静态类字段`styles`的值可以是：
 
-*   A single tagged template literal.
+*   单个标签模板字符串。
 
     ```js
     static styles = css`...`;
     ```
 
-*   An array of tagged template literals.
+*   标签模板字符串数组
 
     ```js
     static styles = [ css`...`, css`...`];
     ```
 
-The static `styles` class field is _almost always_ the best way to add styles to your component, but there are some use cases you can't handle this way—for example, customizing styles per instance. For alternate ways to add styles, see [Defining scoped styles in the template](#styles-in-the-template).
+使用静态类字段`styles`几乎是定义组件样式最好的方式，但是这可能无法覆盖某些场景，比如：需要为每个组件实例定义定制化样式。查看[在模板中定义作用域样式]了解其他定义样式的方式。
 
+### 在静态样式中使用表达式 {#expressions}
 
-### Using expressions in static styles {#expressions}
+静态样式对所有实例生效。CSS中的任何表达式只会被计算**一次**，然后被所有实例复用。
 
-Static styles apply to all instances of a component. Any expressions in CSS are evaluated **once**, then reused for all instances.
+为了实现基于树的样式定制化或者给每个类实现样式定制化，可以使用CSS自定义属性来允许元素被[主题化](#theming)。
 
-For tree-based or per-instance style customization, use CSS custom properties to allow elements to be [themed](#theming).
-
-To prevent Lit components from evaluating potentially malicious code, the `css` tag only allows nested expressions that are themselves `css` tagged strings or numbers.
+为了防止Lit组件执行潜在的恶意代码，`css`标记只允许嵌套表达式本身是`css`标记的字符串或数字。
 
 ```js
 const mainColor = css`red`;
@@ -53,9 +52,9 @@ static styles = css`
 `;
 ```
 
-This restriction exists to protect applications from security vulnerabilities whereby malicious styles, or even malicious code, can be injected from untrusted sources such as URL parameters or database values.
+限制的存在是为了保护应用程序免受安全漏洞的影响，避免从URL参数或数据库等不受信任的来源注入恶意样式甚至恶意代码。
 
-If you must use an expression in a `css` literal that is not itself a `css` literal, **and** you are confident that the expression is from a fully trusted source such as a constant defined in your own code, then you can wrap the expression with the `unsafeCSS` function:
+如果非要在`css`字符串中使用一个非`css`字符串的表达式，**并且**你相信这个表达式出自完全受信任的来源，例如表达式是你自己代码中定义的常量，那么你就可以用`unsafeCSS`函数去打包这个表达式并使用它：
 
 ```js
 const mainColor = 'red';
@@ -67,27 +66,27 @@ static styles = css`
 
 <div class="alert alert-info">
 
-**Only use the `unsafeCSS` tag with trusted input.** Injecting unsanitized CSS is a security risk. For example, malicious CSS can "phone home" by adding an image URL that points to a third-party server.
+**只对受信任的输入使用`unsafeCSS`函数。** 注入未经处理的CSS存在一定的安全风险。例如，恶意CSS可以通过添加指向第三方服务器的图像URL来盗取敏感数据。
 
 </div>
 
-### Inheriting styles from a superclass
+### 从父类继承样式
 
-Using an array of tagged template literals, a component can inherit the styles from a superclass, and add its own styles:
+组件可以使用标签模板字符串数组来实现继承其父类的样式，并向数组中添加自己的样式：
 
 {% playground-ide "docs/components/style/superstyles" %}
 
-You can also use `super.styles` to reference the superclass's styles property in JavaScript. If you're using TypeScript, we recommend avoiding `super.styles` since the compiler doesn't always convert it correctly. Explicitly referencing the superclass, as shown in the example, avoids this issue.
+在Javascript中，你也可以使用`super.styles`来引用父类的样式属性。如果你在使用Typescript，我们不建议你使用`super.styles`，因为编译器并不总是正确转换它。像示例那样，显示地引用父类可以避免这个问题。
 
-When writing components intended to be subclassed in TypeScript, the `static styles` field should be explicitly typed as `CSSResultGroup` to allow flexibility for users to override `styles` with an array:
+当使用Typescript在编写一个预期可以被子类化的组件时，应当明确地指定`static styles`字段的类型为`CSSResultGroup`，从而允许用户灵活地用数组覆盖`styles`。
 
 ```ts
-// Prevent typescript from narrowing the type of `styles` to `CSSResult`
-// so that subclassers can assign e.g. `[SuperElement.styles, css`...`]`;
+// 防止Typescript将`styles`的类型缩小为`CSSResult`
+// 以便子类可以赋值，如：`[SuperElement.styles, css`...`]`;
 static styles: CSSResultGroup = css`...`;
 ```
 
-### Sharing styles
+### 共享样式
 
 You can share styles between components by creating a module that exports tagged styles:
 
