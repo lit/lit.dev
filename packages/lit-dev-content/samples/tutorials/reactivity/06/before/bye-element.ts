@@ -18,7 +18,7 @@ export class ByeElement extends LitElement {
   _showMessage = false;
 
   @query('#message')
-  _message!: HTMLParagraphElement;
+  _message!: HTMLDivElement;
 
   render() {
     return html`
@@ -28,6 +28,7 @@ export class ByeElement extends LitElement {
       </div>
     `;
   }
+
   protected updated(changedProperties: PropertyValues<this>): void {
     if (changedProperties.has('_showMessage')) {
       const rect = this._message.getBoundingClientRect();

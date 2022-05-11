@@ -33,7 +33,7 @@ export class MyElement extends LitElement {
     if (changedProperties.has('_showMessage')) {
       const final = this._message.getBoundingClientRect().width;
       const starting = 0 - final;
-      var player = this._message.animate([
+      this._message.animate([
         { transform: `translateX(${starting}px)` },
         { transform: `translateX(0)` }
       ], {
