@@ -95,7 +95,7 @@ async function main() {
 
       const trafficToKeep = data.spec.traffic.filter((t) => {
         return (
-          // precence of percent indicates traffic is being routed here (i.e. prod)
+          // presence of percent indicates traffic is being routed here (i.e. prod)
           Boolean(t.percent) ||
           revisionsToKeepByRecency.has(t.revisionName!) ||
           openPrs.has(parseInt(t.tag!.slice(2), 10))
@@ -203,7 +203,7 @@ async function main() {
         new Date(manifest.timeCreatedMs) < ONE_WEEK_AGO
       ) {
         for (const tag of manifest.tag) {
-          console.log(`deleting tag ${tag}`);
+          console.log(`deleting container registry tag ${tag}`);
           await request({
             url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/manifests/${tag}`,
             method: 'DELETE',
@@ -245,7 +245,7 @@ async function main() {
     for (const [digest, manifest] of Object.entries(data.manifest)) {
       if (new Date(Number(manifest.timeCreatedMs)) < ONE_WEEK_AGO) {
         for (const tag of manifest.tag) {
-          console.log(`deleting tag ${tag}`);
+          console.log(`deleting container registry tag ${tag}`);
           await request({
             url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/cache/manifests/${tag}`,
             method: 'DELETE',
