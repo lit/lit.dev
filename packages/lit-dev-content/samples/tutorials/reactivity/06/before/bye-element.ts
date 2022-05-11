@@ -33,7 +33,7 @@ export class ByeElement extends LitElement {
     if (changedProperties.has('_showMessage')) {
       const rect = this._message.getBoundingClientRect();
       const startingX = 0 - rect.width;
-      var player = this._message.animate([
+      this._message.animate([
         { transform: `translateX(${startingX}px) scale(0.1)` },
         { transform: `translateX(0) translateY(0) scale(1)` }
       ], {
