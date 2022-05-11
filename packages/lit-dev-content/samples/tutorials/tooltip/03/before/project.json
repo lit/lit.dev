@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "../../tooltip-base.json",
   "files": {
     "simple-tooltip.ts": {"selected": true},
     "my-content.ts": {},
