@@ -10,6 +10,10 @@ steps:
       npm ci
       npm run build
       npm start
+    env:
+      - 'PROJECT_ID=$PROJECT_ID'
+      - 'REPO_NAME=$REPO_NAME'
+      - '_DEPLOY_REGION=$_DEPLOY_REGION'
 
 tags:
   - lit-dev
