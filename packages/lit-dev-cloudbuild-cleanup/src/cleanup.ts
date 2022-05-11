@@ -49,9 +49,11 @@ async function main() {
 
   // fetch list of revisions across both services
   console.log('fetching list of revisions');
-  const {data: revisions} = await run.projects.locations.revisions.list({
+  const {data} = await run.projects.locations.revisions.list({
     parent: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}`,
   });
+
+  let revisions = data;
 
   if (!revisions.items) {
     throw new Error('found no revision items');
@@ -77,6 +79,7 @@ async function main() {
 
   // traffic tags must be cleaned up before a revision can be deleted
   const services = ['lit-dev', 'lit-dev-playground'];
+  let serviceUpdated = false;
   await Promise.all(
     services.map(async (serviceName) => {
       console.log(`fetching ${serviceName} service`);
@@ -92,7 +95,8 @@ async function main() {
 
       const trafficToKeep = data.spec.traffic.filter((t) => {
         return (
-          Boolean(t.percent) || // there's traffic being routed here (i.e. prod)
+          // precence of percent indicates traffic is being routed here (i.e. prod)
+          Boolean(t.percent) ||
           revisionsToKeepByRecency.has(t.revisionName!) ||
           openPrs.has(parseInt(t.tag!.slice(2), 10))
         );
@@ -101,7 +105,7 @@ async function main() {
       console.log(`${serviceName} traffic to keep count`, trafficToKeep.length);
 
       if (trafficToKeep.length === 0) {
-        throw new Error('found no ${service} traffic to keep');
+        throw new Error(`found no ${serviceName} traffic to keep`);
       }
 
       if (data.spec.traffic.length !== trafficToKeep.length) {
@@ -111,27 +115,31 @@ async function main() {
           name: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}/services/${serviceName}`,
           requestBody: data,
         });
+        serviceUpdated = true;
       }
     })
   );
 
   // revision status takes some time to update
-  console.log('waiting 30 seconds for traffic tags to update');
-  await sleep(30_000);
+  if (serviceUpdated) {
+    console.log('waiting 30 seconds for traffic tags to update');
+    await sleep(30_000);
 
-  // fetching new list of revisions to get the now untagged (inactive) ones
-  console.log('fetching new revisions list');
-  const {data: newRevisions} = await run.projects.locations.revisions.list({
-    parent: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}`,
-  });
+    // fetch new list of revisions to get the now untagged (inactive) ones
+    console.log('fetching new revisions list');
+    const {data} = await run.projects.locations.revisions.list({
+      parent: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}`,
+    });
+    revisions = data;
+  }
 
-  if (!newRevisions.items) {
+  if (!revisions.items) {
     throw new Error('found no new revision items');
   }
 
   console.log('looking for inactive revisions to delete');
   const imageDigestsToKeep = new Set<string>();
-  for (const rev of newRevisions.items) {
+  for (const rev of revisions.items) {
     if (!rev.metadata) {
       throw new Error('revision has no metadata');
     }
@@ -173,7 +181,7 @@ async function main() {
   // clean up gcr lit-dev images that are no longer used
   {
     console.log('fetching images from gcr');
-    const resp = await request({
+    const response = await request({
       url: `https://us.gcr.io/v2/${PROJECT_ID}/${REPO_NAME}/lit-dev/tags/list`,
       method: 'GET',
       headers: {
@@ -181,7 +189,7 @@ async function main() {
       },
     });
 
-    const data = resp.data as {
+    const data = response.data as {
       manifest: Record<string, {tag: string[]; timeCreatedMs: string}>;
       tags: string[];
     };
@@ -219,7 +227,7 @@ async function main() {
   // clean up gcr lit-dev/cache images created by kaniko
   {
     console.log('fetching cache images from gcr');
-    const resp = await request({
+    const response = await request({
       url: `https://us.gcr.io/v2/${PROJECT_ID}/${REPO_NAME}/lit-dev/cache/tags/list`,
       method: 'GET',
       headers: {
@@ -227,7 +235,7 @@ async function main() {
       },
     });
 
-    const data = resp.data as {
+    const data = response.data as {
       manifest: Record<string, {tag: string[]; timeCreatedMs: string}>;
       tags: string[];
     };
