@@ -1,12 +1,12 @@
 {
-  "header": "Intro to AsyncDirectives",
+  "header": "Intro to async directives",
   "difficulty": "Advanced",
   "size": "small",
   "duration": 30,
   "category": "Learn",
   "steps": [
     {
-      "title": "Introduction to AsyncDirective",
+      "title": "Introduction",
       "noSolve": true
     },
     {

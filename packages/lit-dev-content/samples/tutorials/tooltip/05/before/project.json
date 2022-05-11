@@ -3,6 +3,7 @@
   "files": {
     "simple-tooltip.ts": {"selected": true},
     "my-content.ts": {},
-    "index.html": {}
+    "index.html": {},
+    "process.js": {"hidden": true}
   }
 }

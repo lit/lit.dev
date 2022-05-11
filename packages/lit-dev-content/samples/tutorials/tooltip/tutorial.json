@@ -1,12 +1,12 @@
 {
-  "header": "Build a Tooltip Element",
+  "header": "Build a tooltip element",
   "difficulty": "Advanced",
   "size": "small",
   "duration": 30,
   "category": "Build",
   "steps": [
     {
-      "title": "Build a Tooltip Element",
+      "title": "Introduction",
       "noSolve": true
     },
     {
@@ -22,17 +22,17 @@
       "title": "Positioning"
     },
     {
-      "title": "Better Positioning"
+      "title": "Better positioning"
     },
     {
       "title": "Animation"
     },
     {
-      "title": "Lazy Creation",
+      "title": "Lazy creation",
       "hasAfter": true
     },
     {
-      "title": "Using a Directive",
+      "title": "Using a directive",
       "hasAfter": true
     },
     {
