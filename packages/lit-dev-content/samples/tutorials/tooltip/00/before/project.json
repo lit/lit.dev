@@ -3,7 +3,8 @@
   "files": {
     "simple-tooltip.ts": {"hidden":true},
     "my-content.ts": {"selected": true},
-    "index.html": {"hidden": true}
+    "index.html": {"hidden": true},
+    "process.js": {"hidden": true}
   },
   "dependencies": {
     "@floating-ui/dom": "^0.4.1"
