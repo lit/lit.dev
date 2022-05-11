@@ -409,7 +409,7 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-For CSS properties that contain dashes, you can either use the camel-case equivalent, or put the property name in quotes. For example, you can write the the CSS property `font-family` as either `fontFamily` or `'font-family'`:
+For CSS properties that contain dashes, you can either use the camel-case equivalent, or put the property name in quotes. For example, you can write the CSS property `font-family` as either `fontFamily` or `'font-family'`:
 
 ```js
 { fontFamily: 'roboto' }
