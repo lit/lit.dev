@@ -31,7 +31,7 @@
     },
     {
       "title": "Recap",
-      "hasAfter": true
+      "noSolve": true
     }
   ]
 }

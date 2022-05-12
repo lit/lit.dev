@@ -18,7 +18,7 @@ export class MyElement extends LitElement {
   _showMessage = false;
 
   @query('#message')
-  _message!: HTMLParagraphElement;
+  _message!: HTMLDivElement;
 
   render() {
     return html`
