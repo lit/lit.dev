@@ -88,7 +88,7 @@ static styles: CSSResultGroup = css`...`;
 
 ### 共享样式
 
-You can share styles between components by creating a module that exports tagged styles:
+通过创建一个模块，并导出标签模板字符串样式的方式，在组件之间共享样式：
 
 ```js
 export const buttonStyles = css`
@@ -101,7 +101,7 @@ export const buttonStyles = css`
   }`;
 ```
 
-Your element can then import the styles and add them to its static `styles` class field:
+组件可以导入样式，然后添加到自己的静态类字段`styles`中：
 
 ```js
 import { buttonStyles } from './button-styles.js';
@@ -117,14 +117,14 @@ class MyElement extends LitElement {
 }
 ```
 
-### Using unicode escapes in styles
+### 在样式中使用unicode转义字符
 
-CSS's unicode escape sequence is a backslash followed by four or six hex digits: for example, `\2022` for a bullet character. This similar to the format of JavaScript's deprecated _octal_ escape sequences, so using these sequences in a `css` tagged template literal causes an error.
+CSS中的unicode转义字符序列是由一个反斜杠加上四个或六个十进制数组成，例如：`\2022`表示一个黑圆点。这有点像Javascript中已经弃用的“octal”转义字符序列，因此直接在`css`标签模板字符串中使用这些转义字符就会报错。
 
-There are two work-arounds for adding a unicode escape to your styles:
+下面是两种在组件的样式中使用unicode转义字符的变通方法：
 
-*   Add a second backslash (for example, `\\2022`).
-*   Use the JavaScript escape sequence, starting with `\u` (for example, `\u2022`).
+*   使用两个反斜杠（如：`\\2022`）。
+*   使用Javascript以`\u`开头的转义字符（如：`\u2022`）。
 
 ```js
 static styles = css`
@@ -133,35 +133,36 @@ static styles = css`
   }
 ```
 
-## Shadow DOM styling overview {#shadow-dom}
+## Shadow DOM样式概览{#shadow-dom}
 
-This section gives a brief overview of shadow DOM styling.
+这部分将简短地阐述一下shadow DOM样式。
 
-Styles you add to a component can affect:
+组件的样式将会作用于：
 
-* [The shadow tree](#shadowroot) (your component's rendered template).
-* [The component itself](#host).
-* [The component's children](#slotted).
+* [shadow树](#shadowroot) (组件的渲染模板)
+* [组件自身](#host)
+* [组件的元素](#slotted)
 
 
-### Styling the shadow tree {#shadowroot}
+### 为shadow树设置样式 {#shadowroot}
 
-Lit templates are rendered into a shadow tree by default. Styles scoped to an element's shadow tree don't affect the main document or other shadow trees. Similarly, with the exception of [inherited CSS properties](#inheritance), document-level styles don't affect the contents of a shadow tree.
+Lit组件的模板默认被渲染成一个shadow tree。元素的shadow树的作用域样式不会影响到主文档或者其他shadow树。同样，除了[继承CSS属性](#inheritance) 之外，文档级样式也不会影响shadow树的内容。
 
-When you use standard CSS selectors, they only match elements in your component's shadow tree. This means you can often use very simple selectors since you don't have to worry about them accidentally styling other parts of the page; for example: `input`, `*`, or `#my-element`.
+标准CSS选择器只能匹配组件shadow树内部的元素。这意味着你可以经常使用非常简单的选择器，而不必担心它们会意外地为页面的其他部分设置样式，例如：`input`、`*` 或 `#my-element`。
 
-### Styling the component itself {#host}
+### 为组件自生设置样式 {#host}
 
-You can style the component itself using special `:host` selectors. (The element that owns, or "hosts" a shadow tree is called the _host element_.)
+可以使用特殊的 `:host` 选择器来为组件自身设置样式。（拥有或“寄宿着”一个shadow树的元素被叫做 _宿主元素_）。
 
-To create default styles for the host element, use the `:host` CSS pseudo-class and `:host()` CSS pseudo-class function.
+使用 `:host` 伪类和 `:host()` CSS伪类函数来给宿主元素设置默认样式。
 
-*   `:host` selects the host element.
-*   <code>:host(<var>selector</var>)</code> selects the host element, but only if the host element matches _selector_.
+*   `:host` 选中宿主元素。
+*   <code>:host(<var>selector</var>)</code> 仅当宿主元素和 _selector_ 匹配的时候才会选中宿主元素。
 
 {% playground-example "docs/components/style/host" "my-element.ts" %}
 
-Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
+
+请注意，宿主元素也可能受到shadow树外部样式的影响，因此你应该将在 `:host` 和 `:host()` 规则中设置的样式视为可以被用户覆盖的 _默认样式_。例如：
 
 ```css
 my-element {
@@ -169,9 +170,9 @@ my-element {
 }
 ```
 
-### Styling the component's children {#slotted}
+### 为组件的子元素设置样式 {#slotted}
 
-Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](/docs/components/shadow-dom/#slots).
+组件可以包含子元素（就像 `<ul>` 元素可以包含 `<li>` 子元素）。如果需要渲染子元素，你的模板需要包含一个或多个 `<slot>` 元素，查看 [使用 slot 元素渲染子元素]({{baseurl}}/docs/components/shadow-dom/#slots) 了解详情。
 
 The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed.
 
