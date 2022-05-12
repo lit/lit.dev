@@ -174,33 +174,33 @@ my-element {
 
 组件可以包含子元素（就像 `<ul>` 元素可以包含 `<li>` 子元素）。如果需要渲染子元素，你的模板需要包含一个或多个 `<slot>` 元素，查看 [使用 slot 元素渲染子元素]({{baseurl}}/docs/components/shadow-dom/#slots) 了解详情。
 
-The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed.
+`<slot>` 元素在shadow树中扮演一个占位符的角色，宿主元素的子元素将显示在占位符所在的位置。
 
-Use the `::slotted()` CSS pseudo-element to select children that are included in your template via `<slot>`s.
+使用 `::slotted()` CSS伪元素选择器选择被 `<slot>` 包含在组件模板中的子元素。
 
-*   `::slotted(*)` matches all slotted elements.
-*   `::slotted(p)` matches slotted paragraphs.
-*   `p ::slotted(*)` matches slotted elements where the `<slot>` is a descendant of a paragraph element.
+*   `::slotted(*)` 匹配插槽中的所有元素.
+*   `::slotted(p)` 匹配插槽中的p元素.
+*   `p ::slotted(*)` 匹配p元素的后代元素的插槽中的元素。
 
 {% playground-example "docs/components/style/slottedselector" "my-element.ts" %}
 
-Note that **only direct slotted children** can be styled with `::slotted()`.
+请注意，**只有直接插槽子元素**才可以被 `::slotted()` 设置样式。
 
 ```html
 <my-element>
-  <div>Stylable with ::slotted()</div>
+  <div>可以被 ::slotted() 设置样式</div>
 </my-element>
 
 <my-element>
-  <div><p>Not stylable with ::slotted()</p></div>
+  <div><p>不可以被 ::slotted() 设置样式</p></div>
 </my-element>
 ```
 
-Also, children can be styled from outside the shadow tree, so you should regard your `::slotted()` styles as default styles that can be overridden.
+此外，可以从shadow树外部设置子元素样式，因此你应该将 `::slotted()` 样式视为可以被覆盖的默认样式。
 
 ```css
 my-element > div {
-  /* Outside style targetting a slotted child can override ::slotted() styles */
+  /* 为插槽子元素设置的外部样式可以覆盖 ::slotted() 样式*/
 }
 ```
 
@@ -210,18 +210,20 @@ my-element > div {
 
 </div>
 
-## Defining scoped styles in the template {#styles-in-the-template}
+## 在模板中定义作用域样式 {#styles-in-the-template}
 
-We recommend using the [static `styles` class field](#add-styles) for optimal performance.  However, sometimes you may want to define styles in the Lit template. There are two ways to add scoped styles in the template:
+我们建议使用 [静态类字段 `styles`](#add-styles) 以获得最佳性能。但是，有时你可能希望在 Lit 模板中定义样式。在模板中添加作用域样式有两种方法：
 
-*   Add styles using a [`<style>` element](#style-element).
-*   Add styles using an [external style sheet](#external-stylesheet) (not recommended).
+*   使用[`<style>` 元素](#style-element)添加样式。
+*   使用[外部样式表](#external-stylesheet)添加样式 (不推荐)。
 
-Each of these techniques has its own set of advantages and drawbacks.
+这些技术中的每一种都有其自身的优点和缺点。
 
-### In a style element {#style-element}
+### 在 style 元素中设置 {#style-element}
 
 Typically, styles are placed in the [static `styles` class field](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a Lit template. These are updated per instance.
+
+通常情况下，样式应该放置在 [静态类字段](#add-styles)中；但是，每个组件的静态`styles`会被计算**一次**。有时，您可能需要自定义样式**每个实例**。为此，我们建议使用 CSS 属性来创建 [themable 元素](#theming)。或者，您也可以在 Lit 模板中包含 `<style>` 元素。这些是按实例更新的。
 
 ```js
 render() {
