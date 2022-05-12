@@ -245,7 +245,7 @@ async function main() {
       if (
         !imageDigestsToKeep.has(digest) &&
         // in case image was just created without a revision associated with it
-        new Date(manifest.timeCreatedMs) < ONE_WEEK_AGO
+        new Date(Number(manifest.timeCreatedMs)) < ONE_WEEK_AGO
       ) {
         for (const tag of manifest.tag) {
           console.log(`Deleting container registry tag ${tag}`);
