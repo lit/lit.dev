@@ -11,15 +11,6 @@ import {request} from 'gaxios';
 const ONE_WEEK_IN_MS = 7 * 24 * 60 * 60 * 1000;
 const ONE_WEEK_AGO = new Date(Date.now() - ONE_WEEK_IN_MS);
 
-const {PROJECT_ID, REPO_NAME, _DEPLOY_REGION} = process.env;
-
-if ([PROJECT_ID, REPO_NAME, _DEPLOY_REGION].some((env) => env === undefined)) {
-  console.log({PROJECT_ID, REPO_NAME, _DEPLOY_REGION});
-  throw new Error(
-    'Missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION'
-  );
-}
-
 const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
@@ -44,6 +35,14 @@ const sleep = (time: number) =>
  * Note: Docker images can only be deleted after deleting all associated tags.
  */
 async function main() {
+  const {PROJECT_ID, REPO_NAME, _DEPLOY_REGION} = process.env;
+  if (!PROJECT_ID || !REPO_NAME || !_DEPLOY_REGION) {
+    console.log({PROJECT_ID, REPO_NAME, _DEPLOY_REGION});
+    throw new Error(
+      'Missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION'
+    );
+  }
+
   const octokit = new Octokit();
 
   const openPrs = new Set<number>();
@@ -51,7 +50,7 @@ async function main() {
   console.log('Fetching open PRs from Github');
   const openPrsIterator = octokit.paginate.iterator(octokit.rest.pulls.list, {
     owner: 'lit',
-    repo: REPO_NAME as string,
+    repo: REPO_NAME,
     state: 'open',
     per_page: 100,
   });
@@ -145,10 +144,9 @@ async function main() {
 
       if (t.tag) {
         // Tags should look like "pr529-8b0837f" or "main-45ace0e"
-        if (t.tag.startsWith('pr')) {
-          // pr529-8b0837f
-          //   ^^^
-          const prNumber = parseInt(t.tag.slice(2), 10);
+        const prMatch = t.tag.match(/^pr(\d+)-/);
+        if (prMatch) {
+          const prNumber = Number(prMatch[1]);
           if (openPrs.has(prNumber)) {
             revisionsToKeep.add(t.revisionName);
             return true;
