@@ -17,9 +17,8 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-    <button @click=${this.flipCoin}>Flip a coin!</button>
-    <p>Result: ${this.result}</p>
-
+      <button @click=${this.flipCoin}>Flip a coin!</button>
+      <p>Result: ${this.result}</p>
     `;
   }
 }

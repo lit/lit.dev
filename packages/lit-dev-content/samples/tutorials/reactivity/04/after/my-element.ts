@@ -31,6 +31,6 @@ export class MyElement extends LitElement {
       <label>Backward: <input id="backward" @input=${this.onInput} .value=${this.backward}></label>
       <div>Forward text: ${this.forward}</div>
       <div>Backward text: ${this.backward}</div>
-    `
+    `;
   }
 }
