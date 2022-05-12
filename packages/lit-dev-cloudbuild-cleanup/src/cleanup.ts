@@ -10,22 +10,42 @@ const {PROJECT_ID, REPO_NAME, _DEPLOY_REGION} = process.env;
 if ([PROJECT_ID, REPO_NAME, _DEPLOY_REGION].some((env) => env === undefined)) {
   console.log({PROJECT_ID, REPO_NAME, _DEPLOY_REGION});
   throw new Error(
-    'missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION'
+    'Missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION'
   );
 }
 
 const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
+/**
+ * Overall goals for this cleanup script are
+ *
+ * - Delete revisions that do not meet any of the following criteria:
+ *   1) have traffic routed to it
+ *   2) are associated with an open PR (based on traffic tag)
+ *   3) were created within the past week
+ *
+ * Note: In order to delete a revision, it must not be associated with a traffic
+ * tag. A traffic tag can be removed by updating a service with a modified list
+ * of traffic tags.
+ *
+ * - Delete all lit-dev docker images in the container registry that do not have
+ * an active revision utilizing it.
+ *
+ * - Delete all lit-dev/cache docker images (created by kaniko) that are older
+ * than 1 week.
+ *
+ * Note: Docker images can only be deleted after deleting all associated tags.
+ */
 async function main() {
   const octokit = new Octokit();
 
   const openPrs = new Set<number>();
 
-  console.log('fetching open PRs from github');
+  console.log('Fetching open PRs from Github');
   const openPrsIterator = octokit.paginate.iterator(octokit.rest.pulls.list, {
     owner: 'lit',
-    repo: `${REPO_NAME}`,
+    repo: REPO_NAME as string,
     state: 'open',
     per_page: 100,
   });
@@ -36,7 +56,7 @@ async function main() {
     }
   }
 
-  console.log('found open prs', openPrs);
+  console.log('Found open PRs', openPrs);
 
   const run = google.run('v1');
 
@@ -47,8 +67,10 @@ async function main() {
   const authClient = await auth.getClient();
   google.options({auth: authClient});
 
-  // fetch list of revisions across both services
-  console.log('fetching list of revisions');
+  // Fetch list of revisions across both services.
+  // This API provides the revision's created time but does not contain data
+  // of any associated traffic tags.
+  console.log('Fetching list of revisions');
   const {data} = await run.projects.locations.revisions.list({
     parent: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}`,
   });
@@ -56,131 +78,150 @@ async function main() {
   let revisions = data;
 
   if (!revisions.items) {
-    throw new Error('found no revision items');
+    // We should never reach this since there should always be running revisions
+    // for the deployed services.
+    throw new Error('Found no revision items');
   }
 
-  console.log('total revisions count', revisions.items.length);
+  console.log('Total revisions count', revisions.items.length);
 
-  const revisionsToKeepByRecency = new Set<string>();
+  const revisionsToKeep = new Set<string>();
   for (const rev of revisions.items) {
-    if (!rev.metadata) {
-      throw new Error('found no metadata');
+    if (
+      !rev.metadata ||
+      !rev.metadata.creationTimestamp ||
+      !rev.metadata.name
+    ) {
+      throw new Error(
+        `Found revision with missing necessary metadata: ${JSON.stringify(rev)}`
+      );
     }
 
-    if (new Date(rev.metadata.creationTimestamp!) > ONE_WEEK_AGO) {
-      revisionsToKeepByRecency.add(rev.metadata.name!);
+    if (new Date(rev.metadata.creationTimestamp) > ONE_WEEK_AGO) {
+      revisionsToKeep.add(rev.metadata.name);
     }
   }
 
-  console.log(
-    'revisions younger than a week count',
-    revisionsToKeepByRecency.size
-  );
+  console.log('Revisions younger than a week count', revisionsToKeep.size);
 
-  // traffic tags must be cleaned up before a revision can be deleted
+  // Fetch each service and identify additional revisions to keep based on traffic tag.
+  // Also update service with filtered traffic array if needed.
   const services = ['lit-dev', 'lit-dev-playground'];
   let serviceUpdated = false;
-  await Promise.all(
-    services.map(async (serviceName) => {
-      console.log(`fetching ${serviceName} service`);
-      const {data} = await run.projects.locations.services.get({
-        name: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}/services/${serviceName}`,
-      });
-
-      if (!data.spec || !data.spec.traffic) {
-        throw new Error(`found no traffic for ${serviceName} service`);
-      }
-
-      console.log(`${serviceName} traffic count`, data.spec.traffic.length);
-
-      const trafficToKeep = data.spec.traffic.filter((t) => {
-        return (
-          // presence of percent indicates traffic is being routed here (i.e. prod)
-          Boolean(t.percent) ||
-          revisionsToKeepByRecency.has(t.revisionName!) ||
-          openPrs.has(parseInt(t.tag!.slice(2), 10))
-        );
-      });
-
-      console.log(`${serviceName} traffic to keep count`, trafficToKeep.length);
-
-      if (trafficToKeep.length === 0) {
-        throw new Error(`found no ${serviceName} traffic to keep`);
-      }
-
-      if (data.spec.traffic.length !== trafficToKeep.length) {
-        console.log(`updating ${serviceName} service`);
-        data.spec.traffic = trafficToKeep;
-        await run.projects.locations.services.replaceService({
-          name: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}/services/${serviceName}`,
-          requestBody: data,
-        });
-        serviceUpdated = true;
-      }
-    })
-  );
-
-  // revision status takes some time to update
-  if (serviceUpdated) {
-    console.log('waiting 30 seconds for traffic tags to update');
-    await sleep(30_000);
-
-    // fetch new list of revisions to get the now untagged (inactive) ones
-    console.log('fetching new revisions list');
-    const {data} = await run.projects.locations.revisions.list({
-      parent: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}`,
+  for (const serviceName of services) {
+    console.log(`Fetching ${serviceName} service`);
+    const {data} = await run.projects.locations.services.get({
+      name: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}/services/${serviceName}`,
     });
-    revisions = data;
-  }
 
-  if (!revisions.items) {
-    throw new Error('found no new revision items');
-  }
-
-  console.log('looking for inactive revisions to delete');
-  const imageDigestsToKeep = new Set<string>();
-  for (const rev of revisions.items) {
-    if (!rev.metadata) {
-      throw new Error('revision has no metadata');
+    if (!data.spec || !data.spec.traffic) {
+      throw new Error(`Found no traffic for ${serviceName} service`);
     }
 
-    if (!rev.status || !rev.status.conditions) {
-      throw new Error('revision has no status conditions');
+    console.log(`${serviceName} traffic count`, data.spec.traffic.length);
+
+    const trafficToKeep = data.spec.traffic.filter((t) => {
+      if (!t.revisionName) {
+        throw new Error('Found traffic with no revision name');
+      }
+
+      // The set already has revisions to keep based on recency
+      if (revisionsToKeep.has(t.revisionName)) {
+        return true;
+      }
+
+      // Presence of percent > 0 indicates traffic is being routed here
+      // i.e. revision is used for current prod deployment
+      if (t.percent) {
+        revisionsToKeep.add(t.revisionName);
+        return true;
+      }
+
+      if (t.tag) {
+        // Tags should look like "pr529-8b0837f" or "main-45ace0e"
+        if (t.tag.startsWith('pr')) {
+          // pr529-8b0837f
+          //   ^^^
+          const prNumber = parseInt(t.tag.slice(2), 10);
+          if (openPrs.has(prNumber)) {
+            revisionsToKeep.add(t.revisionName);
+            return true;
+          }
+        } else if (!t.tag.startsWith('main')) {
+          console.log(
+            `Found unrecognized tag "${t.tag}". This will not be deleted.`
+          );
+          revisionsToKeep.add(t.revisionName);
+          return true;
+        }
+      }
+
+      return false;
+    });
+
+    console.log(`${serviceName} traffic to keep count`, trafficToKeep.length);
+
+    if (trafficToKeep.length === 0) {
+      // We should never get here since there should be at least one traffic
+      // routing for prod deployment
+      throw new Error(`Found no ${serviceName} traffic to keep`);
+    }
+
+    if (data.spec.traffic.length !== trafficToKeep.length) {
+      console.log(`Updating ${serviceName} service`);
+      data.spec.traffic = trafficToKeep;
+      await run.projects.locations.services.replaceService({
+        name: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}/services/${serviceName}`,
+        requestBody: data,
+      });
+      serviceUpdated = true;
+    }
+  }
+
+  // Revision status takes some time to update and delete request will error if
+  // it is still associated with a tag
+  if (serviceUpdated) {
+    console.log('Waiting 30 seconds for traffic tags to update');
+    await sleep(30_000);
+  }
+
+  const imageDigestsToKeep = new Set<string>();
+  for (const rev of revisions.items) {
+    if (!rev.metadata || !rev.metadata.name) {
+      throw new Error('Revision has no name metadata');
     }
 
     if (!rev.spec || !rev.spec.containers) {
-      throw new Error('revision has no containers');
+      throw new Error('Revision has no containers');
     }
 
-    if (
-      rev.status.conditions.find((cond) => cond.type === 'Active')!.status !==
-        'True' &&
-      // extra timestamp check in case the revision was just created and not active because of that
-      new Date(rev.metadata.creationTimestamp!) < ONE_WEEK_AGO
-    ) {
-      console.log(`deleting revision ${rev.metadata.name}`);
+    if (!revisionsToKeep.has(rev.metadata.name)) {
+      console.log(`Deleting revision ${rev.metadata.name}`);
       await run.projects.locations.revisions.delete({
         name: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}/revisions/${rev.metadata.name}`,
       });
-      // wait 1 second to not hit api limit
+      // Wait 1 second to not hit API limit of 60 per minute
       await sleep(1_000);
     } else {
-      // the part after "@" is the image digest
-      const digest = rev.spec.containers[0].image?.match(/(?<=@)[^\/]+$/)?.[0];
+      // Our revisions only ever have 1 container
+      // Image name looks like
+      // "us.gcr.io/lit-dev-site/lit.dev/lit-dev@sha256:a5cb77a8bf22754cbe0c68401b8e3c5afbf7844c0fbe6337fd00971fb57211a4"
+      // and the part after "@" is the digest
+      const digest = rev.spec.containers[0].image?.match(/(?<=@).+$/)?.[0];
       if (!digest) {
-        throw new Error('found no image digest for revision');
+        throw new Error('Found no image digest for revision');
       }
       imageDigestsToKeep.add(digest);
     }
   }
 
-  console.log('count of images in use', imageDigestsToKeep.size);
+  console.log('Count of images in use', imageDigestsToKeep.size);
 
   const {token} = await authClient.getAccessToken();
 
-  // clean up gcr lit-dev images that are no longer used
+  // Clean up gcr lit-dev images that are no longer used
   {
-    console.log('fetching images from gcr');
+    console.log('Fetching images from gcr');
     const response = await request({
       url: `https://us.gcr.io/v2/${PROJECT_ID}/${REPO_NAME}/lit-dev/tags/list`,
       method: 'GET',
@@ -194,7 +235,7 @@ async function main() {
       tags: string[];
     };
 
-    console.log('image tag count', data.tags.length);
+    console.log('Image tag count', data.tags.length);
 
     for (const [digest, manifest] of Object.entries(data.manifest)) {
       if (
@@ -203,7 +244,7 @@ async function main() {
         new Date(manifest.timeCreatedMs) < ONE_WEEK_AGO
       ) {
         for (const tag of manifest.tag) {
-          console.log(`deleting container registry tag ${tag}`);
+          console.log(`Deleting container registry tag ${tag}`);
           await request({
             url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/manifests/${tag}`,
             method: 'DELETE',
@@ -212,7 +253,7 @@ async function main() {
             },
           });
         }
-        console.log(`deleting image ${digest}`);
+        console.log(`Deleting image ${digest}`);
         await request({
           url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/manifests/${digest}`,
           method: 'DELETE',
@@ -224,9 +265,9 @@ async function main() {
     }
   }
 
-  // clean up gcr lit-dev/cache images created by kaniko
+  // Clean up gcr lit-dev/cache images created by kaniko
   {
-    console.log('fetching cache images from gcr');
+    console.log('Fetching cache images from gcr');
     const response = await request({
       url: `https://us.gcr.io/v2/${PROJECT_ID}/${REPO_NAME}/lit-dev/cache/tags/list`,
       method: 'GET',
@@ -240,12 +281,12 @@ async function main() {
       tags: string[];
     };
 
-    console.log('cache image tag count', data.tags.length);
+    console.log('Cache image tag count', data.tags.length);
 
     for (const [digest, manifest] of Object.entries(data.manifest)) {
       if (new Date(Number(manifest.timeCreatedMs)) < ONE_WEEK_AGO) {
         for (const tag of manifest.tag) {
-          console.log(`deleting container registry tag ${tag}`);
+          console.log(`Deleting container registry tag ${tag}`);
           await request({
             url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/cache/manifests/${tag}`,
             method: 'DELETE',
@@ -254,7 +295,7 @@ async function main() {
             },
           });
         }
-        console.log(`deleting image ${digest}`);
+        console.log(`Deleting image ${digest}`);
         await request({
           url: `https://us.gcr.io/v2/lit-dev-site/lit.dev/lit-dev/cache/manifests/${digest}`,
           method: 'DELETE',
@@ -266,7 +307,7 @@ async function main() {
     }
   }
 
-  console.log('all done!');
+  console.log('All done!');
 }
 
 main();
