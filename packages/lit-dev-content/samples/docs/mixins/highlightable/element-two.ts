@@ -2,10 +2,12 @@ import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {Highlightable} from './highlightable.js'
 
+const HighlightableLitElement = Highlightable(LitElement);
+
 @customElement('element-two')
-export class ElementTwo extends Highlightable(LitElement) {
+export class ElementTwo extends HighlightableLitElement {
   static styles = [
-    Highlightable(LitElement).styles || [],
+    HighlightableLitElement.styles || [],
     css`:host { display: block; }`
   ];
   render(){
