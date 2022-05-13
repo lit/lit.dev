@@ -146,18 +146,23 @@ async function main() {
         // Tags should look like "pr529-8b0837f" or "main-45ace0e"
         const prMatch = t.tag.match(/^pr(\d+)-/);
         if (prMatch) {
+          // Tags that have PR number require special attention to see if they
+          // should be kept
           const prNumber = Number(prMatch[1]);
           if (openPrs.has(prNumber)) {
             revisionsToKeep.add(t.revisionName);
             return true;
           }
         } else if (!t.tag.startsWith('main')) {
+          // Unrecognized tags are kept just in case
           console.log(
             `Found unrecognized tag "${t.tag}". This will not be deleted.`
           );
           revisionsToKeep.add(t.revisionName);
           return true;
         }
+        // Tags that do begin with "main" require no special attention and can
+        // be filtered out if they passed the recency check above
       }
 
       return false;
