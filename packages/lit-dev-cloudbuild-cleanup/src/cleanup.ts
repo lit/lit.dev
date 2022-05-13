@@ -80,7 +80,7 @@ async function main() {
     parent: `projects/${PROJECT_ID}/locations/${_DEPLOY_REGION}`,
   });
 
-  let revisions = data;
+  const revisions = data;
 
   if (!revisions.items) {
     // We should never reach this since there should always be running revisions
