@@ -22,6 +22,8 @@ steps:
       - --cache=true
       - --cache-ttl=168h # 1 week
       - --build-arg=LITDEV_ENV=pr
+      # If this tag format changes, also update the cleanup script in
+      # packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
       - --build-arg=REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA
       - --build-arg=SHORT_SHA=$SHORT_SHA
 
@@ -42,6 +44,8 @@ steps:
       - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
+      # If this tag format changes, also update the cleanup script in
+      # packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
       - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
       # --max-old-space-size in ./Dockerfile, and this same flag in
@@ -75,6 +79,8 @@ steps:
       - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
+      # If this tag format changes, also update the cleanup script in
+      # packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
       - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
       # --max-old-space-size in ./Dockerfile, and this same flag in
