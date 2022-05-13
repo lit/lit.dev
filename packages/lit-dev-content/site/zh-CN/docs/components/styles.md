@@ -221,15 +221,13 @@ my-element > div {
 
 ### 在 style 元素中设置 {#style-element}
 
-Typically, styles are placed in the [static `styles` class field](#add-styles); however, the element's static `styles` are evaluated **once per class**. Sometimes, you might need to customize styles **per instance**. For this, we recommend using CSS properties to create [themable elements](#theming). Alternatively, you can also include `<style>` elements in a Lit template. These are updated per instance.
-
-通常情况下，样式应该放置在 [静态类字段](#add-styles)中；但是，每个组件的静态`styles`会被计算**一次**。有时，您可能需要自定义样式**每个实例**。为此，我们建议使用 CSS 属性来创建 [themable 元素](#theming)。或者，您也可以在 Lit 模板中包含 `<style>` 元素。这些是按实例更新的。
+通常情况下，样式应该放置在 [静态类字段](#add-styles)中；但是，每个组件类的静态`styles`只会被计算**一次**。可能在某种场景下你需要为**每个实例**自定义样式。针对这种情况，我们建议使用 CSS 属性来创建 [主题化元素](#theming)。或者，你也可以在 Lit 模板中包含 `<style>` 元素。`<style>`元素样式也是按实例更新的。
 
 ```js
 render() {
   return html`
     <style>
-      /* updated per instance */
+      /* 按实例更新 */
     </style>
     <div>template content</div>
   `;
@@ -242,16 +240,17 @@ render() {
 
 </div>
 
-#### Expressions and style elements
+#### 表达式和 style 元素
 
 Using expressions inside style elements has some important limitations and performance issues.
+在 style 元素内使用表达式会有一些限制和性能问题。
 
 ```js
 render() {
   return html`
     <style>
       :host {
-        /* Warning: this approach has limitations & performance issues! */
+        /* 注意: 这种用法会有一些限制和性能问题 */
         color: ${myColor}
       }
     </style>
@@ -266,9 +265,9 @@ render() {
 
 </div>
 
-Evaluating an expression inside a `<style>` element is extremely inefficient. When any text inside a `<style>` element changes, the browser must re-parse the whole `<style>` element, resulting in unnecessary work.
+在 `<style>` 元素中计算表达式是非常低效的。因为当 `<style>` 元素中的任何文本发生变化时，浏览器必须重新解析整个 `<style>` 元素，从而导致不必要的工作。
 
-To mitigate this cost, separate styles that require per-instance evaluation from those that don't.
+为了降低性能开销，把需要为每个实例单独计算的样式和不需要单独计算的样式独立开来。
 
 ```js
   static styles = css`/* ... */`;
@@ -278,21 +277,21 @@ To mitigate this cost, separate styles that require per-instance evaluation from
 
 ```
 
-### Import an external stylesheet (not recommended) {#external-stylesheet}
+### 导入外部样式表 {#external-stylesheet}
 
-While you can include an external style sheet in your template with a `<link>`, we do not recommend this approach. Instead, styles should be placed in the [static `styles` class field](#add-styles).
+虽然你可以在模板中使用 `<link>` 引入一个外部样式表，但我们不推荐这种方法。 相反，样式应该被放在[静态类字段`styles`](#add-styles)中。  
 
 <div class="alert alert-info">
 
-**External stylesheet caveats.**
+**关于外部样式表的说明：**
 
-*  The [ShadyCSS polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) doesn't support external style sheets.
-*   External styles can cause a flash-of-unstyled-content (FOUC) while they load.
-*   The URL in the `href` attribute is relative to the **main document**. This is okay if you're building an app and your asset URLs are well-known, but avoid using external style sheets when building a reusable element.
+*   [ShadyCSS polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) 不支持外部样式表。
+*   当在加载外部样式表的时候，会造成文档样式短暂失效（FOUC）。
+*   `href` 属性中的URL是相对于**主文档**的。 如果你正在构建一个应用，并且你的资产url是众所周知的，这种情况下你可以使用外部样式表。但如果你是在构建可重用元素的话，应避免使用外部样式表。  
 
 </div>
 
-## Dynamic classes and styles
+## 动态类和样式
 
 One way to make styles dynamic is to add expressions to the `class` or `style` attributes in your template.
 
