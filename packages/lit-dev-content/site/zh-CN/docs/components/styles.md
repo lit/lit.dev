@@ -238,11 +238,12 @@ render() {
 
 **Limitations in the ShadyCSS polyfill around per instance styling.** Per instance styling is not supported using the ShadyCSS polyfill. See the [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for details.
 
+**ShadyCSS polyfill 对每个实例样式的限制。** ShadyCSS polyfill 不支持为每个实例设置样式。查看[ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)了解更多信息。
+
 </div>
 
 #### 表达式和 style 元素
 
-Using expressions inside style elements has some important limitations and performance issues.
 在 style 元素内使用表达式会有一些限制和性能问题。
 
 ```js
@@ -261,7 +262,7 @@ render() {
 
 <div class="alert alert-info">
 
-**Limitations in the ShadyCSS polyfill around expressions.** Expressions in `<style>` elements won't update per instance in ShadyCSS, due to limitations of the ShadyCSS polyfill. In addition, `<style>` nodes may not be passed as expression values when using the ShadyCSS polyfill. See the [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for more information.
+**ShadyCSS polyfill 对表达式的限制。** 由于 ShadyCSS polyfill 的限制，`<style>` 元素中的表达式不会在 ShadyCSS 中按实例更新。此外，在使用 ShadyCSS polyfill 时，`<style>` 节点可能不会作为表达式值传递。有关详细信息，查看[ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)了解更多信息。
 
 </div>
 
@@ -293,46 +294,46 @@ render() {
 
 ## 动态类和样式
 
-One way to make styles dynamic is to add expressions to the `class` or `style` attributes in your template.
+使样式动态化的一种方法是将表达式添加到模板中的 `class` 或 `style` 属性。
 
-Lit offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
+Lit 提供了两个指令，`classMap` 和 `styleMap`，可以方便地在 HTML 模板中应用类和样式。
 
-For more information on these and other directives, see the documentation on [built-in directives](/docs/templates/directives/).
+查看文档[内置指令]({{baseurl}}/docs/templates/directives/)了解更多关于这两个指令或者更多指令的信息。
 
-To use `styleMap` and/or `classMap`:
+使用 `styleMap` 和/或 `classMap`：
 
-1.  Import `classMap` and/or `styleMap`:
+1.  导入 `classMap` 和/或 `styleMap`:
 
     ```js
     import { classMap } from 'lit/directives/class-map.js';
     import { styleMap } from 'lit/directives/style-map.js';
     ```
 
-2.  Use `classMap` and/or `styleMap` in your element template:
+2.  在模板中使用 `classMap` 和/或 `styleMap`:
 
 {% playground-example "docs/components/style/maps" "my-element.ts" %}
 
-See [classMap](/docs/templates/directives/#classmap) and [styleMap](/docs/templates/directives/#stylemap) for more information.
+查看classMap]({{baseurl}}/docs/templates/directives/#classmap) and [styleMap]({{baseurl}}/docs/templates/directives/#stylemap)了解更多信息。
 
-## Theming {#theming}
+## 主题化 {#theming}
 
-By using [CSS inheritance](#inheritance) and [CSS variables and custom properties](#customprops) together, it's easy to create themable elements. By applying css selectors to customize CSS custom properties, tree-based and per-instance theming is straightforward to apply. Here's an example:
+通过同时使用 [CSS 继承](#inheritance) 和 [CSS 变量和自定义属性](#customprops)，可以轻松创建可主题化的元素。通过应用 css 选择器来自定义 CSS 自定义属性，可以直接应用基于树和每个实例的主题。下面是一个例子：
 
 {% playground-example "docs/components/style/theming" "my-element.ts" %}
 
-### CSS inheritance {#inheritance}
+### CSS 继承 {#inheritance}
 
-CSS inheritance lets parent and host elements propagate certain CSS properties to their descendants.
+CSS 继承允许父元素和宿主元素将某些 CSS 属性传播给它们的后代。
 
-Not all CSS properties inherit. Inherited CSS properties include:
+并非所有 CSS 属性都是可继承的。可继承的 CSS 属性包括：
 
 * `color`
-* `font-family` and other `font-*` properties
-* All CSS custom properties (`--*`)
+* `font-family` 和其他 `font-*` 属性
+* 所有的自定义 CSS 属性 (`--*`)
 
-See [CSS Inheritance on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) for more information.
+查看[MDN 上的 CSS 继承](https://developer.mozilla.org/zh-CN/docs/Web/CSS/inheritance)了解更多信息。
 
-You can use CSS inheritance to set styles on an ancestor element that are inherited by its descendants:
+你可以利用 CSS 继承机制，在祖先元素设置样式，让其后代元素来继承。
 
 ```html
 <style>
@@ -346,11 +347,11 @@ html {
 </my-element>
 ```
 
-### CSS custom properties {#customprops}
+### CSS 自定义属性 {#customprops}
 
-All CSS custom properties (<code>--<var>custom-property-name</var></code>) inherit. You can use this to make your component's styles configurable from outside.
+所有 CSS 自定义属性 (<code>--<var>custom-property-name</var></code>) 都是可继承的。你可以使用该特性使你的组件的样式可以从外部进行配置。
 
-The following component sets its background color to a CSS variable. The CSS variable uses the value of `--my-background` if it's been set by a selector matching an ancestor in the DOM tree, and otherwise defaults to `yellow`:
+下面的组件将其背景颜色设置为 CSS 变量。如果 CSS 变量由匹配 DOM 树中的祖先的选择器设置，则 CSS 变量使用 `--my-background` 的值，否则默认为 `yellow`：
 
 ```js
 class MyElement extends LitElement {
@@ -365,7 +366,7 @@ class MyElement extends LitElement {
 }
 ```
 
-Users of this component can set the value of `--my-background`, using the `my-element` tag as a CSS selector:
+该组件的调用者，可以通过 CSS 标签选择器`my-element`设置 `--my-background` 的值：
 
 ```html
 <style>
@@ -376,7 +377,7 @@ Users of this component can set the value of `--my-background`, using the `my-el
 <my-element></my-element>
 ```
 
-`--my-background` is configurable per instance of `my-element`:
+`--my-background` 对于每个 `my-element`实例都是可配置的:
 
 ```html
 <style>
@@ -391,4 +392,4 @@ Users of this component can set the value of `--my-background`, using the `my-el
 <my-element class="stuff"></my-element>
 ```
 
-See [CSS Custom Properties on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) for more information.
+查看 [MDN 上的自定义 CSS 属性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)了解更多信息。
