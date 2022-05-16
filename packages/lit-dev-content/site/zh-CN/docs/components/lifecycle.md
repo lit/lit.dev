@@ -1,27 +1,30 @@
 ---
-title: Lifecycle
+title: 生命周期
 eleventyNavigation:
-  key: Lifecycle
-  parent: Components
+  key: 生命周期
+  parent: 组件
   order: 5
 versionLinks:
   v1: components/lifecycle/
 ---
 
-Lit components use the standard custom element lifecycle methods. In addition Lit introduces a reactive update cycle that renders changes to DOM when reactive properties change.
+Lit组件使用标准的自定义元素生命周期方法。 此外，Lit还引入了一个响应式更新周期，当响应式属性发生变化时，它会将更改呈现到DOM上。  
 
-## Standard custom element lifecycle { #custom-element-lifecycle }
-Lit components are standard custom elements and inherit the custom element lifecycle methods. For information about the custom element lifecycle, see [Using the lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) on MDN.
+## 标准自定义元素生命周期 { #custom-element-lifecycle }
+
+Lit组件是标准的自定义元素，并继承了自定义元素的生命周期方法。 请查看MDN上的 [使用生命周期回调](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements#%E4%BD%BF%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0) 了解更多有关自定义元素生命周期的信息。  
 
 <div class="alert alert-info">
 
 If you need to customize any of the standard custom element lifecycle methods, make sure to call the `super` implementation (such as `super.connectedCallback()`) so the standard Lit functionality is maintained.
+如果你需要定制任何标准的自定义元素生命周期方法，请确保调用 `super` 上的同名回调方法(例如 `super.connectedcallback()`)，这样就可以维护标准的Lit功能。  
 
 </div>
 
 ### constructor() {#constructor}
 
 Called when an element is created. Also, it’s invoked when an existing element is upgraded, which happens when the definition for a custom element is loaded after the element is already in the DOM.
+创建元素时调用。 此外，当现有元素升级时也会调用它，如果一个自定义元素已经存在于DOM中，然后关于它的定义又被重新加载，就会触发元素升级。
 
 #### Lit behavior
 
