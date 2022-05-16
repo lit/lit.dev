@@ -42,17 +42,17 @@ constructor() {
 ```
 ### connectedCallback() {#connectedcallback}
 
-Invoked when a component is added to the document's DOM.
+在将组件添加到文档的 DOM 时调用。
 
-#### Lit behavior
+#### Lit 行为
 
-Lit initiates the first element update cycle after the element is connected. In preparation for rendering, Lit also ensures the `renderRoot` (typically, its `shadowRoot`) is created.
+Lit 在元素连接后启动第一个元素更新周期。在准备渲染时，Lit 还确保创建了`renderRoot`（通常是组件的`shadowRoot`）。
 
-Once an element has connected to the document at least once, component updates will proceed regardless of the connection state of the element.
+一旦一个元素连接到文档，哪怕只有一次，之后无论元素的连接状态如何，组件更新都会继续进行。
 
-#### Use cases
+#### 用例
 
-In `connectedCallback()` you should setup tasks that should only occur when the element is connected to the document. The most common of these is adding event listeners to nodes external to the element, like a keydown event handler added to the window. Typically, anything done in `connectedCallback()` should be undone when the element is disconnected — for example, removing event listeners on window to prevent memory leaks.
+在 `connectedCallback()` 中，你应该设置仅在元素连接到文档时才发生的任务。其中最常见的是将事件监听器添加到元素外部的节点，例如添加到窗口的 keydown 事件处理程序。通常，在 `connectedCallback()` 中所做的任何事情都应该在元素断开连接时撤消 - 例如，删除窗口上的事件监听器以防内存泄漏。
 
 ```js
 connectedCallback() {
@@ -62,15 +62,17 @@ connectedCallback() {
 ```
 ### disconnectedCallback() {#disconnectedcallback}
 
-Invoked when a component is removed from the document's DOM.
+当组件从文档的 DOM 中移除时调用。
 
-#### Lit behavior
+#### Lit 行为
 
-Pauses the [reactive update cycle](#reactive-update-cycle). It is resumed when the element is connected.
+暂停 [响应式更新周期](#reactive-update-cycle)。当元素连接时恢复。
 
-#### Use cases
+#### 用例
 
 This callback is the main signal to the element that it may no longer be used; as such, `disconnectedCallback()` should ensure that nothing is holding a reference to the element (such as event listeners added to nodes external to the element), so that it is free to be garbage collected. Because elements may be re-connected after being disconnected, as in the case of an element moving in the DOM or caching, any such references or listeners may need to be re-established via `connectedCallback()` so that the element continues functioning as expected in these scenarios. For example, remove event listeners to nodes external to the element, like a keydown event handler added to the window.
+
+这个回调是元素的一个主要信号：它可能不再被使用了；因此，应该在 `disconnectedCallback()` 中确保没有任何东西持有对该元素的引用（例如：添加到元素外部节点的事件监听器），以便它可以被垃圾回收机制自由地回收。因为元素可能在断开连接后重新连接，例如元素在 DOM 中移动或缓存的情况，任何此类引用或监听器都可能需要通过 `connectedCallback()` 重新建立，以便元素在这种情况下可以继续按预期运行。例如删除元素外部节点的事件侦听器，例如添加到窗口的 keydown 事件处理程序。
 
 ```js
 disconnectedCallback() {
@@ -81,7 +83,7 @@ disconnectedCallback() {
 
 <div class="alert alert-info">
 
-**No need to remove internal event listeners.** You don't need to remove event listeners added on the component's own DOM—including those added declaratively in your template. Unlike external event listeners, these won't prevent the component from being garbage collected.
+**没必要移除内部事件监听器。** 您不需要移除添加到组件自己的 DOM 上的事件监听器——包括那些以声明方式添加到你的模板中的事件监听器。与外部事件监听器不同，内部事件监听器不会阻止组件被垃圾回收机制回收。
 
 </div>
 
