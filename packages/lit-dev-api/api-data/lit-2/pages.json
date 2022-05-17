@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "LitElement",
@@ -2571,7 +2571,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 605,
+                "line": 598,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2643,7 +2643,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 595,
+                "line": 588,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2675,7 +2675,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 614,
+                "line": 607,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2707,7 +2707,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 599,
+                "line": 592,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2740,7 +2740,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 590,
+            "line": 583,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -2765,7 +2765,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "ReactiveElement",
@@ -5566,7 +5566,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "html",
@@ -5581,7 +5581,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 519,
+            "line": 512,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5654,7 +5654,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 571,
+            "line": 564,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5690,7 +5690,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 635,
+            "line": 616,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5936,7 +5936,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 544,
+            "line": 537,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6002,7 +6002,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 283,
+            "line": 276,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6100,7 +6100,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 464,
+            "line": 457,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6142,7 +6142,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 455,
+            "line": 448,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6241,7 +6241,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "adoptStyles",
@@ -6823,7 +6823,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "customElement",
@@ -8066,7 +8066,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "asyncAppend",
@@ -10964,7 +10964,7 @@
         },
         "comment": {
           "shortText": "Checks binding values against live DOM values, instead of previously bound\nvalues, when determining whether to update the value.",
-          "text": "This is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an `<input>` element's `value` property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want--if you want to overwrite the DOM\nvalue with the bound value no matter what--use the `live()` directive:\n\n```js\nhtml`<input .value=${live(x)}>`\n```\n\n`live()` performs a strict equality check agains the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n`live()` should not be used when the binding will cause a type conversion. If\nyou use `live()` with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render.\n"
+          "text": "This is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an `<input>` element's `value` property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want--if you want to overwrite the DOM\nvalue with the bound value no matter what--use the `live()` directive:\n\n```js\nhtml`<input .value=${live(x)}>`\n```\n\n`live()` performs a strict equality check against the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n`live()` should not be used when the binding will cause a type conversion. If\nyou use `live()` with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render.\n"
         },
         "sources": [
           {
@@ -15907,7 +15907,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "AsyncDirective",
@@ -17381,7 +17381,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1751,
+                "line": 1718,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17413,7 +17413,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1752,
+                "line": 1719,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17442,7 +17442,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1753,
+                "line": 1720,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17488,7 +17488,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1760,
+                "line": 1727,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17524,7 +17524,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1746,
+                "line": 1713,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17567,7 +17567,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1772,
+                "line": 1739,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17601,7 +17601,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1745,
+            "line": 1712,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17776,7 +17776,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1751,
+                "line": 1718,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17816,7 +17816,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1752,
+                "line": 1719,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17853,7 +17853,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1753,
+                "line": 1720,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17907,7 +17907,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1760,
+                "line": 1727,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17951,7 +17951,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1943,
+                "line": 1910,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17986,7 +17986,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1772,
+                "line": 1739,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18028,7 +18028,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1942,
+            "line": 1909,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18185,7 +18185,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1312,
+                "line": 1279,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18227,7 +18227,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1311,
+                "line": 1278,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18257,7 +18257,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1419,
+                "line": 1386,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18318,7 +18318,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1392,
+                "line": 1359,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18361,7 +18361,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1411,
+                "line": 1378,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18416,7 +18416,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1310,
+            "line": 1277,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18822,7 +18822,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2090,
+                "line": 2057,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18851,7 +18851,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2087,
+                "line": 2054,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18893,7 +18893,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2073,
+                "line": 2040,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18918,7 +18918,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 2072,
+            "line": 2039,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19073,7 +19073,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1751,
+                "line": 1718,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19113,7 +19113,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1752,
+                "line": 1719,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19150,7 +19150,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1753,
+                "line": 1720,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19204,7 +19204,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1760,
+                "line": 1727,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19248,7 +19248,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1981,
+                "line": 1948,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19283,7 +19283,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1772,
+                "line": 1739,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19327,7 +19327,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2062,
+                "line": 2029,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19367,7 +19367,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1980,
+            "line": 1947,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19668,7 +19668,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1751,
+                "line": 1718,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19708,7 +19708,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1752,
+                "line": 1719,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19745,7 +19745,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1753,
+                "line": 1720,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19799,7 +19799,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1760,
+                "line": 1727,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19843,7 +19843,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1907,
+                "line": 1874,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19878,7 +19878,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1772,
+                "line": 1739,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19920,7 +19920,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1906,
+            "line": 1873,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20403,7 +20403,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1301,
+            "line": 1268,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20539,7 +20539,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 550,
+            "line": 543,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20572,7 +20572,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "html",
@@ -21039,7 +21039,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "ReactiveController",
@@ -21390,7 +21390,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "a4558769b2c4008f3e15cde469280a7a1960cd3d",
+    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
     "items": [
       {
         "name": "defaultConverter",
@@ -24886,7 +24886,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 476,
+                "line": 469,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -24915,7 +24915,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 479,
+                "line": 472,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -24939,7 +24939,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 474,
+            "line": 467,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -24997,7 +24997,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 471,
+                "line": 464,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25024,7 +25024,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 466,
+            "line": 459,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25046,7 +25046,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 724,
+            "line": 691,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25068,7 +25068,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1102,
+            "line": 1069,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25174,7 +25174,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 462,
+            "line": 455,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25643,7 +25643,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1312,
+                "line": 1279,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25693,7 +25693,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1311,
+                "line": 1278,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25731,7 +25731,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1419,
+                "line": 1386,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25800,7 +25800,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1392,
+                "line": 1359,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25851,7 +25851,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1411,
+                "line": 1378,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25956,7 +25956,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1725,
+            "line": 1692,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25998,7 +25998,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 300,
+            "line": 293,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
