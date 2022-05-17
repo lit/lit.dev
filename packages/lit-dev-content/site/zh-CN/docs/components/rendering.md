@@ -25,7 +25,7 @@ Lit的模版可以包含Javascript表达式。你可以使用表达式去设置�
 *   DOM节点.
 *   包含上述类型的数组或者可迭代对象。
 
-查看[模板]({{baseurl}}/docs/templates/overview/)了解更多编写模版的信息。
+请参阅[模板]({{baseurl}}/docs/templates/overview/)了解更多编写模版的信息。
 
 ## 写好render()函数
 
@@ -71,15 +71,15 @@ Lit引入批量更新机制最大程度提高性能和效率。一次设置多�
 
 在更新期间，仅重新渲染DOM中更改的部分。 虽然Lit模板看起来像字符串插值，但Lit只会解析并创建一次静态HTML，后续渲染只更新表达式中被更改的值，这使得更新非常有效。
 
-查看[属性更新时发生了什么]({{baseurl}}/docs/components/properties/#when-properties-change)了解更多关于更新周期的信息。
+请参阅[属性更新时发生了什么]({{baseurl}}/docs/components/properties/#when-properties-change)了解更多关于更新周期的信息。
 
 ## DOM封装
 
 Lit使用shadow DOM来封装组件渲染的DOM。Shadow DOM允许元素创建自己的、独立于主文档树的DOM树。它是Web组件规范的核心特性，是实现互操作性、样式封装和其他特性的基础。
 
-查看[Shadow DOM v1: 自包含Web组件](https://developers.google.com/web/fundamentals/web-components/shadowdom)了解更多有关shadow DOM的信息。
+请参阅[Shadow DOM v1: 自包含Web组件](https://developers.google.com/web/fundamentals/web-components/shadowdom)了解更多有关shadow DOM的信息。
 
-查看[使用Shadow DOM]({{baseurl}}/docs/components/shadow-dom/)了解更多关于如何在组件中使用shadow DOM。
+请参阅[使用Shadow DOM]({{baseurl}}/docs/components/shadow-dom/)了解更多关于如何在组件中使用shadow DOM。
 
 ## 更多资料
 
