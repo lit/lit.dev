@@ -16,21 +16,20 @@ Lit组件是标准的自定义元素，并继承了自定义元素的生命周�
 
 <div class="alert alert-info">
 
-If you need to customize any of the standard custom element lifecycle methods, make sure to call the `super` implementation (such as `super.connectedCallback()`) so the standard Lit functionality is maintained.
-如果你需要定制任何标准的自定义元素生命周期方法，请确保调用 `super` 上的同名回调方法(例如 `super.connectedcallback()`)，这样就可以维护标准的Lit功能。  
+如果你需要定制任何标准的自定义元素生命周期方法，请确保调用 `super` 上的实现(例如 `super.connectedcallback()`)，这样就可以保持Lit的标准功能。  
 
 </div>
 
 ### constructor() {#constructor}
 
-Called when an element is created. Also, it’s invoked when an existing element is upgraded, which happens when the definition for a custom element is loaded after the element is already in the DOM.
 创建元素时调用。 此外，当现有元素升级时也会调用它，如果一个自定义元素已经存在于DOM中，然后关于它的定义又被重新加载，就会触发元素升级。
 
-#### Lit behavior
+#### Lit 行为
 
 Requests an asynchronous update using the `requestUpdate()` method, so when a Lit component gets upgraded, it performs an update immediately.
+使用 `requestUpdate()` 方法请求异步更新，因此当 Lit 组件升级时，它会立即执行更新。
 
-Saves any properties already set on the element. This ensures values set before upgrade are maintained and correctly override defaults set by the component.
+保存已在元素上设置的任何属性（property）。这可确保组件升级前设置的值被保留下来，并正确覆盖组件设置的默认值。
 
 #### Use cases
 
