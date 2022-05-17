@@ -20,7 +20,7 @@ const srcDir = pathlib.join(litDir, 'src');
  */
 export const lit2Config: ApiDocsConfig = {
   repo: 'lit/lit',
-  commit: 'a4558769b2c4008f3e15cde469280a7a1960cd3d',
+  commit: 'b6cf6002813533ad76998994cab1b4854450e8ef',
   workDir,
   gitDir,
   tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
