@@ -35,7 +35,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss');
 const litPlugin = require('@lit-labs/eleventy-plugin-lit');
 const {componentsToSSR} = require('./src/components/ssr.js');
 const i18n = require('eleventy-plugin-i18n');
-const translations = require("./site/_i18n");
+const translations = require('./site/_i18n');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -545,8 +545,8 @@ ${content}
   eleventyConfig.addPlugin(i18n, {
     translations,
     fallbackLocales: {
-      '*': 'en-GB'
-    }
+      '*': 'en-GB',
+    },
   });
   let componentModules = componentsToSSR;
 
