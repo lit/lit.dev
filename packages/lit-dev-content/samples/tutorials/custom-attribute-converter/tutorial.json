@@ -1,28 +1,27 @@
 {
-  "header": "Custom Attribute Converters",
+  "header": "Custom attribute converters",
   "difficulty": "Intermediate",
-  "size": "medium",
+  "size": "small",
   "duration": 16,
   "category": "Learn",
-  "imgSrc": "images/tutorials/custom-attribute-converter/card.webp",
-  "imgAlt": "<my-calendar selected-date=\"03/24/22\"></my-calendar>",
   "steps": [
     {
-      "title": "Custom Attribute Converters",
+      "title": "Custom attribute converters",
       "hasAfter": true
     },
     {
-      "title": "Built-in String Attribute Converter"
+      "title": "Built-in string attribute converter",
+      "checkable": true
     },
     {
-      "title": "Built-in Attribute Converter – Synchronization",
+      "title": "Built-in attribute converter – synchronization",
       "hasAfter": true
     },
     {
-      "title": "Defining a Custom Attribute Converter"
+      "title": "Defining a custom attribute converter"
     },
     {
-      "title": "Using a Custom Attribute Converter"
+      "title": "Using a custom attribute converter"
     },
     {
       "title": "Recap",

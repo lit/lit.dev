@@ -37,6 +37,8 @@ steps:
       - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
+      # If this tag format changes, also update route-traffic- steps below and
+      # the cleanup script in packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
       - '--tag=main-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
       # --max-old-space-size in ./Dockerfile, and this same flag in
@@ -70,6 +72,8 @@ steps:
       - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
       - '--quiet'
       - '--no-traffic'
+      # If this tag format changes, also update route-traffic- steps below and
+      # the cleanup script in packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
       - '--tag=main-$SHORT_SHA'
       # IMPORTANT: If you change --memory, be sure to also change
       # --max-old-space-size in ./Dockerfile, and this same flag in
@@ -119,8 +123,8 @@ steps:
       - beta
       - run
       - services
-      - update-traffic # Service name
-      - lit-dev-playground
+      - update-traffic
+      - lit-dev-playground # Service name
       - '--region=$_DEPLOY_REGION'
       - '--platform=managed'
       - '--quiet'

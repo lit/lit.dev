@@ -1,0 +1,6 @@
+{
+    "extends": "/samples/base.json",
+    "files": {
+      "package.json": {"hidden": true, "content": "{\"dependencies\":{\"@floating-ui/dom\":\"^0.5.0\"}}"}
+    }
+  }

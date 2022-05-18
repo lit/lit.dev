@@ -1,0 +1,6 @@
+{
+    "extends": "/samples/base.json",
+    "files": {
+      "package.json": {"hidden": true, "content": "{\"dependencies\":{\"@lit-labs/motion\":\"^1.0.2\"}}"}
+    }
+  }

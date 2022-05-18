@@ -38,7 +38,7 @@ You may also prefer to run each dev script in its own terminal:
 cd packages/lit-dev-content
 
 npm run build:ts:watch       # TypeScript
-npm run dev:build:site:watch # Eleventy
+npm run dev:build:eleventy:watch # Eleventy
 npm run dev:serve            # @web/dev-server
 ```
 
@@ -100,7 +100,7 @@ npm start # production server
 cd packages/lit-dev-content
 npm run build:ts:watch     # TypeScript
 npm run build:rollup:watch # Rollup
-npm run build:site:watch   # Eleventy
+npm run build:eleventy:watch   # Eleventy
 ```
 
 Serves at [`http://localhost:6415`](http://localhost:6415)

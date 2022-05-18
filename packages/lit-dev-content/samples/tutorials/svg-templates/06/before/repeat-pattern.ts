@@ -6,27 +6,20 @@ import {customElement, property} from 'lit/decorators.js';
 
 const themeCSS = css`
   .background {
-    fill: var(--background-color, #fff);
+    fill: var(--background-color, #000000);
   }
 
   text {
-    fill: var(--font-color, #000);
-    font-size: var(--font-size, 24px);
-    stroke-width: var(--stroke-width, 1px);
-    stroke: var(--stroke-color, #eee);
+    fill: var(--font-color, #ffffff);
+    font-size: var(--font-size, 26px);
+    stroke-width: var(--stroke-width, 1.2px);
+    stroke: var(--stroke-color, #eeeeee);
   }
 `;
 
 const svgCSS = css`
   :host {
-  position: relative;
-  }
-
-  .knobs {
-  position: absolute;
-  padding: 8px;
-  background: #efefef;
-    border-bottom-right-radius: 4px;
+    display: block;
   }
 
   svg {
@@ -35,20 +28,15 @@ const svgCSS = css`
   }
 
   text {
-    fill: #fff;
+    fill: #ffffff;
     dominant-baseline: hanging;
     font-family: monospace;
     font-size: 24px;
   }
-
-  rect {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const createElement = (chars: string): SVGTemplateResult => svg`
-    <text id="chars">${chars}</text>
+  <text id="chars">${chars}</text>
 `;
 
 const createMotif = (
@@ -66,15 +54,16 @@ const createMotif = (
         href="#chars"
         transform="rotate(${currRotation}, 0, 0)">
       </use>
-      `)
+    `);
   }
 
-  return svg
-    `<g
+  return svg`
+    <g
       id="motif"
       transform="translate(50, 50)">
         ${prints}
-    </g>`;
+    </g>
+  `;
 };
 
 const createTileBoundary = () => svg`
@@ -118,11 +107,6 @@ export class RepeatPattern extends LitElement {
 
   render() {
     return html`
-    <div class="knobs">
-      <input .value=${this.chars} @input=${this.onChars}>
-      <input type="range" min="2" max="29" .value=${this.numPrints} @input=${this.onNumPrints}>
-      <input type="range" min="0" max="360" .value=${this.rotationOffset} @input=${this.onRotationOffset}>
-    </div>
       <svg>
         <defs>
           ${createTileBoundary()}
@@ -134,24 +118,9 @@ export class RepeatPattern extends LitElement {
           ${createRepeatPattern()}
         </defs>
 
-        <rect class="background"></rect>
-        <rect fill="url(#repeat-pattern)"></rect>
+        <rect class="background" height="100%" width="100%"></rect>
+        <rect fill="url(#repeat-pattern)" height="100%" width="100%"></rect>
       </svg>
     `;
-  }
-
-  onChars = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.chars = e.target.value
-  }
-
-  onNumPrints = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.numPrints = e.target.valueAsNumber;
-  }
-
-  onRotationOffset = (e: Event) => {
-    if (!(e.target instanceof HTMLInputElement)) return;
-    this.rotationOffset = e.target.valueAsNumber;
   }
 }

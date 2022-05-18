@@ -10,7 +10,8 @@ const createElement = (chars: string): SVGTemplateResult => svg`
     font-family="monospace"
     font-size="24px">
     ${chars}
-  </text>`;
+  </text>
+`;
 
 const createMotif = (
   numPrints: number,
@@ -27,16 +28,17 @@ const createMotif = (
         href="#chars"
         transform="rotate(${currRotation}, 0, 0)">
       </use>
-      `);
+    `);
   }
 
-  return svg
-    `<g
+  return svg`
+    <g
       id="motif"
       transform="translate(50, 50)">
         ${prints}
-    </g>`;
-}
+    </g>
+  `;
+};
 
 const createTileBoundary = () => svg`
   <clipPath id="rect-clip">
@@ -77,7 +79,7 @@ export class RepeatPattern extends LitElement {
 
   render() {
     return html`
-      <svg width="100%" height="100%">
+      <svg height="100%" width="100%">
         <defs>
           ${createTileBoundary()}
           ${createElement(this.chars)}
@@ -88,8 +90,8 @@ export class RepeatPattern extends LitElement {
           ${createRepeatPattern()}
         </defs>
     
-        <rect fill="#fff" width="100%" height="100%"></rect>
-        <rect fill="url(#repeat-pattern)" width="100%" height="100%"></rect>
+        <rect fill="#ffffff" height="100%" width="100%"></rect>
+        <rect fill="url(#repeat-pattern)" height="100%" width="100%"></rect>
       </svg>
     `;
   }
