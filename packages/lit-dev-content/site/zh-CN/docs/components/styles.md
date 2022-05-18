@@ -18,7 +18,7 @@ Shadow DOM 提供了很强的样式封装能力。如果Lit没有使用Shadow DO
 
 {% playground-example "docs/components/style/basic" "my-element.ts" %}
 
-添加到组件的样式通过shadow DOM来实现作用域。查看[Shadow DOM](#shadow-dom)快速了解概览。
+添加到组件的样式通过shadow DOM来实现作用域。请参阅[Shadow DOM](#shadow-dom)快速了解概览。
 
 静态类字段`styles`的值可以是：
 
@@ -34,7 +34,7 @@ Shadow DOM 提供了很强的样式封装能力。如果Lit没有使用Shadow DO
     static styles = [ css`...`, css`...`];
     ```
 
-使用静态类字段`styles`几乎是定义组件样式最好的方式，但是这可能无法覆盖某些场景，比如：需要为每个组件实例定义定制化样式。查看[在模板中定义作用域样式]了解其他定义样式的方式。
+使用静态类字段`styles`几乎是定义组件样式最好的方式，但是这可能无法覆盖某些场景，比如：需要为每个组件实例定义定制化样式。请参阅[在模板中定义作用域样式]了解其他定义样式的方式。
 
 ### 在静态样式中使用表达式 {#expressions}
 
@@ -172,7 +172,7 @@ my-element {
 
 ### 为组件的子元素设置样式 {#slotted}
 
-组件可以包含子元素（就像 `<ul>` 元素可以包含 `<li>` 子元素）。如果需要渲染子元素，你的模板需要包含一个或多个 `<slot>` 元素，查看 [使用 slot 元素渲染子元素]({{baseurl}}/docs/components/shadow-dom/#slots) 了解详情。
+组件可以包含子元素（就像 `<ul>` 元素可以包含 `<li>` 子元素）。如果需要渲染子元素，你的模板需要包含一个或多个 `<slot>` 元素，请参阅 [使用 slot 元素渲染子元素]({{baseurl}}/docs/components/shadow-dom/#slots) 了解详情。
 
 `<slot>` 元素在shadow树中扮演一个占位符的角色，宿主元素的子元素将显示在占位符所在的位置。
 
@@ -238,7 +238,7 @@ render() {
 
 **Limitations in the ShadyCSS polyfill around per instance styling.** Per instance styling is not supported using the ShadyCSS polyfill. See the [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations) for details.
 
-**ShadyCSS polyfill 对每个实例样式的限制。** ShadyCSS polyfill 不支持为每个实例设置样式。查看[ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)了解更多信息。
+**ShadyCSS polyfill 对每个实例样式的限制。** ShadyCSS polyfill 不支持为每个实例设置样式。请参阅[ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)了解更多信息。
 
 </div>
 
@@ -262,7 +262,7 @@ render() {
 
 <div class="alert alert-info">
 
-**ShadyCSS polyfill 对表达式的限制。** 由于 ShadyCSS polyfill 的限制，`<style>` 元素中的表达式不会在 ShadyCSS 中按实例更新。此外，在使用 ShadyCSS polyfill 时，`<style>` 节点可能不会作为表达式值传递。有关详细信息，查看[ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)了解更多信息。
+**ShadyCSS polyfill 对表达式的限制。** 由于 ShadyCSS polyfill 的限制，`<style>` 元素中的表达式不会在 ShadyCSS 中按实例更新。此外，在使用 ShadyCSS polyfill 时，`<style>` 节点可能不会作为表达式值传递。有关详细信息，请参阅[ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)了解更多信息。
 
 </div>
 
@@ -298,7 +298,7 @@ render() {
 
 Lit 提供了两个指令，`classMap` 和 `styleMap`，可以方便地在 HTML 模板中应用类和样式。
 
-查看文档[内置指令]({{baseurl}}/docs/templates/directives/)了解更多关于这两个指令或者更多指令的信息。
+请参阅文档[内置指令]({{baseurl}}/docs/templates/directives/)了解更多关于这两个指令或者更多指令的信息。
 
 使用 `styleMap` 和/或 `classMap`：
 
@@ -313,7 +313,7 @@ Lit 提供了两个指令，`classMap` 和 `styleMap`，可以方便地在 HTML 
 
 {% playground-example "docs/components/style/maps" "my-element.ts" %}
 
-查看classMap]({{baseurl}}/docs/templates/directives/#classmap) and [styleMap]({{baseurl}}/docs/templates/directives/#stylemap)了解更多信息。
+请参阅classMap]({{baseurl}}/docs/templates/directives/#classmap) and [styleMap]({{baseurl}}/docs/templates/directives/#stylemap)了解更多信息。
 
 ## 主题化 {#theming}
 
@@ -331,7 +331,7 @@ CSS 继承允许父元素和宿主元素将某些 CSS 属性传播给它们的�
 * `font-family` 和其他 `font-*` 属性
 * 所有的自定义 CSS 属性 (`--*`)
 
-查看[MDN 上的 CSS 继承](https://developer.mozilla.org/zh-CN/docs/Web/CSS/inheritance)了解更多信息。
+请参阅[MDN 上的 CSS 继承](https://developer.mozilla.org/zh-CN/docs/Web/CSS/inheritance)了解更多信息。
 
 你可以利用 CSS 继承机制，在祖先元素设置样式，让其后代元素来继承。
 
@@ -392,4 +392,4 @@ class MyElement extends LitElement {
 <my-element class="stuff"></my-element>
 ```
 
-查看 [MDN 上的自定义 CSS 属性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)了解更多信息。
+请参阅 [MDN 上的自定义 CSS 属性](https://developer.mozilla.org/zh-CN/docs/Web/CSS/--*)了解更多信息。

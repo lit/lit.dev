@@ -40,7 +40,7 @@ Lit会自动管理你的响应式属性(properties)及其相应的属性(attribu
 
 公共属性是组件公共API的一部分。一般来说，公共属性尤其是公共响应式属性，应该被视为“输入”。
 
-组件不应更改自己的公共属性，而是响应用户的输入去更改。例如，一个菜单组件可能有一个公共属性`selected`，该属性可以由元素的创建的时候初始化为一个给定的值，但是当用户选择一个项目时，组件就可以响应用户的输入更改它。与此同时，组件应该触发一个事件来向组件的所有者表明`selected`属性已经被更改。查看[调度事件]({{baseurl}}/docs/components/events/#dispatching-events)了解更多信息。
+组件不应更改自己的公共属性，而是响应用户的输入去更改。例如，一个菜单组件可能有一个公共属性`selected`，该属性可以由元素的创建的时候初始化为一个给定的值，但是当用户选择一个项目时，组件就可以响应用户的输入更改它。与此同时，组件应该触发一个事件来向组件的所有者表明`selected`属性已经被更改。请参阅[调度事件]({{baseurl}}/docs/components/events/#dispatching-events)了解更多信息。
 
 Lit也支持“内部响应式状态”。内部响应式状态指的是那些不是组件API的响应式属性（property）。这些响应式属性（property）不存在与之对应的属性（attribute），通常情况下，这些属性在Typescript中被标记为protected或者private。
 
@@ -67,7 +67,7 @@ constructor()
 组件可以操作它自己的内部响应式状态。
 在某些情况下，例如：如果用户可见的属性很难转换为内部状态，那么内部响应式状态可以直接从公共属性初始化。
 
-与公共响应式属性一样，更新内部反应状态会触发更新周期。查看[内部响应式状态](#internal-reactive-state)了解相关详细信息，。
+与公共响应式属性一样，更新内部反应状态会触发更新周期。请参阅[内部响应式状态](#internal-reactive-state)了解相关详细信息，。
 
 ## 公共响应式属性{#declare}
 
@@ -93,7 +93,7 @@ class MyElement extends LitElement {
 
 <div class="alert alert-info">
 
-**使用装饰器** 装饰器是一个还处于在提案阶段的Javasript特性，因此，如果你需要一个像Babel或者Typescript那样的编译器才能使用它。查看[开启装饰器]({{baseurl}}/docs/components/decorators/#enabling-decorators)了解详情.
+**使用装饰器** 装饰器是一个还处于在提案阶段的Javasript特性，因此，如果你需要一个像Babel或者Typescript那样的编译器才能使用它。请参阅[开启装饰器]({{baseurl}}/docs/components/decorators/#enabling-decorators)了解详情.
 
 </div>
 
@@ -156,7 +156,7 @@ plugins = [
 ];
 ```
 
-查看[避免类字段和装饰器的问题]({{baseurl}}/docs/components/decorators/#avoiding-issues-with-class-fields)来了解更多关于如何使用装饰器装饰类属性的信息。
+请参阅[避免类字段和装饰器的问题]({{baseurl}}/docs/components/decorators/#avoiding-issues-with-class-fields)来了解更多关于如何使用装饰器装饰类属性的信息。
 
 ### 属性选项
 
@@ -170,7 +170,7 @@ plugins = [
 </dt>
 <dd>
 
-设置property是否与attribute关联，或者指定与property相关联的attribute的名称。默认值是true。如果`attribute`为false的话，则忽略`converter`、`reflect`和`type`选项。查看[设置属性名称](#observed-attributes)了解有关详细信息。
+设置property是否与attribute关联，或者指定与property相关联的attribute的名称。默认值是true。如果`attribute`为false的话，则忽略`converter`、`reflect`和`type`选项。请参阅[设置属性名称](#observed-attributes)了解有关详细信息。
 
 </dd>
 <dt>
@@ -190,7 +190,7 @@ plugins = [
 </dt>
 <dd>
 
-设置一个函数用来检测property是否发生改变，如果该函数返回true，将触发一个更新。无论何时，只要property被设置了新的值，该函数就会被自动调用。如果未指定，LitElement将使用严格的不等式检查 (`newValue !== oldValue`) 来确定property值是否发生改变。查看[自定义更改检测](#haschanged)了解有关详细信息。
+设置一个函数用来检测property是否发生改变，如果该函数返回true，将触发一个更新。无论何时，只要property被设置了新的值，该函数就会被自动调用。如果未指定，LitElement将使用严格的不等式检查 (`newValue !== oldValue`) 来确定property值是否发生改变。请参阅[自定义更改检测](#haschanged)了解有关详细信息。
 
 </dd>
 <dt>
@@ -200,7 +200,7 @@ plugins = [
 </dt>
 <dd>
 
-设置是否禁止生成默认属性访问器。这个选项很少需要。默认值为false，也就是默认生产属性访问器。查看[防止Lit生成属性访问器](#accessors-noaccessor)了解有关详细信息。
+设置是否禁止生成默认属性访问器。这个选项很少需要。默认值为false，也就是默认生产属性访问器。请参阅[防止Lit生成属性访问器](#accessors-noaccessor)了解有关详细信息。
 
 </dd>
 <dt>
@@ -210,7 +210,7 @@ plugins = [
 </dt>
 <dd>
 
-设置property属性值是否反射回关联的atrribute。默认值：false。有关详细信息，查看[启用属性反射](#reflected-attributes)了解有关详细信息。
+设置property属性值是否反射回关联的atrribute。默认值：false。有关详细信息，请参阅[启用属性反射](#reflected-attributes)了解有关详细信息。
 
 </dd>
 <dt>
@@ -220,7 +220,7 @@ plugins = [
 </dt>
 <dd>
 
-设置该property为内部响应式状态。内部响应式状态也会像公共响应式属性那样触发更新，但Lit不会为其生成attribute，因此用户不能从组件外部访问它。当该选项设置为true的时候，等效于使用`@state`装饰器。查看[内部反应状态](#internal-reactive-state)了解有关详细信息。
+设置该property为内部响应式状态。内部响应式状态也会像公共响应式属性那样触发更新，但Lit不会为其生成attribute，因此用户不能从组件外部访问它。当该选项设置为true的时候，等效于使用`@state`装饰器。请参阅[内部反应状态](#internal-reactive-state)了解有关详细信息。
 
 </dd>
 <dt>
@@ -230,7 +230,7 @@ plugins = [
 </dt>
 <dd>
 
-当将值为字符串的attribute转换为property时，Lit的默认属性转换器会将字符串解析为type指定的类型，反之，将property反射为属性时也是如此。如果设置了`converter`，则该选项将被传递给转换器。如果`type`未指定，默认转换器将其视为`type: String`。查看[使用默认转换器](#conversion-type)了解更多信息。
+当将值为字符串的attribute转换为property时，Lit的默认属性转换器会将字符串解析为type指定的类型，反之，将property反射为属性时也是如此。如果设置了`converter`，则该选项将被传递给转换器。如果`type`未指定，默认转换器将其视为`type: String`。请参阅[使用默认转换器](#conversion-type)了解更多信息。
 
 使用TypeScript时，该选项通常应和为属性（property）声明的TypeScript类型一致。然而，`type`选项被Lit的“运行时”用于实现字符串序列化/反序列化，不应和Typescript的”类型检测“机制混淆。
 
@@ -280,9 +280,9 @@ constructor() {
 1.  如果监测到属性值发生了改变，就安排一次异步更新。但是如果此前已经安排了一次更新但是还没有执行，则不再安排更新。（译者注：一个同步任务可能会多次更新属性，而安排的异步更新只能在同步任务完成后执行，因此在同步任务中发生第二次更新时去安排更新的时候，就会存在一个已安排但未执行的更新）
 1.  调用组件的`update`方法，将组件的property反射回attribute并且更新组件的模板。
 
-有许多方法可以去绑定生命周期钩子和修改响应式更新周期。查看[响应式生命周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)了解更多信息。
+有许多方法可以去绑定生命周期钩子和修改响应式更新周期。请参阅[响应式生命周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)了解更多信息。
 
-查看[自定义更新检测](#haschanged)了解更多信息。
+请参阅[自定义更新检测](#haschanged)了解更多信息。
 
 ## Attributes {#attributes}
 
@@ -597,7 +597,7 @@ static properties = {
 
 所有响应式属性都有一个`hasChanged()`函数，只要属性被设置，该函数就会被调用。
 
-`hasChanged`的职责是比较属性的旧值和新值，并评估属性是否已更改。如果`hasChanged()`返回true并且尚未安排元素更新，Lit将安排一个异步更新。查看[响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)了解更多有关更新的信息。
+`hasChanged`的职责是比较属性的旧值和新值，并评估属性是否已更改。如果`hasChanged()`返回true并且尚未安排元素更新，Lit将安排一个异步更新。请参阅[响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)了解更多有关更新的信息。
 
 `hasChanged()`的默认实现使用严格的不等式比较：如果`newVal !== oldVal`，则`hasChanged()`返回`true`。
 

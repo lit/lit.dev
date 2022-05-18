@@ -24,7 +24,7 @@ Lit组件是标准的自定义元素，并继承了自定义元素的生命周�
 
 创建元素时调用。 此外，当现有元素升级时也会调用它，如果一个自定义元素已经存在于DOM中，然后关于它的定义又被重新加载，就会触发元素升级。
 
-#### Lit 行为
+#### Lit behavior 
 
 Requests an asynchronous update using the `requestUpdate()` method, so when a Lit component gets upgraded, it performs an update immediately.
 使用 `requestUpdate()` 方法请求异步更新，因此当 Lit 组件升级时，它会立即执行更新。
@@ -91,51 +91,53 @@ disconnectedCallback() {
 
 ### attributeChangedCallback() { %attributeChangedCallback }
 
-Invoked when one of the element’s `observedAttributes` changes.
+元素的任何一个 `observedAttributes` 更改时调用。
 
-#### Lit behavior
+#### Lit 行为
 
-Lit uses this callback to sync changes in attributes to reactive properties. Specifically, when an attribute is set, the corresponding property is set. Lit also automatically sets up the element’s `observedAttributes` array to match the component’s list of reactive properties.
+Lit 使用该回调将attribute的更改同步到响应式属性。具体来说，当设置了一个attribute时，就设置了相应的property。 Lit 还会自动设置元素的 `observedAttributes` 数组以匹配组件的响应式属性列表。
 
 #### Use cases
 
-You rarely need to implement this callback.
+你很少需要实现这个回调。
 
 ### adoptedCallback() {#adoptedcallback}
 
-Invoked when a component is moved to a new document.
+当组件移动到新的文档（document）时调用。
 
 <div class="alert alert-info">
 
 Be aware that `adoptedCallback` is not polyfilled.
 
+请注意，`adoptedCallback` 不是 polyfill。
+
 </div>
 
-#### Lit behavior
+#### Lit 行为
 
-Lit has no default behavior for this callback.
+Lit 没有针对这个回调的默认行为。
 
-#### Use cases
+#### 用例
 
-This callback should only be used for advanced use cases when the element behavior should change when it changes documents.
+此回调应仅用于高级用例，即元素行为应在更改文档时发生更改。
 
-## Reactive update cycle { #reactive-update-cycle }
+## 响应式更新周期 { #reactive-update-cycle }
 
-In addition to the standard custom element lifecycle, Lit components also implement a reactive update cycle.
+除了标准的自定义元素生命周期之外，Lit 组件还实现了响应式式更新周期。
 
-The reactive update cycle is triggered when a reactive property changes or when the `requestUpdate()` method is explicitly called. Lit performs updates asynchronously so property changes are batched — if more properties change after an update is requested, but before the update starts, all of the changes are captured in the same update.
+当响应式属性被更改或显式调用 `requestUpdate()` 方法时，会触发响应式更新周期。 Lit 执行更新是异步的，因此属性更改是批处理的——如果在请求更新后但在更新开始之前有更多属性被更改，则所有更改都会在同一个更新中捕获。
 
-Updates happen at microtask timing, which means they occur before the browser paints the next frame to the screen. See [Jake Archibald's article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) on microtasks for more information about browser timing.
+Lit的更新发生在微任务中，这意味着它们发生在浏览器将下一帧绘制到屏幕之前。请参阅 [Jake Archibald 的文章](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)了解更多有关浏览器微任务的信息。
 
-At a high level, the reactive update cycle is:
+概括地说，响应式更新周期是：
 
-1. An update is scheduled when one or more properties change or when `requestUpdate()` is called.
-1. The update is performed prior to the next frame being painted.
-    1. Reflecting attributes are set.
-    1. The component’s render method is called to update its internal DOM.
-1. The update is completed and the `updateComplete` promise is resolved.
+1. 当一个或多个属性被更改或调用 `requestUpdate()` 时会安排更新。
+1. 在绘制下一帧之前执行更新。
+    1. 设置反射属性（attribute）。
+    1. 调用组件的 render 方法来更新其内部 DOM。
+1. 更新完成并且 `updateComplete` promise 被 resolve.
 
-In more detail, it looks like this:
+更详细地说，更新流程如下图所示：
 
 **Pre-Update**
 
@@ -151,17 +153,19 @@ In more detail, it looks like this:
 
 <img class="centered-image" src="/images/docs/components/update-4.jpg">
 
-### Triggering an update {#reactive-update-cycle-triggering}
+### 触发更新 {#reactive-update-cycle-triggering}
 
-An update is triggered when a reactive property changes or the `requestUpdate()` method is called. Since updates are performed asynchronously, any and all changes that occur before the update is performed result in only a **single update**.
+当响应式属性被更改或调用 `requestUpdate()` 方法时会触发更新。由于更新是异步执行的，因此在执行更新之前发生的任何（所有）更改都只会导致**一次更新**。
 
 #### hasChanged() {#haschanged}
 
 Called when a reactive property is set. By default `hasChanged()` does a strict equality check and if it returns `true`, an update is scheduled. See [configuring `hasChanged()`](/docs/components/properties/#haschanged) for more information.
 
+在设置反应属性时调用。默认情况下，`hasChanged()` 会进行严格相等比较，如果返回 `true`，则会安排更新。请参阅 [配置 `hasChanged()`](/docs/components/properties/#haschanged)了解更多详细信息。
+
 #### requestUpdate() {#requestUpdate}
 
-Call `requestUpdate()` to schedule an explicit update. This can be useful if you need the element to update and render when something not related to a property changes. For example, a timer component might call `requestUpdate()` every second.
+调用 `requestUpdate()` 来安排显式更新。如果你需要在与属性无关的内容发生更改时更新和渲染元素，这将很有用。例如，计时器组件可能每秒调用一次`requestUpdate()`。
 
 ```js
 connectedCallback() {
@@ -175,45 +179,45 @@ disconnectedCallback() {
 }
 ```
 
-The list of properties that have changed is stored in a Map that’s passed to all the subsequent lifecycle methods. The Map keys are the property names and its values are the previous property values.
+被更改的属性（property）列表存储一个 map 中，然后将该Map传递给所有后续生命周期方法。 map 的键是属性名称，值是更改前的属性值。
 
-Optionally, you can pass a property name and a previous value when calling `requestUpdate()`, which will be stored in the `changedProperties` map. This can be useful if you implement a custom getter and setter for a property. See [Reactive properties](/docs/components/properties/) for more information about implementing custom getters and setters.
+或者，你可以在调用 `requestUpdate()` 时传递属性名称和更新前的值，这些值将存储在 `changedProperties` map中。如果你要为属性实现自定义 getter 和 setter，这将很有用。请参阅 [响应式属性]({{baseurl}}/docs/components/properties/)了解更多有关实现自定义 getter 和 setter 的信息。
 
 ```js
   this.requestUpdate('state', this._previousState);
 ```
 
-### Performing an update {#reactive-update-cycle-performing}
+### 执行更新 {#reactive-update-cycle-performing}
 
-When an update is performed, the `performUpdate()` method is called. This method calls a number of other lifecycle methods.
+执行更新时，会调用 `performUpdate()` 方法。该方法会调用许多其他生命周期方法。
 
-Any changes that would normally trigger an update which occur **while** a component is updating do **not schedule a new update**. This is done so that property values can be computed during the update process.
+**当**组件更新时，任何通常会触发更新的更改都**不会安排新的更新**。这样做是为了在更新过程中可以计算属性值。
 
 #### shouldUpdate() {#shouldupdate}
 
-Called to determine whether an update cycle is required.
+调用该方法确定是否需要执行更新。
 
 | | |
 |-|-|
-| Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
-| Updates | No. Property changes inside this method do not trigger an element update. |
-| Call super? | Not necessary. |
-| Called on server? | No. |
+| 参数 | `changedProperties`: 是一个`Map`，map的键是被更改的属性（property）名称，值是更改前的属性值。
+| 是否更新 | 不更新。 在该方法内部更改的属性（property）不会触发元素更新。|
+| 是否调用 super? | 不需要。 |
+| 是否服务端调用? | 不是。 |
 
-If `shouldUpdate()` returns `true`, which it does by default, then the update proceeds normally. If it returns `false`, the rest of the update cycle will not be called but the `updateComplete` Promise is still resolved.
+如果 `shouldUpdate()` 返回 `true`（默认返回`true`），则更新会正常进行。如果返回 `false`，则不会调用更新周期的其余部分，但 `updateComplete` Promise 仍然会resolve。
 
-You can implement `shouldUpdate()` to specify which property changes should cause updates. Use the map of `changedProperties` to compare current and previous values.
+你可以自己实现 `shouldUpdate()` 来指定哪些属性更改应该触发更新。在自己的实现中，可以使用 `changedProperties` map来比较当前值和以前的值。
 
 ```js
 shouldUpdate(changedProperties) {
-  // Only update element if prop1 changed.
+  // 只有prop1被更改了才会更新元素
   return changedProperties.has('prop1');
 }
 ```
 
 #### willUpdate() {#willupdate}
 
-Called before `update()` to compute values needed during the update.
+在 `update()` 之前调用该方法来计算更新期间所需的值。
 
 | | |
 |-|-|
