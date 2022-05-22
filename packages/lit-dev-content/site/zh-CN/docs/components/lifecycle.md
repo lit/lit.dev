@@ -26,14 +26,13 @@ Lit组件是标准的自定义元素，并继承了自定义元素的生命周�
 
 #### Lit behavior 
 
-Requests an asynchronous update using the `requestUpdate()` method, so when a Lit component gets upgraded, it performs an update immediately.
 使用 `requestUpdate()` 方法请求异步更新，因此当 Lit 组件升级时，它会立即执行更新。
 
 保存已在元素上设置的任何属性（property）。这可确保组件升级前设置的值被保留下来，并正确覆盖组件设置的默认值。
 
-#### Use cases
+#### 用例
 
-Perform one time initialization tasks that must be done before the first [update](#reactive-update-cycle). For example, when not using decorators, default values for properties can be set in the constructor, as shown in [Declaring properties in a static properties field](/docs/components/properties/#declaring-properties-in-a-static-properties-field).
+一次性初始化任务必须在第一次 [更新](#reactive-update-cycle) 之前执行完成。例如，不使用装饰器时，可以在构造函数中设置属性的默认值，如[在静态属性字段中声明属性]({{baseurl}}/docs/components/properties/#declaring-properties-in-a-static-properties-field）。
 
 ```js
 constructor() {
@@ -72,9 +71,7 @@ connectedCallback() {
 
 #### 用例
 
-This callback is the main signal to the element that it may no longer be used; as such, `disconnectedCallback()` should ensure that nothing is holding a reference to the element (such as event listeners added to nodes external to the element), so that it is free to be garbage collected. Because elements may be re-connected after being disconnected, as in the case of an element moving in the DOM or caching, any such references or listeners may need to be re-established via `connectedCallback()` so that the element continues functioning as expected in these scenarios. For example, remove event listeners to nodes external to the element, like a keydown event handler added to the window.
-
-这个回调是元素的一个主要信号：它可能不再被使用了；因此，应该在 `disconnectedCallback()` 中确保没有任何东西持有对该元素的引用（例如：添加到元素外部节点的事件监听器），以便它可以被垃圾回收机制自由地回收。因为元素可能在断开连接后重新连接，例如元素在 DOM 中移动或缓存的情况，任何此类引用或监听器都可能需要通过 `connectedCallback()` 重新建立，以便元素在这种情况下可以继续按预期运行。例如删除元素外部节点的事件侦听器，例如添加到窗口的 keydown 事件处理程序。
+这个回调是元素的一个主要信号：它可能不再被使用了；因此，应该在 `disconnectedCallback()` 中确保没有任何东西持有对该元素的引用（例如：添加到元素外部节点的事件监听器），以便它可以被垃圾回收机制自由地回收。因为元素可能在断开连接后重新连接，例如元素在 DOM 中移动或缓存的情况，任何此类引用或监听器都可能需要通过 `connectedCallback()` 重新建立，以便元素在这种情况下可以继续按预期运行。例如删除元素外部节点的事件监听器，例如添加到窗口的 keydown 事件处理程序。
 
 ```js
 disconnectedCallback() {
@@ -97,7 +94,7 @@ disconnectedCallback() {
 
 Lit 使用该回调将attribute的更改同步到响应式属性。具体来说，当设置了一个attribute时，就设置了相应的property。 Lit 还会自动设置元素的 `observedAttributes` 数组以匹配组件的响应式属性列表。
 
-#### Use cases
+#### 用例
 
 你很少需要实现这个回调。
 
@@ -106,8 +103,6 @@ Lit 使用该回调将attribute的更改同步到响应式属性。具体来说�
 当组件移动到新的文档（document）时调用。
 
 <div class="alert alert-info">
-
-Be aware that `adoptedCallback` is not polyfilled.
 
 请注意，`adoptedCallback` 不是 polyfill。
 
@@ -159,9 +154,7 @@ Lit的更新发生在微任务中，这意味着它们发生在浏览器将下�
 
 #### hasChanged() {#haschanged}
 
-Called when a reactive property is set. By default `hasChanged()` does a strict equality check and if it returns `true`, an update is scheduled. See [configuring `hasChanged()`](/docs/components/properties/#haschanged) for more information.
-
-在设置反应属性时调用。默认情况下，`hasChanged()` 会进行严格相等比较，如果返回 `true`，则会安排更新。请参阅 [配置 `hasChanged()`](/docs/components/properties/#haschanged)了解更多详细信息。
+在设置响应式属性时调用。默认情况下，`hasChanged()` 会进行严格相等比较，如果返回 `true`，则会安排更新。请参阅 [配置 `hasChanged()`](/docs/components/properties/#haschanged)了解更多详细信息。
 
 #### requestUpdate() {#requestUpdate}
 
@@ -200,9 +193,9 @@ disconnectedCallback() {
 | | |
 |-|-|
 | 参数 | `changedProperties`: 是一个`Map`，map的键是被更改的属性（property）名称，值是更改前的属性值。
-| 是否更新 | 不更新。 在该方法内部更改的属性（property）不会触发元素更新。|
-| 是否调用 super? | 不需要。 |
-| 是否服务端调用? | 不是。 |
+| 是否触发更新 | 不触发。 在该方法内部更改的属性（property）不会触发元素更新。|
+| 是否调用 super | 不需要。 |
+| 是否可以服务端调用 | 不是。 |
 
 如果 `shouldUpdate()` 返回 `true`（默认返回`true`），则更新会正常进行。如果返回 `false`，则不会调用更新周期的其余部分，但 `updateComplete` Promise 仍然会resolve。
 
@@ -221,16 +214,16 @@ shouldUpdate(changedProperties) {
 
 | | |
 |-|-|
-| Arguments |  `changedProperties`: `Map` with keys that are the names of changed properties and values that are the corresponding previous values. |
-| Updates? | No. Property changes inside this method do not trigger an element update. |
-| Call super? | Not necessary. |
-| Called on server? | Yes. |
+| 参数 |  `changedProperties`: 是一个`Map`，map的键是被更改的属性（property）名称，值是更改前的属性值。 |
+| 是否触发更新 | 不触发。 在该方法内部更改的属性（property）不会触发元素更新。|
+| 是否调用 super | 不需要。 |
+| 是否可以服务端调用 | 是 |
 
-Implement `willUpdate()` to compute property values that depend on other properties and are used in the rest of the update process.
+实现 `willUpdate()` 来计算依赖于其他属性的属性值，这些属性值会在更新过程的其余部分中使用。
 
 ```js
 willUpdate(changedProperties) {
-  // only need to check changed properties for an expensive computation.
+  // 仅需要检查那些涉及到昂贵计算的属性
   if (changedProperties.has('firstName') || changedProperties.has('lastName')) {
     this.sha = computeSHA(`${this.firstName} ${this.lastName}`);
   }
@@ -243,31 +236,31 @@ render() {
 
 #### update() {#update}
 
-Called to update the component's DOM.
+调用该方法更新组件DOM。
 
 | | |
 |-|-|
-| Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
-| Updates? | No. Property changes inside this method do not trigger an element update. |
-| Call super? | Yes. Without a super call, the element’s attributes and template will not update. |
-| Called on server? | No. |
+| 参数 | `changedProperties`: 是一个`Map`，map的键是被更改的属性（property）名称，值是更改前的属性值。|
+| 是否触发更新 | 不会。 在该方法内部更改的属性（property）不会触发元素更新。 |
+| 是否调用 super | 需要。 不调用 super 的话，组件的属性（attribute）和模板都不会被更新。 |
+| 是否可以服务端调用 | 是 |
 
-Reflects property values to attributes and calls `render()` to update the component’s internal DOM.
+反射 property 的值到 attribute 上，并且调用 `render()` 方法更新组件的内部DOM。
 
-Generally, you should not need to implement this method.
+通常情况下，你不需要实现该方法。
 
 #### render() {#render}
 
-Called by `update()` and should be implemented to return a renderable result (such as a `TemplateResult`) used to render the component's DOM.
+该方法会被 `update()` 方法调用，你应该自己实现该方法，并且返回一个可渲染的结果（例如返回一个`TemplateResult`类型值）用于渲染组件的DOM。
 
 | | |
 |-|-|
-| Arguments | None. |
-| Updates? | No. Property changes inside this method do not trigger an element update. |
-| Call super? | Not necessary. |
-| Called on server? | Yes. |
+| 参数 | 无。 |
+| 是否触发更新 | 不会。 在该方法内部更改的属性（property）不会触发元素更新。 |
+| 是否调用 super | 不需要。
+| 是否可以服务端调用 | 是。 |
 
-The `render()` method has no arguments, but typically it references component properties. See [Rendering](/docs/components/rendering/) for more information.
+`render()` 方法没有参数，但是通常情况下它会直接引用组件的属性。请参阅 [渲染]({{baseurl}}/docs/components/rendering/) 了解更多信息。
 
 ```js
 render() {
@@ -277,22 +270,22 @@ render() {
 }
 ```
 
-### Completing an update {#reactive-update-cycle-completing}
+### 完成更新 {#reactive-update-cycle-completing}
 
-After `update()` is called to render changes to the component's DOM, you can perform actions on the component's DOM using these methods.
+调用 `update()` 渲染组件的DOM的更新之后，你可以在下面这些方法中执行一些组件DOM相关的操作。
 
 #### firstUpdated() {#firstupdated}
 
-Called after the component's DOM has been updated the first time, immediately before [`updated()`](#updated) is called.
+组件的DOM第一次被更新之后会被立即调用，该方法的调用发生在 [`updated()`](#updated) 调用之前。
 
 | | |
 |-|-|
-| Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
-| Updates? | Yes. Property changes inside this method schedule a new update cycle. |
-| Call super? | Not necessary. |
-| Called on server? | No. |
+| 参数 | `changedProperties`: 是一个`Map`，map的键是被更改的属性（property）名称，值是更改前的属性值。|
+| 是否触发更新 | 不会。 在该方法内部更改的属性（property）不会触发元素更新。 |
+| 是否调用 super | 不需要。
+| 是否可以服务端调用 | 否。 |
 
-Implement `firstUpdated()` to perform one-time work after the component's DOM has been created. Some examples might include focusing a particular rendered element or adding a [ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) to an element.
+实现 `firstUpdated()` 在组件的 DOM 创建后执行一些一次性的工作。可能的场景包括：聚焦到特定渲染元素，添加 [ResizeObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/ResizeObserver) 或 [IntersectionObserver](https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver) 到一个元素。
 
 ```js
 firstUpdated() {
@@ -302,16 +295,16 @@ firstUpdated() {
 
 #### updated() {#updated}
 
-Called whenever the component’s update finishes and the element's DOM has been updated and rendered.
+每当组件更新完成并且元素的 DOM 已更新和渲染时调用。
 
 | | |
 |-|-|
-| Arguments | `changedProperties`: `Map` with keys that are the names of changed properties and  values that are the corresponding previous values. |
-| Updates? | Yes. Property changes inside this method trigger an element update. |
-| Call super? | Not necessary. |
-| Called on server? | No. |
+| 参数 | `changedProperties`: 是一个`Map`，map的键是被更改的属性（property）名称，值是更改前的属性值。|
+| 是否触发更新 | 会。 在该方法内部更改的属性（property）会触发元素更新。 |
+| 是否调用 super | 不需要。
+| 是否可以服务端调用 | 否。 |
 
-Implement `updated()` to perform tasks that use element DOM after an update. For example, code that performs animation may need to measure the element DOM.
+实现 `updated()` 在更新后执行一些使用使用元素 DOM 的任务。例如：执行动画的代码可能需要测量元素 DOM。
 
 ```js
 updated(changedProperties) {
@@ -323,30 +316,30 @@ updated(changedProperties) {
 
 #### updateComplete {#updatecomplete}
 
-The `updateComplete` Promise resolves when the element has finished updating. Use `updateComplete` to wait for an update. The resolved value is a Boolean indicating if the element has finished updating. It will be `true` if there are no pending updates after the update cycle has finished.
+元素完成更新后，`updateComplete` Promise会被resolve。所以可以使用 `updateComplete` 来等待更新完成。resolve的值是一个Boolean类型的值，表示元素是否已经完成更新。如果更新周期完成后，没有挂起的更新就会resolve `true`。
 
-It is a good practice to dispatch events from components after rendering has completed, so that the event's listeners see the fully rendered state of the component. To do so, you can await the `updateComplete` Promise before firing the event.
+渲染完成后从组件dispatch事件是一种很好的做法，这样走可以让事件侦听器看到组件的完全渲染状态。为此，你可以在等待 `updateComplete` Promise被resolve之后触发事件。
 
 ```js
 async _loginClickHandler() {
   this.loggedIn = true;
-  // Wait for `loggedIn` state to be rendered to the DOM
+  // 等待 `loggedIn` 被渲染到DOM上
   await this.updateComplete;
   this.dispatchEvent(new Event('login'));
 }
 ```
 
-Also, when writing tests you can await the `updateComplete` Promise before making assertions about the component’s DOM.
+此外，在编写测试时，你可以在等待 `updateComplete` Promise被resolve之后对组件的 DOM 进行断言。
 
-### Implementing additional customization {#reactive-update-cycle-customizing}
+### 实现更多的定制化 {#reactive-update-cycle-customizing}
 
 #### performUpdate()  {#performupdate}
 
-Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
+该方法可以实现响应式更新周期，调用其他方法，如 `shouldUpdate()`、`update()` 和 `updated()`。
 
-Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
+调用 `performUpdate()` 方法能够立即处理挂起的更新。这通常不需要，但在需要同步更新的极少数情况下可以这样做。
 
-Implement `performUpdate()` to customize the timing of the update cycle. This can be useful for implementing custom scheduling. Note, if `performUpdate()` returns a Promise, the `updateComplete` Promise will await it.
+实现 `performUpdate()` 来自定义更新周期的时间。这对于实现自定义调度很有用。注意，如果 `performUpdate()` 返回一个 Promise，`updateComplete` Promise 将等待它。
 
 ```js
 async performUpdate() {
@@ -355,20 +348,20 @@ async performUpdate() {
 }
 ```
 
-In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
+在该例子中，执行更新发生在绘制完成之后。该技术可用于解除对主渲染/事件线程的阻塞。请参阅 Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) 在 Chrome 开发者峰会上的演讲，了解更多讨论。
+
 
 #### hasUpdated  {#hasupdated}
 
-The `hasUpdated` property returns true if the component has updated at least once. You can use `hasUpdated` in any of the lifecycle methods to perform work only if the component has not yet updated.
-
+如果组件至少更新了一次，则 `hasUpdated` 属性返回 true。仅当组件尚未更新时，你才可以在任何生命周期方法中使用 `hasUpdated` 来执行任务。
 
 #### getUpdateComplete() {#getUpdateComplete}
 
-To await additional conditions before fulfilling the `updateComplete` promise, override the `getUpdateComplete()` method. For example, it may be useful to await the update of a child element. First await `super.getUpdateComplete()`, then any subsequent state.
+可以覆盖 `getUpdateComplete()` 方法来实现在fulfill `updateComplete` promise之前等待其他条件完成。例如，等待子元素的更新可能很有用。首先等待 `super.getUpdateComplete()`，然后是任何后续状态。
 
 <div class="alert alert-info">
 
-It's recommended to override the `getUpdateComplete()` method instead of the `updateComplete` getter to ensure compatibility with users who are using TypeScript's ES5 output (see [TypeScript#338](https://github.com/microsoft/TypeScript/issues/338)).
+建议重写 `getUpdateComplete()` 方法而不是 `updateComplete` getter，这样可以确保与使用 TypeScript ES5 （编译）输出的用户兼容（请参阅 [TypeScript#338](https://github.com/microsoft/TypeScript/issues /338))。
 
 </div>
 
@@ -381,27 +374,27 @@ class MyElement extends LitElement {
 }
 ```
 
-## External lifecycle hooks: controllers and decorators
+## 外部生命周期钩子: 控制器和装饰器
 
-In addition to component classes implementing lifecycle callbacks, external code, such as [decorators](/docs/components/decorators/) may need to hook into a component's lifecycle.
+除了实现生命周期回调的组件类之外，外部代码可能也需要挂钩到组件的生命周期，例如 [装饰器]({{baseurl}}/docs/components/decorators/) 。
 
-Lit offers two concepts for external code to integrate with the reactive update lifecycle: `static addInitializer()` and `addController()`:
+Lit 提供两种将外部代码集成到响应式生命周期的机制：`static addInitializer()` and `addController()`:
 
 #### static addInitializer() {#addInitializer}
 
-`addInitializer()` allows code that has access to a Lit class definition to run code when instances of the class are constructed.
+`addInitializer()` 允许有权访问 Lit 类定义的代码在构造类的实例时运行。
 
-This is very useful when writing custom decorators. Decorators are run at class definition time, and can do things like replace field and method definitions. If they also need to do work when an instance is created, they must call `addInitializer()`. It will be common to use this to add a [reactive controller](/docs/composition/controllers/) so decorators can hook into the component lifecycle:
+这在编写自定义装饰器时非常有用。装饰器在类定义时运行，可以做一些事情，比如替换字段和方法定义。如果在创建实例时它们还需要工作，那么装饰器必须调用`addInitializer()`。通常使用它来添加 [响应式控制器]({{baseurl}}/docs/composition/controllers/) 以便装饰器可以挂钩到组件生命周期：
 
 {% switchable-sample %}
 
 ```ts
-// A TypeScript decorator
+// TypeScript 装饰器
 const myDecorator = (proto: ReactiveElement, key: string) => {
   const ctor = proto.constructor as typeof ReactiveElement;
 
   ctor.addInitializer((instance: ReactiveElement) => {
-    // This is run during construction of the element
+    // 这行代码将在构造元素时执行
     new MyController(instance);
   });
 };
@@ -413,7 +406,7 @@ const myDecorator = (descriptor) => {
   ...descriptor,
   finisher(ctor) {
     ctor.addInitializer((instance) => {
-      // This is run during construction of the element
+      // 这行代码将在构造元素时执行
       new MyController(instance);
     });
   },
@@ -422,9 +415,7 @@ const myDecorator = (descriptor) => {
 
 {% endswitchable-sample %}
 
-
-Decorating a field will then cause each instance to run an initializer
-that adds a controller:
+然后装饰一个字段将导致每个实例都会运行一个initializer添加一个控制器：
 
 ```ts
 class MyElement extends LitElement {
@@ -432,28 +423,28 @@ class MyElement extends LitElement {
 }
 ```
 
-Initializers are stored per-constructor. Adding an initializer to a
-subclass does not add it to a superclass. Since initializers are run in
-constructors, initializers will run in order of the class hierarchy,
-starting with superclasses and progressing to the instance's class.
+Initializer是按构造函数存储的。添加到
+子类的Initializer不会将被添加到父类。由于Initializer是在
+构造函数中运行，所以它们将按照类层次结构的顺序运行，
+从父类开始，到实例的类。
 
 #### addController() {#addController}
 
-`addController()` adds a reactive controller to a Lit component so that the component invokes the controller's lifecycle callbacks. See the [Reactive Controller](/docs/composition/controllers/) docs for more information.
+`addController()` 将响应式控制器添加到 Lit 组件，以便组件调用控制器的生命周期回调。请参阅 [响应式控制器]({{baseurl}}/docs/composition/controllers/)了解更多信息。
 
 #### removeController() {#removeController}
 
-`removeController()` removes a reactive controller so it no longer receives lifecycle callbacks from this component.
+`removeController()` 移除了一个响应式控制器，因此它不再接收来自该组件的生命周期回调。
 
-## Server-side reactive update cycle {#server-reactive-update-cycle}
+## 服务端响应式更新周期 {#server-reactive-update-cycle}
 
 <div class="alert alert-info">
 
-Lit’s server-side rendering code is currently in an experimental stage so the following information is subject to change.
+Lit 的服务器端渲染代码目前处于实验阶段，因此以下信息可能会发生变化。
 
 </div>
 
-Not all of the update cycle is called when rendering Lit on the server. The following methods are called on the server.
+在服务器上渲染 Lit 时，并不是所有的更新周期都会被调用。在服务器上可以调用以下方法。
 
 <img class="centered-image" src="/images/docs/components/update-server.jpg">
 
