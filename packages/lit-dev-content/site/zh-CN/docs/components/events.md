@@ -1,32 +1,35 @@
 ---
-title: Events
+title: 事件
 eleventyNavigation:
-  key: Events
-  parent: Components
+  key: 事件
+  parent: 组件
   order: 7
 versionLinks:
   v1: components/events/
 ---
 
-Events are the standard way that elements communicate changes. These changes typically occur due to user interaction. For example, a button dispatches a click event when a user clicks on it; an input dispatches a change event when the user enters a value in it.
+事件是元素传达变化的标准方式。这些变化通常是由于用户交互而发生的。例如，当用户点击一个按钮时，它会分发一个 click 事件；当用户在其中输入值时会分发一个 change 事件。
 
-In addition to these standard events that are automatically dispatched, Lit elements can dispatch custom events. For example, a menu element might dispatch an event to indicate the selected item changed; a popup element might dispatch an event when the popup opens or closes.
+除了这些自动分发的标准事件之外，Lit 元素还可以分发自定义事件。例如，菜单元素可能会分发一个事件来指示所选项目已更改；当弹出窗口打开或关闭时，弹出元素也可能会分发一个事件。
 
-Any Javascript code, including Lit elements themselves, can listen for and take action based on events. For example, a toolbar element might filter a list when a menu item is selected; a login element might process a login when it handles a click on the login button.
+任何 Javascript 代码，包括 Lit 元素本身，都可以监听事件并根据事件采取行动。例如，工具栏元素可能会在选择菜单项时过滤列表；登录元素在登录按钮的被点击时可能会处理登录相关事物。
 
-## Listening to events
 
-In addition to the standard `addEventListener` API, Lit introduces a declarative way to add event listeners.
+## 事件监听
 
-### Adding event listeners in the element template
+除了标准的 `addEventListener` API 之外，Lit 还引入了一种声明式添加事件监听器的方式。
 
-You can use `@` expressions in your template to add event listeners to elements in your component's template. Declarative event listeners are added when the template is rendered.
+
+### 在模板中添加事件监听器
+
+你可以在模板中使用 `@` 表达式将事件监听器添加到组件模板中的元素。渲染模板时添加声明式事件侦听器。
 
 {% playground-example "docs/components/events/child/" "my-element.ts" %}
 
-#### Customizing event listener options {#event-options-decorator}
+#### 自定义事件监听选项 {#event-options-decorator}
 
 If you need to customize the event options used for a declarative event listener (like `passive` or `capture`), you can specify these on the listener using the `@eventOptions` decorator. The object passed to `@eventOptions` is passed as the `options` parameter to `addEventListener`.
+如果你需要自定义用于声明式事件监听器的事件选项（如 `passive` 或 `capture`），可以使用 `@eventOptions` 装饰器在监听器上指定这些选项。传给 `@eventOptions` 的对象将作为 `options` 参数传给 `addEventListener`。
 
 ```js
 import {LitElement, html} from 'lit';
@@ -38,15 +41,16 @@ private _handleTouchStart(e) { console.log(e.type) }
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Enabling decorators](/docs/components/decorators/#enabling-decorators) for details.
+**使用装饰器。** 装饰器是一项提案中的 JavaScript 功能，因此你需要使用 Babel 或 TypeScript 之类的编译器来使用装饰器。请参阅 [启用装饰器]({{baseurl}}/docs/components/decorators/#enabling-decorators)了解更多详细信息。
 
 </div>
 
-### Adding event listeners to the component or its shadow root
+### 向组件或其shadow root上添加事件监听器
 
-To be notified of an event dispatched from the component's slotted children as well as children rendered into shadow DOM via the component template, you can add a listener to the component itself using the standard `addEventListener` DOM method. See [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on MDN for full details.
+可以使用标准的 `addEventListener` DOM 方法向组件本身添加一个监听器，就可以监听来自组件插槽中的子元素以及通过组件模板渲染到shadow DOM中的子元素分发的事件。有关完整详细信息，请参阅 MDN 上的 [EventTarget.addEventListener()](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)。
 
-The component constructor is a good place to add event listeners on the component.
+
+组件构造函数是在组件上添加事件监听器的好地方。
 
 ```js
 constructor() {
@@ -55,9 +59,10 @@ constructor() {
 }
 ```
 
-Adding event listeners to the component itself is a form of event delegation and can be done to reduce code or improve performance. See [event delegation](#event-delegation) for details. Typically when this is done, the event's `target` property is used to take action based on which element fired the event.
+向组件本身添加事件监听器是一种事件委托形式，委托可以减少代码或提高性能。请参阅 [事件委托](#event-delegation)了解有关详细信息。通常，在事件委托中，事件的 `target` 属性用于判断是在哪个元素触发了事件并据此来采取对应措施。
 
 However, events fired from the component's shadow DOM are retargeted when heard by an event listener on the component. This means the event target is the component itself. See [Working with events in shadow DOM](#shadowdom) for more information.
+但是，当组件上的事件侦听器听到时，从组件的 shadow DOM 触发的事件会被重定向。这意味着事件目标是组件本身。有关详细信息，请参阅 [使用shadow DOM 中的事件](#shadowdom)。
 
 Retargeting can interfere with event delegation, and to avoid it, event listeners can be added to the component's shadow root itself. Since the `shadowRoot` is not available in the `constructor`, event listeners can added in the `createRenderRoot` method as follows. Please note that it's important to make sure to return the shadow root from the `createRenderRoot` method.
 
@@ -223,13 +228,14 @@ const event = new MyEvent('Something important happened');
 this.dispatchEvent(event);
 ```
 
-## Working with events in shadow DOM {#shadowdom}
+## 使用 shadow DOM 中事件 {#shadowdom}
 
 When using shadow DOM there are a few modifications to the standard event system that are important to understand. Shadow DOM exists primarily to provide a scoping mechanism in the DOM that encapsulates details about these "shadow" elements. As such, events in shadow DOM encapsulate certain details from outside DOM elements.
+需要弄清楚一件很重要的事情，就是当使用shadow DOM时，它的事件系统与标准事件系统由一些细微差异。shadow DOM的存在主要是为了在DOM中提供一种作用域机制去封装“shadow”元素的细节。因此，shadow DOM 中的事件封装了来自外部 DOM 元素的某些细节。
 
-### Understanding composed event dispatching {#shadowdom-composed}
+### 理解组合事件分发 {#shadowdom-composed}
 
-By default, an event dispatched inside a shadow root will not be visible outside that shadow root. To make an event pass through shadow DOM boundaries, you must set the [`composed` property](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) to `true`. It's common to pair `composed` with `bubbles` so that all nodes in the DOM tree can see the event:
+默认情况下，在shadow root内部分发的事件对外部是不可见的。如果想要使事件穿过 shadow DOM 边界，你必须将 [`composed` 属性](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/composed) 设置为 `true`。`composed` 与 `bubbles` 搭配使用是很常见的用法，这样 DOM 树中的所有节点都可以看到该事件：
 
 ```js
 _dispatchMyEvent() {

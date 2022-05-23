@@ -224,7 +224,7 @@ render() {
 
 <div class="alert alert-info">
 
-**使用装饰器。** 装饰器是一项提案中的 JavaScript 功能，因此你需要使用 Babel 或 TypeScript 之类的编译器来使用装饰器。请参阅 [使用装饰器](/docs/components/decorators/)了解更多详细信息。
+**使用装饰器。** 装饰器是一项提案中的 JavaScript 功能，因此你需要使用 Babel 或 TypeScript 之类的编译器来使用装饰器。请参阅 [使用装饰器]({{baseurl}}/docs/components/decorators/)了解更多详细信息。
 
 </div>
 
