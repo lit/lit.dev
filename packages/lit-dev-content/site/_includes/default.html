@@ -8,6 +8,7 @@
     <meta name="description" content="Simple. Fast. Web Components.">
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
+    <link rel="modulepreload" href="{{ site.baseurl }}/js/global/lit-hydrate-support.js"/>
 
     {% inlinecss "global.css" %}
 
@@ -15,22 +16,15 @@
     {% inlinejs "global/apply-mods.js" %}
     {% inlinejs "global/initialize-typescript-attribute.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
-    {% if ssr %}
-      {% if not nohydrate %}
-        <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
-      {% endif %}
-      {% inlinejs "global/dsd-polyfill.js" %}
-    {% endif %}
+    <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
+    {% inlinejs "global/dsd-polyfill.js" %}
 
     {% if selectedVersion !== latestVersion %}
       <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
       {% inlinejs "components/litdev-banner.js" %}
     {% endif %}
 
-    <!-- We need to load litdev-search first because @lion/core loads the
-         scoped-custom-element-registry polyfill. If MWC components are loaded
-         first the polyfill currently throws errors. -->
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-search.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/global/hydrate-litdev-search.js"></script>
 
     <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-version-selector.js"></script>
@@ -39,7 +33,6 @@
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
     {% if not env.DEV %}
-      <script type="module" src="{{ site.baseurl }}/js/lit.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
@@ -50,7 +43,7 @@
     <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
     {% block head %}{% endblock %}
   </head>
-  <body {% if ssr %}dsd-pending{% endif %}>
+  <body dsd-pending>
     <mwc-drawer type="modal" id="mobileDrawer">
       <nav>
         <div id="mobileSiteNav">
@@ -84,7 +77,7 @@
     {% include 'footer.html' %}
 
     {% if env.GOOGLE_ANALYTICS_ID %}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
+      <script async defer src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
       <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date);gtag("config","{{ env.GOOGLE_ANALYTICS_ID }}");</script>
     {% endif %}
   </body>

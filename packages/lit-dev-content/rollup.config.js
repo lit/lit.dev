@@ -31,6 +31,7 @@ const terserOptions = {
 export default [
   {
     input: [
+      'lib/global/lit-hydrate-support.js',
       'lib/components/copy-button.js',
       'lib/components/litdev-aside.js',
       'lib/components/litdev-banner.js',
@@ -38,20 +39,20 @@ export default [
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
       'lib/components/ts-js.js',
+      'lib/components/litdev-search.js',
       'lib/components/litdev-switchable-sample.js',
       'lib/components/litdev-tutorial.js',
       'lib/components/litdev-tutorial-card.js',
-      'lib/components/litdev-search.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
       'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
+      'lib/global/hydrate-litdev-search.js',
       'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
-      'lib/global/lit-hydrate-support.js',
       'lib/global/dsd-polyfill.js',
     ],
     output: {

@@ -4,20 +4,26 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, TemplateResult, nothing} from 'lit';
+import {
+  LitElement,
+  html,
+  css,
+  TemplateResult,
+  nothing,
+  PropertyValues,
+} from 'lit';
 import {
   state,
   property,
-  query,
   queryAll,
   customElement,
+  query,
 } from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import Minisearch from 'minisearch';
-import {addModsParameterToUrlIfNeeded} from '../mods.js';
-import '@lion/combobox/define';
-import {LionOption} from '@lion/listbox';
 import type {Drawer} from '@material/mwc-drawer';
+import {animate, Options as AnimationOptions} from '@lit-labs/motion';
 
 /**
  * Representation of each document indexed by Minisearch.
@@ -61,7 +67,11 @@ function isApiLink(url: string) {
   return url.includes('docs/api/');
 }
 
-const SEARCH_ICON = html`<svg aria-hidden="true" viewbox="0 0 24 24">
+const SEARCH_ICON = (opacity: '0' | '1') => html`<svg
+  style="opacity: ${opacity}"
+  aria-hidden="true"
+  viewbox="0 0 24 24"
+>
   <path d="M0 0h24v24H0z" fill="none"></path>
   <path
     class="search-icon"
@@ -74,7 +84,7 @@ const SEARCH_ICON = html`<svg aria-hidden="true" viewbox="0 0 24 24">
  * Search input component that can fuzzy search the site.
  */
 @customElement('litdev-search')
-class LitDevSearch extends LitElement {
+export class LitDevSearch extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -84,7 +94,11 @@ class LitDevSearch extends LitElement {
       margin-block-start: 4px;
     }
 
-    .root {
+    #popup {
+      position: absolute;
+    }
+
+    #root {
       position: relative;
     }
 
@@ -100,38 +114,53 @@ class LitDevSearch extends LitElement {
       transition: opacity 1s;
     }
 
-    lion-combobox > lion-options {
+    #items {
+      display: block;
+      overflow: auto;
+      z-index: 1;
+      background: rgb(255, 255, 255);
       /* Fix the dimensions of the suggestion dropdown */
       max-height: min(400px, 100vh - 60px);
       width: 400px;
       box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
+      padding: 0;
+      margin: 0;
     }
 
-    lion-combobox {
-      color: #6f6f6f;
+    input {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: currentColor;
+      font-family: inherit;
       font-size: inherit;
       font-weight: inherit;
+      border: none;
+      border-block-end: solid currentColor;
+      border-block-end-width: 1px;
+      outline: none;
+    }
+
+    input:focus {
+      border-block-end-width: 2px;
+    }
+
+    input::placeholder {
+      color: currentColor;
     }
 
     /* Mobile responsive search */
     @media (max-width: 864px) {
-      lion-combobox {
-        color: white;
-      }
-
-      lion-combobox input::placeholder {
-        color: inherit;
-      }
-
       svg .search-icon {
         fill: white;
       }
 
-      lion-combobox > lion-options {
+      #items {
         /* Fix the dimensions of the suggestion dropdown */
         max-height: min(400px, 100vh - 60px);
         width: 240px;
-        margin-inline-start: -20px;
       }
     }
   `;
@@ -158,23 +187,96 @@ class LitDevSearch extends LitElement {
   @queryAll('litdev-search-option')
   private searchOptionElements!: LitdevSearchOption[];
 
-  /**
-   * Search input within lion-combobox.
-   */
-  @query('lion-combobox input')
-  private input!: HTMLInputElement;
+  @query('#popup')
+  private popupEl!: HTMLElement;
 
-  /**
-   * Reference the search icon.
-   */
-  @query('svg')
-  private searchIcon!: SVGElement;
+  @query('input')
+  private inputEl!: HTMLInputElement;
 
   /**
    * Suggestions visible to the user rendered under the search input field.
    */
   @state()
   private suggestions: Suggestion[] = [];
+
+  @state()
+  private isFocused = false;
+
+  @state()
+  private selectedIndex = -1;
+
+  @state()
+  private isListboxVisible = false;
+
+  @state()
+  private popupSpaceRight = false;
+
+  @state()
+  private popupSpaceLeft = false;
+
+  render() {
+    const isExpanded = this.isFocused && this.suggestions.length > 0;
+    const activeDescendant =
+      this.selectedIndex !== -1 ? `${this.selectedIndex}` : nothing;
+
+    const listboxStyles = styleMap({
+      // isListboxVisible allows animation fade away
+      visibility: isExpanded || this.isListboxVisible ? 'visible' : 'hidden',
+      opacity: isExpanded ? '1' : '0',
+      right: this.popupSpaceRight ? '0px' : 'auto',
+      left: this.popupSpaceLeft ? '0px' : 'auto',
+    });
+    const listboxAnimationOptions: AnimationOptions = {
+      properties: ['opacity'],
+      onComplete: () => {
+        this.isListboxVisible = isExpanded;
+      },
+    };
+    return html`
+      <div id="root" .suggestions=${this.suggestions}>
+        <input
+          autocomplete="off"
+          role="combobox"
+          placeholder="Search"
+          aria-label="Lit Site Search"
+          aria-haspopup="listbox"
+          aria-controls="items"
+          aria-expanded=${isExpanded ? 'true' : 'false'}
+          aria-activedescendant=${activeDescendant}
+          @input=${this.onInput}
+          @keydown=${this.onKeydown}
+          @focus=${this.onFocus}
+          @blur=${this.onBlur}
+        />
+        <div
+          id="popup"
+          ${animate(listboxAnimationOptions)}
+          style=${listboxStyles}
+        >
+          <ul id="items" role="listbox">
+            ${repeat(
+              this.suggestions,
+              (v) => v.id,
+              (
+                {relativeUrl, title, heading, isSubsection},
+                index
+              ) => html`<litdev-search-option
+                id=${index}
+                ?checked=${this.selectedIndex === index}
+                .relativeUrl="${relativeUrl}"
+                .title="${title}"
+                .heading="${heading}"
+                .isSubsection="${isSubsection}"
+                role="option"
+                @click="${() => this.navigate(relativeUrl)}"
+              ></litdev-search-option>`
+            )}
+          </ul>
+        </div>
+        ${SEARCH_ICON(this.isFocused ? '0' : '1')}
+      </div>
+    `;
+  }
 
   /**
    * Load and deserialize search index into `LitDevSearch.siteSearchIndex`.
@@ -215,20 +317,27 @@ class LitDevSearch extends LitElement {
    * Load the search index.
    */
   firstUpdated() {
-    // Late load search index when page is idle.
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => this.loadSearchIndex());
-    } else {
-      setTimeout(() => this.loadSearchIndex(), 500);
-    }
+    this.loadSearchIndex();
+    this.isFocused = !!this.shadowRoot?.activeElement;
+  }
 
-    this.input.placeholder = 'Search';
+  updated(changed: PropertyValues) {
+    super.updated(changed);
+
+    if (changed.has('isFocused') || changed.has('suggestions')) {
+      const isExpanded = this.isFocused && this.suggestions.length > 0;
+      if (!isExpanded) {
+        return;
+      }
+
+      this.positionPopup();
+    }
   }
 
   /**
    * Repopulate suggestions with each input event.
    */
-  private handleInput(e: InputEvent) {
+  private onInput(e: InputEvent) {
     this.searchText = (e.target as HTMLInputElement).value ?? '';
     this.querySearch(this.searchText);
   }
@@ -240,6 +349,7 @@ class LitDevSearch extends LitElement {
    */
   private querySearch(query: string) {
     const trimmedQuery = query.trim();
+    this.selectedIndex = -1;
     if (
       !LitDevSearch.siteSearchIndex ||
       trimmedQuery === '' ||
@@ -251,27 +361,63 @@ class LitDevSearch extends LitElement {
     this.suggestions = (
       LitDevSearch.siteSearchIndex.search(trimmedQuery) ?? []
     ).slice(0, 10) as unknown as Suggestion[];
+    this.selectedIndex = -1;
   }
 
   /**
    * Handle key press with side effects.
    *  - "Enter" finds the selected option and navigates to the page.
    */
-  private handleKeyDown(e: KeyboardEvent) {
-    if (this.searchOptionElements.length > 0 && e.key === 'Enter') {
-      // Navigate to checked element.
-      for (const el of this.searchOptionElements) {
-        if (el.checked as boolean) {
-          this.navigate(el.relativeUrl);
-          return;
-        }
-      }
-      // No element is selected. Fallback behavior is to navigate to the first
-      // suggestion.
-      const firstSuggestion = this.searchOptionElements[0];
-      firstSuggestion.checked = true;
-      this.navigate(firstSuggestion.relativeUrl);
+  private onKeydown(e: KeyboardEvent) {
+    switch (e.key) {
+      case 'ArrowDown':
+        this.focusNext();
+        break;
+      case 'ArrowUp':
+        this.focusPrevious();
+        break;
+      case 'Enter':
+        this.select();
+        break;
     }
+  }
+
+  private focusNext() {
+    const opts = this.searchOptionElements;
+    const numItems = opts.length;
+    this.selectedIndex++;
+    if (this.selectedIndex >= numItems) {
+      this.selectedIndex = 0;
+    }
+  }
+
+  private focusPrevious() {
+    const opts = this.searchOptionElements;
+    const numItems = opts.length;
+    this.selectedIndex--;
+    if (this.selectedIndex < 0) {
+      this.selectedIndex = numItems - 1;
+    }
+  }
+
+  private select() {
+    const opts = this.searchOptionElements;
+    if (opts.length === 0) {
+      return;
+    }
+
+    // Navigate to checked element.
+    for (const el of opts) {
+      if (el.checked as boolean) {
+        this.navigate(el.relativeUrl);
+        return;
+      }
+    }
+    // No element is selected. Fallback behavior is to navigate to the first
+    // suggestion.
+    const firstSuggestion = opts[0];
+    firstSuggestion.checked = true;
+    this.navigate(firstSuggestion.relativeUrl);
   }
 
   /**
@@ -279,9 +425,9 @@ class LitDevSearch extends LitElement {
    * default behavior when navigating to a fragment on the page is not
    * refreshing the UI.
    */
-  private navigate(url: string) {
+  private async navigate(url: string) {
+    const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
     document.location = addModsParameterToUrlIfNeeded(url);
-    this.input.value = '';
     this.searchText = '';
 
     // On mobile we manually close the nav drawer, otherwise the drawer remains
@@ -294,50 +440,39 @@ class LitDevSearch extends LitElement {
     }
   }
 
+  focus() {
+    this.inputEl.focus();
+  }
+
   /**
    * We hide the search icon on focus to prevent text overlapping the icon.
    */
   private onFocus() {
-    this.searchIcon.style.setProperty('opacity', '0');
+    this.isFocused = true;
   }
 
   private onBlur() {
-    this.searchIcon.style.setProperty('opacity', '1');
+    this.isFocused = false;
   }
 
-  render() {
-    return html`
-      <div class="root">
-        <lion-combobox
-          name="lit-search"
-          autocomplete="none"
-          @input=${this.handleInput}
-          @keydown=${this.handleKeyDown}
-          @focus=${this.onFocus}
-          @blur=${this.onBlur}
-        >
-          ${repeat(
-            this.suggestions,
-            (v) => v.id,
-            ({
-              relativeUrl,
-              title,
-              heading,
-              isSubsection,
-            }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
-              <litdev-search-option
-                .choiceValue="${this.searchText}"
-                .relativeUrl="${relativeUrl}"
-                .title="${title}"
-                .heading="${heading}"
-                .isSubsection="${isSubsection}"
-                @click="${() => this.navigate(relativeUrl)}"
-              ></litdev-search-option>`
-          )}
-        </lion-combobox>
-        ${SEARCH_ICON}
-      </div>
-    `;
+  private positionPopup() {
+    const popup = this.popupEl;
+    const windowWidth = window.innerWidth;
+    const popupRight = popup.getBoundingClientRect().right;
+
+    if (popupRight > windowWidth) {
+      this.popupSpaceRight = true;
+      this.popupSpaceLeft = false;
+      return;
+    }
+
+    const popupLeft = popup.getBoundingClientRect().left;
+
+    if (popupLeft <= 0) {
+      this.popupSpaceRight = false;
+      this.popupSpaceLeft = true;
+      return;
+    }
   }
 }
 
@@ -345,7 +480,7 @@ class LitDevSearch extends LitElement {
  * A single search option suggestion.
  */
 @customElement('litdev-search-option')
-class LitdevSearchOption extends LionOption {
+class LitdevSearchOption extends LitElement {
   @property()
   relativeUrl = '';
 
@@ -358,10 +493,21 @@ class LitdevSearchOption extends LionOption {
   @property({type: Boolean})
   isSubsection = false;
 
+  @property({type: Boolean})
+  checked = false;
+
   static get styles() {
     return [
-      ...super.styles,
       css`
+        :host {
+          display: block;
+          padding: 4px;
+        }
+
+        :host([checked]) {
+          background-color: rgb(189, 228, 255);
+        }
+
         .suggestion {
           display: flex;
           align-items: center;
@@ -419,6 +565,18 @@ class LitdevSearchOption extends LionOption {
           : nothing}
       </div>
     `;
+  }
+
+  updated(changed: PropertyValues) {
+    super.updated(changed);
+
+    if (changed.has('checked') && this.checked) {
+      this.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+    }
   }
 }
 

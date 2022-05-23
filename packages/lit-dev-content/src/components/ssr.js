@@ -5,7 +5,10 @@
  */
 
 // list of components that should be rendered on server side
-const componentsToSSR = ['lib/components/litdev-tutorial-card.js'];
+const componentsToSSR = [
+  'lib/components/litdev-tutorial-card.js',
+  'lib/components/litdev-search.js',
+];
 
 module.exports = {
   componentsToSSR,
