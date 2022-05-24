@@ -11,4 +11,3 @@
 // lazy dependencies. Rollup almost does the right thing here, except that the relative
 // import paths are wrong when we import. Find a way to fix the relative paths.
 import '../components/litdev-code-language-switch.js';
-import '../components/lazy-svg.js';
