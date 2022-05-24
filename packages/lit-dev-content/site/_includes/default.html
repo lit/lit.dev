@@ -27,8 +27,9 @@
     <script type="module" src="{{ site.baseurl }}/js/global/hydrate-common-components.js"></script>
 
     <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-version-selector.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
+    {% if not noaside %}
+      <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
+    {% endif %}
 
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
@@ -41,6 +42,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
+    <noscript><style>body[dsd-pending] {display: block !important;}</style></noscript>
     {% block head %}{% endblock %}
   </head>
   <body dsd-pending>
@@ -77,7 +79,7 @@
     {% include 'footer.html' %}
 
     {% if env.GOOGLE_ANALYTICS_ID %}
-      <script async defer src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
       <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date);gtag("config","{{ env.GOOGLE_ANALYTICS_ID }}");</script>
     {% endif %}
   </body>
