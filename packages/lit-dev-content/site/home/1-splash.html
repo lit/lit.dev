@@ -3,7 +3,7 @@
 </section>
 <section id="intro">
   <div id="splashLogo" role="heading" aria-level="1">
-    <img src="{{site.baseurl}}/images/logo.svg" aria-label="Lit" width="425" height="200" />
+    <img fetchprioirty="high" src="{{site.baseurl}}/images/logo.svg" aria-label="Lit" width="425" height="200"  />
     <!-- Trick for detecting when the logo has scrolled under the header.
         See src/home.ts -->
     <div id="splashLogoHeaderOffset"></div>
@@ -17,7 +17,7 @@
 
   <div id="splashButtons">
     <a id="npmInstall"
-       href="https://www.npmjs.com/package/lit"
+      href="https://www.npmjs.com/package/lit"
        target="_blank" rel="noopener">
       <span class="prompt">&gt; </span>npm i lit
     </a>

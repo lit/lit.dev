@@ -33,6 +33,7 @@ export default [
     input: [
       'lib/global/lit-hydrate-support.js',
       'lib/components/copy-button.js',
+      'lib/components/lazy-svg.js',
       'lib/components/litdev-aside.js',
       'lib/components/litdev-banner.js',
       'lib/components/litdev-version-selector.js',
@@ -47,7 +48,7 @@ export default [
       'lib/components/resize-bar.js',
       'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
-      'lib/global/hydrate-litdev-search.js',
+      'lib/global/hydrate-common-components.js',
       'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
