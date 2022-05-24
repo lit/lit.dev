@@ -41,17 +41,6 @@ export default class LazySvg extends LitElement {
   @property({attribute: 'root-margin'})
   rootMargin = '0px 0px 100px 0px';
 
-  update(changed: PropertyValues<this>) {
-    if (changed.has('loading')) {
-      if (this.loading === 'idle') {
-        this.idleLoad();
-      } else if (this.loading === 'visible') {
-        this.visibleLoad();
-      }
-    }
-
-    super.update(changed);
-  }
 
   willUpdate() {
     if (this.loading === 'eager') {
@@ -69,6 +58,18 @@ export default class LazySvg extends LitElement {
     >
       <use href=${this.shouldLoad ? this.href : nothing}></use>
     </svg>`;
+  }
+
+  updated(changed: PropertyValues<this>) {
+    if (changed.has('loading')) {
+      if (this.loading === 'idle') {
+        this.idleLoad();
+      } else if (this.loading === 'visible') {
+        this.visibleLoad();
+      }
+    }
+
+    super.updated(changed);
   }
 
   private idleLoad() {
