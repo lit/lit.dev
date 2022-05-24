@@ -9,6 +9,7 @@ const componentsToSSR = [
   'lib/components/litdev-tutorial-card.js',
   'lib/components/litdev-search.js',
   'lib/components/lazy-svg.js',
+  'lib/components/litdev-version-selector.js',
 ];
 
 module.exports = {
