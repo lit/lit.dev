@@ -31,6 +31,8 @@ const terserOptions = {
 export default [
   {
     input: [
+      // lit-hydrate-support MUST be loaded first to make sure lit hydration
+      // helpers are bundled before LitElement attempts to use hydration support
       'lib/global/lit-hydrate-support.js',
       'lib/components/copy-button.js',
       'lib/components/lazy-svg.js',
