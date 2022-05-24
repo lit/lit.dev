@@ -199,18 +199,39 @@ export class LitDevSearch extends LitElement {
   @state()
   private suggestions: Suggestion[] = [];
 
+  /**
+   * Whether the input is focused or not.
+   */
   @state()
   private isFocused = false;
 
+  /**
+   * Currently selected suggestion.
+   */
   @state()
   private selectedIndex = -1;
 
+  /**
+   * Whether the listbox should be visible or not. Used for async animations.
+   */
   @state()
   private isListboxVisible = false;
 
+  /**
+   * Whether the listbox should be popped up with `right: 0` or not.
+   *
+   * This is when the listbox would pop up and overflow off the right of the
+   * screen.
+   */
   @state()
   private popupSpaceRight = false;
 
+  /**
+   * Whether the listbox should be popped up with `left: 0` or not.
+   *
+   * This is when the listbox would pop up and overflow off the left of the
+   * screen.
+   */
   @state()
   private popupSpaceLeft = false;
 
@@ -248,8 +269,8 @@ export class LitDevSearch extends LitElement {
           aria-activedescendant=${activeDescendant}
           @input=${this.onInput}
           @keydown=${this.onKeydown}
-          @focus=${this.onFocus}
-          @blur=${this.onBlur}
+          @focus=${this._onFocus}
+          @blur=${this._onBlur}
         />
         <div
           id="popup"
@@ -271,7 +292,7 @@ export class LitDevSearch extends LitElement {
                 .heading="${heading}"
                 .isSubsection="${isSubsection}"
                 role="option"
-                @click="${() => this.navigate(relativeUrl)}"
+                @click="${() => this._navigate(relativeUrl)}"
               ></litdev-search-option>`
             )}
           </ul>
@@ -321,6 +342,7 @@ export class LitDevSearch extends LitElement {
    */
   firstUpdated() {
     this.loadSearchIndex();
+    // required for popping up on hydration
     this.isFocused = !!this.shadowRoot?.activeElement;
   }
 
@@ -333,7 +355,7 @@ export class LitDevSearch extends LitElement {
         return;
       }
 
-      this.positionPopup();
+      this._positionPopup();
     }
   }
 
@@ -374,10 +396,10 @@ export class LitDevSearch extends LitElement {
   private onKeydown(e: KeyboardEvent) {
     switch (e.key) {
       case 'ArrowDown':
-        this.focusNext();
+        this._selectNext();
         break;
       case 'ArrowUp':
-        this.focusPrevious();
+        this._selectPrevious();
         break;
       case 'Enter':
         this.select();
@@ -385,7 +407,10 @@ export class LitDevSearch extends LitElement {
     }
   }
 
-  private focusNext() {
+  /**
+   * Selects the next item on the list or wraps around if at end.
+   */
+  private _selectNext() {
     const opts = this.searchOptionElements;
     const numItems = opts.length;
     this.selectedIndex++;
@@ -394,7 +419,10 @@ export class LitDevSearch extends LitElement {
     }
   }
 
-  private focusPrevious() {
+  /**
+   * Selects the previous item on the list or wraps around if at start.
+   */
+  private _selectPrevious() {
     const opts = this.searchOptionElements;
     const numItems = opts.length;
     this.selectedIndex--;
@@ -403,6 +431,9 @@ export class LitDevSearch extends LitElement {
     }
   }
 
+  /**
+   * Handles the enter keypress and navigates accordingly.
+   */
   private select() {
     const opts = this.searchOptionElements;
     if (opts.length === 0) {
@@ -412,7 +443,7 @@ export class LitDevSearch extends LitElement {
     // Navigate to checked element.
     for (const el of opts) {
       if (el.checked as boolean) {
-        this.navigate(el.relativeUrl);
+        this._navigate(el.relativeUrl);
         return;
       }
     }
@@ -420,7 +451,7 @@ export class LitDevSearch extends LitElement {
     // suggestion.
     const firstSuggestion = opts[0];
     firstSuggestion.checked = true;
-    this.navigate(firstSuggestion.relativeUrl);
+    this._navigate(firstSuggestion.relativeUrl);
   }
 
   /**
@@ -428,7 +459,7 @@ export class LitDevSearch extends LitElement {
    * default behavior when navigating to a fragment on the page is not
    * refreshing the UI.
    */
-  private async navigate(url: string) {
+  private async _navigate(url: string) {
     const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
     document.location = addModsParameterToUrlIfNeeded(url);
     this.searchText = '';
@@ -448,17 +479,25 @@ export class LitDevSearch extends LitElement {
   }
 
   /**
-   * We hide the search icon on focus to prevent text overlapping the icon.
+   * Hides the search icon on focus to prevent text overlapping the icon, and
+   * expands the listbox.
    */
-  private onFocus() {
+  private _onFocus() {
     this.isFocused = true;
   }
 
-  private onBlur() {
+  /**
+   * Shows the search icon on blur, and collapses the listbox.
+   */
+  private _onBlur() {
     this.isFocused = false;
   }
 
-  private positionPopup() {
+  /**
+   * Positions the popup left or right justified with respect to the input
+   * depending on whether the listbox is overflowing the window.
+   */
+  private _positionPopup() {
     const popup = this.popupEl;
     const windowWidth = window.innerWidth;
     const popupRight = popup.getBoundingClientRect().right;
