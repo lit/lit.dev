@@ -124,7 +124,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <td>Caches rendered DOM when changing templates rather than discarding the DOM.</td>
   </tr>
 
-    <tr>
+  <tr>
   <td>
 
   [`keyed`](#keyed)
@@ -1037,7 +1037,7 @@ Associates a renderable value with a unique key. When the key changes, the previ
 <td class="wide-cell">
 
 ```js
-import {leyed} from 'lit/directives/keyed.js';
+import {keyed} from 'lit/directives/keyed.js';
 ```
 
 </td>
@@ -1074,12 +1074,12 @@ Any expression
 class MyElement extends LitElement {
 
   @property()
-  userId?: string = '';
+  userId: string = '';
 
   render() {
     return html`
       <div>
-        ${keyed(this.userId, html`<user-card .userId=${this.userId}></user-card>)}
+        ${keyed(this.userId, html`<user-card .userId=${this.userId}></user-card>`)}
       </div>`;
   }
 }
@@ -1099,7 +1099,7 @@ class MyElement extends LitElement {
   render() {
     return html`
       <div>
-        ${keyed(this.userId, html`<user-card .userId=${this.userId}></user-card>)}
+        ${keyed(this.userId, html`<user-card .userId=${this.userId}></user-card>`)}
       </div>`;
   }
 }
