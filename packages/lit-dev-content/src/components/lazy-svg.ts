@@ -7,8 +7,17 @@
 import {css, html, LitElement, nothing, PropertyValues} from 'lit';
 import {customElement, property, state, query} from 'lit/decorators.js';
 
-export type LoadingStrategies = 'idle' | 'eager' | 'visible';
+/**
+ * Strategies for loading the SVG. idle, waits for the idle callback, eager
+ * loads immediately, and visible loads when the element is visible via
+ * intersection observer.
+ */
+export type LoadingStrategy = 'idle' | 'eager' | 'visible';
 
+/**
+ * A component that adds lazy loading to SVG elements that use the `<use>` tag
+ * to reference the SVG.
+ */
 @customElement('lazy-svg')
 export default class LazySvg extends LitElement {
   static styles = css`
@@ -17,33 +26,62 @@ export default class LazySvg extends LitElement {
     }
   `;
 
+  /**
+   * The URL of the SVG to load via the `<use>` element.
+   *
+   * e.g. "{{ site.baseurl }}/images/logos/google.svg#logo"
+   */
   @property()
   href = '';
 
+  /**
+   * The `aria-label` to apply to the SVG.
+   */
   @property()
   label = '';
 
+  /**
+   * Whether or not `aria-hidden="true"` should be applied to the SVG.
+   */
   @property({type: Boolean, attribute: 'svg-aria-hidden'})
   svgAriaHidden = false;
 
+  /**
+   * The `role` to apply to the SVG.
+   */
   @property({attribute: 'svg-role'})
   svgRole = '';
 
-  @state()
-  shouldLoad = false;
-
-  @query('svg')
-  private svgEl!: SVGElement;
-
+  /**
+   * Strategies for loading the SVG:
+   *
+   * - `idle` waits for the idle callback
+   * - `eager` loads immediately
+   * - `visible` loads when the element is visible via intersection observer.
+   */
   @property()
-  loading = 'idle';
+  loading: LoadingStrategy = 'idle';
 
+  /**
+   * The `rootMargin` to apply to the intersection observer.
+   *
+   * https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#rootmargin
+   */
   @property({attribute: 'root-margin'})
   rootMargin = '0px 0px 100px 0px';
 
+  /**
+   * Whether or not to load the SVG
+   */
+  @state()
+  private _shouldLoad = false;
+
+  @query('svg')
+  private _svgEl!: SVGElement;
+
   willUpdate() {
     if (this.loading === 'eager') {
-      this.shouldLoad = true;
+      this._shouldLoad = true;
     }
   }
 
@@ -55,33 +93,34 @@ export default class LazySvg extends LitElement {
       role=${this.svgRole ? this.svgRole : nothing}
       part="svg"
     >
-      <use href=${this.shouldLoad ? this.href : nothing}></use>
+      <use href=${this._shouldLoad ? this.href : nothing}></use>
     </svg>`;
   }
 
   updated(changed: PropertyValues<this>) {
     if (changed.has('loading')) {
       if (this.loading === 'idle') {
-        this.idleLoad();
+        this._idleLoad();
       } else if (this.loading === 'visible') {
-        this.visibleLoad();
+        // Must happen in `updated` because in non-SSR the DOM is not ready
+        this._visibleLoad();
       }
     }
 
     super.updated(changed);
   }
 
-  private idleLoad() {
+  private _idleLoad() {
     if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => (this.shouldLoad = true));
+      (window as any).requestIdleCallback(() => (this._shouldLoad = true));
     }
   }
 
-  private visibleLoad() {
+  private _visibleLoad() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          this.shouldLoad = true;
+          this._shouldLoad = true;
           observer.disconnect();
         }
       },
@@ -89,7 +128,7 @@ export default class LazySvg extends LitElement {
         rootMargin: this.rootMargin,
       }
     );
-    observer.observe(this.svgEl);
+    observer.observe(this._svgEl);
   }
 }
 

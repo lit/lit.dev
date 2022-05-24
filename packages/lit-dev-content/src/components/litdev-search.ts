@@ -236,12 +236,15 @@ export class LitDevSearch extends LitElement {
       <div id="root" .suggestions=${this.suggestions}>
         <input
           autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
           role="combobox"
           placeholder="Search"
           aria-label="Lit Site Search"
           aria-haspopup="listbox"
-          aria-controls="items"
+          aria-owns="items"
           aria-expanded=${isExpanded ? 'true' : 'false'}
+          aria-autocomplete="list"
           aria-activedescendant=${activeDescendant}
           @input=${this.onInput}
           @keydown=${this.onKeydown}
