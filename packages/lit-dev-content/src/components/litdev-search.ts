@@ -169,53 +169,53 @@ export class LitDevSearch extends LitElement {
    * Text value in search input.
    */
   @state()
-  private searchText: string = '';
+  private _searchText: string = '';
 
   /**
    * Site search index.
    */
-  private static siteSearchIndex: Minisearch<UserFacingPageData> | null = null;
+  private static _siteSearchIndex: Minisearch<UserFacingPageData> | null = null;
 
   /**
    * Flag so we only load the index once.
    */
-  private static loadingSearchIndex: boolean = false;
+  private static _loadingSearchIndex: boolean = false;
 
   /**
    * Search suggestion options.
    */
   @queryAll('litdev-search-option')
-  private searchOptionElements!: LitdevSearchOption[];
+  private _searchOptionElements!: LitdevSearchOption[];
 
   @query('#popup')
-  private popupEl!: HTMLElement;
+  private _popupEl!: HTMLElement;
 
   @query('input')
-  private inputEl!: HTMLInputElement;
+  private _inputEl!: HTMLInputElement;
 
   /**
    * Suggestions visible to the user rendered under the search input field.
    */
   @state()
-  private suggestions: Suggestion[] = [];
+  private _suggestions: Suggestion[] = [];
 
   /**
    * Whether the input is focused or not.
    */
   @state()
-  private isFocused = false;
+  private _isFocused = false;
 
   /**
    * Currently selected suggestion.
    */
   @state()
-  private selectedIndex = -1;
+  private _selectedIndex = -1;
 
   /**
    * Whether the listbox should be visible or not. Used for async animations.
    */
   @state()
-  private isListboxVisible = false;
+  private _isListboxVisible = false;
 
   /**
    * Whether the listbox should be popped up with `right: 0` or not.
@@ -224,7 +224,7 @@ export class LitDevSearch extends LitElement {
    * screen.
    */
   @state()
-  private popupSpaceRight = false;
+  private _popupSpaceRight = false;
 
   /**
    * Whether the listbox should be popped up with `left: 0` or not.
@@ -233,28 +233,28 @@ export class LitDevSearch extends LitElement {
    * screen.
    */
   @state()
-  private popupSpaceLeft = false;
+  private _popupSpaceLeft = false;
 
   render() {
-    const isExpanded = this.isFocused && this.suggestions.length > 0;
+    const isExpanded = this._isFocused && this._suggestions.length > 0;
     const activeDescendant =
-      this.selectedIndex !== -1 ? `${this.selectedIndex}` : nothing;
+      this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
 
     const listboxStyles = styleMap({
       // isListboxVisible allows animation fade away
-      visibility: isExpanded || this.isListboxVisible ? 'visible' : 'hidden',
+      visibility: isExpanded || this._isListboxVisible ? 'visible' : 'hidden',
       opacity: isExpanded ? '1' : '0',
-      right: this.popupSpaceRight ? '0px' : 'auto',
-      left: this.popupSpaceLeft ? '0px' : 'auto',
+      right: this._popupSpaceRight ? '0px' : 'auto',
+      left: this._popupSpaceLeft ? '0px' : 'auto',
     });
     const listboxAnimationOptions: AnimationOptions = {
       properties: ['opacity'],
       onComplete: () => {
-        this.isListboxVisible = isExpanded;
+        this._isListboxVisible = isExpanded;
       },
     };
     return html`
-      <div id="root" .suggestions=${this.suggestions}>
+      <div id="root" .suggestions=${this._suggestions}>
         <input
           autocomplete="off"
           autocorrect="off"
@@ -267,8 +267,8 @@ export class LitDevSearch extends LitElement {
           aria-expanded=${isExpanded ? 'true' : 'false'}
           aria-autocomplete="list"
           aria-activedescendant=${activeDescendant}
-          @input=${this.onInput}
-          @keydown=${this.onKeydown}
+          @input=${this._onInput}
+          @keydown=${this._onKeydown}
           @focus=${this._onFocus}
           @blur=${this._onBlur}
         />
@@ -279,14 +279,14 @@ export class LitDevSearch extends LitElement {
         >
           <ul id="items" role="listbox">
             ${repeat(
-              this.suggestions,
+              this._suggestions,
               (v) => v.id,
               (
                 {relativeUrl, title, heading, isSubsection},
                 index
               ) => html`<litdev-search-option
                 id=${index}
-                ?checked=${this.selectedIndex === index}
+                ?checked=${this._selectedIndex === index}
                 .relativeUrl="${relativeUrl}"
                 .title="${title}"
                 .heading="${heading}"
@@ -297,7 +297,7 @@ export class LitDevSearch extends LitElement {
             )}
           </ul>
         </div>
-        ${SEARCH_ICON(this.isFocused ? '0' : '1')}
+        ${SEARCH_ICON(this._isFocused ? '0' : '1')}
       </div>
     `;
   }
@@ -305,21 +305,21 @@ export class LitDevSearch extends LitElement {
   /**
    * Load and deserialize search index into `LitDevSearch.siteSearchIndex`.
    */
-  private async loadSearchIndex() {
+  private async _loadSearchIndex() {
     // We already have a search index.
-    if (LitDevSearch.siteSearchIndex !== null) {
+    if (LitDevSearch._siteSearchIndex !== null) {
       return;
     }
-    if (LitDevSearch.loadingSearchIndex) {
+    if (LitDevSearch._loadingSearchIndex) {
       return;
     }
-    LitDevSearch.loadingSearchIndex = true;
+    LitDevSearch._loadingSearchIndex = true;
 
     const searchIndexJson = await (await fetch('/searchIndex.json')).text();
 
     // Minisearch intialization config must exactly match
     // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
-    LitDevSearch.siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
+    LitDevSearch._siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
       searchIndexJson,
       {
         idField: 'id',
@@ -334,23 +334,23 @@ export class LitDevSearch extends LitElement {
     );
 
     // If a search query has already been written, fill suggestions.
-    this.querySearch(this.searchText);
+    this._querySearch(this._searchText);
   }
 
   /**
    * Load the search index.
    */
   firstUpdated() {
-    this.loadSearchIndex();
+    this._loadSearchIndex();
     // required for popping up on hydration
-    this.isFocused = !!this.shadowRoot?.activeElement;
+    this._isFocused = !!this.shadowRoot?.activeElement;
   }
 
   updated(changed: PropertyValues) {
     super.updated(changed);
 
     if (changed.has('isFocused') || changed.has('suggestions')) {
-      const isExpanded = this.isFocused && this.suggestions.length > 0;
+      const isExpanded = this._isFocused && this._suggestions.length > 0;
       if (!isExpanded) {
         return;
       }
@@ -362,9 +362,9 @@ export class LitDevSearch extends LitElement {
   /**
    * Repopulate suggestions with each input event.
    */
-  private onInput(e: InputEvent) {
-    this.searchText = (e.target as HTMLInputElement).value ?? '';
-    this.querySearch(this.searchText);
+  private _onInput(e: InputEvent) {
+    this._searchText = (e.target as HTMLInputElement).value ?? '';
+    this._querySearch(this._searchText);
   }
 
   /**
@@ -372,28 +372,28 @@ export class LitDevSearch extends LitElement {
    *
    * An empty query clears suggestions.
    */
-  private querySearch(query: string) {
+  private _querySearch(query: string) {
     const trimmedQuery = query.trim();
-    this.selectedIndex = -1;
+    this._selectedIndex = -1;
     if (
-      !LitDevSearch.siteSearchIndex ||
+      !LitDevSearch._siteSearchIndex ||
       trimmedQuery === '' ||
       trimmedQuery.length < 2
     ) {
-      this.suggestions = [];
+      this._suggestions = [];
       return;
     }
-    this.suggestions = (
-      LitDevSearch.siteSearchIndex.search(trimmedQuery) ?? []
+    this._suggestions = (
+      LitDevSearch._siteSearchIndex.search(trimmedQuery) ?? []
     ).slice(0, 10) as unknown as Suggestion[];
-    this.selectedIndex = -1;
+    this._selectedIndex = -1;
   }
 
   /**
    * Handle key press with side effects.
    *  - "Enter" finds the selected option and navigates to the page.
    */
-  private onKeydown(e: KeyboardEvent) {
+  private _onKeydown(e: KeyboardEvent) {
     switch (e.key) {
       case 'ArrowDown':
         this._selectNext();
@@ -402,7 +402,7 @@ export class LitDevSearch extends LitElement {
         this._selectPrevious();
         break;
       case 'Enter':
-        this.select();
+        this._select();
         break;
     }
   }
@@ -411,11 +411,11 @@ export class LitDevSearch extends LitElement {
    * Selects the next item on the list or wraps around if at end.
    */
   private _selectNext() {
-    const opts = this.searchOptionElements;
+    const opts = this._searchOptionElements;
     const numItems = opts.length;
-    this.selectedIndex++;
-    if (this.selectedIndex >= numItems) {
-      this.selectedIndex = 0;
+    this._selectedIndex++;
+    if (this._selectedIndex >= numItems) {
+      this._selectedIndex = 0;
     }
   }
 
@@ -423,19 +423,19 @@ export class LitDevSearch extends LitElement {
    * Selects the previous item on the list or wraps around if at start.
    */
   private _selectPrevious() {
-    const opts = this.searchOptionElements;
+    const opts = this._searchOptionElements;
     const numItems = opts.length;
-    this.selectedIndex--;
-    if (this.selectedIndex < 0) {
-      this.selectedIndex = numItems - 1;
+    this._selectedIndex--;
+    if (this._selectedIndex < 0) {
+      this._selectedIndex = numItems - 1;
     }
   }
 
   /**
    * Handles the enter keypress and navigates accordingly.
    */
-  private select() {
-    const opts = this.searchOptionElements;
+  private _select() {
+    const opts = this._searchOptionElements;
     if (opts.length === 0) {
       return;
     }
@@ -462,7 +462,7 @@ export class LitDevSearch extends LitElement {
   private async _navigate(url: string) {
     const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
     document.location = addModsParameterToUrlIfNeeded(url);
-    this.searchText = '';
+    this._searchText = '';
 
     // On mobile we manually close the nav drawer, otherwise the drawer remains
     // open when navigating between fragment identifiers.
@@ -475,7 +475,7 @@ export class LitDevSearch extends LitElement {
   }
 
   focus() {
-    this.inputEl.focus();
+    this._inputEl.focus();
   }
 
   /**
@@ -483,14 +483,14 @@ export class LitDevSearch extends LitElement {
    * expands the listbox.
    */
   private _onFocus() {
-    this.isFocused = true;
+    this._isFocused = true;
   }
 
   /**
    * Shows the search icon on blur, and collapses the listbox.
    */
   private _onBlur() {
-    this.isFocused = false;
+    this._isFocused = false;
   }
 
   /**
@@ -498,21 +498,21 @@ export class LitDevSearch extends LitElement {
    * depending on whether the listbox is overflowing the window.
    */
   private _positionPopup() {
-    const popup = this.popupEl;
+    const popup = this._popupEl;
     const windowWidth = window.innerWidth;
     const popupRight = popup.getBoundingClientRect().right;
 
     if (popupRight > windowWidth) {
-      this.popupSpaceRight = true;
-      this.popupSpaceLeft = false;
+      this._popupSpaceRight = true;
+      this._popupSpaceLeft = false;
       return;
     }
 
     const popupLeft = popup.getBoundingClientRect().left;
 
     if (popupLeft <= 0) {
-      this.popupSpaceRight = false;
-      this.popupSpaceLeft = true;
+      this._popupSpaceRight = false;
+      this._popupSpaceLeft = true;
       return;
     }
   }
