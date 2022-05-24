@@ -6,7 +6,7 @@
   {# Are any children in this section active? #}
   {% set sectionActive = false %}
   {%- for child in section.children %}
-    {% if child.url == page.url %}
+    {% if (baseurl + child.url) == page.url %}
       {% set sectionActive = true %}
     {% endif %}
   {%- endfor %}
@@ -14,16 +14,16 @@
   <li{% if sectionActive %} class="activeSection"{% endif %}>
     {%- if section.children | length %}
       <span class="sectionHead{% if section.url == page.url %} active{% endif %}">
-        {{ section.title }}</span>
+        {{ section.title | i18n}}</span>
       <ol>
       {%- for child in section.children %}
-        <li{% if child.url == page.url %} class="active"{% endif %}>
-          <a href="{{ child.url | url }}">{{ child.title }}</a>
+        <li{% if (baseurl + child.url) == page.url %} class="active"{% endif %}>
+          <a href="{{ (baseurl + child.url) | url }}">{{ child.title | i18n}}</a>
         </li>
       {%- endfor %}
       </ol>
     {%- else %}
-      <a href="{{ section.url | url }}">{{ section.title }}</a>
+      <a href="{{ (baseurl + section.url) | url }}">{{ section.title | i18n }}</a>
     {%- endif %}
   </li>
 {%- endfor %}

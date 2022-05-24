@@ -17,13 +17,13 @@
         <summary>
           <span class="sectionHead
                        {% if section.url == page.url %}active{% endif %}">
-            {{ section.title }}
+            {{ section.title | i18n }}
           </span>
         </summary>
         <ol>
           {%- for child in section.children %}
             <li{% if child.url == page.url %} class="active"{% endif %}>
-              <a href="{{ child.url | url }}">{{ child.title }}</a>
+              <a href="{{ (baseurl + child.url) | url }}">{{ child.title | i18n}}</a>
             </li>
           {%- endfor %}
         </ol>

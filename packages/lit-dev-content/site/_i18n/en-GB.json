@@ -1,0 +1,56 @@
+{
+    "Documentation": "Documentation",
+    "Tutorial": "Tutorial",
+    "Playground": "Playground",
+    "Blog": "Blog",
+
+    "Simple": "Simple",
+    "Fast": "Fast",
+    "Web Components": "Web Components",
+    "Get Started": "Get Started",
+    "Contents": "Contents",
+
+    "advantage_simple_title": "Skip the boilerplate",
+    "advantage_simple_desc": "Building on top of the Web Components standards, Lit adds just what you need to be happy and productive: reactivity, declarative templates and a handful of thoughtful features to reduce boilerplate and make your job easier. Every Lit feature is carefully designed with web platform evolution in mind.",
+    "advantage_fast_title": "Tiny footprint, instant updates",
+    "advantage_fast_desc": "Weighing in at around 5 KB (minified and compressed), Lit helps keep your bundle size small and your loading time short. And rendering is blazing fast, because Lit touches only the dynamic parts of your UI when updating — no need to rebuild a virtual tree and diff it with the DOM.",
+    "advantage_component_title": "Interoperable &amp; future-ready",
+    "advantage_component_desc": "Every Lit component is a native web component, with the superpower of interoperability. Web components work anywhere you use HTML, with any framework or none at all. This makes Lit ideal for building shareable components, design systems, or maintainable, future-ready sites and apps.",
+
+    "tour_edit": "Edit this example in the Lit Playground",
+    "tour_element_title": "Custom Elements",
+    "tour_element_desc": "Lit components are standard <em>custom elements</em>, so the browser treats them exactly like built-in elements. Use them in hand-written HTML or framewor code, output them from your CMS or static site builder, even create instances in JavaScript — they just work!",
+    "tour_style_title": "Scoped styles",
+    "tour_style_desc": "Lit scopes your styles by default, using <em>Shadow DOM</em>. This keeps your CSS selectors simple and ensures that your component’s styles don't affect — and aren't affected by — any other styles on the page.",
+    "tour_property_title": "Reactive properties",
+    "tour_property_desc": "Declare <em>reactive properties</em> to model your component’s API and internal state. A Lit component efficiently re-renders whenever a reactive property (or corresponding HTML attribute) changes.",
+    "tour_template_title": "Declarative templates",
+    "tour_template_desc": "Lit templates, based on <em>tagged template literals</em>, are simple, expressive and fast, featuring HTML markup with native JavaScript expressions inline. No custom syntax to learn, no compilation required.",
+
+    "build_title": "Build anything with Lit",
+    "build_component_title": "Shareable Components",
+    "build_component_desc": "Need to deliver interactive content or features that drop into any site, built on any stack? Because they're natively supported by browsers, web components are the perfect solution — and Lit makes them easy to build.",
+    "build_system_title": "Design Systems",
+    "build_system_desc": "A design system helps you create experiences that are consistently excellent and on brand. But what if your organization uses multiple frameworks? With Lit, you can build one set of components that works for every team.",
+    "build_app_title": "Sites and Apps",
+    "build_app_desc": "Use Lit components to progressively enhance a static site, or build an entire app. By embracing Web Components, Lit minimizes lock-in and promotes maintainability: update or migrate one component at a time, without disrupting product development.",
+    
+    "who_using": "Many of the world's most forward-looking organizations are building with Lit",
+
+    "explore_title": "Explore Lit",
+    "explore_tutorial": "Try our live tutorial — no installation needed",
+    "explore_playground": "Tinker with our interactive examples",
+    "explore_documentation": "Dive deep with our extensive docs",
+    "explore_started": "Check out all the options for jumping in",
+
+    "connect_title": "Connect with Lit and the web components community",
+    "connect_desc": "Stay up to date with new releases, learn more about how to use web components and share projects and feedback with our team. All community participation is subject to Lit’s Code of Conduct — be excellent to each other!",
+    "connect_lit_title": "Lit Slack workspace",
+    "connect_lit_desc": "Chat with the Lit community and dev team",
+    "connect_twitter_title": "Twitter",
+    "connect_twitter_desc": "Stay up to date with the latest news",
+    "connect_github_title": "GitHub",
+    "connect_github_desc": "File issues, read the code, and make contributions",
+    "connect_stackoverflow_title": "Stack Overflow",
+    "connect_stackoverflow_desc": "Ask and answer questions about Lit"
+}   
