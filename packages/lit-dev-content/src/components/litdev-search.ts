@@ -254,7 +254,12 @@ export class LitDevSearch extends LitElement {
       },
     };
     return html`
-      <div id="root" .suggestions=${this._suggestions}>
+      <div
+        id="root"
+        .suggestions=${this._suggestions}
+        @focus=${this._onFocus}
+        @blur=${this._onBlur}
+      >
         <input
           autocomplete="off"
           autocorrect="off"
@@ -269,8 +274,6 @@ export class LitDevSearch extends LitElement {
           aria-activedescendant=${activeDescendant}
           @input=${this._onInput}
           @keydown=${this._onKeydown}
-          @focus=${this._onFocus}
-          @blur=${this._onBlur}
         />
         <div
           id="popup"
