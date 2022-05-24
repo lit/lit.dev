@@ -115,7 +115,9 @@ export default class LazySvg extends LitElement {
       (window as any).requestIdleCallback(() => (this._shouldLoad = true));
     } else {
       // Safari doesn't have idle callback so just wait 200ms
-      setTimeout(() => {this._shouldLoad = true}, 200);
+      setTimeout(() => {
+        this._shouldLoad = true;
+      }, 200);
     }
   }
 
