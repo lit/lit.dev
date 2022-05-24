@@ -41,7 +41,6 @@ export default class LazySvg extends LitElement {
   @property({attribute: 'root-margin'})
   rootMargin = '0px 0px 100px 0px';
 
-
   willUpdate() {
     if (this.loading === 'eager') {
       this.shouldLoad = true;
