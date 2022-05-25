@@ -256,10 +256,7 @@ export class LitDevSearch extends LitElement {
       },
     };
     return html`
-      <div
-        id="root"
-        .suggestions=${this._suggestions}
-      >
+      <div id="root" .suggestions=${this._suggestions}>
         <input
           autocomplete="off"
           autocorrect="off"
