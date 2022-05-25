@@ -235,6 +235,8 @@ export class LitDevSearch extends LitElement {
   @state()
   private _popupSpaceLeft = false;
 
+  private _listboxClicked = false;
+
   render() {
     const isExpanded = this._isFocused && this._suggestions.length > 0;
     const activeDescendant =
@@ -257,8 +259,6 @@ export class LitDevSearch extends LitElement {
       <div
         id="root"
         .suggestions=${this._suggestions}
-        @focus=${this._onFocus}
-        @blur=${this._onBlur}
       >
         <input
           autocomplete="off"
@@ -274,13 +274,19 @@ export class LitDevSearch extends LitElement {
           aria-activedescendant=${activeDescendant}
           @input=${this._onInput}
           @keydown=${this._onKeydown}
+          @focus=${this._onFocus}
+          @blur=${this._onBlur}
         />
         <div
           id="popup"
           ${animate(listboxAnimationOptions)}
           style=${listboxStyles}
         >
-          <ul id="items" role="listbox">
+          <ul
+            id="items"
+            role="listbox"
+            @pointerdown=${this._onListboxPointerdown}
+          >
             ${repeat(
               this._suggestions,
               (v) => v.id,
@@ -493,8 +499,30 @@ export class LitDevSearch extends LitElement {
    * Shows the search icon on blur, and collapses the listbox.
    */
   private _onBlur() {
+    if (this._listboxClicked) {
+      return;
+    }
     this._isFocused = false;
   }
+
+  /**
+   * Prevents the listbox from closing because of input blur.
+   */
+  private _onListboxPointerdown() {
+    this._listboxClicked = true;
+    // cannnot use setpointercapture because it will retarget actual item clicks
+    window.addEventListener('pointerup', this._onPointerup, {
+      once: true,
+    });
+  }
+
+  /**
+   * Closes the listbox.
+   */
+  private _onPointerup = () => {
+    this._listboxClicked = false;
+    this._isFocused = false;
+  };
 
   /**
    * Positions the popup left or right justified with respect to the input
