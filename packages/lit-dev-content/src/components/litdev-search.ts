@@ -352,7 +352,7 @@ export class LitDevSearch extends LitElement {
   updated(changed: PropertyValues) {
     super.updated(changed);
 
-    if (changed.has('isFocused') || changed.has('suggestions')) {
+    if (changed.has('_isFocused') || changed.has('_suggestions')) {
       const isExpanded = this._isFocused && this._suggestions.length > 0;
       if (!isExpanded) {
         return;
