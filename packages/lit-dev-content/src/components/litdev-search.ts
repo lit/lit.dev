@@ -413,8 +413,14 @@ export class LitDevSearch extends LitElement {
         this._select();
         break;
       case 'Escape':
+        const oldText = this._searchText;
         this._searchText = '';
         this._suggestions = [];
+        this._selectedIndex = -1;
+        // prevent the input from closing dialog if there was text
+        if (oldText.trim()) {
+          e.stopPropagation();
+        }
         break;
     }
   }
