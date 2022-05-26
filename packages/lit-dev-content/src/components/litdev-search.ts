@@ -178,9 +178,11 @@ export class LitDevSearch extends LitElement {
   private static _siteSearchIndex: Minisearch<UserFacingPageData> | null = null;
 
   /**
-   * Flag so we only load the index once.
+   * Promise laoding the search index.
    */
-  private static _loadingSearchIndex: boolean = false;
+  private static _loadingSearchIndex: Promise<
+    Minisearch<UserFacingPageData>
+  > | null = null;
 
   /**
    * Search suggestion options.
@@ -237,6 +239,17 @@ export class LitDevSearch extends LitElement {
   private _popupSpaceLeft = false;
 
   private _listboxClicked = false;
+
+  update(changed: PropertyValues<this>) {
+    if (!this._searchText && this._inputEl) {
+      console.log(this._inputEl.value);
+      // this is required on hydration to make sure we don't blow away the
+      // input text due to the `live` directive which is necessary to prevent
+      // issues with typing on the virtual keyboard in Safari on iOS.
+      this._searchText = this._inputEl.value;
+    }
+    super.update(changed);
+  }
 
   render() {
     const isExpanded = this._isFocused && this._suggestions.length > 0;
@@ -313,45 +326,49 @@ export class LitDevSearch extends LitElement {
   /**
    * Load and deserialize search index into `LitDevSearch.siteSearchIndex`.
    */
-  private async _loadSearchIndex() {
-    // We already have a search index.
-    if (LitDevSearch._siteSearchIndex !== null) {
-      return;
+  private _loadSearchIndex(): Promise<Minisearch<UserFacingPageData>> {
+    // We already have a search index, or a load request is in progress due to
+    // another component on the page requesting it.
+    if (
+      LitDevSearch._siteSearchIndex !== null ||
+      LitDevSearch._loadingSearchIndex
+    ) {
+      return LitDevSearch._loadingSearchIndex!;
     }
-    if (LitDevSearch._loadingSearchIndex) {
-      return;
-    }
-    LitDevSearch._loadingSearchIndex = true;
 
-    const searchIndexJson = await (await fetch('/searchIndex.json')).text();
+    // This must be done as chained promise because we need to synchronously
+    // set the static LitDevSearch._loadingSearchIndex promise.
+    const searchIndexPromise = fetch('/searchIndex.json')
+      .then((res) => res.text())
+      .then((searchIndexJson) => {
+        // Minisearch intialization config must exactly match
+        // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
+        return (LitDevSearch._siteSearchIndex =
+          Minisearch.loadJSON<UserFacingPageData>(searchIndexJson, {
+            idField: 'id',
+            fields: ['title', 'heading', 'text'],
+            storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
+            searchOptions: {
+              boost: {title: 1.4, heading: 1.2, text: 1},
+              prefix: true,
+              fuzzy: 0.2,
+            },
+          }));
+      });
+    LitDevSearch._loadingSearchIndex = searchIndexPromise;
 
-    // Minisearch intialization config must exactly match
-    // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
-    LitDevSearch._siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
-      searchIndexJson,
-      {
-        idField: 'id',
-        fields: ['title', 'heading', 'text'],
-        storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
-        searchOptions: {
-          boost: {title: 1.4, heading: 1.2, text: 1},
-          prefix: true,
-          fuzzy: 0.2,
-        },
-      }
-    );
-
-    // If a search query has already been written, fill suggestions.
-    this._querySearch(this._searchText);
+    return searchIndexPromise;
   }
 
   /**
    * Load the search index.
    */
-  firstUpdated() {
-    this._loadSearchIndex();
+  async firstUpdated() {
     // required for popping up on hydration
     this._isFocused = !!this.shadowRoot?.activeElement;
+    await this._loadSearchIndex();
+    // If a search query has already been written, fill suggestions.
+    this._querySearch(this._searchText);
   }
 
   updated(changed: PropertyValues) {
