@@ -275,7 +275,7 @@ export class LitDevSearch extends LitElement {
           @keydown=${this._onKeydown}
           @focus=${this._onFocus}
           @blur=${this._onBlur}
-        />
+        >
         <div
           id="popup"
           ${animate(listboxAnimationOptions)}
