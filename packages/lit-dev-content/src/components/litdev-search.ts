@@ -242,7 +242,6 @@ export class LitDevSearch extends LitElement {
 
   update(changed: PropertyValues<this>) {
     if (!this._searchText && this._inputEl) {
-      console.log(this._inputEl.value);
       // this is required on hydration to make sure we don't blow away the
       // input text due to the `live` directive which is necessary to prevent
       // issues with typing on the virtual keyboard in Safari on iOS.
@@ -343,7 +342,7 @@ export class LitDevSearch extends LitElement {
       .then((searchIndexJson) => {
         // Minisearch intialization config must exactly match
         // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
-        return (LitDevSearch._siteSearchIndex =
+        LitDevSearch._siteSearchIndex =
           Minisearch.loadJSON<UserFacingPageData>(searchIndexJson, {
             idField: 'id',
             fields: ['title', 'heading', 'text'],
@@ -353,7 +352,9 @@ export class LitDevSearch extends LitElement {
               prefix: true,
               fuzzy: 0.2,
             },
-          }));
+          });
+
+          return LitDevSearch._siteSearchIndex;
       });
     LitDevSearch._loadingSearchIndex = searchIndexPromise;
 
