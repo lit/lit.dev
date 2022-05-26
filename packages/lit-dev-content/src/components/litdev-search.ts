@@ -4,20 +4,27 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, TemplateResult, nothing} from 'lit';
+import {
+  LitElement,
+  html,
+  css,
+  TemplateResult,
+  nothing,
+  PropertyValues,
+} from 'lit';
 import {
   state,
   property,
-  query,
   queryAll,
   customElement,
+  query,
 } from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {live} from 'lit/directives/live.js';
 import Minisearch from 'minisearch';
-import {addModsParameterToUrlIfNeeded} from '../mods.js';
-import '@lion/combobox/define';
-import {LionOption} from '@lion/listbox';
 import type {Drawer} from '@material/mwc-drawer';
+import {animate, Options as AnimationOptions} from '@lit-labs/motion';
 
 /**
  * Representation of each document indexed by Minisearch.
@@ -61,7 +68,11 @@ function isApiLink(url: string) {
   return url.includes('docs/api/');
 }
 
-const SEARCH_ICON = html`<svg aria-hidden="true" viewbox="0 0 24 24">
+const SEARCH_ICON = (opacity: '0' | '1') => html`<svg
+  style="opacity: ${opacity}"
+  aria-hidden="true"
+  viewbox="0 0 24 24"
+>
   <path d="M0 0h24v24H0z" fill="none"></path>
   <path
     class="search-icon"
@@ -74,7 +85,7 @@ const SEARCH_ICON = html`<svg aria-hidden="true" viewbox="0 0 24 24">
  * Search input component that can fuzzy search the site.
  */
 @customElement('litdev-search')
-class LitDevSearch extends LitElement {
+export class LitDevSearch extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -84,7 +95,11 @@ class LitDevSearch extends LitElement {
       margin-block-start: 4px;
     }
 
-    .root {
+    #popup {
+      position: absolute;
+    }
+
+    #root {
       position: relative;
     }
 
@@ -100,38 +115,53 @@ class LitDevSearch extends LitElement {
       transition: opacity 1s;
     }
 
-    lion-combobox > lion-options {
+    #items {
+      display: block;
+      overflow: auto;
+      z-index: 1;
+      background: rgb(255, 255, 255);
       /* Fix the dimensions of the suggestion dropdown */
       max-height: min(400px, 100vh - 60px);
       width: 400px;
       box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
+      padding: 0;
+      margin: 0;
     }
 
-    lion-combobox {
-      color: #6f6f6f;
+    input {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: currentColor;
+      font-family: inherit;
       font-size: inherit;
       font-weight: inherit;
+      border: none;
+      border-block-end: solid currentColor;
+      border-block-end-width: 1px;
+      outline: none;
+    }
+
+    input:focus {
+      border-block-end-width: 2px;
+    }
+
+    input::placeholder {
+      color: currentColor;
     }
 
     /* Mobile responsive search */
     @media (max-width: 864px) {
-      lion-combobox {
-        color: white;
-      }
-
-      lion-combobox input::placeholder {
-        color: inherit;
-      }
-
       svg .search-icon {
         fill: white;
       }
 
-      lion-combobox > lion-options {
+      #items {
         /* Fix the dimensions of the suggestion dropdown */
         max-height: min(400px, 100vh - 60px);
         width: 240px;
-        margin-inline-start: -20px;
       }
     }
   `;
@@ -140,97 +170,229 @@ class LitDevSearch extends LitElement {
    * Text value in search input.
    */
   @state()
-  private searchText: string = '';
+  private _searchText: string = '';
 
   /**
    * Site search index.
    */
-  private static siteSearchIndex: Minisearch<UserFacingPageData> | null = null;
+  private static _siteSearchIndex: Minisearch<UserFacingPageData> | null = null;
 
   /**
-   * Flag so we only load the index once.
+   * Promise laoding the search index.
    */
-  private static loadingSearchIndex: boolean = false;
+  private static _loadingSearchIndex: Promise<
+    Minisearch<UserFacingPageData>
+  > | null = null;
 
   /**
    * Search suggestion options.
    */
   @queryAll('litdev-search-option')
-  private searchOptionElements!: LitdevSearchOption[];
+  private _searchOptionElements!: LitdevSearchOption[];
 
-  /**
-   * Search input within lion-combobox.
-   */
-  @query('lion-combobox input')
-  private input!: HTMLInputElement;
+  @query('#popup')
+  private _popupEl!: HTMLElement;
 
-  /**
-   * Reference the search icon.
-   */
-  @query('svg')
-  private searchIcon!: SVGElement;
+  @query('input')
+  private _inputEl!: HTMLInputElement;
 
   /**
    * Suggestions visible to the user rendered under the search input field.
    */
   @state()
-  private suggestions: Suggestion[] = [];
+  private _suggestions: Suggestion[] = [];
+
+  /**
+   * Whether the input is focused or not.
+   */
+  @state()
+  private _isFocused = false;
+
+  /**
+   * Currently selected suggestion.
+   */
+  @state()
+  private _selectedIndex = -1;
+
+  /**
+   * Whether the listbox should be visible or not. Used for async animations.
+   */
+  @state()
+  private _isListboxVisible = false;
+
+  /**
+   * Whether the listbox should be popped up with `right: 0` or not.
+   *
+   * This is when the listbox would pop up and overflow off the right of the
+   * screen.
+   */
+  @state()
+  private _popupSpaceRight = false;
+
+  /**
+   * Whether the listbox should be popped up with `left: 0` or not.
+   *
+   * This is when the listbox would pop up and overflow off the left of the
+   * screen.
+   */
+  @state()
+  private _popupSpaceLeft = false;
+
+  private _listboxClicked = false;
+
+  update(changed: PropertyValues<this>) {
+    if (!this._searchText && this._inputEl) {
+      // this is required on hydration to make sure we don't blow away the
+      // input text due to the `live` directive which is necessary to prevent
+      // issues with typing on the virtual keyboard in Safari on iOS.
+      this._searchText = this._inputEl.value;
+    }
+    super.update(changed);
+  }
+
+  render() {
+    const isExpanded = this._isFocused && this._suggestions.length > 0;
+    const activeDescendant =
+      this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
+
+    const listboxStyles = styleMap({
+      // isListboxVisible allows animation fade away
+      visibility: isExpanded || this._isListboxVisible ? 'visible' : 'hidden',
+      opacity: isExpanded ? '1' : '0',
+      right: this._popupSpaceRight ? '0px' : 'auto',
+      left: this._popupSpaceLeft ? '0px' : 'auto',
+    });
+    const listboxAnimationOptions: AnimationOptions = {
+      properties: ['opacity'],
+      onComplete: () => {
+        this._isListboxVisible = isExpanded;
+      },
+    };
+    return html`
+      <div id="root" .suggestions=${this._suggestions}>
+        <input
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          role="combobox"
+          placeholder="Search"
+          aria-label="Lit Site Search"
+          aria-haspopup="listbox"
+          aria-owns="items"
+          aria-expanded=${isExpanded ? 'true' : 'false'}
+          aria-autocomplete="list"
+          aria-activedescendant=${activeDescendant}
+          .value=${live(this._searchText)}
+          @input=${this._onInput}
+          @keydown=${this._onKeydown}
+          @focus=${this._onFocus}
+          @blur=${this._onBlur}
+        />
+        <div
+          id="popup"
+          ${animate(listboxAnimationOptions)}
+          style=${listboxStyles}
+        >
+          <ul
+            id="items"
+            role="listbox"
+            @pointerdown=${this._onListboxPointerdown}
+          >
+            ${repeat(
+              this._suggestions,
+              (v) => v.id,
+              (
+                {relativeUrl, title, heading, isSubsection},
+                index
+              ) => html`<litdev-search-option
+                id=${index}
+                ?checked=${this._selectedIndex === index}
+                .relativeUrl="${relativeUrl}"
+                .title="${title}"
+                .heading="${heading}"
+                .isSubsection="${isSubsection}"
+                role="option"
+                @click="${() => this._navigate(relativeUrl)}"
+              ></litdev-search-option>`
+            )}
+          </ul>
+        </div>
+        ${SEARCH_ICON(this._isFocused ? '0' : '1')}
+      </div>
+    `;
+  }
 
   /**
    * Load and deserialize search index into `LitDevSearch.siteSearchIndex`.
    */
-  private async loadSearchIndex() {
-    // We already have a search index.
-    if (LitDevSearch.siteSearchIndex !== null) {
-      return;
+  private _loadSearchIndex(): Promise<Minisearch<UserFacingPageData>> {
+    // We already have a search index, or a load request is in progress due to
+    // another component on the page requesting it.
+    if (
+      LitDevSearch._siteSearchIndex !== null ||
+      LitDevSearch._loadingSearchIndex
+    ) {
+      return LitDevSearch._loadingSearchIndex!;
     }
-    if (LitDevSearch.loadingSearchIndex) {
-      return;
-    }
-    LitDevSearch.loadingSearchIndex = true;
 
-    const searchIndexJson = await (await fetch('/searchIndex.json')).text();
+    // This must be done as chained promise because we need to synchronously
+    // set the static LitDevSearch._loadingSearchIndex promise.
+    const searchIndexPromise = fetch('/searchIndex.json')
+      .then((res) => res.text())
+      .then((searchIndexJson) => {
+        // Minisearch intialization config must exactly match
+        // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
+        LitDevSearch._siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
+          searchIndexJson,
+          {
+            idField: 'id',
+            fields: ['title', 'heading', 'text'],
+            storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
+            searchOptions: {
+              boost: {title: 1.4, heading: 1.2, text: 1},
+              prefix: true,
+              fuzzy: 0.2,
+            },
+          }
+        );
 
-    // Minisearch intialization config must exactly match
-    // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
-    LitDevSearch.siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
-      searchIndexJson,
-      {
-        idField: 'id',
-        fields: ['title', 'heading', 'text'],
-        storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
-        searchOptions: {
-          boost: {title: 1.4, heading: 1.2, text: 1},
-          prefix: true,
-          fuzzy: 0.2,
-        },
-      }
-    );
+        return LitDevSearch._siteSearchIndex;
+      });
+    LitDevSearch._loadingSearchIndex = searchIndexPromise;
 
-    // If a search query has already been written, fill suggestions.
-    this.querySearch(this.searchText);
+    return searchIndexPromise;
   }
 
   /**
    * Load the search index.
    */
-  firstUpdated() {
-    // Late load search index when page is idle.
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => this.loadSearchIndex());
-    } else {
-      setTimeout(() => this.loadSearchIndex(), 500);
-    }
+  async firstUpdated() {
+    // required for popping up on hydration
+    this._isFocused = !!this.shadowRoot?.activeElement;
+    await this._loadSearchIndex();
+    // If a search query has already been written, fill suggestions.
+    this._querySearch(this._searchText);
+  }
 
-    this.input.placeholder = 'Search';
+  updated(changed: PropertyValues) {
+    super.updated(changed);
+
+    if (changed.has('_isFocused') || changed.has('_suggestions')) {
+      const isExpanded = this._isFocused && this._suggestions.length > 0;
+      if (!isExpanded) {
+        return;
+      }
+
+      this._positionPopup();
+    }
   }
 
   /**
    * Repopulate suggestions with each input event.
    */
-  private handleInput(e: InputEvent) {
-    this.searchText = (e.target as HTMLInputElement).value ?? '';
-    this.querySearch(this.searchText);
+  private _onInput(e: InputEvent) {
+    this._searchText = (e.target as HTMLInputElement).value ?? '';
+    this._querySearch(this._searchText);
   }
 
   /**
@@ -238,40 +400,96 @@ class LitDevSearch extends LitElement {
    *
    * An empty query clears suggestions.
    */
-  private querySearch(query: string) {
+  private _querySearch(query: string) {
     const trimmedQuery = query.trim();
+    this._selectedIndex = -1;
     if (
-      !LitDevSearch.siteSearchIndex ||
+      !LitDevSearch._siteSearchIndex ||
       trimmedQuery === '' ||
       trimmedQuery.length < 2
     ) {
-      this.suggestions = [];
+      this._suggestions = [];
       return;
     }
-    this.suggestions = (
-      LitDevSearch.siteSearchIndex.search(trimmedQuery) ?? []
+    this._suggestions = (
+      LitDevSearch._siteSearchIndex.search(trimmedQuery) ?? []
     ).slice(0, 10) as unknown as Suggestion[];
+    this._selectedIndex = -1;
   }
 
   /**
    * Handle key press with side effects.
    *  - "Enter" finds the selected option and navigates to the page.
    */
-  private handleKeyDown(e: KeyboardEvent) {
-    if (this.searchOptionElements.length > 0 && e.key === 'Enter') {
-      // Navigate to checked element.
-      for (const el of this.searchOptionElements) {
-        if (el.checked as boolean) {
-          this.navigate(el.relativeUrl);
-          return;
+  private _onKeydown(e: KeyboardEvent) {
+    switch (e.key) {
+      case 'ArrowDown':
+        this._selectNext();
+        break;
+      case 'ArrowUp':
+        this._selectPrevious();
+        break;
+      case 'Enter':
+        this._select();
+        break;
+      case 'Escape':
+        const oldText = this._searchText;
+        this._searchText = '';
+        this._suggestions = [];
+        this._selectedIndex = -1;
+        // prevent the input from closing drawer if there was text
+        if (oldText.trim()) {
+          e.stopPropagation();
         }
-      }
-      // No element is selected. Fallback behavior is to navigate to the first
-      // suggestion.
-      const firstSuggestion = this.searchOptionElements[0];
-      firstSuggestion.checked = true;
-      this.navigate(firstSuggestion.relativeUrl);
+        break;
     }
+  }
+
+  /**
+   * Selects the next item on the list or wraps around if at end.
+   */
+  private _selectNext() {
+    const opts = this._searchOptionElements;
+    const numItems = opts.length;
+    this._selectedIndex++;
+    if (this._selectedIndex >= numItems) {
+      this._selectedIndex = 0;
+    }
+  }
+
+  /**
+   * Selects the previous item on the list or wraps around if at start.
+   */
+  private _selectPrevious() {
+    const opts = this._searchOptionElements;
+    const numItems = opts.length;
+    this._selectedIndex--;
+    if (this._selectedIndex < 0) {
+      this._selectedIndex = numItems - 1;
+    }
+  }
+
+  /**
+   * Handles the enter keypress and navigates accordingly.
+   */
+  private _select() {
+    const opts = this._searchOptionElements;
+    if (opts.length === 0) {
+      return;
+    }
+
+    // Navigate to checked element.
+    for (const el of opts) {
+      if (el.checked as boolean) {
+        this._navigate(el.relativeUrl);
+        return;
+      }
+    }
+    // No element is selected. Fallback behavior is to navigate to the first
+    // suggestion.
+    const firstSuggestion = opts[0];
+    firstSuggestion.checked = true;
+    this._navigate(firstSuggestion.relativeUrl);
   }
 
   /**
@@ -279,10 +497,10 @@ class LitDevSearch extends LitElement {
    * default behavior when navigating to a fragment on the page is not
    * refreshing the UI.
    */
-  private navigate(url: string) {
+  private async _navigate(url: string) {
+    const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
     document.location = addModsParameterToUrlIfNeeded(url);
-    this.input.value = '';
-    this.searchText = '';
+    this._searchText = '';
 
     // On mobile we manually close the nav drawer, otherwise the drawer remains
     // open when navigating between fragment identifiers.
@@ -294,50 +512,69 @@ class LitDevSearch extends LitElement {
     }
   }
 
+  focus() {
+    this._inputEl.focus();
+  }
+
   /**
-   * We hide the search icon on focus to prevent text overlapping the icon.
+   * Hides the search icon on focus to prevent text overlapping the icon, and
+   * expands the listbox.
    */
-  private onFocus() {
-    this.searchIcon.style.setProperty('opacity', '0');
+  private _onFocus() {
+    this._isFocused = true;
   }
 
-  private onBlur() {
-    this.searchIcon.style.setProperty('opacity', '1');
+  /**
+   * Shows the search icon on blur, and collapses the listbox.
+   */
+  private _onBlur() {
+    if (this._listboxClicked) {
+      return;
+    }
+    this._isFocused = false;
   }
 
-  render() {
-    return html`
-      <div class="root">
-        <lion-combobox
-          name="lit-search"
-          autocomplete="none"
-          @input=${this.handleInput}
-          @keydown=${this.handleKeyDown}
-          @focus=${this.onFocus}
-          @blur=${this.onBlur}
-        >
-          ${repeat(
-            this.suggestions,
-            (v) => v.id,
-            ({
-              relativeUrl,
-              title,
-              heading,
-              isSubsection,
-            }) => html` <!-- Set choiceValue to the current searchInput to override autofill behavior. -->
-              <litdev-search-option
-                .choiceValue="${this.searchText}"
-                .relativeUrl="${relativeUrl}"
-                .title="${title}"
-                .heading="${heading}"
-                .isSubsection="${isSubsection}"
-                @click="${() => this.navigate(relativeUrl)}"
-              ></litdev-search-option>`
-          )}
-        </lion-combobox>
-        ${SEARCH_ICON}
-      </div>
-    `;
+  /**
+   * Prevents the listbox from closing because of input blur.
+   */
+  private _onListboxPointerdown() {
+    this._listboxClicked = true;
+    // cannnot use setpointercapture because it will retarget actual item clicks
+    window.addEventListener('pointerup', this._onPointerup, {
+      once: true,
+    });
+  }
+
+  /**
+   * Closes the listbox.
+   */
+  private _onPointerup = () => {
+    this._listboxClicked = false;
+    this._isFocused = false;
+  };
+
+  /**
+   * Positions the popup left or right justified with respect to the input
+   * depending on whether the listbox is overflowing the window.
+   */
+  private _positionPopup() {
+    const popup = this._popupEl;
+    const windowWidth = window.innerWidth;
+    const popupRight = popup.getBoundingClientRect().right;
+
+    if (popupRight > windowWidth) {
+      this._popupSpaceRight = true;
+      this._popupSpaceLeft = false;
+      return;
+    }
+
+    const popupLeft = popup.getBoundingClientRect().left;
+
+    if (popupLeft <= 0) {
+      this._popupSpaceRight = false;
+      this._popupSpaceLeft = true;
+      return;
+    }
   }
 }
 
@@ -345,7 +582,7 @@ class LitDevSearch extends LitElement {
  * A single search option suggestion.
  */
 @customElement('litdev-search-option')
-class LitdevSearchOption extends LionOption {
+class LitdevSearchOption extends LitElement {
   @property()
   relativeUrl = '';
 
@@ -358,10 +595,21 @@ class LitdevSearchOption extends LionOption {
   @property({type: Boolean})
   isSubsection = false;
 
+  @property({type: Boolean})
+  checked = false;
+
   static get styles() {
     return [
-      ...super.styles,
       css`
+        :host {
+          display: block;
+          padding: 4px;
+        }
+
+        :host([checked]) {
+          background-color: rgb(189, 228, 255);
+        }
+
         .suggestion {
           display: flex;
           align-items: center;
@@ -419,6 +667,18 @@ class LitdevSearchOption extends LionOption {
           : nothing}
       </div>
     `;
+  }
+
+  updated(changed: PropertyValues) {
+    super.updated(changed);
+
+    if (changed.has('checked') && this.checked) {
+      this.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      });
+    }
   }
 }
 

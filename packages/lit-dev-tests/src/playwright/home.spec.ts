@@ -19,6 +19,9 @@ test.describe('Home page', () => {
   test('search site input basic functionality works', async ({page}) => {
     await page.goto('/');
     const searchInput = page.locator('#desktopNav litdev-search input');
+
+    // trigger hydration
+    searchInput.focus();
     await searchInput.type('reactive update cycle');
 
     // Playwright pierces shadow dom by default.

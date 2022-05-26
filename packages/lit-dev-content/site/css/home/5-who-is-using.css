@@ -70,7 +70,7 @@
   color: inherit;
 }
 
-#whoIsUsingLogos svg {
+#whoIsUsingLogos lazy-svg::part(svg) {
   height: 1.82em;
   width: 7em;
 }

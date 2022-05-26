@@ -44,7 +44,7 @@
   margin-left: 1em;
 }
 
-.buildAnythingArt > svg {
+.buildAnythingArt > lazy-svg::part(svg) {
   width: 66px;
   height: 66px;
   margin: 1.8em 0 0.9em 0;

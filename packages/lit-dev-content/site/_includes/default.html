@@ -8,6 +8,7 @@
     <meta name="description" content="Simple. Fast. Web Components.">
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
+    <link rel="modulepreload" href="{{ site.baseurl }}/js/global/lit-hydrate-support.js">
 
     {% inlinecss "global.css" %}
 
@@ -15,31 +16,24 @@
     {% inlinejs "global/apply-mods.js" %}
     {% inlinejs "global/initialize-typescript-attribute.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
-    {% if ssr %}
-      {% if not nohydrate %}
-        <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
-      {% endif %}
-      {% inlinejs "global/dsd-polyfill.js" %}
-    {% endif %}
+    <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
+    {% inlinejs "global/dsd-polyfill.js" %}
 
     {% if selectedVersion !== latestVersion %}
       <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
       {% inlinejs "components/litdev-banner.js" %}
     {% endif %}
 
-    <!-- We need to load litdev-search first because @lion/core loads the
-         scoped-custom-element-registry polyfill. If MWC components are loaded
-         first the polyfill currently throws errors. -->
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-search.js"></script>
+    <script type="module" src="{{ site.baseurl }}/js/global/hydrate-common-components.js"></script>
 
     <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-version-selector.js"></script>
-    <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
+    {% if not noaside %}
+      <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
+    {% endif %}
 
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
     {% if not env.DEV %}
-      <script type="module" src="{{ site.baseurl }}/js/lit.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
       <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
@@ -48,9 +42,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
     <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
+    <noscript><style>body[dsd-pending] {display: block !important;}</style></noscript>
     {% block head %}{% endblock %}
   </head>
-  <body {% if ssr %}dsd-pending{% endif %}>
+  <body dsd-pending>
     <mwc-drawer type="modal" id="mobileDrawer">
       <nav>
         <div id="mobileSiteNav">

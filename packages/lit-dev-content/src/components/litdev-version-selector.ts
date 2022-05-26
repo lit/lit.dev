@@ -6,7 +6,6 @@
 
 import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {addModsParameterToUrlIfNeeded} from '../mods.js';
 
 /**
  * Jumps between different versions of the Lit docs.
@@ -17,10 +16,11 @@ export class LitDevVersionSelector extends LitElement {
     return html`<slot @change=${this._onSelect}></slot>`;
   }
 
-  private _onSelect(event: Event) {
+  private async _onSelect(event: Event) {
     const select = event.target as HTMLSelectElement;
     const path = select.item(select.selectedIndex)?.dataset['path'];
     if (path) {
+      const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
       document.location.href = addModsParameterToUrlIfNeeded(path);
     }
   }

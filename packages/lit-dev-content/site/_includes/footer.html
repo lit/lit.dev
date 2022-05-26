@@ -1,8 +1,8 @@
 <footer>
   <div id="footerTop">
     <div id="footerNameAndLogo">
-      <img id="footerName" src="{{ site.baseurl }}/images/logo.svg#name" alt="" />
-      <img id="footerFlame" src="{{ site.baseurl }}/images/logo.svg#flame" alt="" />
+      <img loading="lazy" id="footerName" src="{{ site.baseurl }}/images/logo.svg#name" alt="" />
+      <img loading="lazy" fetchpriority="high" id="footerFlame" src="{{ site.baseurl }}/images/logo.svg#flame" alt="" />
     </div>
 
     <!-- TODO(aomarks) Combine SVG symbols into a single sprite sheet at prod
@@ -16,11 +16,11 @@
         title="Slack"
         aria-label="Slack"
       >
-        <svg>
-          <use
-            xlink:href="{{ site.baseurl }}/images/social/slack.svg#slack"
-          ></use>
-        </svg>
+        <lazy-svg
+          href="{{ site.baseurl }}/images/social/slack.svg#slack"
+          label="Slack"
+          loading="visible">
+        </lazy-svg>
       </a>
 
       <a
@@ -30,11 +30,11 @@
         title="Twitter"
         aria-label="Twitter"
       >
-        <svg>
-          <use
-            xlink:href="{{ site.baseurl }}/images/social/twitter.svg#twitter"
-          ></use>
-        </svg>
+        <lazy-svg
+          href="{{ site.baseurl }}/images/social/twitter.svg#twitter"
+          label="Twitter"
+          loading="visible">
+        </lazy-svg>
       </a>
 
       <a
@@ -43,11 +43,12 @@
         rel="noopener"
         title="GitHub"
         aria-label="GitHub"
-        ><svg>
-          <use
-            xlink:href="{{ site.baseurl }}/images/social/github.svg#github"
-          ></use>
-        </svg>
+        >
+          <lazy-svg
+              href="{{ site.baseurl }}/images/social/github.svg#github"
+              label="GitHub"
+              loading="visible">
+          </lazy-svg>
       </a>
 
       <a
@@ -56,10 +57,12 @@
         rel="noopener"
         title="YouTube"
         aria-label="YouTube"
-        ><svg>
-          <use
-            xlink:href="{{ site.baseurl }}/images/social/youtube.svg#youtube"
-          ></use>
+        >
+          <lazy-svg
+            href="{{ site.baseurl }}/images/social/youtube.svg#youtube"
+            label="YouTube"
+            loading="visible">
+          </lazy-svg>
         </svg>
       </a>
 
@@ -69,11 +72,12 @@
         rel="noopener"
         title="Stack Overflow"
         aria-label="Stack Overflow"
-        ><svg>
-          <use
-            xlink:href="{{ site.baseurl }}/images/social/stackoverflow.svg#stackoverflow"
-          ></use>
-        </svg>
+        >
+          <lazy-svg
+            href="{{ site.baseurl }}/images/social/stackoverflow.svg#stackoverflow"
+            label="Stack Overflow"
+            loading="visible">
+          </lazy-svg>
       </a>
     </div>
   </div>
