@@ -434,7 +434,7 @@ export class LitDevSearch extends LitElement {
         this._searchText = '';
         this._suggestions = [];
         this._selectedIndex = -1;
-        // prevent the input from closing dialog if there was text
+        // prevent the input from closing drawer if there was text
         if (oldText.trim()) {
           e.stopPropagation();
         }
