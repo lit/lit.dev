@@ -21,6 +21,7 @@ import {
 } from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {styleMap} from 'lit/directives/style-map.js';
+import {live} from 'lit/directives/live.js';
 import Minisearch from 'minisearch';
 import type {Drawer} from '@material/mwc-drawer';
 import {animate, Options as AnimationOptions} from '@lit-labs/motion';
@@ -269,6 +270,7 @@ export class LitDevSearch extends LitElement {
           aria-expanded=${isExpanded ? 'true' : 'false'}
           aria-autocomplete="list"
           aria-activedescendant=${activeDescendant}
+          .value=${live(this._searchText)}
           @input=${this._onInput}
           @keydown=${this._onKeydown}
           @focus=${this._onFocus}
@@ -409,6 +411,10 @@ export class LitDevSearch extends LitElement {
         break;
       case 'Enter':
         this._select();
+        break;
+      case 'Escape':
+        this._searchText = '';
+        this._suggestions = [];
         break;
     }
   }
