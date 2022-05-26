@@ -342,8 +342,9 @@ export class LitDevSearch extends LitElement {
       .then((searchIndexJson) => {
         // Minisearch intialization config must exactly match
         // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
-        LitDevSearch._siteSearchIndex =
-          Minisearch.loadJSON<UserFacingPageData>(searchIndexJson, {
+        LitDevSearch._siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
+          searchIndexJson,
+          {
             idField: 'id',
             fields: ['title', 'heading', 'text'],
             storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
@@ -352,9 +353,10 @@ export class LitDevSearch extends LitElement {
               prefix: true,
               fuzzy: 0.2,
             },
-          });
+          }
+        );
 
-          return LitDevSearch._siteSearchIndex;
+        return LitDevSearch._siteSearchIndex;
       });
     LitDevSearch._loadingSearchIndex = searchIndexPromise;
 
