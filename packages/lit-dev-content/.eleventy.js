@@ -33,7 +33,6 @@ const luxon = require('luxon');
 const crypto = require('crypto');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const litPlugin = require('@lit-labs/eleventy-plugin-lit');
-const {componentsToSSR} = require('./src/components/ssr.js');
 
 // Use the same slugify as 11ty for markdownItAnchor. It's similar to Jekyll,
 // and preserves the existing URL fragments
@@ -77,9 +76,7 @@ module.exports = function (eleventyConfig) {
     '../lit-dev-content/samples/tutorials/**/tutorial.json'
   );
   eleventyConfig.addWatchTarget('../lit-dev-content/samples/tutorials/**/*.md');
-  for (const component of componentsToSSR) {
-    eleventyConfig.addWatchTarget(component);
-  }
+  eleventyConfig.addWatchTarget('rollupout/server/*');
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
@@ -539,12 +536,13 @@ ${content}
         return 0;
       });
   });
-  let componentModules = componentsToSSR;
+
+  let componentModules = ['lib/components/ssr.js'];
 
   // In prod SSR should use the lit templates run through the minifier.
   if (!DEV) {
-    componentModules = componentsToSSR.map((componentPath) =>
-      componentPath.replace(/^lib\//, 'rollupout/')
+    componentModules = componentModules.map((componentPath) =>
+      componentPath.replace('lib/components', 'rollupout/server')
     );
   }
 
