@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
     <link rel="modulepreload" href="{{ site.baseurl }}/js/global/lit-hydrate-support.js">
+    <link rel="modulepreload" href="{{ site.baseurl }}/js/global/hydrate-common-components.js">
 
     {% inlinecss "global.css" %}
 
@@ -26,7 +27,6 @@
 
     <script type="module" src="{{ site.baseurl }}/js/global/hydrate-common-components.js"></script>
 
-    <script type="module" src="{{ site.baseurl }}/js/global/mobile-nav.js"></script>
     {% if not noaside %}
       <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
     {% endif %}
@@ -35,8 +35,6 @@
          isn't yet supported in Firefox or Safari. -->
     {% if not env.DEV %}
       <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
-      <script type="module" src="{{ site.baseurl }}/js/mwc-base.js"></script>
-      <script type="module" src="{{ site.baseurl }}/js/mwc-icon-button.js"></script>
     {% endif %}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
