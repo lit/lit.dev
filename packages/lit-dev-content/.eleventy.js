@@ -76,7 +76,8 @@ module.exports = function (eleventyConfig) {
     '../lit-dev-content/samples/tutorials/**/tutorial.json'
   );
   eleventyConfig.addWatchTarget('../lit-dev-content/samples/tutorials/**/*.md');
-  eleventyConfig.addWatchTarget('rollupout/server/*');
+  eleventyConfig.addWatchTarget('../lit-dev-content/rollupout/server/*');
+  eleventyConfig.addWatchTarget('../lit-dev-content/lib/components/ssr.js');
 
   // Placeholder shortcode for TODOs
   // Formatting is intentional: outdenting the HTML causes the
