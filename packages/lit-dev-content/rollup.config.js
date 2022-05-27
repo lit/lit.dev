@@ -48,7 +48,6 @@ export default [
       'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
       'lib/global/hydrate-common-components.js',
-      'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/home-components.js',
