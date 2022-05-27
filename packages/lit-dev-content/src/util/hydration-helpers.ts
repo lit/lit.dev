@@ -24,9 +24,12 @@ export const onIdle = (hydrationCallback: () => void) => {
  * @param queryString Media query string to trigger the callback.
  * @param hydrationCallback Callback to be called when the given media query matches.
  */
-export const onMediaQuery = (queryString: string, hydrationCallback: () => void) => {
-  const query = window.matchMedia(queryString)
-  const onQuery = (e: MediaQueryList|MediaQueryListEvent) => {
+export const onMediaQuery = (
+  queryString: string,
+  hydrationCallback: () => void
+) => {
+  const query = window.matchMedia(queryString);
+  const onQuery = (e: MediaQueryList | MediaQueryListEvent) => {
     if (e.matches) {
       hydrationCallback();
       query.removeEventListener('change', onQuery);
@@ -38,4 +41,4 @@ export const onMediaQuery = (queryString: string, hydrationCallback: () => void)
   } else {
     query.addEventListener('change', onQuery);
   }
-}
+};

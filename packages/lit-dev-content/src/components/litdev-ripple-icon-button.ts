@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import { css, html, LitElement, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import {css, html, LitElement, nothing} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('litdev-ripple-icon-button')
 export class LitDevRippleIconButton extends LitElement {
@@ -18,7 +18,7 @@ export class LitDevRippleIconButton extends LitElement {
   /**
    * Whether or not the button is disabled.
    */
-  @property({ type: Boolean })
+  @property({type: Boolean})
   disabled = false;
 
   static styles = css`
@@ -59,7 +59,7 @@ export class LitDevRippleIconButton extends LitElement {
     button:disabled {
       cursor: default;
       pointer-events: none;
-      opacity: .38;
+      opacity: 0.38;
     }
 
     #ripple {
@@ -68,7 +68,8 @@ export class LitDevRippleIconButton extends LitElement {
       border-radius: inherit;
     }
 
-    #ripple::before, #ripple::after {
+    #ripple::before,
+    #ripple::after {
       content: '';
       inset: inherit;
       border-radius: inherit;
@@ -81,7 +82,7 @@ export class LitDevRippleIconButton extends LitElement {
       transform: scale(0);
     }
 
-    button:is(:hover,:focus,:active) #ripple::before {
+    button:is(:hover, :focus, :active) #ripple::before {
       transform: scale(1);
     }
 
@@ -90,12 +91,12 @@ export class LitDevRippleIconButton extends LitElement {
     }
 
     button:hover #ripple::before {
-      opacity: .04;
+      opacity: 0.04;
     }
 
-    button:is(:focus,:active) #ripple::before,
+    button:is(:focus, :active) #ripple::before,
     button:active #ripple::after {
-      opacity: .12;
+      opacity: 0.12;
     }
 
     ::slotted(*) {
@@ -109,8 +110,9 @@ export class LitDevRippleIconButton extends LitElement {
   render() {
     return html`
       <button
-          aria-label=${this.label ? this.label : nothing}
-          ?disabled=${this.disabled}>
+        aria-label=${this.label ? this.label : nothing}
+        ?disabled=${this.disabled}
+      >
         <div id="ripple"></div>
         <slot></slot>
       </button>

@@ -48,15 +48,19 @@ const activateMobileDetails = async () => {
 
   const drawer = document.body.querySelector('mwc-drawer');
   // Wait for the drawer to begin opening.
-  drawer?.addEventListener('opening', async () => {
-    // await for it to be defined and for it to fully render.
-    await customElements.whenDefined('mwc-drawer');
-    requestAnimationFrame(() => {
-      // Scroll the active section into view. Use block end so that we don't
-      // scroll unnecessarily.
-      activeDetails.scrollIntoView({block: 'end'});
-    });
-  }, {once: true});
+  drawer?.addEventListener(
+    'opening',
+    async () => {
+      // await for it to be defined and for it to fully render.
+      await customElements.whenDefined('mwc-drawer');
+      requestAnimationFrame(() => {
+        // Scroll the active section into view. Use block end so that we don't
+        // scroll unnecessarily.
+        activeDetails.scrollIntoView({block: 'end'});
+      });
+    },
+    {once: true}
+  );
 };
 
 const onMobileView = () => {

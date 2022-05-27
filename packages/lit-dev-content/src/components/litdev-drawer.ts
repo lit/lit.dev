@@ -17,8 +17,7 @@ import {property, customElement} from 'lit/decorators.js';
 import './litdev-ripple-icon-button.js';
 
 // https://material.io/resources/icons/?icon=close
-const closeIcon = html`
-<svg
+const closeIcon = html` <svg
   width="24"
   height="24"
   viewBox="0 0 24 24"
@@ -30,8 +29,7 @@ const closeIcon = html`
 </svg>`;
 
 // Source: https://material.io/resources/icons/?icon=menu_book
-const bookIcon = html`
-<svg
+const bookIcon = html` <svg
   width="24"
   height="24"
   viewBox="0 0 24 24"
@@ -49,7 +47,7 @@ const bookIcon = html`
   <path
     d="M17.5,14.33c-1.7,0-3.24,0.29-4.5,0.83v1.66c1.13-0.64,2.7-0.99,4.5-0.99c0.88,0,1.73,0.09,2.5,0.26v-1.52 C19.21,14.41,18.36,14.33,17.5,14.33z"
   />
-</svg>`
+</svg>`;
 
 /**
  * A drawer that expands and collapses.
@@ -157,7 +155,7 @@ export class LitDevDrawer extends LitElement {
           aria-label="Open or close examples drawer"
           @click=${this._onClickToggleButton}
         >
-          ${this.open ? closeIcon : bookIcon }
+          ${this.open ? closeIcon : bookIcon}
         </litdev-ripple-icon-button>
       </div>
 
