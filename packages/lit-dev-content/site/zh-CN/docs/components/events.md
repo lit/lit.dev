@@ -28,7 +28,6 @@ versionLinks:
 
 #### 自定义事件监听选项 {#event-options-decorator}
 
-If you need to customize the event options used for a declarative event listener (like `passive` or `capture`), you can specify these on the listener using the `@eventOptions` decorator. The object passed to `@eventOptions` is passed as the `options` parameter to `addEventListener`.
 如果你需要自定义用于声明式事件监听器的事件选项（如 `passive` 或 `capture`），可以使用 `@eventOptions` 装饰器在监听器上指定这些选项。传给 `@eventOptions` 的对象将作为 `options` 参数传给 `addEventListener`。
 
 ```js
@@ -61,20 +60,19 @@ constructor() {
 
 向组件本身添加事件监听器是一种事件委托形式，委托可以减少代码或提高性能。请参阅 [事件委托](#event-delegation)了解有关详细信息。通常，在事件委托中，事件的 `target` 属性用于判断是在哪个元素触发了事件并据此来采取对应措施。
 
-However, events fired from the component's shadow DOM are retargeted when heard by an event listener on the component. This means the event target is the component itself. See [Working with events in shadow DOM](#shadowdom) for more information.
-但是，当组件上的事件侦听器听到时，从组件的 shadow DOM 触发的事件会被重定向。这意味着事件目标是组件本身。有关详细信息，请参阅 [使用shadow DOM 中的事件](#shadowdom)。
+但是，当组件上的事件侦听器听到它的 shadow DOM 触发的事件时会被重定向。这意味着事件的tartget是组件本身。请参阅 [使用shadow DOM 中的事件](#shadowdom)了解有关详细信息。
 
-Retargeting can interfere with event delegation, and to avoid it, event listeners can be added to the component's shadow root itself. Since the `shadowRoot` is not available in the `constructor`, event listeners can added in the `createRenderRoot` method as follows. Please note that it's important to make sure to return the shadow root from the `createRenderRoot` method.
+重定向可能会干扰事件委托，为了避免这种情况，可以将事件监听器添加到组件的shadow root本身。由于 `constructor` 中不可以访问`shadowRoot`，因此可以在 `createRenderRoot` 方法中添加事件监听器，如下所示。注意，请确保从 `createRenderRoot` 方法返回shadow root。
 
 {% playground-example "docs/components/events/host/" "my-element.ts" %}
 
-### Adding event listeners to other elements
+### 添加事件监听器到其他元素上
 
-If your component adds an event listener to anything except itself or its templated DOM – for example, to `Window`, `Document`, or some element in the main DOM – you should add the listener in `connectedCallback` and remove it in `disconnectedCallback`.
+如果你的组件将事件监听器添加到除了它自己和它的模板 DOM 之外的任何东西上——例如：`Window`、`Document` 或主 DOM 树中的某些元素——你应该在 `connectedCallback` 中添加监听器并在 `disconnectedCallback`移除监听。
 
-*   Removing the event listener in `disconnectedCallback` ensures that any memory allocated by your component will be cleaned up when your component is destroyed or disconnected from the page.
+* 在 `disconnectedCallback` 中移除事件监听器可确保当组件被销毁或与页面断开连接时，组件分配的任何内存都将被清理。
 
-*   Adding the event listener in `connectedCallback` (instead of, for example, the constructor or `firstUpdated`) ensures that your component will re-create its event listener if it is disconnected and subsequently reconnected to DOM.
+* 在 `connectedCallback` 中添加事件监听器（而不是构造函数或 `firstUpdated`）可确保组件在断开连接并随后重新连接到 DOM 时重新创建其事件侦听器。
 
 ```js
 connectedCallback() {
@@ -87,43 +85,43 @@ disconnectedCallback() {
 }
 ```
 
-See the MDN documentation on using custom elements [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) for more information on `connectedCallback` and `disconnectedCallback`.
+有关 `connectedCallback` 和 `disconnectedCallback` 的更多信息，请参阅MDN上有关使用自定义元素 [生命周期回调](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements) 的 文档。
 
-### Optimizing for performance
+### 性能优化
 
-Adding event listeners is extremely fast and typically not a performance concern. However, for components that are used in high frequency and need a lot of event listeners, you can optimize first render performance by reducing the number of listeners used via [event delegation](#event-delegation) and adding listeners [asynchronously](#async-events) after rendering.
+添加事件侦听器的速度非常快，而且通常不需要考虑性能问题。但是，对于使用频率高且需要大量事件监听器的组件，可以通过[事件委托](#event-delegation)减少使用的监听器数量和在渲染后 [异步](#async-events）添加监听器来优化首次渲染性能。
 
-#### Event delegation { #event-delegation }
+#### 事件代理 { #event-delegation }
 
-Using event delegation can reduce the number of event listeners used and therefore improve performance. It is also sometimes convenient to centralize event handling to reduce code. Event delegation can only be use to handle events that `bubble`. See [Dispatching events](#dispatching-events) for details on bubbling.
+使用事件委托可以减少事件监听器的数量，从而提高性能。同时，也可以很方便地通过集中事件处理减少代码。事件委托只能用于处理“冒泡”事件。有关冒泡的详细信息，请参阅 [Dispatching events](#dispatching-events)。
 
-Bubbling events can be heard on any ancestor element in the DOM. You can take advantage of this by adding a single event listener on an ancestor component to be notified of a bubbling event dispatched by any of its descendants in the DOM. Use the event's `target` property to take specific action based on the element that dispatched the event.
+可以在 DOM 中的任何祖先元素上听到冒泡事件。可以利用这一点，在祖先组件上添加单个事件监听器，这样就可以在 DOM 中其任何后代分发冒泡事件时收到通知。通过事件的 `target` 属性获取分发事​​件的元素，根据不同元素执行特定操作。
 
 {% playground-example "docs/components/events/delegation/" "my-element.ts" %}
 
-#### Asynchronously adding event listeners { #async-events }
+#### 异步添加事件监听器 { #async-events }
 
-To add an event listener after rendering, use the `firstUpdated` method. This is a Lit lifecycle callback which runs after the component first updates and renders its templated DOM.
+要在渲染后添加事件监听器，请使用 `firstUpdated` 方法。这是一个 Lit 生命周期回调，它在组件首次更新并渲染其模板化 DOM 后运行。
 
-The `firstUpdated` callback fires after the first time your component has been updated and called its `render` method, but **before** the browser has had a chance to paint.
+`firstUpdated` 回调在组件第一次被更新并调用它的 `render` 方法后触发，但浏览器有机会绘制 **之前**。
 
-See [firstUpdated](/docs/components/lifecycle/#firstupdated) in the Lifecycle documentation for more information.
+请参阅生命周期文档中的 [firstUpdated]({{baseurl}}/docs/components/lifecycle/#firstupdated) 了解更多信息。
 
-To ensure the listener is added after the user can see the component, you can await a Promise that resolves after the browser paints.
+如果想要在用户看见组件之后再添加事件监听器，你可以在添加事件之前等待一个在浏览器之后resolve的promise。
 
 ```js
 async firstUpdated() {
-  // Give the browser a chance to paint
+  // 给浏览器一个绘制的机会
   await new Promise((r) => setTimeout(r, 0));
   this.addEventListener('click', this._handleClick);
 }
 ```
 
-### Understanding `this` in event listeners
+### 理解事件监听器中的 `this`
 
-Event listeners added using the declarative `@` syntax in the template are automatically _bound_ to the component.
+在模板中使用声明时 `@` 语法添加的事件监听听器会自动绑定到组件。
 
-Therefore, you can use `this` to refer to your component instance inside any declarative event handler:
+因此，可以使用 `this` 在任何声明式事件处理程序中引用组件的实例：
 
 ```js
 class MyElement extends LitElement {
@@ -136,12 +134,12 @@ class MyElement extends LitElement {
 }
 ```
 
-When adding listeners imperatively with `addEventListener`, you'll want to use an arrow function so that `this` refers to the component:
+当必须使用 `addEventListener` 添加监听器时，需要使用箭头函数，以便 `this` 指向当前组件：
 
 ```ts
 export class MyElement extends LitElement {
   private _handleResize = () => {
-    // `this` refers to the component
+    // `this` 指向当前组件
     console.log(this.isConnected);
   }
 
@@ -151,54 +149,54 @@ export class MyElement extends LitElement {
 }
 ```
 
-See the [documentation for `this` on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) for more information.
+请参阅MDN上的 [`this` 的文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)了解更多详细信息。
 
-### Listening to events fired from repeated templates
+### 监听重复模板中触发的事件
 
-When listening to events on repeated items, it's often convenient to use [event delegation](#event-delegation) if the event bubbles. When an event does not bubble, a listener can be added on the repeated elements. Here's an example of both methods:
+在监听重复项的事件时，如果事件冒泡，通常使用 [事件委托](#event-delegation) 会很方便。当事件没有冒泡时，可以在重复的元素上添加监听器。以下是两种方法的示例：
 
 {% playground-example "docs/components/events/list/" "my-element.ts" %}
 
-## Dispatching events { #dispatching-events }
+## 分发事件 { #dispatching-events }
 
-All DOM nodes can dispatch events using the `dispatchEvent` method. First, create an event instance, specifying the event type and options. Then pass it to `dispatchEvent` as follows:
+所有 DOM 节点都可以使用 `dispatchEvent` 方法分发事件。首先，创建一个事件实例，指定事件类型和选项。然后将其传给 `dispatchEvent`，如下所示：
 
 ```js
 const event = new Event('my-event', {bubbles: true, composed: true});
 myElement.dispatchEvent(event);
 ```
 
-The `bubbles` option allows the event to flow up the DOM tree to ancestors of the dispatching element. It's important to set this flag if you want the event to be able to participate in [event delegation](#event-delegation).
+选项 `bubbles` 允许事件沿着 DOM 树向上流动到分发事件元素的祖先。如果希望事件能够参与 [事件委托](#event-delegation)，则设置该标志很重要。
 
-The `composed` option is useful to set to allow the event to be dispatched above the shadow DOM tree in which the element exists.
+选项 `composed` 对于设置允许事件在元素所在的shadow DOM 树之上分发很有用。
 
-See [Working with events in shadow DOM](#shadowdom) for more information.
+请参阅 [使用shadow DOM 中的事件](#shadowdom) 了解更多信息。
 
-See [EventTarget.dispatchEvent()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent) on MDN for a full description of dispatching events.
+请参阅 MDN 上的 [EventTarget.dispatchEvent()](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/dispatchEvent)了解有关分发事件的完整描述。
 
-### When to dispatch an event
+### 什么时候分发事件
 
-Events should be dispatched in response to user interaction or asynchronous changes in the component's state. They should generally **not** be dispatched in response to state changes made by the owner of the component via its property or attribute APIs. This is generally how native web platform elements work.
+应该分发事件来响应用户交互或组件状态的异步更改。组件所有者通过其 attribute 或 property API 所做的状态更改则**不**应该分发事件。这通常是原生 Web 平台元素的工作方式。
 
-For example, when a user types a value into an `input` element a `change` event is dispatched, but if code sets the `input`'s `value` property, a `change` event is **not** dispatched.
+例如，当用户在 `input` 元素中键入值时，会分发 `change` 事件，但如果代码设置了 `input` 的 `value` 属性，则 `change` 事件**不会**被分发.
 
-Similarly, a menu component should dispatch an event when the user selects a menu item, but it should not dispatch an event if, for example, the menu's `selectedItem` property is set.
+类似地，菜单组件应该在用户选择菜单项时分发一个事件，但如果设置了菜单的 `selectedItem` 属性，则它不应该分发事件。
 
-This typically means that a component should dispatch an event in response to another event to which it is listening.
+这通常意味着组件应该分发一个事件以响应它正在监听的另一个事件。
 
 {% playground-ide "docs/components/events/dispatch/" "my-dispatcher.ts" %}
 
-### Dispatching events after an element updates
+### 在元素更新后分发事件
 
-Often, an event should be fired only after an element updates and renders. This might be necessary if an event is intended to communicate a change in rendered state based on user interaction. In this case, the component's `updateComplete` Promise can be awaited after changing state, but before dispatching the event.
+通常，只有在元素更新和渲染之后才应该触发事件。如果事件的目的是传达因用户交互而导致的渲染状态的变化，这可能是必要的。在这种情况下，组件的 `updateComplete` Promise 可以在更改状态之后但在调度事件之前等待。更改状态之后，应该等待 `updateComplete` Promise 被 resolve 之后再触发事件。
 
 {% playground-ide "docs/components/events/update/" "my-dispatcher.ts" %}
 
-### Using standard or custom events { #standard-custom-events }
+### 使用标准或自定义事件 { #standard-custom-events }
 
-Events can be dispatched either by constructing an `Event` or a `CustomEvent`. Either is a reasonable approach. When using a `CustomEvent`, any event data is passed in the event's `detail` property. When using an `Event`, an event subclass can be made and custom API attached to it.
+可以通过构造 `Event` 或 `CustomEvent` 来分发分事件，两者皆可。使用 `CustomEvent` 时，任何事件数据都会在事件的 `detail` 属性中传递。使用 `Event` 时，可以创建事件子类并附加自定义 API。
 
-See [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event/Event) on MDN for details about constructing events.
+请参阅 MDN 上的 [Event](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/Event) 了解有关构造事件的详细信息。
 
 #### Firing a custom event:
 
@@ -211,9 +209,9 @@ const event = new CustomEvent('my-event', {
 this.dispatchEvent(event);
 ```
 
-See the [MDN documentation on custom events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) for more information.
+请参阅 [关于自定义事件的 MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/CustomEvent)了解更多信息。
 
-#### Firing a standard event:
+#### 触发一个标准事件:
 
 ```js
 class MyEvent extends Event {
@@ -230,8 +228,7 @@ this.dispatchEvent(event);
 
 ## 使用 shadow DOM 中事件 {#shadowdom}
 
-When using shadow DOM there are a few modifications to the standard event system that are important to understand. Shadow DOM exists primarily to provide a scoping mechanism in the DOM that encapsulates details about these "shadow" elements. As such, events in shadow DOM encapsulate certain details from outside DOM elements.
-需要弄清楚一件很重要的事情，就是当使用shadow DOM时，它的事件系统与标准事件系统由一些细微差异。shadow DOM的存在主要是为了在DOM中提供一种作用域机制去封装“shadow”元素的细节。因此，shadow DOM 中的事件封装了来自外部 DOM 元素的某些细节。
+需要弄清楚一件很重要的事情，就是当使用shadow DOM时，它的事件系统与标准事件系统由一些细微差异。shadow DOM的存在主要是为了在DOM中提供一种作用域机制去封装 “shadow” 元素的细节。因此，shadow DOM 中的事件封装了来自外部 DOM 元素的某些细节。
 
 ### 理解组合事件分发 {#shadowdom-composed}
 
@@ -242,18 +239,21 @@ _dispatchMyEvent() {
   let myEvent = new CustomEvent('my-event', {
     detail: { message: 'my-event happened.' },
     bubbles: true,
-    composed: true });
+    composed: true 
+  });
   this.dispatchEvent(myEvent);
 }
 ```
 
-If an event is `composed` and does `bubble`, it can be received by all ancestors of the element that dispatches the event—including ancestors in outer shadow roots. If an event is `composed` but does not `bubble`, it can only be received on the element that dispatches the event and on the host element containing the shadow root.
+如果一个事件的 `composed` 和 `bubble` 都是 true，那么它可以被分发事件的元素的所有祖先接收——包括 shadow root 外部的祖先。如果一个事件是 `composed` 为 true 但 `bubble` 为 false，那么它只能被分发事件的元素和包含 shadow root 的宿主元素接收。
 
-Note that most standard user interface events, including all mouse, touch, and keyboard events, are both bubbling and composed. See the [MDN documentation on composed events](https://developer.mozilla.org/en-US/docs/Web/API/Event/composed) for more information.
+请注意，大多数标准用户界面事件，包括所有鼠标、触摸和键盘事件，`composed` 和 `bubble` 都是 true。有关详细信息，请参阅 [MDN 关于 composed 事件的文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/composed)。
 
-### Understanding event retargeting {#shadowdom-retargeting}
+### 了解事件重定向 {#shadowdom-retargeting}
 
 [Composed](#shadowdom-composed) events dispatched from within a shadow root are retargeted, meaning that to any listener on an element hosting a shadow root or any of its ancestors, they appear to come from the hosting element. Since Lit components render into shadow roots, all composed events dispatched from inside a Lit component appear to be dispatched by the Lit component itself. The event's `target` property is the Lit component.
+
+从shadow root中分发的 [Composed](#shadowdom-composed) 事件会被重定向，这意味着对于shadow root的宿主元素或其祖先元素上的任何监听器，事件似乎均来自宿主元素。由于 Lit 组件呈现到影子根中，因此从 Lit 组件内部调度的所有组合事件似乎都是由 Lit 组件本身调度的。事件的 `target` 属性是 Lit 组件。
 
 ```html
 <my-element onClick="(e) => console.log(e.target)"></my-element>
@@ -268,23 +268,24 @@ render() {
 }
 ```
 
-In advanced cases where it is required to determine the origin of an event, use the `event.composedPath()` API. This method returns an array of all the nodes traversed by the event dispatch, including those within shadow roots. Because this breaks encapsulation, care should be taken to avoid relying on implementation details that may be exposed.  Common use cases include determining if the element clicked was an anchor tag, for purposes of client-side routing.
+在需要确定事件来源的高级情况下，请使用 `event.composedPath()` API。该方法返回事件分发遍历的所有节点的数组，包括 shadow root 中的节点。因为这会破坏封装，所以应注意避免依赖可能暴露的实现细节。常见场景包括确定单击的元素是否是锚点标签，用于客户端路由。
 
 ```js
 handleMyEvent(event) {
   console.log('Origin: ', event.composedPath()[0]);
 }
 ```
-See the [MDN documentation on composedPath](https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath) for more information.
 
-## Communicating between the event dispatcher and listener
+请参阅 [MDN 上有关composedPath 的文档](https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath)了解更多信息。
 
-Events exist primarily to communicate changes from the event dispatcher to the event listener, but events can also be used to communicate information from the listener back to the dispatcher.
+## 事件分发器和监听器之间的通信
 
-One way you can do this is to expose API on events which listeners can use to customize component behavior. For example, a listener can set a property on a custom event's detail property which the dispatching component then uses to customize behavior.
+事件的存在主要是为了将更改从事件分发器传递到事件监听器，但事件也可用于将信息从监听器传递回分发器。
 
-Another way to communicate between the dispatcher and listener is via the `preventDefault()` method. It can be called to indicate the event's standard action should not occur. When the listener calls `preventDefault()`, the event's `defaultPrevented` property becomes true. This flag can then be used by the listener to customize behavior.
+可以做到这一点的一种方法是在事件上公开 API，监听器可以使用这些 API 来自定义组件行为。例如，监听器可以在自定义事件的 detail 属性上设置一个属性，然后分发事件的组件使用该属性来自定义行为。
 
-Both of these techniques are used in the following example:
+在分发器和监听器之间进行通信的另一种方式是通过 `preventDefault()` 方法。可以调用它来指示不应触发事件的标准行为。当监听器调用 `preventDefault()` 时，事件的 `defaultPrevented` 属性变为 true。然后监听器可以使用此标志来自定义行为。
+
+以下示例中使用了这两种技术：
 
 {% playground-ide "docs/components/events/comm/" "my-listener.ts" %}
