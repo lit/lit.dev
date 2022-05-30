@@ -245,15 +245,13 @@ _dispatchMyEvent() {
 }
 ```
 
-如果一个事件的 `composed` 和 `bubble` 都是 true，那么它可以被分发事件的元素的所有祖先接收——包括 shadow root 外部的祖先。如果一个事件是 `composed` 为 true 但 `bubble` 为 false，那么它只能被分发事件的元素和包含 shadow root 的宿主元素接收。
+如果一个事件的 `composed` 和 `bubble` 都是 true，那么它可以被分发事件的元素的所有祖先接收——包括 shadow root 外部的祖先元素。如果一个事件是 `composed` 为 true 但 `bubble` 为 false，那么它只能被分发事件的元素和包含 shadow root 的宿主元素接收。
 
 请注意，大多数标准用户界面事件，包括所有鼠标、触摸和键盘事件，`composed` 和 `bubble` 都是 true。有关详细信息，请参阅 [MDN 关于 composed 事件的文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/composed)。
 
 ### 了解事件重定向 {#shadowdom-retargeting}
 
-[Composed](#shadowdom-composed) events dispatched from within a shadow root are retargeted, meaning that to any listener on an element hosting a shadow root or any of its ancestors, they appear to come from the hosting element. Since Lit components render into shadow roots, all composed events dispatched from inside a Lit component appear to be dispatched by the Lit component itself. The event's `target` property is the Lit component.
-
-从shadow root中分发的 [Composed](#shadowdom-composed) 事件会被重定向，这意味着对于shadow root的宿主元素或其祖先元素上的任何监听器，事件似乎均来自宿主元素。由于 Lit 组件呈现到影子根中，因此从 Lit 组件内部调度的所有组合事件似乎都是由 Lit 组件本身调度的。事件的 `target` 属性是 Lit 组件。
+从 shadow root 中分发的 [Composed](#shadowdom-composed) 事件会被重定向，这意味着对于 shadow root 的宿主元素或其祖先元素上的任何监听器来说，监听到的事件似乎均来自宿主元素。由于 Lit 组件会被渲染到 shadow root 中，因此从 Lit 组件内部分发的所有 composed 事件似乎都是由 Lit 组件本身分发的。事件的 `target` 属性总是 Lit 组件。
 
 ```html
 <my-element onClick="(e) => console.log(e.target)"></my-element>
