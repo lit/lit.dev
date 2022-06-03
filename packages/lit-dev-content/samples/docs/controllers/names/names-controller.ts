@@ -16,13 +16,13 @@ export class NamesController {
         if (!kind?.trim()) {
           return initialState;
         }
-        const response = await fetch(`${Names.baseUrl}${Names.kindIdMap[kind]}`);
-        const result = await response.json();
-        const error = (result as Names.Error).error;
-        if (error !== undefined) {
-          throw new Error(error);
+        try {
+          const response = await fetch(`${Names.baseUrl}${kind}`);
+          const data = await response.json();
+          return data.results as Names.Result;
+        } catch(error) {
+          throw new Error(`Failed to fetch "${kind}"`);
         }
-        return result as Names.Result;
       }, () => [this.kind]
     );
   }

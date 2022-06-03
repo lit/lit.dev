@@ -18,12 +18,12 @@ export class MyElement extends LitElement {
     ${this.names.render({
       complete: (result: Names.Result) => html`
         <p>List of ${this.names.kind}</p>
-        <ul>${result.map(i => html`<li>${i.value}</li>`)}
+        <ul>${result.map(i => html`<li>${i.name}</li>`)}
         </ul>
       `,
       initial: () => html`<p>Select a kind...</p>`,
       pending: () => html`<p>Loading ${this.names.kind}...</p>`,
-      error: (e: any) => html`<p>Error: ${e}</p>`
+      error: (e: any) => html`<p>${e}</p>`
     })}`;
   }
 
