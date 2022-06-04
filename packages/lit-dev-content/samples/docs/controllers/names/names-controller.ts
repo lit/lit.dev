@@ -20,7 +20,7 @@ export class NamesController {
           const response = await fetch(`${Names.baseUrl}${kind}`);
           const data = await response.json();
           return data.results as Names.Result;
-        } catch(error) {
+        } catch {
           throw new Error(`Failed to fetch "${kind}"`);
         }
       }, () => [this.kind]
