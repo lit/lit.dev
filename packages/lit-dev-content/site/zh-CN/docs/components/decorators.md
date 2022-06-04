@@ -115,9 +115,7 @@ plugins = [
 
 ### 在 TypeScript 和 Babel 中使用装饰器
 
-When using TypeScript with Babel, it's important to order the TypeScript transform before the decorators transform in your Babel config as follows:
-
-将 TypeScript 与 Babel 一起使用时，在 Babel 配置中的装饰器转换之前订购 TypeScript 转换非常重要，如下所示：
+将 TypeScript 与 Babel 一起使用时，一定要把 Babel 配置中的TypeScript 转换放在装饰器转换之前，如下所示：
 
 ```js
 {
@@ -132,7 +130,7 @@ When using TypeScript with Babel, it's important to order the TypeScript transfo
 }
 ```
 
-The `allowDeclareFields` setting is generally not needed, but it can be useful if you want to define a reactive property without using a decorator. For example,
+`allowDeclareFields` 设置通常是不需要的，但如果想在不使用装饰器的情况下定义响应式属性的话，那么它会很有用。例如，
 
 ```ts
 static properties = { foo: {} };
@@ -147,8 +145,8 @@ constructor() {
 
 ### 避免类字段和装饰器的一些问题 {#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/components/properties/#avoiding-issues-with-class-fields) for more information.
+[类字段](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes/Public_class_fields) 与声明响应式属性的交互存在问题。有关详细信息，请参阅[在声明属性时避免类字段出现问题]({{baseurl}}/docs/components/properties/#avoiding-issues-with-class-fields)。
 
-The current decorators [stage 3 proposal](https://github.com/tc39/proposal-decorators) does not directly address this issue, but it should be solved as the proposal evolves and matures.
+当前的 [第三阶段提案](https://github.com/tc39/proposal-decorators) 中并没有直接解决装饰器的这个问题，但随着提案的发展和成熟，应该会解决这个问题。
 
-When using decorators, transpiler settings for Babel and TypeScript must be configured correctly as shown in the sections above for [TypeScript](#decorators-typescript) and [Babel](#decorators-babel).
+使用装饰器时，必须正确配置 Babel 和 TypeScript 的转译器设置，如上述 [TypeScript](#decorators-typescript) 和 [Babel](#decorators-babel) 部分所示。

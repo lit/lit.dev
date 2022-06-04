@@ -1,26 +1,26 @@
 ---
-title: Expressions
+title: 表达式
 eleventyNavigation:
-  key: Expressions
+  key: 表达式
   parent: Templates
   order: 2
 versionLinks:
   v1: components/templates/#bind-properties-to-templated-elements
 ---
 
-Lit templates can include dynamic values called expressions. An expression can be any JavaScript expression. The expression is evaluated when the template is evaluated, and the result of the expression is included when the template renders. In a Lit component, this means whenever the `render` method is called.
+Lit 模板可以包含被称为表达式的动态值。表达式可以是任何 JavaScript 表达式。计算模板的同时也会计算表达式，并在模板渲染时包含表达式的结果。在 Lit 组件中，这意味着每当调用 `render` 方法时都会计算。
 
-Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
+表达式只能放置在模板中的特定位置，如何解释表达式取决于它出现的位置。元素标签内的表达式本身会影响元素。元素内容中的子节点所在位置的表达式会被渲染为子节点或文本。
 
-Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom directives](/docs/templates/custom-directives/) for more information.
+表达式的有效值因表达式出现的位置而异。通常，所有表达式都接受字符串和数字等原始值，并且一些表达式也支持其他值类型。此外，所有表达式都可以接受 _指令_，它们是自定义表达式处理和渲染方式的特殊函数。有关详细信息，请参阅 [自定义指令]({{baseurl}}/docs/templates/custom-directives/)。
 
-Here's a quick reference followed by more detailed information about each expression type.
+这是一个快速参考，后面是有关每种表达式类型的更多详细信息。
 
 <table class="wide-table">
 <thead>
 <tr>
-<th class="no-wrap-cell">Type</th>
-<th class="wide-cell">Example</th>
+<th class="no-wrap-cell">类型</th>
+<th class="wide-cell">示例</th>
 </tr>
 </thead>
 <tbody>
@@ -115,38 +115,38 @@ html`<button @click=${this._clickHandler}>Go</button>`
 </tbody>
 </table>
 
-This basic example shows a variety of different kinds of expressions.
+这个基本示例显示了各种不同类型的表达式。
 
 {% playground-example "docs/templates/expressions" "my-element.ts" %}
 
-The following sections describe each kind of expression in more detail. For more information about the structure of templates, see [Well-formed HTML](#well-formed-html) and [Valid expression locations](#expression-locations).
+以下部分更详细地描述了每种表达式。有关模板结构的更多信息，请参阅 [格式良好的 HTML](#well-formed-html) 和 [有效表达式位置](#expression-locations)。
 
-## Child expressions { #child-expressions }
+## 子表达式 { #child-expressions }
 
-An expression that occurs between the start and end tags of an element can add child nodes to the element. For example:
+出现在元素的开始和结束标记之间的表达式可以将子节点添加到元素。例如：
 
 ```js
 html`<p>Hello, ${name}</p>`
 ```
 
-Or:
+或:
 
 ```js
 html`<main>${bodyText}</main>`
 ```
 
-Expressions in the child position can take many kinds of values:
+子节点所在位置的表达式可以取多种值：
 
-* Primitive values likes strings, numbers, and booleans
-* `TemplateResult` objects created with the `html` function.
-* DOM nodes
+* 字符串、数字和布尔值等原始值
+* 使用 `html` 函数创建的 `TemplateResult` 对象。
+* DOM 节点
 * Arrays or iterables of any of the supported types
 
-### Primitive values
+### 原始值
 
 Primitives values like strings, numbers, booleans, null, and undefined are converted to strings when interpolated into text content or attribute values. They are checked for equality with the previous value so the DOM is not updated if the value hasn't changed.
 
-### Templates
+### 模板
 
 Since an expression in the child position can return a `TemplateResult` you can nest and compose templates:
 
@@ -173,7 +173,7 @@ For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
 
 For more on using JavaScript to create repeating templates, see [Lists](/docs/templates/lists/).
 
-### DOM nodes
+### DOM 节点
 
 Any DOM node can be passed to a child expression. Typically DOM nodes should be rendered by specifying a template using `html`, but a DOM node can be directly rendered like this when needed. The node is attached to the DOM tree at that point, and so removed from any current parent:
 
@@ -185,11 +185,11 @@ const page = html`
 `;
 ```
 
-### Arrays and iterables
+### 数组和可迭代对象
 
 An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/templates/lists/).
 
-## Attribute expressions {#attribute-expressions }
+## Attribute 表达式 {#attribute-expressions }
 
 In addition to using expressions to add child nodes, you can use them to set an elements's attributes and properties, too.
 

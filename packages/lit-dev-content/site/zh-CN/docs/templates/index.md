@@ -1,7 +1,7 @@
 ---
-title: Templates
+title: 模板
 eleventyNavigation:
-  key: Templates
+  key: 模板
   order: 3
 ---
 
