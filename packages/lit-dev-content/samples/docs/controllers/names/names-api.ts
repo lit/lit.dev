@@ -1,6 +1,3 @@
-export interface Error {
-  error: string;
-}
 export type Result = Array<{name: string}>;
 export type Kind = typeof kinds[number];
 
