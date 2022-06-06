@@ -1,94 +1,92 @@
 ---
-title: Custom directives
+title: 自定义指令
 eleventyNavigation:
-  parent: Templates
-  title: Custom directives
-  key: Custom directives
+  parent: 模板
+  title: 自定义指令
+  key: 自定义指令
   order: 6
 versionLinks:
   v1: lit-html/creating-directives/
 ---
 
-Directives are functions that can extend Lit by customizing how an expression renders. Using a directive in your template is as simple as calling a function:
-
+指令是可以通过自定义表达式的渲染方式来扩展 Lit 的一类函数。在模板中使用指令就像调用函数一样简单：
 ```js
 html`<div>
      ${fancyDirective('some text')}
   </div>`
 ```
 
-While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. There are two kinds of directives:
+虽然 Lit 附带了许多 [内置指令]({{baseurl}}/docs/templates/directives/)，例如 [`repeat()`]({{baseurl}}/docs/templates/directives/#repeat) 和 [`cache()`]( /docs/templates/directives/#cache），用户也可以编写自己的自定义指令。自定义指令有两种：
 
-*   Simple functions
+*   函数指令
 
-*   Class-based directives
+*   类指令
 
-A simple function returns a value to render. It can take any number of arguments, or no arguments at all.
+函数指令返回一个用于渲染的值，它可以接收多个参数，或者没有参数。
 
 ```js
 export noVowels = (str) => str.replaceAll(/[aeiou]/ig,'x');
 ```
 
-A class-based directive lets you do things that a simple function can't. Use a class based directive to:
+类指令可以做一些函数指令无法做的事。使用类指令，你可以：
 
--   Manipulate the rendered DOM directly (for example, add, remove, or reorder rendered DOM nodes).
--   Persist state between renders.
--   Update the DOM asynchronously, outside of the main update cycle.
+-   直接操作已渲染的 DOM （例如，添加，删除，或者重排已渲染的 DOM 节点）。
+-   在多次渲染之间保持状态。
+-   在主更新周期之外异步更新 DOM。
 
-The rest of this page describes class-based directives.
+本页的其余部分将会描述类指令。
 
-## Creating class-based directives
+## 创建类指令
 
-To create a class-based directive:
+要创建一个类指令，你必须:
 
-*   Implement the directive as a class that extends the {% api "Directive" %} class.
-*   Pass your class to the {% api "directive()" "directive" %} factory to create a directive function that can be used in Lit template expressions.
+*   将指令实现为一个继承自类 {% api "Directive" %} 的类。
+*   将你的类传递给 {% api "directive()" "directive" %} 工厂，获得可在 Lit 模板表达式中使用的指令函数。
 
 ```js
 import {Directive, directive} from 'lit/directive.js';
 
-// Define directive
+// 定义指令
 class HelloDirective extends Directive {
   render() {
     return `Hello!`;
   }
 }
-// Create the directive function
+// 创建一个指令函数
 const hello = directive(HelloDirective);
 
-// Use directive
+// 使用指令
 const template = html`<div>${hello()}</div>`;
 ```
 
-When this template is evaluated, the directive _function_  (`hello()`) returns a `DirectiveResult` object, which instructs Lit to create or update an instance of the directive _class_ (`HelloDirective`). Lit then calls methods on the directive instance to run its update logic.
+计算该模板时，指令 _函数_ (`hello()`) 会返回一个 `DirectiveResult` 对象，该对象要求 Lit 创建或更新 _类_ 指令(`HelloDirective`) 的实例。 然后 Lit 调用指令实例上的方法来运行其更新逻辑。
 
-Some directives need to update the DOM asynchronously, outside of the normal update cycle. To create an _async directive_, extend the `AsyncDirective` base class instead of `Directive`. See [Async directives](#async-directives) for details.
+一些指令需要在正常更新周期之外异步更新 DOM。要创建 _异步指令_，请扩展 `AsyncDirective` 基类而不是 `Directive`。请参阅 [异步指令](#async-directives)了解有关详细信息。
 
-## Lifecycle of a class-based directive
+## 类指令的生命周期
 
-The directive class has a few built-in lifecycle methods:
+指令类有一些内置的生命周期方法：
 
-*  The class constructor, for one-time initialization.
-*  `render()`, for declarative rendering.
-*  `update()`, for imperative DOM access.
+*  类构造函数，用于一次性初始化。
+*  `render()`, 用于声明式渲染。
+*  `update()`, 用于命令式 DOM 访问。
 
-You must implement the `render()` callback for all directives. Implementing `update()` is optional. The default implementation of `update()` calls and returns the value from `render()`.
+你必须为所有指令实现 `render()` 回调，而 `update()` 实现不是必须的。 `update()` 的默认实现是调用并返回 `render()` 的值。
 
-Async directives, which can update the DOM outside of the normal update cycle, use some additional lifecycle callbacks. See [Async directives](#async-directives) for details.
+可以在正常更新周期之外更新 DOM 的异步指令，会使用一些额外的生命周期回调。请参阅 [异步指令](#async-directives)了解有关详细信息。
 
-### One-time setup: constructor()
+### 一次性设置： constructor()
 
 When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class (causing the directive's constructor and any class field initializers to run):
+当 Lit 第一次在表达式中遇到 `DirectiveResult` 时，它将构造相应指令类的实例（这会导致指令的构造函数和类字段初始化程序运行）：
 
 {% switchable-sample %}
 
 ```ts
 class MyDirective extends Directive {
-  // Class fields will be initialized once and can be used to persist
-  // state between renders
+  // 类字段会被初始化一次，并在不同的渲染之间维护状态
   value = 0;
-  // Constructor is only run the first time a given directive is used
-  // in an expression
+  // 构造函数仅在表达式第一次使用到指令的时候执行一次
   constructor(partInfo: PartInfo) {
     super(partInfo);
     console.log('MyDirective created');
@@ -99,11 +97,10 @@ class MyDirective extends Directive {
 
 ```js
 class MyDirective extends Directive {
-  // Class fields will be initialized once and can be used to persist
+  // 类字段会被初始化一次，并在不同的渲染之间维护状态
   // state between renders
   value = 0;
-  // Constructor is only run the first time a given directive is used
-  // in an expression
+  // 构造函数仅在表达式第一次使用到指令的时候执行一次
   constructor(partInfo) {
     super(partInfo);
     console.log('MyDirective created');
@@ -114,28 +111,28 @@ class MyDirective extends Directive {
 
 {% endswitchable-sample %}
 
-As long as the same directive function is used in the same expression each render, the previous instance is reused, thus the state of the instance persists between renders.
+在多次渲染中，只要同一个表达式中使用相同的指令函数，那么前一个实例就会被重用，因此实例的状态在渲染之间保持不变。
 
-The constructor receives a single `PartInfo` object, which provides metadata about the expression the directive was used in. This can be useful for providing error checking in the cases where a directive is designed to be used only in specific types of expressions (see [Limiting a directive to one expression type](#limiting-a-directive-to-one-expression-type)).
+构造函数接收一个单一的 `PartInfo` 对象，该对象提供有关使用该指令的表达式的元数据。这对于在指令设计为仅用于特定类型的表达式的情况下提供错误检查很有用（参见 [将指令限制为一种表达式类型](#limiting-a-directive-to-one-expression-type))。
 
-### Declarative rendering: render()
+### 声明式渲染： render()
 
-The `render()` method should return the value to render into the DOM. It can return any renderable value, including another `DirectiveResult`.
+`render()` 方法应该返回要渲染到 DOM 中的值。它可以返回任何可渲染的值，包括 `DirectiveResult`。
 
-In addition to referring to state on the directive instance, the `render()` method can also accept arbitrary arguments passed in to the directive function:
+除了引用指令实例上的状态之外，`render()` 方法还可以接受传入指令函数的任意参数：
 
 ```js
 const template = html`<div>${myDirective(name, rank)}</div>`
 ```
 
-The parameters defined for the `render()` method determine the signature of the directive function:
+为 `render()` 方法定义的参数决定了指令函数的签名：
 
 {% switchable-sample %}
 
 ```ts
 class MaxDirective extends Directive {
   maxValue = Number.MIN_VALUE;
-  // Define a render method, which may accept arguments:
+  // 定义一个可以接收参数的 render 方法：
   render(value: number, minValue = Number.MIN_VALUE) {
     this.maxValue = Math.max(value, this.maxValue, minValue);
     return this.maxValue;
@@ -143,14 +140,14 @@ class MaxDirective extends Directive {
 }
 const max = directive(MaxDirective);
 
-// Call the directive with `value` and `minValue` arguments defined for `render()`:
+// 调用指令 并传入为 `render()` 方法定义的 `value` 和 `minValue` 参数：
 const template = html`<div>${max(someNumber, 0)}</div>`;
 ```
 
 ```js
 class MaxDirective extends Directive {
   maxValue = Number.MIN_VALUE;
-  // Define a render method, which may accept arguments:
+  // 定义一个可以接收参数的 render 方法：
   render(value, minValue = Number.MIN_VALUE) {
     this.maxValue = Math.max(value, this.maxValue, minValue);
     return this.maxValue;
@@ -158,7 +155,7 @@ class MaxDirective extends Directive {
 }
 const max = directive(MaxDirective);
 
-// Call the directive with `value` and `minValue` arguments defined for `render()`:
+// 调用指令 并传入为 `render()` 方法定义的 `value` 和 `minValue` 参数：
 const template = html`<div>${max(someNumber, 0)}</div>`;
 ```
 
