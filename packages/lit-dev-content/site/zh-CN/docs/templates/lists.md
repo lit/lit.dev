@@ -73,24 +73,23 @@ repeat(items, keyFunction, itemTemplate)
 
 {% playground-example "docs/templates/lists-repeat/" "my-element.ts" %}
 
-如果你重新排序 `employees` 数组，`repeat` 指令会重新排序现有的 DOM 节点。
+如果重新排序 `employees` 数组，`repeat` 指令只会重新排序现有的 DOM 节点。
 
-To compare this to Lit's default handling for lists, consider reversing a large list of names:
-要将其与 Lit 对列表的默认处理进行比较，请考虑反转大量名称：
+要将 repeat 指令与 Lit 对列表的默认处理方式进行比较，请考虑倒置包含大量项目的列表：
 
-*   For a list created using `map`, Lit maintains the DOM nodes for the list items, but reassigns the values.
-*   For a list created using `repeat`, the `repeat` directive reorders the _existing_ DOM nodes, so the nodes representing the first list item move to the last position.
+*   对于使用 `map` 创建的列表，Lit 会维护列表项的 DOM 节点，但会重新给节点分配新值。
+*   对于使用 `repeat` 创建的列表，`repeat` 指令只会重新排序 _已存在_ DOM 节点，因此代表第一个列表项的节点会移动到最后一个位置。
 
 
-### When to use map or repeat
+### 什么时候使用map 或 repeat
 
-Which repeat is more efficient depends on your use case:
+哪种重复方式更高效取决于你的场景:
 
-*   If updating the DOM nodes is more expensive than moving them, use the `repeat` directive.
+*   如果更新 DOM 节点比移动节点开销更大，请使用 `repeat` 指令。
 
-*   If the DOM nodes have state that _isn't_ controlled by a template expression, use the `repeat` directive.
+*   如果 DOM 节点的状态_不_由模板表达式控制，请使用 `repeat` 指令。
 
-    For example, consider this list:
+    例如，考虑如下列表：
 
     ```js
     html`${this.users.map((user) =>
@@ -99,9 +98,9 @@ Which repeat is more efficient depends on your use case:
     }`
     ```
 
-    The checkbox has a checked or unchecked state, but it isn't controlled by a template expression.
+    复选框具有选中或未选中状态，但不受模板表达式的控制。
 
-    If  you reorder the list after the user has checked one or more checkboxes, Lit would update the names associated with the checkboxes, but not the state of the checkboxes.
+    如果在用户选中一个或多个复选框后重新排序列表，Lit 会更新与复选框关联的名称，但不会更新复选框的状态。
 
- If neither of these situations apply, use `map` or looping statements.
+ 如果这两种情况都不适用，请使用 `map` 或循环语句。
 

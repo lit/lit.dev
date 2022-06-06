@@ -1,21 +1,21 @@
 ---
-title: Built-in directives
+title: 内置指令
 eleventyNavigation:
-  key: Built-in directives
-  parent: Templates
+  key: 内置指令
+  parent: 模板
   order: 5
 versionLinks:
   v1: lit-html/template-reference/#built-in-directives
 ---
 
-Directives are functions that can extend Lit by customizing the way an expression renders.
-Lit includes a number of built-in directives to help with a variety of rendering needs:
+指令是可以通过自定义表达式渲染方式来扩展 Lit 的函数。
+Lit 包含许多内置指令，可满足各种渲染需求：
 
 <table class="directory">
-  <tr><th>Directive</th><th>Summary</th></tr>
+  <tr><th>指令</th><th>概括</th></tr>
   <tr class="subheading"><td colspan="2">
 
-  Styling
+  样式
 
   </td></tr>
   <tr>
@@ -24,9 +24,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`classMap`](#classmap)
 
   </td>
-  <td>
-
-  Assigns a list of classes to an element based on an object.</td>
+  <td>通过一个对象给设置分配一组 class。</td>
   </tr>
 
   <tr>
@@ -37,12 +35,12 @@ Lit includes a number of built-in directives to help with a variety of rendering
   </td>
   <td>
 
-  Sets a list of style properties to an element based on an object.</td>
+  通过一个对象给元素设置一组样式属性。</td>
   </tr>
 
   <tr class="subheading"><td colspan="2">
 
-  Loops and Conditionals
+  循环与条件式
 
   </td></tr>
 
@@ -52,7 +50,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`when`](#when)
 
   </td>
-  <td>Renders one of two templates based on a condition.</td>
+  <td>根据条件渲染两个模板中的其中一个。</td>
   </tr>
 
   <tr>
@@ -61,7 +59,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`choose`](#choose)
 
   </td>
-  <td>Renders one of many templates based on a key value.</td>
+  <td>根据 key 值渲染多个模板中的其中一个。</td>
   </tr>
 
   <tr>
@@ -70,7 +68,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`map`](#map)
 
   </td>
-  <td>Transforms an iterable with a function.</td>
+  <td>使用一个函数来转换可迭代对象。</td>
   </tr>
 
   <tr>
@@ -79,7 +77,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`repeat`](#repeat)
 
   </td>
-  <td>Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability.</td>
+  <td>将可迭代对象渲染为DOM节点，并指定可选的键开启数据差异比较和 DOM 稳定性。</td>
   </tr>
 
   <tr>
@@ -88,7 +86,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`join`](#join)
 
   </td>
-  <td>Interleave values from an iterable with a joiner value.</td>
+  <td>交错拼接连接器和可迭代对象的值。</td>
   </tr>
 
   <tr>
@@ -97,7 +95,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`range`](#range)
 
   </td>
-  <td>Creates an iterable of numbers in a sequence, useful for iterating a specific number of times.</td>
+  <td>创建一个包含一个数字序列的可迭代对象，对于迭代特定次数的场景很有用。</td>
   </tr>
 
   <tr>
@@ -106,12 +104,12 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`ifDefined`](#ifdefined)
 
   </td>
-  <td>Sets an attribute if the value is defined and removes the attribute if undefined.</td>
+  <td>值为 defined 时设置 attribute，值为 undefined 时移除 attribute。</td>
   </tr>
 
   <tr class="subheading"><td colspan="2">
 
-  Caching and change detection
+  缓存和变化检测
 
   </td></tr>
 
@@ -121,7 +119,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`cache`](#cache)
 
   </td>
-  <td>Caches rendered DOM when changing templates rather than discarding the DOM.</td>
+  <td>在模板更新时，缓存已渲染的DOM而不是丢弃。</td>
   </tr>
 
   <tr>
@@ -130,7 +128,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`guard`](#guard)
 
   </td>
-  <td>Only re-evaluates the template when one of its dependencies changes.</td>
+  <td>仅在其依赖项之一发生更改时重新计算模板，通过防止不必要的工作来优化渲染性能。</td>
   </tr>
 
   <tr>
@@ -144,7 +142,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
 
   <tr class="subheading"><td colspan="2">
 
-  Referencing rendered DOM
+  引用已渲染的 DOM
 
   </td></tr>
 
@@ -154,12 +152,12 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`ref`](#ref)
 
   </td>
-  <td>Gets a reference to an element rendered in the template.</td>
+  <td>获得一个模版中已渲染的元素的引用。</td>
   </tr>
 
   <tr class="subheading"><td colspan="2">
 
-  Rendering special values
+  渲染特殊值
 
   </td></tr>
 
@@ -171,7 +169,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   </td>
   <td>
 
-  Renders the content of a `<template>` element.
+  渲染 `<template>` 元素的内容。
 
   </td>
   </tr>
@@ -182,7 +180,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`unsafeHTML`](#unsafehtml)
 
   </td>
-  <td>Renders a string as HTML rather than text.</td>
+  <td>渲染字符串为 HTML 而不是文本。</td>
   </tr>
 
   <tr>
@@ -191,12 +189,12 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`unsafeSVG`](#unsafesvg)
 
   </td>
-  <td>Renders a string as SVG rather than text.</td>
+  <td>渲染字符串为 SVG 而不是文本。</td>
   </tr>
 
   <tr class="subheading"><td colspan="2">
 
-  Asynchronous rendering
+  异步渲染
 
   </td></tr>
 
@@ -206,7 +204,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`until`](#until)
 
   </td>
-  <td>Renders placeholder content until one or more promises resolve.</td>
+  <td>渲染占位符直到一个或多个promise resolve为止。</td>
   </tr>
 
   <tr>
@@ -215,7 +213,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`asyncAppend`](#asyncappend)
 
   </td>
-  <td>Appends values from an `AsyncIterable` into the DOM as they are yielded.</td>
+  <td>当一个 `AsyncIterable` yield 时，向 DOM 追加其 yield 值。</td>
   </tr>
 
   <tr>
@@ -224,29 +222,29 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`asyncReplace`](#asyncreplace)
 
   </td>
-  <td>Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.</td>
+  <td>当 `AsyncIterable` yield时，将最新的值渲染到 DOM 中。</td>
   </tr>
 </table>
 
 <div class="alert alert-info">
 
-**Only bundle what you use.** These are called "built-in" directives because they're part of the Lit package. But each directive is a separate module, so your app only bundles the directives you import.
+**只打包你用到的东西。** 这些指令之所以被称为“内置”指令，是因为它们是 Lit 包的一部分。但是每个指令都是一个单独的模块，因此你的应用程序应该只打包导入的指令。
 
 </div>
 
-You can also build your own directives. For more information, see [Custom directives](/docs/templates/custom-directives/).
+你也可以构建你自己的指令。请参阅 [自定义指令]({{baseurl}}/docs/templates/custom-directives/) 了解更多信息。
 
-## Styling
+## 样式
 
 ### classMap
 
-Sets a list of classes to an element based on an object.
+通过一个对象给元素设置一组 class
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -256,7 +254,7 @@ import {classMap} from 'lit/directives/class-map.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -266,21 +264,19 @@ classMap(classInfo: {[name: string]: string | boolean | number})
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-`class` attribute expression (must be the only expression in the `class` attribute)
+`class` 属性表达式（必须是 `class` 属性的唯一表达式）。
 
 </td>
 </tr>
 </tbody>
 </table>
 
-The `classMap` directive uses the `element.classList` API to efficiently add and
-remove classes to an element based on an object passed by the user. Each key in
-the object is treated as a class name, and if the value associated with the key
-is truthy, that class is added to the element. On subsequent renders, any
-previously set classes that are falsy or no longer in the object are removed.
+`classMap` 指令使用 `element.classList` API 根据用户传递的对象来有效地添加和
+删除元素的类。该对象的每一个 key 被视为一个类名，如果与 key 关联的值是真值，则该类被添加到元素中。在后续的渲染中，
+如果某个 key 对应的值变成假值或不再存在于对象中，那么先前设置的与之关联的类也将被删除。
 
 {% switchable-sample %}
 
@@ -319,24 +315,23 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-The `classMap` must be the only expression in the `class` attribute, but it can
-be combined with static values:
+`classMap` 必须是 `class` 属性中的唯一表达式，但它可以与静态值结合：
 
 ```ts
 html`<div class="my-widget ${classMap(dynamicClasses)}">Static and dynamic</div>`;
 ```
 
-Explore `classMap` more in the [playground](/playground/#sample=examples/directive-class-map).
+在 [训练场中](/playground/#sample=examples/directive-class-map) 探索更多有关 `classMap` 的内容。
 
 ### styleMap
 
-Sets a list of style properties to an element based on an object.
+通过一个对象给元素设置一组样式属性。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -346,7 +341,7 @@ import {styleMap} from 'lit/directives/style-map.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -356,21 +351,19 @@ styleMap(styleInfo: {[name: string]: string | undefined | null})
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-`style` attribute expression (must be the only expression in the `style` attribute)
+`style` 属性表达式（必须是 `style` 属性的唯一表达式）。
 
 </td>
 </tr>
 </tbody>
 </table>
 
-The `styleMap` directive uses the `element.style` API to efficiently add and
-remove inline styles to an element based on an object passed by the user. Each
-key in the object is treated as a style property name, the value is treated as
-the value for that property. On subsequent renders, any previously set style
-properties that are undefined or `null` are removed (set to `null`).
+`styleMap` 指令使用 `element.style` API 根据用户传递的对象来有效地添加和
+删除元素的內联样式。该对象的每一个 key 被视为一个样式属性名，与之关联的值则是属性的值。在后续的渲染中，
+如果某个 key 对应的值变成 undefined 或 `null`，那么先前设置的样式属性也将被删除（设置为 `null`）。
 
 {% switchable-sample %}
 
@@ -409,40 +402,39 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-For CSS properties that contain dashes, you can either use the camel-case equivalent, or put the property name in quotes. For example, you can write the the CSS property `font-family` as either `fontFamily` or `'font-family'`:
+对于包含破折号的 CSS 属性，你可以使用驼峰型大小写等效写法，或者将属性名放在引号中。例如，你可以将 CSS 属性 `font-family` 写为 `fontFamily` 或 `'font-family'`：
 
 ```js
 { fontFamily: 'roboto' }
 { 'font-family': 'roboto' }
 ```
 
-Refer to CSS custom properties such as `--custom-color`, by placing the whole property name in quotes:
+通过将整个属性名放在引号中来引用 CSS 自定义属性，例如 `--custom-color`：
 
 ```js
 { '--custom-color': 'steelblue' }
 ```
 
+`styleMap` 必须是 `style` 属性中的唯一表达式，但它可以与静态值结合：
 
-The `styleMap` must be the only expression in the `style` attribute, but it can
-be combined with static values:
 
 ```js
 html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 ```
 
-Explore `styleMap` more in the [playground](/playground/#sample=examples/directive-style-map).
+在 [训练场中](/playground/#sample=examples/directive-style-map) 探索更多有关 `styleMap` 的内容。
 
-## Loops and conditionals
+## 循环与条件式
 
 ### when
 
-Renders one of two templates based on a condition.
+根据条件渲染一个或多个模板。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -452,7 +444,7 @@ import {when} from 'lit/directives/when.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -465,20 +457,19 @@ when<T, F>(
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any
+任何地方
 
 </td>
 </tr>
 </tbody>
 </table>
 
-When `condition` is true, returns the result of calling `trueCase()`, else returns the result of calling `falseCase()` if `falseCase` is defined.
+当`condition`为真时，返回调用`trueCase()`的结果，否则返回调用`falseCase()`的结果，如果定义了`falseCase`。
 
-This is a convenience wrapper around a ternary expression that makes it a
-little nicer to write an inline conditional without an else.
+这是一个便捷的三元表达式包装器，使其成为在没有 else 的情况下编写内联条件会更好方式。
 
 ```ts
 class MyElement extends LitElement {
@@ -492,14 +483,13 @@ class MyElement extends LitElement {
 
 ### choose
 
-Chooses and evaluates a template function from a list of cases based on matching
-the given `value` to a case.
+根据给定的 `value` 从 case 列表中选择匹配的 case 并计算其模板函数。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -509,7 +499,7 @@ import {choose} from 'lit/directives/choose.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -522,23 +512,20 @@ choose<T, V>(
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any
+任何位置
 
 </td>
 </tr>
 </tbody>
 </table>
 
+case 的结构为 `[caseValue, func]`。 `value` 与
+`caseValue` 通过严格的等值比较进行匹配。 第一个匹配到的 case 就被会选中。 case 值可以是任何类型，包括原始值、对象和 symbol。
 
-Cases are structured as `[caseValue, func]`. `value` is matched to
-`caseValue` by strict equality. The first match is selected. Case values
-can be of any type including primitives, objects, and symbols.
-
-This is similar to a switch statement, but as an expression and without
-fallthrough.
+这类似于 switch 语句，但 choose 只是一个表达式并且没有 fallthrough 机制。
 
 ```ts
 class MyElement extends LitElement {
@@ -556,13 +543,13 @@ class MyElement extends LitElement {
 
 ### map
 
-Returns an iterable containing the result of calling `f(value)` on each value in `items`.
+返回一个可迭代对象，其中包含对 `items` 中的每个值调用 `f(value)` 的结果。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -572,7 +559,7 @@ import {map} from 'lit/directives/map.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -584,18 +571,17 @@ map<T>(
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any
+任何位置
 
 </td>
 </tr>
 </tbody>
 </table>
 
-`map()` is a simple wrapper around a [for/of loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) that makes working with iterables in expressions a bit easier. `map()` always updates any DOM created in place - it does not do any diffing or DOM movement. If you need that see [repeat](#repeat). `map()` is smaller and faster than `repeat()`, so if you don't need diffing and DOM stability, prefer `map()`.
-
+`map()` 是 [for/of 循环](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of) 的简单包装器，它使得在表达式中使用可迭代对象变得更容易一些。 `map()` 总是就地更新任何已创建的 DOM - 它不做任何差异比较或 DOM 移动。如果需要差异比较或 DOM 移动，请参阅 [repeat](#repeat)。 `map()` 比 `repeat()` 更小更快，所以如果你不需要差异比较 和 DOM 稳定性，`map()` 会更合适。
 
 ```ts
 class MyElement extends LitElement {
@@ -611,13 +597,13 @@ class MyElement extends LitElement {
 
 ### repeat
 
-Renders values from an iterable into the DOM, with optional keying to enable data diffing and DOM stability.
+将可迭代对象渲染为DOM节点，并指定可选的键开启数据差异比较和 DOM 稳定性。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -627,7 +613,7 @@ import {repeat} from 'lit/directives/repeat.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -640,22 +626,20 @@ type ItemTemplate<T> = (item: T, index: number) => unknown;
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Repeats a series of values (usually `TemplateResults`) generated from an
-iterable, and updates those items efficiently when the iterable changes. When
-the `keyFn` is provided, key-to-DOM association is maintained between updates by
-moving generated DOM when required, and is generally the most efficient way to use `repeat` since it performs minimum unnecessary work for insertions and removals.
+从一个可迭代对象重复生成一系列值（通常是 `TemplateResults`），当可迭代对象改变时高效地更新这些项。当提供 `keyFn` 时，通过在需要时移动已生成的 DOM 在更新之间维护 key 
+与 DOM 之间的关联。通常，使用 `repeat` 是最高效的方法，因为它对插入和删除执行最少的不必要工作。
 
-If you're not using a key function, you should consider using [`map()`](#map).
+如果你不使用 `keyFn`，你应该考虑使用`map()`](#map)。
 
 {% switchable-sample %}
 
@@ -702,23 +686,22 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-If no `keyFn` is provided, `repeat` will perform similar to a simple map of
-items to values, and DOM will be reused against potentially different items.
+如果没有提供 `keyFn`，`repeat` 将类似于一个简单的项到值的 map ，并且 DOM 将可能被重用于不同的项目。
 
-See [When to use map or repeat](/docs/templates/lists/#when-to-use-map-or-repeat) for a discussion
-of when to use `repeat` and when to use standard JavaScript flow control.
+请参阅 [何时使用 map 或 repeat]({{baseurl}}/docs/templates/lists/#when-to-use-map-or-repeat) 进行讨论
+何时使用 `repeat` 以及何时使用标准 JavaScript 流控制。
 
-Explore `repeat` more in the [playground](/playground/#sample=examples/directive-repeat).
+在 [训练场中](/playground/#sample=examples/directive-repeat) 探索更多有关 `repeat` 的内容。
 
 ### join
 
-Returns an iterable containing the values in `items` interleaved with the `joiner` value.
+返回一个包含 `items` 中的值与 `joiner` 值交错的可迭代对象。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -728,7 +711,7 @@ import {join} from 'lit/directives/join.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -746,10 +729,10 @@ join<I, J>(
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any
+任何位置
 
 </td>
 </tr>
@@ -773,13 +756,13 @@ class MyElement extends LitElement {
 
 ### range
 
-Returns an iterable of integers from `start` to `end` (exclusive) incrementing by `step`.
+返回从 `start` 到 `end`（不包括）以 `step` 递增的整数的可迭代对象。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -789,7 +772,7 @@ import {range} from 'lit/directives/range.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -806,10 +789,10 @@ range(
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any
+任何位置
 
 </td>
 </tr>
@@ -830,13 +813,13 @@ class MyElement extends LitElement {
 
 ### ifDefined
 
-Sets an attribute if the value is defined and removes the attribute if undefined.
+如果值为 defined，则设置一个 attribute， 如果值为 undefined， 则移除 attribute。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -846,7 +829,7 @@ import {ifDefined} from 'lit/directives/if-defined.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -856,19 +839,19 @@ ifDefined(value: unknown)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Attribute expression
+Attribute 表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-For AttributeParts, sets the attribute if the value is defined and removes the attribute if the value is undefined (`undefined` or `null`). For other part types, this directive is a no-op.
+对于 attribute 部分，如果值是 defined ，则设置 attribute，如果值是 undefined（`undefined` 或 `null`），则删除 attribute。对于其他部分，该指令是无效。
 
-When more than one expression exists in a single attribute value, the attribute will be removed if _any_ expression uses `ifDefined` and evaluates to `undefined`/`null`. This is especially useful for setting URL attributes, when the attribute should not be set if required parts of the URL are not defined, to prevent 404's.
+当一个属性值中存在多个表达式时，如果 _任意_ 表达式使用 `ifDefined` 且计算结果为 `undefined`/`null`，则该属性将被删除。这对于设置 URL 属性特别有用，如果未定义 URL 的必需部分，则不应设置该属性，以防止 404。
 
 {% switchable-sample %}
 
@@ -883,7 +866,7 @@ class MyElement extends LitElement {
   size: string | undefined = undefined;
 
   render() {
-    // src attribute not rendered if either size or filename are undefined
+    // 如果 size 或 filename 是 undefined，src 属性就不会被渲染
     return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
   }
 }
@@ -903,7 +886,7 @@ class MyElement extends LitElement {
   }
 
   render() {
-    // src attribute not rendered if either size or filename are undefined
+    // 如果 size 或 filename 是 undefined，src 属性就不会被渲染
     return html`<img src="/images/${ifDefined(this.size)}/${ifDefined(this.filename)}">`;
   }
 }
@@ -912,21 +895,19 @@ customElements.define('my-element', MyEleent);
 
 {% endswitchable-sample %}
 
-Explore `ifDefined` more in the [playground](/playground/#sample=examples/directive-if-defined).
+在 [训练场中](/playground/#sample=examples/directive-if-defined) 探索更多有关 `ifDefined` 的内容。
 
-## Caching and change detection
+## 缓存和改变检测
 
 ### cache
 
-Caches rendered DOM when changing templates rather than discarding the DOM. You
-can use this directive to optimize rendering performance when frequently
-switching between large templates.
+在更改模板是缓存已渲染的 DOM 而不是丢弃 DOM。当你频繁地在大型模板之间切换时，可以使用该指令来优化渲染性能。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -936,7 +917,7 @@ import {cache} from 'lit/directives/cache.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -946,21 +927,18 @@ cache(value: TemplateResult|unknown)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-When the value passed to `cache` changes between one or more `TemplateResult`s,
-the rendered DOM nodes for a given template are cached when they're not in use.
-When the template changes, the directive caches the _current_ DOM nodes before
-switching to the new value, and restores them from the cache when switching back
-to a previously-rendered value, rather than creating the DOM nodes anew.
+当传递给 `cache` 的值在一个或多个 `TemplateResult` 之间变化时，给定模板的已渲染 DOM 节点在不使用时会被缓存。
+当模板改变时，指令会在切换到新值之前缓存 _当前的_ DOM 节点，并在切换回之前渲染的值时从缓存中恢复它们，而不是重新创建 DOM 节点。
 
 {% switchable-sample %}
 
@@ -1009,22 +987,21 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-When Lit re-renders a template, it only updates the modified portions: it doesn't create or remove any more DOM than needed. But when you switch from one template to another, Lit removes the old DOM and renders a new DOM tree.
+当 Lit 重新渲染一个模板时，它只更新变更的部分：它只会创建或删除必要的DOM。但是当你从一个模板切换到另一个模板时，Lit 会移除旧的 DOM 和创建新的 DOM 树。
 
-The `cache` directive caches the generated DOM for a given expression and input template. In the example above, it caches the DOM for both the `summaryView` and `detailView` templates. When you switch from one view to another, Lit swaps in the cached version of the new view and updates it with the latest data. This can improve rendering performance when these views are frequently switched.
+`cache` 指令会为给定的表达式和输入模板缓存已生成的 DOM。在上面的示例中，它缓存了 `summaryView` 和 `detailView` 模板的 DOM。当你从一个视图切换到另一个视图时，Lit 会换入新视图的缓存版本并使用最新数据对其进行更新。当这些视图频繁切换时，这可以提高渲染性能。
 
-Explore `cache` more in the [playground](/playground/#sample=examples/directive-cache).
+在 [训练场中](/playground/#sample=examples/directive-cache) 探索更多有关 `cache` 的内容。
 
 ### guard
 
-Only re-evaluates the template when one of its dependencies changes, to optimize
-rendering performance by preventing unnecessary work.
+仅在其依赖项之一发生更改时重新计算模板，通过避免不必要的工作来优化渲染性能。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1034,7 +1011,7 @@ import {guard} from 'lit/directives/guard.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1044,26 +1021,25 @@ guard(dependencies: unknown[], valueFn: () => unknown)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any expression
+任何表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Renders the value returned by `valueFn`, and only re-evaluates `valueFn` when one of the
-dependencies changes identity.
+Renders the value returned by `valueFn`, and only re-evaluates `valueFn` when one of the dependencies changes identity.
+渲染由 `valueFn` 返回的值，并且仅在依赖项之一更改时重新执行 `valueFn`。
 
-Where:
+参数:
 
--   `dependencies` is an array of values to monitor for changes.
--   `valueFn` is a function that returns a renderable value.
+-   `dependencies` 是一个用于监视变化的值的数组。
+-   `valueFn` 是一个返回可渲染值的函数。
 
-`guard` is useful with immutable data patterns, by preventing expensive work
-until data updates.
+`guard` 对不可变数据模式很有用，它可以避免在数据更新之前进行开销很大的工作。
 
 {% switchable-sample %}
 
@@ -1106,9 +1082,9 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-In this case, the expensive `calculateSHA` function is only run when the `value` property changes.
+在这个示例中，开销很大的 `calculateSHA` 函数只有在 `value` 属性改变的时候才会执行。
 
-Explore `guard` more in the [playground](/playground/#sample=examples/directive-guard).
+在 [训练场中](/playground/#sample=examples/directive-guard) 探索更多有关 `guard` 的内容。
 
 ### live
 
@@ -1118,7 +1094,7 @@ Sets an attribute or property if it differs from the live DOM value rather than 
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1128,7 +1104,7 @@ import {live} from 'lit/directives/live.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1138,29 +1114,21 @@ live(value: unknown)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Attribute or property expression
+Attribute 或者 property 表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-When determining whether to update the value, checks the expression value
-against the _live_ DOM value, instead of Lit's default behavior of checking
-against the last set value.
+当判断是否需要更新值的时候，检查表达式的值和 _实时_ DOM 值是否不一样，而不是 Lit 的默认方式-检查与上一个设置的值是否不一样。
 
-This is useful for cases where the DOM value may change from outside of Lit. For
-example, when using an expression to set an `<input>` element's `value`
-property, a content editable element's text, or to a custom element that changes
-its own properties or attributes.
+这种方式对于那些 DOM 值可能从Lit组件外部修改的场景很有用。例如，当使用一个表达式去设置 `<input>` 元素的 `value` 属性，内容可编辑元素的text，或者一个可以修改自己 property 或者 attribute 的自定义组件。
 
-In these cases if the DOM value changes, but the value set through Lit
-expression hasn't, Lit won't know to update the DOM value and will leave it
-alone. If this is not what you want—if you want to overwrite the DOM value with
-the bound value no matter what—use the `live()` directive.
+在这些场景下，如果 DOM 值发生改变，但是通过Lit表达式设置的值没有发生改变，Lit 将不知道是要去更新 DOM 值而保持原状。如果这不是你想要的 - 你想到的是无论如何都直接使用绑定的值覆盖 DOM 值， 那么就使用 `live()` 指令。
 
 {% switchable-sample %}
 
@@ -1197,26 +1165,21 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-`live()` performs a strict equality check agains the live DOM value, and if
-the new value is equal to the live value, does nothing. This means that
-`live()` should not be used when the expression will cause a type conversion. If
-you use `live()` with an attribute expression, make sure that only strings are
-passed in, or the expression will update every render.
+`live()` 对实时 DOM 值执行严格的等值检测，如果信的绑定值等于实时的 DOM 值，那就什么都不做。这就意味着如果绑定的表达式存在类型转换的话，就不应该使用 `live()`。如果你对 attribute 表达式使用 `live()` 指令，请确保传入的值是字符串类型。否则表达式在每次渲染时都会被更新。
 
-Explore `live` more in the [playground](/playground/#sample=examples/directive-live).
+在 [练习场](/playground/#sample=examples/directive-live) 中探索 `live` 的更多内容。
 
-
-## Rendering special values
+## 渲染特殊值
 
 ### templateContent
 
-Renders the content of a `<template>` element.
+渲染 `<template>` 元素的内容。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1226,7 +1189,7 @@ import {templateContent} from 'lit/directives/template-content.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1236,29 +1199,21 @@ templateContent(templateElement: HTMLTemplateElement)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Lit templates are encoded in Javascript, so that they can embed Javascript
-expressions that make them dynamic. If you have a static HTML `<template>` that
-you need to include in your Lit template, you can use the `templateContent`
-directive to clone the template content and include it in your Lit template. As
-long as the template element reference does not change between renders,
-subsequent renders will no-op.
+Lit 模板是用 Javascript 编码的，因此它们可以嵌入 Javascript 表达式，使其成为动态的。如果你有一个静态 HTML `<template>` 需要引入到你的 Lit 模板中，那么你可以使用 templateContent 指令来克隆 template 元素中的内容并将其添加到你的 Lit 模板中。只要 template 元素引用在渲染之间不发生变化，后续渲染将不会重复上述操作。
 
 <div class="alert alert-warning">
 
-Note, the template content should be developer-controlled and must not be
-created using an untrusted string. Examples of untrusted content include query
-string parameters and values from user inputs. Untrusted templates rendered with
-this directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+请注意，template 元素内容应由开发人员控制，不得由不受信任的字符串创建。不受信任内容的示例包括 query string 参数和用户输入的值。使用该指令渲染不信任的 template 元素内容可能导致 [跨站脚本攻击 (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) 漏洞。
 
 </div>
 
@@ -1294,7 +1249,7 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `templateContent` more in the [playground](/playground/#sample=examples/directive-template-content).
+在[训练场](/playground/#sample=examples/directive-template-content)中探索更多 `templateContent` 的内容。
 
 ### unsafeHTML
 
