@@ -1063,7 +1063,7 @@ Any expression
 </tbody>
 </table>
 
-`keyed` is useful when rendering stateful elements and you need to ensure that all state of the element is cleared when some critical data changes. It essentially opts-out of Lit's default DOM reuse strategy.
+`keyed` is useful when you're rendering stateful elements and you need to ensure that all state of the element is cleared when some critical data changes. It essentially opts-out of Lit's default DOM reuse strategy.
 
 `keyed` is also useful in some animation scenarios if you need to force a new element for "enter" or "exit" animations.
 
