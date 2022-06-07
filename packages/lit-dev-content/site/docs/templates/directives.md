@@ -1027,7 +1027,7 @@ Explore `cache` more in the [playground](/playground/#sample=examples/directive-
 
 ### keyed
 
-Associates a renderable value with a unique key. When the key changes, the previous DOM is removed and disposed before rendering the next value, even if the value - such as a template - is the same.
+Associates a renderable value with a unique key. When the key changes, the previous DOM is removed and disposed before rendering the next value, even if the value—such as a template—is the same.
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
