@@ -127,6 +127,15 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <tr>
   <td>
 
+  [`keyed`](#keyed)
+
+  </td>
+  <td>Associates a renderable value with a unique key, forcing the DOM to re-render if the key changes.</td>
+  </tr>
+
+  <tr>
+  <td>
+
   [`guard`](#guard)
 
   </td>
@@ -1014,6 +1023,90 @@ When Lit re-renders a template, it only updates the modified portions: it doesn'
 The `cache` directive caches the generated DOM for a given expression and input template. In the example above, it caches the DOM for both the `summaryView` and `detailView` templates. When you switch from one view to another, Lit swaps in the cached version of the new view and updates it with the latest data. This can improve rendering performance when these views are frequently switched.
 
 Explore `cache` more in the [playground](/playground/#sample=examples/directive-cache).
+
+
+### keyed
+
+Associates a renderable value with a unique key. When the key changes, the previous DOM is removed and disposed before rendering the next value, even if the value—such as a template—is the same.
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {keyed} from 'lit/directives/keyed.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+keyed(key: unknown, value: unknown)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Any expression
+
+</td>
+</tr>
+</tbody>
+</table>
+
+`keyed` is useful when you're rendering stateful elements and you need to ensure that all state of the element is cleared when some critical data changes. It essentially opts-out of Lit's default DOM reuse strategy.
+
+`keyed` is also useful in some animation scenarios if you need to force a new element for "enter" or "exit" animations.
+
+{% switchable-sample %}
+
+```ts
+@customElement('my-element')
+class MyElement extends LitElement {
+
+  @property()
+  userId: string = '';
+
+  render() {
+    return html`
+      <div>
+        ${keyed(this.userId, html`<user-card .userId=${this.userId}></user-card>`)}
+      </div>`;
+  }
+}
+```
+
+```js
+class MyElement extends LitElement {
+  static properties = {
+    userId: {},
+  };
+
+  constructor() {
+    super();
+    this.userId = '';
+  }
+
+  render() {
+    return html`
+      <div>
+        ${keyed(this.userId, html`<user-card .userId=${this.userId}></user-card>`)}
+      </div>`;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
 
 ### guard
 
