@@ -69,7 +69,7 @@ const template = html`<div>${hello()}</div>`;
 
 *  类构造函数，用于一次性初始化。
 *  `render()`, 用于声明式渲染。
-*  `update()`, 用于命令式 DOM 访问。
+*  `update()`, 用于强制性 DOM 访问。
 
 你必须为所有指令实现 `render()` 回调，而 `update()` 实现不是必须的。 `update()` 的默认实现是调用并返回 `render()` 的值。
 
@@ -161,9 +161,9 @@ const template = html`<div>${max(someNumber, 0)}</div>`;
 
 {% endswitchable-sample %}
 
-### Imperative DOM access: update()
+### 强制性 DOM 访问 Imperative DOM access: update()
 
-In more advanced use cases, your directive may need to access the underlying DOM and imperatively read from or mutate it. You can achieve this by overriding the `update()` callback.
+在更高级的场景中，你的指令可能需要访问底层 DOM 并强制读取或修改它。 你可以通过覆盖 `update()` 回调来实现这一点。
 
 The `update()` callback receives two arguments:
 
