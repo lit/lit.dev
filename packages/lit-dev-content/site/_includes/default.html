@@ -22,7 +22,7 @@
       <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
     {% else %}
       <!-- Loads lit-hydration since we manually chunk this -->
-      <link rel="modulepreload" href="{{ site.baseurl }}/js/lit.js">
+      <link rel="module" href="{{ site.baseurl }}/js/lit.js">
     {% endif %}
     {% inlinejs "global/dsd-polyfill.js" %}
 
