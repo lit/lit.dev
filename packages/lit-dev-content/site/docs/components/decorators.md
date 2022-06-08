@@ -10,7 +10,7 @@ versionLinks:
 
 Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide declarative APIs for things like registering elements, reactive properties, and queries.
 
-Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
+Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard, which means they're neither finalized nor implemented in browsers yet. Compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for proposed features like decorators by compiling them into standard JavaScript a browser can run.
 
 See the [Enabling decorators](#enabling-decorators) section for more information.
 
@@ -59,7 +59,7 @@ You can import all the lit decorators via the `lit/decorators.js` module:
 import {customElement, property, eventOptions, query} from 'lit/decorators.js';
 ```
 
-To reduce the amount of code needed to run the component, decorators can be imported individually into component code. All decorators are available at `lit/decorators/<decorator-name>`. For example,
+To reduce the amount of code needed to run the component, decorators can be imported individually into component code. All decorators are available at `lit/decorators/<decorator-name>.js`. For example,
 
 ```js
 import {customElement} from 'lit/decorators/custom-element.js';
@@ -102,14 +102,19 @@ assumptions = {
 };
 
 plugins = [
-  ['@babel/plugin-proposal-decorators', {decoratorsBeforeExport: true}],
+  ['@babel/plugin-proposal-decorators',
+    {
+      version: '2018-09',
+      decoratorsBeforeExport: true
+    },
+  ],
   ["@babel/plugin-proposal-class-properties"],
 ];
 ```
 
 <div class="alert alert-info">
 
-Currently the older `legacy` mode of Babel decorators is not supported, but this may change as Babel evolves. See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy) if you want to experiment.
+Babel decorator support has been tested with `version: '2018-09'`. This is currently the default, but we recommend setting the version explicitly in case the default changes. Other versions ('2021-12' or 'legacy') are not supported, but this may change as Babel evolves. See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#options) if you want to experiment.
 
 </div>
 
@@ -124,7 +129,12 @@ When using TypeScript with Babel, it's important to order the TypeScript transfo
   },
   "plugins":[
     ["@babel/plugin-transform-typescript", {"allowDeclareFields": true}],
-    ["@babel/plugin-proposal-decorators", {"decoratorsBeforeExport": true}],
+    ['@babel/plugin-proposal-decorators',
+      {
+        version: '2018-09',
+        decoratorsBeforeExport: true
+      },
+    ],
     ["@babel/plugin-proposal-class-properties"],
   ]
 }
