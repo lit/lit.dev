@@ -8,7 +8,12 @@
     <meta name="description" content="Simple. Fast. Web Components.">
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
-    <link rel="modulepreload" href="{{ site.baseurl }}/js/global/lit-hydrate-support.js">
+    {% if env.DEV %}
+      <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
+    {% else %}
+      <!-- Loads lit-hydration since we manually chunk this -->
+      <link rel="modulepreload" href="{{ site.baseurl }}/js/lit.js">
+    {% endif %}
     <link rel="modulepreload" href="{{ site.baseurl }}/js/global/hydrate-common-components.js">
 
     {% inlinecss "global.css" %}
