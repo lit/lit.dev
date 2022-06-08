@@ -11,7 +11,7 @@
  */
 export const onIdle = (hydrationCallback: () => void) => {
   if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(hydrationCallback);
+    window.requestIdleCallback(hydrationCallback);
   } else {
     // Safari doesn't have idle callback so just wait 200ms
     setTimeout(hydrationCallback, 200);
@@ -24,7 +24,7 @@ export const onIdle = (hydrationCallback: () => void) => {
  * @param queryString Media query string to trigger the callback.
  * @param hydrationCallback Callback to be called when the given media query matches.
  */
-export const onMediaQuery = (
+export const onMediaQueryOnce = (
   queryString: string,
   hydrationCallback: () => void
 ) => {

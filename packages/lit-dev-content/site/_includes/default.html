@@ -9,7 +9,9 @@
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
     <script type="modulepreload" src="{{ site.baseurl }}/js/tslib.js"></script>
+    {% if not env.DEV %}
     <link rel="modulepreload" href="{{ site.baseurl }}/js/lit.js">
+    {% endif %}
     <link rel="modulepreload" href="{{ site.baseurl }}/js/global/hydrate-common-components.js">
 
     {% inlinecss "global.css" %}

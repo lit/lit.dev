@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {onMediaQuery, onIdle} from '../util/hydration-helpers.js';
+import {onMediaQueryOnce, onIdle} from '../util/hydration-helpers.js';
 
 // hydrates on desktop and mobile
 const hydrateCommonComponents = () => {
@@ -90,4 +90,4 @@ const onMobileView = () => {
 // Hydrate the components on both mobile and desktop.
 onIdle(hydrateCommonComponents);
 // Hydrates the components on mobile.
-onMediaQuery('(max-width: 864px)', onMobileView);
+onMediaQueryOnce('(max-width: 864px)', onMobileView);
