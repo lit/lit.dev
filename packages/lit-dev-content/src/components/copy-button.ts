@@ -8,7 +8,7 @@ import {LitElement, html, css} from 'lit';
 import {property} from 'lit/decorators.js';
 import {copyIcon} from '../icons/copy-icon.js';
 
-import '@material/mwc-icon-button';
+import './litdev-ripple-icon-button.js';
 
 /**
  * A button that copies some text when clicked.
@@ -25,13 +25,12 @@ export class CopyButton extends LitElement {
   text?: string;
 
   render() {
-    return html`<mwc-icon-button
-      outlined
+    return html`<litdev-ripple-icon-button
       @click=${this._click}
-      aria-label="Copy to clipboard"
+      label="Copy to clipboard"
     >
       ${copyIcon}
-    </mwc-icon-button>`;
+    </litdev-ripple-icon-button>`;
   }
 
   private _click() {

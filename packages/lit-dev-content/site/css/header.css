@@ -82,9 +82,4 @@ header > nav {
   header {
     padding: 0 0.5em;
   }
-
-  /* Eliminate sizing FOUC before menu button upgrades. */
-  header mwc-icon-button:not(:defined) {
-    padding: 12px;
-  }
 }

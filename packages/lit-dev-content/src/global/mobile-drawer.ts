@@ -12,5 +12,6 @@ document.querySelector('#mobileMenuButton')?.addEventListener('click', () => {
   const drawer = document.querySelector('mwc-drawer');
   if (drawer) {
     drawer.open = true;
+    drawer.dispatchEvent(new Event('opening'));
   }
 });

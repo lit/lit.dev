@@ -25,11 +25,11 @@ import {checkCircleIcon} from '../icons/check-circle-icon.js';
 import {flakyIcon} from '../icons/flaky-icon.js';
 import {loopIcon} from '../icons/loop-icon.js';
 
-import '@material/mwc-icon-button';
 import '@material/mwc-snackbar';
 import type {Snackbar} from '@material/mwc-snackbar';
 import './litdev-example-controls.js';
 import './litdev-playground-change-guard.js';
+import './litdev-ripple-icon-button.js';
 import './litdev-icon-button.js';
 import {Task, TaskStatus} from '@lit-labs/task';
 import {PostDoc} from 'postdoc-lib';
@@ -359,9 +359,9 @@ export class LitDevTutorial extends LitElement {
     return html`<div id="tutorialHeader">
       <div class="lhs">
         <a href="/tutorials/" tabindex="-1">
-          <mwc-icon-button aria-label="Tutorial Catalog">
+          <litdev-ripple-icon-button label="Tutorial Catalog">
             ${catalogIcon}
-          </mwc-icon-button>
+          </litdev-ripple-icon-button>
         </a>
         <span class="tutorial-metadata">
           ${this._manifestTask.render({
@@ -382,23 +382,23 @@ export class LitDevTutorial extends LitElement {
 
   protected renderHeaderNav() {
     return html`<nav>
-      <mwc-icon-button
+      <litdev-ripple-icon-button
         id="prevButton"
-        aria-label="Previous step"
+        label="Previous step"
         .disabled=${this._idx <= 0}
         @click=${this._onClickPrevButton}
       >
         ${backArrowIcon}
-      </mwc-icon-button>
+      </litdev-ripple-icon-button>
 
-      <mwc-icon-button
+      <litdev-ripple-icon-button
         id="nextButton"
-        aria-label="Next step"
+        label="Next step"
         .disabled=${this._idx >= this._manifest.steps.length - 1}
         @click=${this._onClickNextButton}
       >
         ${forwardArrowIcon}
-      </mwc-icon-button>
+      </litdev-ripple-icon-button>
     </nav>`;
   }
 

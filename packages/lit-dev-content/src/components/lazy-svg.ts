@@ -6,6 +6,7 @@
 
 import {css, html, LitElement, nothing, PropertyValues} from 'lit';
 import {customElement, property, state, query} from 'lit/decorators.js';
+import {onIdle} from '../util/hydration-helpers';
 
 /**
  * Strategies for loading the SVG. idle, waits for the idle callback, eager
@@ -100,7 +101,7 @@ export default class LazySvg extends LitElement {
   updated(changed: PropertyValues<this>) {
     if (changed.has('loading')) {
       if (this.loading === 'idle') {
-        this._idleLoad();
+        onIdle(this._onIdle);
       } else if (this.loading === 'visible') {
         // Must happen in `updated` because in non-SSR the DOM is not ready
         this._visibleLoad();
@@ -110,16 +111,9 @@ export default class LazySvg extends LitElement {
     super.updated(changed);
   }
 
-  private _idleLoad() {
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => (this._shouldLoad = true));
-    } else {
-      // Safari doesn't have idle callback so just wait 200ms
-      setTimeout(() => {
-        this._shouldLoad = true;
-      }, 200);
-    }
-  }
+  private _onIdle = () => {
+    this._shouldLoad = true;
+  };
 
   private _visibleLoad() {
     const observer = new IntersectionObserver(

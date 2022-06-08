@@ -30,28 +30,24 @@ const terserOptions = {
 
 export default [
   {
+    name: 'client',
     input: [
       // lit-hydrate-support MUST be loaded first to make sure lit hydration
       // helpers are bundled before LitElement attempts to use hydration support
       'lib/global/lit-hydrate-support.js',
       'lib/components/copy-button.js',
-      'lib/components/lazy-svg.js',
       'lib/components/litdev-aside.js',
       'lib/components/litdev-banner.js',
-      'lib/components/litdev-version-selector.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
       'lib/components/ts-js.js',
-      'lib/components/litdev-search.js',
       'lib/components/litdev-switchable-sample.js',
       'lib/components/litdev-tutorial.js',
-      'lib/components/litdev-tutorial-card.js',
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
       'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
       'lib/global/hydrate-common-components.js',
-      'lib/global/mobile-nav.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/home-components.js',
@@ -90,6 +86,27 @@ export default [
       // we want to know its exact name (e.g. "lit.js"), and we don't have cache
       // headers that would take advantage of hashed names anyway.
       chunkFileNames: '[name].js',
+    },
+    plugins: [
+      resolve(),
+      minifyHTML(),
+      terser(terserOptions),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
+    ],
+  },
+  {
+    name: 'SSR',
+    input: [
+      // A separate bundle is made for the server so that we do not modify the
+      // client module graph just to SSR a component.
+      'lib/components/ssr.js',
+    ],
+    output: {
+      dir: 'rollupout/server',
+      format: 'esm',
     },
     plugins: [
       resolve(),

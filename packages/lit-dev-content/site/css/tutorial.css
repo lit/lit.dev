@@ -102,7 +102,7 @@ litdev-tutorial {
   align-items: center;
 }
 
-#tutorialHeader .lhs mwc-icon-button {
+#tutorialHeader .lhs litdev-ripple-icon-button {
   margin-inline-end: .5em;
 }
 
