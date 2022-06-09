@@ -96,20 +96,17 @@ Note, the `@babel/plugin-proposal-class-properties` may not be required with the
 
 To set up the plugins, add code like this to your Babel configuration:
 
-```js
-assumptions = {
+```json
+"assumptions": {
   "setPublicClassFields": true
-};
-
-plugins = [
-  ['@babel/plugin-proposal-decorators',
-    {
-      version: '2018-09',
-      decoratorsBeforeExport: true
-    },
-  ],
-  ["@babel/plugin-proposal-class-properties"],
-];
+},
+"plugins": [
+  ["@babel/plugin-proposal-decorators", {
+    "version": "2018-09",
+    "decoratorsBeforeExport": true
+  }],
+  ["@babel/plugin-proposal-class-properties"]
+]
 ```
 
 <div class="alert alert-info">
@@ -122,20 +119,20 @@ Babel decorator support has been tested with `version: '2018-09'`. This is curre
 
 When using TypeScript with Babel, it's important to order the TypeScript transform before the decorators transform in your Babel config as follows:
 
-```js
+```json
 {
   "assumptions": {
     "setPublicClassFields": true
   },
-  "plugins":[
-    ["@babel/plugin-transform-typescript", {"allowDeclareFields": true}],
-    ['@babel/plugin-proposal-decorators',
-      {
-        version: '2018-09',
-        decoratorsBeforeExport: true
-      },
-    ],
-    ["@babel/plugin-proposal-class-properties"],
+  "plugins": [
+    ["@babel/plugin-transform-typescript", {
+      "allowDeclareFields": true
+    }],
+    ["@babel/plugin-proposal-decorators", {
+      "version": "2018-09",
+      "decoratorsBeforeExport": true
+    }],
+    ["@babel/plugin-proposal-class-properties"]
   ]
 }
 ```
