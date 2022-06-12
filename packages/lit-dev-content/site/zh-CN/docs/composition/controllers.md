@@ -1,31 +1,30 @@
 ---
-title: Reactive Controllers
+title: 响应式控制器
 eleventyNavigation:
-  parent: Composition
-  key: Controllers
+  parent: 组合
+  key: 控制器
   order: 4
 ---
 
-Lit 2 introduces a new concept for code reuse and composition called _reactive controllers_.
+Lit 2 引入了一个叫做 _响应式控制器_ 新的代码重用和组合的概念。
 
-A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reusable across multiple component definitions.
+响应式控制器是一个可以挂钩到组件的 [响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle) 的对象。控制器可以打包与功能相关的状态和行为，使其可跨多个组件定义重用。
 
-You can use controllers to implement features that require their own state and access to the component's lifecycle, such as:
+你可以使用控制器来实现需要维护自己的状态和访问组件生命周期的功能，例如：
 
-* Handling global events like mouse events
-* Managing asynchronous tasks like fetching data over the network
-* Running animations
+* 处理鼠标事件等全局事件
+* 管理异步任务，例如通过网络获取数据
+* 运行动画
 
-
-Reactive controllers allow you to build components by composing smaller pieces that aren't themselves components. They can be thought of as reusable, partial component definitions, with their own identity and state.
+响应式控制器允许你通过组合本身不是组件的较小部分来构建组件。它们可以被认为是可重用的部分组件定义，具有自己的身份和状态。
 
 {% playground-ide "docs/controllers/overview" "clock-controller.ts" %}
 
-Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers and mixins](/docs/composition/overview/#controllers-and-mixins) for more details.
+响应式控制器在许多方面与类 mixin 相似。 主要区别在于控制器有自己的身份并且不会添加到组件的原型中，这有助于打包它们的 API 并允许你在每个宿主组件中使用多个控制器实例。 有关详细信息，请参阅 [控制器和 mixin]({{baseurl}}/docs/composition/overview/#controllers-and-mixins)。
 
-## Using a controller
+## 使用控制器
 
-Each controller has its own creation API, but typically you will create an instance and store it with the component:
+每个控制器都有自己的创建 API，但通常你会创建一个实例并将其与组件一起存储：
 
 ```ts
 class MyElement extends LitElement {
@@ -33,11 +32,11 @@ class MyElement extends LitElement {
 }
 ```
 
-The component associated with a controller instance is called the host component.
+与控制器实例关联的组件称为宿主组件。
 
-The controller instance registers itself to receive lifecycle callbacks from the host component, and triggers a host update when the controller has new data to render. This is how the `ClockController` example periodically renders the current time.
+控制器实例注册自己以接收来自主机组件的生命周期回调，并在控制器有新数据要渲染时触发宿主更新。这就是 `ClockController` 示例定期渲染当前时间的方式。
 
-A controller will typically expose some functionality to be used in the host's `render()` method. For example, many controllers will have some state, like a current value:
+控制器通常会公开一些要在宿主的 `render()` 方法中使用的功能。 例如，许多控制器会有一些状态，比如当前值：
 
 ```ts
   render() {
@@ -47,15 +46,16 @@ A controller will typically expose some functionality to be used in the host's `
   }
 ```
 
-Since each controller has it's own API, refer to specific controller documentation on how to use them.
+由于每个控制器都有自己的 API，请参阅特定控制器文档了解如何使用它们。
 
-## Writing a controller
+## 编写控制器
 
 A reactive controller is an object associated with a host component, which implements one or more host lifecycle callbacks or interacts with its host. It can be implemented in a number of ways, but we'll focus on using JavaScript classes, with constructors for initialization and methods for lifecycles.
+响应式控制器是与宿主组件关联的对象，它可以实现一个或多个宿主生命周期回调或与其宿主进行交互。控制器可以通过多种方式实现，但我们只专注于使用 JavaScript 类，包括用于初始化的构造函数和用于生命周期的方法。
 
-### Controller initialization
+### 初始化控制器
 
-A controller registers itself with its host component by calling `host.addController(this)`. Usually a controller stores a reference to its host component so that it can interact with it later.
+控制器通过调用 `host.addController(this)` 向其宿主组件注册自己。 通常，控制器需要保存其宿主组件的引用，以便之后可以与之交互。
 
 {% switchable-sample %}
 
@@ -64,9 +64,9 @@ class ClockController implements ReactiveController {
   private host: ReactiveControllerHost;
 
   constructor(host: ReactiveControllerHost) {
-    // Store a reference to the host
+    // 保存宿主组件的引用
     this.host = host;
-    // Register for lifecycle updates
+    // 注册生命周期更新
     host.addController(this);
   }
 }
@@ -75,9 +75,9 @@ class ClockController implements ReactiveController {
 ```js
 class ClockController {
   constructor(host) {
-    // Store a reference to the host
+    // 保存宿主组件的引用
     this.host = host;
-    // Register for lifecycle updates
+    // 注册生命周期更新
     host.addController(this);
   }
 }
@@ -85,7 +85,7 @@ class ClockController {
 
 {% endswitchable-sample %}
 
-You can add other constructor parameters for one-time configuration.
+你可以为一次性配置添加其他构造函数参数。
 
 {% switchable-sample %}
 
@@ -112,29 +112,29 @@ class ClockController {
 
 {% endswitchable-sample %}
 
+一旦你的控制器注册到了宿主组件，你就可以向控制器添加生命周期回调和其他类字段和方法，进而实现所需的状态和行为。
 
-Once your controller is registered with the host component, you can add lifecycle callbacks and other class fields and methods to the controller to implement the desired state and behavior.
+### 生命周期
 
-### Lifecycle
-
-The reactive controller lifecycle, defined in the {% api "ReactiveController" %} interface, is a subset of the reactive update cycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional.
+在 {% api "ReactiveController" %} 接口中定义的响应式控制器生命周期是响应式更新周期的子集。 LitElement 在其生命周期回调期间会调用任何已安装的控制器的设生命周期回调。 这些回调是可选的。
 
 * `hostConnected()`:
-  * Called when the host is connected.
-  * Called after creating the `renderRoot`, so a shadow root will exist at this point.
-  * Useful for setting up event listeners, observers, etc.
+  * 宿主元素连接时调用。
+   * 在创建 `renderRoot` 后调用，因此此时必定存在一个 shadow root。
+   * 用于设置事件监听器、观察者等。
 * `hostUpdate()`:
-  * Called before the host's `update()` and `render()` methods.
-  * Useful for reading DOM before it's updated (for example, for animations).
+   * 在宿主的 `update()` 和 `render()` 方法之前调用。
+   * 用于在更新之前读取 DOM（例如，用于动画）。
 * `hostUpdated()`:
-  * Called after updates, before the host's `updated()` method.
-  * Useful for reading DOM after it's modified (for example, for animations).
+   * 在更新之后调用，在宿主的 `updated()` 方法之前。
+   * 用于在修改后读取 DOM（例如，用于动画）。
 * `hostDisconnected()`:
-  * Called when the host is disconnected.
-  * Useful for cleaning up things added in `hostConnected()`, such as event listeners and observers.
+   * 宿主断开连接时调用。
+   * 用于清理在 `hostConnected()` 中添加的东西，例如事件监听器和观察者。
 
-For more information, see [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle).
-### Controller host API
+有关详细信息，请参阅 [响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)。
+
+### 控制器宿主 API
 
 A reactive controller host implements a small API for adding controllers and requesting updates, and is responsible for calling its controller's lifecycle methods.
 
@@ -149,7 +149,7 @@ You can also create controllers that are specific to `HTMLElement`, `ReactiveEle
 
 `LitElement` and `ReactiveElement` are controller hosts, but hosts can also be other objects like base classes from other web components libraries, components from frameworks, or other controllers.
 
-### Building controllers from other controllers
+### 从其他控制器构建控制器
 
 Controllers can be composed of other controllers as well. To do this create a child controller and forward the host to it.
 
@@ -184,7 +184,7 @@ class DualClockController {
 
 {% endswitchable-sample %}
 
-### Controllers and directives
+### 控制器和指令
 
 Combining controllers with directives can be a very powerful technique, especially for directives that need to do work before or after rendering, like animation directives; or controllers that need references to specific elements in a template.
 
@@ -194,11 +194,11 @@ There are two main patterns of using controllers with directives:
 
 For more information about writing directives, see [Custom directives](/docs/templates/custom-directives/).
 
-#### Controller directives
+#### 控制器指令
 
 Reactive controllers do not need to be stored as instance fields on the host. Anything added to a host using `addController()` is a controller. In particular, a directive can also be a controller. This enables a directive to hook into the host lifecycle.
 
-#### Controllers that own directives
+#### 拥有指令的控制器
 
 Directives do not need to be standalone functions, they can be methods on other objects as well, such as controllers. This can be useful in cases where a controller needs a specific reference to an element in a template.
 
@@ -258,11 +258,11 @@ export class ResizeController {
 
 {% endtodo %}
 
-## Use cases
+## 用例
 
 Reactive controllers are very general and have a very broad set of possible use cases. They are particularly good for connecting a component to an external resource, like user input, state management, or remote APIs. Here are a few common use cases.
 
-### External inputs
+### 外部输入
 
 Reactive controllers can be used to connect to external inputs. For example, keyboard and mouse events, resize observers, or mutation observers. The controller can provide the current value of the input to use in rendering, and request a host update when the value changes.
 
