@@ -16,7 +16,7 @@ html`<div>
   </div>`
 ```
 
-虽然 Lit 附带了许多 [内置指令]({{baseurl}}/docs/templates/directives/)，例如 [`repeat()`]({{baseurl}}/docs/templates/directives/#repeat) 和 [`cache()`]( /docs/templates/directives/#cache），用户也可以编写自己的自定义指令。自定义指令有两种：
+虽然 Lit 附带了许多 [内置指令]({{baseurl}}/docs/templates/directives/)，例如 [`repeat()`]({{baseurl}}/docs/templates/directives/#repeat) 和 [`cache()`]({{baseurl}}/docs/templates/directives/#cache），用户也可以编写自己的自定义指令。自定义指令有两种：
 
 *   函数指令
 
@@ -69,7 +69,7 @@ const template = html`<div>${hello()}</div>`;
 
 *  类构造函数，用于一次性初始化。
 *  `render()`, 用于声明式渲染。
-*  `update()`, 用于强制性 DOM 访问。
+*  `update()`, 用于命令式 DOM 访问。
 
 你必须为所有指令实现 `render()` 回调，而 `update()` 实现不是必须的。 `update()` 的默认实现是调用并返回 `render()` 的值。
 
@@ -161,37 +161,37 @@ const template = html`<div>${max(someNumber, 0)}</div>`;
 
 {% endswitchable-sample %}
 
-### 强制性 DOM 访问 Imperative DOM access: update()
+### 命令式 DOM 访问: update()
 
-在更高级的场景中，你的指令可能需要访问底层 DOM 并强制读取或修改它。 你可以通过覆盖 `update()` 回调来实现这一点。
+在更高级的场景中，你的指令可能需要访问底层 DOM 并命令式读取或修改它。 你可以通过覆盖 `update()` 回调来实现这一点。
 
-The `update()` callback receives two arguments:
+`update()` 回调接受两个参数：
 
-*   A `Part` object with an API for directly managing the DOM associated with the expression.
-*   An array containing the `render()` arguments.
+*   带有 API 的 `Part` 对象，用于直接管理与表达式关联的 DOM。
+*   一个包含 `render()` 参数的数组。
 
-Your `update()` method should return something Lit can render, or the special value `noChange` if no re-rendering is required. The `update()` callback is quite flexible, but typical uses include:
+你的 `update()` 方法应该返回 Lit 可以渲染的东西，或者如果不需要重新渲染，则返回特殊值 `noChange`。 `update()` 回调非常灵活，但典型用途包括：
 
-- Reading data from the DOM, and using it to generate a value to render.
-- Imperatively updating the DOM using the `element` or `parentNode` reference on the `Part` object. In this case, `update()` usually returns `noChange`, indicating that Lit doesn't need to take any further action to render the directive.
+- 从 DOM 读取数据，并使用数据来生成要渲染的值。
+- 使用 `Part` 对象上的 `element` 或 `parentNode` 引用命令式更新 DOM。 在这种情况下，`update()` 通常会返回 `noChange`，表明 Lit 不需要采取任何进一步的措施来渲染指令。
 
 #### Parts
 
-Each expression position has its own specific `Part` object:
+每个位置的表达式都有特定的 `Part` 对象:
 
-*   {% api "ChildPart" %} for expressions in HTML child position.
-*   {% api "AttributePart" %} for expressions in HTML attribute value position.
-*   {% api "BooleanAttributePart" %} for expressions in a boolean attribute value (name prefixed with `?`).
-*   {% api "EventPart" %} for expressions in an event listener position (name prefixed with `@`).
-*   {% api "PropertyPart" %} for expressions in property value position (name prefixed with `.`).
-*   {% api "ElementPart" %} for expressions on the element tag.
+*   {% api "ChildPart" %} 用于 HTML 子节点位置中的表达式。
+*   {% api "AttributePart" %} 用于 HTML 属性（attribute）值位置中的表达式。
+*   {% api "BooleanAttributePart" %} 用于布尔属性（attribue）值中的表达式（名称以 `?` 为前缀）。
+*   {% api "EventPart" %} 用于事件监听器位置中的表达式（名称以 `@` 为前缀）。
+*   {% api "PropertyPart" %} 用于属性（property）值位置的表达式（名称以 `.` 为前缀）。
+*   {% api "ElementPart" %} 用于元素标签的表达式。
 
-In addition to the part-specific metadata contained in `PartInfo`, all `Part` types provide access to the DOM `element` associated with the expression (or `parentNode`, in the case of `ChildPart`), which may be directly accessed in `update()`. For example:
+除了 `PartInfo` 中包含的特定 part 的元数据之外，所有 `Part` 类型都提供对与表达式关联的 DOM `element`（或者，如果是`ChildPart` 的话，就是 `parentNode` ）的访问，这样就可以直接在 `update()` 中访问。 例如：
 
 {% switchable-sample %}
 
 ```ts
-// Renders attribute names of parent element to textContent
+// 渲染父元素的属性（attribute）名为文本内容
 class AttributeLogger extends Directive {
   attributeNames = '';
   update(part: ChildPart) {
@@ -205,11 +205,11 @@ class AttributeLogger extends Directive {
 const attributeLogger = directive(AttributeLogger);
 
 const template = html`<div a b>${attributeLogger()}</div>`;
-// Renders: `<div a b>a b</div>`
+// 渲染为: `<div a b>a b</div>`
 ```
 
 ```js
-// Renders attribute names of parent element to textContent
+// 渲染父元素的属性（attribute）名为文本内容
 class AttributeLogger extends Directive {
   attributeNames = '';
   update(part) {
@@ -223,18 +223,18 @@ class AttributeLogger extends Directive {
 const attributeLogger = directive(AttributeLogger);
 
 const template = html`<div a b>${attributeLogger()}</div>`;
-// Renders: `<div a b>a b</div>`
+// 渲染为: `<div a b>a b</div>`
 ```
 
 {% endswitchable-sample %}
 
-In addition, the `directive-helpers.js` module includes a number of helper functions which act on `Part` objects, and can be used to dynamically create, insert, and move parts within a directive's `ChildPart`.
+此外，`directive-helpers.js` 模块包括许多作用于 `Part` 对象的辅助函数，可用于在指令的 `ChildPart` 中动态创建、插入和移动部分。
 
-#### Calling render() from update()
+#### 在 update() 中调用 render() 
 
-The default implementation of `update()` simply calls and returns the value from `render()`. If you override `update()` and still want to call `render()` to generate a value, you need to call `render()` explicitly.
+`update()` 的默认实现只是简单地调用 `render()` 并返回其返回值。 如果你重写了 `update()` 并且仍想调用 `render()` 来生成一个值，那么你需要显式地调用 `render()`。
 
-The `render()` arguments are passed into `update()` as an array. You can pass the arguments to `render()` like this:
+`render()` 参数会以数组的形式传递给 `update()`。 你可以像这样将参数传递给`render()`：
 
 {% switchable-sample %}
 
@@ -260,21 +260,21 @@ class MyDirective extends Directive {
 
 {% endswitchable-sample %}
 
-### Differences between update() and render()
+### update() 和 render() 的区别
 
-While the `update()` callback is more powerful than the `render()` callback, there is an important distinction: When using the `@lit-labs/ssr` package for server-side rendering (SSR), _only_ the `render()` method is called on the server. To be compatible with SSR, directives should return values from `render()` and only use `update()` for logic that requires access to the DOM.
+虽然 `update()` 回调比 `render()` 回调更强大，但有一个重要区别：当使用 `@lit-labs/ssr` 包进行服务器端渲染 (SSR) 时，_只有_ ` render()` 方法会在服务器上调用。 为了与 SSR 兼容，指令应该从 `render()` 返回值，并且仅将 `update()` 用于需要访问 DOM 的逻辑。
 
-## Signaling no change
+## 无改变的信号
 
-Sometimes a directive may have nothing new for Lit to render. You signal this by returning `noChange` from the `update()` or `render()` method. This is different from returning `undefined`, which causes Lit to clear the `Part` associated with the directive. Returning `noChange` leaves the previously rendered value in place.
+有时，指令可能没有任何新内容可供 Lit 渲染。 此时，可以从 `update()` 或 `render()` 方法返回 `noChange` 来向外部发出无改变的信号。 这与返回 `undefined` 不同，因为 `undefined` 会导致 Lit 清除与指令关联的 `Part`。 而返回 `noChange` 会保留先前渲染的值。
 
-There are several common reasons for returning `noChange`:
+返回 `noChange` 的几个常见原因：
 
-*   Based on the input values, there's nothing new to render.
-*   The `update()` method updated the DOM imperatively.
-*   In an async directive, a call to `update()` or `render()` may return `noChange` because there's nothing to render _yet_.
+*   根据输入值，没有什么新东西可以渲染。
+*   在 `update()` 方法中命令式地更新了 DOM。
+*   在异步指令中，对 `update()` 或 `render()` 的调用可能会返回 `noChange`，因为 _尚未_ 渲染任何内容。
 
-For example, a directive can keep track of the previous values passed in to it, and perform its own dirty checking to determine whether the directive's output needs to be updated. The `update()` or `render()` method can return `noChange`  to signal that the directive's output doesn't need to be re-rendered.
+例如，指令可以跟踪传递给它的上一个值，并执行自己的脏值检查以确定指令的输出是否需要更新。 `update()` 或 `render()` 方法可以返回 `noChange` 来表示指令的输出不需要重新渲染。
 
 {% switchable-sample %}
 
@@ -288,7 +288,7 @@ class CalculateDiff extends Directive {
     if (this.a !== a || this.b !== b) {
       this.a = a;
       this.b = b;
-      // Expensive & fancy text diffing algorithm
+      // 昂贵而精美的文本差异算法
       return calculateDiff(a, b);
     }
     return noChange;
@@ -304,7 +304,7 @@ class CalculateDiff extends Directive {
     if (this.a !== a || this.b !== b) {
       this.a = a;
       this.b = b;
-      // Expensive & fancy text diffing algorithm
+      // 昂贵而精美的文本差异算法
       return calculateDiff(a, b);
     }
     return noChange;
@@ -314,11 +314,11 @@ class CalculateDiff extends Directive {
 
 {% endswitchable-sample %}
 
-## Limiting a directive to one expression type
+## 将指令限制为一种表达式类型
 
-Some directives are only useful in one context, such as an attribute expression or a child expression. If placed in the wrong context, the directive should throw an appropriate error.
+某些指令仅在一种上下文中有用，例如属性表达式或子表达式。 如果放置在错误的上下文中，该指令应该抛出一个适当的错误。
 
-For example, the `classMap` directive validates that it is only used in an `AttributePart` and only for the `class` attribute`:
+例如，`classMap` 指令验证它仅用于 `AttributePart` 并且仅用于 `class` 属性：
 
 {% switchable-sample %}
 
@@ -354,15 +354,16 @@ class ClassMap extends Directive {
 
 {% endswitchable-sample %}
 
-## Async directives
+## 异步指令
 
-The previous example directives are synchronous: they return values synchronously from their `render()`/`update()` lifecycle callbacks, so their results are written to the DOM during the component's `update()` callback.
 
-Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
+前面示例中的指令都是是同步的，即：它们从自己的 `render()`/`update()` 生命周期回调同步返回值，因此它们的结果可以在组件的 `update()` 回调期间写入 DOM。
 
-To update a directive's result asynchronously, a directive needs to extend the {% api "AsyncDirective" %} base class, which provides a `setValue()` API. `setValue()` allows a directive to "push" a new value into its template expression, outside of the template's normal `update`/`render` cycle.
+但是有时候你可能希望指令能够异步更新 DOM——例如，指令依赖网络请求等异步事件。
 
-Here's an example of a simple async directive that renders a Promise value:
+继承自 {% api "AsyncDirective" %} 基类的指令，就可以异步更新其的结果。{% api "AsyncDirective" %} 提供了一个`setValue()` API。 `setValue()` 允许指令在模板的正常 `update`/`render` 循环之外将新值“推送”到其模板表达式中。
+
+这是一个渲染 Promise 值的简单异步指令的示例：
 
 {% switchable-sample %}
 
@@ -370,10 +371,10 @@ Here's an example of a simple async directive that renders a Promise value:
 class ResolvePromise extends AsyncDirective {
   render(promise: Promise<unknown>) {
     Promise.resolve(promise).then((resolvedValue) => {
-      // Rendered asynchronously:
+      // 异步渲染:
       this.setValue(resolvedValue);
     });
-    // Rendered synchronously:
+    // 同步渲染:
     return `Waiting for promise to resolve`;
   }
 }
@@ -384,10 +385,10 @@ export const resolvePromise = directive(ResolvePromise);
 class ResolvePromise extends AsyncDirective {
   render(promise) {
     Promise.resolve(promise).then((resolvedValue) => {
-      // Rendered asynchronously:
+      // 异步渲染：
       this.setValue(resolvedValue);
     });
-    // Rendered synchronously:
+    // 同步渲染:
     return `Waiting for promise to resolve`;
   }
 }
@@ -396,28 +397,28 @@ export const resolvePromise = directive(ResolvePromise);
 
 {% endswitchable-sample %}
 
-Here, the rendered template shows "Waiting for promise to resolve," followed by the resolved value of the promise, whenever it resolves.
+在这里，渲染的模板会首先显示“Waiting for promise to resolve”，然后才是 promise 的 resolve 值，无论何时 resolve。
 
-Async directives often need to subscribe to external resources. To prevent memory leaks async directives should unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks and API:
+异步指令通常需要订阅外部资源。 为防止内存泄漏，异步指令应在指令实例不再使用时取消订阅或释放资源。 为此，`AsyncDirective` 提供了以下额外的生命周期回调和 API：
 
-* `disconnected()`: Called when a directive is no longer in use.  Directive instances are disconnected in three cases:
-  - When the DOM tree the directive is contained in is removed from the DOM
-  - When the directive's host element is disconnected
-  - When the expression that produced the directive no longer resolves to the same directive.
+* `disconnected()`: 当指令不再使用时调用。 指令实例在三种情况下 disconnect：
+  - 当指令所在的 DOM 树从 DOM 中移除时。
+  - 当指令的宿主元素 disconnect 时。
+  - 当产生指令的表达式不再解析为同一指令时。
 
-  After a directive receives a `disconnected` callback, it should release all resources it may have subscribed to during `update` or `render` to prevent memory leaks.
+  在指令接收到 `disconnected` 回调后，它应该释放自己可能在 `update` 或 `render` 期间订阅的所有资源，以防止内存泄漏。
 
-* `reconnected()`: Called when a previously disconnected directive is being returned to use. Because DOM subtrees can be temporarily disconnected and then reconnected again later, a disconnected directive may need to react to being reconnected. Examples of this include when DOM is removed and cached for later use, or when a host element is moved causing a disconnection and reconnection. The `reconnected()` callback should always be implemented alongside `disconnected()`, in order to restore a disconnected directive back to its working state.
+* `reconnected()`：在之前 disconnected 的指令被重新使用时调用。 由于 DOM 子树可以暂时被 disconnect，然后再重新 connect，因此 disconnected 的指令可能需要对重新 connect 做出反应。 这方面的示例包括移除和缓存 DOM 以供后续使用，或者移动宿主元素导致 disconnect 和重新 connect。 `reconnected()` 回调应始终与 `disconnected()` 一起实现，以便将 disconnected 的指令恢复到其工作状态。
 
-* `isConnected`: Reflects the current connection state of the directive.
+* `isConnected`：返回指令的当前 connect 状态。
 
 <div class="alert alert-info">
 
-Note that it is possible for an `AsyncDirective` to continue receiving updates while it is disconnected if its containing tree is re-rendered. Because of this, `update` and/or `render` should always check the `this.isConnected` flag before subscribing to any long-held resources to prevent memory leaks.
+请注意，存在一种可能：异步指令（由于所处的的 DOM 树被重新渲染）被 disconnect 后仍然收到更新。 因此，在订阅任何长期持有的资源之前，`update` 和/或 `render` 应该始终检查 `this.isConnected` 标志以防止内存泄漏。
 
 </div>
 
-Below is an example of a directive that subscribes to an `Observable` and handles disconnection and reconnection appropriately:
+下面是一个订阅 `Observable` 并适当处理 connect 和 disconnect 的指令的示例：
 
 {% switchable-sample %}
 
@@ -425,8 +426,7 @@ Below is an example of a directive that subscribes to an `Observable` and handle
 class ObserveDirective extends AsyncDirective {
   observable: Observable<unknown> | undefined;
   unsubscribe: (() => void) | undefined;
-  // When the observable changes, unsubscribe to the old one and
-  // subscribe to the new one
+  // 当 observeable 改变时，取消订阅旧的对象， 订阅新的对象
   render(observable: Observable<unknown>) {
     if (this.observable !== observable) {
       this.unsubscribe?.();
@@ -437,20 +437,17 @@ class ObserveDirective extends AsyncDirective {
     }
     return noChange;
   }
-  // Subscribes to the observable, calling the directive's asynchronous
-  // setValue API each time the value changes
+  // 订阅 observable 对象，每次值发生改变的时候，调用指令的异步 setValue API
   subscribe(observable: Observable<unknown>) {
     this.unsubscribe = observable.subscribe((v: unknown) => {
       this.setValue(v);
     });
   }
-  // When the directive is disconnected from the DOM, unsubscribe to ensure
-  // the directive instance can be garbage collected
+  // 当指令从 DOM 中 disconnect 时，取消订阅确保指令实例能被垃圾回收
   disconnected() {
     this.unsubscribe!();
   }
-  // If the subtree the directive is in was disconnected and subsequently
-  // re-connected, re-subscribe to make the directive operable again
+  // 如果指令所在的子树已 disconnected，随后重新 connected，那么重新订阅以使指令再次可操作
   reconnected() {
     this.subscribe(this.observable!);
   }
@@ -460,8 +457,7 @@ export const observe = directive(ObserveDirective);
 
 ```js
 class ObserveDirective extends AsyncDirective {
-  // When the observable changes, unsubscribe to the old one and
-  // subscribe to the new one
+  // 当 observeable 改变时，取消订阅旧的对象， 订阅新的对象
   render(observable) {
     if (this.observable !== observable) {
       this.unsubscribe?.();
@@ -472,20 +468,17 @@ class ObserveDirective extends AsyncDirective {
     }
     return noChange;
   }
-  // Subscribes to the observable, calling the directive's asynchronous
-  // setValue API each time the value changes
+ // 订阅 observable 对象，每次值发生改变的时候，调用指令的异步 setValue API
   subscribe(observable) {
     this.unsubscribe = observable.subscribe((v) => {
       this.setValue(v);
     });
   }
-  // When the directive is disconnected from the DOM, unsubscribe to ensure
-  // the directive instance can be garbage collected
+  // 当指令从 DOM 中 disconnect 时，取消订阅确保指令实例能被垃圾回收
   disconnected() {
     this.unsubscribe();
   }
-  // If the subtree the directive is in was disconneted and subsequently
-  // re-connected, re-subscribe to make the directive operable again
+  // 如果指令所在的子树已 disconnected，随后重新 connected，那么重新订阅以使指令再次可操作
   reconnected() {
     this.subscribe(this.observable);
   }

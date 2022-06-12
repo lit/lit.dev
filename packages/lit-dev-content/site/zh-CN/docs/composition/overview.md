@@ -1,38 +1,38 @@
 ---
-title: Composition overview
+title: 组合概览
 eleventyNavigation:
-  parent: Composition
-  key: Overview
+  parent: 组合
+  key: 概览
   order: 1
 ---
 
-Composition is a strategy for managing complexity and organizing code into reusable pieces. Lit provides a few options for composition and code reuse:
+组合是一种管理复杂性并将代码组织成可重用片段的策略。 Lit 为组合和代码重用提供了几种方式：
 
-*   Component composition.
-*   Reactive controllers.
-*   Class mixins.
+*   组件组合。
+*   响应式控制器。
+*   类混入。
 
-[_Component composition_](/docs/composition/component-composition/) is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
+[_组件组合_]({{baseurl}}/docs/composition/component-composition/) 是简单组件组装复杂组件的过程。 组件可以在其模板中使用子组件。 组件可以使用标准的 DOM 机制进行通信：设置子组件的属性，以及监听来自子组件的事件。
 
-Although component composition is the default way to think about breaking a complex Lit project down into smaller units, there are two other notable code patterns useful for factoring your Lit code:
+尽管组件组合是考虑将复杂的 Lit 项目分解为更小的单元的默认方式，但还有其他两种值得注意的代码模式可用于分解 Lit 代码：
 
-[_Reactive controllers_](/docs/composition/controllers/) are objects that can hook into the update lifecycle of a Lit component, encapsulating state and behavior related to a feature into a separate unit of code.
+[_响应式控制器_]({{baseurl}}/docs/composition/controllers/) 是可以挂钩到 Lit 组件的更新生命周期的对象，将与功能相关的状态和行为封装到单独的代码单元中。
 
-[_Class mixins_](/docs/composition/mixins/) let you write reusable partial component definitions and "mix them in" to a component's inheritance chain.
+[_类 Mixin_]({{baseurl}}/docs/composition/mixins/) 让你编写可重用的组件的部分定义并将它们“混合”到组件的继承链中。
 
-Both mixins and reactive controllers let you factor component logic related to a given feature into a reusable unit. See the next section for a comparison of controllers and mixins.
+Mixin 和响应式控制器都允许你将与功能相关的组件逻辑分解为可重用单元。 有关控制器和 mixin 的比较，请参阅下一节。
 
-## Controllers and mixins
+## 控制器与 mixin
 
-Controllers and class mixins are very similar in some ways. They both can hook into a host component's lifecycle, maintain state, and trigger host updates.
+控制器和类 mixin 在某些方面非常相似。 它们都可以连接到宿主组件的生命周期、维护状态并触发宿主元素更新。
 
-The primary difference between controllers and mixins is their relationship with the component. A component has a "has-a" relationship with a reactive controller, since it owns the controller. A component has an "is-a" relationship with a mixin, since the component is an instance of the mixin class.
+控制器和 mixin 之间的主要区别在于它们与组件的关系。 组件与响应式控制器具有“有”关系，因为组件拥有控制器。 组件与 mixin 具有“是”关系，因为组件是 mixin 类的实例。
 
-A reactive controller is a separate object owned by a component. The controller can access methods and fields on the component, and the component can access methods and fields on the controller. But the controller can't (easily) be accessed by someone using the component, unless the component exposes a public API to it. The controller's lifecycle methods are called _before_ the corresponding lifecycle method on the component.
+反应式控制器是组件拥有的独立对象。 控制器可以访问组件上的方法和字段，组件也可以访问控制器上的方法和字段。 但是控制器不能（轻易地）被使用该组件的使用者访问，除非该组件向它公开了一个公共 API。 控制器的生命周期方法组件上的相应生命周期方法 _之前_ 被调用。
 
-A mixin, on the other hand, becomes part of the component's prototype chain. Any public fields or methods defined by the mixin are part of the component's API. And because a mixin is part of the prototype chain, your component has some control of when the mixin's lifecycle callbacks are called.
+mixin 是组件原型链的一部分。 由 mixin 定义的任何公共字段或方法都是组件 API 的一部分。 由于 mixin 是原型链的一部分，因此你的组件可以控制何时调用 mixin 的生命周期回调。
 
-In general, if you're trying to decide whether to package a feature as a controller or a mixin, you should choose a controller _unless_ the feature requires one of the following:
+一般来说，如果你想要决定是将某个功能打包为控制器还是 mixin，你应该选择控制器， _除非_ 该功能需要以下之一：
 
-*   Adding public API to the component.
-*   Very granular access to the component lifecycle.
+*   向组件添加公共 API。
+*   对组件生命周期的非常精细的访问。
