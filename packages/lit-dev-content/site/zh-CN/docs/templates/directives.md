@@ -1345,13 +1345,13 @@ Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/direc
 
 ### unsafeSVG
 
-Renders a string as SVG rather than text.
+把字符串渲染成 SVG 而不是文本。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1361,7 +1361,7 @@ import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1371,27 +1371,22 @@ unsafeSVG(value: string | typeof nothing | typeof noChange)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when SVG content
-not originating in script files needs to be rendered in a Lit template, for
-example trusted SVG content fetched from a database. The `unsafeSVG` directive
-will parse such a string as SVG and render it in a Lit template.
+与 [`unsafeHTML`](#unsafeHTML) 类似，可能会出现不是源自脚本文件的 SVG 内容需要在 Lit 模板中渲染的情况，例如，
+从数据库中获取的可信的 SVG 内容。 `unsafeSVG` 指令会将这样的字符串解析为 SVG 并将其渲染在 Lit 模板中。
 
 <div class="alert alert-warning">
 
-Note, the string passed to `unsafeSVG` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+请注意，传递给 `unsafeSVG` 的字符串必须由开发人员控制，而不应包含不受信任的内容。不受信任内容的示例包括：query string 参数和用户输入的值。使用该指令渲染不受信任的内容可能导致 [跨站脚本攻击 (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) 漏洞。
 
 </div>
 
@@ -1433,20 +1428,19 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `unsafeSVG` more in the [playground](/playground/#sample=examples/directive-unsafe-svg).
+在[训练场](/playground/#sample=examples/directive-unsafe-svg)中探索更多 `unsafeSVG` 的内容。
 
-
-## Referencing rendered DOM
+## 引用已渲染的DOM
 
 ### ref
 
-Retrieves a reference to an element rendered into the DOM.
+检索已渲染到DOM中的元素的引用。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1456,7 +1450,7 @@ import {ref} from 'lit/directives/ref.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1466,21 +1460,17 @@ ref(refOrCallback: RefOrCallback)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Element expression
+元素表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Although most DOM manipulation in Lit can be achieved declaratively using
-templates, advanced situations may required getting a reference to an element
-rendered in the template and manipulating it imperatively. Common examples of
-when this may be useful include focusing a form control or calling an imperative
-DOM manipulation library on a container element.
+Although most DOM manipulation in Lit can be achieved declaratively using templates, advanced situations may required getting a reference to an element rendered in the template and manipulating it imperatively. Common examples of when this may be useful include focusing a form control or calling an imperative DOM manipulation library on a container element.
 
 When placed on an element in the template, the `ref` directive will retrieve a
 reference to that element once rendered. The element reference may be retrieved
