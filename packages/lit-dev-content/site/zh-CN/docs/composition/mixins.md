@@ -1,56 +1,43 @@
 ---
 title: Mixins
 eleventyNavigation:
-  parent: Composition
+  parent: 组合
   key: Mixins
   order: 3
 ---
 
-Class mixins are a pattern for sharing code between classes using standard JavaScript. As opposed to "has-a" composition patterns like [reactive
-controllers](/docs/composition/controllers/), where a class can _own_ a controller to add
-behavior, mixins implement "is-a" composition, where the mixin causes the class
-itself to _be_ an instance of the behavior being shared.
+类混合是一种使用标准 JavaScript 在类之间共享代码的模式。 与像 [响应式控制器](/docs/composition/controllers/) 这样的“有”组合模式（即类可以 _拥有_ 一个控制器来添加行为）相反，mixin 实现的是“是”的组合，其中 mixin 会导致类本身 _是_ 被共享行为的一个实例。
 
-You can use mixins to customize a Lit component by adding API or overriding its lifecycle callbacks.
+你可以使用 mixin，通过添加 API 或覆盖其生命周期回调来自定义 Lit 组件。
 
-## Mixin basics
+## Mixin 基础
 
-Mixins can be thought of as "subclass factories" that override the class they
-are applied to and return a subclass, extended with the behavior in the mixin.
-Because mixins are implemented using standard JavaScript class expressions, they
-can use all of the idioms available to subclassing, such as adding new
-fields/methods, overriding existing superclass methods, and using `super`.
+Mixin 可以被认为是“子类工厂”，mixin 覆盖了应用它们的类并返回一个子类，子类扩展了 mixin 中的行为。
+因为 mixin 是使用标准 JavaScript 类表达式实现的，所以它们可以使用所有可用于子类化的惯用语，例如添加新字段/方法、覆盖现有父类方法以及使用 `super`。
 
 <div class="alert alert-info">
 
-For ease of reading, the samples on this page elide some of the TypeScript types
-for mixin functions. See [Mixins in TypeScript](#mixins-in-typescript) for details on proper
-typing of mixins in TypeScript.
+为了便于阅读，此页面上的示例省略了一些用于 mixin 功能 TypeScript 类型。有关在 TypeScript 中正确键入 mixin 的详细信息，请参阅 [TypeScript 中的 Mixins](#mixins-in-typescript)。
 
 </div>
 
-To define a mixin, write a function that takes a
-`superClass`, and returns a new class that extends it, adding fields and methods
-as needed:
+要定义一个 mixin，需要编写一个函数，该函数接收一个`superClass`，并返回一个扩展它的新类，按需添加字段和方法：
 
 ```ts
 const MyMixin = (superClass) => class extends superClass {
-  /* class fields & methods to extend superClass with */
+  /* 用来扩展父类的类字段和方法 */
 };
 ```
 
-To apply a mixin, simply pass a class to generate a subclass with the mixin
-applied. Most commonly, users will apply the mixin directly to a base class when defining
-a new class:
+要应用 mixin，只需给mixin函数传递一个类，然后就生成应用了 mixin 的子类。最常见的是，用户在定义新类时会将 mixin 直接应用于基类：
 
 ```ts
 class MyElement extends MyMixin(LitElement) {
-  /* user code */
+  /* 用户代码 */
 }
 ```
 
-Mixins can also be used to create concrete subclasses that users can then extend
-like a normal class, where the mixin is an implementation detail:
+Mixin 还可以用于创建具体的子类，然后用户可以像继承普通类一样继承它，其中 mixin 是一些实现细节：
 
 ```ts
 export const LitElementWithMixin = MyMixin(LitElement);
@@ -60,36 +47,24 @@ export const LitElementWithMixin = MyMixin(LitElement);
 import {LitElementWithMixin} from './lit-element-with-mixin.js';
 
 class MyElement extends LitElementWithMixin {
-  /* user code */
+  /* 用户代码 */
 }
 ```
 
-Because class mixins are a standard JavaScript pattern and not Lit-specific,
-there is a good deal of information in the community on leveraging mixins for
-code reuse. For more reading on mixins, here are a few good references:
+因为类 mixin 是标准的 JavaScript 模式而不是 Lit 特有，所以社区中有大量关于利用 mixin 进行代码重用的信息。 有关 mixin 的更多阅读，这里有一些很好的参考资料：
 
-* [Class mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#mix-ins) on MDN
-* [Real Mixins with JavaScript
-  Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-JavaScript-classes/)
-  by Justin Fagnani
-* [Mixins](https://www.TypeScriptlang.org/docs/handbook/mixins.html) in the TypeScript handbook.
-* [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/) by
-  open-wc, including a discussion of when mixin usage may lead to duplication,
-  and how to use a deduping library to avoid it.
-* [Mixin conventions](https://component.kitchen/elix/mixins) followed by Elix
-  web component library. While not Lit-specific, contains thoughtful suggestions
-  around applying conventions when defining mixins for web components.
+* MDN上的 [类 mixin](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Classes#mix-ins_%E6%B7%B7%E5%85%A5)
+* Justin Fagnani 的 [Real Mixins with JavaScript Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-JavaScript-classes/)
+* TypeScript手册的 [Mixins](https://www.TypeScriptlang.org/docs/handbook/mixins.html)。
+* open-wc 的 [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/)，包括讨论何时使用 mixin 可能会导致重复，以及如何使用去重库来避免这种情况。
+* Elix Web 组件库的[Mixin 约定](https://component.kitchen/elix/mixins)。 虽然不是特定于 Lit 的，但包含了为 Web 组件定义 mixin 时应用约定的深思熟虑的建议。
 
-## Creating mixins for LitElement
+## 为 LitElement 定义 mixin
 
-Mixins applied to LitElement can implement or override any of the standard
-[custom element lifecycle](/docs/components/lifecycle/#custom-element-lifecycle)
-callbacks like the `constructor()` or `connectedCallback()`, as well as any of
-the [reactive update lifecycle](/docs/components/lifecycle/#reactive-update-cycle)
-callbacks like `render()` or `updated()`.
+应用于 LitElement 的 mixin 可以实现或覆盖任何标准的 [自定义元素生命周期]({{baseurl}}/docs/components/lifecycle/#custom-element-lifecycle)回调,
+比如：`constructor()` 或 `connectedCallback()`，以及任何[响应式更新生命周期](/docs/components/lifecycle/#reactive-update-cycle)回调，比如：`render()` 或 ` 更新（）`。
 
-For example, the following mixin would log when the element is created,
-connected, and updated:
+例如，以下 mixin 将在元素创建，连接和更新时打印日志：
 
 ```ts
 const LoggingMixin = (superClass) => class extends superClass {
@@ -108,41 +83,25 @@ const LoggingMixin = (superClass) => class extends superClass {
 }
 ```
 
-Note that a mixin should always make a super call to the standard custom element lifecycle
-methods implemented by `LitElement`. When overriding a reactive update lifecycle
-callback, it is good practice to call the super method if it already exists on
-the superclass (as shown above with the optional-chaining call to
-`super.updated?.()`).
+请注意，mixin 应始终对“LitElement”实现的标准自定义元素生命周期方法进行父类调用。当覆盖响应式更新生命周期回调时，如果父类中已经存在 super 方法，则调用它是一种很好的做法（如上所示，对 `super.updated?.()` 进行可选链调用）。
 
-Also note that mixins can choose to do work either before or after the base
-implementation of the standard lifecycle callbacks via its choice of when to
-make the super call.
+另请注意，mixin 可以通过选择何时进行父类调用来选择在标准生命周期回调的基本实现之前或之后进行工作。
 
-Mixins can also add [reactive properties](/docs/components/properties/),
-[styles](/docs/components/styles/), and API to the subclassed element.
+Mixin 还可以将 [响应式属性]({{baseurl}}/docs/components/properties/)、[样式]({{baseurl}}/docs/components/styles/) 和 API 添加到子类元素。
 
-The mixin in the example below adds a `highlight` reactive property to the
-element and a `renderHighlight()` method that the user can call to wrap some
-content. The wrapped content is styled yellow when the `highlight` property/attribute is set.
+下面示例中的 mixin 为元素添加了一个 `highlight` 响应式属性和一个`renderHighlight()` 方法，用户可以调用该方法来包装一些内容。 设置 `highlight` property/attribute时，包装内容的样式为黄色。
 
 {% playground-ide "docs/mixins/highlightable/" "highlightable.ts" %}
 
-Note in the example above, the user of the mixin is expected to call the
-`renderHighlight()` method from their `render()` method, as well as take care to add
-the `static styles` defined by the mixin to the subclass styles. The nature of
-this contract between mixin and user is up to the mixin definition and should be
-documented by the mixin author.
+请注意，在上面的示例中，mixin 的用户应该从他们的 `render()` 方法中调用 `renderHighlight()` 方法，并注意将 mixin 定义的`静态样式`添加到子类样式中。 mixin 和用户之间的这种约定的性质取决于 mixin 的定义，并且应该由 mixin 的作者给出文档。
 
-## Mixins in TypeScript
+## TypeScript 中的 Mixin
 
-When writing `LitElement` mixins in TypeScript, there are a few details to be
-aware of.
+在用 TypeScript 中编写 `LitElement` mixin 时，有一些细节需要注意到。
 
-### Typing the superclass
+### 编写父类
 
-You should constrain the `superClass` argument to the type of class you expect
-users to extend, if any. This can be accomplished using a generic `Constructor`
-helper type as shown below:
+你应该将 `superClass` 参数限制为你希望用户继承的类的类型（如果有的话）。 可以使用通用的 `Constructor` 辅助类型来完成限制，如下所示：
 
 ```ts
 import {LitElement} from 'lit';
@@ -153,37 +112,27 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
   class MyMixinClass extends superClass {
     /* ... */
   };
-  return MyMixinClass as /* see "typing the subclass" below */;
+  return MyMixinClass as /* 参考下面的“编写子类” */;
 }
 ```
 
-The above example ensures that the class being passed to the mixin extends from
-`LitElement`, so that your mixin can rely on callbacks and other API provided by
-Lit.
+上面的示例确保传递给 mixin 的类是从 `LitElement` 继承而来的，因此你的 mixin 可以依赖于 Lit 提供的回调和其他 API。
 
-### Typing the subclass
+### 编写子类
 
-Although TypeScript has basic support for inferring the return type for the
-subclass generated using the mixin pattern, it has a severe limitation in that
-the inferred class must not contain members with `private` or `protected`
-access modifiers.
+尽管 TypeScript 基本能够推断使用 mixin 模式生成的子类的返回类型，但它有一个严重的限制，即推断的类不能包含具有 `private` 或 `protected` 访问修饰符的成员。
 
 <div class="alert alert-info">
 
-Because `LitElement` itself does have private and protected members, by default
-TypeScript will error with _"Property '...' of exported class expression may not
-be private or protected."_ when returning a class that extends `LitElement`.
+因为 `LitElement` 本身确实包含 private 和 protected 成员，所以默认情况下，当返回一个继承自 `LitElement` 的类时 TypeScript 会报错 _"Property '...' of exported class expression may not be private or protected."_。
 
 </div>
 
-There are two workarounds that both involve casting the return type
-from the mixin function to avoid the error above.
+有两种解决方法可以避免上述错误，两者都涉及转换从 mixin 函数返回类型。
 
-#### When a mixin does not add new public/protected API
+#### 当 mixin 不会新增 public/protected API 时
 
-If your mixin only overrides `LitElement` methods or properties and does not
-add any new API of its own, you can simply cast the generated class to the super
-class type `T` that was passed in:
+如果你的 mixin 只覆盖 `LitElement` 方法或属性并且没有新增任何自己的 API，则可以简单地将生成的类转换为传入的父类类型 `T`：
 
 ```ts
 export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
@@ -193,23 +142,20 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
       this.doSomethingPrivate();
     }
     private doSomethingPrivate() {
-      /* does not need to be part of the interface */
+      /* 不需要是接口的一部分 */
     }
   };
-  // Cast return type to the superClass type passed in
+  // 转换类型为传入的父类类型
   return MyMixinClass as T;
 }
 ```
 
-#### When a mixin adds new public/protected API
+#### 当 mixin 新增 public/protected API 时
 
-If your mixin does add new protected or public API that you need users to be
-able to use on their class, you need to define the interface for the mixin
-separately from the implementation, and cast the return type as the intersection
-of your mixin interface and the super class type:
+如果你的 mixin 添加了新的 proected 或 public API（你需要用户能够在其类上使用），则需要将 mixin 的接口与实现分开定义，并将返回类型转换为 mixin 接口和父类类型的交集：
 
 ```ts
-// Define the interface for the mixin
+// 为 mixin 定义接口
 export declare class MyMixinInterface {
   highlight: boolean;
   protected renderHighlight(): unknown;
@@ -222,25 +168,21 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
       /* ... */
     }
   };
-  // Cast return type to your mixin's interface intersected with the superClass type
+  // 将返回类型转换为父类类型与 mixin 接口的交集
   return MyMixinClass as Constructor<MyMixinInterface> & T;
 }
 ```
 
-### Applying decorators in mixins
+### 在 mixin 中使用指令
 
-Due to limitations of TypeScript's type system, decorators (such as
-`@property()`) must be applied to a class declaration statement and not a class
-expression.
+由于 TypeScript 类型系统的限制，装饰器（如 `@property()`) 必须应用于类声明语句而不是类表达式。
 
-In practice this means mixins in TypeScript need to declare a class
-and then return it, rather than return a class expression directly from the
-arrow function.
+在实践中，这就意味着 TypeScript 中的 mixin 需要声明一个类，然后返回它，而不是直接从箭头函数返回一个类表达式。
 
-Supported:
+支持：
 ```ts
 export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
-  // ✅ Defining a class in a function body, and then returning it
+  // ✅ 在函数体中定义一个类，然后返回它
   class MyMixinClass extends superClass {
     @property()
     mode = 'on';
@@ -253,7 +195,7 @@ export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
 Not supported:
 ```ts
 export const MyMixin = <T extends LitElementConstructor>(superClass: T) =>
-  // ❌ Returning class expression direcly using arrow-function shorthand
+  // ❌ 使用箭头函数简写方式直接返回类表达式
   class extends superClass {
     @property()
     mode = 'on';

@@ -1253,13 +1253,13 @@ customElements.define('my-element', MyElement);
 
 ### unsafeHTML
 
-Renders a string as HTML rather than text.
+将字符串渲染为 HTML 而不是文本。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1269,7 +1269,7 @@ import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1279,10 +1279,10 @@ unsafeHTML(value: string | typeof nothing | typeof noChange)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子表达式
 
 </td>
 </tr>
@@ -1296,6 +1296,12 @@ attacks injecting untrusted HTML. However, there may be cases when HTML not
 originating in script files needs to be rendered in a Lit template, for example
 trusted HTML content fetched from a database. The `unsafeHTML` directive will
 parse such a string as HTML and render it in a Lit template.
+
+Lit 模板语法的一个关键特性是，只有源自模板字面量的字符串被解析为 HTML。因为模板字面量只能是
+在受信任的脚本文件中编写，这可以作为抵御 XSS 攻击的自然保护措施，防止注入不受信任的 HTML。
+但是，在某些情况下，HTML 不是源自脚本文件需要在 Lit 模板中呈现，例如
+从数据库中获取的可信 HTML 内容。 `unsafeHTML` 指令将
+解析 HTML 等字符串并在 Lit 模板中呈现
 
 <div class="alert alert-warning">
 

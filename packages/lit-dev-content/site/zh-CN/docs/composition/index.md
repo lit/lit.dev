@@ -1,8 +1,8 @@
 ---
-title: Composition
+title: 组合
 eleventyNavigation:
-  title: Composition
-  key: Composition
+  title: 组合
+  key: 组合
   order: 4
 ---
 
