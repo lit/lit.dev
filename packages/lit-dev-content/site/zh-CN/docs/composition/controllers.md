@@ -186,23 +186,23 @@ class DualClockController {
 
 ### 控制器和指令
 
-Combining controllers with directives can be a very powerful technique, especially for directives that need to do work before or after rendering, like animation directives; or controllers that need references to specific elements in a template.
+将控制器与指令结合起来可能是一项非常强大的技术，尤其是对于需要在渲染之前或之后进行工作的指令，例如动画指令； 或需要引用模板中特定元素的控制器。
 
-There are two main patterns of using controllers with directives:
-* Controller directives. These are directives that themselves are controllers in order to hook the host lifecycle.
-* Controllers that own directives. These are controllers create one or more directives for use the host's template.
+使用带有指令的控制器有两种主要模式：
+* 控制器指令。 指令本身就是控制器，用于挂钩主机生命周期。
+* 拥有指令的控制器。 是控制器创建一个或多个指令，用于使用主机的模板。
 
-For more information about writing directives, see [Custom directives](/docs/templates/custom-directives/).
+有关编写指令的更多信息，请参阅 [自定义指令]({{baseurl}}/docs/templates/custom-directives/)。
 
 #### 控制器指令
 
-Reactive controllers do not need to be stored as instance fields on the host. Anything added to a host using `addController()` is a controller. In particular, a directive can also be a controller. This enables a directive to hook into the host lifecycle.
+响应式控制器不需要作为实例字段保存在宿主上。 使用 `addController()` 添加到宿主的任何东西都是控制器。 特殊情况下，指令也可以是控制器。 这使指令能够挂钩到宿主的生命周期。
 
 #### 拥有指令的控制器
 
-Directives do not need to be standalone functions, they can be methods on other objects as well, such as controllers. This can be useful in cases where a controller needs a specific reference to an element in a template.
+指令不一定是独立的函数，也可以是其他对象的方法，例如控制器。 这在控制器需要对模板中元素的特定引用的情况下很有用。
 
-For example, imagine a ResizeController that lets you observe an element's size with a ResizeObserver. To work we need both a ResizeController instance, and a directive that is placed on the element we want to observe:
+例如，想象一下要实现一个 ResizeController，然后可以使用它来观察元素的大小。 为此，我们需要一个 ResizeController 实例和一个放置在我们想要观察的元素上的指令：
 
 {% switchable-sample %}
 
@@ -234,7 +234,7 @@ class MyElement extends LitElement {
 
 {% endswitchable-sample %}
 
-To implement this, you create a directive and call it from a method:
+要实现这个功能，你需要创建一个指令，然后在方法中调用它：
 
 ```ts
 class ResizeDirective {
@@ -245,8 +245,7 @@ const resizeDirective = directive(ResizeDirective);
 export class ResizeController {
   /* ... */
   observe() {
-    // Pass a reference to the controller so the directive can
-    // notify the controller on size changes.
+    // 传入控制器的引用，这样指令就可以通知控制器尺寸发生变化
     return resizeDirective(this);
   }
 }
@@ -258,29 +257,29 @@ export class ResizeController {
 
 {% endtodo %}
 
-## 用例
+## 使用场景
 
-Reactive controllers are very general and have a very broad set of possible use cases. They are particularly good for connecting a component to an external resource, like user input, state management, or remote APIs. Here are a few common use cases.
+响应式控制器非常通用，并且具有非常广泛的可能的使用场景。 它们特别适合将组件连接到外部资源，例如用户输入、状态管理或远程 API。 以下是一些常见的场景。
 
 ### 外部输入
 
-Reactive controllers can be used to connect to external inputs. For example, keyboard and mouse events, resize observers, or mutation observers. The controller can provide the current value of the input to use in rendering, and request a host update when the value changes.
+响应式控制器可用于连接到外部输入。 例如，键盘和鼠标事件、resize 观察器或 mutation 观察器。 控制器可以提供输入的当前值用于渲染，并在值更改时请求宿主更新。
 
-#### Example: MouseMoveController
+#### 示例: MouseMoveController
 
-This example shows how a controller can perform setup and cleanup work when its host is connected and disconnected, and request an update when an input changes:
+该示例展示控制器如何在其宿主连接和断开时执行设置和清理工作，并在输入更改时请求更新：
 
 {% playground-ide "docs/controllers/mouse" "my-element.ts" %}
 
-### Asynchronous tasks
+### 异步任务
 
-Asynchronous tasks, such as long running computations or network I/O, typically have state that changes over time, and will need to notify the host when the task state changes (completes, errors, etc.).
+异步任务，例如长时间运行的计算或网络 I/O，通常具有随时间变化的状态，并且需要在任务状态发生变化（完成、错误等）时通知宿主。
 
-Controllers are a great way to bundle task execution and state to make it easy to use inside a component. A task written as a controller usually has inputs that a host can set, and outputs that a host can render.
+控制器是打包任务执行和状态好方法，使得在组件内引入新功能变得更容易。 用控制器的编写的任务，通常具有宿主可以设置的输入和宿主可以渲染的输出。
 
-`@lit-labs/task` contains a generic `Task` controller that can pull inputs from the host, execute a task function, and render different templates depending on the task state.
+`@lit-labs/task` 包含一个通用的 `Task` 控制器，它可以从宿主提取输入，执行任务功能，并根据任务状态渲染不同的模板。
 
-You can use `Task` to create a custom controller with an API tailored for your specific task. Here we wrap `Task` in a `NamesController` that can fetch one of a specified list of names from a demo REST API. `NameController` exposes a `kind` property as an input, and a `render()` method that can render one of four templates depending on the task state. The task logic, and how it updates the host, are abstracted from the host component.
+你可以使用 `Task` 创建一个自定义控制器，其中包含为你的特定任务量身定制的 API。 在这里，我们将 `Task` 包装在 `NamesController` 中，它可以从 REST API demo 中获取指定的名称列表之一。 `NameController` 公开了一个 `kind` 属性作为输入，以及一个 `render()` 方法，该方法可以根据任务状态渲染四个模板之一。 任务逻辑以及它如何更新宿主，则是从宿主组件中抽象出来的。
 
 {% playground-ide "docs/controllers/names" %}
 
@@ -290,7 +289,7 @@ You can use `Task` to create a custom controller with an API tailored for your s
 
 {% endtodo %}
 
-## See also
+## 参考
 
-* [Reactive update cycle](/docs/components/lifecycle/#reactive-update-cycle)
+* [响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)
 * [@lit-labs/task](https://www.npmjs.com/package/@lit-labs/task)
