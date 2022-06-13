@@ -1,8 +1,8 @@
 ---
-title: Tools and workflows
+title: 工具和工作流
 eleventyNavigation:
-  title: Tools and workflows
-  key: Tools
+  title: 工具和工作流
+  key: 工具
   order: 5
 ---
 

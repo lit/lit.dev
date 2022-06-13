@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 4
 ---
 
-Lit 2 引入了一个叫做 _响应式控制器_ 新的代码重用和组合的概念。
+Lit 2 引入了一个叫做 _响应式控制器_ 的新的代码重用和组合的概念。
 
 响应式控制器是一个可以挂钩到组件的 [响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle) 的对象。控制器可以打包与功能相关的状态和行为，使其可跨多个组件定义重用。
 
@@ -16,7 +16,7 @@ Lit 2 引入了一个叫做 _响应式控制器_ 新的代码重用和组合的�
 * 管理异步任务，例如通过网络获取数据
 * 运行动画
 
-响应式控制器允许你通过组合本身不是组件的较小部分来构建组件。它们可以被认为是可重用的部分组件定义，具有自己的身份和状态。
+响应式控制器允许你通过组合本身不是组件的较小部分来构建组件。它们可以被认为是具有自己的身份和状态的可重用的部分组件的定义。
 
 {% playground-ide "docs/controllers/overview" "clock-controller.ts" %}
 
@@ -24,7 +24,7 @@ Lit 2 引入了一个叫做 _响应式控制器_ 新的代码重用和组合的�
 
 ## 使用控制器
 
-每个控制器都有自己的创建 API，但通常你会创建一个实例并将其与组件一起存储：
+每个控制器都有自己的创建 API，通常你会创建一个实例并将其保存在组件中：
 
 ```ts
 class MyElement extends LitElement {
@@ -34,7 +34,7 @@ class MyElement extends LitElement {
 
 与控制器实例关联的组件称为宿主组件。
 
-控制器实例注册自己以接收来自主机组件的生命周期回调，并在控制器有新数据要渲染时触发宿主更新。这就是 `ClockController` 示例定期渲染当前时间的方式。
+控制器实例需要注册自己，才能接收来自宿主组件的生命周期回调，并在控制器有新数据要渲染时触发宿主更新。这就是 `ClockController` 示例定期渲染当前时间的方式。
 
 控制器通常会公开一些要在宿主的 `render()` 方法中使用的功能。 例如，许多控制器会有一些状态，比如当前值：
 
@@ -50,7 +50,6 @@ class MyElement extends LitElement {
 
 ## 编写控制器
 
-A reactive controller is an object associated with a host component, which implements one or more host lifecycle callbacks or interacts with its host. It can be implemented in a number of ways, but we'll focus on using JavaScript classes, with constructors for initialization and methods for lifecycles.
 响应式控制器是与宿主组件关联的对象，它可以实现一个或多个宿主生命周期回调或与其宿主进行交互。控制器可以通过多种方式实现，但我们只专注于使用 JavaScript 类，包括用于初始化的构造函数和用于生命周期的方法。
 
 ### 初始化控制器
@@ -85,7 +84,7 @@ class ClockController {
 
 {% endswitchable-sample %}
 
-你可以为一次性配置添加其他构造函数参数。
+你可以为一次性配置新增另外的构造函数参数。
 
 {% switchable-sample %}
 
@@ -116,7 +115,7 @@ class ClockController {
 
 ### 生命周期
 
-在 {% api "ReactiveController" %} 接口中定义的响应式控制器生命周期是响应式更新周期的子集。 LitElement 在其生命周期回调期间会调用任何已安装的控制器的设生命周期回调。 这些回调是可选的。
+在 [ReactiveController]({{baseurl}}/docs/api/controllers#ReactiveController) 接口中定义的响应式控制器生命周期是响应式更新周期的子集。 LitElement 在其生命周期回调期间会调用任何已注册的控制器的生命周期回调。 这些回调是可选的。
 
 * `hostConnected()`:
   * 宿主元素连接时调用。
@@ -136,22 +135,22 @@ class ClockController {
 
 ### 控制器宿主 API
 
-A reactive controller host implements a small API for adding controllers and requesting updates, and is responsible for calling its controller's lifecycle methods.
+响应式控制器的宿主实现了一组用于添加控制器和请求更新的最小 API集合，并负责调用其控制器的生命周期方法。
 
-This is the minimum API exposed on a controller host:
+这是控制器宿主上公开的最小 API集合：
 
 * `addController(controller: ReactiveController)`
 * `removeController(controller: ReactiveController)`
 * `requestUpdate()`
 * `updateComplete: Promise<boolean>`
 
-You can also create controllers that are specific to `HTMLElement`, `ReactiveElement`, `LitElement` and require more of those APIs; or even controllers that are tied to a specific element class or other interface.
+你还可以创建特定于 `HTMLElement`、`ReactiveElement`、`LitElement` 的控制器，并提供更多的这类 API； 甚至是绑定到特定元素类或其他接口的控制器。
 
-`LitElement` and `ReactiveElement` are controller hosts, but hosts can also be other objects like base classes from other web components libraries, components from frameworks, or other controllers.
+`LitElement` 和 `ReactiveElement` 是控制器宿主，但宿主也可以是其他对象，例如来自其他 Web 组件库的基类、来自框架的组件或其他控制器。
 
 ### 从其他控制器构建控制器
 
-Controllers can be composed of other controllers as well. To do this create a child controller and forward the host to it.
+控制器也可以由其他控制器组成。 为此，请创建一个子控制器并将宿主转发给它。
 
 {% switchable-sample %}
 
@@ -189,20 +188,20 @@ class DualClockController {
 将控制器与指令结合起来可能是一项非常强大的技术，尤其是对于需要在渲染之前或之后进行工作的指令，例如动画指令； 或需要引用模板中特定元素的控制器。
 
 使用带有指令的控制器有两种主要模式：
-* 控制器指令。 指令本身就是控制器，用于挂钩主机生命周期。
-* 拥有指令的控制器。 是控制器创建一个或多个指令，用于使用主机的模板。
+* 控制器指令。 指令本身就是控制器，用于挂钩宿主生命周期。
+* 拥有指令的控制器。 是控制器创建一个或多个指令，用于使用宿主的模板。
 
 有关编写指令的更多信息，请参阅 [自定义指令]({{baseurl}}/docs/templates/custom-directives/)。
 
 #### 控制器指令
 
-响应式控制器不需要作为实例字段保存在宿主上。 使用 `addController()` 添加到宿主的任何东西都是控制器。 特殊情况下，指令也可以是控制器。 这使指令能够挂钩到宿主的生命周期。
+响应式控制器不需要作为实例字段保存在宿主上。 使用 `addController()` 添加到宿主的任何东西都是控制器。 特殊情况下，指令也可以是控制器。 这使得指令能够挂钩到宿主的生命周期。
 
 #### 拥有指令的控制器
 
 指令不一定是独立的函数，也可以是其他对象的方法，例如控制器。 这在控制器需要对模板中元素的特定引用的情况下很有用。
 
-例如，想象一下要实现一个 ResizeController，然后可以使用它来观察元素的大小。 为此，我们需要一个 ResizeController 实例和一个放置在我们想要观察的元素上的指令：
+例如，想象一下要实现一个 ResizeController，然后可以使用它来观察元素的尺寸。 为此，我们需要一个 ResizeController 实例和一个放置在我们想要观察的元素上的指令：
 
 {% switchable-sample %}
 
@@ -275,11 +274,11 @@ export class ResizeController {
 
 异步任务，例如长时间运行的计算或网络 I/O，通常具有随时间变化的状态，并且需要在任务状态发生变化（完成、错误等）时通知宿主。
 
-控制器是打包任务执行和状态好方法，使得在组件内引入新功能变得更容易。 用控制器的编写的任务，通常具有宿主可以设置的输入和宿主可以渲染的输出。
+控制器是打包任务执行和状态好方法，它使得在组件内引入新功能变得更容易。 用控制器编写的任务，通常具有宿主可以设置的输入和宿主可以渲染的输出。
 
 `@lit-labs/task` 包含一个通用的 `Task` 控制器，它可以从宿主提取输入，执行任务功能，并根据任务状态渲染不同的模板。
 
-你可以使用 `Task` 创建一个自定义控制器，其中包含为你的特定任务量身定制的 API。 在这里，我们将 `Task` 包装在 `NamesController` 中，它可以从 REST API demo 中获取指定的名称列表之一。 `NameController` 公开了一个 `kind` 属性作为输入，以及一个 `render()` 方法，该方法可以根据任务状态渲染四个模板之一。 任务逻辑以及它如何更新宿主，则是从宿主组件中抽象出来的。
+你可以使用 `Task` 创建一个自定义控制器，其中包含为你的特定任务量身定制的 API。 在这里，我们将 `Task` 包装在 `NamesController` 中，它可以从 REST API demo 中获取指定的名称列表中的一个。 `NameController` 公开了一个 `kind` 属性作为输入，以及一个 `render()` 方法，该方法可以根据任务状态渲染四个模板的其中一个模板。 任务逻辑以及它如何更新宿主，则是从宿主组件中抽象出来的。
 
 {% playground-ide "docs/controllers/names" %}
 

@@ -1,18 +1,18 @@
 ---
-title: Requirements
+title: 需求
 eleventyNavigation:
-  key: Requirements
-  parent: Tools
+  key: 需求
+  parent: 工具
   order: 2
 versionLinks:
   v1: tools/build/#build-requirements
 ---
 
-The most important things to know about Lit in order to work with various browsers and tools are that:
+ 为了使用各种浏览器和工具，需要了解一下 Lit 最重要的事情：
 
- * Lit is published as ES2019.
- * Lit uses "bare module specifiers" to import modules.
- * Lit uses modern web APIs such as `<template>`, custom elements, shadow DOM, and `ParentNode`.
+  * Lit 基于 ES2019 发布。
+  * Lit 使用“bare module specifiers”来导入模块。
+  * Lit 使用现代 Web API，例如 `<template>`、自定义元素、shadow DOM 和 `ParentNode`。
 
 These features are supported by the latest versions of major browsers (including Chrome, Edge, Safari, and Firefox) and most popular tools (such as Rollup, Webpack, Babel, and Terser)—with the exception of bare module specifier support in browsers.
 
