@@ -136,22 +136,22 @@ class ClockController {
 
 ### 控制器宿主 API
 
-A reactive controller host implements a small API for adding controllers and requesting updates, and is responsible for calling its controller's lifecycle methods.
+响应式控制器的宿主实现了一组用于添加控制器和请求更新的 API，并负责调用其控制器的生命周期方法。
 
-This is the minimum API exposed on a controller host:
+这是控制器的宿主上公开的最小的 API 集合：
 
 * `addController(controller: ReactiveController)`
 * `removeController(controller: ReactiveController)`
 * `requestUpdate()`
 * `updateComplete: Promise<boolean>`
 
-You can also create controllers that are specific to `HTMLElement`, `ReactiveElement`, `LitElement` and require more of those APIs; or even controllers that are tied to a specific element class or other interface.
+你还可以创建特定于 `HTMLElement`、`ReactiveElement`、`LitElement` 的控制器，并且需要公开更多的这类 API； 甚至是绑定到特定元素类或其他接口的控制器。
 
-`LitElement` and `ReactiveElement` are controller hosts, but hosts can also be other objects like base classes from other web components libraries, components from frameworks, or other controllers.
+`LitElement` 和 `ReactiveElement` 是控制器宿主，但宿主也可以是其他对象，例如来自其他 Web 组件库的基类、来自框架的组件或其他控制器。
 
-### 从其他控制器构建控制器
+### 利用其他控制器构建新的控制器
 
-Controllers can be composed of other controllers as well. To do this create a child controller and forward the host to it.
+控制器也可以由其他控制器组成。 为此，请创建一个子控制器并将宿主转发给它。
 
 {% switchable-sample %}
 
@@ -186,13 +186,13 @@ class DualClockController {
 
 ### 控制器和指令
 
-Combining controllers with directives can be a very powerful technique, especially for directives that need to do work before or after rendering, like animation directives; or controllers that need references to specific elements in a template.
+将控制器与指令结合起来可能是一种非常强大的技术，尤其是对于需要在渲染之前或之后进行工作的指令，例如动画指令； 或需要引用模板中特定元素的控制器。
 
-There are two main patterns of using controllers with directives:
-* Controller directives. These are directives that themselves are controllers in order to hook the host lifecycle.
-* Controllers that own directives. These are controllers create one or more directives for use the host's template.
+使用带有指令的控制器有两种主要模式：
+* 控制器指令。 这些指令本身就是控制器，用户挂钩宿主生命周期。
+* 拥有指令的控制器。 这些是控制器创建一个或多个指令，用于使用宿主的模板。
 
-For more information about writing directives, see [Custom directives](/docs/templates/custom-directives/).
+有关编写指令的更多信息，请参阅 [自定义指令]({{baseurl}}/docs/templates/custom-directives/)。
 
 #### 控制器指令
 
