@@ -1,7 +1,7 @@
 ---
-title: 需求
+title: 要求
 eleventyNavigation:
-  key: 需求
+  key: 要求
   parent: 工具
   order: 2
 versionLinks:
@@ -11,60 +11,60 @@ versionLinks:
  为了使用各种浏览器和工具，需要了解一下 Lit 最重要的事情：
 
   * Lit 基于 ES2019 发布。
-  * Lit 使用“bare module specifiers”来导入模块。
+  * Lit 使用“bare”模块说明符（bare module specifier）来导入模块。
   * Lit 使用现代 Web API，例如 `<template>`、自定义元素、shadow DOM 和 `ParentNode`。
 
-These features are supported by the latest versions of major browsers (including Chrome, Edge, Safari, and Firefox) and most popular tools (such as Rollup, Webpack, Babel, and Terser)—with the exception of bare module specifier support in browsers.
+最新版本的主要浏览器（包括 Chrome、Edge、Safari 和 Firefox）和最流行的工具（例如 Rollup、Webpack、Babel 和 Terser）都支持这些功能——浏览器中的裸模块说明符支持除外。
 
-When developing an app using Lit, either your target browsers need to support those features natively, or your tools will need to handle them. While there are a large number of browsers with various support for modern web features, for simplicity we recommend grouping browsers into one of two categories:
+使用 Lit 开发应用程序时，你的目标浏览器需要原生支持这些功能，或者你需要用工具处理使浏览器支持它们。 虽然有大多浏览器对现代 Web 功能提供各种支持，但为简单起见，我们建议将浏览器分为以下两个类：
 
-*   **Modern browsers** support ES2019 and web components. Tools must resolve bare module specifiers.
-*   **Legacy browsers** support ES5 and don't support web components or newer DOM APIs. Tools must compile JavaScript and load polyfills.
+*  **现代浏览器** 支持 ES2019 和 Web 组件。 必须使用工具解析裸模块说明符。
+*  **旧版浏览器** 支持 ES5，不支持 Web 组件或新的 DOM API。 必须使用工具编译 JavaScript 并加载 polyfill。
 
-This page gives a general overview for how to meet these requirements in your development and productions environments.
+本页概述了如何在你的开发和生产环境中满足这些要求。
 
-See [Development](/docs/tools/development/), [Testing](/docs/tools/testing/), and [Building for Production](/docs/tools/production/) for recommendations on tools and configurations that meet these requirements.
+有关满足这些要求的工具和配置的建议，请参阅 [开发]({{baseurl}}/docs/tools/development/)、[测试]({{baseurl}}/docs/tools/testing/) 和 [构建生产]({{baseurl}}/docs/tools/production/) 要求。
 
-## Requirements for modern browsers {#building-for-modern-browsers}
+## 现代浏览器的要求 {#building-for-modern-browsers}
 
-The only transformation required to use Lit on modern browsers is to convert bare module specifiers to browser-compatible URLs.
+在现代浏览器上使用 Lit 所需的唯一转换是将裸模块说明符转换为与浏览器兼容的 URL。
 
-Lit uses bare module specifiers to import modules between its sub-packages, like this:
+Lit 使用裸模块说明符在其子包之间导入模块，如下所示：
 
 ```js
 import {html} from 'lit-html';
 ```
 
-Modern browsers currently only support loading modules from URLs or relative paths, not bare names that refer to an npm package, so the build system needs to handle them. This should be done either by transforming the specifier to one that works for ES modules in the browser, or by producing a different type of module as output.
+现代浏览器目前仅支持从 URL 或相对路径加载模块，不能直接引用 npm 包的裸名，因此构建系统需要处理它们。 构建系统要么将说明符转换为适用于浏览器中的 ES 模块的说明符，或者生成不同类型的模块作为输出。
 
-Webpack automatically handles bare module specifiers; for Rollup, you'll need a plugin ([@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)).
+Webpack 能自动处理裸模块说明符； 而 Rollup，则需要插件 ([@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve))。
 
-**Why bare module specifiers?** Bare module specifiers let you import modules without knowing exactly where the package manager has installed them. A standards proposal called [Import maps](https://github.com/WICG/import-maps) is [starting to ship](https://chromestatus.com/feature/5315286962012160), which will let let browsers support bare module specifiers. In the meantime, bare import specifiers can easily be transformed as a build step. There are also some polyfills and module loaders that support import maps.
+**为什么要使用裸模块说明符？** 裸模块说明符可以让你在不知道包管理器将模块安装在何处的情况下导入它们。 名为 [Import maps](https://github.com/WICG/import-maps) 的标准提案叫做 [starting to ship](https://chromestatus.com/feature/5315286962012160)，它将让浏览器支持裸模块说明符。 同时，裸导入说明符可以很容易地转换为构建步骤。 还有一些支持 import maps 的 polyfill 和模块加载器。
 
-### Modern browser breakdown
+### 现代浏览器细分
 
-All modern browsers update automatically and users are highly likely to have a recent version. The following table lists the minimum version of each major browser that natively supports ES2019 and web components, the key features on which Lit relies.
+所有现代浏览器都会自动更新，用户很可能拥有的是最新版本。 下表列出了原生支持 ES2019 和 Web 组件的每个主要浏览器的最低版本，这是 Lit 所依赖的关键特性。
 
-| Browser	| Supports ES2019 & web components |
+| 浏览器 | 支持 ES2019 和 Web 组件 |
 |:--------|:--------------------------------:|
 | Chrome  |	>=73                             |
 | Safari  |	>=12.1                           |
 |	Firefox |	>=63                             |
 |	Edge    |	>=79                             |
 
-## Requirements for legacy browsers {#building-for-legacy-browsers}
+## 旧版浏览器的要求 {#building-for-legacy-browsers}
 
-Supporting older browsers (specifically Internet Explorer 11, but also older versions of evergreen browsers), requires a number of extra steps:
+支持旧版浏览器（特别是 Internet Explorer 11，还有旧版的常青浏览器（evergreen browsers）），需要一些额外的步骤：
 
-*   Compiling modern JavaScript syntax to ES5.
-*   Transforming ES modules to another module system.
-*   Loading polyfills.
+* 将现代 JavaScript 语法编译为 ES5。
+* 将 ES 模块转换为另一个模块系统。
+* 加载 polyfill。
 
-### Legacy browser breakdown
+### 旧版浏览器细分
 
-The following table lists supported browser versions that require compiling Javascript and loading polyfills:
+下表列出了需要编译 Javascript 和加载 polyfill 的受支持浏览器版本：
 
-| Browser           | Compile JS | Compile JS & load polyfills |
+| 浏览器 | 编译 JS | 编译 JS 并加载 polyfills |
 |:------------------|:------------:|:-----------------------------:|
 | Chrome            | 67-79        | <67                           |
 | Safari            | 10-12        | <10                           |
@@ -73,7 +73,7 @@ The following table lists supported browser versions that require compiling Java
 | Edge "classic"    |              | <=18                         |
 | Internet Explorer |              | 11                            |
 
-### Compiling to ES5 {#compiling-to-es5}
+### 编译为 ES5 {#compiling-to-es5}
 
 Rollup, webpack and other build tools have plugins to support compiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used compiler.
 
