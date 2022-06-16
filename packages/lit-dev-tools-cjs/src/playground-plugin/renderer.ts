@@ -36,6 +36,23 @@ export class Renderer {
       const context = await browser.newContext();
       const page = await context.newPage();
 
+      page.on('response', (response) => {
+        const status = response.status();
+        if (status < 200 || status >= 300) {
+          console.error(
+            `ERROR: playground-plugin renderer encountered HTTP ` +
+              `${status} error fetching ${response.url()}`
+          );
+        }
+      });
+
+      page.on('pageerror', (error) => {
+        console.error(
+          `ERROR: playground-plugin renderer encountered page error: ` +
+            error.message
+        );
+      });
+
       const body = `
         <!doctype html>
         <script type="module">
@@ -168,7 +185,9 @@ class RendererServer {
       process.stdout.write = (() => {}) as any;
       const wds = await startDevServer({
         config: {
-          rootDir: pathlib.resolve(__dirname, '..', '..'),
+          // playground-elements is hoisted to the root node_modules by
+          // workspaces.
+          rootDir: pathlib.resolve(__dirname, '..', '..', '..', '..'),
           preserveSymlinks: true, // Needed when a dependency is NPM linked
           nodeResolve: true,
           middleware: [
