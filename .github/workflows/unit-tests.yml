@@ -16,5 +16,4 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
 
       - run: npm ci
-      - run: npm run bootstrap
       - run: npm run test:unit

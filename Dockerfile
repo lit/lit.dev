@@ -23,19 +23,19 @@ WORKDIR /usr/src/app
 # to execute the final Eleventy build step.
 
 # External dependencies
-COPY package*.json lerna.json tsconfig.base.json ./
+COPY package*.json tsconfig.base.json ./
 COPY packages/lit-dev-tools-cjs/package*.json ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/package*.json ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
 COPY packages/lit-dev-api/package*.json ./packages/lit-dev-api/
 COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
-RUN npm ci && npm run bootstrap
+RUN npm ci
 
 # Tooling code
 COPY packages/lit-dev-tools-cjs/ ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/ ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/ ./packages/lit-dev-server/
-RUN npx lerna run build:ts --scope lit-dev-tools-cjs --scope lit-dev-tools-esm --scope lit-dev-server --stream
+RUN npm run build:ts -w packages/lit-dev-tools-cjs -w packages/lit-dev-tools-esm -w packages/lit-dev-server
 
 # Pre-generated API docs data
 COPY packages/lit-dev-api/ ./packages/lit-dev-api/
@@ -59,7 +59,7 @@ RUN echo "LITDEV_ENV=$LITDEV_ENV" >> env \
   && echo "SHORT_SHA=$SHORT_SHA" >> env
 
 # Eleventy build
-RUN npx lerna run prod:build --scope lit-dev-content --stream
+RUN npm run prod:build -w packages/lit-dev-content
 
 # Run the web service on container startup.
 #

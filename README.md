@@ -4,7 +4,7 @@ New site, new repo.
 
 ## Packages
 
-This is a Lerna monorepo.
+This is an npm workspaces monorepo.
 
 - lit-dev-content: Main content of lit.dev
 - lit-dev-server: Production web server for lit.dev
@@ -15,7 +15,7 @@ This is a Lerna monorepo.
 ### Install dependencies
 
 ```sh
-npm i && npm run bootstrap
+npm ci
 ```
 
 ### Build all
