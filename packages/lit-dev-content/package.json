@@ -203,7 +203,7 @@
     "@material/mwc-textfield": "^0.25.1",
     "lit": "^2.1.0",
     "minisearch": "^3.0.4",
-    "playground-elements": "^0.16.0",
+    "playground-elements": "^0.16.2",
     "postdoc-lib": "^1.0.3",
     "tarts": "^1.0.0",
     "timeago.js": "^4.0.2",
