@@ -70,22 +70,22 @@ Webpack 能自动处理裸模块说明符； 而 Rollup，则需要插件 ([@rol
 | Safari            | 10-12        | <10                           |
 | Firefox           | 63-71        | <63                           |
 | Edge              | 79           |                               |
-| Edge "classic"    |              | <=18                         |
+| Edge "classic"    |              | <=18                          |
 | Internet Explorer |              | 11                            |
 
 ### 编译为 ES5 {#compiling-to-es5}
 
-Rollup, webpack and other build tools have plugins to support compiling modern JavaScript for older browsers. [Babel](https://babeljs.io/) is the most commonly used compiler.
+Rollup、webpack 和其他构建工具都有插件支持为旧浏览器编译现代 JavaScript。 [Babel](https://babeljs.io/) 是最常用的编译器。
 
-Unlike some libraries, Lit is published as a set of ES modules using modern ES2019 JavaScript. When you build your app for older browsers, you need to compile Lit as well as your own code.
+与某些库不同，Lit 使用现代 ES2019 JavaScript 以一组 ES 模块发布。 当你为旧版浏览器构建应用时，需要编译 Lit 以及自己的代码。
 
-If you have a build already set up, it may be configured to ignore the `node_modules` folder when compiling. If this is the case, we recommend updating this to compile the `lit` package and its runtime dependencies (`lit-html` and `lit-element`). For example, if you're using the [Rollup Babel plugin](https://www.npmjs.com/package/@rollup/plugin-babel), you might have a configuration like this to exclude the `node_modules` folder from compilation:
+如果你已经有了配置过构建，可能会将其配置为在编译时忽略 `node_modules` 文件夹。 如果是这种这样，我们建议更新它，让其编译 `lit` 包及其运行时依赖项（`lit-html` 和 `lit-element`）。 例如，如果你使用 [Rollup Babel 插件](https://www.npmjs.com/package/@rollup/plugin-babel)，你可能采用如下配置来排除编译 `node_modules` 文件夹：
 
 ```js
 exclude: [ 'node_modules/**' ]
 ```
 
-You can replace this with a rule to explicitly include folders to compile:
+你可以将其替换为明确包含要编译的文件夹的规则：
 
 ```js
 include: [
@@ -96,26 +96,23 @@ include: [
 ]
 ```
 
-**Why no ES5 build?** The Lit package doesn't include an ES5 build because modern JavaScript is smaller and generally faster. When building an application, you can compile modern JavaScript down to create the exact build (or builds) you need based on the browsers you need to support.
+**为什么没有 ES5 构建？** Lit 包不包含 ES5 构建，因为现代 JavaScript 更小且通常更快。 在构建应用时，你可以根据需要支持的浏览器来编译现代 JavaScript，从而创建你需要的确切构建（或多个构建）。
 
-If Lit included multiple builds, individual elements could end up depending on different builds of Lit—resulting in multiple versions of the library being shipped down to the browser.
+如果 Lit 包含多个构建，则单个元素可能最终取决于 Lit 的不同构建——导致库的多个版本被传送到浏览器。
 
+### 转换模块 {#transforming-modules}
 
-### Transforming modules {#transforming-modules}
+在为不支持模块的旧版浏览器（如：IE11）生成输出时，有三种常见的输出格式：
 
-When producing output for older browsers without modules support like IE11, there are three common output formats:
+* 没有模块（IIFE）。 代码打包为单个文件，包装在立即执行函数 (IIFE) 中。
+* AMD 模块。 使用异步模块定义格式； 需要一个模块加载器脚本，例如 [require.js](https://requirejs.org/)。
+* SystemJS 模块。 [SystemJS](https://www.npmjs.com/package/systemjs) 是一个模块加载器，它定义了自己的模块格式。 它还支持 AMD、CommonJS 和标准 JavaScript 模块。
 
-*   No modules (IIFE). Code is bundled as a single file, wrapped in an immediately-invoked function expression (IIFE).
-*   AMD modules. Uses the Asynchronous Module Definition format; requires a module loader script, such as [require.js](https://requirejs.org/).
-*   SystemJS modules. [SystemJS](https://www.npmjs.com/package/systemjs) is a module loader that defines its own module format. It also supports AMD, CommonJS, and standard JavaScript modules.
-
-The IIFE format works fine if all of your code can be bundled into a single file. To use code splitting via [dynamic `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) with older browsers like IE11, you'll need to produce output in either the AMD or SystemJS module format and load the appropriate module loader/polyfill.
+如果你的所有代码都可以打包到一个文件中，那么 IIFE 格式可以正常工作。 如果你要通过 [动态 `import()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) 实现支持IE11 等旧版浏览器的代码拆分并，那么你需要以 AMD 或 SystemJS 模块格式生成输出并加载适当的模块加载器/polyfill。
 
 ## Polyfills {#polyfills}
 
-Using Lit on older browsers will require loading polyfills for standard JavaScript features like Promises and async/await, the web components polyfills, as well as a `polyfill-support` script provided in the Lit package for interfacing Lit with the Web Components polyfills.
-
-These are the recommended polyfills:
+在旧版浏览器上使用 Lit 需要为标准 JavaScript 功能加载 polyfill，如 Promises，async/await 和 Web 组件 polyfill，以及 Lit 包提供用于将 Lit 与 Web 组件 polyfill 连接的 `polyfill-support` 脚本。
 
 * Polyfills for JavaScript features:
   * [`core-js`](https://www.npmjs.com/package/core-js) - Standard JS library
@@ -129,9 +126,21 @@ These are the recommended polyfills:
 
 Note that you may need other polyfills depending on the features your application uses.
 
-### Loading polyfills
+* JavaScript 特性的 polyfill：
+   * [`core-js`](https://www.npmjs.com/package/core-js) - 标准 JS 库
+   * [`regenerator-runtime`](https://www.npmjs.com/package/regenerator-runtime) - 支持 generator 和 async/await
+* 动态 `import()` 的 polyfill（如果应用程序中用到，需要根据模块的转换方式进行选择）：
+   * [`systemjs`](https://www.npmjs.com/package/systemjs) - systemjs 模块加载器
+   * [`requirejs`](https://www.npmjs.com/package/requirejs) - AMD 模块加载器
+* Web 组件的 polyfill：
+   * [`@webcomponents/webcomponentsjs`](https://www.npmjs.com/package/@webcomponents/webcomponentsjs) - 用于自定义元素、shadow DOM、模板和一些较新的 DOM API 的 polyfill
+   * `lit/polyfill-support.js` - `lit` 包中附带的文件，使用 `webcomponentsjs` 时必须加载该文件
 
-The Javascript polyfills should be bundled separately from the application bundle, and loaded before the web components polyfills, since those polyfills rely on modern JS like `Promise`. Putting it all together, the page should load code as follows:
+请注意，应用程序使用的功能不同，可能还需要其他不同的 polyfill。
+
+### 加载 polyfill
+
+Javascript polyfill 应该与应用程序包分开打包，并在 web 组件 polyfill 之前加载，因为组件的 polyfill 依赖于现代 JS，如 `Promise`。 总而言之，页面应该加载如下代码：
 
 ```html
 <script src="path/to/js/polyfills/you/need.js"></script>
@@ -140,22 +149,22 @@ The Javascript polyfills should be bundled separately from the application bundl
 <!-- Load application code here -->
 ```
 
-### Web components polyfills
+### Web 组件 polyfill
 
-For detailed information about loading and configuring the web components polyfills, see the [webcomponentsjs documentation](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs). The following is a summary of some of the key points.
+有关加载和配置 Web 组件 polyfill 的详细信息，请参阅 [webcomponentsjs 文档](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs)。 以下是一些关键点的总结。
 
-#### Loading options
+#### 加载选项
 
-There are two main ways to load the web components polyfills:
+加载 Web 组件 polyfill 的主要方法有两种：
 
-- `webcomponents-bundle.js` includes all of the polyfills necessary to run on any of the supported browsers. Because all browsers receive all polyfills, this results in extra bytes being sent to browsers that support one or more feature.
-- `webcomponents-loader.js` performs client-side feature-detection and loads just the required polyfills. This requires an extra round-trip to the server, but saves bandwidth for browsers that support one or more features.
+- `webcomponents-bundle.js` 包括在任何受支持的浏览器上运行所需的所有 polyfill。 因为所有浏览器都会收到所有的 polyfill，这会导致即使浏览器原生支持部分功能，但是也会所有的polyfill的代码。
+- `webcomponents-loader.js` 执行客户端功能检测并仅加载所需的 polyfill。 这虽然增加了到服务器的额外往返行程，但为支持部分功能的浏览器节省了带宽。
 
-#### Loading the ES5 adapter
+#### 加载 ES5 适配器
 
-It's best to serve a modern build to modern browsers to avoid sending the extra code needed for older browsers. However, it can be convenient to serve just a single set of files. If you do this, there is one extra required step. In order for ES5 compiled code to work with native web components and specifically custom elements, a small adapter is needed. For a detailed explanation, see the [webcomponentsjs documentation](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs).
+最好为现代浏览器提供现代版本，以避免发送旧浏览器所需的额外代码。 但是，只提供一组文件的话会更加方便。 如果你想这样做，则需要一个额外的步骤。 为了使 ES5 编译的代码能够与本机 Web 组件和（特别是）自定义元素一起使用，需要一个小型适配器。 详细解释请看【webcomponentsjs 文档】(https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs)。
 
-Load the `custom-elements-es5-adapter.js` after any Babel polyfills and before web components, like this:
+请注意，你需要在所有的 Babel polyfill 之后和 Web 组件之前加载 `custom-elements-es5-adapter.js`，如下所示：
 
 ```html
 <script src="path/to/js/polyfills/you/need.js"></script>
@@ -165,16 +174,21 @@ Load the `custom-elements-es5-adapter.js` after any Babel polyfills and before w
 <!-- Load application code here -->
 ```
 
-#### Setting web components polyfill options
+#### 设置 Web 组件 polyfill 选项
 
 By default, the individual polyfill for a given feature is disabled on browsers that natively support that feature.
 For testing purposes, you can force the polyfills on for browsers that have native support.
 
 While the web components polyfills strive to match the spec, there are some infidelities particularly around styling (see [ShadyCSS limitations](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)). We recommend ensuring you test with polyfills both on and off, either on the browsers that need them, or by forcing them on. You can force the polyfills on by adding a JavaScript snippet before you import the polyfills:
 
+默认情况下，在本机支持某项功能的浏览器上禁用对应功能的单个 polyfill。
+出于测试目的，你可以为原生支持某些功能的浏览器强制启用 polyfill。
+
+虽然 web 组件 polyfill 已经努力匹配规范，但在样式方面存在一些缺陷（参见 [ShadyCSS 限制](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss#limitations)）。 我们建议你在确保需要它们的浏览器上或强制打开它们时，通过打开和关闭 polyfill 进行测试。 在导入 polyfill 之前，你可以通过添加 JavaScript 片段来强制启用 polyfill：
+
 ```html
 <script>
-  // Force all polyfills on
+  // 强制启用所有 polyfill
   if (window.customElements) window.customElements.forcePolyfill = true;
   ShadyDOM = { force: true };
   ShadyCSS = { shimcssproperties: true};
@@ -182,11 +196,11 @@ While the web components polyfills strive to match the spec, there are some infi
 <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 ```
 
-Or, you if you use the `webcomponents-bundle.js` file, you can force the polyfills on by adding query parameters to the app's URL:
+或者，如果你使用 `webcomponents-bundle.js` 文件，可以通过将 query 参数添加到应用程序的 URL 来强制启用 polyfill：
 
 `https://www.example.com/my-application/view1?wc-ce&wc-shadydom&wc-shimcssproperties`
 
-The following table lists the JavaScript snippets and query parameters for each polyfill.
+下表列出了每个 polyfill 的 JavaScript 片段和查询参数。
 
 | Polyfill    | Javascript                          | Query parameter          |
 |:------------|:------------------------------------|:-------------------------|
