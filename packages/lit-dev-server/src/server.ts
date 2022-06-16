@@ -30,10 +30,11 @@ const port = mode === 'main' ? ENV.mainPort : ENV.playgroundPort;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const contentPackage = path.resolve(__dirname, '..', '..', 'lit-dev-content');
+const repoRoot = path.resolve(__dirname, '..', '..', '..');
+const contentPackage = path.resolve(repoRoot, 'packages', 'lit-dev-content');
 const staticRoot =
   mode === 'playground'
-    ? path.join(contentPackage, 'node_modules', 'playground-elements')
+    ? path.join(repoRoot, 'node_modules', 'playground-elements')
     : path.join(contentPackage, ENV.eleventyOutDir);
 
 console.log(`mode: ${mode}`);
