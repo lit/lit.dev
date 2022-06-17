@@ -22,6 +22,14 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: 'npm start',
     port: 6415,
+    // TODO(aomarks).
+    // We shouldn't really need this, but playwright sends a SIGKILL instead of
+    // a SIGTERM or SIGINT, which doesn't seem to allow our server to clean up,
+    // meaning it keeps running after the test.
+    // See https://github.com/microsoft/playwright/issues/12299.
+    // Wireit service mode would also solve this:
+    // https://github.com/google/wireit/issues/33.
+    reuseExistingServer: true,
   },
   // Prevent implicit snapshot creation and tests passing. Create screenshots
   // explicitly with either:
