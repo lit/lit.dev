@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "LitElement",
@@ -2571,7 +2571,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 598,
+                "line": 608,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2643,7 +2643,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 588,
+                "line": 598,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2675,7 +2675,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 607,
+                "line": 617,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2707,7 +2707,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 592,
+                "line": 602,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -2740,7 +2740,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 583,
+            "line": 593,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -2765,7 +2765,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "ReactiveElement",
@@ -5566,7 +5566,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "html",
@@ -5581,7 +5581,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 512,
+            "line": 522,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5654,7 +5654,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 564,
+            "line": 574,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5685,12 +5685,13 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "Renders a value, usually a lit-html TemplateResult, to the container."
+          "shortText": "Renders a value, usually a lit-html TemplateResult, to the container.",
+          "text": "This example renders the text \"Hello, Zoe!\" inside a paragraph tag, appending\nit to the container `document.body`.\n\n```js\nimport {html, render} from 'lit';\n\nconst name = \"Zoe\";\nrender(html`<p>Hello, ${name}!</p>`, document.body);\n```\n"
         },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 616,
+            "line": 645,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -5706,7 +5707,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 311
+                    "line": 340
                   }
                 ],
                 "type": {
@@ -5724,7 +5725,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 312
+                    "line": 341
                   }
                 ],
                 "signatures": [
@@ -5744,7 +5745,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 310
+                    "line": 339
                   }
                 ],
                 "signatures": [
@@ -5776,7 +5777,7 @@
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                "line": 308
+                "line": 337
               }
             ],
             "signatures": [
@@ -5787,6 +5788,9 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
+                    "comment": {
+                      "shortText": "Any [renderable\n  value](https://lit.dev/docs/templates/expressions/#child-expressions),\n  typically a {@linkcode TemplateResult} created by evaluating a template tag\n  like {@linkcode html} or {@linkcode svg}."
+                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "unknown"
@@ -5795,6 +5799,9 @@
                   {
                     "name": "container",
                     "kindString": "Parameter",
+                    "comment": {
+                      "shortText": "A DOM container to render to. The first render will append\n  the rendered value to the container, and subsequent renders will\n  efficiently update the rendered value if the same result type was\n  previously rendered there."
+                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -5822,7 +5829,7 @@
                       "isOptional": true
                     },
                     "comment": {
-                      "shortText": "\n"
+                      "shortText": "See {@linkcode RenderOptions} for options documentation."
                     },
                     "type": {
                       "type": "reference",
@@ -5854,6 +5861,9 @@
               {
                 "name": "value",
                 "kindString": "Parameter",
+                "comment": {
+                  "shortText": "Any [renderable\n  value](https://lit.dev/docs/templates/expressions/#child-expressions),\n  typically a {@linkcode TemplateResult} created by evaluating a template tag\n  like {@linkcode html} or {@linkcode svg}."
+                },
                 "type": {
                   "type": "intrinsic",
                   "name": "unknown"
@@ -5862,6 +5872,9 @@
               {
                 "name": "container",
                 "kindString": "Parameter",
+                "comment": {
+                  "shortText": "A DOM container to render to. The first render will append\n  the rendered value to the container, and subsequent renders will\n  efficiently update the rendered value if the same result type was\n  previously rendered there."
+                },
                 "type": {
                   "type": "union",
                   "types": [
@@ -5889,7 +5902,7 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "shortText": "\n"
+                  "shortText": "See {@linkcode RenderOptions} for options documentation."
                 },
                 "type": {
                   "type": "reference",
@@ -5936,7 +5949,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 537,
+            "line": 547,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6100,7 +6113,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 457,
+            "line": 467,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6137,12 +6150,13 @@
         "name": "TemplateResult",
         "kindString": "Type alias",
         "comment": {
-          "shortText": "The return type of the template tag functions."
+          "shortText": "The return type of the template tag functions, `html` and\n`svg`.",
+          "text": "A `TemplateResult` object holds all the information about a template\nexpression required to render it: the template strings, expression values,\nand type of template (html or svg).\n\n`TemplateResult` objects do not create any DOM on their own. To create or\nupdate DOM you need to render the `TemplateResult`. See\n[Rendering](https://lit.dev/docs/components/rendering) for more information.\n\n"
         },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 448,
+            "line": 458,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -6172,7 +6186,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 189
+                    "line": 199
                   }
                 ],
                 "type": {
@@ -6186,7 +6200,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 190
+                    "line": 200
                   }
                 ],
                 "type": {
@@ -6200,7 +6214,7 @@
                 "sources": [
                   {
                     "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                    "line": 191
+                    "line": 201
                   }
                 ],
                 "type": {
@@ -6215,7 +6229,7 @@
             "sources": [
               {
                 "fileName": "lit-dev-api/api-data/lit-2/repo/packages/lit-html/lit-html.d.ts",
-                "line": 188
+                "line": 198
               }
             ]
           }
@@ -6241,7 +6255,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "adoptStyles",
@@ -6823,7 +6837,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "customElement",
@@ -8066,7 +8080,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "asyncAppend",
@@ -15907,7 +15921,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "AsyncDirective",
@@ -17274,7 +17288,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 447
+                "line": 476
               }
             ],
             "signatures": [
@@ -17381,7 +17395,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1718,
+                "line": 1747,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17413,7 +17427,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1719,
+                "line": 1748,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17442,7 +17456,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1720,
+                "line": 1749,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17488,7 +17502,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1727,
+                "line": 1756,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17524,7 +17538,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1713,
+                "line": 1742,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17567,7 +17581,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1739,
+                "line": 1768,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17601,7 +17615,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1712,
+            "line": 1741,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -17776,7 +17790,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1718,
+                "line": 1747,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17816,7 +17830,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1719,
+                "line": 1748,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17853,7 +17867,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1720,
+                "line": 1749,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17907,7 +17921,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1727,
+                "line": 1756,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17951,7 +17965,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1910,
+                "line": 1939,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -17986,7 +18000,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1739,
+                "line": 1768,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18028,7 +18042,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1909,
+            "line": 1938,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18074,7 +18088,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 373
+                "line": 402
               }
             ],
             "signatures": [
@@ -18185,7 +18199,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1279,
+                "line": 1308,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18227,7 +18241,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1278,
+                "line": 1307,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18257,7 +18271,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1386,
+                "line": 1415,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18318,7 +18332,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1359,
+                "line": 1388,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18361,7 +18375,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1378,
+                "line": 1407,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18416,7 +18430,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1277,
+            "line": 1306,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18741,7 +18755,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 480
+                "line": 509
               }
             ],
             "signatures": [
@@ -18822,7 +18836,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2057,
+                "line": 2086,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18851,7 +18865,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2054,
+                "line": 2083,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18893,7 +18907,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2040,
+                "line": 2069,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -18918,7 +18932,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 2039,
+            "line": 2068,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -18954,7 +18968,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/lit-html.d.ts",
-                "line": 471
+                "line": 500
               }
             ],
             "signatures": [
@@ -19073,7 +19087,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1718,
+                "line": 1747,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19113,7 +19127,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1719,
+                "line": 1748,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19150,7 +19164,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1720,
+                "line": 1749,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19204,7 +19218,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1727,
+                "line": 1756,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19248,7 +19262,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1948,
+                "line": 1977,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19283,7 +19297,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1739,
+                "line": 1768,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19327,7 +19341,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 2029,
+                "line": 2058,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19367,7 +19381,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1947,
+            "line": 1976,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -19668,7 +19682,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1718,
+                "line": 1747,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19708,7 +19722,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1719,
+                "line": 1748,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19745,7 +19759,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1720,
+                "line": 1749,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19799,7 +19813,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1727,
+                "line": 1756,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19843,7 +19857,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1874,
+                "line": 1903,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19878,7 +19892,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1739,
+                "line": 1768,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -19920,7 +19934,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1873,
+            "line": 1902,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20403,7 +20417,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1268,
+            "line": 1297,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20539,7 +20553,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 543,
+            "line": 553,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -20572,7 +20586,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "html",
@@ -21039,7 +21053,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "ReactiveController",
@@ -21390,7 +21404,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "b6cf6002813533ad76998994cab1b4854450e8ef",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
     "items": [
       {
         "name": "defaultConverter",
@@ -24886,7 +24900,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 469,
+                "line": 479,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -24915,7 +24929,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 472,
+                "line": 482,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -24939,7 +24953,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 467,
+            "line": 477,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -24997,7 +25011,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 464,
+                "line": 474,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25024,7 +25038,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 459,
+            "line": 469,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25046,7 +25060,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 691,
+            "line": 720,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25068,7 +25082,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1069,
+            "line": 1098,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25174,7 +25188,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 455,
+            "line": 465,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
@@ -25643,7 +25657,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1279,
+                "line": 1308,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25693,7 +25707,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1278,
+                "line": 1307,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25731,7 +25745,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1386,
+                "line": 1415,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25800,7 +25814,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1359,
+                "line": 1388,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25851,7 +25865,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
-                "line": 1378,
+                "line": 1407,
                 "moduleSpecifier": "lit-html/lit-html.js"
               }
             ],
@@ -25956,7 +25970,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
-            "line": 1692,
+            "line": 1721,
             "moduleSpecifier": "lit-html/lit-html.js"
           }
         ],
