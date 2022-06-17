@@ -18,6 +18,8 @@ import {contentSecurityPolicyMiddleware} from './middleware/content-security-pol
 import {createGitHubTokenExchangeMiddleware} from './middleware/github-token-exchange-middleware.js';
 import {notFoundMiddleware} from './middleware/notfound-middleware.js';
 import {getEnvironment} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
+import {createRequire} from 'node:module';
+const require = createRequire(import.meta.url);
 
 const ENV = getEnvironment();
 
@@ -34,7 +36,7 @@ const repoRoot = path.resolve(__dirname, '..', '..', '..');
 const contentPackage = path.resolve(repoRoot, 'packages', 'lit-dev-content');
 const staticRoot =
   mode === 'playground'
-    ? path.join(repoRoot, 'node_modules', 'playground-elements')
+    ? require.resolve('playground-elements')
     : path.join(contentPackage, ENV.eleventyOutDir);
 
 console.log(`mode: ${mode}`);

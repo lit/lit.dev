@@ -14,6 +14,8 @@ import {contentSecurityPolicyMiddleware} from 'lit-dev-server/lib/middleware/con
 import {fakeGitHubMiddleware} from './fake-github-middleware.js';
 import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware/github-token-exchange-middleware.js';
 import {dev as ENV} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
+import {createRequire} from 'node:module';
+const require = createRequire(import.meta.url);
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = pathlib.resolve(THIS_DIR, '..', '..', '..');
@@ -107,7 +109,7 @@ startDevServer({
 startDevServer({
   config: {
     port: ENV.playgroundPort,
-    rootDir: pathlib.resolve(REPO_ROOT, 'node_modules', 'playground-elements'),
+    rootDir: require.resolve('playground-elements'),
     middleware: [playgroundMiddleware()],
   },
   // Ignore any CLI flags. In particular we only want --open to apply to the
