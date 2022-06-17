@@ -65,7 +65,7 @@ module.exports = function (eleventyConfig) {
     // because that will be served directly out of node_modules/ by the
     // dedicated Playground sandbox server.
     eleventyConfig.addPassthroughCopy({
-      'node_modules/playground-elements/playground-typescript-worker.js':
+      [require.resolve('playground-elements/playground-typescript-worker.js')]:
         './js/playground-typescript-worker.js',
     });
   }

@@ -16,7 +16,8 @@ import {createGitHubTokenExchangeMiddleware} from 'lit-dev-server/lib/middleware
 import {dev as ENV} from 'lit-dev-tools-cjs/lib/lit-dev-environments.js';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
-const CONTENT_PKG = pathlib.resolve(THIS_DIR, '..', '..', 'lit-dev-content');
+const REPO_ROOT = pathlib.resolve(THIS_DIR, '..', '..', '..');
+const CONTENT_PKG = pathlib.resolve(REPO_ROOT, 'packages', 'lit-dev-content');
 
 type DevServerPlugin = Exclude<DevServerConfig['plugins'], undefined>[number];
 
@@ -106,11 +107,7 @@ startDevServer({
 startDevServer({
   config: {
     port: ENV.playgroundPort,
-    rootDir: pathlib.resolve(
-      CONTENT_PKG,
-      'node_modules',
-      'playground-elements'
-    ),
+    rootDir: pathlib.resolve(REPO_ROOT, 'node_modules', 'playground-elements'),
     middleware: [playgroundMiddleware()],
   },
   // Ignore any CLI flags. In particular we only want --open to apply to the

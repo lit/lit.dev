@@ -63,7 +63,12 @@ export default [
       manualChunks: (id) => {
         // Create some more logical shared chunks. In particular, people will
         // probably be looking for lit.js in devtools!
-        const relative = id.replace(`${__dirname}/node_modules/`, '');
+        //
+        // The id is the full resolved path to the module in node_modules/
+        // (which could be in this package, or in the root package). Remove the
+        // node_modules/ path prefix to get a relative path which is just the
+        // bare package name and module.
+        const relative = id.replace(/^.*\/node_modules\//, '');
         if (
           relative.startsWith('lit/') ||
           relative.startsWith('lit-html/') ||

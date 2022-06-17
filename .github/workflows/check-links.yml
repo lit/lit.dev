@@ -1,9 +1,9 @@
-name: Unit tests
+name: Check links
 
 on: [push, pull_request]
 
 jobs:
-  unit-tests:
+  check-links:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -16,4 +16,4 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
 
       - run: npm ci
-      - run: npm run test:unit
+      - run: npm run test:links

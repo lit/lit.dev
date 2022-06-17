@@ -20,6 +20,5 @@ packages/lit-dev-tests/src/playwright/**/*.png
 test-results
 
 *.tsbuildinfo
-lerna-debug.log
 
 .wireit
