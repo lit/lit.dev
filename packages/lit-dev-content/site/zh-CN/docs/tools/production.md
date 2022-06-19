@@ -1,59 +1,47 @@
 ---
-title: Building for production
+title: 构建生产
 eleventyNavigation:
-  key: Production
-  parent: Tools
+  key: 生产
+  parent: 工具
   order: 6
 versionLinks:
   v1: tools/build/
 ---
 
-This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to publishing a reusable Lit _component_ to npm, see [Publishing](/docs/tools/publishing/).
+本页重点介绍构建使用 Lit 组件进行生产的应用程序的建议。 在将可重用的 Lit _组件_ 发布到 npm 之前对源代码执行的构建步骤的建议，请参阅 [发布]({{baseurl}}/docs/tools/publishing/)。
 
-When building an application that includes Lit components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/) to prepare your source code and dependencies for serving in a production environment.
+在构建包含 Lit 组件的应用程序时，可以使用常见的 JavaScript 构建工具来准备源代码和依赖项，以便在生产环境中提供服务，例如 [Rollup](https://rollupjs.org/) 或 [webpack](https://webpack.js.org/) 。
 
-See [Requirements](/docs/tools/requirements/) for a full list of requirements for building Lit code, which apply to both development and production.
+请参阅 [要求](/docs/tools/requirements/) 了解构建 Lit 代码的完整要求列表，这些要求同时适用于开发和生产。
 
-In addition to those minimum requirements, this page describes optimizations you should consider when preparing code for production, as well as a concrete Rollup configuration that implements them.
+除了这些最低要求外，本页还介绍了在为生产准备代码时应考虑的优化，以及实现它们的具体 Rollup 配置。
 
-## Preparing code for production {#preparing-code-for-production}
+## 为生产准备代码 {#preparing-code-for-production}
 
-Lit projects benefit from the same build-time optimizations as other web projects. The following optimizations are recommended when serving Lit applications in production:
+Lit 项目受益于与其他 Web 项目相同的构建时优化。在生产环境中为 Lit 应用程序提供服务时，建议进行以下优化：
 
-*   Bundling Javascript modules to reduce network requests (for example, using [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/)).
-*   Minifying Javascript code for smaller payload sizes ([Terser](https://www.npmjs.com/package/terser) works well for Lit, because it supports modern JavaScript).
-*   [Serving modern code to modern browsers](https://web.dev/serve-modern-code-to-modern-browsers/) as it is generally smaller and faster, and falling back to compiled code on older browsers.
-*   [Hashing static assets including bundled JavaScript](https://web.dev/love-your-cache/#fingerprinted-urls) for easier cache invalidation.
-*   [Enabling serve-time compression](https://web.dev/reduce-network-payloads-using-text-compression/#data-compression) (such as gzip or brotli) for fewer bytes over the wire.
+* 通过打包 Javascript 模块来减少网络请求（例如，使用 [Rollup](https://rollupjs.org/) 或 [webpack](https://webpack.js.org/)）。
+* 通过压缩 Javascript 代码来获得更小的包大小（[Terser](https://www.npmjs.com/package/terser) 非常适合 Lit，因为它支持现代 JavaScript）。
+* [为现代浏览器提供现代代码](https://web.dev/serve-modern-code-to-modern-browsers/)，因为它通常更小更快，并且是可以回退到旧浏览器上的编译代码。
+* [hash静态资源管理，包括打包的 JavaScript](https://web.dev/love-your-cache/#fingerprinted-urls) 以便于缓存失效。
+* [启用服务时压缩](https://web.dev/reduce-network-payloads-using-text-compression/#data-compression)（例如 gzip 或 brotli）在传输时减少字节。
 
-In addition, note that because Lit templates are defined inside JavaScript template string literals, they don't get processed by standard HTML minifiers. Adding a plugin that minifies the HTML in template string literals can result in a modest decrease in code size. Several packages are available to perform this optimization:
+此外，请注意，由于 Lit 模板是在 JavaScript 模板字符串字面量中定义的，因此它们不会被标准 HTML 压缩器处理。通过添加一个插件来压缩模板字符串文字中的 HTML，可以适度减少代码大小。下面几个包可用于执行此优化：
 
-*   Rollup: [rollup-plugin-minify-html-literals](https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme)
-*   Webpack: [minify-template-literal-loader](https://www.npmjs.com/package/minify-template-literal-loader)
+* Rollup：[rollup-plugin-minify-html-literals](https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme)
+* Webpack：[minify-template-literal-loader](https://www.npmjs.com/package/minify-template-literal-loader)
 
+## 使用 rollup 构建 {#building-with-rollup}
 
-## Building with Rollup {#building-with-rollup}
+你可以使用许多工具来执行提供 Lit 代码所需的必需和可选构建步骤，并且 Lit 不需要任何一种特定工具。 但是，我们推荐 Rollup，因为它旨在使用标准 ES 模块格式并利用客户端的原生模块输出最佳代码。
 
-There are many tools you can use to perform the required and optional build
-steps necessary to serve Lit code, and Lit does not require any one specific
-tool. However, we recommend Rollup because it's designed to work with the standard ES module
-format and output optimal code that leverages native modules on the client.
+有很多方法可以设置 rollup 来打包项目。 [Modern Web](https://modern-web.dev/) 项目维护了一个出色的 Rollup 插件 [`@web/rollup-plugin-html`](https://modern-web.dev/docs/building/rollup-plugin-html/)，它有助于将许多用于构建应用程序的最佳实践结合到一个易于使用的包中。 使用此插件的示例配置如下所述。
 
-There are many ways to set up Rollup to bundle your project. The [Modern
-Web](https://modern-web.dev/) project maintains an excellent Rollup plugin
-[`@web/rollup-plugin-html`](https://modern-web.dev/docs/building/rollup-plugin-html/)
-that helps tie a number of best-practices for building applications together
-into an easy-to-use package. Example configurations using this plugin are described below.
+### 仅支持现代浏览器的构建
 
-### Modern-only build
+下面带注释的 `rollup.config.js` 文件将构建一个满足[现代浏览器构建要求]({{baseurl}}/docs/tools/requirements/#building-for-modern-browsers) 和本页描述的[生产优化](#preparing-code-for-production)。 这个配置适用于无须 polyfill 就可以运行 ES2019 JS 的现代浏览器。
 
-The annotated `rollup.config.js` file below will build an application that meets
-the [modern browser build requirements](/docs/tools/requirements/#building-for-modern-browsers) and
-[production optimizations](#preparing-code-for-production) described on this page. This configuration is
-suitable for serving to modern browsers that can run ES2019 JS without
-polyfills.
-
-Required node modules:
+所需的 Node 模块：
 ```sh
 npm i --save-dev rollup \
   @web/rollup-plugin-html \
@@ -66,7 +54,7 @@ npm i --save-dev rollup \
 
 `rollup.config.js:`
 ```js
-// Import rollup plugins
+// 导入 rollup 插件
 import html from '@web/rollup-plugin-html';
 import {copy} from '@web/rollup-plugin-copy';
 import resolve from '@rollup/plugin-node-resolve';
@@ -76,24 +64,23 @@ import summary from 'rollup-plugin-summary';
 
 export default {
   plugins: [
-    // Entry point for application build; can specify a glob to build multiple
-    // HTML files for non-SPA app
+    // 应用程序构建的入口点； 可以指定一个 glob 来为非 SPA 应用程序构建多个 HTML 文件
     html({
       input: 'index.html',
     }),
-    // Resolve bare module specifiers to relative paths
+    // 将裸模块说明符解析为相对路径
     resolve(),
-    // Minify HTML template literals
+    // 压缩 HTML 模板文字
     minifyHTML(),
-    // Minify JS
+    // 压缩 JS
     terser({
       ecma: 2020,
       module: true,
       warnings: true,
     }),
-    // Print bundle summary
+    // 打印打包摘要
     summary(),
-    // Optional: copy any static assets to build directory
+    // 可选: 将所有静态资产复制到构建目录
     copy({
       patterns: ['images/**/*'],
     }),
@@ -105,18 +92,14 @@ export default {
 };
 ```
 
-Running the rollup build:
+运行 rollup 构建:
 ```sh
 rollup -c
 ```
 
-### Modern + legacy build
+### 支持现代 + 旧版浏览器的构建
 
-The following configuration generates a hybrid build with two sets of JS
-bundles, one for modern browsers, and one for legacy browsers. The modern
-bundles are optimistically pre-fetched, and client-side feature-detection is
-used to determine whether to load the smaller/faster modern builds or the legacy
-build (and any required polyfills), per the [legacy browser build requirements](/docs/tools/requirements/#building-for-legacy-browsers).
+以下配置是生成包含两组 JS 包的混合构建，一组用于现代浏览器，一组用于旧版浏览器。 现代包会被乐观地预取，客户端功能检测用于根据 [旧版浏览器构建要求] 确定是加载更小/更快的现代构建还是旧版构建（以及其他必需的 polyfill）。
 
 Required node modules:
 ```sh
@@ -133,7 +116,7 @@ npm i --save-dev rollup \
 
 `rollup.config.js:`
 ```js
-// Import rollup plugins
+// 导入 rollup 插件
 import html from '@web/rollup-plugin-html';
 import polyfillsLoader from '@web/rollup-plugin-polyfills-loader';
 import {copy} from '@web/rollup-plugin-copy';
@@ -143,48 +126,46 @@ import {terser} from 'rollup-plugin-terser';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import summary from 'rollup-plugin-summary';
 
-// Configure an instance of @web/rollup-plugin-html
+// 配置一个 @web/rollup-plugin-html 实例
 const htmlPlugin = html({
   rootDir: './',
   flattenOutput: false,
 });
 
 export default {
-  // Entry point for application build; can specify a glob to build multiple
-  // HTML files for non-SPA app
+  // 应用程序构建的入口点； 可以指定一个 glob 来为非 SPA 应用程序构建多个 HTML 文件
   input: 'index.html',
   plugins: [
     htmlPlugin,
-    // Resolve bare module specifiers to relative paths
+     // 将裸模块说明符解析为相对路径
     resolve(),
-    // Minify HTML template literals
+    // 压缩 HTML 模板文字
     minifyHTML(),
-    // Minify JS
+    // 压缩 JS
     terser({
       module: true,
       warnings: true,
     }),
-    // Inject polyfills into HTML (core-js, regnerator-runtime, webcoponents,
-    // lit/polyfill-support) and dynamically loads modern vs. legacy builds
+    // 注入 polyfill 到 HTML（core-js, regnerator-runtime, webcoponents, lit/polyfill-support）和
+    // 动态加载现代和旧版构建 
     polyfillsLoader({
       modernOutput: {
         name: 'modern',
       },
-      // Feature detection for loading legacy bundles
+      // 加载旧版包的功能检测
       legacyOutput: {
         name: 'legacy',
         test: '!!Array.prototype.flat',
         type: 'systemjs',
       },
-      // List of polyfills to inject (each has individual feature detection)
+      // 要注入的 polyfill 列表（每个都有单独的特征检测）
       polyfills: {
         hash: true,
         coreJs: true,
         regeneratorRuntime: true,
         fetch: true,
         webcomponents: true,
-        // Custom configuration for loading Lit's polyfill-support module,
-        // required for interfacing with the webcomponents polyfills
+        // 加载 Lit 的 polyfill-support 模块的自定义配置，需要与 webcomponents 的 polyfill 交互
         custom: [
           {
             name: 'lit-polyfill-support',
@@ -195,19 +176,18 @@ export default {
         ],
       },
     }),
-    // Print bundle summary
+    // 打印打包摘要
     summary(),
-    // Optional: copy any static assets to build directory
+    // 可选: 将所有静态资产复制到构建目录
     copy({
       patterns: ['data/**/*', 'images/**/*'],
     }),
   ],
-  // Specifies two JS output configurations, modern and legacy, which the HTML plugin will
-  // automatically choose between; the legacy build is compiled to ES5
-  // and SystemJS modules
+  // 指定两个 JS 输出配置，现代和传统，HTML 插件将自动在它们之间进行选择； 
+  // 旧版本编译为 ES5 和 SystemJS 模块
   output: [
     {
-      // Modern JS bundles (no JS compilation, ES module output)
+      // 现代 JS 包 (无须 JS 编译, 直接输出 ES module)
       format: 'esm',
       chunkFileNames: '[name]-[hash].js',
       entryFileNames: '[name]-[hash].js',
@@ -215,14 +195,14 @@ export default {
       plugins: [htmlPlugin.api.addOutput('modern')],
     },
     {
-      // Legacy JS bundles (ES5 compilation and SystemJS module output)
+      // 旧版 JS 包 (编译为 ES5，输出 SystemJS 模块)
       format: 'esm',
       chunkFileNames: 'legacy-[name]-[hash].js',
       entryFileNames: 'legacy-[name]-[hash].js',
       dir: 'build',
       plugins: [
         htmlPlugin.api.addOutput('legacy'),
-        // Uses babel to compile JS to ES5 and modules to SystemJS
+        // 使用 babel 将 JS 编译为 ES5，将模块编译为 SystemJS
         getBabelOutputPlugin({
           compact: true,
           presets: [
@@ -244,24 +224,24 @@ export default {
 };
 ```
 
-## Building with standalone lit-html
+## 使用独立的 lit-html 构建 
 
-If you're using lit-html as a standalone templating library, you can follow almost all of the guidance for building with Lit. The only difference is that lit-html doesn't require the full Web Components polyfills. You'll only need the template polyfill.
+如果你希望使用 lit-html 作为独立的模板库，你可以遵循几乎所有的使用 Lit 构建的指南。 唯一的区别是单独使用 lit-html 不需要完整的 Web 组件 polyfill。 你只需要模板 polyfill。
 
-### Using the template polyfill
+### 使用模板 polyfill
 
-To run lit-html on Internet Explorer 11, which doesn't support the `<template>` element, you'll need a polyfill. You can use the template polyfill included with the Web Components polyfills.
+要在不支持 `<template>` 元素的 IE11 上运行 lit-html，你需要一个 polyfill。 你可以使用 Web 组件 polyfill 中包含的模板 polyfill。
 
-Install the template polyfill:
+安装模板 polyfill：
 
 ```bash
 npm i @webcomponents/template
 ```
 
-Use the template polyfill:
+使用模板 polyfill:
 
 ```html
 <script src="./node_modules/@webcomponents/template/template.js"></script>
 ```
 
-Note: when compiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill.
+注意：为 IE11 编译时，Babel polyfill 需要与应用程序代码分开打包，并在模板 polyfill *之前*加载。

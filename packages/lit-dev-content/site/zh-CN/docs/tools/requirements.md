@@ -54,7 +54,7 @@ Webpack 能自动处理裸模块说明符； 而 Rollup，则需要插件 ([@rol
 
 ## 旧版浏览器的要求 {#building-for-legacy-browsers}
 
-支持旧版浏览器（特别是 Internet Explorer 11，还有旧版的常青浏览器（evergreen browsers）），需要一些额外的步骤：
+支持旧版浏览器（特别是 Internet Explorer 11，还有旧版的常青浏览器（evergreen browser）），需要一些额外的步骤：
 
 * 将现代 JavaScript 语法编译为 ES5。
 * 将 ES 模块转换为另一个模块系统。

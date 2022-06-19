@@ -1,28 +1,28 @@
 ---
-title: Adding Lit to an existing project
+title: 将 Lit 添加到现有项目
 eleventyNavigation:
-  key: Adding Lit
-  parent: Tools
+  key: 添加 Lit
+  parent: 工具
   order: 8
 versionLinks:
   v1: tools/use/
 ---
 
-Lit doesn't require any specialized tools, and Lit components work in any JavaScript framework or with any server templating system or CMS, so Lit is ideal for adding to existing projects and applications.
+Lit 不需要任何专门的工具，并且 Lit 组件可以在任何 JavaScript 框架或任何服务端模板系统或 CMS 中工作，因此 Lit 非常适合添加到现有项目和应用程序中。
 
-## Install from npm
+## 从 npm 安装
 
-First, install the `lit` package from npm:
+首先，从 npm 安装 `lit` 包：
 
 ```sh
 npm i lit
 ```
 
-If you are not already using npm to manage JavaScript dependencies, you will have to set up your project first. We recommend the [npm CLI](https://docs.npmjs.com/cli/v7/configuring-npm/install).
+如果你还没有使用 npm 来管理 JavaScript 依赖项，则必须首先设置你的项目。 我们推荐使用 [npm CLI](https://docs.npmjs.com/cli/v7/configuring-npm/install)。
 
-## Add a component
+## 添加一个组件
 
-You can create a new element anywhere in your project's sources:
+你可以在项目资源中的任何位置创建新元素：
 
 _lib/components/my-element.ts_
 
@@ -57,11 +57,13 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-## Use your component
+## 使用你的组件
 
 How you use a component depends on your project and the libraries or frameworks it uses. You can use your component in HTML, with DOM APIs, or in template languages:
 
-### Plain HTML
+如何使用组件取决于你的项目以及它使用的库或框架。 你可以在 HTML、DOM API 或模板语言中使用你的组件：
+
+### 纯 HTML
 ```html
 <script type="module" src="/lib/components/my-elements.js">
 <my-element></my-element>
@@ -69,7 +71,7 @@ How you use a component depends on your project and the libraries or frameworks 
 
 ### JSX
 
-JSX is a very common templating language. In JSX lower-case element names create HTML elements, which is what Lit components are. Use the tag name you specific in the `@customElement()` decorator:
+JSX 是一种非常常见的模板语言。 在 JSX 中，小写的元素名称会创建 HTML 元素，这就是 Lit 组件。 使用的是你在 `@customElement()` 装饰器中指定的标签名称：
 
 ```tsx
 import './components/my-elements.js';
@@ -80,14 +82,14 @@ export const App = () => (
 )
 ```
 
-### Framework templates
+### 框架模板
 
-Most JavaScript frameworks have [great support for web components](https://custom-elements-everywhere.com/) and Lit. Just import your element definition and use the element tag names in your templates.
+大多数 JavaScript 框架对 [ Web 组件](https://custom-elements-everywhere.com/) 和 Lit 都有强大的支持。 只需导入你的元素定义并在模板中使用元素标签名称即可。
 
-## Next steps
+## 下一步
 
-At this point, you should be able to build and run your project and see the "Hello from MyElement!" message.
+此时，你应该能够构建并运行您的项目并看到 “Hello from MyElement！” 信息。
 
-If you're ready to add features to your component, head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
+如果你准备好为组件添加功能，请前往 [组件]({{baseurl}}/docs/components/overview/) 了解如何构建你的第一个 Lit 组件，或 [模板]({{baseurl}}/docs/templates/overview/) 了解有关编写模板的详细信息。
 
-For details on building projects, including some sample Rollup configurations, see [Building for production](/docs/tools/production/).
+有关构建项目的详细信息，包括一些 Rollup 配置示例，请参阅 [构建生产]({baseurl}}/docs/tools/production/)。

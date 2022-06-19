@@ -1,48 +1,48 @@
 ---
-title: Starter kits
+title: 入门套件
 eleventyNavigation:
-  key: Starter kits
-  parent: Tools
+  key: 入门套件
+  parent: 工具
   order: 7
 versionLinks:
   v1: getting-started/#component-project
 ---
 
-The Lit Starter Kits are project templates for reusable Lit components that can be published for others to use.
+Lit 入门套件是可重复使用的 Lit 组件的项目模板，可以发布供其他人使用。
 
-To get started working on a component locally, you can use one of these starter projects:
+要开始在本地使用组件，你可以使用以下启动项目之一：
 
-*   [Lit JavaScript starter project ](https://github.com/lit/lit-element-starter-js)
-*   [Lit TypeScript starter project](https://github.com/lit/lit-element-starter-ts)
+* [Lit JavaScript 入门项目](https://github.com/lit/lit-element-starter-js)
+* [Lit TypeScript 入门项目](https://github.com/lit/lit-element-starter-ts)
 
-Both projects define a Lit component. They also add a set of optional tools for developing, linting, and testing the component:
+这两个项目都定义了一个 Lit 组件。他们还添加了一组用于开发、代码检查和测试组件的可选工具：
 
-*   Node.js and npm for managing dependencies. _Requires Node.js 10 or greater._
-*   A local dev server,  [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/).
-*   Linting with [ESLint](https://eslint.org/) and [lit-analyzer](https://www.npmjs.com/package/lit-analyzer).
-*   Testing with [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/).
-*   A static doc site built with [web-component-analyzer](https://www.npmjs.com/package/web-component-analyzer) and [eleventy](https://www.11ty.dev/).
+* Node.js 和 npm 用于管理依赖项。 _需要 Node.js 10 或更高版本。_
+* 本地开发服务器，[Web Dev Server](https://modern-web.dev/docs/dev-server/overview/)。
+* 使用 [ESLint](https://eslint.org/) 和 [lit-analyzer](https://www.npmjs.com/package/lit-analyzer) 进行代码检查。
+* 使用 [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) 进行测试。
+* 使用 [web-component-analyzer](https://www.npmjs.com/package/web-component-analyzer) 和 [eleventy](https://www.11ty.dev/) 构建的静态文档站点。
 
-None of these tools is _required_ to work with Lit. They represent one possible set of tools for a good developer experience.
+这些工具都不是 Lit _必需_ 的。它们只是代表了一组可能的工具，可提供良好的开发体验。
 
 <div class="alert alert-info">
 
-**Alternative starting point.** As an alternative to the official Lit starter projects, the Open WC project has a [project generator](https://open-wc.org/docs/development/generator/) for web components using Lit. The Open WC script asks a series of questions and scaffolds out a project for you.
+**可选的入门方案。** 作为 Lit 官方启动项目的替代方案，Open WC 项目有一个 [项目生成器](https://open-wc.org/docs/development/generator/) 用于在 Web 组件中使用 Lit。 Open WC 脚本会询问一系列问题并为你搭建一个项目。
 
 </div>
 
-### Download the starter project
+### 下载启动项目
 
-The quickest way to try out a project locally is to download one of the starter projects as a zip file.
+在本地试用项目的最快方法是将其中一个启动项目下载为 zip 文件。
 
-1.  Download the starter project from GitHub as a zip file:
+1. 从 GitHub 以 zip 文件的形式下载启动项目：
 
-    *   [JavaScript starter project](https://github.com/lit/lit-element-starter-js/archive/main.zip)
-    *   [TypeScript starter project](https://github.com/lit/lit-element-starter-ts/archive/main.zip)
+     * [JavaScript 入门项目](https://github.com/lit/lit-element-starter-js/archive/main.zip)
+     * [TypeScript 入门项目](https://github.com/lit/lit-element-starter-ts/archive/main.zip)
 
-1.  Uncompress the zip file.
+1. 解压 zip 文件。
 
-1.  Install dependencies.
+1. 安装依赖。
 
     ```bash
     cd <project folder>
@@ -51,50 +51,48 @@ The quickest way to try out a project locally is to download one of the starter 
 
 <div class="alert alert-info">
 
-**Want it on GitHub?** If you're familiar with git you may want to create a GitHub repository for your starter project,
-instead of just downloading the zip file. You can use the [GitHub template repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) feature to create your own repository from the [JavaScript starter project ](https://github.com/PolymerLabs/lit-element-starter-js) or the [TypeScript starter project](https://github.com/PolymerLabs/lit-element-starter-ts). Then clone your new repository and install dependencies, as above.
+**想在 GitHub 上使用它吗？** 如果你熟悉 git，你可能希望为您的入门项目创建一个 GitHub 仓库，而不仅仅是下载 zip 文件。 那你可以使用 [GitHub 模板仓库](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) 功能基于[JavaScript 入门项目](https://github.com/PolymerLabs/lit-element-starter-js) 或 [TypeScript 入门项目](https://github.com/PolymerLabs/lit-element-starter-ts) 创建自己的存储库。 然后克隆你的新仓库并安装依赖项，如上所述。
 
 </div>
 
-### Try out your project
+### 试试你的项目
 
-1.  **If you're using the TypeScript version of the starter**, build the JavaScript version of your project:
+1. **如果你使用的是 TypeScript 版本的启动项目**，需要构建你的项目的 JavaScript 版本：
 
     ```bash
     npm run build
     ```
 
-    To watch files and rebuild when the files are modified, run the following command in a separate shell:
+    如果想要监视文件并在文件被修改时重建，请在单独的 shell 中运行以下命令：
 
     ```bash
     npm run build:watch
     ```
 
-    **No build step is required if you're using the JavaScript version of the starter project.**
+     **如果您使用的是 JavaScript 版本启动项目，则不需要构建步骤。**
 
-1.  Run the dev server:
+1.  运行 dev server:
 
     ```bash
     npm run serve
     ```
 
-1.  Open the project demo page in a browser tab. For example:
+1. 在浏览器选项卡中打开项目 demo 页面。 例如：
 
-    [http://localhost:8000/dev/](http://localhost:8000/dev/)
+     [http://localhost:8000/dev/](http://localhost:8000/dev/)
 
-    Your server may use a different port number. Check the URL in the terminal output for the correct port number.
+     你的服务器可能使用不同的端口号。 检查终端输出中的 URL 获取正确的端口号。
 
+### 编辑你的组件
 
-### Edit your component
+编辑您的组件定义。 需要编辑的文件取决于你使用的语言：
 
-Edit your component definition. The file you edit depends on which language you're using:
+* JavaScript。 编辑项目根目录中的 `my-element.js` 文件。
+* TypeScript。 编辑 `src` 目录中的 `my-element.ts` 文件。
 
-*   JavaScript. Edit the `my-element.js` file in the project root.
-*   TypeScript. Edit the `my-element.ts` file in the `src` directory.
+需要在代码中查看的几样东西：
 
-A couple of things to look for in the code:
-
-*   The code defines a class for the component (`MyElement`) and registers it with the browser as a custom element named `<my-element>`.
+* 代码为组件定义了一个类（`MyElement`），并将它作为一个名为 `<my-element>` 的自定义元素注册到浏览器中。
 
     {% switchable-sample %}
 
@@ -112,7 +110,7 @@ A couple of things to look for in the code:
     {% endswitchable-sample %}
 
 
-*   The component's `render` method defines a [template](/docs/templates/overview/) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](/docs/templates/overview/).
+* 组件的 `render` 方法定义了一个 [模板]({{baseurl}}/docs/templates/overview/)，它将作为组件的一部分进行渲染。 在这个例子中，它包括一些文本、一些数据绑定和一个按钮。 有关详细信息，请参阅 [模板]({{baseurl}}/docs/templates/overview/)。
 
     ```js
     export class MyElement extends LitElement {
@@ -129,7 +127,7 @@ A couple of things to look for in the code:
     }
     ```
 
-*   The component defines some properties. The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/components/properties/).
+* 组件定义了一些属性。 组件会响应这些属性的变化（例如，必要时重新渲染模板）。 有关详细信息，请参阅 [属性]({{baseurl}}/docs/components/properties/)。
 
     {% switchable-sample %}
 
@@ -160,19 +158,19 @@ A couple of things to look for in the code:
     {% endswitchable-sample %}
 
 
-### Rename your component
+### 重命名你的组件
 
-You'll probably want to change the component name from "my-element" to something more appropriate. This is easiest to do using an IDE or other text editor that lets you do a global search and replace through an entire project.
+你可能希望将组件名称从 “my-element” 更改为更合适的名称。 使用 IDE 或其他文本编辑器最容易做到这一点，它可以让你在整个项目中进行全局搜索和替换。
 
-1.  **If you're using the TypeScript version**, remove generated files:
+1. **如果你使用的是 TypeScript 版本**，请删除生成的文件：
 
     ```bash
     npm run clean
     ```
 
-1.  Search and replace "my-element" with your new component name in all files in your project (except in the `node_modules` folder).
-1.  Search and replace "MyElement" with your new class name in all files in your project (except in the `node_modules` folder).
-1.  Rename the source and test files to match the new component name:
+1. 在项目的所有文件中搜索并用新组件名称替换 “my-element”（`node_modules` 文件夹除外）。
+1. 在项目的所有文件中搜索并用新的类名替换 “MyElement”（`node_modules` 文件夹除外）。
+1. 重命名源文件和测试文件以匹配新的组件名称：
 
     JavaScript:
 
@@ -184,25 +182,25 @@ You'll probably want to change the component name from "my-element" to something
     * `src/my-element.ts`
     * `src/test/my-element_test.ts`
 
-1.  **If you're using the TypeScript version**, rebuild the project:
+1. **如果你使用的是 TypeScript 版本**，请重建项目：
 
     ```bash
     npm run build
     ```
 
-1.  Test and make sure your component is still working:
+1. 测试并确保你的组件仍能工作：
 
     ```bash
     npm run serve
     ```
 
-### Next steps
+### 下一步
 
-Ready to add features to your component? Head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
+准备好为您的组件添加功能了吗？ 前往 [组件]({{baseurl}}/docs/components/overview/) 了解如何构建您的第一个 Lit 组件，或前往 [模板]({{baseurl}}/docs/templates/overview/) 了解有关编写模板的详细信息。
 
-For details on running tests and using other tools, see the starter project README:
+有关运行测试和使用其他工具的详细信息，请参阅启动项目 README：
 
-*   [TypeScript project README](https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/README.md)
-*   [JavaScript project README](https://github.com/PolymerLabs/lit-element-starter-js/blob/master/README.md)
+* [TypeScript 项目 README](https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/README.md)
+* [JavaScript 项目 README](https://github.com/PolymerLabs/lit-element-starter-js/blob/master/README.md)
 
-For a guide on publishing your component to `npm`, see [Publishing](/docs/tools/publishing/).
+有关将组件发布到 `npm` 的指南，请参阅 [发布]({{baseurl}}/docs/tools/publishing/)。
