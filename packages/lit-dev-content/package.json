@@ -12,11 +12,11 @@
     "build:eleventy": "wireit",
     "build:eleventy:watch": "wireit",
     "build:ts": "wireit",
-    "build:ts:watch": "npm run build:ts -- watch",
-    "build:rollup": "wireit",
-    "build:rollup:watch": "npm run build:rollup -- watch",
+    "build:ts:watch": "npm run build:ts -- --watch",
+    "build:esbuild": "wireit",
+    "build:esbuild:watch": "npm run build:esbuild -- --watch",
     "build:samples": "wireit",
-    "build:samples:watch": "npm run build:samples -- watch",
+    "build:samples:watch": "npm run build:samples -- --watch",
     "dev:build": "wireit",
     "dev:build:assets": "wireit",
     "dev:build:eleventy": "wireit",
@@ -116,7 +116,7 @@
     "prod:build:assets": {
       "dependencies": [
         "dev:build:assets",
-        "build:rollup"
+        "build:esbuild"
       ]
     },
     "fonts:manrope": {
@@ -138,17 +138,17 @@
       "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
     },
-    "build:rollup": {
+    "build:esbuild": {
       "dependencies": [
         "build:ts"
       ],
       "files": [
-        "rollup.config.js"
+        "esbuild.config.mjs"
       ],
       "output": [
-        "rollupout"
+        "build"
       ],
-      "command": "rollup -c"
+      "command": "node esbuild.config.mjs"
     },
     "build:samples": {
       "dependencies": [
@@ -169,11 +169,12 @@
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
     "@lit-labs/eleventy-plugin-lit": "^0.1.1",
-    "@rollup/plugin-node-resolve": "^13.0.4",
     "@webcomponents/template-shadowroot": "^0.1.0",
     "clean-css": "^5.1.0",
     "codemirror": "^5.58.2",
     "eleventy-plugin-nesting-toc": "^1.3.0",
+    "esbuild": "^0.14.47",
+    "esbuild-plugin-minify-html-literals": "^1.0.1",
     "fast-glob": "^3.2.5",
     "html-minifier": "^4.0.0",
     "lit-dev-api": "^0.0.0",
@@ -184,10 +185,6 @@
     "markdown-it": "^12.0.4",
     "markdown-it-anchor": "^8.3.0",
     "markdown-it-attrs": "^4.0.0",
-    "rollup": "^2.23.0",
-    "rollup-plugin-minify-html-literals": "^1.2.6",
-    "rollup-plugin-summary": "^1.2.3",
-    "rollup-plugin-terser": "^7.0.2",
     "slugify": "^1.3.6"
   },
   "dependencies": {

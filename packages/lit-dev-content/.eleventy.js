@@ -55,7 +55,7 @@ module.exports = function (eleventyConfig) {
   });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
-    eleventyConfig.addPassthroughCopy({'rollupout/': './js/'});
+    eleventyConfig.addPassthroughCopy({'esbuildout/': './js/'});
     eleventyConfig.addPassthroughCopy('site/css');
     eleventyConfig.addPassthroughCopy('site/fonts');
     eleventyConfig.addPassthroughCopy('site/images');
@@ -76,7 +76,7 @@ module.exports = function (eleventyConfig) {
     '../lit-dev-content/samples/tutorials/**/tutorial.json'
   );
   eleventyConfig.addWatchTarget('../lit-dev-content/samples/tutorials/**/*.md');
-  eleventyConfig.addWatchTarget('../lit-dev-content/rollupout/server/*');
+  eleventyConfig.addWatchTarget('../lit-dev-content/esbuildout/server/*');
   eleventyConfig.addWatchTarget('../lit-dev-content/lib/components/ssr.js');
 
   // Placeholder shortcode for TODOs
@@ -408,7 +408,7 @@ ${content}
 
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
-   * to ./rollupout.
+   * to ./esbuildout.
    *
    * In dev mode, instead directly import the module, which has already been
    * symlinked directly to the TypeScript output directory.
@@ -419,7 +419,7 @@ ${content}
     }
     // Note we must trim before hashing, because our html-minifier will trim
     // inline script trailing newlines, and otherwise our hash will be wrong.
-    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
+    const script = fsSync.readFileSync(`esbuildout/${path}`, 'utf8').trim();
     const hash =
       'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
     cspInlineScriptHashes.add(hash);
@@ -543,7 +543,7 @@ ${content}
   // In prod SSR should use the lit templates run through the minifier.
   if (!DEV) {
     componentModules = componentModules.map((componentPath) =>
-      componentPath.replace('lib/components', 'rollupout/server')
+      componentPath.replace('lib/components', 'esbuildout/server')
     );
   }
 

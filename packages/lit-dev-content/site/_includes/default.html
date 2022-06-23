@@ -8,10 +8,6 @@
     <meta name="description" content="Simple. Fast. Web Components.">
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
-    <link rel="modulepreload" href="{{ site.baseurl }}/js/tslib.js">
-    {% if not env.DEV %}
-    <link rel="modulepreload" href="{{ site.baseurl }}/js/lit.js">
-    {% endif %}
     <link rel="modulepreload" href="{{ site.baseurl }}/js/global/hydrate-common-components.js">
 
     {% inlinecss "global.css" %}
@@ -20,12 +16,7 @@
     {% inlinejs "global/apply-mods.js" %}
     {% inlinejs "global/initialize-typescript-attribute.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
-    {% if env.DEV %}
-      <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
-    {% else %}
-      <!-- Loads lit-hydration since we manually chunk this -->
-      <script type="module" href="{{ site.baseurl }}/js/lit.js"></script>
-    {% endif %}
+    <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
     {% inlinejs "global/dsd-polyfill.js" %}
 
     {% if selectedVersion !== latestVersion %}
@@ -37,12 +28,6 @@
 
     {% if not noaside %}
       <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
-    {% endif %}
-
-    <!-- Preload common chunks we always need. Note <link rel="modulepreload">
-         isn't yet supported in Firefox or Safari. -->
-    {% if not env.DEV %}
-      <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
     {% endif %}
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
