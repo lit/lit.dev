@@ -1,7 +1,7 @@
 ---
-title: Resources
+title: 资源
 eleventyNavigation:
-  key: Resources
+  key: 资源
   order: 10
 ---
 

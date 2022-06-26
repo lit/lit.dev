@@ -1,34 +1,19 @@
 ---
-title: Community
+title: 社区
 eleventyNavigation:
-  key: Community
-  parent: Resources
+  key: 社区
+  parent: 资源
   order: 1
 versionLinks:
   v1: resources/community/
 ---
 
-There are many great resources and locations to learn about Lit,
-share what you've built, and more. Participation in our community is subject to the Lit
-[Code of Conduct](https://github.com/lit/lit/blob/master/CODE_OF_CONDUCT.md)—be
-excellent to each other!
+有很多很棒的资源和位置可以让你了解 Lit、分享你构建的内容等等。参与我们的社区必须遵守 Lit [行为准则](https://github.com/lit/lit/blob/master/CODE_OF_CONDUCT.md)——让彼此更优秀！
 
-*   **Join us on [Slack](/slack-invite/)!** The
-    Lit & Friends workspace has thousands of users discussing Lit, web components, and related topics.
-    Check out `#lit`, `#beginners`, or `#tools` to get started.
+* **加入我们的 [Slack](/slack-invite/)！** Lit & Friends 工作区有成千上万的用户讨论 Lit、Web 组件和相关主题。查看 `#lit`、`#beginners` 或 `#tools` 开始使用。
 
-*   **Follow us at [@buildWithLit  on Twitter](https://twitter.com/buildWithLit)**
-    for the latest on Lit and web components. Many
-    of our team members can also be found tweeting about Lit,
-    and the latest developments in the web platform.
+* **在 [@buildWithLit on Twitter](https://twitter.com/buildWithLit)** 关注我们，了解有关 Lit 和 Web 组件的最新信息。我们的许多团队成员也可以在推特上找到关于 Lit 的信息以及 web 平台最新的开发信息。
 
-*   **Talk about Lit on [GitHub Discussions](https://github.com/lit/lit/discussions).** For longer questions or ideas about Lit, or to see what others are talking about, GitHub discussions are a great way to connect with the team and community.
+* **在 [GitHub Discussions](https://github.com/lit/lit/discussions) 上谈论 Lit。** 关于 Lit 的较长问题或想法，或者想了解其他人在谈论什么，GitHub Discussions 是一个与团队和社区联系的好方法。
 
-*   **Find answers on [StackOverflow](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element).**
-    Search the [`lit`, `lit-element`, and `lit-html`](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element) tags when
-    looking for answers. You can also find help on underlying web standards with
-    tags like [`web-component`](https://stackoverflow.com/tags/web-component),
-    and try your hand at answering other people’s queries.
-
-
-
+* **在 [StackOverflow](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element) 上查找答案。** 搜索 [`lit`, `lit-element ` 和 `lit-html`](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element) 标签在寻找答案时，你还可以使用 [`web-component`](https://stackoverflow.com/tags/web-component) 等标签找到有关底层 Web 标准的帮助，并尝试回答其他人的提问。
