@@ -1,44 +1,45 @@
 ---
-title: Using lit-html standalone
+title: 独立使用 lit-html
 eleventyNavigation:
-  key: Standalone lit-html
-  parent: Related libraries
+  key: 独立使用 lit-html
+  parent: 相关库
   order: 1
 ---
 
-Lit combines the component model of LitElement with JavaScript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.
+Lit 将 LitElement 的组件模型与基于 JavaScript 模板字符串的渲染结合到一个易于使用的包中。 但是，Lit 的模板部分被分解为一个名为 `lit-html` 的独立库，它可以在 Lit 组件模型之外的任何需要高效地渲染和更新 HTML 的地方使用。
 
-## lit-html standalone package
+## lit-html 独立包
 
-The `lit-html` package can be installed separately from `lit`:
+`lit-html` 包可以与 `lit` 分开安装：
 
 ```sh
 npm install lit-html
 ```
 
-The main imports are `html` and `render`:
+主要的导入有 `html` 和 `render`：
+
 ```js
 import {html, render} from 'lit-html';
 ```
 
-The standalone `lit-html` package also includes modules for the following features described in the full `Lit` developer guide:
+独立的 `lit-html` 包还包括完整的 `Lit` 开发指南中描述的以下功能的模块：
 
-* `lit-html/directives/*` - [Built-in directives](/docs/templates/directives/)
-* `lit-html/directive.js` - [Custom directives](/docs/templates/custom-directives/)
-* `lit-html/async-directive.js` - [Custom async directives](/docs/templates/custom-directives/#async-directives)
-* `lit-html/directive-helpers.js` - [Directive helpers for imperative updates](/docs/templates/custom-directives/#imperative-dom-access:-update())
-* `lit-html/static.js` - [Static html tag](/docs/templates/expressions/#static-expressions)
-* `lit-html/polyfill-support.js` - Support for interfacing with the web components polyfills (see [Styles and lit-html templates](#styles-and-lit-html-templates))
+* `lit-html/directives/*` - [内置指令]({{baseurl}}/docs/templates/directives/)
+* `lit-html/directive.js` - [自定义指令]({{baseurl}}/docs/templates/custom-directives/)
+* `lit-html/async-directive.js` - [自定义异步指令]({{baseurl}}/docs/templates/custom-directives/#async-directives)
+* `lit-html/directive-helpers.js` - [用于命令式更新的指令助手]({{baseurl}}/docs/templates/custom-directives/#imperative-dom-access:-update())
+* `lit-html/static.js` - [静态 html 标签]({{baseurl}}/docs/templates/expressions/#static-expressions)
+* `lit-html/polyfill-support.js` - 与 web 组件 polyfill 交互的支持（参见 [样式和 lit-html 模板](#styles-and-lit-html-templates)）
 
-## Rendering lit-html templates
+## 渲染 lit-html 模板
 
-Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
+Lit 模板是使用带有 `html` 标签的 JavaScript 模板字符串编写的。 字符串的内容大多是简单的、声明式的 HTML，并且可能包含一些用于插入和更新模板的动态部分的表达式（请参阅 [模板]({{baseurl}}/docs/templates/overview/) 以获取有关 Lit 模板语法的完整参考）。
 
 ```html
 html`<h1>Hello ${name}</h1>`
 ```
 
-A lit-html template expression does not cause any DOM to be created or updated. It's only a description of DOM, called a `TemplateResult`. To actually create or update DOM, you need to pass the `TemplateResult` to the `render()` function, along with a container to render to:
+lit-html 模板表达式不会造成任何 DOM 的创建或更新。 它只是对 DOM 的描述，称为 `TemplateResult`。 要实际创建或更新 DOM，你需要将 `TemplateResult` 传递给 `render()` 函数，以及要渲染到的容器：
 
 ```js
 import {html, render} from 'lit-html';
@@ -48,41 +49,44 @@ const sayHi = html`<h1>Hello ${name}</h1>`;
 render(sayHi, document.body);
 ```
 
-## Render dynamic data
+## 渲染动态数据
 
 To make your template dynamic, you can create a _template function_. Call the template function any time your data changes.
+要使你的模板动态化，您可以创建一个 _模板函数_。 每当数据更改时调用模板函数。
 
 ```js
 import {html, render} from 'lit-html';
 
-// Define a template function
+// 定义模板函数
 const myTemplate = (name) => html`<div>Hello ${name}</div>`;
 
-// Render the template with some data
+// 使用一些数据渲染模板
 render(myTemplate('earth'), document.body);
 
-// ... Later on ...
-// Render the template with different data
+// ... 稍后 ...
+// 使用不同的数据渲染模板
 render(myTemplate('mars'), document.body);
 ```
 
-When you call the template function, lit-html captures the current expression values. The template function doesn't create any DOM nodes, so it's fast and cheap.
+当你调用模板函数时，lit-html 会捕获当前表达式值。 模板函数不会创建任何 DOM 节点，因此它既快速开销又低。
 
-The template function returns a `TemplateResult` that contains the template and the input data. This is one of the main principles behind using lit-html: **creating UI as a _function_ of state**.
+模板函数返回一个包含模板和输入数据的 `TemplateResult`。 这是使用 lit-html 背后的主要原则之一：**将 UI 创建为一个状态_函数_**。
 
-When you call `render`, **lit-html only updates the parts of the template that have changed since the last render.** This makes lit-html updates very fast.
+当你调用 `render` 时，**lit-html 仅更新自上次渲染以来已更改的模板部分。** 这使得 lit-html 更新非常快。
 
-### Render Options
+### 渲染选项
 
-The `render` method also takes an `options` argument that allows you to specify the following options:
+`render` 方法还接受一个 `options` 参数，允许你指定以下选项：
 
-*   `host`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Event listener expressions](/docs/templates/expressions/#event-listener-expressions) for more on event listeners.
+* `host`：调用通过 `@eventName` 语法注册的事件侦监听器时使用的 `this` 值。 该选项仅在你将事件监听器指定为普通函数时适用。 如果你使用事件监听器对象作为事件监听器，则监听器对象被用作 `this` 值。 有关事件监听器的更多信息，请参阅 [事件侦听器表达式]({{baseurl}}/docs/templates/expressions/#event-listener-expressions)。
 
-*   `renderBefore`: An optional reference node within the `container` before which lit-html will render. By default, lit-html will append to the end of the container. Setting `renderBefore` allows rendering to a specific spot within the container.
+* `renderBefore`：`container` 中的一个可选引用节点，lit-html 会被渲染到该节点之前。 默认情况下， lit-html 将被追加到容器的末尾。 设置 `renderBefore` 允许渲染到容器内的特定位置。
 
-*   `creationScope`: The object lit-html will call `importNode` on when cloning templates (defaults to `document`). This is provided for advanced use cases.
+* `creationScope`：一个对象（默认为 `document`），lit-html 在克隆模板时会调用其 `importNode` 方法。 这是为高级场景提供的。
 
 For example, if you're using `lit-html` standalone, you might use render options like this:
+
+例如，如果你独立使用 `lit-html`，你可以使用如下渲染选项：
 
 ```html
 <div id="container">
@@ -98,30 +102,30 @@ const renderBefore = container.querySelector('footer');
 render(template(), container, {renderBefore});
 ```
 
-The above example would render the template between the `<header>` and `<footer>` elements.
+上面的示例将在 `<header>` 和 `<footer>` 元素之间渲染模板。
 
 <div class="alert alert-info">
 
-**Render options must be constant.** Render options should *not* change between subsequent `render` calls.
+**渲染选项必须是常量。** 渲染选项*不*应该在后续的 `render` 调用之间改变。
 
 </div>
 
-## Styles and lit-html templates
+## 样式和 lit-html 模板
 
-lit-html focuses on one thing: rendering HTML. How you apply styles to the HTML lit-html creates depends on how you're using it—for example, if you're using lit-html inside a component system like LitElement, you can follow the patterns used by that component system.
+lit-html 专注于一件事：渲染 HTML。 如何将样式应用到 lit-html 创建的 HTML 取决于你如何使用它——例如，如果你在像 LitElement 这样的组件系统中使用 lit-html，你可以遵循该组件系统使用的模式。
 
-In general, how you style HTML will depend on whether you're using shadow DOM:
+通常，如何设置 HTML 样式取决于你是否使用 shadow DOM：
 
-*   If you are not rendering into shadow DOM, you can style HTML using global style sheets.
-*   If are rendering into shadow DOM, then you can render `<style>` tags inside the shadow root.
+* 如果不是渲染到 shadow DOM，那么你可以使用全局样式表设置 HTML 样式。
+* 如果正在渲染到 shadow DOM，那么你可以在 shadow root 内渲染 `<style>` 标签。
 
 <div class="alert alert-info">
 
-**Styling shadow roots on legacy browsers requires polyfills.** Using the [ShadyCSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill with standalone `lit-html` requires loading `lit-html/polyfill-support.js` and passing a `scope` option in `RenderOptions` with the host tag name for scoping the rendered content. Although this approach is possible, we recommend using [LitElement](/docs/components/overview/) if you want to support rendering lit-html templates to shadow DOM on legacy browsers.
+**在旧版浏览器上设置 shadow root 的样式需要 polyfill。** 将 [ShadyCSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill 与独立的 `lit-html` 一起使用需要加载 ` lit-html/polyfill-support.js`，并在 `RenderOptions` 中传入一个 `scope` 选项和宿主标签名称，用于限定渲染内容的范围。 尽管这种方法是可行的，但如果你想支持在旧版浏览器上渲染 lit-html 模板到 shadow DOM，我们建议使用 [LitElement]({{baseurl}}/docs/components/overview/)。
 
 </div>
 
-To help with dynamic styling, lit-html provides two directives for manipulating an element's `class` and `style` attributes:
+为了帮助实现动态样式，lit-html 提供了两个指令来操作元素的 `class` 和 `style` 属性：
 
-*   [`classMap`](/docs/templates/directives/#classmap) sets classes on an element based on the properties of an object.
-*   [`styleMap`](/docs/templates/directives/#stylemap) sets the styles on an element based on a map of style properties and values.
+* [`classMap`]({{baseurl}}/docs/templates/directives/#classmap) 根据对象的属性在元素上设置类。
+* [`styleMap`]({{baseurl}}/docs/templates/directives/#stylemap) 根据样式属性和值的 map 设置元素的样式。

@@ -1,7 +1,7 @@
 ---
-title: Related libraries
+title: 相关库
 eleventyNavigation:
-  key: Related libraries
+  key: 相关库
   order: 9
 versionLinks:
   v1: lit-html/introduction/
