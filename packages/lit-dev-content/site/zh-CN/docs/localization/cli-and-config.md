@@ -1,8 +1,8 @@
 ---
-title: Localization CLI and config
+title: 本地化CLI与配置
 eleventyNavigation:
-  key: CLI and config
-  parent: Localization
+  key: CLI与配置
+  parent: 本地化
   order: 4
 ---
 
@@ -12,31 +12,31 @@ eleventyNavigation:
 lit-localize command [--flags]
 ```
 
-### Commands
+### 命令
 
 <br>
 
-| Command   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 命令   | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `extract` | Extract `msg` calls from all input files and create or update XLIFF (`.xlf`) files.                                                                                                                                                                                                                                                                               |
-| `build`   | Incorporate translations back into your app using the configured [mode](/docs/localization/overview/#output-modes). |
+| `extract` | 从所有输入文件中提取 `msg` 调用并创建或更新 XLIFF (`.xlf`) 文件。                                                                                                                                                                                                                                                                           |
+| `build`   | 使用配置中的 [mode](/docs/localization/overview/#output-modes) 将翻译重新合并到你的应用程序中。 |
 
-### Flags
+### 选项
 
 <br>
 
-| Flag       | Description                                                                 |
+| 选项       | 描述                                                                 |
 | ---------- | --------------------------------------------------------------------------- |
-| `--help`   | Display help about usage.                                                   |
-| `--config` | Path to JSON [config file](#config-file). Defaults to `./lit-localize.json` |
+| `--help`   | Display help about usage. 显示使用帮助的相关信息。                                                   |
+| `--config` | JSON [配置文件](#config-file) 的路径。 默认为 `./lit-localize.json` |
 
-## Config file
+## 配置文件
 
-### General settings
+### 常规配置
 
 <div class="alert alert-info">
 
-All file paths are relative to the location of the config file.
+所有文件路径都相对于配置文件的位置。
 
 </div>
 
@@ -44,156 +44,142 @@ All file paths are relative to the location of the config file.
   <dt class="paramName">sourceLocale</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Required</em></p>
-    <p>Locale code that templates in the source code are written in.</p>
+    <p><em>必填</em></p>
+    <p>源语言代码中模板写入的语言环境代码。</p>
   </dd>
 
   <dt class="paramName">targetLocales</dt>
   <dd class="paramDetails">
     <code class="paramType">string[]</code>
-    <p><em>Required (can be empty)</em></p>
-    <p>Locale codes that templates will be localized to.</p>
+    <p><em>必填（可以为空）</em></p>
+    <p>模板将被本地化的目标语言环境代码。Locale codes that templates will be localized to.</p>
   </dd>
 
   <dt class="paramName">inputFiles</dt>
   <dd class="paramDetails">
     <code class="paramType">string[]</code>
-    <p><em>Required unless <code>tsConfig</code> is specified</em></p>
-    <p>Array of filenames or
+    <p><em>除非指定了 <code>tsConfig</code>，否则必填</em></p>
+    <p>文件名数组或
     <a href="https://github.com/mrmlnc/fast-glob#pattern-syntax" target="_blank" rel="noopener">
-    glob</a> patterns matching the JavaScript or TypeScript files to extract messages from.</p>
-    <p>If both <code>tsConfig</code> and <code>inputFiles</code> are specified, then
-    <code>inputFiles</code> takes precedence.</p>
+    glob</a> 模式匹配的 JavaScript 或 TypeScript 文件，并从中提取 message。</p>
+    <p>如果同时指定了 <code>tsConfig</code> 和 <code>inputFiles</code>，则
+    <code>inputFiles</code> 优先。</p>
   </dd>
 
   <dt class="paramName">tsConfig</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Required unless <code>inputFiles</code> is specified</em></p>
-    <p>Path to a <code>tsconfig.json</code> or <code>jsconfig.json</code> file
-    that describes the JavaScript or TypeScript files from which messages will
-    be extracted, and also the compiler options that will be used when building for
-    transform mode.</p>
-    <p>If both <code>tsConfig</code> and <code>inputFiles</code> are specified, then
-    <code>inputFiles</code> takes precedence.</p>
+    <p><em>除非指定了 <code>inputFiles</code>，否则必填</em></p>
+    <p><code>tsconfig.json</code> 或 <code>jsconfig.json</code> 文件的路径
+    为转换模式指定被从中提取 message 的 JavaScript 或 TypeScript 文件，以及构建时将使用的编译器选项。</p>
+    <p>如果同时指定了 <code>tsConfig</code> 和 <code>inputFiles</code>，则
+    <code>inputFiles</code> 优先。</p>
   </dd>
 
   <dt class="paramName">output.mode</dt>
   <dd class="paramDetails">
     <code class="paramType">"transform" | "runtime"</code>
-    <p><em>Required</em></p>
-    <p>What kind of output should be produced. See
-    <a href="/docs/localization/overview/#output-modes">modes</a>.</p>
+    <p><em>必填</em></p>
+    <p>应该产生什么样的输出。请参阅
+    <a href="{{baseurl}}/docs/localization/overview/#output-modes">模式</a>.</p>
   </dd>
 
   <dt class="paramName">output.localeCodesModule</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Optional</em></p>
-    <p>Filepath for a generated JavaScript or TypeScript module that exports
-       <code>sourceLocale</code>, <code>targetLocales</code>, and
-       <code>allLocales</code> using the locale codes from your config file.
-      Use to keep your config file and client config in sync.</p>
-    <p>This path should end with either <code>".js"</code> or
-       <code>".ts"</code>. If it ends with <code>".js"</code> it will be
-       emitted as a JavaScript module. If it ends with <code>".ts"</code> it
-       will be emitted as a TypeScript module.</p>
+    <p><em>可选</em></p>
+    <p>生成的 JavaScript 或 TypeScript 模块的文件路径
+      该模块使用配置文件中的语言环境代码导出 <code>sourceLocale</code>、<code>targetLocales</code> 和
+       <code>allLocales</code>。用于使你的配置文件和客户端配置保持同步。</p>
+    <p>该路径应以 <code>".js"</code> 或 <code>“.ts”</code>结尾。如果它以 <code>".js"</code> 结尾，它将是
+       作为 JavaScript 模块输出。如果它以 <code>".ts"</code> 结尾
+       将作为 TypeScript 模块输出。</p>
   </dd>
 
   <dt class="paramName">interchange.format</dt>
   <dd class="paramDetails">
     <code class="paramType">"xliff" | "xlb"</code>
-    <p><em>Required</em></p>
-    <p>Data format to be consumed by your localization process. Options:
+    <p><em>必填</em></p>
+    <p>本地化过程使用的数据格式。选项：
       <ul>
-        <li><code>"xliff"</code>:
+        <li><code>“xliff”</code>：
           <a href="https://docs.oasis-open.org/xliff/v1.2/os/xliff-core.html"
-            target="_blank" rel="noopener">XLIFF 1.2</a> XML format</li>
-        <li><code>"xlb"</code>: Google-internal XML format</li>
+            target="_blank" rel="noopener">XLIFF 1.2</a> XML 格式</li>
+        <li><code>“xlb”</code>：Google 内部 XML 格式</li>
       </ul>
     </p>
   </dd>
 </dl>
 
-### Runtime mode settings
+### 运行时模式配置
 
 <dl class="params">
   <dt class="paramName">output.outputDir</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Required</em></p>
-    <p>Output directory for generated modules. A
-       <code>&lt;locale&gt;.[js|ts]</code> file is generated for each
-       <code>targetLocale</code>. Each file is a module that exports the
-       translations for that locale, keyed by message ID.</p>
+    <p><em>必填</em></p>
+    <p>生成的模块的输出目录。为每个<code>targetLocale</code>生成的 <code>&lt;locale&gt;.[js|ts]</code> 文件。 每个文件都是一个模块，用于导出
+      该语言环境的翻译，使用 message ID 作为 key。</p>
   </dd>
 
   <dt class="paramName">output.language</dt>
   <dd class="paramDetails">
     <code class="paramType">"js" | "ts"</code>
-    <p><em>Defaults to <code>"js"</code>, or <code>"ts"</code> if
-    <code>tsConfig</code> was specified.</em></p>
-    <p>Language to generate modules in.</p>
+    <p><em>默认为 <code>"js"</code>，或者，如果
+    <code>tsConfig</code> 已指定，则默认为<code>"ts"</code> 。</em></p>
+    <p>生成模块的语言。</p>
   </dd>
 
 </dl>
 
-### Transform mode settings
+### 转换模式配置
 
 <dl class="params">
-  <dt class="paramName">output.outputDir</dt>
-  <dd class="paramDetails">
-    <code class="paramType">string</code>
-    <p><em>Required unless <code>tsConfig</code> is specified, in which case it
-    defaults to that file's <code>outDir</code>. If both are specified, this
-    field takes precedence.</em></p>
-    <p>Output directory for generated modules. A subdirectory is created for
-    each locale within this directory, each containing a full build of the
-    project for that locale.</p>
-  </dd>
+   <dt class="paramName">output.outputDir</dt>
+   <dd class="paramDetails">
+     <code class="paramType">string</code>
+     <p><em>除非指定了 <code>tsConfig</code>，否则必填。如果只指定了<code>tsConfig</code>，则默认为<code>tsConfig</code> 的 <code>outDir</code>。 如果两者都指定，则该字段优先。</em></p>
+     <p>生成模块的输出目录。在该目录下为每一个语言环境生成一个子目录，每个目录都是该项目在一个语言环境下的完成构建.</p>
+   </dd>
 
 </dl>
 
-### XLIFF mode settings
+### XLIFF 模式配置
 
 <dl class="params">
   <dt class="paramName">interchange.xliffDir</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Required with <code>"mode": "xliff"</code></em></p>
-    <p>Directory on disk to read/write <code>.xlf</code> XML files. For each target
-    locale, the path <code>&lt;xliffDir>/&lt;locale>.xlf</code> will be used.</p>
+     <p><em>如果是<code>"mode": "xliff"</code></em>则必填。</p>
+     <p>磁盘上的用于读取/写入 <code>.xlf</code> XML 文件的目录。 对于目标语言环境，将使用 <code><xliffDir>/<locale>.xlf</code> 路径。</p>
   </dd>
 
   <dt class="paramName">interchange.placeholderStyle</dt>
   <dd class="paramDetails">
     <code class="paramType">"x" | "ph"</code>
-    <p><em>Defaults to <code>"x"</code></em></p>
-    <p>How to represent placeholders containing HTML markup and dynamic expressions.
-    Different localization tools and services have varying support for placeholder
-    syntax.</p>
+     <p><em>默认为 <code>"x"</code></em></p>
+     <p>如何表示包含在 HTML 标记和动态表达式的占位符。
+     不同的本地化工具和服务对占位符支持不同的语法。</p>
   </dd>
 </dl>
 
-### XLB mode settings
+### XLB 模式设置
 
 <dl class="params">
   <dt class="paramName">interchange.outputFile</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Required with <code>"mode": "xlb"</code></em></p>
-    <p>Output path for XLB XML file that will be created containing all messages
-       extracted from the source.
-       E.g. <code>"data/localization/en.xlb".</code></p>
+    <p><em>如果是<code>"mode": "xlb"</code> 则需要</em</p>
+    <p>被创建的 XLB XML 文件的输出路径，这些文件包含从源语言环境文件中提取出的所有 message。
+      例如：<code>"data/localization/en.xlb"</code>。</p>
   </dd>
 
   <dt class="paramName">interchange.translationsGlob</dt>
   <dd class="paramDetails">
     <code class="paramType">string</code>
-    <p><em>Required with <code>"mode": "xlb"</code></em></p>
-    <p><a href="https://github.com/mrmlnc/fast-glob#pattern-syntax"
-          target="_blank" rel="noopener">Glob</a> pattern of XLB XML files to
-       read from disk containing translated messages. E.g.
-       <code>"data/localization/*.xlb"</code>.</p>
+    <p><em>如果是<code>"mode": "xlb"</code> 则需要</em</p>
+    <p>从磁盘读取的 XLB XML 文件的 <a href="https://github.com/mrmlnc/fast-glob#pattern-syntax"
+          target="_blank" rel="noopener">glob</a> 模式，这些文件包含已经翻译好的 message。
+          例如： <code>"data/localization/*.xlb"</code>。</p>
   </dd>
 </dl>

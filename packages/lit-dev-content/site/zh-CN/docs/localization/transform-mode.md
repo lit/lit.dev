@@ -1,23 +1,19 @@
 ---
-title: Transform localization mode
+title: 转换本地化模式
 eleventyNavigation:
-  key: Transform mode
-  parent: Localization
+  key: 转换模式
+  parent: 本地化
   order: 3
 ---
 
-In Lit Localize transform mode, a separate folder is generated for each locale.
-Each folder contains a complete standalone build of your application in that
-locale, with all runtime `@lit/localize` code removed:
+在 Lit Localize 转换模式下，会为每个语言环境生成一个单独的文件夹。 每个文件夹都是应用程序在一个语言环境中的完整独立构建，并且每个构建都删除了所有 `@lit/localize` 的运行时代码：
 
-- `msg` calls are replaced with the static localized version of the string or
-  template in each locale.
-- `str` tags are removed.
-- `@lit/localize` imports are removed.
-- Templates are optimized to remove unnecessary expressions by folding them into
-  parent templates wherever possible.
+- `msg` 函数会被替换为每个语言环境中字符串或模板的静态本地化版本。
+- `str` 标签会被移除。
+- `@lit/localize` 导入会被移除。
+- 模板经过优化，通过尽可能将它们折叠到父模板中来删除不必要的表达式。
 
-For example, given the source:
+例如，给定来源代码：
 
 ```js
 // src/launch-button.js
@@ -28,7 +24,7 @@ render() {
 }
 ```
 
-The following files will be generated:
+将生成以下文件：
 
 ```js
 // locales/en/launch-button.js
@@ -42,26 +38,17 @@ render() {
 }
 ```
 
-## Configuring transform mode
+## 配置转换模式
 
-In your `lit-localize.json` config, set the `mode` property to `transform`, and
-set the `output.outputDir` property to the location where you would like your
-localized app folders to be generated. See [transform mode
-settings](/docs/localization/cli-and-config#transform-mode-settings) for more
-details.
+在 `lit-localize.json` 配置文件中，将 `mode` 属性设置为 `transform`，并将 `output.outputDir` 属性设置为你希望生成的本地化应用程序存放的文件夹位置。 有关详细信息，请参阅 [转换模式设置]({{baseurl}}/docs/localization/cli-and-config#transform-mode-settings)。
 
-In your JavaScript or TypeScript project, optionally call
-`configureTransformLocalization`, passing an object with the following
-property:
+在 JavaScript 或 TypeScript 项目中，可以选择调用 `configureTransformLocalization`，并传递具有以下属性的对象：
 
-- `sourceLocale: string`: Locale in which source templates are written.
-  Specified as a locale code (for example: `"en"`).
+- `sourceLocale: string`：编写源模板的语言环境。 指定为语言环境代码（例如：`"en"`）。 `configureTransformLocalization` 返回具有以下属性的对象：
 
-`configureTransformLocalization` returns an object with the following property:
+  - `getLocale`：返回活动语言环境代码的函数。
 
-- `getLocale`: Function that returns the active locale code.
-
-For example:
+例如：
 
 ```js
 import {configureTransformLocalization} from '@lit/localize';
@@ -71,21 +58,15 @@ export const {getLocale} = configureTransformLocalization({
 });
 ```
 
-## Setting the initial locale
+## 设置初始语言环境
 
-In transform mode, the active locale is determined by the JavaScript bundle you
-load. How you determine which bundle to load when your page loads is up to you.
+在转换模式下，活动语言环境由你加载的 JavaScript 包决定。 当你的页面加载时，如何确定要加载哪个 bundle 包取决于你自己。
 
-For example, if your application's locale is reflected in the URL path, you can
-include an inline script in your HTML file that checks the URL and inserts the
-appropriate `<script>` tag:
+例如，如果你的应用程序的语言环境反映在 URL 路径中，你可以在 HTML 文件中加入一个内联脚本，用于检查 URL 并插入适当的 `<script>` 标记：
 
 <div class="alert alert-warning">
 
-Always validate your locale codes when dynamically choosing a script name. The
-example below is safe because a script can only be loaded if it matches one of
-our known locale codes, but if our matching logic was less precise, it could
-result in bugs or attacks that inject insecure JavaScript.
+动态选择（语言）脚本名称时应始终验证语言环境代码。 下面的示例则是安全的，因为只有与我们已知的语言环境代码之一匹配的脚本才能加载，但如果我们的匹配逻辑不太精确，则可能导致注入不安全 JavaScript 从而引入错误或攻击。
 
 </div>
 
@@ -102,17 +83,13 @@ script.src = `/${locale}.js`;
 document.head.appendChild(script);
 ```
 
-For better performance, you can statically render the appropriate script tag
-into your HTML file on the server. This lets the browser start downloading your
-script as early as possible.
+为了获得更好的性能，你可以在服务端将适当的脚本标记静态地渲染到 HTML 文件中。 这使得浏览器可以尽可能早地下载脚本。
 
-## Switching locales
+## 切换语言环境
 
-In transform mode, the `setLocale` function is not available. Instead, reload
-the page so that the next load will pick a different locale bundle.
+在转换模式下，`setLocale` 功能不可用。 只有重新加载页面，才可以在下一次加载时选择不同的语言环境 bundle。
 
-For example, this `locale-picker` custom element loads a new URL whenever a new
-locale is selected from a drop-down list:
+例如，每当从下拉列表中选择一个新的语言环境时，这个 `locale-picker` 自定义元素都会加载一个新的 URL：
 
 {% switchable-sample %}
 
@@ -181,32 +158,20 @@ customElements.define('locale-picker', LocalePicker);
 
 {% endswitchable-sample %}
 
-## Rollup integration
+## Rollup 集成
 
-If you use <a href="https://rollupjs.org/" target="_blank"
-rel="noopener">Rollup</a>, and would prefer an integrated solution instead of
-running the `lit-localize build` command separately, import the
-`localeTransformers` function from `@lit/localize-tools/lib/rollup.js` into your
-Rollup config.
+如果正在使用 <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a>，并且希望使用集成解决方案而不是单独运行 `lit-localize build` 命。为此，你可以将 `localeTransformers` 函数从 `@lit/localize-tools/lib/rollup.js` 导入到 Rollup 配置中。
 
-This function generates an array of `{locale, transformer}` objects, which you
-can use in conjunction with the
-<a href="https://github.com/rollup/plugins/tree/master/packages/typescript/#transformers" target="_blank" rel="noopener">transformers</a>
-option of
-<a href="https://www.npmjs.com/package/@rollup/plugin-typescript" target="_blank" rel="noopener">@rollup/plugin-typescript</a>
-to generate a separate bundle for each locale.
+此函数生成一个`{locale, transformer}` 对象数组，你可以将其与
+<a href="https://www.npmjs.com/package/@rollup/plugin-typescript" target="_blank" rel="noopener">@rollup/plugin-typescript</a> 的  <a href="https://github.com/rollup/plugins/tree/master/packages/typescript/#transformers " target="_blank" rel="noopener">transformers</a> 选项结合使用，为每个语言环境生成一个单独的 bundle。
 
 <div class="alert alert-info">
 
-If you write JavaScript, don't worry about seeing the TypeScript compiler used
-here. Lit Localize depends on the TypeScript compiler to parse, analyze, and
-transform your source code, but it handles plain JavaScript files too!
+如果正在使用 JavaScript，不必担心会看到此处使用的 TypeScript 编译器。 虽然 Lit Localize 依赖于 TypeScript 编译器来解析、分析和转换你的源代码，但它也可以处理纯 JavaScript 文件！
 
 </div>
 
-The following `rollup.config.mjs` generates a minified bundle for each of your
-locales into `./bundled/<locale>/` directories:
-
+以下 `rollup.config.mjs` 为你的每个语言环境生成一个压缩的 bundle 并保存到 `./bundled/<locale>/` 目录中：
 
 {% switchable-sample %}
 
@@ -216,8 +181,7 @@ import {localeTransformers} from '@lit/localize-tools/lib/rollup.js';
 import resolve from '@rollup/plugin-node-resolve';
 import {terser} from 'rollup-plugin-terser';
 
-// Config is read from ./lit-localize.json by default.
-// Pass a path to read config from another location.
+// 默认从 ./lit-localize.json 读取配置。 如果传入路径，将从别的位置读取。
 const locales = localeTransformers();
 
 export default locales.map(({locale, localeTransformer}) => ({
@@ -245,8 +209,8 @@ import {terser} from 'rollup-plugin-terser';
 import summary from 'rollup-plugin-summary';
 import {localeTransformers} from '@lit/localize-tools/lib/rollup.js';
 
-// Config is read from ./lit-localize.json by default.
-// Pass a path to read config from another location.
+// 默认从 ./lit-localize.json 读取配置。 如果传入路径，将从别的位置读取。
+
 const locales = localeTransformers();
 
 export default locales.map(({locale, localeTransformer}) => ({
@@ -256,14 +220,11 @@ export default locales.map(({locale, localeTransformer}) => ({
       transformers: {
         before: [localeTransformer],
       },
-      // Specifies the ES version and module format to emit. See
-      // https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+      // 指定要输出的 ES 版本和模块格式。 见 https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
       tsconfig: 'jsconfig.json',
-      // Temporary directory where transformed modules will be emitted before
-      // Rollup bundles them.
+      // 在 Rollup 打包它们之前，把转换后的模块输出到临时目录中。
       outDir: 'bundled/temp',
-      // @rollup/plugin-typescript always matches only ".ts" files, regardless
-      // of any settings in our jsconfig.json.
+      // @rollup/plugin-typescript 总是只匹配 ".ts" 文件并且忽略 jsconfig.json 中的所有设置。
       include: ['src/**/*.js'],
     }),
     resolve(),

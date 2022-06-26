@@ -1,29 +1,22 @@
 ---
-title: Localization best practices
+title: 本地化最佳实践
 eleventyNavigation:
-  key: Best practices
-  parent: Localization
+  key: 最佳实践
+  parent: 本地化
   order: 5
 ---
 
 
-## Ensure re-evaluation on render
+## 确保在 render 中重新计算
 
-Each time the `msg` function is called, it returns a version of the given string
-or Lit template in the active locale. However, this result is just a normal
-string or template; it is not *intrinsically* capable of re-rendering itself
-when the locale changes.
+每次调用 `msg` 函数时，它都会返回活动语言环境中给定字符串或 Lit 模板的版本。 然而，这个结果只是一个普通的字符串或模板； 当语言环境发生变化时，它*本质上*是不能重新渲染自己的。
 
-For this reason, it is important to write `msg` calls in a way that ensures they
-will be re-evaluated each time the Lit `render` method runs. This way, when the
-locale changes, the correct string or template for the latest locale will be
-returned.
+出于这个原因，编写 `msg` 调用的方式很重要，请确保每次运行 Lit 的 `render` 方法时都会重新计算它们。 这样，当语言环境更改时，将返回最新语言环境的正确字符串或模板。
 
-One situation where it is easy to make a mistake here is when localizing
-property default values. It may seem natural to write this:
+一种很容易出错的情况是给本地化属性赋默认值时。 这样写似乎很正常：
 
 ```js
-// Don't do this!
+// 不要这样做！
 label = msg('Default label')
 
 render() {
@@ -31,12 +24,9 @@ render() {
 }
 ```
 
-However, the above pattern provides no opportunity for the default label to be
-updated when the locale changes. The default value will get stuck at the version
-from the locale that happened to be active when the element was instantiated.
+但是，上述模式无法在语言环境更改时更新默认标签。 默认值将停留在实例化元素时碰巧处于活动状态的语言环境中的版本。
 
-A simple fix is to move the default value fallback directly into the render
-method:
+一个简单的解决方法就是将用于回退的默认值直接移动到渲染方法中：
 
 ```js
 render() {
@@ -44,8 +34,7 @@ render() {
 }
 ```
 
-Alternatively, a custom getter/setter can be used to create a more natural
-interface:
+或者，可以使用自定义 getter/setter 来创建更自然的写法：
 
 {% switchable-sample %}
 
@@ -86,46 +75,38 @@ render() {
 
 {% endswitchable-sample %}
 
-## Avoid unnecessary HTML markup
+## 避免不必要的 HTML 标记
 
-While `@lit/localize` has full support for embedding HTML markup inside
-localized templates, it's best to avoid doing so whenever possible. This is
-because:
+虽然 `@lit/localize` 完全支持在本地化模板中嵌入 HTML 标记，但最好尽可能避免这样做。 因为：
 
-1. It's easier for translators to deal with simple string phrases instead of
-   phrases with embedded markup.
+1. 对于翻译者来说，处理简单的字符串短语比处理嵌入标记的短语更容易。
 
-2. It avoids unnecessary re-translation work when markup changes, such as when
-   adding a class that affects appearance without changing the meaning.
+2. 避免标记改变时不必要的重新翻译工作，例如在不改变含义的情况下添加影响外观的类。
 
-3. It will typically be faster to swap locales, because fewer parts of the DOM
-   will need to update. Also, less JavaScript will be included in your bundles,
-   because common markup will not need to be duplicated into each translation.
+3. 切换语言环境通常会更快，因为需要更新的 DOM 部分更少。 此外，bundle 中也会包含更少的 JavaScript，因为不需要将通用标记复制到每个翻译中。
 
 
-Not ideal:
+不理想：
 ```js
 render() {
-  // Don't do this! There's no reason to include the <button> tag in this
-  // localized template.
+  // 不要这样做！ 没有理由在这个本地化模板中包含 <button> 标记。
   return msg(html`<button>Launch rocket</button>`);
 }
 ```
 
-Ideal:
+理想：
 ```js
 render() {
-  // Much better! Now the phrase "Launch rocket" can be translated more easily
-  // in isolation.
+  // 好多了！ 现在“Launch rocket”这个短语可以更容易地单独翻译。
   return html`<button>${msg('Launch rocket')}</button>`;
 }
 ```
 
-Breaking templates into smaller pieces can also be helpful:
+将模板分解成更小的部分（对翻译）也很有帮助：
 
 ```js
 render() {
-  // Don't do this!
+  // 不要这样做！
   return msg(html`
   <p>The red button makes the rocket go up.</p>
   <p>The green button makes the rocket do a flip.</p>
@@ -135,8 +116,7 @@ render() {
 
 ```js
 render() {
-  // Better! No markup needs to be processed by translators, and each sentence
-  // can be translated independently.
+  // 更好的！ 无需翻译人员处理任何标记，每个句子都可以独立翻译。
   return html`
   <p>${msg('The red button makes the rocket go up.')}</p>
   <p>${msg('The green button makes the rocket do a flip.')}</p>
@@ -146,37 +126,26 @@ render() {
 
 <div class="alert alert-info">
 
-When using transform mode, templates will be automatically flattened to make
-them as small and efficient as possible. After transformation, the above example
-won't have any placeholders, because it knows that strings can be directly
-merged into HTML templates.
+使用转换模式时，模板将自动展平，使它们尽可能小且高效。 转换后，上面的这个例子不会再有任何占位符，因为它知道字符串可以直接合并到 HTML 模板中。
 
 </div>
 
-There are cases where HTML *should* be included in the localized template. For
-example where an HTML tag is needed in the middle of a phrase:
-
+在某些场景中，HTML *应该*包含在本地化模板中。 例如，在短语中间需要一个 HTML 标记：
 ```js
 render() {
   return msg(html`Lift off in <b>T-${this.countdown}</b> seconds`);
 }
 ```
 
-## Safely re-exporting or re-assigning localize APIs
+## 安全地重新导出或重写本地化 API
 
-Static analysis is used to determine when you are calling the `@lit/localize`
-`msg` function and other APIs, as opposed to a different function with the same
-name.
+静态分析用于确定你何时调用 `@lit/localize` `msg` 函数和其他 API，而不是同名的不同函数。
 
-It is possible to re-export or re-assign the `msg` function and other APIs, and
-most of the time this will just work.
+可以重新导出或重写 `msg` 函数和其他 API，并且大多数情况下这也能正常工作。
 
-However, certain patterns may be too dynamic for static analysis to understand.
-If a message is failing to be extracted, and you have re-assigned or re-exported
-the `msg` function, this could be the cause.
+但是，某些模式可能过于动态，静态分析无法理解。 如果提取 message 失败，并且你已经重写或重新导出了 `msg` 功能，那么这可能就是失败的原因。
 
-To force a function to be analyzed as a `@lit/localize` API, you can use a JSDoc
-`@type` comment in JavaScript, or a type cast in TypeScript:
+想要强制将函数作为 `@lit/localize` API 进行分析，可以在 JavaScript 中使用 JSDoc `@type` 注释，或在 TypeScript 中使用类型转换：
 
 {% switchable-sample %}
 
