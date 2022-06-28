@@ -5,6 +5,7 @@
     "rootDir": ".",
     "outDir": "js",
     "types": [],
+    "jsx": "react",
     "declaration": false,
     "declarationMap": false,
     "sourceMap": false,
