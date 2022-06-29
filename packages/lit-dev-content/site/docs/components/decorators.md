@@ -10,7 +10,7 @@ versionLinks:
 
 Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide declarative APIs for things like registering elements, reactive properties, and queries.
 
-Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard,  Currently no browsers implement decorators, but compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for an earlier version of the decorators proposal. Lit decorators work with Babel and TypeScript, and will be updated to work with the final specification when it's implemented in browsers.
+Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. Currently no browsers implement decorators, but compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for an earlier version of the decorators proposal. Lit decorators work with Babel and TypeScript, and will be updated to work with the final specification when it's implemented in browsers.
 
 See the [Enabling decorators](#enabling-decorators) section for more information.
 
