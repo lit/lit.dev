@@ -1,7 +1,19 @@
-import { React, ReactDOM } from './deps.js';
+import { createComponent } from '@lit-labs/react';
 
-const body = document.querySelector('body');
-const root = ReactDOM.createRoot(body!);
+import {
+    React,
+    ReactDOM,
+    SimpleGreeting as SimpleGreetingComponent,
+} from './deps.js';
 
-root.render(<div>{"buster"}</div>);
+const SimpleGreeting = createComponent(
+    React,
+    'simple-greeting',
+    SimpleGreetingComponent,
+)
+
+const section = document.querySelector('section');
+const root = ReactDOM.createRoot(section!);
+
+root.render(<SimpleGreeting name={"buster"}></SimpleGreeting>);
 
