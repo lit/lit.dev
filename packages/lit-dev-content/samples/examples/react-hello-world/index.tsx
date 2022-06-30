@@ -1,10 +1,10 @@
-import { createComponent } from '@lit-labs/react';
-
 import {
     React,
     ReactDOM,
     SimpleGreeting as SimpleGreetingComponent,
 } from './deps.js';
+import { createComponent } from '@lit-labs/react';
+
 
 const SimpleGreeting = createComponent(
     React,
@@ -16,4 +16,3 @@ const section = document.querySelector('section');
 const root = ReactDOM.createRoot(section!);
 
 root.render(<SimpleGreeting name={"buster"}></SimpleGreeting>);
-

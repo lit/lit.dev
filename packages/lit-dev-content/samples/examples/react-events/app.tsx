@@ -1,8 +1,7 @@
+import {React} from "./deps.js";
 import {createComponent} from "@lit-labs/react";
 import {Button} from '@material/mwc-button';
-import {React} from "./deps.js";
 
-const {useState, useCallback} = React;
 
 const MWCButton = createComponent(
   React,
@@ -10,9 +9,10 @@ const MWCButton = createComponent(
   Button,
 )
 
-export const App = () => {
-  const [count, setCount] = useState(0);
-  const clickCallback = useCallback((e) => {
+const App = () => {
+  const [count, setCount] = React.useState(0);
+  
+  const clickCallback = React.useCallback((e) => {
    setCount(count + 1);
   }, [count, setCount])
 
@@ -21,7 +21,10 @@ export const App = () => {
         <div>There have been {count} clicks!</div>
         <MWCButton
             onClick={clickCallback}
-            outlined="${true}">CLICK ME!</MWCButton>
+            outlined="${true}">Increase count ++</MWCButton>
     </>
   )
 };
+
+
+export { App };
