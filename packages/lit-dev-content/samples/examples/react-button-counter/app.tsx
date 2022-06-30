@@ -11,14 +11,14 @@ const MWCButton = createComponent(
 )
 
 export const App = () => {
-  const [state, setState] = useState(0);
+  const [count, setCount] = useState(0);
   const clickCallback = useCallback((e) => {
-   setState(state + 1);
-  }, [state, setState])
+   setCount(count + 1);
+  }, [count, setCount])
 
  return (
     <>
-        <div> you clicked: {state} clicks</div>
+        <div>There have been {count} clicks!</div>
         <MWCButton
             onClick={clickCallback}
             outlined="${true}">CLICK ME!</MWCButton>
