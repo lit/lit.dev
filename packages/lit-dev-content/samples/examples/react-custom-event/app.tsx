@@ -10,21 +10,19 @@ const SecretMessageButton = createComponent(
   'secret-message-button',
   SecretMessageButtonWC,
   {onSecretMessage: 'secret-message' as EventName<CustomEvent<string>>},
-)
+);
 
 export const App = () => {
-  const [count, setCount] = useState("you haven't clicked yet!");
+  const [message, setMessage] = useState("you haven't clicked yet!");
   const clickCallback = useCallback((e: CustomEvent<string>) => {
-    console.log(e);
-    setCount(e.detail);
-    
-  }, [count, setCount])
+    setMessage(e.detail);
+  }, [message, setMessage])
 
  return (
     <>
         <SecretMessageButton onSecretMessage={clickCallback}></SecretMessageButton>
         <div>The secret message is:</div>
-        <div>{count}</div>
+        <div>{message}</div>
     </>
   )
 };

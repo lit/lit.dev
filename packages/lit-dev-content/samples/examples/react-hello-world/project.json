@@ -1,7 +1,7 @@
 {
-  "hide": true,
   "extends": "/samples/base.json",
-  "title": "Using a LitElement in React",
+  "order": 0,
+  "title": "React wrapper",
   "description": "Run JSX in the playground.",
   "section": "React",
   "files": {
