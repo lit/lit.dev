@@ -1,7 +1,7 @@
 {
   "extends": "/samples/base.json",
   "order": 0,
-  "title": "React wrapper",
+  "title": "Wrap web component",
   "description": "Run JSX in the playground.",
   "section": "React",
   "files": {
