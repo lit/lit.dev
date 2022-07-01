@@ -183,7 +183,7 @@ Optionally, you can pass a property name and a previous value when calling `requ
 
 When an update is performed, the `performUpdate()` method is called. This method calls a number of other lifecycle methods.
 
-Any changes that would normally trigger an update which occur **while** a component is updating do **not schedule a new update**. This is done so that property values can be computed during the update process.
+Any changes that would normally trigger an update which occur **while** a component is updating do **not schedule a new update**. This is done so that property values can be computed during the update process. Any updated properties **will** be added to the `changedProperties` map passed to future lifecycle callbacks. For example, if you set a property, `count` in `willUpdate()`, it shows up in the `changedProperties` map passed `update()` and later callbacks. 
 
 #### shouldUpdate() {#shouldupdate}
 
