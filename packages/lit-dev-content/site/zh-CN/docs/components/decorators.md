@@ -76,7 +76,7 @@ import {eventOptions} from 'lit/decorators/event-options.js';
 
 要在 [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html) 中使用装饰器，需要启用 `experimentalDecorators` 编译器选项。
 
-你还应该确保 `useDefineForClassFields` 设置为 `false`。请注意，虽然仅当 `target` 设置为 `esnext` 或更高时才需要这样做，但建议明确确保该设置为 `false`。
+你还应该确保 `useDefineForClassFields` 设置为 `false`。请注意，虽然仅当 `target` 设置为 `esnext` 或更高时才需要这样做，但建议明确确保该项设置为 `false`。
 
 ```json
 "experimentalDecorators": true,
@@ -109,13 +109,13 @@ plugins = [
 
 <div class="alert alert-info">
 
-目前不支持旧的 Babel 装饰器的 `legacy` 模式，但这可能会随着 Babel 的发展而改变。如果您想进行实验，请参阅 [Babel 文档](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy)。
+目前不支持旧的 Babel 装饰器的 `legacy` 模式，但这可能会随着 Babel 的发展而改变。如果你想进行实验，请参阅 [Babel 文档](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#legacy)。
 
 </div>
 
 ### 在 TypeScript 和 Babel 中使用装饰器
 
-将 TypeScript 与 Babel 一起使用时，一定要把 Babel 配置中的TypeScript 转换放在装饰器转换之前，如下所示：
+将 TypeScript 与 Babel 一起使用时，一定要把 Babel 配置中的 TypeScript 转换放在装饰器转换之前，如下所示：
 
 ```js
 {

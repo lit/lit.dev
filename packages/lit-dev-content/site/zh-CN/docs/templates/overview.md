@@ -2,7 +2,7 @@
 title: 模板概览
 eleventyNavigation:
   key: 概览
-  parent: Templates
+  parent: 模板
   order: 1
 versionLinks:
   v1: components/templates/

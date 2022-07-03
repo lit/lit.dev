@@ -1,5 +1,7 @@
 {
   "baseurl": "",
+  "lang": "en-GB",
+  "dir": "ltr",
   "selectedVersion": "v2",
   "latestVersion": "v2",
   "versions": {

@@ -2,7 +2,7 @@
 title: 表达式
 eleventyNavigation:
   key: 表达式
-  parent: Templates
+  parent: 模板
   order: 2
 versionLinks:
   v1: components/templates/#bind-properties-to-templated-elements
