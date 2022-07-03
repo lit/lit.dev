@@ -14,7 +14,7 @@ Shadow DOM 提供了很强的样式封装能力。如果Lit没有使用Shadow DO
 
 ## 为组件添加样式 {#add-styles}
 
-将模版字符串传给标签函数`css`，并将其然回值赋值给静态类字段`styles`来定义作用域样式。以这种方式定义样式可实现最佳性能：
+将模板字符串传给标签函数`css`，并将其然回值赋值给静态类字段`styles`来定义作用域样式。以这种方式定义样式可实现最佳性能：
 
 {% playground-example "docs/components/style/basic" "my-element.ts" %}
 

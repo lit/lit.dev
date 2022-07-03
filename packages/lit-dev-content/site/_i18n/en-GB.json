@@ -1,6 +1,6 @@
 {
     "Documentation": "Documentation",
-    "Tutorial": "Tutorial",
+    "Tutorials": "Tutorials",
     "Playground": "Playground",
     "Blog": "Blog",
 
@@ -52,5 +52,8 @@
     "connect_github_title": "GitHub",
     "connect_github_desc": "File issues, read the code, and make contributions",
     "connect_stackoverflow_title": "Stack Overflow",
-    "connect_stackoverflow_desc": "Ask and answer questions about Lit"
+    "connect_stackoverflow_desc": "Ask and answer questions about Lit",
+
+    "Previous": "Previous",
+    "Next": "Next"
 }   

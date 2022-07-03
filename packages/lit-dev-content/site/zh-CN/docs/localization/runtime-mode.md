@@ -45,7 +45,7 @@ export const allLocales = ['en', 'es-419', 'zh-Hans'];
 
 - `targetLocales: string[]`：由你生成的 `output.localeCodesModule` 模块导出的 `targetLocales` 变量。
 
-- `loadLocale: (locale: string) => Promise<LocaleModule>`：加载本地化模板的函数。返回一个 promise，该 promise 会解析出一个为指定语言环境代码声测的本地化模版木块。请参阅 [加载语言环境模块的方法](#approaches-for-loading-locale-modules)，了解你可以在此处使用的函数示例。
+- `loadLocale: (locale: string) => Promise<LocaleModule>`：加载本地化模板的函数。返回一个 promise，该 promise 会解析出一个为指定语言环境代码声测的本地化模板木块。请参阅 [加载语言环境模块的方法](#approaches-for-loading-locale-modules)，了解你可以在此处使用的函数示例。
 
 `configureLocalization` 返回一个具有以下属性的对象：
 

@@ -152,7 +152,7 @@ Lit 包含许多内置指令，可满足各种渲染需求：
   [`ref`](#ref)
 
   </td>
-  <td>获得一个模版中已渲染的元素的引用。</td>
+  <td>获得一个模板中已渲染的元素的引用。</td>
   </tr>
 
   <tr class="subheading"><td colspan="2">
@@ -1167,7 +1167,7 @@ customElements.define('my-element', MyElement);
 
 `live()` 对实时 DOM 值执行严格的等值检测，如果信的绑定值等于实时的 DOM 值，那就什么都不做。这就意味着如果绑定的表达式存在类型转换的话，就不应该使用 `live()`。如果你对 attribute 表达式使用 `live()` 指令，请确保传入的值是字符串类型。否则表达式在每次渲染时都会被更新。
 
-在 [练习场](/playground/#sample=examples/directive-live) 中探索 `live` 的更多内容。
+在 [游乐场](/playground/#sample=examples/directive-live) 中探索 `live` 的更多内容。
 
 ## 渲染特殊值
 
