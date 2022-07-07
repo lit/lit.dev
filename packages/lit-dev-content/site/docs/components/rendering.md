@@ -86,6 +86,6 @@ For more information about working with shadow DOM in your component, see [Worki
 
 * [Shadow DOM](/docs/components/shadow-dom/)
 * [Templates overview](/docs/templates/overview/)
-* [Template expressions](/docs/templates/overview/)
+* [Template expressions](/docs/templates/expressions/)
 
 
