@@ -51,7 +51,7 @@ The component constructor is a good place to add event listeners on the componen
 ```js
 constructor() {
   super();
-  this.addEventListener('click', (e) => console.log(e.type, e.target.localName)));
+  this.addEventListener('click', (e) => console.log(e.type, e.target.localName));
 }
 ```
 
