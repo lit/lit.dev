@@ -1,16 +1,19 @@
+/*
+  Dependencies for examples including:
+  - React
+  - ReactDOM
+  - SimpleGreeting web component
+*/
+
 import {html, css, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-
 declare global {
-    interface Window {
-        React: any;
-        ReactDOM: any;
-    }
+  interface Window {
+      React: any;
+      ReactDOM: any;
+  }
 }
-
-const React = window.React;
-const ReactDOM = window.ReactDOM;
 
 @customElement('simple-greeting')
 class SimpleGreeting extends LitElement {
@@ -23,5 +26,10 @@ class SimpleGreeting extends LitElement {
     return html`<p>Hello, ${this.name}!</p>`;
   }
 }
+
+
+// React does not directly support es modules
+const React = window.React;
+const ReactDOM = window.ReactDOM;
 
 export {React, ReactDOM, SimpleGreeting};

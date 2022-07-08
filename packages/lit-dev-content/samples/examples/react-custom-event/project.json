@@ -2,10 +2,9 @@
   "extends": "/samples/base.json",
   "order": 2,
   "title": "Custom events",
-  "description": "Run JSX in the playground.",
+  "description": "Listen for custom events in React.",
   "section": "React",
   "files": {
-    "app.tsx": {},
     "index.tsx": {},
     "deps.ts": {},
     "index.html": {}

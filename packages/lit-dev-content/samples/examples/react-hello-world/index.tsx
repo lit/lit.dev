@@ -1,18 +1,18 @@
 import {
     React,
     ReactDOM,
-    SimpleGreeting as SimpleGreetingComponent,
+    SimpleGreeting,
 } from './deps.js';
+
 import { createComponent } from '@lit-labs/react';
 
-
-const SimpleGreeting = createComponent(
+const Greeting = createComponent(
     React,
     'simple-greeting',
-    SimpleGreetingComponent,
+    SimpleGreeting,
 )
 
 const section = document.querySelector('section');
 const root = ReactDOM.createRoot(section!);
 
-root.render(<SimpleGreeting name={"buster"}></SimpleGreeting>);
+root.render(<Greeting name={"wonderful"}></Greeting>);

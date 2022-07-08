@@ -1,8 +1,8 @@
 {
   "extends": "/samples/base.json",
   "order": 0,
-  "title": "Wrap web component",
-  "description": "Run JSX in the playground.",
+  "title": "Render a Web Component",
+  "description": "Use a web component in a React app.",
   "section": "React",
   "files": {
     "index.tsx": {},

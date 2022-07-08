@@ -1,12 +1,10 @@
-import {React} from "./deps.js";
+import {React, Button as ButtonWC} from "./deps.js";
 import {createComponent} from "@lit-labs/react";
-import {Button} from '@material/mwc-button';
 
-
-const MWCButton = createComponent(
+const Button = createComponent(
   React,
-  'mwc-button',
-  Button,
+  'demo-button',
+  ButtonWC,
 )
 
 const App = () => {
@@ -19,12 +17,10 @@ const App = () => {
  return (
     <>
         <div>There have been {count} clicks!</div>
-        <MWCButton
-            onClick={clickCallback}
-            outlined="${true}">Increase count ++</MWCButton>
+        <Button
+            onClick={clickCallback}>click ++</Button>
     </>
   )
 };
-
 
 export { App };
