@@ -14,11 +14,11 @@ versionLinks:
 
 任何 Javascript 代码，包括 Lit 元素本身，都可以监听事件并根据事件采取行动。例如，工具栏元素可能会在选择菜单项时过滤列表；登录元素在登录按钮的被点击时可能会处理登录相关事物。
 
-## 事件监听
+## 事件监听 { #listening-to-events }
 
 除了标准的 `addEventListener` API 之外，Lit 还引入了一种声明式添加事件监听器的方式。
 
-### 在模板中添加事件监听器
+### 在模板中添加事件监听器 {#adding-event-listeners-in-the-element-template}
 
 你可以在模板中使用 `@` 表达式将事件监听器添加到组件模板中的元素。渲染模板时添加声明式事件监听器。
 
@@ -42,7 +42,7 @@ private _handleTouchStart(e) { console.log(e.type) }
 
 </div>
 
-### 向组件或其 shadow root 上添加事件监听器
+### 向组件或其 shadow root 上添加事件监听器 {#adding-event-listeners-to-the-component-or-its-shadow-root}
 
 可以使用标准的 `addEventListener` DOM 方法向组件本身添加一个监听器，就可以监听来自组件插槽中的子元素以及通过组件模板渲染到 shadow DOM 中的子元素分发的事件。有关完整详细信息，请参阅 MDN 上的 [EventTarget.addEventListener()](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)。
 
@@ -63,7 +63,7 @@ constructor() {
 
 {% playground-example "docs/components/events/host/" "my-element.ts" %}
 
-### 添加事件监听器到其他元素上
+### 添加事件监听器到其他元素上 {#adding-event-listeners-to-other-elements}
 
 如果你的组件将事件监听器添加到除了它自己和它的模板 DOM 之外的任何东西上——例如：`Window`、`Document` 或主 DOM 树中的某些元素——你应该在 `connectedCallback` 中添加监听器并在 `disconnectedCallback` 中移除监听。
 
@@ -84,7 +84,7 @@ disconnectedCallback() {
 
 有关 `connectedCallback` 和 `disconnectedCallback` 的更多信息，请参阅MDN上使用自定义元素 [生命周期回调](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements) 的文档。
 
-### 性能优化
+### 性能优化 { #optimizing-for-performance }
 
 添加事件侦听器的速度非常快，而且通常不需要考虑性能问题。但是，对于使用频率高且需要大量事件监听器的组件，可以通过[事件委托](#event-delegation)来减少使用监听器的数量和在渲染后 [异步](#async-events）添加监听器来优化首次渲染性能。
 
@@ -114,7 +114,7 @@ async firstUpdated() {
 }
 ```
 
-### 理解事件监听器中的 `this`
+### 理解事件监听器中的 `this` { #understanding-this-in-event-listeners }
 
 在模板中使用声明式 `@` 语法添加的事件监听器会自动绑定到组件。
 
@@ -148,7 +148,7 @@ export class MyElement extends LitElement {
 
 请参阅MDN上的 [`this` 的文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)了解更多详细信息。
 
-### 监听重复模板中触发的事件
+### 监听重复模板中触发的事件 { #listening-to-events-fired-from-repeated-templates }
 
 在监听重复项的事件时，如果事件冒泡，通常使用 [事件委托](#event-delegation) 会很方便。当事件没有冒泡时，可以在重复的元素上添加监听器。以下是两种方法的示例：
 
@@ -171,7 +171,7 @@ myElement.dispatchEvent(event);
 
 请参阅 MDN 上的 [EventTarget.dispatchEvent()](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/dispatchEvent)了解有关分发事件的完整描述。
 
-### 什么时候分发事件
+### 什么时候分发事件 { #when-to-dispatch-an-event }
 
 应该分发事件来响应用户交互或组件状态的异步更改。组件所有者通过其 attribute 或 property API 所做的状态更改则**不**应该分发事件。这通常是原生 Web 平台元素的工作方式。
 
@@ -183,7 +183,7 @@ myElement.dispatchEvent(event);
 
 {% playground-ide "docs/components/events/dispatch/" "my-dispatcher.ts" %}
 
-### 在元素更新后分发事件
+### 在元素更新后分发事件 { #dispatching-events-after-an-element-updates }
 
 通常，只有在元素更新和渲染之后才应该触发事件。如果事件的目的是传达因用户交互而导致的渲染状态的变化，这可能是必要的。在这种情况下，可以在更改组件的状态之后等待其 `updateComplete` promise。更改状态之后，应该等待 `updateComplete` promise 被 resolve 之后再分发事件。
 
@@ -273,7 +273,7 @@ handleMyEvent(event) {
 
 请参阅 [MDN 上有关 composedPath 的文档](https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath)了解更多信息。
 
-## 事件分发器和监听器之间的通信
+## 事件分发器和监听器之间的通信 { #communicating-between-the-event-dispatcher-and-listener }
 
 事件的存在主要是为了将更改从事件分发器传递到事件监听器，但事件也可用于将信息从监听器传递回分发器。
 

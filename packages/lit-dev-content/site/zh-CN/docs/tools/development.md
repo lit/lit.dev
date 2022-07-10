@@ -18,7 +18,7 @@ versionLinks:
 
 查看 [Starter Kits]({{baseurl}}/docs/tools/starter-kits/) 文档，可以轻松地通过预配置项来培植出包含上述所有功能的开发环境。
 
-## 开发和生产构建
+## 开发和生产构建 {#development-and-production-builds}
 
 所有的 Lit 包都使用 Node 支持的 [导出条件](https://nodejs.org/api/packages.html#packages_conditional_exports) 进行发布，并同时发布开发和生产两个版本。
 
@@ -39,7 +39,7 @@ export default {
 };
 ```
 
-### 开发构建中的运行时警告
+### 开发构建中的运行时警告 {#development-build-runtime-warnings}
 
 `ReactiveElement` 和 `LitElement` 的开发版本支持额外的运行时警告，有助于识别在生产版本中检查成本很高的问题。
 
@@ -254,6 +254,6 @@ npx eslint yourfile.js
 
 ESLint 已经 [集成](https://eslint.org/docs/user-guide/integrations#editors) 到了许多代码编辑器中。 如果你在 ESLint 配置中安装了 [`eslint-plugin-lit` for ESLint](https://www.npmjs.com/package/eslint-plugin-lit)，那么你的 IDE 将会显示 Lit 特定的错误和警告。
 
-### 其他插件
+### 其他插件 {#other-plugins}
 
 有关其他 IDE 插件以及其他工具和信息，请参阅 [awesome-lit-html](https://github.com/web-padawan/awesome-lit-html#ide-plugins) 仓库。

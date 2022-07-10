@@ -30,6 +30,6 @@ Lit 模板极具表现力，允许你以多种方式呈现动态内容：
  - [内置指令]({{baseurl}}/docs/templates/directives/): 指令是可以扩展 Lit 模板功能的函数。Lit 包含一组内置指令，可帮助满足各种渲染需求。
  - [自定义指令]({{baseurl}}/docs/templates/custom-directives/): 你还可以编写自己的指令来根据需要自定义 Lit 的渲染。
 
-## 独立模板
+## 独立模板 {#standalone-templating}
 
 你还可以在 Lit 组件之外使用 Lit 的模板库定义独立模板。有关详细信息，请参阅 [独立的 lit-html 模板]({{baseurl}}/docs/libraries/standalone-templates)。

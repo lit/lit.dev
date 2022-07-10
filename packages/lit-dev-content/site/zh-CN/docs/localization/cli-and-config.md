@@ -12,7 +12,7 @@ eleventyNavigation:
 lit-localize command [--flags]
 ```
 
-### 命令
+### 命令 {#commands}
 
 <br>
 
@@ -21,7 +21,7 @@ lit-localize command [--flags]
 | `extract` | 从所有输入文件中提取 `msg` 调用并创建或更新 XLIFF (`.xlf`) 文件。                                                                                                                                                                                                                                                                           |
 | `build`   | 使用配置中的 [mode](/docs/localization/overview/#output-modes) 将翻译重新合并到你的应用程序中。 |
 
-### 选项
+### 选项 {#flags}
 
 <br>
 
@@ -30,9 +30,9 @@ lit-localize command [--flags]
 | `--help`   | Display help about usage. 显示使用帮助的相关信息。                                                   |
 | `--config` | JSON [配置文件](#config-file) 的路径。 默认为 `./lit-localize.json` |
 
-## 配置文件
+## 配置文件 {#config-file}
 
-### 常规配置
+### 常规配置 {#general-settings}
 
 <div class="alert alert-info">
 
@@ -111,7 +111,7 @@ lit-localize command [--flags]
   </dd>
 </dl>
 
-### 运行时模式配置
+### 运行时模式配置 {#runtime-mode-settings}
 
 <dl class="params">
   <dt class="paramName">output.outputDir</dt>
@@ -132,7 +132,7 @@ lit-localize command [--flags]
 
 </dl>
 
-### 转换模式配置
+### 转换模式配置 {#transform-mode-settings}
 
 <dl class="params">
    <dt class="paramName">output.outputDir</dt>
@@ -144,7 +144,7 @@ lit-localize command [--flags]
 
 </dl>
 
-### XLIFF 模式配置
+### XLIFF 模式配置 {#xliff-mode-settings}
 
 <dl class="params">
   <dt class="paramName">interchange.xliffDir</dt>
@@ -163,7 +163,7 @@ lit-localize command [--flags]
   </dd>
 </dl>
 
-### XLB 模式设置
+### XLB 模式设置 {#xlb-mode-settings}
 
 <dl class="params">
   <dt class="paramName">interchange.outputFile</dt>

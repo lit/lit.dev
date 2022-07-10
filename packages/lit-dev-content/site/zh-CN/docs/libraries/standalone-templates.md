@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Lit 将 LitElement 的组件模型与基于 JavaScript 模板字符串的渲染结合到一个易于使用的包中。 但是，Lit 的模板部分被分解为一个名为 `lit-html` 的独立库，它可以在 Lit 组件模型之外的任何需要高效地渲染和更新 HTML 的地方使用。
 
-## lit-html 独立包
+## lit-html 独立包 {#lit-html-standalone-package}
 
 `lit-html` 包可以与 `lit` 分开安装：
 
@@ -31,7 +31,7 @@ import {html, render} from 'lit-html';
 * `lit-html/static.js` - [静态 html 标签]({{baseurl}}/docs/templates/expressions/#static-expressions)
 * `lit-html/polyfill-support.js` - 与 web 组件 polyfill 交互的支持（参见 [样式和 lit-html 模板](#styles-and-lit-html-templates)）
 
-## 渲染 lit-html 模板
+## 渲染 lit-html 模板 {#rendering-lit-html-templates}
 
 Lit 模板是使用带有 `html` 标签的 JavaScript 模板字符串编写的。 字符串的内容大多是简单的、声明式的 HTML，并且可能包含一些用于插入和更新模板的动态部分的表达式（请参阅 [模板]({{baseurl}}/docs/templates/overview/) 以获取有关 Lit 模板语法的完整参考）。
 
@@ -49,7 +49,7 @@ const sayHi = html`<h1>Hello ${name}</h1>`;
 render(sayHi, document.body);
 ```
 
-## 渲染动态数据
+## 渲染动态数据 {#render-dynamic-data}
 
 To make your template dynamic, you can create a _template function_. Call the template function any time your data changes.
 要使你的模板动态化，您可以创建一个 _模板函数_。 每当数据更改时调用模板函数。
@@ -74,7 +74,7 @@ render(myTemplate('mars'), document.body);
 
 当你调用 `render` 时，**lit-html 仅更新自上次渲染以来已更改的模板部分。** 这使得 lit-html 更新非常快。
 
-### 渲染选项
+### 渲染选项 {#render-options}
 
 `render` 方法还接受一个 `options` 参数，允许你指定以下选项：
 
@@ -110,7 +110,7 @@ render(template(), container, {renderBefore});
 
 </div>
 
-## 样式和 lit-html 模板
+## 样式和 lit-html 模板 {#styles-and-lit-html-templates}
 
 lit-html 专注于一件事：渲染 HTML。 如何将样式应用到 lit-html 创建的 HTML 取决于你如何使用它——例如，如果你在像 LitElement 这样的组件系统中使用 lit-html，你可以遵循该组件系统使用的模式。
 

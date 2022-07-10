@@ -22,7 +22,7 @@ eleventyNavigation:
 
 Mixin 和响应式控制器都允许你将与功能相关的组件逻辑分解为可重用单元。 有关控制器和 mixin 的比较，请参阅下一节。
 
-## 控制器与 mixin
+## 控制器与 mixin {#controllers-and-mixins}
 
 控制器和类 mixin 在某些方面非常相似。 它们都可以连接到宿主组件的生命周期、维护状态并触发宿主元素更新。
 

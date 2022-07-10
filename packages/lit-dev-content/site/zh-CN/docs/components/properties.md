@@ -36,7 +36,7 @@ Lit 会自动管理你的响应式属性（property）及其相应的属性（at
 * **父类属性**。 Lit 自动继承父类声明的属性。如果你不想更改选项，就不需要重新声明属性。
 * **元素升级**。 如果一个 Lit 组件的元素已经存在于 DOM 树中，然后再次去定义组件，那么就会触发 Lit 的升级逻辑，确保在升级之前设置在元素上的任何属性（property）在元素在升级时触发正确的响应式副作用。
 
-## 公共属性（property）和内部状态
+## 公共属性（property）和内部状态 {#public-properties-and-internal-state}
 
 公共属性是组件公共 API 的一部分。一般来说，公共属性尤其是公共响应式属性，应该被视为*输入*。
 
@@ -97,7 +97,7 @@ class MyElement extends LitElement {
 
 </div>
 
-### 在静态属性类字段中声明属性
+### 在静态属性类字段中声明属性{#declaring-properties-in-a-static-properties-class-field}
 
 在静态属性类字段 `properties` 中声明属性:
 
@@ -158,7 +158,7 @@ plugins = [
 
 请参阅[避免类字段和装饰器的问题]({{baseurl}}/docs/components/decorators/#avoiding-issues-with-class-fields)来了解更多关于如何使用装饰器装饰类属性的信息。
 
-### 属性选项
+### 属性选项 {#property-options}
 
 属性选项对象可以包含下列属性：
 
@@ -238,7 +238,7 @@ plugins = [
 
 省略选项对象或者传入一个空的选项对象相当于给所有的选项指定默认值。
 
-## 内部响应式属性
+## 内部响应式属性 {#internal-reactive-state}
 
 *内部响应式状态*指的是不属于组件公共 API 的响应式属性。这些状态 property 没有与之对应的 attibute，并且不允许从组件外部使用，只能由组件本身设置。
 

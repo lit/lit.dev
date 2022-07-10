@@ -24,7 +24,7 @@ export class SimpleGreeting extends LitElement { /* ... */  }
 customElements.define('simple-greeting', SimpleGreeting);
 ```
 
-## Lit 组件就是一个 HTML 元素
+## Lit 组件就是一个 HTML 元素 { #a-lit-component-is-an-html-element }
 
 当你在定义 Lit 组件的时候，其实你就是在定义[自定义 HTML 元素](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)。因此你可以像使用任何内置元素一样使用自定义的元素：
 

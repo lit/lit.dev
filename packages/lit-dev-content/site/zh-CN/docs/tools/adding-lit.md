@@ -10,7 +10,7 @@ versionLinks:
 
 Lit 不需要任何专门的工具，并且 Lit 组件可以在任何 JavaScript 框架或任何服务端模板系统或 CMS 中工作，因此 Lit 非常适合添加到现有项目和应用程序中。
 
-## 从 npm 安装
+## 从 npm 安装 {#install-from-npm}
 
 首先，从 npm 安装 `lit` 包：
 
@@ -20,7 +20,7 @@ npm i lit
 
 如果你还没有使用 npm 来管理 JavaScript 依赖项，则必须首先设置你的项目。 我们推荐使用 [npm CLI](https://docs.npmjs.com/cli/v7/configuring-npm/install)。
 
-## 添加一个组件
+## 添加一个组件 {#add-a-component}
 
 你可以在项目资源中的任何位置创建新元素：
 
@@ -57,13 +57,13 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-## 使用你的组件
+## 使用你的组件 {#use-your-component}
 
 How you use a component depends on your project and the libraries or frameworks it uses. You can use your component in HTML, with DOM APIs, or in template languages:
 
 如何使用组件取决于你的项目以及它使用的库或框架。 你可以在 HTML、DOM API 或模板语言中使用你的组件：
 
-### 纯 HTML
+### 纯 HTML {#plain-html}
 ```html
 <script type="module" src="/lib/components/my-elements.js">
 <my-element></my-element>
@@ -82,11 +82,11 @@ export const App = () => (
 )
 ```
 
-### 框架模板
+### 框架模板 {#framework-templates}
 
 大多数 JavaScript 框架对 [ Web 组件](https://custom-elements-everywhere.com/) 和 Lit 都有强大的支持。 只需导入你的元素定义并在模板中使用元素标签名称即可。
 
-## 下一步
+## 下一步 {#next-steps}
 
 此时，你应该能够构建并运行您的项目并看到 “Hello from MyElement！” 信息。
 

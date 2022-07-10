@@ -27,7 +27,7 @@ Lit 的模板可以包含 Javascript 表达式。你可以使用表达式去设�
 
 请参阅[模板]({{baseurl}}/docs/templates/overview/)了解更多编写模板的信息。
 
-## 写好 render() 函数
+## 写好 render() 函数 { #writing-a-good-render()-method }
 
 为了充分利用 Lit 的函数式渲染模型， `render()` 方法应遵循以下原则：
 
@@ -44,7 +44,7 @@ Lit 的模板可以包含 Javascript 表达式。你可以使用表达式去设�
 
 有关详细信息，请参阅 [响应式属性]({{baseurl}}/docs/components/properties/)。
 
-## 编写模板
+## 组合模板 { #composing-templates }
 
 你可以使用其他模板来编写 Lit 模板。下面是一个叫做 `<my-page>` 的组件的例子，它的模板是由 header，footer，和主体内容构成。
 
@@ -63,7 +63,7 @@ Move example to composition section, add xref.
 {% playground-ide "docs/templates/composeimports" %}
 
 
-## 模板什么时候渲染
+## 模板什么时候渲染 { #when-templates-render }
 
 当一个Lit组件被添加到页面上的 DOM 时，就会进行初始渲染模板。初始渲染之后，组件的响应式属性的任何更改都会触发更新周期，重新渲染组件。
 
@@ -73,7 +73,7 @@ Lit 引入批量更新机制最大程度提高性能和效率。一次性设置�
 
 请参阅[属性更新时发生了什么]({{baseurl}}/docs/components/properties/#when-properties-change)了解更多关于更新周期的信息。
 
-## DOM 封装
+## DOM 封装 { #dom-encapsulation }
 
 Lit 使用 shadow DOM 来封装组件渲染的DOM。Shadow DOM允许元素创建自己的、独立于主文档树的 DOM 树。它是 Web 组件规范的核心特性，是实现互操作性、样式封装和其他特性的基础。
 
@@ -81,7 +81,7 @@ Lit 使用 shadow DOM 来封装组件渲染的DOM。Shadow DOM允许元素创建
 
 请参阅[使用 Shadow DOM]({{baseurl}}/docs/components/shadow-dom/)了解更多关于如何在组件中使用 shadow DOM。
 
-## 更多资料
+## 更多资料 { #see-also }
 
 * [Shadow DOM]({{baseurl}}/docs/components/shadow-dom/)
 * [模板预览]({{baseurl}}/docs/templates/overview/)

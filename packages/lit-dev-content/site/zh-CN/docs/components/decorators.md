@@ -37,7 +37,7 @@ customElements.define('my-element', MyElement);
 
 有关配置属性的更多信息，请参阅 [响应式属性]({{baseurl}}/docs/components/properties/)。
 
-## 内置装饰器
+## 内置装饰器 {#built-in-decorators}
 
 | 装饰器 | 概括| 详情 |
 |-----------|---------|--------------|
@@ -51,7 +51,7 @@ customElements.define('my-element', MyElement);
 | {% api "@queryAssignedElements" "queryAssignedElements" %} | 定义一个属性，该属性返回分配给特定插槽的子元素 | [Shadow DOM]({{baseurl}}/docs/components/shadow-dom/#query-assigned-nodes) |
 | {% api "@queryAssignedNodes" "queryAssignedNodes" %} | 定义返回分配给特定插槽的子节点的属性 | [Shadow DOM]({{baseurl}}/docs/components/shadow-dom/#query-assigned-nodes) |
 
-## 导入装饰器
+## 导入装饰器 {#importing-decorators}
 
 你可以从 `lit/decorators.js` 模块导入所有 lit 装饰器：
 
@@ -113,7 +113,7 @@ plugins = [
 
 </div>
 
-### 在 TypeScript 和 Babel 中使用装饰器
+### 在 TypeScript 和 Babel 中使用装饰器 {#using-decorators-with-typescript-and-babel}
 
 将 TypeScript 与 Babel 一起使用时，一定要把 Babel 配置中的 TypeScript 转换放在装饰器转换之前，如下所示：
 

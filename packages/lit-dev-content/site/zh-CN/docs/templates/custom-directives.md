@@ -36,7 +36,7 @@ export noVowels = (str) => str.replaceAll(/[aeiou]/ig,'x');
 
 本页的其余部分将会描述类指令。
 
-## 创建类指令
+## 创建类指令 {#creating-class-based-directives}
 
 要创建一个类指令，你必须:
 
@@ -63,7 +63,7 @@ const template = html`<div>${hello()}</div>`;
 
 一些指令需要在正常更新周期之外异步更新 DOM。要创建 _异步指令_，请扩展 `AsyncDirective` 基类而不是 `Directive`。请参阅 [异步指令](#async-directives)了解有关详细信息。
 
-## 类指令的生命周期
+## 类指令的生命周期 {#lifecycle-of-a-class-based-directive}
 
 指令类有一些内置的生命周期方法：
 
@@ -75,7 +75,7 @@ const template = html`<div>${hello()}</div>`;
 
 可以在正常更新周期之外更新 DOM 的异步指令，会使用一些额外的生命周期回调。请参阅 [异步指令](#async-directives)了解有关详细信息。
 
-### 一次性设置： constructor()
+### 一次性设置： constructor() {#one-time-setup:-constructor()}
 
 When Lit encounters a `DirectiveResult` in an expression for the first time, it will construct an instance of the corresponding directive class (causing the directive's constructor and any class field initializers to run):
 当 Lit 第一次在表达式中遇到 `DirectiveResult` 时，它将构造相应指令类的实例（这会导致指令的构造函数和类字段初始化程序运行）：
@@ -115,7 +115,7 @@ class MyDirective extends Directive {
 
 构造函数接收一个单一的 `PartInfo` 对象，该对象提供有关使用该指令的表达式的元数据。这对于在指令设计为仅用于特定类型的表达式的情况下提供错误检查很有用（参见 [将指令限制为一种表达式类型](#limiting-a-directive-to-one-expression-type))。
 
-### 声明式渲染： render()
+### 声明式渲染： render() {#declarative-rendering:-render()}
 
 `render()` 方法应该返回要渲染到 DOM 中的值。它可以返回任何可渲染的值，包括 `DirectiveResult`。
 
@@ -161,7 +161,7 @@ const template = html`<div>${max(someNumber, 0)}</div>`;
 
 {% endswitchable-sample %}
 
-### 命令式 DOM 访问: update()
+### 命令式 DOM 访问: update() {#imperative-dom-access:-update()}
 
 在更高级的场景中，你的指令可能需要访问底层 DOM 并命令式读取或修改它。 你可以通过覆盖 `update()` 回调来实现这一点。
 
@@ -230,7 +230,7 @@ const template = html`<div a b>${attributeLogger()}</div>`;
 
 此外，`directive-helpers.js` 模块包括许多作用于 `Part` 对象的辅助函数，可用于在指令的 `ChildPart` 中动态创建、插入和移动部分。
 
-#### 在 update() 中调用 render() 
+#### 在 update() 中调用 render()
 
 `update()` 的默认实现只是简单地调用 `render()` 并返回其返回值。 如果你重写了 `update()` 并且仍想调用 `render()` 来生成一个值，那么你需要显式地调用 `render()`。
 
@@ -260,11 +260,11 @@ class MyDirective extends Directive {
 
 {% endswitchable-sample %}
 
-### update() 和 render() 的区别
+### update() 和 render() 的区别 {#differences-between-update()-and-render()}
 
 虽然 `update()` 回调比 `render()` 回调更强大，但有一个重要区别：当使用 `@lit-labs/ssr` 包进行服务器端渲染 (SSR) 时，_只有_ ` render()` 方法会在服务器上调用。 为了与 SSR 兼容，指令应该从 `render()` 返回值，并且仅将 `update()` 用于需要访问 DOM 的逻辑。
 
-## 无改变的信号
+## 无改变的信号 {#signaling-no-change}
 
 有时，指令可能没有任何新内容可供 Lit 渲染。 此时，可以从 `update()` 或 `render()` 方法返回 `noChange` 来向外部发出无改变的信号。 这与返回 `undefined` 不同，因为 `undefined` 会导致 Lit 清除与指令关联的 `Part`。 而返回 `noChange` 会保留先前渲染的值。
 
@@ -314,7 +314,7 @@ class CalculateDiff extends Directive {
 
 {% endswitchable-sample %}
 
-## 将指令限制为一种表达式类型
+## 将指令限制为一种表达式类型 {#limiting-a-directive-to-one-expression-type}
 
 某些指令仅在一种上下文中有用，例如属性表达式或子表达式。 如果放置在错误的上下文中，该指令应该抛出一个适当的错误。
 
@@ -354,7 +354,7 @@ class ClassMap extends Directive {
 
 {% endswitchable-sample %}
 
-## 异步指令
+## 异步指令 {#async-directives}
 
 
 前面示例中的指令都是是同步的，即：它们从自己的 `render()`/`update()` 生命周期回调同步返回值，因此它们的结果可以在组件的 `update()` 回调期间写入 DOM。

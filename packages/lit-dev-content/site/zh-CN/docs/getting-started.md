@@ -10,19 +10,19 @@ versionLinks:
 
 可以通过多种方式使用 Lit：在我们的游乐场和交互式教程中使用，或者直接将 Lit 安装到现有的项目中。
 
-## Lit游乐场
+## Lit游乐场 { #lit-playground }
 
 立即开始使用交互式游乐场和示例。从“[Hello World]({{baseurl}}/playground)”开始，然后对其进行修改或继续阅读更多示例。
 
-## 交互式教程
+## 交互式教程 { #interactive-tutorial }
 
 学习[分步教程]({{baseurl}}/tutorials/)，了解如何在几分钟内构建一个 Lit 组件。
 
-## Lit入门套件
+## Lit入门套件 { #lit-starter-kits }
 
 我们分别提供 Typescript 和 Javascript 组件的入门套件，基于它可以创建独立的，可重用的组件。在这里查看[入门套件]({{baseurl}}/docs/tools/starter-kits/)。
 
-## 从 npm 安装到本地
+## 从 npm 安装到本地 { #install-locally-from-npm }
 
 可以通过 npm 将 `lit` 包安装到本地。
 
@@ -45,7 +45,7 @@ import {LitElement, html} from 'lit';
 
 {% endswitchable-sample %}
 
-## 使用 bundle
+## 使用 bundle { #use-bundles }
 
 Lit 也可作为预构建的单文件 bundle 提供。提供 bundle 是为了在开发工作流程中提供更大的灵活性：例如，如果你希望下载单个文件而不是使用 npm 和构建工具。bundle 是没有依赖关系的标准 JavaScript 模块 - 任何现代浏览器都应该能够通过 `<script type="module">` 导入和运行 bundle。
 
@@ -82,10 +82,10 @@ Lit 也可作为预构建的单文件 bundle 提供。提供 bundle 是为了在
   </dd>
 </dl>
 
-## 在现有项目添加Lit
+## 在现有项目添加Lit { #add-lit-to-an-existing-project }
 
 请参阅[将Lit添加到现有项目]({{baseurl}}/docs/tools/adding-lit)，将Lit添加到现有项目或应用程序。
 
-## Open WC 项目生成器
+## Open WC 项目生成器 { #open-wc-project-generator }
 
 Open WC 项目有一个[项目生成器](https://open-wc.org/docs/development/generator/)，可以使用 Lit 搭建一个应用程序项目。

@@ -12,7 +12,7 @@ Lit 组件使用标准的自定义元素生命周期方法。 此外，Lit 还�
 
 ## 标准自定义元素生命周期 { #custom-element-lifecycle }
 
-Lit 组件是标准的自定义元素，并继承了自定义元素的生命周期方法。 请查看 MDN上 的 [使用生命周期回调](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements#%E4%BD%BF%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0) 了解更多有关自定义元素生命周期的信息。  
+Lit 组件是标准的自定义元素，并继承了自定义元素的生命周期方法。 请查看 MDN上 的 [使用生命周期回调](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements#%E4%BD%BF%E7%94%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0) 了解更多有关自定义元素生命周期的信息。
 
 <div class="alert alert-info">
 
@@ -86,7 +86,7 @@ disconnectedCallback() {
 
 </div>
 
-### attributeChangedCallback() { %attributeChangedCallback }
+### attributeChangedCallback() { #attributeChangedCallback }
 
 元素的任何一个 `observedAttributes` 更改时调用。
 
@@ -373,7 +373,7 @@ class MyElement extends LitElement {
 }
 ```
 
-## 外部生命周期钩子: 控制器和装饰器
+## 外部生命周期钩子: 控制器和装饰器 {#external-lifecycle-hooks}
 
 除了实现生命周期回调的组件类之外，外部代码可能也需要挂钩到组件的生命周期，例如 [装饰器]({{baseurl}}/docs/components/decorators/) 。
 

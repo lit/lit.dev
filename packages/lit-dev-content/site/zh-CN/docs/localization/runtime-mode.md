@@ -19,7 +19,7 @@ export const templates = {
 };
 ```
 
-## 使用运行时模式的示例
+## 使用运行时模式的示例 {#example-of-using-runtime-mode}
 
 下面示例演示了使用 Lit Localize 运行时模式构建的应用程序：
 
@@ -27,7 +27,7 @@ export const templates = {
 
 Lit GitHub 仓库包含完整的Lit Localize 运行时模式的示例（[JavaScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-js), [TypeScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-ts))，你可以将其用作模板。
 
-## 配置运行时模式
+## 配置运行时模式 {#configuring-runtime-mode}
 
 在你的 `lit-localize.json` 配置文件中，将 `output.mode` 属性设置为 `runtime`，并将 `output.outputDir` 属性设置为你希望生成的本地化模板模块存放的位置。 有关详细信息，请参阅 [运行时模式设置]({{baseurl}}/docs/localization/cli-and-config#runtime-mode-settings)。
 
@@ -70,7 +70,7 @@ export const {getLocale, setLocale} = configureLocalization({
 });
 ```
 
-## 自动重新渲染
+## 自动重新渲染 {#automatically-re-render}
 
 想要在每次切换活动语言环境时自动触发组件的重新渲染应该怎么做？ 如果使用 JavaScript 编写，需要在的 `constructor` 中调用 `updateWhenLocaleChanges` 函数，或者如果使用 TypeScript 编写，需要使用 `@localized` 装饰器装饰你的类。
 
@@ -111,7 +111,7 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-## 状态事件
+## 状态事件 {#status-event}
 
 每当切换语言环境开始、完成或失败时，`lit-localize-status` 事件都会在 `window` 上触发。 你可以使用该事件进行：
 
@@ -121,7 +121,7 @@ customElements.define('my-element', MyElement);
 
 - 执行其他与本地化相关的任务（例如，设置语言环境偏好 cookie）。
 
-### 事件类型
+### 事件类型 {#event-types}
 
 事件的 `detail.status` 字符串属性告诉你发生了什么样的状态变化，可以是 `loading`、`ready` 或 `error`：
 
@@ -160,7 +160,7 @@ customElements.define('my-element', MyElement);
   </dd>
 </dl>
 
-### 使用事件状态的示例
+### 使用事件状态的示例 {#example-of-using-the-status-event}
 
 ```ts
 // 每当加载新语言环境时显示/隐藏进度指示器，并在每次成功加载新语言环境时重新渲染应用程序。
@@ -184,11 +184,11 @@ window.addEventListener('lit-localize-status', (event) => {
 });
 ```
 
-## 加载语言环境模块的方法
+## 加载语言环境模块的方法 {#approaches-for-loading-locale-modules}
 
 Lit Localize 允许你加载任何你喜欢的语言环境模块，因为你可以将任何函数作为 `loadLocale` 选项传递。 以下是一些常见的模式：
 
-### 延迟加载
+### 延迟加载 {#lazy-load}
 
 使用 [动态导入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports) 仅在语言环境被激活时加载它。 这是一个很好的默认设置，因为它可以最大限度地减少用户下载和执行的代码量。
 
@@ -203,7 +203,7 @@ const {getLocale, setLocale} = configureLocalization({
 });
 ```
 
-### 预加载
+### 预加载 {#pre-load}
 
 页面加载时开始预加载所有语言环境。 仍然使用动态导入的方式来确保在获取语言环境模块时页面上的剩余脚本不会被阻塞。
 
@@ -222,7 +222,7 @@ const {getLocale, setLocale} = configureLocalization({
 });
 ```
 
-### 静态导入
+### 静态导入 {#static-imports}
 
 使用 [静态导入](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) 以阻止页面上其他脚本的方式预加载所有语言环境。
 

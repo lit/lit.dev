@@ -7,7 +7,7 @@ eleventyNavigation:
 ---
 
 
-## 确保在 render 中重新计算
+## 确保在 render 中重新计算 {#ensure-re-evaluation-on-render}
 
 每次调用 `msg` 函数时，它都会返回活动语言环境中给定字符串或 Lit 模板的版本。 然而，这个结果只是一个普通的字符串或模板； 当语言环境发生变化时，它*本质上*是不能重新渲染自己的。
 
@@ -75,7 +75,7 @@ render() {
 
 {% endswitchable-sample %}
 
-## 避免不必要的 HTML 标记
+## 避免不必要的 HTML 标记 {#avoid-unnecessary-html-markup}
 
 虽然 `@lit/localize` 完全支持在本地化模板中嵌入 HTML 标记，但最好尽可能避免这样做。 因为：
 
@@ -137,7 +137,7 @@ render() {
 }
 ```
 
-## 安全地重新导出或重写本地化 API
+## 安全地重新导出或重写本地化 API {#safely-re-exporting-or-re-assigning-localize-apis}
 
 静态分析用于确定你何时调用 `@lit/localize` `msg` 函数和其他 API，而不是同名的不同函数。
 

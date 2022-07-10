@@ -142,11 +142,11 @@ html`<main>${bodyText}</main>`
 * DOM 节点。
 * 上述受支持类型的数组或可迭代对象。
 
-### 原始值
+### 原始值 {#primitive-values}
 
 字符串、数字、布尔值、null 和 undefined 等原始值在插入到文本内容中或属性值内时，会转换为字符串。 它们会被拿去与前一个值比较，如果值没有更改，则不会更新 DOM。
 
-### 模板
+### 模板 {#templates}
 
 因为子节点位置的表达式可以返回 `TemplateResult`，所以你可以嵌套和组合模板：
 
@@ -173,7 +173,7 @@ html`
 
 有关使用 JavaScript 创建重复模板的更多信息，请参阅 [Lists](/docs/templates/lists/)。
 
-### DOM 节点
+### DOM 节点 {#dom-nodes}
 
 任何 DOM 节点都可以传给子节点表达式。 通常情况下 DOM 节点应该通过 `html` 指定模板的方式来渲染，但是在必要时也可以像这样直接渲染 DOM 节点。 该节点会被添加到 DOM 树的那个位置，同时也会从任何当前父节点中删除：
 
@@ -185,7 +185,7 @@ const page = html`
 `;
 ```
 
-### 数组和可迭代对象
+### 数组和可迭代对象 {#arrays-and-iterables}
 
 表达式还可以以任意组合的形式返回任何受支持类型的数组或可迭代对象。 你可以将此功能与标准 JavaScript（如 Array `map` 方法）一起使用，来创建重复的模板和列表。请参阅 [列表]({{baseurl}}/docs/templates/lists/) 了解有关示例。
 
@@ -491,11 +491,11 @@ customElements.define('my-anchor', MyAnchor);
 
 由于这些原因，最好将使用 `literal` 的表达式的更改保持在最低限度，并避免使用响应式属性来更改 `literal` 值，因为响应式属性旨在更改。
 
-### 模板结构
+### 模板结构 {#template-structure}
 
 插入静态值后，模板必须像普通的 Lit 模板一样格式正确，否则模板中的动态表达式可能无法正常工作。 有关详细信息，请参阅 [格式良好的 HTML](#well-formed-html) 部分。
 
-### 非 literal 静态 HTML
+### 非 literal 静态 HTML {#non-literal-statics}
 
 在极少数情况下，你可能需要将不是在脚本中定义的静态 HTML 插入到模板中，因此无法使用 `literal` 函数进行标记。 对于这些情况，可以使用 `unsafeStatic()` 函数并传入来自非脚本源的字符串来创建静态 HTML。
 

@@ -6,7 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-## 概览
+## 概览 {#overview}
 
 Lit 2.0 旨在处理为 LitElement 2.x 和 lit-html 1.x 编写的大多数代码。 将代码迁移到 Lit 2.0 需要进行少量更改。 所需的高级更改包括：
 
@@ -18,9 +18,9 @@ Lit 2.0 旨在处理为 LitElement 2.x 和 lit-html 1.x 编写的大多数代码
 
 以下部分将详细介绍这些更改。
 
-## 更新包和导入路径
+## 更新包和导入路径 {#update-packages-and-import-paths}
 
-### 使用`lit`包
+### 使用`lit`包 {#use-the-lit-package}
 
 Lit 2.0 附带了一个一站式的 `lit` 包，它将 `lit-html` 和 `lit-element` 合并到一个易于使用的包中。 使用以下命令进行升级：
 
@@ -42,7 +42,7 @@ import {LitElement, html} from 'lit';
 
 尽管 `lit-element@^3` 和 `lit-html@^2` 包应该在很大程度上向后兼容，但我们建议更新到 `lit` 包，因为其他包最终都会被弃用。
 
-### 更新装饰器导入
+### 更新装饰器导入 {#update-decorator-imports}
 
 之前版本的 `lit-element` 从主模块中导出了所有的 TypeScript 装饰器。 在 Lit 2.0 中，他们都被移动到一个单独的模块中，以便在未使用装饰器时获得更小的包大小。
 
@@ -55,7 +55,7 @@ import {property, customElement} from 'lit-element';
 import {property, customElement} from 'lit/decorators.js';
 ```
 
-### 更新指令导入
+### 更新指令导入 {#update-directive-imports}
 内置的 lit-html 指令现在也从 `lit` 包中导出。
 
 从:
@@ -67,7 +67,7 @@ import {repeat} from 'lit-html/directives/repeat.js';
 import {repeat} from 'lit/directives/repeat.js';
 ```
 
-### 更新独立的 lit-html 导入
+### 更新独立的 lit-html 导入 {#update-standalone-lit-html-imports}
 
 如果（在 LitElement 之外）独立使用 lit-html，你可以从 `lit/html.js` 入口点导入特定的独立 API，例如 `render`：
 
@@ -80,7 +80,7 @@ import {render, html} from 'lit-html';
 import {render, html} from 'lit/html.js';
 ```
 
-## 在使用 web 组件 polyfills 时加载 `polyfill-support`
+## 在使用 web 组件 polyfills 时加载 `polyfill-support` {#load-polyfill-support-when-using-web-components-polyfills}
 
 Lit 2.0 仍然支持低至类似 IE11 的浏览器。 然而，鉴于 Web 组件 API 在现代浏览器中的广泛采用，我们借此机会将与 Web 组件 polyfill 交互所需的所有代码从核心库中移出并放入一个可选的支持文件中，以便只在需要支持旧浏览器的时候引入。
 
@@ -115,7 +115,7 @@ export default {
 
 ```
 
-## 更新被重命名的 API
+## 更新被重命名的 API {#update-to-renamed-apis}
 
 以下高级 API 已在 Lit 2.0 中已经被重命名。 如果有使用到的话，在你的代码库中简单地重命名它们应该是安全的：
 
@@ -127,11 +127,11 @@ export default {
 | `_getUpdateComplete()` | `getUpdateComplete()` |  `LitElement` 和 `ReactiveElement` 类上用于覆盖 `updateComplete` promise 的方法。 |
 | `NodePart` | `ChildPart` | 通常只在指令代码中使用； 见下文。
 
-## 更新自定义指令实现
+## 更新自定义指令实现 {#update-custom-directive-implementations}
 虽然 _使用_ 指令的 API 应该 100% 向后兼容 1.x，但自定义指令的 _编写_ 方式发生了重大变化。 API 更改改进了围绕制定有状态指令的人机工程学，同时为 SSR 兼容指令提供了清晰的模式：服务器上只会调用“render”，而不会调用“update”。
 
 
-### 指令 API 更改概述
+### 指令 API 更改概述 {#overview-of-directive-api-changes}
 
 | 概念 | 原 API | 新 API |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -142,7 +142,7 @@ export default {
 | **Part&nbsp;验证** | 在每次渲染中使用 `instanceof` 来检查 `part` | 在构造函数中检查 `part.type` check in constructor |
 | **异步更新** | `part.setValue(v);`<br>`part.commit();` | 继承 `AsyncDirective` 而不是 `Directive`，并调用 `this.setValue(v)` |
 
-### 指令迁移示例
+### 指令迁移示例 {#example-directive-migration}
 
 下面是一个 lit-html 1.x 指令的示例，以及如何将其迁移到新的 API：
 
@@ -211,11 +211,11 @@ export class RenderCounter extends Directive {
 export const renderCounter = directive(RenderCounter);
 ```
 
-## 适配次要的重大变化
+## 适配次要的重大变化 {#adapt-to-minor-breaking-changes}
 
 为完整起见，以下列出了你可能需要调整代码以适配的次要但值得注意的重大更改。 我们预计这些变化会影响相对较少的用户。
 
-### `LitElement`
+### `LitElement` {#litelement}
 * 为简单起见，`requestUpdate` 不再返回 Promise。而是 await `updateComplete` promise。
 * 在更新周期中发生的错误会被压制，以便允许后续更新正常进行。现在错误会异步重新触发，以便可以检测到它们。可以通过 window.unhandledrejection 事件处理程序观察错误。
 * 通过 `createRenderRoot` 创建 `shadowRoot` 和对 `shadowRoot` 应用 `static 样式` 的支持已从 `LitElement` 移至`ReactiveElement`。
@@ -227,7 +227,7 @@ export const renderCounter = directive(RenderCounter);
 * LitElement 的 `adoptStyles` 方法已被移除。样式现在在 `createRenderRoot` 中被应用。可以重写此方法以自定义此行为。
 * 删除了`requestUpdateInternal`。 `requestUpdate` 方法现在与该方法相同，应该使用 `requestUpdate` 替代。
 
-### `lit-html`
+### `lit-html` {#lit-html}
 * `render()` 不再清除它在第一次渲染时渲染到的容器。它现在默认添加到容器中。
 * 注释中的表达不会渲染或更新。
 * Template caching happens per call site, not per template-tag/call-site pair. This means some rare forms of highly dynamic template tags are no longer supported.

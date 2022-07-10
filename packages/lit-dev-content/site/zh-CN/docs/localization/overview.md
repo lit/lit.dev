@@ -16,7 +16,7 @@ eleventyNavigation:
 
 - 可选择为每个语言环境编译，将额外的 JavaScript 减少到 0 KiB。
 
-## 安装
+## 安装 {#installation}
 
 安装 `@lit/localize` 客户端库和 `@lit/localize-tools` 命令行界面。
 
@@ -25,7 +25,7 @@ npm i @lit/localize
 npm i -D @lit/localize-tools
 ```
 
-## 快速入门
+## 快速入门 {#quick-start}
 
 1. 在 `msg` 函数中包裹一个字符串或模板（[详情](#making-strings-and-templates-localizable)）。
 2. 创建一个 `lit-localize.json` 配置文件 ([详情](#config-file))。
@@ -33,7 +33,7 @@ npm i -D @lit/localize-tools
 4. 编辑生成的 XLIFF 文件，添加 `<target>` 翻译标签 ([详情](#translation-with-xliff))。
 5. 运行 `lit-localize build` 输出字符串和模板的本地化版本 ([详情](#output-modes))。
 
-## 使字符串和模板可本地化
+## 使字符串和模板可本地化 {#making-strings-and-templates-localizable}
 
 要使字符串或 Lit 模板可本地化，请将其包装在 `msg` 函数中。 `msg` 函数会返回给定字符串或模板在当前活动的语言环境中的版本。
 
@@ -84,7 +84,7 @@ customElements.define('my-greeter', MyGreeter);
 
 {% endswitchable-sample %}
 
-### Message 类型
+### Message 类型 {#message-types}
 
 通常使用 Lit 渲染的任何字符串或模板都可以本地化，包括具有动态表达式和 HTML 标记的字符串或模板。
 
@@ -118,7 +118,7 @@ msg(html`Hello <b>${name}</b>`);
 html`<button>${msg('Hello World')}</button>`;
 ```
 
-### 带有表达式的字符串
+### 带有表达式的字符串 {#strings-with-expressions}
 
 包含表达式的字符串必须用 `html` 或 `str` 标记才能本地化。 当字符串不包含任何 HTML 标记时，你应该使用 `str` 而不是 `html`，因为`str`的性能开销略低一些。 如果你忘记在带有表达式的字符串上添加 `html` 或 `str` 标签，则在运行 `lit-localize` 命令时会引发错误。
 
@@ -142,7 +142,7 @@ msg(str`Hello ${name}`);
 
 在这些情况下需要 `str` 标记，因为未标记的模板字符串字面量在被 `msg` 函数接收之前会当作常规字符串，这意味着无法捕获动态表达式值，并将其替换为字符串的本地化版本。
 
-## 语言代码
+## 语言代码 {#locale-codes}
 
 语言代码是标识人类语言的字符串，有时还包括区域、脚本或其他变体。
 
@@ -152,7 +152,7 @@ Lit Localize 不要求使用任何特定的语言环境代码系统，但强烈�
 - es-419：拉丁美洲使用的西班牙语
 - zh-Hans：用简体字书写的中文
 
-### 术语
+### 术语 {#terms}
 
 Lit Localize 定义了一些指代语言环境代码的术语。 本文档、Lit Localize 配置文件和 Lit Localize API 中使用了这些术语：
 
@@ -174,7 +174,7 @@ Lit Localize 定义了一些指代语言环境代码的术语。 本文档、Lit
 </dl>
 
 
-## 输出模式
+## 输出模式 {#output-modes}
 
 Lit Localize 支持两种输出模式：
 
@@ -189,7 +189,7 @@ Lit Localize 支持两种输出模式：
 
 </div>
 
-### 运行时模式
+### 运行时模式 {#runtime-mode}
 
 在运行时模式下，将为你的每个语言环境生成一个 JavaScript 或 TypeScript 模块。 每个模块都包含该语言环境的本地化模板。 当活动语言环境切换时，该语言环境的模块会被导入，并且所有本地化组件都被重新渲染。
 
@@ -206,7 +206,7 @@ export const templates = {
 
 有关运行时模式的完整详细信息，请参阅 [运行时模式]({{baseurl}}/docs/localization/runtime-mode) 页面。
 
-### 转换模式
+### 转换模式 {#transform-mode}
 
 在转换模式下，会为每个语言环境生成一个单独的目录。 每个目录都包含该语言环境中应用程序的完整独立构建，其中 `msg` 包装器和所有的 Lit Localize 运行时代码则被完全删除。
 
@@ -230,7 +230,7 @@ render() {
 
 有关转换模式的完整详细信息，请参阅 [转换模式]({{baseurl}}/docs/localization/transform-mode) 页面。
 
-### 差异
+### 差异 {#differences}
 
 <!-- TODO(aomarks) Default CSS doesn't have a margin above table -->
 <br>
@@ -293,7 +293,7 @@ render() {
 </tbody>
 </table>
 
-## 配置文件
+## 配置文件 {#config-file}
 
 `lit-localize` 命令行工具在当前目录中查找名为 `lit-localize.json` 的配置文件。 可复制粘贴下面的示例快速上手，并查看 [CLI 和配置]({{baseurl}}/docs/localization/cli-and-config) 页面获取所有选项的完整参考。
 
@@ -343,7 +343,7 @@ render() {
 
 {% endswitchable-sample %}
 
-## 提取 message
+## 提取 message {#extracting-messages}
 
 运行 `lit-localize extract` 为每个目标语言环境生成 <a href="https://docs.oasis-open.org/xliff/v1.2/os/xliff-core.html" target="_blank" rel="noopener">XLIFF</a> 文件。 XLIFF 是大多数本地化工具和服务支持的 XML 格式。 XLIFF 文件将被写入 `interchange.xliffDir` [配置选项](/docs/localization/cli-and-config/#xliff-mode-settings) 指定的目录。
 
@@ -379,7 +379,7 @@ msg(html`Hello <b>World</b>`);
 </trans-unit>
 ```
 
-## 使用 XLIFF 进行翻译
+## 使用 XLIFF 进行翻译 {#translation-with-xliff}
 
 XLIFF 文件可以手动编辑，但更常见的是它们被发送到第三方翻译服务，由语言专家使用专门的工具进行编辑。
 
@@ -406,7 +406,7 @@ XLIFF 文件可以手动编辑，但更常见的是它们被发送到第三方�
 </trans-unit>
 ```
 
-## 构建本地化模板
+## 构建本地化模板 {#building-localized-templates}
 
 使用 `lit-localize build` 命令将翻译合并回你的应用程序。 该命令的行为取决于你配置的 [输出模式](#output-modes)。
 
@@ -416,7 +416,7 @@ lit-localize build
 
 请参阅 [运行时模式]({{baseurl}}/docs/localization/runtime-mode) 和 [转换模式]({{baseurl}}/docs/localization/transform-mode) 页面，了解在每种模式下构建是如何工作的。
 
-## Message 说明
+## Message 说明 {#message-descriptions}
 
 使用 `msg` 函数的 `desc` 选项为你的字符串和模板提供人类可读的说明。 大多数翻译工具都会向翻译人员显示这些说明，强烈建议帮助翻译人员解释和语境化消息的含义。
 
@@ -439,7 +439,7 @@ render() {
 </trans-unit>
 ```
 
-## Message ID
+## Message ID {#message-ids}
 
 Lit Localize 使用字符串的哈希值自动为每个 `msg` 调用生成一个 ID。
 
@@ -455,7 +455,7 @@ msg('Hello World')
 msg('Hello World')
 ```
 
-### ID 的生成
+### ID 的生成 {#id-generation}
 
 以下内容会影响 ID 的生成：
 
@@ -485,7 +485,7 @@ msg(html`Hello <b>${this.name}</b>`, {desc: 'A friendly greeting'});
 msg(html`Hello <i>${name}</i>`);
 ```
 
-### 覆盖 ID
+### 覆盖 ID {#overriding-ids}
 
 可以通过为 `msg` 函数指定 `id` 选项来覆盖消息 ID。 在某些情况下，这可能是必要的，例如一个相同的字符串具有多种含义，因为每个含义在另一种语言中的写法可能不同：
 

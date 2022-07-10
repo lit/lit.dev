@@ -11,7 +11,7 @@ versionLinks:
 This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of Javascript libraries and developers. See [Starter Kits](/docs/tools/starter-kits/) for reusable component templates set up for publishing to npm.
 本页是一个将 Lit 组件发布到 [npm](https://www.npmjs.com/) 的指南，npm 是绝大多数 Javascript 库和开发人员使用的包管理器。 请参阅 [Starter Kits]({{baseurl}}/docs/tools/starter-kits/) ，这里有许多为发布到 npm 而设置的可重用组件模板。
 
-## 发布到 npm
+## 发布到 npm {#publishing-to-npm}
 
 请参阅 [贡献 npm 包的说明](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)，了解更多将组件发布到 npm 的信息。
 
@@ -29,13 +29,13 @@ This page provides guidelines for publishing a Lit component to [npm](https://ww
 
 你还应该创建一个 README 文件来描述如何使用组件。
 
-## 发布现代 JavaScript
+## 发布现代 JavaScript {#publishing-modern-javascript}
 
 我们建议以标准 [ES2019](https://kangax.github.io/compat-table/es2016plus/) 语法发布 JavaScript 模块，因为所有常青浏览器（evergreen browser）都支持 ES2019，并采用 ES2019 可以得到最快、最小的 JavaScript。 用户可以使用编译器（编译ES2019代码）来支持旧版浏览器，但如果你在发布之前预编译代码，那么用户无法将旧版 JavaScript 转换为现代语法。
 
 需要注意一点，如果你使用新提案或非标准的 JavaScript 功能，例如 TypeScript、装饰器和类字段，你应该在发布到 npm 之前将这些功能编译为浏览器本机支持的标准 ES2019。
 
-### 用 TypeScript 编译
+### 用 TypeScript 编译 {#compiling-with-typescript}
 
 以下 JSON 示例是 `tsconfig.json` 的一部分，是编译为 ES2019 的推荐选项，启用装饰器编译，并为用户输出 `.d.ts` 类型：
 
@@ -69,7 +69,7 @@ This page provides guidelines for publishing a Lit component to [npm](https://ww
 
 有关详细信息，请参阅 [tsconfig.json 文档](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)。
 
-### 用 Babel 编译
+### 用 Babel 编译 {#compiling-with-babel}
 
 可以使用 Babel 编译使用到 ES2019 中尚未包含且处于提案中的 JavaScript 功能的 Lit 组件。
 
@@ -101,17 +101,17 @@ module.exports = { assumptions, plugins };
 
 你可以通过 [@rollup/plugin-babel](https://www.npmjs.com/package/@rollup/plugin-babel) 等打包程序插件或从命令行运行 Babel。 有关详细信息，请参阅 [Babel 文档](https://babeljs.io/docs/en/)。
 
-## 发布的最佳实践
+## 发布的最佳实践 {#publishing-best-practices}
 
 以下是发布可重用 Web 组件时要遵循的其他良好实践。
 
-### 不要将 polyfill 导入模块中
+### 不要将 polyfill 导入模块中 {#do-not-import-polyfills-into-modules}
 
 Polyfill 是应用程序的关注点，因此应用程序应该直接依赖于它们，而不是单独的包。 所需的确切 polyfill 通常取决于应用程序需要支持的浏览器，而这个选择最好留给使用你的组件的应用程序开发人员。
 
 包可能需要依赖 polyfill 进行测试和演示，所以如果需要它们，它们应该只放在 `devDependencies` 中。
 
-### 在导入说明符中包含文件扩展名
+### 在导入说明符中包含文件扩展名 {#include-file-extensions-in-import-specifiers}
 
 Node 模块解析不需要文件扩展名，因为如果没有给出扩展名的话，它就会搜索文件系统查找多个文件扩展名，并使用其中之一。当你导入 `some-package/foo` 时，如果存在 `some-package/foo.js`，Node 会导入它。同样，将包说明符解析为 URL 的构建工具也可以在构建时执行这种文件系统搜索。
 
@@ -121,7 +121,7 @@ import maps 允许你将 import 映射到 URL，但只有两种类型的映射�
 
 因此，为了使你的源和 import maps 获得最佳兼容，我们建议在导入时采用带文件扩展名的方式。
 
-### 发布 TypeScript 类型
+### 发布 TypeScript 类型 {#publish-typescript-typings}
 
 为了使你的元素在 TypeScript 中易于使用，我们建议：
 
@@ -141,7 +141,7 @@ import maps 允许你将 import 映射到 URL，但只有两种类型的映射�
 
  有关 `HTMLElementTagNameMap` 的更多信息，请参阅[提供良好的 TypeScript 类型]({{baseurl}}/docs/components/defining/#typescript-typings)。
 
-### Self-define elements
+### Self-define elements {#self-define-elements}
 
 声明 Web 组件类的模块应始终包含对 `customElements.define()`（或 `@customElement` 装饰器）的调用以定义元素。
 
@@ -153,10 +153,10 @@ import maps 允许你将 import 映射到 URL，但只有两种类型的映射�
 
 在此之前，我们建议继续在全局注册表中注册元素。
 
-### 导出元素类
+### 导出元素类 {#export-element-classes}
 
 为了支持子类化，需要从定义元素类的模块中导出它。 这允许在子类化中用于扩展，以及将来可以在 [自定义元素作用域注册表](https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md) 中注册它。
 
-## 更多
+## 更多 {#for-more-reading}
 
 有关创建高质量可重用 Web 组件的更通用指南，请参阅 [Web 组件黄金标准清单](https://github.com/webcomponents/gold-standard/wiki)。

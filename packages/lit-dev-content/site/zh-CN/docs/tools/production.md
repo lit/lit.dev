@@ -37,7 +37,7 @@ Lit 项目受益于与其他 Web 项目相同的构建时优化。在生产环�
 
 有很多方法可以设置 rollup 来打包项目。 [Modern Web](https://modern-web.dev/) 项目维护了一个出色的 Rollup 插件 [`@web/rollup-plugin-html`](https://modern-web.dev/docs/building/rollup-plugin-html/)，它有助于将许多用于构建应用程序的最佳实践结合到一个易于使用的包中。 使用此插件的示例配置如下所述。
 
-### 仅支持现代浏览器的构建
+### 仅支持现代浏览器的构建 {#modern-only-build}
 
 下面带注释的 `rollup.config.js` 文件将构建一个满足[现代浏览器构建要求]({{baseurl}}/docs/tools/requirements/#building-for-modern-browsers) 和本页描述的[生产优化](#preparing-code-for-production)。 这个配置适用于无须 polyfill 就可以运行 ES2019 JS 的现代浏览器。
 
@@ -97,7 +97,7 @@ export default {
 rollup -c
 ```
 
-### 支持现代 + 旧版浏览器的构建
+### 支持现代 + 旧版浏览器的构建 {#modern-+-legacy-build}
 
 以下配置是生成包含两组 JS 包的混合构建，一组用于现代浏览器，一组用于旧版浏览器。 现代包会被乐观地预取，客户端功能检测用于根据 [旧版浏览器构建要求] 确定是加载更小/更快的现代构建还是旧版构建（以及其他必需的 polyfill）。
 
@@ -224,11 +224,11 @@ export default {
 };
 ```
 
-## 使用独立的 lit-html 构建 
+## 使用独立的 lit-html 构建 {#building-with-standalone-lit-html}
 
 如果你希望使用 lit-html 作为独立的模板库，你可以遵循几乎所有的使用 Lit 构建的指南。 唯一的区别是单独使用 lit-html 不需要完整的 Web 组件 polyfill。 你只需要模板 polyfill。
 
-### 使用模板 polyfill
+### 使用模板 polyfill {#using-the-template-polyfill}
 
 要在不支持 `<template>` 元素的 IE11 上运行 lit-html，你需要一个 polyfill。 你可以使用 Web 组件 polyfill 中包含的模板 polyfill。
 

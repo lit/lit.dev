@@ -70,7 +70,7 @@ static styles = css`
 
 </div>
 
-### 从父类继承样式
+### 从父类继承样式 {#inheriting-styles-from-a-superclass}
 
 组件可以使用标签模板字符串数组来实现继承其父类的样式，并向数组中添加自己的样式：
 
@@ -86,7 +86,7 @@ static styles = css`
 static styles: CSSResultGroup = css`...`;
 ```
 
-### 共享样式
+### 共享样式 {#sharing-styles}
 
 通过创建一个模块，并导出标签模板字符串样式的方式，在组件之间共享样式：
 
@@ -117,7 +117,7 @@ class MyElement extends LitElement {
 }
 ```
 
-### 在样式中使用 unicode 转义字符
+### 在样式中使用 unicode 转义字符 {#using-unicode-escapes-in-styles}
 
 CSS中的unicode转义字符序列是由一个反斜杠加上四个或六个十进制数组成，例如：`\2022`表示一个黑圆点。这有点像Javascript中已经弃用的*octal*转义字符序列，因此直接在`css`标签模板字符串中使用这些转义字符就会报错。
 
@@ -289,7 +289,7 @@ render() {
 
 </div>
 
-## 动态类和样式
+## 动态类和样式 {#dynamic-classes-and-styles}
 
 使样式动态化的一种方法是将表达式添加到模板中的 `class` 或 `style` 属性。
 

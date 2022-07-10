@@ -22,7 +22,7 @@ Lit 2 引入了一个叫做 _响应式控制器_ 的新的代码重用和组合�
 
 响应式控制器在许多方面与类 mixin 相似。 主要区别在于控制器有自己的身份并且不会添加到组件的原型中，这有助于打包它们的 API 并允许你在每个宿主组件中使用多个控制器实例。 有关详细信息，请参阅 [控制器和 mixin]({{baseurl}}/docs/composition/overview/#controllers-and-mixins)。
 
-## 使用控制器
+## 使用控制器 {#using-a-controller}
 
 每个控制器都有自己的创建 API，通常你会创建一个实例并将其保存在组件中：
 
@@ -48,11 +48,11 @@ class MyElement extends LitElement {
 
 由于每个控制器都有自己的 API，请参阅特定控制器文档了解如何使用它们。
 
-## 编写控制器
+## 编写控制器 {#writing-a-controller}
 
 响应式控制器是与宿主组件关联的对象，它可以实现一个或多个宿主生命周期回调或与其宿主进行交互。控制器可以通过多种方式实现，但我们只专注于使用 JavaScript 类，包括用于初始化的构造函数和用于生命周期的方法。
 
-### 初始化控制器
+### 初始化控制器 {#controller-initialization}
 
 控制器通过调用 `host.addController(this)` 向其宿主组件注册自己。 通常，控制器需要保存其宿主组件的引用，以便之后可以与之交互。
 
@@ -113,7 +113,7 @@ class ClockController {
 
 一旦你的控制器注册到了宿主组件，你就可以向控制器添加生命周期回调和其他类字段和方法，进而实现所需的状态和行为。
 
-### 生命周期
+### 生命周期 {#lifecycle}
 
 在 [ReactiveController]({{baseurl}}/docs/api/controllers#ReactiveController) 接口中定义的响应式控制器生命周期是响应式更新周期的子集。 LitElement 在其生命周期回调期间会调用任何已注册的控制器的生命周期回调。 这些回调是可选的。
 
@@ -133,7 +133,7 @@ class ClockController {
 
 有关详细信息，请参阅 [响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)。
 
-### 控制器宿主 API
+### 控制器宿主 API {#controller-host-api}
 
 响应式控制器的宿主实现了一组用于添加控制器和请求更新的最小 API集合，并负责调用其控制器的生命周期方法。
 
@@ -148,7 +148,7 @@ class ClockController {
 
 `LitElement` 和 `ReactiveElement` 是控制器宿主，但宿主也可以是其他对象，例如来自其他 Web 组件库的基类、来自框架的组件或其他控制器。
 
-### 从其他控制器构建控制器
+### 从其他控制器构建控制器 {#building-controllers-from-other-controllers}
 
 控制器也可以由其他控制器组成。 为此，请创建一个子控制器并将宿主转发给它。
 
@@ -183,7 +183,7 @@ class DualClockController {
 
 {% endswitchable-sample %}
 
-### 控制器和指令
+### 控制器和指令 {#controllers-and-directives}
 
 将控制器与指令结合起来可能是一项非常强大的技术，尤其是对于需要在渲染之前或之后进行工作的指令，例如动画指令； 或需要引用模板中特定元素的控制器。
 
@@ -256,11 +256,11 @@ export class ResizeController {
 
 {% endtodo %}
 
-## 使用场景
+## 使用场景 {#use-cases}
 
 响应式控制器非常通用，并且具有非常广泛的可能的使用场景。 它们特别适合将组件连接到外部资源，例如用户输入、状态管理或远程 API。 以下是一些常见的场景。
 
-### 外部输入
+### 外部输入 {#external-inputs}
 
 响应式控制器可用于连接到外部输入。 例如，键盘和鼠标事件、resize 观察器或 mutation 观察器。 控制器可以提供输入的当前值用于渲染，并在值更改时请求宿主更新。
 
@@ -270,7 +270,7 @@ export class ResizeController {
 
 {% playground-ide "docs/controllers/mouse" "my-element.ts" %}
 
-### 异步任务
+### 异步任务 {#asynchronous-tasks}
 
 异步任务，例如长时间运行的计算或网络 I/O，通常具有随时间变化的状态，并且需要在任务状态发生变化（完成、错误等）时通知宿主。
 
@@ -288,7 +288,7 @@ export class ResizeController {
 
 {% endtodo %}
 
-## 参考
+## 参考 {#see-also}
 
 * [响应式更新周期]({{baseurl}}/docs/components/lifecycle/#reactive-update-cycle)
 * [@lit-labs/task](https://www.npmjs.com/package/@lit-labs/task)

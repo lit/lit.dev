@@ -8,7 +8,8 @@ versionLinks:
   v1: lit-html/template-reference/#built-in-directives
 ---
 
-指令是可以通过自定义表达式渲染方式来扩展 Lit 的函数。
+指令是通过自定义表达式渲染方式来扩展 Lit 的函数。
+
 Lit 包含许多内置指令，可满足各种渲染需求：
 
 <table class="directory">
@@ -24,7 +25,7 @@ Lit 包含许多内置指令，可满足各种渲染需求：
   [`classMap`](#classmap)
 
   </td>
-  <td>通过一个对象给设置分配一组 class。</td>
+  <td>通过一个对象给元素设置一组 class。</td>
   </tr>
 
   <tr>
@@ -77,7 +78,7 @@ Lit 包含许多内置指令，可满足各种渲染需求：
   [`repeat`](#repeat)
 
   </td>
-  <td>将可迭代对象渲染为DOM节点，并指定可选的键开启数据差异比较和 DOM 稳定性。</td>
+  <td>将可迭代对象渲染为 DOM 节点，并指定可选的键开启数据差异比较和 DOM 稳定性。</td>
   </tr>
 
   <tr>
@@ -119,7 +120,7 @@ Lit 包含许多内置指令，可满足各种渲染需求：
   [`cache`](#cache)
 
   </td>
-  <td>在模板更新时，缓存已渲染的DOM而不是丢弃。</td>
+  <td>在模板更新时，缓存已渲染的 DOM 而不是丢弃。</td>
   </tr>
 
   <tr>
@@ -137,7 +138,7 @@ Lit 包含许多内置指令，可满足各种渲染需求：
   [`live`](#live)
 
   </td>
-  <td>Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value.</td>
+  <td>当 attribute 和 property 与 DOM 的实时值不一样时，设置其为实时值，而不是它们上一个渲染的值。</td>
   </tr>
 
   <tr class="subheading"><td colspan="2">
@@ -222,7 +223,7 @@ Lit 包含许多内置指令，可满足各种渲染需求：
   [`asyncReplace`](#asyncreplace)
 
   </td>
-  <td>当 `AsyncIterable` yield时，将最新的值渲染到 DOM 中。</td>
+  <td>当 `AsyncIterable` yield 时，将最新的值渲染到 DOM 中。</td>
   </tr>
 </table>
 
@@ -234,11 +235,11 @@ Lit 包含许多内置指令，可满足各种渲染需求：
 
 你也可以构建你自己的指令。请参阅 [自定义指令]({{baseurl}}/docs/templates/custom-directives/) 了解更多信息。
 
-## 样式
+## 样式 {#styling}
 
 ### classMap
 
-通过一个对象给元素设置一组 class
+通过一个对象给元素设置一组 class。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -274,8 +275,7 @@ classMap(classInfo: {[name: string]: string | boolean | number})
 </tbody>
 </table>
 
-`classMap` 指令使用 `element.classList` API 根据用户传递的对象来有效地添加和
-删除元素的类。该对象的每一个 key 被视为一个类名，如果与 key 关联的值是真值，则该类被添加到元素中。在后续的渲染中，
+`classMap` 指令使用 `element.classList` API 根据用户传递的对象来高效地添加和删除元素的类。该对象的每一个 key 都被视为一个类名，如果与 key 关联的值是真值，则该类被添加到元素中。在后续的渲染中，
 如果某个 key 对应的值变成假值或不再存在于对象中，那么先前设置的与之关联的类也将被删除。
 
 {% switchable-sample %}
@@ -321,7 +321,7 @@ customElements.define('my-element', MyElement);
 html`<div class="my-widget ${classMap(dynamicClasses)}">Static and dynamic</div>`;
 ```
 
-在 [训练场中](/playground/#sample=examples/directive-class-map) 探索更多有关 `classMap` 的内容。
+在 [游乐场中](/playground/#sample=examples/directive-class-map) 探索更多有关 `classMap` 的内容。
 
 ### styleMap
 
@@ -361,9 +361,8 @@ styleMap(styleInfo: {[name: string]: string | undefined | null})
 </tbody>
 </table>
 
-`styleMap` 指令使用 `element.style` API 根据用户传递的对象来有效地添加和
-删除元素的內联样式。该对象的每一个 key 被视为一个样式属性名，与之关联的值则是属性的值。在后续的渲染中，
-如果某个 key 对应的值变成 undefined 或 `null`，那么先前设置的样式属性也将被删除（设置为 `null`）。
+`styleMap` 指令使用 `element.style` API 根据用户传递的对象来高效地添加和删除元素的內联样式。该对象的每一个 key 被视为一个样式属性名，与之关联的值则是属性的值。在后续的渲染中，
+如果某个 key 对应的值变成 `undefined` 或 `null`，那么先前设置的样式属性也将被删除（设置为 `null`）。
 
 {% switchable-sample %}
 
@@ -422,9 +421,9 @@ customElements.define('my-element', MyElement);
 html`<p style="color: white; ${styleMap(moreStyles)}">More styles!</p>`;
 ```
 
-在 [训练场中](/playground/#sample=examples/directive-style-map) 探索更多有关 `styleMap` 的内容。
+在 [游乐场中](/playground/#sample=examples/directive-style-map) 探索更多有关 `styleMap` 的内容。
 
-## 循环与条件式
+## 循环与条件式 {#loops-and-conditionals}
 
 ### when
 
@@ -467,9 +466,9 @@ when<T, F>(
 </tbody>
 </table>
 
-当`condition`为真时，返回调用`trueCase()`的结果，否则返回调用`falseCase()`的结果，如果定义了`falseCase`。
+当`condition`为真时，返回调用`trueCase()`的结果，否则如果定义了 `falseCase` 则返回调用 `falseCase()` 的结果。
 
-这是一个便捷的三元表达式包装器，使其成为在没有 else 的情况下编写内联条件会更好方式。
+这是一个便捷的三元表达式包装器，使其成为在没有 else 的情况下编写内联条件的更好方式。
 
 ```ts
 class MyElement extends LitElement {
@@ -522,8 +521,7 @@ choose<T, V>(
 </tbody>
 </table>
 
-case 的结构为 `[caseValue, func]`。 `value` 与
-`caseValue` 通过严格的等值比较进行匹配。 第一个匹配到的 case 就被会选中。 case 值可以是任何类型，包括原始值、对象和 symbol。
+case 的结构为 `[caseValue, func]`。 `value` 与 `caseValue` 通过严格的等值比较进行匹配。 第一个匹配到的 case 就被会选中。 case 值可以是任何类型，包括原始值、对象和 symbol。
 
 这类似于 switch 语句，但 choose 只是一个表达式并且没有 fallthrough 机制。
 
@@ -597,7 +595,7 @@ class MyElement extends LitElement {
 
 ### repeat
 
-将可迭代对象渲染为DOM节点，并指定可选的键开启数据差异比较和 DOM 稳定性。
+将可迭代对象渲染为 DOM 节点，并指定可选的键开启数据差异比较和 DOM 稳定性。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -629,15 +627,14 @@ type ItemTemplate<T> = (item: T, index: number) => unknown;
 <td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-子表达式
+子节点表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-从一个可迭代对象重复生成一系列值（通常是 `TemplateResults`），当可迭代对象改变时高效地更新这些项。当提供 `keyFn` 时，通过在需要时移动已生成的 DOM 在更新之间维护 key 
-与 DOM 之间的关联。通常，使用 `repeat` 是最高效的方法，因为它对插入和删除执行最少的不必要工作。
+从一个可迭代对象重复生成一系列值（通常是 `TemplateResults`），当可迭代对象改变时高效地更新这些项。当提供 `keyFn` 时，通过在需要时移动已生成的 DOM 在更新之间维护 key 与 DOM 之间的关联。通常，使用 `repeat` 是最高效的方法，因为它对插入和删除执行最少的不必要工作。
 
 如果你不使用 `keyFn`，你应该考虑使用`map()`](#map)。
 
@@ -686,12 +683,11 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-如果没有提供 `keyFn`，`repeat` 将类似于一个简单的项到值的 map ，并且 DOM 将可能被重用于不同的项目。
+如果没有提供 `keyFn`，`repeat` 将类似于一个简单的从项到值的 map ，并且 DOM 将可能被重用于不同的项。
 
-请参阅 [何时使用 map 或 repeat]({{baseurl}}/docs/templates/lists/#when-to-use-map-or-repeat) 进行讨论
-何时使用 `repeat` 以及何时使用标准 JavaScript 流控制。
+请参阅 [何时使用 map 或 repeat]({{baseurl}}/docs/templates/lists/#when-to-use-map-or-repeat) 进行讨论何时使用 `repeat` 以及何时使用标准 JavaScript 流控制。
 
-在 [训练场中](/playground/#sample=examples/directive-repeat) 探索更多有关 `repeat` 的内容。
+在 [游乐场中](/playground/#sample=examples/directive-repeat) 探索更多有关 `repeat` 的内容。
 
 ### join
 
@@ -895,13 +891,13 @@ customElements.define('my-element', MyEleent);
 
 {% endswitchable-sample %}
 
-在 [训练场中](/playground/#sample=examples/directive-if-defined) 探索更多有关 `ifDefined` 的内容。
+在 [游乐场中](/playground/#sample=examples/directive-if-defined) 探索更多有关 `ifDefined` 的内容。
 
-## 缓存和改变检测
+## 缓存和改变检测 {#caching-and-change-detection}
 
 ### cache
 
-在更改模板是缓存已渲染的 DOM 而不是丢弃 DOM。当你频繁地在大型模板之间切换时，可以使用该指令来优化渲染性能。
+在更改模板时缓存已渲染的 DOM 而不是丢弃 DOM。当你频繁地在大型模板之间切换时，可以使用该指令来优化渲染性能。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -930,7 +926,7 @@ cache(value: TemplateResult|unknown)
 <td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-子表达式
+子节点表达式
 
 </td>
 </tr>
@@ -989,9 +985,9 @@ customElements.define('my-element', MyElement);
 
 当 Lit 重新渲染一个模板时，它只更新变更的部分：它只会创建或删除必要的DOM。但是当你从一个模板切换到另一个模板时，Lit 会移除旧的 DOM 和创建新的 DOM 树。
 
-`cache` 指令会为给定的表达式和输入模板缓存已生成的 DOM。在上面的示例中，它缓存了 `summaryView` 和 `detailView` 模板的 DOM。当你从一个视图切换到另一个视图时，Lit 会换入新视图的缓存版本并使用最新数据对其进行更新。当这些视图频繁切换时，这可以提高渲染性能。
+`cache` 指令会为给定的表达式和输入模板缓存已生成的 DOM。在上面的示例中，它缓存了 `summaryView` 和 `detailView` 模板的 DOM。当你从一个视图切换到另一个视图时，Lit 会换成新视图的缓存版本并使用最新数据对其进行更新。当这些视图频繁切换时，这可以提高渲染性能。
 
-在 [训练场中](/playground/#sample=examples/directive-cache) 探索更多有关 `cache` 的内容。
+在 [游乐场中](/playground/#sample=examples/directive-cache) 探索更多有关 `cache` 的内容。
 
 ### guard
 
@@ -1031,7 +1027,6 @@ guard(dependencies: unknown[], valueFn: () => unknown)
 </tbody>
 </table>
 
-Renders the value returned by `valueFn`, and only re-evaluates `valueFn` when one of the dependencies changes identity.
 渲染由 `valueFn` 返回的值，并且仅在依赖项之一更改时重新执行 `valueFn`。
 
 参数:
@@ -1084,11 +1079,11 @@ customElements.define('my-element', MyElement);
 
 在这个示例中，开销很大的 `calculateSHA` 函数只有在 `value` 属性改变的时候才会执行。
 
-在 [训练场中](/playground/#sample=examples/directive-guard) 探索更多有关 `guard` 的内容。
+在 [游乐场中](/playground/#sample=examples/directive-guard) 探索更多有关 `guard` 的内容。
 
 ### live
 
-Sets an attribute or property if it differs from the live DOM value rather than the last-rendered value.
+当 attribute 和 property 与 DOM 的实时值不一样时，设置其为实时值，而不是它们上一个渲染的值。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
@@ -1126,9 +1121,9 @@ Attribute 或者 property 表达式
 
 当判断是否需要更新值的时候，检查表达式的值和 _实时_ DOM 值是否不一样，而不是 Lit 的默认方式-检查与上一个设置的值是否不一样。
 
-这种方式对于那些 DOM 值可能从Lit组件外部修改的场景很有用。例如，当使用一个表达式去设置 `<input>` 元素的 `value` 属性，内容可编辑元素的text，或者一个可以修改自己 property 或者 attribute 的自定义组件。
+这种方式对于那些 DOM 值可能从 Lit 组件外部修改的场景很有用。例如，当使用一个表达式去设置 `<input>` 元素的 `value` 属性，内容可编辑元素的 text，或者一个可以修改自己 property 或者 attribute 的自定义组件。
 
-在这些场景下，如果 DOM 值发生改变，但是通过Lit表达式设置的值没有发生改变，Lit 将不知道是要去更新 DOM 值而保持原状。如果这不是你想要的 - 你想到的是无论如何都直接使用绑定的值覆盖 DOM 值， 那么就使用 `live()` 指令。
+在这些场景下，如果 DOM 值发生改变，但是通过 Lit 表达式设置的值没有发生改变，Lit 将不知道是要去更新 DOM 值而保持原状。如果这不是你想要的 - 你想到的是无论如何都直接使用绑定的值覆盖 DOM 值， 那么就使用 `live()` 指令。
 
 {% switchable-sample %}
 
@@ -1165,11 +1160,11 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-`live()` 对实时 DOM 值执行严格的等值检测，如果信的绑定值等于实时的 DOM 值，那就什么都不做。这就意味着如果绑定的表达式存在类型转换的话，就不应该使用 `live()`。如果你对 attribute 表达式使用 `live()` 指令，请确保传入的值是字符串类型。否则表达式在每次渲染时都会被更新。
+`live()` 对实时 DOM 值执行严格的等值检测，如果新的绑定值等于实时的 DOM 值，那就什么都不做。这就意味着如果绑定的表达式存在类型转换的话，就不应该使用 `live()`。如果你对 attribute 表达式使用 `live()` 指令，请确保传入的值是字符串类型。否则表达式在每次渲染时都会被更新。
 
 在 [游乐场](/playground/#sample=examples/directive-live) 中探索 `live` 的更多内容。
 
-## 渲染特殊值
+## 渲染特殊值 {#rendering-special-values}
 
 ### templateContent
 
@@ -1202,7 +1197,7 @@ templateContent(templateElement: HTMLTemplateElement)
 <td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-子表达式
+子节点表达式
 
 </td>
 </tr>
@@ -1249,7 +1244,7 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-在[训练场](/playground/#sample=examples/directive-template-content)中探索更多 `templateContent` 的内容。
+在[游乐场](/playground/#sample=examples/directive-template-content)中探索更多 `templateContent` 的内容。
 
 ### unsafeHTML
 
@@ -1282,33 +1277,23 @@ unsafeHTML(value: string | typeof nothing | typeof noChange)
 <td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-子表达式
+子节点表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-A key feature of Lit's templating syntax is that only strings originating in
-template literals are parsed as HTML. Because template literals can only be
-authored in trusted script files, this acts as a natural safeguard against XSS
-attacks injecting untrusted HTML. However, there may be cases when HTML not
-originating in script files needs to be rendered in a Lit template, for example
-trusted HTML content fetched from a database. The `unsafeHTML` directive will
-parse such a string as HTML and render it in a Lit template.
-
 Lit 模板语法的一个关键特性是，只有源自模板字面量的字符串被解析为 HTML。因为模板字面量只能是
 在受信任的脚本文件中编写，这可以作为抵御 XSS 攻击的自然保护措施，防止注入不受信任的 HTML。
-但是，在某些情况下，HTML 不是源自脚本文件需要在 Lit 模板中呈现，例如
+但是，在某些情况下，HTML 不是源自需要在 Lit 模板中渲染的脚本文件，例如
 从数据库中获取的可信 HTML 内容。 `unsafeHTML` 指令将
-解析 HTML 等字符串并在 Lit 模板中呈现
+解析 HTML 等字符串并在 Lit 模板中渲染。
 
 <div class="alert alert-warning">
 
-Note, the string passed to `unsafeHTML` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+请注意，传给 `unsafeHTML` 的字符串必须由开发人员控制，而不能是不受信任的内容。 不受信任内容的示例包括 query string 参数和来自用户输入的值。 `unsafeHTML` 指令渲染不受信任的内容
+可能导致 [跨站脚本攻击 (XSS)](https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC) 漏洞。
 
 </div>
 
@@ -1346,18 +1331,16 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-
-Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/directive-unsafe-html).
-
+在 [游乐场](/playground/#sample=examples/directive-unsafe-html) 中进一步探索 `unsafeHTML`。
 ### unsafeSVG
 
-Renders a string as SVG rather than text.
+将字符串渲染为 SVG 而不是文本。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1367,7 +1350,7 @@ import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1377,27 +1360,22 @@ unsafeSVG(value: string | typeof nothing | typeof noChange)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子节点表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when SVG content
-not originating in script files needs to be rendered in a Lit template, for
-example trusted SVG content fetched from a database. The `unsafeSVG` directive
-will parse such a string as SVG and render it in a Lit template.
+与 [`unsafeHTML`](#unsafeHTML) 类似，可能会出现不是源自脚本文件但需要在 Lit 模板中渲染的 SVG 内容，例如：从数据库中获取的可信 SVG 内容示例。 `unsafeSVG` 指令
+会将这样的字符串解析为 SVG 并将其渲染在 Lit 模板中。
 
 <div class="alert alert-warning">
 
-Note, the string passed to `unsafeSVG` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+请注意，传给 `unsafeSVG` 的字符串必须由开发人员控制，而不能是不受信任的内容。 不受信任内容的示例包括 query string 参数和用户输入的值。 `unsafeSVG` 指令渲染不受信任的内容可能导致 [跨站脚本攻击 (XSS)](https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC) 漏洞。
 
 </div>
 
@@ -1439,20 +1417,19 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `unsafeSVG` more in the [playground](/playground/#sample=examples/directive-unsafe-svg).
+在 [游乐场](/playground/#sample=examples/directive-unsafe-svg) 中进一步探索 `unsafeSVG`。
 
-
-## Referencing rendered DOM
+## 引用已渲染的 DOM {#referencing-rendered-dom}
 
 ### ref
 
-Retrieves a reference to an element rendered into the DOM.
+检索已渲染到 DOM 中的元素的引用。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1462,7 +1439,7 @@ import {ref} from 'lit/directives/ref.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1472,30 +1449,21 @@ ref(refOrCallback: RefOrCallback)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Element expression
+元素表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Although most DOM manipulation in Lit can be achieved declaratively using
-templates, advanced situations may required getting a reference to an element
-rendered in the template and manipulating it imperatively. Common examples of
-when this may be useful include focusing a form control or calling an imperative
-DOM manipulation library on a container element.
+尽管 Lit 中的大多数 DOM 操作都可以在模板中以声明方式实现，但高级情况可能需要获取对模板中渲染的元素的引用并以命令方式对其进行操作。 这可能有用的常见示例包括聚焦表单控件或在容器元素上调用命令式 DOM 操作库。
 
-When placed on an element in the template, the `ref` directive will retrieve a
-reference to that element once rendered. The element reference may be retrieved
-in one of two ways: either by passing a `Ref` object or by passing a callback.
+当放置在模板中的元素上时，`ref` 指令将在渲染后检索对该元素的引用。 可以通过以下两种方式之一检索元素引用：通过传递`Ref`对象或通过回调。
 
-A `Ref` object acts as a container for a reference to the element, and can be
-created using the `createRef` helper method found in the `ref` module. After
-rendering, the `Ref`'s `value` property will be set to the element, where it
-can be accessed in post-render lifecycle like `updated`.
+`Ref` 对象充当元素引用的容器，可以使用 `ref` 模块中的 `createRef` 辅助方法创建。 渲染后，`Ref` 的 `value` 属性将被设置为元素，在渲染后的生命周期中可以像 `updated` 一样访问它。
 
 {% switchable-sample %}
 
@@ -1506,7 +1474,7 @@ class MyElement extends LitElement {
   inputRef: Ref<HTMLInputElement> = createRef();
 
   render() {
-    // Passing ref directive a Ref object that will hold the element in .value
+    // 给 ref 指令传递一个 Ref 对象，该对象将在 .value 中保存当前元素
     return html`<input ${ref(this.inputRef)}>`;
   }
 
@@ -1523,7 +1491,7 @@ class MyElement extends LitElement {
   inputRef = createRef();
 
   render() {
-    // Passing ref directive a Ref object that will hold the element in .value
+    // 给 ref 指令传递一个 Ref 对象，该对象将在 .value 中保存当前元素
     return html`<input ${ref(this.inputRef)}>`;
   }
 
@@ -1537,12 +1505,7 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-A ref callback can also be passed to the `ref` directive. The callback will be
-called each time the referenced element changes.  If a ref callback is
-rendered to a different element position or is removed in a subsequent render,
-it will first be called with `undefined`, followed by another call with the new
-element it was rendered to (if any). Note that in a `LitElement`, the callback
-will be called bound to the host element automatically.
+也可以给 `ref` 指令传入 ref 回调。 只要引用的元素发生更改就会调用该回调。 如果 ref 回调被渲染到不同的元素位置或在后续渲染中被删除，首先会使用 `undefined` 调用一次回调，然后再使用它被渲染到的新元素调用一次（如果有）。 请注意，在 `LitElement` 中，回调将被调用并自动绑定到宿主元素。
 
 {% switchable-sample %}
 
@@ -1551,7 +1514,7 @@ will be called bound to the host element automatically.
 class MyElement extends LitElement {
 
   render() {
-    // Passing ref directive a change callback
+    // 传递 ref 指令一个 change 回调
     return html`<input ${ref(this.inputChanged)}>`;
   }
 
@@ -1565,7 +1528,7 @@ class MyElement extends LitElement {
 class MyElement extends LitElement {
 
   render() {
-    // Passing ref directive a change callback
+    // 传递 ref 指令一个 change 回调
     return html`<input ${ref(this.inputChanged)}>`;
   }
 
@@ -1578,19 +1541,19 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `ref` more in the [playground](/playground/#sample=examples/directive-ref).
+在 [游乐场](/playground/#sample=examples/directive-ref) 中探索更多的 `ref`。
 
-## Asynchronous rendering
+## 异步渲染 {#asynchronous-rendering}
 
 ### until
 
-Renders placeholder content until one or more promises resolve.
+在一个或多个 promise resolve 之前，渲染占位内容
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1600,7 +1563,7 @@ import {until} from 'lit/directives/until.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1610,26 +1573,21 @@ until(...values: unknown[])
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Any expression
+任意表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Takes a series of values, including Promises. Values are rendered in priority order,
- with the first argument having the highest priority and the last argument having the
- lowest priority. If a value is a Promise, a lower-priority value will be rendered until it resolves.
+接受一系列值，包括 Promises。 该指令会按值优先级顺序渲染内容，第一个参数具有最高优先级，最后一个参数具有最低优先级。 如果值是 Promise ，在它没有 resolve 之前，将渲染较低优先级的值。
 
-The priority of values can be used to create placeholder content for async
-data. For example, a Promise with pending content can be the first
-(highest-priority) argument, and a non-promise loading indicator template can
-be used as the second (lower-priority) argument. The loading indicator
-renders immediately, and the primary content will render when the Promise
-resolves.
+The priority of values can be used to create placeholder content for async data. For example, a Promise with pending content can be the first (highest-priority) argument, and a non-promise loading indicator template can be used as the second (lower-priority) argument. The loading indicator renders immediately, and the primary content will render when the Promise resolves.
+
+值的优先级可用于为异步数据创建占位符内容。 例如，带有待处理内容的 Promise 可以作为第一个（最高优先级）参数，而非 Promise 的加载提示模板可以作为第二个（低优先级）参数。 加载指示内容会立即渲染出来，而主要内容将在 Promise resolve 后呈现。
 
 {% switchable-sample %}
 
@@ -1666,17 +1624,17 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `until` more in the [playground](/playground/#sample=examples/directive-until).
+在 [游乐场](/playground/#sample=examples/directive-until) 中进一步探索 `until`。
 
 ### asyncAppend
 
-Appends values from an `AsyncIterable` into the DOM as they are yielded.
+当来自 `AsyncIterable` 的值被生成时，将他们添加到 DOM 中。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1686,7 +1644,7 @@ import {asyncAppend} from 'lit/directives/async-append.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1696,17 +1654,17 @@ asyncAppend(iterable: AsyncIterable)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子节点表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-`asyncAppend` renders the values of an [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of), appending each new value after the previous. Note that async generators also implement the async iterable protocol, and thus can be consumed by `asyncAppend`.
+使用 `asyncAppend` 指令来渲染 [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of)的值，会将新值添加到上一个之后。 请注意，异步的 generator 也实现了异步可迭代协议，因此也可以被 `asyncAppend` 指令使用。
 
 {% switchable-sample %}
 
@@ -1759,17 +1717,17 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `asyncAppend` more in the [playground](/playground/#sample=examples/directive-async-append).
+在 [游乐场](/playground/#sample=examples/directive-async-append) 中进一步探索 `asyncAppend`。
 
 ### asyncReplace
 
-Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.
+将 `AsyncIterable` 生成的最新值渲染到 DOM 中。
 
 <table>
 <thead><tr><th></th><th></th></tr></thead>
 <tbody>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="no-wrap-cell vcenter-cell">导入</td>
 <td class="wide-cell">
 
 ```js
@@ -1779,7 +1737,7 @@ import {asyncReplace} from 'lit/directives/async-replace.js';
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="no-wrap-cell vcenter-cell">签名</td>
 <td class="wide-cell">
 
 ```ts
@@ -1789,17 +1747,17 @@ asyncReplace(iterable: AsyncIterable)
 </td>
 </tr>
 <tr>
-<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="no-wrap-cell vcenter-cell">可用位置</td>
 <td class="wide-cell">
 
-Child expression
+子节点表达式
 
 </td>
 </tr>
 </tbody>
 </table>
 
-Similar to [`asyncAppend`](#asyncappend), `asyncReplace` renders the values of an [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of), replacing the previous value with each new value.
+与 [`asyncAppend`](#asyncappend) 类似，`asyncReplace` 也可以渲染 [async iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of)的值，不同的是，`asyncReplace` 会用新值替换之前的值。
 
 {% switchable-sample %}
 
@@ -1850,5 +1808,5 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
-Explore `asyncReplace` more in the [playground](/playground/#sample=examples/directive-async-replace).
+在 [游乐场](/playground/#sample=examples/directive-async-replace) 中进一步探索 `asyncReplace`。
 

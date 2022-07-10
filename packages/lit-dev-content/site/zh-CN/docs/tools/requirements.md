@@ -41,7 +41,7 @@ Webpack 能自动处理裸模块说明符； 而 Rollup，则需要插件 ([@rol
 
 **为什么要使用裸模块说明符？** 裸模块说明符可以让你在不知道包管理器将模块安装在何处的情况下导入它们。 名为 [Import maps](https://github.com/WICG/import-maps) 的标准提案叫做 [starting to ship](https://chromestatus.com/feature/5315286962012160)，它将让浏览器支持裸模块说明符。 同时，裸导入说明符可以很容易地转换为构建步骤。 还有一些支持 import maps 的 polyfill 和模块加载器。
 
-### 现代浏览器细分
+### 现代浏览器细分 {#modern-browser-breakdown}
 
 所有现代浏览器都会自动更新，用户很可能拥有的是最新版本。 下表列出了原生支持 ES2019 和 Web 组件的每个主要浏览器的最低版本，这是 Lit 所依赖的关键特性。
 
@@ -60,7 +60,7 @@ Webpack 能自动处理裸模块说明符； 而 Rollup，则需要插件 ([@rol
 * 将 ES 模块转换为另一个模块系统。
 * 加载 polyfill。
 
-### 旧版浏览器细分
+### 旧版浏览器细分 {#legacy-browser-breakdown}
 
 下表列出了需要编译 Javascript 和加载 polyfill 的受支持浏览器版本：
 
@@ -138,7 +138,7 @@ Note that you may need other polyfills depending on the features your applicatio
 
 请注意，应用程序使用的功能不同，可能还需要其他不同的 polyfill。
 
-### 加载 polyfill
+### 加载 polyfill {#loading-polyfills}
 
 Javascript polyfill 应该与应用程序包分开打包，并在 web 组件 polyfill 之前加载，因为组件的 polyfill 依赖于现代 JS，如 `Promise`。 总而言之，页面应该加载如下代码：
 
@@ -149,7 +149,7 @@ Javascript polyfill 应该与应用程序包分开打包，并在 web 组件 pol
 <!-- Load application code here -->
 ```
 
-### Web 组件 polyfill
+### Web 组件 polyfill {#web-components-polyfills}
 
 有关加载和配置 Web 组件 polyfill 的详细信息，请参阅 [webcomponentsjs 文档](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs)。 以下是一些关键点的总结。
 

@@ -38,7 +38,7 @@ render() {
 }
 ```
 
-## 配置转换模式
+## 配置转换模式 {#configuring-transform-mode}
 
 在 `lit-localize.json` 配置文件中，将 `mode` 属性设置为 `transform`，并将 `output.outputDir` 属性设置为你希望生成的本地化应用程序存放的文件夹位置。 有关详细信息，请参阅 [转换模式设置]({{baseurl}}/docs/localization/cli-and-config#transform-mode-settings)。
 
@@ -58,7 +58,7 @@ export const {getLocale} = configureTransformLocalization({
 });
 ```
 
-## 设置初始语言环境
+## 设置初始语言环境 {#setting-the-initial-locale}
 
 在转换模式下，活动语言环境由你加载的 JavaScript 包决定。 当你的页面加载时，如何确定要加载哪个 bundle 包取决于你自己。
 
@@ -85,7 +85,7 @@ document.head.appendChild(script);
 
 为了获得更好的性能，你可以在服务端将适当的脚本标记静态地渲染到 HTML 文件中。 这使得浏览器可以尽可能早地下载脚本。
 
-## 切换语言环境
+## 切换语言环境 {#switching-locales}
 
 在转换模式下，`setLocale` 功能不可用。 只有重新加载页面，才可以在下一次加载时选择不同的语言环境 bundle。
 
@@ -158,7 +158,7 @@ customElements.define('locale-picker', LocalePicker);
 
 {% endswitchable-sample %}
 
-## Rollup 集成
+## Rollup 集成 {#rollup-integration}
 
 如果正在使用 <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a>，并且希望使用集成解决方案而不是单独运行 `lit-localize build` 命。为此，你可以将 `localeTransformers` 函数从 `@lit/localize-tools/lib/rollup.js` 导入到 Rollup 配置中。
 
