@@ -15,6 +15,9 @@ declare global {
   }
 }
 
+const React = window.React;
+const ReactDOM = window.ReactDOM;
+
 @customElement('simple-greeting')
 class SimpleGreeting extends LitElement {
   @property()
@@ -24,9 +27,5 @@ class SimpleGreeting extends LitElement {
     return html`Good morning, <span>${this.name}</span>!`;
   }
 }
-
-// React does not directly support es modules
-const React = window.React;
-const ReactDOM = window.ReactDOM;
 
 export {React, ReactDOM, SimpleGreeting};
