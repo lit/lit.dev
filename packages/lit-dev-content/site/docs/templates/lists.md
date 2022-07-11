@@ -90,7 +90,8 @@ Which repeat is more efficient depends on your use case:
     ```js
     html`${this.users.map((user) =>
       html`
-      <div><input type="checkbox"> ${user.name}</div>
+        <div><input type="checkbox"> ${user.name}</div>
+      `)
     }`
     ```
 
