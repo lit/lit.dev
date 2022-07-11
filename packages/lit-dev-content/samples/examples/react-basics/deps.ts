@@ -24,7 +24,7 @@ class SimpleGreeting extends LitElement {
   name = 'Somebody';
 
   render() {
-    return html`Good morning, <span>${this.name}</span>!`;
+    return html`Good morning, ${this.name}!`;
   }
 }
 
