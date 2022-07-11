@@ -1,11 +1,11 @@
 import type {EventName} from "@lit-labs/react";
+import {createComponent} from "@lit-labs/react";
 
 import {
   React,
   ReactDOM,
   SecretButton as SecretButtonComponent,
 } from "./deps.js";
-import {createComponent} from "@lit-labs/react";
 
 const SecretButton = createComponent(
   React,
@@ -26,8 +26,8 @@ const App = () => {
 
   return (
     <>
-        <div>{message}</div>
         <SecretButton onSecretMessage={clickCallback}></SecretButton>
+        <div>{message}</div>
     </>
   )
 };

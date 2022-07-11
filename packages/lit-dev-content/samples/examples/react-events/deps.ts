@@ -1,5 +1,5 @@
 import {html, LitElement} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement, property} from 'lit/decorators.js';
 
 declare global {
     interface Window {
@@ -11,13 +11,15 @@ declare global {
 const React = window.React;
 const ReactDOM = window.ReactDOM;
 
-@customElement('demo-button')
-class Button extends LitElement {
+@customElement('counter-button')
+class CounterButton extends LitElement {
+  @property() count = 0;
+
   render() {
     return html`
-      <button>CLICK FOR SECRET!</button>
+      <button>click count: ${this.count}</button>
     `;
   }
 }
 
-export {React, ReactDOM, Button};
+export {React, ReactDOM, CounterButton};

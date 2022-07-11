@@ -14,8 +14,8 @@ const ReactDOM = window.ReactDOM;
 const messages: string[] = [
   "everything is going to be okay!",
   "you're amazing!",
-  "asking for help is a good trait!",
-  "there is sunshine somewhere!",
+  "everyone wins when you ask for help!",
+  "there is always sunshine somewhere!",
 ];
 
 function randomBucket<T>(messages: T[]): T {
@@ -34,7 +34,7 @@ function randomBucket<T>(messages: T[]): T {
 class SecretButton extends LitElement {
   render() {
     return html`
-      <button @click="${this.onClick}">CLICK FOR SECRET!</button>
+      <button @click="${this.onClick}">dispatch secret message</button>
     `;
   }
 

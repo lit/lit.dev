@@ -5,7 +5,6 @@
   "description": "Run JSX in the playground.",
   "section": "React",
   "files": {
-    "app.tsx": {},
     "index.tsx": {},
     "deps.ts": {},
     "index.html": {}

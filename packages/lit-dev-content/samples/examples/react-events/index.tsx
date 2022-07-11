@@ -1,12 +1,13 @@
-import {React, ReactDOM, Button} from "./deps.js";
 import {createComponent} from "@lit-labs/react";
 
-const MWCButton = createComponent(
-    React,
-    'demo-button',
-    Button,
-)
+import {React, ReactDOM, CounterButton as CounterButtonWC} from "./deps.js";
 
+const CounterButton = createComponent(
+    React,
+    'counter-button',
+    CounterButtonWC,
+);
+  
 const App = () => {
     const [count, setCount] = React.useState(0);
 
@@ -15,12 +16,8 @@ const App = () => {
     }, [count, setCount])
 
     return (
-        <>
-            <div>There have been {count} clicks!</div>
-            <MWCButton
-                onClick={clickCallback}
-                outlined="${true}">Increase count ++</MWCButton>
-        </>
+        <CounterButton onClick={clickCallback} count={count}>
+        </CounterButton>
     )
 };
 
