@@ -1,3 +1,10 @@
+/*
+  Dependencies for example include:
+  - React
+  - ReactDOM
+  - SecretButton web component
+*/
+
 import {html, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
 

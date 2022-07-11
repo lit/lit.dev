@@ -1,3 +1,10 @@
+/*
+  Dependencies for example include:
+  - React
+  - ReactDOM
+  - CounterButton web component
+*/
+
 import {html, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
