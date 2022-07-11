@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "order": 2,
   "title": "Custom events",
-  "description": "Listen for custom events in React.",
+  "description": "Listen to custom events from web components.",
   "section": "React",
   "files": {
     "index.tsx": {},

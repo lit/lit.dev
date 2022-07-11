@@ -1,8 +1,8 @@
 {
   "extends": "/samples/base.json",
   "order": 0,
-  "title": "Render a Web Component",
-  "description": "Use a web component in a React app.",
+  "title": "Web Component Basics",
+  "description": "Use web components in React apps.",
   "section": "React",
   "files": {
     "index.tsx": {},
