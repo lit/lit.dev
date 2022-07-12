@@ -1,0 +1,12 @@
+{
+  "extends": "/samples/base.json",
+  "order": 1,
+  "title": "React events",
+  "description": "Listen to react events from web components.",
+  "section": "React",
+  "files": {
+    "index.tsx": {},
+    "deps.ts": {},
+    "index.html": {}
+  }
+}
