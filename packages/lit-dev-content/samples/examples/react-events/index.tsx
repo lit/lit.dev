@@ -13,7 +13,7 @@ const App = () => {
 
     const clickCallback = React.useCallback((e) => {
         setCount(count + 1);
-    }, [count, setCount])
+    }, [count])
 
     return (
         <CounterButton onClick={clickCallback} count={count}>

@@ -20,7 +20,7 @@ const ReactDOM = window.ReactDOM;
 
 @customElement('count-clicker')
 class CountClicker extends LitElement {
-  @property() count = 0;
+  @property({type: Number}) count = 0;
 
   render() {
     return html`

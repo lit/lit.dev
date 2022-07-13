@@ -20,7 +20,7 @@ const ReactDOM = window.ReactDOM;
 
 @customElement('counter-button')
 class CounterButton extends LitElement {
-  @property() count = 0;
+  @property({type: String}) count = 0;
 
   render() {
     return html`

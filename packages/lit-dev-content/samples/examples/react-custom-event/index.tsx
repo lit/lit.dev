@@ -21,7 +21,7 @@ const App = () => {
 
   const clickCallback = React.useCallback(
     (e: CustomEvent<string>) => setMessage(e.detail),
-    [message, setMessage],
+    [message],
   )
 
   return (
