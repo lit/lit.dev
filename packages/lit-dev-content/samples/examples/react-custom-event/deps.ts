@@ -5,14 +5,14 @@
   - SecretButton web component
 */
 
-import {html, LitElement} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 declare global {
-    interface Window {
-        React: any;
-        ReactDOM: any;
-    }
+  interface Window {
+    React: any;
+    ReactDOM: any;
+  }
 }
 
 const React = window.React;
@@ -28,12 +28,12 @@ const messages: string[] = [
 function randomBucket<T>(messages: T[]): T {
   const last = messages.length - 1;
   const prev = messages[last];
-  
+
   const target = Math.floor(Math.random() * (messages.length - 1));
 
   messages[last] = messages[target];
   messages[target] = prev;
-  
+
   return messages[last];
 }
 
@@ -47,12 +47,12 @@ class SecretButton extends LitElement {
 
   onClick = () => {
     this.dispatchEvent(
-        new CustomEvent(
-            'secret-message',
-            { detail: randomBucket(messages)},
-        ),
+      new CustomEvent(
+        'secret-message',
+        { detail: randomBucket(messages) },
+      ),
     );
   }
 }
 
-export {React, ReactDOM, SecretButton};
+export { React, ReactDOM, SecretButton };

@@ -5,13 +5,13 @@
   - SimpleGreeting web component
 */
 
-import {html, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 declare global {
   interface Window {
-      React: any;
-      ReactDOM: any;
+    React: any;
+    ReactDOM: any;
   }
 }
 
@@ -28,4 +28,4 @@ class SimpleGreeting extends LitElement {
   }
 }
 
-export {React, ReactDOM, SimpleGreeting};
+export { React, ReactDOM, SimpleGreeting };
