@@ -18,7 +18,7 @@ export const App = () => {
 
   const clickCallback = useCallback(
     (e: CustomEvent<string>) => setMessage(e.detail),
-    [message]
+    []
   );
 
   return (

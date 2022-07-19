@@ -5,8 +5,8 @@
   "description": "Listen to react events from web components.",
   "section": "React",
   "files": {
-    "index.tsx": {},
     "app.tsx": {},
+    "index.tsx": {},
     "deps.ts": {},
     "index.html": {}
   }
