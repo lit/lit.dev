@@ -2,55 +2,58 @@
   Dependencies for example include:
   - React
   - ReactDOM
-  - CounterButton web component
+  - LyricalSlots web component
 */
 
-import {html, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { css, html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 declare global {
-    interface Window {
-        React: any;
-        ReactDOM: any;
-    }
+  interface Window {
+    React: any;
+    ReactDOM: any;
+  }
 }
 
 const React = window.React;
 const ReactDOM = window.ReactDOM;
 
-@customElement('count-clicker')
-class CountClicker extends LitElement {
-  @property({type: Number}) count = 0;
+const styles = css`
+  :host {
+    align-items: center;
+    display: flex;
+    gap: 32px; 
+    justify-content: center;
+  }
+
+  ::slotted(div) {
+    border-bottom: 4px solid #324fff;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    min-width: 96px;
+  }
+`;
+
+@customElement('lyrical-slots')
+class LyricalSlots extends LitElement {
+  static styles = styles;
+  @property({ type: Number }) count = 0;
 
   render() {
     return html`
-      <slot name="decrease" @click="${this.onDecrease}"></slot>
-      <slot name="increase" @click="${this.onIncrease}"></slot>
+      <slot name="clowns"></slot>
+      <div>
+        <p>
+          Clowns to the left of me, jokers to the right!
+        </p>
+        <p>
+          Here I am: stuck in the middle of "views".
+        </p>
+      </div>
+      <slot name="jokers"></slot>
     `;
-  }
-
-  onDecrease = () => {
-    this.count -= 1;
-    this.dispatchClickCount()
-  }
-
-  onIncrease = () => {
-    this.count += 1;
-    this.dispatchClickCount()
-  }
-
-  dispatchClickCount = () => {
-    this.dispatchEvent(
-        new CustomEvent(
-            'click-count',
-            {
-              detail: this.count,
-              bubbles: true,
-              composed: true,
-            },
-        ),
-    );
   }
 }
 
-export {React, ReactDOM, CountClicker};
+export { React, ReactDOM, LyricalSlots };
