@@ -1,5 +1,6 @@
 import {createComponent} from '@lit-labs/react';
-import {React, CounterButton as CounterButtonWC} from './deps.js';
+import {React} from "./faux-react.js";
+import {CounterButton as CounterButtonWC} from './counter-button.js';
 
 const CounterButton = createComponent(React, 'counter-button', CounterButtonWC);
 

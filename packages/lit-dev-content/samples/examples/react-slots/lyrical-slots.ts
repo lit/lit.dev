@@ -1,22 +1,5 @@
-/*
-  Dependencies for example include:
-  - React
-  - ReactDOM
-  - LyricalSlots web component
-*/
-
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-
-declare global {
-  interface Window {
-    React: any;
-    ReactDOM: any;
-  }
-}
-
-const React = window.React;
-const ReactDOM = window.ReactDOM;
 
 const styles = css`
   :host {
@@ -56,4 +39,4 @@ class LyricalSlots extends LitElement {
   }
 }
 
-export { React, ReactDOM, LyricalSlots };
+export { LyricalSlots };

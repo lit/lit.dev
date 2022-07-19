@@ -2,12 +2,13 @@
   "extends": "/samples/base.json",
   "order": 3,
   "title": "Slots",
-  "description": "Listen to react events from web components.",
+  "description": "Project React Components onto web component slots.",
   "section": "React",
   "files": {
     "app.tsx": {},
+    "lyrical-slots.ts": {},
+    "faux-react.ts": {},
     "index.tsx": {},
-    "deps.ts": {},
     "index.html": {}
   }
 }

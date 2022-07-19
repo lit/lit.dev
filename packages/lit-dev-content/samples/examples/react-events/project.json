@@ -6,8 +6,9 @@
   "section": "React",
   "files": {
     "app.tsx": {},
+    "counter-button.ts": {},
     "index.tsx": {},
-    "deps.ts": {},
+    "faux-react.ts": {},
     "index.html": {}
   }
 }

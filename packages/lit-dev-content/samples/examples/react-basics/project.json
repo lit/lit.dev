@@ -6,8 +6,9 @@
   "section": "React",
   "files": {
     "app.tsx": {},
+    "simple-greeting.ts": {},
     "index.tsx": {},
-    "deps.ts": {},
+    "faux-react.ts": {},
     "index.html": {}
   }
 }

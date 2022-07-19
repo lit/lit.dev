@@ -1,5 +1,6 @@
 import {createComponent} from '@lit-labs/react';
-import {React, SimpleGreeting as SimpleGreetingWC} from './deps.js';
+import {React} from "./faux-react.js";
+import {SimpleGreeting as SimpleGreetingWC} from './simple-greeting.js';
 
 const SimpleGreeting = createComponent(
   React,

@@ -1,22 +1,5 @@
-/*
-  Dependencies for example include:
-  - React
-  - ReactDOM
-  - SecretButton web component
-*/
-
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-
-declare global {
-  interface Window {
-    React: any;
-    ReactDOM: any;
-  }
-}
-
-const React = window.React;
-const ReactDOM = window.ReactDOM;
 
 const messages: string[] = [
   "everything is going to be okay!",
@@ -55,4 +38,4 @@ class SecretButton extends LitElement {
   }
 }
 
-export { React, ReactDOM, SecretButton };
+export { SecretButton };

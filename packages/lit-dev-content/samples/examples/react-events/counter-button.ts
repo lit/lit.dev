@@ -8,16 +8,6 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-declare global {
-  interface Window {
-    React: any;
-    ReactDOM: any;
-  }
-}
-
-const React = window.React;
-const ReactDOM = window.ReactDOM;
-
 @customElement('counter-button')
 class CounterButton extends LitElement {
   @property({ type: String }) count = 0;
@@ -29,4 +19,4 @@ class CounterButton extends LitElement {
   }
 }
 
-export { React, ReactDOM, CounterButton };
+export { CounterButton };
