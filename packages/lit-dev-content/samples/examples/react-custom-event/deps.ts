@@ -21,7 +21,7 @@ const ReactDOM = window.ReactDOM;
 const messages: string[] = [
   "everything is going to be okay!",
   "you're amazing!",
-  "everyone wins if you ask for help!",
+  "when you ask for help, everyone wins!",
   "there is always sunshine somewhere!",
 ];
 

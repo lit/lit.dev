@@ -5,6 +5,7 @@
   "description": "Listen to custom events from web components.",
   "section": "React",
   "files": {
+    "app.tsx": {},
     "index.tsx": {},
     "deps.ts": {},
     "index.html": {}

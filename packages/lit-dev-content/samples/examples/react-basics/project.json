@@ -6,6 +6,7 @@
   "section": "React",
   "files": {
     "index.tsx": {},
+    "app.tsx": {},
     "deps.ts": {},
     "index.html": {}
   }
