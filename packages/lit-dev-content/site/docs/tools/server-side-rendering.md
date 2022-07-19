@@ -215,3 +215,6 @@ There currently aren't any mechanisms to wait for some asynchronous result befor
 ## Testing
 
 `@lit-labs/testing` package contains utility functions that utilize a Web Test Runner plugin to create test fixtures that are rendered server-side using `@lit-labs/ssr`. It can help test whether your components are server-side renderable. See more in the [readme](https://github.com/lit/lit/tree/main/packages/labs/testing#readme).
+
+## Demos
+- [SSR with global rendering](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
