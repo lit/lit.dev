@@ -1,10 +1,3 @@
-/*
-  Dependencies for examples include:
-  - React
-  - ReactDOM
-  - SimpleGreeting web component
-*/
-
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
