@@ -1,4 +1,4 @@
-import {ReactDOM} from './deps.js';
+import {React, ReactDOM} from './deps.js';
 import {App} from './app.js';
 
 const section = document.querySelector('section');

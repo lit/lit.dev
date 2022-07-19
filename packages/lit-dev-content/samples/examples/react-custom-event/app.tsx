@@ -1,6 +1,5 @@
 import type {EventName} from '@lit-labs/react';
 import {createComponent} from '@lit-labs/react';
-
 import {React, SecretButton as SecretButtonComponent} from './deps.js';
 
 const SecretButton = createComponent(

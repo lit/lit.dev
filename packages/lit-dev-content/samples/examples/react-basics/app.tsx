@@ -3,7 +3,7 @@ import {React, SimpleGreeting as SimpleGreetingWC} from './deps.js';
 
 const SimpleGreeting = createComponent(
   React,
-  'secret-button',
+  'simple-greeting',
   SimpleGreetingWC,
 );
 
