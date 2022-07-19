@@ -4,13 +4,11 @@ import {LyricalSlots as LyricalSlotsWC} from './lyrical-slots.js';
 
 const LyricalSlots = createComponent(React, 'lyrical-slots', LyricalSlotsWC);
 
-export const App = () => {
-  return (
-    <>
-      <LyricalSlots>
-        <div slot="clowns">&#129313; &#129313; &#129313;</div>
-        <div slot="jokers">&#127183; &#127183; &#127183;</div>
-      </LyricalSlots>
-    </>
-  );
-};
+export const App = () => (
+  <>
+    <LyricalSlots>
+      <div slot="clowns">&#129313; &#129313; &#129313;</div>
+      <div slot="jokers">&#127183; &#127183; &#127183;</div>
+    </LyricalSlots>
+  </>
+);
