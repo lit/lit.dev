@@ -2,7 +2,7 @@
 title: Related libraries
 eleventyNavigation:
   key: Related libraries
-  order: 9
+  order: 10
 versionLinks:
   v1: lit-html/introduction/
 ---

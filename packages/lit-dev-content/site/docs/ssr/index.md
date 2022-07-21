@@ -1,8 +1,8 @@
 ---
-title: Releases
+title: Server-side rendering
 eleventyNavigation:
-  key: Releases
-  order: 9
+  key: Server-side rendering
+  order: 7
 ---
 
 <!-- This file exists only to create a section heading.
