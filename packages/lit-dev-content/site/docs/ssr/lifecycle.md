@@ -1,16 +1,16 @@
 ---
-title: Servber-side rendering lifecycle
+title: Lit SSR lifecycle
 eleventyNavigation:
   key: Lifecycle
   parent: Server-side rendering
   order: 4
 ---
 
-The table below lists the standard custom element and Lit element lifecycle methods and whether they are called during SSR and during hydration.
+The tables below lists the standard custom element and Lit element lifecycle methods and whether they are called during SSR and during hydration.
 
 Be mindful that methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without throwing.
 
-### LitElement
+## LitElement
 | Method | Called on server | Called on hydration | Notes |
 |-|-|-|-|
 | `constructor()` | ✅ | ✅ | |
@@ -26,7 +26,7 @@ Be mindful that methods called on the server should not contain references to br
 | `firstUpdate()` | ❌ | ✅ | |
 | `updated()` | ❌ | ✅ | |
 
-### ReactiveController
+## ReactiveController
 | Method | Called on server | Called on hydration | Notes |
 |-|-|-|-|
 | `constructor()` | ✅ | ✅ | |
@@ -35,7 +35,7 @@ Be mindful that methods called on the server should not contain references to br
 | `hostUpdate()` | ❌ | ✅ | No reactivity in SSR |
 | `hostUpdated()` | ❌ | ✅ | No reactivity in SSR |
 
-### Directive
+## Directive
 | Method | Called on server | Called on hydration | Notes |
 |-|-|-|-|
 | `constructor()` | ✅ | ✅ | |

@@ -1,5 +1,5 @@
 ---
-title: Servber-side rendering server API
+title: Lit SSR server API
 eleventyNavigation:
   key: Server API
   parent: Server-side rendering
@@ -10,12 +10,16 @@ Lit SSR provides a couple different ways of rendering custom elements server-sid
 
 In order to render custom elements in Node, Lit SSR requires some minimal [DOM emulation]('/docs/ssr/dom-emulation') necessary for `lit-html` and `reactive-element` to work, as well as a working `CustomElementRegistry`.
 
-When rendering in the global scope, this DOM shim is installed in the global space, which may cause unintended behaviors for other libraries which might try to detect the running environment by checking for the presence of `window` in the global space, for instance. All render requests also share the same global custom element registry, and any data that might be stored globally.
+When rendering in the global scope, this DOM shim is installed in the global space. This may cause unintended behaviors for other libraries which, for instance, might try to detect the running environment by checking for the presence of `window` in the global space. All render requests also share the same global custom element registry, and any data that might be stored globally.
 
 Rendering with VM modules allow each render request to have its own context with a separate global from the main Node process such that the DOM emulation is only installed within that scope and any custom elements being registered or global data is contained within that context used only for that particular render request. It does require utilizing an experimental node feature with a particular way of using it. See below for details.
 
+| Global | VM Module |
+|-|-|
+| Pros:<ul><li>Easy to use – can import component modules directly and call `render()` with templates</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing misinteractions with other libraries</li><li>Custom elements are registered in a shared registry across different render requests</li></ul> | Pros:<ul><li>Does not introduce DOM shim to global</li><li>Isolates contexts across different render requests</li></ul>Cons:<ul><li>Less intuitive usage – need to write and specify a module file with a function to call</li></ul> |
+
 ## Global Scope
-The `render` method takes a renderable value, usually a Lit template result, and returns an interable of strings that can be streamed or concatenated to a string for a response.
+The `render()` method takes a renderable value, usually a Lit template result, and returns an iterable of strings that can be streamed or concatenated to a string for a response.
 
 ```js
 import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
@@ -31,7 +35,7 @@ app.use(async (ctx) => {
 });
 ```
 
-Importing `render` from `@lit-labs/ssr/lib/render-with-global-dom-shim.js` will also install a minimal [DOM Shim](#dom-shim) in the global scope necessary for `lit` and component definitions to be loaded for rendering the components server-side. It must be imported before any `lit` libraries or component
+Importing `render()` from `@lit-labs/ssr/lib/render-with-global-dom-shim.js` will also install a minimal [DOM shim](/ssr/dom-emulation) in the global scope necessary for `lit` and component definitions to be loaded for rendering the components server-side. It must be imported before any `lit` libraries or component.
 
 Note: Loading the DOM shim globally introduces `window` into the global space which some libraries might look for in determining whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
 
@@ -67,4 +71,4 @@ app.use(async (ctx) => {
 });
 ```
 
-Note: Using this feature requires Node 14+ and passing the `--experimental-vm-modules` flag to node because of its use of experimental VM modules for creating a module-compatible VM context.
+Note: Using this feature requires Node 14+ and passing the `--experimental-vm-modules` flag to Node because of its use of experimental VM modules for creating a module-compatible VM context.

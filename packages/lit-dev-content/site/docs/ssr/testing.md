@@ -1,5 +1,5 @@
 ---
-title: Servber-side rendering testing
+title: Lit SSR testing
 eleventyNavigation:
   key: Testing
   parent: Server-side rendering

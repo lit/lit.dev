@@ -1,5 +1,5 @@
 ---
-title: Servber-side rendering DOM emulation
+title: Lit SSR DOM emulation
 eleventyNavigation:
   key: DOM emulation
   parent: Server-side rendering
