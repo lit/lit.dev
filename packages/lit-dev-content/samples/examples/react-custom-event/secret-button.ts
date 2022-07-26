@@ -24,7 +24,7 @@ function randomBucket<T>(messages: T[]): T {
 class SecretButton extends LitElement {
   render() {
     return html`
-      <button @click="${this.onClick}">dispatch secret message</button>
+      <button @click="${this.onClick}">dispatch secret message event</button>
     `;
   }
 

@@ -15,17 +15,17 @@ const {useCallback, useState} = React;
 
 export const App = () => {
   const [message, setMessage] = useState(
-    'click the button for a secret message :D'
+    'Click the button to recieve a custom event dispatched by the SecretButton component.'
   );
 
-  const onMessageCallback = useCallback(
+  const onSecretMessageCallback = useCallback(
     (e: CustomEvent<string>) => setMessage(e.detail),
     []
   );
 
   return (
     <>
-      <SecretButton onSecretMessage={onMessageCallback}></SecretButton>
+      <SecretButton onSecretMessage={onSecretMessageCallback}></SecretButton>
       <div>{message}</div>
     </>
   );
