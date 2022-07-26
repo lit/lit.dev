@@ -7,7 +7,7 @@
   "files": {
     "app.tsx": {},
     "simple-slots.ts": {},
-    "faux-react.ts": {},
+    "react.ts": {},
     "index.tsx": {},
     "index.html": {}
   }
