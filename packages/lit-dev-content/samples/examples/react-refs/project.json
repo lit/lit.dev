@@ -2,13 +2,13 @@
   "extends": "/samples/base.json",
   "order": 4,
   "title": "Refs",
-  "description": "Project React Components onto web component slots.",
+  "description": "Interact with Web Component APIs via Refs.",
   "section": "React",
   "files": {
     "app.tsx": {},
-    "wander-boid.ts": {},
-    "faux-react.ts": {},
+    "wander-boids.ts": {},
     "index.tsx": {},
+    "faux-react.ts": {},
     "index.html": {}
   }
 }

@@ -20,9 +20,9 @@ class Wanderer {
   pos: Vector = { x: 0, y: 0 };
   theta: Vector = { x: 0, y: 0 };
   color: number[] = [
-    100 + Math.floor(Math.random() * 100),
-    100 + Math.floor(Math.random() * 100),
-    255,
+    100 + Math.floor(Math.random() * 155),
+    100 + Math.floor(Math.random() * 155),
+    220,
   ]
 }
 
@@ -33,7 +33,7 @@ const styles = css`
 `;
 
 @customElement('wander-boid')
-export class WanderBoid extends LitElement {
+export class WanderBoids extends LitElement {
   static styles = styles;
 
   @query('#canvas') canvas!: HTMLCanvasElement;

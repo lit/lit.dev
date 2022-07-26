@@ -1,8 +1,8 @@
 import {createComponent} from '@lit-labs/react';
 import {React} from "./faux-react.js";
-import {WanderBoid as WanderBoidWC} from './wander-boid.js';
+import {WanderBoids as WanderBoidsWC} from './wander-boids.js';
 
-const WanderBoid = createComponent(React, 'wander-boid', WanderBoidWC);
+const WanderBoid = createComponent(React, 'wander-boid', WanderBoidsWC);
 
 export const App = () => {
   const wanderBoidRef = React.useRef();
