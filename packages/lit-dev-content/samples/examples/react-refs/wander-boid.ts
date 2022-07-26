@@ -8,6 +8,23 @@ interface Vector {
   y: number;
 }
 
+class Wanderer {
+  // chase bubble
+  bubbleRadius = Math.random() * 10 + 10;
+  bubbleDist = Math.random() * 25 + 75;
+  radianEdge = 0.5;
+  radians = Math.random() * PI2;
+
+  // vehicle
+  velocity = 10;
+  pos: Vector = { x: 0, y: 0 };
+  theta: Vector = { x: 0, y: 0 };
+  color: number[] = [
+    100 + Math.floor(Math.random() * 100),
+    100 + Math.floor(Math.random() * 100),
+    255,
+  ]
+}
 
 const styles = css`
   canvas {
@@ -31,14 +48,14 @@ export class WanderBoid extends LitElement {
 
   play() {
     if (this.canvas === null || this.reciept !== -1) return;
+
     this.ctx = this.canvas.getContext('2d');
     this._renderCanvas();
   }
 
   pause() {
-    if (this.reciept === -1) {
-      return;
-    }
+    if (this.reciept === -1) return;
+
     cancelAnimationFrame(this.reciept);
     this.reciept = -1;
   }
@@ -50,54 +67,25 @@ export class WanderBoid extends LitElement {
   }
 
   firstUpdated() {
-    for (const wndr of this.wanderers) {
-      wndr.pos.x = Math.random() * this.canvas.width;
-      wndr.pos.y = Math.random() * this.canvas.height;
-    }
-
     this.play();
   }
 
   _renderCanvas = () => {
-    if (this.ctx === null) {
-      return;
-    }
+    if (this.ctx === null) return;
+    this.reciept = requestAnimationFrame(this._renderCanvas)
 
     // throttle renders
     const now = performance.now();
     this.timeDistance += now - this.prevNow;
     if (this.timeDistance < this.fps) {
-      this.reciept = requestAnimationFrame(this._renderCanvas)
       return
     }
+
+    // update timestep and draw
     this.timeDistance %= this.fps;
     this.prevNow = now;
-
     draw(this.ctx, this.canvas, this.wanderers);
-
-    this.reciept = requestAnimationFrame(this._renderCanvas)
   }
-}
-
-class Wanderer {
-  // chase bubble
-  bubbleRadius = Math.random() * 10 + 10;
-  bubbleDist = Math.random() * 25 + 75;
-
-  // bubble location
-  radianEdge = 0.5;
-  radians = Math.random() * PI2;
-
-  // vehicle
-  velocity = 10;
-  pos: Vector = { x: 0, y: 0 };
-  theta: Vector = { x: 0, y: 0 };
-
-  color: number[] = [
-    100 + Math.floor(Math.random() * 100),
-    100 + Math.floor(Math.random() * 100),
-    255,
-  ]
 }
 
 const normalize = (vec: Vector, mag: number = 1): Vector => {
