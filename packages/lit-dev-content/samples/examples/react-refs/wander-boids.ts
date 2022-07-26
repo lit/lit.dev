@@ -18,7 +18,7 @@ const styles = css`
 export class WanderBoids extends LitElement {
   static styles = styles;
 
-  @query('#canvas') canvas!: HTMLCanvasElement;
+  @query('canvas') canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D | null;
 
   fps = 0.3 * 1000; // fps at 12 frames a second as milliseconds
@@ -30,7 +30,7 @@ export class WanderBoids extends LitElement {
 
   render() {
     return html`
-      <canvas id="canvas" height="300" width="300"></canvas>
+      <canvas height="300" width="300"></canvas>
     `;
   }
 
@@ -77,7 +77,6 @@ export class WanderBoids extends LitElement {
     draw(this.ctx, this.canvas, this.wanderers);
   }
 }
-
 
 class Wanderer {
   // wander bubble
@@ -129,10 +128,10 @@ const integrate = (wndr: Wanderer) => {
 
 const wrapPos = (wndr: Wanderer, width: number, height: number) => {
   if (wndr.pos.x < 0) {
-    wndr.pos.x = width - wndr.pos.x * -1;
+    wndr.pos.x += width;
   }
   if (wndr.pos.y < 0) {
-    wndr.pos.y = height - wndr.pos.y * -1;
+    wndr.pos.y += height;
   }
   
   wndr.pos.x %= width;

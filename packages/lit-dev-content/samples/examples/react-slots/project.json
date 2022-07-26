@@ -6,7 +6,7 @@
   "section": "React",
   "files": {
     "app.tsx": {},
-    "lyrical-slots.ts": {},
+    "simple-slots.ts": {},
     "faux-react.ts": {},
     "index.tsx": {},
     "index.html": {}

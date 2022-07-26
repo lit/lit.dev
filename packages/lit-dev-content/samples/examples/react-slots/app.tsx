@@ -1,14 +1,15 @@
 import {createComponent} from '@lit-labs/react';
 import {React} from "./faux-react.js";
-import {LyricalSlots as LyricalSlotsWC} from './lyrical-slots.js';
+import {SimpleSlots as SimpleSlotsWC} from './simple-slots.js';
 
-const LyricalSlots = createComponent(React, 'lyrical-slots', LyricalSlotsWC);
+const SimpleSlots = createComponent(React, 'simple-slots', SimpleSlotsWC);
 
 export const App = () => (
   <>
-    <LyricalSlots>
-      <div slot="clowns">&#129313; &#129313; &#129313;</div>
-      <div slot="jokers">&#127183; &#127183; &#127183;</div>
-    </LyricalSlots>
+    <SimpleSlots>
+      <p>elements without a slot attribute will be projected onto the default slot.</p>
+      <p slot="head">This element will be projected onto the "head" slot.</p>
+      <p slot="tail">This element will be projected onto the "tail" slot.</p>
+    </SimpleSlots>
   </>
 );
