@@ -17,10 +17,12 @@ export const App = () => {
 
   return (
     <>
-      <button onClick={play}>play</button>
-      <button onClick={pause}>pause</button>
       <WanderBoid ref={wanderBoidRef}>
       </WanderBoid>
+      <div>
+        <button onClick={play}>play</button>
+        <button onClick={pause}>pause</button>
+      </div>
     </>
   )
 }
