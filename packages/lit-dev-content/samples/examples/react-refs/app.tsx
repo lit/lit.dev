@@ -5,19 +5,19 @@ import {WanderBoids as WanderBoidsWC} from './wander-boids.js';
 const WanderBoid = createComponent(React, 'wander-boid', WanderBoidsWC);
 
 export const App = () => {
-  const wanderBoidRef = React.useRef();
+  const boidRef = React.useRef();
 
   const play = React.useCallback(() => {
-    wanderBoidRef?.current.play();
-  }, [wanderBoidRef]);
+    boidRef?.current.play();
+  }, [boidRef]);
 
   const pause = React.useCallback(() => {
-    wanderBoidRef?.current.pause();
-  }, [wanderBoidRef]);
+    boidRef?.current.pause();
+  }, [boidRef]);
 
   return (
     <>
-      <WanderBoid ref={wanderBoidRef}>
+      <WanderBoid ref={boidRef}>
       </WanderBoid>
       <div>
         <button onClick={play}>play</button>
