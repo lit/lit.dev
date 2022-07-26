@@ -1,0 +1,14 @@
+{
+  "extends": "/samples/base.json",
+  "order": 4,
+  "title": "Refs",
+  "description": "Project React Components onto web component slots.",
+  "section": "React",
+  "files": {
+    "app.tsx": {},
+    "wander-boid.ts": {},
+    "faux-react.ts": {},
+    "index.tsx": {},
+    "index.html": {}
+  }
+}

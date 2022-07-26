@@ -1,6 +1,6 @@
 import type {EventName} from '@lit-labs/react';
-
 import {createComponent} from '@lit-labs/react';
+
 import {React} from "./faux-react.js";
 import {SecretButton as SecretButtonComponent} from './secret-button.js';
 
@@ -18,14 +18,14 @@ export const App = () => {
     'click the button for a secret message :D'
   );
 
-  const clickCallback = useCallback(
+  const onMessageCallback = useCallback(
     (e: CustomEvent<string>) => setMessage(e.detail),
     []
   );
 
   return (
     <>
-      <SecretButton onSecretMessage={clickCallback}></SecretButton>
+      <SecretButton onSecretMessage={onMessageCallback}></SecretButton>
       <div>{message}</div>
     </>
   );

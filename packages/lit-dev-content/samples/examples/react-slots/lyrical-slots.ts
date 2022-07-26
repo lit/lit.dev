@@ -25,16 +25,9 @@ class LyricalSlots extends LitElement {
 
   render() {
     return html`
-      <slot name="clowns"></slot>
-      <div>
-        <p>
-          Clowns to the left of me, jokers to the right!
-        </p>
-        <p>
-          Here I am: stuck in the middle of "views".
-        </p>
-      </div>
-      <slot name="jokers"></slot>
+      <slot name="head"></slot>
+      <slot></slot>
+      <slot name="tail"></slot>
     `;
   }
 }
