@@ -1,6 +1,12 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
 
+/*
+  This file is for demo purposes only.
+  The point of this demo is to provide a web component
+
+*/
+
 interface Vector {
   x: number;
   y: number;
@@ -24,7 +30,7 @@ export class WanderBoids extends LitElement {
   fps = 0.3 * 1000; // fps at 12 frames a second as milliseconds
   now = performance.now();
   deltaTime = this.fps + 1;
-  frameReciept = -1;
+  rafId = -1;
 
   wanderers = [new Wanderer(), new Wanderer(), new Wanderer()];
 
@@ -39,22 +45,22 @@ export class WanderBoids extends LitElement {
   }
 
   play() {
-    if (this.canvas === null || this.frameReciept !== -1) return;
+    if (this.canvas === null || this.rafId !== -1) return;
 
     this.ctx = this.canvas.getContext('2d');
     this._renderCanvas();
   }
 
   pause() {
-    if (this.frameReciept === -1) return;
+    if (this.rafId === -1) return;
 
-    cancelAnimationFrame(this.frameReciept);
-    this.frameReciept = -1;
+    cancelAnimationFrame(this.rafId);
+    this.rafId = -1;
   }
 
   _renderCanvas = () => {
     if (this.ctx === null) return;
-    this.frameReciept = requestAnimationFrame(this._renderCanvas)
+    this.rafId = requestAnimationFrame(this._renderCanvas)
 
     // throttle renders
     const now = performance.now();
@@ -63,7 +69,7 @@ export class WanderBoids extends LitElement {
       return
     }
 
-    // update timestep and draw
+    // update timestep
     this.deltaTime %= this.fps;
     this.now = now;
     
@@ -73,7 +79,7 @@ export class WanderBoids extends LitElement {
       wrapPos(wndr, this.canvas.width, this.canvas.height);
     }
 
-    // draw boids
+    // draw scene
     draw(this.ctx, this.canvas, this.wanderers);
   }
 }
@@ -82,7 +88,7 @@ class Wanderer {
   // wander bubble
   bubbleRadius = Math.random() * 10 + 10;
   bubbleDist = Math.random() * 25 + 75;
-  radianEdge = 0.5;
+  wedge = 0.5;
   radians = Math.random() * PI2;
 
   // vehicle
@@ -106,7 +112,7 @@ const normalize = (vec: Vector, mag: number = 1): Vector => {
 
 const integrate = (wndr: Wanderer) => {
   // increment chase bubble
-  wndr.radians += Math.random() * wndr.radianEdge;
+  wndr.radians += Math.random() * wndr.wedge;
   wndr.radians %= PI2;
 
   // get chase bubble vector

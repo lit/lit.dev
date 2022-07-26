@@ -2,6 +2,11 @@ import {createComponent} from '@lit-labs/react';
 import {React} from "./faux-react.js";
 import {WanderBoids as WanderBoidsWC} from './wander-boids.js';
 
+/*
+  The WanderBoid component is stateful and uncontrolled.
+  So we want to react to changes in it's state.
+  We do that through callbacks and refs
+*/
 const WanderBoid = createComponent(React, 'wander-boid', WanderBoidsWC);
 
 export const App = () => {

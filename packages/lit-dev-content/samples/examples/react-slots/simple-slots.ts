@@ -4,17 +4,15 @@ import { customElement, property } from 'lit/decorators.js';
 const styles = css`
   :host {
     display: flex;
-  }
-
-  div, slot::slotted(*) {
-    margin: 8px;
     border: 4px solid #343434;
-    border-radius: 4px;
   }
 
-  slot::slotted(*) {
+  slot {
+    display: block;
     margin: 8px;
     padding: 8px;
+    border: 4px solid #343434;
+    border-radius: 4px;
   }
 
   p {
@@ -31,15 +29,15 @@ class SimpleSlots extends LitElement {
   render() {
     return html`
       <div>
-        <p>head slot</p>
+        <p>slot="head"</p>
         <slot name="head"></slot>
       </div>
       <div>
-        <p>defaut slot</p>
+        <p>default slot</p>
         <slot></slot>
       </div>
       <div>
-        <p>tail slot</p>
+        <p>slot="slot"</p>
         <slot name="tail"></slot>
       </div>
     `;

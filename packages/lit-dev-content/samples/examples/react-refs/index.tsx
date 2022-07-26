@@ -1,4 +1,4 @@
-import {React, ReactDOM} from './faux-react.js';
+import {React, ReactDOM} from './react.js';
 import {App} from './app.js';
 
 const section = document.querySelector('section');
