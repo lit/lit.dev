@@ -40,7 +40,10 @@ export const App = () => {
   }, []);
 
   const onWanderBoidState = useCallback(
-    (e: CustomEvent<WanderBoidState>) => setState(e.detail),
+    (e: CustomEvent<WanderBoidState>) => {
+      e.stopPropagation();
+      setState(e.detail);
+    },
     []
   );
 
@@ -62,11 +65,11 @@ export const App = () => {
           pause
         </button>
         <input
-          onChange={onFps}
           type="range"
-          value={state.fps}
           min="6"
           max="35"
+          value={state.fps}
+          onChange={onFps}
         ></input>
       </div>
     </>

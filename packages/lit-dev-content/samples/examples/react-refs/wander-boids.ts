@@ -51,47 +51,17 @@ export class WanderBoid extends LitElement {
 
   private state: Scene = {
     fpsAsMS: 1,
-    deltaTime: 1000 / this.fps,
+    deltaTime: 1,
     now: performance.now(),
     integral: 0.02 * 1000,
     rafId: -1,
     wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
   }
 
-  render() {
-    this.state.fpsAsMS = 1000 / this.fps;
-
-    return html`
-      <canvas height="300" width="300"></canvas>
-    `;
-  }
-
-  firstUpdated() {
-    // the canvas element needs to be available to @query
-    this.play();
-  }
-
-  updated() {
-    this.dispatchEvent(
-      new CustomEvent<WanderBoidState>(
-        'wander-boid-state',
-        {
-          composed: true,
-          detail: {
-            isPlaying: this.isPlaying,
-            fps: this.fps
-          }
-        },
-      )
-    );
-  }
-
   play() {
-    if (this.isPlaying) return;
-
     if (
-      this.canvas === null ||
-      this.ctx === null
+      this.isPlaying ||
+      this.canvas === null
     ) return;
 
     this.isPlaying = true;
@@ -106,6 +76,37 @@ export class WanderBoid extends LitElement {
     cancelAnimationFrame(this.state.rafId);
   }
 
+  render() {
+
+    return html`
+      <canvas height="300" width="300"></canvas>
+    `;
+  }
+
+  firstUpdated() {
+    // the canvas element needs to be available to @query
+    this.state.fpsAsMS = 1000 / this.fps;
+
+    this.play();
+  }
+
+  updated() {
+    this.state.fpsAsMS = 1000 / this.fps;
+
+    this.dispatchEvent(
+      new CustomEvent<WanderBoidState>(
+        'wander-boid-state',
+        {
+          composed: true,
+          detail: {
+            isPlaying: this.isPlaying,
+            fps: this.fps
+          }
+        },
+      )
+    );
+  }
+
   private _renderCanvas = () => {
     if (this.ctx === null) return;
     this.state.rafId = requestAnimationFrame(this._renderCanvas);
@@ -116,15 +117,15 @@ export class WanderBoid extends LitElement {
 
 class Wanderer {
   // wander bubble
-  bubbleRadius = Math.random() * 10 + 2;
-  bubbleDist = Math.random() * 25 + 75;
+  bubbleRadius = Math.random() * 10 + 10;
+  bubbleDist = Math.random() * 15 + 50;
   radians = Math.random() * Math.PI * 2;
-  wedge = 0.1;
+  wedge = Math.random() * 0.2 + 0.1;
   bubble: Vector = { x: 0, y: 0 };
 
   // vehicle
-  mass = Math.random() * 2 + 2;
-  velocity = Math.random() + 1;
+  mass = 5 + Math.random() * 5;
+  velocity = 2 + Math.random() * 3;
   pos: Vector = { x: 0, y: 0 };
   theta: Vector = { x: 0, y: 0 };
   color: number[] = [
@@ -168,7 +169,7 @@ const renderScene = (
 
 const integrate = (wndr: Wanderer) => {
   // increment chase bubble
-  wndr.radians += Math.random() * wndr.wedge;
+  wndr.radians += (Math.random() * 2 - 1) * wndr.wedge;
   wndr.radians %= Math.PI * 2;
 
   // build chase bubble vector
