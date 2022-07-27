@@ -6,7 +6,7 @@ import { customElement, query, state, property } from 'lit/decorators.js';
   The point of this demo is to provide a web component
   that is stateful and uncontrolled.
 
-  The WanderBoids web component exposes the following API:
+  The WanderBoid web component exposes the following API:
   WanderBoids::play()
   WanderBoids::pause()
   
@@ -26,7 +26,7 @@ interface Scene {
   wanderers: Wanderer[];
 }
 
-export interface StateEvent {
+export interface WanderBoidState {
   isPlaying: boolean;
   fps: number;
 }
@@ -37,8 +37,8 @@ const styles = css`
   }
 `;
 
-@customElement('wander-boids')
-export class WanderBoids extends LitElement {
+@customElement('wander-boid')
+export class WanderBoid extends LitElement {
   static styles = styles;
 
   // canvas
@@ -73,8 +73,8 @@ export class WanderBoids extends LitElement {
 
   updated() {
     this.dispatchEvent(
-      new CustomEvent<StateEvent>(
-        'state-event',
+      new CustomEvent<WanderBoidState>(
+        'wander-boid-state',
         {
           composed: true,
           detail: {
@@ -118,15 +118,15 @@ class Wanderer {
   // wander bubble
   bubbleRadius = Math.random() * 10 + 2;
   bubbleDist = Math.random() * 25 + 75;
-  wedge = 0.1;
   radians = Math.random() * Math.PI * 2;
+  wedge = 0.1;
   bubble: Vector = { x: 0, y: 0 };
 
   // vehicle
   mass = Math.random() * 2 + 2;
+  velocity = Math.random() + 1;
   pos: Vector = { x: 0, y: 0 };
   theta: Vector = { x: 0, y: 0 };
-  velocity = Math.random() + 1;
   color: number[] = [
     100 + Math.floor(Math.random() * 155),
     100 + Math.floor(Math.random() * 155),
