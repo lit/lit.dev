@@ -1,5 +1,5 @@
 import {createComponent} from '@lit-labs/react';
-import {React} from "./faux-react.js";
+import {React} from "./react.js";
 import {WanderBoids as WanderBoidsWC} from './wander-boids.js';
 
 /*

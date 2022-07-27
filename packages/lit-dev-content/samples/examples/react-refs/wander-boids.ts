@@ -4,7 +4,11 @@ import { customElement, query } from 'lit/decorators.js';
 /*
   This file is for demo purposes only.
   The point of this demo is to provide a web component
+  that is stateful and uncontrolled.
 
+  The WanderBoids web component exposes the following API:
+  WanderBoids::play()
+  WanderBoids::pause()
 */
 
 interface Vector {
@@ -27,9 +31,10 @@ export class WanderBoids extends LitElement {
   @query('canvas') canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D | null;
 
-  fps = 0.3 * 1000; // fps at 12 frames a second as milliseconds
+  fps = 1 / 24 * 1000; // fps at 12 frames a second as milliseconds
+  integral = 0.02 * 1000
+  deltaTime = this.fps;
   now = performance.now();
-  deltaTime = this.fps + 1;
   rafId = -1;
 
   wanderers = [new Wanderer(), new Wanderer(), new Wanderer()];
@@ -69,16 +74,24 @@ export class WanderBoids extends LitElement {
       return
     }
 
-    // update timestep
-    this.deltaTime %= this.fps;
-    this.now = now;
-    
-    // update positions
+    // update positions, cheap timestep
+    let timePassed = Math.min(this.deltaTime, this.fps + this.integral);
+    while(timePassed > 0) {
+      timePassed -= this.integral;
+      for (const wndr of this.wanderers) {
+        integrate(wndr);
+      }
+    }
+
+    // wrap positions inside grid
     for (const wndr of this.wanderers) {
-      integrate(wndr);
       wrapPos(wndr, this.canvas.width, this.canvas.height);
     }
 
+    // update timestep
+    this.deltaTime %= this.fps;
+    this.now = now;
+        
     // draw scene
     draw(this.ctx, this.canvas, this.wanderers);
   }
@@ -86,15 +99,16 @@ export class WanderBoids extends LitElement {
 
 class Wanderer {
   // wander bubble
-  bubbleRadius = Math.random() * 10 + 10;
+  bubbleRadius = Math.random() * 10 + 2;
   bubbleDist = Math.random() * 25 + 75;
-  wedge = 0.5;
+  wedge = 0.1;
   radians = Math.random() * PI2;
 
   // vehicle
+  mass = Math.random() * 2 + 2;
   pos: Vector = { x: 0, y: 0 };
   theta: Vector = { x: 0, y: 0 };
-  velocity = Math.random() * 10 + 5;
+  velocity = Math.random() + 1;
   color: number[] = [
     100 + Math.floor(Math.random() * 155),
     100 + Math.floor(Math.random() * 155),
@@ -123,8 +137,8 @@ const integrate = (wndr: Wanderer) => {
 
   // get orientation 
   const normBubble = normalize(bubble);
-  wndr.theta.x += normBubble.x;
-  wndr.theta.y += normBubble.y;
+  wndr.theta.x += normBubble.x / wndr.mass;
+  wndr.theta.y += normBubble.y / wndr.mass;
   wndr.theta = normalize(wndr.theta);
 
   // add pos
@@ -133,15 +147,8 @@ const integrate = (wndr: Wanderer) => {
 }
 
 const wrapPos = (wndr: Wanderer, width: number, height: number) => {
-  if (wndr.pos.x < 0) {
-    wndr.pos.x += width;
-  }
-  if (wndr.pos.y < 0) {
-    wndr.pos.y += height;
-  }
-  
-  wndr.pos.x %= width;
-  wndr.pos.y %= height;
+  wndr.pos.y = (wndr.pos.y + height) % height;
+  wndr.pos.x = (wndr.pos.x + width) % width;
 }
 
 const draw = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, wndrs: Wanderer[]) => {
