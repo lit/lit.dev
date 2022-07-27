@@ -1,5 +1,5 @@
 import { css, html, LitElement } from 'lit';
-import { customElement, query } from 'lit/decorators.js';
+import { customElement, query, property } from 'lit/decorators.js';
 
 /*
   This file is for demo purposes only.
@@ -28,18 +28,21 @@ const styles = css`
 export class WanderBoids extends LitElement {
   static styles = styles;
 
+  @property({type: Number}) fps = 24
   @query('canvas') canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D | null;
 
-  fps = 1 / 24 * 1000; // fps at 12 frames a second as milliseconds
+  fpsAsMS = 1 / 24 * 1000; // fps at 12 frames a second as milliseconds
   integral = 0.02 * 1000
-  deltaTime = this.fps;
+  deltaTime = 1 / 24 * 1000;
   now = performance.now();
   rafId = -1;
 
   wanderers = [new Wanderer(), new Wanderer(), new Wanderer()];
 
   render() {
+    this.fpsAsMS = 1 / this.fps * 1000; // fps at 12 frames a second as milliseconds
+
     return html`
       <canvas height="300" width="300"></canvas>
     `;
@@ -70,12 +73,12 @@ export class WanderBoids extends LitElement {
     // throttle renders
     const now = performance.now();
     this.deltaTime += now - this.now;
-    if (this.deltaTime < this.fps) {
+    if (this.deltaTime < this.fpsAsMS) {
       return
     }
 
     // update positions, cheap timestep
-    let timePassed = Math.min(this.deltaTime, this.fps + this.integral);
+    let timePassed = Math.min(this.deltaTime, this.fpsAsMS + this.integral);
     while(timePassed > 0) {
       timePassed -= this.integral;
       for (const wndr of this.wanderers) {
@@ -89,7 +92,7 @@ export class WanderBoids extends LitElement {
     }
 
     // update timestep
-    this.deltaTime %= this.fps;
+    this.deltaTime %= this.fpsAsMS;
     this.now = now;
         
     // draw scene

@@ -20,6 +20,13 @@ export const App = () => {
     boidRef?.current.pause();
   }, [boidRef]);
 
+  const onChange = React.useCallback((e) => {
+    if (boidRef.current === null) {
+      return;
+    }
+    boidRef.current.fps = e.target.value;
+  }, [boidRef]);
+
   return (
     <>
       <WanderBoid ref={boidRef}>
@@ -27,6 +34,7 @@ export const App = () => {
       <div>
         <button onClick={play}>play</button>
         <button onClick={pause}>pause</button>
+        <input onChange={onChange} type="range" min="6" max="35"></input>
       </div>
     </>
   )
