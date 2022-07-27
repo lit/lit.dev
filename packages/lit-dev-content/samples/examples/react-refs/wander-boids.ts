@@ -32,9 +32,9 @@ export class WanderBoids extends LitElement {
   @query('canvas') canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D | null;
 
-  fpsAsMS = 1 / 24 * 1000; // fps at 12 frames a second as milliseconds
+  fpsAsMS = 1 / this.fps * 1000; // fps at 12 frames a second as milliseconds
   integral = 0.02 * 1000
-  deltaTime = 1 / 24 * 1000;
+  deltaTime = 1 / this.fps * 1000;
   now = performance.now();
   rafId = -1;
 
