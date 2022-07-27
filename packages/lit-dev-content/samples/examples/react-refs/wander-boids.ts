@@ -9,6 +9,7 @@ import { customElement, query, property } from 'lit/decorators.js';
   The WanderBoids web component exposes the following API:
   WanderBoids::play()
   WanderBoids::pause()
+  
 */
 
 interface Vector {
@@ -16,7 +17,14 @@ interface Vector {
   y: number;
 }
 
-const PI2 = Math.PI * 2;
+interface State {
+  fpsAsMS: number;
+  deltaTime: number;
+  now: number;
+  integral: number;
+  rafId: number;
+  wanderers: Wanderer[];
+}
 
 const styles = css`
   canvas {
@@ -24,24 +32,28 @@ const styles = css`
   }
 `;
 
-@customElement('wander-boid')
+@customElement('wander-boids')
 export class WanderBoids extends LitElement {
   static styles = styles;
 
-  @property({type: Number}) fps = 24
+  // canvas
   @query('canvas') canvas!: HTMLCanvasElement;
-  ctx!: CanvasRenderingContext2D | null;
+  ctx!: CanvasRenderingContext2D;
 
-  fpsAsMS = 1 / this.fps * 1000; // fps at 12 frames a second as milliseconds
-  integral = 0.02 * 1000
-  deltaTime = 1 / this.fps * 1000;
-  now = performance.now();
-  rafId = -1;
+  // timestep & animation
+  @property({ type: Number }) fps = 24
 
-  wanderers = [new Wanderer(), new Wanderer(), new Wanderer()];
+  state: State = {
+    fpsAsMS: 1,
+    deltaTime: 1000 / this.fps,
+    now: performance.now(),
+    integral: 0.02 * 1000,
+    rafId: -1,
+    wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
+  }
 
   render() {
-    this.fpsAsMS = 1 / this.fps * 1000; // fps at 12 frames a second as milliseconds
+    this.state.fpsAsMS = 1000 / this.fps;
 
     return html`
       <canvas height="300" width="300"></canvas>
@@ -49,54 +61,33 @@ export class WanderBoids extends LitElement {
   }
 
   firstUpdated() {
+    // the canvas element needs to be available to @query
     this.play();
   }
 
   play() {
-    if (this.canvas === null || this.rafId !== -1) return;
+    if (
+      this.canvas === null ||
+      this.ctx === null ||
+      this.state.rafId !== -1
+    ) return;
 
-    this.ctx = this.canvas.getContext('2d');
+    this.ctx = this.canvas.getContext('2d')!;
     this._renderCanvas();
   }
 
   pause() {
-    if (this.rafId === -1) return;
+    if (this.state.rafId === -1) return;
 
-    cancelAnimationFrame(this.rafId);
-    this.rafId = -1;
+    cancelAnimationFrame(this.state.rafId);
+    this.state.rafId = -1;
   }
 
   _renderCanvas = () => {
     if (this.ctx === null) return;
-    this.rafId = requestAnimationFrame(this._renderCanvas)
+    this.state.rafId = requestAnimationFrame(this._renderCanvas);
 
-    // throttle renders
-    const now = performance.now();
-    this.deltaTime += now - this.now;
-    if (this.deltaTime < this.fpsAsMS) {
-      return
-    }
-
-    // update positions, cheap timestep
-    let timePassed = Math.min(this.deltaTime, this.fpsAsMS + this.integral);
-    while(timePassed > 0) {
-      timePassed -= this.integral;
-      for (const wndr of this.wanderers) {
-        integrate(wndr);
-      }
-    }
-
-    // wrap positions inside grid
-    for (const wndr of this.wanderers) {
-      wrapPos(wndr, this.canvas.width, this.canvas.height);
-    }
-
-    // update timestep
-    this.deltaTime %= this.fpsAsMS;
-    this.now = now;
-        
-    // draw scene
-    draw(this.ctx, this.canvas, this.wanderers);
+    renderScene(this.ctx, this.canvas, this.state);
   }
 }
 
@@ -105,7 +96,7 @@ class Wanderer {
   bubbleRadius = Math.random() * 10 + 2;
   bubbleDist = Math.random() * 25 + 75;
   wedge = 0.1;
-  radians = Math.random() * PI2;
+  radians = Math.random() * Math.PI * 2;
 
   // vehicle
   mass = Math.random() * 2 + 2;
@@ -127,10 +118,41 @@ const normalize = (vec: Vector, mag: number = 1): Vector => {
   }
 }
 
+const renderScene = (
+  ctx: CanvasRenderingContext2D,
+  canvas: HTMLCanvasElement,
+  state: State,
+) => {
+  // throttle renders
+  const now = performance.now();
+  const delta = now - state.now;
+  if (delta < Math.max(state.fpsAsMS, state.integral)) {
+    return;
+  }
+
+  // update positions, cheap timestep
+  state.now = now;
+  state.deltaTime += delta;
+  while (state.deltaTime > state.integral) {
+    state.deltaTime -= state.integral;
+    for (const wndr of state.wanderers) {
+      integrate(wndr);
+    }
+  }
+
+  // wrap characters inside the scene
+  for (const wndr of state.wanderers) {
+    wrapPos(wndr, canvas.width, canvas.height);
+  }
+
+  // draw scene
+  draw(ctx, canvas, state.wanderers);
+}
+
 const integrate = (wndr: Wanderer) => {
   // increment chase bubble
   wndr.radians += Math.random() * wndr.wedge;
-  wndr.radians %= PI2;
+  wndr.radians %= Math.PI * 2;
 
   // get chase bubble vector
   const bubble: Vector = {
@@ -154,7 +176,11 @@ const wrapPos = (wndr: Wanderer, width: number, height: number) => {
   wndr.pos.x = (wndr.pos.x + width) % width;
 }
 
-const draw = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, wndrs: Wanderer[]) => {
+const draw = (
+  ctx: CanvasRenderingContext2D,
+  canvas: HTMLCanvasElement,
+  wndrs: Wanderer[],
+) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = '#dedede';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -162,10 +188,10 @@ const draw = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, wndrs: W
   for (const wndr of wndrs) {
     ctx.save();
 
-    // translations
+    // translate canvas
     ctx.translate(wndr.pos.x, wndr.pos.y);
     ctx.rotate(Math.atan2(wndr.theta.x, wndr.theta.y) * -1);
-    
+
     // build the triangle
     ctx.beginPath();
     ctx.moveTo(-10, -10);

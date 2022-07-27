@@ -7,7 +7,7 @@ import {WanderBoids as WanderBoidsWC} from './wander-boids.js';
   So we want to react to changes in it's state.
   We do that through callbacks and refs
 */
-const WanderBoid = createComponent(React, 'wander-boid', WanderBoidsWC);
+const WanderBoid = createComponent(React, 'wander-boids', WanderBoidsWC);
 
 export const App = () => {
   const boidRef = React.useRef();
