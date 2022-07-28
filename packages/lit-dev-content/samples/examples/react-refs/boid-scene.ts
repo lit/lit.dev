@@ -59,9 +59,6 @@ const renderScene = (
   canvas: HTMLCanvasElement,
   state: Scene,
 ) => {
-  const ctx = canvas.getContext('2d');
-  if (ctx === null) return;
-
   // throttle renders
   const now = performance.now();
   const delta = now - state.now;
@@ -86,7 +83,7 @@ const renderScene = (
   }
 
   // draw scene
-  drawScene(ctx, canvas, state);
+  drawScene(canvas, state);
 }
 
 const integrate = (wndr: Wanderer) => {
@@ -121,10 +118,12 @@ const wrapPos = (wndr: Wanderer, canvas: HTMLCanvasElement) => {
 }
 
 const drawScene = (
-  ctx: CanvasRenderingContext2D,
   canvas: HTMLCanvasElement,
   state: Scene,
 ) => {
+  const ctx = canvas.getContext('2d');
+  if (ctx === null) return;
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = '#dedede';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
