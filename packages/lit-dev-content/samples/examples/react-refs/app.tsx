@@ -48,11 +48,11 @@ export const App = () => {
     if (ref.current === null) return;
     const boidCanvas = ref.current;
 
-    // get initial state
+    // get component state
     const {isPlaying, fps} = boidCanvas;
     setState({isPlaying, fps});
 
-    // update app state on 'change' events
+    // update app state on future 'change' events
     boidCanvas.addEventListener('change', onChangeSetState);
     return () => boidCanvas.removeEventListener('change', onChangeSetState);
   }, [ref.current]);
