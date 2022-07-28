@@ -46,13 +46,13 @@ class Wanderer {
 }
 
 const createScene = (): Scene => ({
-    fpsAsMS: 1,
-    deltaTime: 1,
-    now: performance.now(),
-    integral: 0.02 * 1000,
-    rafId: -1,
-    wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
-  });
+  fpsAsMS: 1,
+  deltaTime: 1,
+  now: performance.now(),
+  integral: 0.02 * 1000,
+  rafId: -1,
+  wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
+});
 
 const renderScene = (
   canvas: HTMLCanvasElement,
@@ -92,10 +92,10 @@ const integrate = (wndr: Wanderer) => {
 
   // build chase bubble vector
   wndr.bubble.x = (wndr.theta.x * wndr.bubbleDist) + (Math.cos(wndr.radians) * wndr.bubbleRadius),
-  wndr.bubble.y = (wndr.theta.y * wndr.bubbleDist) + (Math.sin(wndr.radians) * wndr.bubbleRadius),
+    wndr.bubble.y = (wndr.theta.y * wndr.bubbleDist) + (Math.sin(wndr.radians) * wndr.bubbleRadius),
 
-  // get orientation 
-  normalize(wndr.bubble);
+    // get orientation 
+    normalize(wndr.bubble);
   wndr.theta.x += wndr.bubble.x / wndr.mass;
   wndr.theta.y += wndr.bubble.y / wndr.mass;
   normalize(wndr.theta);
@@ -122,7 +122,7 @@ const drawScene = (
 ) => {
   const ctx = canvas.getContext('2d');
   if (ctx === null) return;
-  
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = '#dedede';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -155,4 +155,4 @@ const drawScene = (
 
 export type { Scene };
 
-export{ createScene, renderScene }
+export { createScene, renderScene }
