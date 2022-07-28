@@ -36,7 +36,7 @@ export const App = () => {
     ref.current.fps = e.target.value;
   }, []);
 
-  const onChange = useCallback(() => {
+  const onChangeSetState = useCallback(() => {
     if (ref.current === null) return;
 
     const {isPlaying, fps} = ref.current;
@@ -52,9 +52,9 @@ export const App = () => {
     const {isPlaying, fps} = boidCanvas;
     setState({isPlaying, fps});
 
-    // update app state on 'change' events with onChange callback
-    boidCanvas.addEventListener('change', onChange);
-    return () => boidCanvas.removeEventListener('change', onChange);
+    // update app state on 'change' events
+    boidCanvas.addEventListener('change', onChangeSetState);
+    return () => boidCanvas.removeEventListener('change', onChangeSetState);
   }, [ref.current]);
 
   const isPlayDisabled = state.isPlaying ? true : '';
