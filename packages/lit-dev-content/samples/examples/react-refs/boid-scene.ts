@@ -1,8 +1,7 @@
 /*
   This file is for demo purposes only.
 
-  If interested, this boid demo runs on a
-  integration timestep.
+  This is a boid scene with an integration timestep.
 
   On every render, an integration step calculates
   the boid "physics" up until the most recent render.

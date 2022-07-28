@@ -5,9 +5,9 @@ import { createScene, renderScene } from './boid-scene.js';
 
 /*
   This file is for demo purposes only.
-  The point of this demo is to provide a web component
-  that is stateful and uncontrolled similar to video and
-  audio elements.
+
+  This module provides a web component that is stateful and uncontrolled
+  similar to video and audio elements.
 
   The BoidCanvas exposes the following API:
     methods:
