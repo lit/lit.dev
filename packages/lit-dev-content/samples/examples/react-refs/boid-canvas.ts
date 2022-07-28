@@ -21,7 +21,7 @@ import { createScene, renderScene } from './boid-scene.js';
       - isPlaying
 
     events:
-      - 'change' 
+      - 'state-change' 
 */
 
 const styles = css`
@@ -60,7 +60,7 @@ export class BoidCanvas extends LitElement {
   render() {
     return html`
       <canvas height="300" width="300"></canvas>
-`;
+    `;
   }
 
   firstUpdated(): void {
@@ -71,7 +71,7 @@ export class BoidCanvas extends LitElement {
 
   updated() {
     this.scene.fpsAsMS = 1000 / this.fps;
-    this.dispatchEvent(new Event('change', {composed: true}));
+    this.dispatchEvent(new Event('state-change', { composed: true }));
   }
 
   private renderCanvas = () => {

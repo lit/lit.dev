@@ -3,8 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 @customElement('simple-greeting')
 class SimpleGreeting extends LitElement {
-  @property()
-  name = 'Somebody';
+  @property() name = 'Somebody';
 
   render() {
     return html`Good morning, ${this.name}!`;

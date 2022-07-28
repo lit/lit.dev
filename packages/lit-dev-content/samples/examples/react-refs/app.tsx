@@ -5,20 +5,20 @@ import {BoidCanvas as BoidCanvasWC} from './boid-canvas.js';
 /*
   The BoidCanvas component is stateful and uncontrolled.
 
-  A stateful component contains state outside of the React ecosystem.
-  So component state needs to be reconciled with React state.
-  This is accomplished through refs and callbacks.
+  A stateful component maintains state outside of the React ecosystem.
+  So component state must be reconciled with React state.
+  This is usually accomplished through refs and callbacks.
   
-  BoidCanvas will dispatch an event on state changes.
+  BoidCanvas will dispatch a 'state-change' event on state changes.
   
-  This provides react an opportunity to update based on the BoidCanvas
-  properties and attributes.
+  This provides React an opportunity to update app UI based on
+  the properties and attributes of a BoidCanvas component.
 */
 
 const {useCallback, useRef, useState} = React;
 
 const BoidCanvas = createComponent(React, 'boid-canvas', BoidCanvasWC, {
-  onChange: 'change',
+  onStateChange: 'state-change',
 });
 
 const initialState = {
@@ -38,7 +38,7 @@ export const App = () => {
     ref.current.fps = e.target.value;
   }, []);
 
-  const onChange = useCallback(() => {
+  const onStateChange = useCallback(() => {
     if (ref.current === null) return;
 
     const {isPlaying, fps} = ref.current;
@@ -50,7 +50,7 @@ export const App = () => {
 
   return (
     <>
-      <BoidCanvas ref={ref} onChange={onChange}></BoidCanvas>
+      <BoidCanvas ref={ref} onStateChange={onStateChange}></BoidCanvas>
       <div>
         <button disabled={isPlayDisabled} onClick={onPlay}>
           play
