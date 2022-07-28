@@ -5,7 +5,7 @@ const styles = css`
   :host {
     border: 4px solid #343434;
     box-sizing: border-box;
-    display: flex;
+    display: grid;
     gap: 8px;
     padding: 8px;
   }
@@ -17,11 +17,11 @@ const styles = css`
     padding: 8px;
   }
 
-  div:nth-child(1) {
+  :nth-child(1), slot[name=head] {
     color: blue;
   }
 
-  div:nth-child(3) {
+  :nth-child(5), slot[name=tail] {
     color: purple;
   }
 `;
@@ -33,18 +33,12 @@ class SimpleSlots extends LitElement {
 
   render() {
     return html`
-      <div>
-        <p>slot="head"</p>
-        <slot name="head"></slot>
-      </div>
-      <div>
-        <p>default slot</p>
-        <slot></slot>
-      </div>
-      <div>
-        <p>slot="slot"</p>
-        <slot name="tail"></slot>
-      </div>
+      <p>slot="head"</p>
+      <slot name="head"></slot>
+      <p>default slot</p>
+      <slot></slot>
+      <p>slot="tail"</p>
+      <slot name="tail"></slot>
     `;
   }
 }

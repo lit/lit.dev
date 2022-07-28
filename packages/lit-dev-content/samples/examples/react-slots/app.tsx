@@ -8,7 +8,7 @@ export const App = () => (
   <>
     <SimpleSlots>
       <p>
-        elements without a slot attribute will be projected onto the default
+        Elements without a slot attribute will be projected onto the default
         slot.
       </p>
       <p slot="head">This element will be projected onto the "head" slot.</p>
