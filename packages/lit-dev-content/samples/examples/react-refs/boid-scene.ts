@@ -60,7 +60,7 @@ const renderScene = (
   state: Scene,
 ) => {
   const ctx = canvas.getContext('2d');
-  if (ctx === null) { return; }
+  if (ctx === null) return;
 
   // throttle renders
   const now = performance.now();
