@@ -1,5 +1,5 @@
-import {createComponent} from '@lit-labs/react';
 import {React} from './react.js';
+import {createComponent} from '@lit-labs/react';
 import {BoidCanvas as BoidCanvasWC} from './boid-canvas.js';
 
 /*

@@ -1,7 +1,7 @@
 import type {EventName} from '@lit-labs/react';
-import {createComponent} from '@lit-labs/react';
 
 import {React} from './react.js';
+import {createComponent} from '@lit-labs/react';
 import {SecretButton as SecretButtonComponent} from './secret-button.js';
 
 const {useCallback, useState} = React;

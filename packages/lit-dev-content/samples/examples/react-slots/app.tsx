@@ -1,5 +1,5 @@
-import {createComponent} from '@lit-labs/react';
 import {React} from './react.js';
+import {createComponent} from '@lit-labs/react';
 import {SimpleSlots as SimpleSlotsWC} from './simple-slots.js';
 
 const SimpleSlots = createComponent(React, 'simple-slots', SimpleSlotsWC);
