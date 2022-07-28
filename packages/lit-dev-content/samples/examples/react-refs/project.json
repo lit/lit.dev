@@ -6,7 +6,8 @@
   "section": "React",
   "files": {
     "app.tsx": {},
-    "wander-boids.ts": {},
+    "boid-canvas.ts": {},
+    "boid-scene.ts": {},
     "index.tsx": {},
     "react.ts": {},
     "index.html": {}

@@ -1,28 +1,27 @@
-import type {EventName} from '@lit-labs/react';
-import type {WanderBoidState} from './wander-boids.js';
-
 import {createComponent} from '@lit-labs/react';
 import {React} from './react.js';
-import {WanderBoid as WanderBoidsWC} from './wander-boids.js';
+import {BoidCanvas as BoidCanvasWC} from './boid-canvas.js';
 
 /*
-  The WanderBoid component is stateful and uncontrolled.
-  So we want to react to changes in it's state.
-  We do that through callbacks and refs.
+  The BoidCanvas component is stateful and uncontrolled.
 
-  The WanderBoid component will dispatch component state in an event.
-  This provides react an opportunity to update the DOM accordingly.
+  A stateful component contains state outside of the React ecosystem.
+  So component state needs to be reconciled with React state.
+  This is accomplished through refs and callbacks.
+  
+  BoidCanvas will dispatch an event on state changes.
+  
+  This provides react an opportunity to update based on the BoidCanvas
+  properties and attributes.
 */
 
 const {useCallback, useRef, useState} = React;
 
-const WanderBoid = createComponent(React, 'wander-boid', WanderBoidsWC, {
-  onWanderBoidState: 'wander-boid-state' as EventName<
-    CustomEvent<WanderBoidState>
-  >,
+const BoidCanvas = createComponent(React, 'boid-canvas', BoidCanvasWC, {
+  onChange: 'change',
 });
 
-const initialState: WanderBoidState = {
+const initialState = {
   isPlaying: false,
   fps: 24,
 };
@@ -34,29 +33,27 @@ export const App = () => {
   const onPlay = useCallback(() => ref.current?.play(), []);
   const onPause = useCallback(() => ref.current?.pause(), []);
   const onFps = useCallback((e) => {
-    if (ref.current !== null) {
-      ref.current.fps = e.target.value;
-    }
+    if (ref.current === null) return;
+
+    ref.current.fps = e.target.value;
   }, []);
 
-  const onWanderBoidState = useCallback(
-    (e: CustomEvent<WanderBoidState>) => {
-      e.stopPropagation();
-      setState(e.detail);
-    },
-    []
-  );
+  const onChange = useCallback(() => {
+    if (ref.current === null) return;
+
+    const {isPlaying, fps} = ref.current;
+    setState({isPlaying, fps});
+  }, []);
 
   const isPlayDisabled = state.isPlaying ? true : '';
   const isPauseDisabled = !state.isPlaying ? true : '';
 
   return (
     <>
-      <WanderBoid
+      <BoidCanvas
         ref={ref}
-        fps={state.fps}
-        onWanderBoidState={onWanderBoidState}
-      ></WanderBoid>
+        onChange={onChange}
+      ></BoidCanvas>
       <div>
         <button disabled={isPlayDisabled} onClick={onPlay}>
           play
@@ -66,8 +63,8 @@ export const App = () => {
         </button>
         <input
           type="range"
-          min="6"
-          max="35"
+          min="3"
+          max="32"
           value={state.fps}
           onChange={onFps}
         ></input>

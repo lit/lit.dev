@@ -1,15 +1,15 @@
-import { css, html, LitElement } from 'lit';
-import { customElement, query, state, property } from 'lit/decorators.js';
-
 /*
   This file is for demo purposes only.
-  The point of this demo is to provide a web component
-  that is stateful and uncontrolled.
 
-  The WanderBoid web component exposes the following API:
-  WanderBoids::play()
-  WanderBoids::pause()
-  
+  If interested, this boid demo runs on a
+  integration timestep.
+
+  On every render, an integration step calculates
+  the boid "physics" up until the most recent render.
+
+  This separates scene mechanics from the render
+  and provides the ability to change frames per second
+  rendered without affecting scene "physics".
 */
 
 interface Vector {
@@ -24,95 +24,6 @@ interface Scene {
   integral: number;
   rafId: number;
   wanderers: Wanderer[];
-}
-
-export interface WanderBoidState {
-  isPlaying: boolean;
-  fps: number;
-}
-
-const styles = css`
-  canvas {
-    border: 5px solid #343434;
-  }
-`;
-
-@customElement('wander-boid')
-export class WanderBoid extends LitElement {
-  static styles = styles;
-
-  // canvas
-  @query('canvas') private canvas!: HTMLCanvasElement;
-  private ctx!: CanvasRenderingContext2D;
-
-  // timestep & animation
-  @property({ type: Number }) fps = 24;
-  @state() private isPlaying = false;
-
-  private state: Scene = {
-    fpsAsMS: 1,
-    deltaTime: 1,
-    now: performance.now(),
-    integral: 0.02 * 1000,
-    rafId: -1,
-    wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
-  }
-
-  play() {
-    if (
-      this.isPlaying ||
-      this.canvas === null
-    ) return;
-
-    this.isPlaying = true;
-    this.ctx = this.canvas.getContext('2d')!;
-    this._renderCanvas();
-  }
-
-  pause() {
-    if (!this.isPlaying) return;
-
-    this.isPlaying = false;
-    cancelAnimationFrame(this.state.rafId);
-  }
-
-  render() {
-
-    return html`
-      <canvas height="300" width="300"></canvas>
-    `;
-  }
-
-  firstUpdated() {
-    // the canvas element needs to be available to @query
-    this.state.fpsAsMS = 1000 / this.fps;
-
-    this.play();
-  }
-
-  updated() {
-    this.state.fpsAsMS = 1000 / this.fps;
-
-    this.dispatchEvent(
-      new CustomEvent<WanderBoidState>(
-        'wander-boid-state',
-        {
-          composed: true,
-          detail: {
-            isPlaying: this.isPlaying,
-            fps: this.fps
-          }
-        },
-      )
-    );
-  }
-
-  private _renderCanvas = () => {
-    if (this.ctx === null) return;
-    this.state.rafId = requestAnimationFrame(this._renderCanvas);
-
-    renderScene(this.ctx, this.canvas, this.state);
-  }
 }
 
 class Wanderer {
@@ -135,11 +46,22 @@ class Wanderer {
   ]
 }
 
+const createScene = (): Scene => ({
+    fpsAsMS: 1,
+    deltaTime: 1,
+    now: performance.now(),
+    integral: 0.02 * 1000,
+    rafId: -1,
+    wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
+  });
+
 const renderScene = (
-  ctx: CanvasRenderingContext2D,
   canvas: HTMLCanvasElement,
   state: Scene,
 ) => {
+  const ctx = canvas.getContext('2d');
+  if (ctx === null) { return; }
+
   // throttle renders
   const now = performance.now();
   const delta = now - state.now;
@@ -149,7 +71,7 @@ const renderScene = (
 
   // integrate fixed timestep
   state.now = now;
-  state.deltaTime += Math.min(delta, 250); // max throttle
+  state.deltaTime += Math.min(delta, 500); // max throttle
   while (state.deltaTime > state.integral) {
     state.deltaTime -= state.integral;
     // update scene objects
@@ -232,3 +154,7 @@ const drawScene = (
     ctx.restore();
   }
 }
+
+export type { Scene };
+
+export{ createScene, renderScene }

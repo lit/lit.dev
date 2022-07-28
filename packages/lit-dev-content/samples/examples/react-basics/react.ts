@@ -1,5 +1,3 @@
-// https://github.com/facebook/react/issues/10021
-
 declare global {
   interface Window {
     React: any;
@@ -7,6 +5,7 @@ declare global {
   }
 }
 
+// https://github.com/facebook/react/issues/10021
 const React = window.React;
 const ReactDOM = window.ReactDOM;
 
