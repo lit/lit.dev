@@ -34,7 +34,7 @@ export const App = () => {
   const onPause = useCallback(() => ref.current?.pause(), []);
   const onFps = useCallback((e) => {
     if (ref.current === null) return;
-
+    
     ref.current.fps = e.target.value;
   }, []);
 
