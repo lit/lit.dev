@@ -1,8 +1,10 @@
 import type {EventName} from '@lit-labs/react';
 import {createComponent} from '@lit-labs/react';
 
-import {React} from "./react.js";
+import {React} from './react.js';
 import {SecretButton as SecretButtonComponent} from './secret-button.js';
+
+const {useCallback, useState} = React;
 
 const SecretButton = createComponent(
   React,
@@ -10,8 +12,6 @@ const SecretButton = createComponent(
   SecretButtonComponent,
   {onSecretMessage: 'secret-message' as EventName<CustomEvent<string>>}
 );
-
-const {useCallback, useState} = React;
 
 export const App = () => {
   const [message, setMessage] = useState(

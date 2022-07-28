@@ -50,10 +50,7 @@ export const App = () => {
 
   return (
     <>
-      <BoidCanvas
-        ref={ref}
-        onChange={onChange}
-      ></BoidCanvas>
+      <BoidCanvas ref={ref} onChange={onChange}></BoidCanvas>
       <div>
         <button disabled={isPlayDisabled} onClick={onPlay}>
           play
