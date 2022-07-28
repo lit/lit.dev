@@ -35,7 +35,6 @@ export const App = () => {
 
     ref.current.fps = e.target.value;
   }, []);
-
   const onChangeSetState = useCallback(() => {
     if (ref.current === null) return;
 
@@ -52,7 +51,7 @@ export const App = () => {
     const {isPlaying, fps} = boidCanvas;
     setState({isPlaying, fps});
 
-    // update app state on future 'change' events
+    // update React state on future 'change' events
     boidCanvas.addEventListener('change', onChangeSetState);
     return () => boidCanvas.removeEventListener('change', onChangeSetState);
   }, [ref.current]);
