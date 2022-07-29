@@ -38,13 +38,10 @@ export class BoidCanvas extends LitElement {
   @state() isPlaying = false;
 
   @query('canvas') private canvas!: HTMLCanvasElement;
-  private scene = createScene()
+  private scene = createScene(this.fps);
 
   play() {
-    if (
-      this.isPlaying ||
-      this.canvas === null
-    ) return;
+    if (this.isPlaying) return;
 
     this.isPlaying = true;
     this.renderCanvas()
@@ -58,20 +55,18 @@ export class BoidCanvas extends LitElement {
   }
 
   render() {
-    return html`
-      <canvas height="300" width="300"></canvas>
-    `;
+    return html`<canvas height="300" width="300"></canvas>`;
+  }
+
+  updated() {
+    this.scene.fpsAsMS = 1000 / this.fps;
+    this.dispatchEvent(new Event('state-change', { composed: true }));
   }
 
   firstUpdated(): void {
     // the canvas element needs to be available
     // from @query to "play"
     this.play();
-  }
-
-  updated() {
-    this.scene.fpsAsMS = 1000 / this.fps;
-    this.dispatchEvent(new Event('state-change', { composed: true }));
   }
 
   private renderCanvas = () => {

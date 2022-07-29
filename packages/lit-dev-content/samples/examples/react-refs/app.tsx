@@ -5,7 +5,7 @@ import {BoidCanvas as BoidCanvasWC} from './boid-canvas.js';
 /*
   The BoidCanvas component is stateful and uncontrolled.
 
-  A stateful component maintains state outside of the React
+  A stateful component maintains state independent of the React
   ecosystem. So component state must be reconciled with React state.
   This is usually accomplished through refs and callbacks.
   

@@ -27,10 +27,10 @@ interface Scene {
 
 class Wanderer {
   // target bubble
-  bubbleRadius = Math.random() * 10 + 10;
-  bubbleDist = Math.random() * 15 + 50;
+  bubbleRadius = 10 + Math.random() * 10 ;
+  bubbleDist = 50 + Math.random() * 15;
+  wedge = 0.1 + Math.random() * 0.2;
   radians = Math.random() * Math.PI * 2;
-  wedge = Math.random() * 0.2 + 0.1;
   target: Vector = { x: 0, y: 0 };
 
   // vehicle
@@ -45,9 +45,9 @@ class Wanderer {
   ]
 }
 
-const createScene = (): Scene => ({
-  fpsAsMS: 1,
-  deltaTime: 1,
+const createScene = (fps: number): Scene => ({
+  fpsAsMS: 1000 / fps,
+  deltaTime: 0,
   timestamp: performance.now(),
   integral: 20,
   rafId: -1,
@@ -79,7 +79,7 @@ const renderScene = (
 
   // wrap characters inside the scene
   for (const wndr of state.wanderers) {
-    wrapPos(wndr, canvas);
+    wrapPos(canvas, wndr);
   }
 
   // draw scene
@@ -112,7 +112,7 @@ const normalize = (vec: Vector, mag: number = 1) => {
   vec.y = vec.y / sq * mag;
 }
 
-const wrapPos = (wndr: Wanderer, canvas: HTMLCanvasElement) => {
+const wrapPos = (canvas: HTMLCanvasElement, wndr: Wanderer) => {
   wndr.pos.y = (wndr.pos.y + canvas.height) % canvas.height;
   wndr.pos.x = (wndr.pos.x + canvas.width) % canvas.width;
 }
