@@ -19,19 +19,19 @@ interface Vector {
 interface Scene {
   fpsAsMS: number;
   deltaTime: number;
-  now: number;
+  timestamp: number;
   integral: number;
   rafId: number;
   wanderers: Wanderer[];
 }
 
 class Wanderer {
-  // wander bubble
+  // target bubble
   bubbleRadius = Math.random() * 10 + 10;
   bubbleDist = Math.random() * 15 + 50;
   radians = Math.random() * Math.PI * 2;
   wedge = Math.random() * 0.2 + 0.1;
-  bubble: Vector = { x: 0, y: 0 };
+  target: Vector = { x: 0, y: 0 };
 
   // vehicle
   mass = 5 + Math.random() * 5;
@@ -48,8 +48,8 @@ class Wanderer {
 const createScene = (): Scene => ({
   fpsAsMS: 1,
   deltaTime: 1,
-  now: performance.now(),
-  integral: 0.02 * 1000,
+  timestamp: performance.now(),
+  integral: 20,
   rafId: -1,
   wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
 });
@@ -60,14 +60,15 @@ const renderScene = (
 ) => {
   // throttle renders
   const now = performance.now();
-  const delta = now - state.now;
+  const delta = now - state.timestamp;
   if (delta < Math.max(state.fpsAsMS, state.integral)) {
     return;
   }
 
-  // integrate fixed timestep
-  state.now = now;
-  state.deltaTime += Math.min(delta, 500); // max throttle
+  state.timestamp = now;
+  // throttle integration around 3 fps
+  state.deltaTime += Math.min(delta, 350);
+  // integrate timestep
   while (state.deltaTime > state.integral) {
     state.deltaTime -= state.integral;
     // update scene objects
@@ -90,14 +91,14 @@ const integrate = (wndr: Wanderer) => {
   wndr.radians += (Math.random() * 2 - 1) * wndr.wedge;
   wndr.radians %= Math.PI * 2;
 
-  // build chase bubble vector
-  wndr.bubble.x = (wndr.theta.x * wndr.bubbleDist) + (Math.cos(wndr.radians) * wndr.bubbleRadius),
-    wndr.bubble.y = (wndr.theta.y * wndr.bubbleDist) + (Math.sin(wndr.radians) * wndr.bubbleRadius),
+  // build chase bubble target
+  wndr.target.x = (wndr.theta.x * wndr.bubbleDist) + (Math.cos(wndr.radians) * wndr.bubbleRadius);
+  wndr.target.y = (wndr.theta.y * wndr.bubbleDist) + (Math.sin(wndr.radians) * wndr.bubbleRadius);
 
-    // get orientation 
-    normalize(wndr.bubble);
-  wndr.theta.x += wndr.bubble.x / wndr.mass;
-  wndr.theta.y += wndr.bubble.y / wndr.mass;
+  // get orientation 
+  normalize(wndr.target);
+  wndr.theta.x += wndr.target.x / wndr.mass;
+  wndr.theta.y += wndr.target.y / wndr.mass;
   normalize(wndr.theta);
 
   // add pos
