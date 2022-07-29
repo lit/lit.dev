@@ -1,7 +1,7 @@
 ---
 title: Lit SSR DOM emulation
 eleventyNavigation:
-  key: DOM emulation
+  key: 🧪 DOM emulation
   parent: Server-side rendering
   order: 5
 ---

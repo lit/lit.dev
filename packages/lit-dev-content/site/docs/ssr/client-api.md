@@ -1,7 +1,7 @@
 ---
 title: Lit SSR client API
 eleventyNavigation:
-  key: Client API
+  key: 🧪 Client API
   parent: Server-side rendering
   order: 3
 ---

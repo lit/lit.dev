@@ -1,7 +1,7 @@
 ---
 title: Lit SSR integrations
 eleventyNavigation:
-  key: Integrations
+  key: 🧪 Integrations
   parent: Server-side rendering
   order: 7
 ---

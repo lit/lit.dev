@@ -1,7 +1,7 @@
 ---
 title: Lit SSR overview
 eleventyNavigation:
-  key: Overview
+  key: 🧪 Overview
   parent: Server-side rendering
   order: 1
 ---

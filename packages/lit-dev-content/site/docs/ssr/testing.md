@@ -1,7 +1,7 @@
 ---
 title: Lit SSR testing
 eleventyNavigation:
-  key: Testing
+  key: 🧪 Testing
   parent: Server-side rendering
   order: 6
 ---
