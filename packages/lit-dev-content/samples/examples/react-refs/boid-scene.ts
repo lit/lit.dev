@@ -156,4 +156,4 @@ const drawScene = (
 
 export type { Scene };
 
-export { createScene, renderScene }
+export { createScene, renderScene };
