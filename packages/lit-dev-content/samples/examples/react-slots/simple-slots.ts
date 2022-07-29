@@ -2,19 +2,19 @@ import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 const styles = css`
-  :host {
+  :host, slot {
     border: 4px solid #343434;
-    box-sizing: border-box;
-    display: grid;
-    gap: 8px;
     padding: 8px;
   }
 
+  :host {
+    box-sizing: border-box;
+    display: grid;
+    gap: 8px;
+  }
+
   slot {
-    border-radius: 4px;
-    border: 4px solid #343434;
     display: block;
-    padding: 8px;
   }
 
   :nth-child(1), slot[name=head] {
