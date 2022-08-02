@@ -89,7 +89,7 @@ If your application doesn't use two-way binding, you can skip this section.
 
 For two-way bindings, Polymer uses its own protocol, which has three main components:
 
-*   A one-way binding from host to child.
+*   A binding from host to child.
 
 *   An event listener that handles property change events from the child element.
 
