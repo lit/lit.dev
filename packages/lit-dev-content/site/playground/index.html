@@ -5,6 +5,7 @@ title: Playground
 {% extends 'default.html' %}
 
 {% block head %}
+  {% include "social-tags.html" %}
   {% inlinecss "playground.css" %}
   {% inlinejs "pages/playground-inline.js" %}
   <script type="module" src="{{ site.baseurl }}/js/components/litdev-playground-page.js"></script>
