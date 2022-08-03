@@ -44,7 +44,7 @@ app.use(async (ctx) => {
 });
 ```
 
-Importing `render()` from `@lit-labs/ssr/lib/render-with-global-dom-shim.js` will also install a minimal [DOM shim](/ssr/dom-emulation) in the global scope necessary for `lit` and component definitions to be loaded for rendering the components server-side. It must be imported before any `lit` libraries or component.
+Importing `render()` from `@lit-labs/ssr/lib/render-with-global-dom-shim.js` will also install a minimal [DOM shim](/docs/ssr/dom-emulation) in the global scope necessary for `lit` and component definitions to be loaded for rendering the components server-side. It must be imported before any `lit` libraries or component.
 
 Note: Loading the DOM shim globally introduces `window` into the global space which some libraries might look for in determining whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
 
