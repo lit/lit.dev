@@ -384,6 +384,10 @@ table.directory tr.subheading {
   color: red;
 }
 
+.pre-release > summary {
+  cursor: pointer;
+}
+
 /* ------------------------------------
  * Prev/next links
  * ------------------------------------ */
