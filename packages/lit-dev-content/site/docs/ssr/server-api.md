@@ -6,6 +6,15 @@ eleventyNavigation:
   order: 2
 ---
 
+<details class="pre-release">
+  <summary> 🧪 Pre-release software: not for production.</summary>
+  
+  Lit labs packages are published to get feedback from the wider community. This code shouldn't be used in production, but we encourage you to try it out and [file issues](https://github.com/lit/lit/issues/new/choose) for any bugs you find. For general feedback, please use the GitHub [discussion](https://github.com/lit/lit/discussions).
+
+For more information about the Lit labs process, see [Lib Labs](/docs/libraries/labs/)
+
+</details>
+
 Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module), which utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how the DOM shim is loaded.
 
 In order to render custom elements in Node, Lit SSR includes a DOM shim that provides the minal DOM APIs necessary to render Lit on the server. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)

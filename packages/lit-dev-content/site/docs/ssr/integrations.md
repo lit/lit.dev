@@ -5,6 +5,20 @@ eleventyNavigation:
   parent: Server-side rendering
   order: 7
 ---
+
+<details class="pre-release">
+  <summary> 🧪 Pre-release software: not for production.</summary>
+  
+  Lit labs packages are published to get feedback from the wider community. This code shouldn't be used in production, but we encourage you to try it out and [file issues](https://github.com/lit/lit/issues/new/choose) for any bugs you find. For general feedback, please use the GitHub [discussion](https://github.com/lit/lit/discussions).
+
+For more information about the Lit labs process, see [Lib Labs](/docs/libraries/labs/)
+
+</details>
+
+## Demos
+- [SSR with global rendering](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
+
+TODO: Move below to new section
 ## Other considerations
 
 ### Modules with side effects
@@ -21,5 +35,3 @@ For example:
 
 There currently aren't any mechanisms to wait for some asynchronous result before continuing to render, though we are considering options. The current workaround for this is to do any asynchronous work before calling `render()` and providing the data to the template as some attribute or property.
 
-## Demos
-- [SSR with global rendering](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
