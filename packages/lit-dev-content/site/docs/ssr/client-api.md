@@ -40,46 +40,113 @@ const update = (data) => render(myTemplate(data), document.body);
 ## Lit components
 When Lit components are server rendered, their shadow root contents are emitted inside a `<template shadowroot>`, also known as a [Declarative Shadow Root](https://web.dev/declarative-shadow-dom/), a new browser feature that is [shipping in Chrome](https://developer.chrome.com/blog/new-in-chrome-90/#declarative). Declarative shadow roots automatically attach their contents to a shadow root on the template's parent element when parsed. For browsers that do not yet implement declarative shadow root, there is a [`template-shadowroot` polyfill](https://github.com/webcomponents/template-shadowroot), described below.
 
-Because the `hydrate` function above does not descend into shadow roots, it only works on one scope of the DOM at a time. To hydrate `LitElement` shadow roots, load the `lit/experimental-hydrate-support.js` module, which installs support for `LitElement` automatically hydrating itself when it detects it was server-rendered with declarative shadow DOM. This module should be loaded before the `lit` module is loaded, to ensure hydration support is properly installed.
+Because the `hydrate()` function above does not descend into shadow roots, it only works on one scope of the DOM at a time. To hydrate `LitElement` shadow roots, load the `lit/experimental-hydrate-support.js` module, which installs support for `LitElement` automatically hydrating itself when it detects it was server-rendered with declarative shadow DOM. This module should be loaded before the `lit` module is loaded, to ensure hydration support is properly installed.
 
 Put together, an HTML page that was server rendered and containing Lit components in the main document might look like this:
 
 ```js
 import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
-import './app-components.js';
+import {html} from 'lit';
+import './app-shell.js';
+import './app-page-one.js';
+import './app-page-two.js';
 
-app.use(async (ctx) => {
-  const ssrResult = render(html`
+function* renderApp() {
+  yield `
+    <!DOCTYPE html>
     <html>
       <head>
+        <!-- As an optimization, immediately begin fetching the JavaScript modules
+            that we know for sure we'll eventually need. It's important we don't
+            execute them yet, though. -->
+        <link
+          rel="modulepreload"
+          href="/node_modules/lit/experimental-hydrate-support.js"
+        />
+        <link rel="modulepreload" href="/app-shell.js" />
+        <link rel="modulepreload" href="/app-page-one.js" />
+        <link rel="modulepreload" href="/app-page-two.js" />
+
+        <!-- On browsers that don't yet support native declarative shadow DOM, a
+            paint can occur after some or all pre-rendered HTML has been parsed,
+            but before the declarative shadow DOM polyfill has taken effect. This
+            paint is undesirable because it won't include any component shadow DOM.
+            To prevent layout shifts that can result from this render, we use a
+            "dsd-pending" attribute to ensure we only paint after we know
+            shadow DOM is active. -->
+        <style>
+          body[dsd-pending] {
+            display: none;
+          }
+        </style>
       </head>
-      <body>
+
+      <body dsd-pending>
+        <script>
+          if (HTMLTemplateElement.prototype.hasOwnProperty('shadowRoot')) {
+            // This browser has native declarative shadow DOM support, so we can
+            // allow painting immediately.
+            document.body.removeAttribute('dsd-pending');
+          }
+        </script>
+  `;
+  // Below will be pre-rendered with declarative shadow DOM
+  yield* render(html`
         <app-shell>
           <app-page-one></app-page-one>
           <app-page-two></app-page-two>
         </app-shell>
-
+  `);
+  yield `
+        <!-- Use a type=module script so that we can use dynamic module imports.
+            Note this pattern will not work in IE11. -->
         <script type="module">
-          // Hydrate template-shadowroots eagerly after rendering (for browsers without
-          // native declarative shadow roots)
-          import {
-            hasNativeDeclarativeShadowRoots,
-            hydrateShadowRoots
-          } from './node_modules/@webcomponents/template-shadowroot/template-shadowroot.js';
-          if (!hasNativeDeclarativeShadowRoots) {
-            hydrateShadowRoots(document.body);
-          }
-          // ...
-          // Load and hydrate components lazily
-          import('./app-components.js');
-        </script>
+          // Start fetching the Lit hydration support module (note the absence
+          // of "await" -- we don't want to block yet).
+          const litHydrateSupportInstalled = import(
+            '/node_modules/lit/experimental-hydrate-support.js'
+          );
 
+          // Check if we require the declarative shadow DOM polyfill. As of
+          // August 2022, Chrome and Edge have native support, but Firefox
+          // and Safari don't yet.
+          if (!HTMLTemplateElement.prototype.hasOwnProperty('shadowRoot')) {
+            // Fetch the declarative shadow DOM polyfill.
+            const {hydrateShadowRoots} = await import(
+              '/node_modules/@webcomponents/template-shadowroot/template-shadowroot.js'
+            );
+
+            // Apply the polyfill. This is a one-shot operation, so it is important
+            // it happens after all HTML has been parsed.
+            hydrateShadowRoots(document.body);
+
+            // At this point, browsers without native declarative shadow DOM
+            // support can paint the initial state of your components!
+            document.body.removeAttribute('dsd-pending');
+          }
+
+          // The Lit hydration support module must be installed before we can
+          // load any component definitions. Wait until it's ready.
+          await litHydrateSupportInstalled;
+
+          // Load component definitions. As each component definition loads, your
+          // pre-rendered components will come to life and become interactive.
+          //
+          // You may also prefer to bundle your components into fewer JS modules.
+          // See https://lit.dev/docs/tools/production/#building-with-rollup for
+          // more details.
+          import('/app-shell.js');
+          import('/app-page-one.js');
+          import('/app-page-two.js');
+        </script>
       </body>
     </html>
-  `);
+  `
+}
+
+app.use(async (ctx) => {
+  const ssrResult = renderApp();
   ctx.type = 'text/html';
   ctx.body = Readable.from(ssrResult);
 });
 ```
-
-Note that as a simple example, the code above assumes a static top-level template that does not need to be hydrated on the client, and that top-level components individually hydrate themselves using data supplied either by attributes or via a side-channel mechanism. This is in no way fundamental; the top-level template can be used to pass data to the top-level components, and that template can be loaded and hydrated on the client to apply the same data.
