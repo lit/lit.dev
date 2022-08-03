@@ -15,4 +15,4 @@ For more information about the Lit labs process, see [Lib Labs](/docs/libraries/
 
 </details>
 
-`@lit-labs/testing` package contains utility functions that utilize a Web Test Runner plugin to create test fixtures that are rendered server-side using `@lit-labs/ssr`. It can help test whether your components are server-side renderable. See more in the [readme](https://github.com/lit/lit/tree/main/packages/labs/testing#readme).
+The `@lit-labs/testing` package contains utility functions that utilize a Web Test Runner plugin to create test fixtures that are rendered server-side using `@lit-labs/ssr`. It can help test whether your components are server-side renderable. See more in the [readme](https://github.com/lit/lit/tree/main/packages/labs/testing#readme).
