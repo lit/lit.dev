@@ -95,9 +95,11 @@ For two-way bindings, Polymer uses its own protocol, which has three main compon
 
 *   A facility for the child to automatically fire change events when properties change (`notify: true`).
 
-This last item is the most problematic. Components fire change events for any change to a property, and each change event is handled synchronously.  Widespread use of two-way binding across an entire application can make it hard to reason about data flow and the order in which components update themselves. A change can propagate both up and down the tree, potentially leading to components being updated in an unexpected order.
+This last item is the most problematic. Components fire change events for any change to a property, and each change event is handled synchronously.  Widespread use of two-way binding across an entire application can make it hard to reason about data flow and the order in which components update themselves.
 
-In general the Lit team recommends using top-down data flow using immutable data patterns, which make it easier to reason about how a data change propagates. To avoid issues, components should *not* generate an event when a property is set from above (that is, set programmatically from outside the component). A component should generate events:
+Ideally an event is a discrete signal sent to communicate an explicit change that isn't otherwise easily observable. Sending an event as a side-effect of setting a property as Polymer makes the communication potentially redundant and implicit. This implicit behavior, in particular, can make data flow hard to understand.
+
+To summarize the [Custom Element Best Practices](https://web.dev/custom-elements-best-practices/#events) guidelines, a component should* fire events:
 
 *   When a property changes as a result of user interaction—like clicking a button or editing a text field inside the component.
 *   When something internal changes inside the component—like a timer going off or an animation completing.
@@ -396,6 +398,12 @@ render() {
 
 Like Polymer, Lit supports setting properties, attributes, and event handlers using expressions. Lit uses slightly different syntax, with prefixes instead of suffixes.
 
+
+| Type | Polymer | Lit |
+| ---- | ------- | --- |
+| Property | `property-binding=[[value]]` | `.property-binding=${value}` |
+| Attribute | `attribute-binding$=[[value]` | `attribute-binding$=${value}` |
+
 Polymer:
 
 ```html
@@ -428,7 +436,7 @@ Lit:
 <target-element @click=${handler}></target-element>
 ```
 
-In Lit, the handler can be either an unbound method, like `${this.clickHandler}` or an arrow function. Using an arrow function, you can close over other data or call a function with a different signature. For example:
+In Lit, the handler can be either a method, like `${this.clickHandler}` or an arrow function. Using an arrow function, you can close over other data or call a function with a different signature. For example:
 
 ```html
 <input @change=${(e) => this.setValue(e.target.value)}>
@@ -639,6 +647,7 @@ Polymer:
       }
     }
   }
+```
 
 Lit:
 
@@ -918,7 +927,7 @@ Mixins were one of several ways to package reusable functionality for use in a P
 *   **Reactive controllers**. Reactive controllers are an alternate way to package reusable features. For more information comparing mixins to reactive controllers, see [Controllers and mixins](https://lit.dev/docs/composition/overview/#controllers-and-mixins)
 
 
-### Lifecycle
+## Lifecycle
 
 Lit components have the same set of standard web components lifecycle callbacks as Polymer components.
 
