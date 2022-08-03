@@ -6,17 +6,17 @@ eleventyNavigation:
   order: 2
 ---
 
-Lit SSR provides a couple different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module).
+Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module), which utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how the DOM shim is loaded.
 
-In order to render custom elements in Node, Lit SSR requires some minimal [DOM emulation]('/docs/ssr/dom-emulation') necessary for `lit-html` and `reactive-element` to work, as well as a working `CustomElementRegistry`.
+In order to render custom elements in Node, Lit SSR includes a DOM shim that provides the minal DOM APIs necessary to render Lit on the server. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)
 
-When rendering in the global scope, this DOM shim is installed in the global space. This may cause unintended behaviors for other libraries which, for instance, might try to detect the running environment by checking for the presence of `window` in the global space. All render requests also share the same global custom element registry, and any data that might be stored globally.
+When rendering in the global scope, this DOM shim is installed globally. This may cause unintended behaviors for other libraries. For instance, some libraries try to detect the running environment by checking for the presence of `window` in the global scope. In addition, all render requests also share the same global custom element registry, and any data that might be stored globally.
 
-Rendering with VM modules allow each render request to have its own context with a separate global from the main Node process such that the DOM emulation is only installed within that scope and any custom elements being registered or global data is contained within that context used only for that particular render request. It does require utilizing an experimental node feature with a particular way of using it. See below for details.
+Rendering with VM modules allows each render request to have its own context with a separate global from the main Node process. DOM emulation is only installed within that context, any custom elements being registered are registered in that context, and any global data is contained within that context. VM modules are an experimental Node feature.
 
 | Global | VM Module |
 |-|-|
-| Pros:<ul><li>Easy to use – can import component modules directly and call `render()` with templates</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing misinteractions with other libraries</li><li>Custom elements are registered in a shared registry across different render requests</li></ul> | Pros:<ul><li>Does not introduce DOM shim to global</li><li>Isolates contexts across different render requests</li></ul>Cons:<ul><li>Less intuitive usage – need to write and specify a module file with a function to call</li></ul> |
+| Pros:<ul><li>Easy to use–can import component modules directly and call `render()` with templates.</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing issues with other libraries.</li><li>Custom elements are registered in a shared registry across different render requests.</li></ul> | Pros:<ul><li>Does not introduce DOM shim to the global scope.</li><li>Isolates contexts across different render requests.</li></ul>Cons:<ul><li>Less intuitive usage–need to write and specify a module file with a function to call.</li></ul> |
 
 ## Global Scope
 The `render()` method takes a renderable value, usually a Lit template result, and returns an iterable of strings that can be streamed or concatenated to a string for a response.
