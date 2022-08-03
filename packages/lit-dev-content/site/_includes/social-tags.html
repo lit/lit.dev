@@ -1,0 +1,16 @@
+<!--
+    Generalized from 'blog-post.html' to provide basic open graph and
+    Twitter card metadata.
+  -->
+<meta property="og:url" content="{{ env.MAIN_URL }}{{ page.url }}" />
+<meta property="og:title" content="{% if title %}{{ title }} &ndash;{% endif %} Lit" />
+<meta property="og:description" content="Simple. Fast. Web Components." />
+<meta property="og:site_name" content="lit.dev" />
+<meta
+  property="og:image"
+  content="{{ env.MAIN_URL }}/images/logo-whitebg-padded-1600x800.png"
+/>
+<meta property="og:image:alt" content="Lit Logo" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@buildWithLit" />

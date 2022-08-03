@@ -5,6 +5,7 @@ noaside: true
 {% extends 'default.html' %}
 
 {% block head %}
+  {% include "social-tags.html" %}
   {% inlinecss "home.css" %}
   {% inlinejs "pages/home.js" %}
   <script type="module" src="{{ site.baseurl }}/js/pages/home-components.js"></script>

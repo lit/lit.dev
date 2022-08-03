@@ -9,6 +9,7 @@
 {% endif %}
 
 {% block head %}
+  {% include "social-tags.html" %}
   {% inlinecss "docs.css" %}
   {% inlinejs "pages/docs.js" %}
   {% if '/api/' in page.url %}
