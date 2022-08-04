@@ -3,7 +3,7 @@ title: Lit SSR lifecycle
 eleventyNavigation:
   key: 🧪 Lifecycle
   parent: Server-side rendering
-  order: 4
+  order: 5
 ---
 
 <details class="pre-release">
