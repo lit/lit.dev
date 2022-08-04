@@ -20,12 +20,8 @@ export const App = () => (
   </>
 );
 
-const Foo = () => (
-  <div>
-    {`
-      React Components need to be a descendant of an element
-      with a slot attribute otherwise they will be projected
-      onto the default slot.
-    `}
-  </div>
-);
+const Foo = () =>`
+  React Components need to be a descendant of an element
+  with a slot attribute otherwise they will be projected
+  onto the default slot.
+`;
