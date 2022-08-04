@@ -24,11 +24,11 @@ const BoidCanvas = createComponent(React, 'boid-canvas', BoidCanvasWC, {
 
 const initialState = {
   isPlaying: false,
-  fps: 24,
+  fps: 16,
 };
 
 export const App = () => {
-  const ref = useRef();
+  const ref = useRef(null);
   const [state, setState] = useState(initialState);
 
   // create input callbacks
@@ -60,8 +60,8 @@ export const App = () => {
         </button>
         <input
           type="range"
-          min="3"
-          max="32"
+          min=""
+          max="30"
           value={state.fps}
           onChange={onFps}
         ></input>

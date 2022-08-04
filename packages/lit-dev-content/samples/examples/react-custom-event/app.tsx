@@ -15,7 +15,8 @@ const SecretButton = createComponent(
 
 export const App = () => {
   const [message, setMessage] = useState(
-    'Click the button to recieve a custom event dispatched by the SecretButton component.'
+    `Click the button to recieve a custom event
+      dispatched by the SecretButton component.`
   );
 
   const onSecretMessageCallback = useCallback(
