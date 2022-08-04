@@ -5,7 +5,7 @@
   "description": "Listen to custom events from web components.",
   "section": "React",
   "files": {
-    "app.tsx": {},
+    "app.tsx": {"contentType": "text/typescript-jsx"},
     "secret-button.ts": {},
     "index.tsx": {},
     "react.ts": {},

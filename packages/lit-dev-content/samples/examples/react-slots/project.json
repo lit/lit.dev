@@ -5,7 +5,7 @@
   "description": "Project React Components onto web component slots.",
   "section": "React",
   "files": {
-    "app.tsx": {},
+    "app.tsx": {"content-type": "text/typescript-jsx"},
     "simple-slots.ts": {},
     "react.ts": {},
     "index.tsx": {},

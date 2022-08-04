@@ -48,17 +48,14 @@ export const App = () => {
     setState({isPlaying, fps});
   }, []);
 
-  const isPlayDisabled = state.isPlaying ? true : '';
-  const isPauseDisabled = !state.isPlaying ? true : '';
-
   return (
     <>
       <BoidCanvas ref={ref} onStateChange={onStateChange}></BoidCanvas>
       <div>
-        <button disabled={isPlayDisabled} onClick={onPlay}>
+        <button disabled={state.isPlaying} onClick={onPlay}>
           play
         </button>
-        <button disabled={isPauseDisabled} onClick={onPause}>
+        <button disabled={!state.isPlaying} onClick={onPause}>
           pause
         </button>
         <input

@@ -5,7 +5,7 @@
   "description": "Interact with Web Component APIs via Refs.",
   "section": "React",
   "files": {
-    "app.tsx": {},
+    "app.tsx": {"contentType": "text/typescript-jsx"},
     "boid-canvas.ts": {},
     "boid-scene.ts": {},
     "index.tsx": {},

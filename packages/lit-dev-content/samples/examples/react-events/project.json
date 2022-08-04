@@ -5,7 +5,7 @@
   "description": "Listen to react events from web components.",
   "section": "React",
   "files": {
-    "app.tsx": {},
+    "app.tsx": {"contentType": "text/typescript-jsx"},
     "counter-button.ts": {},
     "index.tsx": {},
     "react.ts": {},

@@ -16,14 +16,6 @@ const styles = css`
   slot {
     display: block;
   }
-
-  :nth-child(1), slot[name=head] {
-    color: blue;
-  }
-
-  :nth-child(5), slot[name=tail] {
-    color: purple;
-  }
 `;
 
 @customElement('simple-slots')
