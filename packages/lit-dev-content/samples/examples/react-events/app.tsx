@@ -9,7 +9,7 @@ const {useCallback, useState} = React;
 export const App = () => {
   const [count, setCount] = useState(0);
 
-  const clickCallback = useCallback(() => setCount(count + 1), [count]);
+  const onClick = useCallback(() => setCount(count + 1), [count]);
 
-  return <CounterButton onClick={clickCallback} count={count}></CounterButton>;
+  return <CounterButton onClick={onClick} count={count}></CounterButton>;
 };

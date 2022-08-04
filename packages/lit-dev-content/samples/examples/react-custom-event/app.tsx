@@ -19,14 +19,14 @@ export const App = () => {
       dispatched by the SecretButton component.`
   );
 
-  const onSecretMessageCallback = useCallback(
+  const onSecretMessage = useCallback(
     (e: CustomEvent<string>) => setMessage(e.detail),
     []
   );
 
   return (
     <>
-      <SecretButton onSecretMessage={onSecretMessageCallback}></SecretButton>
+      <SecretButton onSecretMessage={onSecretMessage}></SecretButton>
       <div>{message}</div>
     </>
   );
