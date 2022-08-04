@@ -10,7 +10,7 @@ const styles = css`
   :host {
     box-sizing: border-box;
     display: grid;
-    gap: 8px;
+    gap: 24px;
   }
 
   slot {
@@ -25,12 +25,18 @@ class SimpleSlots extends LitElement {
 
   render() {
     return html`
-      <p>slot="head"</p>
-      <slot name="head"></slot>
-      <p>default slot</p>
-      <slot></slot>
-      <p>slot="tail"</p>
-      <slot name="tail"></slot>
+      <div>
+        <p>slot="head"</p>
+        <slot name="head"></slot>
+      </div>
+      <div>
+        <p>default slot</p>
+        <slot></slot>
+      </div>
+      <div>
+        <p>slot="tail"</p>
+        <slot name="tail"></slot>
+      </div>
     `;
   }
 }
