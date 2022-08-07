@@ -266,7 +266,7 @@ const localizedTemplates = new Map(
 const {getLocale, setLocale} = configureLocalization({
   sourceLocale,
   targetLocales,
-  loadLocale: async (locale) => locales.get(locale),
+  loadLocale: async (locale) => localizedTemplates.get(locale),
 });
 ```
 
@@ -294,15 +294,15 @@ import * as templates_es_419 from './locales/es-419.js';
 import * as templates_zh_hans from './locales/zh-Hans.js';
 ...
 
-const localizedTemplates = new Map(
+const localizedTemplates = new Map([
   ['es-419', templates_es_419],
   ['zh-Hans', templates_zh_hans],
   ...
-);
+]);
 
 const {getLocale, setLocale} = configureLocalization({
   sourceLocale,
   targetLocales,
-  loadLocale: async (locale) => locales.get(locale),
+  loadLocale: async (locale) => localizedTemplates.get(locale),
 });
 ```
