@@ -203,7 +203,7 @@ npm i @webcomponents/template
 Use the template polyfill:
 
 ```html
-<script src="./node_modules/@webcomponents/template/template.js"></script>
+<script src="./node_modules/@webcomponents/template/template.min.js"></script>
 ```
 
 Note: when transpiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill. This is demonstrated in the <a href="https://github.com/PolymerLabs/lit-html-build/blob/master/index-prod.html" target="_blank" rel="noopener">`index-prod.html`</a> file in the Rollup sample project.
