@@ -18,7 +18,7 @@ The purpose of this package is to provide the missing support that React doesn't
 
 While React can render Web Components, it [cannot](https://custom-elements-everywhere.com/libraries/react/results/results.html)
 easily pass React props to custom element properties or event listeners. There is substantial support for web components
-in the [experimental]() build of React. However, inferring an event _type_ is still difficult.
+in the latest [experimental](https://www.npmjs.com/package/react) build of React. However, inferring an event _type_ is still difficult.
 
 ## Installation
 
