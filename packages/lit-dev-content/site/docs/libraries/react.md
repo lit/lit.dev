@@ -2,19 +2,15 @@
 title: React
 eleventyNavigation:
   key: React
-  parent: Tools
-  order: 9
+  parent: Related libraries
+  order: 4
 versionLinks:
   v1: tools/build/#react
 ---
 
-# @lit/react
+# React
 
-React integration for Web Components and Reactive Controllers.
-
-## Overview
-
-The purpose of this package is to provide the missing support that React doesn't already provide.
+This package provides the missing support for Web Components and Reactive Controllers that React doesn't already provide.
 
 While React can render Web Components, it [cannot](https://custom-elements-everywhere.com/libraries/react/results/results.html)
 easily pass React props to custom element properties or event listeners. There is substantial support for web components
