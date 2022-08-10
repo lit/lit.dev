@@ -8,4 +8,4 @@ const SimpleGreeting = createComponent(
   SimpleGreetingWC
 );
 
-export const App = () => <SimpleGreeting name={'starshine'}></SimpleGreeting>;
+export const App = () => <SimpleGreeting name={'React'}></SimpleGreeting>;

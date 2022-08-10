@@ -6,7 +6,7 @@ class SimpleGreeting extends LitElement {
   @property() name = 'Somebody';
 
   render() {
-    return html`Good morning, ${this.name}!`;
+    return html`Hello, ${this.name}!`;
   }
 }
 
