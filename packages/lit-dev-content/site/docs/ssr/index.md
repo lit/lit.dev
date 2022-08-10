@@ -1,8 +1,9 @@
 ---
-title: Server-side rendering
+title: Server rendering
 eleventyNavigation:
-  key: Server-side rendering
+  key: Server rendering
   order: 7
+  labs: true
 ---
 
 <!-- This file exists only to create a section heading.

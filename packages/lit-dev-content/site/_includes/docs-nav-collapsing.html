@@ -18,12 +18,18 @@
           <span class="sectionHead
                        {% if section.url == page.url %}active{% endif %}">
             {{ section.title }}
+            {% if section.labs == true %}
+              <img class="labs" src="/images/alerts/labs.svg" alt="labs" />
+            {% endif %}
           </span>
         </summary>
         <ol>
           {%- for child in section.children %}
             <li{% if child.url == page.url %} class="active"{% endif %}>
               <a href="{{ child.url | url }}">{{ child.title }}</a>
+              {% if child.labs == true %}
+                <img class="labs" src="/images/alerts/labs.svg" alt="labs" />
+              {% endif %}
             </li>
           {%- endfor %}
         </ol>

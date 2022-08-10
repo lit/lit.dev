@@ -1,13 +1,13 @@
 ---
 title: Lit SSR server API
 eleventyNavigation:
-  key: 🧪 Server API
-  parent: Server-side rendering
+  key: Server API
+  parent: Server rendering
   order: 2
 ---
 
 <details class="pre-release">
-  <summary> 🧪 Pre-release software: not for production.</summary>
+  <summary> Pre-release software: not for production.</summary>
   
   Lit labs packages are published to get feedback from the wider community. This code shouldn't be used in production, but we encourage you to try it out and [file issues](https://github.com/lit/lit/issues/new/choose) for any bugs you find. For general feedback, please use the GitHub [discussion](https://github.com/lit/lit/discussions).
 

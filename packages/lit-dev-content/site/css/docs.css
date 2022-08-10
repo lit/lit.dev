@@ -534,6 +534,13 @@ table.directory tr.subheading {
   background: #d6d6d6;
 }
 
+/* Labs icon */
+#docsNav img.labs {
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: text-bottom;
+}
+
 /* ------------------------------------
  * Inline TOC
  * ------------------------------------ */
