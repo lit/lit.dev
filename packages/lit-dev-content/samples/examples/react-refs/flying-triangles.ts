@@ -220,7 +220,7 @@ const normalize = (vec: Vector, mag: number = 1) => {
 
 const wrapPos = (canvas: HTMLCanvasElement, wndr: Wanderer) => {
   wndr.pos.y = ((wndr.pos.y % canvas.height) + canvas.height) % canvas.height;
-  wndr.pos.x = ((wndr.pos.x % canvas.width) + canvas.width) % canvas.width;;
+  wndr.pos.x = ((wndr.pos.x % canvas.width) + canvas.width) % canvas.width;
 }
 
 const drawScene = (
