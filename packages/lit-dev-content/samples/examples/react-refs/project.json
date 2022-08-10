@@ -6,8 +6,7 @@
   "section": "React",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
-    "boid-canvas.ts": {},
-    "boid-scene.ts": {},
+    "flying-triangles.ts": {},
     "index.tsx": {},
     "react.ts": {},
     "index.html": {}

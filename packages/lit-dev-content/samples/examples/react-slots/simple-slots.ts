@@ -4,17 +4,16 @@ import { customElement, property } from 'lit/decorators.js';
 const styles = css`
   :host, slot {
     border: 4px solid #343434;
+    display: block;
     padding: 8px;
   }
 
-  :host {
-    box-sizing: border-box;
-    display: grid;
-    gap: 24px;
-  }
-
   slot {
-    display: block;
+    border-color: cornflowerblue;
+  }
+    
+  p {
+    margin-bottom: 2px;
   }
 `;
 

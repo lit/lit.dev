@@ -1,6 +1,112 @@
+import { css, html, LitElement } from 'lit';
+import { customElement, query, state, property } from 'lit/decorators.js';
+
 /*
   This file is for demo purposes only.
 
+  This module provides a web component that is stateful
+  and uncontrolled similar to video and audio elements.
+
+  The <flying-triangles> web component exposes the following API:
+    methods:
+      - play()
+      - pause()
+
+    attributes:
+      - fps (frames per second)
+    
+    properties:
+      - isPlaying
+
+    events:
+      - 'state-change' 
+*/
+
+const styles = css`
+  :host {
+    max-width: 300px;
+    position: relative;
+    display: block;
+    cursor: pointer;
+  }
+
+  canvas {
+    border: 5px solid #343434;
+  }
+    
+  p {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    opacity: 0.4;
+    margin: 0;
+  }
+`;
+
+@customElement('flying-triangles')
+export class FlyingTriangles extends LitElement {
+  static styles = styles;
+
+  @property({ type: Number }) fps = 24;
+  @state() isPlaying = false;
+
+  @query('canvas') private canvas!: HTMLCanvasElement;
+  private scene = createScene(this.fps);
+  
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('click', this.onClick);
+  }
+  
+  disconnectedCallback() {
+    super.connectedCallback();
+    this.removeEventListener('click', this.onClick);
+  }
+
+  private onClick() {
+    this.isPlaying ? this.pause() : this.play();
+  }
+  
+  play() {
+    if (this.isPlaying) return;
+
+    this.isPlaying = true;
+    this.renderCanvas()
+  }
+
+  pause() {
+    if (!this.isPlaying) return;
+
+    this.isPlaying = false;
+    cancelAnimationFrame(this.scene.rafId);
+  }
+
+  render() {
+    return html`
+      <canvas height="300" width="300"></canvas>
+      <p>${this.isPlaying ? 'click to pause' : 'click to play'}</p>
+    `;
+  }
+
+  updated() {
+    this.scene.fpsAsMS = 1000 / this.fps;
+    this.dispatchEvent(new Event('state-change', { composed: true }));
+  }
+
+  firstUpdated(): void {
+    // the canvas element needs to be available
+    // from @query to "play"
+    this.play();
+  }
+
+  private renderCanvas = () => {
+    this.scene.rafId = requestAnimationFrame(this.renderCanvas);
+    renderScene(this.canvas, this.scene);
+  }
+}
+
+/*
   This is a boid scene with an integration timestep.
 
   On every render, an integration step calculates
@@ -113,8 +219,8 @@ const normalize = (vec: Vector, mag: number = 1) => {
 }
 
 const wrapPos = (canvas: HTMLCanvasElement, wndr: Wanderer) => {
-  wndr.pos.y = (wndr.pos.y + canvas.height) % canvas.height;
-  wndr.pos.x = (wndr.pos.x + canvas.width) % canvas.width;
+  wndr.pos.y = ((wndr.pos.y % canvas.height) + canvas.height) % canvas.height;
+  wndr.pos.x = ((wndr.pos.x % canvas.width) + canvas.width) % canvas.width;;
 }
 
 const drawScene = (
@@ -153,7 +259,3 @@ const drawScene = (
     ctx.restore();
   }
 }
-
-export type { Scene };
-
-export { createScene, renderScene };
