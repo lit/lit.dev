@@ -6,14 +6,11 @@ eleventyNavigation:
   order: 1
 ---
 
-<details class="pre-release">
-  <summary> Pre-release software: not for production.</summary>
-  
-  Lit labs packages are published to get feedback from the wider community. This code shouldn't be used in production, but we encourage you to try it out and [file issues](https://github.com/lit/lit/issues/new/choose) for any bugs you find. For general feedback, please use the GitHub [discussion](https://github.com/lit/lit/discussions).
+{% aside "labs" "no-header" %}
 
-  For more information about the Lit labs process, see [Lib Labs](/docs/libraries/labs/)
+  SSR support is in <b>Lit Labs</b>, so it's in active early development and may have bugs/missing features. If you find a bug, file an [issue](https://github.com/lit/lit/issues/new/choose). For questions/comments, start a [discussion](https://github.com/lit/lit/discussions)
 
-</details>
+{% endaside %}
 
 Server-side rendering (SSR) can help make pages work without JavaScript, either for robustness or performance reasons, or to work with web crawlers and bots that don't run a full browser. Some sites can render faster if they render static markup first, and optionally hydrate the components afterwards by loading the JavaScript.
 
