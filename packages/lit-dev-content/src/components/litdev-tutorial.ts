@@ -430,6 +430,7 @@ export class LitDevTutorial extends LitElement {
             this._projectLocation
           }/#${this._idxToSlug(this._idx)}`}`,
         complete: (response) => {
+          // Must use DOM parser to attach declarative shadow roots
           const domResponse = (domParser.parseFromString as any)(
             response,
             'text/html',
