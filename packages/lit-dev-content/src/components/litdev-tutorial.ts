@@ -439,7 +439,7 @@ export class LitDevTutorial extends LitElement {
           if (needsDSDPolyfill) {
             hydrateShadowRoots(body);
           }
-          return html`${body}`;
+          return Array.from(body.children);
         },
       })}
       ${this.renderFooter()}
