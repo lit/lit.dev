@@ -77,7 +77,8 @@
     {% endif %}
 
     <main {% if not page.url.includes('/docs/')
-            and not page.url.includes('/playground/') %}
+            and not page.url.includes('/playground/')
+            and not page.url.includes('/articles/') %}
               id="content" {% endif %}>
       {% block content %}{{ content | safe }}{% endblock %}
     </main>

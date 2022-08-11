@@ -1,0 +1,54 @@
+{% extends 'articles.html' %}
+
+{% set sectionName = eleventyNavigation.key %}
+{% set children = collections[childrenTag] %}
+
+
+<!-- This is the main articles feed that must list all sections -->
+{% if sectionName == "Tags" %}
+  {% set children = collections.article %}
+{% endif %}
+
+{% set children = children %}
+
+{% block articleContent %}
+
+<ol class="articleFeedList" tabindex="0">
+{% for child in children %}
+  <li class="feedItem">
+    <a href="{{ child.url | url }}">
+      <h2 class="date">
+        {% if child.data.lastUpdated %}
+          <time datetime="{{ child.data.lastUpdated }}">{{ child.data.lastUpdated | readableDate }}</time>
+        {% else %}
+          <time datetime="{{ child.data.publishDate }}">{{ child.data.publishDate | readableDate }}</time>
+        {% endif %}
+      </h2>
+      <div class="details">
+        <h2 class="title">
+          {{ child.data.title }}
+        </h2>
+        <p class="summary">
+          {{ child.data.summary }}
+        </p>
+        <div class="authors">
+          {% for authorId in child.data.author or child.data.defaultAuthor %}
+            {% set authorData = authors[authorId] %}
+            <figure class="author">
+              <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+                  width="80" height="80"
+                  {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+                  alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+                <figcaption>{{ authorData.name }}</figcaption>
+            </figure>
+          {% endfor %}
+        </div>
+      </div>
+    </a>
+  </li>
+{% endfor %}
+</ol>
+
+{{ content | safe }}
+
+{% endblock %}

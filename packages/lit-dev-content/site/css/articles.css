@@ -1,0 +1,298 @@
+main {
+  /* Colors */
+  --docs-h1-underline-color: var(--color-blue);
+  --docs-h2-color: #384861;
+  --docs-h3-color: #5d6c86;
+  --docs-rule-color: #d1d1d1;
+  --docs-table-header-background: #e4e4e4;
+  --docs-table-header-color: rgb(73, 73, 73);
+  --docs-link-color: #005cc5;
+  --docs-nav-color: #242424;
+  --docs-background-color: white;
+  --playground-code-background: var(--color-light-gray);
+  --code-border: 1px solid #ddd;
+
+  /* IMPORTANT: If any of the following variables change, one or both of the
+    @media query thresholds below need to be updated. */
+  --docs-nav-min-width: 14em;
+  --docs-nav-max-width: 1fr;
+  --docs-toc-min-width: 5em;
+  --docs-article-min-width: 30em;
+  --docs-article-max-width: 49em;
+  --docs-article-margin-horizontal: 3em;
+  --docs-margin-top: 32px;
+
+  --chips-background-color: rgba(0, 0, 0, .12);
+  --chips-background-color-hover: rgba(0, 0, 0, .18);
+  --chips-background-color-press: rgba(0, 0, 0, .24);
+  --chips-content-color: rgba(0, 0, 0, .87);
+
+  display: grid;
+  grid-template-columns:
+    minmax(var(--docs-nav-min-width), var(--docs-nav-max-width)) minmax(0, var(--docs-article-max-width)) 1fr;
+  max-width: none;
+  border-bottom: 1px solid var(--color-blue);
+
+  /* Open Sans is more readable than Manrope, so we prefer it for content that
+    users will spend a lot of time reading. */
+  font-family: "Open Sans", sans-serif;
+
+  background: var(--docs-background-color);
+  padding-top: var(--docs-margin-top);
+}
+
+@media (max-width: 864px) {
+  main {
+    display: block;
+    padding-top: 0;
+  }
+}
+
+#articleWrapper>article {
+  box-shadow: none;
+  padding-block-start: 0;
+}
+
+.articleHeader {
+  margin-block-end: 1.3rem;
+  border-block-end: 1px solid var(--docs-rule-color);
+}
+
+.articleHeader>* {
+  margin-block: 1rem;
+}
+
+.articleHeader>*:first-child {
+  margin-block-start: 0;
+}
+
+.articleHeader>*:last-child {
+  margin-block-end: 0;
+}
+
+/* ------------------------------------
+ * Bottom Links
+ * ------------------------------------ */
+
+/* TODO(emarquez): remove once we launch articles nav */
+#prevAndNextLinks {
+  display: none;
+}
+
+
+#prevAndNextLinks a {
+  border: 1px solid var(--color-medium-gray);
+  border-radius: .5rem;
+  padding: 1rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#prevAndNextLinks a :is(.direction, .title) {
+  align-self: start;
+}
+
+#prevAndNextLinks a:hover,
+#prevAndNextLinks a:focus {
+  border: 1px solid var(--color-blue);
+  color: var(--color-blue);
+}
+
+#prevAndNextLinks>span>a:focus> :is(.direction, .arrow) {
+  color: var(--color-blue);
+}
+
+#prevAndNextLinks>span>a:first-of-type {
+  margin-right: 0;
+}
+
+/* ------------------------------------
+ * Tags Feed
+ * ------------------------------------ */
+article {
+  font-size: 1rem;
+  font-family: 'Manrope', sans-serif;
+}
+
+.articleFeedList {
+  padding: 0;
+}
+
+.feedItem {
+  list-style-type: none;
+  border-block-start: 1.5px solid #ccc;
+}
+
+.feedItem:first-of-type {
+  border-block-start: none;
+}
+
+.feedItem a {
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 1.5rem 0;
+  color: inherit;
+}
+
+.feedItem a:hover {
+  text-decoration: none;
+}
+
+.feedItem a .date {
+  color: #666;
+  font-size: 1em;
+  flex-basis: 180px;
+}
+
+.feedItem a .title {
+  font-size: 1.5rem;
+  color: #0043c0;
+  margin-block-start: 0
+}
+
+.feedItem a:hover .title {
+  text-decoration: underline;
+}
+
+.feedItem .date {
+  margin: 0;
+}
+
+/* ------------------------------------
+ * Authors
+ * ------------------------------------ */
+#content :is(.title, .date, .authors) {
+  font-weight: 500;
+}
+
+#content a .authors {
+  color: #555;
+}
+
+#content .authors {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#content .author {
+  display: flex;
+  align-items: center;
+  padding-inline-end: 32px;
+}
+
+#content .author img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-inline-end: 1rem;
+}
+
+#content .author .links {
+  display: flex;
+  align-items: center;
+}
+
+#content .author .links a {
+  display: flex;
+  margin-inline: .25rem;
+  color: #6f6f6f;
+}
+
+#content .author .links a:hover,
+#content .author .links a:focus,
+#content .author .links a:active {
+  text-decoration: none;
+  margin-inline: .25rem;
+  color: var(--color-blue);
+}
+
+#content .author .links a svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+#content .author .links a:first-of-type,
+.articleHeader .tags a:first-of-type {
+  margin-inline-start: 0;
+}
+
+#content .author .links a:last-of-type,
+.articleHeader .tags a:last-of-type {
+  margin-inline-end: 0;
+}
+
+/* ------------------------------------
+ * article dates
+ * ------------------------------------ */
+
+#content .articleHeader .date {
+  color: var(--color-medium-gray);
+  font-weight: 600;
+}
+
+/* ------------------------------------
+  * article tags
+  * ------------------------------------ */
+
+.articleHeader .tags {
+  display: flex;
+  /* TODO(emarquez): remove once we launch tags */
+  display: none;
+}
+
+.articleHeader .tags a {
+  --_height: 32px;
+  display: block;
+  background-color: var(--chips-background-color);
+  color: var(--chips-content-color);
+  padding-inline: 12px;
+  font-size: 14px;
+  height: var(--_height);
+  border-radius: calc(var(--_height) / 2);
+  cursor: pointer;
+  margin-inline: .25rem;
+  text-decoration: none;
+}
+
+.articleHeader .tags a:hover,
+.articleHeader .tags a:focus {
+  background-color: var(--chips-background-color-hover);
+}
+
+.articleHeader .tags a:active {
+  background-color: var(--chips-background-color-press);
+}
+
+/* ------------------------------------
+ * inline toc
+ * ------------------------------------ */
+
+.articleHeader #inlineToc details {
+  margin-block-end: 0;
+}
+
+/* ------------------------------------
+ * Left Nav
+ * ------------------------------------ */
+
+/* TODO(emarquez): remove once we launch articles nav */
+#docsNav {
+  display: none;
+}
+
+/* TODO(emarquez): remove once we launch articles nav */
+@media (max-width: 1332px) {
+  main {
+    /* Remove grid */
+    display: block;
+  }
+
+  #docsNavWrapper {
+    display: none;
+  }
+
+  article {
+    margin: auto;
+  }
+}
