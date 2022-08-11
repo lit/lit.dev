@@ -6,14 +6,7 @@ eleventyNavigation:
   order: 3
 ---
 
-<details class="pre-release">
-  <summary> Pre-release software: not for production.</summary>
-  
-  Lit labs packages are published to get feedback from the wider community. This code shouldn't be used in production, but we encourage you to try it out and [file issues](https://github.com/lit/lit/issues/new/choose) for any bugs you find. For general feedback, please use the GitHub [discussion](https://github.com/lit/lit/discussions).
-
-For more information about the Lit labs process, see [Lib Labs](/docs/libraries/labs/)
-
-</details>
+{% labs-disclaimer %}
 
 Lit SSR generates static HTML for the browser to parse and paint without any JavaScript. (Browsers that do not have support for Declarative Shadow DOM will require some JavaScript polyfill for Lit components authored to utilize the Shadow DOM.) For pages with static content, this is all that's needed. However, if the page content needs to be dynamic and respond to user interactions, it will need JavaScript to re-apply that reactivity.
 

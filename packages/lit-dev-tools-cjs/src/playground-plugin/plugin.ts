@@ -338,6 +338,12 @@ export const playgroundPlugin = (
     }
   );
 
+  eleventyConfig.addShortcode('labs-disclaimer', () => {
+    return `<litdev-aside type="labs" no-header>
+        This package is part of the Lit Labs family of experimental packages. See the <a href="/docs/libraries/labs">Lit Labs</a> page for guidance on using Labs software in production.
+      </litdev-aside>`;
+  });
+
   eleventyConfig.addMarkdownHighlighter(
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
