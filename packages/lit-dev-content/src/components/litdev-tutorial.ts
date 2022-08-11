@@ -6,7 +6,6 @@
 
 import {LitElement, html, nothing, PropertyValues} from 'lit';
 import {property, query, state} from 'lit/decorators.js';
-import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {when} from 'lit/directives/when.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
 import {addModsParameterToUrlIfNeeded} from '../mods.js';
@@ -38,7 +37,11 @@ import {
   reportTutorialMetrics,
   TutorialMetricEvent,
 } from '../util/gtag-helpers.js';
+import {hydrateShadowRoots} from '@webcomponents/template-shadowroot/template-shadowroot.js';
 
+const needsDSDPolyfill =
+  !HTMLTemplateElement.prototype.hasOwnProperty('shadowRoot');
+const domParser = new DOMParser();
 const CHECK_TIMEOUT_MS = 10000;
 export interface TutorialStep {
   title: string;
@@ -426,7 +429,18 @@ export class LitDevTutorial extends LitElement {
           html`${`Could not fetch step description. Invalid URL /${
             this._projectLocation
           }/#${this._idxToSlug(this._idx)}`}`,
-        complete: (response) => html`${unsafeHTML(response)}`,
+        complete: (response) => {
+          const domResponse = (domParser.parseFromString as any)(
+            response,
+            'text/html',
+            {includeShadowRoots: true}
+          );
+          const body = domResponse.body;
+          if (needsDSDPolyfill) {
+            hydrateShadowRoots(body);
+          }
+          return html`${body}`;
+        },
       })}
       ${this.renderFooter()}
     </div>`;
