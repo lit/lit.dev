@@ -36,7 +36,6 @@ export default [
       // helpers are bundled before LitElement attempts to use hydration support
       'lib/global/lit-hydrate-support.js',
       'lib/components/copy-button.js',
-      'lib/components/litdev-aside.js',
       'lib/components/litdev-banner.js',
       'lib/components/litdev-drawer.js',
       'lib/components/litdev-example.js',
@@ -52,7 +51,6 @@ export default [
       'lib/pages/home.js',
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
-      'lib/global/dsd-polyfill.js',
     ],
     output: {
       dir: 'rollupout',
@@ -136,6 +134,7 @@ export default [
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-attribute.js',
       'lib/global/mobile-drawer.js',
+      'lib/global/dsd-polyfill.js',
     ],
     output: {
       dir: 'rollupout',
@@ -145,6 +144,7 @@ export default [
         facadeModuleId.replace(`${__dirname}/lib/`, ''),
     },
     plugins: [
+      resolve(),
       minifyHTML(),
       terser({
         ...terserOptions,
