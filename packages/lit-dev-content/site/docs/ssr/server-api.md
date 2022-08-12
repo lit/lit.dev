@@ -8,17 +8,17 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
+In order to render custom elements in Node, they must first be defined and registered with the global `customElements` API, which is a browser-only feature. As such, Lit SSR includes a DOM shim that provides the minimal DOM APIs necessary to render Lit on the server. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)
+
 Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module), which utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how the DOM shim is loaded.
 
-In order to render custom elements in Node, Lit SSR includes a DOM shim that provides the minal DOM APIs necessary to render Lit on the server. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)
-
-When rendering in the global scope, this DOM shim is installed globally. This may cause unintended behaviors for other libraries. For instance, some libraries try to detect the running environment by checking for the presence of `window` in the global scope. In addition, all render requests also share the same global custom element registry, and any data that might be stored globally.
+When rendering in the global scope, shimmed DOM globals (like `window`, `HTMLElement`, `customElements`, etc.) are added directly to the Node.js global scope. This may cause unintended behaviors for other libraries. For instance, some libraries try to detect the running environment by checking for the presence of `window` in the global scope. In addition, all render requests also share the same global custom element registry, and any data that might be stored globally.
 
 Rendering with VM modules allows each render request to have its own context with a separate global from the main Node process. DOM emulation is only installed within that context, any custom elements being registered are registered in that context, and any global data is contained within that context. VM modules are an experimental Node feature.
 
 | Global | VM Module |
 |-|-|
-| Pros:<ul><li>Easy to use–can import component modules directly and call `render()` with templates.</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing issues with other libraries.</li><li>Custom elements are registered in a shared registry across different render requests.</li></ul> | Pros:<ul><li>Does not introduce DOM shim to the global scope.</li><li>Isolates contexts across different render requests.</li></ul>Cons:<ul><li>Less intuitive usage–need to write and specify a module file with a function to call.</li></ul> |
+| Pros:<ul><li>Easy to use–can import component modules directly and call `render()` with templates.</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing issues with other libraries.</li><li>Custom elements are registered in a shared registry across different render requests.</li></ul> | Pros:<ul><li>Does not introduce DOM shim to the global scope.</li><li>Isolates contexts across different render requests.</li></ul>Cons:<ul><li>Less intuitive usage–need to write and specify a module file with a function to call.</li><li>Slower due the module graph needing to be re-evaluated per request.</li></ul> |
 
 ## Global Scope
 The `render()` method takes a renderable value, usually a Lit template result, and returns an iterable of strings that can be streamed or concatenated to a string for a response.
@@ -42,7 +42,7 @@ Importing `render()` from `@lit-labs/ssr/lib/render-with-global-dom-shim.js` wil
 Note: Loading the DOM shim globally introduces `window` into the global space which some libraries might look for in determining whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
 
 ## VM Module
-We also provide a way to load application code into, and render from, a separate VM context with its own global object.
+Lit also provide a way to load application code into, and render from, a separate VM context with its own global object.
 
 ```js
 // render-template.js

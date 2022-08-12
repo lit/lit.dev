@@ -15,7 +15,7 @@ Below lists all the properties, classes, and methods on the `window` object adde
 | Property | Notes |
 |-|-|
 | `Element` | ⚠️ Empty class |
-| `HTMLElement` | ⚠️ Partial <table><tbody><tr><td>`attributes`</td><td>✅</td><tr><td>`shadowRoot`</td><td>✅</td><tr><td>`setAttribute()`</td><td>✅</td><tr><td>`removeAttribute()`</td><td>✅</td><tr><td>`hasAttribute()`</td><td>✅</td><tr><td>`attachShadow()`</td><td>✅</td><tr><td>`getAttribute()`</td><td>✅</td></tr></tbody></table> |
+| `HTMLElement` | ⚠️ Partial <table><tbody><tr><td>`attributes`</td><td>✅</td><tr><td>`shadowRoot`</td><td>⚠️ Returns `{host: this}` if `attachShadow()` was called with `{mode: 'open'}`</td><tr><td>`setAttribute()`</td><td>✅</td><tr><td>`removeAttribute()`</td><td>✅</td><tr><td>`hasAttribute()`</td><td>✅</td><tr><td>`attachShadow()`</td><td>⚠️ Returns `{host: this}`</td><tr><td>`getAttribute()`</td><td>✅</td></tr></tbody></table> |
 | `Document` | ⚠️ Partial <table><tbody><tr><td>`adoptedStyleSheets`</td><td>⚠️ Getter only returning `[]`</td><tr><td>`createTreeWalker()`</td><td>⚠️ Returns `{}`</td><tr><td>`createTextNode()`</td><td>⚠️ Returns `{}`</td><tr><td>`createElement()`</td><td>⚠️ Returns `{}`</td></tr></tbody></table> |
 | `document` | Instance of `Document` |
 | `cssStyleSheet` | ⚠️ Partial <table><tbody><tr><td>`replace()`</td><td>⚠️ No op</td></tr></tbody></table> |
