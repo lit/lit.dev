@@ -99,7 +99,7 @@ This last item is the most problematic. Components fire change events for any ch
 
 In general the Lit team recommends using top-down data flow using immutable data patterns, which make it easier to reason about how a data change propagates. To avoid issues, components should *not* generate an event when a property is set from above (that is, set programmatically from outside the component). A component should generate events:
 
-*   When a property changes as a result of user interaction—like clicking a button or editing a text field inside the component.
+*   When the state of the element changes as a result of user interaction—like clicking a button or editing a text field inside the component.
 *   When something internal changes inside the component—like a timer going off or an animation completing.
 
 Ideally, a component should fire _semantic_ events, which describe what changed rather than letting low-level UI events bubble out. For example, a form that lets the user update profile data might fire a `profile-updated` event when the user clicks the **Done** button. The `profile-updated` event is relevant to the parent: the click event isn't.
@@ -137,7 +137,7 @@ static get template() {
 }
 ```
 
-This component uses two-way binding to the `input` element, and has a notifying property, so a parent element can use two-way binding with the `name` property. The two-way binding to the input isn't terrible: it's only updated when the `input` event fires. However, by adding an event listener for the `input` event, you can eliminate the notifying property:
+This component uses two-way binding to the `input` element, and has a notifying property, so a parent element can use two-way binding with the `name` property. The two-way binding to the input makes sense since the binding is set only when the `input` event fires. However, by adding an event listener for the `input` event, you can eliminate the notifying property:
 
 ```js
 static properties = {
@@ -164,7 +164,7 @@ inputChanged(e) {
 
 This code explicitly listens for input events and fires `name-changed` events. This code will work with a parent that expects the Polymer two-way binding protocol, so you can update components one at a time.
 
-This could won't fire a property change event when the parent sets the `name` property—which is a good thing. And you can migrate this code fairly directly to Lit.
+This code won't fire a property change event when the parent sets the `name` property—which is a good thing. And you can migrate this code fairly directly to Lit.
 
 Using an event handler like this, you could also add logic to the child component—such as only firing the `name-changed` event when the user stops typing for a certain interval.
 
