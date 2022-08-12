@@ -430,7 +430,9 @@ export class LitDevTutorial extends LitElement {
             this._projectLocation
           }/#${this._idxToSlug(this._idx)}`}`,
         complete: (response) => {
-          // Must use DOM parser to attach declarative shadow roots
+          // Must use DOM parser to attach declarative shadow roots.
+          // Casted as `any` because TS DOMParser types do not yet include the
+          // options parameter that allows DSD.
           const domResponse = (domParser.parseFromString as any)(
             response,
             'text/html',
