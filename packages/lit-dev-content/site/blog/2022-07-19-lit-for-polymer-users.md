@@ -89,7 +89,7 @@ If your application doesn't use two-way binding, you can skip this section.
 
 For two-way bindings, Polymer uses its own protocol, which has three main components:
 
-*   A one-way binding from host to child.
+*   A binding from host to child.
 
 *   An event listener that handles property change events from the child element.
 
@@ -101,7 +101,7 @@ Ideally an event is a discrete signal sent to communicate an explicit change tha
 
 To summarize the [Custom Element Best Practices](https://web.dev/custom-elements-best-practices/#events) guidelines, a component should* fire events:
 
-*   When a property changes as a result of user interaction—like clicking a button or editing a text field inside the component.
+*   When the state of the element changes as a result of user interaction—like clicking a button or editing a text field inside the component.
 *   When something internal changes inside the component—like a timer going off or an animation completing.
 
 Ideally, a component should fire _semantic_ events, which describe what changed rather than letting low-level UI events bubble out. For example, a form that lets the user update profile data might fire a `profile-updated` event when the user clicks the **Done** button. The `profile-updated` event is relevant to the parent: the click event isn't.
@@ -139,7 +139,7 @@ static get template() {
 }
 ```
 
-This component uses two-way binding to the `input` element, and has a notifying property, so a parent element can use two-way binding with the `name` property. The two-way binding to the input isn't terrible: it's only updated when the `input` event fires. However, by adding an event listener for the `input` event, you can eliminate the notifying property:
+This component uses two-way binding to the `input` element, and has a notifying property, so a parent element can use two-way binding with the `name` property. The two-way binding to the input makes sense since the binding is set only when the `input` event fires. However, by adding an event listener for the `input` event, you can eliminate the notifying property:
 
 ```js
 static properties = {
@@ -166,7 +166,7 @@ inputChanged(e) {
 
 This code explicitly listens for input events and fires `name-changed` events. This code will work with a parent that expects the Polymer two-way binding protocol, so you can update components one at a time.
 
-This could won't fire a property change event when the parent sets the `name` property—which is a good thing. And you can migrate this code fairly directly to Lit.
+This code won't fire a property change event when the parent sets the `name` property—which is a good thing. And you can migrate this code fairly directly to Lit.
 
 Using an event handler like this, you could also add logic to the child component—such as only firing the `name-changed` event when the user stops typing for a certain interval.
 
