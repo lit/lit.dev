@@ -1,4 +1,4 @@
-header {
+.pageHeader {
   position: sticky;
   top: 0;
   height: var(--header-nav-height);
@@ -19,7 +19,7 @@ header {
   padding: 0.1em 0.5em;
 }
 
-header > nav {
+.pageHeader > nav {
   flex: 1;
   display: flex;
   justify-content: space-between;
@@ -79,7 +79,7 @@ header > nav {
     display: flex;
   }
 
-  header {
+  .pageHeader {
     padding: 0 0.5em;
   }
 }

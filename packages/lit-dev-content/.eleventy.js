@@ -163,6 +163,12 @@ ${content}
     return url.substring(0, url.length - extension.length);
   });
 
+  // used for debugging and printing out data in the console
+  eleventyConfig.addFilter('debug', function (value) {
+    console.log(value);
+    return value;
+  });
+
   const sortDocs = (a, b) => {
     if (a.fileSlug == 'docs') {
       return -1;
@@ -176,12 +182,12 @@ ${content}
     return 0;
   };
 
-  const docsByUrl = new Map();
+  const documentByUrl = new Map();
 
   eleventyConfig.addCollection('docs-v1', function (collection) {
     const docs = collection.getFilteredByGlob('site/docs/v1/**').sort(sortDocs);
     for (const page of docs) {
-      docsByUrl.set(page.url, page);
+      documentByUrl.set(page.url, page);
     }
     return docs;
   });
@@ -191,7 +197,26 @@ ${content}
       .getFilteredByGlob(['site/docs/*', 'site/docs/!(v1)/**'])
       .sort(sortDocs);
     for (const page of docs) {
-      docsByUrl.set(page.url, page);
+      documentByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
+  const sortArticles = (a, b) => {
+    const aDate = new Date(a.data.lastUpdated ?? a.data.publishDate);
+    const bDate = new Date(b.data.lastUpdated ?? b.data.publishDate);
+    // note this is reversed because we want the most recent articles first
+    return bDate - aDate;
+  };
+
+  eleventyConfig.addCollection('article', function (collection) {
+    // get the articles and sort them by date. This sort is only used on the
+    // article-feed views
+    const docs = collection
+      .getFilteredByGlob('site/articles/article/**')
+      .sort(sortArticles);
+    for (const page of docs) {
+      documentByUrl.set(page.url, page);
     }
     return docs;
   });
@@ -245,10 +270,10 @@ ${content}
   });
 
   /**
-   * Gets the title given a docs URL.
+   * Gets the title given a document URL.
    */
-  eleventyConfig.addFilter('docsUrlTitle', (url) => {
-    return docsByUrl.get(url)?.data?.title;
+  eleventyConfig.addFilter('documentUrlTitle', (url) => {
+    return documentByUrl.get(url)?.data?.title;
   });
 
   /**
