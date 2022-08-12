@@ -7,6 +7,7 @@
 import {LitElement, html, nothing, PropertyValues} from 'lit';
 import {property, query, state} from 'lit/decorators.js';
 import {when} from 'lit/directives/when.js';
+import {guard} from 'lit/directives/guard.js';
 import {PlaygroundProject} from 'playground-elements/playground-project.js';
 import {addModsParameterToUrlIfNeeded} from '../mods.js';
 import {
@@ -430,19 +431,23 @@ export class LitDevTutorial extends LitElement {
             this._projectLocation
           }/#${this._idxToSlug(this._idx)}`}`,
         complete: (response) => {
-          // Must use DOM parser to attach declarative shadow roots.
-          // Casted as `any` because TS DOMParser types do not yet include the
-          // options parameter that allows DSD.
-          const domResponse = (domParser.parseFromString as any)(
-            response,
-            'text/html',
-            {includeShadowRoots: true}
-          );
-          const body = domResponse.body;
-          if (needsDSDPolyfill) {
-            hydrateShadowRoots(body);
-          }
-          return [...body.children];
+          // guard on the response so that we do not needlessly run the parser
+          // on every render.
+          return guard(response, () => {
+            // Must use DOM parser to attach declarative shadow roots.
+            // Casted as `any` because TS DOMParser types do not yet include the
+            // options parameter that allows DSD.
+            const domResponse = (domParser.parseFromString as any)(
+              response,
+              'text/html',
+              {includeShadowRoots: true}
+            );
+            const body = domResponse.body;
+            if (needsDSDPolyfill) {
+              hydrateShadowRoots(body);
+            }
+            return [...body.children];
+          });
         },
       })}
       ${this.renderFooter()}
