@@ -165,3 +165,59 @@ img {
 .params > .paramDetails {
   margin-left: 0;
 }
+
+main {
+  --docs-rule-color: #d1d1d1;
+  --docs-table-header-background: #e4e4e4;
+  --docs-table-header-color: rgb(73, 73, 73);
+}
+
+/* ------------------------------------
+ * Tables
+ * ------------------------------------ */
+
+ table {
+  border-collapse: collapse;
+  border: 1px solid #eaeaea;
+}
+
+th {
+  color: var(--docs-table-header-color);
+  background: var(--docs-table-header-background);
+  text-align: left;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #f6f8fa;
+}
+
+tr {
+  border-bottom: 1px solid #eaeaea;
+}
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top;
+}
+
+th:empty {
+  padding: 1px;
+}
+
+.wide-table, .wide-cell {
+  width: 100%;
+}
+
+.no-wrap-cell, .code-cell {
+  white-space: nowrap;
+}
+
+.vcenter-cell {
+  vertical-align: middle;
+}
+
+.code-cell code {
+  background-color: inherit;
+}

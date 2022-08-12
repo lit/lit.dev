@@ -292,7 +292,7 @@ static get template() {
 }
 ```
 
-In Lit, you provide styles in a static `styles` field using the `css` tag function.
+In Lit, you _typically_ provide styles in a static `styles` field using the `css` tag function.
 
 ```js
 import {LitElement, css, html} from 'lit';
@@ -300,6 +300,22 @@ import {LitElement, css, html} from 'lit';
 
   static styles = css`.fancy { color: blue; }`;
 ```
+
+Adding a style tag directly in the template, like you would in Polymer, is also supported:
+
+```js
+import {LitElement, html} from 'lit';
+  ...
+  render() {
+    return html`
+      <style>
+        .fancy { color: blue; }
+      </style>
+      ...
+  }
+```
+
+Using a style tag may be slightly less performant than the static `styles` field, because the styles are evaluated once per instance instead of once per class.
 
 For more information, see [Styles](/docs/components/styles/).
 
@@ -396,51 +412,80 @@ render() {
 }
 ```
 
-Like Polymer, Lit supports setting properties, attributes, and event handlers using expressions. Lit uses slightly different syntax, with prefixes instead of suffixes.
+Like Polymer, Lit supports setting properties, attributes, and event handlers using expressions. Lit uses slightly different syntax, with prefixes instead of suffixes. The following table summarizes the differences between Polymer and Lit binding syntax:
 
 
-| Type | Polymer | Lit |
-| ---- | ------- | --- |
-| Property | `property-binding=[[value]]` | `.property-binding=${value}` |
-| Attribute | `attribute-binding$=[[value]` | `attribute-binding$=${value}` |
+<table class="wide-table">
+<thead>
+<tr>
+<th>
+Type
+</th>
+<th>
+Polymer
+</th>
+<th>
+Lit
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Property
+</td>
+<td class="code-cell">
+<code><var>property-name</var><strong>=[[</strong><var>value</var><strong>]]</strong></code>
+</td>
+<td class="code-cell">
+<code><strong>.</strong><var>propertyName</var><strong>=${</strong><var>value</var><strong>}</strong></code>
+</td>
+</tr>
+<tr>
+<td>
+Attribute
+</td>
+<td class="code-cell">
+<code><var>attribute-name</var><strong>$=[[</strong><var>value</var><strong>]]</strong></code>
+</td>
+<td class="code-cell">
+<code><strong></strong><var>attribute-name</var><strong>=${</strong><var>value</var><strong>}</strong></code>
+</td>
+</tr>
+<tr>
+<td>
+Boolean attribute
+</td>
+<td class="code-cell">
+<code><var>attribute-name</var><strong>?=[[</strong><var>value</var><strong>]]</strong></code>
+</td>
+<td class="code-cell">
+<code><strong>?</strong><var>attribute-name</var><strong>=${</strong><var>value</var><strong>}</strong></code>
+</td>
+</tr>
+<tr>
+<td>
+Event
+</td>
+<td class="code-cell">
+<code><strong>on-</strong><var>event-name</var><strong>$=[[</strong><var>handler</var><strong>]]</strong></code>
+</td>
+<td class="code-cell">
+<code><strong>@</strong><var>event-name</var><strong>=${</strong><var>handler</var><strong>}</strong></code>
+</td>
+</tr>
+</tbody>
+</table>
 
-Polymer:
+Notes:
 
-```html
-<-- property binding--no suffix -->
-<target-element property-binding=[[value]]><target-element>
+* Property expressions. Lit uses the literal property name, prefixed with a period. Polymer uses the corresponding <a href="https://polymer-library.polymer-project.org/3.0/docs/devguide/properties#property-name-mapping">attribute name</a>.
 
-<!-- attribute binding adds a $ suffix -->
-<target-element attribute-binding$=[[value]]></target-element>
+* Event handlers. In Lit, the handler can be either a method, like `${this.clickHandler}` or an arrow function. Using an arrow function, you can close over other data or call a function with a different signature. For example:
 
-<!-- boolean attribute binding adds a ? suffix -->
-<target-element hidden?=[[value]]></target-element>
-
-<!-- event handler uses on-[event-name] syntax -->
-<target-element on-click=[[handler]]></target-element>
-```
-
-Lit:
-
-```html
-<!-- property binding adds a "." prefix -->
-<target-element .property-binding=${value}><target-element>
-
-<!-- attribute binding--no prefix -->
-<target-element attribute-binding$=${value}></target-element>
-
-<!-- boolean attribute binding adds a ? prefix -->
-<target-element ?hidden=${value}></target-element>
-
-<!-- event handler uses @event-name syntax -->
-<target-element @click=${handler}></target-element>
-```
-
-In Lit, the handler can be either a method, like `${this.clickHandler}` or an arrow function. Using an arrow function, you can close over other data or call a function with a different signature. For example:
-
-```html
-<input @change=${(e) => this.setValue(e.target.value)}>
-```
+    ```html
+    <input @change=${(e) => this.setValue(e.target.value)}>
+    ```
 
 For more information, see [Expressions](https://lit.dev/docs/templates/expressions/).
 
@@ -508,13 +553,26 @@ Unlike the Polymer `dom-if`, the conditional operator lets you supply content fo
 For more information, see [Conditionals](https://lit.dev/docs/templates/conditionals/).
 
 
-#### The restamp property
+#### Hiding or recreating DOM
 
 By default, Polymer's `dom-if` behaves a little differently from a Lit conditional. When the condition goes from a truthy to a falsy value, the `dom-if` simply _hides_ the conditional DOM, instead of removing it from the DOM tree. This may save some resources when the condition becomes truthy again.
 
-On the other hand, Lit removes and discards the DOM when a condition changes; `dom-if` does the same thing if you set the `restamp` property to `true`.
+When migrating a Polymer `dom-if` to Lit, you have several choices:
 
-When migrating a Polymer `dom-if`, start with a simple conditional in Lit. If the conditional DOM is large and complex and you observe delays recreating the DOM when the condition switches to true, you can use Lit's `cache` directive to preserve the conditional DOM. When using `cache`, the DOM is still removed from the tree, but is cached in memory, which can save resources when the condition changes.
+
+- Use a simple JavaScript conditional. Lit removes and discards the conditional DOM when a condition changes to falsy. `dom-if` does the same thing if you set the `restamp` property to `true`.
+
+- Use the standard `hidden` attribute to hide the content without removing it from the page.
+
+    ```html
+    <header hidden=${this.headerHidden}>
+    ```
+
+  This is quite lightweight. However, the DOM is created on first render even if the condition is false.
+
+- Wrap a conditional in the `cache` directive to avoid discarding and re-creating the DOM when the condition changes.
+
+In most cases, the simple conditional works well. If the conditional DOM is large and complex and you observe delays recreating the DOM when the condition switches to true, you can use Lit's `cache` directive to preserve the conditional DOM. When using `cache`, the DOM is still removed from the tree, but is cached in memory, which can save resources when the condition changes.
 
 ```js
 import {LitElement, html} from 'lit';
@@ -527,6 +585,7 @@ import {cache} from 'lit/directives/cache.js';
    )}`;
 ```
 
+Since this won't render anything when the condition is falsy, you can use it to avoid creating a complex piece of DOM on initial page load. 
 
 #### Repeating templates
 
@@ -747,7 +806,9 @@ static get properties() {`
 
 Like Polymer, Lit does dirty checking when properties change to avoid performing unnecessary work. This can lead to issues if you have a property that holds an object or array. If you mutate the object or array, Lit won't detect a change.
 
-In most cases, the best way to avoid these issues is to use immutable data patterns, so that you always assign a new object or array value instead of mutating an existing object or array.
+In most cases, the best way to avoid these issues is to use immutable data patterns, so that you always assign a new object or array value instead of mutating an existing object or array. The same is generally true for Polymer.
+
+Polymer includes APIs for observably [setting subproperties](https://polymer-library.polymer-project.org/3.0/docs/devguide/model-data#set-path) and [mutating arrays](https://polymer-library.polymer-project.org/3.0/docs/devguide/model-data#array-mutation), but they are somewhat challenging to use properly. If you're using these APIs, you may need to migrate to an immutable data pattern.
 
 For more information, see [Mutating object and array properties](https://lit.dev/docs/components/properties/#mutating-properties).
 
