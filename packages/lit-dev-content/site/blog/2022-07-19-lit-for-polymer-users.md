@@ -109,9 +109,7 @@ Ideally, a component should fire _semantic_ events, which describe what changed 
 
 #### Replacing two-way bindings
 
-There are many ways to replace two-way bindings. On the more complex side, you can use a state container like Redux. Individual components can subscribe for updates to the state, and dispatch actions to update the state. This is a great way to go, but it may require a lot of work.
-
-If you're just looking to migrate an existing Polymer application to Lit, you may just want to replace the two-way bindings with code that serves a similar function. There are two steps to this:
+There are many ways to replace two-way bindings. If you're just looking to migrate an existing Polymer application to Lit, you may just want to replace the two-way bindings with code that serves a similar function. There are two steps to this:
 
 *   Replace the automatic property change event with a more intentional change event.
 
@@ -169,6 +167,14 @@ This code explicitly listens for input events and fires `name-changed` events. T
 This code won't fire a property change event when the parent sets the `name` property—which is a good thing. And you can migrate this code fairly directly to Lit.
 
 Using an event handler like this, you could also add logic to the child component—such as only firing the `name-changed` event when the user stops typing for a certain interval.
+
+{% aside "info" %}
+
+One-way data flow.
+
+Another alternative is to replace two-way bindings with a unidirectional data flow pattern, using a state container like Redux. Individual components can subscribe for updates to the state, and dispatch actions to update the state. We recommend this for new development, but it may require more work if you already have an application based on two-way bindings.
+
+{% endaside %}
 
 ## Polymer to Lit cookbook
 
