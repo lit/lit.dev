@@ -14,17 +14,17 @@ This document provides a quick overview of how Lit relates to Polymer, and provi
 
 ## How does Lit relate to Polymer?
 
-The Polymer library was one of the first libraries for building web components. Lit is a successor to Polymer, built by the same team and with many of the same aims. The projects share many goals, but Lit takes advantage of lessons learned during the development of the Polymer library.
+Polymer was one of the first libraries for building web components. Lit is a successor to Polymer, built by the same team and with many of the same aims. The projects share many goals, but Lit takes advantage of lessons learned during the development of Polymer.
 
-Because the  Polymer library is the predecessor to Lit, there are a lot of similarities between the two. Both libraries make it easy to build components that work like built-in HTML elements, and both feature declarative HTML templates.
+Because Polymer is the predecessor to Lit, there are a lot of similarities between the two. Both libraries make it easy to build components that work like built-in HTML elements, and both feature declarative HTML templates.
 
-Lit differs from the Polymer library in several ways:
+Lit differs from Polymer in several ways:
 
 *   **Lit's rendering is asynchronous and batched by default.** With a few exceptions, all Polymer updates are synchronous.
 
 *   **Lit exposes an update lifecycle that provides a powerful mechanism for observing changes to properties and computing derived values from them.** Polymer has declarative observers and computed properties, but it can be hard to predict the order in which observers will run.
 
-*   **Lit focuses on JavaScript-first authoring, using native JavaScript modules.** The Polymer library _originally_ focused on HTML-first authoring, made possible by the HTML Imports specification, which has since been removed from the web platform.
+*   **Lit focuses on JavaScript-first authoring, using native JavaScript modules.** Polymer  _originally_ focused on HTML-first authoring, made possible by the HTML Imports specification, which has since been removed from the web platform.
 
 *   **Lit expressions use standard JavaScript.**  Polymer uses a limited domain-specific language in its bindings. Because Lit uses standard JavaScript, you can also use JavaScript for control flow inside expressions (conditional templates and repeated templates), where Polymer uses specialized helper elements.
 
@@ -585,7 +585,7 @@ import {cache} from 'lit/directives/cache.js';
    )}`;
 ```
 
-Since this won't render anything when the condition is falsy, you can use it to avoid creating a complex piece of DOM on initial page load. 
+Since this won't render anything when the condition is falsy, you can use it to avoid creating a complex piece of DOM on initial page load.
 
 #### Repeating templates
 
