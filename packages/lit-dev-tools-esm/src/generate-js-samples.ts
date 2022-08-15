@@ -45,7 +45,7 @@ const updateAndWriteProjectConfig = async (
   relPath: string,
   ignoreJsonError = false
 ) => {
-  console.log('writing config:', relPath);
+  console.log('writing config', relPath);
   const absPath = pathlib.join(TS_SAMPLES_DIR, relPath);
   const oldJson = await fs.readFile(absPath, 'utf8');
   let project: ProjectManifest;
@@ -167,7 +167,6 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
     });
 
     const jsPath = pathlib.relative(process.cwd(), filepath);
-    console.log("*** jsPath:", jsPath);
     const playgroundCommentRegexp =
       /\/\*\s*(playground-(fold|hide)(-end)?)\s\*\//g;
     const tsPath = jsPath
