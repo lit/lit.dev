@@ -16,7 +16,7 @@
       <span class="sectionHead{% if section.url == page.url %} active{% endif %}">
         {{ section.title }}
         {% if section.labs == true %}
-          <img class="labs" src="/images/alerts/labs.svg" alt="labs" />
+          <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
         {% endif %}
       </span>
       <ol>
@@ -24,7 +24,7 @@
         <li{% if child.url == page.url %} class="active"{% endif %}>
           <a href="{{ child.url | url }}">{{ child.title }}</a>
           {% if child.labs == true %}
-            <img class="labs" src="/images/alerts/labs.svg" alt="labs" />
+            <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
           {% endif %}
         </li>
       {%- endfor %}
