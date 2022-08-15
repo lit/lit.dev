@@ -536,8 +536,8 @@ table.directory tr.subheading {
 
 /* Labs icon */
 #docsNav img.labs {
-  width: 1.25em;
-  height: 1.25em;
+  width: 1.25rem;
+  height: 1.25rem;
   vertical-align: text-bottom;
 }
 
