@@ -6,7 +6,5 @@ declare global {
 }
 
 // https://github.com/facebook/react/issues/10021
-const React = window.React;
-const ReactDOM = window.ReactDOM;
-
-export { React, ReactDOM };
+export const React = window.React;
+export const ReactDOM = window.ReactDOM;
