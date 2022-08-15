@@ -11,9 +11,9 @@ eleventyNavigation:
 Server-side rendering (SSR) is a technique for generating and serving the HTML of your components, including shadow DOM and styles, before their JavaScript implementations have loaded and executed.
 
 You can use SSR for a variety of reasons:
-- Robustness. Static HTML renders even if the JavaScript fails to load or the user has JavaScript disabled.
 - Performance. Some sites can render faster if they render static HTML first without waiting for JavaScript to load, then (optionally) load the page's JavaScript and hydrate the components.
 - SEO and web crawlers. While the major search-engine web crawlers render pages with full JavaScript-enabled browsers, not all web crawlers support JavaScript.
+- Robustness. Static HTML renders even if the JavaScript fails to load or the user has JavaScript disabled.
 
 For a deeper dive into server-side rendering concepts and techniques generally, see [Rendering on the Web](https://web.dev/rendering-on-the-web/) on web.dev.
 
