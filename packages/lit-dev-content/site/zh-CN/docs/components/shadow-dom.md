@@ -29,7 +29,7 @@ Shadow DOM 提供了三个好处:
 
 </div>
 
-## 在 shadow DOM 中访问节点
+## 在 shadow DOM 中访问节点 {#accessing-nodes-in-the-shadow-dom}
 
 
 Lit 将组件渲染到它的 `renderRoot`，默认情况下是一个shadow root。可以使用 DOM 查询 API查找其内部元素，例如 `this.renderRoot.querySelector()`。
@@ -50,7 +50,7 @@ get _closeButton() {
 
 LitElement 提供了一组装饰器，它们提供了一种定义 getter 的简写方式。
 
-### @query, @queryAll, 和 @queryAsync 装饰器
+### @query, @queryAll, 和 @queryAsync 装饰器 {#@query-@queryAll-@queryAsync}
 
 `@query`、`@queryAll` 和 `@queryAsync` 装饰器都提供了一种便捷的方式来访问内部组件 DOM 中的节点。
 
@@ -138,13 +138,13 @@ _buttons!: NodeListOf<HTMLButtonElement>
 
 要渲染子元素，你的模板需要包含一个或多个 [`<slot>` 元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)，它们将充当子元素的占位符。
 
-### 使用插槽元素
+### 使用插槽元素 {#using-the-slot-element}
 
 要渲染组件的子元素，请在组件的模板中为它们创建一个 `<slot>`。子节点在 DOM 树中没有被 _移动_，但它们被渲染成看起来就 _好像_ 它们是`<slot>`的子节点一样。例如：
 
 {% playground-ide "docs/components/shadowdom/slots/" %}
 
-### 使用具名插槽
+### 使用具名插槽 {#using-named-slots}
 
 要将子元素分配给特定插槽，请确保子元素的 `slot` 属性与插槽的 `name` 属性相匹配：
 
@@ -158,7 +158,7 @@ _buttons!: NodeListOf<HTMLButtonElement>
 
 {% playground-ide "docs/components/shadowdom/namedslots/" %}
 
-### 指定插槽回退内容
+### 指定插槽回退内容 {#specifying-slot-fallback-content}
 
 You can specify fallback content for a slot. The fallback content is shown when no child is assigned to the slot.
 你可以为插槽指定回退内容。当没有子元素分配给插槽时，将显示回退内容。
@@ -280,7 +280,7 @@ class DelegatesFocus extends LitElement {
 
 请参阅MDN上的 [Element.attachShadow()](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/attachShadow)了解更多详细信息。
 
-### 实现 `createRenderRoot`
+### 实现 `createRenderRoot` {#implementing-createrenderroot}
 
 `createRenderRoot` 的默认实现会创建一个开放的shadow root，并向其添加 `static styles` 类字段中设置的任何样式。请参阅 [样式]({{baseurl}}/docs/components/styles/)了解有关样式的更多信息。
 

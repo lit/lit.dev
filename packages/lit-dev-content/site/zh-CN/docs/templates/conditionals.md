@@ -12,7 +12,7 @@ versionLinks:
 
 JavaScript 条件式还允许你组合嵌套的模板表达式，你甚至可以将模板结果存储在变量中然后在其他地方使用。
 
-## 带有条件（三元）运算符的条件式
+## 带有条件（三元）运算符的条件式 {#conditionals-with-the-conditional-(ternary)-operator}
 
 带有条件运算符 `?` 的三元表达式是添加内联条件的好方法：
 
@@ -24,9 +24,9 @@ render() {
 }
 ```
 
-## 带有 if 语句的条件式
+## 带有 if 语句的条件式 {#conditionals-with-if-statements}
 
-你可以使用模板外部的 if 语句来表达条件逻辑来计算要在模板内部使用的值：
+你可以在模板外部使用 if 条件语句来计算要在模板内部使用的值：
 
 ```ts
 render() {
@@ -39,7 +39,7 @@ render() {
   return html`<p class="message">${message}</p>`;
 }
 ```
-或者，你可以将逻辑分解为独立的函数以简化模板：
+或者，你可以将逻辑分解为独立的函数来简化模板：
 
 ```ts
 getUserMessage() {
@@ -54,11 +54,11 @@ render() {
 }
 ```
 
-## 缓存模板结果：缓存指令
+## 缓存模板结果：缓存指令 {#caching-template-results}
 
 在大多数情况下，条件模板只需要 JavaScript 条件。但是，如果你在大型、复杂的模板之间切换，你可能就希望节省每次切换时重新创建 DOM 的成本。
 
-在这种情况下，您可以使用 `cache` _指令_。 cache 指令为当前未渲染的模板缓存 DOM。
+在这种情况下，你可以使用 `cache` _指令_。 cache 指令可以为当前未渲染的模板缓存 DOM。
 
 ```ts
 render() {
@@ -71,7 +71,7 @@ render() {
 
 有关详细信息，请参阅 [缓存指令]({{baseurl}}/docs/templates/directives/#cache)。
 
-## 渲染空值
+## 渲染空值 {#rendering-nothing}
 
 有时，你可能不想在条件运算符的一个分支中渲染任何内容。子表达式中的值 `undefined`、`null` 和空字符串 (`''`) 都会渲染一个空的文本节点。
 

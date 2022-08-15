@@ -1,7 +1,7 @@
 ---
-title: Localization
+title: 本地化
 eleventyNavigation:
-  key: Localization
+  key: 本地化
   order: 6
 ---
 

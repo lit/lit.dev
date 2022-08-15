@@ -1,7 +1,7 @@
 ---
-title: Releases
+title: 发版
 eleventyNavigation:
-  key: Releases
+  key: 发版
   order: 8
 ---
 

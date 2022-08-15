@@ -1,7 +1,7 @@
 ---
-title: Writing Components
+title: 编写组件
 eleventyNavigation:
-  key: Components
+  key: 组件
   order: 2
 ---
 

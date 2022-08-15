@@ -67,4 +67,5 @@ Every Lit feature is carefully designed with web platform evolution in mind; we 
 * [Getting started](/docs/getting-started/): Get set up to start developing with Lit.
 * [Components](/docs/components/overview/): Learn about the Lit component model.
 * [Templates](/docs/templates/overview/): Write templates with lit-html syntax.
+* 新增的
 * [Code organization](/docs/composition/overview/): Write reusable, maintainable code.

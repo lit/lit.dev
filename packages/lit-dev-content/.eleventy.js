@@ -200,6 +200,16 @@ ${content}
     return docs;
   });
 
+  eleventyConfig.addCollection('zh-CN-docs-v2', function (collection) {
+    const docs = collection
+      .getFilteredByGlob(['site/zh-CN/docs/*', 'site/zh-CN/docs/*/**'])
+      .sort(sortDocs);
+    for (const page of docs) {
+      docsByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
   // The reverse filter isn't working in Liquid templates
   eleventyConfig.addCollection('releasenotes', function (collection) {
     return collection.getFilteredByTag('release').reverse();

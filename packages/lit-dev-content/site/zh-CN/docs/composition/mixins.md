@@ -10,7 +10,7 @@ eleventyNavigation:
 
 你可以使用 mixin，通过添加 API 或覆盖其生命周期回调来自定义 Lit 组件。
 
-## Mixin 基础
+## Mixin 基础 {#mixin-basics}
 
 Mixin 可以被认为是“子类工厂”，mixin 覆盖了应用它们的类并返回一个子类，子类扩展了 mixin 中的行为。
 因为 mixin 是使用标准 JavaScript 类表达式实现的，所以它们可以使用所有可用于子类化的惯用语，例如添加新字段/方法、覆盖现有父类方法以及使用 `super`。
@@ -59,7 +59,7 @@ class MyElement extends LitElementWithMixin {
 * open-wc 的 [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/)，包括讨论何时使用 mixin 可能会导致重复，以及如何使用去重库来避免这种情况。
 * Elix Web 组件库的[Mixin 约定](https://component.kitchen/elix/mixins)。 虽然不是特定于 Lit 的，但包含了为 Web 组件定义 mixin 时应用约定的深思熟虑的建议。
 
-## 为 LitElement 定义 mixin
+## 为 LitElement 定义 mixin {#creating-mixins-for-litelement}
 
 应用于 LitElement 的 mixin 可以实现或覆盖任何标准的 [自定义元素生命周期]({{baseurl}}/docs/components/lifecycle/#custom-element-lifecycle)回调,
 比如：`constructor()` 或 `connectedCallback()`，以及任何[响应式更新生命周期](/docs/components/lifecycle/#reactive-update-cycle)回调，比如：`render()` 或 ` 更新（）`。
@@ -95,11 +95,11 @@ Mixin 还可以将 [响应式属性]({{baseurl}}/docs/components/properties/)、
 
 请注意，在上面的示例中，mixin 的用户应该从他们的 `render()` 方法中调用 `renderHighlight()` 方法，并注意将 mixin 定义的`静态样式`添加到子类样式中。 mixin 和用户之间的这种约定的性质取决于 mixin 的定义，并且应该由 mixin 的作者给出文档。
 
-## TypeScript 中的 Mixin
+## TypeScript 中的 Mixin {#mixins-in-typescript}
 
 在用 TypeScript 中编写 `LitElement` mixin 时，有一些细节需要注意到。
 
-### 编写父类
+### 编写父类 {#typing-the-superclass}
 
 你应该将 `superClass` 参数限制为你希望用户继承的类的类型（如果有的话）。 可以使用通用的 `Constructor` 辅助类型来完成限制，如下所示：
 
@@ -118,7 +118,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
 
 上面的示例确保传递给 mixin 的类是从 `LitElement` 继承而来的，因此你的 mixin 可以依赖于 Lit 提供的回调和其他 API。
 
-### 编写子类
+### 编写子类 {#typing-the-subclass}
 
 尽管 TypeScript 基本能够推断使用 mixin 模式生成的子类的返回类型，但它有一个严重的限制，即推断的类不能包含具有 `private` 或 `protected` 访问修饰符的成员。
 
@@ -173,7 +173,7 @@ export const MyMixin = <T extends Constructor<LitElement>>(superClass: T) => {
 }
 ```
 
-### 在 mixin 中使用指令
+### 在 mixin 中使用指令 {#applying-decorators-in-mixins}
 
 由于 TypeScript 类型系统的限制，装饰器（如 `@property()`) 必须应用于类声明语句而不是类表达式。
 
