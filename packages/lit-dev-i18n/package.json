@@ -1,0 +1,28 @@
+{
+  "name": "lit-dev-i18n",
+  "version": "1.0.0",
+  "description": "for lit-dev-content translation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "checkout": "node ./bin/checkout",
+    "build": "node ./bin/build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arr-difference": "^1.0.2",
+    "chalk": "^4.0.0",
+    "crypto-js": "^4.1.1",
+    "deep-diff": "^1.0.2",
+    "diff": "^5.1.0",
+    "diff-json-structure": "^1.0.8",
+    "fast-xml-parser": "^4.0.9",
+    "htmlparser2": "^8.0.1",
+    "marked": "^4.0.17",
+    "myers-diff": "^2.0.1",
+    "xml": "^1.0.1",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {}
+}

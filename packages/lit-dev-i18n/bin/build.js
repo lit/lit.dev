@@ -1,0 +1,1 @@
+console.log("extract target content in workspace, emit target language files")
