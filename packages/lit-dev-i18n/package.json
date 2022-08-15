@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "checkout": "node ./bin/checkout",
-    "build": "node ./bin/build"
+    "checkout:zh-CN": "node ./bin/checkout --lang=zh-CN",
+    "build:zh-CN": "node ./bin/build  --lang=zh-CN"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "fast-xml-parser": "^4.0.9",
     "htmlparser2": "^8.0.1",
     "marked": "^4.0.17",
+    "minimist": "^1.2.6",
     "myers-diff": "^2.0.1",
     "xml": "^1.0.1",
     "xml-js": "^1.6.11"
