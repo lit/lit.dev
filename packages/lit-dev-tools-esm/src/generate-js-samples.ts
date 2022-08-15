@@ -45,7 +45,7 @@ const updateAndWriteProjectConfig = async (
   relPath: string,
   ignoreJsonError = false
 ) => {
-  console.log('writing config', relPath);
+  console.log('writing config:', relPath);
   const absPath = pathlib.join(TS_SAMPLES_DIR, relPath);
   const oldJson = await fs.readFile(absPath, 'utf8');
   let project: ProjectManifest;
@@ -167,11 +167,13 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
     });
 
     const jsPath = pathlib.relative(process.cwd(), filepath);
+    console.log("*** jsPath:", jsPath);
     const playgroundCommentRegexp =
       /\/\*\s*(playground-(fold|hide)(-end)?)\s\*\//g;
     const tsPath = jsPath
       .replace(/^samples\/js\//, 'samples/')
-      .replace(/\.js$/, '.ts');
+      .replace(/\.js$/, '.ts')
+      .replace(/\.jsx$/, '.tsx');
     const ts = fsSync.readFileSync(tsPath, 'utf8');
     const tsPlaygroundComments = [...ts.matchAll(playgroundCommentRegexp)].map(
       ([, kind]) => kind
@@ -201,6 +203,9 @@ const nonTsFileGlobs = [
   // TypeScript files are handled separately
   '!*.ts',
   '!**/*.ts',
+  // TypeScript files are handled separately
+  '!*.tsx',
+  '!**/*.tsx',
   // These config files are unnecessary.
   '!tsconfig.json',
   '!base.json',

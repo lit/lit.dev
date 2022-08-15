@@ -9,9 +9,10 @@
     "declarationMap": false,
     "sourceMap": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "jsx": "preserve",
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": [
     // Position of static properties block is imperfect, and this example is
     // prominent on the homepage. See https://github.com/lit/lit/issues/2159.
