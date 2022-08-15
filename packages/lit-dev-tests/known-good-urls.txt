@@ -489,4 +489,9 @@ https://twitter.com/justinfagnani
 https://twitter.com/devdocdude
 https://twitter.com/graynorton
 https://immerjs.github.io/immer/
-https://next.rocket.modern-web.dev/
+https://developer.chrome.com/blog/new-in-chrome-90/#declarative
+https://web.dev/rendering-on-the-web/
+https://github.com/webcomponents/template-shadowroot
+https://docs.astro.build/en/guides/integrations-guide/lit/
+https://rocket.modern-web.dev/
+https://stackblitz.com/edit/lit-ssr-global?file=src/server.js
