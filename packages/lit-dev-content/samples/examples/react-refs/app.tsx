@@ -35,10 +35,12 @@ export const App = () => {
   // create input callbacks
   const onPlay = useCallback(() => ref.current?.play(), []);
   const onPause = useCallback(() => ref.current?.pause(), []);
-  const onFps = useCallback((e) => {
+  const onFps = useCallback((e: React.SyntheticEvent<PointerEvent>) => {
     if (ref.current === null) return;
 
-    ref.current.fps = e.target.value;
+    if (e.target instanceof HTMLInputElement) {
+      ref.current.fps = e.target.value;
+    }
   }, []);
 
   // reconcile component state with app state
