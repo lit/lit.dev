@@ -1,7 +1,7 @@
 import {React, ReactDOM} from './react.js';
 import {App} from './app.js';
 
-const section = document.querySelector('section');
-const root = ReactDOM.createRoot(section!);
+const node = document.querySelector('#app');
+const root = ReactDOM.createRoot(node!);
 
 root.render(<App></App>);

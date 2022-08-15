@@ -2,7 +2,7 @@ import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 @customElement('counter-button')
-class CounterButton extends LitElement {
+export class CounterButton extends LitElement {
   @property({ type: Number }) count = 0;
 
   render() {
@@ -11,5 +11,3 @@ class CounterButton extends LitElement {
     `;
   }
 }
-
-export { CounterButton };

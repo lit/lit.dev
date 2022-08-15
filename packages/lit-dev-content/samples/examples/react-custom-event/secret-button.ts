@@ -21,7 +21,7 @@ function randomBucket<T>(messages: T[]): T {
 }
 
 @customElement('secret-button')
-class SecretButton extends LitElement {
+export class SecretButton extends LitElement {
   render() {
     return html`
       <button @click="${this.onClick}">dispatch secret message event</button>
@@ -37,5 +37,3 @@ class SecretButton extends LitElement {
     );
   }
 }
-
-export { SecretButton };
