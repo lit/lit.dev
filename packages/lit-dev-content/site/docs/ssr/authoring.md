@@ -8,7 +8,7 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
-Lit's approach to rendering web components in a server environment places some restrictions on component code to achieve efficient server rendering. When authoring components, keep in mind these considerations if you your components to be compatible with Lit SSR.
+Lit's approach to rendering web components in a server environment places some restrictions on component code to achieve efficient server rendering. When authoring components, keep in mind these considerations to ensure they are compatible with Lit SSR.
 
 Note: The restrictions listed on this page are subject to change as we make improvements to Lit SSR. If you would like to see a certain use case supported, please [file an issue](https://github.com/lit/lit/issues/new/choose) or start a [discussion](https://github.com/lit/lit/discussions) thread.
 
@@ -20,9 +20,9 @@ Most browser DOM APIs are not available in the Node environment. Lit SSR utilize
 
 When authoring components, perform imperative DOM operations from lifecycle methods that are called only on the client, and not on the server. See the [lifecycles](#lifecycles) section below for what specific methods can be used.
 
-Some component modules may also have side effects that utilize browser APIs, to detect for certain browser features for example, which would break simply by importing in a non-browser environment. These side effects, if they cannot be moved to a client-only lifecycle, must have proper alternatives or some default behavior for when running in Node.
+Some component modules may also have side effects that utilize browser APIs, for example to detect certain browser features, which would break simply by importing in a non-browser environment. If these side-effects cannot be moved to a client-only lifecycle, you must provide proper alternatives or some default behavior for when running in Node.
 
-For simple cases, adding conditionals or optional chaining to certain DOM accesses may be sufficient to guard against unavailable DOM APIs, such as
+For simple cases, adding conditionals or optional chaining to certain DOM accesses may be sufficient to guard against unavailable DOM APIs. For example:
 
 ```js
 const hasConstructableStylesheets = typeof globalThis.CSSStyleSheet?.prototype.replaceSync === 'function';

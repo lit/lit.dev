@@ -16,7 +16,7 @@ Be mindful that methods called on the server should not contain references to br
 | Method | Called on server | Notes |
 |-|-|-|
 | `constructor()` | ✅ | |
-| `copnnectedCallback()` | ❌ | Currently not called on SSR but may be subject to change |
+| `connectedCallback()` | ❌ | Currently not called on SSR but may be subject to change |
 | `disconnectedCallback()` | ❌ | |
 | `attributeChangedCallback()` | ❌ | |
 | `adoptedCallback()` | ❌ | |
