@@ -1,57 +1,15 @@
 main {
-  /* Colors */
-  --docs-h1-underline-color: var(--color-blue);
-  --docs-h2-color: #384861;
-  --docs-h3-color: #5d6c86;
-  --docs-rule-color: #d1d1d1;
-  --docs-table-header-background: #e4e4e4;
-  --docs-table-header-color: rgb(73, 73, 73);
-  --docs-link-color: #005cc5;
-  --docs-nav-color: #242424;
-  --docs-background-color: white;
-  --playground-code-background: var(--color-light-gray);
-  --code-border: 1px solid #ddd;
-
-  /* IMPORTANT: If any of the following variables change, one or both of the
-    @media query thresholds below need to be updated. */
-  --docs-nav-min-width: 14em;
-  --docs-nav-max-width: 1fr;
-  --docs-toc-min-width: 5em;
-  --docs-article-min-width: 30em;
-  --docs-article-max-width: 49em;
-  --docs-article-margin-horizontal: 3em;
-  --docs-margin-top: 32px;
-
-  --chips-background-color: rgba(0, 0, 0, .12);
-  --chips-background-color-hover: rgba(0, 0, 0, .18);
-  --chips-background-color-press: rgba(0, 0, 0, .24);
-  --chips-content-color: rgba(0, 0, 0, .87);
-
-  display: grid;
-  grid-template-columns:
-    minmax(var(--docs-nav-min-width), var(--docs-nav-max-width)) minmax(0, var(--docs-article-max-width)) 1fr;
-  max-width: none;
-  border-bottom: 1px solid var(--color-blue);
-
-  /* Open Sans is more readable than Manrope, so we prefer it for content that
-    users will spend a lot of time reading. */
-  font-family: "Open Sans", sans-serif;
-
   background: var(--docs-background-color);
-  padding-top: var(--docs-margin-top);
-}
-
-@media (max-width: 864px) {
-  main {
-    display: block;
-    padding-top: 0;
-  }
 }
 
 #articleWrapper>article {
   box-shadow: none;
   padding-block-start: 0;
 }
+
+/* ------------------------------------
+ * Header Section
+ * ------------------------------------ */
 
 .articleHeader {
   margin-block-end: 1.3rem;
