@@ -151,7 +151,7 @@ Strings, numbers, and booleans are all converted to strings when interpolated in
 
 The values `null`, `undefined`, the empty string `''`, and Lit's [nothing](/docs/api/templates/#nothing) sentinel value will all render no node when in a child expression.
 
-Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Render no node ensures the fallback content is rendered. See [fallback content](docs/components/shadow-dom/#fallback) for more information.
+Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Render no node ensures the fallback content is rendered. See [fallback content](/docs/components/shadow-dom/#fallback) for more information.
 
 ### Templates
 
