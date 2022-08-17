@@ -137,14 +137,21 @@ html`<main>${bodyText}</main>`
 
 Expressions in the child position can take many kinds of values:
 
-* Primitive values likes strings, numbers, and booleans
+* Primitive rendering values
+* Non-rendering values
 * `TemplateResult` objects created with the `html` function.
 * DOM nodes
 * Arrays or iterables of any of the supported types
 
-### Primitive values
+### Primitive rendering values
 
-Primitives values like strings, numbers, booleans, null, and undefined are converted to strings when interpolated into text content or attribute values. They are checked for equality with the previous value so the DOM is not updated if the value hasn't changed.
+Strings, numbers, and booleans are all converted to strings when interpolated into text content. This means that a value of `5` will render the string `'5'`, but likewise a value of `true` will render `'true'` and a value of `false` will render `'false'`. Rendering a boolean like this is uncommon, and these values are typically rendered using conditionals. For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
+
+### Non-rendering values {#non-rendering}
+
+The values `null`, `undefined`, the empty string `''`, and Lit's [nothing](/docs/api/templates/#nothing) sentinel value will all render no node when in a child expression.
+
+Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Render no node ensures the fallback content is rendered. See [fallback content](docs/components/shadow-dom/#fallback) for more information.
 
 ### Templates
 
@@ -207,9 +214,11 @@ If the expression makes up the entire attribute value, you can leave off the quo
 html`<img src="/images/${this.image}">`;
 ```
 
-### Setting attributes if data is defined { #ifDefined }
+### Setting attributes if data is available { #attribute-available }
 
-Sometimes you want to set an attribute only if a value or set of values is available, and otherwise remove the attribute. For example, consider:
+Sometimes you want to set an attribute only if the value or set of values is available, and otherwise remove the attribute. If the attribute value is just an empty string, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, an attribute should be set to a specific value.
+
+For example, consider:
 
 ```js
 html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
@@ -224,6 +233,16 @@ html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}
 ```
 
 In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
+
+When the value is not defined, Lit's [nothing](/docs/api/templates/#nothing) sentinel value is returned. Lit removes an attribute when its value contains `nothing`.
+
+You can use the `nothing` value for other cases as well. For example, consider this example where an element might have a default value for `this.ariaLabel` of empty string `''`. You cannot use `ifDefined` here since its non-rendering values are `null` or `undefined`. Instead, use `nothing`:
+
+```js
+html`<button aria-label="${this.ariaLabel || nothing}"></button>`
+```
+
+In this example the `aria-label` attribute is rendered only if `this.ariaLabel` is truthy (i.e. not an empty string).
 
 ## Boolean attributes {#boolean-attribute-expressions }
 

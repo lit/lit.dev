@@ -159,7 +159,7 @@ To assign a child to a specific slot, ensure that the child's `slot` attribute m
 
 {% playground-ide "docs/components/shadowdom/namedslots/" %}
 
-### Specifying slot fallback content
+### Specifying slot fallback content {#fallback}
 
 You can specify fallback content for a slot. The fallback content is shown when no child is assigned to the slot.
 
@@ -169,7 +169,7 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 <div class="alert alert-info">
 
-**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`.
+**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`. When using a Lit expression as a child of an element with Shadow DOM and a slot with fallback content, make sure to use a non-rendering value when appropriate so that fallback content is rendered. See [non-rendering values](/docs/templates/expressions/#non-rendering) for more information.
 
 </div>
 

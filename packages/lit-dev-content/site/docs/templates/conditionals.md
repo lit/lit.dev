@@ -74,6 +74,9 @@ See the [cache directive](/docs/templates/directives/#cache) for more informatio
 
 ## Rendering nothing
 
-Sometimes, you may want to render nothing in one branch of a conditional operator. The values `undefined`, `null` and the empty string (`''`) in a child expression all render an empty text node.
+Sometimes, you may want to render nothing in one branch of a conditional operator. This is commonly needed for child
+expressions and also sometimes needed in attribute expressions.
 
-In some cases, you may want to render a value to an attribute only if data is defined and render nothing if the data is unavailable.  See [Setting values only if data is defined](/docs/templates/expressions/#ifDefined) to handle this.
+For child expressions, the values `undefined`, `null`, the empty string (`''`), and Lit's [nothing](/docs/api/templates/#nothing) sentinel value all render no nodes. See [Non-rendering values](/docs/templates/expressions/#non-rendering) for more information.
+
+For attribute expressions, Lit's [nothing](/docs/api/templates/#nothing) sentinel value removes the attribute. See [Setting attributes if data is available](/docs/templates/expressions/#attribute-available) for more information.
