@@ -3,7 +3,7 @@ title: Lit SSR DOM emulation
 eleventyNavigation:
   key: DOM emulation
   parent: Server rendering
-  order: 6
+  order: 5
 ---
 
 {% labs-disclaimer %}

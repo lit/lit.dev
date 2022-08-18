@@ -3,7 +3,7 @@ title: Lit SSR integrations
 eleventyNavigation:
   key: Integrations
   parent: Server rendering
-  order: 7
+  order: 6
 ---
 
 {% labs-disclaimer %}

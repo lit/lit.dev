@@ -36,9 +36,47 @@ Note: Due to the way Lit libraries utilize conditional export for providing code
 
 ### Lifecycle
 
-Only a select number of web component, `LitElement`, and Lit directive lifecycle callbacks will be run during server-side rendering that are utilized to generate the initial styling and markup for the component. Additional lifecycle methods will be called client-side during hydration and subsequent  changes to the page.
+Only a select number of web component, `LitElement`, and Lit directive lifecycle callbacks will be run during server-side rendering that are utilized to generate the initial styling and markup for the component. Additional lifecycle methods will be called client-side during hydration and subsequent changes to the page.
 
-See the [lifecycle](/docs/ssr/lifecycle) page for a detailed list of lifecycle methods that are called during SSR and hydration.
+The tables below lists the standard custom element and Lit element lifecycle methods and whether they are called during SSR and during hydration.
+
+Be mindful that methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages.
+
+<!-- TODO(augustinekim) Replace emojis below with icons https://github.com/lit/lit.dev/pull/880#discussion_r944821511 -->
+#### Standard custom element and LitElement
+| Method | Called on server | Notes |
+|-|-|-|
+| `constructor()` | ✅ | |
+| `connectedCallback()` | ❌ | Currently not called on SSR but may be subject to change |
+| `disconnectedCallback()` | ❌ | |
+| `attributeChangedCallback()` | ❌ | |
+| `adoptedCallback()` | ❌ | |
+| `hasChanged()` | ✅ | Called when property is set |
+| `shouldUpdate()` | ❌ | |
+| `willUpdate()` | ✅ | Called before `render()` |
+| `update()` | ❌ | |
+| `render()` | ✅ | |
+| `firstUpdate()` | ❌ | |
+| `updated()` | ❌ | |
+
+#### ReactiveController
+| Method | Called on server | Notes |
+|-|-|-|
+| `constructor()` | ✅ | |
+| `hostConnected()` | ❌ | |
+| `hostDisconnected()` | ❌ | |
+| `hostUpdate()` | ❌ | |
+| `hostUpdated()` | ❌ | |
+
+#### Directive
+| Method | Called on server | Notes |
+|-|-|-|
+| `constructor()` | ✅ | |
+| `update()` | ❌ | |
+| `render()` | ✅ | |
+| `disconnected()` | ❌ | Async directives only |
+| `reconnected()` | ❌ | Async directives only |
+
 
 ### Asynchronicity
 
