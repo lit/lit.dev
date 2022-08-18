@@ -109,11 +109,13 @@ Ideally, a component should fire _semantic_ events, which describe what changed 
 
 #### Replacing two-way bindings
 
-There are many ways to replace two-way bindings. If you're just looking to migrate an existing Polymer application to Lit, you may just want to replace the two-way bindings with code that serves a similar function. There are two steps to this:
+There are many ways to replace two-way bindings. If you're just looking to migrate an existing Polymer application to Lit, you may just want to replace the two-way bindings with code that serves a similar function:
+
+*   Remove the automatic property change event (`notify: true`).
 
 *   Replace the automatic property change event with a more intentional change event.
 
-*   Replace the two-way binding annotation with a one-way binding and an event handler.
+*   Replace the two-way binding annotation with a one-way binding and an event handler. (This step is optional, but makes the transition to Lit simpler.)
 
 For example, if the child is updating a notifying property because of a user interaction, remove the `notify: true` and fire the event change event manually, based on the user interaction event.
 
