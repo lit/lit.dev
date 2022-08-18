@@ -24,3 +24,10 @@ Server-side rendering Lit components utilizes [Declarative Shadow DOM](https://w
 Until all browsers include declarative shadow DOM support, a very small polyfill is available that can be inlined into your page. This lets you use SSR now for any browsers and crawlers with JavaScript enabled and incrementally address non-JavaScript use cases as the feature is rolled out to the rest of the browsers and crawlers. Usage of the polyfill is detailed in the [client API](/docs/ssr/client-api#lit-components) documentation.
 
 Lit SSR is a low-level library that you can use directly in your Node-based server or site generator. A number of [integrations](/docs/ssr/integrations) have also been published which make Lit SSR work out-of-the-box for frameworks like Eleventy, Astro, and Rocket.
+
+Below are some examples and projects that currently use Lit SSR:
+
+- [Example of SSR with global rendering in Koa server](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
+- [Lit Eleventy Plugin](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#lit-labseleventy-plugin-lit)
+- [Astro integration for Lit](https://docs.astro.build/en/guides/integrations-guide/lit/)
+- [Rocket](https://rocket.modern-web.dev/)
