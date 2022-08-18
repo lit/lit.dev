@@ -1,7 +1,7 @@
 ---
-title: Lit SSR server API
+title: Lit SSR server usage
 eleventyNavigation:
-  key: Server API
+  key: Server usage
   parent: Server rendering
   order: 2
 ---
