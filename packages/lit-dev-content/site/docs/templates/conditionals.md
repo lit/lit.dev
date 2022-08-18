@@ -79,4 +79,4 @@ expressions and also sometimes needed in attribute expressions.
 
 For child expressions, the values `undefined`, `null`, the empty string (`''`), and Lit's [nothing](/docs/api/templates/#nothing) sentinel value all render no nodes. See [Non-rendering values](/docs/templates/expressions/#non-rendering) for more information.
 
-For attribute expressions, Lit's [nothing](/docs/api/templates/#nothing) sentinel value removes the attribute. See [Setting attributes if data is available](/docs/templates/expressions/#attribute-available) for more information.
+For attribute expressions, Lit's [nothing](/docs/api/templates/#nothing) sentinel value removes the attribute. See [Removing an attribute under certain conditions](/docs/templates/expressions/#removing-attribute) for more information.

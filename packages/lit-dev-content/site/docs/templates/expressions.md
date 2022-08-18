@@ -137,15 +137,19 @@ html`<main>${bodyText}</main>`
 
 Expressions in the child position can take many kinds of values:
 
-* Primitive rendering values
+* Primitive values
 * Non-rendering values
 * `TemplateResult` objects created with the `html` function.
 * DOM nodes
 * Arrays or iterables of any of the supported types
 
-### Primitive rendering values
+### Primitive values
 
-Strings, numbers, and booleans are all converted to strings when interpolated into text content. This means that a value of `5` will render the string `'5'`, but likewise a value of `true` will render `'true'` and a value of `false` will render `'false'`. Rendering a boolean like this is uncommon, and these values are typically rendered using conditionals. For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
+Strings, numbers, and booleans are all converted to strings when interpolated into text content.
+
+A value of `5` will render the string `'5'`. The empty string `''` is specially treated as a [non-rendering value](#non-rendering).
+
+A boolean value `true` will render `'true'`, and `false` will render `'false'`. Rendering a boolean like this is uncommon. Instead booleans are typically used in conditionals to render other appropriate values. For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
 
 ### Non-rendering values {#non-rendering}
 
@@ -214,7 +218,7 @@ If the expression makes up the entire attribute value, you can leave off the quo
 html`<img src="/images/${this.image}">`;
 ```
 
-### Setting attributes if data is available { #attribute-available }
+### Removing an attribute under certain conditions { #removing-attribute }
 
 Sometimes you want to set an attribute only if the value or set of values is available, and otherwise remove the attribute. If the attribute value is just an empty string, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, an attribute should be set to a specific value.
 
@@ -226,23 +230,27 @@ html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 
 If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
-You can use the [ifDefined](/docs/api/directives/#ifDefined) directive to avoid this issue:
+Lit's [nothing](/docs/api/templates/#nothing) sentinel value addresses this by removing the attribute when any part of it contains `nothing`.
+
+```js
+html`<img src="/images/${this.imagePath ?? nothing}/${this.imageFile ?? nothing}">`;
+```
+
+In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. The `??` [nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) returns the right-hand value if the left-hand value is `null` or `undefined`.
+
+Lit also provides an [ifDefined](/docs/api/directives/#ifDefined) directive which is sugar for `value ?? nothing`.
 
 ```js
 html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
 ```
 
-In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
-
-When the value is not defined, Lit's [nothing](/docs/api/templates/#nothing) sentinel value is returned. Lit removes an attribute when its value contains `nothing`.
-
-You can use the `nothing` value for other cases as well. For example, consider this example where an element might have a default value for `this.ariaLabel` of empty string `''`. You cannot use `ifDefined` here since its non-rendering values are `null` or `undefined`. Instead, use `nothing`:
+You might also want to remove the attribute if the value is not truthy so that values of `false` or empty string `''` remove the attribute. For example, consider an element that has default value for `this.ariaLabel` of empty string `''`:
 
 ```js
 html`<button aria-label="${this.ariaLabel || nothing}"></button>`
 ```
 
-In this example the `aria-label` attribute is rendered only if `this.ariaLabel` is truthy (i.e. not an empty string).
+In this example the `aria-label` attribute is rendered only if `this.ariaLabel` is not an empty string.
 
 ## Boolean attributes {#boolean-attribute-expressions }
 
