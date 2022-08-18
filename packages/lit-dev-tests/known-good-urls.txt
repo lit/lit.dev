@@ -5,7 +5,7 @@ https://twitter.com/buildWithLit
 https://shoelace.style/#:~:text=LitElement
 https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element
 https://spdx.org/licenses/BSD-3-Clause.html
-https://clarity.design/storybook/core/?path=/docs/internal-documentation-imports-and-dependencies--page#:~:text=lit-element
+https://core.clarity.design/
 https://auro.alaskaair.com/#:~:text=Using%20LitElement%20as%20a%20base
 https://spdx.org/licenses/CC-BY-3.0
 https://www.npmjs.com/package/lit
