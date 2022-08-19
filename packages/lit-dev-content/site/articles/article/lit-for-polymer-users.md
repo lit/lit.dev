@@ -1,11 +1,10 @@
 ---
 title: Lit for Polymer users
-publishDate: 2022-08-23
-lastUpdated: 2020-08-23
+publishDate: 2022-08-22
+lastUpdated: 2022-08-22
 summary: Moving your code from Polymer to Lit.
 tags:
-  - migration
-  - webcomponents
+  - web-components
 eleventyNavigation:
   parent: Articles
   key: Lit for Polymer users
