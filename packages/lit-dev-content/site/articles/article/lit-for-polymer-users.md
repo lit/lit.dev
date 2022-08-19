@@ -1,9 +1,15 @@
 ---
-tags: blogPosts
-layout: article.html
-title: "Lit for Polymer users"
-summary: "Migrating Polymer apps to Lit, or learning Lit as a Polymer user"
-date: 2022-07-19
+title: Lit for Polymer users
+publishDate: 2022-08-23
+lastUpdated: 2020-08-23
+summary: Moving your code from Polymer to Lit.
+tags:
+  - migration
+  - webcomponents
+eleventyNavigation:
+  parent: Articles
+  key: Lit for Polymer users
+  order: 0
 author:
   - arthur-evans
 ---
