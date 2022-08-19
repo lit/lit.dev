@@ -8,7 +8,7 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
-Only the minimal DOM interfaces needed for `lit-html` and `LitElement` to boot are implemented, which are mostly base classes for extension, and a roughly functioning `CustomElementRegistry`.
+In the DOM shim that ships with Lit SSR, only the minimal DOM interfaces needed to define and register components are implemented. These include a few key DOM classes and a roughly functioning `CustomElementRegistry`.
 
 Below lists all the properties, classes, and methods on the `window` object added to `globalThis`. The contents of `window` are also assigned onto `globalThis`. ✅ signifies item is implemented to be functionally the same as in the browser.
 

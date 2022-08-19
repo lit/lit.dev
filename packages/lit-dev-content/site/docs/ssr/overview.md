@@ -17,9 +17,15 @@ You can use SSR for a variety of reasons:
 
 For a deeper dive into server-side rendering concepts and techniques generally, see [Rendering on the Web](https://web.dev/rendering-on-the-web/) on web.dev.
 
-Lit supports server-side rendering through the [Lit SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr#readme) package. Lit SSR renders Lit components and templates to static HTML markup in non-browser JavaScript environments like Node. It works without fully emulating the browser's DOM, and takes advantage of Lit's declarative template format to enable fast performance, low time-to-first-byte, and support streaming.
+Lit supports server-side rendering through the [Lit SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr#readme) package. Lit SSR renders Lit components and templates to static HTML markup in non-browser JavaScript environments like Node. It works without fully emulating the browser's DOM, and takes advantage of Lit's declarative template format to enable fast performance, achieve low time-to-first-byte, and support streaming.
 
-Lit SSR is a low-level library that you can use directly in your Node-based server or site generator. A number of [integrations](#examples-and-integrations) have also been published which make Lit SSR work out-of-the-box for frameworks like Eleventy, Astro, and Rocket.
+Lit SSR is a low-level library that you can use directly in your Node-based server or site generator. Check out [an example of Lit SSR used in a Koa server](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js).
+
+A number of integrations have also been published which make Lit SSR work out-of-the-box:
+- [Lit Eleventy Plugin](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#lit-labseleventy-plugin-lit)
+- [Astro integration for Lit](https://docs.astro.build/en/guides/integrations-guide/lit/)
+- [Rocket](https://rocket.modern-web.dev/)
+- ...and more under development!
 
 ## Library status
 
@@ -31,12 +37,3 @@ This library is under active development with some notable limitations we hope t
 - Integration with other SSR frameworks are being worked on. See issues for [NextJS](https://github.com/lit/lit/issues/2391) and [Nuxt](https://github.com/lit/lit/issues/3049).
 - Declarative shadow DOM is not implemented in all major browsers yet, though a polyfill is available. Read more about it in [client usage](/docs/ssr/client-usage#lit-components).
 - There are also open discussions that need to happen regarding `ElementRendererRegistry` for interop with other custom elements.
-
-## Examples and integrations
-
-Below are some examples and projects that currently use Lit SSR:
-
-- [Example of SSR with global rendering in a Koa server](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
-- [Lit Eleventy Plugin](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#lit-labseleventy-plugin-lit)
-- [Astro integration for Lit](https://docs.astro.build/en/guides/integrations-guide/lit/)
-- [Rocket](https://rocket.modern-web.dev/)
