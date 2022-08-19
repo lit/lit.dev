@@ -19,11 +19,20 @@ For a deeper dive into server-side rendering concepts and techniques generally, 
 
 Lit supports server-side rendering through the [Lit SSR](https://github.com/lit/lit/tree/main/packages/labs/ssr#readme) package. Lit SSR renders Lit components and templates to static HTML markup in non-browser JavaScript environments like Node. It works without fully emulating the browser's DOM, and takes advantage of Lit's declarative template format to enable fast performance, low time-to-first-byte, and support streaming.
 
-Server-side rendering Lit components utilizes [Declarative Shadow DOM](https://web.dev/declarative-shadow-dom/), a new HTML feature that is [shipping in Chrome and Edge](https://developer.chrome.com/blog/new-in-chrome-90/#declarative) which allows HTML to attach shadow roots to elements without the need for JavaScript.
+Lit SSR is a low-level library that you can use directly in your Node-based server or site generator. A number of [integrations](#examples-and-integrations) have also been published which make Lit SSR work out-of-the-box for frameworks like Eleventy, Astro, and Rocket.
 
-Until all browsers include declarative shadow DOM support, a very small polyfill is available that can be inlined into your page. This lets you use SSR now for any browsers and crawlers with JavaScript enabled and incrementally address non-JavaScript use cases as the feature is rolled out to the rest of the browsers and crawlers. Usage of the polyfill is detailed in the [client API](/docs/ssr/client-api#lit-components) documentation.
+## Library status
 
-Lit SSR is a low-level library that you can use directly in your Node-based server or site generator. A number of [integrations](/docs/ssr/integrations) have also been published which make Lit SSR work out-of-the-box for frameworks like Eleventy, Astro, and Rocket.
+This library is under active development with some notable limitations we hope to resolve:
+
+- Async component work is not supported. See issues [#3219](https://github.com/lit/lit/issues/3219), [#2469](https://github.com/lit/lit/issues/2469).
+- An environment checker for writing conditional code is not yet available. See issue [#3158](https://github.com/lit/lit/issues/3158).
+- Only Lit components using shadow DOM is support. See issue [#3080](https://github.com/lit/lit/issues/3080).
+- Integration with other SSR frameworks are being worked on. See issues for [NextJS](https://github.com/lit/lit/issues/2391) and [Nuxt](https://github.com/lit/lit/issues/3049).
+- Declarative shadow DOM is not implemented in all major browsers yet, though a polyfill is available. Read more about it in [client usage](/docs/ssr/client-usage#lit-components).
+- There are also open discussions that need to happen regarding `ElementRendererRegistry` for interop with other custom elements.
+
+## Examples and integrations
 
 Below are some examples and projects that currently use Lit SSR:
 
