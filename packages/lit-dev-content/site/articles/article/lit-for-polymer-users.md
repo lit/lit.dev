@@ -780,7 +780,9 @@ Lit doesn't include any built-in support for read-only reactive properties. If y
 <dt class="paramName"><code>notify</code></dt>
 <dd class="paramDetails">
 
-Not supported in Lit. The `notify` option generates an event when the property changes, and is used to support two-way data binding. This option is problematic because the event is fired any time the property changes, even if it's changed programatically. Lit components can use the native web APIs (such as `dispatchEvent`) to fire events in response to user input or when an internal state changes (for example, when an animation completes).
+This feature is used to support two-way binding. It was **not** implemented in Lit because of the issues described in [Issues with two-way binding](#issues-with-two-way-bidning). 
+
+Lit components can use the native web APIs (such as `dispatchEvent`) to fire events in response to user input or when an internal state changes.
 
 </dd>
 
