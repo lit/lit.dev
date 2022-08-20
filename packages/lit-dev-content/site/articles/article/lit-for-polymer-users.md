@@ -102,11 +102,12 @@ For two-way bindings, Polymer uses its own protocol, which has three main compon
 
 This last item is the most problematic. Components fire change events for any change to a property, and each change event is handled synchronously.  Widespread use of two-way binding across an entire application can make it hard to reason about data flow and the order in which components update themselves.
 
-Ideally an event is a discrete signal sent to communicate an explicit change that isn't otherwise easily observable. Sending an event as a side-effect of setting a property as Polymer makes the communication potentially redundant and implicit. This implicit behavior, in particular, can make data flow hard to understand.
+Ideally an event is a discrete signal sent to communicate an explicit change that isn't otherwise easily observable. Sending an event as a side-effect of setting a property—as Polymer does—makes the communication potentially redundant and implicit. This implicit behavior, in particular, can make data flow hard to understand.
 
-To summarize the [Custom Element Best Practices](https://web.dev/custom-elements-best-practices/#events) guidelines, a component should* fire events:
+To summarize the [Custom Element Best Practices](https://web.dev/custom-elements-best-practices/#events) guidelines, a component **should** fire events:
 
 *   When the state of the element changes as a result of user interaction—like clicking a button or editing a text field inside the component.
+
 *   When something internal changes inside the component—like a timer going off or an animation completing.
 
 Ideally, a component should fire _semantic_ events, which describe what changed rather than letting low-level UI events bubble out. For example, a form that lets the user update profile data might fire a `profile-updated` event when the user clicks the **Done** button. The `profile-updated` event is relevant to the parent: the click event isn't.
