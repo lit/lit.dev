@@ -244,7 +244,7 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 
 ### Removing an attribute { #removing-attribute }
 
-Sometimes you want to set an attribute only if the value or set of values is available, and otherwise remove the attribute. If the attribute value is just an empty string, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, an attribute should be set to a specific value.
+Sometimes you want to set an attribute only if the part's value(s) meet certain conditions, and otherwise remove the attribute. For common "boolean attributes" like `disabled` and `hidden` where you want to set the attribute to an empty string for a truthy value and remove it otherwise, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, an attribute should be set to a specific value in some cases, and removed in others.
 
 For example, consider:
 
