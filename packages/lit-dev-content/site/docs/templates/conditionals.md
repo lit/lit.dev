@@ -72,11 +72,24 @@ render() {
 
 See the [cache directive](/docs/templates/directives/#cache) for more information.
 
-## Rendering nothing
+## Conditionally rendering nothing { #conditionally-rendering-nothing }
 
-Sometimes, you may want to render nothing in one branch of a conditional operator. This is commonly needed for child
-expressions and also sometimes needed in attribute expressions.
+Sometimes, you may want to render nothing in one branch of a conditional operator. This is commonly needed for child expressions and also sometimes needed in attribute expressions.
 
-For child expressions, the values `undefined`, `null`, the empty string (`''`), and Lit's [nothing](/docs/api/templates/#nothing) sentinel value all render no nodes. See [Non-rendering values](/docs/templates/expressions/#non-rendering) for more information.
+For child expressions, the values `undefined`, `null`, the empty string (`''`), and Lit's [nothing](/docs/api/templates/#nothing) sentinel value all render no nodes. See [Removing child content](/docs/templates/expressions/#removing-child) for more information.
 
-For attribute expressions, Lit's [nothing](/docs/api/templates/#nothing) sentinel value removes the attribute. See [Removing an attribute under certain conditions](/docs/templates/expressions/#removing-attribute) for more information.
+This example renders a value if it exists, and otherwise renders nothing:
+
+```ts
+render() {
+  return html`<user-name>${this.userName ?? nothing}</user-name>`;
+}
+```
+
+For attribute expressions, Lit's [nothing](/docs/api/templates/#nothing) sentinel value removes the attribute. See [Removing an attribute](/docs/templates/expressions/#removing-attribute) for more information.
+
+This example conditionally renders the `aria-label` attribute:
+
+```ts
+html`<button aria-label="${this.ariaLabel || nothing}"></button>`
+```
