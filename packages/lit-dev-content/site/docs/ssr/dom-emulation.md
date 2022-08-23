@@ -12,6 +12,7 @@ In the DOM shim that ships with Lit SSR, only the minimal DOM interfaces needed 
 
 Below lists all the properties, classes, and methods on the `window` object added to `globalThis`. The contents of `window` are also assigned onto `globalThis`. ✅ signifies item is implemented to be functionally the same as in the browser.
 
+<!-- TODO(augustinekim) Consider replacing emojis below with icons https://github.com/lit/lit.dev/pull/880#discussion_r944821511 -->
 | Property | Notes |
 |-|-|
 | `Element` | ⚠️ Empty class |

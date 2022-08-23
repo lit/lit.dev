@@ -18,7 +18,7 @@ Note: The restrictions listed on this page are subject to change as we make impr
 
 Most browser DOM APIs are not available in the Node environment. Lit SSR utilizes a DOM shim that's the bare minimum required for rendering Lit templates and components. For a full list of what APIs are available, see the [DOM Emulation](/docs/ssr/dom-emulation) page.
 
-When authoring components, perform imperative DOM operations from lifecycle methods that are called only on the client, and not on the server. See the [lifecycles](#lifecycles) section below for what specific methods can be used.
+When authoring components, perform imperative DOM operations from lifecycle methods that are called only on the client, and not on the server. See the [lifecycle](#lifecycle) section below for what specific methods can be used.
 
 Some component modules may also have side effects that utilize browser APIs, for example to detect certain browser features, which would break simply by importing in a non-browser environment. If these side-effects cannot be moved to a client-only lifecycle, you must provide proper alternatives or some default behavior for when running in Node.
 
@@ -40,42 +40,41 @@ Only a select number of web component, `LitElement`, and Lit directive lifecycle
 
 The tables below lists the standard custom element and Lit element lifecycle methods and whether they are called during SSR and during hydration.
 
-Be mindful that methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages.
-
-<!-- TODO(augustinekim) Replace emojis below with icons https://github.com/lit/lit.dev/pull/880#discussion_r944821511 -->
 #### Standard custom element and LitElement
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | ✅ | |
-| `connectedCallback()` | ❌ | Currently not called on SSR but may be subject to change |
-| `disconnectedCallback()` | ❌ | |
-| `attributeChangedCallback()` | ❌ | |
-| `adoptedCallback()` | ❌ | |
-| `hasChanged()` | ✅ | Called when property is set |
-| `shouldUpdate()` | ❌ | |
-| `willUpdate()` | ✅ | Called before `render()` |
-| `update()` | ❌ | |
-| `render()` | ✅ | |
-| `firstUpdate()` | ❌ | |
-| `updated()` | ❌ | |
+| `constructor()` | Yes* | |
+| `connectedCallback()` | No | Currently not called on SSR but may be subject to change |
+| `disconnectedCallback()` | No | |
+| `attributeChangedCallback()` | No | |
+| `adoptedCallback()` | No | |
+| `hasChanged()` | Yes* | Called when property is set |
+| `shouldUpdate()` | No | |
+| `willUpdate()` | Yes* | Called before `render()` |
+| `update()` | No | |
+| `render()` | Yes* | |
+| `firstUpdate()` | No | |
+| `updated()` | No | |
 
 #### ReactiveController
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | ✅ | |
-| `hostConnected()` | ❌ | |
-| `hostDisconnected()` | ❌ | |
-| `hostUpdate()` | ❌ | |
-| `hostUpdated()` | ❌ | |
+| `constructor()` | Yes* | |
+| `hostConnected()` | No | |
+| `hostDisconnected()` | No | |
+| `hostUpdate()` | No | |
+| `hostUpdated()` | No | |
 
 #### Directive
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | ✅ | |
-| `update()` | ❌ | |
-| `render()` | ✅ | |
-| `disconnected()` | ❌ | Async directives only |
-| `reconnected()` | ❌ | Async directives only |
+| `constructor()` | Yes* | |
+| `update()` | No | |
+| `render()` | Yes* | |
+| `disconnected()` | No | Async directives only |
+| `reconnected()` | No | Async directives only |
+
+\* Methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages.
 
 
 ### Asynchronicity
