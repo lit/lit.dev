@@ -17,6 +17,30 @@ const h2 = (text: string, fragment: string) => `<div class="heading h2">
 
 const INLINE_TOC = `<nav id="inlineToc"></nav>`;
 
+const ARTICLE_HEADER = `<h1>What is Lit?</h1>
+<header class="articleHeader">
+  <div class="date">some time</div>
+  <div class="tags"><a href="asdf">Some tag</a></div>
+  <div class="authors"><figure>A figure of an author</figure></div>
+  ${INLINE_TOC}
+</header>`;
+
+const ARTICLE_CONTENTS = `${ARTICLE_HEADER}
+<p>
+  <img src="/images/logo.svg" alt="Lit Logo" class="logo" width="425" height="200">
+</p>
+<p>
+  Lit is a simple library for building fast, lightweight web components.
+</p>
+<p>
+  At Lit's core is a boilerplate-killing component base class that...
+</p>
+<p>
+  Naïve test.
+</p>
+${h2('What can I build with Lit?', 'what-can-i-build-with-lit')}
+`;
+
 const DOC_CONTENTS = `<h1>What is Lit?</h1>
   ${INLINE_TOC}
 <p>
@@ -128,6 +152,24 @@ const ARTICLE_CHANGED_ID_PAGE = `<!DOCTYPE html>
 
 test('chunk simple docs page', () => {
   const page = new PageSearchChunker(simplePageLayout(DOC_CONTENTS));
+  assert.equal(page.pageSearchChunks(), [
+    {
+      title: 'What is Lit? – Lit',
+      heading: 'What is Lit?',
+      fragment: '',
+      text: 'Lit is a simple library for building fast lightweight web components At Lits core is a boilerplatekilling component base class that Naïve test',
+    },
+    {
+      title: 'What is Lit? – Lit',
+      heading: 'What can I build with Lit?',
+      fragment: '#what-can-i-build-with-lit',
+      text: '',
+    },
+  ]);
+});
+
+test('chunk simple article page', () => {
+  const page = new PageSearchChunker(simplePageLayout(ARTICLE_CONTENTS));
   assert.equal(page.pageSearchChunks(), [
     {
       title: 'What is Lit? – Lit',
