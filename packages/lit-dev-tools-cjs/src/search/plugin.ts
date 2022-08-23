@@ -130,7 +130,7 @@ function walkDir(dir: string, results: UrlToFile): UrlToFile {
   const dirContents = fs.readdirSync(dir);
   for (const contents of dirContents) {
     if (path.extname(contents) === '.html') {
-      const relPathBase = dir.match(/\/docs.*/)?.[0];
+      const relPathBase = dir.match(/(\/docs.*)|(\/articles\/article.*)/)?.[0];
       if (!relPathBase) {
         throw new Error(`Failed to match relative path.`);
       }
