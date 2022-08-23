@@ -105,10 +105,10 @@ export class PageSearchChunker {
         `Expect every lit.dev page to have an article#content element.`
       );
     }
-    const removedSections = article.querySelectorAll(
-      'nav#inlineToc, header.articleHeader'
-    );
-    [...removedSections].forEach((section) => section.remove());
+    const toc = article.querySelector('nav#inlineToc');
+    if (toc) {
+      toc.remove();
+    }
     return article;
   }
 

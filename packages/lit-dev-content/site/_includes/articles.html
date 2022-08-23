@@ -39,8 +39,8 @@
 
   <div id="articleWrapper">
     <article id="content">
-      <h1>{{ title }}</h1>
       <header class="articleHeader">
+        <h1>{{ title }}</h1>
         {% block articleHeader %}{% endblock %}
         {% if toc | tocHasEntries %}
           <nav id="inlineToc">
