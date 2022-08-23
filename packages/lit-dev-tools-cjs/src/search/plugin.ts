@@ -41,6 +41,16 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   );
   const relativeDocUrlsToHtmlFile: UrlToFile = walkDir(DOCS_PATH, new Map());
 
+  const ARTICLES_PATH = path.resolve(
+    __dirname,
+    // Load the article content itself not the tags pages.
+    `../../../lit-dev-content/${outputDir}/articles/article`
+  );
+  const relativeLinksToHTMLFile: UrlToFile = walkDir(
+    ARTICLES_PATH,
+    relativeDocUrlsToHtmlFile
+  );
+
   /**
    * NOTE: The minisearch options must exactly match when we create the search
    * index on the client. Any changes here must be reflected in the
@@ -58,7 +68,7 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   });
 
   let id = 0;
-  for (const [relUrl, filePath] of relativeDocUrlsToHtmlFile.entries()) {
+  for (const [relUrl, filePath] of relativeLinksToHTMLFile.entries()) {
     if (filePath.includes('/internal/')) {
       // Skip internal pages.
       continue;
