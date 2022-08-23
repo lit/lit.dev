@@ -48,7 +48,7 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   );
 
   const skipFiles = (filepath: string) => {
-    // These pages have are tag feeds and are not structured in a way the
+    // These pages are tag feeds and are not structured in a way the
     // search indexer can understand.
     const badPathParts = [
       ['articles', 'tags'],
