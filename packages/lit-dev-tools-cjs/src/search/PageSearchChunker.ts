@@ -109,6 +109,10 @@ export class PageSearchChunker {
     if (toc) {
       toc.remove();
     }
+    const articleHeaderSections = article.querySelectorAll(
+      'header.articleHeader .date, header.tags .date, header.articleHeader .authors'
+    );
+    [...articleHeaderSections].forEach((section) => section.remove());
     return article;
   }
 
@@ -187,7 +191,7 @@ export class PageSearchChunker {
         reducedPageChunks.push(maybeNewPageChunk);
       } else {
         const lastChunk = reducedPageChunks[reducedPageChunks.length - 1];
-        if (lastChunk !== null) {
+        if (lastChunk !== null && lastChunk !== undefined) {
           lastChunk.nodeCollection.appendChild(childNode);
         }
       }
