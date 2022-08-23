@@ -105,14 +105,10 @@ export class PageSearchChunker {
         `Expect every lit.dev page to have an article#content element.`
       );
     }
-    const toc = article.querySelector('nav#inlineToc');
-    if (toc) {
-      toc.remove();
-    }
-    const articleHeaderSections = article.querySelectorAll(
-      'header.articleHeader .date, header.tags .date, header.articleHeader .authors'
+    const removedSections = article.querySelectorAll(
+      'nav#inlineToc, header.articleHeader'
     );
-    [...articleHeaderSections].forEach((section) => section.remove());
+    [...removedSections].forEach((section) => section.remove());
     return article;
   }
 
@@ -191,7 +187,7 @@ export class PageSearchChunker {
         reducedPageChunks.push(maybeNewPageChunk);
       } else {
         const lastChunk = reducedPageChunks[reducedPageChunks.length - 1];
-        if (lastChunk !== null && lastChunk !== undefined) {
+        if (lastChunk !== null) {
           lastChunk.nodeCollection.appendChild(childNode);
         }
       }
