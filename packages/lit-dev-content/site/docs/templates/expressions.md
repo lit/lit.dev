@@ -210,7 +210,7 @@ An expression can also return an array or iterable of any of the supported types
 
 The values `null`, `undefined`, the empty string `''`, and Lit's [nothing](/docs/api/templates/#nothing) sentinel value remove any previously rendered content and render no node.
 
-Setting or removing child content is often done based on a condition. See [Conditionally rendering nothing](docs/template/conditionals/#conditionally-rendering-nothing) for more information.
+Setting or removing child content is often done based on a condition. See [Conditionally rendering nothing](docs/templates/conditionals/#conditionally-rendering-nothing) for more information.
 
 Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Rendering no node ensures the fallback content is rendered. See [fallback content](/docs/components/shadow-dom/#fallback) for more information.
 
@@ -276,7 +276,7 @@ html`<button aria-label="${this.ariaLabel || nothing}"></button>`
 
 In this example the `aria-label` attribute is rendered only if `this.ariaLabel` is not an empty string.
 
-Setting or removing an attribute is often done based on a condition. See [Conditionally rendering nothing](docs/template/conditionals/#conditionally-rendering-nothing) for more information.
+Setting or removing an attribute is often done based on a condition. See [Conditionally rendering nothing](docs/templates/conditionals/#conditionally-rendering-nothing) for more information.
 
 ## Property expressions {#property-expressions}
 
