@@ -1,10 +1,12 @@
 ---
-title: Introduction
+title: Related libraries
 eleventyNavigation:
-  key: Introduction
-  order: 1
+  key: Related libraries
+  order: 9
+versionLinks:
+  v1: lit-html/introduction/
 layout: docs-feed
-childrenDocs: docs-header
+childrenDocs: docs-libraries
 tags:
   - docs-header
 ---

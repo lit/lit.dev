@@ -1,8 +1,12 @@
 ---
-title: Writing Components
+title: Releases
 eleventyNavigation:
-  key: Components
-  order: 2
+  key: Releases
+  order: 8
+layout: docs-feed
+childrenDocs: docs-releases
+tags:
+  - docs-header
 ---
 
 <!-- This file exists only to create a section heading.

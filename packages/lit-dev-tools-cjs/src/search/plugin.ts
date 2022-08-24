@@ -39,7 +39,19 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     __dirname,
     `../../../lit-dev-content/${outputDir}/docs`
   );
-  const relativeDocUrlsToHtmlFile: UrlToFile = walkDir(DOCS_PATH, new Map());
+  const relativeDocUrlsToHtmlFile: UrlToFile = walkDir(
+    DOCS_PATH,
+    new Map(),
+    (filePath) => {
+      const pathParts = filePath.split('/');
+      const docsIndex = pathParts.indexOf('docs');
+      if (pathParts[docsIndex + 2] === 'index.html') {
+        return true;
+      }
+
+      return false;
+    }
+  );
 
   /**
    * NOTE: The minisearch options must exactly match when we create the search
@@ -116,9 +128,16 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
  * @param results Map we're mutating with relative url and absolute path.
  * @returns mapping between lit.dev relative url and index.html file paths.
  */
-function walkDir(dir: string, results: UrlToFile): UrlToFile {
+function walkDir(
+  dir: string,
+  results: UrlToFile,
+  shouldSkip: (path: string) => boolean = () => false
+): UrlToFile {
   const dirContents = fs.readdirSync(dir);
   for (const contents of dirContents) {
+    if (shouldSkip(path.join(dir, contents))) {
+      continue;
+    }
     if (path.extname(contents) === '.html') {
       const relPathBase = dir.match(/\/docs.*/)?.[0];
       if (!relPathBase) {
@@ -127,7 +146,7 @@ function walkDir(dir: string, results: UrlToFile): UrlToFile {
       const relPath = `${relPathBase}/${contents}`;
       results.set(relPath, path.resolve(dir, contents));
     } else if (path.extname(contents) === '') {
-      walkDir(path.resolve(dir, contents), results);
+      walkDir(path.resolve(dir, contents), results, shouldSkip);
     }
   }
   return results;

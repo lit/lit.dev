@@ -1,0 +1,24 @@
+{% extends 'docs.html' %}
+
+{% set sectionName = eleventyNavigation.key %}
+{% set children = collections[childrenDocs] %}
+
+<!-- This is the main articles feed that must list all sections -->
+{% if sectionName == "Introduction" %}
+{% endif %}
+
+{% block docsContent %}
+
+<ol class="articleFeedList" tabindex="0">
+{% for child in children %}
+  <li class="feedItem">
+    <a href="{{ child.url | url }}">
+      {{ child.data.title}}
+    </a>
+  </li>
+{% endfor %}
+</ol>
+
+{{ content | safe }}
+
+{% endblock %}

@@ -1,8 +1,12 @@
 ---
-title: Localization
+title: Templates
 eleventyNavigation:
-  key: Localization
-  order: 6
+  key: Templates
+  order: 3
+layout: docs-feed
+childrenDocs: docs-templates
+tags:
+  - docs-header
 ---
 
 <!-- This file exists only to create a section heading.

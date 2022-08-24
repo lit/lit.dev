@@ -1,5 +1,6 @@
 ---
 title: What is Lit?
+layout: docs
 eleventyNavigation:
   key: What is Lit?
   parent: Introduction

@@ -1,10 +1,13 @@
 ---
-title: Related libraries
+title: Composition
 eleventyNavigation:
-  key: Related libraries
-  order: 9
-versionLinks:
-  v1: lit-html/introduction/
+  title: Composition
+  key: Composition
+  order: 4
+layout: docs-feed
+childrenDocs: docs-composition
+tags:
+  - docs-header
 ---
 
 <!-- This file exists only to create a section heading.

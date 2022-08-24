@@ -478,8 +478,6 @@ ${content}
     const emptyDocsIndexFiles = (
       await fastGlob(
         [
-          ENV.eleventyOutDir + '/docs/introduction.html',
-          ENV.eleventyOutDir + '/docs/*/index.html',
           ENV.eleventyOutDir + '/docs/v1/introduction.html',
           ENV.eleventyOutDir + '/docs/v1/*/index.html',
         ],

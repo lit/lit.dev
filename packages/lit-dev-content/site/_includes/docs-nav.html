@@ -11,11 +11,50 @@
     {% endif %}
   {%- endfor %}
 
-  <li{% if sectionActive %} class="activeSection"{% endif %}>
-    {%- if section.children | length %}
-      <span class="sectionHead{% if section.url == page.url %} active{% endif %}">
-        {{ section.title }}</span>
+  {% set expandFirstThree = false %}
+
+  {% if page.url == "/docs/what-is-lit/" %}
+    {% set expandFirstThree = true %}
+  {% endif %}
+
+  {%- if section.children | length %}
+    {% set isFirstThree = section.order < 4 %}
+    {% set shouldExpand = expandFirstThree and isFirstThree %}
+    {% set shouldExpand = sectionActive or shouldExpand %}
+
+    <details
+      class="wrapper section-collapse{% if sectionActive %} activeSection{% endif %}"
+      {% if shouldExpand %}open{% endif %}>
+      <summary class="sectionHead{% if section.url == page.url %} active{% endif %}">
+        {{ section.title }}</summary>
       <ol>
+      {%- for child in section.children %}
+        <li{% if child.url == page.url %} class="active"{% endif %}>
+          <a href="{{ child.url | url }}">{{ child.title }}</a>
+        </li>
+      {%- endfor %}
+      </ol>
+    {%- else %}
+      <a href="{{ section.url | url }}">{{ section.title }}</a>
+    {%- endif %}
+    </details>
+{%- endfor %}
+
+{%- for section in navSections %}
+
+  {# Are any children in this section active? #}
+  {% set sectionActive = false %}
+  {%- for child in section.children %}
+    {% if child.url == page.url %}
+      {% set sectionActive = true %}
+    {% endif %}
+  {%- endfor %}
+
+  <li class="wrapper section-clickable{% if sectionActive %} activeSection{% endif %}">
+    {%- if section.children | length %}
+      <a href="{{ section.url | url }}" class="sectionHead{% if section.url == page.url %} active{% endif %}">
+        {{ section.title }}</a>
+      <ol class="inner">
       {%- for child in section.children %}
         <li{% if child.url == page.url %} class="active"{% endif %}>
           <a href="{{ child.url | url }}">{{ child.title }}</a>

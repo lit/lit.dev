@@ -479,18 +479,58 @@ table.directory tr.subheading {
   margin-top: 0;
   padding-bottom: 1.5em;
 }
-#docsNav > ol > li:not(:first-of-type) {
+#docsNav > ol > .section-collapse:not(:first-of-type),
+#docsNav > ol > .section-clickable:not(:first-of-type) {
   /* Space between top-level lists */
   margin-top: 1.5em;
 }
 
+#docsNav summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+#docsNav details summary::marker {
+  content: '';
+}
+
+body[experiment-indent=no-indent] #docsNav .wrapper ol {
+  padding-inline-start: 0;
+}
+
+body[experiment-indent=indent] #docsNav .wrapper ol {
+  padding-inline-start: 26px;
+}
+
+body[experiment-collapsible=collapsible] .section-clickable {
+  display: none;
+}
+
+body[experiment-collapsible=clickable] .section-collapse {
+  display: none;
+}
+
+body[experiment-collapsible=clickable] #docsNav .sectionHead.active {
+  position: relative;
+  color: black;
+}
+
+body[experiment-collapsible=clickable] #docsNav .sectionHead.active::before {
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 5px;
+  left: -15px;
+}
+
 /* Second level list */
+#docsNav .wrapper ol,
 #docsNav > ol > li > ol {
   list-style: none;
   /* Space between heading and second level items */
   padding-top: 0.2em;
-  /* Second level indent */
-  padding-left: 0;
 }
 
 /* Active page bullet */

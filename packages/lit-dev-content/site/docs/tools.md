@@ -1,8 +1,13 @@
 ---
-title: Resources
+title: Tools and workflows
 eleventyNavigation:
-  key: Resources
-  order: 10
+  title: Tools and workflows
+  key: Tools
+  order: 5
+layout: docs-feed
+childrenDocs: docs-tools
+tags:
+  - docs-header
 ---
 
 <!-- This file exists only to create a section heading.

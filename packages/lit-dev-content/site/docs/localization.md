@@ -1,9 +1,12 @@
 ---
-title: Composition
+title: Localization
 eleventyNavigation:
-  title: Composition
-  key: Composition
-  order: 4
+  key: Localization
+  order: 6
+layout: docs-feed
+childrenDocs: docs-localization
+tags:
+  - docs-header
 ---
 
 <!-- This file exists only to create a section heading.

@@ -1,9 +1,12 @@
 ---
-title: Tools and workflows
+title: Writing Components
 eleventyNavigation:
-  title: Tools and workflows
-  key: Tools
-  order: 5
+  key: Components
+  order: 2
+layout: docs-feed
+childrenDocs: docs-components
+tags:
+  - docs-header
 ---
 
 <!-- This file exists only to create a section heading.
