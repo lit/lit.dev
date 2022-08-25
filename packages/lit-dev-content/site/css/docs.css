@@ -544,11 +544,26 @@ table.directory tr.subheading {
 }
 
 #inlineToc ol {
-  list-style: disc;
+  list-style: none;
+}
+
+/* Top level sections */
+#inlineToc div > ol > li > a {
+  font-weight: bold;
 }
 
 #inlineToc a {
   color: inherit;
+  color: var(--docs-link-color);
+  display: flex;
+}
+
+/* Set mobile touch target */
+@media(pointer: coarse) {
+  #inlineToc a {
+    min-height: 48px;
+    align-items: center;
+  }
 }
 
 /* ------------------------------------

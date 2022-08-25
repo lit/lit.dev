@@ -35,10 +35,6 @@
 
     <script type="module" src="{{ site.baseurl }}/js/global/hydrate-common-components.js"></script>
 
-    {% if not noaside %}
-      <script type="module" src="{{ site.baseurl }}/js/components/litdev-aside.js"></script>
-    {% endif %}
-
     <!-- Preload common chunks we always need. Note <link rel="modulepreload">
          isn't yet supported in Firefox or Safari. -->
     {% if not env.DEV %}
@@ -77,7 +73,8 @@
     {% endif %}
 
     <main {% if not page.url.includes('/docs/')
-            and not page.url.includes('/playground/') %}
+            and not page.url.includes('/playground/')
+            and not page.url.includes('/articles/') %}
               id="content" {% endif %}>
       {% block content %}{{ content | safe }}{% endblock %}
     </main>

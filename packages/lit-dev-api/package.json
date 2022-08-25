@@ -7,7 +7,7 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "build": "wireit",
-    "build:watch": "npm run build -- watch"
+    "build:watch": "npm run build -- --watch"
   },
   "wireit": {
     "build": {

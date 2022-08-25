@@ -218,7 +218,7 @@ Or add it to your npm scripts:
 
 For full installation and usage instructions, see the [ESLint documentation](https://eslint.org/docs/user-guide/getting-started).
 
-We also reccomend the [`eslint-plugin-lit` for ESLint](https://www.npmjs.com/package/eslint-plugin-lit) which provides linting for Lit's HTML templates, inlcluding common HTML linting checks plus Lit-specific rules.
+We also recommend the [`eslint-plugin-lit` for ESLint](https://www.npmjs.com/package/eslint-plugin-lit) which provides linting for Lit's HTML templates, inlcluding common HTML linting checks plus Lit-specific rules.
 
 Integrating linting into your IDE workflow can help catch errors as early as possible. See [Lit-specific IDE plugins](#ide-plugins) to configure your IDE for Lit.
 

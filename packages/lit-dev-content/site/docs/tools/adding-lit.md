@@ -69,7 +69,7 @@ How you use a component depends on your project and the libraries or frameworks 
 
 ### JSX
 
-JSX is a very common templating language. In JSX lower-case element names create HTML elements, which is what Lit components are. Use the tag name you specific in the `@customElement()` decorator:
+JSX is a very common templating language. In JSX, lower-case element names create HTML elements, which is what Lit components are. Use the tag name you specified in the `@customElement()` decorator:
 
 ```tsx
 import './components/my-elements.js';
