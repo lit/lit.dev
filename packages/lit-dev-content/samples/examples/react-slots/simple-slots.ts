@@ -24,18 +24,12 @@ class SimpleSlots extends LitElement {
 
   render() {
     return html`
-      <div>
-        <p>slot="head"</p>
-        <slot name="head"></slot>
-      </div>
-      <div>
-        <p>default slot</p>
-        <slot></slot>
-      </div>
-      <div>
-        <p>slot="tail"</p>
-        <slot name="tail"></slot>
-      </div>
+      <p>slot="head"</p>
+      <slot name="head"></slot>
+      <p>default slot</p>
+      <slot></slot>
+      <p>slot="tail"</p>
+      <slot name="tail"></slot>
     `;
   }
 }

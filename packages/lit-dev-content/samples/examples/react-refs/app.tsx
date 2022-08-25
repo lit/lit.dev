@@ -1,4 +1,4 @@
-import {React} from './react.js';
+import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
 import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
 
@@ -72,3 +72,8 @@ export const App = () => {
     </>
   );
 };
+
+const node = document.querySelector('#app');
+const root = ReactDOM.createRoot(node!);
+
+root.render(<App></App>);

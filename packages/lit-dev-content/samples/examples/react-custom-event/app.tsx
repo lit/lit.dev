@@ -1,6 +1,6 @@
 import type {EventName} from '@lit-labs/react';
 
-import {React} from './react.js';
+import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
 import {SecretButton as SecretButtonWC} from './secret-button.js';
 
@@ -31,3 +31,8 @@ export const App = () => {
     </>
   );
 };
+
+const node = document.querySelector('#app');
+const root = ReactDOM.createRoot(node!);
+
+root.render(<App></App>);

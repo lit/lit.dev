@@ -1,4 +1,4 @@
-import {React} from './react.js';
+import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
 import {SimpleSlots as SimpleSlotsWC} from './simple-slots.js';
 
@@ -28,3 +28,8 @@ const Foo = () =>
       onto the default slot.
     `}
   </>;
+
+const node = document.querySelector('#app');
+const root = ReactDOM.createRoot(node!);
+
+root.render(<App></App>);

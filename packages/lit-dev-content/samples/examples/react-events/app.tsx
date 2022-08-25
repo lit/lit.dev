@@ -1,4 +1,4 @@
-import {React} from './react.js';
+import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
 import {CounterButton as CounterButtonWC} from './counter-button.js';
 
@@ -13,3 +13,8 @@ export const App = () => {
 
   return <CounterButton onClick={onClick} count={count}></CounterButton>;
 };
+
+const node = document.querySelector('#app');
+const root = ReactDOM.createRoot(node!);
+
+root.render(<App></App>);
