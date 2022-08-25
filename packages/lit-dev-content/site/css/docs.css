@@ -490,10 +490,6 @@ table.directory tr.subheading {
   user-select: none;
 }
 
-#docsNav details summary::marker {
-  content: '';
-}
-
 body[experiment-indent=no-indent] #docsNav .wrapper ol {
   padding-inline-start: 0;
 }
@@ -502,11 +498,11 @@ body[experiment-indent=indent] #docsNav .wrapper ol {
   padding-inline-start: 26px;
 }
 
-body[experiment-collapsible=collapsible] .section-clickable {
+body:not([experiment-collapsible=collapsible]) .section-collapse {
   display: none;
 }
 
-body[experiment-collapsible=clickable] .section-collapse {
+body:not([experiment-collapsible=clickable]) .section-clickable {
   display: none;
 }
 
