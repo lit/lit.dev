@@ -50,10 +50,17 @@ export class FlyingTriangles extends LitElement {
 
   @property({ type: Number }) fps = 24;
   @state() isPlaying = false;
-
   @query('canvas') private canvas!: HTMLCanvasElement;
+
   private scene = createScene(this.fps);
   
+  render() {
+    return html`
+      <canvas height="300" width="300"></canvas>
+      <p>${this.isPlaying ? 'click to pause' : 'click to play'}</p>
+    `;
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener('click', this.onClick);
@@ -64,8 +71,15 @@ export class FlyingTriangles extends LitElement {
     this.removeEventListener('click', this.onClick);
   }
 
-  private onClick() {
-    this.isPlaying ? this.pause() : this.play();
+  updated() {
+    this.scene.fpsAsMS = 1000 / this.fps;
+    this.dispatchEvent(new Event('state-change', { composed: true }));
+  }
+
+  firstUpdated(): void {
+    // the canvas element needs to be available
+    // from @query to "play"
+    this.play();
   }
   
   play() {
@@ -82,22 +96,8 @@ export class FlyingTriangles extends LitElement {
     cancelAnimationFrame(this.scene.rafId);
   }
 
-  render() {
-    return html`
-      <canvas height="300" width="300"></canvas>
-      <p>${this.isPlaying ? 'click to pause' : 'click to play'}</p>
-    `;
-  }
-
-  updated() {
-    this.scene.fpsAsMS = 1000 / this.fps;
-    this.dispatchEvent(new Event('state-change', { composed: true }));
-  }
-
-  firstUpdated(): void {
-    // the canvas element needs to be available
-    // from @query to "play"
-    this.play();
+  private onClick() {
+    this.isPlaying ? this.pause() : this.play();
   }
 
   private renderCanvas = () => {
