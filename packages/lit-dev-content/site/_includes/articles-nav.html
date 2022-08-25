@@ -1,0 +1,31 @@
+{% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
+{%- set navSections = collections[collection] | eleventyNavigation -%}
+
+{%- for section in navSections %}
+
+  {% if section.hidden != true %}
+    {# Are any children in this section active? #}
+    {% set sectionActive = false %}
+    {%- for child in section.children %}
+      {% if child.url == page.url %}
+        {% set sectionActive = true %}
+      {% endif %}
+    {%- endfor %}
+
+    <li{% if sectionActive %} class="activeSection"{% endif %}>
+      {%- if section.children | length %}
+        <span class="sectionHead{% if section.url == page.url %} active{% endif %}">
+          {{ section.title }}</span>
+        <ol>
+        {%- for child in section.children %}
+          <li{% if child.url == page.url %} class="active"{% endif %}>
+            <a href="{{ child.url | url }}">{{ child.title }}</a>
+          </li>
+        {%- endfor %}
+        </ol>
+      {%- else %}
+        <a href="{{ section.url | url }}">{{ section.title }}</a>
+      {%- endif %}
+    </li>
+  {% endif %}
+{%- endfor %}
