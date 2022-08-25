@@ -506,6 +506,14 @@ body:not([experiment-collapsible=clickable]) .section-clickable {
   display: none;
 }
 
+body[experiment-collapsible=collapsible] #docsNav .section-collapse:not(:first-of-type):not([open]) {
+  margin-top: 1rem;
+}
+
+body[experiment-collapsible=collapsible] #docsNav .section-collapse[open] + .section-collapse {
+  margin-top: 1.5rem;
+}
+
 body[experiment-collapsible=clickable] #docsNav .sectionHead.active {
   position: relative;
   color: black;
