@@ -254,7 +254,7 @@ html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 
 If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
-Lit's [nothing](/docs/api/templates/#nothing) sentinel value addresses this by removing the attribute when any part of it contains `nothing`.
+Lit's [nothing](/docs/api/templates/#nothing) sentinel value addresses this by removing the attribute when any expression in the attribute value evaluates to `nothing`.
 
 ```js
 html`<img src="/images/${this.imagePath ?? nothing}/${this.imageFile ?? nothing}">`;
