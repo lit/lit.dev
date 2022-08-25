@@ -46,26 +46,33 @@ Only certain lifecycle callbacks are run during server-side rendering. These cal
 
 The tables below lists the standard custom element and Lit lifecycle methods and whether they are called during SSR. All of the lifecycle is available on the browser after element registration and hydration.
 
+{% aside "warn" "no-header" %}
+
+Methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages. Whether a method is called on the server is subject to change while Lit SSR is part of Lit Labs.
+
+{% endaside %}
+
+<!-- TODO(augustinekim) Replace emoji with appropriate icon -->
 ### Standard custom element and LitElement
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | Yes* | |
-| `connectedCallback()` | No | Currently not called on SSR but may be subject to change |
+| `constructor()` | ⚠️ Yes | |
+| `connectedCallback()` | No | |
 | `disconnectedCallback()` | No | |
 | `attributeChangedCallback()` | No | |
 | `adoptedCallback()` | No | |
-| `hasChanged()` | Yes* | Called when property is set |
+| `hasChanged()` | ⚠️ Yes | Called when property is set |
 | `shouldUpdate()` | No | |
-| `willUpdate()` | Yes* | Called before `render()` |
+| `willUpdate()` | ⚠️ Yes | Called before `render()` |
 | `update()` | No | |
-| `render()` | Yes* | |
+| `render()` | ⚠️ Yes | |
 | `firstUpdate()` | No | |
 | `updated()` | No | |
 
 ### ReactiveController
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | Yes* | |
+| `constructor()` | ⚠️ Yes | |
 | `hostConnected()` | No | |
 | `hostDisconnected()` | No | |
 | `hostUpdate()` | No | |
@@ -74,14 +81,11 @@ The tables below lists the standard custom element and Lit lifecycle methods and
 ### Directive
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | Yes* | |
+| `constructor()` | ⚠️ Yes | |
 | `update()` | No | |
-| `render()` | Yes* | |
+| `render()` | ⚠️ Yes | |
 | `disconnected()` | No | Async directives only |
 | `reconnected()` | No | Async directives only |
-
-\* Methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages.
-
 
 ## Asynchronicity
 
