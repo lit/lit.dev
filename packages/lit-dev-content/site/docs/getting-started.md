@@ -51,7 +51,11 @@ Lit is also available as pre-built, single-file bundles. These are provided for
 more flexibility around development workflows: for example, if you would prefer
 to download a single file rather than use npm and build tools. The bundles are
 standard JavaScript modules with no dependencies - any modern browser should be
-able to import and run the bundles from within a `<script type="module">`.
+able to import and run the bundles from within a `<script type="module">` like this:
+
+```js
+import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+```
 
 <div class="alert alert-warning">
 
