@@ -93,7 +93,7 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
       if (!options.skipClipboard) {
         await navigator.clipboard.writeText(window.location.toString());
         statusText = 'URL copied to clipboard';
-      };
+      }
     } catch {
       // The browser isn't allowing us to copy. This could happen because it's
       // disabled in settings, or because we're in a browser like Safari that
