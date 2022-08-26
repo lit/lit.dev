@@ -48,7 +48,13 @@ The tables below lists the standard custom element and Lit lifecycle methods and
 
 {% aside "warn" "no-header" %}
 
-Methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages. Whether a method is called on the server is subject to change while Lit SSR is part of Lit Labs.
+Methods called on the server should not contain references to browser/DOM APIs that have not been shimmed. Methods that are not called server-side may contain those references without causing breakages.
+
+{% endaside %}
+
+{% aside "labs" "no-header" %}
+
+Whether a method is called on the server is subject to change while Lit SSR is part of Lit Labs.
 
 {% endaside %}
 
@@ -56,23 +62,23 @@ Methods called on the server should not contain references to browser/DOM APIs t
 ### Standard custom element and LitElement
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | ⚠️ Yes | |
+| `constructor()` | Yes ⚠️ | |
 | `connectedCallback()` | No | |
 | `disconnectedCallback()` | No | |
 | `attributeChangedCallback()` | No | |
 | `adoptedCallback()` | No | |
-| `hasChanged()` | ⚠️ Yes | Called when property is set |
+| `hasChanged()` | Yes ⚠️ | Called when property is set |
 | `shouldUpdate()` | No | |
-| `willUpdate()` | ⚠️ Yes | Called before `render()` |
+| `willUpdate()` | Yes ⚠️ | Called before `render()` |
 | `update()` | No | |
-| `render()` | ⚠️ Yes | |
+| `render()` | Yes ⚠️ | |
 | `firstUpdate()` | No | |
 | `updated()` | No | |
 
 ### ReactiveController
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | ⚠️ Yes | |
+| `constructor()` | Yes ⚠️ | |
 | `hostConnected()` | No | |
 | `hostDisconnected()` | No | |
 | `hostUpdate()` | No | |
@@ -81,9 +87,9 @@ Methods called on the server should not contain references to browser/DOM APIs t
 ### Directive
 | Method | Called on server | Notes |
 |-|-|-|
-| `constructor()` | ⚠️ Yes | |
+| `constructor()` | Yes ⚠️ | |
 | `update()` | No | |
-| `render()` | ⚠️ Yes | |
+| `render()` | Yes ⚠️ | |
 | `disconnected()` | No | Async directives only |
 | `reconnected()` | No | Async directives only |
 
