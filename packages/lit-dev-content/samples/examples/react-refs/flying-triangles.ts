@@ -52,7 +52,7 @@ export class FlyingTriangles extends LitElement {
   @state() isPlaying = false;
   @query('canvas') private canvas!: HTMLCanvasElement;
 
-  private scene = createScene(this.fps);
+  private scene = createScene();
   
   render() {
     return html`
@@ -64,22 +64,12 @@ export class FlyingTriangles extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener('click', this.onClick);
+    this.play();
   }
   
   disconnectedCallback() {
     super.connectedCallback();
     this.removeEventListener('click', this.onClick);
-  }
-
-  updated() {
-    this.scene.fpsAsMS = 1000 / this.fps;
-    this.dispatchEvent(new Event('state-change', { composed: true }));
-  }
-
-  firstUpdated(): void {
-    // the canvas element needs to be available
-    // from @query to "play"
-    this.play();
   }
   
   play() {
@@ -98,11 +88,12 @@ export class FlyingTriangles extends LitElement {
 
   private onClick() {
     this.isPlaying ? this.pause() : this.play();
+    this.dispatchEvent(new Event('state-change', { composed: true }));
   }
 
   private renderCanvas = () => {
     this.scene.rafId = requestAnimationFrame(this.renderCanvas);
-    renderScene(this.canvas, this.scene);
+    renderScene(this.canvas, this.scene, this.fps);
   }
 }
 
@@ -123,7 +114,6 @@ interface Vector {
 }
 
 interface Scene {
-  fpsAsMS: number;
   deltaTime: number;
   timestamp: number;
   integral: number;
@@ -151,8 +141,7 @@ class Wanderer {
   ]
 }
 
-const createScene = (fps: number): Scene => ({
-  fpsAsMS: 1000 / fps,
+const createScene = (): Scene => ({
   deltaTime: 0,
   timestamp: performance.now(),
   integral: 20,
@@ -163,11 +152,13 @@ const createScene = (fps: number): Scene => ({
 const renderScene = (
   canvas: HTMLCanvasElement,
   state: Scene,
+  fps: number,
 ) => {
   // throttle renders
   const now = performance.now();
   const delta = now - state.timestamp;
-  if (delta < Math.max(state.fpsAsMS, state.integral)) {
+  const fpsAsMS = 1000 / fps;
+  if (delta < Math.max(fpsAsMS, state.integral)) {
     return;
   }
 

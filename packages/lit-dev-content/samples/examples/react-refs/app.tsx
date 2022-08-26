@@ -17,7 +17,7 @@ import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
   a <flying-triangles> component.
 */
 
-const {useCallback, useRef, useState} = React;
+const {useCallback, useRef, useState, useEffect} = React;
 
 const FlyingTriangles = createComponent(React, 'flying-triangles', FlyingTrianglesWC, {
   onStateChange: 'state-change',
@@ -31,6 +31,12 @@ const initialState = {
 export const App = () => {
   const ref = useRef(null);
   const [state, setState] = useState(initialState);
+
+  // on first render reconcile component state with react state
+  useEffect(() => {
+    const {isPlaying, fps} = ref.current;
+    setState({isPlaying, fps});
+  }, [ref])
 
   // create input callbacks
   const onPlay = useCallback(() => ref.current?.play(), []);
