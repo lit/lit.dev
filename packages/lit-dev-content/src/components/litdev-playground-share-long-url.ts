@@ -80,12 +80,20 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
     `;
   }
 
-  async save() {
+  /**
+   * Pushes the current long url onto the history, attempts to save it to the
+   * clipboard, and notifies with the copied and status events.
+   *
+   * @param options Options to skip saving to the clipboard.
+   */
+  async save(options = {skipClipboard: false}) {
     history.pushState({}, '', this._url);
     let statusText;
     try {
-      await navigator.clipboard.writeText(window.location.toString());
-      statusText = 'URL copied to clipboard';
+      if (!options.skipClipboard) {
+        await navigator.clipboard.writeText(window.location.toString());
+        statusText = 'URL copied to clipboard';
+      };
     } catch {
       // The browser isn't allowing us to copy. This could happen because it's
       // disabled in settings, or because we're in a browser like Safari that
