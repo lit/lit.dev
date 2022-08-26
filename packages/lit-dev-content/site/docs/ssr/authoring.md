@@ -36,7 +36,7 @@ For more complex uses cases, consider utilizing [conditional exports](https://no
 
 Don't bundle Lit into published components.
 
-Due to the way Lit libraries utilize conditional export for providing code meant for import in Node, we strongly discourage bundling `lit` into your component for packages being published to NPM as your bundle will only include a particular version of `lit` meant for a particular environment.
+Because Lit packages use conditional exports to provide different modules to Node and browser environments, we strongly discourage bundling `lit` into your packages being published to NPM. If you do, your bundle will only include `lit` modules meant for the environment you bundled, and won't automatically switch based on environment.
 
 {% endaside %}
 
