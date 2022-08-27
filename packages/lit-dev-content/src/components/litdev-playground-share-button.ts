@@ -94,7 +94,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
    * How the user most recently saved, or undefined if they haven't saved this
    * pageload.
    */
-  mostRecentSaveType: SaveMethod | undefined = undefined;
+  private _mostRecentSaveType: SaveMethod | undefined = undefined;
 
   /**
    * When true, clicking on this button will not open the flyout.
@@ -222,15 +222,16 @@ export class LitDevPlaygroundShareButton extends LitElement {
   }
 
   private _onLongUrlSaved() {
+    this._dispatchSaveEvent();
     this._close();
-    this.mostRecentSaveType = 'longurl';
+    this._mostRecentSaveType = 'longurl';
     this.activeGist = undefined;
   }
 
   private _onGistSaved() {
     this._dispatchSaveEvent();
     this._close();
-    this.mostRecentSaveType = 'gist';
+    this._mostRecentSaveType = 'gist';
   }
 
   private readonly _onWindowKeydown = (event: KeyboardEvent) => {
@@ -244,12 +245,12 @@ export class LitDevPlaygroundShareButton extends LitElement {
       !event.repeat
     ) {
       event.preventDefault(); // Don't trigger "Save page as"
-      if (this.mostRecentSaveType === 'longurl') {
+      if (this._mostRecentSaveType === 'longurl') {
         this._longUrl?.generateUrl();
         this._longUrl?.save();
         this._dispatchSaveEvent();
       } else if (
-        this.mostRecentSaveType === 'gist' &&
+        this._mostRecentSaveType === 'gist' &&
         this._gist?.canUpdateGist
       ) {
         this._gist?.updateGist();
@@ -261,21 +262,10 @@ export class LitDevPlaygroundShareButton extends LitElement {
   };
 
   /**
-   * Fires a 'save' event to denote that the project has been saved via
+   * Fires a 'save' event to denote that the project has been saved.
    */
   private _dispatchSaveEvent() {
     this.dispatchEvent(new Event('save', {bubbles: false}));
-  }
-
-  /**
-   * Force a save via the long URL method and pushes to history.
-   *
-   * @params options Options for the save, e.g. skip copy to clipboard.
-   */
-  async longUrlSave(options = {skipClipboard: false}) {
-    this._longUrl?.generateUrl();
-    await this._longUrl?.save(options);
-    this._dispatchSaveEvent();
   }
 }
 

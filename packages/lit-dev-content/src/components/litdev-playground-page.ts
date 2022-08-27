@@ -83,7 +83,7 @@ export class LitDevPlaygroundPage extends LitElement {
     window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
       this._syncStateFromUrlHash()
     );
-    this._codeEditor.addEventListener('change', this._onCodeEditorChange);
+    this._codeEditor.addEventListener('change', this._onEditorChange);
     this._shareButton.addEventListener('save', this._onSaveEvent);
     window.addEventListener('beforeunload', this._beforeUnload);
   }
@@ -95,7 +95,7 @@ export class LitDevPlaygroundPage extends LitElement {
   /**
    * When the code editor is changed, store that there are unsaved changes.
    */
-  private _onCodeEditorChange = () => {
+  private _onEditorChange = () => {
     this._hasUnsavedChanges = true;
   };
 
@@ -107,38 +107,18 @@ export class LitDevPlaygroundPage extends LitElement {
   };
 
   /**
-   * Shows a confirmation dialog if the user has unsaved changes and is using a
-   * Gist or has not saved at all.
-   *
-   * If the user has already saved with longurl, then just save again and push
-   * the new URL to the browser history.
+   * Shows a confirmation dialog if the user has unsaved changes
    */
   private _beforeUnload = (e: BeforeUnloadEvent): string | void => {
-    // Deterime whien to show unsaved changes dialog.
     if (this._hasUnsavedChanges) {
-      // We want to show a confirmation dialog if the user has saved via Gist
-      // because we don't want to deal with beforeUnload and a fetch to github
-      // possibly failing. We also want to show a confirmation dialog if the
-      // user has changes but not consented to saving anything to url or gist.
-      if (
-        this._shareButton.mostRecentSaveType === 'gist' ||
-        this._shareButton.mostRecentSaveType === undefined
-      ) {
-        // Show a confirmations popup before exit. The method seems to be
-        // different per browser.
-        (e || window.event).returnValue = 'non-void value';
-        e.preventDefault();
-        return 'non-void value';
-      }
-
-      // If there are changes, but the user has already consented to save via
-      // longurl, then just push the new URL to the browser history.
-      if (this._shareButton.mostRecentSaveType === 'longurl') {
-        this._shareButton.longUrlSave({skipClipboard: true});
-      }
+      // Show a confirmations popup before exit. The method seems to be
+      // different per browser.
+      (e || window.event).returnValue = 'non-void value';
+      e.preventDefault();
+      return 'non-void value';
     }
 
-    // If there are no unsaved changes, then don't show the dialog or save URL.
+    // If there are no unsaved changes, then don't show the dialog.
   };
 
   private _checkRequiredParameters() {
