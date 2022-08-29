@@ -129,6 +129,8 @@ this.requestUpdate();
 this.requestUpdate(propertyName, oldValue);
 ```
 
+| | | |
+|-|-|-|
 | **Params**<br/><br/>&nbsp; | `propertyName`<br/><br/>`oldValue`| Name of property to be updated. <br/><br/> Previous property value. |
 | **Returns**  | `Promise` | Returns the [`updateComplete` Promise](#updatecomplete), which resolves on completion of the update. |
 | **Updates?** | No | Property changes inside this method will not trigger an element update. |
@@ -164,8 +166,14 @@ To implement a custom property setter that supports property options, pass the p
 performUpdate() { ... }
 ```
 
+| | | |
+|-|-|-|
 | **Returns** | `void` or `Promise` |  Performs an update. |
 | **Updates?** | No | Property changes inside this method will not trigger an element update. |
+
+When an update is performed, the `performUpdate()` method is called. This method calls a number of other lifecycle methods.
+
+Any changes that would normally trigger an update which occur **while** a component is updating do **not schedule a new update**. This is done so that property values can be computed during the update process. Properties changed during the update **are reflected in the `changedProperties` map**, so subsequent lifecycle methods can act on the changes.
 
 By default, `performUpdate` is scheduled as a microtask after the end of the next execution of the browser event loop. To schedule `performUpdate`, implement it as an asynchronous method that awaits some state before calling `super.performUpdate()`. For example:
 
@@ -187,9 +195,11 @@ async performUpdate() {
 shouldUpdate(changedProperties) { ... }
 ```
 
+| | | |
+|-|-|-|
 | **Params** | `changedProperties`| `Map`. Keys are the names of changed properties; Values are the corresponding previous values. |
 | **Returns**  | `Boolean` | If `true`, update proceeds. Default return value is `true`. |
-| **Updates?** | Yes | Property changes inside this method will trigger an element update. |
+| **Updates?** | No | Property changes inside this method will not trigger an element update. |
 
 Controls whether an update should proceed. Implement `shouldUpdate` to specify which property changes should cause updates. By default, this method always returns true.
 
@@ -203,6 +213,8 @@ Controls whether an update should proceed. Implement `shouldUpdate` to specify w
 
 ### update {#update}
 
+| | | |
+|-|-|-|
 | **Params** | `changedProperties`| `Map`. Keys are the names of changed properties; Values are the corresponding previous values. |
 | **Updates?** | No | Property changes inside this method do not trigger an element update. |
 
@@ -217,6 +229,8 @@ Reflects property values to attributes and calls `render` to render DOM via lit-
 render() { ... }
 ```
 
+| | | |
+|-|-|-|
 | **Returns** | `TemplateResult` | Must return a lit-html `TemplateResult`. |
 | **Updates?** | No | Property changes inside this method will not trigger an element update. |
 
@@ -233,6 +247,8 @@ See the documentation on [Templates](/docs/v1/components/templates/) for more in
 firstUpdated(changedProperties) { ... }
 ```
 
+| | | |
+|-|-|-|
 | **Params** | `changedProperties`| `Map`. Keys are the names of changed properties; Values are the corresponding previous values. |
 | **Updates?** | Yes | Property changes inside this method will trigger an element update. |
 
@@ -257,6 +273,8 @@ Implement `firstUpdated` to perform one-time work after the element's template h
 updated(changedProperties) { ... }
 ```
 
+| | | |
+|-|-|-|
 | **Params** | `changedProperties`| `Map`. Keys are the names of changed properties; Values are the corresponding previous values. |
 | **Updates?** | Yes | Property changes inside this method will trigger an element update. |
 
@@ -277,6 +295,8 @@ Called when the element's DOM has been updated and rendered. Implement to perfor
 await this.updateComplete;
 ```
 
+| | | |
+|-|-|-|
 | **Type** | `Promise` | Resolves with a `Boolean` when the element has finished updating. |
 | **Resolves** <br/><br/>| `true` if there are no more pending updates.<br/><br/> `false` if this update cycle triggered another update. |
 
