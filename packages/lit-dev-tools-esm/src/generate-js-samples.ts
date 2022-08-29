@@ -70,7 +70,9 @@ const updateAndWriteProjectConfig = async (
     // data object).
     const newFiles: typeof project.files = {};
     for (const [fileName, options] of Object.entries(project.files)) {
-      const newFileName = fileName.replace(/\.ts$/, '.js').replace(/\.tsx$/, '.jsx');
+      const newFileName = fileName
+        .replace(/\.ts$/, '.js')
+        .replace(/\.tsx$/, '.jsx');
       newFiles[newFileName] = options;
     }
     project.files = newFiles;
