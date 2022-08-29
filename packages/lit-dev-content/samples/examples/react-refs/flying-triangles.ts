@@ -182,7 +182,6 @@ const renderScene = (
     wrapPos(canvas, wndr);
   }
 
-  // draw scene
   drawScene(canvas, state);
 }
 
