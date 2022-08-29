@@ -6,7 +6,7 @@
   "section": "React",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
-    "simple-greeting.ts": {},
+    "demo-greeting.ts": {},
     "react.ts": {},
     "index.html": {}
   }

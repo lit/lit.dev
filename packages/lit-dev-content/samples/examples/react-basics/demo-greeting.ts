@@ -1,8 +1,8 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-@customElement('simple-greeting')
-export class SimpleGreeting extends LitElement {
+@customElement('demo-greeting')
+export class DemoGreeting extends LitElement {
   @property() name = 'Somebody';
 
   render() {

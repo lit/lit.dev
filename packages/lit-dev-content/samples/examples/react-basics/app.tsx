@@ -1,14 +1,14 @@
 import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
-import {SimpleGreeting as SimpleGreetingWC} from './simple-greeting.js';
+import {DemoGreeting as DemoGreetingWC} from './demo-greeting.js';
 
-const SimpleGreeting = createComponent(
+const DemoGreeting = createComponent(
   React,
-  'simple-greeting',
-  SimpleGreetingWC
+  'demo-greeting',
+  DemoGreetingWC
 );
 
 const node = document.querySelector('#app');
 const root = ReactDOM.createRoot(node!);
 
-root.render(<SimpleGreeting name={'React'}></SimpleGreeting>);
+root.render(<DemoGreeting name={'React'}></DemoGreeting>);
