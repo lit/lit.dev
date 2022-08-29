@@ -99,7 +99,20 @@
         {% endif %}
       {% endfor %}
     </article>
+    {% set editableDocumentsRegex = r/articles\/article\/.+/ %}
+    {% if editableDocumentsRegex.test(page.inputPath) %}
+    <p id="edit-page-link">
+      <a
+          href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
+        Edit this page
+        <lazy-svg
+            loading="visible"
+            svg-aria-hidden
+            href="{{ site.baseurl }}/images/icons/open-in-new-arrow.svg#icon">
+        </lazy-svg>
+      </a>
+    </p>
+    {% endif %}
   </div>
-
 
 {% endblock %}

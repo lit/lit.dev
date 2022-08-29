@@ -14,6 +14,7 @@ main {
     --docs-nav-color: #242424;
     --playground-code-background: #fafafa;
     --code-border: 1px solid #ddd;
+    --docs-on-surface-color: #3e3e3e;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -50,7 +51,7 @@ article {
     var(--docs-article-margin-horizontal);
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
-  color: #3e3e3e;
+  color: var(--docs-on-surface-color);
   background: white;
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
   margin-right: 2em;
@@ -59,12 +60,32 @@ article {
 }
 
 /* ------------------------------------
- * Body text
+ * Exit externally link
  * ------------------------------------ */
 
-article {
-  color: #3E3E3E;
+#edit-page-link {
+  height: 24px;
+  margin-block: 16px;
+  margin-block-end: 16px;
+  text-align: center;
 }
+
+#edit-page-link a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--docs-on-surface-color);
+}
+
+#edit-page-link lazy-svg::part(svg) {
+  height: 24px;
+  width: 24px;
+  margin-inline-start: 8px;
+}
+
+/* ------------------------------------
+ * Body text
+ * ------------------------------------ */
 
 article :not(litdev-aside) p {
   margin-block-start: 1.5em;
