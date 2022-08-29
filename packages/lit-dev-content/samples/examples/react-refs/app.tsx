@@ -35,12 +35,6 @@ export const App = () => {
   const ref = useRef(null);
   const [state, setState] = useState(initialState);
 
-  // on first render apply component state to react state
-  useEffect(() => {
-    const {isPlaying, fps} = ref.current;
-    setState({isPlaying, fps});
-  }, [])
-
   // reconcile component state with app state on state-change
   const onStateChange = useCallback(() => {
     const {isPlaying, fps} = ref.current;

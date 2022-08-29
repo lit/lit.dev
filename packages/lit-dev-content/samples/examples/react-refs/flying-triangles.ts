@@ -72,7 +72,7 @@ export class FlyingTriangles extends LitElement {
     this.removeEventListener('click', this.onClick);
   }
 
-  updated() {
+  willUpdate() {
     this.dispatchEvent(new Event('state-change', { composed: true }));
   }
   
