@@ -71,6 +71,10 @@ export class FlyingTriangles extends LitElement {
     super.connectedCallback();
     this.removeEventListener('click', this.onClick);
   }
+
+  updated() {
+    this.dispatchEvent(new Event('state-change', { composed: true }));
+  }
   
   play() {
     if (this.isPlaying) return;
@@ -88,7 +92,6 @@ export class FlyingTriangles extends LitElement {
 
   private onClick() {
     this.isPlaying ? this.pause() : this.play();
-    this.dispatchEvent(new Event('state-change', { composed: true }));
   }
 
   private renderCanvas = () => {

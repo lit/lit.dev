@@ -17,11 +17,14 @@ import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
   a <flying-triangles> component.
 */
 
-const {useCallback, useRef, useState, useEffect} = React;
+const { useRef, useState, useEffect, useCallback } = React;
 
-const FlyingTriangles = createComponent(React, 'flying-triangles', FlyingTrianglesWC, {
-  onStateChange: 'state-change',
-});
+const FlyingTriangles = createComponent(
+  React,
+  'flying-triangles',
+  FlyingTrianglesWC,
+  {onStateChange: 'state-change'},
+);
 
 const initialState = {
   isPlaying: false,
@@ -32,29 +35,25 @@ export const App = () => {
   const ref = useRef(null);
   const [state, setState] = useState(initialState);
 
-  // on first render reconcile component state with react state
+  // on first render apply component state to react state
   useEffect(() => {
     const {isPlaying, fps} = ref.current;
     setState({isPlaying, fps});
-  }, [ref])
+  }, [])
+
+  // reconcile component state with app state on state-change
+  const onStateChange = useCallback(() => {
+    const {isPlaying, fps} = ref.current;
+    setState({isPlaying, fps});
+  }, []);
 
   // create input callbacks
   const onPlay = useCallback(() => ref.current?.play(), []);
   const onPause = useCallback(() => ref.current?.pause(), []);
-  const onFps = useCallback((e: React.SyntheticEvent<PointerEvent>) => {
-    if (ref.current === null) return;
-
+  const onFps = useCallback((e: React.SyntheticEvent) => {
     if (e.target instanceof HTMLInputElement) {
       ref.current.fps = e.target.value;
     }
-  }, []);
-
-  // reconcile component state with app state
-  const onStateChange = useCallback(() => {
-    if (ref.current === null) return;
-
-    const {isPlaying, fps} = ref.current;
-    setState({isPlaying, fps});
   }, []);
 
   return (

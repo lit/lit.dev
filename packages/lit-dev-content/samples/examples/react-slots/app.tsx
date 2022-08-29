@@ -20,11 +20,9 @@ export const App = () => (
 
 const Foo = () =>
   <>
-    {`
-      React Components must be a descendant of an element
-      with a slot attribute otherwise they will be projected
-      onto the default slot.
-    `}
+    React Components must be a descendant of an element
+    with a slot attribute otherwise they will be projected
+    onto the default slot.
   </>;
 
 const node = document.querySelector('#app');
