@@ -111,7 +111,7 @@ export class LitDevPlaygroundPage extends LitElement {
    */
   private _beforeUnload = (e: BeforeUnloadEvent): string | void => {
     if (this._hasUnsavedChanges) {
-      // Show a confirmations popup before exit. The method seems to be
+      // Show a confirmation popup before exit. The method seems to be
       // different per browser.
       (e || window.event).returnValue = 'non-void value';
       e.preventDefault();
