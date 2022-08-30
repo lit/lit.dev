@@ -1,0 +1,78 @@
+import {css, html, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import './litdev-ripple-icon-button.js';
+
+@customElement('litdev-gtag-banner')
+export default class LitdevGtagBanner extends LitElement {
+  static styles = css`
+    :host {
+      --_inset: 24px;
+      font-family: Manrope, sans-serif;
+      font-size: 0.9rem;
+      display: block;
+      position: fixed;
+      inset-block-end: var(--_inset);
+      inset-inline-start: var(--_inset);
+      z-index: 10;
+      background-color: var(--color-dark-gray);
+      color: white;
+      padding: 0.88rem;
+      padding-block-end: 0.5rem;
+      border: 1px solid white;
+      border-radius: 8px;
+      max-width: 430px;
+      box-sizing: border-box;
+      width: calc(100vw - 2 * var(--_inset));
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-block-start: 16px;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      inset-inline-start: -9999px;
+    }
+
+    litdev-ripple-icon-button {
+      width: auto;
+      height: 36px;
+      margin-inline: 0.5rem;
+      color: var(--color-dark-cyan);
+    }
+
+    litdev-ripple-icon-button::part(root) {
+      padding: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+  `;
+  override render() {
+    return html`
+      <div>
+        <h2 class="visually-hidden">Cookies consent notice</h2>
+        <div class="message">
+          This site uses cookies from Google to deliver its services and to
+          analyze traffic.
+        </div>
+        <div class="actions">
+          <litdev-ripple-icon-button
+            href="https://policies.google.com/technologies/cookies"
+          >
+            Learn more
+          </litdev-ripple-icon-button>
+          <litdev-ripple-icon-button @click=${this.onOkClick}>
+            Ok, got it
+          </litdev-ripple-icon-button>
+        </div>
+      </div>
+    `;
+  }
+
+  private onOkClick() {
+    localStorage.setItem('gtag-banner-shown', 'true');
+    this.remove();
+  }
+}

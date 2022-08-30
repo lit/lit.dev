@@ -16,6 +16,13 @@ export class LitDevRippleIconButton extends LitElement {
   label = '';
 
   /**
+   * Href for the link button. If defined, this component switches to using an
+   * anchor element instead of a button.
+   */
+  @property()
+  href = '';
+
+  /**
    * Whether or not the button is disabled.
    */
   @property({type: Boolean})
@@ -39,7 +46,7 @@ export class LitDevRippleIconButton extends LitElement {
       border-radius: 8px;
     }
 
-    button {
+    .root {
       height: inherit;
       width: inherit;
       border-radius: inherit;
@@ -47,6 +54,9 @@ export class LitDevRippleIconButton extends LitElement {
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      vertical-align: middle;
+      box-sizing: border-box;
       cursor: pointer;
       padding: 0;
       background-color: transparent;
@@ -54,9 +64,11 @@ export class LitDevRippleIconButton extends LitElement {
       z-index: 0;
       outline: none;
       position: relative;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    button:disabled {
+    .root:disabled {
       cursor: default;
       pointer-events: none;
       opacity: 0.38;
@@ -82,20 +94,20 @@ export class LitDevRippleIconButton extends LitElement {
       transform: scale(0);
     }
 
-    button:is(:hover, :focus, :active) #ripple::before {
+    .root:is(:hover, :focus, :active) #ripple::before {
       transform: scale(1);
     }
 
-    button:active #ripple::after {
+    .root:active #ripple::after {
       animation: ripple-scale-in 225ms forwards;
     }
 
-    button:hover #ripple::before {
+    .root:hover #ripple::before {
       opacity: 0.04;
     }
 
-    button:is(:focus, :active) #ripple::before,
-    button:active #ripple::after {
+    .root:is(:focus, :active) #ripple::before,
+    .root:active #ripple::after {
       opacity: 0.12;
     }
 
@@ -108,14 +120,38 @@ export class LitDevRippleIconButton extends LitElement {
     }
   `;
   render() {
+    return this.href ? this.renderAnchorRoot() : this.renderButtonRoot();
+  }
+
+  protected renderButtonRoot() {
     return html`
       <button
+        class="root"
+        part="root button"
         aria-label=${this.label ? this.label : nothing}
         ?disabled=${this.disabled}
       >
-        <div id="ripple"></div>
-        <slot></slot>
+        ${this.renderContent()}
       </button>
     `;
+  }
+
+  protected renderAnchorRoot() {
+    return html`
+      <a
+        class="root"
+        part="root anchor"
+        href=${this.href}
+        aria-label=${this.label ? this.label : nothing}
+        ?disabled=${this.disabled}
+      >
+        ${this.renderContent()}
+      </a>
+    `;
+  }
+
+  protected renderContent() {
+    return html` <div id="ripple"></div>
+      <slot></slot>`;
   }
 }

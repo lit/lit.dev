@@ -7,6 +7,12 @@
 import type {LitDevSearchModal} from '../components/litdev-search-modal.js';
 import {onMediaQueryOnce, onIdle} from '../util/hydration-helpers.js';
 
+if (!localStorage.getItem('gtag-banner-shown')) {
+  onIdle(() => {
+    import('../components/litdev-gtag-banner.js');
+  });
+}
+
 // hydrates on desktop and mobile
 const hydrateCommonComponents = () => {
   import('../components/lazy-svg.js');
