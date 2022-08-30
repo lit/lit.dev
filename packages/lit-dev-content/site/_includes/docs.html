@@ -58,6 +58,19 @@
 
       {{ content | safe }}
 
+
+      <p id="edit-page-link">
+        <a
+            href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
+          Edit this page
+          <lazy-svg
+              loading="visible"
+              svg-aria-hidden
+              href="{{ site.baseurl }}/images/icons/edit-square.svg#icon">
+          </lazy-svg>
+        </a>
+      </p>
+
       {% set navItems = collections[collection] | eleventyNavigation | flattenNavigationAndAddNextPrev %}
       {% for item in navItems %}
         {% if item.url === page.url and item.parent %}
@@ -100,17 +113,6 @@
         {% endif %}
       {% endfor %}
     </article>
-    <p id="edit-page-link">
-      <a
-          href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
-        Edit this page
-        <lazy-svg
-            loading="visible"
-            svg-aria-hidden
-            href="{{ site.baseurl }}/images/icons/open-in-new-arrow.svg#icon">
-        </lazy-svg>
-      </a>
-    </p>
   </div>
 
 {% endblock %}

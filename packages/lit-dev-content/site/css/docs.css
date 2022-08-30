@@ -23,8 +23,8 @@ main {
   --docs-toc-min-width: 5em;
   --docs-article-min-width: 30em;
   --docs-article-max-width: 49em;
-  --docs-article-margin-horizontal: 3em;
-  --docs-margin-top: 32px;
+  --docs-article-margin-inline: 3em;
+  --docs-margin-block: 32px;
 
   display: grid;
   grid-template-columns:
@@ -38,7 +38,7 @@ main {
   font-family: "Open Sans", sans-serif;
 
   background: var(--color-light-gray);
-  padding-top: var(--docs-margin-top);
+  padding-block: var(--docs-margin-block);
 }
 
 /* ------------------------------------
@@ -47,8 +47,8 @@ main {
 
 article {
   max-width: var(--docs-article-max-width);
-  padding: var(--docs-margin-top) var(--docs-article-margin-horizontal) var(--docs-margin-top)
-    var(--docs-article-margin-horizontal);
+  padding-block: var(--docs-margin-block);
+  padding-inline: var(--docs-article-margin-inline);
   line-height: 1.8em;
   font-size: 0.88889em; /* 16px / 18px basis */
   color: var(--docs-on-surface-color);
@@ -65,16 +65,14 @@ article {
 
 #edit-page-link {
   height: 24px;
-  margin-block: 16px;
-  margin-block-end: 16px;
-  text-align: center;
+  margin-block-start: 2rem;
+  margin-block-end: 1rem;
 }
 
 #edit-page-link a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--docs-on-surface-color);
 }
 
 #edit-page-link lazy-svg::part(svg) {
@@ -412,7 +410,7 @@ table.directory tr.subheading {
  #prevAndNextLinks {
    display: flex;
    justify-content: space-between;
-   margin-top: 3em;
+   margin-block-start: 0;
    padding-top: 1.5em;
    border-top: 1px solid rgb(223, 223, 223);
  }
@@ -474,7 +472,7 @@ table.directory tr.subheading {
 
 #docsNavWrapper {
   position: sticky;
-  top: calc(var(--header-height) + var(--docs-margin-top));
+  top: calc(var(--header-height) + var(--docs-margin-block));
   margin-bottom: 1.5em;
   height: calc(100vh - var(--header-height));
   display: flex;
@@ -605,7 +603,7 @@ table.directory tr.subheading {
 #rhsToc {
   padding: 10px 1em 0 0;
   position: sticky;
-  top: calc(var(--header-height) + var(--docs-margin-top));
+  top: calc(var(--header-height) + var(--docs-margin-block));
 }
 
 /* "Contents" heading */
@@ -715,14 +713,14 @@ litdev-banner > a {
  *
  * (14 + 49 + 5 + (3 * 2)) * 18 = 1332
  *  |    |    |    |         +--- font-size
- *  |    |    |    +------------- docs-article-margin-horizontal
+ *  |    |    |    +------------- docs-article-margin-inline
  *  |    |    +------------------ docs-toc-min-width
  *  |    +----------------------- docs-article-max-width
  *  +---------------------------- docs-nav-min-width
  */
 @media (max-width: 1332px) {
   main {
-    --docs-article-margin-horizontal: 2.5em;
+    --docs-article-margin-inline: 2.5em;
   }
 
   #rhsTocWrapper {
@@ -771,7 +769,7 @@ litdev-banner > a {
  *
  * (14 + 30 + 3) * 18 = 846
  *  |    |    |    +------------- font-size
- *  |    |    +------------------ docs-article-margin-horizontal
+ *  |    |    +------------------ docs-article-margin-inline
  *  |    +----------------------- docs-article-min-width
  *  +---------------------------- docs-nav-min-width
  */
@@ -786,7 +784,7 @@ litdev-banner > a {
   }
   article {
     margin: auto;
-    --docs-article-margin-horizontal: 1.5em;
+    --docs-article-margin-inline: 1.5em;
   }
   .anchor {
     left: -1.1rem;
