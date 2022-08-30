@@ -33,6 +33,8 @@ import type {LitDevDrawer} from './litdev-drawer.js';
 import type {LitDevExampleControls} from './litdev-example-controls.js';
 import type {PlaygroundProject} from 'playground-elements/playground-project.js';
 import type {PlaygroundPreview} from 'playground-elements/playground-preview.js';
+import type {PlaygroundFileEditor} from 'playground-elements/playground-file-editor.js';
+import type {PlaygroundCodeEditor} from 'playground-elements/playground-code-editor.js';
 
 interface CompactProjectFile {
   name: string;
@@ -56,11 +58,14 @@ export class LitDevPlaygroundPage extends LitElement {
 
   private _playgroundProject!: PlaygroundProject;
   private _playgroundPreview!: PlaygroundPreview;
+  private _fileEditor!: PlaygroundFileEditor;
+  private _codeEditor!: PlaygroundCodeEditor;
   private _shareButton!: LitDevPlaygroundShareButton;
   private _downloadButton!: LitDevPlaygroundDownloadButton;
   private _examplesDrawer!: LitDevDrawer;
   private _examplesDrawerScroller!: HTMLElement;
   private _exampleControls!: LitDevExampleControls;
+  private _hasUnsavedChanges = false;
 
   /**
    * Base URL for the GitHub API.
@@ -68,21 +73,53 @@ export class LitDevPlaygroundPage extends LitElement {
   @property()
   githubApiUrl!: string;
 
-  connectedCallback() {
+  async connectedCallback() {
     super.connectedCallback();
     this._checkRequiredParameters();
-    this._discoverChildElements();
+    await this._discoverChildElements();
     this._activateChildElements();
     this._syncStateFromUrlHash();
     window.addEventListener('hashchange', () => this._syncStateFromUrlHash());
     window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
       this._syncStateFromUrlHash()
     );
+    this._codeEditor.addEventListener('change', this._onEditorChange);
+    this._shareButton.addEventListener('save', this._onSaveEvent);
+    window.addEventListener('beforeunload', this._beforeUnload);
   }
 
   render() {
     return html`<slot></slot>`;
   }
+
+  /**
+   * When the code editor is changed, store that there are unsaved changes.
+   */
+  private _onEditorChange = () => {
+    this._hasUnsavedChanges = true;
+  };
+
+  /**
+   * When the user saves, reset the unsaved changes flag.
+   */
+  private _onSaveEvent = () => {
+    this._hasUnsavedChanges = false;
+  };
+
+  /**
+   * Shows a confirmation dialog if the user has unsaved changes
+   */
+  private _beforeUnload = (e: BeforeUnloadEvent): string | void => {
+    if (this._hasUnsavedChanges) {
+      // Show a confirmation popup before exit. The method seems to be
+      // different per browser.
+      (e || window.event).returnValue = 'non-void value';
+      e.preventDefault();
+      return 'non-void value';
+    }
+
+    // If there are no unsaved changes, then don't show the dialog.
+  };
 
   private _checkRequiredParameters() {
     if (!this.githubApiUrl) {
@@ -90,7 +127,7 @@ export class LitDevPlaygroundPage extends LitElement {
     }
   }
 
-  private _discoverChildElements() {
+  private async _discoverChildElements() {
     // TODO(aomarks) This is very unconventional. We should be rendering these
     // elements ourselves, or slotting them in with names.
     const mustFindChild: typeof this['querySelector'] = (
@@ -104,12 +141,19 @@ export class LitDevPlaygroundPage extends LitElement {
     };
     this._playgroundProject = mustFindChild('playground-project')!;
     this._playgroundPreview = mustFindChild('playground-preview')!;
+    this._fileEditor = mustFindChild('playground-file-editor')!;
     this._shareButton = mustFindChild('litdev-playground-share-button')!;
     this._downloadButton = mustFindChild('litdev-playground-download-button')!;
     this._examplesDrawer = mustFindChild('litdev-drawer')!;
     this._exampleControls = mustFindChild('litdev-example-controls')!;
     this._examplesDrawerScroller = mustFindChild(
       'litdev-drawer .minimalScroller'
+    )!;
+    // Unforuntately, the file editor does not emit a change event, so we reach
+    // into the shadow root and find the code editor that does.
+    await this._fileEditor.updateComplete;
+    this._codeEditor = this._fileEditor.shadowRoot!.querySelector(
+      'playground-code-editor'
     )!;
   }
 
