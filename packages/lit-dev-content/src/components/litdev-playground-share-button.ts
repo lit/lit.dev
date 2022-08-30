@@ -20,9 +20,13 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 import type {Snackbar} from '@material/mwc-snackbar';
 import type {Gist} from '../github/github-gists.js';
 
+export type SaveMethod = 'gist' | 'longurl';
+
 /**
  * The Playground "Share" button. Opens a menu with options for sharing as a
  * long base64 URL, or signing into GitHub and sharing as a Gist.
+ *
+ * @event save - Fired when the user performs a save action.
  */
 @customElement('litdev-playground-share-button')
 export class LitDevPlaygroundShareButton extends LitElement {
@@ -90,7 +94,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
    * How the user most recently saved, or undefined if they haven't saved this
    * pageload.
    */
-  private _mostRecentSaveType: 'longurl' | 'gist' | undefined = undefined;
+  private _mostRecentSaveType: SaveMethod | undefined = undefined;
 
   /**
    * When true, clicking on this button will not open the flyout.
@@ -218,12 +222,14 @@ export class LitDevPlaygroundShareButton extends LitElement {
   }
 
   private _onLongUrlSaved() {
+    this._dispatchSaveEvent();
     this._close();
     this._mostRecentSaveType = 'longurl';
     this.activeGist = undefined;
   }
 
   private _onGistSaved() {
+    this._dispatchSaveEvent();
     this._close();
     this._mostRecentSaveType = 'gist';
   }
@@ -242,16 +248,25 @@ export class LitDevPlaygroundShareButton extends LitElement {
       if (this._mostRecentSaveType === 'longurl') {
         this._longUrl?.generateUrl();
         this._longUrl?.save();
+        this._dispatchSaveEvent();
       } else if (
         this._mostRecentSaveType === 'gist' &&
         this._gist?.canUpdateGist
       ) {
         this._gist?.updateGist();
+        this._dispatchSaveEvent();
       } else {
         this._open = true;
       }
     }
   };
+
+  /**
+   * Fires a 'save' event to denote that the project has been saved.
+   */
+  private _dispatchSaveEvent() {
+    this.dispatchEvent(new Event('save', {bubbles: false}));
+  }
 }
 
 declare global {
