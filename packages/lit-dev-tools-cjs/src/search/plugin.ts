@@ -6,7 +6,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import Minisearch from 'minisearch';
 
 import {PageSearchChunker} from './PageSearchChunker.js';
 
@@ -16,10 +15,10 @@ import {PageSearchChunker} from './PageSearchChunker.js';
 type UrlToFile = Map<string, string>;
 
 /**
- * Data indexed in Minisearch.
+ * Data to be Indexed.
  */
 interface UserFacingPageData {
-  id: string;
+  id: number;
   relativeUrl: string;
   title: string;
   heading: string;
@@ -75,23 +74,8 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     skipFiles
   );
 
-  /**
-   * NOTE: The minisearch options must exactly match when we create the search
-   * index on the client. Any changes here must be reflected in the
-   * `litdev-search.ts` component.
-   */
-  const searchIndex = new Minisearch<UserFacingPageData>({
-    idField: 'id',
-    fields: ['title', 'heading', 'text'],
-    storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
-    searchOptions: {
-      boost: {title: 1.4, heading: 1.2, text: 1},
-      prefix: true,
-      fuzzy: 0.2,
-    },
-  });
-
   let id = 0;
+  const searchIndex: UserFacingPageData[] = [];
   for (const [relUrl, filePath] of relativeLinksToHTMLFile.entries()) {
     if (filePath.includes('/internal/')) {
       // Skip internal pages.
@@ -119,8 +103,8 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
 
         // Populate the search index. This is the text we fuzzy search and user
         // facing data to display in the suggested results.
-        searchIndex.add({
-          id: `${id++}`,
+        searchIndex.push({
+          id: id++,
           title: title.replace(/ – Lit$/, ''),
           heading,
           relativeUrl: relUrl.replace(/index.html$/, '') + (fragment ?? ''),

@@ -150,16 +150,19 @@ export class PageSearchChunker {
 
     const possibleAnchor = el.querySelector(':scope > a');
     const possibleH2 = el.querySelector(':scope > h2');
+    const possibleH3 = el.querySelector(':scope > h3');
+    const possibleH4 = el.querySelector(':scope > h4');
+    const possibleHeading = possibleH2 ?? possibleH3 ?? possibleH4;
     const fragment = possibleAnchor?.getAttribute('href');
-    if (possibleAnchor && possibleH2 && fragment?.startsWith('#')) {
-      const headerText = possibleH2.textContent;
+    if (possibleAnchor && possibleHeading && fragment?.startsWith('#')) {
+      const headerText = possibleHeading.textContent;
       if (!headerText) {
         throw new Error(
           `No textContent on header with fragment: '${fragment}'`
         );
       }
       return this.newPageDataChunk({
-        heading: possibleH2.textContent ?? '',
+        heading: possibleHeading.textContent ?? '',
         fragment: fragment,
       });
     }

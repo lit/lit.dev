@@ -144,7 +144,7 @@ ${content}
       permalink: linkAfterHeaderWithWrapper,
       permalinkClass: 'anchor',
       permalinkSymbol: '#',
-      level: [2, 3],
+      level: [2, 3, 4],
     });
   eleventyConfig.setLibrary('md', md);
 
@@ -463,6 +463,17 @@ ${content}
     return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
       'yyyy-LL-dd'
     );
+  });
+
+  eleventyConfig.addFilter('toJSON', function (obj) {
+    return JSON.stringify(obj);
+  });
+
+  eleventyConfig.addFilter('toSearchEntry', function (str) {
+    return str
+      .replace(/<a class="direct-link"[^>]*>#<\/a\>/g, '')
+      .replace(/[\t]{2,}/g, '\t') // change \t\t\t\t\t\t to \t
+      .replace(/[\n]{2,}/g, '\n'); // change \n\n\n\n\n to \n
   });
 
   eleventyConfig.on('eleventy.before', () => {

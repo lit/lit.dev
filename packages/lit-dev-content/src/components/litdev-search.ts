@@ -22,9 +22,13 @@ import {
 import {repeat} from 'lit/directives/repeat.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {live} from 'lit/directives/live.js';
-import Minisearch from 'minisearch';
 import type {Drawer} from '@material/mwc-drawer';
 import {animate, Options as AnimationOptions} from '@lit-labs/motion';
+import algoliasearch, {
+  SearchClient,
+  SearchIndex,
+} from 'algoliasearch/dist/algoliasearch-lite.esm.browser.js';
+import {Task, TaskStatus} from '@lit-labs/task';
 
 /**
  * Representation of each document indexed by Minisearch.
@@ -32,7 +36,7 @@ import {animate, Options as AnimationOptions} from '@lit-labs/motion';
  * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
 interface UserFacingPageData {
-  id: string;
+  id: number;
   relativeUrl: string;
   title: string;
   heading: string;
@@ -66,6 +70,20 @@ function titleAndHeadingCard(
  */
 function isApiLink(url: string) {
   return url.includes('docs/api/');
+}
+
+/**
+ * Used to mark a search page suggestion with the DOC chip.
+ */
+function isDocsLink(url: string) {
+  return url.includes('docs/') && !isApiLink(url);
+}
+
+/**
+ * Used to mark a search page suggestion with the ARTICLE chip.
+ */
+function isArticleLink(url: string) {
+  return url.includes('articles/');
 }
 
 const SEARCH_ICON = (opacity: '0' | '1') => html`<svg
@@ -172,17 +190,15 @@ export class LitDevSearch extends LitElement {
   @state()
   private _searchText: string = '';
 
-  /**
-   * Site search index.
-   */
-  private static _siteSearchIndex: Minisearch<UserFacingPageData> | null = null;
+  private static _algoliaSearchClient: SearchClient = algoliasearch(
+    'OC866NN61X',
+    '33401c252374747a39ef3b42c9f701ac'
+  );
 
-  /**
-   * Promise laoding the search index.
-   */
-  private static _loadingSearchIndex: Promise<
-    Minisearch<UserFacingPageData>
-  > | null = null;
+  private static _algoliaSearch: SearchIndex =
+    LitDevSearch._algoliaSearchClient.initIndex('lit_dev_test');
+
+  private _searchTask: Task<string[], Suggestion[]> | null = null;
 
   /**
    * Search suggestion options.
@@ -195,12 +211,6 @@ export class LitDevSearch extends LitElement {
 
   @query('input')
   private _inputEl!: HTMLInputElement;
-
-  /**
-   * Suggestions visible to the user rendered under the search input field.
-   */
-  @state()
-  private _suggestions: Suggestion[] = [];
 
   /**
    * Whether the input is focused or not.
@@ -230,6 +240,12 @@ export class LitDevSearch extends LitElement {
   private _popupSpaceRight = false;
 
   /**
+   * Whether or not the user has closed the menu with the escape key.
+   */
+  @state()
+  private _closedByEscape = false;
+
+  /**
    * Whether the listbox should be popped up with `left: 0` or not.
    *
    * This is when the listbox would pop up and overflow off the left of the
@@ -240,8 +256,22 @@ export class LitDevSearch extends LitElement {
 
   private _listboxClicked = false;
 
-  update(changed: PropertyValues<this>) {
-    if (!this._searchText && this._inputEl) {
+  private _lastSuggestions: Suggestion[] = [];
+
+  private get _currentSuggestions() {
+    if (!this._searchTask || this._searchTask.status !== TaskStatus.COMPLETE) {
+      return this._lastSuggestions;
+    }
+
+    this._lastSuggestions = this._searchTask.value!;
+    return this._searchTask.value!;
+  }
+
+  update(changed: Map<string, unknown>) {
+    const textDoesntMatch = this._searchText !== this._inputEl.value;
+    const isSSRHydrate = this._inputEl && textDoesntMatch && !this.hasUpdated;
+
+    if (isSSRHydrate) {
       // this is required on hydration to make sure we don't blow away the
       // input text due to the `live` directive which is necessary to prevent
       // issues with typing on the virtual keyboard in Safari on iOS.
@@ -251,7 +281,10 @@ export class LitDevSearch extends LitElement {
   }
 
   render() {
-    const isExpanded = this._isFocused && this._suggestions.length > 0;
+    const isExpanded =
+      this._isFocused &&
+      this._currentSuggestions.length > 0 &&
+      !this._closedByEscape;
     const activeDescendant =
       this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
 
@@ -269,7 +302,7 @@ export class LitDevSearch extends LitElement {
       },
     };
     return html`
-      <div id="root" .suggestions=${this._suggestions}>
+      <div id="root">
         <input
           autocomplete="off"
           autocorrect="off"
@@ -299,8 +332,8 @@ export class LitDevSearch extends LitElement {
             @pointerdown=${this._onListboxPointerdown}
           >
             ${repeat(
-              this._suggestions,
-              (v) => v.id,
+              this._currentSuggestions,
+              (suggestion) => suggestion.id,
               (
                 {relativeUrl, title, heading, isSubsection},
                 index
@@ -323,68 +356,28 @@ export class LitDevSearch extends LitElement {
   }
 
   /**
-   * Load and deserialize search index into `LitDevSearch.siteSearchIndex`.
-   */
-  private _loadSearchIndex(): Promise<Minisearch<UserFacingPageData>> {
-    // We already have a search index, or a load request is in progress due to
-    // another component on the page requesting it.
-    if (
-      LitDevSearch._siteSearchIndex !== null ||
-      LitDevSearch._loadingSearchIndex
-    ) {
-      return LitDevSearch._loadingSearchIndex!;
-    }
-
-    // This must be done as chained promise because we need to synchronously
-    // set the static LitDevSearch._loadingSearchIndex promise.
-    const searchIndexPromise = fetch('/searchIndex.json')
-      .then((res) => res.text())
-      .then((searchIndexJson) => {
-        // Minisearch intialization config must exactly match
-        // `/lit-dev-tools-cjs/src/search/plugin.ts` Minisearch options.
-        LitDevSearch._siteSearchIndex = Minisearch.loadJSON<UserFacingPageData>(
-          searchIndexJson,
-          {
-            idField: 'id',
-            fields: ['title', 'heading', 'text'],
-            storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
-            searchOptions: {
-              boost: {title: 1.4, heading: 1.2, text: 1},
-              prefix: true,
-              fuzzy: 0.2,
-            },
-          }
-        );
-
-        return LitDevSearch._siteSearchIndex;
-      });
-    LitDevSearch._loadingSearchIndex = searchIndexPromise;
-
-    return searchIndexPromise;
-  }
-
-  /**
    * Load the search index.
    */
   async firstUpdated() {
     // required for popping up on hydration
     this._isFocused = !!this.shadowRoot?.activeElement;
-    await this._loadSearchIndex();
     // If a search query has already been written, fill suggestions.
-    this._querySearch(this._searchText);
+    this._searchTask = new Task(
+      this,
+      ([text]) => this._querySearch(text),
+      () => [this._searchText]
+    );
   }
 
   updated(changed: PropertyValues) {
     super.updated(changed);
 
-    if (changed.has('_isFocused') || changed.has('_suggestions')) {
-      const isExpanded = this._isFocused && this._suggestions.length > 0;
-      if (!isExpanded) {
-        return;
-      }
-
-      this._positionPopup();
+    const isExpanded = this._isFocused && this._currentSuggestions.length > 0;
+    if (!isExpanded) {
+      return;
     }
+
+    this._positionPopup();
   }
 
   /**
@@ -393,6 +386,7 @@ export class LitDevSearch extends LitElement {
   private _onInput(e: InputEvent) {
     this._searchText = (e.target as HTMLInputElement).value ?? '';
     this._querySearch(this._searchText);
+    this._selectedIndex = -1;
   }
 
   /**
@@ -400,21 +394,23 @@ export class LitDevSearch extends LitElement {
    *
    * An empty query clears suggestions.
    */
-  private _querySearch(query: string) {
+  private async _querySearch(query: string): Promise<Suggestion[]> {
     const trimmedQuery = query.trim();
-    this._selectedIndex = -1;
     if (
-      !LitDevSearch._siteSearchIndex ||
+      !LitDevSearch._algoliaSearch ||
       trimmedQuery === '' ||
       trimmedQuery.length < 2
     ) {
-      this._suggestions = [];
-      return;
+      return [];
     }
-    this._suggestions = (
-      LitDevSearch._siteSearchIndex.search(trimmedQuery) ?? []
-    ).slice(0, 10) as unknown as Suggestion[];
-    this._selectedIndex = -1;
+    const results = await LitDevSearch._algoliaSearch.search<Suggestion>(
+      trimmedQuery,
+      {
+        page: 0,
+        hitsPerPage: 10,
+      }
+    );
+    return results.hits;
   }
 
   /**
@@ -424,9 +420,11 @@ export class LitDevSearch extends LitElement {
   private _onKeydown(e: KeyboardEvent) {
     switch (e.key) {
       case 'ArrowDown':
+        this._closedByEscape = false;
         this._selectNext();
         break;
       case 'ArrowUp':
+        this._closedByEscape = false;
         this._selectPrevious();
         break;
       case 'Enter':
@@ -434,13 +432,15 @@ export class LitDevSearch extends LitElement {
         break;
       case 'Escape':
         const oldText = this._searchText;
-        this._searchText = '';
-        this._suggestions = [];
+        this._closedByEscape = true;
         this._selectedIndex = -1;
         // prevent the input from closing drawer if there was text
         if (oldText.trim()) {
           e.stopPropagation();
         }
+        break;
+      default:
+        this._closedByEscape = false;
         break;
     }
   }
@@ -624,6 +624,7 @@ class LitdevSearchOption extends LitElement {
         }
 
         .title-and-header {
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           width: 100%;
@@ -641,12 +642,20 @@ class LitdevSearchOption extends LitElement {
           font-weight: 600;
         }
 
-        .api-tag {
+        .tag {
           color: white;
-          background-color: #6e6e6e;
+          background-color: #f9a012;
           padding: 0 0.5em;
           margin-left: 1em;
           font-weight: 600;
+        }
+
+        .article.tag {
+        }
+
+        .docs.tag {
+          color: white;
+          background-color: #324fff;
         }
 
         @media (max-width: 864px) {
@@ -659,12 +668,33 @@ class LitdevSearchOption extends LitElement {
   }
 
   render() {
+    let tagInfo = {
+      tag: '',
+      text: '',
+    };
+
+    if (isApiLink(this.relativeUrl)) {
+      tagInfo = {
+        tag: 'api',
+        text: 'API',
+      };
+    } else if (isDocsLink(this.relativeUrl)) {
+      tagInfo = {
+        tag: 'docs',
+        text: 'Docs',
+      };
+    } else if (isArticleLink(this.relativeUrl)) {
+      tagInfo = {
+        tag: 'article',
+        text: 'Article',
+      };
+    }
     return html`
       <div class="suggestion">
         ${titleAndHeadingCard(this.title, this.heading, this.isSubsection)}
-        ${isApiLink(this.relativeUrl)
-          ? html`<span class="api-tag">API</span>`
-          : nothing}
+        ${tagInfo.tag
+          ? html`<span class="tag ${tagInfo.tag}">${tagInfo.text}</span>`
+          : ''}
       </div>
     `;
   }
