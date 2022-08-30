@@ -12,8 +12,8 @@ import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
   <flying-triangles> will dispatch a 'state-change' event when
   component state changes.
   
-  The 'state-change' provides React an opportunity to update app
-  UI based on the properties and attributes of
+  The 'state-change' provides React an opportunity to update
+  UI data based on the properties and attributes of
   a <flying-triangles> component.
 */
 
@@ -35,13 +35,13 @@ export const App = () => {
   const ref = useRef(null);
   const [state, setState] = useState(initialState);
 
-  // reconcile component state with app state on state-change events
+  // Listen for state-change events
   const onStateChange = useCallback(() => {
     const {isPlaying, fps} = ref.current;
     setState({isPlaying, fps});
   }, []);
 
-  // create input callbacks
+  // UI callbacks
   const onPlay = useCallback(() => ref.current?.play(), []);
   const onPause = useCallback(() => ref.current?.pause(), []);
   const onFps = useCallback((e: React.SyntheticEvent) => {
@@ -53,21 +53,19 @@ export const App = () => {
   return (
     <>
       <FlyingTriangles ref={ref} onStateChange={onStateChange}></FlyingTriangles>
-      <div>
-        <button disabled={state.isPlaying} onClick={onPlay}>
-          play
-        </button>
-        <button disabled={!state.isPlaying} onClick={onPause}>
-          pause
-        </button>
-        <input
-          type="range"
-          min="4"
-          max="30"
-          value={state.fps}
-          onChange={onFps}
-        ></input>
-      </div>
+      <button disabled={state.isPlaying} onClick={onPlay}>
+        play
+      </button>
+      <button disabled={!state.isPlaying} onClick={onPause}>
+        pause
+      </button>
+      <input
+        type="range"
+        min="4"
+        max="30"
+        value={state.fps}
+        onChange={onFps}
+      ></input>
     </>
   );
 };

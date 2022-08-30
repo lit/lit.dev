@@ -48,9 +48,9 @@ const styles = css`
 export class FlyingTriangles extends LitElement {
   static styles = styles;
 
+  @query('canvas') private canvas!: HTMLCanvasElement;
   @property({ type: Number }) fps = 24;
   @state() isPlaying = false;
-  @query('canvas') private canvas!: HTMLCanvasElement;
 
   private scene = createScene();
   
