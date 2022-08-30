@@ -152,7 +152,7 @@ export class LitDevPlaygroundPage extends LitElement {
     // Unforuntately, the file editor does not emit a change event, so we reach
     // into the shadow root and find the code editor that does.
     await this._fileEditor.updateComplete;
-    this._codeEditor = this._fileEditor.shadowRoot?.querySelector(
+    this._codeEditor = this._fileEditor.shadowRoot!.querySelector(
       'playground-code-editor'
     )!;
   }
