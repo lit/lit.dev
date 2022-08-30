@@ -80,6 +80,12 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
     `;
   }
 
+  /**
+   * Pushes the current long url onto the history, attempts to save it to the
+   * clipboard, and notifies with the copied and status events.
+   *
+   * @param options Options to skip saving to the clipboard.
+   */
   async save() {
     history.pushState({}, '', this._url);
     let statusText;
