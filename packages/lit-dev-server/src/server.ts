@@ -89,8 +89,10 @@ app.use(
     setHeaders(res, path) {
       // TODO(aomarks) Oddly can't access the request URL path from this API.
       // This `path` is the path on disk. Works for now, though.
+      // Max age taken from google fonts open sans:
+      // https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirkOUuhp.woff2
       if (path.includes('/fonts/')) {
-        res.setHeader('Cache-Control', 'max-age=3600');
+        res.setHeader('Cache-Control', 'max-age=31536000');
       }
     },
   })
