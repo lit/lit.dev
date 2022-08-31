@@ -40,6 +40,7 @@
         </div>
       </nav>
     {% endif %}
+    <litdev-edit-this-page filepath="{{ page.inputPath }}"></litdev-edit-this-page>
   </div>
 
   <div id="articleWrapper">
@@ -56,6 +57,19 @@
       {% endif %}
 
       {{ content | safe }}
+
+
+      <p id="edit-page-link">
+        <a
+            href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
+          Edit this page
+          <lazy-svg
+              loading="visible"
+              svg-aria-hidden
+              href="{{ site.baseurl }}/images/icons/edit-square.svg#icon">
+          </lazy-svg>
+        </a>
+      </p>
 
       {% set navItems = collections[collection] | eleventyNavigation | flattenNavigationAndAddNextPrev %}
       {% for item in navItems %}
@@ -100,6 +114,5 @@
       {% endfor %}
     </article>
   </div>
-
 
 {% endblock %}
