@@ -6,6 +6,12 @@
 
 import type {Page} from '@playwright/test';
 
+export const preventGDPRBanner = async (page: Page) => {
+  await page.addInitScript(()=>{
+    window.localStorage.setItem('gtag-banner-shown', 'true');
+  });
+};
+
 export async function waitForPlaygroundPreviewToLoad(page: Page) {
   // We could get a series of iframe reloads, e.g. if we're typing multiple
   // characters, then there could be enough time for multiple previews to get

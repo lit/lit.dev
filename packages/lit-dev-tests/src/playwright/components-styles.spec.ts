@@ -5,8 +5,13 @@
  */
 
 import {test, expect} from '@playwright/test';
+import { preventGDPRBanner } from './util.js';
 
 test.describe('docs/components/styles', () => {
+  test.beforeEach(async ({page}) => {
+    await preventGDPRBanner(page);
+  });
+
   test('inheriting-styles-from-a-superclass preview golden', async ({page}) => {
     await page.goto(
       '/docs/components/styles/#inheriting-styles-from-a-superclass'

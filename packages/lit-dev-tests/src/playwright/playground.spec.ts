@@ -11,6 +11,7 @@ import {
   freezeDialogs,
   closeSnackbars,
   readClipboardText,
+  preventGDPRBanner,
 } from './util.js';
 
 import type {Page, Browser} from '@playwright/test';
@@ -27,6 +28,7 @@ const signInToGithub = async (page: Page): Promise<void> => {
 
 const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
   const page = await browser.newPage();
+  await preventGDPRBanner(page);
   await page.goto('http://localhost:6417/fail-next-request');
   expect(await page.textContent('body')).toEqual('Next request will fail');
   await page.close();
@@ -35,6 +37,7 @@ const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
 test.describe('Playground', () => {
   test.beforeEach(async ({browser}) => {
     const page = await browser.newPage();
+    await preventGDPRBanner(page);
     await page.goto('http://localhost:6417/reset');
     expect(await page.textContent('body')).toEqual(
       'fake github successfully reset'
