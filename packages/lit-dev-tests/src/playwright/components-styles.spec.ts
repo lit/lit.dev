@@ -5,7 +5,7 @@
  */
 
 import {test, expect} from '@playwright/test';
-import { preventGDPRBanner } from './util.js';
+import {preventGDPRBanner} from './util.js';
 
 test.describe('docs/components/styles', () => {
   test.beforeEach(async ({page}) => {

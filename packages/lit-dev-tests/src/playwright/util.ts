@@ -7,7 +7,7 @@
 import type {Page} from '@playwright/test';
 
 export const preventGDPRBanner = async (page: Page) => {
-  await page.addInitScript(()=>{
+  await page.addInitScript(() => {
     window.localStorage.setItem('gtag-banner-shown', 'true');
   });
 };
