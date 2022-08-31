@@ -13,9 +13,8 @@ share what you've built, and more. Participation in our community is subject to 
 [Code of Conduct](https://github.com/lit/lit/blob/master/CODE_OF_CONDUCT.md)—be
 excellent to each other!
 
-*   **Join us on [Slack](/slack-invite/)!** The
-    Lit & Friends workspace has thousands of users discussing Lit, web components, and related topics.
-    Check out `#lit`, `#beginners`, or `#tools` to get started.
+*   **Join us on [Discord](/discord/)!** The
+    Chat about Lit, get help, or share your project in the Lit Discord server.
 
 *   **Follow us at [@buildWithLit  on Twitter](https://twitter.com/buildWithLit)**
     for the latest on Lit and web components. Many

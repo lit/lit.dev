@@ -5,7 +5,8 @@
  */
 
 export const pageRedirects = new Map([
-  ['/slack-invite',                   'https://join.slack.com/t/lit-and-friends/shared_invite/zt-1etplu7f6-h1I1D0S16VMOluYyZ_2JUQ'],
+  ['/discord',                        'https://discord.gg/NqrQepWTym'],
+  ['/slack-invite',                   '/discord/'],
   ['/youtube',                        'https://www.youtube.com/channel/UCok4ZKSzM3jY7JQRMlF-DPg'],
   ['/msg/dev-mode',                   '/docs/tools/development/#development-and-production-builds'],
   // TODO(sorvell) https://github.com/lit/lit.dev/issues/455
