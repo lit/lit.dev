@@ -23,6 +23,12 @@ export default class LitdevGtagBanner extends LitElement {
       max-width: 430px;
       box-sizing: border-box;
       width: calc(100vw - 2 * var(--_inset));
+      /* Material 2 elevation 5
+      https://lit.dev/playground/?mods=gists#gist=3ee0643323ce76d53bb8f5a98149dd45
+      */
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0px 5px 8px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 14px 0px;
     }
 
     .actions {
