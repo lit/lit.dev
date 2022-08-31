@@ -60,8 +60,8 @@ export default class LitdevGtagBanner extends LitElement {
       <div>
         <h2 class="visually-hidden">Cookies consent notice</h2>
         <div class="message">
-          This site uses cookies from Google to deliver its services and to
-          analyze traffic.
+          We serve cookies on this site to analyze traffic, remember your
+          preferences, and optimize your experience.
         </div>
         <div class="actions">
           <litdev-ripple-icon-button
