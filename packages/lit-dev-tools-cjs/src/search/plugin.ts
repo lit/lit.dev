@@ -19,6 +19,7 @@ type UrlToFile = Map<string, string>;
  */
 interface UserFacingPageData {
   id: number;
+  objectID: number;
   relativeUrl: string;
   title: string;
   heading: string;
@@ -105,6 +106,7 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
         // facing data to display in the suggested results.
         searchIndex.push({
           id: id++,
+          objectID: id,
           title: title.replace(/ – Lit$/, ''),
           heading,
           relativeUrl: relUrl.replace(/index.html$/, '') + (fragment ?? ''),

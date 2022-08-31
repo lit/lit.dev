@@ -1,0 +1,27 @@
+name: Build And Publish Search Index
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-publish-search-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+      - id: build
+        run: npm run build
+      - name: Publish algolia search index
+        env:
+          ALGOLIA_WRITE_KEY: ${{ secrets.LIT_DEV_ALGOLIA_WRITE_KEY }}
+        run: ALGOLIA_WRITE_KEY=$ALGOLIA_WRITE_KEY node packages/lit-dev-tools-esm/lib/upload-algolia-index.js

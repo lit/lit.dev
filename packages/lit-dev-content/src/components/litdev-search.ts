@@ -29,6 +29,7 @@ import algoliasearch, {
   SearchIndex,
 } from 'algoliasearch/dist/algoliasearch-lite.esm.browser.js';
 import {Task, TaskStatus} from '@lit-labs/task';
+import vars from '../public-vars.js';
 
 /**
  * Representation of each document indexed by Minisearch.
@@ -191,12 +192,12 @@ export class LitDevSearch extends LitElement {
   private _searchText: string = '';
 
   private static _algoliaSearchClient: SearchClient = algoliasearch(
-    'OC866NN61X',
-    '33401c252374747a39ef3b42c9f701ac'
+    vars.algolia.appId,
+    vars.algolia.searchOnlyKey
   );
 
   private static _algoliaSearch: SearchIndex =
-    LitDevSearch._algoliaSearchClient.initIndex('lit_dev_test');
+    LitDevSearch._algoliaSearchClient.initIndex(vars.algolia.index);
 
   private _searchTask: Task<string[], Suggestion[]> | null = null;
 
