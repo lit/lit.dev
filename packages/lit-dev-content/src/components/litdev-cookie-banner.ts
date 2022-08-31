@@ -2,8 +2,8 @@ import {css, html, LitElement} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import './litdev-ripple-icon-button.js';
 
-@customElement('litdev-gtag-banner')
-export default class LitdevGtagBanner extends LitElement {
+@customElement('litdev-cookie-banner')
+export default class LitdevCookieBanner extends LitElement {
   static styles = css`
     :host {
       --_inset: 24px;

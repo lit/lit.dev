@@ -9,7 +9,7 @@ import {onMediaQueryOnce, onIdle} from '../util/hydration-helpers.js';
 
 if (!localStorage.getItem('gtag-banner-shown')) {
   onIdle(() => {
-    import('../components/litdev-gtag-banner.js');
+    import('../components/litdev-cookie-banner.js');
   });
 }
 
