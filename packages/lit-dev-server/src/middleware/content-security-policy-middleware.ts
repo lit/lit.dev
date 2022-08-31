@@ -123,13 +123,6 @@ export const contentSecurityPolicyMiddleware = (
     // look quite dynamic though.
     `style-src 'self' 'unsafe-inline'`,
 
-    // TODO(aomarks) We need fonts.gstatic.com for fetching Open Sans (Manrope
-    // is already hosted locally). We should probably just host Open Sans
-    // ourselves, because there is no cross-origin caching benefit (see
-    // https://developers.google.com/web/updates/2020/10/http-cache-partitioning),
-    // and it would be one fewer connection to make.
-    `font-src 'self' https://fonts.gstatic.com/`,
-
     `img-src ${[
       `'self'`,
       // TODO(aomarks) We use some data: URLs for SVGs in docs.css. There's
