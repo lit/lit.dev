@@ -35,14 +35,15 @@ const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
 };
 
 test.describe('Playground', () => {
-  test.beforeEach(async ({browser}) => {
-    const page = await browser.newPage();
+  test.beforeEach(async ({browser, page}) => {
+    const browserPage = await browser.newPage();
     await preventGDPRBanner(page);
-    await page.goto('http://localhost:6417/reset');
-    expect(await page.textContent('body')).toEqual(
+    await preventGDPRBanner(browserPage);
+    await browserPage.goto('http://localhost:6417/reset');
+    expect(await browserPage.textContent('body')).toEqual(
       'fake github successfully reset'
     );
-    await page.close();
+    await browserPage.close();
   });
 
   test('default example is simple-greeting.ts', async ({page}) => {
