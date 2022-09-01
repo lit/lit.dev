@@ -451,6 +451,12 @@ ${content}
     return `<script type="module">${script}</script>`;
   });
 
+  eleventyConfig.addShortcode('algoliaid', () => {
+    const varsRaw = fsSync.readFileSync('../../public-vars.json', 'utf8');
+    const vars = JSON.parse(varsRaw);
+    return vars.algolia.appId;
+  });
+
   // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
   eleventyConfig.addFilter('readableDate', (dateObj) => {
     return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
