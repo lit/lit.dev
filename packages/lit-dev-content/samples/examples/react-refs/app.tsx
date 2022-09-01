@@ -23,49 +23,38 @@ const FlyingTriangles = createComponent(
   React,
   'flying-triangles',
   FlyingTrianglesWC,
-  {onStateChange: 'state-change'},
+  {onPlayingChange: 'playing-change'},
 );
-
-const initialState = {
-  isPlaying: false,
-  fps: 16,
-};
 
 export const App = () => {
   const ref = useRef(null);
-  const [state, setState] = useState(initialState);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  // Listen for state-change events
-  const onStateChange = useCallback(() => {
-    const {isPlaying, fps} = ref.current;
-    setState({isPlaying, fps});
+  // Listen for playing-change events
+  const onPlayingChange = useCallback(() => {
+    setIsPlaying(ref.current?.isPlaying);
   }, []);
 
   // UI callbacks
-  const onPlay = useCallback(() => ref.current?.play(), []);
-  const onPause = useCallback(() => ref.current?.pause(), []);
-  const onFps = useCallback((e: React.SyntheticEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      ref.current.fps = e.target.value;
-    }
+  const onPlay = useCallback(() => {
+    ref.current?.play();
+  }, []);
+  const onPause = useCallback(() => {
+    ref.current?.pause()
   }, []);
 
   return (
     <>
-      <FlyingTriangles ref={ref} onStateChange={onStateChange}></FlyingTriangles>
-      <button disabled={state.isPlaying} onClick={onPlay}>
+      <FlyingTriangles
+        ref={ref}
+        onPlayingChange={onPlayingChange}>
+      </FlyingTriangles>
+      <button disabled={isPlaying} onClick={onPlay}>
         play
       </button>
-      <button disabled={!state.isPlaying} onClick={onPause}>
+      <button disabled={!isPlaying} onClick={onPause}>
         pause
       </button>
-      <input
-        type="range"
-        min="4"
-        max="30"
-        value={state.fps}
-        onChange={onFps}
-      ></input>
     </>
   );
 };

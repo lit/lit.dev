@@ -12,14 +12,11 @@ import { customElement, query, state, property } from 'lit/decorators.js';
       - play()
       - pause()
 
-    attributes:
-      - fps (frames per second)
-    
     properties:
       - isPlaying
 
     events:
-      - 'state-change' 
+      - 'playing-change' 
 */
 
 const styles = css`
@@ -49,38 +46,26 @@ export class FlyingTriangles extends LitElement {
   static styles = styles;
 
   @query('canvas') private canvas!: HTMLCanvasElement;
-  @property({ type: Number }) fps = 24;
   @state() isPlaying = false;
-
-  private scene = createScene();
   
+  private scene = createScene();
+  private fps: number = 54;
+
   render() {
     return html`
-      <canvas height="300" width="300"></canvas>
-      <p>${this.isPlaying ? 'click to pause' : 'click to play'}</p>
+      <div @click=${this.onClick}>
+        <canvas height="300" width="300"></canvas>
+        <p>${this.isPlaying ? 'click to pause' : 'click to play'}</p>
+      </div>
     `;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('click', this.onClick);
-    this.play();
-  }
-  
-  disconnectedCallback() {
-    super.connectedCallback();
-    this.removeEventListener('click', this.onClick);
-  }
-
-  willUpdate() {
-    this.dispatchEvent(new Event('state-change', { composed: true }));
   }
   
   play() {
     if (this.isPlaying) return;
 
     this.isPlaying = true;
-    this.renderCanvas()
+    this.renderCanvas();
+    this.onPlayingChange();
   }
 
   pause() {
@@ -88,10 +73,20 @@ export class FlyingTriangles extends LitElement {
 
     this.isPlaying = false;
     cancelAnimationFrame(this.scene.rafId);
+    this.onPlayingChange();
   }
 
   private onClick() {
     this.isPlaying ? this.pause() : this.play();
+  }
+
+  private onPlayingChange() {
+    this.dispatchEvent(
+      new Event(
+        'playing-change', 
+        { composed: true },
+      ),
+    );
   }
 
   private renderCanvas = () => {
