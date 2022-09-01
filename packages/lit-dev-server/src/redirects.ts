@@ -6,7 +6,7 @@
 
 export const pageRedirects = new Map([
   ['/discord',                        'https://discord.gg/NqrQepWTym'],
-  ['/slack-invite',                   '/discord/'],
+  ['/slack-invite',                   'https://discord.gg/NqrQepWTym'],
   ['/youtube',                        'https://www.youtube.com/channel/UCok4ZKSzM3jY7JQRMlF-DPg'],
   ['/msg/dev-mode',                   '/docs/tools/development/#development-and-production-builds'],
   // TODO(sorvell) https://github.com/lit/lit.dev/issues/455
