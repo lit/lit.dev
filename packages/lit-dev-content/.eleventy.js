@@ -465,17 +465,6 @@ ${content}
     );
   });
 
-  eleventyConfig.addFilter('toJSON', function (obj) {
-    return JSON.stringify(obj);
-  });
-
-  eleventyConfig.addFilter('toSearchEntry', function (str) {
-    return str
-      .replace(/<a class="direct-link"[^>]*>#<\/a\>/g, '')
-      .replace(/[\t]{2,}/g, '\t') // change \t\t\t\t\t\t to \t
-      .replace(/[\n]{2,}/g, '\n'); // change \n\n\n\n\n to \n
-  });
-
   eleventyConfig.on('eleventy.before', () => {
     cspInlineScriptHashes.clear();
   });

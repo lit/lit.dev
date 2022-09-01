@@ -191,13 +191,13 @@ export class LitDevSearch extends LitElement {
   @state()
   private _searchText: string = '';
 
-  private static _algoliaSearchClient: SearchClient = algoliasearch(
+  private static _algoliaClient: SearchClient = algoliasearch(
     vars.algolia.appId,
     vars.algolia.searchOnlyKey
   );
 
-  private static _algoliaSearch: SearchIndex =
-    LitDevSearch._algoliaSearchClient.initIndex(vars.algolia.index);
+  private static _algoliaIndex: SearchIndex =
+    LitDevSearch._algoliaClient.initIndex(vars.algolia.index);
 
   private _searchTask: Task<string[], Suggestion[]> | null = null;
 
@@ -268,6 +268,14 @@ export class LitDevSearch extends LitElement {
     return this._searchTask.value!;
   }
 
+  private get _isExpanded() {
+    return (
+      this._isFocused &&
+      this._currentSuggestions.length > 0 &&
+      !this._closedByEscape
+    );
+  }
+
   update(changed: Map<string, unknown>) {
     const textDoesntMatch = this._searchText !== this._inputEl.value;
     const isSSRHydrate = this._inputEl && textDoesntMatch && !this.hasUpdated;
@@ -282,10 +290,7 @@ export class LitDevSearch extends LitElement {
   }
 
   render() {
-    const isExpanded =
-      this._isFocused &&
-      this._currentSuggestions.length > 0 &&
-      !this._closedByEscape;
+    const isExpanded = this._isExpanded;
     const activeDescendant =
       this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
 
@@ -362,7 +367,7 @@ export class LitDevSearch extends LitElement {
   async firstUpdated() {
     // required for popping up on hydration
     this._isFocused = !!this.shadowRoot?.activeElement;
-    // If a search query has already been written, fill suggestions.
+    // Initialize the search task only on the client and not the server.
     this._searchTask = new Task(
       this,
       ([text]) => this._querySearch(text),
@@ -373,8 +378,7 @@ export class LitDevSearch extends LitElement {
   updated(changed: PropertyValues) {
     super.updated(changed);
 
-    const isExpanded = this._isFocused && this._currentSuggestions.length > 0;
-    if (!isExpanded) {
+    if (!this._isExpanded) {
       return;
     }
 
@@ -398,13 +402,13 @@ export class LitDevSearch extends LitElement {
   private async _querySearch(query: string): Promise<Suggestion[]> {
     const trimmedQuery = query.trim();
     if (
-      !LitDevSearch._algoliaSearch ||
+      !LitDevSearch._algoliaIndex ||
       trimmedQuery === '' ||
       trimmedQuery.length < 2
     ) {
       return [];
     }
-    const results = await LitDevSearch._algoliaSearch.search<Suggestion>(
+    const results = await LitDevSearch._algoliaIndex.search<Suggestion>(
       trimmedQuery,
       {
         page: 0,
@@ -645,13 +649,14 @@ class LitdevSearchOption extends LitElement {
 
         .tag {
           color: white;
-          background-color: #f9a012;
+          background-color: #6e6e6e;
           padding: 0 0.5em;
           margin-left: 1em;
           font-weight: 600;
         }
 
         .article.tag {
+          background-color: #f9a012;
         }
 
         .docs.tag {
