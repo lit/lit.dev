@@ -14,20 +14,20 @@
   },
   "wireit": {
     "build": {
-      "command": "tsc",
+      "command": "tsc --build --pretty",
       "files": [
         "src/**/*.ts"
       ],
       "output": [
-        "lib/**/*.js"
+        "lib/**/*.js",
+        "lib/.tsbuildinfo"
+      ],
+      "dependencies": [
+        "../lit-dev-tools-esm:build:ts"
       ]
     },
     "start": {
       "command": "node ./lib/index.js",
-      "files": [
-        "lib/**/*.ts",
-        "../../pulic-vars.json"
-      ],
       "dependencies": [
         "build"
       ]
@@ -36,9 +36,5 @@
   "dependencies": {
     "algoliasearch": "^4.14.2",
     "discord.js": "^14.3.0"
-  },
-  "devDependencies": {
-    "typescript": "^4.8.2",
-    "wireit": "^0.7.1"
   }
 }
