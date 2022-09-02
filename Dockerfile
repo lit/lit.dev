@@ -23,7 +23,7 @@ WORKDIR /usr/src/app
 # to execute the final Eleventy build step.
 
 # External dependencies
-COPY public-vars.json package*.json tsconfig.base.json ./
+COPY package*.json tsconfig.base.json ./
 COPY packages/lit-dev-tools-cjs/package*.json ./packages/lit-dev-tools-cjs/
 COPY packages/lit-dev-tools-esm/package*.json ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/

@@ -6,9 +6,8 @@
 
 import algolia from 'algoliasearch';
 import fs from 'fs';
+import {publicVars} from './configs.js';
 
-const varsRaw = fs.readFileSync('../../public-vars.json', 'utf8');
-const vars = JSON.parse(varsRaw);
 const searchIndexRaw = fs.readFileSync(
   '../lit-dev-content/_site/searchIndex.json',
   'utf8'
@@ -20,6 +19,6 @@ if (!ALGOLIA_WRITE_KEY) {
   throw new Error('ALGOLIA_WRITE_KEY environment variable is not set');
 }
 
-const client = algolia(vars.algolia.appId, ALGOLIA_WRITE_KEY);
-const index = client.initIndex(vars.algolia.indexName);
+const client = algolia(publicVars.algolia.appId, ALGOLIA_WRITE_KEY);
+const index = client.initIndex(publicVars.algolia.index);
 await index.replaceAllObjects(searchIndex);

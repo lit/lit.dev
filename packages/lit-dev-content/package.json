@@ -22,7 +22,6 @@
     "dev:build:eleventy": "wireit",
     "dev:build:eleventy:watch": "wireit",
     "dev:serve": "wireit",
-    "copy-keys": "wireit",
     "prod:build": "wireit",
     "prod:build:assets": "wireit"
   },
@@ -137,7 +136,7 @@
         "lib"
       ],
       "dependencies": [
-        "copy-keys"
+        "../lit-dev-tools-esm:build:ts"
       ],
       "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
@@ -166,15 +165,6 @@
         "samples/js/**"
       ],
       "command": "node ../lit-dev-tools-esm/lib/generate-js-samples.js"
-    },
-    "copy-keys": {
-      "files": [
-        "../../public-vars.json"
-      ],
-      "output": [
-        "src/public-vars.ts"
-      ],
-      "command": "cp ../../public-vars.json public-vars.tsorig && echo 'export default ' > public-vars.tstemp && cat public-vars.tsorig >> public-vars.tstemp && cp public-vars.tstemp src/public-vars.ts && rm public-vars.tstemp && rm public-vars.tsorig"
     }
   },
   "devDependencies": {

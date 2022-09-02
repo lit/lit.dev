@@ -451,10 +451,9 @@ ${content}
     return `<script type="module">${script}</script>`;
   });
 
-  eleventyConfig.addShortcode('algoliaid', () => {
-    const varsRaw = fsSync.readFileSync('../../public-vars.json', 'utf8');
-    const vars = JSON.parse(varsRaw);
-    return vars.algolia.appId;
+  eleventyConfig.addNunjucksAsyncShortcode('algoliaid', async () => {
+    const {publicVars} = await import('lit-dev-tools-esm/lib/configs.js');
+    return publicVars.algolia.appId;
   });
 
   // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
