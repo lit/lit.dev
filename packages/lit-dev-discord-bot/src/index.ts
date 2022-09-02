@@ -157,19 +157,18 @@ const startClientWebsocketServer = async () => {
   });
 
   client.on('interactionCreate', async (interaction) => {
-    if ((interaction as ChatInputCommandInteraction).commandName !== 'docs') {
-      return;
-    }
+    // handle only the /docs slash command.
+    if ((interaction as ChatInputCommandInteraction).commandName === 'docs') {
+      // This happens as the user is typing. Enabled by the
+      // SlashCommandBuilder's .setAutocomplete(true) option.
+      if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
+        handleDocsAutocompleteInteraction(interaction);
+      }
 
-    // This happens as the user is typing. Enabled by the SlashCommandBuilder's
-    // .setAutocomplete(true) option.
-    if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
-      handleDocsAutocompleteInteraction(interaction);
-    }
-
-    // This is true when the user finally returns a command. (a lit.dev url)
-    if (interaction.isChatInputCommand()) {
-      handleDocsSubmissionInteraction(interaction);
+      // This is true when the user finally returns a command. (a lit.dev url)
+      if (interaction.isChatInputCommand()) {
+        handleDocsSubmissionInteraction(interaction);
+      }
     }
   });
 
