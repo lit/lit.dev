@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+import http from 'node:http';
 import {
   AutocompleteInteraction,
   ChatInputCommandInteraction,
@@ -178,3 +179,12 @@ const startClientWebsocketServer = async () => {
 
 publishDiscordCommands([docsSlashCommand]);
 startClientWebsocketServer();
+
+/**
+ * HTTP server for Cloud Run liveness
+ */
+http
+  .createServer((_, response) => {
+    response.end('OK');
+  })
+  .listen(process.env.PORT ?? 8080);
