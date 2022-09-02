@@ -9,11 +9,11 @@
   "main": "lib/index.js",
   "module": "lib/index.js",
   "scripts": {
-    "build": "wireit",
+    "build:ts": "wireit",
     "start": "wireit"
   },
   "wireit": {
-    "build": {
+    "build:ts": {
       "command": "tsc --build --pretty",
       "files": [
         "src/**/*.ts",
@@ -31,7 +31,7 @@
     "start": {
       "command": "node ./lib/index.js",
       "dependencies": [
-        "build"
+        "build:ts"
       ]
     }
   },
