@@ -139,7 +139,7 @@ const handleDocsSubmissionInteraction = async (
     // If the response is not a lit.dev url, then bot responds with an
     // ephemeral message that is only visible to the user. This happens when
     // there are no results, or if the user hits enter before results show up.
-    interaction.reply({
+    await interaction.reply({
       ephemeral: true,
       content: `value: "${value}" is not a valid lit.dev url. Please select from the autocomplete list.`,
     });
@@ -150,25 +150,29 @@ const handleDocsSubmissionInteraction = async (
  * Creates a discord bot client, registers the event handlers, and starts the
  * client websocket server that listens for events.
  */
-const startClientWebsocketServer = async () => {
+const startClientWebsocketServer = () => {
   const client = new Client({intents: [GatewayIntentBits.Guilds]});
 
   client.on('ready', () => {
     console.log(`Logged in as ${client.user?.tag}!`);
   });
 
-  client.on('interactionCreate', async (interaction) => {
+  client.on('interactionCreate', (interaction) => {
     // handle only the /docs slash command.
     if ((interaction as ChatInputCommandInteraction).commandName === 'docs') {
       // This happens as the user is typing. Enabled by the
       // SlashCommandBuilder's .setAutocomplete(true) option.
       if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
-        handleDocsAutocompleteInteraction(interaction);
+        handleDocsAutocompleteInteraction(interaction).catch((error) =>
+          console.error(error)
+        );
       }
 
       // This is true when the user finally returns a command. (a lit.dev url)
       if (interaction.isChatInputCommand()) {
-        handleDocsSubmissionInteraction(interaction);
+        handleDocsSubmissionInteraction(interaction).catch((error) =>
+          console.error(error)
+        );
       }
     }
   });
