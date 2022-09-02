@@ -24,15 +24,11 @@ import {styleMap} from 'lit/directives/style-map.js';
 import {live} from 'lit/directives/live.js';
 import type {Drawer} from '@material/mwc-drawer';
 import {animate, Options as AnimationOptions} from '@lit-labs/motion';
-import algoliasearch, {
-  SearchClient,
-  SearchIndex,
-} from 'algoliasearch/dist/algoliasearch-lite.esm.browser.js';
-import {Task, TaskStatus} from '@lit-labs/task';
-import {publicVars} from 'lit-dev-tools-esm/lib/configs.js';
+import {AgloliaSearchController} from './algolia-search-controller.js';
 
 /**
- * Representation of each document indexed by Minisearch.
+ * Representation of each document indexed by our PageChunker which is published
+ * to Algolia.
  *
  * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
@@ -46,7 +42,8 @@ interface UserFacingPageData {
 }
 
 /**
- * Suggestion returned by Minisearch when there is a matching search result.
+ * Subset of the suggestion returned by Algolia when there is a matching search
+ * result.
  */
 type Suggestion = Omit<UserFacingPageData, 'text'>;
 
@@ -70,21 +67,21 @@ function titleAndHeadingCard(
  * Used to mark a search page suggestion with the API chip.
  */
 function isApiLink(url: string) {
-  return url.includes('docs/api/');
+  return url.startsWith('/docs/api/');
 }
 
 /**
  * Used to mark a search page suggestion with the DOC chip.
  */
 function isDocsLink(url: string) {
-  return url.includes('docs/') && !isApiLink(url);
+  return url.startsWith('/docs/') && !isApiLink(url);
 }
 
 /**
  * Used to mark a search page suggestion with the ARTICLE chip.
  */
 function isArticleLink(url: string) {
-  return url.includes('articles/');
+  return url.startsWith('/articles/');
 }
 
 const SEARCH_ICON = (opacity: '0' | '1') => html`<svg
@@ -191,16 +188,6 @@ export class LitDevSearch extends LitElement {
   @state()
   private _searchText: string = '';
 
-  private static _algoliaClient: SearchClient = algoliasearch(
-    publicVars.algolia.appId,
-    publicVars.algolia.searchOnlyKey
-  );
-
-  private static _algoliaIndex: SearchIndex =
-    LitDevSearch._algoliaClient.initIndex(publicVars.algolia.index);
-
-  private _searchTask: Task<string[], Suggestion[]> | null = null;
-
   /**
    * Search suggestion options.
    */
@@ -241,12 +228,6 @@ export class LitDevSearch extends LitElement {
   private _popupSpaceRight = false;
 
   /**
-   * Whether or not the user has closed the menu with the escape key.
-   */
-  @state()
-  private _closedByEscape = false;
-
-  /**
    * Whether the listbox should be popped up with `left: 0` or not.
    *
    * This is when the listbox would pop up and overflow off the left of the
@@ -257,23 +238,13 @@ export class LitDevSearch extends LitElement {
 
   private _listboxClicked = false;
 
-  private _lastSuggestions: Suggestion[] = [];
-
-  private get _currentSuggestions() {
-    if (!this._searchTask || this._searchTask.status !== TaskStatus.COMPLETE) {
-      return this._lastSuggestions;
-    }
-
-    this._lastSuggestions = this._searchTask.value!;
-    return this._searchTask.value!;
-  }
+  private _searchController = new AgloliaSearchController<Suggestion>(
+    this,
+    () => [this._searchText]
+  );
 
   private get _isExpanded() {
-    return (
-      this._isFocused &&
-      this._currentSuggestions.length > 0 &&
-      !this._closedByEscape
-    );
+    return this._isFocused && this._searchController.value.length > 0;
   }
 
   update(changed: Map<string, unknown>) {
@@ -281,9 +252,18 @@ export class LitDevSearch extends LitElement {
     const isSSRHydrate = this._inputEl && textDoesntMatch && !this.hasUpdated;
 
     if (isSSRHydrate) {
-      // this is required on hydration to make sure we don't blow away the
-      // input text due to the `live` directive which is necessary to prevent
-      // issues with typing on the virtual keyboard in Safari on iOS.
+      /*
+       * If we have typed text into the input, but the element has not yet been
+       * hydrated, then the @input listener will not have updated _searchText.
+       * Since we are using the `live()` directive, the first render will then
+       * clear the input because the `value` of the input will be what the user
+       * has typed in, and the value of _searchText will be empty string.
+       *
+       * The `live() directive is necessary because without it, iOS Safari will
+       * have its cursor jump to the end of the input when typing whenever
+       * `input.value` is set while typing, even if it's the current value in
+       * the input. `live()` prevents this extraneous setting of `input.value`.
+       */
       this._searchText = this._inputEl.value;
     }
     super.update(changed);
@@ -338,7 +318,7 @@ export class LitDevSearch extends LitElement {
             @pointerdown=${this._onListboxPointerdown}
           >
             ${repeat(
-              this._currentSuggestions,
+              this._searchController.value,
               (suggestion) => suggestion.id,
               (
                 {relativeUrl, title, heading, isSubsection},
@@ -367,12 +347,6 @@ export class LitDevSearch extends LitElement {
   async firstUpdated() {
     // required for popping up on hydration
     this._isFocused = !!this.shadowRoot?.activeElement;
-    // Initialize the search task only on the client and not the server.
-    this._searchTask = new Task(
-      this,
-      ([text]) => this._querySearch(text),
-      () => [this._searchText]
-    );
   }
 
   updated(changed: PropertyValues) {
@@ -390,32 +364,7 @@ export class LitDevSearch extends LitElement {
    */
   private _onInput(e: InputEvent) {
     this._searchText = (e.target as HTMLInputElement).value ?? '';
-    this._querySearch(this._searchText);
     this._selectedIndex = -1;
-  }
-
-  /**
-   * Populate suggestion dropdown from query.
-   *
-   * An empty query clears suggestions.
-   */
-  private async _querySearch(query: string): Promise<Suggestion[]> {
-    const trimmedQuery = query.trim();
-    if (
-      !LitDevSearch._algoliaIndex ||
-      trimmedQuery === '' ||
-      trimmedQuery.length < 2
-    ) {
-      return [];
-    }
-    const results = await LitDevSearch._algoliaIndex.search<Suggestion>(
-      trimmedQuery,
-      {
-        page: 0,
-        hitsPerPage: 10,
-      }
-    );
-    return results.hits;
   }
 
   /**
@@ -425,11 +374,9 @@ export class LitDevSearch extends LitElement {
   private _onKeydown(e: KeyboardEvent) {
     switch (e.key) {
       case 'ArrowDown':
-        this._closedByEscape = false;
         this._selectNext();
         break;
       case 'ArrowUp':
-        this._closedByEscape = false;
         this._selectPrevious();
         break;
       case 'Enter':
@@ -437,15 +384,14 @@ export class LitDevSearch extends LitElement {
         break;
       case 'Escape':
         const oldText = this._searchText;
-        this._closedByEscape = true;
         this._selectedIndex = -1;
+        this._inputEl.blur();
         // prevent the input from closing drawer if there was text
         if (oldText.trim()) {
           e.stopPropagation();
         }
         break;
       default:
-        this._closedByEscape = false;
         break;
     }
   }
