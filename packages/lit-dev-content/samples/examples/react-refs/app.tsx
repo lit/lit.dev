@@ -36,12 +36,8 @@ export const App = () => {
   }, []);
 
   // UI callbacks
-  const onPlay = useCallback(() => {
-    ref.current?.play();
-  }, []);
-  const onPause = useCallback(() => {
-    ref.current?.pause()
-  }, []);
+  const onPlay = useCallback(() => ref.current?.play(), []);
+  const onPause = useCallback(() => ref.current?.pause(), []);
 
   return (
     <>
