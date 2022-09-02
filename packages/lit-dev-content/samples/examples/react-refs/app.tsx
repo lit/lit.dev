@@ -9,10 +9,10 @@ import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
   Meaning component state must be reconciled with React state.
   This is usually accomplished through refs and callbacks.
   
-  <flying-triangles> will dispatch a 'state-change' event when
+  <flying-triangles> will dispatch a 'playing-change' event when
   component state changes.
   
-  The 'state-change' provides React an opportunity to update
+  The 'playing-change' provides React an opportunity to update
   UI data based on the properties and attributes of
   a <flying-triangles> component.
 */
