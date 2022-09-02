@@ -16,7 +16,8 @@
     "build": {
       "command": "tsc --build --pretty",
       "files": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "../../tsconfig.base.json"
       ],
       "output": [
         "lib/**/*.js",
@@ -24,7 +25,8 @@
       ],
       "dependencies": [
         "../lit-dev-tools-esm:build:ts"
-      ]
+      ],
+      "clean": "if-file-deleted"
     },
     "start": {
       "command": "node ./lib/index.js",
