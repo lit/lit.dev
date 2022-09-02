@@ -6,8 +6,7 @@
     "incremental": true,
     "composite": true,
     "tsBuildInfoFile": "lib/.tsbuildinfo",
-    "skipLibCheck": true,
-    "resolveJsonModule": true
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": []
