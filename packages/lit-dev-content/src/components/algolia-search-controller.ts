@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {ArgsFunction, Task, TaskStatus} from '@lit-labs/task';
+import {Task, TaskStatus} from '@lit-labs/task';
 import type {Hit} from '@algolia/client-search';
 export type {Hit} from '@algolia/client-search';
 import algoliasearch, {
@@ -46,7 +46,11 @@ export class AgloliaSearchController<T extends {}> {
     const opts = {...agloliaSearchControllerDefaultOptions, ...options};
     this._client = algoliasearch(opts.appId, opts.searchOnlyKey);
     this._index = this._client.initIndex(opts.index);
-    this._task = new Task(host, ([text]) => this._querySearch(text), argsFn);
+    this._task = new Task(
+      host,
+      ([text]) => this._querySearch(text),
+      () => [argsFn()]
+    );
   }
 
   /**

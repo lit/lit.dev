@@ -240,7 +240,7 @@ export class LitDevSearch extends LitElement {
 
   private _searchController = new AgloliaSearchController<Suggestion>(
     this,
-    () => [this._searchText]
+    () => this._searchText
   );
 
   private get _isExpanded() {
