@@ -24,33 +24,29 @@ export type AlgoliaSearchControllerOptions =
   typeof agloliaSearchControllerDefaultOptions;
 
 export class AgloliaSearchController<T extends {}> {
-  host: ReactiveControllerHost;
-  private task;
-
+  private _task;
   private _client: SearchClient;
   private _index: SearchIndex;
   private _lastValue: Hit<T>[] = [];
 
   public get value() {
-    if (!this.task || this.task.status !== TaskStatus.COMPLETE) {
+    if (this._task.status !== TaskStatus.COMPLETE) {
       return this._lastValue;
     }
 
-    this._lastValue = this.task.value!;
-    return this.task.value!;
+    this._lastValue = this._task.value!;
+    return this._task.value!;
   }
 
   constructor(
     host: ReactiveControllerHost,
-    argsFn: ArgsFunction<[string]>,
+    argsFn: () => string,
     options?: Partial<AlgoliaSearchControllerOptions>
   ) {
     const opts = {...agloliaSearchControllerDefaultOptions, ...options};
-
-    this.host = host;
     this._client = algoliasearch(opts.appId, opts.searchOnlyKey);
     this._index = this._client.initIndex(opts.index);
-    this.task = new Task(host, ([text]) => this._querySearch(text), argsFn);
+    this._task = new Task(host, ([text]) => this._querySearch(text), argsFn);
   }
 
   /**
@@ -60,7 +56,7 @@ export class AgloliaSearchController<T extends {}> {
    */
   private async _querySearch(query: string): Promise<Hit<T>[]> {
     const trimmedQuery = query.trim();
-    if (!this._index || trimmedQuery === '' || trimmedQuery.length < 2) {
+    if (trimmedQuery.length < 2) {
       return [];
     }
     const results = await this._index.search<T>(trimmedQuery, {
