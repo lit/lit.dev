@@ -2,13 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #325cff;
+  background: #283198;
   color: white;
-  height: var(--header-height);
+  height: 48px;
 }
 
 #new-banner > p {
   text-align: center;
+  font-size: 18px;
 }
 
 #new-banner a {
@@ -18,6 +19,10 @@
 
 #new-banner a:hover {
   text-decoration: underline;
+}
+
+#new-banner .emoji {
+  margin-right: 10px;
 }
 
 #intro {

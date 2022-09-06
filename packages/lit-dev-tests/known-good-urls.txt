@@ -444,6 +444,7 @@ https://github.com/lit/lit/tree/main/packages/labs/ssr
 https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#polyfill
 https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#roadmap
 https://github.com/lit/lit/issues
+https://lit.dev/discord/
 https://lit.dev/slack-invite/
 https://lit.dev/
 https://github.com/justinfagnani

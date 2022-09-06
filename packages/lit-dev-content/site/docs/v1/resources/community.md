@@ -13,10 +13,8 @@ share what you've built, and more. All community participation is subject to the
 <a href="https://github.com/lit/lit/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>—be
 excellent to each other!
 
-*   <strong>Join us on <a href="https://lit.dev/slack-invite/">Slack</a>!</strong> The
-    Lit & Friends Slack workspace has thousands of users discussing LitElement, web components, and related topics.
-    Check out <code>#general</code>, <code>#beginners</code>, or
-    <code>#tools</code> to get started.
+*   <strong>Join us on <a href="https://lit.dev/discord/">Discord</a>!</strong>
+    Chat about Lit, get help, or share your project in the Lit Discord server.
 
 *   Follow us on <a href="https://twitter.com/buildWithLit">Twitter</a>
     for the latest on Lit and web components. Many
