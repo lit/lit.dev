@@ -18,14 +18,7 @@ Write your template in HTML inside a JavaScript [tagged template literal](https:
 
 Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners. The `render()` method can also include any JavaScript—for example, you can create local variables for use in expressions.
 
-### Renderable
-
-Typically, the component's `render()` method returns a single `TemplateResult` object (the same type returned by the `html` tag function). However, it can return anything that Lit can render:
-
-*   Primitive values like string, number, or boolean.
-*   `TemplateResult` objects created by the `html` function.
-*   DOM Nodes.
-*   Arrays or iterables of any of the supported types.
+Typically, the component's `render()` method returns a single `TemplateResult` object (the same type returned by the `html` tag function). However, it can return [anything that Lit can render](/docs/templates/overview/#renderable).
 
 For more information about writing templates, see [Templates](/docs/templates/overview/).
 

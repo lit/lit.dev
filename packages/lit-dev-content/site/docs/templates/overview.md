@@ -30,6 +30,14 @@ Lit templates are extremely expressive and allow you to render dynamic content i
  - [Built-in directives](/docs/templates/directives/): Directives are functions that can extend Lit's templating functionality. The library includes a set of built-in directives to help with a variety of rendering needs.
  - [Custom directives](/docs/templates/custom-directives/): You can also write your own directives to customize Lit's rendering as needed.
 
+## Renderable
+Lit can render more than just templates, 
+
+*  Primitive values like `string`, `number`, or `boolean`.
+*   `TemplateResult` objects created by the `html` function.
+*   DOM Nodes.
+*   Arrays or iterables of any of the supported types.
+
 ## Standalone templating
 
 You can also use Lit's templating library for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/docs/libraries/standalone-templates).
