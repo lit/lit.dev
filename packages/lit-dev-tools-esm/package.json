@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "build": "wireit",
-    "build:ts": "wireit"
+    "build:ts": "wireit",
+    "publish-search-index": "wireit"
   },
   "wireit": {
     "build": {
@@ -30,6 +31,19 @@
         "lib"
       ],
       "command": "../../node_modules/.bin/tsc --build --pretty",
+      "clean": "if-file-deleted"
+    },
+    "publish-search-index": {
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "lib/**"
+      ],
+      "output": [
+        "lib"
+      ],
+      "command": "node packages/lit-dev-tools-esm/lib/upload-algolia-index.js",
       "clean": "if-file-deleted"
     }
   },
