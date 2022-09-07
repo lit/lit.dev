@@ -38,7 +38,8 @@
         "build"
       ],
       "files": [
-        "lib/upload-algolia-index.js"
+        "lib/upload-algolia-index.js",
+        "../lit-dev-content/_site/searchIndex.json"
       ],
       "command": "node lib/upload-algolia-index.js"
     }
