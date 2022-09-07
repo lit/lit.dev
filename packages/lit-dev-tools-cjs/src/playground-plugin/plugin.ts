@@ -9,7 +9,7 @@ import {outdent} from 'outdent';
 import * as fs from 'fs/promises';
 
 import type {ProjectManifest} from 'playground-elements/shared/worker-api.js';
-export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info';
+export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info' | 'labs';
 
 // TODO(aomarks) There seem to be no typings for 11ty! This person has made
 // some, but they're not in DefinitelyTyped:
@@ -292,19 +292,21 @@ export const playgroundPlugin = (
   eleventyConfig.addPairedShortcode(
     'aside',
     (content: string, variant: AsideVariant, noHeader = '') => {
-      const acceptableVariants: ['info', 'warn', 'positive', 'negative'] = [
+      const acceptableVariants = [
         'info',
         'warn',
         'positive',
         'negative',
-      ];
+        'labs',
+      ] as const;
 
       // If statement needs to be written this way to assert exhaustive check.
       if (
         acceptableVariants[0] !== variant &&
         acceptableVariants[1] !== variant &&
         acceptableVariants[2] !== variant &&
-        acceptableVariants[3] !== variant
+        acceptableVariants[3] !== variant &&
+        acceptableVariants[4] !== variant
       ) {
         // This will throw an error at runtime if it does not match and will
         // throw a TS build time error if we add another variant and forget to
@@ -335,6 +337,12 @@ export const playgroundPlugin = (
       );
     }
   );
+
+  eleventyConfig.addShortcode('labs-disclaimer', () => {
+    return `<litdev-aside type="labs" no-header>
+        This package is part of the Lit Labs family of experimental packages. See the <a href="/docs/libraries/labs">Lit Labs</a> page for guidance on using Labs software in production.
+      </litdev-aside>`;
+  });
 
   eleventyConfig.addMarkdownHighlighter(
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)

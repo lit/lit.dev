@@ -1,8 +1,9 @@
 ---
-title: Releases
+title: Server rendering
 eleventyNavigation:
-  key: Releases
-  order: 9
+  key: Server rendering
+  order: 7
+  labs: true
 ---
 
 <!-- This file exists only to create a section heading.
