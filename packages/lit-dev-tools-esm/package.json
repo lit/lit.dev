@@ -38,13 +38,9 @@
         "build"
       ],
       "files": [
-        "lib/**"
+        "lib/upload-algolia-index.js"
       ],
-      "output": [
-        "lib"
-      ],
-      "command": "node packages/lit-dev-tools-esm/lib/upload-algolia-index.js",
-      "clean": "if-file-deleted"
+      "command": "node lib/upload-algolia-index.js"
     }
   },
   "dependencies": {
