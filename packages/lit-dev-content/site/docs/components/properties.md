@@ -130,7 +130,9 @@ constructor() {
 }
 ```
 
-For **TypeScript**, you **may use class fields** for declaring reactive properties as long as the `useDefineForClassFields` setting in your `tsconfig` is set to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
+For **TypeScript**, you **may use class fields** for declaring reactive properties as long as you use one of these patterns:
+* Set the `useDefineForClassFields` setting in your `tsconfig` to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
+* Add the `declare` keyword on the field, and put the field's initializer in the constructor.
 
 When compiling JavaScript with **Babel**, you **may use class fields** for declaring reactive properties as long as you set `setPublicClassFields` to `true` in the `assumptions` config of your `babelrc`. Note, for older versions of Babel, you also need to include the plugin `@babel/plugin-proposal-class-properties`:
 
