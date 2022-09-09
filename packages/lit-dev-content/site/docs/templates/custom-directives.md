@@ -37,7 +37,7 @@ A class-based directive lets you do things that a simple function can't. Use a c
 -   Access the rendered DOM directly (for example, add, remove, or reorder rendered DOM nodes).
 -   Persist state between renders.
 -   Update the DOM asynchronously, outside of a render call.
--   Clean up resourced when the directive is disconnected from the DOM
+-   Clean up resources when the directive is disconnected from the DOM
 
 The rest of this page describes class-based directives.
 
