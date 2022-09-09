@@ -45,6 +45,8 @@ steps:
       - '--max-instances=1'
       - '--set-secrets=BOT_CLIENT_SECRET=lit-dev-discord-bot-token:1'
 
+# TODO(augustjk) Consider adding a step here to delete the old revision
+
 tags:
   - lit-dev
   - discord-bot
