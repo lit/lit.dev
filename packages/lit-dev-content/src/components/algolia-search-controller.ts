@@ -96,7 +96,6 @@ export class AgloliaSearchController<T extends {}> {
     }
 
     const results = await this._index.search<T>(trimmedQuery, searchOpts);
-    console.log(results);
     return results.hits;
   }
 }
