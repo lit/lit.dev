@@ -35,6 +35,7 @@
     },
     "publish-search-index": {
       "dependencies": [
+        "../lit-dev-content:build",
         "build"
       ],
       "files": [
