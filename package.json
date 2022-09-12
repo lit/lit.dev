@@ -22,7 +22,8 @@
     "test:unit": "npm run test -w lit-dev-tools-cjs",
     "test:integration": "npm run test:integration -w lit-dev-tests",
     "test:integration:update-golden-screenshots": "npm run test:integration:update-golden-screenshots -w lit-dev-tests",
-    "test:links": "npm run test:links -w lit-dev-tests"
+    "test:links": "npm run test:links -w lit-dev-tests",
+    "publish-search-index": "wireit"
   },
   "wireit": {
     "build": {
@@ -41,6 +42,11 @@
       ],
       "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
       "output": []
+    },
+    "publish-search-index": {
+      "dependencies": [
+        "./packages/lit-dev-tools-esm:publish-search-index"
+      ]
     }
   },
   "devDependencies": {

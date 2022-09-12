@@ -41,6 +41,8 @@
       <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
     {% endif %}
 
+    <link rel="preconnect" href="https://{% algoliaid %}-dsn.algolia.net/" crossorigin>
+
     <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
     <noscript><style>body[dsd-pending] {display: block !important;}</style></noscript>
     {% block head %}{% endblock %}
