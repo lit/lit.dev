@@ -34,7 +34,7 @@ export class AgloliaSearchController<T extends {}> {
   private _client: SearchClient;
   private _index: SearchIndex;
   private _lastValue: Hit<T>[] = [];
-  // https://www.algolia.com/doc/api-reference/api-parameters/attributesToHighlight/#the-response-object
+  // https://www.algolia.com/doc/api-reference/api-parameters/attributesToHighlight/
   private _attributesToHighlight: string[] | undefined;
   // https://www.algolia.com/doc/api-reference/api-parameters/attributesToRetrieve/
   private _attributesToRetrieve: string[] | undefined;
