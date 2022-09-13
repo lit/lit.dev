@@ -18,12 +18,8 @@ const agloliaSearchControllerDefaultOptions = {
   appId: publicVars.algolia.appId,
   searchOnlyKey: publicVars.algolia.searchOnlyKey,
   index: publicVars.algolia.index,
-  attributesToHighlight: undefined as string[] | undefined,
-  attributesToRetrieve: undefined as string[] | undefined,
-};
-
-type Writeable<T extends {[x: string]: any}, K extends string | number> = {
-  [P in K]: T[P];
+  attributesToHighlight: ['*'],
+  attributesToRetrieve: ['*'],
 };
 
 export type AlgoliaSearchControllerOptions =
@@ -75,25 +71,13 @@ export class AgloliaSearchController<T extends {}> {
     if (trimmedQuery.length < 2) {
       return [];
     }
-    type SearchOptionsReadonly = NonNullable<
-      Parameters<typeof this._index.search>[1]
-    >;
-    type SearchOptions = Writeable<
-      SearchOptionsReadonly,
-      keyof SearchOptionsReadonly
-    >;
+    type SearchOptions = Parameters<typeof this._index.search>[1];
     const searchOpts: SearchOptions = {
       page: 0,
       hitsPerPage: 10,
+      attributesToHighlight: this._attributesToHighlight,
+      attributesToRetrieve: this._attributesToRetrieve,
     };
-
-    if (this._attributesToHighlight) {
-      searchOpts.attributesToHighlight = this._attributesToHighlight;
-    }
-
-    if (this._attributesToRetrieve) {
-      searchOpts.attributesToRetrieve = this._attributesToRetrieve;
-    }
 
     const results = await this._index.search<T>(trimmedQuery, searchOpts);
     return results.hits;
