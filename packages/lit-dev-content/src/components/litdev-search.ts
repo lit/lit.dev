@@ -240,7 +240,13 @@ export class LitDevSearch extends LitElement {
 
   private _searchController = new AgloliaSearchController<Suggestion>(
     this,
-    () => this._searchText
+    () => this._searchText,
+    {
+      // Algolia _highlightResult adds a lot to response size
+      attributesToHighlight: [],
+      // We don't need to return the full text of result so don't request it
+      attributesToRetrieve: ['*', '-text'],
+    }
   );
 
   private get _isExpanded() {
