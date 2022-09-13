@@ -31,9 +31,9 @@ export class AgloliaSearchController<T extends {}> {
   private _index: SearchIndex;
   private _lastValue: Hit<T>[] = [];
   // https://www.algolia.com/doc/api-reference/api-parameters/attributesToHighlight/
-  private _attributesToHighlight: string[] | undefined;
+  private _attributesToHighlight: string[];
   // https://www.algolia.com/doc/api-reference/api-parameters/attributesToRetrieve/
-  private _attributesToRetrieve: string[] | undefined;
+  private _attributesToRetrieve: string[];
 
   public get value() {
     if (this._task.status !== TaskStatus.COMPLETE) {
