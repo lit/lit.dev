@@ -3,18 +3,18 @@
  * ------------------------------------ */
 
 main {
-    /* Colors */
-    --docs-h1-underline-color: var(--color-blue);
-    --docs-h2-color: #384861;
-    --docs-h3-color: #5d6c86;
-    --docs-rule-color: #d1d1d1;
-    --docs-table-header-background: #e4e4e4;
-    --docs-table-header-color: rgb(73, 73, 73);
-    --docs-link-color: #005cc5;
-    --docs-nav-color: #242424;
-    --playground-code-background: #fafafa;
-    --code-border: 1px solid #ddd;
-    --docs-on-surface-color: #3e3e3e;
+  /* Colors */
+  --docs-h1-underline-color: var(--color-blue);
+  --docs-h2-color: #384861;
+  --docs-h3-color: #5d6c86;
+  --docs-rule-color: #d1d1d1;
+  --docs-table-header-background: #e4e4e4;
+  --docs-table-header-color: rgb(73, 73, 73);
+  --docs-link-color: #005cc5;
+  --docs-nav-color: #242424;
+  --playground-code-background: #fafafa;
+  --code-border: 1px solid #ddd;
+  --docs-on-surface-color: #3e3e3e;
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -28,8 +28,7 @@ main {
 
   display: grid;
   grid-template-columns:
-    minmax(var(--docs-nav-min-width), var(--docs-nav-max-width))
-    minmax(0, var(--docs-article-max-width)) 1fr;
+    minmax(var(--docs-nav-min-width), var(--docs-nav-max-width)) minmax(0, var(--docs-article-max-width)) 1fr;
   max-width: none;
   border-bottom: 1px solid var(--color-blue);
 
@@ -50,7 +49,8 @@ article {
   padding-block: var(--docs-margin-block);
   padding-inline: var(--docs-article-margin-inline);
   line-height: 1.8em;
-  font-size: 0.88889em; /* 16px / 18px basis */
+  font-size: 0.88889em;
+  /* 16px / 18px basis */
   color: var(--docs-on-surface-color);
   background: white;
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
@@ -103,11 +103,11 @@ article li {
   margin-bottom: 0.8em;
 }
 
-article li > p {
+article li>p {
   margin: 0;
 }
 
-article > p > img.logo {
+article>p>img.logo {
   max-width: 30%;
 }
 
@@ -124,7 +124,7 @@ article code:not([class]) {
 }
 
 /* Non-highlighted code block */
-article pre > code:not([class]) {
+article pre>code:not([class]) {
   background: none;
   padding: 0;
 }
@@ -146,22 +146,17 @@ litdev-example[filename] {
 }
 
 body[code-language-preference="ts"] litdev-example {
-  --litdev-example-editor-height: calc(
-    var(--litdev-example-editor-lines-ts) * 22px + 22px);
+  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-ts) * 22px + 22px);
 }
 
 body[code-language-preference="js"] litdev-example {
-  --litdev-example-editor-height: calc(
-    var(--litdev-example-editor-lines-js) * 22px + 22px);
+  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-js) * 22px + 22px);
 }
 
 litdev-example {
   /* Prevent upgrade layout shift. */
   display: block;
-  height: calc(
-    var(--litdev-example-bar-height) +
-    var(--litdev-example-editor-height) +
-    var(--litdev-example-preview-height));
+  height: calc(var(--litdev-example-bar-height) + var(--litdev-example-editor-height) + var(--litdev-example-preview-height));
 }
 
 .CodeMirror,
@@ -181,26 +176,26 @@ figure {
  * Headings
  * ------------------------------------ */
 
- /* Title */
- article h1 {
-   padding: 0.3em 0 0.8em 0;
-   margin-bottom: 1.3em;
-   border-bottom: 2px solid var(--docs-h1-underline-color);
-   font-size: 2.2em;
-   font-weight: 400;
-   /* The default margin of the first heading extends above the article, which
+/* Title */
+article h1 {
+  padding: 0.3em 0 0.8em 0;
+  margin-bottom: 1.3em;
+  border-bottom: 2px solid var(--docs-h1-underline-color);
+  font-size: 2.2em;
+  font-weight: 400;
+  /* The default margin of the first heading extends above the article, which
      complicates layout a bit. We have padding-top on the article itself. */
-   margin-top: 0;
+  margin-top: 0;
 }
 
- /* Each section heading has a wrapper <span> to allow for accessible anchor
+/* Each section heading has a wrapper <span> to allow for accessible anchor
     links. */
 .heading {
   display: flex;
   position: relative;
 }
 
-.heading > [id] {
+.heading>[id] {
   /* Adjust scroll margins of all article headings to account for sticky header.
      Otherwise, we'll scroll headings underneath the header. Add a little bit
      more too, for some extra visual breathing room. */
@@ -220,39 +215,44 @@ figure {
   padding-bottom: 0.2em;
   margin-top: -0.2em;
 }
-:hover > .anchor,
+
+:hover>.anchor,
 .anchor:hover,
 .anchor:focus {
   opacity: 1;
-  color: var(--color-medium-gray);;
+  color: var(--color-medium-gray);
+  ;
   text-decoration: none;
 }
 
 .heading.h2,
-article > h2 {
+article>h2 {
   font-size: 1.8em;
-  margin: 0 0 1.328em 0 ;
+  margin: 0 0 1.328em 0;
   padding: 1.5em 0 0.5em 0;
   border-bottom: 1px solid var(--docs-rule-color);
 }
+
 article h2 {
   color: var(--docs-h2-color);
   font-weight: 600;
 }
+
 /* If a page has no introductory content before the first heading, remove the
    section delineation. */
-#inlineToc + .heading.h2 {
+#inlineToc+.heading.h2 {
   border-top: none;
   margin-top: 0;
   padding-top: 0.5em;
 }
 
 .heading.h3,
-article > h3 {
+article>h3 {
   font-size: 1.2em;
   margin-top: 2.2em;
   padding-top: 1em;
 }
+
 article h3 {
   color: var(--docs-h3-color);
   font-weight: 600;
@@ -268,9 +268,9 @@ article h4 {
  * Lists
  * ------------------------------------ */
 
- article li {
-   padding-inline: 0.5em 10%;
- }
+article li {
+  padding-inline: 0.5em 10%;
+}
 
 /* API parameter lists */
 .params {
@@ -278,11 +278,13 @@ article h4 {
   grid-template-columns: minmax(min-content, 12em) 1fr;
   border-top: 1px solid #ccc;
 }
-.params > * {
+
+.params>* {
   padding: 0.5em 1em;
   border-bottom: 1px solid #ccc;
 }
-.params > .paramName {
+
+.params>.paramName {
   margin: 0;
   font-size: 1em;
   font-weight: 500;
@@ -291,10 +293,12 @@ article h4 {
   border-right: 1px solid rgb(230, 230, 230);
   color: rgb(37, 37, 37);
 }
-.params > .paramDetails > :first-of-type {
+
+.params>.paramDetails> :first-of-type {
   margin-top: 0;
 }
-.params > .paramDetails {
+
+.params>.paramDetails {
   margin-left: 0;
 }
 
@@ -332,7 +336,8 @@ th:empty {
   padding: 1px;
 }
 
-.wide-table, .wide-cell {
+.wide-table,
+.wide-cell {
   width: 100%;
 }
 
@@ -344,7 +349,7 @@ th:empty {
   vertical-align: middle;
 }
 
-table.directory td > p {
+table.directory td>p {
   margin: 0;
 }
 
@@ -373,7 +378,7 @@ table.directory tr.subheading {
   border: 1px solid #ccc;
 }
 
-.alert > p {
+.alert>p {
   margin: 0;
 }
 
@@ -403,7 +408,7 @@ table.directory tr.subheading {
   color: red;
 }
 
-.pre-release > summary {
+.pre-release>summary {
   cursor: pointer;
 }
 
@@ -411,16 +416,16 @@ table.directory tr.subheading {
  * Prev/next links
  * ------------------------------------ */
 
- #prevAndNextLinks {
-   display: flex;
-   justify-content: space-between;
-   margin-block-start: 0;
-   padding-top: 1.5em;
-   border-top: 1px solid rgb(223, 223, 223);
- }
+#prevAndNextLinks {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: 0;
+  padding-top: 1.5em;
+  border-top: 1px solid rgb(223, 223, 223);
+}
 
- #prevLink,
- #nextLink {
+#prevLink,
+#nextLink {
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-gap: 0em 1.5em;
@@ -434,38 +439,38 @@ table.directory tr.subheading {
   text-align: right;
 }
 
-#prevAndNextLinks > span > a > .arrow {
+#prevAndNextLinks>span>a>.arrow {
   grid-row: 1 / 3;
   color: #757575;
 }
 
-#nextLink > .arrow {
+#nextLink>.arrow {
   grid-column: 2;
 }
 
-#prevAndNextLinks > span > a > .direction {
+#prevAndNextLinks>span>a>.direction {
   display: block;
   color: #757575;
   font-size: 15px;
 }
 
-#prevAndNextLinks > span > a:hover > .direction {
+#prevAndNextLinks>span>a:hover>.direction {
   color: var(--color-blue);
 }
 
-#prevAndNextLinks > span > a:hover > .arrow {
+#prevAndNextLinks>span>a:hover>.arrow {
   color: var(--color-blue);
 }
 
-#prevAndNextLinks > span > a > .title {
+#prevAndNextLinks>span>a>.title {
   font-size: 18px;
 }
 
-#prevAndNextLinks > span > a:hover > .title {
+#prevAndNextLinks>span>a:hover>.title {
   color: var(--color-blue);
 }
 
-#prevAndNextLinks > span > a:first-of-type {
+#prevAndNextLinks>span>a:first-of-type {
   margin-right: 2em;
   text-align: left;
 }
@@ -493,22 +498,74 @@ table.directory tr.subheading {
   padding-left: 2em;
   box-sizing: border-box;
   width: var(--docs-nav-min-width);
+  --_nav-item-marker-inset: -18px;
 }
 
 /* First level list */
-#docsNav > ol {
+#docsNav>ol {
   list-style: none;
   padding-left: 0;
   margin-top: 0;
   padding-bottom: 1.5em;
 }
-#docsNav > ol > li:not(:first-of-type) {
-  /* Space between top-level lists */
-  margin-top: 1.5em;
+
+#docsNav summary {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#docsNav .marker {
+  position: absolute;
+  font-size: 28px;
+  height: 28px;
+  /* The actual assessed size of the chevron in PX. Required for animation centering */
+  line-height: 20px;
+  transition: transform 0.2s ease-in-out;
+  transform-origin: center;
+  /* 2px makes the dropdown marker line up with the diamond marker */
+  inset-inline-start: calc(var(--_nav-item-marker-inset) + 2px);
+}
+
+#docsNav details[open] .marker {
+  transform: rotate(90deg);
+}
+
+#docsNav summary::marker,
+#docsNav summary::-webkit-details-marker {
+  content: '';
+  display: none;
+}
+
+body #docsNav .sectionHead,
+body #docsNav .wrapper ol {
+  padding-inline-start: 0;
+}
+
+body #docsNav .section-collapse {
+  margin-block: 1rem;
+}
+
+body #docsNav .section-collapse[open] {
+  margin-block-end: 1.25rem;
+}
+
+body #docsNav .section-collapse:first-of-type {
+  margin-block-start: 0rem;
 }
 
 /* Second level list */
-#docsNav > ol > li > ol {
+#docsNav .wrapper ol,
+#docsNav>ol>li>ol {
+  list-style: none;
+  /* Space between heading and second level items */
+  padding-top: 0.2em;
+}
+
+/* Second level list */
+#docsNav>ol>li>ol {
   list-style: none;
   /* Space between heading and second level items */
   padding-top: 0.2em;
@@ -522,14 +579,15 @@ table.directory tr.subheading {
   font-weight: 600;
   color: black;
 }
+
 #docsNav li.active::before {
   content: '';
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
   width: 12px;
   height: 12px;
   position: absolute;
-  top: 10px;
-  left: -25px;
+  inset-block-start: 10px;
+  inset-inline-start: var(--_nav-item-marker-inset);
 }
 
 /* Page links */
@@ -578,7 +636,7 @@ table.directory tr.subheading {
 }
 
 /* Top level sections */
-#inlineToc div > ol > li > a {
+#inlineToc div>ol>li>a {
   font-weight: bold;
 }
 
@@ -618,7 +676,7 @@ table.directory tr.subheading {
 }
 
 /* "Contents" heading */
-#rhsToc > h2 {
+#rhsToc>h2 {
   color: #1d1d1d;
   font-weight: 600;
   font-size: 0.9em;
@@ -626,7 +684,7 @@ table.directory tr.subheading {
   margin-top: 0;
 }
 
-#rhsToc > h2 > a {
+#rhsToc>h2>a {
   color: inherit;
 }
 
@@ -638,7 +696,7 @@ table.directory tr.subheading {
 }
 
 /* First level */
-#rhsTocInner > div > ol {
+#rhsTocInner>div>ol {
   margin: 0;
   padding: 0;
   position: sticky;
@@ -646,24 +704,24 @@ table.directory tr.subheading {
   border-left: 1px solid #d3d3d3;
 }
 
-#rhsTocInner > div > ol > li:not(:first-of-type) {
+#rhsTocInner>div>ol>li:not(:first-of-type) {
   /* Space between top-level lists */
   margin-top: 0.2em;
 }
 
 /* Second level */
-#rhsTocInner > div > ol > li > ol {
+#rhsTocInner>div>ol>li>ol {
   list-style: none;
   /* We move indentation to the anchors so that we can align the bullet
      consistently to the left, regardless of indentation. */
   padding-left: 0;
 }
 
-#rhsTocInner > div > ol > li > a {
+#rhsTocInner>div>ol>li>a {
   padding-left: 1.5em;
 }
 
-#rhsTocInner > div > ol > li > ol > li > a {
+#rhsTocInner>div>ol>li>ol>li>a {
   /* Second level indent */
   padding-left: 2.5em;
 }
@@ -710,7 +768,7 @@ litdev-banner {
   box-sizing: border-box;
 }
 
-litdev-banner > a {
+litdev-banner>a {
   color: blue;
   text-decoration: underline;
 }
@@ -745,30 +803,37 @@ litdev-banner > a {
   #inlineToc {
     display: initial;
   }
-  #inlineToc > details {
+
+  #inlineToc>details {
     margin-bottom: 2em;
   }
+
   #inlineToc summary {
     cursor: pointer;
     padding: 0.2em 0;
   }
+
   #inlineToc summary::marker {
     color: var(--docs-h2-color);
     font-size: 1.25em;
   }
+
   #inlineToc h2 {
     padding: 0;
     margin: 0;
     display: inline;
     font-size: 1.25em;
   }
-  #inlineToc > details[open] {
+
+  #inlineToc>details[open] {
     border-bottom: 1px solid var(--docs-rule-color);
     padding-bottom: 1em;
   }
+
   #inlineToc div {
     font-size: 0.9em;
   }
+
   #inlineToc li {
     margin-bottom: 0;
     padding-inline: initial;
@@ -790,13 +855,16 @@ litdev-banner > a {
     display: block;
     padding-top: 0;
   }
+
   #docsNavWrapper {
     display: none;
   }
+
   article {
     margin: auto;
     --docs-article-margin-inline: 1.5em;
   }
+
   .anchor {
     left: -1.1rem;
   }
@@ -805,11 +873,13 @@ litdev-banner > a {
     display: block;
     border: none;
   }
-  .params > * {
+
+  .params>* {
     border: none;
     background: transparent !important;
   }
-  .params > .paramName {
+
+  .params>.paramName {
     font-weight: 600;
   }
 }
@@ -818,4 +888,3 @@ litdev-banner > a {
   display: block;
   margin: auto;
 }
-
