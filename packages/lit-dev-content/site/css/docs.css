@@ -525,8 +525,8 @@ table.directory tr.subheading {
   line-height: 20px;
   transition: transform 0.2s ease-in-out;
   transform-origin: center;
-  /* 2px makes the dropdown marker line up with the diamond marker */
-  inset-inline-start: calc(var(--_nav-item-marker-inset) + 2px);
+  /* 1px makes the dropdown marker line up with the diamond marker */
+  inset-inline-start: calc(var(--_nav-item-marker-inset) + 1px);
 }
 
 #docsNav details[open] .marker {
