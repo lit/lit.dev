@@ -36,7 +36,7 @@ mwc-drawer:not(:defined) {
   margin-left: 30px;
 }
 
-#mobileDocsNav > li:first-of-type {
+#mobileDocsNav>li:first-of-type {
   margin-top: 0;
 }
 
@@ -57,4 +57,18 @@ mwc-drawer:not(:defined) {
   width: 1.25rem;
   height: 1.25rem;
   vertical-align: text-bottom;
+}
+
+/* inline icons in mobile sidebar */
+#mobileSiteNav .navItem.icon,
+#mobileSiteNav .navItem.icon>* {
+  display: inline-flex;
+}
+
+#mobileSiteNav .navItem.icon {
+  margin-inline: 4px;
+}
+
+#mobileSiteNav .navItem:not(.icon) + .navItem.icon {
+  margin-inline-start: 0;
 }

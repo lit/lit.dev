@@ -43,7 +43,7 @@
 }
 
 #desktopNav > .navItem > a,
-#desktopNav > .navItem > litdev-search {
+#desktopNav > .navItem > litdev-search-modal {
   color: #6f6f6f;
   font-weight: 600;
   padding: 0.3em 0.5em;
@@ -51,17 +51,7 @@
   font-size: 0.9em;
 }
 
-#desktopNav > .navItem > litdev-search {
-  width: 222px;
-}
-
-#desktopNav > .navItem.search {
-  /* Reserve space fixing CLS caused by litdev-search */
-  width: 230px;
-  height: 37px;
-}
-
-#desktopNav > .navItem > a:hover,
+#desktopNav > .navItem > *:hover,
 #desktopNav > .navItem.active > a {
   color: var(--color-blue);
 }
