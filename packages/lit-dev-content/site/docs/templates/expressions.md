@@ -145,7 +145,7 @@ Expressions in the child position can take many kinds of values:
 
 ### Primitive values
 
-Lit can render almost all (primitive values)[https://developer.mozilla.org/en-US/docs/Glossary/Primitive] and converts them to strings when interpolated into text content.
+Lit can render almost all [primitive values](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) and converts them to strings when interpolated into text content.
 
 Numbers values like `5` will render the string `'5'`. Bigints are treated similarly.
 
