@@ -1,6 +1,15 @@
 {% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
 {% set navSections = collections[collection] | eleventyNavigation -%}
 
+{# Is this page one of the first 3 sections? If so, expand first 3 sections #}
+{% if
+    navSection == "Introduction" or
+    navSection == 'Components' or
+    navSection == 'Templates'
+%}
+{% set expandFirstThree = true %}
+{% endif %}
+
 {% for section in navSections %}
 
   {# Are any children in this section active? #}
@@ -10,12 +19,6 @@
       {% set sectionActive = true %}
     {% endif %}
   {% endfor %}
-
-  {% set expandFirstThree = false %}
-
-  {% if page.url == "/docs/" %}
-    {% set expandFirstThree = true %}
-  {% endif %}
 
   {% if section.children | length %}
     {% set isFirstThree = section.order < 4 %}
