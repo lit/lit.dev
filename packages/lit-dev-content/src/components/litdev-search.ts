@@ -404,6 +404,8 @@ export class LitDevSearch extends LitElement {
     if (navDrawer) {
       navDrawer.open = false;
     }
+
+    this.dispatchEvent(new Event('close'));
   }
 
   focus() {
