@@ -31,10 +31,24 @@ interface UserFacingPageData {
 }
 
 /**
+ * Algolia result that returns stringified HTML that is highlighted.
+ */
+type HighlightResult<T> = {
+  [key in keyof T]: {
+    value: string;
+  };
+};
+
+/**
  * Subset of the suggestion returned by Algolia when there is a matching search
  * result.
  */
-type Suggestion = Omit<UserFacingPageData, 'text'>;
+type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
+  _highlightResult: Pick<
+    HighlightResult<UserFacingPageData>,
+    'title' | 'heading' | 'text'
+  >;
+};
 
 /**
  * Metadata for the type of search suggestion chip to display.
@@ -146,9 +160,9 @@ export class LitDevSearch extends LitElement {
     () => this._searchText,
     {
       // Algolia _highlightResult adds a lot to response size
-      attributesToHighlight: [],
+      attributesToHighlight: ['heading', 'text', 'title'],
       // We don't need to return the full text of result so don't request it
-      attributesToRetrieve: ['*', '-text'],
+      attributesToRetrieve: ['*', '-text', '-heading'],
     }
   );
 
@@ -207,7 +221,10 @@ export class LitDevSearch extends LitElement {
           ${repeat(
             groupedSuggestions[group].suggestions,
             ({id}) => id,
-            ({relativeUrl, title, heading, isSubsection}) => {
+            ({relativeUrl, _highlightResult, isSubsection}) => {
+              const title = _highlightResult.title.value;
+              const heading = _highlightResult.heading.value;
+              const text = _highlightResult.text.value;
               // Increment the current index.
               suggestionIndex++;
               return html`
@@ -217,6 +234,7 @@ export class LitDevSearch extends LitElement {
                   .relativeUrl="${relativeUrl}"
                   .title="${title}"
                   .heading="${heading}"
+                  .text="${text}"
                   .isSubsection="${isSubsection}"
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
@@ -403,6 +421,7 @@ export class LitDevSearch extends LitElement {
       --_input-border-width-focus: 2px;
       --_items-margin-block-start: 16px;
       box-sizing: border-box;
+      font-weight: 400;
     }
 
     #root {

@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, nothing, PropertyValues} from 'lit';
+import {LitElement, html, css, PropertyValues} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {hashtagIcon} from '../icons/hashtag-icon.js';
 import {paperDocumentIcon} from '../icons/paper-document-icon.js';
 
@@ -22,6 +23,9 @@ export class LitdevSearchOption extends LitElement {
 
   @property()
   heading = '';
+
+  @property()
+  text = '';
 
   @property({type: Boolean})
   isSubsection = false;
@@ -54,7 +58,7 @@ export class LitdevSearchOption extends LitElement {
           cursor: pointer;
         }
 
-        .title-and-header {
+        .title-and-text {
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -63,7 +67,7 @@ export class LitdevSearchOption extends LitElement {
         }
 
         .title,
-        .header {
+        .text {
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
@@ -76,6 +80,16 @@ export class LitdevSearchOption extends LitElement {
         svg {
           color: var(--color-dark-gray);
         }
+
+        em {
+          color: var(--color-blue);
+          font-style: normal;
+          text-decoration: underline;
+        }
+
+        :host([checked]) .suggestion em {
+          color: var(--color-cyan);
+        }
       `,
     ];
   }
@@ -86,11 +100,11 @@ export class LitdevSearchOption extends LitElement {
         <div aria-hidden="true">
           ${this.isSubsection ? hashtagIcon : paperDocumentIcon}
         </div>
-        <div class="title-and-header">
-          <span class="title">${this.title}</span>
+        <div class="title-and-text">
           ${this.isSubsection
-            ? html`<span class="header">${this.heading}</span>`
-            : nothing}
+            ? html`<span class="title">${unsafeHTML(this.heading)}</span>
+                <span class="text">${unsafeHTML(this.text)}</span>`
+            : html`<span class="title">${unsafeHTML(this.title)}</span>`}
         </div>
       </div>
     `;
