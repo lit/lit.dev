@@ -346,7 +346,6 @@ export class LitDevSearch extends LitElement {
   private _selectNext() {
     const numItems = this._searchController.value.length;
     this._selectedIndex++;
-    console.log(this._selectedIndex, numItems);
     if (this._selectedIndex >= numItems) {
       this._selectedIndex = 0;
     }
@@ -358,7 +357,6 @@ export class LitDevSearch extends LitElement {
   private _selectPrevious() {
     const numItems = this._searchController.value.length;
     this._selectedIndex--;
-    console.log(this._selectedIndex, numItems);
     if (this._selectedIndex < 0) {
       this._selectedIndex = numItems - 1;
     }
