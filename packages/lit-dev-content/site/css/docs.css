@@ -498,7 +498,7 @@ table.directory tr.subheading {
   padding-left: 2em;
   box-sizing: border-box;
   width: var(--docs-nav-min-width);
-  --_nav-item-marker-inset: -18px;
+  --_nav-item-marker-inset: -22px;
 }
 
 /* First level list */
@@ -525,8 +525,8 @@ table.directory tr.subheading {
   line-height: 20px;
   transition: transform 0.2s ease-in-out;
   transform-origin: center;
-  /* 2px makes the dropdown marker line up with the diamond marker */
-  inset-inline-start: calc(var(--_nav-item-marker-inset) + 2px);
+  /* 1px makes the dropdown marker line up with the diamond marker */
+  inset-inline-start: calc(var(--_nav-item-marker-inset) + 1px);
 }
 
 #docsNav details[open] .marker {

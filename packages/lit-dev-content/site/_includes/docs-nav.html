@@ -1,6 +1,15 @@
 {% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
 {% set navSections = collections[collection] | eleventyNavigation -%}
 
+{# Is this page one of the first 3 sections? If so, expand first 3 sections #}
+{% if
+    navSection == "Introduction" or
+    navSection == 'Components' or
+    navSection == 'Templates'
+%}
+{% set expandFirstThree = true %}
+{% endif %}
+
 {% for section in navSections %}
 
   {# Are any children in this section active? #}
@@ -10,12 +19,6 @@
       {% set sectionActive = true %}
     {% endif %}
   {% endfor %}
-
-  {% set expandFirstThree = false %}
-
-  {% if page.url == "/docs/" %}
-    {% set expandFirstThree = true %}
-  {% endif %}
 
   {% if section.children | length %}
     {% set isFirstThree = section.order < 4 %}
@@ -27,14 +30,14 @@
       {% if shouldExpand %}open{% endif %}>
       <summary class="sectionHead{% if section.url == page.url %} active{% endif %}">
         <span aria-hidden="true" class="marker">›</span>{{ section.title }}
+        {% if section.labs == true %}
+          <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
+        {% endif %}
       </summary>
       <ol>
       {% for child in section.children %}
         <li{% if child.url == page.url %} class="active"{% endif %}>
           <a href="{{ child.url | url }}">{{ child.title }}</a>
-          {% if child.labs == true %}
-            <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
-          {% endif %}
         </li>
       {% endfor %}
       </ol>
