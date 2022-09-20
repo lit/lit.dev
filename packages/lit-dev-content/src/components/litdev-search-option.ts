@@ -73,6 +73,10 @@ export class LitdevSearchOption extends LitElement {
           overflow: hidden;
         }
 
+        .text {
+          font-size: .75em;
+        }
+
         .title {
           font-weight: 600;
         }
