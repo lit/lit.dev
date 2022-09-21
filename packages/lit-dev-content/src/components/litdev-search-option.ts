@@ -74,7 +74,7 @@ export class LitdevSearchOption extends LitElement {
         }
 
         .text {
-          font-size: .75em;
+          font-size: 0.75em;
         }
 
         .title {

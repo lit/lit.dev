@@ -21,6 +21,7 @@ const agloliaSearchControllerDefaultOptions = {
   hitsPerPage: 20,
   attributesToHighlight: ['*'],
   attributesToRetrieve: ['*'],
+  attributesToSnippet: [] as string[],
 };
 
 export type AlgoliaSearchControllerOptions =
@@ -36,6 +37,8 @@ export class AgloliaSearchController<T extends {}> {
   private _attributesToHighlight: string[];
   // https://www.algolia.com/doc/api-reference/api-parameters/attributesToRetrieve/
   private _attributesToRetrieve: string[];
+  // https://www.algolia.com/doc/api-reference/api-parameters/attributesToSnippet/
+  private _attributesToSnippet: string[];
 
   public get value() {
     if (this._task.status !== TaskStatus.COMPLETE) {
@@ -56,6 +59,7 @@ export class AgloliaSearchController<T extends {}> {
     this._index = this._client.initIndex(opts.index);
     this._hitsPerPage = opts.hitsPerPage;
     this._attributesToHighlight = opts.attributesToHighlight;
+    this._attributesToSnippet = opts.attributesToSnippet;
     this._attributesToRetrieve = opts.attributesToRetrieve;
     this._task = new Task(
       host,
@@ -80,6 +84,7 @@ export class AgloliaSearchController<T extends {}> {
       hitsPerPage: this._hitsPerPage,
       attributesToHighlight: this._attributesToHighlight,
       attributesToRetrieve: this._attributesToRetrieve,
+      attributesToSnippet: this._attributesToSnippet,
     };
 
     const results = await this._index.search<T>(trimmedQuery, searchOpts);

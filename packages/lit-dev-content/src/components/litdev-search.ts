@@ -33,7 +33,7 @@ interface UserFacingPageData {
 /**
  * Algolia result that returns stringified HTML that is highlighted.
  */
-type HighlightResult<T> = {
+type HighlightOrSnippetResult<T> = {
   [key in keyof T]: {
     value: string;
   };
@@ -45,9 +45,10 @@ type HighlightResult<T> = {
  */
 type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
   _highlightResult: Pick<
-    HighlightResult<UserFacingPageData>,
-    'title' | 'heading' | 'text'
+    HighlightOrSnippetResult<UserFacingPageData>,
+    'title' | 'heading'
   >;
+  _snippetResult: Pick<HighlightOrSnippetResult<UserFacingPageData>, 'text'>;
 };
 
 /**
@@ -160,9 +161,10 @@ export class LitDevSearch extends LitElement {
     () => this._searchText,
     {
       // Algolia _highlightResult adds a lot to response size
-      attributesToHighlight: ['heading', 'text', 'title'],
+      attributesToHighlight: ['heading', 'title'],
       // We don't need to return the full text of result so don't request it
       attributesToRetrieve: ['*', '-text', '-heading'],
+      attributesToSnippet: ['text'],
     }
   );
 
@@ -221,10 +223,10 @@ export class LitDevSearch extends LitElement {
           ${repeat(
             groupedSuggestions[group].suggestions,
             ({id}) => id,
-            ({relativeUrl, _highlightResult, isSubsection}) => {
+            ({relativeUrl, _highlightResult, _snippetResult, isSubsection}) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
-              const text = _highlightResult.text.value;
+              const text = _snippetResult.text.value;
               // Increment the current index.
               suggestionIndex++;
               return html`
