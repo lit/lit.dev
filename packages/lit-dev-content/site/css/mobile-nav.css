@@ -58,17 +58,3 @@ mwc-drawer:not(:defined) {
   height: 1.25rem;
   vertical-align: text-bottom;
 }
-
-/* inline icons in mobile sidebar */
-#mobileSiteNav .navItem.icon,
-#mobileSiteNav .navItem.icon>* {
-  display: inline-flex;
-}
-
-#mobileSiteNav .navItem.icon {
-  margin-inline: 4px;
-}
-
-#mobileSiteNav .navItem:not(.icon) + .navItem.icon {
-  margin-inline-start: 0;
-}

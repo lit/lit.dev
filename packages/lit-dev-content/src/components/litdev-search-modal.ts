@@ -43,6 +43,7 @@ export class LitDevSearchModal extends LitElement {
         @click=${this.showOnClick(true)}
       >
         ${searchIcon}
+        <span>Search</span>
       </button>
       <dialog @click=${this.showOnClick(false)}>
         <div id="content" @click=${(e: Event) => e.stopPropagation()}>
@@ -126,11 +127,14 @@ export class LitDevSearchModal extends LitElement {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
+      padding: 4px 12px 4px 8px;
+      border: 1px solid currentColor;
+      border-radius: 20px;
     }
 
     button span {
-      margin-inline-end: 4px;
+      margin-inline-start: 8px;
+      font-size: 0.9em;
     }
 
     dialog {
