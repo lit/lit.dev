@@ -40,11 +40,11 @@ export class LitDevSearchModal extends LitElement {
       <button
         aria-label="Site search"
         title="Site search"
-        @click=${() => (this.open = true)}
+        @click=${this.showOnClick(true)}
       >
         ${searchIcon}
       </button>
-      <dialog @click=${() => (this.open = false)}>
+      <dialog @click=${this.showOnClick(false)}>
         <div id="content" @click=${(e: Event) => e.stopPropagation()}>
           <litdev-search @close=${() => (this.open = false)}></litdev-search>
         </div>
@@ -61,7 +61,6 @@ export class LitDevSearchModal extends LitElement {
     const body = this.getBody();
     if (show) {
       this.dialogEl.showModal();
-      this.searchEl.focus();
       if (body) {
         body.style.overflow = 'hidden';
       }
@@ -73,11 +72,37 @@ export class LitDevSearchModal extends LitElement {
     }
   }
 
+  /**
+   * Returns a click handler that shows or hides the dialog.
+   *
+   * @param shouldOpen Whether or not the dialog should be opened.
+   */
+  private showOnClick(shouldOpen: boolean) {
+    return (e: Event) => {
+      // We need to stop propagation so that the initial button click does not
+      // bubble up to window and immediately close itself.
+      e.stopPropagation();
+      this.open = shouldOpen;
+    };
+  }
+
   updated(changed: PropertyValues<this>) {
     super.updated(changed);
 
     if (changed.has('open')) {
       this.showDialog(this.open);
+    }
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (window) {
+      // This is the case if an ancestor is hidden and the DOM is inert because
+      // of a hidden open dialog that is not clickable. Must be window and not
+      // body because the body is inert and does not receive clicks.
+      window.addEventListener('click', () => {
+        this.open = false;
+      });
     }
   }
 
