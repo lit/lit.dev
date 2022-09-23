@@ -62,6 +62,7 @@ let modalHydrated = false;
 const hydrateSearchModal = async () => {
   if (modalHydrated) return;
   await import('../components/litdev-search-modal.js');
+  modalHydrated = true;
 };
 
 for (const searchModal of searchModals) {
