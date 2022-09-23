@@ -230,6 +230,7 @@ The available asides are:
 * `warn`
 * `negative`
 * `info`
+* `labs`
 
 ## Code Checking
 

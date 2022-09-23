@@ -144,7 +144,7 @@ ${content}
       permalink: linkAfterHeaderWithWrapper,
       permalinkClass: 'anchor',
       permalinkSymbol: '#',
-      level: [2, 3],
+      level: [2, 3, 4],
     });
   eleventyConfig.setLibrary('md', md);
 
@@ -449,6 +449,11 @@ ${content}
       'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
     cspInlineScriptHashes.add(hash);
     return `<script type="module">${script}</script>`;
+  });
+
+  eleventyConfig.addNunjucksAsyncShortcode('algoliaid', async () => {
+    const {publicVars} = await import('lit-dev-tools-esm/lib/configs.js');
+    return publicVars.algolia.appId;
   });
 
   // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js

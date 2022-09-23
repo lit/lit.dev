@@ -41,7 +41,7 @@
       <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
     {% endif %}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://{% algoliaid %}-dsn.algolia.net/" crossorigin>
 
     <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
     <noscript><style>body[dsd-pending] {display: block !important;}</style></noscript>
@@ -81,7 +81,7 @@
 
     {% include 'footer.html' %}
 
-    {% if env.GOOGLE_ANALYTICS_ID %}
+    {% if false and env.GOOGLE_ANALYTICS_ID %}
       <script async src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
       <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date);gtag("config","{{ env.GOOGLE_ANALYTICS_ID }}");</script>
     {% endif %}

@@ -9,19 +9,22 @@ versionLinks:
   v1: lit-html/creating-directives/
 ---
 
-Directives are functions that can extend Lit by customizing how an expression renders. Using a directive in your template is as simple as calling a function:
+Directives are functions that can extend Lit by customizing how a template expression renders. Directives are useful and powerful because they can be stateful, access the DOM, be notified when templates are disconnected and reconnected, and independently update expressions outside of a render call.
+
+Using a directive in your template is as simple as calling a function in a template expression:
 
 ```js
 html`<div>
-     ${fancyDirective('some text')}
-  </div>`
+       ${fancyDirective('some text')}
+     </div>`
 ```
 
-While Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache), users can author their own custom directives. There are two kinds of directives:
+Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache). Users can also write their own custom directives.
 
-*   Simple functions
+There are two kinds of directives:
 
-*   Class-based directives
+-   Simple functions
+-   Class-based directives
 
 A simple function returns a value to render. It can take any number of arguments, or no arguments at all.
 
@@ -31,9 +34,10 @@ export noVowels = (str) => str.replaceAll(/[aeiou]/ig,'x');
 
 A class-based directive lets you do things that a simple function can't. Use a class based directive to:
 
--   Manipulate the rendered DOM directly (for example, add, remove, or reorder rendered DOM nodes).
+-   Access the rendered DOM directly (for example, add, remove, or reorder rendered DOM nodes).
 -   Persist state between renders.
--   Update the DOM asynchronously, outside of the main update cycle.
+-   Update the DOM asynchronously, outside of a render call.
+-   Clean up resources when the directive is disconnected from the DOM
 
 The rest of this page describes class-based directives.
 

@@ -122,9 +122,9 @@
     "fonts:manrope": {
       "files": [],
       "output": [
-        "site/fonts"
+        "site/fonts/manrope"
       ],
-      "command": "rm -rf temp && mkdir -p site/fonts && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/ && cd ../.. && rm -rf temp"
+      "command": "rm -rf temp && mkdir -p site/fonts/manrope && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/manrope/ && cd ../.. && rm -rf temp"
     },
     "build:ts": {
       "files": [
@@ -134,6 +134,9 @@
       ],
       "output": [
         "lib"
+      ],
+      "dependencies": [
+        "../lit-dev-tools-esm:build:ts"
       ],
       "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
@@ -192,6 +195,7 @@
   },
   "dependencies": {
     "@lit-labs/motion": "^1.0.1",
+    "@lit-labs/react": "^1.0.8",
     "@lit-labs/task": "^1.0.0",
     "@lit/localize": "^0.10.0",
     "@material/mwc-button": "^0.26.1",
@@ -201,8 +205,9 @@
     "@material/mwc-formfield": "^0.26.1",
     "@material/mwc-snackbar": "^0.26.1",
     "@material/mwc-textfield": "^0.26.1",
+    "@types/react": "^18.0.17",
+    "algoliasearch": "^4.14.2",
     "lit": "^2.1.0",
-    "minisearch": "^3.0.4",
     "postdoc-lib": "^1.0.3",
     "tarts": "^1.0.0",
     "timeago.js": "^4.0.2",

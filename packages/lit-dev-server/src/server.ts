@@ -90,7 +90,7 @@ app.use(
       // TODO(aomarks) Oddly can't access the request URL path from this API.
       // This `path` is the path on disk. Works for now, though.
       if (path.includes('/fonts/')) {
-        res.setHeader('Cache-Control', 'max-age=3600');
+        res.setHeader('Cache-Control', 'max-age=31536000');
       }
     },
   })

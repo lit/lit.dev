@@ -1,0 +1,41 @@
+# Official lightweight Node.js image
+# https://hub.docker.com/_/node
+FROM node:18-slim
+
+# Arbitrary but conventional working directory
+WORKDIR /usr/src/app
+
+# Note we isolate work across sub-packages below, organized from least to most
+# likely to change, to maximize Docker filesystem layer cache hits. For
+# example, organized this way a site content only change will usually only need
+# to execute the final Eleventy build step.
+
+# External dependencies
+COPY package*.json tsconfig.base.json ./
+COPY packages/lit-dev-tools-cjs/package*.json ./packages/lit-dev-tools-cjs/
+COPY packages/lit-dev-tools-esm/package*.json ./packages/lit-dev-tools-esm/
+COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
+COPY packages/lit-dev-discord-bot/package*.json ./packages/lit-dev-discord-bot/
+RUN npm ci
+
+# Tooling code
+COPY packages/lit-dev-tools-cjs/ ./packages/lit-dev-tools-cjs/
+COPY packages/lit-dev-tools-esm/ ./packages/lit-dev-tools-esm/
+COPY packages/lit-dev-server/ ./packages/lit-dev-server/
+COPY packages/lit-dev-discord-bot/ ./packages/lit-dev-discord-bot/
+RUN npm run build:ts -w packages/lit-dev-tools-cjs -w packages/lit-dev-tools-esm -w packages/lit-dev-server -w packages/lit-dev-discord-bot
+
+# Run the web service on container startup.
+#
+# IMPORTANT: Keep --max-old-space-size in sync with the --memory flag in
+# ./cloudbuild-main.yaml. The flag here should be set a little lower than
+# --memory (e.g. 75%) to give headroom for other uses [0].
+#
+# (Node isn't aware of Docker memory limits, so if we don't set this flag we're
+# at higher risk for termination and restart. This value determines when V8
+# decides to perform garbage collection. Node uses sysinfo totalram as the
+# default limit [1], which will be higher than our Docker memory limit.)
+#
+# [0] https://nodejs.org/api/cli.html#cli_max_old_space_size_size_in_megabytes
+# [1] https://github.com/nodejs/node/pull/25576
+CMD [ "node", "--max-old-space-size=768", "packages/lit-dev-discord-bot/lib/index.js" ]

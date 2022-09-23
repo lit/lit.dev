@@ -2,7 +2,7 @@
 title: Releases
 eleventyNavigation:
   key: Releases
-  order: 8
+  order: 9
 ---
 
 <!-- This file exists only to create a section heading.

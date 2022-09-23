@@ -145,7 +145,23 @@ Expressions in the child position can take many kinds of values:
 
 ### Primitive values
 
-Primitives values like strings, numbers, booleans, null, and undefined are converted to strings when interpolated into text content or attribute values. They are checked for equality with the previous value so the DOM is not updated if the value hasn't changed.
+Lit can render almost all [primitive values](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) and converts them to strings when interpolated into text content.
+
+Numbers values like `5` will render the string `'5'`. Bigints are treated similarly.
+
+A boolean value `true` will render `'true'`, and `false` will render `'false'`, but rendering a boolean like this is uncommon. Instead booleans are typically used in conditionals to render other appropriate values. For more on conditionals, see [Conditionals](/docs/templates/conditionals/).
+
+The empty string `''`, `null`, and `undefined` are specially treated and render nothing. See [Removing child content](#removing-child) for more information.
+
+Symbol values cannot be converted to strings and throw when placed in child expressions.
+
+### Sentinel values
+
+Lit supplies a couple of special sentinel values that can be used in child expressions.
+
+The `noChange` sentinel value does not change the expression's existing value. It is typically used in custom directives. See [Signaling no change](/docs/templates/custom-directives/#signaling-no-change) for more information.
+
+The `nothing` sentinel renders nothing. See [Removing child content](#removing-child) for more information.
 
 ### Templates
 
@@ -186,9 +202,17 @@ const page = html`
 `;
 ```
 
-### Arrays and iterables
+### Arrays or iterables of any of the supported types
 
 An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/templates/lists/).
+
+### Removing child content {#removing-child}
+
+The values `null`, `undefined`, the empty string `''`, and Lit's [nothing](/docs/api/templates/#nothing) sentinel value remove any previously rendered content and render no node.
+
+Setting or removing child content is often done based on a condition. See [Conditionally rendering nothing](/docs/templates/conditionals/#conditionally-rendering-nothing) for more information.
+
+Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Rendering no node ensures the fallback content is rendered. See [fallback content](/docs/components/shadow-dom/#fallback) for more information.
 
 ## Attribute expressions {#attribute-expressions }
 
@@ -208,9 +232,21 @@ If the expression makes up the entire attribute value, you can leave off the quo
 html`<img src="/images/${this.image}">`;
 ```
 
-### Setting attributes if data is defined { #ifDefined }
+Note, some primitive values are handled specially in attributes. Boolean values are converted to strings so, for example, `false` renders `'false'`. Both `undefined` and `null` render to an attribute as an empty string.
 
-Sometimes you want to set an attribute only if a value or set of values is available, and otherwise remove the attribute. For example, consider:
+### Boolean attributes {#boolean-attribute-expressions }
+
+To set a boolean attribute, use the `?` prefix with the attribute name. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
+
+```js
+html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
+```
+
+### Removing an attribute { #removing-attribute }
+
+Sometimes you want to set an attribute only under certain conditions, and otherwise remove the attribute. For common "boolean attributes" like `disabled` and `hidden` where you want to set the attribute to an empty string for a truthy value and remove it otherwise, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, you might require a different condition for adding or removing an attribute. 
+
+For example, consider:
 
 ```js
 html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
@@ -218,21 +254,29 @@ html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 
 If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
-You can use the [ifDefined](/docs/api/directives/#ifDefined) directive to avoid this issue:
+Lit's [nothing](/docs/api/templates/#nothing) sentinel value addresses this by removing the attribute when any expression in the attribute value evaluates to `nothing`.
+
+```js
+html`<img src="/images/${this.imagePath ?? nothing}/${this.imageFile ?? nothing}">`;
+```
+
+In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. The `??` [nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) returns the right-hand value if the left-hand value is `null` or `undefined`.
+
+Lit also provides an [ifDefined](/docs/api/directives/#ifDefined) directive which is sugar for `value ?? nothing`.
 
 ```js
 html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
 ```
 
-In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. A value is considered defined if it is not `null` or `undefined`.
-
-## Boolean attributes {#boolean-attribute-expressions }
-
-To set a boolean attribute, use the `?` prefix with the attribute name. The attribute is added if the expression evaluates to a truthy value, removed if it evaluates to a falsy value:
+You might also want to remove the attribute if the value is not truthy so that values of `false` or empty string `''` remove the attribute. For example, consider an element that has default value for `this.ariaLabel` of empty string `''`:
 
 ```js
-html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
+html`<button aria-label="${this.ariaLabel || nothing}"></button>`
 ```
+
+In this example the `aria-label` attribute is rendered only if `this.ariaLabel` is not an empty string.
+
+Setting or removing an attribute is often done based on a condition. See [Conditionally rendering nothing](/docs/templates/conditionals/#conditionally-rendering-nothing) for more information.
 
 ## Property expressions {#property-expressions}
 

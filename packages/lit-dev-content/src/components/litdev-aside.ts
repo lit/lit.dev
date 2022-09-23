@@ -10,6 +10,7 @@ import {greenCheckIcon} from '../icons/green-check-icon.js';
 import {redXIcon} from '../icons/red-x-icon.js';
 import {yellowBangIcon} from '../icons/yellow-bang-icon.js';
 import {blueInfoIcon} from '../icons/blue-info-icon.js';
+import {labsIcon} from '../icons/labs-icon.js';
 import type {AsideVariant} from 'lit-dev-tools-cjs/src/playground-plugin/plugin.js';
 export type {AsideVariant};
 
@@ -84,6 +85,8 @@ export class LitDevAside extends LitElement {
         return yellowBangIcon;
       case 'info':
         return blueInfoIcon;
+      case 'labs':
+        return labsIcon;
       default:
         const exhaustiveCheck: never = this.type;
         console.warn(

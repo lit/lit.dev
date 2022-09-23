@@ -25,6 +25,10 @@
       "path": "packages/lit-dev-server"
     },
     {
+      "name": "lit-dev-discord-bot",
+      "path": "packages/lit-dev-discord-bot"
+    },
+    {
       "name": "lit.dev",
       "path": "."
     }

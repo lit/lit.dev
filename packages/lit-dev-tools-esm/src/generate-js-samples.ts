@@ -70,7 +70,9 @@ const updateAndWriteProjectConfig = async (
     // data object).
     const newFiles: typeof project.files = {};
     for (const [fileName, options] of Object.entries(project.files)) {
-      const newFileName = fileName.replace(/\.ts$/, '.js');
+      const newFileName = fileName
+        .replace(/\.ts$/, '.js')
+        .replace(/\.tsx$/, '.jsx');
       newFiles[newFileName] = options;
     }
     project.files = newFiles;
@@ -171,7 +173,8 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
       /\/\*\s*(playground-(fold|hide)(-end)?)\s\*\//g;
     const tsPath = jsPath
       .replace(/^samples\/js\//, 'samples/')
-      .replace(/\.js$/, '.ts');
+      .replace(/\.js$/, '.ts')
+      .replace(/\.jsx$/, '.tsx');
     const ts = fsSync.readFileSync(tsPath, 'utf8');
     const tsPlaygroundComments = [...ts.matchAll(playgroundCommentRegexp)].map(
       ([, kind]) => kind
@@ -201,6 +204,9 @@ const nonTsFileGlobs = [
   // TypeScript files are handled separately
   '!*.ts',
   '!**/*.ts',
+  // TypeScript files are handled separately
+  '!*.tsx',
+  '!**/*.tsx',
   // These config files are unnecessary.
   '!tsconfig.json',
   '!base.json',

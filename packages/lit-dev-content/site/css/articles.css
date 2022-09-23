@@ -11,6 +11,11 @@ main {
  * Header Section
  * ------------------------------------ */
 
+ article h1 {
+  margin-block: 1rem;
+  margin-block-start: 0;
+ }
+
 .articleHeader {
   margin-block-end: 1.3rem;
   border-block-end: 1px solid var(--docs-rule-color);

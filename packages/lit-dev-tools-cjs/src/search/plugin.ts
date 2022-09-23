@@ -6,7 +6,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import Minisearch from 'minisearch';
 
 import {PageSearchChunker} from './PageSearchChunker.js';
 
@@ -16,10 +15,11 @@ import {PageSearchChunker} from './PageSearchChunker.js';
 type UrlToFile = Map<string, string>;
 
 /**
- * Data indexed in Minisearch.
+ * Data to be Indexed.
  */
 interface UserFacingPageData {
-  id: string;
+  id: number;
+  objectID: number;
   relativeUrl: string;
   title: string;
   heading: string;
@@ -41,24 +41,43 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   );
   const relativeDocUrlsToHtmlFile: UrlToFile = walkDir(DOCS_PATH, new Map());
 
-  /**
-   * NOTE: The minisearch options must exactly match when we create the search
-   * index on the client. Any changes here must be reflected in the
-   * `litdev-search.ts` component.
-   */
-  const searchIndex = new Minisearch<UserFacingPageData>({
-    idField: 'id',
-    fields: ['title', 'heading', 'text'],
-    storeFields: ['title', 'heading', 'relativeUrl', 'isSubsection'],
-    searchOptions: {
-      boost: {title: 1.4, heading: 1.2, text: 1},
-      prefix: true,
-      fuzzy: 0.2,
-    },
-  });
+  const ARTICLES_PATH = path.resolve(
+    __dirname,
+    // Load the article content itself not the tags pages.
+    `../../../lit-dev-content/${outputDir}/articles`
+  );
+
+  const skipFiles = (filepath: string) => {
+    // These pages are tag feeds and are not structured in a way the
+    // search indexer can understand.
+    const badPathParts = [
+      ['articles', 'tags'],
+      ['articles', 'index.html'],
+      // Articles are hoisted to /article/article-name/index.html for url
+      // readability. This file exists only for 11ty navigation plugin.
+      ['articles', 'article'],
+    ];
+    if (
+      badPathParts.some((badPathpart) => {
+        const badPath = path.join(...badPathpart);
+        return filepath.includes(badPath);
+      })
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const relativeLinksToHTMLFile: UrlToFile = walkDir(
+    ARTICLES_PATH,
+    relativeDocUrlsToHtmlFile,
+    skipFiles
+  );
 
   let id = 0;
-  for (const [relUrl, filePath] of relativeDocUrlsToHtmlFile.entries()) {
+  const searchIndex: UserFacingPageData[] = [];
+  for (const [relUrl, filePath] of relativeLinksToHTMLFile.entries()) {
     if (filePath.includes('/internal/')) {
       // Skip internal pages.
       continue;
@@ -85,8 +104,9 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
 
         // Populate the search index. This is the text we fuzzy search and user
         // facing data to display in the suggested results.
-        searchIndex.add({
-          id: `${id++}`,
+        searchIndex.push({
+          id: id++,
+          objectID: id,
           title: title.replace(/ – Lit$/, ''),
           heading,
           relativeUrl: relUrl.replace(/index.html$/, '') + (fragment ?? ''),
@@ -114,20 +134,28 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
  *
  * @param dir Directory to recursively walk
  * @param results Map we're mutating with relative url and absolute path.
+ * @param shouldSkip Function that takes an absolute OS filepath and returns whether or not it should be indexed.
  * @returns mapping between lit.dev relative url and index.html file paths.
  */
-function walkDir(dir: string, results: UrlToFile): UrlToFile {
+function walkDir(
+  dir: string,
+  results: UrlToFile,
+  shouldSkip = (_path: string) => false
+): UrlToFile {
   const dirContents = fs.readdirSync(dir);
   for (const contents of dirContents) {
+    if (shouldSkip(path.join(dir, contents))) {
+      continue;
+    }
     if (path.extname(contents) === '.html') {
-      const relPathBase = dir.match(/\/docs.*/)?.[0];
+      const relPathBase = dir.match(/(\/docs.*)|(\/articles.*)/)?.[0];
       if (!relPathBase) {
         throw new Error(`Failed to match relative path.`);
       }
       const relPath = `${relPathBase}/${contents}`;
       results.set(relPath, path.resolve(dir, contents));
     } else if (path.extname(contents) === '') {
-      walkDir(path.resolve(dir, contents), results);
+      walkDir(path.resolve(dir, contents), results, shouldSkip);
     }
   }
   return results;

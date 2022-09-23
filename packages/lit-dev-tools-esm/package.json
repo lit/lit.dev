@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "build": "wireit",
-    "build:ts": "wireit"
+    "build:ts": "wireit",
+    "publish-search-index": "wireit"
   },
   "wireit": {
     "build": {
@@ -31,6 +32,17 @@
       ],
       "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
+    },
+    "publish-search-index": {
+      "dependencies": [
+        "../lit-dev-content:build",
+        "build"
+      ],
+      "files": [
+        "lib/upload-algolia-index.js",
+        "../lit-dev-content/_site/searchIndex.json"
+      ],
+      "command": "node lib/upload-algolia-index.js"
     }
   },
   "dependencies": {
@@ -38,6 +50,7 @@
     "@types/co-body": "^6.1.0",
     "@types/prettier": "^2.3.2",
     "@web/dev-server": "^0.1.6",
+    "algoliasearch": "^4.14.2",
     "chokidar": "^3.5.2",
     "co-body": "^6.1.0",
     "fast-glob": "^3.2.9",

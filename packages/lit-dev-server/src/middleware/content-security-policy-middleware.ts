@@ -109,6 +109,8 @@ export const contentSecurityPolicyMiddleware = (
       `'self'`,
       'https://unpkg.com/',
       'https://www.google-analytics.com/',
+      'https://*.algolia.net/',
+      'https://*.algolianet.com/',
       opts.githubApiOrigin,
       ...(opts.devMode ? [`ws:`] : []),
     ].join(' ')}`,
@@ -122,13 +124,6 @@ export const contentSecurityPolicyMiddleware = (
     // CodeMirror will use, and provide them here using 'unsafe-hashes'? They
     // look quite dynamic though.
     `style-src 'self' 'unsafe-inline'`,
-
-    // TODO(aomarks) We need fonts.gstatic.com for fetching Open Sans (Manrope
-    // is already hosted locally). We should probably just host Open Sans
-    // ourselves, because there is no cross-origin caching benefit (see
-    // https://developers.google.com/web/updates/2020/10/http-cache-partitioning),
-    // and it would be one fewer connection to make.
-    `font-src 'self' https://fonts.gstatic.com/`,
 
     `img-src ${[
       `'self'`,
