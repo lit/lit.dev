@@ -109,6 +109,8 @@ export const contentSecurityPolicyMiddleware = (
       `'self'`,
       'https://unpkg.com/',
       'https://www.google-analytics.com/',
+      'https://*.algolia.net/',
+      'https://*.algolianet.com/',
       opts.githubApiOrigin,
       ...(opts.devMode ? [`ws:`] : []),
     ].join(' ')}`,

@@ -1,0 +1,48 @@
+{
+  "name": "lit-dev-discord-bot",
+  "private": true,
+  "version": "0.0.0",
+  "description": "the lit bot on the Lit Discord!",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "scripts": {
+    "build": "wireit",
+    "build:ts": "wireit",
+    "start": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc --build --pretty",
+      "files": [
+        "src/**/*.ts",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib/**/*.js",
+        "lib/.tsbuildinfo"
+      ],
+      "dependencies": [
+        "../lit-dev-tools-esm:build:ts"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "start": {
+      "command": "node ./lib/index.js",
+      "dependencies": [
+        "build"
+      ]
+    }
+  },
+  "dependencies": {
+    "algoliasearch": "^4.14.2",
+    "discord.js": "^14.3.0"
+  }
+}
