@@ -17,13 +17,13 @@ export const renderAlgoliaSnippet = (
   snippet: string
 ): TemplateResult | string => {
   // Algloia snippets have stringified HTML like so:
-  // 'BAz <em>Foo</em> bar <em>Foo</em>z'.
+  // 'Baz <em>Foo</em> bar <em>Foo</em>z'.
   // It is always an <em>
   const match = snippet.match(/<em>(.*?)<\/em>/);
   if (!match || match.index === undefined) {
     return snippet;
   }
-  const fullMatch = match[0]; // Baz <em>Foo</em> bar <em>Foo</em>
+  const fullMatch = match[0]; // <em>Foo</em>
   const emContent = match[1]; // Foo
   const start = snippet.slice(0, match.index); // Baz
   const end = snippet.slice(match.index + fullMatch.length); // bar <em>Foo</em>z
