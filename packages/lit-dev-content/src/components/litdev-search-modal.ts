@@ -35,6 +35,18 @@ export class LitDevSearchModal extends LitElement {
    */
   getBody = () => document?.body;
 
+  private _onWindowClick = () => (this.open = false);
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (window) {
+      // This is the case if an ancestor is hidden and the DOM is inert because
+      // of a hidden open dialog that is not clickable. Must be window and not
+      // body because the body is inert and does not receive clicks.
+      window.addEventListener('click', this._onWindowClick);
+    }
+  }
+
   render() {
     return html`
       <button
@@ -95,15 +107,10 @@ export class LitDevSearchModal extends LitElement {
     }
   }
 
-  connectedCallback(): void {
-    super.connectedCallback();
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
     if (window) {
-      // This is the case if an ancestor is hidden and the DOM is inert because
-      // of a hidden open dialog that is not clickable. Must be window and not
-      // body because the body is inert and does not receive clicks.
-      window.addEventListener('click', () => {
-        this.open = false;
-      });
+      window.removeEventListener('click', this._onWindowClick);
     }
   }
 
