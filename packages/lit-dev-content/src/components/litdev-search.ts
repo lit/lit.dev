@@ -55,8 +55,8 @@ type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
  * Metadata for the type of search suggestion chip to display.
  */
 interface SuggestionType {
-  tag: string;
-  type: string;
+  tag: 'other' | 'api' | 'docs' | 'article';
+  type: 'Other' | 'API' | 'Docs' | 'Article';
 }
 
 /**
