@@ -37,7 +37,7 @@ Feedback is currently being solicited on the following Labs packages:
 <td>React integration helpers for custom elements and reactive controllers.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/react#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Freact%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/react#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Freact%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -55,7 +55,7 @@ Mixin for Lit that integrates with the speculative [Scoped CustomElementRegistry
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/scoped-registry-mixin#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fscoped-registry-mixin%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/scoped-registry-mixin#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fscoped-registry-mixin%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -73,7 +73,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions/3302 "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcontext%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcontext%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -89,7 +89,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>Animation helpers for Lit templates.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/motion#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fmotion%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/motion#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fmotion%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -104,7 +104,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>A package for server-side rendering Lit templates and components.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](/docs/ssr/overview "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fssr%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](/docs/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fssr%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -118,7 +118,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>A reactive controller for handling asynchronous tasks.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftask%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftask%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -132,7 +132,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>An element that provides viewport-based virtualization (including virtual scrolling).</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fvirtualizer%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fvirtualizer%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -146,7 +146,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>A set of reactive controllers that facilitate using the platform observer objects.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fobservers%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fobservers%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -160,7 +160,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>A component-oriented router API vended as reactive controllers.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Frouter%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Frouter%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -178,7 +178,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Feleventy-plugin-lit%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Feleventy-plugin-lit%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -192,7 +192,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A package containing testing utilities for Lit including generated server-side rendered fixtures.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/testing#readme "Docs")<br>[💬&nbsp;Discussions](https://github.com/lit/lit/discussions "Discussions")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftesting%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/testing#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftesting%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
