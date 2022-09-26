@@ -4,6 +4,7 @@ eleventyNavigation:
   key: Lit Labs
   parent: Related libraries
   order: 3
+  labs: true
 ---
 
 Lit Labs is an umbrella for Lit packages under development that we are actively seeking feedback on. While we encourage real-world use in order to help the feedback process, please note:
