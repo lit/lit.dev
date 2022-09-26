@@ -45,6 +45,7 @@ export default [
       'lib/components/playground-elements.js',
       'lib/components/resize-bar.js',
       'lib/components/litdev-playground-page.js',
+      'lib/components/search-screen.js',
       'lib/github/github-signin-receiver-page.js',
       'lib/global/hydrate-common-components.js',
       'lib/pages/docs.js',

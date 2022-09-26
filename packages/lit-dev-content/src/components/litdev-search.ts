@@ -21,7 +21,7 @@ import type {LitdevSearchOption} from './litdev-search-option.js';
  *
  * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
-interface UserFacingPageData {
+export interface UserFacingPageData {
   id: number;
   relativeUrl: string;
   title: string;
@@ -33,7 +33,7 @@ interface UserFacingPageData {
 /**
  * Algolia result that returns stringified HTML that is highlighted.
  */
-type HighlightOrSnippetResult<T> = {
+export type HighlightOrSnippetResult<T> = {
   [key in keyof T]: {
     value: string;
   };
@@ -43,7 +43,7 @@ type HighlightOrSnippetResult<T> = {
  * Subset of the suggestion returned by Algolia when there is a matching search
  * result.
  */
-type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
+export type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
   _highlightResult: Pick<
     HighlightOrSnippetResult<UserFacingPageData>,
     'title' | 'heading'
@@ -383,9 +383,8 @@ export class LitDevSearch extends LitElement {
 
     // No element is selected. Fallback behavior is to navigate to the first
     // suggestion.
-    const firstSuggestion = this._searchController.value[0];
     this._selectedIndex = 0;
-    this._navigate(firstSuggestion.relativeUrl);
+    this._navigate(`/search/?q=${this._searchText}`);
   }
 
   /**
