@@ -6,13 +6,13 @@ eleventyNavigation:
   order: 3
 ---
 
-Lit Labs is an umbrella for Lit packages under development that we are actively seeking feedback on. While we encourage real-world use in order to help the feedback process, please note the following important aspects of Labs packages:
+Lit Labs is an umbrella for Lit packages under development that we are actively seeking feedback on. While we encourage real-world use in order to help the feedback process, please note:
 
 - Lit Labs projects are published under the `@lit-labs` npm scope.
 - Breaking changes are likely to occur more frequently than in non-labs packages, but they will still respect standard semantic versioning guildelines and all changes will be published to the CHANGELOG files.
-- While bugs in non-lab packages are typically fixed with higher priority, we still treat labs bugs as high priority, and both are triaged as part of the same process.
-- When a Lit Labs project is ready to be graduated, it will begin publishing under the `@lit` scope—for example, the [`@lit/localize`](/docs/localization/overview/) package started out as a Lit Labs project. Once a package graduates, its first version under the `@lit` scope will match that of the latest in `@lit-labs` but only the `@lit` version will receive new updates.
-- We may decide to deprecate a Lit Labs project. In such cases, we wil notify the community and a deprecation warning will be added to the npm package. It will receive bug fix support for at least 6 months. A record of historical labs packages will be kept on this page.
+- While we strive to address all bugs in a timely fashion, bugs in non-labs projects typically receive higher priority than bugs in labs projects.
+- When a Lit Labs project is ready to graduate out of labs, we'll begin publishing it under the `@lit` scope. (For example, `@lit-labs/task` might graduate to `@lit/task`.) Once a package graduates, its first version under the `@lit` scope will match that of the latest in `@lit-labs`—but only the `@lit` version will receive subsequent updates.
+- We may decide to deprecate a Lit Labs project. In such cases, we will notify the community, and a deprecation warning will be added to the npm package. The deprecated package will receive bug fix support for at least 6 months. A record of historical labs packages will be kept on this page.
 
 Feedback is currently being solicited on the following Labs packages:
 
