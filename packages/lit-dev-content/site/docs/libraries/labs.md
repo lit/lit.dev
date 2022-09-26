@@ -28,6 +28,23 @@ Feedback is currently being solicited on the following Labs packages:
 <thead><tr><th>Package</th><th>Description</th><th>Links</th></tr></thead>
 <tbody>
 <tr class="subheading"><td colspan=3>Near graduation</td></tr>
+<tr>
+<td>
+
+[context](https://www.npmjs.com/package/@lit-labs/context)
+
+</td>
+<td>
+
+A package containing controllers and decorators for using the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
+
+</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcontext%5D+in%3Atitle "Issues")
+
+</td>
+</tr>
 
 <tr>
 <td>
@@ -61,25 +78,25 @@ Mixin for Lit that integrates with the speculative [Scoped CustomElementRegistry
 </td>
 </tr>
 
+<tr class="subheading"><td colspan=3>Under active development</td></tr>
+
 <tr>
 <td>
 
-[context](https://www.npmjs.com/package/@lit-labs/context)
+[eleventy-plugin-lit](https://www.npmjs.com/package/@lit-labs/eleventy-plugin-lit)
 
 </td>
 <td>
 
-A package containing controllers and decorators for using the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
+A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at build time, with optional hydration.
 
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcontext%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Feleventy-plugin-lit%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
-
-<tr class="subheading"><td colspan=3>Under active development</td></tr>
 
 <tr>
 <td>
@@ -91,49 +108,6 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/motion#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fmotion%5D+in%3Atitle "Issues")
-
-</td>
-</tr>
-
-
-<tr>
-<td>
-
-[ssr](https://www.npmjs.com/package/@lit-labs/ssr)
-
-</td>
-<td>A package for server-side rendering Lit templates and components.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](/docs/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fssr%5D+in%3Atitle "Issues")
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-[task](https://www.npmjs.com/package/@lit-labs/task)
-
-</td>
-<td>A reactive controller for handling asynchronous tasks.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftask%5D+in%3Atitle "Issues")
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-[virtualizer](https://www.npmjs.com/package/@lit-labs/virtualizer)
-
-</td>
-<td>An element that provides viewport-based virtualization (including virtual scrolling).</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fvirtualizer%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -169,17 +143,27 @@ A package containing controllers and decorators for using the [Context Protocol]
 <tr>
 <td>
 
-[eleventy-plugin-lit](https://www.npmjs.com/package/@lit-labs/eleventy-plugin-lit)
+[ssr](https://www.npmjs.com/package/@lit-labs/ssr)
 
 </td>
-<td>
-
-A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at build time, with optional hydration.
-
-</td>
+<td>A package for server-side rendering Lit templates and components.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Feleventy-plugin-lit%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](/docs/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fssr%5D+in%3Atitle "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+[task](https://www.npmjs.com/package/@lit-labs/task)
+
+</td>
+<td>A reactive controller for handling asynchronous tasks.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftask%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -194,6 +178,20 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/testing#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftesting%5D+in%3Atitle "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+[virtualizer](https://www.npmjs.com/package/@lit-labs/virtualizer)
+
+</td>
+<td>An element that provides viewport-based virtualization (including virtual scrolling).</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fvirtualizer%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
