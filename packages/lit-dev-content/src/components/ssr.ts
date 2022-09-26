@@ -8,8 +8,8 @@
 // graph is separate from the client bundle.
 
 import './litdev-tutorial-card.js';
-import './litdev-search.js';
 import './lazy-svg.js';
 import './litdev-version-selector.js';
 import './litdev-ripple-icon-button.js';
 import './litdev-aside.js';
+import '../components/litdev-search-modal.js';

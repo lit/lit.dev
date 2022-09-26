@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+import type {LitDevSearchModal} from '../components/litdev-search-modal.js';
 import {onMediaQueryOnce, onIdle} from '../util/hydration-helpers.js';
 
 // hydrates on desktop and mobile
@@ -16,21 +17,6 @@ const hydrateCommonComponents = () => {
 const hydrateMobileNav = () => {
   import('@material/mwc-drawer');
 };
-
-const searches = Array.from(document.body.querySelectorAll('litdev-search'));
-
-// hydrates the litdev-search on focus
-for (const search of searches) {
-  search.addEventListener(
-    'focus',
-    async () => {
-      await import('../components/litdev-search.js');
-
-      search.focus();
-    },
-    {once: true}
-  );
-}
 
 // When in mobile and in the docs section, opens the <details> element in the
 // mobile nav drawer corresponding to the current docs page. Additionally, if
@@ -62,6 +48,73 @@ const activateMobileDetails = async () => {
     {once: true}
   );
 };
+
+// hydrate the search modal
+
+// There are 2 modal buttons on the page. In the header and in the mobile nav.
+// We need to open the one in the current view or else it'll open a hidden
+// modal that makes the dom inert.
+const searchModals = document.querySelectorAll(
+  'litdev-search-modal'
+) as NodeListOf<LitDevSearchModal>;
+let modalHydrated = false;
+
+const hydrateSearchModal = async () => {
+  if (modalHydrated) return;
+  await import('../components/litdev-search-modal.js');
+  modalHydrated = true;
+};
+
+for (const searchModal of searchModals) {
+  searchModal?.addEventListener('focus-within', hydrateSearchModal, {
+    once: true,
+  });
+  searchModal?.addEventListener('pointerenter', hydrateSearchModal, {
+    once: true,
+  });
+
+  searchModal?.addEventListener(
+    'click',
+    () => {
+      searchModal.open = true;
+      hydrateSearchModal();
+    },
+    {
+      once: true,
+    }
+  );
+}
+
+/**
+ * This will listen for the CMD or CTRL+K keypress and open the active search
+ * modal. If the modal is not hydrated it will hydrate it. This event listener
+ * does not get removed because it needs to determine which of the two modals to
+ * open based on the current viewport (mobile or desktop).
+ */
+const hydrateAndOpenOnCMDK = async (e: KeyboardEvent) => {
+  if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+    e.preventDefault();
+    const isMobile = window.matchMedia('(max-width: 864px)').matches;
+    const navBar = isMobile ? 'mobileSiteNav' : 'desktopNav';
+
+    // We need to make sure we open the currently visible modal or else it'll
+    // open a hidden modal that makes the dom inert.
+    const searchModal = document.querySelector(
+      `#${navBar} litdev-search-modal`
+    ) as LitDevSearchModal;
+    const drawer = document.body.querySelector('mwc-drawer');
+
+    if (isMobile && drawer) {
+      // Drawer needs to be visible for modal to be visible. There is a bug in
+      // FF where the modal becomes the width of the drawer on first render.
+      drawer.open = true;
+    }
+    searchModal.open = true;
+    await hydrateSearchModal();
+  }
+};
+
+document.addEventListener('keydown', hydrateAndOpenOnCMDK);
 
 const onMobileView = () => {
   onIdle(hydrateMobileNav);
