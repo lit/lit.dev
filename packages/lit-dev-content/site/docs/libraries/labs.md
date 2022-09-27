@@ -78,7 +78,7 @@ Mixin for Lit that integrates with the speculative [Scoped CustomElementRegistry
 </td>
 </tr>
 
-<tr class="subheading"><td colspan=3>Under active development</td></tr>
+<tr class="subheading"><td colspan=3>Under development</td></tr>
 
 <tr>
 <td>
@@ -122,20 +122,6 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fobservers%5D+in%3Atitle "Issues")
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-[router](https://www.npmjs.com/package/@lit-labs/router)
-
-</td>
-<td>A component-oriented router API vended as reactive controllers.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Frouter%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -192,6 +178,22 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fvirtualizer%5D+in%3Atitle "Issues")
+
+</td>
+</tr>
+
+<tr class="subheading"><td colspan=3>Prototyping</td></tr>
+
+<tr>
+<td>
+
+[router](https://www.npmjs.com/package/@lit-labs/router)
+
+</td>
+<td>A component-oriented router API vended as reactive controllers.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Frouter%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
