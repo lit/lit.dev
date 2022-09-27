@@ -84,5 +84,5 @@ module.exports = async () => {
   /*
    * tutorial data in order of rendering on the page
    */
-  return {eleventyComputed: {tutorials}};
+  return {eleventyComputed: {tutorials, tutorialsJson: JSON.stringify(tutorials)}};
 };

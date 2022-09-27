@@ -34,10 +34,13 @@ if (!BOT_CLIENT_SECRET) {
 
 interface Suggestion {
   id: number;
+  objectID: number;
   relativeUrl: string;
-  heading: string;
-  isSubsection: boolean;
   title: string;
+  heading: string;
+  text: string;
+  parentID?: string;
+  docType: {type: string, tag: string};
 }
 
 type PublishableCommand = Omit<
@@ -104,7 +107,7 @@ const handleDocsAutocompleteInteraction = async (
   // Transform the hits' relative URL to objects that are readable and
   // linkable outside of lit.dev.
   const results = searchRes.hits.map((hit) => {
-    const readableText = hit.isSubsection
+    const readableText = !!hit.parentID
       ? `${hit.title} - ${hit.heading}`
       : hit.title;
 

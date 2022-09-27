@@ -21,13 +21,30 @@ import type {LitdevSearchOption} from './litdev-search-option.js';
  *
  * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
+interface DocType<T extends string, U extends string> {
+  type: T;
+  tag: U;
+}
+
+type DocTypes =
+  | DocType<'Article', 'article'>
+  | DocType<'Tutorial', 'tutorial'>
+  | DocType<'Docs', 'docs'>
+  | DocType<'API', 'api'>
+  | DocType<'Other', 'other'>;
+
+/**
+ * Data to be Indexed.
+ */
 interface UserFacingPageData {
   id: number;
+  objectID: string;
   relativeUrl: string;
   title: string;
   heading: string;
   text: string;
-  isSubsection: boolean;
+  parentID?: string;
+  docType: DocTypes;
 }
 
 /**
@@ -52,20 +69,56 @@ type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
 };
 
 /**
- * Metadata for the type of search suggestion chip to display.
- */
-interface SuggestionType {
-  tag: 'other' | 'api' | 'docs' | 'article';
-  type: 'Other' | 'API' | 'Docs' | 'Article';
-}
-
-/**
- * Search suggestions grouped by title and content type.
+ * Search suggestions grouped by document.
  */
 interface SuggestionGroup {
   suggestions: Suggestion[];
   type: string;
   tag: string;
+}
+
+class SuggestionGroups {
+  private orderedPageIds: string[] = [];
+  private orderedTutorialPageIds: string[] = [];
+  private pageIdToSuggestionGroup: Map<string, SuggestionGroup> = new Map();
+
+  constructor(suggestions: Suggestion[]) {
+    suggestions.forEach((suggestion) => this.add(suggestion));
+  }
+
+  add(suggestion: Suggestion) {
+    const id = suggestion.parentID ?? suggestion.objectID;
+    const suggestionGroup = this.pageIdToSuggestionGroup.get(id) ?? {
+      type: suggestion.docType.type,
+      tag: suggestion.docType.tag,
+      suggestions: [],
+    };
+
+    if (!suggestionGroup.suggestions.length) {
+      this.pageIdToSuggestionGroup.set(id, suggestionGroup);
+
+      if (suggestion.docType.tag === 'tutorial') {
+        this.orderedTutorialPageIds.push(id);
+      } else {
+        this.orderedPageIds.push(id);
+      }
+    }
+
+    if (!suggestion.parentID) {
+      // If it's the title link, prepend it so it shows up first.
+      suggestionGroup.suggestions.unshift(suggestion);
+    } else {
+      suggestionGroup.suggestions.push(suggestion);
+    }
+  }
+
+  get(key: string): SuggestionGroup {
+    return this.pageIdToSuggestionGroup.get(key)!;
+  }
+
+  keys(): string[] {
+    return [...this.orderedPageIds, ...this.orderedTutorialPageIds];
+  }
 }
 
 /**
@@ -74,62 +127,6 @@ interface SuggestionGroup {
  *
  * e.g. LifecycleDocs or ReactiveElementAPI
  */
-interface SuggestionGroups {
-  [group: string]: SuggestionGroup;
-}
-
-/**
- * Used to mark a search page suggestion with the API chip.
- */
-function isApiLink(url: string) {
-  return url.startsWith('/docs/api/');
-}
-
-/**
- * Used to mark a search page suggestion with the DOC chip.
- */
-function isDocsLink(url: string) {
-  return url.startsWith('/docs/') && !isApiLink(url);
-}
-
-/**
- * Used to mark a search page suggestion with the ARTICLE chip.
- */
-function isArticleLink(url: string) {
-  return url.startsWith('/articles/');
-}
-
-/**
- * Determines the type of search suggestion chip to display.
- *
- * @param url The relative URL of the page.
- * @returns An object that determines the type of content, and the class used
- *     for determining the relevant tag color.
- */
-const getSuggestionType = (url: string): SuggestionType => {
-  let suggestionType: SuggestionType = {
-    tag: 'other',
-    type: 'Other',
-  };
-  if (isApiLink(url)) {
-    suggestionType = {
-      tag: 'api',
-      type: 'API',
-    };
-  } else if (isDocsLink(url)) {
-    suggestionType = {
-      tag: 'docs',
-      type: 'Docs',
-    };
-  } else if (isArticleLink(url)) {
-    suggestionType = {
-      tag: 'article',
-      type: 'Article',
-    };
-  }
-
-  return suggestionType;
-};
 
 /**
  * Search input component that can fuzzy search the site.
@@ -165,6 +162,7 @@ export class LitDevSearch extends LitElement {
       // We don't need to return the full text of result so don't request it
       attributesToRetrieve: ['*', '-text', '-heading'],
       attributesToSnippet: ['text'],
+      index: 'lit_dev_test',
     }
   );
 
@@ -207,23 +205,26 @@ export class LitDevSearch extends LitElement {
    * Renders the search combobox suggestions grouped by title and content type.
    */
   private _renderGroups() {
-    const groupedSuggestions = this._groupSuggestions();
-    const groups = Object.keys(groupedSuggestions);
+    const groupedSuggestions = new SuggestionGroups(
+      this._searchController.value
+    );
+    const pageIds = groupedSuggestions.keys();
 
     // for aria-activedescendant we need each item in each group to have a
     // unique id. So we keep a running counter across all groups.
     let suggestionIndex = -1;
 
     return repeat(
-      groups,
-      (group) => group,
-      (group) => {
+      pageIds,
+      (pageId) => pageId,
+      (pageId) => {
+        const group = groupedSuggestions.get(pageId);
         return html`<section class="group">
-          ${this._renderGroupTitle(groupedSuggestions[group])}
+          ${this._renderGroupTitle(group)}
           ${repeat(
-            groupedSuggestions[group].suggestions,
-            ({id}) => id,
-            ({relativeUrl, _highlightResult, _snippetResult, isSubsection}) => {
+            group.suggestions,
+            ({objectID}) => objectID,
+            ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
               const text = _snippetResult.text.value;
@@ -233,14 +234,14 @@ export class LitDevSearch extends LitElement {
                 <litdev-search-option
                   id=${suggestionIndex}
                   ?checked=${this._selectedIndex === suggestionIndex}
-                  .relativeUrl="${relativeUrl}"
-                  .title="${title}"
-                  .heading="${heading}"
-                  .text="${text}"
-                  .isSubsection="${isSubsection}"
+                  .relativeUrl=${relativeUrl}
+                  .title=${title}
+                  .heading=${heading}
+                  .text=${text}
+                  .isSubsection=${!!parentID}
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
-                  @click="${() => this._navigate(relativeUrl)}"
+                  @click=${() => this._navigate(relativeUrl)}
                 ></litdev-search-option>
               `;
             }
@@ -260,39 +261,6 @@ export class LitDevSearch extends LitElement {
         <span class="tag ${group.tag}"> ${group.type} </span>
       </span>
     </div>`;
-  }
-
-  /**
-   * Groups the current search suggestions together by document.
-   *
-   * @returns A collection of SuggestionGroups grouped by title and content type
-   *    (essentially by document).
-   */
-  private _groupSuggestions() {
-    const suggestions = this._searchController.value;
-    const groupedSuggestions: SuggestionGroups = {};
-
-    for (const suggestion of suggestions) {
-      const suggestionType = getSuggestionType(suggestion.relativeUrl);
-      // Group suggestions by title and content type. This should be unique
-      // enough until we are able to group by URL at the index level.
-      const group = `${suggestion.title}${suggestionType.tag}`;
-
-      // If the group doesn't exist, create it.
-      groupedSuggestions[group] = groupedSuggestions[group] || {
-        suggestions: [],
-        ...suggestionType,
-      };
-
-      if (!suggestion.isSubsection) {
-        // If it's the title link, prepend it so it shows up first.
-        groupedSuggestions[group].suggestions.unshift(suggestion);
-      } else {
-        groupedSuggestions[group].suggestions.push(suggestion);
-      }
-    }
-
-    return groupedSuggestions;
   }
 
   /**
@@ -544,6 +512,11 @@ export class LitDevSearch extends LitElement {
     .group .tag.docs {
       color: white;
       background-color: #324fff;
+    }
+
+    .group .tag.tutorial {
+      color: black;
+      background-color: #40dcff;
     }
 
     @media (max-width: 864px) {

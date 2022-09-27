@@ -21,4 +21,10 @@ if (!ALGOLIA_WRITE_KEY) {
 
 const client = algolia(publicVars.algolia.appId, ALGOLIA_WRITE_KEY);
 const index = client.initIndex(publicVars.algolia.index);
-await index.replaceAllObjects(searchIndex);
+await Promise.all([
+  index.setSettings({
+    attributeForDistinct: 'parentID',
+    attributesForFaceting: ['title', 'docType.tag'],
+  }),
+  index.replaceAllObjects(searchIndex),
+]);
