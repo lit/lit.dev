@@ -187,6 +187,34 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <tr>
 <td>
 
+[analyzer](https://www.npmjs.com/package/@lit-labs/analyzer)
+
+</td>
+<td>A static analyzer for Lit.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/analyzer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fanalyzer%5D+in%3Atitle "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+[cli](https://www.npmjs.com/package/@lit-labs/cli)
+
+</td>
+<td>Command line tool for Lit.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/cli#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcli%5D+in%3Atitle "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 [router](https://www.npmjs.com/package/@lit-labs/router)
 
 </td>
