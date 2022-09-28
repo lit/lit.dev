@@ -124,7 +124,7 @@ export class LitDevSearch extends LitElement {
       // Algolia _highlightResult adds a lot to response size
       attributesToHighlight: ['heading', 'title'],
       // We don't need to return the full text of result so don't request it
-      attributesToRetrieve: ['*', '-text', '-heading', '-id'],
+      attributesToRetrieve: ['*', '-text', '-heading'],
       attributesToSnippet: ['text'],
     }
   );
