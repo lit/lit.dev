@@ -63,7 +63,7 @@ type HighlightOrSnippetResult<T> = {
  * Subset of the suggestion returned by Algolia when there is a matching search
  * result.
  */
-type Suggestion = Omit<UserFacingPageData, 'text' | 'heading' | 'id'> & {
+type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
   _highlightResult: Pick<
     HighlightOrSnippetResult<UserFacingPageData>,
     'title' | 'heading'
