@@ -16,18 +16,38 @@ import './litdev-search-option.js';
 import type {LitdevSearchOption} from './litdev-search-option.js';
 
 /**
- * Representation of each document indexed by our PageChunker which is published
+ * Generic that denotes the type of document.
+ */
+interface DocType<T extends string, U extends string> {
+  type: T;
+  tag: U;
+}
+
+/**
+ * The types of documents we index. Used to generate the search tags on the
+ * frontend and used to re-rank results on the frontend.
+ */
+type DocTypes =
+  | DocType<'Article', 'article'>
+  | DocType<'Tutorial', 'tutorial'>
+  | DocType<'Docs', 'docs'>
+  | DocType<'API', 'api'>
+  | DocType<'Other', 'other'>;
+
+/**
+ * Representation of each record indexed by our PageChunker which is published
  * to Algolia.
  *
  * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
 interface UserFacingPageData {
-  id: number;
+  objectID: string;
   relativeUrl: string;
   title: string;
   heading: string;
   text: string;
-  isSubsection: boolean;
+  parentID?: string;
+  docType: DocTypes;
 }
 
 /**
@@ -43,21 +63,13 @@ type HighlightOrSnippetResult<T> = {
  * Subset of the suggestion returned by Algolia when there is a matching search
  * result.
  */
-type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
+type Suggestion = Omit<UserFacingPageData, 'text' | 'heading' | 'id'> & {
   _highlightResult: Pick<
     HighlightOrSnippetResult<UserFacingPageData>,
     'title' | 'heading'
   >;
   _snippetResult: Pick<HighlightOrSnippetResult<UserFacingPageData>, 'text'>;
 };
-
-/**
- * Metadata for the type of search suggestion chip to display.
- */
-interface SuggestionType {
-  tag: 'other' | 'api' | 'docs' | 'article';
-  type: 'Other' | 'API' | 'Docs' | 'Article';
-}
 
 /**
  * Search suggestions grouped by title and content type.
@@ -77,59 +89,6 @@ interface SuggestionGroup {
 interface SuggestionGroups {
   [group: string]: SuggestionGroup;
 }
-
-/**
- * Used to mark a search page suggestion with the API chip.
- */
-function isApiLink(url: string) {
-  return url.startsWith('/docs/api/');
-}
-
-/**
- * Used to mark a search page suggestion with the DOC chip.
- */
-function isDocsLink(url: string) {
-  return url.startsWith('/docs/') && !isApiLink(url);
-}
-
-/**
- * Used to mark a search page suggestion with the ARTICLE chip.
- */
-function isArticleLink(url: string) {
-  return url.startsWith('/articles/');
-}
-
-/**
- * Determines the type of search suggestion chip to display.
- *
- * @param url The relative URL of the page.
- * @returns An object that determines the type of content, and the class used
- *     for determining the relevant tag color.
- */
-const getSuggestionType = (url: string): SuggestionType => {
-  let suggestionType: SuggestionType = {
-    tag: 'other',
-    type: 'Other',
-  };
-  if (isApiLink(url)) {
-    suggestionType = {
-      tag: 'api',
-      type: 'API',
-    };
-  } else if (isDocsLink(url)) {
-    suggestionType = {
-      tag: 'docs',
-      type: 'Docs',
-    };
-  } else if (isArticleLink(url)) {
-    suggestionType = {
-      tag: 'article',
-      type: 'Article',
-    };
-  }
-
-  return suggestionType;
-};
 
 /**
  * Search input component that can fuzzy search the site.
@@ -160,10 +119,12 @@ export class LitDevSearch extends LitElement {
     this,
     () => this._searchText,
     {
+      // DO NOT SUBMIT
+      index: 'lit_dev_test',
       // Algolia _highlightResult adds a lot to response size
       attributesToHighlight: ['heading', 'title'],
       // We don't need to return the full text of result so don't request it
-      attributesToRetrieve: ['*', '-text', '-heading'],
+      attributesToRetrieve: ['*', '-text', '-heading', '-id'],
       attributesToSnippet: ['text'],
     }
   );
@@ -222,8 +183,8 @@ export class LitDevSearch extends LitElement {
           ${this._renderGroupTitle(groupedSuggestions[group])}
           ${repeat(
             groupedSuggestions[group].suggestions,
-            ({id}) => id,
-            ({relativeUrl, _highlightResult, _snippetResult, isSubsection}) => {
+            ({objectID}) => objectID,
+            ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
               const text = _snippetResult.text.value;
@@ -237,7 +198,7 @@ export class LitDevSearch extends LitElement {
                   .title="${title}"
                   .heading="${heading}"
                   .text="${text}"
-                  .isSubsection="${isSubsection}"
+                  .isSubsection="${!!parentID}"
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
                   @click="${() => this._navigate(relativeUrl)}"
@@ -273,7 +234,7 @@ export class LitDevSearch extends LitElement {
     const groupedSuggestions: SuggestionGroups = {};
 
     for (const suggestion of suggestions) {
-      const suggestionType = getSuggestionType(suggestion.relativeUrl);
+      const suggestionType = suggestion.docType;
       // Group suggestions by title and content type. This should be unique
       // enough until we are able to group by URL at the index level.
       const group = `${suggestion.title}${suggestionType.tag}`;
@@ -284,7 +245,7 @@ export class LitDevSearch extends LitElement {
         ...suggestionType,
       };
 
-      if (!suggestion.isSubsection) {
+      if (!suggestion.parentID) {
         // If it's the title link, prepend it so it shows up first.
         groupedSuggestions[group].suggestions.unshift(suggestion);
       } else {
