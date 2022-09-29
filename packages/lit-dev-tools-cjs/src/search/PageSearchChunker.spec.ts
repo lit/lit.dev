@@ -158,14 +158,12 @@ test('chunk simple docs page', () => {
       heading: 'What is Lit?',
       fragment: '',
       text: 'Lit is a simple library for building fast lightweight web components At Lits core is a boilerplatekilling component base class that Naïve test',
-      isParent: true,
     },
     {
       title: 'What is Lit? – Lit',
       heading: 'What can I build with Lit?',
       fragment: '#what-can-i-build-with-lit',
       text: '',
-      isParent: false,
     },
   ]);
 });
@@ -178,14 +176,12 @@ test('chunk simple article page', () => {
       heading: 'What is Lit?',
       fragment: '',
       text: 'Lit is a simple library for building fast lightweight web components At Lits core is a boilerplatekilling component base class that Naïve test',
-      isParent: true,
     },
     {
       title: 'What is Lit? – Lit',
       heading: 'What can I build with Lit?',
       fragment: '#what-can-i-build-with-lit',
       text: '',
-      isParent: false,
     },
   ]);
 });
@@ -198,21 +194,18 @@ test('chunk simple api page', () => {
       heading: 'Decorators',
       fragment: '',
       text: '',
-      isParent: true,
     },
     {
       title: 'What is Lit? – Lit',
       heading: 'customElement',
       fragment: '#customElement',
       text: 'Class decorator factory that defines the decorated class as a custom element Import import customElement from litdecoratorsjs Signature customElement tagName classOrDescriptor Constructor MDN HTMLElement ClassDescriptor any Parameters tagName string The name of the custom element to define Details customElementmyelement class MyElement render return html',
-      isParent: false,
     },
     {
       title: 'What is Lit? – Lit',
       heading: 'queryAssignedNodes',
       fragment: '#queryAssignedNodes',
       text: 'A property decorator that converts a class property into a getter that returns the assignedNodes of the given named slot Note the type of this property should be annotated as NodeListOfHTMLElement Import import queryAssignedNodes from litdecoratorsjs Signature queryAssignedNodes slotName flatten selector protoOrDescriptor ReactiveElement ClassElement name string any Parameters slotName string A string name of the slot flatten boolean A boolean which when true flattens the assigned nodes meaning any assigned nodes that are slot elements are replaced with their assigned nodes selector string A string which filters the results to elements that match the given css selector example class MyElement queryAssignedNodes list true item listItems render return html slot name list slot',
-      isParent: false,
     },
   ]);
 });
@@ -225,7 +218,6 @@ test('gracefully chunk invalid h2 headings', () => {
       heading: 'Invalid headings',
       fragment: '',
       text: 'Test Not Fragment Heading No anchor tag Strange nesting',
-      isParent: true,
     },
   ]);
 });
