@@ -119,6 +119,8 @@ export class LitDevSearch extends LitElement {
     this,
     () => this._searchText,
     {
+      // DO NOT SUBMIT
+      index: 'lit_dev_test',
       // Algolia _highlightResult adds a lot to response size
       attributesToHighlight: ['heading', 'title'],
       // We don't need to return the full text of result so don't request it
