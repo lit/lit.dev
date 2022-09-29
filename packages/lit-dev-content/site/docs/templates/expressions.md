@@ -165,7 +165,7 @@ The `nothing` sentinel renders nothing. See [Removing child content](#removing-c
 
 ### Templates
 
-Since an expression in the child position can return a `TemplateResult` you can nest and compose templates:
+Since an expression in the child position can return a `TemplateResult`, you can nest and compose templates:
 
 ```js
 const nav = html`<nav>...</nav>`;
