@@ -25,6 +25,7 @@ export interface PageSearchDataChunk {
   heading: string;
   text: string;
   fragment?: string;
+  isParent: boolean;
 }
 
 /**
@@ -34,6 +35,7 @@ interface PageDataChunk {
   heading: string;
   fragment: string;
   nodeCollection: HTMLDivElement;
+  isParent: boolean;
 }
 
 /**
@@ -42,7 +44,7 @@ interface PageDataChunk {
  * punctuation.
  */
 function dataChunktoSearchChunk(
-  {heading, fragment, nodeCollection}: PageDataChunk,
+  {heading, fragment, nodeCollection, isParent}: PageDataChunk,
   title: string
 ): PageSearchDataChunk {
   const withoutComments = stripcomments(nodeCollection.outerHTML);
@@ -61,6 +63,7 @@ function dataChunktoSearchChunk(
       // Space everything evenly apart.
       .replace(/\s+/g, ' ')
       .trim(),
+    isParent,
   };
 }
 
@@ -118,14 +121,17 @@ export class PageSearchChunker {
   private newPageDataChunk({
     heading,
     fragment,
+    isParent,
   }: {
     heading: string;
     fragment: string;
+    isParent: boolean;
   }): PageDataChunk {
     return {
       heading,
       fragment,
       nodeCollection: this.parsedPage.window.document.createElement('div'),
+      isParent,
     };
   }
 
@@ -145,6 +151,7 @@ export class PageSearchChunker {
       return this.newPageDataChunk({
         heading: el.textContent ?? '',
         fragment: '',
+        isParent: true,
       });
     }
 
@@ -164,6 +171,7 @@ export class PageSearchChunker {
       return this.newPageDataChunk({
         heading: possibleHeading.textContent ?? '',
         fragment: fragment,
+        isParent: false,
       });
     }
 

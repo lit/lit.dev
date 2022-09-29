@@ -15,16 +15,35 @@ import {PageSearchChunker} from './PageSearchChunker.js';
 type UrlToFile = Map<string, string>;
 
 /**
- * Data to be Indexed.
+ * Generic that describes the type of document.
+ */
+interface DocType<T extends string, U extends string> {
+  type: T;
+  tag: U;
+}
+
+/**
+ * The types of documents we index. Used to generate the search tags on the
+ * frontend and used to re-rank results on the frontend.
+ */
+type DocTypes =
+  | DocType<'Article', 'article'>
+  | DocType<'Tutorial', 'tutorial'>
+  | DocType<'Docs', 'docs'>
+  | DocType<'API', 'api'>
+  | DocType<'Other', 'other'>;
+
+/**
+ * Shape of an Algolia search index record.
  */
 interface UserFacingPageData {
-  id: number;
-  objectID: number;
+  objectID: string;
   relativeUrl: string;
   title: string;
   heading: string;
   text: string;
-  isSubsection: boolean;
+  parentID?: string;
+  docType: DocTypes;
 }
 
 /**
@@ -93,6 +112,33 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     try {
       const pageToChunk = new PageSearchChunker(pageContent);
       const sanitizedPageChunks = pageToChunk.pageSearchChunks();
+
+      // Expect each page be searchable
+      if (sanitizedPageChunks.length === 0) {
+        throw new Error(`No search chunks found for ${relUrl}`);
+      }
+
+      const parents = sanitizedPageChunks.filter((chunk) => chunk.isParent);
+
+      // Expect only one h1 per page. Used to create the "document" record in
+      // the search interface.
+      if (parents.length !== 1) {
+        throw new Error(
+          `Error finding parent page chunk for ${relUrl}. Potential parent chunks found: ${parents.length}`
+        );
+      }
+
+      const parent = parents[0];
+      const parentID = id;
+
+      // Expect the parent to be the first chunk so that we can ensure that
+      // parentID is indeed the current id.
+      if (parent !== sanitizedPageChunks[0]) {
+        throw new Error(
+          `Parent page chunk for ${relUrl} was not the first chunk.`
+        );
+      }
+
       for (const pageChunk of sanitizedPageChunks) {
         const {title, heading, fragment, text} = pageChunk;
 
@@ -102,17 +148,40 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
           continue;
         }
 
-        // Populate the search index. This is the text we fuzzy search and user
-        // facing data to display in the suggested results.
-        searchIndex.push({
-          id: id++,
-          objectID: id,
+        const isArticle = filePath.includes('/articles/');
+        const isApi = filePath.includes('/docs/api/');
+        let docType: DocTypes = {
+          tag: 'docs',
+          type: 'Docs',
+        };
+
+        if (isArticle) {
+          docType = {
+            tag: 'article',
+            type: 'Article',
+          };
+        } else if (isApi) {
+          docType = {
+            tag: 'api',
+            type: 'API',
+          };
+        }
+
+        const entry: UserFacingPageData = {
+          objectID: `${id++}`,
           title: title.replace(/ – Lit$/, ''),
           heading,
           relativeUrl: relUrl.replace(/index.html$/, '') + (fragment ?? ''),
           text: text,
-          isSubsection: !!fragment,
-        });
+          docType,
+        };
+
+        if (pageChunk !== parent) {
+          entry.parentID = `${parentID}`;
+        }
+
+        // Populate the search index.
+        searchIndex.push(entry);
       }
     } catch (e: unknown) {
       throw new Error(
