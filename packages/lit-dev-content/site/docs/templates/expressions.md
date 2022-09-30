@@ -137,11 +137,11 @@ html`<main>${bodyText}</main>`
 
 Expressions in the child position can take many kinds of values:
 
-* Primitive values
-* Sentinel values
-* `TemplateResult` objects created with the `html` function.
-* DOM nodes
-* Arrays or iterables of any of the supported types
+* Primitive values likes strings, numbers, and booleans.
+* `TemplateResult` objects created with the [`html`](/docs/api/templates/#html) function (or the [`svg`](/docs/api/templates/#svg) function, if the expression is inside an `<svg>` element).
+* DOM nodes.
+* The sentinel values [`nothing`](/docs/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/templates/custom-directives/#signaling-no-change).
+* Arrays or iterables of any of the supported types.
 
 ### Primitive values
 

@@ -14,18 +14,21 @@ To define a template for a Lit component, add a `render()` method:
 
 {% playground-example "docs/templates/define" "my-element.ts" %}
 
-Write your template in HTML inside a JavaScript [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) using Lit's `html` tag function.
+Write your template in HTML inside a JavaScript [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) using Lit's [`html`](/docs/api/templates/#html) tag function.
 
 Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners. The `render()` method can also include any JavaScript—for example, you can create local variables for use in expressions.
 
-Typically, the component's `render()` method returns a single `TemplateResult` object (the same type returned by the `html` tag function). However, it can return anything that Lit can render:
+## Renderable values { #renderable-values }
+
+Typically, the component's `render()` method returns a single `TemplateResult` object (the same type returned by the `html` tag function). However, it can return anything that Lit can render as the child of an HTML element:
 
 *   Primitive values like string, number, or boolean.
 *   `TemplateResult` objects created by the `html` function.
 *   DOM Nodes.
+*   The sentinel values [`nothing`](/docs/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/templates/custom-directives/#signaling-no-change).
 *   Arrays or iterables of any of the supported types.
 
-For more information about writing templates, see [Templates](/docs/templates/overview/).
+This is *almost identical* to the set of values that can be rendered to a Lit [child expression](/docs/templates/expressions/#child-expressions). The one difference is that a child expression can render an `SVGTemplateResult`, returned by the [`svg`](/docs/api/templates/#svg) function. This kind of template result can only be rendered as the descendant of an `<svg>` element.
 
 ## Writing a good render() method
 
