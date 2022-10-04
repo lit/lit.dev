@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 import path from 'path';
-import {docIndexer, UrlToFile, walkDir} from './utils';
+import {docIndexer, UrlToFile, walkDir} from './utils.js';
 
 export const indexDocs = async (outputDir: string, idOffset = 0) => {
   // Root path of the starting point for indexing.
@@ -18,9 +18,11 @@ export const indexDocs = async (outputDir: string, idOffset = 0) => {
    */
   const skipFiles = (filepath: string) => {
     const badPathParts = [
-      // these are not
+      // these are not navigable pages. Used mostly for rendering code snippets.
       ['docs', 'internal'],
+      // Would pollute results and would require more ui hints for v1 stuff
       ['docs', 'v1'],
+      // handled by the api indexer
       ['docs', 'api'],
     ];
     if (

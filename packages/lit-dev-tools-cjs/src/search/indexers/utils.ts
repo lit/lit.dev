@@ -5,8 +5,8 @@
  */
 import fs from 'fs/promises';
 import path from 'path';
-import {DocType, UserFacingPageData} from '../plugin';
-import {PageSearchChunker} from './PageSearchChunker';
+import {DocType, UserFacingPageData} from '../plugin.js';
+import {PageSearchChunker} from './PageSearchChunker.js';
 
 /**
  * Map associating relative site url to the file path of the index.html file.
@@ -19,6 +19,7 @@ export type UrlToFile = Map<string, string>;
  *
  * @param dir Directory to recursively walk
  * @param results Map we're mutating with relative url and absolute path.
+ * @param projectDir The root directory which to crawl.
  * @param shouldSkip Function that takes an absolute OS filepath and returns whether or not it should be indexed.
  * @returns mapping between lit.dev relative url and index.html file paths.
  */
@@ -54,6 +55,15 @@ export const walkDir = async (
   return results;
 };
 
+/**
+ * A basic indexer that can index basic pages in the form of lit.dev docs pages
+ * and articles.
+ *
+ * @param relativeLinksToHTMLFile Map associating relative site url to the contents of the index.html file at that location.
+ * @param docType The type of document we're indexing.
+ * @param idOffset The offset to add to the id of each document.
+ * @returns A search index for the given map of relative links to html files.
+ */
 export const docIndexer = async (
   relativeLinksToHTMLFile: UrlToFile,
   docType:
