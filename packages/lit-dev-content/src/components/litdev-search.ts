@@ -141,12 +141,12 @@ class SuggestionGroups {
   }
 
   /**
-   * Get all the keys, or parentIDs, of the suggestion groups.
-   *
-   * @returns An array of ordered parentIDs where tutorial IDs are at the end.
+   * Iterates through all page IDs as they were added to the data structure, and
+   * then iterates through all tutorial IDs as they were added to the structure.
    */
-  keys(): string[] {
-    return [...this.orderedPageIds, ...this.orderedTutorialPageIds];
+  *[Symbol.iterator]() {
+    yield* this.orderedPageIds[Symbol.iterator]();
+    yield* this.orderedTutorialPageIds[Symbol.iterator]();
   }
 }
 
@@ -232,14 +232,13 @@ export class LitDevSearch extends LitElement {
     const groupedSuggestions = new SuggestionGroups(
       this._searchController.value
     );
-    const parentIDs = groupedSuggestions.keys();
 
     // for aria-activedescendant we need each item in each group to have a
     // unique id. So we keep a running counter across all groups.
     let suggestionIndex = -1;
 
     return repeat(
-      parentIDs,
+      groupedSuggestions,
       (groupID) => groupID,
       (groupID) => {
         const suggestionGroup = groupedSuggestions.get(groupID)!;
