@@ -3,4 +3,4 @@ layout: false
 permalink: /tutorials/tutorials.json
 eleventyExcludeFromCollections: true
 ---
-{ "tutorials": {{ tutorialsJson | safe }} }
+{ "tutorials": {{ tutorials | dump | safe }} }
