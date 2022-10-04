@@ -31,7 +31,6 @@ export const indexTutorials = async (
 ): Promise<UserFacingPageData[]> => {
   const TUTORIAL_PATH = path.resolve(
     __dirname,
-    // Load the article content itself not the tags pages.
     `../../../../lit-dev-content/${outputDir}/tutorials`
   );
 
