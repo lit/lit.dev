@@ -81,13 +81,73 @@ interface SuggestionGroup {
 }
 
 /**
- * A collection of SuggestionGroups in which the key is determined by the
- * suggestion title and the type of content.
- *
- * e.g. LifecycleDocs or ReactiveElementAPI
+ * A data structure that takes in a list of Suggestions, groups them by
+ * parentID, reformats the data for rendering, and then de-ranks the tutorial
+ * results.
  */
-interface SuggestionGroups {
-  [group: string]: SuggestionGroup;
+class SuggestionGroups {
+  private orderedPageIds: string[] = [];
+  private orderedTutorialPageIds: string[] = [];
+  private pageIdToSuggestionGroup: Map<string, SuggestionGroup> = new Map();
+
+  constructor(suggestions: Suggestion[]) {
+    suggestions.forEach((suggestion) => this.add(suggestion));
+  }
+
+  /**
+   * Adds a suggestion to the data structure. If the suggestion is a tutorial,
+   * it is added to the end of the list of tutorials. Otherwise, it is added to
+   * the end of it's corresponding group. If there is no corresponding group,
+   * one will be created. (performance O(suggestions))
+   *
+   * @param suggestion Suggestion to add to data structure.
+   */
+  add(suggestion: Suggestion) {
+    const id = suggestion.parentID ?? suggestion.objectID;
+    const suggestionGroup = this.pageIdToSuggestionGroup.get(id) ?? {
+      ...suggestion.docType,
+      suggestions: [],
+    };
+
+    // This is the first time we've encountered this parentID
+    if (!suggestionGroup.suggestions.length) {
+      this.pageIdToSuggestionGroup.set(id, suggestionGroup);
+
+      // If this is a tutorial, add it to the end of the tutorial list which
+      // will be rendered after the other suggestions.
+      if (suggestion.docType.tag === 'tutorial') {
+        this.orderedTutorialPageIds.push(id);
+      } else {
+        this.orderedPageIds.push(id);
+      }
+    }
+
+    if (!suggestion.parentID) {
+      // If it's the title link, prepend it so it shows up first.
+      suggestionGroup.suggestions.unshift(suggestion);
+    } else {
+      suggestionGroup.suggestions.push(suggestion);
+    }
+  }
+
+  /**
+   * Gets a suggestion group by it's parentID.
+   *
+   * @param key The parentID of the suggestion group.
+   * @returns The suggestion group associated with the given parentID.
+   */
+  get(key: string) {
+    return this.pageIdToSuggestionGroup.get(key);
+  }
+
+  /**
+   * Iterates through all page IDs as they were added to the data structure, and
+   * then iterates through all tutorial IDs as they were added to the structure.
+   */
+  *[Symbol.iterator]() {
+    yield* this.orderedPageIds[Symbol.iterator]();
+    yield* this.orderedTutorialPageIds[Symbol.iterator]();
+  }
 }
 
 /**
@@ -166,21 +226,26 @@ export class LitDevSearch extends LitElement {
    * Renders the search combobox suggestions grouped by title and content type.
    */
   private _renderGroups() {
-    const groupedSuggestions = this._groupSuggestions();
-    const groups = Object.keys(groupedSuggestions);
+    // TODO move this to the onComplete callback of the search controller
+    // once we release that feature in @lit-labs/task so that we don't do this
+    // needlessly every render.
+    const groupedSuggestions = new SuggestionGroups(
+      this._searchController.value
+    );
 
     // for aria-activedescendant we need each item in each group to have a
     // unique id. So we keep a running counter across all groups.
     let suggestionIndex = -1;
 
     return repeat(
-      groups,
-      (group) => group,
-      (group) => {
+      groupedSuggestions,
+      (groupID) => groupID,
+      (groupID) => {
+        const suggestionGroup = groupedSuggestions.get(groupID)!;
         return html`<section class="group">
-          ${this._renderGroupTitle(groupedSuggestions[group])}
+          ${this._renderGroupTitle(suggestionGroup)}
           ${repeat(
-            groupedSuggestions[group].suggestions,
+            suggestionGroup.suggestions,
             ({objectID}) => objectID,
             ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
               const title = _highlightResult.title.value;
@@ -219,39 +284,6 @@ export class LitDevSearch extends LitElement {
         <span class="tag ${group.tag}"> ${group.type} </span>
       </span>
     </div>`;
-  }
-
-  /**
-   * Groups the current search suggestions together by document.
-   *
-   * @returns A collection of SuggestionGroups grouped by title and content type
-   *    (essentially by document).
-   */
-  private _groupSuggestions() {
-    const suggestions = this._searchController.value;
-    const groupedSuggestions: SuggestionGroups = {};
-
-    for (const suggestion of suggestions) {
-      const suggestionType = suggestion.docType;
-      // Group suggestions by title and content type. This should be unique
-      // enough until we are able to group by URL at the index level.
-      const group = `${suggestion.title}${suggestionType.tag}`;
-
-      // If the group doesn't exist, create it.
-      groupedSuggestions[group] = groupedSuggestions[group] || {
-        suggestions: [],
-        ...suggestionType,
-      };
-
-      if (!suggestion.parentID) {
-        // If it's the title link, prepend it so it shows up first.
-        groupedSuggestions[group].suggestions.unshift(suggestion);
-      } else {
-        groupedSuggestions[group].suggestions.push(suggestion);
-      }
-    }
-
-    return groupedSuggestions;
   }
 
   /**
@@ -503,6 +535,11 @@ export class LitDevSearch extends LitElement {
     .group .tag.docs {
       color: white;
       background-color: #324fff;
+    }
+
+    .group .tag.tutorial {
+      color: black;
+      background-color: #40dcff;
     }
 
     @media (max-width: 864px) {

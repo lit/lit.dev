@@ -82,7 +82,8 @@ module.exports = async () => {
     loadTutorialData('wc-to-lit'),
   ]);
   /*
-   * tutorial data in order of rendering on the page
+   * tutorial data in order of rendering on the page plus stringified JSON for
+   * search indexing.
    */
   return {eleventyComputed: {tutorials}};
 };

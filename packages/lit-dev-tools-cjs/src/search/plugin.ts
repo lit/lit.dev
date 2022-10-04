@@ -5,7 +5,12 @@
  */
 import fs from 'fs';
 import path from 'path';
-import {indexDocs, indexArticles, indexApi} from './indexers/index.js';
+import {
+  indexDocs,
+  indexArticles,
+  indexApi,
+  indexTutorials,
+} from './indexers/index.js';
 
 /**
  * Generic that describes the type of document.
@@ -59,7 +64,18 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   idOffset = Number(articles[articles.length - 1].objectID);
   const api: UserFacingPageData[] = await indexApi(outputDir, idOffset);
 
-  const searchIndex: UserFacingPageData[] = [...docs, ...articles, ...api];
+  idOffset = Number(api[api.length - 1].objectID);
+  const tutorials: UserFacingPageData[] = await indexTutorials(
+    outputDir,
+    idOffset
+  );
+
+  const searchIndex: UserFacingPageData[] = [
+    ...docs,
+    ...articles,
+    ...api,
+    ...tutorials,
+  ];
 
   fs.writeFileSync(OUT_PATH, JSON.stringify(searchIndex));
 }

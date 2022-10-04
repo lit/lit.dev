@@ -7,3 +7,4 @@ export {UrlToFile} from './utils.js';
 export {indexDocs} from './index-docs.js';
 export {indexArticles} from './index-articles.js';
 export {indexApi} from './index-api.js';
+export {indexTutorials} from './index-tutorials.js';
