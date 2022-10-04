@@ -3,7 +3,7 @@
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-import {docIndexer, UrlToFile, walkDir} from './utils';
+import {docIndexer, UrlToFile, walkDir} from './utils.js';
 import path from 'path';
 
 export const indexApi = async (outputDir: string, idOffset = 0) => {

@@ -40,8 +40,8 @@ export interface UserFacingPageData {
 }
 
 /**
- * Plugin that scans and indexes the lit.dev lit.dev into a search index
- * that can be used to search the website. The search index is written to
+ * Plugin that scans and indexes a subset of lit.dev into a search index that
+ * can be used to search the website. The search index is written to
  * `/searchIndex.json`. This can be uploaded to Algolia.
  */
 export async function createSearchIndex(outputDir: '_dev' | '_site') {
