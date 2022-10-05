@@ -330,6 +330,28 @@ async _loginClickHandler() {
 
 Also, when writing tests you can await the `updateComplete` Promise before making assertions about the component’s DOM.
 
+The `updateComplete` promise rejects if there's an unhandled error during the update cycle. For more information, see [Handling errors in the update cycle](#errors-in-the-update-cycle).
+
+### Handling errors in the update cycle {#errors-in-the-update-cycle}
+
+An uncaught exception in the update cycle causes the `updateComplete` promise to reject. If you're awaiting the `updateComplete` promise, you can handle these errors inline:
+
+```js
+try {
+  await this.updateComplete;
+} catch (e) {
+  /* handle error */
+}
+```
+
+In many cases, you won't need to use the `updateComplete` promise. Rather than adding extra code to every component, you can add a handler for `window.onunhandledrejection`. This lets you log errors that you might otherwise miss.
+
+```js
+window.onunhandledrejection = function(e) {
+  console.log(e.reason);
+}
+```
+
 ### Implementing additional customization {#reactive-update-cycle-customizing}
 
 #### performUpdate()  {#performupdate}
