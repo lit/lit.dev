@@ -334,7 +334,10 @@ The `updateComplete` promise rejects if there's an unhandled error during the up
 
 ### Handling errors in the update cycle {#errors-in-the-update-cycle}
 
-An uncaught exception in the update cycle, which can be caused by exceptions in lifecycle methods like `render()` or `update()`, causes the `updateComplete` promise to reject. If you're awaiting the `updateComplete` promise, you can handle these errors inline:
+If you have an uncaught exception in a lifecycle method like `render()` or `update()`, it  causes the `updateComplete` promise to reject.
+If you have code in a lifecycle method that can throw an exception, it's good practice to put it inside a `try`/`catch` statement.
+
+You may also want to use a `try`/`catch` if you're awaiting the `updateComplete` promise:
 
 ```js
 try {
@@ -344,11 +347,11 @@ try {
 }
 ```
 
-In many cases, you won't need to use the `updateComplete` promise. Rather than adding extra code to every component, you can add a handler for `window.onunhandledrejection`. This lets you log errors that you might otherwise miss.
+In some cases, code may throw in unexpected places. As a fallback, you can add a handler for `window.onunhandledrejection` to catch these issues. For example, you could use this report errors back to a backend service to help diagnose issues that are hard to reproduce.
 
 ```js
 window.onunhandledrejection = function(e) {
-  console.log(e.reason);
+  /* handle error *
 }
 ```
 
