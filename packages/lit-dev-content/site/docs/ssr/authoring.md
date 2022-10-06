@@ -28,7 +28,17 @@ For simple cases, adding conditionals or optional chaining to certain DOM access
 const hasConstructableStylesheets = typeof globalThis.CSSStyleSheet?.prototype.replaceSync === 'function';
 ```
 
-The Lit team is also working on providing an easy way of checking whether the code is running in a Node environment which can be utilized to write conditional code blocks targeting different environments. Follow the issue [[labs/ssr] A way for client code to check if running in server (isSsr)](https://github.com/lit/lit/issues/3158) for updates on this feature.
+The `lit` package also provides an `isServer` environment checker that can be used to write conditional blocks of code targeting different environments:
+
+```js
+import {isServer} from 'lit';
+
+if (isServer) {
+  // only runs in server environments like Node
+} else {
+  // runs in the browser
+}
+```
 
 For more complex uses cases, consider utilizing [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) in Node that specifically match for `"node"` environments so you could have different code depending on whether the module is being imported for use in Node or in the browser. Users would get the appropriate version of the package depending on whether it was imported from Node or the browser. Export conditions are also supported by popular bundling tools like [rollup](https://github.com/rollup/plugins/tree/master/packages/node-resolve#exportconditions) and [webpack](https://webpack.js.org/configuration/resolve/#resolveconditionnames) so users can bring in the appropriate code for your bundle.
 
