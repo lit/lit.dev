@@ -56,7 +56,7 @@ static properties = {
   _counter: {state: true};
 };
 
-constructor()
+constructor() {
   super();
   this._counter = 0;
 }
