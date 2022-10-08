@@ -106,8 +106,8 @@ import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {msg, localized} from '@lit/localize';
 
-@localized()
 @customElement('my-element');
+@localized()
 class MyElement extends LitElement {
   render() {
     // Whenever setLocale() is called, and templates for that locale have
