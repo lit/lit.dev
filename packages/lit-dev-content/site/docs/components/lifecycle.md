@@ -357,22 +357,79 @@ window.onunhandledrejection = function(e) {
 
 ### Implementing additional customization {#reactive-update-cycle-customizing}
 
+This section covers some less-common methods for customizing the update cycle.
+
+#### scheduleUpdate() {#scheduleupdate}
+
+Override `scheduleUpdate()` to customize the timing of the update cycle. `scheduleUpdate()` is called when you request an update, and by default it calls `performUpdate()` immediately. Override it to defer the update. For example, you could use it to coordinate update timing between multiple elements.
+
+The following code schedules the update to occur just before the next frame:
+
+{% switchable-sample %}
+
+```ts
+protected override async scheduleUpdate(): Promise<void> {
+  await new Promise<void>((resolve) => 
+      requestAnimationFrame(() => resolve()));
+  this.performUpdate();
+}
+```
+
+```js
+async scheduleUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  this.performUpdate();
+}
+```
+
+{% endswitchable-sample %}
+
+If you override `scheduleUpdate()`, it's your responsibility to call `performUpdate()`.
+
+In an async function, you can `await` any promises, then call `performUpdate()` to complete the current update. The *next* update can't proceed until `scheduleUpdate()` returns.
+
+You can also write `scheduleUpdate()` as a regular function. In this case, `scheduleUpdate()` should return a promise. When resolving the promise, you must call `performUpdate()` to complete the current update. The *next* update can't proceed until the promise resolves.
+
+{% switchable-sample %}
+
+```ts
+protected override scheduleUpdate(): Promise<void> {
+  return new Promise<void>((resolve) => 
+      requestAnimationFrame(() => {
+        this.performUpdate();
+        resolve()
+      ));
+}
+```
+
+```js
+scheduleUpdate():  {
+  return new Promise((resolve) => 
+      requestAnimationFrame(() => {
+        this.performUpdate();
+        resolve()
+      )
+  );
+}
+```
+
+{% endswitchable-sample %}
+
+This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion. This talk shows an early version of Lit, but describes many useful concepts.
+
 #### performUpdate()  {#performupdate}
 
 Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
 Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
 
-Implement `performUpdate()` to customize the timing of the update cycle. This can be useful for implementing custom scheduling. Note, if `performUpdate()` returns a Promise, the `updateComplete` Promise will await it.
+{% aside "info" %}
 
-```js
-async performUpdate() {
-   await new Promise((resolve) => setTimeout(() => resolve()));
-   return super.performUpdate();
-}
-```
+Use `scheduleUpdate()` to customize scheduling.
 
-In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
+If you want to customize how updates are scheduled, override `scheduleUpdate()`. Previously, we recommended overriding `performUpdate()` for this purpose. That continues to work, but it makes it more difficult to call `performUpdate()` to process a pending update synchronously. 
+
+{% endaside %}
 
 #### hasUpdated  {#hasupdated}
 
