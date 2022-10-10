@@ -247,14 +247,14 @@ export class LitDevPlaygroundShareButton extends LitElement {
       event.preventDefault(); // Don't trigger "Save page as"
       if (this._mostRecentSaveType === 'longurl') {
         this._longUrl?.generateUrl();
-        this._longUrl?.save();
         this._dispatchSaveEvent();
+        this._longUrl?.save();
       } else if (
         this._mostRecentSaveType === 'gist' &&
         this._gist?.canUpdateGist
       ) {
-        this._gist?.updateGist();
         this._dispatchSaveEvent();
+        this._gist?.updateGist();
       } else {
         this._open = true;
       }

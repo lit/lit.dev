@@ -288,6 +288,9 @@ export class LitDevPlaygroundShareGist extends LitElement {
         token,
       });
 
+      this.dispatchEvent(
+        new Event('will-hashchange', {bubbles: true, composed: true})
+      );
       window.location.hash = '#gist=' + gist.id;
       let statusText = 'Gist created';
       try {
@@ -358,6 +361,9 @@ export class LitDevPlaygroundShareGist extends LitElement {
         token,
       });
 
+      this.dispatchEvent(
+        new Event('will-hashchange', {bubbles: true, composed: true})
+      );
       window.location.hash = '#gist=' + gist.id;
       let statusText = 'Gist updated';
       try {

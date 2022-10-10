@@ -79,12 +79,15 @@ export class LitDevPlaygroundPage extends LitElement {
     await this._discoverChildElements();
     this._activateChildElements();
     this._syncStateFromUrlHash();
-    window.addEventListener('hashchange', () => this._syncStateFromUrlHash());
+    window.addEventListener('hashchange', (e: HashChangeEvent) =>
+      this._syncStateFromUrlHash(e)
+    );
     window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
       this._syncStateFromUrlHash()
     );
     this._codeEditor.addEventListener('change', this._onEditorChange);
     this._shareButton.addEventListener('save', this._onSaveEvent);
+    this._shareButton.addEventListener('will-hashchange', this._onSaveEvent);
     window.addEventListener('beforeunload', this._beforeUnload);
   }
 
@@ -198,7 +201,20 @@ export class LitDevPlaygroundPage extends LitElement {
     return gistToPlayground(gist.files).map(compactPlaygroundFile);
   }
 
-  private async _syncStateFromUrlHash() {
+  private async _syncStateFromUrlHash(e?: HashChangeEvent) {
+    let shouldExit = true;
+
+    if (e && this._hasUnsavedChanges) {
+      shouldExit = window.confirm('You have unsaved changes. Discard them?');
+      this._hasUnsavedChanges = !shouldExit;
+    }
+
+    if (!shouldExit) {
+      window.history.pushState(null, '', e!.oldURL);
+      e?.preventDefault();
+      return;
+    }
+
     const hash = window.location.hash;
     const params = new URLSearchParams(hash.slice(1));
     let urlFiles: Array<CompactProjectFile> | undefined;
