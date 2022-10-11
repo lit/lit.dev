@@ -1,0 +1,14 @@
+{
+  "extends": "/samples/base.json",
+  "hide": true,
+  "title": "IntersectionController",
+  "description": "@lit-labs/observers IntersectionController example",
+  "section": "Observers",
+  "files": {
+    "intersection-demo.ts": {},
+    "styles.ts": {},
+    "constants.ts": {},
+    "index.html": {}
+  },
+  "order": 1
+}
