@@ -9,7 +9,8 @@ import {styles} from './styles.js';
 
 /**
  * Show how a @lit-labs/observers IntersectionController can manage multiple
- * child elements.
+ * child elements. This component generates multiple elements, and then toggles
+ * a class as they come in and out of the viewport.
  */
 @customElement('intersection-demo')
 export class MyElement extends LitElement {
@@ -35,7 +36,15 @@ export class MyElement extends LitElement {
     this.intersectionController = new IntersectionController(this, {
       // Prevent the controller from observing the host element.
       target: null,
-      config: {threshold: 0.2},
+      config: {
+        threshold: 0.2,
+        // Required to work in the playground iframe
+        root: document.body,
+        // Modify the viewport intersection check, so the bottom 200px of the
+        // preview is outside the viewport. This helps visualize the transition
+        // of the elements into and out of view.
+        rootMargin: `0px 0px -200px 0px`,
+      },
       callback(entries) {
         for (const {isIntersecting, target} of entries) {
           if (isIntersecting) {

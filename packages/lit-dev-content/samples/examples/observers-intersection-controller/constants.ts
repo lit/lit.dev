@@ -9,7 +9,6 @@ const COLORS = [
   `#AB5236`,
   `#5F574F`,
   `#C2C3C7`,
-  `#FFF1E8`,
   `#FF004D`,
   `#FFA300`,
   `#FFEC27`,
@@ -27,7 +26,7 @@ const SHAPE_CLASSES = ['square', 'circle', 'triangle', 'triangle-corner'];
  */
 function createShapes() {
   return Array.from(Array(75)).map(() => {
-    const size = `${Math.random() * 10 + 10}vw`;
+    const size = `${Math.random() * 3 + 7.5}vw`;
     const depth = Math.random() - 0.5;
     const zIndex = depth + 0.5;
 
@@ -36,7 +35,7 @@ function createShapes() {
         ['--size']: size,
         ['--rotation']: `${Math.random() - 0.5}turn`,
         ['--color']: COLORS[Math.floor(Math.random() * COLORS.length)],
-        left: `${Math.random() * 110 - 5}vw`,
+        left: `${Math.random() * 80 + 10}vw`,
         top: `${Math.random() * 750 - 30}vh`,
         'z-index': `${zIndex}`,
         transform: `translateZ(${depth}px)`,
