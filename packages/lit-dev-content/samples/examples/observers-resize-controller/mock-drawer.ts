@@ -2,8 +2,8 @@ import {LitElement, html, css} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
 import {styleMap} from 'lit/directives/style-map.js';
 
-// Material icon: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Atouch_app%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048
-const touch_app_svg = html`<svg
+// Material icon: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Aunfold_more%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048
+const unfold_more = html`<svg
   xmlns="http://www.w3.org/2000/svg"
   fill="white"
   height="48"
@@ -11,14 +11,28 @@ const touch_app_svg = html`<svg
   viewBox="0 0 48 48"
 >
   <path
-    d="M23.25 2q4.55 0 7.775 3.175Q34.25 8.35 34.25 12.9q0 2.6-1.125 4.9Q32 20.1 29.95 21.7h-1.7v-2.5q1.45-1.15 2.225-2.8.775-1.65.775-3.5 0-3.3-2.35-5.6T23.25 5q-3.3 0-5.65 2.3-2.35 2.3-2.35 5.6 0 1.85.775 3.5t2.225 2.8v3.6q-2.8-1.45-4.4-4.1-1.6-2.65-1.6-5.8 0-4.55 3.225-7.725T23.25 2Zm-1.9 42q-.85 0-1.6-.325-.75-.325-1.3-.875L8.15 32.5l2.8-2.9q.7-.7 1.575-1.075t1.825-.125l3.9.9V13q0-2.1 1.45-3.55Q21.15 8 23.25 8q2.1 0 3.55 1.45 1.45 1.45 1.45 3.55v8.6h1.3q.25 0 .45.1t.45.2l7.4 3.6q1.2.55 1.775 1.775.575 1.225.325 2.525l-1.8 10.9q-.25 1.45-1.4 2.375t-2.6.925Zm-.4-3H35l2.15-12.45L28 24h-2.75V13q0-.9-.55-1.45-.55-.55-1.45-.55-.9 0-1.45.55-.55.55-.55 1.45v19.95l-7.7-1.65-1.15 1.15ZM35 41H20.95 35Z"
+    xmlns="http://www.w3.org/2000/svg"
+    d="m24 42-9-9 2.2-2.2 6.8 6.8 6.8-6.8L33 33Zm-6.8-24.6L15 15.2l9-9 9 9-2.2 2.2-6.8-6.8Z"
+  />
+</svg>`;
+
+// Material icon: https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Aunfold_less%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048
+const unfold_less = html`<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="white"
+  height="48"
+  width="48"
+  viewBox="0 0 48 48"
+>
+  <path
+    d="M17.15 40 15 37.85l9-9 9 9L30.85 40 24 33.15ZM24 19.15l-9-9L17.15 8 24 14.85 30.85 8 33 10.15Z"
   />
 </svg>`;
 
 /**
- * `mock-drawer` imitates a menu drawer on the page. Clicking this drawer
- * expands and contracts it.
-*/
+ * `mock-drawer` imitates a menu on the page. Clicking this drawer expands and
+ * contracts it.
+ */
 @customElement('mock-drawer')
 export class MockDrawer extends LitElement {
   @state() extended = false;
@@ -33,7 +47,7 @@ export class MockDrawer extends LitElement {
         style=${styleMap({width: this.extended ? '200px' : '50px'})}
         @click=${this.toggleExtended}
       >
-        ${touch_app_svg}
+        ${this.extended ? unfold_less : unfold_more}
       </div>
     `;
   }
@@ -48,10 +62,14 @@ export class MockDrawer extends LitElement {
       transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
       display: flex;
-      align-items: center;
+      flex-direction: row;
+      justify-content: end;
     }
     div:hover {
       background-color: #101ccc;
+    }
+    svg {
+      rotate: 90deg;
     }
   `;
 }
