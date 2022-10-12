@@ -29,6 +29,8 @@ export class MyElement extends LitElement {
             ></div>`
         )}
       </div>
+      <div id="top-line"></div>
+      <div id="bottom-line"></div>
     `;
   }
 
@@ -43,7 +45,7 @@ export class MyElement extends LitElement {
         // Modify the viewport intersection check, so the bottom 200px of the
         // preview is outside the viewport. This helps visualize the transition
         // of the elements into and out of view.
-        rootMargin: `0px 0px -200px 0px`,
+        rootMargin: `-100px 0px -100px 0px`,
       },
       callback(entries) {
         for (const {isIntersecting, target} of entries) {

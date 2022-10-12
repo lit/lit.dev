@@ -9,16 +9,23 @@ export const styles = css`
     perspective-origin: 100%;
   }
   div {
-    transition: all 1s ease-out, background-color 0.5s ease-out;
+    transition: all 0.5s ease-out, background-color 0.25s ease-out;
     scale: 1;
     rotate: var(--rotation, 0turn);
   }
-  .hidden {
-    opacity: 0.35;
-    scale: 0.35;
-    rotate: 0turn;
-    width: var(--size);
-    height: var(--size);
+  #top-line {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    right: 0;
+    border-top: 5px dashed blue;
+  }
+  #bottom-line {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    border-bottom: 5px dashed blue;
   }
   /* Shapes */
   .circle,
@@ -50,6 +57,7 @@ export const styles = css`
     border-left: 0px solid transparent;
     border-right: 0px solid transparent;
     border-bottom: 0px solid var(--color);
+    background-color: black;
   }
   .triangle-corner {
     border-top: var(--size) solid var(--color);
@@ -58,5 +66,14 @@ export const styles = css`
   .triangle-corner.hidden {
     border-top: 0px solid var(--color);
     border-right: 0px solid transparent;
+    background-color: black;
+  }
+  /** Hidden class **/
+  .hidden {
+    scale: 0.35;
+    rotate: 0turn;
+    width: var(--size);
+    height: var(--size);
+    background-color: black;
   }
 `;
