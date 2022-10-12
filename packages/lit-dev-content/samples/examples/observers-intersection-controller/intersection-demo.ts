@@ -40,11 +40,12 @@ export class MyElement extends LitElement {
       target: null,
       config: {
         threshold: 0.2,
-        // Required to work in the playground iframe
+        // Required so the Intersection observer uses playground iframe for
+        // viewport checking.
         root: document.body,
-        // Modify the viewport intersection check, so the bottom 200px of the
-        // preview is outside the viewport. This helps visualize the transition
-        // of the elements into and out of view.
+        // Modify the viewport intersection check, so the top and bottom 100px
+        // of the preview is "outside the viewport". This helps visualize the
+        // transition of the elements in and out of view.
         rootMargin: `-100px 0px -100px 0px`,
       },
       callback(entries) {
