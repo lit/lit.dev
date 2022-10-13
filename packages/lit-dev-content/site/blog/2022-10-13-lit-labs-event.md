@@ -6,7 +6,7 @@ summary: "We are having a virtual event on October 24th 2022 at 10 AM PST to tal
 date: 2022-10-13
 author:
   - elliott-marquez
-eventDate: **Monday October 24th 2022 at 10AM PDT**
+eventDate: "Monday October 24th 2022 at 10AM PDT"
 ytLink: https://www.youtube.com/
 ---
 
