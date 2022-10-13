@@ -121,7 +121,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A set of reactive controllers that facilitate using the platform observer objects.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fobservers%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3355 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fobservers%5D+in%3Atitle "Issues")
 
 </td>
 </tr>
@@ -177,7 +177,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>An element that provides viewport-based virtualization (including virtual scrolling).</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fvirtualizer%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3362 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fvirtualizer%5D "Issues")
 
 </td>
 </tr>
@@ -221,7 +221,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A component-oriented router API vended as reactive controllers.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Frouter%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3354 "Feedback")<br>[🐞&nbsp;Issues]((https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Frouter%5D "Issues")
 
 </td>
 </tr>
