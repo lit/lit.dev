@@ -174,7 +174,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 [virtualizer](https://www.npmjs.com/package/@lit-labs/virtualizer)
 
 </td>
-<td>An element that provides viewport-based virtualization (including virtual scrolling).</td>
+<td>A package that provides viewport-based virtualization (including virtual scrolling) for Lit.</td>
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/virtualizer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3362 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fvirtualizer%5D "Issues")
@@ -204,7 +204,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 [cli](https://www.npmjs.com/package/@lit-labs/cli)
 
 </td>
-<td>Command line tool for Lit.</td>
+<td>A command line tool for Lit.</td>
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/cli#readme "Docs")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcli%5D "Issues")
