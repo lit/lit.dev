@@ -41,7 +41,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcontext%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
 
 </td>
 </tr>
@@ -55,7 +55,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 <td>React integration helpers for custom elements and reactive controllers.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/react#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Freact%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/react#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3358 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Freact%5D "Issues")
 
 </td>
 </tr>
@@ -73,7 +73,7 @@ Mixin for Lit that integrates with the speculative [Scoped CustomElementRegistry
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/scoped-registry-mixin#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fscoped-registry-mixin%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/scoped-registry-mixin#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3364 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fscoped-registry-mixin%5D "Issues")
 
 </td>
 </tr>
@@ -93,7 +93,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Feleventy-plugin-lit%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3356 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Feleventy-plugin-lit%5D "Issues")
 
 </td>
 </tr>
@@ -107,7 +107,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>Animation helpers for Lit templates.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/motion#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fmotion%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/motion#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3351 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fmotion%5D "Issues")
 
 </td>
 </tr>
@@ -121,7 +121,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A set of reactive controllers that facilitate using the platform observer objects.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3355 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fobservers%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/observers#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3355 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fobservers%5D "Issues")
 
 </td>
 </tr>
@@ -135,7 +135,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A package for server-side rendering Lit templates and components.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](/docs/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fssr%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](/docs/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3353 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fssr%5D "Issues")
 
 </td>
 </tr>
@@ -149,7 +149,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A reactive controller for handling asynchronous tasks.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftask%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3361 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftask%5D "Issues")
 
 </td>
 </tr>
@@ -163,7 +163,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A package containing testing utilities for Lit including generated server-side rendered fixtures.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/testing#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Ftesting%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/testing#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3359 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftesting%5D "Issues")
 
 </td>
 </tr>
@@ -193,7 +193,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A static analyzer for Lit.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/analyzer#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fanalyzer%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/analyzer#readme "Docs")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fanalyzer%5D "Issues")
 
 </td>
 </tr>
@@ -207,7 +207,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>Command line tool for Lit.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/cli#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+%5Blabs%2Fcli%5D+in%3Atitle "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/cli#readme "Docs")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcli%5D "Issues")
 
 </td>
 </tr>
