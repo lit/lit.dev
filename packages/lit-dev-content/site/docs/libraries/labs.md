@@ -160,7 +160,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 [testing](https://www.npmjs.com/package/@lit-labs/testing)
 
 </td>
-<td>A package containing testing utilities for Lit including generated server-side rendered fixtures.</td>
+<td>A package containing testing utilities for Lit including generating server-side rendered fixtures.</td>
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/testing#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3359 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftesting%5D "Issues")
@@ -221,7 +221,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A component-oriented router API vended as reactive controllers.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3354 "Feedback")<br>[🐞&nbsp;Issues]((https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Frouter%5D "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/router#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3354 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Frouter%5D "Issues")
 
 </td>
 </tr>
