@@ -36,7 +36,7 @@ mwc-drawer:not(:defined) {
   margin-left: 30px;
 }
 
-#mobileDocsNav > li:first-of-type {
+#mobileDocsNav>li:first-of-type {
   margin-top: 0;
 }
 

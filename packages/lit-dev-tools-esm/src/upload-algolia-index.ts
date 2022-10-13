@@ -21,4 +21,12 @@ if (!ALGOLIA_WRITE_KEY) {
 
 const client = algolia(publicVars.algolia.appId, ALGOLIA_WRITE_KEY);
 const index = client.initIndex(publicVars.algolia.index);
-await index.replaceAllObjects(searchIndex);
+await Promise.all([
+  index.setSettings({
+    // https://www.algolia.com/doc/api-reference/api-parameters/attributeForDistinct/
+    attributeForDistinct: 'parentID',
+    // Facets are used for grouping. We don't use them, but we might eventually.
+    attributesForFaceting: ['title', 'docType.tag'],
+  }),
+  index.replaceAllObjects(searchIndex),
+]);

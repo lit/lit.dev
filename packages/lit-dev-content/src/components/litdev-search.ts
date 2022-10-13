@@ -4,207 +4,170 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {
-  LitElement,
-  html,
-  css,
-  TemplateResult,
-  nothing,
-  PropertyValues,
-} from 'lit';
-import {
-  state,
-  property,
-  queryAll,
-  customElement,
-  query,
-} from 'lit/decorators.js';
+import {LitElement, html, css, nothing} from 'lit';
+import {state, customElement, query} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {live} from 'lit/directives/live.js';
 import type {Drawer} from '@material/mwc-drawer';
-import {animate, Options as AnimationOptions} from '@lit-labs/motion';
 import {AgloliaSearchController} from './algolia-search-controller.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {searchIcon} from '../icons/search-icon.js';
+import './litdev-search-option.js';
+import type {LitdevSearchOption} from './litdev-search-option.js';
 
 /**
- * Representation of each document indexed by our PageChunker which is published
+ * Generic that denotes the type of document.
+ */
+interface DocType<T extends string, U extends string> {
+  type: T;
+  tag: U;
+}
+
+/**
+ * The types of documents we index. Used to generate the search tags on the
+ * frontend and used to re-rank results on the frontend.
+ */
+type DocTypes =
+  | DocType<'Article', 'article'>
+  | DocType<'Tutorial', 'tutorial'>
+  | DocType<'Docs', 'docs'>
+  | DocType<'API', 'api'>
+  | DocType<'Other', 'other'>;
+
+/**
+ * Representation of each record indexed by our PageChunker which is published
  * to Algolia.
  *
  * Duplicated interface that must match `/lit-dev-tools-cjs/src/search/plugin.ts`
  */
 interface UserFacingPageData {
-  id: number;
+  objectID: string;
   relativeUrl: string;
   title: string;
   heading: string;
   text: string;
-  isSubsection: boolean;
+  parentID?: string;
+  docType: DocTypes;
 }
+
+/**
+ * Algolia result that returns stringified HTML that is highlighted.
+ */
+type HighlightOrSnippetResult<T> = {
+  [key in keyof T]: {
+    value: string;
+  };
+};
 
 /**
  * Subset of the suggestion returned by Algolia when there is a matching search
  * result.
  */
-type Suggestion = Omit<UserFacingPageData, 'text'>;
+type Suggestion = Omit<UserFacingPageData, 'text' | 'heading'> & {
+  _highlightResult: Pick<
+    HighlightOrSnippetResult<UserFacingPageData>,
+    'title' | 'heading'
+  >;
+  _snippetResult: Pick<HighlightOrSnippetResult<UserFacingPageData>, 'text'>;
+};
 
 /**
- * Returns a page suggestion TemplateResult with title and optional heading.
+ * Search suggestions grouped by title and content type.
  */
-function titleAndHeadingCard(
-  title: string,
-  heading: string,
-  isSubsection: boolean
-): TemplateResult {
-  if (isSubsection) {
-    return html`<div class="title-and-header">
-      <span class="title">${title}</span><span class="header">${heading}</span>
-    </div>`;
+interface SuggestionGroup {
+  suggestions: Suggestion[];
+  type: string;
+  tag: string;
+}
+
+/**
+ * A data structure that takes in a list of Suggestions, groups them by
+ * parentID, reformats the data for rendering, and then de-ranks the tutorial
+ * results.
+ */
+class SuggestionGroups {
+  private orderedPageIds: string[] = [];
+  private orderedTutorialPageIds: string[] = [];
+  private pageIdToSuggestionGroup: Map<string, SuggestionGroup> = new Map();
+
+  constructor(suggestions: Suggestion[]) {
+    suggestions.forEach((suggestion) => this.add(suggestion));
   }
-  return html`<span class="header">${title}</span>`;
-}
 
-/**
- * Used to mark a search page suggestion with the API chip.
- */
-function isApiLink(url: string) {
-  return url.startsWith('/docs/api/');
-}
+  /**
+   * Adds a suggestion to the data structure. If the suggestion is a tutorial,
+   * it is added to the end of the list of tutorials. Otherwise, it is added to
+   * the end of it's corresponding group. If there is no corresponding group,
+   * one will be created. (performance O(suggestions))
+   *
+   * @param suggestion Suggestion to add to data structure.
+   */
+  add(suggestion: Suggestion) {
+    const id = suggestion.parentID ?? suggestion.objectID;
+    const suggestionGroup = this.pageIdToSuggestionGroup.get(id) ?? {
+      ...suggestion.docType,
+      suggestions: [],
+    };
 
-/**
- * Used to mark a search page suggestion with the DOC chip.
- */
-function isDocsLink(url: string) {
-  return url.startsWith('/docs/') && !isApiLink(url);
-}
+    // This is the first time we've encountered this parentID
+    if (!suggestionGroup.suggestions.length) {
+      this.pageIdToSuggestionGroup.set(id, suggestionGroup);
 
-/**
- * Used to mark a search page suggestion with the ARTICLE chip.
- */
-function isArticleLink(url: string) {
-  return url.startsWith('/articles/');
-}
+      // If this is a tutorial, add it to the end of the tutorial list which
+      // will be rendered after the other suggestions.
+      if (suggestion.docType.tag === 'tutorial') {
+        this.orderedTutorialPageIds.push(id);
+      } else {
+        this.orderedPageIds.push(id);
+      }
+    }
 
-const SEARCH_ICON = (opacity: '0' | '1') => html`<svg
-  style="opacity: ${opacity}"
-  aria-hidden="true"
-  viewbox="0 0 24 24"
->
-  <path d="M0 0h24v24H0z" fill="none"></path>
-  <path
-    class="search-icon"
-    fill="#6f6f6f"
-    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-  ></path>
-</svg>`;
+    if (!suggestion.parentID) {
+      // If it's the title link, prepend it so it shows up first.
+      suggestionGroup.suggestions.unshift(suggestion);
+    } else {
+      suggestionGroup.suggestions.push(suggestion);
+    }
+  }
+
+  /**
+   * Gets a suggestion group by it's parentID.
+   *
+   * @param key The parentID of the suggestion group.
+   * @returns The suggestion group associated with the given parentID.
+   */
+  get(key: string) {
+    return this.pageIdToSuggestionGroup.get(key);
+  }
+
+  /**
+   * Iterates through all page IDs as they were added to the data structure, and
+   * then iterates through all tutorial IDs as they were added to the structure.
+   */
+  *[Symbol.iterator]() {
+    yield* this.orderedPageIds[Symbol.iterator]();
+    yield* this.orderedTutorialPageIds[Symbol.iterator]();
+  }
+}
 
 /**
  * Search input component that can fuzzy search the site.
+ *
+ * @fires close - Fired when the escape key or cancel button is pressed.
  */
 @customElement('litdev-search')
 export class LitDevSearch extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      box-sizing: border-box;
-
-      /* Subtle vertical layout placement. */
-      margin-block-start: 4px;
-    }
-
-    #popup {
-      position: absolute;
-    }
-
-    #root {
-      position: relative;
-    }
-
-    svg {
-      position: absolute;
-      inset-inline-end: 4px;
-      inset-block-start: 0;
-      /* If you press the search icon you will focus the input behind it. */
-      pointer-events: none;
-      height: 100%;
-      aspect-ratio: 1/1;
-
-      transition: opacity 1s;
-    }
-
-    #items {
-      display: block;
-      overflow: auto;
-      z-index: 1;
-      background: rgb(255, 255, 255);
-      /* Fix the dimensions of the suggestion dropdown */
-      max-height: min(400px, 100vh - 60px);
-      width: 400px;
-      box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
-      padding: 0;
-      margin: 0;
-    }
-
-    input {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: transparent;
-      color: currentColor;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: inherit;
-      border: none;
-      border-block-end: solid currentColor;
-      border-block-end-width: 1px;
-      outline: none;
-    }
-
-    input:focus {
-      border-block-end-width: 2px;
-    }
-
-    input::placeholder {
-      color: currentColor;
-    }
-
-    /* Mobile responsive search */
-    @media (max-width: 864px) {
-      svg .search-icon {
-        fill: white;
-      }
-
-      #items {
-        /* Fix the dimensions of the suggestion dropdown */
-        max-height: min(400px, 100vh - 60px);
-        width: 240px;
-      }
-    }
-  `;
-
   /**
    * Text value in search input.
    */
   @state()
   private _searchText: string = '';
 
-  /**
-   * Search suggestion options.
-   */
-  @queryAll('litdev-search-option')
-  private _searchOptionElements!: LitdevSearchOption[];
-
-  @query('#popup')
-  private _popupEl!: HTMLElement;
-
   @query('input')
   private _inputEl!: HTMLInputElement;
 
-  /**
-   * Whether the input is focused or not.
-   */
-  @state()
-  private _isFocused = false;
+  @query('[checked]')
+  private _checkedEl!: LitdevSearchOption | null;
 
   /**
    * Currently selected suggestion.
@@ -212,87 +175,24 @@ export class LitDevSearch extends LitElement {
   @state()
   private _selectedIndex = -1;
 
-  /**
-   * Whether the listbox should be visible or not. Used for async animations.
-   */
-  @state()
-  private _isListboxVisible = false;
-
-  /**
-   * Whether the listbox should be popped up with `right: 0` or not.
-   *
-   * This is when the listbox would pop up and overflow off the right of the
-   * screen.
-   */
-  @state()
-  private _popupSpaceRight = false;
-
-  /**
-   * Whether the listbox should be popped up with `left: 0` or not.
-   *
-   * This is when the listbox would pop up and overflow off the left of the
-   * screen.
-   */
-  @state()
-  private _popupSpaceLeft = false;
-
-  private _listboxClicked = false;
-
   private _searchController = new AgloliaSearchController<Suggestion>(
     this,
     () => this._searchText,
     {
       // Algolia _highlightResult adds a lot to response size
-      attributesToHighlight: [],
+      attributesToHighlight: ['heading', 'title'],
       // We don't need to return the full text of result so don't request it
-      attributesToRetrieve: ['*', '-text'],
+      attributesToRetrieve: ['*', '-text', '-heading'],
+      attributesToSnippet: ['text'],
     }
   );
 
-  private get _isExpanded() {
-    return this._isFocused && this._searchController.value.length > 0;
-  }
-
-  update(changed: Map<string, unknown>) {
-    const textDoesntMatch = this._searchText !== this._inputEl.value;
-    const isSSRHydrate = this._inputEl && textDoesntMatch && !this.hasUpdated;
-
-    if (isSSRHydrate) {
-      /*
-       * If we have typed text into the input, but the element has not yet been
-       * hydrated, then the @input listener will not have updated _searchText.
-       * Since we are using the `live()` directive, the first render will then
-       * clear the input because the `value` of the input will be what the user
-       * has typed in, and the value of _searchText will be empty string.
-       *
-       * The `live() directive is necessary because without it, iOS Safari will
-       * have its cursor jump to the end of the input when typing whenever
-       * `input.value` is set while typing, even if it's the current value in
-       * the input. `live()` prevents this extraneous setting of `input.value`.
-       */
-      this._searchText = this._inputEl.value;
-    }
-    super.update(changed);
-  }
-
   render() {
-    const isExpanded = this._isExpanded;
     const activeDescendant =
       this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
 
-    const listboxStyles = styleMap({
-      // isListboxVisible allows animation fade away
-      visibility: isExpanded || this._isListboxVisible ? 'visible' : 'hidden',
-      opacity: isExpanded ? '1' : '0',
-      right: this._popupSpaceRight ? '0px' : 'auto',
-      left: this._popupSpaceLeft ? '0px' : 'auto',
-    });
-    const listboxAnimationOptions: AnimationOptions = {
-      properties: ['opacity'],
-      onComplete: () => {
-        this._isListboxVisible = isExpanded;
-      },
-    };
+    const items = this._searchController.value;
+
     return html`
       <div id="root">
         <input
@@ -304,65 +204,95 @@ export class LitDevSearch extends LitElement {
           aria-label="Lit Site Search"
           aria-haspopup="listbox"
           aria-owns="items"
-          aria-expanded=${isExpanded ? 'true' : 'false'}
+          aria-expanded=${items.length ? 'true' : 'false'}
           aria-autocomplete="list"
           aria-activedescendant=${activeDescendant}
           .value=${live(this._searchText)}
           @input=${this._onInput}
           @keydown=${this._onKeydown}
-          @focus=${this._onFocus}
-          @blur=${this._onBlur}
         />
-        <div
-          id="popup"
-          ${animate(listboxAnimationOptions)}
-          style=${listboxStyles}
-        >
-          <ul
-            id="items"
-            role="listbox"
-            @pointerdown=${this._onListboxPointerdown}
-          >
-            ${repeat(
-              this._searchController.value,
-              (suggestion) => suggestion.id,
-              (
-                {relativeUrl, title, heading, isSubsection},
-                index
-              ) => html`<litdev-search-option
-                id=${index}
-                ?checked=${this._selectedIndex === index}
-                .relativeUrl="${relativeUrl}"
-                .title="${title}"
-                .heading="${heading}"
-                .isSubsection="${isSubsection}"
-                role="option"
-                @click="${() => this._navigate(relativeUrl)}"
-              ></litdev-search-option>`
-            )}
-          </ul>
-        </div>
-        ${SEARCH_ICON(this._isFocused ? '0' : '1')}
+        ${searchIcon}
+        <button @click=${() => this.dispatchEvent(new Event('close'))}>
+          Cancel
+        </button>
       </div>
+      <ul id="items" role="listbox" class=${classMap({expanded: items.length})}>
+        ${this._renderGroups()}
+      </ul>
     `;
   }
 
   /**
-   * Load the search index.
+   * Renders the search combobox suggestions grouped by title and content type.
    */
-  async firstUpdated() {
-    // required for popping up on hydration
-    this._isFocused = !!this.shadowRoot?.activeElement;
+  private _renderGroups() {
+    // TODO move this to the onComplete callback of the search controller
+    // once we release that feature in @lit-labs/task so that we don't do this
+    // needlessly every render.
+    const groupedSuggestions = new SuggestionGroups(
+      this._searchController.value
+    );
+
+    // for aria-activedescendant we need each item in each group to have a
+    // unique id. So we keep a running counter across all groups.
+    let suggestionIndex = -1;
+
+    return repeat(
+      groupedSuggestions,
+      (groupID) => groupID,
+      (groupID) => {
+        const suggestionGroup = groupedSuggestions.get(groupID)!;
+        return html`<section class="group">
+          ${this._renderGroupTitle(suggestionGroup)}
+          ${repeat(
+            suggestionGroup.suggestions,
+            ({objectID}) => objectID,
+            ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
+              const title = _highlightResult.title.value;
+              const heading = _highlightResult.heading.value;
+              const text = _snippetResult.text.value;
+              // Increment the current index.
+              suggestionIndex++;
+              return html`
+                <litdev-search-option
+                  id=${suggestionIndex}
+                  ?checked=${this._selectedIndex === suggestionIndex}
+                  .relativeUrl="${relativeUrl}"
+                  .title="${title}"
+                  .heading="${heading}"
+                  .text="${text}"
+                  .isSubsection="${!!parentID}"
+                  role="option"
+                  @pointerenter=${this._onSuggestionHover(suggestionIndex)}
+                  @click="${() => this._navigate(relativeUrl)}"
+                ></litdev-search-option>
+              `;
+            }
+          )}
+        </section>`;
+      }
+    );
   }
 
-  updated(changed: PropertyValues) {
-    super.updated(changed);
+  /**
+   * Renders the title and the content type chip of a search suggestion group.
+   */
+  private _renderGroupTitle(group: SuggestionGroup) {
+    return html`<div class="descriptor">
+      <span class="title"> ${group.suggestions[0].title} </span>
+      <span class="tag-wrapper">
+        <span class="tag ${group.tag}"> ${group.type} </span>
+      </span>
+    </div>`;
+  }
 
-    if (!this._isExpanded) {
-      return;
-    }
-
-    this._positionPopup();
+  /**
+   * @param index Index of the suggestion to select.
+   * @returns A hover event listener that selects the suggestion at the given
+   *    index.
+   */
+  private _onSuggestionHover(index: number) {
+    return () => (this._selectedIndex = index);
   }
 
   /**
@@ -392,6 +322,7 @@ export class LitDevSearch extends LitElement {
         const oldText = this._searchText;
         this._selectedIndex = -1;
         this._inputEl.blur();
+        this.dispatchEvent(new Event('close'));
         // prevent the input from closing drawer if there was text
         if (oldText.trim()) {
           e.stopPropagation();
@@ -406,8 +337,7 @@ export class LitDevSearch extends LitElement {
    * Selects the next item on the list or wraps around if at end.
    */
   private _selectNext() {
-    const opts = this._searchOptionElements;
-    const numItems = opts.length;
+    const numItems = this._searchController.value.length;
     this._selectedIndex++;
     if (this._selectedIndex >= numItems) {
       this._selectedIndex = 0;
@@ -418,8 +348,7 @@ export class LitDevSearch extends LitElement {
    * Selects the previous item on the list or wraps around if at start.
    */
   private _selectPrevious() {
-    const opts = this._searchOptionElements;
-    const numItems = opts.length;
+    const numItems = this._searchController.value.length;
     this._selectedIndex--;
     if (this._selectedIndex < 0) {
       this._selectedIndex = numItems - 1;
@@ -430,22 +359,23 @@ export class LitDevSearch extends LitElement {
    * Handles the enter keypress and navigates accordingly.
    */
   private _select() {
-    const opts = this._searchOptionElements;
-    if (opts.length === 0) {
+    const numItems = this._searchController.value.length;
+    if (numItems === 0) {
       return;
     }
 
+    const checkedEl = this._checkedEl;
+
     // Navigate to checked element.
-    for (const el of opts) {
-      if (el.checked as boolean) {
-        this._navigate(el.relativeUrl);
-        return;
-      }
+    if (checkedEl) {
+      this._navigate(checkedEl.relativeUrl);
+      return;
     }
+
     // No element is selected. Fallback behavior is to navigate to the first
     // suggestion.
-    const firstSuggestion = opts[0];
-    firstSuggestion.checked = true;
+    const firstSuggestion = this._searchController.value[0];
+    this._selectedIndex = 0;
     this._navigate(firstSuggestion.relativeUrl);
   }
 
@@ -467,212 +397,182 @@ export class LitDevSearch extends LitElement {
     if (navDrawer) {
       navDrawer.open = false;
     }
+
+    this.dispatchEvent(new Event('close'));
   }
 
   focus() {
     this._inputEl.focus();
   }
 
-  /**
-   * Hides the search icon on focus to prevent text overlapping the icon, and
-   * expands the listbox.
-   */
-  private _onFocus() {
-    this._isFocused = true;
-  }
-
-  /**
-   * Shows the search icon on blur, and collapses the listbox.
-   */
-  private _onBlur() {
-    if (this._listboxClicked) {
-      return;
-    }
-    this._isFocused = false;
-  }
-
-  /**
-   * Prevents the listbox from closing because of input blur.
-   */
-  private _onListboxPointerdown() {
-    this._listboxClicked = true;
-    // cannnot use setpointercapture because it will retarget actual item clicks
-    window.addEventListener('pointerup', this._onPointerup, {
-      once: true,
-    });
-  }
-
-  /**
-   * Closes the listbox.
-   */
-  private _onPointerup = () => {
-    this._listboxClicked = false;
-    this._isFocused = false;
-  };
-
-  /**
-   * Positions the popup left or right justified with respect to the input
-   * depending on whether the listbox is overflowing the window.
-   */
-  private _positionPopup() {
-    const popup = this._popupEl;
-    const windowWidth = window.innerWidth;
-    const popupRight = popup.getBoundingClientRect().right;
-
-    if (popupRight > windowWidth) {
-      this._popupSpaceRight = true;
-      this._popupSpaceLeft = false;
-      return;
+  static styles = css`
+    :host {
+      --_cancel-button-width: 70px;
+      --_input-height: 50px;
+      --_input-padding: 12px;
+      --_input-border-width: 1px;
+      --_input-border-width-focus: 2px;
+      --_items-margin-block-start: 16px;
+      box-sizing: border-box;
+      font-weight: 400;
     }
 
-    const popupLeft = popup.getBoundingClientRect().left;
-
-    if (popupLeft <= 0) {
-      this._popupSpaceRight = false;
-      this._popupSpaceLeft = true;
-      return;
+    #root {
+      position: relative;
+      display: flex;
+      height: var(--_input-height);
     }
-  }
-}
 
-/**
- * A single search option suggestion.
- */
-@customElement('litdev-search-option')
-class LitdevSearchOption extends LitElement {
-  @property()
-  relativeUrl = '';
-
-  @property()
-  title = '';
-
-  @property()
-  heading = '';
-
-  @property({type: Boolean})
-  isSubsection = false;
-
-  @property({type: Boolean})
-  checked = false;
-
-  static get styles() {
-    return [
-      css`
-        :host {
-          display: block;
-          padding: 4px;
-        }
-
-        :host([checked]) {
-          background-color: rgb(189, 228, 255);
-        }
-
-        .suggestion {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 50px;
-          padding: 0.2em 2em;
-          border-block-end: 1px solid #ddd;
-          background-color: white;
-          color: black;
-          font-size: 16px;
-          cursor: pointer;
-        }
-
-        .title-and-header {
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-        }
-
-        .title,
-        .header {
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-        }
-
-        .header {
-          font-size: 0.9em;
-          font-weight: 600;
-        }
-
-        .tag {
-          color: white;
-          background-color: #6e6e6e;
-          padding: 0 0.5em;
-          margin-left: 1em;
-          font-weight: 600;
-        }
-
-        .article.tag {
-          background-color: #f9a012;
-        }
-
-        .docs.tag {
-          color: white;
-          background-color: #324fff;
-        }
-
-        @media (max-width: 864px) {
-          .suggestion {
-            padding: 0.2em 0.4em;
-          }
-        }
-      `,
-    ];
-  }
-
-  render() {
-    let tagInfo = {
-      tag: '',
-      text: '',
-    };
-
-    if (isApiLink(this.relativeUrl)) {
-      tagInfo = {
-        tag: 'api',
-        text: 'API',
-      };
-    } else if (isDocsLink(this.relativeUrl)) {
-      tagInfo = {
-        tag: 'docs',
-        text: 'Docs',
-      };
-    } else if (isArticleLink(this.relativeUrl)) {
-      tagInfo = {
-        tag: 'article',
-        text: 'Article',
-      };
+    #root button {
+      display: none;
     }
-    return html`
-      <div class="suggestion">
-        ${titleAndHeadingCard(this.title, this.heading, this.isSubsection)}
-        ${tagInfo.tag
-          ? html`<span class="tag ${tagInfo.tag}">${tagInfo.text}</span>`
-          : ''}
-      </div>
-    `;
-  }
 
-  updated(changed: PropertyValues) {
-    super.updated(changed);
+    svg {
+      position: absolute;
+      inset-inline-end: var(--_input-padding);
+      inset-block-start: 0;
+      /* If you press the search icon you will focus the input behind it. */
+      pointer-events: none;
+      height: 100%;
+      aspect-ratio: 1/1;
 
-    if (changed.has('checked') && this.checked) {
-      this.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
+      transition: opacity 1s;
+      color: var(--color-blue);
     }
-  }
+
+    input:focus ~ svg {
+      opacity: 0;
+    }
+
+    #items {
+      display: block;
+      z-index: 1;
+      padding: 0;
+      max-height: 488px;
+      overflow: auto;
+      margin-inline: calc(-1 * var(--search-modal-padding));
+      margin-block-start: var(--_items-margin-block-start);
+      margin-block-end: calc(-1 * var(--search-modal-padding));
+      padding-block-end: var(--search-modal-padding);
+      padding-inline: var(--search-modal-padding);
+      scrollbar-color: auto var(--color-light-gray);
+      scrollbar-width: thin;
+    }
+
+    #items::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    #items::-webkit-scrollbar-thumb {
+      background-color: rgba(60, 60, 60, 0.7);
+      border-radius: 6px;
+      border: 3px solid var(--color-light-gray);
+    }
+
+    #items::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    #items:not(.expanded) {
+      margin-block: 0;
+      padding-block-end: 0;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      margin: calc(
+        var(--_input-border-width-focus) - var(--_input-border-width)
+      );
+      padding: var(--_input-padding);
+      box-sizing: border-box;
+      background-color: transparent;
+      color: currentColor;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      border: solid var(--_input-border-width) var(--color-blue);
+      outline: none;
+    }
+
+    input:focus {
+      border-width: var(--_input-border-width-focus);
+      margin: 0;
+    }
+
+    input::placeholder {
+      color: currentColor;
+    }
+
+    .group {
+      margin-block-start: 12px;
+    }
+
+    .group .descriptor {
+      color: var(--color-blue);
+      font-size: 0.9rem;
+
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .group .tag-wrapper {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .group .tag {
+      color: white;
+      background-color: #6e6e6e;
+      padding: 0 0.5em;
+      font-weight: 600;
+    }
+
+    .group .tag.article {
+      background-color: #f9a012;
+    }
+
+    .group .tag.docs {
+      color: white;
+      background-color: #324fff;
+    }
+
+    .group .tag.tutorial {
+      color: black;
+      background-color: #40dcff;
+    }
+
+    @media (max-width: 864px) {
+      #root button {
+        display: block;
+        background-color: transparent;
+        border: none;
+        color: var(--color-blue);
+        cursor: pointer;
+        font-size: 18px;
+        min-width: var(--_cancel-button-width);
+        width: var(--_cancel-button-width);
+        padding: 0;
+      }
+
+      svg {
+        inset-inline-end: calc(
+          var(--_input-padding) + var(--_cancel-button-width)
+        );
+      }
+
+      #items {
+        max-height: calc(
+          100vh - var(--_input-height) - 2 * var(--search-modal-padding) -
+            var(--_items-margin-block-start)
+        );
+      }
+    }
+  `;
 }
 
 declare global {
   interface HTMLElementTagNameMap {
     'litdev-search': LitDevSearch;
-    'litdev-search-option': LitdevSearchOption;
   }
 }

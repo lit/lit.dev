@@ -32,7 +32,6 @@ A number of integrations have also been published which make Lit SSR work out-of
 This library is under active development with some notable limitations we hope to resolve:
 
 - Async component work is not supported. See issues [#3219](https://github.com/lit/lit/issues/3219), [#2469](https://github.com/lit/lit/issues/2469).
-- An environment checker for writing conditional code is not yet available. See issue [#3158](https://github.com/lit/lit/issues/3158).
 - Only Lit components using shadow DOM is supported. See issue [#3080](https://github.com/lit/lit/issues/3080).
 - Integration with other SSR frameworks are being worked on. See issues for [NextJS](https://github.com/lit/lit/issues/2391) and [Nuxt](https://github.com/lit/lit/issues/3049).
 - Declarative shadow DOM is not implemented in all major browsers yet, though a polyfill is available. Read more about it in [client usage](/docs/ssr/client-usage#lit-components).

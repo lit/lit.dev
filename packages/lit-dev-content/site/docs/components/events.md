@@ -59,7 +59,7 @@ Adding event listeners to the component itself is a form of event delegation and
 
 However, events fired from the component's shadow DOM are retargeted when heard by an event listener on the component. This means the event target is the component itself. See [Working with events in shadow DOM](#shadowdom) for more information.
 
-Retargeting can interfere with event delegation, and to avoid it, event listeners can be added to the component's shadow root itself. Since the `shadowRoot` is not available in the `constructor`, event listeners can added in the `createRenderRoot` method as follows. Please note that it's important to make sure to return the shadow root from the `createRenderRoot` method.
+Retargeting can interfere with event delegation, and to avoid it, event listeners can be added to the component's shadow root itself. Since the `shadowRoot` is not available in the `constructor`, event listeners can be added in the `createRenderRoot` method as follows. Please note that it's important to make sure to return the shadow root from the `createRenderRoot` method.
 
 {% playground-example "docs/components/events/host/" "my-element.ts" %}
 

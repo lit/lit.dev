@@ -240,7 +240,7 @@ it minimizes the amount of code that your users will download and execute.
 
 ```js
 import {configureLocalization} from '@lit/localize';
-import {sourceLocales, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locales.js';
 
 const {getLocale, setLocale} = configureLocalization({
   sourceLocale,
@@ -257,7 +257,7 @@ locale modules are being fetched.
 
 ```js
 import {configureLocalization} from '@lit/localize';
-import {sourceLocales, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locales.js';
 
 const localizedTemplates = new Map(
   targetLocales.map((locale) => [locale, import(`/locales/${locale}.js`)])
@@ -288,7 +288,7 @@ some other restriction that prevents the use of dynamic imports.
 
 ```js
 import {configureLocalization} from '@lit/localize';
-import {sourceLocales, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locales.js';
 
 import * as templates_es_419 from './locales/es-419.js';
 import * as templates_zh_hans from './locales/zh-Hans.js';

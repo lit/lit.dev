@@ -32,12 +32,13 @@ if (!BOT_CLIENT_SECRET) {
   throw new Error('Missing BOT_CLIENT_SECRET');
 }
 
-interface Suggestion {
-  id: number;
+export interface Suggestion {
+  objectID: string;
   relativeUrl: string;
-  heading: string;
-  isSubsection: boolean;
   title: string;
+  heading: string;
+  text: string;
+  parentID?: string;
 }
 
 type PublishableCommand = Omit<
@@ -104,7 +105,7 @@ const handleDocsAutocompleteInteraction = async (
   // Transform the hits' relative URL to objects that are readable and
   // linkable outside of lit.dev.
   const results = searchRes.hits.map((hit) => {
-    const readableText = hit.isSubsection
+    const readableText = !!hit.parentID
       ? `${hit.title} - ${hit.heading}`
       : hit.title;
 
