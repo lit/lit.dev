@@ -22,7 +22,7 @@ Interested? [**Join the livestream**]({{ytLink}}) on YouTube. Make sure to sign 
 
 ## What will be covered at the Lit Labs event?
 
-The Lit team will be covering information on how individual Labs projects can help you in your Web Component projects as well as their current status for Labs graduation into stable. Here is a list of the projects that will be covered:
+The Lit team will be covering information on how individual Labs projects can help you in your Web Component projects as well as their current status for Labs graduation into stable. Here are the projects we'll be covering:
 
 - [Task](https://github.com/lit/lit/tree/main/packages/labs/task)
 - [Virtualizer](https://github.com/lit/lit/tree/main/packages/labs/virtualizer)
