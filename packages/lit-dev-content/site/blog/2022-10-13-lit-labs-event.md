@@ -10,7 +10,7 @@ eventDate: "Monday October 24th 2022 at 10AM PDT"
 ytLink: https://www.youtube.com/
 ---
 
-The Lit team is hosting a virtual event on **{{eventDate}}** to talk about all of the exciting work going on in Lit Labs. Join us for detailed presentations on the current and future offerings of our Labs packages, their statuses, and how you can help get them across the line and shape the future of Lit!
+The Lit team is hosting a virtual event on **{{eventDate}}** to talk about all of the exciting work going on in Lit Labs. We'll give an overview of Lit Labs, followed by detailed presentations on each of our Labs packages. And we'll talk about how you can help get these packages across the finish line and shape the future of Lit!
 
 To make sure you don't miss it, [**go to the live stream**]({{ytLink}}) and sign up for notifications.
 
