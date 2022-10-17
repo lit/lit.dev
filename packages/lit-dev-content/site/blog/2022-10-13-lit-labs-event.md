@@ -12,7 +12,7 @@ ytLink: https://www.youtube.com/
 
 The Lit team is hosting a virtual event on **{{eventDate}}** to talk about all of the exciting work going on in Lit Labs. Join us for detailed presentations on the current and future offerings of our Labs packages, their statuses, and how you can help get them across the line and shape the future of Lit!
 
-Interested? [**Join the livestream**]({{ytLink}}) on YouTube. Make sure to sign up for reminders and notifications so you don't miss it!
+To make sure you don't miss it, [**go to the live stream**]({{ytLink}}) and sign up for notifications.
 
 <img src="/images/blog/labs-event/lit-labs.svg" width="720" class="block centered">
 
@@ -35,4 +35,4 @@ The Lit team will be covering information on how individual Labs projects can he
 
 ## When is it?
 
-The event will be on **{{eventDate}}**. Make sure to sign up for YouTube reminders and notifications [**at this link**]({{ytLink}}) so you don't miss it!
+The event will be on **{{eventDate}}**. Make sure to sign up for YouTube reminders and notifications [**on the event page**]({{ytLink}}) so you don't miss it!
