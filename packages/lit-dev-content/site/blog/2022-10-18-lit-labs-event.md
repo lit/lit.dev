@@ -1,7 +1,7 @@
 ---
 tags: blogPosts
 layout: blog-post.html
-title: "Get the low-down on Lit Labs"
+title: "Get the lowdown on Lit Labs"
 summary: "Join us for a virtual event on October 24th 2022 at 10AM PDT to learn all about Lit Labs!"
 date: 2022-10-18
 author:
@@ -18,7 +18,7 @@ To make sure you don't miss it, [**go to the live stream**]({{ytLink}}) and sign
 
 ## What is Lit Labs?
 
-[Lit Labs]({{site.baseurl}}/docs/libraries/labs/) is an umbrella for Lit packages under development that we are actively seeking feedback on. These projects may be experimental or incomplete, or simply looking for real-world feedback. Lit Labs projects are published under the [`@lit-labs` npm scope](https://www.npmjs.com/search?q=%40lit-labs).
+[Lit Labs]({{site.baseurl}}/docs/libraries/labs/) is an umbrella for Lit packages under development that we are actively seeking community engagement on. These projects may be experimental or incomplete, or simply looking for real-world feedback. Lit Labs projects are published under the [`@lit-labs` npm scope](https://www.npmjs.com/search?q=%40lit-labs).
 
 ## What will be covered at the Lit Labs event?
 
