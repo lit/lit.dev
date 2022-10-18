@@ -18,7 +18,7 @@ To make sure you don't miss it, [**go to the live stream**]({{ytLink}}) and sign
 
 ## What is Lit Labs?
 
-[Lit Labs]({{site.baseurl}}/docs/libraries/labs/) is an umbrella for projects related to Lit that aren't yet ready for production. These projects may be experimental or incomplete, or simply looking for real-world feedback. Lit Labs projects are published under the [`@lit-labs` npm scope](https://www.npmjs.com/search?q=%40lit-labs).
+[Lit Labs]({{site.baseurl}}/docs/libraries/labs/) is an umbrella for Lit packages under development that we are actively seeking feedback on. These projects may be experimental or incomplete, or simply looking for real-world feedback. Lit Labs projects are published under the [`@lit-labs` npm scope](https://www.npmjs.com/search?q=%40lit-labs).
 
 ## What will be covered at the Lit Labs event?
 
