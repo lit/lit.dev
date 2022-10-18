@@ -2,7 +2,7 @@
 tags: blogPosts
 layout: blog-post.html
 title: "Get the low-down on Lit Labs"
-summary: "Join us for a virtual event on October 24th 2022 at 10 AM PST to learn all about Lit Labs!"
+summary: "Join us for a virtual event on October 24th 2022 at 10AM PDT to learn all about Lit Labs!"
 date: 2022-10-18
 author:
   - elliott-marquez
