@@ -149,7 +149,9 @@ In more detail, it looks like this:
 
 ### The changedProperties map {#changed-properties}
 
-Many reactive update methods receive a `Map` of changed properties. The `Map` keys are the property names and its values are the previous property values. Changing a property *during* the update  (up to and including the `render()` method) updates the `changedProperties` map, but does not kick off a new update. Changing a property _after_ `render()` (for example, in the `updated()` method) triggers a new update cycle, and the changed property is added to a new `changedProperties` map to be used for he next cycle.
+Many reactive update methods receive a `Map` of changed properties. The `Map` keys are the property names and its values are the **previous** property values. You can always find the current property values using <code>this.<var>property</var></code> or <code>this[<var>property</var>]</code>.
+
+#### TypeScript types for changedProperties
 
 If you're using TypeScript and you want strong type checking for the `changedProperties` map, you can use `PropertyValues<this>`, which infers the correct type for each property name. 
 
@@ -161,7 +163,13 @@ import {LitElement, html, PropertyValues} from 'lit';
   }
 ```
 
-If you're less concerned with strong typing—or you're only checking the property names, not the previous values—you could use a simpler type like `Map<string, any>`
+If you're less concerned with strong typing—or you're only checking the property names, not the previous values—you could use a less restrictive type like `Map<string, any>`.
+
+Note that `PropertyValues<this>` doesn't recognize `protected` or `private` properties. If you're checking any `protected` or `private` properties, you'll need to use a less restrictive type.
+
+#### Changing properties during an update {#changing-properties-during-an-update}
+
+Changing a property *during* the update  (up to and including the `render()` method) updates the `changedProperties` map, but **doesn't** trigger a new update. Changing a property _after_ `render()` (for example, in the `updated()` method) triggers a new update cycle, and the changed property is added to a new `changedProperties` map to be used for he next cycle.
 
 ### Triggering an update {#reactive-update-cycle-triggering}
 
