@@ -51,6 +51,12 @@
   font-size: 0.9em;
 }
 
+@supports not selector(:modal) {
+  litdev-search-modal {
+      display: none !important;
+  }
+}
+
 #desktopNav > .navItem > *:hover,
 #desktopNav > .navItem.active > a {
   color: var(--color-blue);
