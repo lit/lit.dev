@@ -86,4 +86,11 @@ test.describe('Home page', () => {
       'homePageIntroSection.png'
     );
   });
+
+  test('Cookies banner golden', async ({page}) => {
+    await page.goto('/');
+    await expect(
+      await page.locator('litdev-cookie-banner').screenshot()
+    ).toMatchSnapshot('homePageCookiesBanner.png');
+  });
 });
