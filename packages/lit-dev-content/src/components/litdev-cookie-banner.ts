@@ -67,7 +67,7 @@ export default class LitdevCookieBanner extends LitElement {
         <h2 class="visually-hidden">Cookies consent notice</h2>
         <div class="message">
           Lit.dev uses cookies from Google to deliver and enhance the quality of
-          ts services and to analyze traffic.
+          its services and to analyze traffic.
         </div>
         <div class="actions">
           <litdev-ripple-icon-button
