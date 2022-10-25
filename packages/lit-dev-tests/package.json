@@ -43,7 +43,8 @@
         "../lit-dev-content:build"
       ],
       "files": [
-        "src/**/*.png"
+        "src/**/*.png",
+        "lib/**/*.spec.js"
       ],
       "output": [],
       "command": "playwright install && playwright test --config=lib/playwright.config.js"
