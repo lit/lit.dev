@@ -361,23 +361,22 @@ This section covers some less-common methods for customizing the update cycle.
 
 #### scheduleUpdate() {#scheduleupdate}
 
-Override `scheduleUpdate()` to customize the timing of the update cycle. `scheduleUpdate()` is called when you request an update, and by default it calls `performUpdate()` immediately. Override it to defer the update. For example, you could use it to coordinate update timing between multiple elements.
+Override `scheduleUpdate()` to customize the timing of the update. `scheduleUpdate()` is called when an update is about to be performed, and by default it calls `performUpdate()` immediately. Override it to defer the update. 
 
-The following code schedules the update to occur just before the next frame:
+For example, the following code schedules the update to occur after the next frame paints, which can reduce jank if the update is expensive:
 
 {% switchable-sample %}
 
 ```ts
 protected override async scheduleUpdate(): Promise<void> {
-  await new Promise<void>((resolve) => 
-      requestAnimationFrame(() => resolve()));
+  await new Promise((resolve) => setTimeout(resolve));
   this.performUpdate();
 }
 ```
 
 ```js
 async scheduleUpdate() {
-  await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  await new Promise((resolve) => setTimeout(resolve));
   this.performUpdate();
 }
 ```
@@ -386,34 +385,13 @@ async scheduleUpdate() {
 
 If you override `scheduleUpdate()`, it's your responsibility to call `performUpdate()`.
 
-In an async function, you can `await` any promises, then call `performUpdate()` to complete the current update. The *next* update can't proceed until `scheduleUpdate()` returns.
+{% aside "info" %}
 
-You can also write `scheduleUpdate()` as a regular function. In this case, `scheduleUpdate()` should return a promise. When resolving the promise, you must call `performUpdate()` to complete the current update. The *next* update can't proceed until the promise resolves.
+Async function optional.
 
-{% switchable-sample %}
+This example shows an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) which _implicitly_ returns a promise. You can also write `scheduleUpdate()` as a function that _explictly_ returns a `Promise`. In either case, the **next** update doesn't start until the promise returned by `scheduleUpdate()` resolves. 
 
-```ts
-protected override scheduleUpdate(): Promise<void> {
-  return new Promise<void>((resolve) => 
-      requestAnimationFrame(() => {
-        this.performUpdate();
-        resolve()
-      ));
-}
-```
-
-```js
-scheduleUpdate():  {
-  return new Promise((resolve) => 
-      requestAnimationFrame(() => {
-        this.performUpdate();
-        resolve()
-      )
-  );
-}
-```
-
-{% endswitchable-sample %}
+{% endaside %}
 
 This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion. This talk shows an early version of Lit, but describes many useful concepts.
 
