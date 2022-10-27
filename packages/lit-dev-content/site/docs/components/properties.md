@@ -317,6 +317,8 @@ While element properties can be of any type, attributes are always strings. This
 
   * To **reflect** an attribute (set an attribute from a property), the property value must be converted to a string.
 
+Boolean properties that expose an attribute should default to false. For more information, see [Boolean attributes](#boolean-attributes).
+
 ### Setting the attribute name {#observed-attributes}
 
 By default, Lit creates a corresponding observed attribute for all public reactive properties. The name of the observed attribute is the property name, lowercased:
@@ -492,6 +494,16 @@ myProp: {
 If no `toAttribute` function is supplied for a reflected attribute, the attribute is set to the property value using the default converter.
 
 If `toAttribute` returns `null` or `undefined`, the attribute is removed.
+
+### Boolean attributes {#boolean-attributes}
+
+For a boolean property to be configurable from an attribute, **it must default to false**. If it defaults to true, you cannot set it to false from markup, since the presence of the attribute, with or without a value, equates to true. This is the standard behavior for attributes in the web platform.
+
+If this behavior doesn't fit your use case, there are a couple of options:
+
+- Change the property name so it defaults to false. For example, the web platform uses the `disabled` attribute (defaults to false), not `enabled`.
+
+- Use a string-valued or number-valued attribute instead.
 
 ### Enabling attribute reflection {#reflected-attributes}
 
