@@ -147,6 +147,30 @@ In more detail, it looks like this:
 
 <img class="centered-image" src="/images/docs/components/update-4.jpg">
 
+### The changedProperties map {#changed-properties}
+
+Many reactive update methods receive a `Map` of changed properties. The `Map` keys are the property names and its values are the **previous** property values. You can always find the current property values using <code>this.<var>property</var></code> or <code>this[<var>property</var>]</code>.
+
+#### TypeScript types for changedProperties
+
+If you're using TypeScript and you want strong type checking for the `changedProperties` map, you can use `PropertyValues<this>`, which infers the correct type for each property name. 
+
+```ts
+import {LitElement, html, PropertyValues} from 'lit';
+...
+  shouldUpdate(changedProperties: PropertyValues<this>) {
+    ...
+  }
+```
+
+If you're less concerned with strong typing—or you're only checking the property names, not the previous values—you could use a less restrictive type like `Map<string, any>`.
+
+Note that `PropertyValues<this>` doesn't recognize `protected` or `private` properties. If you're checking any `protected` or `private` properties, you'll need to use a less restrictive type.
+
+#### Changing properties during an update {#changing-properties-during-an-update}
+
+Changing a property *during* the update  (up to and including the `render()` method) updates the `changedProperties` map, but **doesn't** trigger a new update. Changing a property _after_ `render()` (for example, in the `updated()` method) triggers a new update cycle, and the changed property is added to a new `changedProperties` map to be used for he next cycle.
+
 ### Triggering an update {#reactive-update-cycle-triggering}
 
 An update is triggered when a reactive property changes or the `requestUpdate()` method is called. Since updates are performed asynchronously, any and all changes that occur before the update is performed result in only a **single update**.
@@ -171,7 +195,7 @@ disconnectedCallback() {
 }
 ```
 
-The list of properties that have changed is stored in a Map that’s passed to all the subsequent lifecycle methods. The Map keys are the property names and its values are the previous property values.
+The list of properties that have changed is stored in a `changedProperties` map that’s passed to subsequent lifecycle methods. The map keys are the property names and its values are the previous property values.
 
 Optionally, you can pass a property name and a previous value when calling `requestUpdate()`, which will be stored in the `changedProperties` map. This can be useful if you implement a custom getter and setter for a property. See [Reactive properties](/docs/components/properties/) for more information about implementing custom getters and setters.
 
@@ -200,12 +224,23 @@ If `shouldUpdate()` returns `true`, which it does by default, then the update pr
 
 You can implement `shouldUpdate()` to specify which property changes should cause updates. Use the map of `changedProperties` to compare current and previous values.
 
+{% switchable-sample %}
+
+```ts
+shouldUpdate(changedProperties: Map<string, any>) {
+  // Only update element if prop1 changed.
+  return changedProperties.has('prop1'); 
+}
+```
+
 ```js
 shouldUpdate(changedProperties) {
   // Only update element if prop1 changed.
   return changedProperties.has('prop1');
 }
 ```
+
+{% endswitchable-sample %}
 
 #### willUpdate() {#willupdate}
 
@@ -220,6 +255,21 @@ Called before `update()` to compute values needed during the update.
 
 Implement `willUpdate()` to compute property values that depend on other properties and are used in the rest of the update process.
 
+{% switchable-sample %}
+
+```ts
+willUpdate(changedProperties: PropertyValues<this>) {
+  // only need to check changed properties for an expensive computation.
+  if (changedProperties.has('firstName') || changedProperties.has('lastName')) {
+    this.sha = computeSHA(`${this.firstName} ${this.lastName}`);
+  }
+}
+
+render() {
+  return html`SHA: ${this.sha}`;
+}
+```
+
 ```js
 willUpdate(changedProperties) {
   // only need to check changed properties for an expensive computation.
@@ -232,6 +282,8 @@ render() {
   return html`SHA: ${this.sha}`;
 }
 ```
+
+{% endswitchable-sample %}
 
 #### update() {#update}
 
@@ -305,6 +357,16 @@ Called whenever the component’s update finishes and the element's DOM has been
 
 Implement `updated()` to perform tasks that use element DOM after an update. For example, code that performs animation may need to measure the element DOM.
 
+{% switchable-sample %}
+
+```ts
+updated(changedProperties: Map<string, any>) {
+  if (changedProperties.has('collapsed')) {
+    this._measureDOM();
+  }
+}
+```
+
 ```js
 updated(changedProperties) {
   if (changedProperties.has('collapsed')) {
@@ -312,6 +374,8 @@ updated(changedProperties) {
   }
 }
 ```
+
+{% endswitchable-sample %}
 
 #### updateComplete {#updatecomplete}
 
@@ -466,7 +530,7 @@ starting with superclasses and progressing to the instance's class.
 
 <div class="alert alert-info">
 
-Lit’s server-side rendering code is currently in an experimental stage so the following information is subject to change.
+Lit's [server-side rendering package](/docs/ssr/overview/) is currently under active development so the following information is subject to change.
 
 </div>
 
