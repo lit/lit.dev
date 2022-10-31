@@ -5,9 +5,9 @@
  */
 
 export const pageRedirects = new Map([
-  ['/discord',                        'https://discord.gg/NqrQepWTym'],
-  ['/slack-invite',                   'https://discord.gg/NqrQepWTym'],
-  ['/youtube',                        'https://www.youtube.com/channel/UCok4ZKSzM3jY7JQRMlF-DPg'],
+  ['/discord',                        'https://discord.com/invite/buildWithLit'],
+  ['/slack-invite',                   'https://discord.com/invite/buildWithLit'],
+  ['/youtube',                        'https://www.youtube.com/channel/@buildWithLit'],
   ['/msg/dev-mode',                   '/docs/tools/development/#development-and-production-builds'],
   // TODO(sorvell) https://github.com/lit/lit.dev/issues/455
   ['/msg/multiple-versions',          '/docs/tools/requirements/'],
