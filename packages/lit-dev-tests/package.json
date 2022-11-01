@@ -95,7 +95,7 @@
     }
   },
   "dependencies": {
-    "@playwright/test": "^1.19.1",
+    "@playwright/test": "~1.26.1",
     "@types/ansi-escape-sequences": "^4.0.0",
     "@types/node": "^16.0.0",
     "ansi-escape-sequences": "^6.2.1",
