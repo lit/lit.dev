@@ -290,7 +290,7 @@ Mutating an object or array doesn't change the object reference, so it won't tri
 
     While this example is simple, it's often helpful to use a library like [Immer](https://immerjs.github.io/immer/) to manage immutable data. This can help avoid tricky boilerplate code when setting deeply nested objects.
 
--   **Manually triggering an update.** Mutate the data and `requestUpdate()` to trigger an update directly. For example:
+-   **Manually triggering an update.** Mutate the data and call `requestUpdate()` to trigger an update directly. For example:
 
     ```js
     this.myArray.splice(indexToRemove, 1);
