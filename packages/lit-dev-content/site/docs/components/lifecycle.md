@@ -361,7 +361,7 @@ This section covers some less-common methods for customizing the update cycle.
 
 #### scheduleUpdate() {#scheduleupdate}
 
-Override `scheduleUpdate()` to customize the timing of the update. `scheduleUpdate()` is called when an update is about to be performed, and by default it calls `performUpdate()` immediately. Override it to defer the update. 
+Override `scheduleUpdate()` to customize the timing of the update. `scheduleUpdate()` is called when an update is about to be performed, and by default it calls `performUpdate()` immediately. Override it to defer the update—this technique can be used to unblock the main rendering/event thread. 
 
 For example, the following code schedules the update to occur after the next frame paints, which can reduce jank if the update is expensive:
 
@@ -370,20 +370,20 @@ For example, the following code schedules the update to occur after the next fra
 ```ts
 protected override async scheduleUpdate(): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve));
-  this.performUpdate();
+  super.scheduleUpdate();
 }
 ```
 
 ```js
 async scheduleUpdate() {
   await new Promise((resolve) => setTimeout(resolve));
-  this.performUpdate();
+  super.scheduleUpdate();
 }
 ```
 
 {% endswitchable-sample %}
 
-If you override `scheduleUpdate()`, it's your responsibility to call `performUpdate()`.
+If you override `scheduleUpdate()`, it's your responsibility to call `super.scheduleUpdate()` to continue the update.
 
 {% aside "info" %}
 
@@ -393,13 +393,12 @@ This example shows an [async function](https://developer.mozilla.org/en-US/docs/
 
 {% endaside %}
 
-This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion. This talk shows an early version of Lit, but describes many useful concepts.
 
 #### performUpdate()  {#performupdate}
 
 Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
-Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
+Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously. (If there is no update pending, you can call `requestUpdate()` followed by `performUpdate() to force a synchronous update.)
 
 {% aside "info" %}
 
