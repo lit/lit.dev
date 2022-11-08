@@ -6,12 +6,12 @@ import {SecretButton as SecretButtonWC} from './secret-button.js';
 
 const {useCallback, useState} = React;
 
-const SecretButton = createComponent(
-  React,
-  'secret-button',
-  SecretButtonWC,
-  {onSecretMessage: 'secret-message' as EventName<CustomEvent<string>>}
-);
+const SecretButton = createComponent({
+  react: React,
+  tagName: 'secret-button',
+  elementClass: SecretButtonWC,
+  events: {onSecretMessage: 'secret-message' as EventName<CustomEvent<string>>}
+});
 
 export const App = () => {
   const [message, setMessage] = useState(

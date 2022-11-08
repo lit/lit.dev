@@ -19,12 +19,12 @@ import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
 
 const { useRef, useState, useCallback } = React;
 
-const FlyingTriangles = createComponent(
-  React,
-  'flying-triangles',
-  FlyingTrianglesWC,
-  {onPlayingChange: 'playing-change'},
-);
+const FlyingTriangles = createComponent({
+  react: React,
+  tagName: 'flying-triangles',
+  elementClass: FlyingTrianglesWC,
+  events: {onPlayingChange: 'playing-change'},
+});
 
 export const App = () => {
   const ref = useRef(null);

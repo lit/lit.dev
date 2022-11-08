@@ -2,11 +2,11 @@ import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
 import {SimpleSlots as SimpleSlotsWC} from './simple-slots.js';
 
-const SimpleSlots = createComponent(
-  React,
-  'simple-slots',
-  SimpleSlotsWC,
-);
+const SimpleSlots = createComponent({
+  react: React,
+  tagName: 'simple-slots',
+  elementClass: SimpleSlotsWC,
+});
 
 export const App = () => (
   <SimpleSlots>

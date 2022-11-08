@@ -2,11 +2,11 @@ import {React, ReactDOM} from './react.js';
 import {createComponent} from '@lit-labs/react';
 import {CounterButton as CounterButtonWC} from './counter-button.js';
 
-const CounterButton = createComponent(
-  React,
-  'counter-button',
-  CounterButtonWC,
-);
+const CounterButton = createComponent({
+  react: React,
+  tagName: 'counter-button',
+  elementClass: CounterButtonWC,
+});
 
 const {useCallback, useState} = React;
 
