@@ -383,7 +383,7 @@ async scheduleUpdate() {
 
 {% endswitchable-sample %}
 
-If you override `scheduleUpdate()`, it's your responsibility to call `super.scheduleUpdate()` to continue the update.
+If you override `scheduleUpdate()`, it's your responsibility to call `super.scheduleUpdate()` to perform the pending update.
 
 {% aside "info" %}
 
