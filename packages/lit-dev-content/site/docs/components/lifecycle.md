@@ -421,22 +421,56 @@ window.onunhandledrejection = function(e) {
 
 ### Implementing additional customization {#reactive-update-cycle-customizing}
 
+This section covers some less-common methods for customizing the update cycle.
+
+#### scheduleUpdate() {#scheduleupdate}
+
+Override `scheduleUpdate()` to customize the timing of the update. `scheduleUpdate()` is called when an update is about to be performed, and by default it calls `performUpdate()` immediately. Override it to defer the update—this technique can be used to unblock the main rendering/event thread. 
+
+For example, the following code schedules the update to occur after the next frame paints, which can reduce jank if the update is expensive:
+
+{% switchable-sample %}
+
+```ts
+protected override async scheduleUpdate(): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve));
+  super.scheduleUpdate();
+}
+```
+
+```js
+async scheduleUpdate() {
+  await new Promise((resolve) => setTimeout(resolve));
+  super.scheduleUpdate();
+}
+```
+
+{% endswitchable-sample %}
+
+If you override `scheduleUpdate()`, it's your responsibility to call `super.scheduleUpdate()` to perform the pending update.
+
+{% aside "info" %}
+
+Async function optional.
+
+This example shows an [async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) which _implicitly_ returns a promise. You can also write `scheduleUpdate()` as a function that _explictly_ returns a `Promise`. In either case, the **next** update doesn't start until the promise returned by `scheduleUpdate()` resolves. 
+
+{% endaside %}
+
+
 #### performUpdate()  {#performupdate}
 
 Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
-Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously.
+Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously. (If there is no update pending, you can call `requestUpdate()` followed by `performUpdate() to force a synchronous update.)
 
-Implement `performUpdate()` to customize the timing of the update cycle. This can be useful for implementing custom scheduling. Note, if `performUpdate()` returns a Promise, the `updateComplete` Promise will await it.
+{% aside "info" %}
 
-```js
-async performUpdate() {
-   await new Promise((resolve) => setTimeout(() => resolve()));
-   return super.performUpdate();
-}
-```
+Use `scheduleUpdate()` to customize scheduling.
 
-In this example, the update is performed after paint. This technique can be used to unblock the main rendering/event thread. See the Chrome Dev Summit talk by Justin Fagnani [The Virtue of Laziness](https://www.youtube.com/watch?v=ypPRdtjGooc) for an extended discussion.
+If you want to customize how updates are scheduled, override `scheduleUpdate()`. Previously, we recommended overriding `performUpdate()` for this purpose. That continues to work, but it makes it more difficult to call `performUpdate()` to process a pending update synchronously. 
+
+{% endaside %}
 
 #### hasUpdated  {#hasupdated}
 
