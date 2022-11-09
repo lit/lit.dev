@@ -17,32 +17,33 @@ export class ResizeBar extends LitElement {
     :host {
       z-index: 1;
       position: relative;
+      touch-action: none;
+      background: var(--resize-bar-color, #ccc);
     }
 
     :host([dimension='width']) {
-      width: 3px;
+      width: var(--resize-bar-touch-size, 3px);
     }
 
     :host([dimension='height']) {
-      height: 3px;
+      height: var(--resize-bar-touch-size, 6px);
     }
 
     :host([dimension='width']) > #touchTarget {
       cursor: col-resize;
-      position: absolute;
-      top: 0;
-      left: calc(var(--resize-bar-touch-size, 6px) / -2);
-      width: var(--resize-bar-touch-size, 6px);
-      height: 100%;
     }
 
     :host([dimension='height']) > #touchTarget {
       cursor: row-resize;
+      /** TODO(sorvell): Chrome seems to need this, but it's unclear why */
+      top: -50%;
+      height: 150%;
+    }
+
+    #touchTarget {
       position: absolute;
-      top: calc(var(--resize-bar-touch-size, 6px) / -2);
-      left: 0;
-      width: 100%;
-      height: var(--resize-bar-touch-size, 6px);
+      inset: 0;
+      touch-action: none;
     }
   `;
 
@@ -154,6 +155,11 @@ export class ResizeBar extends LitElement {
       });
     };
     this.addEventListener('pointermove', onPointermove);
+
+    // Prevent Chrome from showing a context menu on a long press.
+    this.addEventListener('contextmenu', (e) => e.preventDefault(), {
+      once: true,
+    });
 
     // TODO(aomarks) We had a report that when moving the cursor quickly, we can
     // miss this event and get stuck. Shouldn't happen because of
