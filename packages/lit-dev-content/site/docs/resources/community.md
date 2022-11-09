@@ -29,5 +29,7 @@ excellent to each other!
     tags like [`web-component`](https://stackoverflow.com/tags/web-component),
     and try your hand at answering other people’s queries.
 
+*   **Watch Lit videos on [YouTube](/youtube/).** The Lit team has a dedicated YouTube channel with tutorials and update streams.
+
 
 
