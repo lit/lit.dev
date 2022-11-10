@@ -16,7 +16,6 @@
     "build:rollup": "wireit",
     "build:rollup:watch": "npm run build:rollup -- --watch",
     "build:samples": "wireit",
-    "build:samples:watch": "npm run build:samples -- --watch",
     "dev:build": "wireit",
     "dev:build:assets": "wireit",
     "dev:build:eleventy": "wireit",

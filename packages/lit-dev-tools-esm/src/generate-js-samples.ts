@@ -6,7 +6,6 @@
 
 import {
   compileTypeScriptOnce,
-  compileTypeScriptWatch,
   InvokeTypeScriptOpts,
 } from './typescript-util.js';
 
@@ -15,7 +14,6 @@ import fs from 'fs/promises';
 import fsSync from 'fs';
 import {fileURLToPath} from 'url';
 
-import chokidar from 'chokidar';
 import {
   idiomaticDecoratorsTransformer,
   preserveBlankLinesTransformer,
@@ -106,36 +104,6 @@ const symlinkProjectFile = async (relPath: string) => {
   await fs.symlink(absPath, outPath);
 };
 
-/**
- * A file in the samples/ dir was deleted.
- */
-const deleteProjectFile = async (relPath: string) => {
-  console.log('deleting', relPath);
-  const outPath = pathlib.join(JS_SAMPLES_DIR, relPath);
-  await fs.unlink(outPath);
-};
-
-const USAGE = `
-Usage: node generate-js-samples.js [--watch]
-
-Syncronizes files in the lit.dev TypeScript samples/ directory to the
-JavaScript samples/js/ directory.
-
-Options:
-
---watch     Watch files and update on every change.
-`;
-
-let watchMode = false;
-for (const arg of process.argv.slice(2)) {
-  if (arg === '--watch') {
-    watchMode = true;
-  } else {
-    console.log(USAGE);
-    process.exit(1);
-  }
-}
-
 const isProjectConfig = (path: string) =>
   pathlib.basename(path) === 'project.json';
 
@@ -187,11 +155,7 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
         `Mismatched playground hide/fold comments:` +
         `\n  ${tsPath}` +
         `\n  ${jsPath}\n`;
-      if (watchMode) {
-        console.error(msg);
-      } else {
-        throw new Error(msg);
-      }
+      throw new Error(msg);
     }
     return js;
   },
@@ -199,7 +163,7 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
 
 const nonTsFileGlobs = [
   '**/*',
-  // Don't watch our own output dir.
+  // Don't read our own output dir.
   '!js/**/*',
   // TypeScript files are handled separately
   '!*.ts',
@@ -212,38 +176,17 @@ const nonTsFileGlobs = [
   '!base.json',
 ];
 
-if (watchMode) {
-  compileTypeScriptWatch(tsCompileOpts);
-  chokidar
-    .watch(nonTsFileGlobs, {cwd: TS_SAMPLES_DIR})
-    .on('add', (path) => {
-      if (isProjectConfig(path)) {
-        updateAndWriteProjectConfig(path, watchMode);
-      } else {
-        symlinkProjectFile(path);
-      }
-    })
-    .on('change', async (path) => {
-      if (isProjectConfig(path)) {
-        updateAndWriteProjectConfig(path, watchMode);
-      }
-    })
-    .on('unlink', (path) => {
-      deleteProjectFile(path);
-    });
-} else {
-  const files = await fastGlob(nonTsFileGlobs, {cwd: TS_SAMPLES_DIR});
-  for (const path of files) {
-    if (isProjectConfig(path)) {
-      updateAndWriteProjectConfig(path, watchMode);
-    } else {
-      symlinkProjectFile(path);
-    }
-  }
-  if (!compileTypeScriptOnce(tsCompileOpts)) {
-    console.error('TypeScript compilation failed');
-    process.exitCode = 1;
+const files = await fastGlob(nonTsFileGlobs, {cwd: TS_SAMPLES_DIR});
+for (const path of files) {
+  if (isProjectConfig(path)) {
+    updateAndWriteProjectConfig(path);
   } else {
-    console.log('\nSuccess!\n');
+    symlinkProjectFile(path);
   }
+}
+if (!compileTypeScriptOnce(tsCompileOpts)) {
+  console.error('TypeScript compilation failed');
+  process.exitCode = 1;
+} else {
+  console.log('\nSuccess!\n');
 }

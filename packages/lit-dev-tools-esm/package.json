@@ -51,7 +51,6 @@
     "@types/prettier": "^2.3.2",
     "@web/dev-server": "^0.1.6",
     "algoliasearch": "^4.14.2",
-    "chokidar": "^3.5.2",
     "co-body": "^6.1.0",
     "fast-glob": "^3.2.9",
     "lit-dev-server": "^0.0.0",

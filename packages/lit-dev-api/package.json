@@ -22,7 +22,6 @@
     }
   },
   "dependencies": {
-    "chokidar-cli": "^2.1.0",
     "lit-dev-tools-cjs": "^0.0.0"
   }
 }
