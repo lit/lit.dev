@@ -25,7 +25,7 @@
       "output": [
         "lib"
       ],
-      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "command": "tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "test": {

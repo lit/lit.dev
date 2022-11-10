@@ -138,7 +138,7 @@
       "dependencies": [
         "../lit-dev-tools-esm:build:ts"
       ],
-      "command": "../../node_modules/.bin/tsc --build --pretty",
+      "command": "tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "build:rollup": {
