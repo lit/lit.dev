@@ -43,7 +43,6 @@ const updateAndWriteProjectConfig = async (
   relPath: string,
   ignoreJsonError = false
 ) => {
-  console.log('writing config', relPath);
   const absPath = pathlib.join(TS_SAMPLES_DIR, relPath);
   const oldJson = await fs.readFile(absPath, 'utf8');
   let project: ProjectManifest;
@@ -89,7 +88,6 @@ const updateAndWriteProjectConfig = async (
  * server.
  */
 const symlinkProjectFile = async (relPath: string) => {
-  console.log('symlinking', relPath);
   const absPath = pathlib.join(TS_SAMPLES_DIR, relPath);
   const outPath = pathlib.join(JS_SAMPLES_DIR, relPath);
   await fs.mkdir(pathlib.dirname(outPath), {recursive: true});
