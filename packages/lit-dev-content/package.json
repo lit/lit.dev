@@ -33,7 +33,7 @@
       ]
     },
     "dev:build": {
-      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy",
+      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --quiet",
       "dependencies": [
         "dev:build:assets"
       ],
