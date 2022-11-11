@@ -10,16 +10,12 @@
     "fonts:manrope": "wireit",
     "build": "wireit",
     "build:eleventy": "wireit",
-    "build:eleventy:watch": "wireit",
     "build:ts": "wireit",
-    "build:ts:watch": "npm run build:ts -- --watch",
     "build:rollup": "wireit",
-    "build:rollup:watch": "npm run build:rollup -- --watch",
     "build:samples": "wireit",
     "dev:build": "wireit",
     "dev:build:assets": "wireit",
     "dev:build:eleventy": "wireit",
-    "dev:build:eleventy:watch": "wireit",
     "dev:serve": "wireit",
     "prod:build": "wireit",
     "prod:build:assets": "wireit"
@@ -65,20 +61,6 @@
       ],
       "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy"
     },
-    "build:eleventy:watch": {
-      "dependencies": [
-        "prod:build:assets"
-      ],
-      "output": [
-        "_site"
-      ],
-      "#comment": "This is awkward. We want to do the watch part for build:assets ourselves, but let eleventy do its own watch mode itself. Maybe --incremental will do a quick rebuild of just the changed parts, and we don't need --watch?",
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
-    },
     "dev:build:eleventy": {
       "dependencies": [
         "dev:build:assets"
@@ -91,19 +73,6 @@
         ".eleventy.js"
       ],
       "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy"
-    },
-    "dev:build:eleventy:watch": {
-      "dependencies": [
-        "dev:build:assets"
-      ],
-      "output": [
-        "_dev"
-      ],
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
     },
     "dev:build:assets": {
       "dependencies": [
