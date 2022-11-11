@@ -13,7 +13,6 @@
     "build:rollup": "wireit",
     "build:samples": "wireit",
     "dev:build": "wireit",
-    "dev:build:assets": "wireit",
     "dev:serve": "wireit",
     "prod:build": "wireit",
     "prod:build:assets": "wireit"
@@ -35,7 +34,12 @@
     "dev:build": {
       "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --quiet",
       "dependencies": [
-        "dev:build:assets"
+        "build:ts",
+        "fonts:manrope",
+        {
+          "script": "build:samples",
+          "cascade": false
+        }
       ],
       "files": [
         "site/**",
@@ -57,22 +61,22 @@
     },
     "dev:serve": {
       "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open",
+      "service": true,
       "dependencies": [
         "../lit-dev-tools-esm:build",
-        "dev:build"
-      ]
-    },
-    "dev:build:assets": {
-      "dependencies": [
-        "build:ts",
-        "build:samples",
-        "fonts:manrope"
+        "../../:start:fake-github",
+        {
+          "script": "dev:build",
+          "cascade": false
+        }
       ]
     },
     "prod:build:assets": {
       "dependencies": [
-        "dev:build:assets",
-        "build:rollup"
+        "build:ts",
+        "build:samples",
+        "build:rollup",
+        "fonts:manrope"
       ]
     },
     "fonts:manrope": {

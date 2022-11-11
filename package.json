@@ -41,7 +41,8 @@
       "dependencies": [
         "./packages/lit-dev-tools-esm:build"
       ],
-      "output": []
+      "files": [],
+      "service": true
     },
     "publish-search-index": {
       "dependencies": [
