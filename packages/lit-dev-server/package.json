@@ -19,6 +19,7 @@
       ]
     },
     "build:ts": {
+      "command": "tsc --build --pretty",
       "dependencies": [
         "../lit-dev-tools-cjs:build"
       ],
@@ -30,15 +31,14 @@
       "output": [
         "lib"
       ],
-      "command": "tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "start": {
+      "command": "node lib/server.js",
       "dependencies": [
         "build",
         "../lit-dev-content:build"
       ],
-      "command": "node lib/server.js",
       "output": []
     }
   },

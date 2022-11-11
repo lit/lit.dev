@@ -37,10 +37,10 @@
       ]
     },
     "start:fake-github": {
+      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
       "dependencies": [
         "./packages/lit-dev-tools-esm:build"
       ],
-      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
       "output": []
     },
     "publish-search-index": {

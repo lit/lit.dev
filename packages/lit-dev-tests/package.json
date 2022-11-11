@@ -18,6 +18,7 @@
   },
   "wireit": {
     "build": {
+      "command": "tsc --build --pretty",
       "dependencies": [
         "../lit-dev-server:build"
       ],
@@ -29,7 +30,6 @@
       "output": [
         "lib"
       ],
-      "command": "tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "start": {
@@ -38,6 +38,7 @@
       ]
     },
     "test:integration": {
+      "command": "playwright install && playwright test --config=lib/playwright.config.js",
       "dependencies": [
         "build",
         "../lit-dev-content:build"
@@ -46,10 +47,10 @@
         "src/**/*.png",
         "lib/**/*.spec.js"
       ],
-      "output": [],
-      "command": "playwright install && playwright test --config=lib/playwright.config.js"
+      "output": []
     },
     "test:integration:update-golden-screenshots": {
+      "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots",
       "dependencies": [
         "build",
         "../lit-dev-content:build"
@@ -57,8 +58,7 @@
       "files": [],
       "output": [
         "src/**/*.png"
-      ],
-      "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots"
+      ]
     },
     "test:links": {
       "dependencies": [
@@ -67,6 +67,7 @@
       ]
     },
     "test:links:internal-and-external": {
+      "command": "run-p --race start test:links:cmd",
       "dependencies": [
         "build",
         "../lit-dev-content:build"
@@ -75,23 +76,22 @@
       "files": [
         "known-good-urls.txt"
       ],
-      "output": [],
-      "command": "run-p --race start test:links:cmd"
+      "output": []
     },
     "test:links:redirects": {
+      "command": "node lib/check-redirects.js",
       "dependencies": [
         "build",
         "../lit-dev-content:build"
       ],
       "files": [],
-      "output": [],
-      "command": "node lib/check-redirects.js"
+      "output": []
     },
     "test:links:cmd": {
+      "command": "wait-on tcp:6415 && node lib/check-broken-links.js",
       "dependencies": [
         "build"
-      ],
-      "command": "wait-on tcp:6415 && node lib/check-broken-links.js"
+      ]
     }
   },
   "dependencies": {

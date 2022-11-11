@@ -18,6 +18,7 @@
       ]
     },
     "build:ts": {
+      "command": "tsc --build --pretty",
       "dependencies": [
         "../lit-dev-server:build",
         "../lit-dev-tools-cjs:build"
@@ -30,10 +31,10 @@
       "output": [
         "lib"
       ],
-      "command": "tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "publish-search-index": {
+      "command": "node lib/upload-algolia-index.js",
       "dependencies": [
         "../lit-dev-content:build",
         "build"
@@ -41,8 +42,7 @@
       "files": [
         "lib/upload-algolia-index.js",
         "../lit-dev-content/_site/searchIndex.json"
-      ],
-      "command": "node lib/upload-algolia-index.js"
+      ]
     }
   },
   "dependencies": {
