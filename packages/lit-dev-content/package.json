@@ -9,13 +9,11 @@
   "scripts": {
     "fonts:manrope": "wireit",
     "build": "wireit",
-    "build:eleventy": "wireit",
     "build:ts": "wireit",
     "build:rollup": "wireit",
     "build:samples": "wireit",
     "dev:build": "wireit",
     "dev:build:assets": "wireit",
-    "dev:build:eleventy": "wireit",
     "dev:serve": "wireit",
     "prod:build": "wireit",
     "prod:build:assets": "wireit"
@@ -23,13 +21,29 @@
   "wireit": {
     "build": {
       "dependencies": [
-        "build:eleventy"
-      ]
+        "prod:build:assets"
+      ],
+      "output": [
+        "_site"
+      ],
+      "files": [
+        "site/**",
+        ".eleventy.js"
+      ],
+      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy"
     },
     "dev:build": {
       "dependencies": [
-        "dev:build:eleventy"
-      ]
+        "dev:build:assets"
+      ],
+      "output": [
+        "_dev"
+      ],
+      "files": [
+        "site/**",
+        ".eleventy.js"
+      ],
+      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy"
     },
     "prod:build": {
       "dependencies": [
@@ -47,32 +61,6 @@
         "dev:build"
       ],
       "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open"
-    },
-    "build:eleventy": {
-      "dependencies": [
-        "prod:build:assets"
-      ],
-      "output": [
-        "_site"
-      ],
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy"
-    },
-    "dev:build:eleventy": {
-      "dependencies": [
-        "dev:build:assets"
-      ],
-      "output": [
-        "_dev"
-      ],
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy"
     },
     "dev:build:assets": {
       "dependencies": [

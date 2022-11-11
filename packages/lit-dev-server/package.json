@@ -36,7 +36,7 @@
     "start": {
       "dependencies": [
         "build",
-        "../lit-dev-content:build:eleventy"
+        "../lit-dev-content:build"
       ],
       "command": "node lib/server.js",
       "output": []
