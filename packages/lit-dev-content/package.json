@@ -64,7 +64,10 @@
       "service": true,
       "dependencies": [
         "../lit-dev-tools-esm:build",
-        "../../:start:fake-github",
+        {
+          "script": "../../:start:fake-github",
+          "cascade": false
+        },
         {
           "script": "dev:build",
           "cascade": false
