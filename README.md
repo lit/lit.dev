@@ -18,12 +18,6 @@ This is an npm workspaces monorepo.
 npm ci
 ```
 
-### Build all
-
-```sh
-npm run build
-```
-
 ### Develop site content
 
 ```sh
@@ -31,16 +25,6 @@ npm run dev
 ```
 
 Serves at [`http://localhost:5415`](http://localhost:5415).
-
-You may also prefer to run each dev script in its own terminal:
-
-```sh
-cd packages/lit-dev-content
-
-npm run build:ts:watch       # TypeScript
-npm run dev:build:eleventy:watch # Eleventy
-npm run dev:serve            # @web/dev-server
-```
 
 Dev mode is different to production in these ways:
 

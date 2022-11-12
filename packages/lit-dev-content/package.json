@@ -9,124 +9,91 @@
   "scripts": {
     "fonts:manrope": "wireit",
     "build": "wireit",
-    "build:eleventy": "wireit",
-    "build:eleventy:watch": "wireit",
     "build:ts": "wireit",
-    "build:ts:watch": "npm run build:ts -- --watch",
     "build:rollup": "wireit",
-    "build:rollup:watch": "npm run build:rollup -- --watch",
     "build:samples": "wireit",
-    "build:samples:watch": "npm run build:samples -- --watch",
     "dev:build": "wireit",
-    "dev:build:assets": "wireit",
-    "dev:build:eleventy": "wireit",
-    "dev:build:eleventy:watch": "wireit",
     "dev:serve": "wireit",
     "prod:build": "wireit",
     "prod:build:assets": "wireit"
   },
   "wireit": {
     "build": {
+      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy",
       "dependencies": [
-        "build:eleventy"
+        "prod:build:assets"
+      ],
+      "files": [
+        "site/**",
+        ".eleventy.js"
+      ],
+      "output": [
+        "_site"
       ]
     },
     "dev:build": {
+      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --quiet",
       "dependencies": [
-        "dev:build:eleventy"
+        "build:ts",
+        "fonts:manrope",
+        {
+          "script": "build:samples",
+          "cascade": false
+        }
+      ],
+      "files": [
+        "site/**",
+        ".eleventy.js"
+      ],
+      "output": [
+        "_dev"
       ]
     },
     "prod:build": {
+      "command": "NODE_OPTIONS=--experimental-vm-modules eleventy",
       "dependencies": [
         "prod:build:assets"
       ],
       "files": [
         "site/**",
         ".eleventy.js"
-      ],
-      "command": "NODE_OPTIONS=--experimental-vm-modules eleventy"
+      ]
     },
     "dev:serve": {
+      "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open",
+      "service": true,
       "dependencies": [
         "../lit-dev-tools-esm:build",
-        "dev:build"
-      ],
-      "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open"
-    },
-    "build:eleventy": {
-      "dependencies": [
-        "prod:build:assets"
-      ],
-      "output": [
-        "_site"
-      ],
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy"
-    },
-    "build:eleventy:watch": {
-      "dependencies": [
-        "prod:build:assets"
-      ],
-      "output": [
-        "_site"
-      ],
-      "#comment": "This is awkward. We want to do the watch part for build:assets ourselves, but let eleventy do its own watch mode itself. Maybe --incremental will do a quick rebuild of just the changed parts, and we don't need --watch?",
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
-    },
-    "dev:build:eleventy": {
-      "dependencies": [
-        "dev:build:assets"
-      ],
-      "output": [
-        "_dev"
-      ],
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy"
-    },
-    "dev:build:eleventy:watch": {
-      "dependencies": [
-        "dev:build:assets"
-      ],
-      "output": [
-        "_dev"
-      ],
-      "files": [
-        "site/**",
-        ".eleventy.js"
-      ],
-      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --watch --incremental"
-    },
-    "dev:build:assets": {
-      "dependencies": [
-        "build:ts",
-        "build:samples",
-        "fonts:manrope"
+        {
+          "script": "../../:start:fake-github",
+          "cascade": false
+        },
+        {
+          "script": "dev:build",
+          "cascade": false
+        }
       ]
     },
     "prod:build:assets": {
       "dependencies": [
-        "dev:build:assets",
-        "build:rollup"
+        "build:ts",
+        "build:samples",
+        "build:rollup",
+        "fonts:manrope"
       ]
     },
     "fonts:manrope": {
+      "command": "rm -rf temp && mkdir -p site/fonts/manrope && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/manrope/ && cd ../.. && rm -rf temp",
       "files": [],
       "output": [
         "site/fonts/manrope"
-      ],
-      "command": "rm -rf temp && mkdir -p site/fonts/manrope && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/manrope/ && cd ../.. && rm -rf temp"
+      ]
     },
     "build:ts": {
+      "command": "tsc --build --pretty",
+      "dependencies": [
+        "../lit-dev-tools-esm:build:ts"
+      ],
       "files": [
         "src/**",
         "tsconfig.json",
@@ -135,13 +102,10 @@
       "output": [
         "lib"
       ],
-      "dependencies": [
-        "../lit-dev-tools-esm:build:ts"
-      ],
-      "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "build:rollup": {
+      "command": "rollup -c",
       "dependencies": [
         "build:ts"
       ],
@@ -150,10 +114,10 @@
       ],
       "output": [
         "rollupout"
-      ],
-      "command": "rollup -c"
+      ]
     },
     "build:samples": {
+      "command": "node ../lit-dev-tools-esm/lib/generate-js-samples.js",
       "dependencies": [
         "../lit-dev-tools-esm:build"
       ],
@@ -163,8 +127,7 @@
       ],
       "output": [
         "samples/js/**"
-      ],
-      "command": "node ../lit-dev-tools-esm/lib/generate-js-samples.js"
+      ]
     }
   },
   "devDependencies": {

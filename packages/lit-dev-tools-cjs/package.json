@@ -17,6 +17,7 @@
       ]
     },
     "build:ts": {
+      "command": "tsc --build --pretty",
       "files": [
         "src/**",
         "tsconfig.json",
@@ -25,16 +26,15 @@
       "output": [
         "lib"
       ],
-      "command": "../../node_modules/.bin/tsc --build --pretty",
       "clean": "if-file-deleted"
     },
     "test": {
+      "command": "uvu ./lib \".spec.js$\"",
       "dependencies": [
         "build"
       ],
       "files": [],
-      "output": [],
-      "command": "uvu ./lib \".spec.js$\""
+      "output": []
     }
   },
   "dependencies": {

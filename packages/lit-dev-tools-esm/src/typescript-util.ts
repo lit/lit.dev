@@ -61,36 +61,6 @@ export const compileTypeScriptOnce = (opts: InvokeTypeScriptOpts): boolean => {
   return diagnostics.length === 0;
 };
 
-/**
- * Begin compiling the given TypeScript program in watch mode. Diagnostics are
- * logged to stderr.
- */
-export const compileTypeScriptWatch = (opts: InvokeTypeScriptOpts): void => {
-  const compilerHost = ts.createWatchCompilerHost(
-    opts.tsConfigPath,
-    {},
-    {
-      ...ts.sys,
-      writeFile: wrapWriteFile(opts),
-    },
-    ts.createEmitAndSemanticDiagnosticsBuilderProgram,
-    // TODO(aomarks) Why do compile errors log twice?
-    logDiagnostic,
-    logDiagnostic
-  );
-  const origAfterCreate = compilerHost.afterProgramCreate;
-  compilerHost.afterProgramCreate = (builder) => {
-    const origEmit = builder.emit;
-    builder.emit = (file, write, cancel, dts) => {
-      const program = builder.getProgram();
-      const transformers = opts.transformersFactory?.(program);
-      return origEmit(file, write, cancel, dts, transformers);
-    };
-    origAfterCreate?.(builder);
-  };
-  ts.createWatchProgram(compilerHost);
-};
-
 const formatHost: ts.FormatDiagnosticsHost = {
   getCanonicalFileName: (path) => path,
   getCurrentDirectory: ts.sys.getCurrentDirectory,

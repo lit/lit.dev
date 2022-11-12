@@ -6,23 +6,21 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "scripts": {
-    "build": "wireit",
-    "build:watch": "npm run build -- --watch"
+    "build": "wireit"
   },
   "wireit": {
     "build": {
+      "command": "node ../lit-dev-tools-cjs/lib/api-docs/generate.js",
       "dependencies": [
         "../lit-dev-tools-cjs:build"
       ],
       "files": [
         "lit/packages/*/src/**/*.ts"
       ],
-      "#comment": "We don't declare the api-data directory as output because it's super huge, >1.4GB and 120k files. Maintaining the cache is probably not worth it.",
-      "command": "node ../lit-dev-tools-cjs/lib/api-docs/generate.js"
+      "#comment": "We don't declare the api-data directory as output because it's super huge, >1.4GB and 120k files. Maintaining the cache is probably not worth it."
     }
   },
   "dependencies": {
-    "chokidar-cli": "^2.1.0",
     "lit-dev-tools-cjs": "^0.0.0"
   }
 }
