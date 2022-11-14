@@ -169,7 +169,7 @@ Note that `PropertyValues<this>` doesn't recognize `protected` or `private` prop
 
 #### Changing properties during an update {#changing-properties-during-an-update}
 
-Changing a property *during* the update  (up to and including the `render()` method) updates the `changedProperties` map, but **doesn't** trigger a new update. Changing a property _after_ `render()` (for example, in the `updated()` method) triggers a new update cycle, and the changed property is added to a new `changedProperties` map to be used for he next cycle.
+Changing a property *during* the update  (up to and including the `render()` method) updates the `changedProperties` map, but **doesn't** trigger a new update. Changing a property _after_ `render()` (for example, in the `updated()` method) triggers a new update cycle, and the changed property is added to a new `changedProperties` map to be used for the next cycle.
 
 ### Triggering an update {#reactive-update-cycle-triggering}
 
