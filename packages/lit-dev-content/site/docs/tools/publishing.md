@@ -118,11 +118,11 @@ they're needed, they should only go in `devDependencies`.
 
 ### Don't bundle, minify, or optimize modules
 
-Bundling and other optimizations are application concerns. Bundling can also introduce multiple versions of Lit (and other packages) into your application since npm can't deduplicate the packages. This causes bloat and may cause bugs.
+Bundling and other optimizations are application concerns. Bundling a reusable component before publishing to npm can also introduce multiple versions of Lit (and other packages) into your users' application since npm can't deduplicate the packages. This causes bloat and may cause bugs.
 
 Optimizing modules before publication may also prevent application-level optimizations.
 
-Bundling and other optimizations can be valuable when serving a module from a CDN. Because of the potential issues with bundling, this should usually be used for prototyping, not for production. 
+Bundling and other optimizations can be valuable when serving a module from a CDN, but since users may need to use multiple packages that depend on Lit, serving from a CDN can result in users loading more code than necessary. For these reasons we recommend performance-sensitive applications always build from npm where packages can be deduplicated, rather than loading bundled packages off of a CDN.
 
 If you want to support usage from a CDN, we recommend making a clear separation between the CDN modules and the modules intended for production use. For example, placing them in a separate folder, or only adding them as part of a GitHub release and not adding them to the published npm module. 
 
