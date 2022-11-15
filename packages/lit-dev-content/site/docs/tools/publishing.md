@@ -118,7 +118,7 @@ they're needed, they should only go in `devDependencies`.
 
 ### Don't bundle, minify, or optimize modules
 
-Bundling and other optimizations are application concerns. Bundling a reusable component before publishing to npm can also introduce multiple versions of Lit (and other packages) into your users' application since npm can't deduplicate the packages. This causes bloat and may cause bugs.
+Bundling and other optimizations are application concerns. Bundling a reusable component before publishing to npm can also introduce multiple versions of Lit (and other packages) into a user's application since npm can't deduplicate the packages. This causes bloat and may cause bugs.
 
 Optimizing modules before publication may also prevent application-level optimizations.
 
