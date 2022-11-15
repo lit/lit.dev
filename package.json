@@ -10,9 +10,7 @@
   ],
   "scripts": {
     "build": "wireit",
-    "start": "run-p -r start:main start:playground start:fake-github",
-    "start:main": "LITDEV_ENV=local MODE=main npm run start -w lit-dev-server",
-    "start:playground": "LITDEV_ENV=local MODE=playground npm start -w lit-dev-server",
+    "start": "wireit",
     "start:fake-github": "wireit",
     "dev": "npm run dev:serve --workspace lit-dev-content --watch",
     "format": "prettier . --write",
@@ -36,13 +34,24 @@
         "./packages/lit-dev-tools-esm:build"
       ]
     },
+    "start": {
+      "dependencies": [
+        "./packages/lit-dev-server:start:local:main",
+        "./packages/lit-dev-server:start:local:playground",
+        "start:fake-github"
+      ]
+    },
     "start:fake-github": {
       "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
       "dependencies": [
         "./packages/lit-dev-tools-esm:build"
       ],
       "files": [],
-      "service": true
+      "service": {
+        "readyWhen": {
+          "lineMatches": "server listening"
+        }
+      }
     },
     "publish-search-index": {
       "dependencies": [
@@ -51,10 +60,9 @@
     }
   },
   "devDependencies": {
-    "npm-run-all": "^4.1.5",
     "playground-elements": "^0.17.0",
     "prettier": "^2.1.2",
     "typescript": "~4.6.2",
-    "wireit": "^0.7.3-pre.4"
+    "wireit": "^0.7.3-pre.6"
   }
 }

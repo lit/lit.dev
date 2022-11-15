@@ -61,7 +61,11 @@
     },
     "dev:serve": {
       "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open",
-      "service": true,
+      "service": {
+        "readyWhen": {
+          "lineMatches": "Web Dev Server started"
+        }
+      },
       "dependencies": [
         "../lit-dev-tools-esm:build",
         {

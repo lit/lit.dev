@@ -10,7 +10,8 @@
   "scripts": {
     "build": "wireit",
     "build:ts": "wireit",
-    "start": "wireit"
+    "start:local:main": "wireit",
+    "start:local:playground": "wireit"
   },
   "wireit": {
     "build": {
@@ -33,13 +34,30 @@
       ],
       "clean": "if-file-deleted"
     },
-    "start": {
-      "command": "node lib/server.js",
+    "start:local:main": {
+      "command": "LITDEV_ENV=local MODE=main node lib/server.js",
+      "service": {
+        "readyWhen": {
+          "lineMatches": "server listening"
+        }
+      },
+      "files": [],
       "dependencies": [
         "build",
         "../lit-dev-content:build"
-      ],
-      "output": []
+      ]
+    },
+    "start:local:playground": {
+      "command": "LITDEV_ENV=local MODE=playground node lib/server.js",
+      "service": {
+        "readyWhen": {
+          "lineMatches": "server listening"
+        }
+      },
+      "files": [],
+      "dependencies": [
+        "build"
+      ]
     }
   },
   "dependencies": {
