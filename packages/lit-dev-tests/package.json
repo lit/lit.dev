@@ -33,8 +33,7 @@
     "test:integration": {
       "command": "playwright install && playwright test --config=lib/playwright.config.js",
       "dependencies": [
-        "build",
-        "../lit-dev-content:build"
+        "../../:start"
       ],
       "files": [
         "src/**/*.png",
@@ -45,8 +44,7 @@
     "test:integration:update-golden-screenshots": {
       "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots",
       "dependencies": [
-        "build",
-        "../lit-dev-content:build"
+        "../../:start"
       ],
       "files": [],
       "output": [
