@@ -8,13 +8,11 @@
   "type": "module",
   "scripts": {
     "build": "wireit",
-    "start": "wireit",
     "test:integration": "wireit",
     "test:integration:update-golden-screenshots": "wireit",
     "test:links": "wireit",
     "test:links:redirects": "wireit",
-    "test:links:internal-and-external": "wireit",
-    "test:links:cmd": "wireit"
+    "test:links:internal-and-external": "wireit"
   },
   "wireit": {
     "build": {
@@ -31,11 +29,6 @@
         "lib"
       ],
       "clean": "if-file-deleted"
-    },
-    "start": {
-      "dependencies": [
-        "../..:start"
-      ]
     },
     "test:integration": {
       "command": "playwright install && playwright test --config=lib/playwright.config.js",
@@ -67,12 +60,10 @@
       ]
     },
     "test:links:internal-and-external": {
-      "command": "run-p --race start test:links:cmd",
+      "command": "node lib/check-broken-links.js",
       "dependencies": [
-        "build",
-        "../lit-dev-content:build"
+        "../../:start"
       ],
-      "#comment": "Work around a race condition when using run-p with wireit where it will run two builds at once, which step on each other. So instead we depend on lit-dev-content:build here so that we do the necessary shared build steps first.",
       "files": [
         "known-good-urls.txt"
       ],
@@ -86,12 +77,6 @@
       ],
       "files": [],
       "output": []
-    },
-    "test:links:cmd": {
-      "command": "wait-on tcp:6415 && node lib/check-broken-links.js",
-      "dependencies": [
-        "build"
-      ]
     }
   },
   "dependencies": {
