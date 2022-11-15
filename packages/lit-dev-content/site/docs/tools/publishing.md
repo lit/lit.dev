@@ -8,7 +8,7 @@ versionLinks:
   v1: tools/publish/
 ---
 
-This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of Javascript libraries and developers. See [Starter Kits](/docs/tools/starter-kits/) for reusable component templates set up for publishing to npm.
+This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of JavaScript libraries and developers. See [Starter Kits](/docs/tools/starter-kits/) for reusable component templates set up for publishing to npm.
 
 ## Publishing to npm
 
@@ -106,15 +106,25 @@ You can run Babel via a bundler plugin such as [@rollup/plugin-babel](https://ww
 
 The following are other good practices to follow when publishing reusable Web Components.
 
-### Do not import polyfills into modules
+### Don't import polyfills into modules
 
 Polyfills are an application concern, so the application should depend directly
 on them, not individual packages. The exact polyfills needed often depends on
 the browsers the application needs to support, and that choice is best left to
-the application developer using your component.
+the application developer using your component. Your component's documentation **should** clearly identify any APIs it uses that may require polyfills. 
 
 Packages may need to depend on polyfills for tests and demos, so if
 they're needed, they should only go in `devDependencies`.
+
+### Don't bundle, minify, or optimize modules
+
+Bundling and other optimizations are application concerns. Bundling a reusable component before publishing to npm can also introduce multiple versions of Lit (and other packages) into a user's application since npm can't deduplicate the packages. This causes bloat and may cause bugs.
+
+Optimizing modules before publication may also prevent application-level optimizations.
+
+Bundling and other optimizations can be valuable when serving a module from a CDN, but since users may need to use multiple packages that depend on Lit, serving from a CDN can result in users loading more code than necessary. For these reasons we recommend performance-sensitive applications always build from npm where packages can be deduplicated, rather than loading bundled packages off of a CDN.
+
+If you want to support usage from a CDN, we recommend making a clear separation between the CDN modules and the modules intended for production use. For example, placing them in a separate folder, or only adding them as part of a GitHub release and not adding them to the published npm module. 
 
 ### Include file extensions in import specifiers
 
