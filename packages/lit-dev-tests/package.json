@@ -62,6 +62,7 @@
     "test:links:internal-and-external": {
       "command": "node lib/check-broken-links.js",
       "dependencies": [
+        "build",
         "../../:start"
       ],
       "files": [
