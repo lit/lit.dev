@@ -4,6 +4,7 @@ body {
      entire viewport scrolls. There must be a flexbox configuration that will do
      the right thing automatically here. */
   overflow-y: hidden;
+  touch-action: pan-x pan-y;
 }
 
 main {
