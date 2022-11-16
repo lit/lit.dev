@@ -16,6 +16,12 @@ export class LitDevRippleIconButton extends LitElement {
   label = '';
 
   /**
+   * Aria label for the button.
+   */
+  @property({attribute: 'button-title'})
+  buttonTitle = '';
+
+  /**
    * Href for the link button. If defined, this component switches to using an
    * anchor element instead of a button.
    */
@@ -130,6 +136,7 @@ export class LitDevRippleIconButton extends LitElement {
         part="root button"
         aria-label=${this.label ? this.label : nothing}
         ?disabled=${this.disabled}
+        title=${this.buttonTitle ?? (nothing as unknown as string)}
       >
         ${this.renderContent()}
       </button>

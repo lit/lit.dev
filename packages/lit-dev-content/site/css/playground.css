@@ -246,19 +246,33 @@ resize-bar[active] {
 }
 
 /*
-  Toggles the icon in the resize button, and hides the resize bars & editor when
-  the preview is fullscreen.
+  Displays the next view mode icon in the view-mode toggle button.
 */
-litdev-playground-page:not([preview-fullscreen]) #actionBar .fullscreen-exit,
-litdev-playground-page[preview-fullscreen] #actionBar .fullscreen,
-litdev-playground-page[preview-fullscreen] #tabsAndEditor,
-litdev-playground-page[preview-fullscreen] .horizontalResizeBar,
-litdev-playground-page[preview-fullscreen] .verticalResizeBar {
+litdev-playground-page[view-mode="split"] #actionBar .preview,
+litdev-playground-page[view-mode="preview"] #actionBar .code,
+litdev-playground-page[view-mode="code"] #actionBar .splitscreen {
+  display: contents;
+}
+
+/*
+  Show and hide the editor or preview based on the view mode and hide the resize
+  bars unless we are in split mode.
+*/
+#actionBar lazy-svg,
+litdev-playground-page[view-mode="preview"] #tabsAndEditor,
+litdev-playground-page[view-mode="code"] #preview,
+litdev-playground-page:not([view-mode="split"]) .horizontalResizeBar,
+litdev-playground-page:not([view-mode="split"]) .verticalResizeBar {
   display: none;
 }
 
 /* Set the height and width of the preview to 100% when fullscreened */
-litdev-playground-page[preview-fullscreen] #preview {
+litdev-playground-page[view-mode="preview"] #preview {
   --preview-height: 100%;
   --preview-width: 100%;
+}
+
+/* Make the code editor fullwidth when code is fullscreened. */
+litdev-playground-page[view-mode="code"] #tabsAndEditor {
+  --tabs-and-editor-width: 100%;
 }

@@ -44,7 +44,7 @@ interface CompactProjectFile {
 
 // The hash param to look for in the url to determine whether we should display
 // the preview in fullscreen.
-const PLAYGROUND_FULLSCREEN_HASH_PARAM = 'playground-fullscreen';
+const PLAYGROUND_FULLSCREEN_HASH_PARAM = 'view-mode';
 
 /**
  * Top-level component for the Lit.dev Playground page.
@@ -77,8 +77,8 @@ export class LitDevPlaygroundPage extends LitElement {
   @property()
   githubApiUrl!: string;
 
-  @property({type: Boolean, reflect: true, attribute: 'preview-fullscreen'})
-  previewFullscreen = false;
+  @property({type: String, reflect: true, attribute: 'view-mode'})
+  viewMode = 'split';
 
   async connectedCallback() {
     super.connectedCallback();
@@ -106,23 +106,29 @@ export class LitDevPlaygroundPage extends LitElement {
     super.firstUpdated(changed);
     const hashParams = this._getHashSearchParams();
     // initialize previewFullscreen if `#playground-fullscreen=true`
-    this.previewFullscreen =
-      hashParams.get(PLAYGROUND_FULLSCREEN_HASH_PARAM) === 'true';
+    this.viewMode = hashParams.get(PLAYGROUND_FULLSCREEN_HASH_PARAM) ?? 'split';
 
     // toggle previewFullscreen when the fullscreen button is clicked
-    const iconButton = this.querySelector('#actionBar litdev-icon-button');
+    const iconButton = this.querySelector('#view-mode-button');
     iconButton?.addEventListener('click', () => {
-      this.previewFullscreen = !this.previewFullscreen;
+      const lastMode = this.viewMode;
+      if (lastMode === 'split') {
+        this.viewMode = 'preview';
+      } else if (lastMode === 'preview') {
+        this.viewMode = 'code';
+      } else {
+        this.viewMode = 'split';
+      }
     });
   }
 
   updated(changed: PropertyValues<this>) {
     super.updated(changed);
     // if previewFullscreen has changed, update the hash in the URL
-    if (changed.has('previewFullscreen')) {
+    if (changed.has('viewMode')) {
       const hash = this._getHashSearchParams();
-      if (this.previewFullscreen) {
-        hash.set(PLAYGROUND_FULLSCREEN_HASH_PARAM, 'true');
+      if (this.viewMode !== 'split') {
+        hash.set(PLAYGROUND_FULLSCREEN_HASH_PARAM, this.viewMode);
       } else {
         hash.delete(PLAYGROUND_FULLSCREEN_HASH_PARAM);
       }
