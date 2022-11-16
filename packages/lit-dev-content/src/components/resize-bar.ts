@@ -17,6 +17,7 @@ export class ResizeBar extends LitElement {
     :host {
       z-index: 1;
       position: relative;
+      touch-action: none;
     }
 
     :host([dimension='width']) {
