@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable={% if page.url.includes('/playground') %}no{% else %}yes{% endif %}">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable={% if page.url.includes('/playground') %}no{% else %}yes, maximum-scale=1.0{% endif %}">
     <title>{% if title %}{{ title }} &ndash;{% endif %} Lit</title>
     <meta name="description" content="Simple. Fast. Web Components.">
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
