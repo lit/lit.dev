@@ -70,7 +70,10 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
     const base64 = encodeSafeBase64(
       JSON.stringify(files.map(compactPlaygroundFile))
     );
-    this._url = new URL(`#project=${base64}`, window.location.href).href;
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    hashParams.delete('gist');
+    hashParams.set('project', base64);
+    this._url = new URL(`#${hashParams}`, window.location.href).href;
   }
 
   override render() {

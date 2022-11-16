@@ -33,6 +33,13 @@ const tokenCache = new WeakMap<LitDevPlaygroundShareGist, string>();
 
 const GITHUB_USER_LOCALSTORAGE_KEY = 'github-user';
 
+const writeToHash = (gistId: string) => {
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+  hashParams.delete('project');
+  hashParams.set('gist', gistId);
+  window.location.hash = hashParams.toString();
+};
+
 /**
  * Buttons for sharing a Playground project as a GitHub gist and signing into
  * GitHub when needed.
@@ -291,7 +298,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       this.dispatchEvent(
         new Event('will-hashchange', {bubbles: true, composed: true})
       );
-      window.location.hash = '#gist=' + gist.id;
+      writeToHash(gist.id);
       let statusText = 'Gist created';
       try {
         await navigator.clipboard.writeText(window.location.toString());
@@ -364,7 +371,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       this.dispatchEvent(
         new Event('will-hashchange', {bubbles: true, composed: true})
       );
-      window.location.hash = '#gist=' + gist.id;
+      writeToHash(gist.id);
       let statusText = 'Gist updated';
       try {
         await navigator.clipboard.writeText(window.location.toString());

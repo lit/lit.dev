@@ -70,6 +70,7 @@ export class LitDevPlaygroundPage extends LitElement {
   private _examplesDrawerScroller!: HTMLElement;
   private _exampleControls!: LitDevExampleControls;
   private _hasUnsavedChanges = false;
+  private _hashChangedByViewMode = false;
 
   /**
    * Base URL for the GitHub API.
@@ -122,8 +123,7 @@ export class LitDevPlaygroundPage extends LitElement {
     });
   }
 
-  updated(changed: PropertyValues<this>) {
-    super.updated(changed);
+  update(changed: PropertyValues<this>) {
     // if previewFullscreen has changed, update the hash in the URL
     if (changed.has('viewMode')) {
       const hash = this._getHashSearchParams();
@@ -133,8 +133,10 @@ export class LitDevPlaygroundPage extends LitElement {
         hash.delete(PLAYGROUND_FULLSCREEN_HASH_PARAM);
       }
 
+      this._hashChangedByViewMode = true;
       window.location.hash = hash.toString();
     }
+    super.update(changed);
   }
 
   private _getHashSearchParams() {
@@ -249,6 +251,11 @@ export class LitDevPlaygroundPage extends LitElement {
   }
 
   private async _syncStateFromUrlHash(e?: HashChangeEvent) {
+    if (this._hashChangedByViewMode) {
+      this._hashChangedByViewMode = false;
+      return;
+    }
+
     let shouldExit = true;
 
     if (e && this._hasUnsavedChanges) {
