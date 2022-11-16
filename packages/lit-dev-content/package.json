@@ -42,8 +42,11 @@
         }
       ],
       "files": [
+        ".eleventy.js",
         "site/**",
-        ".eleventy.js"
+        "!site/css/",
+        "!site/fonts/",
+        "!site/images/"
       ],
       "output": [
         "_dev"
