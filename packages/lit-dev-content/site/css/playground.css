@@ -5,6 +5,7 @@ body {
      the right thing automatically here. */
   overflow-y: hidden;
   touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: none
 }
 
 main {
