@@ -13,7 +13,7 @@ import '../components/litdev-playground-share-button.js';
 import '../components/litdev-playground-download-button.js';
 import '../components/litdev-error-notifier.js';
 
-import {LitElement, html, css} from 'lit';
+import {LitElement, html, css, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 import {
@@ -41,6 +41,10 @@ interface CompactProjectFile {
   content: string;
   hidden?: true;
 }
+
+// The hash param to look for in the url to determine whether we should display
+// the preview in fullscreen.
+const PLAYGROUND_FULLSCREEN_HASH_PARAM = 'playground-fullscreen';
 
 /**
  * Top-level component for the Lit.dev Playground page.
@@ -73,6 +77,9 @@ export class LitDevPlaygroundPage extends LitElement {
   @property()
   githubApiUrl!: string;
 
+  @property({type: Boolean, reflect: true, attribute: 'preview-fullscreen'})
+  previewFullscreen = false;
+
   async connectedCallback() {
     super.connectedCallback();
     this._checkRequiredParameters();
@@ -93,6 +100,40 @@ export class LitDevPlaygroundPage extends LitElement {
 
   render() {
     return html`<slot></slot>`;
+  }
+
+  protected firstUpdated(changed: PropertyValues<this>) {
+    super.firstUpdated(changed);
+    const hashParams = this._getHashSearchParams();
+    // initialize previewFullscreen if `#playground-fullscreen=true`
+    this.previewFullscreen =
+      hashParams.get(PLAYGROUND_FULLSCREEN_HASH_PARAM) === 'true';
+
+    // toggle previewFullscreen when the fullscreen button is clicked
+    const iconButton = this.querySelector('#actionBar litdev-icon-button');
+    iconButton?.addEventListener('click', () => {
+      this.previewFullscreen = !this.previewFullscreen;
+    });
+  }
+
+  updated(changed: PropertyValues<this>) {
+    super.updated(changed);
+    // if previewFullscreen has changed, update the hash in the URL
+    if (changed.has('previewFullscreen')) {
+      const hash = this._getHashSearchParams();
+      if (this.previewFullscreen) {
+        hash.set(PLAYGROUND_FULLSCREEN_HASH_PARAM, 'true');
+      } else {
+        hash.delete(PLAYGROUND_FULLSCREEN_HASH_PARAM);
+      }
+
+      window.location.hash = hash.toString();
+    }
+  }
+
+  private _getHashSearchParams() {
+    // needs to be substring to remove the leading `#`
+    return new URLSearchParams(window.location.hash.substring(1));
   }
 
   /**

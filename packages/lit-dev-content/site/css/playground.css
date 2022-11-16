@@ -238,3 +238,27 @@ resize-bar[active] {
     display: none;
   }
 }
+
+/* Sizes the svgs of the fullscreen button in the blue actionbar */
+#actionBar lazy-svg::part(svg) {
+  width: 24px;
+  height: 24px;
+}
+
+/*
+  Toggles the icon in the resize button, and hides the resize bars & editor when
+  the preview is fullscreen.
+*/
+litdev-playground-page:not([preview-fullscreen]) #actionBar .fullscreen-exit,
+litdev-playground-page[preview-fullscreen] #actionBar .fullscreen,
+litdev-playground-page[preview-fullscreen] #tabsAndEditor,
+litdev-playground-page[preview-fullscreen] .horizontalResizeBar,
+litdev-playground-page[preview-fullscreen] .verticalResizeBar {
+  display: none;
+}
+
+/* Set the height and width of the preview to 100% when fullscreened */
+litdev-playground-page[preview-fullscreen] #preview {
+  --preview-height: 100%;
+  --preview-width: 100%;
+}

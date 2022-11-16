@@ -53,6 +53,19 @@ title: Playground
       githubApiUrl="{{ env.GITHUB_API_URL }}"
       githubAvatarUrl="{{ env.GITHUB_AVATAR_URL }}">
     </litdev-playground-share-button>
+
+    <litdev-icon-button button-title="Toggle fullscreen preview">
+      <lazy-svg
+        class="fullscreen"
+        label="Fullscreen"
+        href="{{ site.baseurl }}/images/icons/fullscreen.svg#icon"
+        loading="eager"></lazy-svg>
+      <lazy-svg
+        class="fullscreen-exit"
+        label="Exit Fullscreen"
+        href="{{ site.baseurl }}/images/icons/fullscreen-exit.svg#icon"
+        loading="eager"></lazy-svg>
+    </litdev-icon-button>
   </div>
 
   <playground-project
