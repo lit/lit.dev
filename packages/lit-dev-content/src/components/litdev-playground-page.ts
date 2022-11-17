@@ -87,12 +87,12 @@ export class LitDevPlaygroundPage extends LitElement {
     await this._discoverChildElements();
     this._activateChildElements();
     this._syncStateFromUrlHash();
-    window.addEventListener('hashchange', (e: HashChangeEvent) =>
-      this._syncStateFromUrlHash(e)
-    );
-    window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
-      this._syncStateFromUrlHash()
-    );
+    window.addEventListener('hashchange', (e: HashChangeEvent) => {
+      this._syncStateFromUrlHash(e);
+    });
+    window.addEventListener(CODE_LANGUAGE_CHANGE, () => {
+      this._syncStateFromUrlHash();
+    });
     this._codeEditor.addEventListener('change', this._onEditorChange);
     this._shareButton.addEventListener('save', this._onSaveEvent);
     this._shareButton.addEventListener('will-hashchange', this._onSaveEvent);
@@ -103,12 +103,8 @@ export class LitDevPlaygroundPage extends LitElement {
     return html`<slot></slot>`;
   }
 
-  protected firstUpdated(changed: PropertyValues<this>) {
+  firstUpdated(changed: PropertyValues<this>) {
     super.firstUpdated(changed);
-    const hashParams = this._getHashSearchParams();
-    // initialize previewFullscreen if `#playground-fullscreen=true`
-    this.viewMode = hashParams.get(PLAYGROUND_FULLSCREEN_HASH_PARAM) ?? 'split';
-
     // toggle previewFullscreen when the fullscreen button is clicked
     const iconButton = this.querySelector('#view-mode-button');
     iconButton?.addEventListener('click', () => {
@@ -124,8 +120,9 @@ export class LitDevPlaygroundPage extends LitElement {
   }
 
   update(changed: PropertyValues<this>) {
-    // if previewFullscreen has changed, update the hash in the URL
-    if (changed.has('viewMode')) {
+    // if previewFullscreen has changed, update the hash in the URL but not on
+    // first render
+    if (changed.has('viewMode') && this.hasUpdated) {
       const hash = this._getHashSearchParams();
       if (this.viewMode !== 'split') {
         hash.set(PLAYGROUND_FULLSCREEN_HASH_PARAM, this.viewMode);
@@ -135,6 +132,15 @@ export class LitDevPlaygroundPage extends LitElement {
 
       this._hashChangedByViewMode = true;
       window.location.hash = hash.toString();
+    }
+
+    // initialize viewMode on first update. Needs to happen before firstUpdated
+    // so that we do not trigger `viewMode` change after first render.
+    if (!this.hasUpdated) {
+      const hashParams = this._getHashSearchParams();
+      // initialize previewFullscreen if `#playground-fullscreen=true`
+      this.viewMode =
+        hashParams.get(PLAYGROUND_FULLSCREEN_HASH_PARAM) ?? 'split';
     }
     super.update(changed);
   }
