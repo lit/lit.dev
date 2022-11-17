@@ -16,7 +16,7 @@ Shadow DOM provides three benefits:
   component's shadow DOM, so it's harder for global scripts to accidentally break your component.
 * Style scoping. You can write encapsulated styles for your shadow DOM that don't
   affect the rest of the DOM tree.
-* Composition. The component's shadow root, which contains its internal DOM, is separate from the component's children. You can choose how children are rendered in your component's internal DOM.
+* Composition. The component's shadow root, which contains its internal DOM, is separated from the component's children. You can choose how children are rendered in your component's internal DOM.
 
 For more information on shadow DOM:
 
