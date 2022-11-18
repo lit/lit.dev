@@ -45,7 +45,7 @@ const result = render(html`<my-element></my-element>`);
 
 `render()` returns a `RenderResult`: an iterable of values that can be streamed or concatenated into a string.
 
-A `RenderResult` can contain strings, nested `RenderResult`, or Promises of strings or `RenderResult`s. Not all RenderResults will contain Promises - those can occur when custom elements preform async tasks, like fetching data - but because it can contain Promises, processing a RenderResult into a string or an HTTP response is _potentially_ an async operation.
+A `RenderResult` can contain strings, nested `RenderResult`s, or Promises of strings or `RenderResult`s. Not all RenderResults will contain Promises - those can occur when custom elements preform async tasks, like fetching data - but because it can contain Promises, processing a RenderResult into a string or an HTTP response is _potentially_ an async operation.
 
 Even though `RenderResult` can contain Promises, it is still a sync iterable, not an async iterable. This is because sync iterables are faster than async iterables and many server renders will not require async rendering, and so shouldn't pay the overhead of an async iterable.
 
