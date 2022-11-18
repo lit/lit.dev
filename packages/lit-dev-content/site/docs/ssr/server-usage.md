@@ -12,7 +12,7 @@ eleventyNavigation:
 
 Server rendering begins with rendering a Lit _template_ with a server-specific `render()` function provided in the `@lit-labs/ssr` package.
 
-The siganture of the render function is:
+The signature of the render function is:
 
 ```ts
 render(value: unknown, renderInfo?: Partial<RenderInfo>): RenderResult
@@ -45,13 +45,13 @@ const result = render(html`<my-element></my-element>`);
 
 `render()` returns a `RenderResult`: an iterable of values that can be streamed or concatenated into a string.
 
-A `RenderResult` can contain strings, nested `RenderResult`s, or Promises of strings or `RenderResult`s. Not all RenderResults will contain Promises - those can occur when custom elements preform async tasks, like fetching data - but because it can contain Promises, processing a RenderResult into a string or an HTTP response is _potentially_ an async operation.
+A `RenderResult` can contain strings, nested `RenderResult`s, or Promises of strings or `RenderResult`s. Not all RenderResults will contain Promises - those can occur when custom elements preform async tasks, like fetching data - but because it can contain Promises, processing a `RenderResult` into a string or an HTTP response is _potentially_ an async operation.
 
 Even though `RenderResult` can contain Promises, it is still a sync iterable, not an async iterable. This is because sync iterables are faster than async iterables and many server renders will not require async rendering, and so shouldn't pay the overhead of an async iterable.
 
 Allowing Promises in a sync iterable creates a kind of hybrid sync / async iteration protocol. Consumers of `RenderResult`s must check each value to see if it is a Promise or iterable and wait or recurse as needed.
 
-`@lit-labs/ssr` contains three new utilities to do this for you:
+`@lit-labs/ssr` contains three utilities to do this for you:
 
 - `RenderResultReadable`
 - `collectResult()`
@@ -79,7 +79,7 @@ app.use(async (ctx) => {
 
 `collectResult(result: RenderResult): Promise<string>`
 
-`collectResult()` is an async function that takes a `RenderRestul` and joins it into a string. It waits for Promises and recurses into nested iterables.
+`collectResult()` is an async function that takes a `RenderResult` and joins it into a string. It waits for Promises and recurses into nested iterables.
 
 ##### Example
 ```ts
