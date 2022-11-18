@@ -8,6 +8,114 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
+## Rendering templates
+
+Server rendering begins with rendering a Lit _template_ with a server-specific `render()` function provided in the `@lit-labs/ssr` package.
+
+The siganture of the render function is:
+
+```ts
+render(value: unknown, renderInfo?: Partial<RenderInfo>): RenderResult
+```
+
+Typically `value` is a TemplateResult produced by a Lit template expression, like:
+
+```ts
+html`<h1>Hello</h1`
+```
+
+The template can contain custom elements, which are rendered in turn, along with their templates.
+
+```ts
+const result = render(html`
+  <h1>Hello SSR!</h1>
+  <my-element></my-element>
+`);
+```
+
+To render an single element, you render a template that only contains that element:
+
+```ts
+const result = render(html`<my-element></my-element>`);
+```
+
+### Handling RenderResults
+
+`render()` returns a `RenderResult`: an iterable of values that can be streamed or concatenated into a string.
+
+A `RenderResult` can contain strings, nested `RenderResult`, or Promises of strings or `RenderResult`s. Not all RenderResults will contain Promises - those can occur when custom elements preform async tasks, like fetching data - but because it can contain Promises, processing a RenderResult into a string or an HTTP response is _potentially_ an async operation.
+
+Even though `RenderResult` can contain Promises, it is still a sync iterable, not an async iterable. This is because sync iterables are faster than async iterables and many server renders will not require async rendering, and so shouldn't pay the overhead of an async iterable.
+
+Allowing Promises in a sync iterable creates a kind of hybrid sync / async iteration protocol. Consumers of `RenderResult`s must check each value to see if it is a Promise or iterable and wait or recurse as needed.
+
+`@lit-labs/ssr` contains three new utilities to do this for you:
+
+- `RenderResultReadable`
+- `collectResult()`
+- `collectResultSync()`
+
+#### `RenderResultReadable`
+
+`RenderResultReadable` - a Node `Readable` stream implementation that provides values from a `RenderResult`. This can be piped into a `Writable` stream, or passed to web server frameworks like Koa.
+
+This is the preferred way to handle SSR results when integrating with a streaming HTTP server or other stream-supprting API.
+
+```ts
+import {render} from '@lit-labs/ssr';
+import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
+
+// Using Koa to stream
+app.use(async (ctx) => {
+  const result = render(html`<my-element></my-element>`);
+  ctx.type = 'text/html';
+  ctx.body = new RenderResultReadable(result);
+});
+```
+
+#### `collectResult()`
+
+`collectResult(result: RenderResult): Promise<string>`
+
+`collectResult()` is an async function that takes a `RenderRestul` and joins it into a string. It waits for Promises and recurses into nested iterables.
+
+##### Example
+```ts
+import {render} from '@lit-labs/ssr';
+import {collectResult} from '@lit-labs/ssr/lib/render-result.js';
+
+const result = render(html`<my-element></my-element>`);
+const html = await collectResult(result);
+```
+
+#### `collectResultSync()`
+
+`collectResultSync(result: RenderResult): Promise<string>`
+
+`collectResultSync()` is a sync function that takes a RenderResult and joins it into a string. It recurses into nested iterables, but _throws_ when it encounters a Promise.
+
+Because this function doesn't support async rendering, it's recommended to only use it when you can't await async functions.
+
+```ts
+import {render} from '@lit-labs/ssr';
+import {collectResultSync} from '@lit-labs/ssr/lib/render-result.js';
+
+const result = render(html`<my-element></my-element>`);
+// Throws if `result` contains a Promise!
+const html = collectResultSync(result);
+```
+
+### Render options
+
+`render()`'s second argument is a `RenderInfo` object that is used to pass options and current render state to components and sub-templates.
+
+The main options that can be set by callers are:
+
+* `deferHydration`: controls whether the top-level custom elements have a `defer-hydration` attribute added to signal that the elements should not automatically hydrate. This defaults to `false` so that top-level elements _do_ automatically hydrate.
+* `elementRenderers`: An array of `ElementRenderer` classes to use for rendering custom elements. By default this contains `LitElementRenderer` to render Lit elements. If can be set to include custom `ElementRenderer`s (documentation forthcoming), or set to an empty array to disable custom element rendering altogether.
+
+## Running SSR in a VM module or the global scope
+
 In order to render custom elements in Node, they must first be defined and registered with the global `customElements` API, which is a browser-only feature. As such, Lit SSR includes a DOM shim that provides the minimal DOM APIs necessary to render Lit on the server. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)
 
 Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module). VM modules utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) API, which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how the DOM shim is loaded.
@@ -20,33 +128,60 @@ Rendering with VM modules allows each render request to have its own context wit
 |-|-|
 | Pros:<ul><li>Easy to use. Can import component modules directly and call `render()` with templates.</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing issues with other libraries.</li><li>Custom elements are registered in a shared registry across different render requests.</li></ul> | Pros:<ul><li>Does not introduce DOM shim to the global scope.</li><li>Isolates contexts across different render requests.</li></ul>Cons:<ul><li>Less intuitive usage. Need to write and specify a module file with a function to call.</li><li>Slower due the module graph needing to be re-evaluated per request.</li></ul> |
 
-## Global Scope
-The `render()` method takes a renderable value, usually a Lit template result, and returns an iterable of strings that can be streamed or concatenated to a string for a response.
+### Global Scope
+
+When using the global scope, you can just call `render()` with a template to get a `RenderResult` and pass that to your server:
 
 ```js
 import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
+import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
 import {myTemplate} from './my-template.js';
-
-// ...
 
 // within a Koa middleware, for example
 app.use(async (ctx) => {
   const ssrResult = render(myTemplate(data));
   ctx.type = 'text/html';
-  ctx.body = Readable.from(ssrResult);
+  ctx.body = new RenderResultReadable(ssrResult);
 });
 ```
 
-Importing `render()` from `@lit-labs/ssr/lib/render-with-global-dom-shim.js` will also install a minimal [DOM shim](/docs/ssr/dom-emulation) in the global scope necessary for `lit` and component definitions to be loaded for rendering the components server-side. It must be imported before any `lit` libraries or component.
+Using the global scope requires patching a minimal [DOM shim](/docs/ssr/dom-emulation) onto `globalThis` which is necessary for `lit` and component definitions to be loaded in Node. It must be imported before any `lit` libraries or component.
+
+There are three ways to load the global DOM shim:
+
+* Manual installation
+
+  The `lib/dom-shim.js` module exports a `installWindowOnGlobal()` function that installs the shim.
+
+  ```ts
+  import {installWindowOnGlobal} from '@lit-labs/ssr/lib/dom-shim.js';
+  installWindowOnGlobal();
+  ```
+
+* Automatic installation
+
+  The `lib/install-global-dom-shim.js` module automatically installs the shim as a side-effect, so you only need to import it:
+
+  ```ts
+  import '@lit-labs/ssr/lib/install-global-dom-shim.js';
+  ```
+
+* Automatic installation with a `render` export
+
+  The `@lit-labs/ssr/lib/render-with-global-dom-shim.js` module automatically installs the DOM shim and exports `render` so that you only need one import to render a template:
+
+  ```ts
+  import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
+  ```
 
 Note: Loading the DOM shim globally introduces `window` into the global space which some libraries might look for in determining whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
 
-## VM Module
+### VM Module
 Lit also provide a way to load application code into, and render from, a separate VM context with its own global object.
 
 ```js
 // render-template.js
-import {render} from '@lit-labs/ssr/lib/render-lit-html.js';
+import {render} from '@lit-labs/ssr';
 import {myTemplate} from './my-template.js';
 
 export const renderTemplate = (someData) => {
@@ -57,8 +192,7 @@ export const renderTemplate = (someData) => {
 ```js
 // server.js
 import {renderModule} from '@lit-labs/ssr/lib/render-module.js';
-
-// ...
+import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
 
 // within a Koa middleware, for example
 app.use(async (ctx) => {
@@ -69,7 +203,7 @@ app.use(async (ctx) => {
     [{some: "data"}]         // Arguments to function
   );
   ctx.type = 'text/html';
-  ctx.body = Readable.from(ssrResult);
+  ctx.body = new RenderResultReadable(ssrResult);
 });
 ```
 
