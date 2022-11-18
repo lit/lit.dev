@@ -21,12 +21,14 @@ render(value: unknown, renderInfo?: Partial<RenderInfo>): RenderResult
 Typically `value` is a TemplateResult produced by a Lit template expression, like:
 
 ```ts
-html`<h1>Hello</h1`
+html`<h1>Hello</h1>`
 ```
 
 The template can contain custom elements, which are rendered in turn, along with their templates.
 
 ```ts
+import {render} from '@lit-labs/ssr';
+
 const result = render(html`
   <h1>Hello SSR!</h1>
   <my-element></my-element>
