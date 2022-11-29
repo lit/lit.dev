@@ -1,7 +1,7 @@
 ---
-title: Framework Integration
+title: Framework integration
 eleventyNavigation:
-  key: Framework Integration
+  key: Framework integration
   order: 10
 ---
 
