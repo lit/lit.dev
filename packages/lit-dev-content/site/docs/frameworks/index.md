@@ -2,7 +2,7 @@
 title: Framework integration
 eleventyNavigation:
   key: Framework integration
-  order: 10
+  order: 12
 ---
 
 <!-- This file exists only to create a section heading.
