@@ -35,12 +35,20 @@ import type {PlaygroundProject} from 'playground-elements/playground-project.js'
 import type {PlaygroundPreview} from 'playground-elements/playground-preview.js';
 import type {PlaygroundFileEditor} from 'playground-elements/playground-file-editor.js';
 import type {PlaygroundCodeEditor} from 'playground-elements/playground-code-editor.js';
+import {
+  deleteHashSearchParam,
+  getHashSearchParam,
+  getHashSearchParams,
+  setHashSearchParam,
+} from '../util/url-helpers.js';
 
 interface CompactProjectFile {
   name: string;
   content: string;
   hidden?: true;
 }
+
+type ViewMode = 'split' | 'preview' | 'code';
 
 // The hash param to look for in the url to determine whether we should display
 // the preview in fullscreen.
@@ -79,7 +87,7 @@ export class LitDevPlaygroundPage extends LitElement {
   githubApiUrl!: string;
 
   @property({type: String, reflect: true, attribute: 'view-mode'})
-  viewMode = 'split';
+  viewMode: ViewMode = 'split';
 
   async connectedCallback() {
     super.connectedCallback();
@@ -120,34 +128,36 @@ export class LitDevPlaygroundPage extends LitElement {
   }
 
   update(changed: PropertyValues<this>) {
-    // if previewFullscreen has changed, update the hash in the URL but not on
-    // first render
-    if (changed.has('viewMode') && this.hasUpdated) {
-      const hash = this._getHashSearchParams();
-      if (this.viewMode !== 'split') {
-        hash.set(PLAYGROUND_FULLSCREEN_HASH_PARAM, this.viewMode);
-      } else {
-        hash.delete(PLAYGROUND_FULLSCREEN_HASH_PARAM);
-      }
-
-      this._hashChangedByViewMode = true;
-      window.location.hash = hash.toString();
-    }
-
+    const hashSearchParams = getHashSearchParams();
     // initialize viewMode on first update. Needs to happen before firstUpdated
     // so that we do not trigger `viewMode` change after first render.
     if (!this.hasUpdated) {
-      const hashParams = this._getHashSearchParams();
       // initialize previewFullscreen if `#playground-fullscreen=true`
       this.viewMode =
-        hashParams.get(PLAYGROUND_FULLSCREEN_HASH_PARAM) ?? 'split';
+        (getHashSearchParam(
+          PLAYGROUND_FULLSCREEN_HASH_PARAM,
+          hashSearchParams
+        ) as null | ViewMode) ?? 'split';
+    } else if (changed.has('viewMode')) {
+      // if previewFullscreen has changed, update the hash in the URL but not on
+      // first render
+      if (this.viewMode === 'code' || this.viewMode === 'preview') {
+        setHashSearchParam(
+          PLAYGROUND_FULLSCREEN_HASH_PARAM,
+          this.viewMode,
+          hashSearchParams
+        );
+      } else {
+        deleteHashSearchParam(
+          PLAYGROUND_FULLSCREEN_HASH_PARAM,
+          hashSearchParams
+        );
+      }
+
+      this._hashChangedByViewMode = true;
+      window.location.hash = hashSearchParams.toString();
     }
     super.update(changed);
-  }
-
-  private _getHashSearchParams() {
-    // needs to be substring to remove the leading `#`
-    return new URLSearchParams(window.location.hash.substring(1));
   }
 
   /**
@@ -275,11 +285,13 @@ export class LitDevPlaygroundPage extends LitElement {
       return;
     }
 
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.slice(1));
+    this.viewMode =
+      (getHashSearchParam(
+        PLAYGROUND_FULLSCREEN_HASH_PARAM
+      ) as ViewMode | null) || 'split';
     let urlFiles: Array<CompactProjectFile> | undefined;
-    const gist = params.get('gist');
-    const base64 = params.get('project');
+    const gist = getHashSearchParam('gist');
+    const base64 = getHashSearchParam('project');
     if (this._shareButton.activeGist?.id !== gist) {
       // We're about to switch to a new gist, or to something that's not a gist
       // at all (a pre-made sample or a base64 project). Either way, the active
@@ -319,7 +331,7 @@ export class LitDevPlaygroundPage extends LitElement {
     } else {
       this._showCodeLanguageSwitch();
       let sample = 'examples/hello-world';
-      const urlSample = params.get('sample');
+      const urlSample = getHashSearchParam('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
         sample = urlSample;
       }

@@ -17,6 +17,10 @@ import {playgroundToGist} from '../util/gist-conversion.js';
 
 import type {Gist} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
+import {
+  deleteHashSearchParam,
+  setHashSearchParam,
+} from '../util/url-helpers.js';
 
 /**
  * An in-memory cache of the GitHub authentication tokens associated with each
@@ -33,10 +37,16 @@ const tokenCache = new WeakMap<LitDevPlaygroundShareGist, string>();
 
 const GITHUB_USER_LOCALSTORAGE_KEY = 'github-user';
 
+/**
+ * Safely writes to the hash of the current URL, and deletes any 'project' hash
+ * parameter. Safely writes by only modifying the 'project' and 'gist' hash
+ * parameters, and leaving all other parameters untouched.
+ *
+ * @param gistId The ID of the gist to write to the url hash.
+ */
 const writeToHash = (gistId: string) => {
-  const hashParams = new URLSearchParams(window.location.hash.substring(1));
-  hashParams.delete('project');
-  hashParams.set('gist', gistId);
+  const hashParams = deleteHashSearchParam('project');
+  setHashSearchParam('gist', gistId, hashParams);
   window.location.hash = hashParams.toString();
 };
 
