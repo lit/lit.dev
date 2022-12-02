@@ -18,6 +18,50 @@ Lit is a standard modern Javascript library, and you can use virtually any Javas
 
 There are a few things you'll want to make sure your testing environment supports to effectively test your Lit code.
 
+### Unit test example using Jest
+
+```javascript
+// simpeGreeting.js
+
+import {html, css, LitElement} from 'lit';
+
+export class SimpleGreeting extends LitElement {
+  static styles = css`p { color: blue }`;
+
+  static properties = {
+    name: {type: String},
+  };
+
+  constructor() {
+    super();
+    this.name = 'Somebody';
+  }
+
+  render() {
+    return html`<p>Hello, ${this.name}!</p>`;
+  }
+}
+customElements.define('simple-greeting', SimpleGreeting);
+```
+
+```javascript
+// simpeGreeting.test.js
+
+import 'simpleGreeting';
+
+describe('SimpleGreeting', () => {
+  test('should render', async () => {
+    const element = document.createElement('simple-greeting');
+    element.setAttribute('name', 'world!');
+    document.body.appendChild(element);
+    await element.updateComplete;
+
+    expect(element.shadowRoot.firstElementChild.textContent).toContain('Hello, world!');
+  })
+})
+
+```
+
 ### Testing in the browser
 
 Lit components are designed to run in the browser so testing should be conducted in a browser environment. Tools specifically focusing on testing [node](https://nodejs.org/) code may not be a good fit.
