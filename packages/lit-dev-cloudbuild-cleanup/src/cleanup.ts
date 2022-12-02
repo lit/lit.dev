@@ -102,7 +102,11 @@ async function main() {
       );
     }
 
-    if (new Date(rev.metadata.creationTimestamp) > ONE_WEEK_AGO) {
+    if (
+      new Date(rev.metadata.creationTimestamp) > ONE_WEEK_AGO ||
+      // always keep revision for discord-bot
+      rev.metadata.name.startsWith('lit-dev-discord-bot')
+    ) {
       revisionsToKeep.add(rev.metadata.name);
     }
   }
