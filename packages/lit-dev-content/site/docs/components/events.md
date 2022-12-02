@@ -42,7 +42,7 @@ private _handleTouchStart(e) { console.log(e.type) }
 
 </div>
 
-You can customize event listener options by passing an object which has `handleEvent` property and a name whose options of `addEventListener` property to [event listener expressions](https://lit.dev/docs/templates/expressions/#event-listener-expressions):
+If you're not using decorators, you can customize event listener options by passing an object to the event listener expression. The object must have a `handleEvent()` method and can include any the options that would normally appear in the `options` argument to `addEventListener()`.
 
 ```js
 render() {
