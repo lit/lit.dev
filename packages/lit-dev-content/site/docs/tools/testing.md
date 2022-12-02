@@ -52,11 +52,11 @@ import 'simpleGreeting';
 describe('SimpleGreeting', () => {
   test('should render', async () => {
     const element = document.createElement('simple-greeting');
-    element.setAttribute('name', 'world!');
+    element.setAttribute('name', 'world');
     document.body.appendChild(element);
     await element.updateComplete;
 
-    expect(element.shadowRoot.firstElementChild.textContent).toContain('Hello, world!');
+    expect(element.shadowRoot.firstElementChild.textContent).toEqual('Hello, world!');
   })
 })
 
