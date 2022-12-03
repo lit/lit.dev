@@ -17,6 +17,10 @@ import {playgroundToGist} from '../util/gist-conversion.js';
 
 import type {Gist} from '../github/github-gists.js';
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
+import {
+  deleteHashSearchParam,
+  setHashSearchParam,
+} from '../util/url-helpers.js';
 
 /**
  * An in-memory cache of the GitHub authentication tokens associated with each
@@ -32,6 +36,19 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
 const tokenCache = new WeakMap<LitDevPlaygroundShareGist, string>();
 
 const GITHUB_USER_LOCALSTORAGE_KEY = 'github-user';
+
+/**
+ * Safely writes to the hash of the current URL, and deletes any 'project' hash
+ * parameter. Safely writes by only modifying the 'project' and 'gist' hash
+ * parameters, and leaving all other parameters untouched.
+ *
+ * @param gistId The ID of the gist to write to the url hash.
+ */
+const writeToHash = (gistId: string) => {
+  const hashParams = deleteHashSearchParam('project');
+  setHashSearchParam('gist', gistId, hashParams);
+  window.location.hash = hashParams.toString();
+};
 
 /**
  * Buttons for sharing a Playground project as a GitHub gist and signing into
@@ -291,7 +308,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       this.dispatchEvent(
         new Event('will-hashchange', {bubbles: true, composed: true})
       );
-      window.location.hash = '#gist=' + gist.id;
+      writeToHash(gist.id);
       let statusText = 'Gist created';
       try {
         await navigator.clipboard.writeText(window.location.toString());
@@ -364,7 +381,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       this.dispatchEvent(
         new Event('will-hashchange', {bubbles: true, composed: true})
       );
-      window.location.hash = '#gist=' + gist.id;
+      writeToHash(gist.id);
       let statusText = 'Gist updated';
       try {
         await navigator.clipboard.writeText(window.location.toString());

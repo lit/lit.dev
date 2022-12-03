@@ -14,6 +14,10 @@ import {compactPlaygroundFile} from '../util/compact-playground-file.js';
 import {encodeSafeBase64} from '../util/safe-base64.js';
 
 import type {SampleFile} from 'playground-elements/shared/worker-api.js';
+import {
+  deleteHashSearchParam,
+  setHashSearchParam,
+} from '../util/url-helpers.js';
 
 /**
  * A text box and button for copying a long base64-encoded Playground project
@@ -70,7 +74,11 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
     const base64 = encodeSafeBase64(
       JSON.stringify(files.map(compactPlaygroundFile))
     );
-    this._url = new URL(`#project=${base64}`, window.location.href).href;
+    // We have to use these util functions so that we do not accidentally
+    // overwrite any existing query parameters in the hash like `#view-mode=...`
+    const hashParams = deleteHashSearchParam('gist');
+    setHashSearchParam('project', base64, hashParams);
+    this._url = new URL(`#${hashParams}`, window.location.href).href;
   }
 
   override render() {

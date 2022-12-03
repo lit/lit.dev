@@ -53,6 +53,26 @@ title: Playground
       githubApiUrl="{{ env.GITHUB_API_URL }}"
       githubAvatarUrl="{{ env.GITHUB_AVATAR_URL }}">
     </litdev-playground-share-button>
+
+    <litdev-ripple-icon-button
+        button-title="Toggle view mode"
+        id="view-mode-button">
+      <lazy-svg
+        class="preview"
+        label="Show Only Preview"
+        href="{{ site.baseurl }}/images/icons/preview.svg#icon"
+        loading="eager"></lazy-svg>
+      <lazy-svg
+        class="code"
+        label="Show Only Code"
+        href="{{ site.baseurl }}/images/icons/code.svg#icon"
+        loading="eager"></lazy-svg>
+      <lazy-svg
+          class="splitscreen"
+          label="Show Split View"
+          href="{{ site.baseurl }}/images/icons/splitscreen.svg#icon"
+          loading="eager"></lazy-svg>
+    </litdev-ripple-icon-button>
   </div>
 
   <playground-project

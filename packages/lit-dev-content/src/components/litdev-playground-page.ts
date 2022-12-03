@@ -13,7 +13,7 @@ import '../components/litdev-playground-share-button.js';
 import '../components/litdev-playground-download-button.js';
 import '../components/litdev-error-notifier.js';
 
-import {LitElement, html, css} from 'lit';
+import {LitElement, html, css, PropertyValues} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 import {
@@ -35,12 +35,24 @@ import type {PlaygroundProject} from 'playground-elements/playground-project.js'
 import type {PlaygroundPreview} from 'playground-elements/playground-preview.js';
 import type {PlaygroundFileEditor} from 'playground-elements/playground-file-editor.js';
 import type {PlaygroundCodeEditor} from 'playground-elements/playground-code-editor.js';
+import {
+  deleteHashSearchParam,
+  getHashSearchParam,
+  getHashSearchParams,
+  setHashSearchParam,
+} from '../util/url-helpers.js';
 
 interface CompactProjectFile {
   name: string;
   content: string;
   hidden?: true;
 }
+
+type ViewMode = 'split' | 'preview' | 'code';
+
+// The hash param to look for in the url to determine whether we should display
+// the preview in fullscreen.
+const PLAYGROUND_FULLSCREEN_HASH_PARAM = 'view-mode';
 
 /**
  * Top-level component for the Lit.dev Playground page.
@@ -66,6 +78,7 @@ export class LitDevPlaygroundPage extends LitElement {
   private _examplesDrawerScroller!: HTMLElement;
   private _exampleControls!: LitDevExampleControls;
   private _hasUnsavedChanges = false;
+  private _hashChangedByViewMode = false;
 
   /**
    * Base URL for the GitHub API.
@@ -73,18 +86,21 @@ export class LitDevPlaygroundPage extends LitElement {
   @property()
   githubApiUrl!: string;
 
+  @property({type: String, reflect: true, attribute: 'view-mode'})
+  viewMode: ViewMode = 'split';
+
   async connectedCallback() {
     super.connectedCallback();
     this._checkRequiredParameters();
     await this._discoverChildElements();
     this._activateChildElements();
     this._syncStateFromUrlHash();
-    window.addEventListener('hashchange', (e: HashChangeEvent) =>
-      this._syncStateFromUrlHash(e)
-    );
-    window.addEventListener(CODE_LANGUAGE_CHANGE, () =>
-      this._syncStateFromUrlHash()
-    );
+    window.addEventListener('hashchange', (e: HashChangeEvent) => {
+      this._syncStateFromUrlHash(e);
+    });
+    window.addEventListener(CODE_LANGUAGE_CHANGE, () => {
+      this._syncStateFromUrlHash();
+    });
     this._codeEditor.addEventListener('change', this._onEditorChange);
     this._shareButton.addEventListener('save', this._onSaveEvent);
     this._shareButton.addEventListener('will-hashchange', this._onSaveEvent);
@@ -93,6 +109,55 @@ export class LitDevPlaygroundPage extends LitElement {
 
   render() {
     return html`<slot></slot>`;
+  }
+
+  firstUpdated(changed: PropertyValues<this>) {
+    super.firstUpdated(changed);
+    // toggle previewFullscreen when the fullscreen button is clicked
+    const iconButton = this.querySelector('#view-mode-button');
+    iconButton?.addEventListener('click', () => {
+      const lastMode = this.viewMode;
+      if (lastMode === 'split') {
+        this.viewMode = 'preview';
+      } else if (lastMode === 'preview') {
+        this.viewMode = 'code';
+      } else {
+        this.viewMode = 'split';
+      }
+    });
+  }
+
+  update(changed: PropertyValues<this>) {
+    const hashSearchParams = getHashSearchParams();
+    // initialize viewMode on first update. Needs to happen before firstUpdated
+    // so that we do not trigger `viewMode` change after first render.
+    if (!this.hasUpdated) {
+      // initialize previewFullscreen if `#playground-fullscreen=true`
+      this.viewMode =
+        (getHashSearchParam(
+          PLAYGROUND_FULLSCREEN_HASH_PARAM,
+          hashSearchParams
+        ) as null | ViewMode) ?? 'split';
+    } else if (changed.has('viewMode')) {
+      // if previewFullscreen has changed, update the hash in the URL but not on
+      // first render
+      if (this.viewMode === 'code' || this.viewMode === 'preview') {
+        setHashSearchParam(
+          PLAYGROUND_FULLSCREEN_HASH_PARAM,
+          this.viewMode,
+          hashSearchParams
+        );
+      } else {
+        deleteHashSearchParam(
+          PLAYGROUND_FULLSCREEN_HASH_PARAM,
+          hashSearchParams
+        );
+      }
+
+      this._hashChangedByViewMode = true;
+      window.location.hash = hashSearchParams.toString();
+    }
+    super.update(changed);
   }
 
   /**
@@ -202,6 +267,11 @@ export class LitDevPlaygroundPage extends LitElement {
   }
 
   private async _syncStateFromUrlHash(e?: HashChangeEvent) {
+    if (this._hashChangedByViewMode) {
+      this._hashChangedByViewMode = false;
+      return;
+    }
+
     let shouldExit = true;
 
     if (e && this._hasUnsavedChanges) {
@@ -215,11 +285,13 @@ export class LitDevPlaygroundPage extends LitElement {
       return;
     }
 
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.slice(1));
+    this.viewMode =
+      (getHashSearchParam(
+        PLAYGROUND_FULLSCREEN_HASH_PARAM
+      ) as ViewMode | null) || 'split';
     let urlFiles: Array<CompactProjectFile> | undefined;
-    const gist = params.get('gist');
-    const base64 = params.get('project');
+    const gist = getHashSearchParam('gist');
+    const base64 = getHashSearchParam('project');
     if (this._shareButton.activeGist?.id !== gist) {
       // We're about to switch to a new gist, or to something that's not a gist
       // at all (a pre-made sample or a base64 project). Either way, the active
@@ -259,7 +331,7 @@ export class LitDevPlaygroundPage extends LitElement {
     } else {
       this._showCodeLanguageSwitch();
       let sample = 'examples/hello-world';
-      const urlSample = params.get('sample');
+      const urlSample = getHashSearchParam('sample');
       if (urlSample?.match(/^[a-zA-Z0-9_\-\/]+$/)) {
         sample = urlSample;
       }

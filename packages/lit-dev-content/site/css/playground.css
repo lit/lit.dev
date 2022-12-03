@@ -4,6 +4,8 @@ body {
      entire viewport scrolls. There must be a flexbox configuration that will do
      the right thing automatically here. */
   overflow-y: hidden;
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: none
 }
 
 main {
@@ -237,4 +239,42 @@ resize-bar[active] {
   #horizontalResizeBar {
     display: none;
   }
+}
+
+/* Sizes the svgs of the fullscreen button in the blue actionbar */
+#actionBar lazy-svg::part(svg) {
+  width: 24px;
+  height: 24px;
+}
+
+/*
+  Displays the next view mode icon in the view-mode toggle button.
+*/
+litdev-playground-page[view-mode="split"] #actionBar .preview,
+litdev-playground-page[view-mode="preview"] #actionBar .code,
+litdev-playground-page[view-mode="code"] #actionBar .splitscreen {
+  display: contents;
+}
+
+/*
+  Show and hide the editor or preview based on the view mode and hide the resize
+  bars unless we are in split mode.
+*/
+#actionBar lazy-svg,
+litdev-playground-page[view-mode="preview"] #tabsAndEditor,
+litdev-playground-page[view-mode="code"] #preview,
+litdev-playground-page:not([view-mode="split"]) .horizontalResizeBar,
+litdev-playground-page:not([view-mode="split"]) .verticalResizeBar {
+  display: none;
+}
+
+/* Set the height and width of the preview to 100% when fullscreened */
+litdev-playground-page[view-mode="preview"] #preview {
+  --preview-height: 100%;
+  --preview-width: 100%;
+}
+
+/* Make the code editor fullwidth when code is fullscreened. */
+litdev-playground-page[view-mode="code"] #tabsAndEditor {
+  --tabs-and-editor-width: 100%;
 }
