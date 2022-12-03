@@ -84,7 +84,7 @@ export default {
     // Resolve bare module specifiers to relative paths
     resolve(),
     // Minify HTML template literals
-    minifyHTML(),
+    minifyHTML.default(),
     // Minify JS
     terser({
       ecma: 2020,
@@ -140,7 +140,9 @@ import {copy} from '@web/rollup-plugin-copy';
 import resolve from '@rollup/plugin-node-resolve';
 import {getBabelOutputPlugin} from '@rollup/plugin-babel';
 import {terser} from 'rollup-plugin-terser';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
+import 
+
+from 'rollup-plugin-minify-html-literals';
 import summary from 'rollup-plugin-summary';
 
 // Configure an instance of @web/rollup-plugin-html
@@ -158,7 +160,7 @@ export default {
     // Resolve bare module specifiers to relative paths
     resolve(),
     // Minify HTML template literals
-    minifyHTML(),
+    minifyHTML.default(),
     // Minify JS
     terser({
       module: true,
