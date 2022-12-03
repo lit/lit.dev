@@ -164,7 +164,7 @@ export default {
       module: true,
       warnings: true,
     }),
-    // Inject polyfills into HTML (core-js, regnerator-runtime, webcoponents,
+    // Inject polyfills into HTML (core-js, regenerator-runtime, web-components,
     // lit/polyfill-support) and dynamically loads modern vs. legacy builds
     polyfillsLoader({
       modernOutput: {
@@ -184,7 +184,7 @@ export default {
         fetch: true,
         webcomponents: true,
         // Custom configuration for loading Lit's polyfill-support module,
-        // required for interfacing with the webcomponents polyfills
+        // required for interfacing with the web-components polyfills
         custom: [
           {
             name: 'lit-polyfill-support',
