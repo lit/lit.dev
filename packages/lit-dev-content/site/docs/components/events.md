@@ -46,7 +46,7 @@ If you're not using decorators, you can customize event listener options by pass
 
 ```js
 render() {
-  return html`<button @click=${{handleEvent: () => this.onClick(), once: true}}>click</button>`
+  return html`<button @click=${{handleEvent: (() => this.onClick()), once: true}}>click</button>`
 }
 ```
 
