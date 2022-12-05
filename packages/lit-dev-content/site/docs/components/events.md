@@ -42,6 +42,19 @@ private _handleTouchStart(e) { console.log(e.type) }
 
 </div>
 
+If you're not using decorators, you can customize event listener options by passing an object to the event listener expression. The object must have a `handleEvent()` method and can include any the options that would normally appear in the `options` argument to `addEventListener()`.
+
+[comment]: <> (The `raw` macro is necessary to prevent the double handlebar in the code sample from messing with the liquid templating syntax)
+{% raw %}
+
+```js
+render() {
+  return html`<button @click=${{handleEvent: () => this.onClick(), once: true}}>click</button>`
+}
+```
+
+{% endraw %}
+
 ### Adding event listeners to the component or its shadow root
 
 To be notified of an event dispatched from the component's slotted children as well as children rendered into shadow DOM via the component template, you can add a listener to the component itself using the standard `addEventListener` DOM method. See [EventTarget.addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) on MDN for full details.
