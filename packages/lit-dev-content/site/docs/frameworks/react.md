@@ -6,11 +6,15 @@ eleventyNavigation:
   order: 1
 ---
 
-# @lit-labs/react
+The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides Web Component and Reactive Controller integration for React.
 
-React integration for Web Components and Reactive Controllers.
+## Installation
 
-## Overview
+From inside your project folder, run:
+
+```bash
+$ npm install @lit-labs/react
+```
 
 ## `createComponent`
 
@@ -161,14 +165,6 @@ const Component = (props) => {
     </pre>
   );
 };
-```
-
-## Installation
-
-From inside your project folder, run:
-
-```bash
-$ npm install @lit-labs/react
 ```
 
 ## Contributing
