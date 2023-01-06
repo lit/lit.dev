@@ -25,7 +25,7 @@ Rendering with VM modules allows each render request to have its own context wit
 The `render()` method takes a renderable value, usually a Lit template result, and returns an iterable of strings that can be streamed or concatenated to a string for a response.
 
 ```js
-import {render} from '@lit-labs/ssr/lib/render-lit-html.js';
+import {render} from '@lit-labs/ssr';
 import {myTemplate} from './my-template.js';
 
 // ...
