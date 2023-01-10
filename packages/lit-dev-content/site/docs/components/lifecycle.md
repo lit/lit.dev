@@ -381,18 +381,24 @@ updated(changedProperties) {
 
 The `updateComplete` Promise resolves when the element has finished updating. Use `updateComplete` to wait for an update. The resolved value is a Boolean indicating if the element has finished updating. It will be `true` if there are no pending updates after the update cycle has finished.
 
-It is a good practice to dispatch events from components after rendering has completed, so that the event's listeners see the fully rendered state of the component. To do so, you can await the `updateComplete` Promise before firing the event.
+When an element updates, it may cause its children to update as well. By default, the `updateComplete` promise resolves when the element's update has completed, but does not wait for any children to have completed their updates. This behavior may be customized by overriding [`getUpdateComplete`](#getUpdateComplete).
 
-```js
-async _loginClickHandler() {
-  this.loggedIn = true;
-  // Wait for `loggedIn` state to be rendered to the DOM
-  await this.updateComplete;
-  this.dispatchEvent(new Event('login'));
-}
-```
+There are several use cases for needing to know when an element's update has completed:
 
-Also, when writing tests you can await the `updateComplete` Promise before making assertions about the component’s DOM.
+1. **Tests** When writing tests you can await the `updateComplete` Promise before making assertions about the component’s DOM. If the test depends on the entire descendant tree's update having been completed, awaiting `requestAnimationFrame` is often a better choice to guarantee that all components have updated, since Lit's default scheduling uses the browser's microtask queue and is flushed prior to animation frames.
+
+2. **Measurement** Some components may need to measure their DOM in order to implement certain layouts. While it is always better to implement layouts using pure CSS rather than JavaScript-based measurement, sometimes CSS limitations make this unavoidable. In very simple cases, it may be sufficient to await `updateComplete` after state changes before measuring. However, because `updateComplete` does not await the update of all descendants, we recommend using [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) as a more robust way to trigger measurement code when layouts change.
+
+3. **Events** It is a good practice to dispatch events from components after rendering has completed, so that the event's listeners see the fully rendered state of the component. To do so, you can await the `updateComplete` Promise before firing the event.
+
+    ```js
+    async _loginClickHandler() {
+      this.loggedIn = true;
+      // Wait for `loggedIn` state to be rendered to the DOM
+      await this.updateComplete;
+      this.dispatchEvent(new Event('login'));
+    }
+    ```
 
 The `updateComplete` promise rejects if there's an unhandled error during the update cycle. For more information, see [Handling errors in the update cycle](#errors-in-the-update-cycle).
 
