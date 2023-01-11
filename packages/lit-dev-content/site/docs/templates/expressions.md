@@ -404,7 +404,7 @@ Expressions should generally not appear in the following locations:
   <template id="${attrValue}">static content ok</template>
   ```
 
-* Inside `<textarea>` element content (attribute expressions on the textarea element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update, and Lit will warn in development mode. Instead, bind to the `.value` property of textarea.
+* Inside `<textarea>`, `<script>`, and `<title>` element contents (attribute expressions on the element itself are allowed). Note that Lit can render content into textarea, however editing the textarea will break references to the DOM that Lit uses to dynamically update, and Lit will warn in development mode. Instead, bind to the `.value` property of textarea.
   ```html
   <!-- BEWARE -->
   <textarea>${content}</textarea>
