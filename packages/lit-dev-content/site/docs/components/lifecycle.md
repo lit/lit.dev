@@ -421,7 +421,7 @@ In some cases, code may throw in unexpected places. As a fallback, you can add a
 
 ```js
 window.onunhandledrejection = function(e) {
-  /* handle error *
+  /* handle error */
 }
 ```
 
