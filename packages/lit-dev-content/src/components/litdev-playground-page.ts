@@ -198,7 +198,7 @@ export class LitDevPlaygroundPage extends LitElement {
   private async _discoverChildElements() {
     // TODO(aomarks) This is very unconventional. We should be rendering these
     // elements ourselves, or slotting them in with names.
-    const mustFindChild: typeof this['querySelector'] = (
+    const mustFindChild: (typeof this)['querySelector'] = (
       selector: string
     ): HTMLElement => {
       const el = this.querySelector(selector);

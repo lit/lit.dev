@@ -15,7 +15,7 @@ const envRequired = <T extends keyof typeof ENV>(name: T) => {
   if (!val) {
     throw new Error(`Expected ENV.${name} to be defined.`);
   }
-  return val as Exclude<typeof ENV[T], undefined>;
+  return val as Exclude<(typeof ENV)[T], undefined>;
 };
 
 const app = new Koa();
