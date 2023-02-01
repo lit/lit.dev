@@ -248,3 +248,250 @@ and the ContextConsumer controller:
     true /* subscribe */
   );
 ```
+
+## Example Use Cases
+
+### Current user, locale, etc.
+
+The most common context use cases involve data that is global to a page and possibly only sparsely needed in components throughout the page. Without context it's possible that most or all components would need to accept and propagate reactive properties for the data.
+
+### Services
+
+App-global services, like loggers, analytics, data stores, can be provided by context. An advantage of context over importing from a common module are the late coupling and tree-scoping that context provides. Tests can easily provide mock services, or different parts of the page can be given different service instances.
+
+### Themes
+
+Themes are sets of styles that apply to the entire page or entire subtrees within the page - exactly the kind of scope of data that context provides.
+
+One way of building a theme system would be to define a `Theme` type that containers can provide that holds named styles. Elements that want to apply a theme can consume the theme object and look up styles by name. Custom theme reactive controllers can wrap ContextProvider and ContextConsumer to reduce boilerplate.
+
+### HTML-based plugins
+
+Context can be used to provide data to light DOM children, which typically aren't created from the same declarative templates with databinding available.
+
+For example, consider a code editor element with plugins for different language modes. You can make a plain HTML system for adding features using context:
+
+```html
+<code-editor>
+  <code-editor-javascript-mode></code-editor-javascript-mode>
+  <code-editor-python-mode></code-editor-python-mode>
+</code-editor>
+```
+
+In this case `<code-editor>` would provide an API for adding langage modes via context, and plugin elements would consume that API and add themselves to the editor.
+
+### Data formatters, link generators, etc.
+
+Sometimes reusable components will need to format data or URLs in an application-specific way. For example, a documentation viewer that renders a link to another item. The component will not know the URL space of the application.
+
+In these cases the component can depend on a context-provided function that will apply the application-specific formatting to the data or link.
+
+## API
+
+<div class="alert alert-info">
+
+These API docs are a summary until generated API docs are available
+
+</div>
+
+### `createContext()`
+
+Creates a typed Context object
+
+**Import**:
+
+```ts
+import {property} from '@lit-labs/context';
+```
+
+**Signature**:
+
+```ts
+function createContext<ValueType, K = unknown>(key: K): Context<K, ValueType>;
+```
+
+
+Contexts are compared with with strict equality.
+
+If you want two separate `createContext()` calls to referer to the same context, then use a key that will by equal under strict equality like a string for `Symbol.for()`:
+
+```ts
+// true
+createContext('my-context') === createContext('my-context')
+// true
+createContext(Symbol.for('my-context')) === createContext(Symbol.for('my-context'))
+```
+
+If you want a context to be unique so that it's guaranteed to not collide with other contexts, use a key that's unique under strict equality, like a `Symbol()` or object.:
+
+```ts
+// false
+createContext(Symbol('my-context')) === createContext(Symbol('my-context'))
+// false
+createContext({}) === createContext({})
+```
+
+The `ValueType` type parameter is the type of value that can be provided by this context. It's uses to provide accurate types in the other context APIs.
+
+### `@provide()`
+
+A property decorator that adds a ContextConsumer controller to the component which will try and retrieve a value for the property via the Context API.
+
+**Import**:
+
+```ts
+import {property} from '@lit-labs/context';
+```
+
+**Signature**:
+
+```ts
+@property({context: Context})
+```
+
+### `@consume()`
+
+A property decorator that adds a ContextConsumer controller to the component which will retrieve a value for the property via the Context protocol.
+
+**Import**:
+
+```ts
+import {consume} from '@lit-labs/context';
+```
+
+**Signature**:
+
+```ts
+@consume({context: Context, subscribe?: boolean})
+```
+
+`subscribe` is `false` by default. Set it to `true` to subscribe to updates to the context provided value.
+
+### `ContextProvider`
+
+A ReactiveController which adds context provider behavior to a custom element by listening to `context-request` events.
+
+**Import**:
+
+```ts
+import {ContextProvider} from '@lit-labs/context';
+```
+
+**Constructor**:
+
+```ts
+ContextProvider(
+  host: ReactiveElement,
+  context: T,
+  initialValue?: ContextType<T>
+)
+```
+
+**Members**
+
+- `setValue(v: T, force = false): void`
+
+    Sets the value provided, and notifies any subscribed consumers of the new value if the value chaged. `force` causes a notification even if the value didn't change, which can be useful if an object had a deep property change.
+
+
+### `ContextConsumer`
+
+A ReactiveController which adds context consuming behavior to a custom element by dispatching `context-request` events.
+
+**Import**:
+
+```ts
+import {ContextProvider} from '@lit-labs/context';
+```
+
+**Constructor**:
+```ts
+ContextProvider(
+  host: HostElement,
+  context: C,
+  callback?: (value: ContextType<C>, dispose?: () => void) => void,
+  subscribe: boolean = false
+)
+```
+
+**Members**
+
+- `value: ContextType<C>`
+
+   The current value for the context.
+
+When the host element is connected to the document it will emit a `context-request` event with its context key. When the context request is satisfied the controller will invoke the callback, if present, and trigger a host update so it can respond to the new value.
+
+It will also call the dispose method given by the provider when the host element is disconnected.
+
+### `ContextRoot`
+
+A ContextRoot can be used to gather unsatisfied context requests and redispatch them when new providers which satisfy matching context keys are available. This allows providers to be added to a DOM tree, or upgraded, after the consumers.
+
+**Import**:
+
+```ts
+import {ContextRoot} from '@lit-labs/context';
+```
+
+**Constructor**:
+```ts
+ContextRoot()
+```
+
+**Members**
+
+- `attach(element: HTMLElement): void`
+
+    Attaches the ContextRoot to this element and starts listening to `context-request` events.
+
+- `detach(element: HTMLElement): void`
+
+    Detaches the ContextRoot from this element, stops listening to `context-request` events.
+
+### `ContextRequestEvent`
+
+The event fired by consumers to request a context value. The API and behavior of this event is specified by the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
+
+**Import**:
+
+```ts
+import {ContextRequestEvent} from '@lit-labs/context';
+```
+
+The `context-request` bubbles and is composed.
+
+**Members**
+
+- `readonly context: C`
+
+    The context object this event is requesting a value for
+
+- `readonly callback: ContextCallback<ContextType<C>>`
+
+    The function to call to provide a context value
+
+- `readonly subscribe?: boolean`
+
+    Whether the consumers wants to subscribe to new context values
+
+### `ContextCallback`
+
+A callback which is provided by a context requester and is called with the value satisfying the request.
+
+This callback can be called multiple times by context providers as the requested value is changed.
+
+**Import**:
+
+```ts
+import {type ContextCallback} from '@lit-labs/context';
+```
+
+**Signature**:
+
+```ts
+type ContextCallback<ValueType> = (
+  value: ValueType,
+  unsubscribe?: () => void
+) => void;
+```
