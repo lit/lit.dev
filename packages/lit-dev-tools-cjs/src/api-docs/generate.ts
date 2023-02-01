@@ -11,14 +11,14 @@ import {execFile} from 'child_process';
 import {promisify} from 'util';
 import {ApiDocsTransformer, Pages, SymbolMap} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
-import {litElement2Config} from './configs/lit-element-2.js';
-import {litHtml1Config} from './configs/lit-html-1.js';
+// import {litElement2Config} from './configs/lit-element-2.js';
+// import {litHtml1Config} from './configs/lit-html-1.js';
 
 import type {ApiDocsConfig} from './types.js';
 
 const execFileAsync = promisify(execFile);
 
-const configs = [lit2Config, litElement2Config, litHtml1Config];
+const configs = [lit2Config]; //, litElement2Config, litHtml1Config];
 
 /**
  * Check whether the given file path exists.
@@ -99,7 +99,7 @@ const analyze = async (config: ApiDocsConfig) => {
     app.options.addReader(new typedoc.TSConfigReader());
     app.bootstrap({
       tsconfig: pkg.tsConfigPath,
-      entryPoints: pkg.entrypointModules,
+      entryPoints: pkg.entrypointModules
     });
     const root = app.convert();
     if (!root) {
