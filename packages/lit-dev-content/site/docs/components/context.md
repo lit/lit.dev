@@ -4,8 +4,7 @@ eleventyNavigation:
   key: Context
   parent: Components
   order: 9
-versionLinks:
-  v1: components/context/
+  labs: true
 ---
 
 Context is a way of making data available to entire component subtrees without having to manually bind properties to every component. The data is "contextually" available, such that ancestor elements in between a provider of data and consumer of data aren't event aware of it.
