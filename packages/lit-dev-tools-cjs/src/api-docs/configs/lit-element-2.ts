@@ -22,15 +22,19 @@ export const litElement2Config: ApiDocsConfig = {
   commit: 'c9b40e6b26dd7a9361e32421a4343949d242e0ca',
   workDir,
   gitDir,
-  tsConfigPath: pathlib.join(gitDir, 'tsconfig.json'),
   pagesOutPath: pathlib.join(workDir, 'pages.json'),
   symbolsOutPath: pathlib.join(workDir, 'symbols.json'),
   typedocRoot: pathlib.join(root, 'packages'),
 
-  entrypointModules: [
-    pathlib.join(srcDir, 'lit-element.ts'),
-    pathlib.join(srcDir, 'decorators.ts'),
-    pathlib.join(srcDir, 'lib', 'updating-element.ts'),
+  packages: [
+    {
+      tsConfigPath: pathlib.join(gitDir, 'tsconfig.json'),
+      entrypointModules: [
+        pathlib.join(srcDir, 'lit-element.ts'),
+        pathlib.join(srcDir, 'decorators.ts'),
+        pathlib.join(srcDir, 'lib', 'updating-element.ts'),
+      ],
+    }
   ],
 
   symbolOrder: [],
