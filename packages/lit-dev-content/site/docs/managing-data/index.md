@@ -1,10 +1,8 @@
 ---
-title: Related libraries
+title: Managing Data
 eleventyNavigation:
-  key: Related libraries
-  order: 11
-versionLinks:
-  v1: lit-html/introduction/
+  key: Managing Data
+  order: 5
 ---
 
 <!-- This file exists only to create a section heading.

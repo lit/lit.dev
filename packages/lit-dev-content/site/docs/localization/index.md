@@ -2,7 +2,7 @@
 title: Localization
 eleventyNavigation:
   key: Localization
-  order: 6
+  order: 7
 ---
 
 <!-- This file exists only to create a section heading.

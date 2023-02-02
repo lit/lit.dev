@@ -2,8 +2,8 @@
 title: Context
 eleventyNavigation:
   key: Context
-  parent: Components
-  order: 9
+  parent: Managing Data
+  order: 1
   labs: true
 ---
 
