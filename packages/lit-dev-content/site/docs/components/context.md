@@ -17,7 +17,7 @@ Lit's context implementation is part of [Lit Labs](/docs/libraries/labs/) and av
 npm i @lit-labs/context
 ```
 
-Context is useful for data that needs to be consumed by a wide variety and large number of components - things like an apps data store, the current user, a UI theme - or when data-binding isn't an option, such as when an element needs to provide data to its light DOM children.
+Context is useful for data that needs to be consumed by a wide variety and large number of components - things like an app's data store, the current user, a UI theme - or when data-binding isn't an option, such as when an element needs to provide data to its light DOM children.
 
 Context is very in ways to React's Context, or to dependency injection systems like Angular's, with some important differences that enable interoperability across different web components libraries, frameworks and plain JavaScript.
 
@@ -79,7 +79,7 @@ Lit's context is based on the [Context Community Protocol](https://github.com/we
 
 This protocol enables interoperability between elements (or even non-element code) regardless of how they were built. Via the context protocol, a Lit-based element can provide data to a Stencil consumer, or vice versa.
 
-The Context Protocol is based on DOM events. A consumer fires a `context-request` event that carries the context key that it wants, and any element above it can listen for the `context-request` event and provide data if it has it for that context key.
+The Context Protocol is based on DOM events. A consumer fires a `context-request` event that carries the context key that it wants, and any element above it can listen for the `context-request` event and provide data for that context key.
 
 `@lit-labs/context` implements this event-based protocol and makes it available via a few reactive controllers and decorators.
 
@@ -105,7 +105,7 @@ When a consumer requests data for a context, it can tell the provider that it wa
 
 Every usage of context must have a context object to coordinate the data request. This context object represents the identity and type of data that is provided.
 
-Context objects are created with the `createContext()` function. It is reccomended to put context objects in their own module so that they're independent of providers and consumers, unless the context is tightly coupled to a specific provider or consumer.
+Context objects are created with the `createContext()` function. It is reccomended to put context objects in their own module so that they're independent of providers and consumers.
 
 `createContext()` takes a name, which is useful for debugging.
 
@@ -267,7 +267,7 @@ One way of building a theme system would be to define a `Theme` type that contai
 
 ### HTML-based plugins
 
-Context can be used to provide data to light DOM children, which typically aren't created from the same declarative templates with databinding available.
+Context can be used to pass data from a parent to its light DOM children. Since the parent does not create the children, it cannot leverage template-based data-binding to pass data to its children, but can listen to and respond to `context-request` events.
 
 For example, consider a code editor element with plugins for different language modes. You can make a plain HTML system for adding features using context:
 
