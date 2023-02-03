@@ -41,7 +41,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/context#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
+[📄&nbsp;Docs](/docs/data/context/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
 
 </td>
 </tr>
