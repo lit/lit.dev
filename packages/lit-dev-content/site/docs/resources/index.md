@@ -2,7 +2,7 @@
 title: Resources
 eleventyNavigation:
   key: Resources
-  order: 11
+  order: 12
 ---
 
 <!-- This file exists only to create a section heading.
