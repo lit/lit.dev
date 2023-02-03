@@ -19,7 +19,7 @@ npm i @lit-labs/context
 
 Context is useful for data that needs to be consumed by a wide variety and large number of components - things like an app's data store, the current user, a UI theme - or when data-binding isn't an option, such as when an element needs to provide data to its light DOM children.
 
-Context is very in ways to React's Context, or to dependency injection systems like Angular's, with some important differences that enable interoperability across different web components libraries, frameworks and plain JavaScript.
+Context is very similar to React's Context, or to dependency injection systems like Angular's, with some important differences that make Context work with the dynamic nature of the DOM, and enable interoperability across different web components libraries, frameworks and plain JavaScript.
 
 ## Example
 
@@ -58,7 +58,7 @@ Consumer:
 import {LitElement, property} from 'lit';
 import {consume} from '@lit-labs/context';
 
-import {type Logger, loggerContext} from './logger.js';
+import {type Logger, loggerContext} from './logger-context.js';
 
 export class MyElement extends LitElement {
 
@@ -77,7 +77,7 @@ export class MyElement extends LitElement {
 ### Context Protocol
 Lit's context is based on the [Context Community Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md) by the W3C's [Web Components Community Group](https://www.w3.org/community/webcomponents/).
 
-This protocol enables interoperability between elements (or even non-element code) regardless of how they were built. Via the context protocol, a Lit-based element can provide data to a Stencil consumer, or vice versa.
+This protocol enables interoperability between elements (or even non-element code) regardless of how they were built. Via the context protocol, a Lit-based element can provide data to a consumer not built with Lit, or vice versa.
 
 The Context Protocol is based on DOM events. A consumer fires a `context-request` event that carries the context key that it wants, and any element above it can listen for the `context-request` event and provide data for that context key.
 
@@ -105,20 +105,49 @@ When a consumer requests data for a context, it can tell the provider that it wa
 
 Every usage of context must have a context object to coordinate the data request. This context object represents the identity and type of data that is provided.
 
-Context objects are created with the `createContext()` function. It is reccomended to put context objects in their own module so that they're independent of providers and consumers.
+Context objects are created with the `createContext()` function:
 
-`createContext()` takes a name, which is useful for debugging.
-
-Context objects in TypeScript are also typed: they have a generic type parameter that specifies the type of data provided with the context.
-
-`my-context.ts`:
 ```ts
-import {createContext} from '@lit-labs/context';
-export interface MyData {
-  // ...
-}
-export const loggerContext = createContext<MyData>('my-data');
+export const myContext = createContext(Symbol('my-context'));
 ```
+
+It is recommended to put context objects in their own module so that they're importable independent of specific providers and consumers.
+
+#### Context type-checking
+
+`createContext()` takes any value and returns it directly. In TypeScript, the value is cast to a typed `Context` object, which carries the type of the context _value_ with it.
+
+In case of a mistake like this:
+```ts
+const myContext = createContext<Logger>(Symbol('logger'));
+
+class MyElement extends LitElement {
+  @provide({context: myContext})
+  name: string
+}
+```
+
+TypeScript will warn that the type `string` is not assignable to the type `Logger`.
+
+#### Context equality
+
+Context objects are used by providers to match a context request event to a value. Contexts are compared with with strict equality (`===`), so a provider will only handle a context request if its context key equals the context key of the request.
+
+This means that there are two main ways to create a context object:
+1. With a value that is globally unique, like an object (`{}`)  or symbol (`Symbol()`)
+2. With a value that is no globally unique, so that it can be equal under strict equality, like a string (`'logger'`) or _global_ symbol (`Symbol.for('logger')`).
+
+If you want two _separate_ `createContext()` calls to referrer to the same
+context, then use a key that will by equal under strict equality like a
+string:
+```ts
+// true
+createContext('my-context') === createContext('my-context')
+```
+
+Beware though that two modules in your app could use the same context key to refer to different objects. To avoid unintended collisions you may want to use a relatively unique string, e.g. like `'console-logger'` instead of `'logger'`.
+
+Usually it's best to use a globally unique context object. Symbols are one of the easiest ways to do this.
 
 ### Providing a context
 
@@ -244,7 +273,7 @@ and the ContextConsumer controller:
 ```ts
   private _myData = new ContextConsumer(this,
     myContext,
-    undedined, /* callback */
+    undefined, /* callback */
     true /* subscribe */
   );
 ```
@@ -267,7 +296,7 @@ One way of building a theme system would be to define a `Theme` type that contai
 
 ### HTML-based plugins
 
-Context can be used to pass data from a parent to its light DOM children. Since the parent does not create the children, it cannot leverage template-based data-binding to pass data to its children, but can listen to and respond to `context-request` events.
+Context can be used to pass data from a parent to its light DOM children. Since the parent does usually not create the light DOM children, it cannot leverage template-based data-binding to pass data to them, but it can listen to and respond to `context-request` events.
 
 For example, consider a code editor element with plugins for different language modes. You can make a plain HTML system for adding features using context:
 
@@ -278,7 +307,7 @@ For example, consider a code editor element with plugins for different language 
 </code-editor>
 ```
 
-In this case `<code-editor>` would provide an API for adding langage modes via context, and plugin elements would consume that API and add themselves to the editor.
+In this case `<code-editor>` would provide an API for adding language modes via context, and plugin elements would consume that API and add themselves to the editor.
 
 ### Data formatters, link generators, etc.
 
@@ -313,7 +342,7 @@ function createContext<ValueType, K = unknown>(key: K): Context<K, ValueType>;
 
 Contexts are compared with with strict equality.
 
-If you want two separate `createContext()` calls to referer to the same context, then use a key that will by equal under strict equality like a string for `Symbol.for()`:
+If you want two separate `createContext()` calls to referrer to the same context, then use a key that will by equal under strict equality like a string for `Symbol.for()`:
 
 ```ts
 // true
@@ -391,7 +420,7 @@ ContextProvider(
 
 - `setValue(v: T, force = false): void`
 
-    Sets the value provided, and notifies any subscribed consumers of the new value if the value chaged. `force` causes a notification even if the value didn't change, which can be useful if an object had a deep property change.
+    Sets the value provided, and notifies any subscribed consumers of the new value if the value changed. `force` causes a notification even if the value didn't change, which can be useful if an object had a deep property change.
 
 
 ### `ContextConsumer`
@@ -426,7 +455,7 @@ It will also call the dispose method given by the provider when the host element
 
 ### `ContextRoot`
 
-A ContextRoot can be used to gather unsatisfied context requests and redispatch them when new providers which satisfy matching context keys are available. This allows providers to be added to a DOM tree, or upgraded, after the consumers.
+A ContextRoot can be used to gather unsatisfied context requests and re-dispatch them when new providers which satisfy matching context keys are available. This allows providers to be added to a DOM tree, or upgraded, after the consumers.
 
 **Import**:
 
