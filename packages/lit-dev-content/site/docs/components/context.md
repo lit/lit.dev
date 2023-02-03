@@ -135,7 +135,7 @@ Context objects are used by providers to match a context request event to a valu
 
 This means that there are two main ways to create a context object:
 1. With a value that is globally unique, like an object (`{}`)  or symbol (`Symbol()`)
-2. With a value that is no globally unique, so that it can be equal under strict equality, like a string (`'logger'`) or _global_ symbol (`Symbol.for('logger')`).
+2. With a value that is not globally unique, so that it can be equal under strict equality, like a string (`'logger'`) or _global_ symbol (`Symbol.for('logger')`).
 
 If you want two _separate_ `createContext()` calls to referrer to the same
 context, then use a key that will by equal under strict equality like a
