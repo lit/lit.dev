@@ -189,8 +189,8 @@ class DualClockController {
 Combining controllers with directives can be a very powerful technique, especially for directives that need to do work before or after rendering, like animation directives; or controllers that need references to specific elements in a template.
 
 There are two main patterns of using controllers with directives:
-* Controller directives. These are directives that themselves are controllers in order to hook the host lifecycle.
-* Controllers that own directives. These are controllers create one or more directives for use the host's template.
+* Controller directives. These are directives that themselves are controllers in order to hook into the host lifecycle.
+* Controllers that own directives. These are controllers that create one or more directives for use in the host's template.
 
 For more information about writing directives, see [Custom directives](/docs/templates/custom-directives/).
 
