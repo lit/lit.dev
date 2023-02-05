@@ -326,8 +326,8 @@ export class ApiDocsTransformer {
     if (node.kindString !== 'Accessor') {
       return;
     }
-    if (node.getSignature?.[0]) {
-      node.type = node.getSignature[0].type;
+    if (node.getSignature?.type) {
+      node.type = node.getSignature.type;
     }
   }
 
@@ -337,7 +337,7 @@ export class ApiDocsTransformer {
    * treat comments uniformly.
    */
   private promoteSignatureComments(node: DeclarationReflection) {
-    if (!node.comment?.shortText && node.signatures?.[0]?.comment?.shortText) {
+    if (!node.comment?.summary && node.signatures?.[0]?.comment?.summary) {
       node.comment = node.signatures[0].comment;
     }
   }
@@ -593,11 +593,17 @@ export class ApiDocsTransformer {
       locationToUrl: this.config.locationToUrl.bind(this),
     });
 
-    if (node.comment?.shortText) {
-      node.comment.shortText = replace(node.comment.shortText);
+    if (node.comment?.summary) {
+      for (const part of node.comment.summary) {
+        part.text = replace(part.text)
+      }
     }
-    if (node.comment?.text) {
-      node.comment.text = replace(node.comment.text);
+    if (node.comment?.blockTags) {
+      for (const tag of node.comment.blockTags) {
+        for (const part of tag.content) {
+          part.text = replace(part.text);
+        }
+      }
     }
   }
 

@@ -95,6 +95,7 @@ const analyze = async (config: ApiDocsConfig) => {
   app.bootstrap({
     tsconfig: config.tsConfigPath,
     entryPoints: config.entrypointModules,
+    skipErrorChecking: true,
   });
   const root = app.convert();
   if (!root) {

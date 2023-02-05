@@ -25,7 +25,7 @@ export const litElement2Config: ApiDocsConfig = {
   tsConfigPath: pathlib.join(gitDir, 'tsconfig.json'),
   pagesOutPath: pathlib.join(workDir, 'pages.json'),
   symbolsOutPath: pathlib.join(workDir, 'symbols.json'),
-  typedocRoot: pathlib.join(root, 'packages'),
+  typedocRoot: srcDir,
 
   entrypointModules: [
     pathlib.join(srcDir, 'lit-element.ts'),
