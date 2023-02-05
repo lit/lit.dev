@@ -11,16 +11,18 @@
       {
         "name": "html",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container."
+          "summary": [
+            {
+              "text": "Interprets a template literal as an HTML template that can efficiently\nrender to and update a container."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lit-html.ts",
             "line": 66,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L66",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -34,7 +36,9 @@
                 "kindString": "Parameter",
                 "type": {
                   "type": "reference",
-                  "name": "TemplateStringsArray"
+                  "name": "TemplateStringsArray",
+                  "qualifiedName": "TemplateStringsArray",
+                  "package": "typescript"
                 }
               },
               {
@@ -66,6 +70,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -81,12 +86,17 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "A sentinel value that signals a NodePart to fully clear its content."
+          "summary": [
+            {
+              "text": "A sentinel value that signals a NodePart to fully clear its content."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/part.ts",
             "line": 50,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L50",
             "moduleSpecifier": "lit-html/lib/part.js"
           }
         ],
@@ -94,7 +104,14 @@
           "type": "reflection",
           "declaration": {
             "name": "__type",
-            "kindString": "Type literal"
+            "kindString": "Type literal",
+            "sources": [
+              {
+                "fileName": "lib/part.ts",
+                "line": 50,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L50"
+              }
+            ]
           }
         },
         "defaultValue": "{}",
@@ -102,6 +119,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -113,17 +131,24 @@
       {
         "name": "render",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Renders a template result or other value to a container.",
-          "text": "To update a container with new values, reevaluate the template literal and\ncall `render` with the new result.\n"
+          "summary": [
+            {
+              "text": "Renders a template result or other value to a container.\n\nTo update a container with new values, reevaluate the template literal and\ncall "
+            },
+            {
+              "text": "`render`"
+            },
+            {
+              "text": " with the new result."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/render.ts",
             "line": 37,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render.ts#L37",
             "moduleSpecifier": "lit-html/lib/render.js"
           }
         ],
@@ -136,7 +161,23 @@
                 "name": "result",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "Any value renderable by NodePart - typically a TemplateResult\n    created by evaluating a template tag like `html` or `svg`."
+                  "summary": [
+                    {
+                      "text": "Any value renderable by NodePart - typically a TemplateResult\n    created by evaluating a template tag like "
+                    },
+                    {
+                      "text": "`html`"
+                    },
+                    {
+                      "text": " or "
+                    },
+                    {
+                      "text": "`svg`"
+                    },
+                    {
+                      "text": "."
+                    }
+                  ]
                 },
                 "type": {
                   "type": "intrinsic",
@@ -147,7 +188,11 @@
                 "name": "container",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "A DOM parent to render to. The entire contents are either\n    replaced, or efficiently updated if the same result type was previous\n    rendered there."
+                  "summary": [
+                    {
+                      "text": "A DOM parent to render to. The entire contents are either\n    replaced, or efficiently updated if the same result type was previous\n    rendered there."
+                    }
+                  ]
                 },
                 "type": {
                   "type": "union",
@@ -155,6 +200,8 @@
                     {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -162,6 +209,8 @@
                     {
                       "type": "reference",
                       "name": "DocumentFragment",
+                      "qualifiedName": "DocumentFragment",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"
                       }
@@ -176,7 +225,11 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "text": "RenderOptions for the entire render tree rendered to this\n    container. Render options must *not* change between renders to the same\n    container, as those changes will not effect previously rendered DOM.\n"
+                  "summary": [
+                    {
+                      "text": "RenderOptions for the entire render tree rendered to this\n    container. Render options must *not* change between renders to the same\n    container, as those changes will not effect previously rendered DOM."
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reference",
@@ -190,7 +243,9 @@
                       }
                     }
                   ],
-                  "name": "Partial"
+                  "name": "Partial",
+                  "qualifiedName": "Partial",
+                  "package": "typescript"
                 }
               }
             ],
@@ -204,6 +259,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -215,16 +271,18 @@
       {
         "name": "svg",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container."
+          "summary": [
+            {
+              "text": "Interprets a template literal as an SVG template that can efficiently\nrender to and update a container."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lit-html.ts",
             "line": 73,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L73",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -238,7 +296,9 @@
                 "kindString": "Parameter",
                 "type": {
                   "type": "reference",
-                  "name": "TemplateStringsArray"
+                  "name": "TemplateStringsArray",
+                  "qualifiedName": "TemplateStringsArray",
+                  "package": "typescript"
                 }
               },
               {
@@ -270,6 +330,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -282,13 +343,36 @@
         "name": "SVGTemplateResult",
         "kindString": "Class",
         "comment": {
-          "shortText": "A TemplateResult for SVG fragments.",
-          "text": "This class wraps HTML in an `<svg>` tag in order to parse its contents in the\nSVG namespace, then modifies the template to remove the `<svg>` tag so that\nclones only container the original fragment.\n"
+          "summary": [
+            {
+              "text": "A TemplateResult for SVG fragments.\n\nThis class wraps HTML in an "
+            },
+            {
+              "text": "`<svg>`"
+            },
+            {
+              "text": " tag in order to parse its contents in the\nSVG namespace, then modifies the template to remove the "
+            },
+            {
+              "text": "`<svg>`"
+            },
+            {
+              "text": " tag so that\nclones only container the original fragment."
+            }
+          ]
         },
         "children": [
           {
             "name": "constructor",
             "kindString": "Constructor",
+            "sources": [
+              {
+                "fileName": "src/lib/template-result.ts",
+                "line": 47,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L47",
+                "moduleSpecifier": "lit-html/lib/template-result.js"
+              }
+            ],
             "signatures": [
               {
                 "name": "new SVGTemplateResult",
@@ -299,7 +383,9 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "reference",
-                      "name": "TemplateStringsArray"
+                      "name": "TemplateStringsArray",
+                      "qualifiedName": "TemplateStringsArray",
+                      "package": "typescript"
                     }
                   },
                   {
@@ -364,6 +450,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -382,6 +469,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 45,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L45",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -405,6 +493,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -423,12 +512,15 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 42,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L42",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "TemplateStringsArray"
+              "name": "TemplateStringsArray",
+              "qualifiedName": "TemplateStringsArray",
+              "package": "typescript"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -442,6 +534,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -460,6 +553,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 44,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L44",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -479,6 +573,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -497,6 +592,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 43,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L43",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -523,6 +619,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -535,12 +632,23 @@
             "name": "getHTML",
             "kindString": "Method",
             "comment": {
-              "shortText": "Returns a string of HTML used to create a `<template>` element."
+              "summary": [
+                {
+                  "text": "Returns a string of HTML used to create a "
+                },
+                {
+                  "text": "`<template>`"
+                },
+                {
+                  "text": " element."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 136,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L136",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -570,6 +678,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -585,6 +694,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 140,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L140",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -595,6 +705,8 @@
                 "type": {
                   "type": "reference",
                   "name": "HTMLTemplateElement",
+                  "qualifiedName": "HTMLTemplateElement",
+                  "package": "typescript",
                   "externalLocation": {
                     "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                   }
@@ -617,6 +729,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -630,6 +743,7 @@
           {
             "fileName": "src/lib/template-result.ts",
             "line": 135,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L135",
             "moduleSpecifier": "lit-html/lib/template-result.js"
           }
         ],
@@ -647,6 +761,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -669,7 +784,17 @@
         "name": "TemplateResult",
         "kindString": "Class",
         "comment": {
-          "shortText": "The return type of `html`, which holds a Template and the values from\ninterpolated expressions."
+          "summary": [
+            {
+              "text": "The return type of "
+            },
+            {
+              "text": "`html`"
+            },
+            {
+              "text": ", which holds a Template and the values from\ninterpolated expressions."
+            }
+          ]
         },
         "children": [
           {
@@ -679,6 +804,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 47,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L47",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -692,7 +818,9 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "reference",
-                      "name": "TemplateStringsArray"
+                      "name": "TemplateStringsArray",
+                      "qualifiedName": "TemplateStringsArray",
+                      "package": "typescript"
                     }
                   },
                   {
@@ -745,6 +873,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -763,6 +892,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 45,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L45",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -778,6 +908,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -796,17 +927,21 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 42,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L42",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "TemplateStringsArray"
+              "name": "TemplateStringsArray",
+              "qualifiedName": "TemplateStringsArray",
+              "package": "typescript"
             },
             "entrypointSources": [
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -825,6 +960,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 44,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L44",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -836,6 +972,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -854,6 +991,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 43,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L43",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -872,6 +1010,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -884,12 +1023,23 @@
             "name": "getHTML",
             "kindString": "Method",
             "comment": {
-              "shortText": "Returns a string of HTML used to create a `<template>` element."
+              "summary": [
+                {
+                  "text": "Returns a string of HTML used to create a "
+                },
+                {
+                  "text": "`<template>`"
+                },
+                {
+                  "text": " element."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 59,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L59",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -907,6 +1057,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -922,6 +1073,7 @@
               {
                 "fileName": "src/lib/template-result.ts",
                 "line": 113,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L113",
                 "moduleSpecifier": "lit-html/lib/template-result.js"
               }
             ],
@@ -932,6 +1084,8 @@
                 "type": {
                   "type": "reference",
                   "name": "HTMLTemplateElement",
+                  "qualifiedName": "HTMLTemplateElement",
+                  "package": "typescript",
                   "externalLocation": {
                     "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                   }
@@ -942,6 +1096,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -955,6 +1110,7 @@
           {
             "fileName": "src/lib/template-result.ts",
             "line": 41,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-result.ts#L41",
             "moduleSpecifier": "lit-html/lib/template-result.js"
           }
         ],
@@ -972,6 +1128,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -995,17 +1152,21 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 19,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render-options.ts#L19",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "EventTarget"
+              "name": "EventTarget",
+              "qualifiedName": "EventTarget",
+              "package": "typescript"
             },
             "entrypointSources": [
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1024,6 +1185,7 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 18,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render-options.ts#L18",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
@@ -1035,6 +1197,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -1048,6 +1211,7 @@
           {
             "fileName": "src/lib/render-options.ts",
             "line": 17,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render-options.ts#L17",
             "moduleSpecifier": "lit-html/lib/render-options.js"
           }
         ],
@@ -1055,6 +1219,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -1077,17 +1242,24 @@
       {
         "name": "asyncAppend",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "A directive that renders the items of an async iterable[1], appending new\nvalues after previous values, similar to the built-in support for iterables.",
-          "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is appended to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration\n"
+          "summary": [
+            {
+              "text": "A directive that renders the items of an async iterable[1], appending new\nvalues after previous values, similar to the built-in support for iterables.\n\nAsync iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's "
+            },
+            {
+              "text": "`next()`"
+            },
+            {
+              "text": " method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is appended to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration"
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/async-append.ts",
             "line": 34,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-append.ts#L34",
             "moduleSpecifier": "lit-html/directives/async-append.js"
           }
         ],
@@ -1106,7 +1278,11 @@
                 "name": "value",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "An async iterable"
+                  "summary": [
+                    {
+                      "text": "An async iterable"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reference",
@@ -1116,7 +1292,9 @@
                       "name": "T"
                     }
                   ],
-                  "name": "AsyncIterable"
+                  "name": "AsyncIterable",
+                  "qualifiedName": "AsyncIterable",
+                  "package": "typescript"
                 }
               },
               {
@@ -1126,13 +1304,24 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "text": "An optional function that maps from (value, index) to another\n    value. Useful for generating templates for each item in the iterable.\n"
+                  "summary": [
+                    {
+                      "text": "An optional function that maps from (value, index) to another\n    value. Useful for generating templates for each item in the iterable."
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reflection",
                   "declaration": {
                     "name": "__type",
                     "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "directives/async-append.ts",
+                        "line": 36,
+                        "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-append.ts#L36"
+                      }
+                    ],
                     "signatures": [
                       {
                         "name": "__type",
@@ -1173,6 +1362,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/async-append.ts",
+                    "line": 36,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-append.ts#L36"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1199,7 +1395,9 @@
                           "name": "void"
                         }
                       ],
-                      "name": "Promise"
+                      "name": "Promise",
+                      "qualifiedName": "Promise",
+                      "package": "typescript"
                     }
                   }
                 ]
@@ -1211,6 +1409,7 @@
           {
             "fileName": "src/directives/async-append.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-append.ts#L15",
             "moduleSpecifier": "lit-html/directives/async-append.js"
           }
         ],
@@ -1222,17 +1421,24 @@
       {
         "name": "asyncReplace",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "A directive that renders the items of an async iterable[1], replacing\nprevious values with new values, so that only one value is ever rendered\nat a time.",
-          "text": "Async iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's `next()` method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is rendered to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration\n"
+          "summary": [
+            {
+              "text": "A directive that renders the items of an async iterable[1], replacing\nprevious values with new values, so that only one value is ever rendered\nat a time.\n\nAsync iterables are objects with a [Symbol.asyncIterator] method, which\nreturns an iterator who's "
+            },
+            {
+              "text": "`next()`"
+            },
+            {
+              "text": " method returns a Promise. When a new\nvalue is available, the Promise resolves and the value is rendered to the\nPart controlled by the directive. If another value other than this\ndirective has been set on the Part, the iterable will no longer be listened\nto and new values won't be written to the Part.\n\n[1]: https://github.com/tc39/proposal-async-iteration"
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/async-replace.ts",
             "line": 35,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-replace.ts#L35",
             "moduleSpecifier": "lit-html/directives/async-replace.js"
           }
         ],
@@ -1251,7 +1457,11 @@
                 "name": "value",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "An async iterable"
+                  "summary": [
+                    {
+                      "text": "An async iterable"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reference",
@@ -1261,7 +1471,9 @@
                       "name": "T"
                     }
                   ],
-                  "name": "AsyncIterable"
+                  "name": "AsyncIterable",
+                  "qualifiedName": "AsyncIterable",
+                  "package": "typescript"
                 }
               },
               {
@@ -1271,13 +1483,24 @@
                   "isOptional": true
                 },
                 "comment": {
-                  "text": "An optional function that maps from (value, index) to another\n    value. Useful for generating templates for each item in the iterable.\n"
+                  "summary": [
+                    {
+                      "text": "An optional function that maps from (value, index) to another\n    value. Useful for generating templates for each item in the iterable."
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reflection",
                   "declaration": {
                     "name": "__type",
                     "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "directives/async-replace.ts",
+                        "line": 36,
+                        "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-replace.ts#L36"
+                      }
+                    ],
                     "signatures": [
                       {
                         "name": "__type",
@@ -1318,6 +1541,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/async-replace.ts",
+                    "line": 37,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-replace.ts#L37"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1344,7 +1574,9 @@
                           "name": "void"
                         }
                       ],
-                      "name": "Promise"
+                      "name": "Promise",
+                      "qualifiedName": "Promise",
+                      "package": "typescript"
                     }
                   }
                 ]
@@ -1356,6 +1588,7 @@
           {
             "fileName": "src/directives/async-replace.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/async-replace.ts#L15",
             "moduleSpecifier": "lit-html/directives/async-replace.js"
           }
         ],
@@ -1367,17 +1600,21 @@
       {
         "name": "cache",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Enables fast switching between multiple templates by caching the DOM nodes\nand TemplateInstances produced by the templates.",
-          "text": "Example:\n\n```\nlet checked = false;\n\nhtml`\n  ${cache(checked ? html`input is checked` : html`input is not checked`)}\n`\n```\n"
+          "summary": [
+            {
+              "text": "Enables fast switching between multiple templates by caching the DOM nodes\nand TemplateInstances produced by the templates.\n\nExample:\n\n"
+            },
+            {
+              "text": "```\nlet checked = false;\n\nhtml`\n  ${cache(checked ? html`input is checked` : html`input is not checked`)}\n`\n```"
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/cache.ts",
             "line": 40,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/cache.ts#L40",
             "moduleSpecifier": "lit-html/directives/cache.js"
           }
         ],
@@ -1400,6 +1637,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/cache.ts",
+                    "line": 40,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/cache.ts#L40"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1432,6 +1676,7 @@
           {
             "fileName": "src/directives/cache.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/cache.ts#L15",
             "moduleSpecifier": "lit-html/directives/cache.js"
           }
         ],
@@ -1443,16 +1688,60 @@
       {
         "name": "classMap",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "A directive that applies CSS classes. This must be used in the `class`\nattribute and must be the only part used in the attribute. It takes each\nproperty in the `classInfo` argument and adds the property name to the\nelement's `class` if the property value is truthy; if the property value is\nfalsey, the property name is removed from the element's `class`. For example\n`{foo: bar}` applies the class `foo` if the value of `bar` is truthy."
+          "summary": [
+            {
+              "text": "A directive that applies CSS classes. This must be used in the "
+            },
+            {
+              "text": "`class`"
+            },
+            {
+              "text": "\nattribute and must be the only part used in the attribute. It takes each\nproperty in the "
+            },
+            {
+              "text": "`classInfo`"
+            },
+            {
+              "text": " argument and adds the property name to the\nelement's "
+            },
+            {
+              "text": "`class`"
+            },
+            {
+              "text": " if the property value is truthy; if the property value is\nfalsey, the property name is removed from the element's "
+            },
+            {
+              "text": "`class`"
+            },
+            {
+              "text": ". For example\n"
+            },
+            {
+              "text": "`{foo: bar}`"
+            },
+            {
+              "text": " applies the class "
+            },
+            {
+              "text": "`foo`"
+            },
+            {
+              "text": " if the value of "
+            },
+            {
+              "text": "`bar`"
+            },
+            {
+              "text": " is truthy."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/class-map.ts",
             "line": 68,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/class-map.ts#L68",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1465,7 +1754,11 @@
                 "name": "classInfo",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "\n"
+                  "summary": [
+                    {
+                      "text": "{ClassInfo}"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reference",
@@ -1482,6 +1775,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/class-map.ts",
+                    "line": 68,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/class-map.ts#L68"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1514,6 +1814,7 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/class-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1529,6 +1830,7 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 49,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/class-map.ts#L49",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1566,6 +1868,7 @@
           {
             "fileName": "src/directives/class-map.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/class-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/class-map.js"
           }
         ],
@@ -1577,17 +1880,42 @@
       {
         "name": "guard",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Prevents re-render of a template function until a single value or an array of\nvalues changes.",
-          "text": "Example:\n\n```js\nhtml`\n  <div>\n    ${guard([user.id, company.id], () => html`...`)}\n  </div>\n```\n\nIn this case, the template only renders if either `user.id` or `company.id`\nchanges.\n\nguard() is useful with immutable data patterns, by preventing expensive work\nuntil data updates.\n\nExample:\n\n```js\nhtml`\n  <div>\n    ${guard([immutableItems], () => immutableItems.map(i => html`${i}`))}\n  </div>\n```\n\nIn this case, items are mapped over only when the array reference changes.\n"
+          "summary": [
+            {
+              "text": "Prevents re-render of a template function until a single value or an array of\nvalues changes.\n\nExample:\n\n"
+            },
+            {
+              "text": "```js\nhtml`\n  <div>\n    ${guard([user.id, company.id], () => html`...`)}\n  </div>\n```"
+            },
+            {
+              "text": "\n\nIn this case, the template only renders if either "
+            },
+            {
+              "text": "`user.id`"
+            },
+            {
+              "text": " or "
+            },
+            {
+              "text": "`company.id`"
+            },
+            {
+              "text": "\nchanges.\n\nguard() is useful with immutable data patterns, by preventing expensive work\nuntil data updates.\n\nExample:\n\n"
+            },
+            {
+              "text": "```js\nhtml`\n  <div>\n    ${guard([immutableItems], () => immutableItems.map(i => html`${i}`))}\n  </div>\n```"
+            },
+            {
+              "text": "\n\nIn this case, items are mapped over only when the array reference changes."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/guard.ts",
             "line": 52,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/guard.ts#L52",
             "moduleSpecifier": "lit-html/directives/guard.js"
           }
         ],
@@ -1600,7 +1928,11 @@
                 "name": "value",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "the value to check before re-rendering"
+                  "summary": [
+                    {
+                      "text": "the value to check before re-rendering"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "intrinsic",
@@ -1611,13 +1943,24 @@
                 "name": "f",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "the template function\n"
+                  "summary": [
+                    {
+                      "text": "the template function"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reflection",
                   "declaration": {
                     "name": "__type",
                     "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "directives/guard.ts",
+                        "line": 53,
+                        "url": "https://github.com/lit/lit/blob/022f87d/src/directives/guard.ts#L53"
+                      }
+                    ],
                     "signatures": [
                       {
                         "name": "__type",
@@ -1637,6 +1980,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/guard.ts",
+                    "line": 53,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/guard.ts#L53"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1669,6 +2019,7 @@
           {
             "fileName": "src/directives/guard.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/guard.ts#L15",
             "moduleSpecifier": "lit-html/directives/guard.js"
           }
         ],
@@ -1680,17 +2031,18 @@
       {
         "name": "ifDefined",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "For AttributeParts, sets the attribute if the value is defined and removes\nthe attribute if the value is undefined.",
-          "text": "For other part types, this directive is a no-op.\n"
+          "summary": [
+            {
+              "text": "For AttributeParts, sets the attribute if the value is defined and removes\nthe attribute if the value is undefined.\n\nFor other part types, this directive is a no-op."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/if-defined.ts",
             "line": 25,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/if-defined.ts#L25",
             "moduleSpecifier": "lit-html/directives/if-defined.js"
           }
         ],
@@ -1713,6 +2065,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/if-defined.ts",
+                    "line": 25,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/if-defined.ts#L25"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1745,6 +2104,7 @@
           {
             "fileName": "src/directives/if-defined.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/if-defined.ts#L15",
             "moduleSpecifier": "lit-html/directives/if-defined.js"
           }
         ],
@@ -1756,17 +2116,60 @@
       {
         "name": "live",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Checks binding values against live DOM values, instead of previously bound\nvalues, when determining whether to update the value.",
-          "text": "This is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an `<input>` element's `value` property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want—if you want to overwrite the DOM\nvalue with the bound value no matter what—use the `live()` directive:\n\n    html`<input .value=${live(x)}>`\n\n`live()` performs a strict equality check agains the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n`live()` should not be used when the binding will cause a type conversion. If\nyou use `live()` with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render.\n"
+          "summary": [
+            {
+              "text": "Checks binding values against live DOM values, instead of previously bound\nvalues, when determining whether to update the value.\n\nThis is useful for cases where the DOM value may change from outside of\nlit-html, such as with a binding to an "
+            },
+            {
+              "text": "`<input>`"
+            },
+            {
+              "text": " element's "
+            },
+            {
+              "text": "`value`"
+            },
+            {
+              "text": " property,\na content editable elements text, or to a custom element that changes it's\nown properties or attributes.\n\nIn these cases if the DOM value changes, but the value set through lit-html\nbindings hasn't, lit-html won't know to update the DOM value and will leave\nit alone. If this is not what you want—if you want to overwrite the DOM\nvalue with the bound value no matter what—use the "
+            },
+            {
+              "text": "`live()`"
+            },
+            {
+              "text": " directive:\n\n    html"
+            },
+            {
+              "text": "`<input .value=${live(x)}>`"
+            },
+            {
+              "text": "\n\n"
+            },
+            {
+              "text": "`live()`"
+            },
+            {
+              "text": " performs a strict equality check agains the live DOM value, and if\nthe new value is equal to the live value, does nothing. This means that\n"
+            },
+            {
+              "text": "`live()`"
+            },
+            {
+              "text": " should not be used when the binding will cause a type conversion. If\nyou use "
+            },
+            {
+              "text": "`live()`"
+            },
+            {
+              "text": " with an attribute binding, make sure that only strings are\npassed in, or the binding will update every render."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/live.ts",
             "line": 39,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/live.ts#L39",
             "moduleSpecifier": "lit-html/directives/live.js"
           }
         ],
@@ -1789,6 +2192,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/live.ts",
+                    "line": 40,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/live.ts#L40"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -1842,6 +2252,7 @@
           {
             "fileName": "src/directives/live.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/live.ts#L15",
             "moduleSpecifier": "lit-html/directives/live.js"
           }
         ],
@@ -1853,17 +2264,60 @@
       {
         "name": "repeat",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "A directive that repeats a series of values (usually `TemplateResults`)\ngenerated from an iterable, and updates those items efficiently when the\niterable changes based on user-provided `keys` associated with each item.",
-          "text": "Note that if a `keyFn` is provided, strict key-to-DOM mapping is maintained,\nmeaning previous DOM for a given key is moved into the new position if\nneeded, and DOM will never be reused with values for different keys (new DOM\nwill always be created for new keys). This is generally the most efficient\nway to use `repeat` since it performs minimum unnecessary work for insertions\nand removals.\n\nIMPORTANT: If providing a `keyFn`, keys *must* be unique for all items in a\ngiven call to `repeat`. The behavior when two or more items have the same key\nis undefined.\n\nIf no `keyFn` is provided, this directive will perform similar to mapping\nitems to values, and DOM will be reused against potentially different items.\n"
+          "summary": [
+            {
+              "text": "A directive that repeats a series of values (usually "
+            },
+            {
+              "text": "`TemplateResults`"
+            },
+            {
+              "text": ")\ngenerated from an iterable, and updates those items efficiently when the\niterable changes based on user-provided "
+            },
+            {
+              "text": "`keys`"
+            },
+            {
+              "text": " associated with each item.\n\nNote that if a "
+            },
+            {
+              "text": "`keyFn`"
+            },
+            {
+              "text": " is provided, strict key-to-DOM mapping is maintained,\nmeaning previous DOM for a given key is moved into the new position if\nneeded, and DOM will never be reused with values for different keys (new DOM\nwill always be created for new keys). This is generally the most efficient\nway to use "
+            },
+            {
+              "text": "`repeat`"
+            },
+            {
+              "text": " since it performs minimum unnecessary work for insertions\nand removals.\n\nIMPORTANT: If providing a "
+            },
+            {
+              "text": "`keyFn`"
+            },
+            {
+              "text": ", keys *must* be unique for all items in a\ngiven call to "
+            },
+            {
+              "text": "`repeat`"
+            },
+            {
+              "text": ". The behavior when two or more items have the same key\nis undefined.\n\nIf no "
+            },
+            {
+              "text": "`keyFn`"
+            },
+            {
+              "text": " is provided, this directive will perform similar to mapping\nitems to values, and DOM will be reused against potentially different items."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/repeat.ts",
             "line": 90,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L90",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -1889,7 +2343,9 @@
                       "name": "T"
                     }
                   ],
-                  "name": "Iterable"
+                  "name": "Iterable",
+                  "qualifiedName": "Iterable",
+                  "package": "typescript"
                 }
               },
               {
@@ -1965,6 +2421,7 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L15",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -1980,10 +2437,11 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 19,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L19",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
-        "typeParameter": [
+        "typeParameters": [
           {
             "name": "T",
             "kindString": "Type parameter"
@@ -1997,7 +2455,8 @@
             "sources": [
               {
                 "fileName": "directives/repeat.ts",
-                "line": 19
+                "line": 19,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L19"
               }
             ],
             "signatures": [
@@ -2034,6 +2493,7 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L15",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2049,10 +2509,11 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 18,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L18",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
-        "typeParameter": [
+        "typeParameters": [
           {
             "name": "T",
             "kindString": "Type parameter"
@@ -2066,7 +2527,8 @@
             "sources": [
               {
                 "fileName": "directives/repeat.ts",
-                "line": 18
+                "line": 18,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L18"
               }
             ],
             "signatures": [
@@ -2103,6 +2565,7 @@
           {
             "fileName": "src/directives/repeat.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/repeat.ts#L15",
             "moduleSpecifier": "lit-html/directives/repeat.js"
           }
         ],
@@ -2114,17 +2577,72 @@
       {
         "name": "styleMap",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "A directive that applies CSS properties to an element.",
-          "text": "`styleMap` can only be used in the `style` attribute and must be the only\nexpression in the attribute. It takes the property names in the `styleInfo`\nobject and adds the property values as CSS properties. Property names with\ndashes (`-`) are assumed to be valid CSS property names and set on the\nelement's style object using `setProperty()`. Names without dashes are\nassumed to be camelCased JavaScript property names and set on the element's\nstyle object using property assignment, allowing the style object to\ntranslate JavaScript-style names to CSS property names.\n\nFor example `styleMap({backgroundColor: 'red', 'border-top': '5px', '--size':\n'0'})` sets the `background-color`, `border-top` and `--size` properties.\n"
+          "summary": [
+            {
+              "text": "A directive that applies CSS properties to an element.\n\n"
+            },
+            {
+              "text": "`styleMap`"
+            },
+            {
+              "text": " can only be used in the "
+            },
+            {
+              "text": "`style`"
+            },
+            {
+              "text": " attribute and must be the only\nexpression in the attribute. It takes the property names in the "
+            },
+            {
+              "text": "`styleInfo`"
+            },
+            {
+              "text": "\nobject and adds the property values as CSS properties. Property names with\ndashes ("
+            },
+            {
+              "text": "`-`"
+            },
+            {
+              "text": ") are assumed to be valid CSS property names and set on the\nelement's style object using "
+            },
+            {
+              "text": "`setProperty()`"
+            },
+            {
+              "text": ". Names without dashes are\nassumed to be camelCased JavaScript property names and set on the element's\nstyle object using property assignment, allowing the style object to\ntranslate JavaScript-style names to CSS property names.\n\nFor example "
+            },
+            {
+              "text": "`styleMap({backgroundColor: 'red', 'border-top': '5px', '--size':\n'0'})`"
+            },
+            {
+              "text": " sets the "
+            },
+            {
+              "text": "`background-color`"
+            },
+            {
+              "text": ", "
+            },
+            {
+              "text": "`border-top`"
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "`--size`"
+            },
+            {
+              "text": " properties."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/style-map.ts",
             "line": 44,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/style-map.ts#L44",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2137,7 +2655,11 @@
                 "name": "styleInfo",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "\n"
+                  "summary": [
+                    {
+                      "text": "{StyleInfo}"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reference",
@@ -2154,6 +2676,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/style-map.ts",
+                    "line": 44,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/style-map.ts#L44"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -2186,6 +2715,7 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/style-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2201,6 +2731,7 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 17,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/style-map.ts#L17",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2225,6 +2756,7 @@
           {
             "fileName": "src/directives/style-map.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/style-map.ts#L15",
             "moduleSpecifier": "lit-html/directives/style-map.js"
           }
         ],
@@ -2236,17 +2768,18 @@
       {
         "name": "templateContent",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Renders the content of a template element as HTML.",
-          "text": "Note, the template should be developer controlled and not user controlled.\nRendering a user-controlled template with this directive\ncould lead to cross-site-scripting vulnerabilities.\n"
+          "summary": [
+            {
+              "text": "Renders the content of a template element as HTML.\n\nNote, the template should be developer controlled and not user controlled.\nRendering a user-controlled template with this directive\ncould lead to cross-site-scripting vulnerabilities."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/template-content.ts",
             "line": 36,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/template-content.ts#L36",
             "moduleSpecifier": "lit-html/directives/template-content.js"
           }
         ],
@@ -2261,6 +2794,8 @@
                 "type": {
                   "type": "reference",
                   "name": "HTMLTemplateElement",
+                  "qualifiedName": "HTMLTemplateElement",
+                  "package": "typescript",
                   "externalLocation": {
                     "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                   }
@@ -2272,6 +2807,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/template-content.ts",
+                    "line": 37,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/template-content.ts#L37"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -2304,6 +2846,7 @@
           {
             "fileName": "src/directives/template-content.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/template-content.ts#L15",
             "moduleSpecifier": "lit-html/directives/template-content.js"
           }
         ],
@@ -2315,17 +2858,18 @@
       {
         "name": "unsafeHTML",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Renders the result as HTML, rather than text.",
-          "text": "Note, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
+          "summary": [
+            {
+              "text": "Renders the result as HTML, rather than text.\n\nNote, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/unsafe-html.ts",
             "line": 37,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/unsafe-html.ts#L37",
             "moduleSpecifier": "lit-html/directives/unsafe-html.js"
           }
         ],
@@ -2348,6 +2892,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/unsafe-html.ts",
+                    "line": 37,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/unsafe-html.ts#L37"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -2380,6 +2931,7 @@
           {
             "fileName": "src/directives/unsafe-html.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/unsafe-html.ts#L15",
             "moduleSpecifier": "lit-html/directives/unsafe-html.js"
           }
         ],
@@ -2391,17 +2943,18 @@
       {
         "name": "unsafeSVG",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Renders the result as SVG, rather than text.",
-          "text": "Note, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities.\n"
+          "summary": [
+            {
+              "text": "Renders the result as SVG, rather than text.\n\nNote, this is unsafe to use with any user-provided input that hasn't been\nsanitized or escaped, as it may lead to cross-site-scripting\nvulnerabilities."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/unsafe-svg.ts",
             "line": 40,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/unsafe-svg.ts#L40",
             "moduleSpecifier": "lit-html/directives/unsafe-svg.js"
           }
         ],
@@ -2424,6 +2977,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/unsafe-svg.ts",
+                    "line": 40,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/unsafe-svg.ts#L40"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -2456,6 +3016,7 @@
           {
             "fileName": "src/directives/unsafe-svg.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/unsafe-svg.ts#L15",
             "moduleSpecifier": "lit-html/directives/unsafe-svg.js"
           }
         ],
@@ -2467,17 +3028,27 @@
       {
         "name": "until",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Renders one of a series of values, including Promises, to a Part.",
-          "text": "Values are rendered in priority order, with the first argument having the\nhighest priority and the last argument having the lowest priority. If a\nvalue is a Promise, low-priority values will be rendered until it resolves.\n\nThe priority of values can be used to create placeholder content for async\ndata. For example, a Promise with pending content can be the first,\nhighest-priority, argument, and a non_promise loading indicator template can\nbe used as the second, lower-priority, argument. The loading indicator will\nrender immediately, and the primary content will render when the Promise\nresolves.\n\nExample:\n\n    const content = fetch('./content.txt').then(r => r.text());\n    html`${until(content, html`<span>Loading...</span>`)}`\n"
+          "summary": [
+            {
+              "text": "Renders one of a series of values, including Promises, to a Part.\n\nValues are rendered in priority order, with the first argument having the\nhighest priority and the last argument having the lowest priority. If a\nvalue is a Promise, low-priority values will be rendered until it resolves.\n\nThe priority of values can be used to create placeholder content for async\ndata. For example, a Promise with pending content can be the first,\nhighest-priority, argument, and a non_promise loading indicator template can\nbe used as the second, lower-priority, argument. The loading indicator will\nrender immediately, and the primary content will render when the Promise\nresolves.\n\nExample:\n\n    const content = fetch('./content.txt').then(r => r.text());\n    html"
+            },
+            {
+              "text": "`${until(content, html`"
+            },
+            {
+              "text": "<span>Loading...</span>"
+            },
+            {
+              "text": "`)}`"
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/directives/until.ts",
             "line": 51,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/until.ts#L51",
             "moduleSpecifier": "lit-html/directives/until.js"
           }
         ],
@@ -2506,6 +3077,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "directives/until.ts",
+                    "line": 51,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/directives/until.ts#L51"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -2538,6 +3116,7 @@
           {
             "fileName": "src/directives/until.ts",
             "line": 15,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/directives/until.ts#L15",
             "moduleSpecifier": "lit-html/directives/until.js"
           }
         ],
@@ -2561,7 +3140,11 @@
         "name": "AttributeCommitter",
         "kindString": "Class",
         "comment": {
-          "shortText": "Writes attribute values to the DOM for a group of AttributeParts bound to a\nsingle attribute. The value is only set once even if there are multiple parts\nfor an attribute."
+          "summary": [
+            {
+              "text": "Writes attribute values to the DOM for a group of AttributeParts bound to a\nsingle attribute. The value is only set once even if there are multiple parts\nfor an attribute."
+            }
+          ]
         },
         "children": [
           {
@@ -2571,6 +3154,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 48,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L48",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2585,6 +3169,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -2628,6 +3214,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2643,6 +3230,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 46,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L46",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2655,6 +3243,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2673,12 +3262,15 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 42,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L42",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
               "name": "Element",
+              "qualifiedName": "Element",
+              "package": "typescript",
               "externalLocation": {
                 "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
               }
@@ -2687,6 +3279,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2705,6 +3298,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 43,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L43",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2716,6 +3310,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2734,6 +3329,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 45,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L45",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2756,6 +3352,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2774,6 +3371,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 44,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L44",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2792,6 +3390,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2807,6 +3406,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 113,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L113",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2824,6 +3424,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2837,6 +3438,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 41,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L41",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -2854,6 +3456,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -2866,7 +3469,11 @@
         "name": "AttributePart",
         "kindString": "Class",
         "comment": {
-          "shortText": "A Part that controls all or part of an attribute value."
+          "summary": [
+            {
+              "text": "A Part that controls all or part of an attribute value."
+            }
+          ]
         },
         "children": [
           {
@@ -2876,6 +3483,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 128,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L128",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2911,6 +3519,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2929,6 +3538,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 125,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L125",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2944,6 +3554,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2959,6 +3570,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 126,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L126",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -2966,7 +3578,7 @@
               "type": "intrinsic",
               "name": "unknown"
             },
-            "defaultValue": "...",
+            "defaultValue": "undefined",
             "implementationOf": {
               "type": "reference",
               "name": "Part.value",
@@ -2979,6 +3591,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -2991,13 +3604,41 @@
             "name": "commit",
             "kindString": "Method",
             "comment": {
-              "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-              "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
+              "summary": [
+                {
+                  "text": "Commits the current part value, causing it to actually be written to the\nDOM.\n\nDirectives are run at the start of "
+                },
+                {
+                  "text": "`commit`"
+                },
+                {
+                  "text": ", so that if they call\n"
+                },
+                {
+                  "text": "`part.setValue(...)`"
+                },
+                {
+                  "text": " synchronously that value will be used in the current\ncommit, and there's no need to call "
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " within the directive.\nIf directives set a part value asynchronously, then they must call\n"
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " manually."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 144,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L144",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3027,6 +3668,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3039,12 +3681,17 @@
             "name": "setValue",
             "kindString": "Method",
             "comment": {
-              "shortText": "Sets the current part value, but does not write it to the DOM."
+              "summary": [
+                {
+                  "text": "Sets the current part value, but does not write it to the DOM."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 132,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L132",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3056,6 +3703,13 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
+                    "comment": {
+                      "summary": [
+                        {
+                          "text": "The value that will be committed."
+                        }
+                      ]
+                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "unknown"
@@ -3084,6 +3738,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3097,6 +3752,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 124,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L124",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -3124,6 +3780,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3136,8 +3793,11 @@
         "name": "BooleanAttributePart",
         "kindString": "Class",
         "comment": {
-          "shortText": "Implements a boolean attribute, roughly as defined in the HTML\nspecification.",
-          "text": "If the value is truthy, then the attribute is present with a value of\n''. If the value is falsey, the attribute is removed.\n"
+          "summary": [
+            {
+              "text": "Implements a boolean attribute, roughly as defined in the HTML\nspecification.\n\nIf the value is truthy, then the attribute is present with a value of\n''. If the value is falsey, the attribute is removed."
+            }
+          ]
         },
         "children": [
           {
@@ -3147,6 +3807,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 374,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L374",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3161,6 +3822,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -3204,6 +3867,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3222,12 +3886,15 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 368,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L368",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
               "name": "Element",
+              "qualifiedName": "Element",
+              "package": "typescript",
               "externalLocation": {
                 "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
               }
@@ -3236,6 +3903,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3254,6 +3922,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 369,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L369",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3265,6 +3934,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3283,6 +3953,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 370,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L370",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3301,6 +3972,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3316,6 +3988,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 371,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L371",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3323,7 +3996,7 @@
               "type": "intrinsic",
               "name": "unknown"
             },
-            "defaultValue": "...",
+            "defaultValue": "undefined",
             "implementationOf": {
               "type": "reference",
               "name": "Part.value",
@@ -3336,6 +4009,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3348,13 +4022,41 @@
             "name": "commit",
             "kindString": "Method",
             "comment": {
-              "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-              "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
+              "summary": [
+                {
+                  "text": "Commits the current part value, causing it to actually be written to the\nDOM.\n\nDirectives are run at the start of "
+                },
+                {
+                  "text": "`commit`"
+                },
+                {
+                  "text": ", so that if they call\n"
+                },
+                {
+                  "text": "`part.setValue(...)`"
+                },
+                {
+                  "text": " synchronously that value will be used in the current\ncommit, and there's no need to call "
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " within the directive.\nIf directives set a part value asynchronously, then they must call\n"
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " manually."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 388,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L388",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3384,6 +4086,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3396,12 +4099,17 @@
             "name": "setValue",
             "kindString": "Method",
             "comment": {
-              "shortText": "Sets the current part value, but does not write it to the DOM."
+              "summary": [
+                {
+                  "text": "Sets the current part value, but does not write it to the DOM."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 384,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L384",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3413,6 +4121,13 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
+                    "comment": {
+                      "summary": [
+                        {
+                          "text": "The value that will be committed."
+                        }
+                      ]
+                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "unknown"
@@ -3441,6 +4156,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3454,6 +4170,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 367,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L367",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -3471,6 +4188,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3482,13 +4200,11 @@
       {
         "name": "createMarker",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "sources": [
           {
             "fileName": "src/lib/template.ts",
             "line": 225,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template.ts#L225",
             "moduleSpecifier": "lit-html/lib/template.js"
           }
         ],
@@ -3498,7 +4214,9 @@
             "kindString": "Call signature",
             "type": {
               "type": "reference",
-              "name": "Comment"
+              "name": "Comment",
+              "qualifiedName": "Comment",
+              "package": "typescript"
             }
           }
         ],
@@ -3506,6 +4224,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3524,6 +4243,7 @@
           {
             "fileName": "src/lib/default-template-processor.ts",
             "line": 59,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/default-template-processor.ts#L59",
             "moduleSpecifier": "lit-html/lib/default-template-processor.js"
           }
         ],
@@ -3540,6 +4260,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3552,7 +4273,11 @@
         "name": "DefaultTemplateProcessor",
         "kindString": "Class",
         "comment": {
-          "shortText": "Creates Parts when a template is instantiated."
+          "summary": [
+            {
+              "text": "Creates Parts when a template is instantiated."
+            }
+          ]
         },
         "children": [
           {
@@ -3576,6 +4301,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3588,12 +4314,17 @@
             "name": "handleAttributeExpressions",
             "kindString": "Method",
             "comment": {
-              "shortText": "Create parts for an attribute-position binding, given the event, attribute\nname, and string literals."
+              "summary": [
+                {
+                  "text": "Create parts for an attribute-position binding, given the event, attribute\nname, and string literals."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/default-template-processor.ts",
                 "line": 33,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/default-template-processor.ts#L33",
                 "moduleSpecifier": "lit-html/lib/default-template-processor.js"
               }
             ],
@@ -3606,11 +4337,17 @@
                     "name": "element",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The element containing the binding"
+                      "summary": [
+                        {
+                          "text": "The element containing the binding"
+                        }
+                      ]
                     },
                     "type": {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -3620,7 +4357,11 @@
                     "name": "name",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The attribute name"
+                      "summary": [
+                        {
+                          "text": "The attribute name"
+                        }
+                      ]
                     },
                     "type": {
                       "type": "intrinsic",
@@ -3631,7 +4372,11 @@
                     "name": "strings",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The string literals. There are always at least two strings,\n  event for fully-controlled bindings with a single expression.\n"
+                      "summary": [
+                        {
+                          "text": "The string literals. There are always at least two strings,\n  event for fully-controlled bindings with a single expression."
+                        }
+                      ]
                     },
                     "type": {
                       "type": "array",
@@ -3687,6 +4432,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3699,12 +4445,17 @@
             "name": "handleTextExpression",
             "kindString": "Method",
             "comment": {
-              "shortText": "Create parts for a text-position binding."
+              "summary": [
+                {
+                  "text": "Create parts for a text-position binding."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/default-template-processor.ts",
                 "line": 54,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/default-template-processor.ts#L54",
                 "moduleSpecifier": "lit-html/lib/default-template-processor.js"
               }
             ],
@@ -3752,6 +4503,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3765,6 +4517,7 @@
           {
             "fileName": "src/lib/default-template-processor.ts",
             "line": 23,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/default-template-processor.ts#L23",
             "moduleSpecifier": "lit-html/lib/default-template-processor.js"
           }
         ],
@@ -3782,6 +4535,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3793,17 +4547,64 @@
       {
         "name": "directive",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Brands a function as a directive factory function so that lit-html will call\nthe function during template rendering, rather than passing as a value.",
-          "text": "A _directive_ is a function that takes a Part as an argument. It has the\nsignature: `(part: Part) => void`.\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the `repeat()` directive factory that takes an\narray and a function to render an item:\n\n```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```\n\nWhen `repeat` is invoked, it returns a directive function that closes over\n`items` and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n`repeat` then performs it's custom logic to render multiple items.\n"
+          "summary": [
+            {
+              "text": "Brands a function as a directive factory function so that lit-html will call\nthe function during template rendering, rather than passing as a value.\n\nA _directive_ is a function that takes a Part as an argument. It has the\nsignature: "
+            },
+            {
+              "text": "`(part: Part) => void`"
+            },
+            {
+              "text": ".\n\nA directive _factory_ is a function that takes arguments for data and\nconfiguration and returns a directive. Users of directive usually refer to\nthe directive factory as the directive. For example, \"The repeat directive\".\n\nUsually a template author will invoke a directive factory in their template\nwith relevant arguments, which will then return a directive function.\n\nHere's an example of using the "
+            },
+            {
+              "text": "`repeat()`"
+            },
+            {
+              "text": " directive factory that takes an\narray and a function to render an item:\n\n"
+            },
+            {
+              "text": "```js\nhtml`<ul><${repeat(items, (item) => html`<li>${item}</li>`)}</ul>`\n```"
+            },
+            {
+              "text": "\n\nWhen "
+            },
+            {
+              "text": "`repeat`"
+            },
+            {
+              "text": " is invoked, it returns a directive function that closes over\n"
+            },
+            {
+              "text": "`items`"
+            },
+            {
+              "text": " and the template function. When the outer template is rendered, the\nreturn directive function is called with the Part for the expression.\n"
+            },
+            {
+              "text": "`repeat`"
+            },
+            {
+              "text": " then performs it's custom logic to render multiple items."
+            }
+          ],
+          "blockTags": [
+            {
+              "tag": "@example",
+              "content": [
+                {
+                  "text": "```ts\nimport {directive, html} from 'lit-html';\n\nconst immutable = directive((v) => (part) => {\n  if (part.value !== v) {\n    part.setValue(v)\n  }\n});\n```"
+                }
+              ]
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/directive.ts",
             "line": 64,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/directive.ts#L64",
             "moduleSpecifier": "lit-html/lib/directive.js"
           }
         ],
@@ -3826,7 +4627,17 @@
                 "name": "f",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "The directive factory function. Must be a function that returns a\nfunction of the signature `(part: Part) => void`. The returned function will\nbe called with the part object.\n"
+                  "summary": [
+                    {
+                      "text": "The directive factory function. Must be a function that returns a\nfunction of the signature "
+                    },
+                    {
+                      "text": "`(part: Part) => void`"
+                    },
+                    {
+                      "text": ". The returned function will\nbe called with the part object."
+                    }
+                  ]
                 },
                 "type": {
                   "type": "reference",
@@ -3844,6 +4655,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -3855,6 +4667,13 @@
       {
         "name": "EventPart",
         "kindString": "Class",
+        "comment": {
+          "summary": [
+            {
+              "text": "The Part interface represents a dynamic part of a template instance rendered\nby lit-html."
+            }
+          ]
+        },
         "children": [
           {
             "name": "constructor",
@@ -3863,6 +4682,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 486,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L486",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -3877,6 +4697,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -3898,7 +4720,9 @@
                     },
                     "type": {
                       "type": "reference",
-                      "name": "EventTarget"
+                      "name": "EventTarget",
+                      "qualifiedName": "EventTarget",
+                      "package": "typescript"
                     }
                   }
                 ],
@@ -3916,6 +4740,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3934,12 +4759,15 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 478,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L478",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
               "name": "Element",
+              "qualifiedName": "Element",
+              "package": "typescript",
               "externalLocation": {
                 "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
               }
@@ -3948,6 +4776,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3967,17 +4796,21 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 480,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L480",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "EventTarget"
+              "name": "EventTarget",
+              "qualifiedName": "EventTarget",
+              "package": "typescript"
             },
             "entrypointSources": [
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -3996,6 +4829,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 479,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L479",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4007,6 +4841,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4022,6 +4857,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 481,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L481",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4038,7 +4874,7 @@
                 }
               ]
             },
-            "defaultValue": "...",
+            "defaultValue": "undefined",
             "implementationOf": {
               "type": "reference",
               "name": "Part.value",
@@ -4051,6 +4887,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4063,13 +4900,41 @@
             "name": "commit",
             "kindString": "Method",
             "comment": {
-              "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-              "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
+              "summary": [
+                {
+                  "text": "Commits the current part value, causing it to actually be written to the\nDOM.\n\nDirectives are run at the start of "
+                },
+                {
+                  "text": "`commit`"
+                },
+                {
+                  "text": ", so that if they call\n"
+                },
+                {
+                  "text": "`part.setValue(...)`"
+                },
+                {
+                  "text": " synchronously that value will be used in the current\ncommit, and there's no need to call "
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " within the directive.\nIf directives set a part value asynchronously, then they must call\n"
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " manually."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 497,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L497",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4099,6 +4964,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4114,6 +4980,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 530,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L530",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4127,7 +4994,9 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "reference",
-                      "name": "Event"
+                      "name": "Event",
+                      "qualifiedName": "Event",
+                      "package": "typescript"
                     }
                   }
                 ],
@@ -4141,6 +5010,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4153,12 +5023,17 @@
             "name": "setValue",
             "kindString": "Method",
             "comment": {
-              "shortText": "Sets the current part value, but does not write it to the DOM."
+              "summary": [
+                {
+                  "text": "Sets the current part value, but does not write it to the DOM."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 493,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L493",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4170,6 +5045,13 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
+                    "comment": {
+                      "summary": [
+                        {
+                          "text": "The value that will be committed."
+                        }
+                      ]
+                    },
                     "type": {
                       "type": "union",
                       "types": [
@@ -4207,6 +5089,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4220,6 +5103,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 477,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L477",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -4237,6 +5121,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4248,13 +5133,11 @@
       {
         "name": "isDirective",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "sources": [
           {
             "fileName": "src/lib/directive.ts",
             "line": 71,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/directive.ts#L71",
             "moduleSpecifier": "lit-html/lib/directive.js"
           }
         ],
@@ -4291,6 +5174,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4302,13 +5186,11 @@
       {
         "name": "isIterable",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
             "line": 30,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L30",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -4338,7 +5220,9 @@
                     "name": "unknown"
                   }
                 ],
-                "name": "Iterable"
+                "name": "Iterable",
+                "qualifiedName": "Iterable",
+                "package": "typescript"
               }
             }
           }
@@ -4347,6 +5231,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4358,13 +5243,11 @@
       {
         "name": "isPrimitive",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "sources": [
           {
             "fileName": "src/lib/parts.ts",
             "line": 25,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L25",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -4397,6 +5280,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4408,13 +5292,11 @@
       {
         "name": "isTemplatePartActive",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "sources": [
           {
             "fileName": "src/lib/template.ts",
             "line": 221,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template.ts#L221",
             "moduleSpecifier": "lit-html/lib/template.js"
           }
         ],
@@ -4442,6 +5324,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4457,12 +5340,17 @@
           "isConst": true
         },
         "comment": {
-          "shortText": "A sentinel value that signals that a value was handled by a directive and\nshould not be written to the DOM."
+          "summary": [
+            {
+              "text": "A sentinel value that signals that a value was handled by a directive and\nshould not be written to the DOM."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/part.ts",
             "line": 45,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L45",
             "moduleSpecifier": "lit-html/lib/part.js"
           }
         ],
@@ -4470,7 +5358,14 @@
           "type": "reflection",
           "declaration": {
             "name": "__type",
-            "kindString": "Type literal"
+            "kindString": "Type literal",
+            "sources": [
+              {
+                "fileName": "lib/part.ts",
+                "line": 45,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L45"
+              }
+            ]
           }
         },
         "defaultValue": "{}",
@@ -4478,6 +5373,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -4490,8 +5386,11 @@
         "name": "NodePart",
         "kindString": "Class",
         "comment": {
-          "shortText": "A Part that controls a location within a Node tree. Like a Range, NodePart\nhas start and end locations and can set and update the Nodes between those\nlocations.",
-          "text": "NodeParts support several value types: primitives, Nodes, TemplateResults,\nas well as arrays and iterables of those types.\n"
+          "summary": [
+            {
+              "text": "A Part that controls a location within a Node tree. Like a Range, NodePart\nhas start and end locations and can set and update the Nodes between those\nlocations.\n\nNodeParts support several value types: primitives, Nodes, TemplateResults,\nas well as arrays and iterables of those types."
+            }
+          ]
         },
         "children": [
           {
@@ -4501,6 +5400,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 172,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L172",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4536,6 +5436,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4551,17 +5452,21 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 168,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L168",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "Node"
+              "name": "Node",
+              "qualifiedName": "Node",
+              "package": "typescript"
             },
             "entrypointSources": [
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4580,6 +5485,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 166,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L166",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4595,6 +5501,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4610,17 +5517,21 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 167,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L167",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "Node"
+              "name": "Node",
+              "qualifiedName": "Node",
+              "package": "typescript"
             },
             "entrypointSources": [
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4636,6 +5547,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 169,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L169",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4643,7 +5555,7 @@
               "type": "intrinsic",
               "name": "unknown"
             },
-            "defaultValue": "...",
+            "defaultValue": "undefined",
             "implementationOf": {
               "type": "reference",
               "name": "Part.value",
@@ -4656,6 +5568,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4668,13 +5581,17 @@
             "name": "appendInto",
             "kindString": "Method",
             "comment": {
-              "shortText": "Appends this part into a container.",
-              "text": "This part must be empty, as its contents are not automatically moved.\n"
+              "summary": [
+                {
+                  "text": "Appends this part into a container.\n\nThis part must be empty, as its contents are not automatically moved."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 181,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L181",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4688,7 +5605,9 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   }
                 ],
@@ -4702,6 +5621,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4714,13 +5634,17 @@
             "name": "appendIntoPart",
             "kindString": "Method",
             "comment": {
-              "shortText": "Appends this part into a parent part.",
-              "text": "This part must be empty, as its contents are not automatically moved.\n"
+              "summary": [
+                {
+                  "text": "Appends this part into a parent part.\n\nThis part must be empty, as its contents are not automatically moved."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 203,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L203",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4752,6 +5676,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4767,6 +5692,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 354,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L354",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4780,7 +5706,9 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     },
                     "defaultValue": "..."
                   }
@@ -4795,6 +5723,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4807,13 +5736,41 @@
             "name": "commit",
             "kindString": "Method",
             "comment": {
-              "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-              "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
+              "summary": [
+                {
+                  "text": "Commits the current part value, causing it to actually be written to the\nDOM.\n\nDirectives are run at the start of "
+                },
+                {
+                  "text": "`commit`"
+                },
+                {
+                  "text": ", so that if they call\n"
+                },
+                {
+                  "text": "`part.setValue(...)`"
+                },
+                {
+                  "text": " synchronously that value will be used in the current\ncommit, and there's no need to call "
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " within the directive.\nIf directives set a part value asynchronously, then they must call\n"
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " manually."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 223,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L223",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4843,6 +5800,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4855,13 +5813,41 @@
             "name": "insertAfterNode",
             "kindString": "Method",
             "comment": {
-              "shortText": "Inserts this part after the `ref` node (between `ref` and `ref`'s next\nsibling). Both `ref` and its next sibling must be static, unchanging nodes\nsuch as those that appear in a literal section of a template.",
-              "text": "This part must be empty, as its contents are not automatically moved.\n"
+              "summary": [
+                {
+                  "text": "Inserts this part after the "
+                },
+                {
+                  "text": "`ref`"
+                },
+                {
+                  "text": " node (between "
+                },
+                {
+                  "text": "`ref`"
+                },
+                {
+                  "text": " and "
+                },
+                {
+                  "text": "`ref`"
+                },
+                {
+                  "text": "'s next\nsibling). Both "
+                },
+                {
+                  "text": "`ref`"
+                },
+                {
+                  "text": " and its next sibling must be static, unchanging nodes\nsuch as those that appear in a literal section of a template.\n\nThis part must be empty, as its contents are not automatically moved."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 193,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L193",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4875,7 +5861,9 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   }
                 ],
@@ -4889,6 +5877,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4901,13 +5890,23 @@
             "name": "insertAfterPart",
             "kindString": "Method",
             "comment": {
-              "shortText": "Inserts this part after the `ref` part.",
-              "text": "This part must be empty, as its contents are not automatically moved.\n"
+              "summary": [
+                {
+                  "text": "Inserts this part after the "
+                },
+                {
+                  "text": "`ref`"
+                },
+                {
+                  "text": " part.\n\nThis part must be empty, as its contents are not automatically moved."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 213,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L213",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4939,6 +5938,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -4951,12 +5951,17 @@
             "name": "setValue",
             "kindString": "Method",
             "comment": {
-              "shortText": "Sets the current part value, but does not write it to the DOM."
+              "summary": [
+                {
+                  "text": "Sets the current part value, but does not write it to the DOM."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 219,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L219",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -4968,6 +5973,13 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
+                    "comment": {
+                      "summary": [
+                        {
+                          "text": "The value that will be committed."
+                        }
+                      ]
+                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "unknown"
@@ -4996,6 +6008,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5009,6 +6022,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 165,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L165",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -5026,6 +6040,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5044,6 +6059,7 @@
           {
             "fileName": "src/lib/render.ts",
             "line": 20,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render.ts#L20",
             "moduleSpecifier": "lit-html/lib/render.js"
           }
         ],
@@ -5052,7 +6068,9 @@
           "typeArguments": [
             {
               "type": "reference",
-              "name": "Node"
+              "name": "Node",
+              "qualifiedName": "Node",
+              "package": "typescript"
             },
             {
               "type": "reference",
@@ -5063,13 +6081,16 @@
               }
             }
           ],
-          "name": "WeakMap"
+          "name": "WeakMap",
+          "qualifiedName": "WeakMap",
+          "package": "typescript"
         },
         "defaultValue": "...",
         "entrypointSources": [
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5082,8 +6103,11 @@
         "name": "PropertyCommitter",
         "kindString": "Class",
         "comment": {
-          "shortText": "Sets attribute values for PropertyParts, so that the value is only set once\neven if there are multiple parts for a property.",
-          "text": "If an expression controls the whole property value, then the value is simply\nassigned to the property under control. If there are string literals or\nmultiple expressions, then the strings are expressions are interpolated into\na string first.\n"
+          "summary": [
+            {
+              "text": "Sets attribute values for PropertyParts, so that the value is only set once\neven if there are multiple parts for a property.\n\nIf an expression controls the whole property value, then the value is simply\nassigned to the property under control. If there are string literals or\nmultiple expressions, then the strings are expressions are interpolated into\na string first."
+            }
+          ]
         },
         "children": [
           {
@@ -5093,6 +6117,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 422,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L422",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5107,6 +6132,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -5162,6 +6189,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5177,6 +6205,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 46,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L46",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5197,6 +6226,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5215,12 +6245,15 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 42,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L42",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
             "type": {
               "type": "reference",
               "name": "Element",
+              "qualifiedName": "Element",
+              "package": "typescript",
               "externalLocation": {
                 "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
               }
@@ -5237,6 +6270,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5255,6 +6289,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 43,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L43",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5274,6 +6309,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5292,6 +6328,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 45,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L45",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5322,6 +6359,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5340,6 +6378,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 420,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L420",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5351,6 +6390,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5369,6 +6409,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 44,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L44",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5395,6 +6436,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5410,6 +6452,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 439,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L439",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5439,6 +6482,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5452,6 +6496,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 419,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L419",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -5469,6 +6514,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5490,10 +6536,25 @@
       {
         "name": "PropertyPart",
         "kindString": "Class",
+        "comment": {
+          "summary": [
+            {
+              "text": "A Part that controls all or part of an attribute value."
+            }
+          ]
+        },
         "children": [
           {
             "name": "constructor",
             "kindString": "Constructor",
+            "sources": [
+              {
+                "fileName": "src/lib/parts.ts",
+                "line": 128,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L128",
+                "moduleSpecifier": "lit-html/lib/parts.js"
+              }
+            ],
             "signatures": [
               {
                 "name": "new PropertyPart",
@@ -5538,6 +6599,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5556,6 +6618,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 125,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L125",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5579,6 +6642,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5594,6 +6658,7 @@
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 126,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L126",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5601,7 +6666,7 @@
               "type": "intrinsic",
               "name": "unknown"
             },
-            "defaultValue": "...",
+            "defaultValue": "undefined",
             "inheritedFrom": {
               "type": "reference",
               "name": "AttributePart.value",
@@ -5614,6 +6679,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5626,13 +6692,41 @@
             "name": "commit",
             "kindString": "Method",
             "comment": {
-              "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-              "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
+              "summary": [
+                {
+                  "text": "Commits the current part value, causing it to actually be written to the\nDOM.\n\nDirectives are run at the start of "
+                },
+                {
+                  "text": "`commit`"
+                },
+                {
+                  "text": ", so that if they call\n"
+                },
+                {
+                  "text": "`part.setValue(...)`"
+                },
+                {
+                  "text": " synchronously that value will be used in the current\ncommit, and there's no need to call "
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " within the directive.\nIf directives set a part value asynchronously, then they must call\n"
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " manually."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 144,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L144",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5662,6 +6756,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5674,12 +6769,17 @@
             "name": "setValue",
             "kindString": "Method",
             "comment": {
-              "shortText": "Sets the current part value, but does not write it to the DOM."
+              "summary": [
+                {
+                  "text": "Sets the current part value, but does not write it to the DOM."
+                }
+              ]
             },
             "sources": [
               {
                 "fileName": "src/lib/parts.ts",
                 "line": 132,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L132",
                 "moduleSpecifier": "lit-html/lib/parts.js"
               }
             ],
@@ -5691,6 +6791,13 @@
                   {
                     "name": "value",
                     "kindString": "Parameter",
+                    "comment": {
+                      "summary": [
+                        {
+                          "text": "The value that will be committed."
+                        }
+                      ]
+                    },
                     "type": {
                       "type": "intrinsic",
                       "name": "unknown"
@@ -5719,6 +6826,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -5732,6 +6840,7 @@
           {
             "fileName": "src/lib/parts.ts",
             "line": 448,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/parts.ts#L448",
             "moduleSpecifier": "lit-html/lib/parts.js"
           }
         ],
@@ -5749,6 +6858,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5770,16 +6880,36 @@
       {
         "name": "removeNodes",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Removes nodes, starting from `start` (inclusive) to `end` (exclusive), from\n`container`."
+          "summary": [
+            {
+              "text": "Removes nodes, starting from "
+            },
+            {
+              "text": "`start`"
+            },
+            {
+              "text": " (inclusive) to "
+            },
+            {
+              "text": "`end`"
+            },
+            {
+              "text": " (exclusive), from\n"
+            },
+            {
+              "text": "`container`"
+            },
+            {
+              "text": "."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/dom.ts",
             "line": 43,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/dom.ts#L43",
             "moduleSpecifier": "lit-html/lib/dom.js"
           }
         ],
@@ -5793,7 +6923,9 @@
                 "kindString": "Parameter",
                 "type": {
                   "type": "reference",
-                  "name": "Node"
+                  "name": "Node",
+                  "qualifiedName": "Node",
+                  "package": "typescript"
                 }
               },
               {
@@ -5808,7 +6940,9 @@
                     },
                     {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   ]
                 }
@@ -5825,7 +6959,9 @@
                     },
                     {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   ]
                 },
@@ -5842,6 +6978,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5853,16 +6990,42 @@
       {
         "name": "reparentNodes",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Reparents nodes, starting from `start` (inclusive) to `end` (exclusive),\ninto another container (could be the same container), before `before`. If\n`before` is null, it appends the nodes to the container."
+          "summary": [
+            {
+              "text": "Reparents nodes, starting from "
+            },
+            {
+              "text": "`start`"
+            },
+            {
+              "text": " (inclusive) to "
+            },
+            {
+              "text": "`end`"
+            },
+            {
+              "text": " (exclusive),\ninto another container (could be the same container), before "
+            },
+            {
+              "text": "`before`"
+            },
+            {
+              "text": ". If\n"
+            },
+            {
+              "text": "`before`"
+            },
+            {
+              "text": " is null, it appends the nodes to the container."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/dom.ts",
             "line": 27,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/dom.ts#L27",
             "moduleSpecifier": "lit-html/lib/dom.js"
           }
         ],
@@ -5876,7 +7039,9 @@
                 "kindString": "Parameter",
                 "type": {
                   "type": "reference",
-                  "name": "Node"
+                  "name": "Node",
+                  "qualifiedName": "Node",
+                  "package": "typescript"
                 }
               },
               {
@@ -5891,7 +7056,9 @@
                     },
                     {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   ]
                 }
@@ -5908,7 +7075,9 @@
                     },
                     {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   ]
                 },
@@ -5926,7 +7095,9 @@
                     },
                     {
                       "type": "reference",
-                      "name": "Node"
+                      "name": "Node",
+                      "qualifiedName": "Node",
+                      "package": "typescript"
                     }
                   ]
                 },
@@ -5943,6 +7114,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -5955,7 +7127,11 @@
         "name": "Template",
         "kindString": "Class",
         "comment": {
-          "shortText": "An updatable Template that tracks the location of dynamic parts."
+          "summary": [
+            {
+              "text": "An updatable Template that tracks the location of dynamic parts."
+            }
+          ]
         },
         "children": [
           {
@@ -5965,6 +7141,7 @@
               {
                 "fileName": "src/lib/template.ts",
                 "line": 43,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template.ts#L43",
                 "moduleSpecifier": "lit-html/lib/template.js"
               }
             ],
@@ -5991,6 +7168,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLTemplateElement",
+                      "qualifiedName": "HTMLTemplateElement",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                       }
@@ -6011,6 +7190,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6029,12 +7209,15 @@
               {
                 "fileName": "src/lib/template.ts",
                 "line": 41,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template.ts#L41",
                 "moduleSpecifier": "lit-html/lib/template.js"
               }
             ],
             "type": {
               "type": "reference",
               "name": "HTMLTemplateElement",
+              "qualifiedName": "HTMLTemplateElement",
+              "package": "typescript",
               "externalLocation": {
                 "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
               }
@@ -6043,6 +7226,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6061,6 +7245,7 @@
               {
                 "fileName": "src/lib/template.ts",
                 "line": 40,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template.ts#L40",
                 "moduleSpecifier": "lit-html/lib/template.js"
               }
             ],
@@ -6076,6 +7261,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6089,6 +7275,7 @@
           {
             "fileName": "src/lib/template.ts",
             "line": 39,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template.ts#L39",
             "moduleSpecifier": "lit-html/lib/template.js"
           }
         ],
@@ -6096,6 +7283,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6114,6 +7302,7 @@
           {
             "fileName": "src/lib/template-factory.ts",
             "line": 92,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-factory.ts#L92",
             "moduleSpecifier": "lit-html/lib/template-factory.js"
           }
         ],
@@ -6129,13 +7318,16 @@
               "name": "TemplateCache"
             }
           ],
-          "name": "Map"
+          "name": "Map",
+          "qualifiedName": "Map",
+          "package": "typescript"
         },
         "defaultValue": "...",
         "entrypointSources": [
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6148,12 +7340,17 @@
         "name": "templateFactory",
         "kindString": "Function",
         "comment": {
-          "shortText": "The default TemplateFactory which caches Templates keyed on\nresult.type and result.strings."
+          "summary": [
+            {
+              "text": "The default TemplateFactory which caches Templates keyed on\nresult.type and result.strings."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/template-factory.ts",
             "line": 44,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-factory.ts#L44",
             "moduleSpecifier": "lit-html/lib/template-factory.js"
           }
         ],
@@ -6189,6 +7386,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6201,7 +7399,17 @@
         "name": "TemplateInstance",
         "kindString": "Class",
         "comment": {
-          "shortText": "An instance of a `Template` that can be attached to the DOM and updated\nwith new values."
+          "summary": [
+            {
+              "text": "An instance of a "
+            },
+            {
+              "text": "`Template`"
+            },
+            {
+              "text": " that can be attached to the DOM and updated\nwith new values."
+            }
+          ]
         },
         "children": [
           {
@@ -6211,6 +7419,7 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 31,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-instance.ts#L31",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -6270,6 +7479,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6288,6 +7498,7 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 28,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-instance.ts#L28",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -6303,6 +7514,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6321,6 +7533,7 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 27,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-instance.ts#L27",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -6336,6 +7549,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6354,6 +7568,7 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 29,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-instance.ts#L29",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -6369,6 +7584,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6384,6 +7600,7 @@
               {
                 "fileName": "src/lib/template-instance.ts",
                 "line": 39,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-instance.ts#L39",
                 "moduleSpecifier": "lit-html/lib/template-instance.js"
               }
             ],
@@ -6418,6 +7635,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6431,6 +7649,7 @@
           {
             "fileName": "src/lib/template-instance.ts",
             "line": 25,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-instance.ts#L25",
             "moduleSpecifier": "lit-html/lib/template-instance.js"
           }
         ],
@@ -6438,6 +7657,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6453,6 +7673,7 @@
           {
             "fileName": "src/lib/directive.ts",
             "line": 22,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/directive.ts#L22",
             "moduleSpecifier": "lit-html/lib/directive.js"
           }
         ],
@@ -6464,7 +7685,8 @@
             "sources": [
               {
                 "fileName": "lib/directive.ts",
-                "line": 22
+                "line": 22,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/directive.ts#L22"
               }
             ],
             "signatures": [
@@ -6497,6 +7719,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6509,7 +7732,11 @@
         "name": "Part",
         "kindString": "Interface",
         "comment": {
-          "shortText": "The Part interface represents a dynamic part of a template instance rendered\nby lit-html."
+          "summary": [
+            {
+              "text": "The Part interface represents a dynamic part of a template instance rendered\nby lit-html."
+            }
+          ]
         },
         "children": [
           {
@@ -6522,6 +7749,7 @@
               {
                 "fileName": "src/lib/part.ts",
                 "line": 20,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L20",
                 "moduleSpecifier": "lit-html/lib/part.js"
               }
             ],
@@ -6533,6 +7761,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6545,9 +7774,44 @@
             "name": "commit",
             "kindString": "Method",
             "comment": {
-              "shortText": "Commits the current part value, causing it to actually be written to the\nDOM.",
-              "text": "Directives are run at the start of `commit`, so that if they call\n`part.setValue(...)` synchronously that value will be used in the current\ncommit, and there's no need to call `part.commit()` within the directive.\nIf directives set a part value asynchronously, then they must call\n`part.commit()` manually.\n"
+              "summary": [
+                {
+                  "text": "Commits the current part value, causing it to actually be written to the\nDOM.\n\nDirectives are run at the start of "
+                },
+                {
+                  "text": "`commit`"
+                },
+                {
+                  "text": ", so that if they call\n"
+                },
+                {
+                  "text": "`part.setValue(...)`"
+                },
+                {
+                  "text": " synchronously that value will be used in the current\ncommit, and there's no need to call "
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " within the directive.\nIf directives set a part value asynchronously, then they must call\n"
+                },
+                {
+                  "text": "`part.commit()`"
+                },
+                {
+                  "text": " manually."
+                }
+              ]
             },
+            "sources": [
+              {
+                "fileName": "src/lib/part.ts",
+                "line": 38,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L38",
+                "moduleSpecifier": "lit-html/lib/part.js"
+              }
+            ],
             "signatures": [
               {
                 "name": "commit",
@@ -6562,6 +7826,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6574,8 +7839,20 @@
             "name": "setValue",
             "kindString": "Method",
             "comment": {
-              "shortText": "Sets the current part value, but does not write it to the DOM."
+              "summary": [
+                {
+                  "text": "Sets the current part value, but does not write it to the DOM."
+                }
+              ]
             },
+            "sources": [
+              {
+                "fileName": "src/lib/part.ts",
+                "line": 26,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L26",
+                "moduleSpecifier": "lit-html/lib/part.js"
+              }
+            ],
             "signatures": [
               {
                 "name": "setValue",
@@ -6585,7 +7862,11 @@
                     "name": "value",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The value that will be committed.\n"
+                      "summary": [
+                        {
+                          "text": "The value that will be committed."
+                        }
+                      ]
                     },
                     "type": {
                       "type": "intrinsic",
@@ -6603,6 +7884,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6616,6 +7898,7 @@
           {
             "fileName": "src/lib/part.ts",
             "line": 19,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/part.ts#L19",
             "moduleSpecifier": "lit-html/lib/part.js"
           }
         ],
@@ -6657,6 +7940,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6673,8 +7957,20 @@
             "name": "handleAttributeExpressions",
             "kindString": "Method",
             "comment": {
-              "shortText": "Create parts for an attribute-position binding, given the element,\nattribute name, and string literals."
+              "summary": [
+                {
+                  "text": "Create parts for an attribute-position binding, given the element,\nattribute name, and string literals."
+                }
+              ]
             },
+            "sources": [
+              {
+                "fileName": "src/lib/template-processor.ts",
+                "line": 42,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-processor.ts#L42",
+                "moduleSpecifier": "lit-html/lib/template-processor.js"
+              }
+            ],
             "signatures": [
               {
                 "name": "handleAttributeExpressions",
@@ -6684,11 +7980,17 @@
                     "name": "element",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The element containing the binding"
+                      "summary": [
+                        {
+                          "text": "The element containing the binding"
+                        }
+                      ]
                     },
                     "type": {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -6698,7 +8000,29 @@
                     "name": "name",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The attribute name, including a possible prefix. The name may\n  be prefixed by `.` (for a property binding), `@` (for an event binding)\nor\n  `?` (for a boolean attribute binding)."
+                      "summary": [
+                        {
+                          "text": "The attribute name, including a possible prefix. The name may\n  be prefixed by "
+                        },
+                        {
+                          "text": "`.`"
+                        },
+                        {
+                          "text": " (for a property binding), "
+                        },
+                        {
+                          "text": "`@`"
+                        },
+                        {
+                          "text": " (for an event binding)\nor\n  "
+                        },
+                        {
+                          "text": "`?`"
+                        },
+                        {
+                          "text": " (for a boolean attribute binding)."
+                        }
+                      ]
                     },
                     "type": {
                       "type": "intrinsic",
@@ -6709,7 +8033,35 @@
                     "name": "strings",
                     "kindString": "Parameter",
                     "comment": {
-                      "text": "The array of literal strings that form the static part of\n    the\n  attribute value. There are always at least two strings,\n  even for fully-controlled bindings with a single expression. For example,\n  for the binding `attr=\"${e1}-${e2}\"`, the `strings` array includes three\n  strings (`['', '-', '']`)—the text _before_ the first expression (the\nempty string), the text between the two expressions (`'-'`), and the text\nafter the last expression (another empty string).\n"
+                      "summary": [
+                        {
+                          "text": "The array of literal strings that form the static part of\n    the\n  attribute value. There are always at least two strings,\n  even for fully-controlled bindings with a single expression. For example,\n  for the binding "
+                        },
+                        {
+                          "text": "`attr=\"${e1}-${e2}\"`"
+                        },
+                        {
+                          "text": ", the "
+                        },
+                        {
+                          "text": "`strings`"
+                        },
+                        {
+                          "text": " array includes three\n  strings ("
+                        },
+                        {
+                          "text": "`['', '-', '']`"
+                        },
+                        {
+                          "text": ")—the text _before_ the first expression (the\nempty string), the text between the two expressions ("
+                        },
+                        {
+                          "text": "`'-'`"
+                        },
+                        {
+                          "text": "), and the text\nafter the last expression (another empty string)."
+                        }
+                      ]
                     },
                     "type": {
                       "type": "typeOperator",
@@ -6757,6 +8109,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6769,8 +8122,20 @@
             "name": "handleTextExpression",
             "kindString": "Method",
             "comment": {
-              "shortText": "Create parts for a text-position binding."
+              "summary": [
+                {
+                  "text": "Create parts for a text-position binding."
+                }
+              ]
             },
+            "sources": [
+              {
+                "fileName": "src/lib/template-processor.ts",
+                "line": 50,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-processor.ts#L50",
+                "moduleSpecifier": "lit-html/lib/template-processor.js"
+              }
+            ],
             "signatures": [
               {
                 "name": "handleTextExpression",
@@ -6803,6 +8168,7 @@
               {
                 "fileName": "src/lit-html.ts",
                 "line": 32,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
                 "moduleSpecifier": "lit-html"
               }
             ],
@@ -6816,6 +8182,7 @@
           {
             "fileName": "src/lib/template-processor.ts",
             "line": 23,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/template-processor.ts#L23",
             "moduleSpecifier": "lit-html/lib/template-processor.js"
           }
         ],
@@ -6833,6 +8200,7 @@
           {
             "fileName": "src/lit-html.ts",
             "line": 32,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lit-html.ts#L32",
             "moduleSpecifier": "lit-html"
           }
         ],
@@ -6855,17 +8223,144 @@
       {
         "name": "render",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Extension to the standard `render` method which supports rendering\nto ShadowRoots when the ShadyDOM (https://github.com/webcomponents/shadydom)\nand ShadyCSS (https://github.com/webcomponents/shadycss) polyfills are used\nor when the webcomponentsjs\n(https://github.com/webcomponents/webcomponentsjs) polyfill is used.",
-          "text": "Adds a `scopeName` option which is used to scope element DOM and stylesheets\nwhen native ShadowDOM is unavailable. The `scopeName` will be added to\nthe class attribute of all rendered DOM. In addition, any style elements will\nbe automatically re-written with this `scopeName` selector and moved out\nof the rendered DOM and into the document `<head>`.\n\nIt is common to use this render method in conjunction with a custom element\nwhich renders a shadowRoot. When this is done, typically the element's\n`localName` should be used as the `scopeName`.\n\nIn addition to DOM scoping, ShadyCSS also supports a basic shim for css\ncustom properties (needed only on older browsers like IE11) and a shim for\na deprecated feature called `@apply` that supports applying a set of css\ncustom properties to a given location.\n\nUsage considerations:\n\n* Part values in `<style>` elements are only applied the first time a given\n`scopeName` renders. Subsequent changes to parts in style elements will have\nno effect. Because of this, parts in style elements should only be used for\nvalues that will never change, for example parts that set scope-wide theme\nvalues or parts which render shared style elements.\n\n* Note, due to a limitation of the ShadyDOM polyfill, rendering in a\ncustom element's `constructor` is not supported. Instead rendering should\neither done asynchronously, for example at microtask timing (for example\n`Promise.resolve()`), or be deferred until the first time the element's\n`connectedCallback` runs.\n\nUsage considerations when using shimmed custom properties or `@apply`:\n\n* Whenever any dynamic changes are made which affect\ncss custom properties, `ShadyCSS.styleElement(element)` must be called\nto update the element. There are two cases when this is needed:\n(1) the element is connected to a new parent, (2) a class is added to the\nelement that causes it to match different custom properties.\nTo address the first case when rendering a custom element, `styleElement`\nshould be called in the element's `connectedCallback`.\n\n* Shimmed custom properties may only be defined either for an entire\nshadowRoot (for example, in a `:host` rule) or via a rule that directly\nmatches an element with a shadowRoot. In other words, instead of flowing from\nparent to child as do native css custom properties, shimmed custom properties\nflow only from shadowRoots to nested shadowRoots.\n\n* When using `@apply` mixing css shorthand property names with\nnon-shorthand names (for example `border` and `border-width`) is not\nsupported.\n"
+          "summary": [
+            {
+              "text": "Extension to the standard "
+            },
+            {
+              "text": "`render`"
+            },
+            {
+              "text": " method which supports rendering\nto ShadowRoots when the ShadyDOM (https://github.com/webcomponents/shadydom)\nand ShadyCSS (https://github.com/webcomponents/shadycss) polyfills are used\nor when the webcomponentsjs\n(https://github.com/webcomponents/webcomponentsjs) polyfill is used.\n\nAdds a "
+            },
+            {
+              "text": "`scopeName`"
+            },
+            {
+              "text": " option which is used to scope element DOM and stylesheets\nwhen native ShadowDOM is unavailable. The "
+            },
+            {
+              "text": "`scopeName`"
+            },
+            {
+              "text": " will be added to\nthe class attribute of all rendered DOM. In addition, any style elements will\nbe automatically re-written with this "
+            },
+            {
+              "text": "`scopeName`"
+            },
+            {
+              "text": " selector and moved out\nof the rendered DOM and into the document "
+            },
+            {
+              "text": "`<head>`"
+            },
+            {
+              "text": ".\n\nIt is common to use this render method in conjunction with a custom element\nwhich renders a shadowRoot. When this is done, typically the element's\n"
+            },
+            {
+              "text": "`localName`"
+            },
+            {
+              "text": " should be used as the "
+            },
+            {
+              "text": "`scopeName`"
+            },
+            {
+              "text": ".\n\nIn addition to DOM scoping, ShadyCSS also supports a basic shim for css\ncustom properties (needed only on older browsers like IE11) and a shim for\na deprecated feature called "
+            },
+            {
+              "text": "`@apply`"
+            },
+            {
+              "text": " that supports applying a set of css\ncustom properties to a given location.\n\nUsage considerations:\n\n* Part values in "
+            },
+            {
+              "text": "`<style>`"
+            },
+            {
+              "text": " elements are only applied the first time a given\n"
+            },
+            {
+              "text": "`scopeName`"
+            },
+            {
+              "text": " renders. Subsequent changes to parts in style elements will have\nno effect. Because of this, parts in style elements should only be used for\nvalues that will never change, for example parts that set scope-wide theme\nvalues or parts which render shared style elements.\n\n* Note, due to a limitation of the ShadyDOM polyfill, rendering in a\ncustom element's "
+            },
+            {
+              "text": "`constructor`"
+            },
+            {
+              "text": " is not supported. Instead rendering should\neither done asynchronously, for example at microtask timing (for example\n"
+            },
+            {
+              "text": "`Promise.resolve()`"
+            },
+            {
+              "text": "), or be deferred until the first time the element's\n"
+            },
+            {
+              "text": "`connectedCallback`"
+            },
+            {
+              "text": " runs.\n\nUsage considerations when using shimmed custom properties or "
+            },
+            {
+              "text": "`@apply`"
+            },
+            {
+              "text": ":\n\n* Whenever any dynamic changes are made which affect\ncss custom properties, "
+            },
+            {
+              "text": "`ShadyCSS.styleElement(element)`"
+            },
+            {
+              "text": " must be called\nto update the element. There are two cases when this is needed:\n(1) the element is connected to a new parent, (2) a class is added to the\nelement that causes it to match different custom properties.\nTo address the first case when rendering a custom element, "
+            },
+            {
+              "text": "`styleElement`"
+            },
+            {
+              "text": "\nshould be called in the element's "
+            },
+            {
+              "text": "`connectedCallback`"
+            },
+            {
+              "text": ".\n\n* Shimmed custom properties may only be defined either for an entire\nshadowRoot (for example, in a "
+            },
+            {
+              "text": "`:host`"
+            },
+            {
+              "text": " rule) or via a rule that directly\nmatches an element with a shadowRoot. In other words, instead of flowing from\nparent to child as do native css custom properties, shimmed custom properties\nflow only from shadowRoots to nested shadowRoots.\n\n* When using "
+            },
+            {
+              "text": "`@apply`"
+            },
+            {
+              "text": " mixing css shorthand property names with\nnon-shorthand names (for example "
+            },
+            {
+              "text": "`border`"
+            },
+            {
+              "text": " and "
+            },
+            {
+              "text": "`border-width`"
+            },
+            {
+              "text": ") is not\nsupported."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 258,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L258",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -6891,6 +8386,8 @@
                     {
                       "type": "reference",
                       "name": "Element",
+                      "qualifiedName": "Element",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                       }
@@ -6898,6 +8395,8 @@
                     {
                       "type": "reference",
                       "name": "DocumentFragment",
+                      "qualifiedName": "DocumentFragment",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"
                       }
@@ -6905,6 +8404,8 @@
                     {
                       "type": "reference",
                       "name": "ShadowRoot",
+                      "qualifiedName": "ShadowRoot",
+                      "package": "typescript",
                       "externalLocation": {
                         "url": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot"
                       }
@@ -6935,6 +8436,7 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 26,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L26",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -6946,16 +8448,18 @@
       {
         "name": "shadyTemplateFactory",
         "kindString": "Function",
-        "flags": {
-          "isConst": true
-        },
         "comment": {
-          "shortText": "Template factory which scopes template DOM using ShadyCSS."
+          "summary": [
+            {
+              "text": "Template factory which scopes template DOM using ShadyCSS."
+            }
+          ]
         },
         "sources": [
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 57,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L57",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -6968,7 +8472,11 @@
                 "name": "scopeName",
                 "kindString": "Parameter",
                 "comment": {
-                  "text": "\n"
+                  "summary": [
+                    {
+                      "text": "{string}"
+                    }
+                  ]
                 },
                 "type": {
                   "type": "intrinsic",
@@ -6981,6 +8489,13 @@
               "declaration": {
                 "name": "__type",
                 "kindString": "Type literal",
+                "sources": [
+                  {
+                    "fileName": "lib/shady-render.ts",
+                    "line": 58,
+                    "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L58"
+                  }
+                ],
                 "signatures": [
                   {
                     "name": "__type",
@@ -7017,6 +8532,7 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 26,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L26",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -7040,12 +8556,15 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 19,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render-options.ts#L19",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
             "type": {
               "type": "reference",
-              "name": "EventTarget"
+              "name": "EventTarget",
+              "qualifiedName": "EventTarget",
+              "package": "typescript"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -7055,6 +8574,7 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 26,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L26",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -7070,6 +8590,7 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 199,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L199",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -7081,6 +8602,7 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 26,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L26",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -7100,6 +8622,7 @@
               {
                 "fileName": "src/lib/render-options.ts",
                 "line": 18,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/render-options.ts#L18",
                 "moduleSpecifier": "lit-html/lib/render-options.js"
               }
             ],
@@ -7115,6 +8638,7 @@
               {
                 "fileName": "src/lib/shady-render.ts",
                 "line": 26,
+                "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L26",
                 "moduleSpecifier": "lit-html/lib/shady-render.js"
               }
             ],
@@ -7128,6 +8652,7 @@
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 198,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L198",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -7144,13 +8669,16 @@
                 }
               }
             ],
-            "name": "Partial"
+            "name": "Partial",
+            "qualifiedName": "Partial",
+            "package": "typescript"
           }
         ],
         "entrypointSources": [
           {
             "fileName": "src/lib/shady-render.ts",
             "line": 26,
+            "url": "https://github.com/lit/lit/blob/022f87d/src/lib/shady-render.ts#L26",
             "moduleSpecifier": "lit-html/lib/shady-render.js"
           }
         ],
@@ -7171,7 +8699,9 @@
                 }
               }
             ],
-            "name": "Partial"
+            "name": "Partial",
+            "qualifiedName": "Partial",
+            "package": "typescript"
           }
         ]
       }
