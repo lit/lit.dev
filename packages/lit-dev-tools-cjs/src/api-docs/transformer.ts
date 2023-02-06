@@ -697,13 +697,10 @@ export class ApiDocsTransformer {
 
     for (const module of this.project.children ?? []) {
       for (const export_ of module.children ?? []) {
-        // console.log('A', export_);
         const location = (export_ as ExtendedDeclarationReflection).location;
         if (!location) {
-          console.log('No location for', export_.name);
           continue;
         }
-        // console.log(export_.name, location);
         let page = slugToPage.get(location.page);
         if (page === undefined) {
           const match = this.config.pages.find(
