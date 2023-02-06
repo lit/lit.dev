@@ -31,7 +31,7 @@
             {
               "tag": "@linkcode",
               "text": "properties",
-              "target": 342
+              "target": 768
             },
             {
               "text": " property or the\n"
@@ -1037,7 +1037,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "PropertyDeclaration",
-                      "target": 1339
+                      "target": 1765
                     },
                     {
                       "text": " for the property with the\ngiven options. The property setter calls the property's "
@@ -1369,7 +1369,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "createProperty",
-                      "target": 347
+                      "target": 773
                     },
                     {
                       "text": "."
@@ -1992,7 +1992,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "css",
-                      "target": 2401
+                      "target": 2827
                     },
                     {
                       "text": " tag function, via constructible stylesheets, or\nimported from native CSS module scripts.\n\nNote on Content Security Policy:\n\nElement styles are implemented with "
@@ -4570,7 +4570,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "PropertyDeclaration",
-                      "target": 1339
+                      "target": 1765
                     },
                     {
                       "text": " for the property with the\ngiven options. The property setter calls the property's "
@@ -4870,7 +4870,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "createProperty",
-                      "target": 1433
+                      "target": 1859
                     },
                     {
                       "text": "."
@@ -5363,7 +5363,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "css",
-                      "target": 2401
+                      "target": 2827
                     },
                     {
                       "text": " tag function, via constructible stylesheets, or\nimported from native CSS module scripts.\n\nNote on Content Security Policy:\n\nElement styles are implemented with "
@@ -7715,7 +7715,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "TemplateResult",
-                      "target": 2525
+                      "target": 2951
                     },
                     {
                       "text": " created by evaluating a template tag\n  like "
@@ -7723,7 +7723,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "html",
-                      "target": 2539
+                      "target": 2965
                     },
                     {
                       "text": " or "
@@ -7731,7 +7731,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "svg",
-                      "target": 2543
+                      "target": 2969
                     },
                     {
                       "text": "."
@@ -7791,7 +7791,7 @@
                     {
                       "tag": "@linkcode",
                       "text": "RenderOptions",
-                      "target": 2549
+                      "target": 2975
                     },
                     {
                       "text": " for options documentation."
@@ -7877,7 +7877,7 @@
             {
               "tag": "@linkcode",
               "text": "html",
-              "target": 2539
+              "target": 2965
             },
             {
               "text": " tag function.\n\nIn LitElement usage, it's invalid to return an SVG fragment from the\n"
@@ -8132,7 +8132,7 @@
             {
               "tag": "@linkcode",
               "text": "html",
-              "target": 2539
+              "target": 2965
             },
             {
               "text": " and\n"
@@ -8140,7 +8140,7 @@
             {
               "tag": "@linkcode",
               "text": "svg",
-              "target": 2543
+              "target": 2969
             },
             {
               "text": ".\n\nA "
@@ -8367,7 +8367,7 @@
             {
               "tag": "@linkcode",
               "text": "styles",
-              "target": 344
+              "target": 770
             },
             {
               "text": " property to set element styles.\n\nFor security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values "
@@ -8375,7 +8375,7 @@
             {
               "tag": "@linkcode",
               "text": "unsafeCSS",
-              "target": 2398
+              "target": 2824
             },
             {
               "text": "\nmay be used inside an expression."
@@ -8728,7 +8728,7 @@
             {
               "tag": "@linkcode",
               "text": "css",
-              "target": 2401
+              "target": 2827
             },
             {
               "text": " tagged template literal.\n\nThis is unsafe because untrusted CSS text can be used to phone home\nor exfiltrate data to an attacker controlled site. Take care to only use\nthis with trusted input."
@@ -9197,7 +9197,7 @@
             {
               "tag": "@linkcode",
               "text": "state",
-              "target": 53
+              "target": 479
             },
             {
               "text": " decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n"
@@ -9217,7 +9217,7 @@
             {
               "tag": "@linkcode",
               "text": "state",
-              "target": 53
+              "target": 479
             },
             {
               "text": " decorator should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.\n\n"
@@ -9613,7 +9613,7 @@
             {
               "tag": "@linkcode",
               "text": "QueryAssignedElementsOptions",
-              "target": 102
+              "target": 528
             },
             {
               "text": " object.\n\nExample usage:\n"
@@ -9755,7 +9755,7 @@
             {
               "tag": "@linkcode",
               "text": "QueryAssignedNodesOptions",
-              "target": 113
+              "target": 539
             },
             {
               "text": " object.\n\nExample usage:\n"
@@ -9857,7 +9857,7 @@
                 {
                   "tag": "@linkcode",
                   "text": "@queryAssignedElements",
-                  "target": 95
+                  "target": 521
                 },
                 {
                   "text": " to list only\nelements, and optionally filter the element list using a CSS selector."
@@ -10356,7 +10356,7 @@
             {
               "tag": "@linkcode",
               "text": "queryAssignedElements",
-              "target": 95
+              "target": 521
             },
             {
               "text": " decorator. Extends the\noptions that can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
@@ -10510,7 +10510,7 @@
             {
               "tag": "@linkcode",
               "text": "queryAssignedNodes",
-              "target": 106
+              "target": 532
             },
             {
               "text": " decorator. Extends the options\nthat can be passed into [HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
@@ -15998,7 +15998,7 @@
                                 {
                                   "tag": "@linkcode",
                                   "text": "html",
-                                  "target": 2644
+                                  "target": 3070
                                 },
                                 {
                                   "text": " tag function.\n\nIn LitElement usage, it's invalid to return an SVG fragment from the\n"
@@ -20510,7 +20510,7 @@
             {
               "tag": "@linkcode",
               "text": "PropertyValues",
-              "target": 1355
+              "target": 1781
             },
             {
               "text": "."
