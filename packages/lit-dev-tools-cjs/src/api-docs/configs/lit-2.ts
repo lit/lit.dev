@@ -52,7 +52,7 @@ export const lit2Config: ApiDocsConfig = {
   entrypointModules: [
     pathlib.join(srcDir, 'async-directive.ts'),
     pathlib.join(srcDir, 'decorators.ts'),
-    pathlib.join(srcDir, 'directives/'), // Entire directory
+    pathlib.join(srcDir, 'directives/*'), // Entire directory
     pathlib.join(srcDir, 'directive.ts'),
     pathlib.join(srcDir, 'directive-helpers.ts'),
     // Don't include html.ts because it is already re-exported by index.ts.
