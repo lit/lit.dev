@@ -10,15 +10,16 @@ import * as pathlib from 'path';
 import {execFile} from 'child_process';
 import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
-import {lit2Config} from './configs/lit-2.js';
+// import {lit2Config} from './configs/lit-2.js';
 import {litElement2Config} from './configs/lit-element-2.js';
-import {litHtml1Config} from './configs/lit-html-1.js';
+// import {litHtml1Config} from './configs/lit-html-1.js';
 
 import type {ApiDocsConfig} from './types.js';
 
 const execFileAsync = promisify(execFile);
 
-const configs = [lit2Config, litElement2Config, litHtml1Config];
+// const configs = [lit2Config, litElement2Config, litHtml1Config];
+const configs = [litElement2Config];
 
 /**
  * Check whether the given file path exists.
@@ -103,6 +104,7 @@ const analyze = async (config: ApiDocsConfig) => {
   }
 
   const json = await app.serializer.projectToObject(root);
+  // console.log('json', json);
   const transformer = new ApiDocsTransformer(json, config);
   const {pages, symbolMap} = await transformer.transform();
 

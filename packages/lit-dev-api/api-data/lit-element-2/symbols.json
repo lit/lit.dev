@@ -1,13 +1,13 @@
 {
   "$UpdatingElement": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement"
     }
   ],
   "$constructor": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.constructor"
     },
     {
@@ -21,13 +21,13 @@
   ],
   "$UpdatingElement.constructor": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.constructor"
     }
   ],
   "$finalized": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.finalized"
     },
     {
@@ -37,13 +37,13 @@
   ],
   "$UpdatingElement.finalized": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.finalized"
     }
   ],
   "$properties": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.properties"
     },
     {
@@ -53,13 +53,13 @@
   ],
   "$UpdatingElement.properties": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.properties"
     }
   ],
   "$hasUpdated": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.hasUpdated"
     },
     {
@@ -69,13 +69,13 @@
   ],
   "$UpdatingElement.hasUpdated": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.hasUpdated"
     }
   ],
   "$updateComplete": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.updateComplete"
     },
     {
@@ -85,13 +85,13 @@
   ],
   "$UpdatingElement.updateComplete": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.updateComplete"
     }
   ],
   "$observedAttributes": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.observedAttributes"
     },
     {
@@ -101,13 +101,13 @@
   ],
   "$UpdatingElement.observedAttributes": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.observedAttributes"
     }
   ],
   "$attributeChangedCallback": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.attributeChangedCallback"
     },
     {
@@ -117,13 +117,13 @@
   ],
   "$UpdatingElement.attributeChangedCallback": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.attributeChangedCallback"
     }
   ],
   "$connectedCallback": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.connectedCallback"
     },
     {
@@ -133,13 +133,13 @@
   ],
   "$UpdatingElement.connectedCallback": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.connectedCallback"
     }
   ],
   "$disconnectedCallback": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.disconnectedCallback"
     },
     {
@@ -149,13 +149,13 @@
   ],
   "$UpdatingElement.disconnectedCallback": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.disconnectedCallback"
     }
   ],
   "$enableUpdating": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.enableUpdating"
     },
     {
@@ -165,13 +165,13 @@
   ],
   "$UpdatingElement.enableUpdating": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.enableUpdating"
     }
   ],
   "$firstUpdated": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.firstUpdated"
     },
     {
@@ -181,13 +181,13 @@
   ],
   "$UpdatingElement.firstUpdated": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.firstUpdated"
     }
   ],
   "$getUpdateComplete": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.getUpdateComplete"
     },
     {
@@ -197,13 +197,13 @@
   ],
   "$UpdatingElement.getUpdateComplete": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.getUpdateComplete"
     }
   ],
   "$initialize": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.initialize"
     },
     {
@@ -213,13 +213,13 @@
   ],
   "$UpdatingElement.initialize": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.initialize"
     }
   ],
   "$performUpdate": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.performUpdate"
     },
     {
@@ -229,13 +229,13 @@
   ],
   "$UpdatingElement.performUpdate": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.performUpdate"
     }
   ],
   "$requestUpdate": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.requestUpdate"
     },
     {
@@ -245,13 +245,13 @@
   ],
   "$UpdatingElement.requestUpdate": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.requestUpdate"
     }
   ],
   "$requestUpdateInternal": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.requestUpdateInternal"
     },
     {
@@ -261,13 +261,13 @@
   ],
   "$UpdatingElement.requestUpdateInternal": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.requestUpdateInternal"
     }
   ],
   "$shouldUpdate": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.shouldUpdate"
     },
     {
@@ -277,13 +277,13 @@
   ],
   "$UpdatingElement.shouldUpdate": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.shouldUpdate"
     }
   ],
   "$update": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.update"
     },
     {
@@ -293,13 +293,13 @@
   ],
   "$UpdatingElement.update": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.update"
     }
   ],
   "$updated": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.updated"
     },
     {
@@ -309,13 +309,13 @@
   ],
   "$UpdatingElement.updated": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.updated"
     }
   ],
   "$createProperty": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.createProperty"
     },
     {
@@ -325,13 +325,13 @@
   ],
   "$UpdatingElement.createProperty": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.createProperty"
     }
   ],
   "$finalize": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.finalize"
     },
     {
@@ -341,13 +341,13 @@
   ],
   "$UpdatingElement.finalize": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.finalize"
     }
   ],
   "$getPropertyDescriptor": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.getPropertyDescriptor"
     },
     {
@@ -357,13 +357,13 @@
   ],
   "$UpdatingElement.getPropertyDescriptor": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.getPropertyDescriptor"
     }
   ],
   "$getPropertyOptions": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.getPropertyOptions"
     },
     {
@@ -373,149 +373,149 @@
   ],
   "$UpdatingElement.getPropertyOptions": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "UpdatingElement.getPropertyOptions"
     }
   ],
   "$ComplexAttributeConverter": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "ComplexAttributeConverter"
     }
   ],
   "$fromAttribute": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "ComplexAttributeConverter.fromAttribute"
     }
   ],
   "$ComplexAttributeConverter.fromAttribute": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "ComplexAttributeConverter.fromAttribute"
     }
   ],
   "$toAttribute": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "ComplexAttributeConverter.toAttribute"
     }
   ],
   "$ComplexAttributeConverter.toAttribute": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "ComplexAttributeConverter.toAttribute"
     }
   ],
   "$HasChanged": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "HasChanged"
     }
   ],
   "$PropertyDeclaration": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration"
     }
   ],
   "$attribute": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.attribute"
     }
   ],
   "$PropertyDeclaration.attribute": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.attribute"
     }
   ],
   "$converter": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.converter"
     }
   ],
   "$PropertyDeclaration.converter": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.converter"
     }
   ],
   "$noAccessor": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.noAccessor"
     }
   ],
   "$PropertyDeclaration.noAccessor": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.noAccessor"
     }
   ],
   "$reflect": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.reflect"
     }
   ],
   "$PropertyDeclaration.reflect": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.reflect"
     }
   ],
   "$type": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.type"
     }
   ],
   "$PropertyDeclaration.type": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.type"
     }
   ],
   "$hasChanged": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.hasChanged"
     },
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "InternalPropertyDeclaration.hasChanged"
     }
   ],
   "$PropertyDeclaration.hasChanged": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclaration.hasChanged"
     }
   ],
   "$PropertyDeclarations": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyDeclarations"
     }
   ],
   "$PropertyValues": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "PropertyValues"
     }
   ],
   "$defaultConverter": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "defaultConverter"
     }
   ],
   "$notEqual": [
     {
-      "page": "misc",
+      "page": "UpdatingElement",
       "anchor": "notEqual"
     }
   ],
@@ -811,13 +811,13 @@
   ],
   "$InternalPropertyDeclaration": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "InternalPropertyDeclaration"
     }
   ],
   "$InternalPropertyDeclaration.hasChanged": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "InternalPropertyDeclaration.hasChanged"
     }
   ],
@@ -835,7 +835,7 @@
   ],
   "$Constructor": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "Constructor"
     }
   ],
@@ -853,55 +853,55 @@
   ],
   "$customElement": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "customElement"
     }
   ],
   "$eventOptions": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "eventOptions"
     }
   ],
   "$internalProperty": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "internalProperty"
     }
   ],
   "$property": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "property"
     }
   ],
   "$query": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "query"
     }
   ],
   "$queryAll": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "queryAll"
     }
   ],
   "$queryAssignedNodes": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "queryAssignedNodes"
     }
   ],
   "$queryAsync": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "queryAsync"
     }
   ],
   "$state": [
     {
-      "page": "misc",
+      "page": "decorators",
       "anchor": "state"
     }
   ],

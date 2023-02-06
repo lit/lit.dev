@@ -75,13 +75,14 @@ export const litElement2Config: ApiDocsConfig = {
 
   pageForSymbol(node): string {
     const source = node.sources?.[0].fileName;
+    // console.log('B pageForSymbol', node.name, source);
     if (node.name === 'LitElement') {
       return 'LitElement';
     }
-    if (source === 'src/lib/updating-element.ts') {
+    if (source?.endsWith('src/lib/updating-element.ts')) {
       return 'UpdatingElement';
     }
-    if (source === 'src/lib/decorators.ts') {
+    if (source?.endsWith('src/lib/decorators.ts')) {
       return 'decorators';
     }
     if (
