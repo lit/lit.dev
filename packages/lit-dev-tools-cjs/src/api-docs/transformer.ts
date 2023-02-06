@@ -595,7 +595,7 @@ export class ApiDocsTransformer {
 
     if (node.comment?.summary) {
       for (const part of node.comment.summary) {
-        part.text = replace(part.text)
+        part.text = replace(part.text);
       }
     }
     if (node.comment?.blockTags) {
