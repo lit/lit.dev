@@ -5495,11 +5495,7 @@
           "type": "conditional",
           "checkType": {
             "type": "typeOperator",
-            "operator": "keyof",
-            "target": {
-              "type": "reference",
-              "name": "T"
-            }
+            "operator": "keyof"
           },
           "extendsType": {
             "type": "reference",
@@ -5512,11 +5508,7 @@
             "typeArguments": [
               {
                 "type": "typeOperator",
-                "operator": "keyof",
-                "target": {
-                  "type": "reference",
-                  "name": "T"
-                }
+                "operator": "keyof"
               },
               {
                 "type": "intrinsic",

@@ -30,8 +30,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "properties",
-              "target": 1249
+              "text": "properties"
             },
             {
               "text": " property or the\n"
@@ -1036,8 +1035,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "PropertyDeclaration",
-                      "target": 2246
+                      "text": "PropertyDeclaration"
                     },
                     {
                       "text": " for the property with the\ngiven options. The property setter calls the property's "
@@ -1368,8 +1366,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "createProperty",
-                      "target": 1254
+                      "text": "createProperty"
                     },
                     {
                       "text": "."
@@ -1991,8 +1988,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "css",
-                      "target": 3308
+                      "text": "css"
                     },
                     {
                       "text": " tag function, via constructible stylesheets, or\nimported from native CSS module scripts.\n\nNote on Content Security Policy:\n\nElement styles are implemented with "
@@ -4569,8 +4565,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "PropertyDeclaration",
-                      "target": 2246
+                      "text": "PropertyDeclaration"
                     },
                     {
                       "text": " for the property with the\ngiven options. The property setter calls the property's "
@@ -4869,8 +4864,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "createProperty",
-                      "target": 2340
+                      "text": "createProperty"
                     },
                     {
                       "text": "."
@@ -5362,8 +5356,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "css",
-                      "target": 3308
+                      "text": "css"
                     },
                     {
                       "text": " tag function, via constructible stylesheets, or\nimported from native CSS module scripts.\n\nNote on Content Security Policy:\n\nElement styles are implemented with "
@@ -7644,11 +7637,7 @@
         ],
         "type": {
           "type": "typeOperator",
-          "operator": "unique",
-          "target": {
-            "type": "intrinsic",
-            "name": "symbol"
-          }
+          "operator": "unique"
         },
         "entrypointSources": [
           {
@@ -7686,8 +7675,7 @@
               "content": [
                 {
                   "tag": "@link",
-                  "text": "Rendering Lit HTML Templates",
-                  "target": "https://lit.dev/docs/libraries/standalone-templates/#rendering-lit-html-templates|"
+                  "text": "Rendering Lit HTML Templates"
                 }
               ]
             }
@@ -7714,24 +7702,21 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "TemplateResult",
-                      "target": 3432
+                      "text": "TemplateResult"
                     },
                     {
                       "text": " created by evaluating a template tag\n  like "
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "html",
-                      "target": 3446
+                      "text": "html"
                     },
                     {
                       "text": " or "
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "svg",
-                      "target": 3450
+                      "text": "svg"
                     },
                     {
                       "text": "."
@@ -7790,8 +7775,7 @@
                     },
                     {
                       "tag": "@linkcode",
-                      "text": "RenderOptions",
-                      "target": 3456
+                      "text": "RenderOptions"
                     },
                     {
                       "text": " for options documentation."
@@ -7876,8 +7860,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "html",
-              "target": 3446
+              "text": "html"
             },
             {
               "text": " tag function.\n\nIn LitElement usage, it's invalid to return an SVG fragment from the\n"
@@ -8131,16 +8114,14 @@
             },
             {
               "tag": "@linkcode",
-              "text": "html",
-              "target": 3446
+              "text": "html"
             },
             {
               "text": " and\n"
             },
             {
               "tag": "@linkcode",
-              "text": "svg",
-              "target": 3450
+              "text": "svg"
             },
             {
               "text": ".\n\nA "
@@ -8366,16 +8347,14 @@
             },
             {
               "tag": "@linkcode",
-              "text": "styles",
-              "target": 1251
+              "text": "styles"
             },
             {
               "text": " property to set element styles.\n\nFor security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values "
             },
             {
               "tag": "@linkcode",
-              "text": "unsafeCSS",
-              "target": 3305
+              "text": "unsafeCSS"
             },
             {
               "text": "\nmay be used inside an expression."
@@ -8727,8 +8706,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "css",
-              "target": 3308
+              "text": "css"
             },
             {
               "text": " tagged template literal.\n\nThis is unsafe because untrusted CSS text can be used to phone home\nor exfiltrate data to an attacker controlled site. Take care to only use\nthis with trusted input."
@@ -9196,8 +9174,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "state",
-              "target": 499
+              "text": "state"
             },
             {
               "text": " decorator.\n\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n"
@@ -9216,8 +9193,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "state",
-              "target": 499
+              "text": "state"
             },
             {
               "text": " decorator should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.\n\n"
@@ -9612,8 +9588,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "QueryAssignedElementsOptions",
-              "target": 548
+              "text": "QueryAssignedElementsOptions"
             },
             {
               "text": " object.\n\nExample usage:\n"
@@ -9754,8 +9729,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "QueryAssignedNodesOptions",
-              "target": 559
+              "text": "QueryAssignedNodesOptions"
             },
             {
               "text": " object.\n\nExample usage:\n"
@@ -9856,8 +9830,7 @@
                 },
                 {
                   "tag": "@linkcode",
-                  "text": "@queryAssignedElements",
-                  "target": 541
+                  "text": "@queryAssignedElements"
                 },
                 {
                   "text": " to list only\nelements, and optionally filter the element list using a CSS selector."
@@ -10355,8 +10328,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "queryAssignedElements",
-              "target": 541
+              "text": "queryAssignedElements"
             },
             {
               "text": " decorator. Extends the\noptions that can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
@@ -10509,8 +10481,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "queryAssignedNodes",
-              "target": 552
+              "text": "queryAssignedNodes"
             },
             {
               "text": " decorator. Extends the options\nthat can be passed into [HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
@@ -16914,8 +16885,7 @@
             },
             {
               "tag": "@link",
-              "text": "styleInfo",
-              "target": 884
+              "text": "styleInfo"
             },
             {
               "text": " object and adds the property values as CSS\nproperties. Property names with dashes ("
@@ -16963,8 +16933,7 @@
               "content": [
                 {
                   "tag": "@link",
-                  "text": "styleMap code samples on Lit.dev",
-                  "target": "https://lit.dev/docs/templates/directives/#stylemap"
+                  "text": "styleMap code samples on Lit.dev"
                 }
               ]
             }
@@ -21391,14 +21360,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -21581,14 +21543,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "entrypointSources": [
               {
@@ -21779,14 +21734,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -22005,14 +21953,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -23211,14 +23152,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -23437,14 +23371,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -23819,14 +23746,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -24045,14 +23965,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -24242,14 +24155,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "entrypointSources": [
               {
@@ -24792,11 +24698,7 @@
         ],
         "type": {
           "type": "typeOperator",
-          "operator": "unique",
-          "target": {
-            "type": "intrinsic",
-            "name": "symbol"
-          }
+          "operator": "unique"
         },
         "entrypointSources": [
           {
@@ -25286,8 +25188,7 @@
                                 },
                                 {
                                   "tag": "@linkcode",
-                                  "text": "html",
-                                  "target": 3551
+                                  "text": "html"
                                 },
                                 {
                                   "text": " tag function.\n\nIn LitElement usage, it's invalid to return an SVG fragment from the\n"
@@ -29798,8 +29699,7 @@
             },
             {
               "tag": "@linkcode",
-              "text": "PropertyValues",
-              "target": 2262
+              "text": "PropertyValues"
             },
             {
               "text": "."

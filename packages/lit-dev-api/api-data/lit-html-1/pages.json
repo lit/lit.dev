@@ -393,14 +393,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "unknown"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -598,14 +591,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "unknown"
-                }
-              }
+              "operator": "readonly"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -828,14 +814,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "unknown"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -997,14 +976,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "unknown"
-                }
-              }
+              "operator": "readonly"
             },
             "entrypointSources": [
               {
@@ -3189,14 +3161,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   }
                 ],
@@ -3335,18 +3300,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "reference",
-                  "name": "AttributePart",
-                  "location": {
-                    "page": "custom-directives",
-                    "anchor": "AttributePart"
-                  }
-                }
-              }
+              "operator": "readonly"
             },
             "entrypointSources": [
               {
@@ -3377,14 +3331,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "entrypointSources": [
               {
@@ -3842,14 +3789,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   }
                 ],
@@ -3959,14 +3899,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "entrypointSources": [
               {
@@ -4401,18 +4334,7 @@
                 ],
                 "type": {
                   "type": "typeOperator",
-                  "operator": "readonly",
-                  "target": {
-                    "type": "array",
-                    "elementType": {
-                      "type": "reference",
-                      "name": "Part",
-                      "location": {
-                        "page": "custom-directives",
-                        "anchor": "Part"
-                      }
-                    }
-                  }
+                  "operator": "readonly"
                 },
                 "implementationOf": {
                   "type": "reference",
@@ -6152,14 +6074,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   }
                 ],
@@ -6334,18 +6249,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "reference",
-                  "name": "AttributePart",
-                  "location": {
-                    "page": "custom-directives",
-                    "anchor": "AttributePart"
-                  }
-                }
-              }
+              "operator": "readonly"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -6415,14 +6319,7 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly",
-              "target": {
-                "type": "array",
-                "elementType": {
-                  "type": "intrinsic",
-                  "name": "string"
-                }
-              }
+              "operator": "readonly"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -7614,14 +7511,7 @@
                     "kindString": "Parameter",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "unknown"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   }
                 ],
@@ -8065,14 +7955,7 @@
                     },
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly",
-                      "target": {
-                        "type": "array",
-                        "elementType": {
-                          "type": "intrinsic",
-                          "name": "string"
-                        }
-                      }
+                      "operator": "readonly"
                     }
                   },
                   {
@@ -8090,18 +7973,7 @@
                 ],
                 "type": {
                   "type": "typeOperator",
-                  "operator": "readonly",
-                  "target": {
-                    "type": "array",
-                    "elementType": {
-                      "type": "reference",
-                      "name": "Part",
-                      "location": {
-                        "page": "custom-directives",
-                        "anchor": "Part"
-                      }
-                    }
-                  }
+                  "operator": "readonly"
                 }
               }
             ],
