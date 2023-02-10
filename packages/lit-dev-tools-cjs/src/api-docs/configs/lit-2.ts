@@ -15,6 +15,9 @@ const gitDir = pathlib.join(workDir, 'repo');
 const litDir = pathlib.join(gitDir, 'packages', 'lit');
 const srcDir = pathlib.join(litDir, 'src');
 
+const contextDir = pathlib.join(gitDir, 'packages', 'labs', 'context');
+const contextSrcDir = pathlib.join(contextDir, 'src');
+
 /**
  * lit.dev API docs configuration for Lit 2.x
  */
@@ -23,47 +26,36 @@ export const lit2Config: ApiDocsConfig = {
   commit: 'df67769d3b7c5b699d8c1dc57e15c3e91fe296c6',
   workDir,
   gitDir,
-  tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
   pagesOutPath: pathlib.resolve(workDir, 'pages.json'),
   symbolsOutPath: pathlib.resolve(workDir, 'symbols.json'),
   typedocRoot: pathlib.join(root, 'packages'),
 
-  extraSetupCommands: [
+  packages: [
     {
-      cmd: 'npx',
-      // Only install lit and its dependencies, so that we don't waste time
-      // installing dependencies for packages we don't generate API docs for
-      // (like tests).
-      args: ['lerna', 'bootstrap', '--scope', 'lit', '--include-dependencies'],
+      tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
+      entrypointModules: [
+        pathlib.join(srcDir, 'async-directive.ts'),
+        pathlib.join(srcDir, 'decorators.ts'),
+        pathlib.join(srcDir, 'directives/*'), // Entire directory
+        pathlib.join(srcDir, 'directive.ts'),
+        pathlib.join(srcDir, 'directive-helpers.ts'),
+        // Don't include html.ts because it is already re-exported by index.ts.
+        //   pathlib.join(srcDir, 'html.ts'),
+        // Don't include hydration because it's not ready yet.
+        //   pathlib.join(srcDir, 'hydrate.ts'),
+        //   pathlib.join(srcDir, 'hydrate-support.ts'),
+        pathlib.join(srcDir, 'index.ts'),
+        // Don't include polyfill-support.ts because it doesn't export anything.
+        //   pathlib.join(srcDir, 'polyfill-support.ts'),
+        pathlib.join(srcDir, 'static-html.ts'),
+      ]
     },
     {
-      cmd: 'npx',
-      args: [
-        'lerna',
-        'run',
-        'build:ts',
-        '--scope',
-        'lit',
-        '--include-dependencies',
-      ],
-    },
-  ],
-
-  entrypointModules: [
-    pathlib.join(srcDir, 'async-directive.ts'),
-    pathlib.join(srcDir, 'decorators.ts'),
-    pathlib.join(srcDir, 'directives/*'), // Entire directory
-    pathlib.join(srcDir, 'directive.ts'),
-    pathlib.join(srcDir, 'directive-helpers.ts'),
-    // Don't include html.ts because it is already re-exported by index.ts.
-    //   pathlib.join(srcDir, 'html.ts'),
-    // Don't include hydration because it's not ready yet.
-    //   pathlib.join(srcDir, 'hydrate.ts'),
-    //   pathlib.join(srcDir, 'hydrate-support.ts'),
-    pathlib.join(srcDir, 'index.ts'),
-    // Don't include polyfill-support.ts because it doesn't export anything.
-    //   pathlib.join(srcDir, 'polyfill-support.ts'),
-    pathlib.join(srcDir, 'static-html.ts'),
+      tsConfigPath: pathlib.join(contextDir, 'tsconfig.json'),
+      entrypointModules: [
+        pathlib.join(contextSrcDir, 'index.ts'),
+      ]
+    }
   ],
 
   symbolOrder: ['LitElement', 'ReactiveElement'],
@@ -134,6 +126,13 @@ export const lit2Config: ApiDocsConfig = {
       },
     },
     {
+      slug: 'context',
+      title: 'Context',
+      versionLinks: {
+        v1: 'api/lit-element/LitElement/',
+      },
+    },
+    {
       slug: 'misc',
       title: 'Misc',
       versionLinks: {
@@ -144,6 +143,11 @@ export const lit2Config: ApiDocsConfig = {
 
   pageForSymbol(node): string {
     const entrypoint = node.entrypointSources?.[0]?.fileName ?? '';
+
+    if (entrypoint.includes('/context/')) {
+      return 'context';
+    }
+
     if (entrypoint.includes('/directives/')) {
       return 'directives';
     }

@@ -44,6 +44,28 @@ export interface ExternalLocation {
   url: string;
 }
 
+
+export interface Package {
+  /**
+   * Path to the tsconfig.json that owns the entrypoint modules.
+   */
+  tsConfigPath: string;
+
+  /**
+   * Entrypoint TypeScript modules for TypeDoc to analyze.
+   *
+   * The modules listed here should be the preferred modules that users should
+   * import from, because import statements will be generated using these
+   * entrypoints as the module specifier (e.g. `import {LitElement} from
+   * 'lit'`). GitHub source links will be generated pointing at the ultimate
+   * location where the symbol is concretely defined (e.g.
+   * `packages/lit-element/src/lit-element.ts`).
+   *
+   * If a directory, all .ts files within it are included.
+   */
+  entrypointModules: Array<string>;
+}
+
 export interface ApiDocsConfig {
   /**
    * Git repo remote URL.
@@ -66,11 +88,6 @@ export interface ApiDocsConfig {
   gitDir: string;
 
   /**
-   * Path to the tsconfig.json that owns the entrypoint modules.
-   */
-  tsConfigPath: string;
-
-  /**
    * The directory that TypeDoc chooses as the root of this package. Unclear why
    * this is unpredictable.
    */
@@ -83,18 +100,9 @@ export interface ApiDocsConfig {
   extraSetupCommands?: Array<{cmd: string; args: string[]}>;
 
   /**
-   * Entrypoint TypeScript modules for TypeDoc to analyze.
-   *
-   * The modules listed here should be the preferred modules that users should
-   * import from, because import statements will be generated using these
-   * entrypoints as the module specifier (e.g. `import {LitElement} from
-   * 'lit'`). GitHub source links will be generated pointing at the ultimate
-   * location where the symbol is concretely defined (e.g.
-   * `packages/lit-element/src/lit-element.ts`).
-   *
-   * If a directory, all .ts files within it are included.
+   * The packages that are included in these API doc pages.
    */
-  entrypointModules: string[];
+  packages: Array<Package>;
 
   /**
    * Where to write the API data that is consumed by our Eleventy template.

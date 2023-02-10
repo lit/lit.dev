@@ -30775,5 +30775,1433 @@
         }
       }
     ]
+  },
+  {
+    "slug": "context",
+    "title": "Context",
+    "versionLinks": {
+      "v1": "api/lit-element/LitElement/"
+    },
+    "repo": "lit/lit",
+    "commit": "df67769d3b7c5b699d8c1dc57e15c3e91fe296c6",
+    "items": [
+      {
+        "name": "callback",
+        "kindString": "Property",
+        "flags": {
+          "isPublic": true,
+          "isReadonly": true
+        },
+        "comment": {
+          "summary": [
+            {
+              "text": "the callback that should be invoked when the context with the specified key is available"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 62,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L62"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "typeArguments": [
+            {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "Context"
+                }
+              ],
+              "name": "ContextType",
+              "location": {
+                "page": "context",
+                "anchor": "ContextType"
+              }
+            }
+          ],
+          "name": "ContextCallback",
+          "location": {
+            "page": "context",
+            "anchor": "ContextCallback"
+          }
+        },
+        "implementationOf": {
+          "type": "reference",
+          "name": "ContextRequest.callback"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 50,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L50"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextEvent.callback"
+        }
+      },
+      {
+        "name": "constructor",
+        "kindString": "Constructor",
+        "flags": {
+          "isPublic": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 60,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L60"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "new ContextEvent",
+            "kindString": "Constructor signature",
+            "typeParameter": [
+              {
+                "name": "Context",
+                "kindString": "Type parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "children": [
+                      {
+                        "name": "__context__",
+                        "kindString": "Property",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                            "line": 10,
+                            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "unknown"
+                        }
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                        "line": 10,
+                        "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "parameters": [
+              {
+                "name": "context",
+                "kindString": "Parameter",
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "the context key to request"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "reference",
+                  "name": "Context"
+                }
+              },
+              {
+                "name": "callback",
+                "kindString": "Parameter",
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "the callback that should be invoked when the context with the specified key is available"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "Context"
+                        }
+                      ],
+                      "name": "ContextType",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextType"
+                      }
+                    }
+                  ],
+                  "name": "ContextCallback",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextCallback"
+                  }
+                }
+              },
+              {
+                "name": "subscribe",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "an optional argument, if true indicates we want to subscribe to future updates"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "boolean"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "Context"
+                }
+              ],
+              "name": "ContextRequestEvent",
+              "location": {
+                "page": "context",
+                "anchor": "ContextEvent"
+              }
+            },
+            "overwrites": {
+              "type": "reference",
+              "name": "Event.constructor"
+            }
+          }
+        ],
+        "overwrites": {
+          "type": "reference",
+          "name": "Event.constructor"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 50,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L50"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextEvent.constructor"
+        }
+      },
+      {
+        "name": "context",
+        "kindString": "Property",
+        "flags": {
+          "isPublic": true,
+          "isReadonly": true
+        },
+        "comment": {
+          "summary": [
+            {
+              "text": "the context key to request"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 61,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L61"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "name": "Context"
+        },
+        "implementationOf": {
+          "type": "reference",
+          "name": "ContextRequest.context"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 50,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L50"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextEvent.context"
+        }
+      },
+      {
+        "name": "subscribe",
+        "kindString": "Property",
+        "flags": {
+          "isPublic": true,
+          "isOptional": true,
+          "isReadonly": true
+        },
+        "comment": {
+          "summary": [
+            {
+              "text": "an optional argument, if true indicates we want to subscribe to future updates"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 63,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L63"
+          }
+        ],
+        "type": {
+          "type": "intrinsic",
+          "name": "boolean"
+        },
+        "implementationOf": {
+          "type": "reference",
+          "name": "ContextRequest.subscribe"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+            "line": 50,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-request-event.ts#L50"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextEvent.subscribe"
+        }
+      },
+      {
+        "name": "attach",
+        "kindString": "Method",
+        "flags": {
+          "isPublic": true
+        },
+        "comment": {
+          "summary": [
+            {
+              "text": "Attach the ContextRoot to a given element to intercept "
+            },
+            {
+              "text": "`context-request`"
+            },
+            {
+              "text": " and\n"
+            },
+            {
+              "text": "`context-provider`"
+            },
+            {
+              "text": " events."
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+            "line": 37,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-root.ts#L37"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "attach",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "element",
+                "kindString": "Parameter",
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "an element to add event listeners to"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "reference",
+                  "name": "HTMLElement",
+                  "qualifiedName": "HTMLElement",
+                  "package": "typescript",
+                  "externalLocation": {
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+            "line": 25,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-root.ts#L25"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextRoot.attach"
+        }
+      },
+      {
+        "name": "constructor",
+        "kindString": "Constructor",
+        "signatures": [
+          {
+            "name": "new ContextRoot",
+            "kindString": "Constructor signature",
+            "type": {
+              "type": "reference",
+              "name": "ContextRoot",
+              "location": {
+                "page": "context",
+                "anchor": "ContextRoot"
+              }
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+            "line": 25,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-root.ts#L25"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextRoot.constructor"
+        }
+      },
+      {
+        "name": "detach",
+        "kindString": "Method",
+        "flags": {
+          "isPublic": true
+        },
+        "comment": {
+          "summary": [
+            {
+              "text": "Removes the ContextRoot event listeners from a given element."
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+            "line": 47,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-root.ts#L47"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "detach",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "element",
+                "kindString": "Parameter",
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "an element from which to remove event listeners"
+                    }
+                  ]
+                },
+                "type": {
+                  "type": "reference",
+                  "name": "HTMLElement",
+                  "qualifiedName": "HTMLElement",
+                  "package": "typescript",
+                  "externalLocation": {
+                    "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+            "line": 25,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-root.ts#L25"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextRoot.detach"
+        }
+      },
+      {
+        "name": "constructor",
+        "kindString": "Constructor",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 28,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L28"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "new ContextConsumer",
+            "kindString": "Constructor signature",
+            "typeParameter": [
+              {
+                "name": "Context",
+                "kindString": "Type parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "children": [
+                      {
+                        "name": "__context__",
+                        "kindString": "Property",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                            "line": 10,
+                            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "unknown"
+                        }
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                        "line": 10,
+                        "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "HostElement",
+                "kindString": "Type parameter",
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "HostElement"
+                    }
+                  ],
+                  "name": "ReactiveElement",
+                  "qualifiedName": "ReactiveElement",
+                  "package": "@lit/reactive-element"
+                }
+              }
+            ],
+            "parameters": [
+              {
+                "name": "host",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "name": "HostElement"
+                }
+              },
+              {
+                "name": "context",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "name": "Context"
+                }
+              },
+              {
+                "name": "callback",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                        "line": 31,
+                        "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L31"
+                      }
+                    ],
+                    "signatures": [
+                      {
+                        "name": "__type",
+                        "kindString": "Call signature",
+                        "parameters": [
+                          {
+                            "name": "value",
+                            "kindString": "Parameter",
+                            "type": {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "name": "Context"
+                                }
+                              ],
+                              "name": "ContextType",
+                              "location": {
+                                "page": "context",
+                                "anchor": "ContextType"
+                              }
+                            }
+                          },
+                          {
+                            "name": "dispose",
+                            "kindString": "Parameter",
+                            "flags": {
+                              "isOptional": true
+                            },
+                            "type": {
+                              "type": "reflection",
+                              "declaration": {
+                                "name": "__type",
+                                "kindString": "Type literal",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                                    "line": 33,
+                                    "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L33"
+                                  }
+                                ],
+                                "signatures": [
+                                  {
+                                    "name": "__type",
+                                    "kindString": "Call signature",
+                                    "type": {
+                                      "type": "intrinsic",
+                                      "name": "void"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "void"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "subscribe",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "boolean"
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "Context"
+                },
+                {
+                  "type": "reference",
+                  "name": "HostElement"
+                }
+              ],
+              "name": "ContextConsumer",
+              "location": {
+                "page": "context",
+                "anchor": "ContextConsumer"
+              }
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 19,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L19"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextConsumer.constructor"
+        }
+      },
+      {
+        "name": "host",
+        "kindString": "Property",
+        "flags": {
+          "isProtected": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 29,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L29"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "name": "HostElement"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 19,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L19"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextConsumer.host"
+        }
+      },
+      {
+        "name": "hostConnected",
+        "kindString": "Method",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L42"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "hostConnected",
+            "kindString": "Call signature",
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "implementationOf": {
+              "type": "reference",
+              "name": "ReactiveController.hostConnected"
+            }
+          }
+        ],
+        "implementationOf": {
+          "type": "reference",
+          "name": "ReactiveController.hostConnected"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 19,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L19"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextConsumer.hostConnected"
+        }
+      },
+      {
+        "name": "hostDisconnected",
+        "kindString": "Method",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 45,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L45"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "hostDisconnected",
+            "kindString": "Call signature",
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "implementationOf": {
+              "type": "reference",
+              "name": "ReactiveController.hostDisconnected"
+            }
+          }
+        ],
+        "implementationOf": {
+          "type": "reference",
+          "name": "ReactiveController.hostDisconnected"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 19,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L19"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextConsumer.hostDisconnected"
+        }
+      },
+      {
+        "name": "value",
+        "kindString": "Property",
+        "flags": {
+          "isPublic": true,
+          "isOptional": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 26,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L26"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "typeArguments": [
+            {
+              "type": "reference",
+              "name": "Context"
+            }
+          ],
+          "name": "ContextType",
+          "location": {
+            "page": "context",
+            "anchor": "ContextType"
+          }
+        },
+        "defaultValue": "undefined",
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 19,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-consumer.ts#L19"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextConsumer.value"
+        }
+      },
+      {
+        "name": "addCallback",
+        "kindString": "Method",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+            "line": 53,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/value-notifier.ts#L53"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "addCallback",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "callback",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      ],
+                      "name": "ContextType",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextType"
+                      }
+                    }
+                  ],
+                  "name": "ContextCallback",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextCallback"
+                  }
+                }
+              },
+              {
+                "name": "subscribe",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "intrinsic",
+                  "name": "boolean"
+                }
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.addCallback"
+            }
+          }
+        ],
+        "inheritedFrom": {
+          "type": "reference",
+          "name": "ValueNotifier.addCallback"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.addCallback"
+        }
+      },
+      {
+        "name": "clearCallbacks",
+        "kindString": "Method",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+            "line": 64,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/value-notifier.ts#L64"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "clearCallbacks",
+            "kindString": "Call signature",
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.clearCallbacks"
+            }
+          }
+        ],
+        "inheritedFrom": {
+          "type": "reference",
+          "name": "ValueNotifier.clearCallbacks"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.clearCallbacks"
+        }
+      },
+      {
+        "name": "constructor",
+        "kindString": "Constructor",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 46,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L46"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "new ContextProvider",
+            "kindString": "Constructor signature",
+            "typeParameter": [
+              {
+                "name": "T",
+                "kindString": "Type parameter",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "kindString": "Type literal",
+                    "children": [
+                      {
+                        "name": "__context__",
+                        "kindString": "Property",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                            "line": 10,
+                            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "unknown"
+                        }
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                        "line": 10,
+                        "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "parameters": [
+              {
+                "name": "host",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "name": "ReactiveElement",
+                  "qualifiedName": "ReactiveElement",
+                  "package": "@lit/reactive-element"
+                }
+              },
+              {
+                "name": "context",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "name": "T"
+                }
+              },
+              {
+                "name": "initialValue",
+                "kindString": "Parameter",
+                "flags": {
+                  "isOptional": true
+                },
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "T"
+                    }
+                  ],
+                  "name": "ContextType",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextType"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "T"
+                }
+              ],
+              "name": "ContextProvider",
+              "location": {
+                "page": "context",
+                "anchor": "ContextProvider"
+              }
+            },
+            "overwrites": {
+              "type": "reference",
+              "name": "ValueNotifier<ContextType<T>>.constructor"
+            }
+          }
+        ],
+        "overwrites": {
+          "type": "reference",
+          "name": "ValueNotifier<ContextType<T>>.constructor"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.constructor"
+        }
+      },
+      {
+        "name": "host",
+        "kindString": "Property",
+        "flags": {
+          "isProtected": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 47,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L47"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "name": "ReactiveElement",
+          "qualifiedName": "ReactiveElement",
+          "package": "@lit/reactive-element"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.host"
+        }
+      },
+      {
+        "name": "hostConnected",
+        "kindString": "Method",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 76,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L76"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "hostConnected",
+            "kindString": "Call signature",
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "implementationOf": {
+              "type": "reference",
+              "name": "ReactiveController.hostConnected"
+            }
+          }
+        ],
+        "implementationOf": {
+          "type": "reference",
+          "name": "ReactiveController.hostConnected"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.hostConnected"
+        }
+      },
+      {
+        "name": "onContextRequest",
+        "kindString": "Method",
+        "flags": {
+          "isPublic": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 56,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L56"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "onContextRequest",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "ev",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "kindString": "Type literal",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "kindString": "Property",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                                "line": 10,
+                                "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            }
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-key.ts",
+                            "line": 10,
+                            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/context-key.ts#L10"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "name": "ContextRequestEvent",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextEvent"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            }
+          }
+        ],
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.onContextRequest"
+        }
+      },
+      {
+        "name": "setValue",
+        "kindString": "Method",
+        "flags": {
+          "isPublic": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+            "line": 33,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/value-notifier.ts#L33"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "setValue",
+            "kindString": "Call signature",
+            "parameters": [
+              {
+                "name": "v",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "T"
+                    }
+                  ],
+                  "name": "ContextType",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextType"
+                  }
+                }
+              },
+              {
+                "name": "force",
+                "kindString": "Parameter",
+                "type": {
+                  "type": "intrinsic",
+                  "name": "boolean"
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.setValue"
+            }
+          }
+        ],
+        "inheritedFrom": {
+          "type": "reference",
+          "name": "ValueNotifier.setValue"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.setValue"
+        }
+      },
+      {
+        "name": "updateObservers",
+        "kindString": "Method",
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+            "line": 47,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/value-notifier.ts#L47"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "updateObservers",
+            "kindString": "Call signature",
+            "type": {
+              "type": "intrinsic",
+              "name": "void"
+            },
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.updateObservers"
+            }
+          }
+        ],
+        "inheritedFrom": {
+          "type": "reference",
+          "name": "ValueNotifier.updateObservers"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.updateObservers"
+        }
+      },
+      {
+        "name": "value",
+        "kindString": "Accessor",
+        "flags": {
+          "isPublic": true
+        },
+        "sources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+            "line": 26,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/value-notifier.ts#L26"
+          },
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+            "line": 29,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/value-notifier.ts#L29"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "name": "T"
+        },
+        "getSignature": {
+          "name": "value",
+          "kindString": "Get signature",
+          "type": {
+            "type": "reference",
+            "name": "T"
+          },
+          "inheritedFrom": {
+            "type": "reference",
+            "name": "ValueNotifier.value"
+          }
+        },
+        "setSignature": {
+          "name": "value",
+          "kindString": "Set signature",
+          "parameters": [
+            {
+              "name": "v",
+              "kindString": "Parameter",
+              "type": {
+                "type": "reference",
+                "name": "T"
+              }
+            }
+          ],
+          "type": {
+            "type": "intrinsic",
+            "name": "void"
+          },
+          "inheritedFrom": {
+            "type": "reference",
+            "name": "ValueNotifier.value"
+          }
+        },
+        "inheritedFrom": {
+          "type": "reference",
+          "name": "ValueNotifier.value"
+        },
+        "entrypointSources": [
+          {
+            "fileName": "../../../../packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 42,
+            "url": "https://github.com/lit/lit/blob/df67769/packages/labs/context/src/lib/controllers/context-provider.ts#L42"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider.value"
+        }
+      }
+    ]
   }
 ]

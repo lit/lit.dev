@@ -62,7 +62,7 @@ const symbolToExternalLink = new Map([
  * Data consumed by lit.dev API docs Eleventy template. Each item is a separate
  * page.
  */
-type Pages = Array<{
+export type Pages = Array<{
   slug: string;
   title: string;
   items: Array<DeclarationReflection>;
@@ -72,7 +72,7 @@ type Pages = Array<{
  * Map from $symbol to the location it appears in our docs. If there is more
  * than one item, then the symbol is ambiguous.
  */
-type SymbolMap = {
+export type SymbolMap = {
   [symbol: string]: Array<Location>;
 };
 
