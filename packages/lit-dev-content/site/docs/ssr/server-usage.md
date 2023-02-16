@@ -35,7 +35,7 @@ const result = render(html`
 `);
 ```
 
-To render an single element, you render a template that only contains that element:
+To render a single element, you render a template that only contains that element:
 
 ```ts
 const result = render(html`<my-element></my-element>`);
@@ -45,11 +45,11 @@ const result = render(html`<my-element></my-element>`);
 
 `render()` returns a `RenderResult`: an iterable of values that can be streamed or concatenated into a string.
 
-A `RenderResult` can contain strings, nested `RenderResult`s, or Promises of strings or `RenderResult`s. Not all RenderResults will contain Promises - those can occur when custom elements preform async tasks, like fetching data - but because it can contain Promises, processing a `RenderResult` into a string or an HTTP response is _potentially_ an async operation.
+A `RenderResult` can contain strings, nested render results, or Promises of strings or render results. Not all render results contain Promises—those can occur when custom elements perform async tasks, like fetching data—but because a `RenderResult` can contain Promises, processing it into a string or an HTTP response is _potentially_ an async operation.
 
-Even though `RenderResult` can contain Promises, it is still a sync iterable, not an async iterable. This is because sync iterables are faster than async iterables and many server renders will not require async rendering, and so shouldn't pay the overhead of an async iterable.
+Even though a `RenderResult` can contain Promises, it is still a sync iterable, not an async iterable. This is because sync iterables are faster than async iterables and many server renders will not require async rendering, and so shouldn't pay the overhead of an async iterable.
 
-Allowing Promises in a sync iterable creates a kind of hybrid sync / async iteration protocol. Consumers of `RenderResult`s must check each value to see if it is a Promise or iterable and wait or recurse as needed.
+Allowing Promises in a sync iterable creates a kind of hybrid sync / async iteration protocol. When consuming a `RenderResult`, you must check each value to see if it is a Promise or iterable and wait or recurse as needed.
 
 `@lit-labs/ssr` contains three utilities to do this for you:
 
@@ -59,7 +59,7 @@ Allowing Promises in a sync iterable creates a kind of hybrid sync / async itera
 
 #### `RenderResultReadable`
 
-`RenderResultReadable` - a Node `Readable` stream implementation that provides values from a `RenderResult`. This can be piped into a `Writable` stream, or passed to web server frameworks like Koa.
+`RenderResultReadable` is a Node `Readable` stream implementation that provides values from a `RenderResult`. This can be piped into a `Writable` stream, or passed to web server frameworks like Koa.
 
 This is the preferred way to handle SSR results when integrating with a streaming HTTP server or other stream-supprting API.
 
@@ -94,7 +94,7 @@ const html = await collectResult(result);
 
 `collectResultSync(result: RenderResult): Promise<string>`
 
-`collectResultSync()` is a sync function that takes a RenderResult and joins it into a string. It recurses into nested iterables, but _throws_ when it encounters a Promise.
+`collectResultSync()` is a sync function that takes a `RenderResult` and joins it into a string. It recurses into nested iterables, but _throws_ when it encounters a Promise.
 
 Because this function doesn't support async rendering, it's recommended to only use it when you can't await async functions.
 
@@ -109,12 +109,12 @@ const html = collectResultSync(result);
 
 ### Render options
 
-`render()`'s second argument is a `RenderInfo` object that is used to pass options and current render state to components and sub-templates.
+The second argument to `render()` is a `RenderInfo` object that is used to pass options and current render state to components and sub-templates.
 
 The main options that can be set by callers are:
 
 * `deferHydration`: controls whether the top-level custom elements have a `defer-hydration` attribute added to signal that the elements should not automatically hydrate. This defaults to `false` so that top-level elements _do_ automatically hydrate.
-* `elementRenderers`: An array of `ElementRenderer` classes to use for rendering custom elements. By default this contains `LitElementRenderer` to render Lit elements. If can be set to include custom `ElementRenderer`s (documentation forthcoming), or set to an empty array to disable custom element rendering altogether.
+* `elementRenderers`: An array of `ElementRenderer` classes to use for rendering custom elements. By default this contains `LitElementRenderer` to render Lit elements. It can be set to include custom `ElementRenderer` instances (documentation forthcoming), or set to an empty array to disable custom element rendering altogether.
 
 ## Running SSR in a VM module or the global scope
 
@@ -176,7 +176,7 @@ There are three ways to load the global DOM shim:
   import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
   ```
 
-Note: Loading the DOM shim globally introduces `window` into the global space which some libraries might look for in determining whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
+Note: Loading the DOM shim globally introduces `window` into the global scope. Some libraries might use the presence of `window` to determine whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
 
 ### VM Module
 Lit also provide a way to load application code into, and render from, a separate VM context with its own global object.
