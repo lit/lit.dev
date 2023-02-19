@@ -253,7 +253,7 @@ export const MyMixin = <T extends LitElementConstructor>(superClass: T) => {
 Not supported:
 ```ts
 export const MyMixin = <T extends LitElementConstructor>(superClass: T) =>
-  // ❌ Returning class expression direcly using arrow-function shorthand
+  // ❌ Returning class expression directly using arrow-function shorthand
   class extends superClass {
     @property()
     mode = 'on';
