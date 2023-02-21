@@ -430,12 +430,12 @@ A ReactiveController which adds context consuming behavior to a custom element b
 **Import**:
 
 ```ts
-import {ContextProvider} from '@lit-labs/context';
+import {ContextConsumer} from '@lit-labs/context';
 ```
 
 **Constructor**:
 ```ts
-ContextProvider(
+ContextConsumer(
   host: HostElement,
   context: C,
   callback?: (value: ContextType<C>, dispose?: () => void) => void,
