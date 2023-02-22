@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css} from 'lit';
+import {LitElement, html, css, nothing} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 /**
@@ -20,6 +20,9 @@ export class LitDevIconButton extends LitElement {
    */
   @property({type: Boolean, reflect: true})
   disabled = false;
+
+  @property({type: String, attribute: 'button-title'})
+  buttonTitle = '';
 
   static override styles = css`
     :host {
@@ -67,7 +70,10 @@ export class LitDevIconButton extends LitElement {
 
   override render() {
     return html`
-      <button ?disabled=${this.disabled}>
+      <button
+        title=${this.buttonTitle || (nothing as unknown as string)}
+        ?disabled=${this.disabled}
+      >
         <slot></slot>
       </button>
     `;

@@ -47,7 +47,7 @@
     "jsdom": "^17.0.0",
     "minisearch": "^3.0.4",
     "outdent": "^0.8.0",
-    "playwright": "^1.8.0",
+    "playwright": "^1.28.1",
     "source-map": "^0.8.0-beta.0",
     "strip-comments": "^2.0.1",
     "striptags": "^3.2.0",

@@ -118,26 +118,28 @@ The main options that can be set by callers are:
 
 ## Running SSR in a VM module or the global scope
 
-In order to render custom elements in Node, they must first be defined and registered with the global `customElements` API, which is a browser-only feature. As such, Lit SSR includes a DOM shim that provides the minimal DOM APIs necessary to render Lit on the server. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)
+In order to render custom elements in Node, they must first be defined and registered with the global `customElements` API, which is a browser-only feature. As such, when Lit runs in Node, it automatically uses a set of minimal DOM APIs necessary to render Lit on the server, and defines the `customElements` global. (For a list of emulated APIs, see [DOM emulation](/docs/ssr/dom-emulation).)
 
-Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module). VM modules utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) API, which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how the DOM shim is loaded.
+Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module). VM modules utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) API, which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how global state, such as the custom elements registry, are shared.
 
-When rendering in the global scope, shimmed DOM globals (like `window`, `HTMLElement`, `customElements`, etc.) are added directly to the Node.js global scope. This may cause unintended behaviors for other libraries. For instance, some libraries try to detect the running environment by checking for the presence of `window` in the global scope. In addition, all render requests also share the same global custom element registry, and any data that might be stored globally.
+When rendering in the global scope, a single shared `customElements` registry will be defined and shared across all render requests, along with any other global state that your component code might set.
 
-Rendering with VM modules allows each render request to have its own context with a separate global from the main Node process. DOM emulation is only installed within that context, any custom elements being registered are registered in that context, and any global data is contained within that context. VM modules are an experimental Node feature.
+Rendering with VM modules allows each render request to have its own context with a separate global from the main Node process. The `customElements` registry will only be installed within that context, and other global state will also be isolated to that context. VM modules are an experimental Node feature.
 
-| Global | VM Module |
-|-|-|
-| Pros:<ul><li>Easy to use. Can import component modules directly and call `render()` with templates.</li></ul>Cons:<ul><li>Introduces DOM shim to global scope, potentially causing issues with other libraries.</li><li>Custom elements are registered in a shared registry across different render requests.</li></ul> | Pros:<ul><li>Does not introduce DOM shim to the global scope.</li><li>Isolates contexts across different render requests.</li></ul>Cons:<ul><li>Less intuitive usage. Need to write and specify a module file with a function to call.</li><li>Slower due the module graph needing to be re-evaluated per request.</li></ul> |
+| Global                                                                                                                                                                                                                    | VM Module                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pros:<ul><li>Easy to use. Can import component modules directly and call `render()` with templates.</li></ul>Cons:<ul><li>Custom elements are registered in a shared registry across different render requests.</li></ul> | Pros:<ul><li>Isolates contexts across different render requests.</li></ul>Cons:<ul><li>Less intuitive usage. Need to write and specify a module file with a function to call.</li><li>Slower due the module graph needing to be re-evaluated per request.</li></ul> |
 
 ### Global Scope
 
 When using the global scope, you can just call `render()` with a template to get a `RenderResult` and pass that to your server:
 
 ```js
-import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
+import {render} from '@lit-labs/ssr';
 import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
 import {myTemplate} from './my-template.js';
+
+// ...
 
 // within a Koa middleware, for example
 app.use(async (ctx) => {
@@ -147,38 +149,8 @@ app.use(async (ctx) => {
 });
 ```
 
-Using the global scope requires patching a minimal [DOM shim](/docs/ssr/dom-emulation) onto `globalThis` which is necessary for `lit` and component definitions to be loaded in Node. It must be imported before any `lit` libraries or component.
-
-There are three ways to load the global DOM shim:
-
-* Manual installation
-
-  The `lib/dom-shim.js` module exports a `installWindowOnGlobal()` function that installs the shim.
-
-  ```ts
-  import {installWindowOnGlobal} from '@lit-labs/ssr/lib/dom-shim.js';
-  installWindowOnGlobal();
-  ```
-
-* Automatic installation
-
-  The `lib/install-global-dom-shim.js` module automatically installs the shim as a side-effect, so you only need to import it:
-
-  ```ts
-  import '@lit-labs/ssr/lib/install-global-dom-shim.js';
-  ```
-
-* Automatic installation with a `render` export
-
-  The `@lit-labs/ssr/lib/render-with-global-dom-shim.js` module automatically installs the DOM shim and exports `render` so that you only need one import to render a template:
-
-  ```ts
-  import {render} from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
-  ```
-
-Note: Loading the DOM shim globally introduces `window` into the global scope. Some libraries might use the presence of `window` to determine whether the code is running in a browser environment. If this becomes an issue, consider using SSR with [VM Module](#vm-module) instead.
-
 ### VM Module
+
 Lit also provide a way to load application code into, and render from, a separate VM context with its own global object.
 
 ```js
@@ -191,22 +163,50 @@ export const renderTemplate = (someData) => {
 };
 ```
 
-```js
+{% switchable-sample %}
+
+```ts
 // server.js
-import {renderModule} from '@lit-labs/ssr/lib/render-module.js';
+import {ModuleLoader} from '@lit-labs/ssr/lib/module-loader.js';
 import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
+
+// ...
 
 // within a Koa middleware, for example
 app.use(async (ctx) => {
-  const ssrResult = await renderModule(
+  const moduleLoader = new ModuleLoader();
+  const importResult = await moduleLoader.importModule(
     './render-template.js',  // Module to load in VM context
-    import.meta.url,         // Referrer URL for module
-    'renderTemplate',        // Function to call
-    [{some: "data"}]         // Arguments to function
+    import.meta.url          // Referrer URL for module
   );
+  const {renderTemplate} = importResult.module.namespace
+    as typeof import('./render-template.js')
+  const ssrResult = await renderTemplate({some: "data"});
   ctx.type = 'text/html';
   ctx.body = new RenderResultReadable(ssrResult);
 });
 ```
+
+```js
+// server.js
+import {ModuleLoader} from '@lit-labs/ssr/lib/module-loader.js';
+
+// ...
+
+// within a Koa middleware, for example
+app.use(async (ctx) => {
+  const moduleLoader = new ModuleLoader();
+  const importResult = await moduleLoader.importModule(
+    './render-template.js',  // Module to load in VM context
+    import.meta.url          // Referrer URL for module
+  );
+  const {renderTemplate} = importResult.module.namespace;
+  const ssrResult = await renderTemplate({some: "data"});
+  ctx.type = 'text/html';
+  ctx.body = Readable.from(ssrResult);
+});
+```
+
+{% endswitchable-sample %}
 
 Note: Using this feature requires Node 14+ and passing the `--experimental-vm-modules` flag to Node because of its use of experimental VM modules for creating a module-compatible VM context.
