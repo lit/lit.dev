@@ -18,7 +18,7 @@ The signature of the render function is:
 render(value: unknown, renderInfo?: Partial<RenderInfo>): RenderResult
 ```
 
-Typically `value` is a TemplateResult produced by a Lit template expression, like:
+Typically `value` is a `TemplateResult` produced by a Lit template expression, like:
 
 ```ts
 html`<h1>Hello</h1>`
