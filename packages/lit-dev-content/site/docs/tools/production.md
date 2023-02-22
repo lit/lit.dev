@@ -29,7 +29,7 @@ Lit projects benefit from the same build-time optimizations as other web project
 In addition, note that because Lit templates are defined inside JavaScript template string literals, they don't get processed by standard HTML minifiers. Adding a plugin that minifies the HTML in template string literals can result in a modest decrease in code size. Several packages are available to perform this optimization:
 
 *   Rollup: [rollup-plugin-minify-html-literals](https://www.npmjs.com/package/rollup-plugin-minify-html-literals?activeTab=readme)
-*   Webpack: [minify-template-literal-loader](https://www.npmjs.com/package/minify-template-literal-loader)
+*   Webpack: [minify-html-literals-loader](https://www.npmjs.com/package/minify-html-literals-loader)
 
 
 ## Building with Rollup {#building-with-rollup}
