@@ -6,7 +6,11 @@ eleventyNavigation:
   order: 1
 ---
 
-The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides Web Component and Reactive Controller integration for React.
+The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides web component and reactive controller integration for React. While React can render web components as-is, there are a few gaps in the developer experience. The `@lit-labs/react` package provides two main entry points:
+
+-   `createComponent()` creates a React component that _wraps_ an existing web component. The wrapper allows you to set props on the component and add event listeners to the component like you would any other React component.
+
+-   `useController()` lets you use a Lit reactive controller as a React hook.  
 
 ## Installation
 
@@ -16,12 +20,11 @@ From inside your project folder, run:
 $ npm install @lit-labs/react
 ```
 
-## `createComponent`
+## createComponent
 
-While React can render Web Components, it [cannot](https://custom-elements-everywhere.com/libraries/react/results/results.html)
-easily pass React props to custom element properties or event listeners.
+While React can render web components, you can't easily pass React props to custom element properties or add event listeners to custom elements. (For more information on the limitations of React's web component integration, see [Custom Elements Everywhere](https://custom-elements-everywhere.com/libraries/react/results/results.html).)
 
-This package provides a utility wrapper `createComponent` which makes a
+This package provides a `createComponent()` function, which makes a
 React component wrapper for a custom element class. The wrapper correctly
 passes React `props` to properties accepted by the custom element and listens
 for events dispatched by the custom element.
@@ -29,13 +32,13 @@ for events dispatched by the custom element.
 ### How it works
 
 For properties, the wrapper interrogates the web component class to discover
-its available properties. Then any React `props` passed with property names are
+its available properties. Then any React props passed with property names are
 set on the custom element as properties and not attributes.
 
 For events, `createComponent` accepts a mapping of React event prop names
 to events fired by the custom element. For example passing `{onfoo: 'foo'}`
-means a function passed via a `prop` named `onfoo` will be called when the
-custom element fires the foo event with the event as an argument.
+means a function passed via a prop named `onfoo` will be called when the
+custom element fires the `foo` event with the event as an argument.
 
 ### Usage
 
@@ -112,20 +115,20 @@ careful to use the corresponding type dispatched or bubbled from the
 webcomponent. Incorrect types might result in additional properties, missing
 properties, or properties of the wrong type.
 
-## `useController`
+## useController
 
-Reactive Controllers allow developers to hook a component's lifecycle to bundle
+Reactive controllers allow developers to hook in to a component's lifecycle to bundle
 together state and behavior related to a feature. They are similar to React
 hooks in the user cases and capabilities, but are plain JavaScript objects
 instead of functions with hidden state.
 
-`useController` is a React hook that create and stores a Reactive Controller
+`useController()` is a React hook that create and stores a reactive controller
 and drives its lifecycle using React hooks like `useState` and
 `useLayoutEffect`.
 
 ### How it works
 
-`useController` uses `useState` to create and store an instance of a controller and a `ReactControllerHost`. It then calls the controller's lifecycle from the hook body and `useLayoutEffect` callbacks, emulating the `ReactiveElement` lifecycle as closely as possible. `ReactControllerHost` implements `addController` so that controller composition works and nested controller lifecycles are called correctly. `ReactControllerHost` also implements `requestUpdate` by calling a `useState` setter, so that a controller with new renderable state can cause its host component to re-render.
+`useController()` uses `useState` to create and store an instance of a controller and a `ReactControllerHost`. It then calls the controller's lifecycle from the hook body and `useLayoutEffect` callbacks, emulating the `ReactiveElement` lifecycle as closely as possible. `ReactControllerHost` implements `addController` so that controller composition works and nested controller lifecycles are called correctly. `ReactControllerHost` also implements `requestUpdate` by calling a `useState` setter, so that a controller with new renderable state can cause its host component to re-render.
 
 Controller timings are implemented as follows:
 
