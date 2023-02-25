@@ -169,7 +169,7 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 <div class="alert alert-info">
 
-**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`. When using a Lit expression as a child of a custom element, make sure to use a non-rendering value when appropriate so that any slot fallback content is rendered. See [non-rendering values](/docs/templates/expressions/#non-rendering) for more information.
+**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`. When using a Lit expression as a child of a custom element, make sure to use a non-rendering value when appropriate so that any slot fallback content is rendered. See [non-rendering values](/docs/templates/expressions/#removing-child) for more information.
 
 </div>
 
