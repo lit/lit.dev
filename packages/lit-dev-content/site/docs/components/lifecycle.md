@@ -468,7 +468,7 @@ This example shows an [async function](https://developer.mozilla.org/en-US/docs/
 
 Implements the reactive update cycle, calling the other methods, like `shouldUpdate()`, `update()`, and `updated()`.
 
-Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously. (If there is no update pending, you can call `requestUpdate()` followed by `performUpdate() to force a synchronous update.)
+Call `performUpdate()` to immediately process a pending update. This should generally not be needed, but it can be done in rare cases when you need to update synchronously. (If there is no update pending, you can call `requestUpdate()` followed by `performUpdate()` to force a synchronous update.)
 
 {% aside "info" %}
 
