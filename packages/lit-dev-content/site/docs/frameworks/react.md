@@ -61,14 +61,22 @@ After defining the React component, you can use it just as you would any other R
 <MyElementComponent
   active={isActive}
   onActivate={(e) => setIsActive(e.active)}
+  onChange={handleChange}
 />
 ```
 
-#### Typescript
+#### Options
 
-Event callback types can be refined by type casting with `EventName`. The type cast helps `createComponent` correlate typed callbacks to property names in the event property map.
+`createComponent` takes an options object with the following properties:
 
-Non-casted event names will fallback to an event type of `Event`.
+- `tagName`: The custom element's tag name.
+- `elementClass`: The custom element class.
+- `react`: The imported `React` object. This is used to create the wrapper component with the user supplied `React`. This can also be an import of `preact-compat`.
+- `events`: An object that maps an event handler prop to an event name fired by the custom element.
+
+#### Typing event handler props
+
+The parameter type for the event handler prop can be refined by type casting the event name in the `events` options with the provided `EventName` utility type. Non-casted event names will fall back to the `Event` type.
 
 ```ts
 import type {EventName} from '@lit-labs/react';
@@ -88,22 +96,18 @@ export const MyElementComponent = createComponent({
 });
 ```
 
-Event callbacks will match their type cast. In the example below, a `PointerEvent` is expected in the `onClick` callback.
+With the casting done above, a `PointerEvent` is expected for the parameter of the function provided to the `onClick` prop.
 
 ```tsx
 <MyElementComponent
   onClick={(e: PointerEvent) => {
-    console.log('DOM PointerEvent called!');
+    // handle click
   }}
   onChange={(e: Event) => {
-    console.log(e);
+    // handle change
   }}
 />
 ```
-
-{% aside "info" "no-header" %}
-This type casting is not associated to any component property. Be careful to use the corresponding type dispatched or bubbled from the webcomponent. Incorrect types might result in additional properties, missing properties, or properties of the wrong type.
-{% endaside %}
 
 ### How it works
 
