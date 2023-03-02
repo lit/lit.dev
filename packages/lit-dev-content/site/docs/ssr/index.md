@@ -2,7 +2,7 @@
 title: Server rendering
 eleventyNavigation:
   key: Server rendering
-  order: 8
+  order: 7
   labs: true
 ---
 

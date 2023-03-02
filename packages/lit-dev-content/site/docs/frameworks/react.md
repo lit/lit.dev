@@ -2,7 +2,7 @@
 title: React
 eleventyNavigation:
   key: React
-  parent: Framework integration
+  parent: Frameworks
   order: 1
   labs: true
 ---

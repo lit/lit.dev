@@ -1,8 +1,8 @@
 ---
-title: Framework integration
+title: Frameworks
 eleventyNavigation:
-  key: Framework integration
-  order: 12
+  key: Frameworks
+  order: 8
 ---
 
 <!-- This file exists only to create a section heading.
