@@ -9,9 +9,23 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
-The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides web component and reactive controller integration for React. While React can render web components as-is, there are a few gaps in the developer experience. You can't easily pass React props to custom element properties or add event listeners to custom elements. (For more information on the limitations of React's web component integration, see [Custom Elements Everywhere](https://custom-elements-everywhere.com/libraries/react/results/results.html).)
+The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../composition/controllers/).
 
-The `@lit-labs/react` package provides two main entry points:
+The React component wrapper enables setting properties on custom elements (instead of just attributes), mapping DOM events to React-style callbacks, and enables correct type-checking in JSX by TypeScript.
+
+The wrappers are targeted at two different audiences:
+- Users of web components can wrap components and controllers for their own use in their own React projects.
+- Vendors of components can publish React wrappers so that their React users have idiomatic versions of their components.
+
+### Why are wrappers needed?
+
+React can already render web components, since custom elements are just HTML elements and React knows how to render HTML. But React makes some assumptions about HTML elements that don't always hold for custom elements, and it treats lower-case tag names differently from upper-case component names in ways that can make custom elements harder than necessary to use.
+
+For instance, React assumes that all JSX properties map to HTML element attributes, and provides no way to set properties. This makes it difficult to pass complex data (like objects, arrays, or functions) to web components. React also assumes that all DOM events have corresponding "event properties" (`onclick`, `onmousemove`, etc), and uses those instead of calling `addEventListener()`. This means that to properly use more complex web components you often have to use `ref()` and imperative code. (For more information on the limitations of React's web component integration, see [Custom Elements Everywhere](https://custom-elements-everywhere.com/libraries/react/results/results.html).)
+
+React is working on fixes to these issues, but in the meantime, our wrappers take care of setting properties and listening to events for you.
+
+The `@lit-labs/react` package provides two main exports:
 
 -   `createComponent()` creates a React component that _wraps_ an existing web component. The wrapper allows you to set props on the component and add event listeners to the component like you would any other React component.
 
@@ -23,7 +37,13 @@ The `createComponent()` function makes a React component wrapper for a custom el
 
 ### How it works
 
-For properties, the wrapper interrogates the web component class to discover its available properties. Then any React props passed with property names are set on the custom element as properties and not attributes.
+During a render, the wrapper receives props from React and based on the options and the custom element class, changes the behavior of some of the props:
+
+* If a prop name is a property on the custom element, as determined with an `in` check, the wrapper sets that property on the element to the prop value
+* If a prop name is an event name passed to the `events` option, the prop value is passed to `addEventListener()` with the name of the event.
+* Otherwise the prop is passed to React's `createElement()` to be rendered as an attribute.
+
+Both properties and events are added in `componentDidMount()` and `componentDidUpdate()` callbacks, because the element must have already been instantiated by React in order to access it.
 
 For events, `createComponent()` accepts a mapping of React event prop names to events fired by the custom element. For example passing `{onFoo: 'foo'}` means a function passed via a prop named `onFoo` will be called when the custom element fires the `foo` event with the event as an argument.
 
