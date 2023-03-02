@@ -9,7 +9,7 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
-The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../composition/controllers/).
+The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../../composition/controllers/).
 
 The React component wrapper enables setting properties on custom elements (instead of just attributes), mapping DOM events to React-style callbacks, and enables correct type-checking in JSX by TypeScript.
 
