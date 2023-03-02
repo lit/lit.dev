@@ -128,9 +128,7 @@ together state and behavior related to a feature. They are similar to React
 hooks in the user cases and capabilities, but are plain JavaScript objects
 instead of functions with hidden state.
 
-`useController()` is a React hook that creates and stores a reactive controller
-and drives its lifecycle using React hooks like `useState` and
-`useLayoutEffect`.
+`useController()` lets you make React hooks out of reactive controllers allowing for the sharing of state and behaviors across web components and React.
 
 ### Usage
 
@@ -139,13 +137,12 @@ import React from 'react';
 import {useController} from '@lit-labs/react/use-controller.js';
 import {MouseController} from '@example/mouse-controller';
 
-// Write a React hook function:
+// Write a custom React hook function:
 const useMouse = () => {
   // Use useController to create and store a controller instance:
   const controller = useController(React, (host) => new MouseController(host));
-  // Return the controller itself
-  // or return a custom object for a more React-idiomatic API:
-  return controller.position;
+  // Return relevant data for consumption by the component:
+  return controller.pos;
 };
 
 // Now use the new hook in a React component:
@@ -159,6 +156,8 @@ const Component = (props) => {
   );
 };
 ```
+
+See the [mouse controller example](../../composition/controllers/#example:-mousemovecontroller) in the reactive controller docs for its implementation.
 
 ### How it works
 
