@@ -65,6 +65,12 @@ After defining the React component, you can use it just as you would any other R
 />
 ```
 
+{% aside "positive" "no-header" %}
+
+See it in action in the [React playground examples](/playground/#sample=examples/react-basics).
+
+{% endaside %}
+
 #### Options
 
 `createComponent` takes an options object with the following properties:
@@ -73,6 +79,36 @@ After defining the React component, you can use it just as you would any other R
 - `elementClass`: The custom element class.
 - `react`: The imported `React` object. This is used to create the wrapper component with the user supplied `React`. This can also be an import of `preact-compat`.
 - `events`: An object that maps an event handler prop to an event name fired by the custom element.
+
+#### Using slots
+
+Children of component created with `createComponent()` will render to the default slot of the custom element.
+
+```jsx
+<MyElementComponent>
+  <p>This will render in the default slot.</p>
+</MyElementComponent>
+```
+
+To render the child to a specific named slot, the standard `slot` attribute can be added.
+
+```jsx
+<MyElementComponent>
+  <p slot="foo">This will render in the slot named "foo".</p>
+</MyElementComponent>
+```
+
+Since React components cannot have a `slot` attribute, they will need to be wrapped with another container element. Giving it a `display: contents;` style will make this container disappear.
+
+```jsx
+<MyElementComponent>
+  <div slot="foo" style="display: contents;">
+    <ReactComponent />
+  </div>
+</MyElementComponent>
+```
+
+Try it out in the [React slots playground example](/playground/#sample=examples/react-slots).
 
 #### Typing event handler props
 
@@ -167,15 +203,3 @@ See the [mouse controller example](../../composition/controllers/#example:-mouse
 - The hook body and `useLayoutEffect()` callbacks emulate the `ReactiveElement` lifecycle as closely as possible.
 - `ReactControllerHost` implements `addController()` so that controller composition works and nested controller lifecycles are called correctly.
 - `ReactControllerHost` also implements `requestUpdate()` by calling a `useState()` setter, so that a controller can cause its host component to re-render.
-
-Controller timings are implemented as follows:
-
-| Controller API   | React hook equivalent               |
-| ---------------- | ----------------------------------- |
-| constructor      | useState initial value              |
-| hostConnected    | useState initial value              |
-| hostDisconnected | useLayoutEffect cleanup, empty deps |
-| hostUpdate       | hook body                           |
-| hostUpdated      | useLayoutEffect                     |
-| requestUpdate    | useState setter                     |
-| updateComplete   | useLayoutEffect                     |
