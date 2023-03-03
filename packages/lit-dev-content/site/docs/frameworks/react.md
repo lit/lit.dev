@@ -161,7 +161,12 @@ See the [mouse controller example](../../composition/controllers/#example:-mouse
 
 ### How it works
 
-`useController()` uses `useState` to create and store an instance of a controller and a `ReactControllerHost`. It then calls the controller's lifecycle from the hook body and `useLayoutEffect` callbacks, emulating the `ReactiveElement` lifecycle as closely as possible. `ReactControllerHost` implements `addController` so that controller composition works and nested controller lifecycles are called correctly. `ReactControllerHost` also implements `requestUpdate` by calling a `useState` setter, so that a controller with new renderable state can cause its host component to re-render.
+`useController()` creates a custom host object for the controller passed to it and drives the controller's lifecycle by using React hooks.
+
+- `useState()` is used to store an instance of a controller and a `ReactControllerHost`
+- The hook body and `useLayoutEffect()` callbacks emulate the `ReactiveElement` lifecycle as closely as possible.
+- `ReactControllerHost` implements `addController()` so that controller composition works and nested controller lifecycles are called correctly.
+- `ReactControllerHost` also implements `requestUpdate()` by calling a `useState()` setter, so that a controller can cause its host component to re-render.
 
 Controller timings are implemented as follows:
 
