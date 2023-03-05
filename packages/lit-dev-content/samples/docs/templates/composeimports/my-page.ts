@@ -1,9 +1,9 @@
 import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
-import './my-header.js';
-import './my-article.js';
-import './my-footer.js';
+import './my-header';
+import './my-article';
+import './my-footer';
 
 @customElement('my-page')
 class MyPage extends LitElement {
