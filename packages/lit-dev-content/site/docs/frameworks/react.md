@@ -98,7 +98,7 @@ To render the child to a specific named slot, the standard `slot` attribute can 
 </MyElementComponent>
 ```
 
-Since React components cannot have a `slot` attribute, they will need to be wrapped with another container element. Giving it a `display: contents;` style will make this container disappear.
+Since React components are not themselves HTML elements, they usually cannot directly have a `slot` attribute. To render into a named slot, the component will need to be wrapped with a container element that has a `slot` attribute. If a wrapper element interferes with styling, like for grid and flexbox layouts, giving it a `display: contents;` style ([See MDN for details](https://developer.mozilla.org/en-US/docs/Web/CSS/display#box)) will remove the container from rendering, and only render its children.
 
 ```jsx
 <MyElementComponent>
@@ -112,22 +112,22 @@ Try it out in the [React slots playground example](/playground/#sample=examples/
 
 #### Typing event handler props
 
-The parameter type for the event handler prop can be refined by type casting the event name in the `events` options with the provided `EventName` utility type. Non-casted event names will fall back to the `Event` type.
+In TypeScript, the event type can be specified by casting the event name to the `EventName` utility type. This is a good practice to do so that React users will get the most accurate types for their event callbacks.
+
+The `EventName` type is a string that takes an event interface as a type parameter. Here we cast the `'my-event'` name to an `EventName<MyEvent>` to provide the right event type:
 
 ```ts
-import type {EventName} from '@lit-labs/react';
 
 import React from 'react';
 import {createComponent} from '@lit-labs/react';
-import {MyElement} from './my-element.js';
+import {MyElement, type EventName} from './my-element.js';
 
 export const MyElementComponent = createComponent({
   tagName: 'my-element',
   elementClass: MyElement,
   react: React,
   events: {
-    onClick: 'pointerdown' as EventName<PointerEvent>,
-    onChange: 'input',
+    onMyEvent: 'my-event' as EventName<MyEvent>,
   },
 });
 ```
@@ -136,11 +136,8 @@ With the casting done above, a `PointerEvent` is expected for the parameter of t
 
 ```tsx
 <MyElementComponent
-  onClick={(e: PointerEvent) => {
-    // handle click
-  }}
-  onChange={(e: Event) => {
-    // handle change
+  onMyEvent={(e: MyEvent) => {
+    console.log(e.myEventData);
   }}
 />
 ```
