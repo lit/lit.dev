@@ -6,6 +6,9 @@ export class DemoGreeting extends LitElement {
   @property() name = 'Somebody';
 
   render() {
-    return html`Hello, ${this.name}!`;
+    return html`
+      <p>Hello, ${this.name}!</p>
+      <p>Checkout our <a href="https://lit.dev/docs/frameworks/react/" target="_blank" rel="noopener noreferrer">React framework docs</a>!</p>
+    `;
   }
 }

@@ -1,8 +1,8 @@
 ---
-title: Localization
+title: Frameworks
 eleventyNavigation:
-  key: Localization
-  order: 9
+  key: Frameworks
+  order: 8
 ---
 
 <!-- This file exists only to create a section heading.
