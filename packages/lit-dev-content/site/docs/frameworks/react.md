@@ -49,8 +49,8 @@ export const MyElementComponent = createComponent({
   elementClass: MyElement,
   react: React,
   events: {
-    onActivate: 'activate',
-    onChange: 'change',
+    onactivate: 'activate',
+    onchange: 'change',
   },
 });
 ```
@@ -60,8 +60,8 @@ After defining the React component, you can use it just as you would any other R
 ```jsx
 <MyElementComponent
   active={isActive}
-  onActivate={(e) => setIsActive(e.active)}
-  onChange={handleChange}
+  onactivate={(e) => setIsActive(e.active)}
+  onchange={handleChange}
 />
 ```
 
@@ -108,9 +108,15 @@ Since React components are not themselves HTML elements, they usually cannot dir
 </MyElementComponent>
 ```
 
+{% aside "positive" "no-header" %}
+
 Try it out in the [React slots playground example](/playground/#sample=examples/react-slots).
 
-#### Typing event handler props
+{% endaside %}
+
+#### Events
+
+The `events` option takes an object whose key will be the React prop name and value will be the event name. The function passed to the created React component as a prop that matches the key name will be called when the specified event is fired from the custom element. While the the React prop name can be whatever you want, the recommended convention is to add `on` in front of the event name. This is in line with how React is planning to implement event support for custom element properties. You should also make sure this prop name does not collide with any existing properties on the element.
 
 In TypeScript, the event type can be specified by casting the event name to the `EventName` utility type. This is a good practice to do so that React users will get the most accurate types for their event callbacks.
 
@@ -127,16 +133,16 @@ export const MyElementComponent = createComponent({
   elementClass: MyElement,
   react: React,
   events: {
-    onMyEvent: 'my-event' as EventName<MyEvent>,
+    'onmy-event': 'my-event' as EventName<MyEvent>,
   },
 });
 ```
 
-With the casting done above, a `PointerEvent` is expected for the parameter of the function provided to the `onClick` prop.
+Casting the event name to `EventName<MyEvent>` causes the React component to have an `onMyEvent` callback prop that accepts a `MyEvent` parameter instead of a plain `Event`:
 
 ```tsx
 <MyElementComponent
-  onMyEvent={(e: MyEvent) => {
+  onmy-event={(e: MyEvent) => {
     console.log(e.myEventData);
   }}
 />
@@ -152,7 +158,7 @@ During a render, the wrapper receives props from React and based on the options 
 
 Both properties and events are added in `componentDidMount()` and `componentDidUpdate()` callbacks, because the element must have already been instantiated by React in order to access it.
 
-For events, `createComponent()` accepts a mapping of React event prop names to events fired by the custom element. For example passing `{onFoo: 'foo'}` means a function passed via a prop named `onFoo` will be called when the custom element fires the `foo` event with the event as an argument.
+For events, `createComponent()` accepts a mapping of React event prop names to events fired by the custom element. For example passing `{onfoo: 'foo'}` means a function passed via a prop named `onfoo` will be called when the custom element fires the `foo` event with the event as an argument.
 
 ## useController
 
