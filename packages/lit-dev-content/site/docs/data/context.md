@@ -9,7 +9,7 @@ eleventyNavigation:
 
 {% labs-disclaimer %}
 
-Context is a way of making data available to entire component subtrees without having to manually bind properties to every component. The data is "contextually" available, such that ancestor elements in between a provider of data and consumer of data aren't event aware of it.
+Context is a way of making data available to entire component subtrees without having to manually bind properties to every component. The data is "contextually" available, such that ancestor elements in between a provider of data and consumer of data aren't even aware of it.
 
 Lit's context implementation is part of [Lit Labs](/docs/libraries/labs/) and available in the `@lit-labs/context` package:
 
@@ -131,14 +131,14 @@ TypeScript will warn that the type `string` is not assignable to the type `Logge
 
 #### Context equality
 
-Context objects are used by providers to match a context request event to a value. Contexts are compared with with strict equality (`===`), so a provider will only handle a context request if its context key equals the context key of the request.
+Context objects are used by providers to match a context request event to a value. Contexts are compared with strict equality (`===`), so a provider will only handle a context request if its context key equals the context key of the request.
 
 This means that there are two main ways to create a context object:
 1. With a value that is globally unique, like an object (`{}`)  or symbol (`Symbol()`)
 2. With a value that is not globally unique, so that it can be equal under strict equality, like a string (`'logger'`) or _global_ symbol (`Symbol.for('logger')`).
 
 If you want two _separate_ `createContext()` calls to refer to the same
-context, then use a key that will by equal under strict equality like a
+context, then use a key that will be equal under strict equality like a
 string:
 ```ts
 // true
