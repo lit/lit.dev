@@ -112,7 +112,7 @@ export default [
       format: 'esm',
     },
     plugins: [
-      resolve(),
+      resolve({exportConditions: ['node']}),
       minifyHTML(),
       terser(terserOptions),
       summary({
