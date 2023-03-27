@@ -13,11 +13,17 @@ eleventyNavigation:
 
 ## Overview
 
-Sometimes a component needs to render data that is not synchronously available (i.e. not an value provided via a [property](../../components/properties/), [context](../context/), a state management library, etc.) but only _asynchronously_ available. Such data might be fetched from a server, a local database (like IndexedDB or LocalStorage), or computed.
+Sometimes a component needs to render data that is only available _asynchronously_. Such data might be fetched from a server, a database, or in general retrieved or computed from an async API.
 
-While Lit's reactive update lifecycle is batched and asynchronous, Lit _templates_ always renders synchronously. Handling async data requires collecting that data and triggering a new update, which will render the data synchronously when it runs.
+While Lit's reactive update lifecycle is batched and asynchronous, Lit templates always render _synchronously_. The data used in a template must be readable at the time of rendering. To render async data in a Lit component, you must wait for the data to be ready, store it so that's it's readable synchronously, then trigger a new render.
 
-The `@lit-labs/task` package provides a `Task` reactive controller to help manage this and more aspects of async operations.
+The `@lit-labs/task` package provides a `Task` reactive controller to help manage this async data workflow.
+
+### Example
+
+This is an example of using `Task` to call an HTTP API via `fetch()`. The API is called whenever the `productId` parameter changes, and the component renders a loading message when the data is being fetched.
+
+{% switchable-sample %}
 
 ```ts
 import {Task} from '@lit-labs/task';
@@ -30,7 +36,10 @@ class MyElement extends LitElement {
     this,
     {
       task: async ([productId]) =>
-        const response = await fetch(`example.com/product/${productId}`);
+        const response = await fetch(`http://example.com/product/${productId}`);
+        if (!response.ok)
+          throw new Error(response.status);
+        }
         return response.json();
       ),
       args: () => [this.productId]
@@ -53,16 +62,79 @@ class MyElement extends LitElement {
 }
 ```
 
-The Task controller takes care of a number of things needed to properly manage async work:
+```js
+import {Task} from '@lit-labs/task';
+
+class MyElement extends LitElement {
+  static properties = {
+    productId: {},
+  };
+
+  private _apiTask = new Task(
+    this,
+    {
+      task: async ([productId]) =>
+        const response = await fetch(`http://example.com/product/${productId}`);
+        if (!response.ok)
+          throw new Error(response.status);
+        }
+        return response.json();
+      ),
+      args: () => [this.productId]
+    }
+  );
+
+  render() {
+    return html`
+      ${this._apiTask.render({
+        pending: () => html`
+          <div class="loading">Loading product...</div>
+        `,
+        complete: (product) => html`
+          <h1>${product.name}</h1>
+          <p>${product.price}</p>
+        `,
+      })}
+    `;
+  }
+}
+```
+
+{% endswitchable-sample %}
+
+### Features
+
+Task takes care of a number of things needed to properly manage async work:
 - Gathers task arguments when the host updates
-- Starts task functions when the arguments change
+- Runs task functions when arguments change
 - Tracks the task status (initial, pending, complete, or error)
-- Saves the completion value or error of the task function
+- Saves the last completion value or error of the task function
 - Triggers a host update when the task changes status
 - Handles race conditions, ensuring that only the latest task invocation completes the task
 - Renders the correct template for the current task status
 
 This removes most of the boilerplate for correctly using async data from your code, and ensures robust handling of race conditions and other edge-cases.
+
+## What is async data?
+
+Async data is data that's not available immediately, but may be available at some time in the future. For example, instead of a value like a string or an object that's usable synchronously, a Promise provides a value in the future.
+
+Async data is usually returned from an async API, which can come in a few forms:
+- Promises and async functions which return Promises
+- Functions that accept callbacks
+- Object that emit events
+- Various async patterns libraries like observables and signals
+
+## What is a task?
+
+At the core of the Task controller,
+
+* async function, returns promise
+* parameters
+* can throw error
+* can throw initial state
+* request/response:  Task helps with APIs where you make a request or function call, and then wait for a response.
+* status: initial, pending, complete, or error
 
 ## Installation
 
@@ -76,11 +148,22 @@ npm i @lit-labs/task
 
 You'll generally have one Task object for each logical task that your component needs to perform. Install tasks as fields on your class:
 
+{% switchable-sample %}
+
 ```ts
 class MyElement extends LitElement {
   private _myTask = new Task(this, {/*...*/});
 }
 ```
+
+```js
+class MyElement extends LitElement {
+  _myTask = new Task(this, {/*...*/});
+}
+```
+
+{% endswitchable-sample %}
+
 
 As a class field, the task status and value are easily available:
 
@@ -90,7 +173,7 @@ this._task.value
 
 ### Arguments and the task function
 
-The most critical part of a task declaration is the _task function_. This is the function that does the actual work. The Task controller will automatically call the task function with arguments, which have to be supplied with a separate callback. Arguments are separate so they can be checked for changes and the task function only called if the arguments have changed.
+The most critical part of a task declaration is the _task function_. This is the function that does the actual work. The Task controller will automatically call the task function with arguments, which have to be supplied with a separate callback. Arguments are separate so they can be checked for changes and the task function is only called if the arguments have changed.
 
 The task function takes the task arguments as an _array_ passed as the first parameter
 
@@ -103,7 +186,11 @@ new Task(this, {
 })
 ```
 
+{% aside "positive" %}
+
 Write the `task` and `args` functions as arrow function so that the `this` reference points to the host element.
+
+{% endaside %}
 
 ### Handling results
 
