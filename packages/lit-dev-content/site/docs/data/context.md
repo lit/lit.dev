@@ -226,8 +226,7 @@ The `@consume()` decorator is the easiest way to consume a value if you're using
 Decorate a property with `@consume()` and give it the context key:
 ```ts
 import {LitElement, html} from 'lit';
-import {property} from 'lit/decorators.js';
-import {provide} from '@lit-labs/context';
+import {consume} from '@lit-labs/context';
 import {myContext, MyData} from './my-context.js';
 
 class MyElement extends LitElement {
