@@ -48,20 +48,32 @@ export class LitdevSearchOption extends LitElement {
       align-items: center;
       justify-content: space-between;
       height: 50px;
-      padding: 0.2em 0.5em;
-      margin-block: 4px;
-      border: 1px solid var(--color-medium-gray);
+      padding: 12px 20px;
+      margin-block: 10px;
       background-color: white;
-      font-size: 16px;
+      font-size: 20px;
       cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .icon-wrapper {
+      display: flex;
+      height: 100%;
+      align-items: center;
     }
 
     .title-and-text {
       overflow: hidden;
       display: flex;
+      justify-content: center;
       flex-direction: column;
       width: 100%;
-      margin-inline-start: 8px;
+      margin-inline: 20px;
+      height: 50px;
+    }
+
+    .title-and-text.has-text {
+      justify-content: space-between;
     }
 
     .title,
@@ -72,7 +84,7 @@ export class LitdevSearchOption extends LitElement {
     }
 
     .text {
-      font-size: 0.75em;
+      font-size: 14px;
     }
 
     .title {
@@ -90,17 +102,17 @@ export class LitdevSearchOption extends LitElement {
     }
 
     :host([checked]) .suggestion em {
-      color: var(--color-cyan);
+      color: var(--color-white);
     }
   `;
 
   render() {
     return html`
       <div class="suggestion">
-        <div aria-hidden="true">
+        <div class="icon-wrapper" aria-hidden="true">
           ${this.isSubsection ? hashtagIcon : paperDocumentIcon}
         </div>
-        <div class="title-and-text">
+        <div class="title-and-text ${this.isSubsection ? 'has-text' : ''}">
           ${this.isSubsection
             ? html`<span class="title">
                   ${renderAlgoliaSnippet(this.heading)}
