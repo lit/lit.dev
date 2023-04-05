@@ -6,7 +6,7 @@
 
 import {css, html, LitElement, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import {searchIcon} from '../icons/search-icon.js';
+import './lazy-svg.js';
 import './litdev-search.js';
 import type {LitDevSearch} from './litdev-search.js';
 
@@ -21,6 +21,11 @@ export class LitDevSearchModal extends LitElement {
    * Whether or not the dialog is open.
    */
   @property({type: Boolean}) open = false;
+
+  /**
+   * The src of the icon to use for the search button.
+   */
+  @property({type: String}) iconSrc = '/images/icons/lit-search.svg#icon';
 
   @query('dialog', true) dialogEl!: DialogWithModal;
   @query('#content', true) contentWrapper!: HTMLElement;
@@ -54,12 +59,15 @@ export class LitDevSearchModal extends LitElement {
         title="Site search"
         @click=${this.showOnClick(true)}
       >
-        ${searchIcon}
+        <lazy-svg loading="eager" href=${this.iconSrc}></lazy-svg>
         <span>Search</span>
       </button>
       <dialog @click=${this.showOnClick(false)}>
         <div id="content" @click=${(e: Event) => e.stopPropagation()}>
-          <litdev-search @close=${() => (this.open = false)}></litdev-search>
+          <litdev-search
+            .searchIconSrc=${this.iconSrc}
+            @close=${() => (this.open = false)}
+          ></litdev-search>
         </div>
       </dialog>
     `;
@@ -116,7 +124,8 @@ export class LitDevSearchModal extends LitElement {
 
   static styles = css`
     :host {
-      --search-modal-padding: 16px;
+      --search-modal-padding-inline: 25px;
+      --search-modal-padding-block: 15px;
       display: block;
     }
 
@@ -139,6 +148,11 @@ export class LitDevSearchModal extends LitElement {
       border-radius: 20px;
     }
 
+    lazy-svg::part(svg) {
+      width: 24px;
+      height: 24px;
+    }
+
     button span {
       margin-inline-start: 8px;
       font-size: 0.9em;
@@ -158,11 +172,13 @@ export class LitDevSearchModal extends LitElement {
     }
 
     #content {
-      padding: var(--search-modal-padding);
+      padding: var(--search-modal-padding-block)
+        var(--search-modal-padding-inline);
       box-sizing: border-box;
-      width: 560px;
-      max-width: 560px;
+      width: 745px;
+      max-width: 745px;
       background-color: var(--color-light-gray);
+      border-radius: 5px;
     }
 
     @media (max-width: 864px) {
