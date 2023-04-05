@@ -68,7 +68,7 @@ export class LitdevSearchOption extends LitElement {
       justify-content: center;
       flex-direction: column;
       width: 100%;
-      margin-inline: 20px;
+      margin-inline-start: 20px;
       height: 50px;
     }
 
