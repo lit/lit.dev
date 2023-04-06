@@ -224,9 +224,17 @@ export class LitDevSearch extends LitElement {
           Cancel
         </button>
       </div>
-      <ul id="items" role="listbox" class=${classMap({expanded: items.length})}>
-        ${this._renderGroups()}
-      </ul>
+      ${items.length > 0
+        ? html`
+            <ul
+              id="items"
+              role="listbox"
+              class=${classMap({expanded: items.length})}
+            >
+              ${this._renderGroups()}
+            </ul>
+          `
+        : html`<span>no results</span>`}
     `;
   }
 
