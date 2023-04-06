@@ -126,6 +126,12 @@ export class LitDevSearchModal extends LitElement {
     :host {
       --search-modal-padding-inline: 25px;
       --search-modal-padding-block: 15px;
+      --_button-block-padding: 4px;
+      --_button-content-height: 24px;
+      /* (content height + total block padding) / 2 */
+      --_button-radius: calc(
+        (var(--_button-content-height) + var(--_button-block-padding) * 2) / 2
+      );
       display: block;
     }
 
@@ -143,14 +149,18 @@ export class LitDevSearchModal extends LitElement {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px 12px 4px 8px;
+      padding-block: var(--_button-block-padding);
+      /* must be same as block to make icon co-centric */
+      padding-inline-start: var(--_button-block-padding);
+      padding-inline-end: var(--_button-radius);
       border: 1px solid currentColor;
-      border-radius: 20px;
+      /* idk what it is but the +1 makes it much rounder */
+      border-radius: calc(var(--_button-radius) + 1px);
     }
 
     lazy-svg::part(svg) {
-      width: 24px;
-      height: 24px;
+      width: var(--_button-content-height);
+      height: var(--_button-content-height);
     }
 
     button span {
