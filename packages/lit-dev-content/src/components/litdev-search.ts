@@ -234,7 +234,7 @@ export class LitDevSearch extends LitElement {
               ${this._renderGroups()}
             </ul>
           `
-        : html`<div id="no-items">no results</div>`}
+        : html`<div id="no-items">No results</div>`}
     `;
   }
 
