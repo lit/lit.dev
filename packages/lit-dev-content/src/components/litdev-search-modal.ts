@@ -154,7 +154,8 @@ export class LitDevSearchModal extends LitElement {
       padding-inline-start: var(--_button-block-padding);
       padding-inline-end: var(--_button-radius);
       border: 1px solid currentColor;
-      border-radius: var(--_button-radius);
+      /* idk what it is but the +1 makes it much rounder */
+      border-radius: calc(var(--_button-radius) + 1px);
     }
 
     lazy-svg::part(svg) {
