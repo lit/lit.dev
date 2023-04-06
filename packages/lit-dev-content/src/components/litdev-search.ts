@@ -224,7 +224,7 @@ export class LitDevSearch extends LitElement {
           Cancel
         </button>
       </div>
-      ${items.length > 0
+      ${this._searchText == '' || items.length > 0
         ? html`
             <ul
               id="items"
