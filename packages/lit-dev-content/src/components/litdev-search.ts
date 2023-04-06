@@ -234,7 +234,7 @@ export class LitDevSearch extends LitElement {
               ${this._renderGroups()}
             </ul>
           `
-        : html`<span>no results</span>`}
+        : html`<div id="no-items">no results</div>`}
     `;
   }
 
@@ -475,6 +475,12 @@ export class LitDevSearch extends LitElement {
     #items:not(.expanded) {
       margin-block: 0;
       padding-block-end: 0;
+    }
+
+    #no-items {
+      margin: 17px 0 6px;
+      color: var(--color-dark-gray);
+      text-align: center;
     }
 
     input {
