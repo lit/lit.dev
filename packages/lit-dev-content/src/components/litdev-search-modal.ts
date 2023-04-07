@@ -82,6 +82,7 @@ export class LitDevSearchModal extends LitElement {
     const body = this.getBody();
     if (show) {
       this.dialogEl.showModal();
+      this.searchEl.focus();
       if (body) {
         body.style.overflow = 'hidden';
       }
