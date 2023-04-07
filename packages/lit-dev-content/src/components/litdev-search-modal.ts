@@ -8,7 +8,7 @@ import {css, html, LitElement, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import './lazy-svg.js';
 import './litdev-search.js';
-import {LitDevSearch} from './litdev-search.js';
+import type {LitDevSearch} from './litdev-search.js';
 
 type DialogWithModal = HTMLDialogElement & {
   showModal: () => void;
@@ -83,7 +83,7 @@ export class LitDevSearchModal extends LitElement {
     if (show) {
       this.dialogEl.showModal();
       // TODO: Line below is a temporary fix
-      // In FF and Safari, the input do not automatically focus
+      // In FF and Safari, the input does not automatically focus
       // when the dialog opens.
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1826911
       this.searchEl.focus();
