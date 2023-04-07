@@ -202,6 +202,7 @@ export class LitDevSearch extends LitElement {
     return html`
       <div id="root">
         <input
+          autofocus
           autocomplete="off"
           autocorrect="off"
           autocapitalize="off"
