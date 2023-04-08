@@ -234,7 +234,13 @@ export class LitDevSearch extends LitElement {
               ${this._renderGroups()}
             </ul>
           `
-        : html`<div id="no-items">No search results</div>`}
+        : html`<div id="no-items">
+            No results (<a
+              href="${this.getGithubIssueUrl(this._searchText)}"
+              target="_blank"
+              >open issue</a
+            >)
+          </div>`}
     `;
   }
 
@@ -419,6 +425,20 @@ export class LitDevSearch extends LitElement {
 
   focus() {
     this._inputEl.focus();
+  }
+
+  getGithubIssueUrl(searchText: string) {
+    const githubIssueUrl = new URL('https://github.com/lit/lit.dev/issues/new');
+    githubIssueUrl.searchParams.append(
+      'title',
+      `[docs] No search results for \`${searchText}\``
+    );
+    githubIssueUrl.searchParams.append(
+      'body',
+      `<!-- What type of content did you expect to see on lit.dev and explain why it should be on lit.dev -->`
+    );
+    githubIssueUrl.searchParams.append('labels', `Area: docs`);
+    return githubIssueUrl.href;
   }
 
   static styles = css`
