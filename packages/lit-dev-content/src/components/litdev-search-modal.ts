@@ -82,6 +82,11 @@ export class LitDevSearchModal extends LitElement {
     const body = this.getBody();
     if (show) {
       this.dialogEl.showModal();
+      // TODO: Line below is a temporary fix
+      // In FF and Safari, the input does not automatically focus
+      // when the dialog opens.
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=1826911
+      this.searchEl.focus();
       if (body) {
         body.style.overflow = 'hidden';
       }
