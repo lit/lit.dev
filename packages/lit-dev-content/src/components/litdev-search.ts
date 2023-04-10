@@ -609,7 +609,7 @@ export class LitDevSearch extends LitElement {
 
       #items {
         max-height: calc(
-          100vh - var(--_input-height) - 2 * var(--search-modal-padding-block) -
+          100dvh - var(--_input-height) - 2 * var(--search-modal-padding-block) -
             var(--_items-margin-block-start)
         );
       }
