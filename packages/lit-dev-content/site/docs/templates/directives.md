@@ -224,7 +224,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`asyncAppend`](#asyncappend)
 
   </td>
-  <td>Appends values from an `AsyncIterable` into the DOM as they are yielded.</td>
+  <td>
+
+  Appends values from an `AsyncIterable` into the DOM as they are yielded.
+
+  </td>
   </tr>
 
   <tr>
@@ -233,7 +237,11 @@ Lit includes a number of built-in directives to help with a variety of rendering
   [`asyncReplace`](#asyncreplace)
 
   </td>
-  <td>Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.</td>
+  <td>
+
+  Renders the latest value from an `AsyncIterable` into the DOM as it is yielded.
+
+  </td>
   </tr>
 </table>
 
