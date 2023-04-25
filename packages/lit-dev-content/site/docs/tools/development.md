@@ -119,9 +119,7 @@ export default {
   appIndex: 'index.html',
   nodeResolve: {
     exportConditions: ['development'],
-    dedupe: true,
   },
-  esbuildTarget: 'auto',
 };
 ```
 
