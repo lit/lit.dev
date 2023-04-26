@@ -1,7 +1,7 @@
 ---
-title: Upgrade guide
+title: Upgrade guide for Lit 2
 eleventyNavigation:
-  key: Upgrade guide
+  key: Upgrade guide for Lit 2
   parent: Releases
   order: 3
 ---
