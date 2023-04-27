@@ -6,7 +6,7 @@
 
 import {css, html, LitElement, nothing, PropertyValues} from 'lit';
 import {customElement, property, state, query} from 'lit/decorators.js';
-import {onIdle} from '../util/hydration-helpers';
+import {onIdle} from '../util/hydration-helpers.js';
 
 /**
  * Strategies for loading the SVG. idle, waits for the idle callback, eager
