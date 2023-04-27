@@ -4,6 +4,8 @@ eleventyNavigation:
   parent: Composition
   key: Overview
   order: 1
+versionLinks:
+  v2: composition/overview/
 ---
 
 Composition is a strategy for managing complexity and organizing code into reusable pieces. Lit provides a few options for composition and code reuse:

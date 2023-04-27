@@ -7,6 +7,7 @@ eleventyNavigation:
   order: 6
 versionLinks:
   v1: lit-html/creating-directives/
+  v2: templates/custom-directives/
 ---
 
 Directives are functions that can extend Lit by customizing how a template expression renders. Directives are useful and powerful because they can be stateful, access the DOM, be notified when templates are disconnected and reconnected, and independently update expressions outside of a render call.

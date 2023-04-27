@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 1
 versionLinks:
   v1: lit-html/tools/
+  v2: tools/overview/
 ---
 
 Lit components are written using plain JavaScript or TypeScript and run out-of-the box on modern browsers with minimal tooling, so you don't _need_ any Lit-specific compilers, tools, or workflows.

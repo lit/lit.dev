@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Authoring components
   parent: Server rendering
   order: 4
+versionLinks:
+  v3: ssr/authoring/
 ---
 
 {% labs-disclaimer %}

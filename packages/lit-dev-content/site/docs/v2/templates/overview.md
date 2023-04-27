@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 1
 versionLinks:
   v1: components/templates/
+  v3: templates/overview/
 ---
 
 {% todo %}

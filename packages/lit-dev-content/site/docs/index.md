@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 1
 versionLinks:
   v1:
+  v2:
 ---
 
 ![Lit Logo]({{ site.baseurl }}/images/logo.svg){.logo width="425" height="200"}

@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 3
 versionLinks:
   v1: getting-started/
+  v3: getting-started/
 ---
 
 There are many ways to get started using Lit, from our Playground and interactive tutorial to installing into an existing project.

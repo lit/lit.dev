@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Overview
   parent: Localization
   order: 1
+versionLinks:
+  v3: localization/overview/
 ---
 
 Localization is the process of supporting multiple languages and regions in your

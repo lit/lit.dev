@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 4
 versionLinks:
   v1: lit-html/tools/#testing
+  v2: tools/testing/
 ---
 
 Testing ensures your code functions as you intend and saves you from tedious debugging.

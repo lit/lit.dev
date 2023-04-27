@@ -4,6 +4,8 @@ eleventyNavigation:
   parent: Composition
   key: Controllers
   order: 4
+versionLinks:
+  v3: composition/controllers/
 ---
 
 Lit 2 introduces a new concept for code reuse and composition called _reactive controllers_.

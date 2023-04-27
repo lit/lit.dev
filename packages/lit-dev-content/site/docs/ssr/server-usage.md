@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Server usage
   parent: Server rendering
   order: 2
+versionLinks:
+  v2: ssr/server-usage/
 ---
 
 {% labs-disclaimer %}

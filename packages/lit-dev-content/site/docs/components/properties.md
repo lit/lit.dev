@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 3
 versionLinks:
   v1: components/properties/
+  v2: components/properties/
 ---
 
 Lit components receive input and store their state as JavaScript class fields or properties. *Reactive properties* are properties that can trigger the reactive update cycle when changed, re-rendering the component, and optionally be read or written to attributes.

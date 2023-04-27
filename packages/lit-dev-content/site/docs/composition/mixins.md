@@ -4,6 +4,8 @@ eleventyNavigation:
   parent: Composition
   key: Mixins
   order: 3
+versionLinks:
+  v2: composition/mixins/
 ---
 
 Class mixins are a pattern for sharing code between classes using standard JavaScript. As opposed to "has-a" composition patterns like [reactive

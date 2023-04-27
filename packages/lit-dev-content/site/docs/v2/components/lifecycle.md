@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 5
 versionLinks:
   v1: components/lifecycle/
+  v3: components/lifecycle/
 ---
 
 Lit components use the standard custom element lifecycle methods. In addition Lit introduces a reactive update cycle that renders changes to DOM when reactive properties change.

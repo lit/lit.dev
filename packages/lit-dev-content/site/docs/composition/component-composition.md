@@ -4,6 +4,8 @@ eleventyNavigation:
   parent: Composition
   key: Component composition
   order: 2
+versionLinks:
+  v2: composition/component-composition/
 ---
 
 The most common way to handle complexity and factor Lit code into separate units is _component composition_: that is, the process of building a large, complex component out of smaller, simpler components. Imagine you've been tasked with implementing a screen of UI:

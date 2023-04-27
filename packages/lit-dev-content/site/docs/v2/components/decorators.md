@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 8
 versionLinks:
   v1: components/decorators/
+  v3: components/decorators/
 ---
 
 Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide declarative APIs for things like registering elements, reactive properties, and queries.
