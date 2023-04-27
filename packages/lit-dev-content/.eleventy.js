@@ -580,6 +580,7 @@ ${content}
   eleventyConfig.addPlugin(litPlugin, {
     componentModules,
     ignoreGlobs: ['**/tutorials/content/**/*'],
+    mode: 'vm',
   });
 
   return {
