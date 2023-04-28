@@ -390,6 +390,16 @@ ${content}
     '/docs/api',
     // Don't use require() because of Node caching in watch mode.
     JSON.parse(
+      // TODO: Replace with v3.
+      fsSync.readFileSync('../lit-dev-api/api-data/lit-2/symbols.json', 'utf8')
+    )
+  );
+
+  addApiShortcode(
+    'api-lit-v2',
+    '/docs/v2/api',
+    // Don't use require() because of Node caching in watch mode.
+    JSON.parse(
       fsSync.readFileSync('../lit-dev-api/api-data/lit-2/symbols.json', 'utf8')
     )
   );

@@ -21,7 +21,7 @@ lit-localize command [--flags]
 | Command   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `extract` | Extract `msg` calls from all input files and create or update XLIFF (`.xlf`) files.                                                                                                                                                                                                                                                                               |
-| `build`   | Incorporate translations back into your app using the configured [mode](/docs/localization/overview/#output-modes). |
+| `build`   | Incorporate translations back into your app using the configured [mode](/docs/v2/localization/overview/#output-modes). |
 
 ### Flags
 

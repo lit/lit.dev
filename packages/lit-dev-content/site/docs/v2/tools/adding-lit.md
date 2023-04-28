@@ -89,6 +89,6 @@ Most JavaScript frameworks have [great support for web components](https://custo
 
 At this point, you should be able to build and run your project and see the "Hello from MyElement!" message.
 
-If you're ready to add features to your component, head over to [Components](/docs/components/overview/) to learn about building your first Lit component, or [Templates](/docs/templates/overview/) for details on writing templates.
+If you're ready to add features to your component, head over to [Components](/docs/v2/components/overview/) to learn about building your first Lit component, or [Templates](/docs/v2/templates/overview/) for details on writing templates.
 
-For details on building projects, including some sample Rollup configurations, see [Building for production](/docs/tools/production/).
+For details on building projects, including some sample Rollup configurations, see [Building for production](/docs/v2/tools/production/).

@@ -56,7 +56,7 @@ For example:
   </body>
 ```
 
-If you are [bundling](/docs/tools/production/) your code, make sure the `lit/expriemntal-hydrate-support.js` is imported first:
+If you are [bundling](/docs/v2/tools/production/) your code, make sure the `lit/expriemntal-hydrate-support.js` is imported first:
 ```js
 // index.js
 import 'lit/experimental-hydrate-support.js';

@@ -16,7 +16,7 @@ Note: The restrictions listed on this page are subject to change as we make impr
 
 ## Browser-only code
 
-Most browser DOM APIs are not available in the Node environment. Lit SSR utilizes a DOM shim that's the bare minimum required for rendering Lit templates and components. For a full list of what APIs are available, see the [DOM Emulation](/docs/ssr/dom-emulation) page.
+Most browser DOM APIs are not available in the Node environment. Lit SSR utilizes a DOM shim that's the bare minimum required for rendering Lit templates and components. For a full list of what APIs are available, see the [DOM Emulation](/docs/v2/ssr/dom-emulation) page.
 
 When authoring components, perform imperative DOM operations from lifecycle methods that are called **only on the client**, and not on the server. For example, use `updated()` if you need to measure the updated DOM. This callback is only run on the browser, so it is safe to access the DOM.
 

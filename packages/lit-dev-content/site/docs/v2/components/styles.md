@@ -173,7 +173,7 @@ my-element {
 
 ### Styling the component's children {#slotted}
 
-Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](/docs/components/shadow-dom/#slots).
+Your component may accept children (like a `<ul>` element can have `<li>` children). To render children, your template needs to include one or more `<slot>` elements, as described in [Render children with the slot element](/docs/v2/components/shadow-dom/#slots).
 
 The `<slot>` element acts as a placeholder in a shadow tree where the host element's children are displayed.
 
@@ -297,7 +297,7 @@ One way to make styles dynamic is to add expressions to the `class` or `style` a
 
 Lit offers two directives, `classMap` and `styleMap`, to conveniently apply classes and styles in HTML templates.
 
-For more information on these and other directives, see the documentation on [built-in directives](/docs/templates/directives/).
+For more information on these and other directives, see the documentation on [built-in directives](/docs/v2/templates/directives/).
 
 To use `styleMap` and/or `classMap`:
 
@@ -312,7 +312,7 @@ To use `styleMap` and/or `classMap`:
 
 {% playground-example "docs/components/style/maps" "my-element.ts" %}
 
-See [classMap](/docs/templates/directives/#classmap) and [styleMap](/docs/templates/directives/#stylemap) for more information.
+See [classMap](/docs/v2/templates/directives/#classmap) and [styleMap](/docs/v2/templates/directives/#stylemap) for more information.
 
 ## Theming {#theming}
 

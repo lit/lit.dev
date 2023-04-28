@@ -241,7 +241,7 @@ export const templates = {
 };
 ```
 
-See the [runtime mode](/docs/localization/runtime-mode) page for full details
+See the [runtime mode](/docs/v2/localization/runtime-mode) page for full details
 about runtime mode.
 
 ### Transform mode
@@ -270,7 +270,7 @@ render() {
 }
 ```
 
-See the [transform mode](/docs/localization/transform-mode) page for full
+See the [transform mode](/docs/v2/localization/transform-mode) page for full
 details about transform mode.
 
 ### Differences
@@ -340,7 +340,7 @@ details about transform mode.
 
 The `lit-localize` command-line tool looks for a config file called
 `lit-localize.json` in the current directory. Copy-paste the example below for a
-quick start, and see the [CLI and config](/docs/localization/cli-and-config)
+quick start, and see the [CLI and config](/docs/v2/localization/cli-and-config)
 page for a full reference of all options.
 
 <div class="alert alert-info">
@@ -399,7 +399,7 @@ href="https://docs.oasis-open.org/xliff/v1.2/os/xliff-core.html" target="_blank"
 rel="noopener">XLIFF</a> file for each target locale. XLIFF is an XML format
 supported by most localization tools and services. XLIFF files will be written
 to the directory specified by the `interchange.xliffDir` [config
-option](/docs/localization/cli-and-config/#xliff-mode-settings).
+option](/docs/v2/localization/cli-and-config/#xliff-mode-settings).
 
 ```sh
 lit-localize extract
@@ -474,8 +474,8 @@ you have configured.
 lit-localize build
 ```
 
-See the [runtime mode](/docs/localization/runtime-mode) and [transform
-mode](/docs/localization/transform-mode) pages for details of how building in
+See the [runtime mode](/docs/v2/localization/runtime-mode) and [transform
+mode](/docs/v2/localization/transform-mode) pages for details of how building in
 each mode works.
 
 ## Message descriptions

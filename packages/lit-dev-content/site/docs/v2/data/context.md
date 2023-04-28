@@ -13,7 +13,7 @@ versionLinks:
 
 Context is a way of making data available to entire component subtrees without having to manually bind properties to every component. The data is "contextually" available, such that ancestor elements in between a provider of data and consumer of data aren't even aware of it.
 
-Lit's context implementation is part of [Lit Labs](/docs/libraries/labs/) and available in the `@lit-labs/context` package:
+Lit's context implementation is part of [Lit Labs](/docs/v2/libraries/labs/) and available in the `@lit-labs/context` package:
 
 ```bash
 npm i @lit-labs/context
