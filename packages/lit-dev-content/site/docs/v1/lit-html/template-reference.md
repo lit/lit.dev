@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 7
 versionLinks:
   v2: templates/overview/
+  v3: templates/overview/
 ---
 
 lit-html templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative, HTML:
