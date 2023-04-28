@@ -368,13 +368,13 @@ A property decorator that adds a ContextConsumer controller to the component whi
 **Import**:
 
 ```ts
-import {property} from '@lit-labs/context';
+import {provide} from '@lit-labs/context';
 ```
 
 **Signature**:
 
 ```ts
-@property({context: Context})
+@provide({context: Context})
 ```
 
 ### `@consume()`
