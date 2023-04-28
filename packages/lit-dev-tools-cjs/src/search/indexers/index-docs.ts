@@ -20,8 +20,9 @@ export const indexDocs = async (outputDir: string, idOffset = 0) => {
     const badPathParts = [
       // these are not navigable pages. Used mostly for rendering code snippets.
       ['docs', 'internal'],
-      // Would pollute results and would require more ui hints for v1 stuff
+      // Would pollute results and would require more ui hints for v1 & v2 stuff.
       ['docs', 'v1'],
+      ['docs', 'v2'],
       // handled by the api indexer
       ['docs', 'api'],
     ];
