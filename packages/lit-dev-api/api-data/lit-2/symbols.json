@@ -43,68 +43,16 @@
       "anchor": "DirectiveClass.constructor"
     },
     {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "Ref.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.constructor"
-    },
-    {
       "page": "LitElement",
       "anchor": "LitElement.constructor"
     },
     {
       "page": "ReactiveElement",
       "anchor": "ReactiveElement.constructor"
+    },
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.constructor"
     }
   ],
   "$AsyncDirective.constructor": [
@@ -117,22 +65,6 @@
     {
       "page": "custom-directives",
       "anchor": "AsyncDirective.isConnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.isConnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.isConnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.isConnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.isConnected"
     },
     {
       "page": "LitElement",
@@ -149,22 +81,6 @@
     {
       "page": "custom-directives",
       "anchor": "AsyncDirective.disconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.disconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.disconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.disconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.disconnected"
     }
   ],
   "$AsyncDirective.disconnected": [
@@ -177,22 +93,6 @@
     {
       "page": "custom-directives",
       "anchor": "AsyncDirective.reconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.reconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.reconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.reconnected"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.reconnected"
     }
   ],
   "$AsyncDirective.reconnected": [
@@ -209,58 +109,6 @@
     {
       "page": "custom-directives",
       "anchor": "Directive.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.render"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.render"
     },
     {
       "page": "LitElement",
@@ -281,22 +129,6 @@
     {
       "page": "custom-directives",
       "anchor": "AsyncDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.setValue"
     }
   ],
   "$AsyncDirective.setValue": [
@@ -315,58 +147,6 @@
       "anchor": "Directive.update"
     },
     {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.update"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.update"
-    },
-    {
       "page": "LitElement",
       "anchor": "LitElement.update"
     },
@@ -379,138 +159,6 @@
     {
       "page": "custom-directives",
       "anchor": "AsyncDirective.update"
-    }
-  ],
-  "$directive": [
-    {
-      "page": "custom-directives",
-      "anchor": "directive"
-    }
-  ],
-  "$InternalPropertyDeclaration": [
-    {
-      "page": "decorators",
-      "anchor": "InternalPropertyDeclaration"
-    }
-  ],
-  "$hasChanged": [
-    {
-      "page": "decorators",
-      "anchor": "InternalPropertyDeclaration.hasChanged"
-    },
-    {
-      "page": "ReactiveElement",
-      "anchor": "PropertyDeclaration.hasChanged"
-    }
-  ],
-  "$InternalPropertyDeclaration.hasChanged": [
-    {
-      "page": "decorators",
-      "anchor": "InternalPropertyDeclaration.hasChanged"
-    }
-  ],
-  "$QueryAssignedElementsOptions": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions"
-    }
-  ],
-  "$selector": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.selector"
-    }
-  ],
-  "$QueryAssignedElementsOptions.selector": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.selector"
-    }
-  ],
-  "$slot": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.slot"
-    },
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedNodesOptions.slot"
-    }
-  ],
-  "$QueryAssignedElementsOptions.slot": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.slot"
-    }
-  ],
-  "$QueryAssignedNodesOptions": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedNodesOptions"
-    }
-  ],
-  "$QueryAssignedNodesOptions.slot": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedNodesOptions.slot"
-    }
-  ],
-  "$customElement": [
-    {
-      "page": "decorators",
-      "anchor": "customElement"
-    }
-  ],
-  "$eventOptions": [
-    {
-      "page": "decorators",
-      "anchor": "eventOptions"
-    }
-  ],
-  "$property": [
-    {
-      "page": "decorators",
-      "anchor": "property"
-    }
-  ],
-  "$query": [
-    {
-      "page": "decorators",
-      "anchor": "query"
-    }
-  ],
-  "$queryAll": [
-    {
-      "page": "decorators",
-      "anchor": "queryAll"
-    }
-  ],
-  "$queryAssignedElements": [
-    {
-      "page": "decorators",
-      "anchor": "queryAssignedElements"
-    }
-  ],
-  "$queryAssignedNodes": [
-    {
-      "page": "decorators",
-      "anchor": "queryAssignedNodes"
-    }
-  ],
-  "$queryAsync": [
-    {
-      "page": "decorators",
-      "anchor": "queryAsync"
-    }
-  ],
-  "$state": [
-    {
-      "page": "decorators",
-      "anchor": "state"
-    },
-    {
-      "page": "ReactiveElement",
-      "anchor": "PropertyDeclaration.state"
     }
   ],
   "$AttributePart": [
@@ -912,6 +560,10 @@
     },
     {
       "page": "misc",
+      "anchor": "TemplateInstance.parentNode"
+    },
+    {
+      "page": "misc",
       "anchor": "RootPart.parentNode"
     }
   ],
@@ -1199,6 +851,138 @@
       "anchor": "PartType"
     }
   ],
+  "$directive": [
+    {
+      "page": "custom-directives",
+      "anchor": "directive"
+    }
+  ],
+  "$InternalPropertyDeclaration": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration"
+    }
+  ],
+  "$hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.hasChanged"
+    }
+  ],
+  "$InternalPropertyDeclaration.hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    }
+  ],
+  "$QueryAssignedElementsOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions"
+    }
+  ],
+  "$selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$QueryAssignedElementsOptions.selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    },
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$QueryAssignedElementsOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    }
+  ],
+  "$QueryAssignedNodesOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions"
+    }
+  ],
+  "$QueryAssignedNodesOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$customElement": [
+    {
+      "page": "decorators",
+      "anchor": "customElement"
+    }
+  ],
+  "$eventOptions": [
+    {
+      "page": "decorators",
+      "anchor": "eventOptions"
+    }
+  ],
+  "$property": [
+    {
+      "page": "decorators",
+      "anchor": "property"
+    }
+  ],
+  "$query": [
+    {
+      "page": "decorators",
+      "anchor": "query"
+    }
+  ],
+  "$queryAll": [
+    {
+      "page": "decorators",
+      "anchor": "queryAll"
+    }
+  ],
+  "$queryAssignedElements": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedElements"
+    }
+  ],
+  "$queryAssignedNodes": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedNodes"
+    }
+  ],
+  "$queryAsync": [
+    {
+      "page": "decorators",
+      "anchor": "queryAsync"
+    }
+  ],
+  "$state": [
+    {
+      "page": "decorators",
+      "anchor": "state"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.state"
+    }
+  ],
   "$TemplateResultType": [
     {
       "page": "custom-directives",
@@ -1273,726 +1057,6 @@
     {
       "page": "custom-directives",
       "anchor": "setCommittedValue"
-    }
-  ],
-  "$AsyncAppendDirective": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$AsyncAppendDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.constructor"
-    }
-  ],
-  "$AsyncAppendDirective.isConnected": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.isConnected"
-    }
-  ],
-  "$commitValue": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.commitValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.commitValue"
-    }
-  ],
-  "$AsyncAppendDirective.commitValue": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.commitValue"
-    }
-  ],
-  "$AsyncAppendDirective.disconnected": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.disconnected"
-    }
-  ],
-  "$AsyncAppendDirective.reconnected": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.reconnected"
-    }
-  ],
-  "$AsyncAppendDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.render"
-    }
-  ],
-  "$AsyncAppendDirective.setValue": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.setValue"
-    }
-  ],
-  "$AsyncAppendDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.update"
-    }
-  ],
-  "$asyncAppend": [
-    {
-      "page": "directives",
-      "anchor": "asyncAppend"
-    }
-  ],
-  "$AsyncReplaceDirective": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$AsyncReplaceDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.constructor"
-    }
-  ],
-  "$AsyncReplaceDirective.isConnected": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.isConnected"
-    }
-  ],
-  "$AsyncReplaceDirective.commitValue": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.commitValue"
-    }
-  ],
-  "$AsyncReplaceDirective.disconnected": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.disconnected"
-    }
-  ],
-  "$AsyncReplaceDirective.reconnected": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.reconnected"
-    }
-  ],
-  "$AsyncReplaceDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.render"
-    }
-  ],
-  "$AsyncReplaceDirective.setValue": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.setValue"
-    }
-  ],
-  "$AsyncReplaceDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.update"
-    }
-  ],
-  "$asyncReplace": [
-    {
-      "page": "directives",
-      "anchor": "asyncReplace"
-    }
-  ],
-  "$CacheDirective": [
-    {
-      "page": "directives",
-      "anchor": "CacheDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$CacheDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.constructor"
-    }
-  ],
-  "$CacheDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.render"
-    }
-  ],
-  "$CacheDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.update"
-    }
-  ],
-  "$cache": [
-    {
-      "page": "directives",
-      "anchor": "cache"
-    }
-  ],
-  "$choose": [
-    {
-      "page": "directives",
-      "anchor": "choose"
-    }
-  ],
-  "$ClassMapDirective": [
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$ClassMapDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.constructor"
-    }
-  ],
-  "$ClassMapDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.render"
-    }
-  ],
-  "$ClassMapDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.update"
-    }
-  ],
-  "$ClassInfo": [
-    {
-      "page": "directives",
-      "anchor": "ClassInfo",
-      "excludeFromTOC": true
-    }
-  ],
-  "$classMap": [
-    {
-      "page": "directives",
-      "anchor": "classMap"
-    }
-  ],
-  "$GuardDirective": [
-    {
-      "page": "directives",
-      "anchor": "GuardDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$GuardDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.constructor"
-    }
-  ],
-  "$GuardDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.render"
-    }
-  ],
-  "$GuardDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.update"
-    }
-  ],
-  "$guard": [
-    {
-      "page": "directives",
-      "anchor": "guard"
-    }
-  ],
-  "$ifDefined": [
-    {
-      "page": "directives",
-      "anchor": "ifDefined"
-    }
-  ],
-  "$join": [
-    {
-      "page": "directives",
-      "anchor": "join"
-    }
-  ],
-  "$keyed": [
-    {
-      "page": "directives",
-      "anchor": "keyed"
-    }
-  ],
-  "$LiveDirective": [
-    {
-      "page": "directives",
-      "anchor": "LiveDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$LiveDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.constructor"
-    }
-  ],
-  "$LiveDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.render"
-    }
-  ],
-  "$LiveDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.update"
-    }
-  ],
-  "$live": [
-    {
-      "page": "directives",
-      "anchor": "live"
-    }
-  ],
-  "$map": [
-    {
-      "page": "directives",
-      "anchor": "map"
-    }
-  ],
-  "$range": [
-    {
-      "page": "directives",
-      "anchor": "range"
-    }
-  ],
-  "$Ref": [
-    {
-      "page": "directives",
-      "anchor": "Ref",
-      "excludeFromTOC": true
-    }
-  ],
-  "$Ref.constructor": [
-    {
-      "page": "directives",
-      "anchor": "Ref.constructor"
-    }
-  ],
-  "$value": [
-    {
-      "page": "directives",
-      "anchor": "Ref.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.BeginRender.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitNode.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitText.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.EndRender.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
-    }
-  ],
-  "$Ref.value": [
-    {
-      "page": "directives",
-      "anchor": "Ref.value"
-    }
-  ],
-  "$RefDirective": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$RefDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.constructor"
-    }
-  ],
-  "$RefDirective.isConnected": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.isConnected"
-    }
-  ],
-  "$RefDirective.disconnected": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.disconnected"
-    }
-  ],
-  "$RefDirective.reconnected": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.reconnected"
-    }
-  ],
-  "$RefDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.render"
-    }
-  ],
-  "$RefDirective.setValue": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.setValue"
-    }
-  ],
-  "$RefDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "RefDirective.update"
-    }
-  ],
-  "$RefOrCallback": [
-    {
-      "page": "directives",
-      "anchor": "RefOrCallback",
-      "excludeFromTOC": true
-    }
-  ],
-  "$createRef": [
-    {
-      "page": "directives",
-      "anchor": "createRef"
-    }
-  ],
-  "$ref": [
-    {
-      "page": "directives",
-      "anchor": "ref"
-    }
-  ],
-  "$RepeatDirective": [
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$RepeatDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.constructor"
-    }
-  ],
-  "$RepeatDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.render"
-    }
-  ],
-  "$RepeatDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.update"
-    }
-  ],
-  "$RepeatDirectiveFn": [
-    {
-      "page": "directives",
-      "anchor": "RepeatDirectiveFn",
-      "excludeFromTOC": true
-    }
-  ],
-  "$ItemTemplate": [
-    {
-      "page": "directives",
-      "anchor": "ItemTemplate",
-      "excludeFromTOC": true
-    }
-  ],
-  "$KeyFn": [
-    {
-      "page": "directives",
-      "anchor": "KeyFn",
-      "excludeFromTOC": true
-    }
-  ],
-  "$repeat": [
-    {
-      "page": "directives",
-      "anchor": "repeat"
-    }
-  ],
-  "$StyleMapDirective": [
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$StyleMapDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.constructor"
-    }
-  ],
-  "$StyleMapDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.render"
-    }
-  ],
-  "$StyleMapDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.update"
-    }
-  ],
-  "$StyleInfo": [
-    {
-      "page": "directives",
-      "anchor": "StyleInfo",
-      "excludeFromTOC": true
-    }
-  ],
-  "$styleMap": [
-    {
-      "page": "directives",
-      "anchor": "styleMap"
-    }
-  ],
-  "$TemplateContentDirective": [
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$TemplateContentDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.constructor"
-    }
-  ],
-  "$TemplateContentDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.render"
-    }
-  ],
-  "$TemplateContentDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.update"
-    }
-  ],
-  "$templateContent": [
-    {
-      "page": "directives",
-      "anchor": "templateContent"
-    }
-  ],
-  "$UnsafeHTMLDirective": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$UnsafeHTMLDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.constructor"
-    }
-  ],
-  "$directiveName": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.directiveName"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.directiveName"
-    }
-  ],
-  "$UnsafeHTMLDirective.directiveName": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.directiveName"
-    }
-  ],
-  "$resultType": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.resultType"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.resultType"
-    }
-  ],
-  "$UnsafeHTMLDirective.resultType": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.resultType"
-    }
-  ],
-  "$UnsafeHTMLDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.render"
-    }
-  ],
-  "$UnsafeHTMLDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.update"
-    }
-  ],
-  "$unsafeHTML": [
-    {
-      "page": "directives",
-      "anchor": "unsafeHTML"
-    }
-  ],
-  "$UnsafeSVGDirective": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$UnsafeSVGDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.constructor"
-    }
-  ],
-  "$UnsafeSVGDirective.directiveName": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.directiveName"
-    }
-  ],
-  "$UnsafeSVGDirective.resultType": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.resultType"
-    }
-  ],
-  "$UnsafeSVGDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.render"
-    }
-  ],
-  "$UnsafeSVGDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.update"
-    }
-  ],
-  "$unsafeSVG": [
-    {
-      "page": "directives",
-      "anchor": "unsafeSVG"
-    }
-  ],
-  "$UntilDirective": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective",
-      "excludeFromTOC": true
-    }
-  ],
-  "$UntilDirective.constructor": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.constructor"
-    }
-  ],
-  "$UntilDirective.isConnected": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.isConnected"
-    }
-  ],
-  "$UntilDirective.disconnected": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.disconnected"
-    }
-  ],
-  "$UntilDirective.reconnected": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.reconnected"
-    }
-  ],
-  "$UntilDirective.render": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.render"
-    }
-  ],
-  "$UntilDirective.setValue": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.setValue"
-    }
-  ],
-  "$UntilDirective.update": [
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.update"
-    }
-  ],
-  "$until": [
-    {
-      "page": "directives",
-      "anchor": "until"
-    }
-  ],
-  "$when": [
-    {
-      "page": "directives",
-      "anchor": "when"
     }
   ],
   "$LitUnstable": [
@@ -2161,6 +1225,48 @@
     {
       "page": "misc",
       "anchor": "LitUnstable.DebugLog.BeginRender.part"
+    }
+  ],
+  "$value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
     }
   ],
   "$LitUnstable.DebugLog.BeginRender.value": [
@@ -2767,6 +1873,10 @@
     {
       "page": "misc",
       "anchor": "LitUnstable.DebugLog.TemplateUpdating.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.parts"
     }
   ],
   "$LitUnstable.DebugLog.TemplateInstantiated.parts": [
@@ -3923,6 +3033,24 @@
       "anchor": "ReactiveElement.getPropertyOptions"
     }
   ],
+  "$TemplateInstance": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance"
+    }
+  ],
+  "$TemplateInstance.constructor": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.constructor"
+    }
+  ],
+  "$TemplateInstance.parentNode": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.parentNode"
+    }
+  ],
   "$CompiledTemplate": [
     {
       "page": "misc",
@@ -3951,6 +3079,12 @@
     {
       "page": "misc",
       "anchor": "CompiledTemplate.h"
+    }
+  ],
+  "$CompiledTemplate.parts": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.parts"
     }
   ],
   "$CompiledTemplateResult": [
@@ -4403,6 +3537,12 @@
       "anchor": "defaultConverter"
     }
   ],
+  "$isServer": [
+    {
+      "page": "misc",
+      "anchor": "isServer"
+    }
+  ],
   "$noChange": [
     {
       "page": "custom-directives",
@@ -4469,6 +3609,24 @@
     {
       "page": "styles",
       "anchor": "unsafeCSS"
+    }
+  ],
+  "$StaticValue": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue"
+    }
+  ],
+  "$r": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue.r"
+    }
+  ],
+  "$StaticValue.r": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue.r"
     }
   ],
   "$literal": [

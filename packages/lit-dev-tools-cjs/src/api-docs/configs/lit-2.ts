@@ -20,7 +20,7 @@ const srcDir = pathlib.join(litDir, 'src');
  */
 export const lit2Config: ApiDocsConfig = {
   repo: 'lit/lit',
-  commit: 'df67769d3b7c5b699d8c1dc57e15c3e91fe296c6',
+  commit: 'c134604f178e36444261d83eabe9e578c1ed90c4',
   workDir,
   gitDir,
   tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
@@ -30,21 +30,10 @@ export const lit2Config: ApiDocsConfig = {
 
   extraSetupCommands: [
     {
-      cmd: 'npx',
-      // Only install lit and its dependencies, so that we don't waste time
-      // installing dependencies for packages we don't generate API docs for
-      // (like tests).
-      args: ['lerna', 'bootstrap', '--scope', 'lit', '--include-dependencies'],
-    },
-    {
-      cmd: 'npx',
+      cmd: 'npm',
       args: [
-        'lerna',
         'run',
-        'build:ts',
-        '--scope',
-        'lit',
-        '--include-dependencies',
+        'build:ts'
       ],
     },
   ],
