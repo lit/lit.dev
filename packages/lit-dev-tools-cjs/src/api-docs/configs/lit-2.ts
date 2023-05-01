@@ -31,10 +31,7 @@ export const lit2Config: ApiDocsConfig = {
   extraSetupCommands: [
     {
       cmd: 'npm',
-      args: [
-        'run',
-        'build:ts'
-      ],
+      args: ['run', 'build:ts'],
     },
   ],
 
