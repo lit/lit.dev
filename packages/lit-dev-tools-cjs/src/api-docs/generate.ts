@@ -94,6 +94,7 @@ const analyze = async (config: ApiDocsConfig) => {
   app.bootstrap({
     tsconfig: config.tsConfigPath,
     entryPoints: config.entrypointModules,
+    entryPointStrategy: typedoc.EntryPointStrategy.Expand,
   });
   const root = app.convert();
   if (!root) {
