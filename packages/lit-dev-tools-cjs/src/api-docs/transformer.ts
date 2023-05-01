@@ -608,7 +608,10 @@ export class ApiDocsTransformer {
   private async makeSourceRelativeToMonorepoRoot(source: SourceReference) {
     source.fileName = pathlib.relative(
       this.config.gitDir,
-      pathlib.resolve(this.config.typedocRoot, source.fileName)
+      pathlib.resolve(
+        pathlib.resolve(this.config.typedocRoot, '..'),
+        source.fileName
+      )
     );
   }
 
