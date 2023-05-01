@@ -21,6 +21,8 @@
     // https://github.com/lit/lit/issues/2158.
     "docs/templates/lists-arrays/my-element.ts",
     "docs/templates/lists-map/my-element.ts",
+    // Mixin sample does not compile: https://github.com/lit/lit/issues/3865
+    "docs/mixins/highlightable/**",
     // Intentionally doesn't compile for tutorial part.
     "tutorials/word-viewer/02/before/word-viewer.ts"
   ]
