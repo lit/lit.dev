@@ -649,14 +649,6 @@ export class ApiDocsTransformer {
     if (!pos.source) {
       return;
     }
-
-    // TODO(aomarks) The Lit monorepo d.ts.map files currently incorrectly have
-    // a sources field like "../src/source.ts" because they are copied directly
-    // out of the "development/" folder. We need to fix that properly the Lit
-    // monorepo, but temporarily fix it here too.
-    if (pos.source.startsWith('../')) {
-      pos.source = pos.source.slice('../'.length);
-    }
     source.fileName = pathlib.join(
       pathlib.dirname(source.fileName),
       pos.source
