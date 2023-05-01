@@ -19,7 +19,7 @@ The following directories contain archived documentation and are no longer
 automatically updated by the process above:
 
 - `lit-html-1`
-- `lit-element-1`
+- `lit-element-2`
 
 Both directories include static `pages.json` and `symbols.json` files. To update
 the archived documentation locally, check out a version of Lit.dev prior to
