@@ -602,13 +602,13 @@ export class ApiDocsTransformer {
   }
 
   /**
-   * TypeDoc sources are reported relative to the lit.dev packages/ directory,
-   * for some reason. Update them to be relative to the Lit monorepo root.
+   * TypeDoc sources are reported relative to the lit.dev root directory. Update
+   * them to be relative to the Lit monorepo root.
    */
   private async makeSourceRelativeToMonorepoRoot(source: SourceReference) {
     source.fileName = pathlib.relative(
       this.config.gitDir,
-      pathlib.resolve(this.config.typedocRoot, source.fileName)
+      pathlib.resolve(this.config.typedocRoot, '..', source.fileName)
     );
   }
 
@@ -645,14 +645,6 @@ export class ApiDocsTransformer {
     });
     if (!pos.source) {
       return;
-    }
-
-    // TODO(aomarks) The Lit monorepo d.ts.map files currently incorrectly have
-    // a sources field like "../src/source.ts" because they are copied directly
-    // out of the "development/" folder. We need to fix that properly the Lit
-    // monorepo, but temporarily fix it here too.
-    if (pos.source.startsWith('../')) {
-      pos.source = pos.source.slice('../'.length);
     }
     source.fileName = pathlib.join(
       pathlib.dirname(source.fileName),
