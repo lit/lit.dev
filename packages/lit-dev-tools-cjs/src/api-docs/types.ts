@@ -6,7 +6,25 @@
 
 import type * as typedoc from 'typedoc';
 
+/**
+ * The data on each declaration node.
+ */
 export type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
+
+/**
+ * The data on each comment node.
+ *
+ * To ease migration of TypeDoc, it currently contains some optional fields that
+ * reflect properties in earlier versions of TypeDoc. `shortText` and `text` are
+ * no longer emitted by TypeDoc, thus we manually create them. They are required
+ * by our API html generation.
+ */
+export interface MigrationComment
+  extends Omit<typedoc.JSONOutput.Comment, 'summary'> {
+  shortText?: string;
+  text?: string;
+  summary?: typedoc.JSONOutput.CommentDisplayPart[];
+}
 
 export interface ExtendedDeclarationReflection extends DeclarationReflection {
   location?: Location;
