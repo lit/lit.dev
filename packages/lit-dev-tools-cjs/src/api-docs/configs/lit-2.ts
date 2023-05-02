@@ -15,6 +15,9 @@ const gitDir = pathlib.join(workDir, 'repo');
 const litDir = pathlib.join(gitDir, 'packages', 'lit');
 const srcDir = pathlib.join(litDir, 'src');
 
+const contextDir = pathlib.join(gitDir, 'packages', 'labs', 'context');
+const contextSrcDir = pathlib.join(contextDir, 'src');
+
 /**
  * lit.dev API docs configuration for Lit 2.x
  */
@@ -23,7 +26,6 @@ export const lit2Config: ApiDocsConfig = {
   commit: 'c134604f178e36444261d83eabe9e578c1ed90c4',
   workDir,
   gitDir,
-  tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
   pagesOutPath: pathlib.resolve(workDir, 'pages.json'),
   symbolsOutPath: pathlib.resolve(workDir, 'symbols.json'),
   typedocRoot: pathlib.join(root, 'packages'),
@@ -35,21 +37,30 @@ export const lit2Config: ApiDocsConfig = {
     },
   ],
 
-  entrypointModules: [
-    pathlib.join(srcDir, 'async-directive.ts'),
-    pathlib.join(srcDir, 'decorators.ts'),
-    pathlib.join(srcDir, 'directives/'), // Entire directory
-    pathlib.join(srcDir, 'directive.ts'),
-    pathlib.join(srcDir, 'directive-helpers.ts'),
-    // Don't include html.ts because it is already re-exported by index.ts.
-    //   pathlib.join(srcDir, 'html.ts'),
-    // Don't include hydration because it's not ready yet.
-    //   pathlib.join(srcDir, 'hydrate.ts'),
-    //   pathlib.join(srcDir, 'hydrate-support.ts'),
-    pathlib.join(srcDir, 'index.ts'),
-    // Don't include polyfill-support.ts because it doesn't export anything.
-    //   pathlib.join(srcDir, 'polyfill-support.ts'),
-    pathlib.join(srcDir, 'static-html.ts'),
+  packages: [
+    {
+      tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
+      entrypointModules: [
+        pathlib.join(srcDir, 'async-directive.ts'),
+        pathlib.join(srcDir, 'decorators.ts'),
+        pathlib.join(srcDir, 'directives/'), // Entire directory
+        pathlib.join(srcDir, 'directive.ts'),
+        pathlib.join(srcDir, 'directive-helpers.ts'),
+        // Don't include html.ts because it is already re-exported by index.ts.
+        //   pathlib.join(srcDir, 'html.ts'),
+        // Don't include hydration because it's not ready yet.
+        //   pathlib.join(srcDir, 'hydrate.ts'),
+        //   pathlib.join(srcDir, 'hydrate-support.ts'),
+        pathlib.join(srcDir, 'index.ts'),
+        // Don't include polyfill-support.ts because it doesn't export anything.
+        //   pathlib.join(srcDir, 'polyfill-support.ts'),
+        pathlib.join(srcDir, 'static-html.ts'),
+      ],
+    },
+    {
+      tsConfigPath: pathlib.join(contextDir, 'tsconfig.json'),
+      entrypointModules: [pathlib.join(contextSrcDir, 'index.ts')],
+    },
   ],
 
   symbolOrder: ['LitElement', 'ReactiveElement'],
@@ -122,6 +133,13 @@ export const lit2Config: ApiDocsConfig = {
     {
       slug: 'misc',
       title: 'Misc',
+      versionLinks: {
+        v1: 'api/lit-element/LitElement/',
+      },
+    },
+    {
+      slug: 'context',
+      title: 'Context',
       versionLinks: {
         v1: 'api/lit-element/LitElement/',
       },
@@ -202,6 +220,10 @@ export const lit2Config: ApiDocsConfig = {
       node.name === 'ReactiveControllerHost'
     ) {
       return 'controllers';
+    }
+
+    if (entrypoint.includes('/context/')) {
+      return 'context';
     }
 
     // TODO(aomarks) Make sure everything has a good final location, and then
