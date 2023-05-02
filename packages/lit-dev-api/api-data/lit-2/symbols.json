@@ -7,112 +7,20 @@
   ],
   "$constructor": [
     {
-      "page": "custom-directives",
-      "anchor": "AsyncDirective.constructor"
+      "page": "context",
+      "anchor": "ContextConsumer.constructor"
     },
     {
-      "page": "custom-directives",
-      "anchor": "AttributePart.constructor"
+      "page": "context",
+      "anchor": "ContextEvent.constructor"
     },
     {
-      "page": "custom-directives",
-      "anchor": "BooleanAttributePart.constructor"
+      "page": "context",
+      "anchor": "ContextProvider.constructor"
     },
     {
-      "page": "custom-directives",
-      "anchor": "ChildPart.constructor"
-    },
-    {
-      "page": "custom-directives",
-      "anchor": "Directive.constructor"
-    },
-    {
-      "page": "custom-directives",
-      "anchor": "ElementPart.constructor"
-    },
-    {
-      "page": "custom-directives",
-      "anchor": "EventPart.constructor"
-    },
-    {
-      "page": "custom-directives",
-      "anchor": "PropertyPart.constructor"
-    },
-    {
-      "page": "custom-directives",
-      "anchor": "DirectiveClass.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "CacheDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "ClassMapDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "GuardDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "Keyed.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "LiveDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "Ref.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "RepeatDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "StyleMapDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "TemplateContentDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeHTMLDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "UnsafeSVGDirective.constructor"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.constructor"
-    },
-    {
-      "page": "LitElement",
-      "anchor": "LitElement.constructor"
-    },
-    {
-      "page": "ReactiveElement",
-      "anchor": "ReactiveElement.constructor"
-    },
-    {
-      "page": "misc",
-      "anchor": "TemplateInstance.constructor"
+      "page": "context",
+      "anchor": "ContextRoot.constructor"
     }
   ],
   "$AsyncDirective.constructor": [
@@ -291,24 +199,8 @@
   ],
   "$setValue": [
     {
-      "page": "custom-directives",
-      "anchor": "AsyncDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncAppendDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "AsyncReplaceDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "RefDirective.setValue"
-    },
-    {
-      "page": "directives",
-      "anchor": "UntilDirective.setValue"
+      "page": "context",
+      "anchor": "ContextProvider.setValue"
     }
   ],
   "$AsyncDirective.setValue": [
@@ -1646,48 +1538,12 @@
   ],
   "$value": [
     {
-      "page": "directives",
-      "anchor": "Ref.value"
+      "page": "context",
+      "anchor": "ContextConsumer.value"
     },
     {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.BeginRender.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitNode.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitText.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.EndRender.value"
-    },
-    {
-      "page": "misc",
-      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
+      "page": "context",
+      "anchor": "ContextProvider.value"
     }
   ],
   "$Ref.value": [
@@ -4238,8 +4094,12 @@
   ],
   "$hostConnected": [
     {
-      "page": "controllers",
-      "anchor": "ReactiveController.hostConnected"
+      "page": "context",
+      "anchor": "ContextConsumer.hostConnected"
+    },
+    {
+      "page": "context",
+      "anchor": "ContextProvider.hostConnected"
     }
   ],
   "$ReactiveController.hostConnected": [
@@ -4250,8 +4110,8 @@
   ],
   "$hostDisconnected": [
     {
-      "page": "controllers",
-      "anchor": "ReactiveController.hostDisconnected"
+      "page": "context",
+      "anchor": "ContextConsumer.hostDisconnected"
     }
   ],
   "$ReactiveController.hostDisconnected": [
@@ -4334,8 +4194,12 @@
   ],
   "$host": [
     {
-      "page": "LitElement",
-      "anchor": "RenderOptions.host"
+      "page": "context",
+      "anchor": "ContextConsumer.host"
+    },
+    {
+      "page": "context",
+      "anchor": "ContextProvider.host"
     }
   ],
   "$RenderOptions.host": [
@@ -4596,6 +4460,264 @@
     {
       "page": "static-html",
       "anchor": "withStatic"
+    }
+  ],
+  "$ContextConsumer": [
+    {
+      "page": "context",
+      "anchor": "ContextConsumer"
+    }
+  ],
+  "$ContextConsumer.constructor": [
+    {
+      "page": "context",
+      "anchor": "ContextConsumer.constructor"
+    }
+  ],
+  "$ContextConsumer.host": [
+    {
+      "page": "context",
+      "anchor": "ContextConsumer.host"
+    }
+  ],
+  "$ContextConsumer.value": [
+    {
+      "page": "context",
+      "anchor": "ContextConsumer.value"
+    }
+  ],
+  "$ContextConsumer.hostConnected": [
+    {
+      "page": "context",
+      "anchor": "ContextConsumer.hostConnected"
+    }
+  ],
+  "$ContextConsumer.hostDisconnected": [
+    {
+      "page": "context",
+      "anchor": "ContextConsumer.hostDisconnected"
+    }
+  ],
+  "$ContextEvent": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent"
+    }
+  ],
+  "$ContextEvent.constructor": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.constructor"
+    }
+  ],
+  "$callback": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.callback"
+    }
+  ],
+  "$ContextEvent.callback": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.callback"
+    }
+  ],
+  "$context": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.context"
+    }
+  ],
+  "$ContextEvent.context": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.context"
+    }
+  ],
+  "$subscribe": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.subscribe"
+    }
+  ],
+  "$ContextEvent.subscribe": [
+    {
+      "page": "context",
+      "anchor": "ContextEvent.subscribe"
+    }
+  ],
+  "$ContextProvider": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider"
+    }
+  ],
+  "$ContextProvider.constructor": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.constructor"
+    }
+  ],
+  "$ContextProvider.host": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.host"
+    }
+  ],
+  "$ContextProvider.value": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.value"
+    }
+  ],
+  "$addCallback": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.addCallback"
+    }
+  ],
+  "$ContextProvider.addCallback": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.addCallback"
+    }
+  ],
+  "$clearCallbacks": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.clearCallbacks"
+    }
+  ],
+  "$ContextProvider.clearCallbacks": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.clearCallbacks"
+    }
+  ],
+  "$ContextProvider.hostConnected": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.hostConnected"
+    }
+  ],
+  "$onContextRequest": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.onContextRequest"
+    }
+  ],
+  "$ContextProvider.onContextRequest": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.onContextRequest"
+    }
+  ],
+  "$ContextProvider.setValue": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.setValue"
+    }
+  ],
+  "$updateObservers": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.updateObservers"
+    }
+  ],
+  "$ContextProvider.updateObservers": [
+    {
+      "page": "context",
+      "anchor": "ContextProvider.updateObservers"
+    }
+  ],
+  "$ContextRoot": [
+    {
+      "page": "context",
+      "anchor": "ContextRoot"
+    }
+  ],
+  "$ContextRoot.constructor": [
+    {
+      "page": "context",
+      "anchor": "ContextRoot.constructor"
+    }
+  ],
+  "$attach": [
+    {
+      "page": "context",
+      "anchor": "ContextRoot.attach"
+    }
+  ],
+  "$ContextRoot.attach": [
+    {
+      "page": "context",
+      "anchor": "ContextRoot.attach"
+    }
+  ],
+  "$detach": [
+    {
+      "page": "context",
+      "anchor": "ContextRoot.detach"
+    }
+  ],
+  "$ContextRoot.detach": [
+    {
+      "page": "context",
+      "anchor": "ContextRoot.detach"
+    }
+  ],
+  "$Context": [
+    {
+      "page": "context",
+      "anchor": "Context"
+    }
+  ],
+  "$ContextCallback": [
+    {
+      "page": "context",
+      "anchor": "ContextCallback"
+    }
+  ],
+  "$ContextKey": [
+    {
+      "page": "context",
+      "anchor": "ContextKey"
+    }
+  ],
+  "$ContextType": [
+    {
+      "page": "context",
+      "anchor": "ContextType"
+    }
+  ],
+  "$consume": [
+    {
+      "page": "context",
+      "anchor": "consume"
+    }
+  ],
+  "$contextProvided": [
+    {
+      "page": "context",
+      "anchor": "contextProvided"
+    }
+  ],
+  "$contextProvider": [
+    {
+      "page": "context",
+      "anchor": "contextProvider"
+    }
+  ],
+  "$createContext": [
+    {
+      "page": "context",
+      "anchor": "createContext"
+    }
+  ],
+  "$provide": [
+    {
+      "page": "context",
+      "anchor": "provide"
     }
   ]
 }
