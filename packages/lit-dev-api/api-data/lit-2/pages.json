@@ -167,6 +167,14 @@
                 "flags": {
                   "isStatic": true
                 },
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@nocollapse"
+                    }
+                  ],
+                  "shortText": "Returns a list of attributes corresponding to the registered properties."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -369,6 +377,15 @@
                   "isStatic": true,
                   "isOptional": true
                 },
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@nocollapse"
+                    }
+                  ],
+                  "shortText": "Disable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning?.('migration');\n// Disable for only MyElement and subclasses\nMyElement.disableWarning?.('migration');\n```\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -504,6 +521,15 @@
                 "flags": {
                   "isStatic": true,
                   "isOptional": true
+                },
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@nocollapse"
+                    }
+                  ],
+                  "shortText": "Enable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning?.('migration');\n// Enable for only MyElement and subclasses\nMyElement.enableWarning?.('migration');\n```\n"
                 },
                 "sources": [
                   {
@@ -2474,12 +2500,13 @@
                       "tag": "@returns",
                       "content": [
                         {
-                          "text": "A promise of a boolean that indicates if the update resolved\n    without triggering another update."
+                          "text": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update."
                         }
                       ]
                     }
                   ],
-                  "shortText": "Returns a Promise that resolves when the host has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update."
+                  "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
+                  "text": "To await additional asynchronous work, override the `getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super.getUpdateComplete()`, then any subsequent state.\n"
                 },
                 "sources": [
                   {
@@ -3157,6 +3184,14 @@
                 "flags": {
                   "isStatic": true
                 },
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@nocollapse"
+                    }
+                  ],
+                  "shortText": "Returns a list of attributes corresponding to the registered properties."
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -3347,6 +3382,15 @@
                   "isStatic": true,
                   "isOptional": true
                 },
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@nocollapse"
+                    }
+                  ],
+                  "shortText": "Disable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n```ts\n// Disable for all ReactiveElement subclasses\nReactiveElement.disableWarning?.('migration');\n// Disable for only MyElement and subclasses\nMyElement.disableWarning?.('migration');\n```\n"
+                },
                 "sources": [
                   {
                     "fileName": "packages/reactive-element/src/reactive-element.ts",
@@ -3466,6 +3510,15 @@
                 "flags": {
                   "isStatic": true,
                   "isOptional": true
+                },
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@nocollapse"
+                    }
+                  ],
+                  "shortText": "Enable the given warning category for this class.",
+                  "text": "This method only exists in development builds, so it should be accessed\nwith a guard like:\n```ts\n// Enable for all ReactiveElement subclasses\nReactiveElement.enableWarning?.('migration');\n// Enable for only MyElement and subclasses\nMyElement.enableWarning?.('migration');\n```\n"
                 },
                 "sources": [
                   {
@@ -5101,12 +5154,13 @@
                       "tag": "@returns",
                       "content": [
                         {
-                          "text": "A promise of a boolean that indicates if the update resolved\n    without triggering another update."
+                          "text": "A promise of a boolean that resolves to true if the update completed\n    without triggering another update."
                         }
                       ]
                     }
                   ],
-                  "shortText": "Returns a Promise that resolves when the host has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update."
+                  "shortText": "Returns a Promise that resolves when the element has completed updating.\nThe Promise value is a boolean that is `true` if the element completed the\nupdate without triggering another update. The Promise result is `false` if\na property was set inside `updated()`. If the Promise is rejected, an\nexception was thrown during the update.",
+                  "text": "To await additional asynchronous work, override the `getUpdateComplete`\nmethod. For example, it is sometimes useful to await a rendered element\nbefore fulfilling this Promise. To do this, first await\n`super.getUpdateComplete()`, then any subsequent state.\n"
                 },
                 "sources": [
                   {
@@ -6332,6 +6386,20 @@
       {
         "name": "SanitizerFactory",
         "kindString": "Type alias",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@returns",
+              "content": [
+                {
+                  "text": "A function that will sanitize this class of writes."
+                }
+              ]
+            }
+          ],
+          "shortText": "Used to sanitize any value before it is written into the DOM. This can be\nused to implement a security policy of allowed and disallowed values in\norder to prevent XSS attacks.",
+          "text": "One way of using this callback would be to check attributes and properties\nagainst a list of high risk fields, and require that values written to such\nfields be instances of a class which is safe by construction. Closure's Safe\nHTML Types is one implementation of this technique (\nhttps://github.com/google/safe-html-types/blob/master/doc/safehtml-types.md).\nThe TrustedTypes polyfill in API-only mode could also be used as a basis\nfor this technique (https://github.com/WICG/trusted-types).\n"
+        },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",
@@ -18395,6 +18463,9 @@
           {
             "name": "endNode",
             "kindString": "Accessor",
+            "comment": {
+              "shortText": "The part's trailing marker node, if any. See `.parentNode` for more\ninformation."
+            },
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
@@ -18455,6 +18526,10 @@
           {
             "name": "parentNode",
             "kindString": "Accessor",
+            "comment": {
+              "shortText": "The parent node into which the part renders its content.",
+              "text": "A ChildPart's content consists of a range of adjacent child nodes of\n`.parentNode`, possibly bordered by 'marker nodes' (`.startNode` and\n`.endNode`).\n- If both `.startNode` and `.endNode` are non-null, then the part's content\nconsists of all siblings between `.startNode` and `.endNode`, exclusively.\n- If `.startNode` is non-null but `.endNode` is null, then the part's\ncontent consists of all siblings following `.startNode`, up to and\nincluding the last child of `.parentNode`. If `.endNode` is non-null, then\n`.startNode` will always be non-null.\n- If both `.endNode` and `.startNode` are null, then the part's content\nconsists of all child nodes of `.parentNode`.\n"
+            },
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
@@ -18498,6 +18573,9 @@
           {
             "name": "startNode",
             "kindString": "Accessor",
+            "comment": {
+              "shortText": "The part's leading marker node, if any. See `.parentNode` for more\ninformation."
+            },
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
@@ -27516,6 +27594,9 @@
           {
             "name": "endNode",
             "kindString": "Accessor",
+            "comment": {
+              "shortText": "The part's trailing marker node, if any. See `.parentNode` for more\ninformation."
+            },
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
@@ -27588,6 +27669,10 @@
           {
             "name": "parentNode",
             "kindString": "Accessor",
+            "comment": {
+              "shortText": "The parent node into which the part renders its content.",
+              "text": "A ChildPart's content consists of a range of adjacent child nodes of\n`.parentNode`, possibly bordered by 'marker nodes' (`.startNode` and\n`.endNode`).\n- If both `.startNode` and `.endNode` are non-null, then the part's content\nconsists of all siblings between `.startNode` and `.endNode`, exclusively.\n- If `.startNode` is non-null but `.endNode` is null, then the part's\ncontent consists of all siblings following `.startNode`, up to and\nincluding the last child of `.parentNode`. If `.endNode` is non-null, then\n`.startNode` will always be non-null.\n- If both `.endNode` and `.startNode` are null, then the part's content\nconsists of all child nodes of `.parentNode`.\n"
+            },
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
@@ -27643,6 +27728,9 @@
           {
             "name": "startNode",
             "kindString": "Accessor",
+            "comment": {
+              "shortText": "The part's leading marker node, if any. See `.parentNode` for more\ninformation."
+            },
             "sources": [
               {
                 "fileName": "packages/lit-html/src/lit-html.ts",
@@ -27806,6 +27894,20 @@
       {
         "name": "ValueSanitizer",
         "kindString": "Type alias",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@returns",
+              "content": [
+                {
+                  "text": "The value to write to the DOM. Usually the same as the input value,\n    unless sanitization is needed."
+                }
+              ]
+            }
+          ],
+          "shortText": "A function which can sanitize values that will be written to a specific kind\nof DOM sink.",
+          "text": "See SanitizerFactory.\n"
+        },
         "sources": [
           {
             "fileName": "packages/lit-html/src/lit-html.ts",

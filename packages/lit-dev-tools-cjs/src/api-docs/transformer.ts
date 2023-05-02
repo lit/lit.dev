@@ -334,13 +334,22 @@ export class ApiDocsTransformer {
   }
 
   /**
-   * For functions, TypeDoc put comments inside the signatures property, instead
-   * of directly in the function node. Hoist these comments up so that we can
-   * treat comments uniformly.
+   * For functions, reflected types, and accessors, TypeDoc put comments inside
+   * the signatures property, instead of directly in the function node. Hoist
+   * these comments up so that we can treat comments uniformly.
    */
   private promoteSignatureComments(node: DeclarationReflection) {
+    // Handle functions
     if (!node.comment?.summary && node.signatures?.[0]?.comment?.summary) {
       node.comment = node.signatures[0].comment;
+    }
+    // Handle reflected types
+    if (!node.comment?.summary && node.type?.type === 'reflection') {
+      node.comment = node.type.declaration?.signatures?.[0]?.comment;
+    }
+    // Handle accessors
+    if (node.kindString === 'Accessor' && node.getSignature?.comment) {
+      node.comment = node.getSignature.comment;
     }
   }
 
