@@ -188,7 +188,7 @@ layout: docs
       </dt>
       <dd class="paramDetails">
         <code class="paramType">{{ type(param.type) }}</code>
-        {{ param.comment.text | markdownWithoutHtml | safe }}
+        {{ param.comment.shortText | markdownWithoutHtml | safe }}
       </dd>
     {% endfor %}
   </dl>
