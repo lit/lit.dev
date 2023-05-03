@@ -51,7 +51,7 @@
     "source-map": "^0.8.0-beta.0",
     "strip-comments": "^2.0.1",
     "striptags": "^3.2.0",
-    "typedoc": "^0.23.28",
+    "typedoc": "^0.24.6",
     "uvu": "^0.5.1"
   }
 }
