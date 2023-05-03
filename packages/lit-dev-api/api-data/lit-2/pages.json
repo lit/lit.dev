@@ -1266,12 +1266,14 @@
                         {
                           "type": "reference",
                           "name": "Element",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                         },
                         {
                           "type": "reference",
                           "name": "ShadowRoot",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot"
                         }
                       ]
                     },
@@ -1394,12 +1396,14 @@
                     {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     {
                       "type": "reference",
                       "name": "ShadowRoot",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot"
                     }
                   ]
                 },
@@ -1444,7 +1448,8 @@
                 "type": {
                   "type": "reference",
                   "name": "ShadowRootInit",
-                  "package": "typescript"
+                  "package": "typescript",
+                  "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters"
                 },
                 "inheritedFrom": {
                   "type": "reference",
@@ -2901,7 +2906,8 @@
           {
             "type": "reference",
             "name": "HTMLElement",
-            "package": "typescript"
+            "package": "typescript",
+            "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
           }
         ],
         "extendedBy": [
@@ -2933,7 +2939,8 @@
           {
             "type": "reference",
             "name": "HTMLElement",
-            "package": "typescript"
+            "package": "typescript",
+            "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
           }
         ],
         "expandedCategories": [
@@ -4069,12 +4076,14 @@
                         {
                           "type": "reference",
                           "name": "Element",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                         },
                         {
                           "type": "reference",
                           "name": "ShadowRoot",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot"
                         }
                       ]
                     },
@@ -4115,12 +4124,14 @@
                     {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     {
                       "type": "reference",
                       "name": "ShadowRoot",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot"
                     }
                   ]
                 },
@@ -4161,7 +4172,8 @@
                 "type": {
                   "type": "reference",
                   "name": "ShadowRootInit",
-                  "package": "typescript"
+                  "package": "typescript",
+                  "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow#parameters"
                 },
                 "kindString": "Property",
                 "entrypointSources": [
@@ -6099,12 +6111,14 @@
                     {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     {
                       "type": "reference",
                       "name": "DocumentFragment",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"
                     }
                   ]
                 },
@@ -6518,7 +6532,8 @@
                 "type": {
                   "type": "reference",
                   "name": "ShadowRoot",
-                  "package": "typescript"
+                  "package": "typescript",
+                  "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot"
                 },
                 "kindString": "Parameter"
               },
@@ -6688,7 +6703,8 @@
                 {
                   "type": "reference",
                   "name": "CSSStyleSheet",
-                  "package": "typescript"
+                  "package": "typescript",
+                  "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet"
                 }
               ]
             },
@@ -6710,7 +6726,8 @@
                   {
                     "type": "reference",
                     "name": "CSSStyleSheet",
-                    "package": "typescript"
+                    "package": "typescript",
+                    "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet"
                   }
                 ]
               },
@@ -7027,7 +7044,8 @@
             {
               "type": "reference",
               "name": "CSSStyleSheet",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet"
             }
           ]
         },
@@ -12222,7 +12240,8 @@
                 "default": {
                   "type": "reference",
                   "name": "Element",
-                  "package": "typescript"
+                  "package": "typescript",
+                  "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                 },
                 "kindString": "Type parameter"
               }
@@ -12335,7 +12354,8 @@
                     "default": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Type parameter"
                   }
@@ -12414,7 +12434,8 @@
             "default": {
               "type": "reference",
               "name": "Element",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
             },
             "kindString": "Type parameter"
           }
@@ -12896,7 +12917,8 @@
                             {
                               "type": "reference",
                               "name": "Element",
-                              "package": "typescript"
+                              "package": "typescript",
+                              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                             },
                             {
                               "type": "intrinsic",
@@ -14431,7 +14453,8 @@
                 "type": {
                   "type": "reference",
                   "name": "HTMLTemplateElement",
-                  "package": "typescript"
+                  "package": "typescript",
+                  "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                 },
                 "kindString": "Parameter"
               }
@@ -14554,7 +14577,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLTemplateElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                     },
                     "kindString": "Parameter"
                   }
@@ -14565,7 +14589,8 @@
                     {
                       "type": "reference",
                       "name": "DocumentFragment",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"
                     },
                     {
                       "type": "query",
@@ -16932,7 +16957,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     "kindString": "Parameter"
                   },
@@ -17016,7 +17042,8 @@
             "type": {
               "type": "reference",
               "name": "HTMLElement",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
             },
             "kindString": "Property",
             "entrypointSources": [
@@ -17286,7 +17313,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     "kindString": "Parameter"
                   },
@@ -17378,7 +17406,8 @@
             "type": {
               "type": "reference",
               "name": "HTMLElement",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -18422,7 +18451,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Parameter"
                   },
@@ -18487,7 +18517,8 @@
             "type": {
               "type": "reference",
               "name": "Element",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
             },
             "kindString": "Property",
             "entrypointSources": [
@@ -18622,7 +18653,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     "kindString": "Parameter"
                   },
@@ -18714,7 +18746,8 @@
             "type": {
               "type": "reference",
               "name": "HTMLElement",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -19185,7 +19218,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                     },
                     "kindString": "Parameter"
                   },
@@ -19277,7 +19311,8 @@
             "type": {
               "type": "reference",
               "name": "HTMLElement",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
             },
             "inheritedFrom": {
               "type": "reference",
@@ -22102,12 +22137,14 @@
                         {
                           "type": "reference",
                           "name": "HTMLElement",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                         },
                         {
                           "type": "reference",
                           "name": "DocumentFragment",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"
                         }
                       ]
                     },
@@ -22310,7 +22347,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Property",
                     "entrypointSources": [
@@ -22475,7 +22513,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Property",
                     "entrypointSources": [
@@ -22666,7 +22705,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Property",
                     "entrypointSources": [
@@ -23244,7 +23284,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Property",
                     "entrypointSources": [
@@ -23548,7 +23589,8 @@
                     "type": {
                       "type": "reference",
                       "name": "Element",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/Element"
                     },
                     "kindString": "Property",
                     "entrypointSources": [
@@ -23690,12 +23732,14 @@
                         {
                           "type": "reference",
                           "name": "HTMLElement",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
                         },
                         {
                           "type": "reference",
                           "name": "DocumentFragment",
-                          "package": "typescript"
+                          "package": "typescript",
+                          "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"
                         }
                       ]
                     },
@@ -24564,7 +24608,8 @@
                     "type": {
                       "type": "reference",
                       "name": "HTMLTemplateElement",
-                      "package": "typescript"
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
                     },
                     "kindString": "Property",
                     "entrypointSources": [
@@ -25558,7 +25603,8 @@
             "type": {
               "type": "reference",
               "name": "HTMLTemplateElement",
-              "package": "typescript"
+              "package": "typescript",
+              "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement"
             },
             "kindString": "Property",
             "entrypointSources": [
