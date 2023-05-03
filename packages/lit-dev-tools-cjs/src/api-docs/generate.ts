@@ -101,7 +101,10 @@ const analyze = async (config: ApiDocsConfig) => {
     throw new Error('TypeDoc.Application.convert() returned undefined');
   }
 
-  const json = await app.serializer.projectToObject(root);
+  const json = await app.serializer.projectToObject(
+    root,
+    pathlib.resolve(config.tsConfigPath, '..')
+  );
   const transformer = new ApiDocsTransformer(json, config);
   const {pages, symbolMap} = await transformer.transform();
 

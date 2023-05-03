@@ -36,6 +36,7 @@ export interface ExtendedDeclarationReflection extends DeclarationReflection {
     anchor: string;
     children: Array<DeclarationReflection>;
   }>;
+  kindString?: string;
 }
 
 export type SourceReference = typedoc.JSONOutput.SourceReference;
