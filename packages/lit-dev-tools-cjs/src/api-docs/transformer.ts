@@ -15,7 +15,6 @@ import {
   SourceReference,
   ExtendedSourceReference,
   Location,
-  ExternalLocation,
   MigrationComment,
 } from './types.js';
 import {ReflectionKind} from 'typedoc';
@@ -434,9 +433,8 @@ export class ApiDocsTransformer {
         typeof val === 'string' &&
         symbolToExternalLink.has(val)
       ) {
-        (node as {externalLocation?: ExternalLocation}).externalLocation = {
-          url: symbolToExternalLink.get(val)!,
-        };
+        (node as {externalUrl?: string}).externalUrl =
+          symbolToExternalLink.get(val);
       } else if (!(isTopLevel && key === 'children')) {
         // We already recurse into children of top-level reflections in our main
         // traversal, no need to also do it here.

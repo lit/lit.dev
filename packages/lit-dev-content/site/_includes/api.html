@@ -125,8 +125,8 @@ layout: docs
     {%- elif t.location -%}
       {{- locationLink(t.location, t.name) -}}
 
-    {%- elif t.externalLocation -%}
-      {{- externalLink(t.externalLocation.url, t.name) -}}
+    {%- elif t.externalUrl -%}
+      {{- externalLink(t.externalUrl, t.name) -}}
 
     {%- elif t.type == "literal" -%}
       {%- if t.value == null -%}
