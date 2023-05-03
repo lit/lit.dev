@@ -16,6 +16,7 @@ import {
   ExtendedSourceReference,
   Location,
   ExternalLocation,
+  MigrationComment,
 } from './types.js';
 
 const findIndexOrInfinity = <T>(
@@ -124,6 +125,7 @@ export class ApiDocsTransformer {
         this.promoteVariableFunctions(node);
         this.promoteAccessorTypes(node);
         this.promoteSignatureComments(node);
+        this.replaceCommentNodesWithLegacyCommentFields(node);
         this.reflectionById.set(node.id, node);
         node.children = (node.children ?? []).filter((child) =>
           this.filter(child)
@@ -326,19 +328,28 @@ export class ApiDocsTransformer {
     if (node.kindString !== 'Accessor') {
       return;
     }
-    if (node.getSignature?.[0]) {
-      node.type = node.getSignature[0].type;
+    if (node.getSignature?.type) {
+      node.type = node.getSignature.type;
     }
   }
 
   /**
-   * For functions, TypeDoc put comments inside the signatures property, instead
-   * of directly in the function node. Hoist these comments up so that we can
-   * treat comments uniformly.
+   * For functions, reflected types, and accessors, TypeDoc put comments inside
+   * the signatures property, instead of directly in the function node. Hoist
+   * these comments up so that we can treat comments uniformly.
    */
   private promoteSignatureComments(node: DeclarationReflection) {
-    if (!node.comment?.shortText && node.signatures?.[0]?.comment?.shortText) {
+    // Handle functions
+    if (!node.comment?.summary && node.signatures?.[0]?.comment?.summary) {
       node.comment = node.signatures[0].comment;
+    }
+    // Handle reflected types
+    if (!node.comment?.summary && node.type?.type === 'reflection') {
+      node.comment = node.type.declaration?.signatures?.[0]?.comment;
+    }
+    // Handle accessors
+    if (node.kindString === 'Accessor' && node.getSignature?.comment) {
+      node.comment = node.getSignature.comment;
     }
   }
 
@@ -466,7 +477,10 @@ export class ApiDocsTransformer {
             Object.keys(val).length === 0) ||
           // We don't render JSDoc tags directly, the ones we care about are
           // already extracted into e.g. "parameters".
-          key === 'tags'
+          key === 'tags' ||
+          // The "target" key is unstable causing our "Check API data is in
+          // sync" approach to fail. We also do not use this key.
+          key === 'target'
         ) {
           delete node[key as keyof typeof node];
         }
@@ -569,6 +583,85 @@ export class ApiDocsTransformer {
   };
 
   /**
+   * Temporarily turn more modern formats of TypeDoc into a legacy format that
+   * our HTML template understands.
+   */
+  private replaceCommentNodesWithLegacyCommentFields(
+    node: DeclarationReflection
+  ) {
+    if (node.comment) {
+      this.replaceCommentNodeForLegacyFormat(node.comment);
+    }
+    if (node.signatures) {
+      for (const sig of node.signatures) {
+        if (sig.parameters) {
+          if (sig.comment) {
+            this.replaceCommentNodeForLegacyFormat(sig.comment);
+          }
+          for (const param of sig.parameters) {
+            if (param.comment) {
+              this.replaceCommentNodeForLegacyFormat(param.comment);
+            }
+          }
+        }
+      }
+    }
+    if (node.getSignature?.comment) {
+      this.replaceCommentNodeForLegacyFormat(node.getSignature?.comment);
+    }
+    if (node.type?.type === 'reflection' && node.type.declaration) {
+      const declaration = node.type.declaration;
+      if (declaration.comment) {
+        this.replaceCommentNodeForLegacyFormat(declaration.comment);
+      }
+      for (const sig of declaration.signatures ?? []) {
+        if (sig.comment) {
+          this.replaceCommentNodeForLegacyFormat(sig.comment);
+        }
+        for (const param of sig.parameters ?? []) {
+          if (param.comment) {
+            this.replaceCommentNodeForLegacyFormat(param.comment);
+          }
+        }
+      }
+    }
+  }
+
+  private replaceCommentNodeForLegacyFormat(commentNode: MigrationComment) {
+    const parts = commentNode.summary ?? [];
+
+    let allText = '';
+    for (const part of parts) {
+      let text = part.text;
+
+      // For tags, reconstruct the original text.
+      if (part.kind === 'inline-tag') {
+        if (part.tag === '@linkcode' || part.tag === '@link') {
+          text = `{${part.tag} ${part.text}}`;
+        } else {
+          throw new Error(
+            `Unhandled inline-tag format: '${
+              part.tag
+            }' for part: ${JSON.stringify(part)}`
+          );
+        }
+      }
+      allText += text;
+    }
+    const lines = allText.split('\n\n');
+    const shortText = lines[0] ?? '';
+    const text = lines.slice(1).join('\n');
+
+    if (shortText) {
+      commentNode.shortText = shortText;
+    }
+    if (text) {
+      commentNode.text = text + '\n';
+    }
+    commentNode.summary = undefined;
+  }
+
+  /**
    * Convert [[ symbol ]], `@link`, and `@linkcode` comments into hyperlinks.
    *
    * Supports the following examples:
@@ -593,11 +686,15 @@ export class ApiDocsTransformer {
       locationToUrl: this.config.locationToUrl.bind(this),
     });
 
-    if (node.comment?.shortText) {
-      node.comment.shortText = replace(node.comment.shortText);
-    }
-    if (node.comment?.text) {
-      node.comment.text = replace(node.comment.text);
+    if (node.comment) {
+      const comment: MigrationComment = node.comment;
+
+      if (comment.shortText) {
+        comment.shortText = replace(comment.shortText);
+      }
+      if (comment.text) {
+        comment.text = replace(comment.text);
+      }
     }
   }
 
