@@ -120,6 +120,7 @@ export class ApiDocsTransformer {
         // to copy our original entrypoint source info to each node.
         (node as ExtendedDeclarationReflection).entrypointSources =
           entrypoint.sources;
+        this.addKindStringToNodes(node);
         for (const source of node.sources ?? []) {
           this.makeSourceRelativeToMonorepoRoot(source);
           await this.updateSourceFromDtsToTs(source);
@@ -687,6 +688,13 @@ export class ApiDocsTransformer {
       commentNode.text = text + '\n';
     }
     commentNode.summary = undefined;
+  }
+
+  private addKindStringToNodes(node: DeclarationReflection) {
+    if (node.kind) {
+      (node as ExtendedDeclarationReflection).kindString =
+        typedoc.ReflectionKind.singularString(node.kind);
+    }
   }
 
   /**
