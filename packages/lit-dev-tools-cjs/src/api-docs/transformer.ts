@@ -413,7 +413,7 @@ export class ApiDocsTransformer {
    * TypeDoc has a reflection with that id, then we should give it a location.
    */
   private addLocationsForAllIds(node: unknown, isTopLevel = true) {
-    if (typeof node !== 'object' || node === null) {
+    if (typeof node !== 'object' || node == null) {
       return;
     }
     if (node instanceof Array) {
@@ -423,7 +423,11 @@ export class ApiDocsTransformer {
       return;
     }
     for (const [key, val] of Object.entries(node)) {
-      if (key === 'id' && typeof val === 'number' && !('location' in node)) {
+      if (
+        key === 'target' &&
+        typeof val === 'number' &&
+        !('location' in node)
+      ) {
         const reflection = this.reflectionById.get(val);
         if (reflection && reflection.location) {
           (node as {location?: Location}).location = reflection.location;
