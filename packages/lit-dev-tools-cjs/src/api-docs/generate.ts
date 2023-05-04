@@ -9,7 +9,7 @@ import * as fs from 'fs/promises';
 import * as pathlib from 'path';
 import {execFile} from 'child_process';
 import {promisify} from 'util';
-import {ApiDocsTransformer} from './transformer.js';
+import {ApiDocsTransformer, Pages, SymbolMap} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
 
 import type {ApiDocsConfig} from './types.js';
@@ -89,29 +89,34 @@ const analyze = async (config: ApiDocsConfig) => {
   }
 
   console.log(`Analyzing ${config.gitDir}`);
-  const app = new typedoc.Application();
-  app.options.addReader(new typedoc.TSConfigReader());
-  app.bootstrap({
-    tsconfig: config.tsConfigPath,
-    entryPoints: config.entrypointModules,
-    entryPointStrategy: typedoc.EntryPointStrategy.Expand,
-  });
-  const root = app.convert();
-  if (!root) {
-    throw new Error('TypeDoc.Application.convert() returned undefined');
-  }
+  const allPages: Pages = [];
+  const allSymbols: SymbolMap = {};
+  for (const pkg of config.packages) {
+    const app = new typedoc.Application();
+    app.options.addReader(new typedoc.TSConfigReader());
+    app.bootstrap({
+      tsconfig: pkg.tsConfigPath,
+      entryPoints: pkg.entrypointModules,
+    });
+    const root = app.convert();
+    if (!root) {
+      throw new Error('TypeDoc.Application.convert() returned undefined');
+    }
 
-  const json = await app.serializer.projectToObject(
-    root,
-    pathlib.resolve(config.tsConfigPath, '..')
-  );
-  const transformer = new ApiDocsTransformer(json, config);
-  const {pages, symbolMap} = await transformer.transform();
+    const json = app.serializer.projectToObject(
+      root,
+      pathlib.resolve(pkg.tsConfigPath, '..')
+    );
+    const transformer = new ApiDocsTransformer(json, config);
+    const {pages, symbolMap} = await transformer.transform();
+    allPages.push(...pages);
+    Object.assign(allSymbols, symbolMap);
+  }
 
   await fs.mkdir(pathlib.dirname(config.pagesOutPath), {recursive: true});
   await fs.writeFile(
     config.pagesOutPath,
-    JSON.stringify(pages, null, 2),
+    JSON.stringify(allPages, null, 2),
     'utf8'
   );
   console.log(`Wrote ${config.pagesOutPath}`);
@@ -119,7 +124,7 @@ const analyze = async (config: ApiDocsConfig) => {
   await fs.mkdir(pathlib.dirname(config.symbolsOutPath), {recursive: true});
   await fs.writeFile(
     config.symbolsOutPath,
-    JSON.stringify(symbolMap, null, 2),
+    JSON.stringify(allSymbols, null, 2),
     'utf8'
   );
   console.log(`Wrote ${config.symbolsOutPath}`);
