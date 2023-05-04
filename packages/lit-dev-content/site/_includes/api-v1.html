@@ -61,7 +61,7 @@ layout: docs
     {%- elif t.operator == 'keyof' -%}
       keyof {{ type(t.target) }}
 
-    {%- elif t.type == "typeOperator" and t.operator == "unique" -%}
+    {%- elif t.operator == 'unique' and t.target.name == 'symbol' -%}
       symbol
 
     {%- elif t.type == 'conditional' -%}
