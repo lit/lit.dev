@@ -58,7 +58,8 @@
 
       {{ content | safe }}
 
-
+      {% set nonEditableDocumentRegex = r/.+\/api\/.+/ %}
+      {% if not nonEditableDocumentRegex.test(page.inputPath) %}
       <p id="edit-page-link">
         <a
             href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
@@ -70,6 +71,7 @@
           </lazy-svg>
         </a>
       </p>
+      {% endif %}
 
       {% set navItems = collections[collection] | eleventyNavigation | flattenNavigationAndAddNextPrev %}
       {% for item in navItems %}
