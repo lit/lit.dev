@@ -106,9 +106,7 @@ export class ApiDocsTransformer {
     symbolMap: SymbolMap;
     pages: Pages;
   }> {
-    this.addKindStringsBackToAllNodes(
-      this.project as unknown as Record<string, unknown>
-    );
+    this.addKindStringsBackToAllNodes(this.project);
     // In the first pass, determine the page/anchor where each node should
     // appear in our layout, and index all nodes by TypeDoc numeric ID.
     for (const entrypoint of this.project.children ?? []) {
@@ -694,7 +692,7 @@ export class ApiDocsTransformer {
    * api.html. This method recursively walks the TypeDoc node and adds
    * `kindString` back to all nodes with a valid `kind` field.
    */
-  private addKindStringsBackToAllNodes(node: Record<string, unknown>) {
+  private addKindStringsBackToAllNodes(node: unknown) {
     if (typeof node !== 'object' || node == null) {
       return;
     }
@@ -707,11 +705,10 @@ export class ApiDocsTransformer {
     for (const [key, val] of Object.entries(node)) {
       if (key === 'kind' && typeof val === 'number') {
         // Add a `kindString` field to the node.
-        node['kindString'] = typedoc.ReflectionKind.singularString(
-          val as ReflectionKind
-        );
+        (node as {kindString: string})['kindString'] =
+          typedoc.ReflectionKind.singularString(val as ReflectionKind);
       }
-      this.addKindStringsBackToAllNodes(val as Record<string, unknown>);
+      this.addKindStringsBackToAllNodes(val);
     }
   }
 
