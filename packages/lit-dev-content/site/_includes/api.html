@@ -143,6 +143,10 @@ layout: docs
     {%- elif t.name and t.name !== '__type' -%}
       {{- t.name -}}
 
+    {%- elif page.url.includes("api/custom-directives") -%}
+      <!-- TODO(https://github.com/lit/lit.dev/issues/1099) -->
+      ReadonlyArray&lt;string>
+
     {%- else -%}
       TODO
       {# {{ t | dump }} #}
