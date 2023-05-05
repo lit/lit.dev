@@ -498,7 +498,7 @@ export class ApiDocsTransformer {
           key === 'tags' ||
           // The "target" key is unstable when referring to a number `id`,
           // causing our "Check API data is in sync" approach to fail. If not a
-          // number, this key can also represent a concrete type. Keep `type` val
+          // number, this key can also represent a concrete type. Keep `target`
           // if it contains a `type` key.
           (key === 'target' && typeof val === 'number') ||
           (key === 'target' && typeof val === 'object' && !('type' in val)) ||
