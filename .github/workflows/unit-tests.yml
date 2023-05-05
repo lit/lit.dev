@@ -17,3 +17,4 @@ jobs:
 
       - run: npm ci
       - run: npm run test:unit
+      - run: npm run test:generated-api

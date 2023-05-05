@@ -21,6 +21,7 @@
     "test:integration": "npm run test:integration -w lit-dev-tests",
     "test:integration:update-golden-screenshots": "npm run test:integration:update-golden-screenshots -w lit-dev-tests",
     "test:links": "npm run test:links -w lit-dev-tests",
+    "test:generated-api": "npm run test:api:no-todos -w lit-dev-tests",
     "publish-search-index": "wireit"
   },
   "wireit": {
