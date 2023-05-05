@@ -29178,5 +29178,4003 @@
         }
       }
     ]
+  },
+  {
+    "slug": "context",
+    "title": "Context",
+    "labs": true,
+    "repo": "lit/lit",
+    "commit": "c134604f178e36444261d83eabe9e578c1ed90c4",
+    "items": [
+      {
+        "name": "contextProvided",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@deprecated",
+              "content": [
+                {
+                  "text": "use "
+                },
+                {
+                  "text": "`consume`"
+                },
+                {
+                  "text": " instead"
+                }
+              ]
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/index.ts",
+            "line": 37,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "contextProvided",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                "line": 44
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "__namedParameters",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "children": [
+                      {
+                        "name": "context",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                            "line": 48
+                          }
+                        ],
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Property"
+                      },
+                      {
+                        "name": "subscribe",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                            "line": 49
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "boolean"
+                        },
+                        "kindString": "Property"
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                        "line": 47
+                      }
+                    ],
+                    "kindString": "Type literal"
+                  }
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                    "line": 50
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "typeParameter": [
+                      {
+                        "name": "K",
+                        "type": {
+                          "type": "reference",
+                          "name": "PropertyKey",
+                          "package": "typescript"
+                        },
+                        "kindString": "Type parameter"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "protoOrDescriptor",
+                        "type": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "reference",
+                              "name": "ReactiveElement",
+                              "package": "@lit/reactive-element"
+                            },
+                            {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "typeArguments": [
+                                    {
+                                      "type": "reference",
+                                      "name": "K"
+                                    },
+                                    {
+                                      "type": "reference",
+                                      "name": "ValueType"
+                                    }
+                                  ],
+                                  "name": "Record",
+                                  "package": "typescript"
+                                }
+                              ],
+                              "name": "Partial",
+                              "package": "typescript"
+                            }
+                          ]
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "name",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reference",
+                          "name": "K"
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "void"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "any"
+                        }
+                      ]
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/index.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "contextProvided"
+        }
+      },
+      {
+        "name": "contextProvider",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@deprecated",
+              "content": [
+                {
+                  "text": "use "
+                },
+                {
+                  "text": "`provide`"
+                },
+                {
+                  "text": " instead"
+                }
+              ]
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/index.ts",
+            "line": 32,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "contextProvider",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                "line": 46
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "__namedParameters",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "children": [
+                      {
+                        "name": "context",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                            "line": 49
+                          }
+                        ],
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Property"
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                        "line": 48
+                      }
+                    ],
+                    "kindString": "Type literal"
+                  }
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                    "line": 50
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "typeParameter": [
+                      {
+                        "name": "K",
+                        "type": {
+                          "type": "reference",
+                          "name": "PropertyKey",
+                          "package": "typescript"
+                        },
+                        "kindString": "Type parameter"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "protoOrDescriptor",
+                        "type": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "reference",
+                              "name": "ReactiveElement",
+                              "package": "@lit/reactive-element"
+                            },
+                            {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "name": "K"
+                                },
+                                {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                }
+                              ],
+                              "name": "Record",
+                              "package": "typescript"
+                            }
+                          ]
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "name",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reference",
+                          "name": "K"
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "void"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "any"
+                        }
+                      ]
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/index.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "contextProvider"
+        }
+      },
+      {
+        "name": "ContextRoot",
+        "comment": {
+          "shortText": "A ContextRoot can be used to gather unsatisfied context requests and\nre-dispatch them when new providers which satisfy matching context keys are\navailable.",
+          "text": "This allows providers to be added to a DOM tree, or upgraded, after the\nconsumers.\n"
+        },
+        "children": [
+          {
+            "name": "constructor",
+            "signatures": [
+              {
+                "name": "new ContextRoot",
+                "type": {
+                  "type": "reference",
+                  "name": "ContextRoot",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextRoot"
+                  }
+                },
+                "kindString": "Constructor signature"
+              }
+            ],
+            "kindString": "Constructor",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/index.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRoot.constructor"
+            }
+          },
+          {
+            "name": "attach",
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "shortText": "Attach the ContextRoot to a given element to intercept `context-request` and\n`context-provider` events."
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-root.ts",
+                "line": 44,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "attach",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+                    "line": 44
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "element",
+                    "comment": {
+                      "shortText": "an element to add event listeners to"
+                    },
+                    "type": {
+                      "type": "reference",
+                      "name": "HTMLElement",
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/index.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRoot.attach"
+            }
+          },
+          {
+            "name": "detach",
+            "flags": {
+              "isPublic": true
+            },
+            "comment": {
+              "shortText": "Removes the ContextRoot event listeners from a given element."
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-root.ts",
+                "line": 54,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "detach",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-root.ts",
+                    "line": 54
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "element",
+                    "comment": {
+                      "shortText": "an element from which to remove event listeners"
+                    },
+                    "type": {
+                      "type": "reference",
+                      "name": "HTMLElement",
+                      "package": "typescript",
+                      "externalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/index.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRoot.detach"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-root.ts",
+            "line": 19,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "kindString": "Class",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/index.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextRoot"
+        }
+      },
+      {
+        "name": "ContextRequestEvent",
+        "comment": {
+          "shortText": "An event fired by a context requester to signal it desires a specified context with the given key.",
+          "text": "A provider should inspect the `context` property of the event to determine if it has a value that can\nsatisfy the request, calling the `callback` with the requested value if so.\nIf the requested context event contains a truthy `subscribe` value, then a provider can call the callback\nmultiple times if the value is changed, if this is the case the provider should pass an `unsubscribe`\nmethod to the callback which consumers can invoke to indicate they no longer wish to receive these updates.\nIf no `subscribe` value is present in the event, then the provider can assume that this is a 'one time'\nrequest for the context and can therefore not track the consumer.\n"
+        },
+        "children": [
+          {
+            "name": "constructor",
+            "flags": {
+              "isPublic": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 60,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "new ContextRequestEvent",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+                    "line": 60
+                  }
+                ],
+                "typeParameter": [
+                  {
+                    "name": "C",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            },
+                            "kindString": "Property"
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                            "line": 10
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Type parameter"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "context",
+                    "comment": {
+                      "shortText": "the context key to request"
+                    },
+                    "type": {
+                      "type": "reference",
+                      "name": "C"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "callback",
+                    "comment": {
+                      "shortText": "the callback that should be invoked when the context with the specified key is available"
+                    },
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "typeArguments": [
+                            {
+                              "type": "reference",
+                              "name": "C"
+                            }
+                          ],
+                          "name": "ContextType",
+                          "package": "@lit-labs/context",
+                          "location": {
+                            "page": "context",
+                            "anchor": "ContextType"
+                          }
+                        }
+                      ],
+                      "name": "ContextCallback",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextCallback"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "subscribe",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "comment": {
+                      "shortText": "an optional argument, if true indicates we want to subscribe to future updates"
+                    },
+                    "type": {
+                      "type": "intrinsic",
+                      "name": "boolean"
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "C"
+                    }
+                  ],
+                  "name": "ContextRequestEvent",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextRequestEvent"
+                  }
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "Event.constructor"
+                },
+                "kindString": "Constructor signature"
+              }
+            ],
+            "overwrites": {
+              "type": "reference",
+              "name": "Event.constructor"
+            },
+            "kindString": "Constructor",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequestEvent.constructor"
+            }
+          },
+          {
+            "name": "callback",
+            "flags": {
+              "isPublic": true,
+              "isReadonly": true
+            },
+            "comment": {
+              "shortText": "the callback that should be invoked when the context with the specified key is available"
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 62,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "C"
+                    }
+                  ],
+                  "name": "ContextType",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextType"
+                  }
+                }
+              ],
+              "name": "ContextCallback",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "ContextCallback"
+              }
+            },
+            "implementationOf": {
+              "type": "reference",
+              "name": "ContextRequest.callback",
+              "location": {
+                "page": "context",
+                "anchor": "ContextRequest.callback"
+              }
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequestEvent.callback"
+            }
+          },
+          {
+            "name": "context",
+            "flags": {
+              "isPublic": true,
+              "isReadonly": true
+            },
+            "comment": {
+              "shortText": "the context key to request"
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 61,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "C"
+            },
+            "implementationOf": {
+              "type": "reference",
+              "name": "ContextRequest.context",
+              "location": {
+                "page": "context",
+                "anchor": "ContextRequest.context"
+              }
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequestEvent.context"
+            }
+          },
+          {
+            "name": "subscribe",
+            "flags": {
+              "isPublic": true,
+              "isOptional": true,
+              "isReadonly": true
+            },
+            "comment": {
+              "shortText": "an optional argument, if true indicates we want to subscribe to future updates"
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 63,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "boolean"
+            },
+            "implementationOf": {
+              "type": "reference",
+              "name": "ContextRequest.subscribe",
+              "location": {
+                "page": "context",
+                "anchor": "ContextRequest.subscribe"
+              }
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequestEvent.subscribe"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+            "line": 50,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "C",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "extendedTypes": [
+          {
+            "type": "reference",
+            "name": "Event",
+            "package": "typescript"
+          }
+        ],
+        "implementedTypes": [
+          {
+            "type": "reference",
+            "typeArguments": [
+              {
+                "type": "reference",
+                "name": "C"
+              }
+            ],
+            "name": "ContextRequest",
+            "package": "@lit-labs/context",
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequest"
+            }
+          }
+        ],
+        "kindString": "Class",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextRequestEvent"
+        },
+        "heritage": [
+          {
+            "type": "reference",
+            "name": "Event",
+            "package": "typescript"
+          }
+        ]
+      },
+      {
+        "name": "ContextCallback",
+        "comment": {
+          "shortText": "A callback which is provided by a context requester and is called with the value satisfying the request.\nThis callback can be called multiple times by context providers as the requested value is changed."
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+            "line": 23,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "ValueType",
+            "kindString": "Type parameter"
+          }
+        ],
+        "type": {
+          "type": "reflection",
+          "declaration": {
+            "name": "__type",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+                "line": 23
+              }
+            ],
+            "signatures": [
+              {
+                "name": "__type",
+                "comment": {
+                  "shortText": "A callback which is provided by a context requester and is called with the value satisfying the request.\nThis callback can be called multiple times by context providers as the requested value is changed."
+                },
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": {
+                      "type": "reference",
+                      "name": "ValueType"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "unsubscribe",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/context-request-event.ts",
+                            "line": 25
+                          }
+                        ],
+                        "signatures": [
+                          {
+                            "name": "__type",
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "void"
+                            },
+                            "kindString": "Call signature"
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "kindString": "Type literal"
+          }
+        },
+        "kindString": "Type alias",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextCallback"
+        }
+      },
+      {
+        "name": "ContextRequest",
+        "comment": {
+          "shortText": "Interface definition for a ContextRequest"
+        },
+        "children": [
+          {
+            "name": "callback",
+            "flags": {
+              "isReadonly": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 33,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "C"
+                    }
+                  ],
+                  "name": "ContextType",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextType"
+                  }
+                }
+              ],
+              "name": "ContextCallback",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "ContextCallback"
+              }
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequest.callback"
+            }
+          },
+          {
+            "name": "context",
+            "flags": {
+              "isReadonly": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 32,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "C"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequest.context"
+            }
+          },
+          {
+            "name": "subscribe",
+            "flags": {
+              "isOptional": true,
+              "isReadonly": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 34,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "boolean"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequest.subscribe"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+            "line": 31,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "C",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "implementedBy": [
+          {
+            "type": "reference",
+            "name": "ContextRequestEvent",
+            "location": {
+              "page": "context",
+              "anchor": "ContextRequestEvent"
+            }
+          }
+        ],
+        "kindString": "Interface",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/context-request-event.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextRequest"
+        }
+      },
+      {
+        "name": "ContextConsumer",
+        "comment": {
+          "shortText": "A ReactiveController which adds context consuming behavior to a custom\nelement by dispatching `context-request` events.",
+          "text": "When the host element is connected to the document it will emit a\n`context-request` event with its context key. When the context request\nis satisfied the controller will invoke the callback, if present, and\ntrigger a host update so it can respond to the new value.\nIt will also call the dispose method given by the provider when the\nhost element is disconnected.\n"
+        },
+        "children": [
+          {
+            "name": "constructor",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 46,
+                "moduleSpecifier": "@lit-labs/context"
+              },
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 48,
+                "moduleSpecifier": "@lit-labs/context"
+              },
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 54,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "new ContextConsumer",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                    "line": 46
+                  }
+                ],
+                "typeParameter": [
+                  {
+                    "name": "C",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            },
+                            "kindString": "Property"
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                            "line": 10
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Type parameter"
+                  },
+                  {
+                    "name": "HostElement",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "HostElement"
+                        }
+                      ],
+                      "name": "ReactiveElement",
+                      "package": "@lit/reactive-element"
+                    },
+                    "kindString": "Type parameter"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "host",
+                    "type": {
+                      "type": "reference",
+                      "name": "HostElement"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "options",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "C"
+                        }
+                      ],
+                      "name": "Options",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "Options"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "C"
+                    },
+                    {
+                      "type": "reference",
+                      "name": "HostElement"
+                    }
+                  ],
+                  "name": "ContextConsumer",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextConsumer"
+                  }
+                },
+                "kindString": "Constructor signature"
+              },
+              {
+                "name": "new ContextConsumer",
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@deprecated",
+                      "content": [
+                        {
+                          "text": "Use new ContextConsumer(host, options)"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                    "line": 48
+                  }
+                ],
+                "typeParameter": [
+                  {
+                    "name": "C",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            },
+                            "kindString": "Property"
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                            "line": 10
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Type parameter"
+                  },
+                  {
+                    "name": "HostElement",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "HostElement"
+                        }
+                      ],
+                      "name": "ReactiveElement",
+                      "package": "@lit/reactive-element"
+                    },
+                    "kindString": "Type parameter"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "host",
+                    "type": {
+                      "type": "reference",
+                      "name": "HostElement"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "context",
+                    "type": {
+                      "type": "reference",
+                      "name": "C"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "callback",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                            "line": 51
+                          }
+                        ],
+                        "signatures": [
+                          {
+                            "name": "__type",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                                "line": 51
+                              }
+                            ],
+                            "parameters": [
+                              {
+                                "name": "value",
+                                "type": {
+                                  "type": "reference",
+                                  "typeArguments": [
+                                    {
+                                      "type": "reference",
+                                      "name": "C"
+                                    }
+                                  ],
+                                  "name": "ContextType",
+                                  "package": "@lit-labs/context",
+                                  "location": {
+                                    "page": "context",
+                                    "anchor": "ContextType"
+                                  }
+                                },
+                                "kindString": "Parameter"
+                              },
+                              {
+                                "name": "dispose",
+                                "flags": {
+                                  "isOptional": true
+                                },
+                                "type": {
+                                  "type": "reflection",
+                                  "declaration": {
+                                    "name": "__type",
+                                    "sources": [
+                                      {
+                                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                                        "line": 51
+                                      }
+                                    ],
+                                    "signatures": [
+                                      {
+                                        "name": "__type",
+                                        "sources": [
+                                          {
+                                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                                            "line": 51
+                                          }
+                                        ],
+                                        "type": {
+                                          "type": "intrinsic",
+                                          "name": "void"
+                                        },
+                                        "kindString": "Call signature"
+                                      }
+                                    ],
+                                    "kindString": "Type literal"
+                                  }
+                                },
+                                "kindString": "Parameter"
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "void"
+                            },
+                            "kindString": "Call signature"
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "subscribe",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "type": {
+                      "type": "intrinsic",
+                      "name": "boolean"
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "C"
+                    },
+                    {
+                      "type": "reference",
+                      "name": "HostElement"
+                    }
+                  ],
+                  "name": "ContextConsumer",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextConsumer"
+                  }
+                },
+                "kindString": "Constructor signature"
+              }
+            ],
+            "kindString": "Constructor",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextConsumer.constructor"
+            }
+          },
+          {
+            "name": "host",
+            "flags": {
+              "isProtected": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 37,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "HostElement"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextConsumer.host"
+            }
+          },
+          {
+            "name": "value",
+            "flags": {
+              "isPublic": true,
+              "isOptional": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 44,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "C"
+                }
+              ],
+              "name": "ContextType",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "ContextType"
+              }
+            },
+            "defaultValue": "undefined",
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextConsumer.value"
+            }
+          },
+          {
+            "name": "hostConnected",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 78,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "hostConnected",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                    "line": 78
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "implementationOf": {
+                  "type": "reference",
+                  "name": "ReactiveController.hostConnected"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "implementationOf": {
+              "type": "reference",
+              "name": "ReactiveController.hostConnected"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextConsumer.hostConnected"
+            }
+          },
+          {
+            "name": "hostDisconnected",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 82,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "hostDisconnected",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                    "line": 82
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "implementationOf": {
+                  "type": "reference",
+                  "name": "ReactiveController.hostDisconnected"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "implementationOf": {
+              "type": "reference",
+              "name": "ReactiveController.hostDisconnected"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextConsumer.hostDisconnected"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 32,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "C",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          },
+          {
+            "name": "HostElement",
+            "type": {
+              "type": "reference",
+              "name": "ReactiveElement",
+              "package": "@lit/reactive-element"
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "implementedTypes": [
+          {
+            "type": "reference",
+            "name": "ReactiveController",
+            "package": "@lit/reactive-element"
+          }
+        ],
+        "kindString": "Class",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextConsumer"
+        }
+      },
+      {
+        "name": "Options",
+        "children": [
+          {
+            "name": "callback",
+            "flags": {
+              "isOptional": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 16,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                    "line": 16
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                        "line": 16
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "value",
+                        "type": {
+                          "type": "reference",
+                          "typeArguments": [
+                            {
+                              "type": "reference",
+                              "name": "C"
+                            }
+                          ],
+                          "name": "ContextType",
+                          "package": "@lit-labs/context",
+                          "location": {
+                            "page": "context",
+                            "anchor": "ContextType"
+                          }
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "dispose",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                                "line": 16
+                              }
+                            ],
+                            "signatures": [
+                              {
+                                "name": "__type",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-consumer.ts",
+                                    "line": 16
+                                  }
+                                ],
+                                "type": {
+                                  "type": "intrinsic",
+                                  "name": "void"
+                                },
+                                "kindString": "Call signature"
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "intrinsic",
+                      "name": "void"
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "Options.callback"
+            }
+          },
+          {
+            "name": "context",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 15,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "C"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "Options.context"
+            }
+          },
+          {
+            "name": "subscribe",
+            "flags": {
+              "isOptional": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 17,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "intrinsic",
+              "name": "boolean"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "Options.subscribe"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 14,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "C",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "kindString": "Interface",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-consumer.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "Options"
+        }
+      },
+      {
+        "name": "ContextProvider",
+        "comment": {
+          "shortText": "A ReactiveController which adds context provider behavior to a\ncustom element.",
+          "text": "This controller simply listens to the `context-request` event when\nthe host is connected to the DOM and registers the received callbacks\nagainst its observable Context implementation.\n"
+        },
+        "children": [
+          {
+            "name": "constructor",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 57,
+                "moduleSpecifier": "@lit-labs/context"
+              },
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 59,
+                "moduleSpecifier": "@lit-labs/context"
+              },
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 60,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "new ContextProvider",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+                    "line": 57
+                  }
+                ],
+                "typeParameter": [
+                  {
+                    "name": "T",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            },
+                            "kindString": "Property"
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                            "line": 10
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Type parameter"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "host",
+                    "type": {
+                      "type": "reference",
+                      "name": "ReactiveElement",
+                      "package": "@lit/reactive-element"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "options",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      ],
+                      "name": "Options",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "Options"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "T"
+                    }
+                  ],
+                  "name": "ContextProvider",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextProvider"
+                  }
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "ValueNotifier<ContextType<T>>.constructor"
+                },
+                "kindString": "Constructor signature"
+              },
+              {
+                "name": "new ContextProvider",
+                "comment": {
+                  "blockTags": [
+                    {
+                      "tag": "@deprecated",
+                      "content": [
+                        {
+                          "text": "Use new ContextProvider(host, options)"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+                    "line": 59
+                  }
+                ],
+                "typeParameter": [
+                  {
+                    "name": "T",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            },
+                            "kindString": "Property"
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                            "line": 10
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Type parameter"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "host",
+                    "type": {
+                      "type": "reference",
+                      "name": "ReactiveElement",
+                      "package": "@lit/reactive-element"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "context",
+                    "type": {
+                      "type": "reference",
+                      "name": "T"
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "initialValue",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      ],
+                      "name": "ContextType",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextType"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "T"
+                    }
+                  ],
+                  "name": "ContextProvider",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextProvider"
+                  }
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "ValueNotifier<ContextType<T>>.constructor"
+                },
+                "kindString": "Constructor signature"
+              }
+            ],
+            "overwrites": {
+              "type": "reference",
+              "name": "ValueNotifier<ContextType<T>>.constructor"
+            },
+            "kindString": "Constructor",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.constructor"
+            }
+          },
+          {
+            "name": "host",
+            "flags": {
+              "isProtected": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 54,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "ReactiveElement",
+              "package": "@lit/reactive-element"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.host"
+            }
+          },
+          {
+            "name": "value",
+            "flags": {
+              "isPublic": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/value-notifier.ts",
+                "line": 26,
+                "moduleSpecifier": "@lit-labs/context"
+              },
+              {
+                "fileName": "packages/labs/context/src/lib/value-notifier.ts",
+                "line": 29,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "T"
+            },
+            "getSignature": {
+              "name": "value",
+              "sources": [
+                {
+                  "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+                  "line": 26
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "T"
+              },
+              "inheritedFrom": {
+                "type": "reference",
+                "name": "ValueNotifier.value"
+              },
+              "kindString": "Get signature"
+            },
+            "setSignature": {
+              "name": "value",
+              "sources": [
+                {
+                  "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+                  "line": 29
+                }
+              ],
+              "parameters": [
+                {
+                  "name": "v",
+                  "type": {
+                    "type": "reference",
+                    "name": "T"
+                  },
+                  "kindString": "Parameter"
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              },
+              "inheritedFrom": {
+                "type": "reference",
+                "name": "ValueNotifier.value"
+              },
+              "kindString": "Set signature"
+            },
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.value"
+            },
+            "kindString": "Accessor",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.value"
+            }
+          },
+          {
+            "name": "addCallback",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/value-notifier.ts",
+                "line": 53,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "addCallback",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+                    "line": 53
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "callback",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "typeArguments": [
+                            {
+                              "type": "reference",
+                              "name": "T"
+                            }
+                          ],
+                          "name": "ContextType",
+                          "package": "@lit-labs/context",
+                          "location": {
+                            "page": "context",
+                            "anchor": "ContextType"
+                          }
+                        }
+                      ],
+                      "name": "ContextCallback",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextCallback"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "subscribe",
+                    "flags": {
+                      "isOptional": true
+                    },
+                    "type": {
+                      "type": "intrinsic",
+                      "name": "boolean"
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "inheritedFrom": {
+                  "type": "reference",
+                  "name": "ValueNotifier.addCallback"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.addCallback"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.addCallback"
+            }
+          },
+          {
+            "name": "clearCallbacks",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/value-notifier.ts",
+                "line": 64,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "clearCallbacks",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+                    "line": 64
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "inheritedFrom": {
+                  "type": "reference",
+                  "name": "ValueNotifier.clearCallbacks"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.clearCallbacks"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.clearCallbacks"
+            }
+          },
+          {
+            "name": "hostConnected",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 100,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "hostConnected",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+                    "line": 100
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "implementationOf": {
+                  "type": "reference",
+                  "name": "ReactiveController.hostConnected"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "implementationOf": {
+              "type": "reference",
+              "name": "ReactiveController.hostConnected"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.hostConnected"
+            }
+          },
+          {
+            "name": "onContextRequest",
+            "flags": {
+              "isPublic": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 80,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "onContextRequest",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+                    "line": 80
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "ev",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "intrinsic",
+                                  "name": "unknown"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        }
+                      ],
+                      "name": "ContextRequestEvent",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextRequestEvent"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.onContextRequest"
+            }
+          },
+          {
+            "name": "setValue",
+            "flags": {
+              "isPublic": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/value-notifier.ts",
+                "line": 33,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "setValue",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+                    "line": 33
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "v",
+                    "type": {
+                      "type": "reference",
+                      "typeArguments": [
+                        {
+                          "type": "reference",
+                          "name": "T"
+                        }
+                      ],
+                      "name": "ContextType",
+                      "package": "@lit-labs/context",
+                      "location": {
+                        "page": "context",
+                        "anchor": "ContextType"
+                      }
+                    },
+                    "kindString": "Parameter"
+                  },
+                  {
+                    "name": "force",
+                    "type": {
+                      "type": "intrinsic",
+                      "name": "boolean"
+                    },
+                    "defaultValue": "false",
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "inheritedFrom": {
+                  "type": "reference",
+                  "name": "ValueNotifier.setValue"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.setValue"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.setValue"
+            }
+          },
+          {
+            "name": "updateObservers",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/value-notifier.ts",
+                "line": 47,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "updateObservers",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/value-notifier.ts",
+                    "line": 47
+                  }
+                ],
+                "type": {
+                  "type": "intrinsic",
+                  "name": "void"
+                },
+                "inheritedFrom": {
+                  "type": "reference",
+                  "name": "ValueNotifier.updateObservers"
+                },
+                "kindString": "Call signature"
+              }
+            ],
+            "inheritedFrom": {
+              "type": "reference",
+              "name": "ValueNotifier.updateObservers"
+            },
+            "kindString": "Method",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProvider.updateObservers"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 50,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "T",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "extendedTypes": [
+          {
+            "type": "reference",
+            "typeArguments": [
+              {
+                "type": "reference",
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "name": "T"
+                  }
+                ],
+                "name": "ContextType",
+                "package": "@lit-labs/context",
+                "location": {
+                  "page": "context",
+                  "anchor": "ContextType"
+                }
+              }
+            ],
+            "name": "ValueNotifier",
+            "package": "@lit-labs/context"
+          }
+        ],
+        "implementedTypes": [
+          {
+            "type": "reference",
+            "name": "ReactiveController",
+            "package": "@lit/reactive-element"
+          }
+        ],
+        "kindString": "Class",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProvider"
+        },
+        "heritage": [
+          {
+            "type": "reference",
+            "typeArguments": [
+              {
+                "type": "reference",
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "name": "T"
+                  }
+                ],
+                "name": "ContextType",
+                "package": "@lit-labs/context",
+                "location": {
+                  "page": "context",
+                  "anchor": "ContextType"
+                }
+              }
+            ],
+            "name": "ValueNotifier",
+            "package": "@lit-labs/context"
+          }
+        ]
+      },
+      {
+        "name": "ContextProviderEvent",
+        "children": [
+          {
+            "name": "constructor",
+            "flags": {
+              "isPublic": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 29,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "signatures": [
+              {
+                "name": "new ContextProviderEvent",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/controllers/context-provider.ts",
+                    "line": 29
+                  }
+                ],
+                "typeParameter": [
+                  {
+                    "name": "C",
+                    "type": {
+                      "type": "reflection",
+                      "declaration": {
+                        "name": "__type",
+                        "children": [
+                          {
+                            "name": "__context__",
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "type": {
+                              "type": "intrinsic",
+                              "name": "unknown"
+                            },
+                            "kindString": "Property"
+                          }
+                        ],
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                            "line": 10
+                          }
+                        ],
+                        "kindString": "Type literal"
+                      }
+                    },
+                    "kindString": "Type parameter"
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "context",
+                    "comment": {
+                      "shortText": "the context which this provider can provide"
+                    },
+                    "type": {
+                      "type": "reference",
+                      "name": "C"
+                    },
+                    "kindString": "Parameter"
+                  }
+                ],
+                "type": {
+                  "type": "reference",
+                  "typeArguments": [
+                    {
+                      "type": "reference",
+                      "name": "C"
+                    }
+                  ],
+                  "name": "ContextProviderEvent",
+                  "package": "@lit-labs/context",
+                  "location": {
+                    "page": "context",
+                    "anchor": "ContextProviderEvent"
+                  }
+                },
+                "overwrites": {
+                  "type": "reference",
+                  "name": "Event.constructor"
+                },
+                "kindString": "Constructor signature"
+              }
+            ],
+            "overwrites": {
+              "type": "reference",
+              "name": "Event.constructor"
+            },
+            "kindString": "Constructor",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProviderEvent.constructor"
+            }
+          },
+          {
+            "name": "context",
+            "flags": {
+              "isPublic": true,
+              "isReadonly": true
+            },
+            "comment": {
+              "shortText": "the context which this provider can provide"
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 29,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "C"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "ContextProviderEvent.context"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 22,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "C",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "extendedTypes": [
+          {
+            "type": "reference",
+            "name": "Event",
+            "package": "typescript"
+          }
+        ],
+        "kindString": "Class",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextProviderEvent"
+        },
+        "heritage": [
+          {
+            "type": "reference",
+            "name": "Event",
+            "package": "typescript"
+          }
+        ]
+      },
+      {
+        "name": "Options",
+        "children": [
+          {
+            "name": "context",
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 38,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "C"
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "Options.context"
+            }
+          },
+          {
+            "name": "initialValue",
+            "flags": {
+              "isOptional": true
+            },
+            "sources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 39,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "C"
+                }
+              ],
+              "name": "ContextType",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "ContextType"
+              }
+            },
+            "kindString": "Property",
+            "entrypointSources": [
+              {
+                "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+                "line": 1,
+                "moduleSpecifier": "@lit-labs/context"
+              }
+            ],
+            "location": {
+              "page": "context",
+              "anchor": "Options.initialValue"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 37,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "C",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "kindString": "Interface",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/controllers/context-provider.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "Options"
+        }
+      },
+      {
+        "name": "createContext",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@returns",
+              "content": [
+                {
+                  "text": "the context key value cast to "
+                },
+                {
+                  "text": "`Context<K, ValueType>`"
+                }
+              ]
+            }
+          ],
+          "shortText": "Creates a typed Context.",
+          "text": "Contexts are compared with with strict equality.\nIf you want two separate `createContext()` calls to referer to the same\ncontext, then use a key that will by equal under strict equality like a\nstring for `Symbol.for()`:\n```ts\n// true\ncreateContext('my-context') === createContext('my-context')\n// true\ncreateContext(Symbol.for('my-context')) === createContext(Symbol.for('my-context'))\n```\nIf you want a context to be unique so that it's guaranteed to not collide\nwith other contexts, use a key that's unique under strict equality, like\na `Symbol()` or object.:\n```\n// false\ncreateContext({}) === createContext({})\n// false\ncreateContext(Symbol('my-context')) === createContext(Symbol('my-context'))\n```\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 54,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "createContext",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                "line": 54
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "the type of value that can be provided by this context."
+                    }
+                  ]
+                },
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "K",
+                "default": {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "key",
+                "comment": {
+                  "shortText": "a context key value"
+                },
+                "type": {
+                  "type": "reference",
+                  "name": "K"
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "K"
+                },
+                {
+                  "type": "reference",
+                  "name": "ValueType"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "createContext"
+        }
+      },
+      {
+        "name": "Context",
+        "comment": {
+          "shortText": "The Context type defines a type brand to associate a key value with the context value type"
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 10,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "KeyType",
+            "kindString": "Type parameter"
+          },
+          {
+            "name": "ValueType",
+            "kindString": "Type parameter"
+          }
+        ],
+        "type": {
+          "type": "intersection",
+          "types": [
+            {
+              "type": "reference",
+              "name": "KeyType"
+            },
+            {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "children": [
+                  {
+                    "name": "__context__",
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                        "line": 10
+                      }
+                    ],
+                    "type": {
+                      "type": "reference",
+                      "name": "ValueType"
+                    },
+                    "kindString": "Property"
+                  }
+                ],
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                    "line": 10
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            }
+          ]
+        },
+        "kindString": "Type alias",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "Context"
+        }
+      },
+      {
+        "name": "ContextKey",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@deprecated",
+              "content": [
+                {
+                  "text": "use Context instead"
+                }
+              ]
+            }
+          ]
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 15,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "KeyType",
+            "kindString": "Type parameter"
+          },
+          {
+            "name": "ValueType",
+            "kindString": "Type parameter"
+          }
+        ],
+        "type": {
+          "type": "reference",
+          "typeArguments": [
+            {
+              "type": "reference",
+              "name": "KeyType"
+            },
+            {
+              "type": "reference",
+              "name": "ValueType"
+            }
+          ],
+          "name": "Context",
+          "package": "@lit-labs/context",
+          "location": {
+            "page": "context",
+            "anchor": "Context"
+          }
+        },
+        "kindString": "Type alias",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextKey"
+        }
+      },
+      {
+        "name": "ContextType",
+        "comment": {
+          "shortText": "A helper type which can extract a Context value type from a Context type"
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 20,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "typeParameters": [
+          {
+            "name": "Key",
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Type parameter"
+          }
+        ],
+        "type": {
+          "type": "conditional",
+          "checkType": {
+            "type": "reference",
+            "name": "Key"
+          },
+          "extendsType": {
+            "type": "reference",
+            "typeArguments": [
+              {
+                "type": "intrinsic",
+                "name": "unknown"
+              },
+              {
+                "type": "inferred",
+                "name": "ValueType"
+              }
+            ],
+            "name": "Context",
+            "package": "@lit-labs/context",
+            "location": {
+              "page": "context",
+              "anchor": "Context"
+            }
+          },
+          "trueType": {
+            "type": "reference",
+            "name": "ValueType"
+          },
+          "falseType": {
+            "type": "intrinsic",
+            "name": "never"
+          }
+        },
+        "kindString": "Type alias",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "ContextType"
+        }
+      },
+      {
+        "name": "consume",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@example",
+              "content": [
+                {
+                  "text": "```ts\nimport {consume} from '@lit-labs/context';\nimport {loggerContext, Logger} from 'community-protocols/logger';\n\nclass MyElement {\n  @consume({context: loggerContext})\n  logger?: Logger;\n\n  doThing() {\n    this.logger!.log('thing was done');\n  }\n}\n```"
+                }
+              ]
+            }
+          ],
+          "shortText": "A property decorator that adds a ContextConsumer controller to the component\nwhich will try and retrieve a value for the property via the Context API."
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/consume.ts",
+            "line": 44,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "consume",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                "line": 44
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "__namedParameters",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "children": [
+                      {
+                        "name": "context",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                            "line": 48
+                          }
+                        ],
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Property"
+                      },
+                      {
+                        "name": "subscribe",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                            "line": 49
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "boolean"
+                        },
+                        "kindString": "Property"
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                        "line": 47
+                      }
+                    ],
+                    "kindString": "Type literal"
+                  }
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                    "line": 50
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "typeParameter": [
+                      {
+                        "name": "K",
+                        "type": {
+                          "type": "reference",
+                          "name": "PropertyKey",
+                          "package": "typescript"
+                        },
+                        "kindString": "Type parameter"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "protoOrDescriptor",
+                        "type": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "reference",
+                              "name": "ReactiveElement",
+                              "package": "@lit/reactive-element"
+                            },
+                            {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "typeArguments": [
+                                    {
+                                      "type": "reference",
+                                      "name": "K"
+                                    },
+                                    {
+                                      "type": "reference",
+                                      "name": "ValueType"
+                                    }
+                                  ],
+                                  "name": "Record",
+                                  "package": "typescript"
+                                }
+                              ],
+                              "name": "Partial",
+                              "package": "typescript"
+                            }
+                          ]
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "name",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reference",
+                          "name": "K"
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "void"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "any"
+                        }
+                      ]
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/consume.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "consume"
+        }
+      },
+      {
+        "name": "provide",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@example",
+              "content": [
+                {
+                  "text": "```ts\nimport {consume} from '@lit-labs/context';\nimport {loggerContext} from 'community-protocols/logger';\n\nclass MyElement {\n  @provide({context: loggerContext})\n  logger;\n\n  doThing() {\n    this.logger.log('thing was done');\n  }\n}\n```"
+                }
+              ]
+            }
+          ],
+          "shortText": "A property decorator that adds a ContextConsumer controller to the component\nwhich will try and retrieve a value for the property via the Context API."
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/provide.ts",
+            "line": 46,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "provide",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                "line": 46
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "__namedParameters",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "children": [
+                      {
+                        "name": "context",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                            "line": 49
+                          }
+                        ],
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Property"
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                        "line": 48
+                      }
+                    ],
+                    "kindString": "Type literal"
+                  }
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                    "line": 50
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "typeParameter": [
+                      {
+                        "name": "K",
+                        "type": {
+                          "type": "reference",
+                          "name": "PropertyKey",
+                          "package": "typescript"
+                        },
+                        "kindString": "Type parameter"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "protoOrDescriptor",
+                        "type": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "reference",
+                              "name": "ReactiveElement",
+                              "package": "@lit/reactive-element"
+                            },
+                            {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "name": "K"
+                                },
+                                {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                }
+                              ],
+                              "name": "Record",
+                              "package": "typescript"
+                            }
+                          ]
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "name",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reference",
+                          "name": "K"
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "void"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "any"
+                        }
+                      ]
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/provide.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "provide"
+        }
+      }
+    ]
   }
 ]

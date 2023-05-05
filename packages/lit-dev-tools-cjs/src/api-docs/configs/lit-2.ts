@@ -257,11 +257,11 @@ export const lit2Config: ApiDocsConfig = {
     // fine in practice, but when we add e.g. @lit/localize we'll need to be
     // smarter here.
     let [_, pkg, pathMinusExtension] = match;
-    
-    if (pkg === "labs/context") {
+
+    if (pkg === 'labs/context') {
       // There are no @lit-labs/context path extensions because everything is
       // re-exported from root.
-      return "@lit-labs/context"
+      return '@lit-labs/context';
     }
 
     // TODO(aomarks) This wrongly assumes index.ts is always the package main.

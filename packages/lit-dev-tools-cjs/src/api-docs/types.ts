@@ -140,7 +140,7 @@ export interface ApiDocsConfig {
     slug: string;
     title: string;
     tocFilter?: (node: DeclarationReflection) => boolean;
-    versionLinks?: { [version: string]: string };
+    versionLinks?: {[version: string]: string};
     labs?: true;
   }>;
 
