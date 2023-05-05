@@ -29187,6 +29187,530 @@
     "commit": "c134604f178e36444261d83eabe9e578c1ed90c4",
     "items": [
       {
+        "name": "createContext",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@returns",
+              "content": [
+                {
+                  "text": "the context key value cast to "
+                },
+                {
+                  "text": "`Context<K, ValueType>`"
+                }
+              ]
+            }
+          ],
+          "shortText": "Creates a typed Context.",
+          "text": "Contexts are compared with with strict equality.\nIf you want two separate `createContext()` calls to referer to the same\ncontext, then use a key that will by equal under strict equality like a\nstring for `Symbol.for()`:\n```ts\n// true\ncreateContext('my-context') === createContext('my-context')\n// true\ncreateContext(Symbol.for('my-context')) === createContext(Symbol.for('my-context'))\n```\nIf you want a context to be unique so that it's guaranteed to not collide\nwith other contexts, use a key that's unique under strict equality, like\na `Symbol()` or object.:\n```\n// false\ncreateContext({}) === createContext({})\n// false\ncreateContext(Symbol('my-context')) === createContext(Symbol('my-context'))\n```\n"
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 54,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "createContext",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                "line": 54
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "comment": {
+                  "summary": [
+                    {
+                      "text": "the type of value that can be provided by this context."
+                    }
+                  ]
+                },
+                "kindString": "Type parameter"
+              },
+              {
+                "name": "K",
+                "default": {
+                  "type": "intrinsic",
+                  "name": "unknown"
+                },
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "key",
+                "comment": {
+                  "shortText": "a context key value"
+                },
+                "type": {
+                  "type": "reference",
+                  "name": "K"
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "typeArguments": [
+                {
+                  "type": "reference",
+                  "name": "K"
+                },
+                {
+                  "type": "reference",
+                  "name": "ValueType"
+                }
+              ],
+              "name": "Context",
+              "package": "@lit-labs/context",
+              "location": {
+                "page": "context",
+                "anchor": "Context"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/create-context.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "createContext"
+        }
+      },
+      {
+        "name": "consume",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@example",
+              "content": [
+                {
+                  "text": "```ts\nimport {consume} from '@lit-labs/context';\nimport {loggerContext, Logger} from 'community-protocols/logger';\n\nclass MyElement {\n  @consume({context: loggerContext})\n  logger?: Logger;\n\n  doThing() {\n    this.logger!.log('thing was done');\n  }\n}\n```"
+                }
+              ]
+            }
+          ],
+          "shortText": "A property decorator that adds a ContextConsumer controller to the component\nwhich will try and retrieve a value for the property via the Context API."
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/consume.ts",
+            "line": 44,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "consume",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                "line": 44
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "__namedParameters",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "children": [
+                      {
+                        "name": "context",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                            "line": 48
+                          }
+                        ],
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Property"
+                      },
+                      {
+                        "name": "subscribe",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                            "line": 49
+                          }
+                        ],
+                        "type": {
+                          "type": "intrinsic",
+                          "name": "boolean"
+                        },
+                        "kindString": "Property"
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                        "line": 47
+                      }
+                    ],
+                    "kindString": "Type literal"
+                  }
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
+                    "line": 50
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "typeParameter": [
+                      {
+                        "name": "K",
+                        "type": {
+                          "type": "reference",
+                          "name": "PropertyKey",
+                          "package": "typescript"
+                        },
+                        "kindString": "Type parameter"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "protoOrDescriptor",
+                        "type": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "reference",
+                              "name": "ReactiveElement",
+                              "package": "@lit/reactive-element"
+                            },
+                            {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "typeArguments": [
+                                    {
+                                      "type": "reference",
+                                      "name": "K"
+                                    },
+                                    {
+                                      "type": "reference",
+                                      "name": "ValueType"
+                                    }
+                                  ],
+                                  "name": "Record",
+                                  "package": "typescript"
+                                }
+                              ],
+                              "name": "Partial",
+                              "package": "typescript"
+                            }
+                          ]
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "name",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reference",
+                          "name": "K"
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "void"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "any"
+                        }
+                      ]
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/consume.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "consume"
+        }
+      },
+      {
+        "name": "provide",
+        "comment": {
+          "blockTags": [
+            {
+              "tag": "@example",
+              "content": [
+                {
+                  "text": "```ts\nimport {consume} from '@lit-labs/context';\nimport {loggerContext} from 'community-protocols/logger';\n\nclass MyElement {\n  @provide({context: loggerContext})\n  logger;\n\n  doThing() {\n    this.logger.log('thing was done');\n  }\n}\n```"
+                }
+              ]
+            }
+          ],
+          "shortText": "A property decorator that adds a ContextConsumer controller to the component\nwhich will try and retrieve a value for the property via the Context API."
+        },
+        "sources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/provide.ts",
+            "line": 46,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "signatures": [
+          {
+            "name": "provide",
+            "sources": [
+              {
+                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                "line": 46
+              }
+            ],
+            "typeParameter": [
+              {
+                "name": "ValueType",
+                "kindString": "Type parameter"
+              }
+            ],
+            "parameters": [
+              {
+                "name": "__namedParameters",
+                "type": {
+                  "type": "reflection",
+                  "declaration": {
+                    "name": "__type",
+                    "children": [
+                      {
+                        "name": "context",
+                        "sources": [
+                          {
+                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                            "line": 49
+                          }
+                        ],
+                        "type": {
+                          "type": "reflection",
+                          "declaration": {
+                            "name": "__type",
+                            "children": [
+                              {
+                                "name": "__context__",
+                                "sources": [
+                                  {
+                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                    "line": 10
+                                  }
+                                ],
+                                "type": {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                },
+                                "kindString": "Property"
+                              }
+                            ],
+                            "sources": [
+                              {
+                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
+                                "line": 10
+                              }
+                            ],
+                            "kindString": "Type literal"
+                          }
+                        },
+                        "kindString": "Property"
+                      }
+                    ],
+                    "sources": [
+                      {
+                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                        "line": 48
+                      }
+                    ],
+                    "kindString": "Type literal"
+                  }
+                },
+                "kindString": "Parameter"
+              }
+            ],
+            "type": {
+              "type": "reflection",
+              "declaration": {
+                "name": "__type",
+                "sources": [
+                  {
+                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
+                    "line": 50
+                  }
+                ],
+                "signatures": [
+                  {
+                    "name": "__type",
+                    "typeParameter": [
+                      {
+                        "name": "K",
+                        "type": {
+                          "type": "reference",
+                          "name": "PropertyKey",
+                          "package": "typescript"
+                        },
+                        "kindString": "Type parameter"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "protoOrDescriptor",
+                        "type": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "reference",
+                              "name": "ReactiveElement",
+                              "package": "@lit/reactive-element"
+                            },
+                            {
+                              "type": "reference",
+                              "typeArguments": [
+                                {
+                                  "type": "reference",
+                                  "name": "K"
+                                },
+                                {
+                                  "type": "reference",
+                                  "name": "ValueType"
+                                }
+                              ],
+                              "name": "Record",
+                              "package": "typescript"
+                            }
+                          ]
+                        },
+                        "kindString": "Parameter"
+                      },
+                      {
+                        "name": "name",
+                        "flags": {
+                          "isOptional": true
+                        },
+                        "type": {
+                          "type": "reference",
+                          "name": "K"
+                        },
+                        "kindString": "Parameter"
+                      }
+                    ],
+                    "type": {
+                      "type": "union",
+                      "types": [
+                        {
+                          "type": "intrinsic",
+                          "name": "void"
+                        },
+                        {
+                          "type": "intrinsic",
+                          "name": "any"
+                        }
+                      ]
+                    },
+                    "kindString": "Call signature"
+                  }
+                ],
+                "kindString": "Type literal"
+              }
+            },
+            "kindString": "Call signature"
+          }
+        ],
+        "kindString": "Function",
+        "entrypointSources": [
+          {
+            "fileName": "packages/labs/context/src/lib/decorators/provide.ts",
+            "line": 1,
+            "moduleSpecifier": "@lit-labs/context"
+          }
+        ],
+        "location": {
+          "page": "context",
+          "anchor": "provide"
+        }
+      },
+      {
         "name": "contextProvided",
         "comment": {
           "blockTags": [
@@ -32432,110 +32956,6 @@
         }
       },
       {
-        "name": "createContext",
-        "comment": {
-          "blockTags": [
-            {
-              "tag": "@returns",
-              "content": [
-                {
-                  "text": "the context key value cast to "
-                },
-                {
-                  "text": "`Context<K, ValueType>`"
-                }
-              ]
-            }
-          ],
-          "shortText": "Creates a typed Context.",
-          "text": "Contexts are compared with with strict equality.\nIf you want two separate `createContext()` calls to referer to the same\ncontext, then use a key that will by equal under strict equality like a\nstring for `Symbol.for()`:\n```ts\n// true\ncreateContext('my-context') === createContext('my-context')\n// true\ncreateContext(Symbol.for('my-context')) === createContext(Symbol.for('my-context'))\n```\nIf you want a context to be unique so that it's guaranteed to not collide\nwith other contexts, use a key that's unique under strict equality, like\na `Symbol()` or object.:\n```\n// false\ncreateContext({}) === createContext({})\n// false\ncreateContext(Symbol('my-context')) === createContext(Symbol('my-context'))\n```\n"
-        },
-        "sources": [
-          {
-            "fileName": "packages/labs/context/src/lib/create-context.ts",
-            "line": 54,
-            "moduleSpecifier": "@lit-labs/context"
-          }
-        ],
-        "signatures": [
-          {
-            "name": "createContext",
-            "sources": [
-              {
-                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
-                "line": 54
-              }
-            ],
-            "typeParameter": [
-              {
-                "name": "ValueType",
-                "comment": {
-                  "summary": [
-                    {
-                      "text": "the type of value that can be provided by this context."
-                    }
-                  ]
-                },
-                "kindString": "Type parameter"
-              },
-              {
-                "name": "K",
-                "default": {
-                  "type": "intrinsic",
-                  "name": "unknown"
-                },
-                "kindString": "Type parameter"
-              }
-            ],
-            "parameters": [
-              {
-                "name": "key",
-                "comment": {
-                  "shortText": "a context key value"
-                },
-                "type": {
-                  "type": "reference",
-                  "name": "K"
-                },
-                "kindString": "Parameter"
-              }
-            ],
-            "type": {
-              "type": "reference",
-              "typeArguments": [
-                {
-                  "type": "reference",
-                  "name": "K"
-                },
-                {
-                  "type": "reference",
-                  "name": "ValueType"
-                }
-              ],
-              "name": "Context",
-              "package": "@lit-labs/context",
-              "location": {
-                "page": "context",
-                "anchor": "Context"
-              }
-            },
-            "kindString": "Call signature"
-          }
-        ],
-        "kindString": "Function",
-        "entrypointSources": [
-          {
-            "fileName": "packages/labs/context/src/lib/create-context.ts",
-            "line": 1,
-            "moduleSpecifier": "@lit-labs/context"
-          }
-        ],
-        "location": {
-          "page": "context",
-          "anchor": "createContext"
-        }
-      },
-      {
         "name": "Context",
         "comment": {
           "shortText": "The Context type defines a type brand to associate a key value with the context value type"
@@ -32753,426 +33173,6 @@
         "location": {
           "page": "context",
           "anchor": "ContextType"
-        }
-      },
-      {
-        "name": "consume",
-        "comment": {
-          "blockTags": [
-            {
-              "tag": "@example",
-              "content": [
-                {
-                  "text": "```ts\nimport {consume} from '@lit-labs/context';\nimport {loggerContext, Logger} from 'community-protocols/logger';\n\nclass MyElement {\n  @consume({context: loggerContext})\n  logger?: Logger;\n\n  doThing() {\n    this.logger!.log('thing was done');\n  }\n}\n```"
-                }
-              ]
-            }
-          ],
-          "shortText": "A property decorator that adds a ContextConsumer controller to the component\nwhich will try and retrieve a value for the property via the Context API."
-        },
-        "sources": [
-          {
-            "fileName": "packages/labs/context/src/lib/decorators/consume.ts",
-            "line": 44,
-            "moduleSpecifier": "@lit-labs/context"
-          }
-        ],
-        "signatures": [
-          {
-            "name": "consume",
-            "sources": [
-              {
-                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
-                "line": 44
-              }
-            ],
-            "typeParameter": [
-              {
-                "name": "ValueType",
-                "kindString": "Type parameter"
-              }
-            ],
-            "parameters": [
-              {
-                "name": "__namedParameters",
-                "type": {
-                  "type": "reflection",
-                  "declaration": {
-                    "name": "__type",
-                    "children": [
-                      {
-                        "name": "context",
-                        "sources": [
-                          {
-                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
-                            "line": 48
-                          }
-                        ],
-                        "type": {
-                          "type": "reflection",
-                          "declaration": {
-                            "name": "__type",
-                            "children": [
-                              {
-                                "name": "__context__",
-                                "sources": [
-                                  {
-                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
-                                    "line": 10
-                                  }
-                                ],
-                                "type": {
-                                  "type": "reference",
-                                  "name": "ValueType"
-                                },
-                                "kindString": "Property"
-                              }
-                            ],
-                            "sources": [
-                              {
-                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
-                                "line": 10
-                              }
-                            ],
-                            "kindString": "Type literal"
-                          }
-                        },
-                        "kindString": "Property"
-                      },
-                      {
-                        "name": "subscribe",
-                        "flags": {
-                          "isOptional": true
-                        },
-                        "sources": [
-                          {
-                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
-                            "line": 49
-                          }
-                        ],
-                        "type": {
-                          "type": "intrinsic",
-                          "name": "boolean"
-                        },
-                        "kindString": "Property"
-                      }
-                    ],
-                    "sources": [
-                      {
-                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
-                        "line": 47
-                      }
-                    ],
-                    "kindString": "Type literal"
-                  }
-                },
-                "kindString": "Parameter"
-              }
-            ],
-            "type": {
-              "type": "reflection",
-              "declaration": {
-                "name": "__type",
-                "sources": [
-                  {
-                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/consume.ts",
-                    "line": 50
-                  }
-                ],
-                "signatures": [
-                  {
-                    "name": "__type",
-                    "typeParameter": [
-                      {
-                        "name": "K",
-                        "type": {
-                          "type": "reference",
-                          "name": "PropertyKey",
-                          "package": "typescript"
-                        },
-                        "kindString": "Type parameter"
-                      }
-                    ],
-                    "parameters": [
-                      {
-                        "name": "protoOrDescriptor",
-                        "type": {
-                          "type": "intersection",
-                          "types": [
-                            {
-                              "type": "reference",
-                              "name": "ReactiveElement",
-                              "package": "@lit/reactive-element"
-                            },
-                            {
-                              "type": "reference",
-                              "typeArguments": [
-                                {
-                                  "type": "reference",
-                                  "typeArguments": [
-                                    {
-                                      "type": "reference",
-                                      "name": "K"
-                                    },
-                                    {
-                                      "type": "reference",
-                                      "name": "ValueType"
-                                    }
-                                  ],
-                                  "name": "Record",
-                                  "package": "typescript"
-                                }
-                              ],
-                              "name": "Partial",
-                              "package": "typescript"
-                            }
-                          ]
-                        },
-                        "kindString": "Parameter"
-                      },
-                      {
-                        "name": "name",
-                        "flags": {
-                          "isOptional": true
-                        },
-                        "type": {
-                          "type": "reference",
-                          "name": "K"
-                        },
-                        "kindString": "Parameter"
-                      }
-                    ],
-                    "type": {
-                      "type": "union",
-                      "types": [
-                        {
-                          "type": "intrinsic",
-                          "name": "void"
-                        },
-                        {
-                          "type": "intrinsic",
-                          "name": "any"
-                        }
-                      ]
-                    },
-                    "kindString": "Call signature"
-                  }
-                ],
-                "kindString": "Type literal"
-              }
-            },
-            "kindString": "Call signature"
-          }
-        ],
-        "kindString": "Function",
-        "entrypointSources": [
-          {
-            "fileName": "packages/labs/context/src/lib/decorators/consume.ts",
-            "line": 1,
-            "moduleSpecifier": "@lit-labs/context"
-          }
-        ],
-        "location": {
-          "page": "context",
-          "anchor": "consume"
-        }
-      },
-      {
-        "name": "provide",
-        "comment": {
-          "blockTags": [
-            {
-              "tag": "@example",
-              "content": [
-                {
-                  "text": "```ts\nimport {consume} from '@lit-labs/context';\nimport {loggerContext} from 'community-protocols/logger';\n\nclass MyElement {\n  @provide({context: loggerContext})\n  logger;\n\n  doThing() {\n    this.logger.log('thing was done');\n  }\n}\n```"
-                }
-              ]
-            }
-          ],
-          "shortText": "A property decorator that adds a ContextConsumer controller to the component\nwhich will try and retrieve a value for the property via the Context API."
-        },
-        "sources": [
-          {
-            "fileName": "packages/labs/context/src/lib/decorators/provide.ts",
-            "line": 46,
-            "moduleSpecifier": "@lit-labs/context"
-          }
-        ],
-        "signatures": [
-          {
-            "name": "provide",
-            "sources": [
-              {
-                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
-                "line": 46
-              }
-            ],
-            "typeParameter": [
-              {
-                "name": "ValueType",
-                "kindString": "Type parameter"
-              }
-            ],
-            "parameters": [
-              {
-                "name": "__namedParameters",
-                "type": {
-                  "type": "reflection",
-                  "declaration": {
-                    "name": "__type",
-                    "children": [
-                      {
-                        "name": "context",
-                        "sources": [
-                          {
-                            "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
-                            "line": 49
-                          }
-                        ],
-                        "type": {
-                          "type": "reflection",
-                          "declaration": {
-                            "name": "__type",
-                            "children": [
-                              {
-                                "name": "__context__",
-                                "sources": [
-                                  {
-                                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
-                                    "line": 10
-                                  }
-                                ],
-                                "type": {
-                                  "type": "reference",
-                                  "name": "ValueType"
-                                },
-                                "kindString": "Property"
-                              }
-                            ],
-                            "sources": [
-                              {
-                                "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/create-context.ts",
-                                "line": 10
-                              }
-                            ],
-                            "kindString": "Type literal"
-                          }
-                        },
-                        "kindString": "Property"
-                      }
-                    ],
-                    "sources": [
-                      {
-                        "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
-                        "line": 48
-                      }
-                    ],
-                    "kindString": "Type literal"
-                  }
-                },
-                "kindString": "Parameter"
-              }
-            ],
-            "type": {
-              "type": "reflection",
-              "declaration": {
-                "name": "__type",
-                "sources": [
-                  {
-                    "fileName": "packages/lit-dev-api/api-data/lit-2/repo/packages/labs/context/src/lib/decorators/provide.ts",
-                    "line": 50
-                  }
-                ],
-                "signatures": [
-                  {
-                    "name": "__type",
-                    "typeParameter": [
-                      {
-                        "name": "K",
-                        "type": {
-                          "type": "reference",
-                          "name": "PropertyKey",
-                          "package": "typescript"
-                        },
-                        "kindString": "Type parameter"
-                      }
-                    ],
-                    "parameters": [
-                      {
-                        "name": "protoOrDescriptor",
-                        "type": {
-                          "type": "intersection",
-                          "types": [
-                            {
-                              "type": "reference",
-                              "name": "ReactiveElement",
-                              "package": "@lit/reactive-element"
-                            },
-                            {
-                              "type": "reference",
-                              "typeArguments": [
-                                {
-                                  "type": "reference",
-                                  "name": "K"
-                                },
-                                {
-                                  "type": "reference",
-                                  "name": "ValueType"
-                                }
-                              ],
-                              "name": "Record",
-                              "package": "typescript"
-                            }
-                          ]
-                        },
-                        "kindString": "Parameter"
-                      },
-                      {
-                        "name": "name",
-                        "flags": {
-                          "isOptional": true
-                        },
-                        "type": {
-                          "type": "reference",
-                          "name": "K"
-                        },
-                        "kindString": "Parameter"
-                      }
-                    ],
-                    "type": {
-                      "type": "union",
-                      "types": [
-                        {
-                          "type": "intrinsic",
-                          "name": "void"
-                        },
-                        {
-                          "type": "intrinsic",
-                          "name": "any"
-                        }
-                      ]
-                    },
-                    "kindString": "Call signature"
-                  }
-                ],
-                "kindString": "Type literal"
-              }
-            },
-            "kindString": "Call signature"
-          }
-        ],
-        "kindString": "Function",
-        "entrypointSources": [
-          {
-            "fileName": "packages/labs/context/src/lib/decorators/provide.ts",
-            "line": 1,
-            "moduleSpecifier": "@lit-labs/context"
-          }
-        ],
-        "location": {
-          "page": "context",
-          "anchor": "provide"
         }
       }
     ]

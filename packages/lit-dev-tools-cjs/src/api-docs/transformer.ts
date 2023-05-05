@@ -580,9 +580,6 @@ export class ApiDocsTransformer {
     const bEntrypoint =
       (b as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ??
       '';
-    if (aEntrypoint !== bEntrypoint) {
-      return aEntrypoint.localeCompare(bEntrypoint);
-    }
 
     // Hard-coded orderings
     const idxA = findIndexOrInfinity(
@@ -595,8 +592,14 @@ export class ApiDocsTransformer {
       (s) =>
         s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
     );
-    if (idxA !== idxB) {
+
+    // Return an order if at least one of the symbols is hard coded.
+    if (idxA !== idxB && !(idxA === Infinity && idxB === Infinity)) {
       return idxA - idxB;
+    }
+
+    if (aEntrypoint !== bEntrypoint) {
+      return aEntrypoint.localeCompare(bEntrypoint);
     }
 
     // Types after values

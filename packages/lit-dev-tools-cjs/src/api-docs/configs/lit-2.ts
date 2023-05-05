@@ -75,7 +75,14 @@ export const lit2Config: ApiDocsConfig = {
     },
   ],
 
-  symbolOrder: ['LitElement', 'ReactiveElement'],
+  symbolOrder: [
+    'LitElement',
+    'ReactiveElement',
+    /** @lit-labs/context symbol ordering */
+    'createContext',
+    'consume',
+    'provide',
+  ],
 
   pages: [
     {
@@ -259,6 +266,7 @@ export const lit2Config: ApiDocsConfig = {
     let [_, pkg, pathMinusExtension] = match;
 
     if (pkg === 'labs/context') {
+      console.log(pkg, pathMinusExtension);
       // There are no @lit-labs/context path extensions because everything is
       // re-exported from root.
       return '@lit-labs/context';
