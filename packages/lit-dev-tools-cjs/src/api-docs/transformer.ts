@@ -496,9 +496,12 @@ export class ApiDocsTransformer {
           // We don't render JSDoc tags directly, the ones we care about are
           // already extracted into e.g. "parameters".
           key === 'tags' ||
-          // The "target" key is unstable causing our "Check API data is in
-          // sync" approach to fail. We also do not use this key.
-          key === 'target' ||
+          // The "target" key is unstable when referring to a number `id`,
+          // causing our "Check API data is in sync" approach to fail. If not a
+          // number, this key can also represent a concrete type. Keep `type` val
+          // if it contains a `type` key.
+          (key === 'target' && typeof val === 'number') ||
+          (key === 'target' && typeof val === 'object' && !('type' in val)) ||
           // We do not use the 'variant' or 'refersToTypeParameter' field.
           key === 'variant' ||
           key === 'refersToTypeParameter' ||

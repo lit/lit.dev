@@ -61,7 +61,7 @@ layout: docs
     {%- elif t.operator == 'keyof' -%}
       keyof {{ type(t.target) }}
 
-    {%- elif t.type == "typeOperator" and t.operator == "unique" -%}
+      {%- elif t.operator == 'unique' and t.target.name == 'symbol' -%}
       symbol
 
     {%- elif t.type == 'conditional' -%}
@@ -142,10 +142,6 @@ layout: docs
 
     {%- elif t.name and t.name !== '__type' -%}
       {{- t.name -}}
-
-    {%- elif page.url.includes("api/custom-directives") -%}
-      <!-- TODO(https://github.com/lit/lit.dev/issues/1099) -->
-      ReadonlyArray&lt;string>
 
     {%- else -%}
       <span class="error-fallback-todo">TODO</span>
