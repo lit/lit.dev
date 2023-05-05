@@ -6400,7 +6400,11 @@
         ],
         "type": {
           "type": "typeOperator",
-          "operator": "unique"
+          "operator": "unique",
+          "target": {
+            "type": "intrinsic",
+            "name": "symbol"
+          }
         },
         "kindString": "Variable",
         "entrypointSources": [
@@ -6424,7 +6428,8 @@
               "content": [
                 {
                   "tag": "@link",
-                  "text": "Rendering Lit HTML Templates"
+                  "text": "Rendering Lit HTML Templates",
+                  "target": "https://lit.dev/docs/libraries/standalone-templates/#rendering-lit-html-templates|"
                 }
               ]
             }
@@ -15099,7 +15104,8 @@
               "content": [
                 {
                   "tag": "@link",
-                  "text": "styleMap code samples on Lit.dev"
+                  "text": "styleMap code samples on Lit.dev",
+                  "target": "https://lit.dev/docs/templates/directives/#stylemap"
                 }
               ]
             }
@@ -18415,7 +18421,14 @@
                     "name": "strings",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly"
+                      "operator": "readonly",
+                      "target": {
+                        "type": "array",
+                        "elementType": {
+                          "type": "intrinsic",
+                          "name": "string"
+                        }
+                      }
                     },
                     "kindString": "Parameter"
                   },
@@ -18601,7 +18614,14 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly"
+              "operator": "readonly",
+              "target": {
+                "type": "array",
+                "elementType": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
             },
             "kindString": "Property",
             "entrypointSources": [
@@ -18803,7 +18823,14 @@
                     "name": "strings",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly"
+                      "operator": "readonly",
+                      "target": {
+                        "type": "array",
+                        "elementType": {
+                          "type": "intrinsic",
+                          "name": "string"
+                        }
+                      }
                     },
                     "kindString": "Parameter"
                   },
@@ -19025,7 +19052,14 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly"
+              "operator": "readonly",
+              "target": {
+                "type": "array",
+                "elementType": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
             },
             "inheritedFrom": {
               "type": "reference",
@@ -20316,7 +20350,14 @@
                     "name": "strings",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly"
+                      "operator": "readonly",
+                      "target": {
+                        "type": "array",
+                        "elementType": {
+                          "type": "intrinsic",
+                          "name": "string"
+                        }
+                      }
                     },
                     "kindString": "Parameter"
                   },
@@ -20538,7 +20579,14 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly"
+              "operator": "readonly",
+              "target": {
+                "type": "array",
+                "elementType": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
             },
             "inheritedFrom": {
               "type": "reference",
@@ -20933,7 +20981,14 @@
                     "name": "strings",
                     "type": {
                       "type": "typeOperator",
-                      "operator": "readonly"
+                      "operator": "readonly",
+                      "target": {
+                        "type": "array",
+                        "elementType": {
+                          "type": "intrinsic",
+                          "name": "string"
+                        }
+                      }
                     },
                     "kindString": "Parameter"
                   },
@@ -21155,7 +21210,14 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly"
+              "operator": "readonly",
+              "target": {
+                "type": "array",
+                "elementType": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
             },
             "inheritedFrom": {
               "type": "reference",
@@ -21358,7 +21420,14 @@
             ],
             "type": {
               "type": "typeOperator",
-              "operator": "readonly"
+              "operator": "readonly",
+              "target": {
+                "type": "array",
+                "elementType": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
             },
             "kindString": "Property",
             "entrypointSources": [
@@ -22789,7 +22858,11 @@
         ],
         "type": {
           "type": "typeOperator",
-          "operator": "unique"
+          "operator": "unique",
+          "target": {
+            "type": "intrinsic",
+            "name": "symbol"
+          }
         },
         "kindString": "Variable",
         "entrypointSources": [
