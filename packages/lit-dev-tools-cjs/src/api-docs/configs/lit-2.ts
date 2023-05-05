@@ -5,6 +5,7 @@
  */
 
 import * as pathlib from 'path';
+import {ReflectionKind} from 'typedoc';
 
 import type {ApiDocsConfig} from '../types.js';
 
@@ -93,7 +94,7 @@ export const lit2Config: ApiDocsConfig = {
     {
       slug: 'directives',
       title: 'Directives',
-      tocFilter: (node) => node.kindString === 'Function',
+      tocFilter: (node) => node.kind === ReflectionKind.Function,
       versionLinks: {
         v1: 'api/lit-html/directives/',
       },

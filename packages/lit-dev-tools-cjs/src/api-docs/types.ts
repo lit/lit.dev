@@ -28,7 +28,6 @@ export interface MigrationComment
 
 export interface ExtendedDeclarationReflection extends DeclarationReflection {
   location?: Location;
-  externalLocation?: ExternalLocation;
   entrypointSources?: Array<ExtendedSourceReference>;
   heritage?: Array<{name: string; location?: Location}>;
   expandedCategories?: Array<{
@@ -36,6 +35,7 @@ export interface ExtendedDeclarationReflection extends DeclarationReflection {
     anchor: string;
     children: Array<DeclarationReflection>;
   }>;
+  kindString?: string;
 }
 
 export type SourceReference = typedoc.JSONOutput.SourceReference;
@@ -55,11 +55,6 @@ export interface Location {
    * See https://github.com/JordanShurmer/eleventy-plugin-nesting-toc
    */
   excludeFromTOC?: boolean;
-}
-
-/** A link to e.g. MDN. */
-export interface ExternalLocation {
-  url: string;
 }
 
 export interface ApiDocsConfig {

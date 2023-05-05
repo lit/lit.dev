@@ -15,9 +15,9 @@ import {
   SourceReference,
   ExtendedSourceReference,
   Location,
-  ExternalLocation,
   MigrationComment,
 } from './types.js';
+import {ReflectionKind} from 'typedoc';
 
 const findIndexOrInfinity = <T>(
   array: ReadonlyArray<T>,
@@ -28,7 +28,10 @@ const findIndexOrInfinity = <T>(
 };
 
 const isType = (node: DeclarationReflection) => {
-  return node.kindString === 'Type alias' || node.kindString === 'Interface';
+  return (
+    node.kind === typedoc.ReflectionKind.TypeAlias ||
+    node.kind === typedoc.ReflectionKind.Interface
+  );
 };
 
 /**
@@ -103,6 +106,7 @@ export class ApiDocsTransformer {
     symbolMap: SymbolMap;
     pages: Pages;
   }> {
+    this.addKindStringsBackToAllNodes(this.project);
     // In the first pass, determine the page/anchor where each node should
     // appear in our layout, and index all nodes by TypeDoc numeric ID.
     for (const entrypoint of this.project.children ?? []) {
@@ -180,8 +184,10 @@ export class ApiDocsTransformer {
           return aImportLength - bImportLength;
         }
         // Prefer a value to a type.
-        const aTypeAlias = aReflection?.kindString === 'Type alias';
-        const bTypeAlias = bReflection?.kindString === 'Type alias';
+        const aTypeAlias =
+          aReflection?.kind === typedoc.ReflectionKind.TypeAlias;
+        const bTypeAlias =
+          bReflection?.kind === typedoc.ReflectionKind.TypeAlias;
         if (!aTypeAlias && bTypeAlias) {
           return -1;
         }
@@ -217,7 +223,13 @@ export class ApiDocsTransformer {
         secondPassVisit(child);
       }
     };
-    secondPassVisit(this.project);
+
+    if (!this.project.children) {
+      throw new Error(`Unexpected empty project`);
+    }
+    for (const child of this.project.children) {
+      secondPassVisit(child);
+    }
 
     const pages = this.reorganizeExportsIntoPages();
     this.prunePageData(pages);
@@ -237,7 +249,7 @@ export class ApiDocsTransformer {
       node.flags?.isExternal ||
       node.name.startsWith('_') ||
       // Reference types don't seem useful; just aliases for other nodes.
-      node.kindString === 'Reference'
+      node.kind === typedoc.ReflectionKind.Reference
     );
   }
 
@@ -248,7 +260,7 @@ export class ApiDocsTransformer {
     node: DeclarationReflection,
     ancestry: Array<DeclarationReflection>
   ) {
-    if (!node.kindString || node.kindString === 'Module') {
+    if (!node.kind || node.kind === typedoc.ReflectionKind.Module) {
       return;
     }
 
@@ -305,7 +317,7 @@ export class ApiDocsTransformer {
    * functions uniformly regardless of how they are defined.
    */
   private promoteVariableFunctions(node: DeclarationReflection) {
-    if (node.kindString !== 'Variable') {
+    if (node.kind !== typedoc.ReflectionKind.Variable) {
       return;
     }
     const signatures = (node.type as {declaration?: DeclarationReflection})
@@ -313,7 +325,7 @@ export class ApiDocsTransformer {
     if (!signatures) {
       return;
     }
-    node.kindString = 'Function';
+    node.kind = typedoc.ReflectionKind.Function;
     node.signatures = signatures;
     for (const sig of node.signatures ?? []) {
       sig.name = node.name;
@@ -325,7 +337,7 @@ export class ApiDocsTransformer {
    * they can be treated more uniformly with properties.
    */
   private promoteAccessorTypes(node: DeclarationReflection) {
-    if (node.kindString !== 'Accessor') {
+    if (node.kind !== typedoc.ReflectionKind.Accessor) {
       return;
     }
     if (node.getSignature?.type) {
@@ -348,7 +360,10 @@ export class ApiDocsTransformer {
       node.comment = node.type.declaration?.signatures?.[0]?.comment;
     }
     // Handle accessors
-    if (node.kindString === 'Accessor' && node.getSignature?.comment) {
+    if (
+      node.kind === typedoc.ReflectionKind.Accessor &&
+      node.getSignature?.comment
+    ) {
       node.comment = node.getSignature.comment;
     }
   }
@@ -396,7 +411,7 @@ export class ApiDocsTransformer {
    * TypeDoc has a reflection with that id, then we should give it a location.
    */
   private addLocationsForAllIds(node: unknown, isTopLevel = true) {
-    if (typeof node !== 'object' || node === null) {
+    if (typeof node !== 'object' || node == null) {
       return;
     }
     if (node instanceof Array) {
@@ -406,7 +421,11 @@ export class ApiDocsTransformer {
       return;
     }
     for (const [key, val] of Object.entries(node)) {
-      if (key === 'id' && typeof val === 'number' && !('location' in node)) {
+      if (
+        key === 'target' &&
+        typeof val === 'number' &&
+        !('location' in node)
+      ) {
         const reflection = this.reflectionById.get(val);
         if (reflection && reflection.location) {
           (node as {location?: Location}).location = reflection.location;
@@ -416,9 +435,8 @@ export class ApiDocsTransformer {
         typeof val === 'string' &&
         symbolToExternalLink.has(val)
       ) {
-        (node as {externalLocation?: ExternalLocation}).externalLocation = {
-          url: symbolToExternalLink.get(val)!,
-        };
+        (node as {externalUrl?: string}).externalUrl =
+          symbolToExternalLink.get(val);
       } else if (!(isTopLevel && key === 'children')) {
         // We already recurse into children of top-level reflections in our main
         // traversal, no need to also do it here.
@@ -480,7 +498,14 @@ export class ApiDocsTransformer {
           key === 'tags' ||
           // The "target" key is unstable causing our "Check API data is in
           // sync" approach to fail. We also do not use this key.
-          key === 'target'
+          key === 'target' ||
+          // We do not use the 'variant' or 'refersToTypeParameter' field.
+          key === 'variant' ||
+          key === 'refersToTypeParameter' ||
+          // We already compute and generate our own url to the source code,
+          // which tends to be more accurate. Remove the one automatically added
+          // by TypeDoc.
+          key === 'url'
         ) {
           delete node[key as keyof typeof node];
         }
@@ -659,6 +684,32 @@ export class ApiDocsTransformer {
       commentNode.text = text + '\n';
     }
     commentNode.summary = undefined;
+  }
+
+  /**
+   * TypeDoc 0.24.x removed `kindString` from their data structure. However we
+   * use `kindString` to locate and generate correct documentation within
+   * api.html. This method recursively walks the TypeDoc node and adds
+   * `kindString` back to all nodes with a valid `kind` field.
+   */
+  private addKindStringsBackToAllNodes(node: unknown) {
+    if (typeof node !== 'object' || node == null) {
+      return;
+    }
+    if (Array.isArray(node)) {
+      for (const item of node) {
+        this.addKindStringsBackToAllNodes(item);
+      }
+      return;
+    }
+    for (const [key, val] of Object.entries(node)) {
+      if (key === 'kind' && typeof val === 'number') {
+        // Add a `kindString` field to the node.
+        (node as {kindString: string})['kindString'] =
+          typedoc.ReflectionKind.singularString(val as ReflectionKind);
+      }
+      this.addKindStringsBackToAllNodes(val);
+    }
   }
 
   /**
