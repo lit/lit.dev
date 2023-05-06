@@ -2,16 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 50px;
   background: #5865F2;
   color: white;
-  height: 50px;
 }
 
 #new-banner > p {
   text-align: center;
-  padding: 0px 5px 0px 5px;
+  padding: 2px 5px 2px 5px;
+  margin: 0px;
   font-size: 18px;
-  line-height: 23px;
 }
 
 #new-banner a {
@@ -110,6 +110,10 @@
 }
 
 @media (max-width: 900px) {
+  #new-banner > p {
+    font-size: 17px;
+  }
+
   #intro {
     flex-direction: column;
     align-items: center;
