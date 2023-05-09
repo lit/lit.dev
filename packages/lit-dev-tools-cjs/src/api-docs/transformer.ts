@@ -66,7 +66,7 @@ const symbolToExternalLink = new Map([
  * Data consumed by lit.dev API docs Eleventy template. Each item is a separate
  * page.
  */
-type Pages = Array<{
+export type Pages = Array<{
   slug: string;
   title: string;
   items: Array<DeclarationReflection>;
@@ -76,7 +76,7 @@ type Pages = Array<{
  * Map from $symbol to the location it appears in our docs. If there is more
  * than one item, then the symbol is ambiguous.
  */
-type SymbolMap = {
+export type SymbolMap = {
   [symbol: string]: Array<Location>;
 };
 
@@ -120,6 +120,7 @@ export class ApiDocsTransformer {
         // to copy our original entrypoint source info to each node.
         (node as ExtendedDeclarationReflection).entrypointSources =
           entrypoint.sources;
+        this.addKindStringToNodes(node);
         for (const source of node.sources ?? []) {
           this.makeSourceRelativeToMonorepoRoot(source);
           await this.updateSourceFromDtsToTs(source);
@@ -579,9 +580,6 @@ export class ApiDocsTransformer {
     const bEntrypoint =
       (b as ExtendedDeclarationReflection).entrypointSources?.[0]?.fileName ??
       '';
-    if (aEntrypoint !== bEntrypoint) {
-      return aEntrypoint.localeCompare(bEntrypoint);
-    }
 
     // Hard-coded orderings
     const idxA = findIndexOrInfinity(
@@ -594,8 +592,14 @@ export class ApiDocsTransformer {
       (s) =>
         s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
     );
-    if (idxA !== idxB) {
+
+    // Return an order if at least one of the symbols is hard coded.
+    if (idxA !== idxB && !(idxA === Infinity && idxB === Infinity)) {
       return idxA - idxB;
+    }
+
+    if (aEntrypoint !== bEntrypoint) {
+      return aEntrypoint.localeCompare(bEntrypoint);
     }
 
     // Types after values
@@ -687,6 +691,13 @@ export class ApiDocsTransformer {
       commentNode.text = text + '\n';
     }
     commentNode.summary = undefined;
+  }
+
+  private addKindStringToNodes(node: DeclarationReflection) {
+    if (node.kind) {
+      (node as ExtendedDeclarationReflection).kindString =
+        typedoc.ReflectionKind.singularString(node.kind);
+    }
   }
 
   /**

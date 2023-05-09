@@ -75,6 +75,12 @@ layout: docs
         {{- pipe() -}} {{- type(item) -}}
       {%- endfor -%}
 
+    {%- elif t.type == 'intersection' -%}
+      {%- set pipe = joiner(' & ') -%}
+      {%- for item in t.types -%}
+        {{- pipe() -}} {{- type(item) -}}
+      {%- endfor -%}
+
     {%- elif t.type === 'indexedAccess' -%}
       {{- type(t.objectType) }}[{{ type(t.indexType) }}]
 

@@ -16,6 +16,9 @@ const gitDir = pathlib.join(workDir, 'repo');
 const litDir = pathlib.join(gitDir, 'packages', 'lit');
 const srcDir = pathlib.join(litDir, 'src');
 
+const contextDir = pathlib.join(gitDir, 'packages', 'labs', 'context');
+const contextSrcDir = pathlib.join(contextDir, 'src');
+
 /**
  * lit.dev API docs configuration for Lit 2.x
  */
@@ -24,7 +27,6 @@ export const lit2Config: ApiDocsConfig = {
   commit: 'c134604f178e36444261d83eabe9e578c1ed90c4',
   workDir,
   gitDir,
-  tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
   pagesOutPath: pathlib.resolve(workDir, 'pages.json'),
   symbolsOutPath: pathlib.resolve(workDir, 'symbols.json'),
   typedocRoot: pathlib.join(root, 'packages'),
@@ -36,24 +38,51 @@ export const lit2Config: ApiDocsConfig = {
     },
   ],
 
-  entrypointModules: [
-    pathlib.join(srcDir, 'async-directive.ts'),
-    pathlib.join(srcDir, 'decorators.ts'),
-    pathlib.join(srcDir, 'directives/'), // Entire directory
-    pathlib.join(srcDir, 'directive.ts'),
-    pathlib.join(srcDir, 'directive-helpers.ts'),
-    // Don't include html.ts because it is already re-exported by index.ts.
-    //   pathlib.join(srcDir, 'html.ts'),
-    // Don't include hydration because it's not ready yet.
-    //   pathlib.join(srcDir, 'hydrate.ts'),
-    //   pathlib.join(srcDir, 'hydrate-support.ts'),
-    pathlib.join(srcDir, 'index.ts'),
-    // Don't include polyfill-support.ts because it doesn't export anything.
-    //   pathlib.join(srcDir, 'polyfill-support.ts'),
-    pathlib.join(srcDir, 'static-html.ts'),
+  packages: [
+    // 'lit' module documentation
+    {
+      tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
+
+      entrypointModules: [
+        pathlib.join(srcDir, 'async-directive.ts'),
+        pathlib.join(srcDir, 'decorators.ts'),
+        pathlib.join(srcDir, 'directives/*'), // Entire directory
+        pathlib.join(srcDir, 'directive.ts'),
+        pathlib.join(srcDir, 'directive-helpers.ts'),
+        // Don't include html.ts because it is already re-exported by index.ts.
+        //   pathlib.join(srcDir, 'html.ts'),
+        // Don't include hydration because it's not ready yet.
+        //   pathlib.join(srcDir, 'hydrate.ts'),
+        //   pathlib.join(srcDir, 'hydrate-support.ts'),
+        pathlib.join(srcDir, 'index.ts'),
+        // Don't include polyfill-support.ts because it doesn't export anything.
+        //   pathlib.join(srcDir, 'polyfill-support.ts'),
+        pathlib.join(srcDir, 'static-html.ts'),
+      ],
+    },
+    // @lit-labs/context documentation
+    {
+      tsConfigPath: pathlib.join(contextDir, 'tsconfig.json'),
+      entrypointModules: [
+        pathlib.join(contextSrcDir, 'index.ts'),
+        pathlib.join(contextSrcDir, 'lib/context-request-event.ts'),
+        pathlib.join(contextSrcDir, 'lib/create-context.ts'),
+        pathlib.join(contextSrcDir, 'lib/controllers/context-consumer.ts'),
+        pathlib.join(contextSrcDir, 'lib/controllers/context-provider.ts'),
+        pathlib.join(contextSrcDir, 'lib/decorators/provide.ts'),
+        pathlib.join(contextSrcDir, 'lib/decorators/consume.ts'),
+      ],
+    },
   ],
 
-  symbolOrder: ['LitElement', 'ReactiveElement'],
+  symbolOrder: [
+    'LitElement',
+    'ReactiveElement',
+    /** @lit-labs/context symbol ordering */
+    'createContext',
+    'consume',
+    'provide',
+  ],
 
   pages: [
     {
@@ -127,6 +156,12 @@ export const lit2Config: ApiDocsConfig = {
         v1: 'api/lit-element/LitElement/',
       },
     },
+    // Add @lit-labs/context page.
+    {
+      slug: 'context',
+      title: 'Context',
+      labs: true,
+    },
   ],
 
   pageForSymbol(node): string {
@@ -137,6 +172,10 @@ export const lit2Config: ApiDocsConfig = {
 
     if (entrypoint.endsWith('/decorators.ts')) {
       return 'decorators';
+    }
+
+    if (entrypoint.includes('/context/')) {
+      return 'context';
     }
 
     if (
@@ -225,6 +264,14 @@ export const lit2Config: ApiDocsConfig = {
     // fine in practice, but when we add e.g. @lit/localize we'll need to be
     // smarter here.
     let [_, pkg, pathMinusExtension] = match;
+
+    if (pkg === 'labs/context') {
+      console.log(pkg, pathMinusExtension);
+      // There are no @lit-labs/context path extensions because everything is
+      // re-exported from root.
+      return '@lit-labs/context';
+    }
+
     // TODO(aomarks) This wrongly assumes index.ts is always the package main.
     return pathMinusExtension === 'index'
       ? pkg

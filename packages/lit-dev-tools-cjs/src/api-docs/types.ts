@@ -57,6 +57,30 @@ export interface Location {
   excludeFromTOC?: boolean;
 }
 
+/**
+ * A package, such as `lit` or `@lit-labs/context`.
+ */
+export interface Package {
+  /**
+   * Path to the tsconfig.json that owns the entrypoint modules.
+   */
+  tsConfigPath: string;
+
+  /**
+   * Entrypoint TypeScript modules for TypeDoc to analyze.
+   *
+   * The modules listed here should be the preferred modules that users should
+   * import from, because import statements will be generated using these
+   * entrypoints as the module specifier (e.g. `import {LitElement} from
+   * 'lit'`). GitHub source links will be generated pointing at the ultimate
+   * location where the symbol is concretely defined (e.g.
+   * `packages/lit-element/src/lit-element.ts`).
+   *
+   * If a directory, all .ts files within it are included.
+   */
+  entrypointModules: Array<string>;
+}
+
 export interface ApiDocsConfig {
   /**
    * Git repo remote URL.
@@ -79,35 +103,18 @@ export interface ApiDocsConfig {
   gitDir: string;
 
   /**
-   * Path to the tsconfig.json that owns the entrypoint modules.
-   */
-  tsConfigPath: string;
-
-  /**
    * The directory that TypeDoc chooses as the root of this package. Unclear why
    * this is unpredictable.
    */
   typedocRoot: string;
+
+  packages: Package[];
 
   /**
    * Extra setup/build commands to run after NPM install and before running
    * TypeDoc.
    */
   extraSetupCommands?: Array<{cmd: string; args: string[]}>;
-
-  /**
-   * Entrypoint TypeScript modules for TypeDoc to analyze.
-   *
-   * The modules listed here should be the preferred modules that users should
-   * import from, because import statements will be generated using these
-   * entrypoints as the module specifier (e.g. `import {LitElement} from
-   * 'lit'`). GitHub source links will be generated pointing at the ultimate
-   * location where the symbol is concretely defined (e.g.
-   * `packages/lit-element/src/lit-element.ts`).
-   *
-   * If a directory, all .ts files within it are included.
-   */
-  entrypointModules: string[];
 
   /**
    * Where to write the API data that is consumed by our Eleventy template.
@@ -134,6 +141,7 @@ export interface ApiDocsConfig {
     title: string;
     tocFilter?: (node: DeclarationReflection) => boolean;
     versionLinks?: {[version: string]: string};
+    labs?: true;
   }>;
 
   /**

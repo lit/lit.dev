@@ -41,6 +41,8 @@ const api_pages_to_check = [
   pathLib.resolve(siteOutputDir, 'docs/api/static-html/index.html'),
   pathLib.resolve(siteOutputDir, 'docs/api/styles/index.html'),
   pathLib.resolve(siteOutputDir, 'docs/api/templates/index.html'),
+  // @lit-labs/context
+  pathLib.resolve(siteOutputDir, 'docs/api/context/index.html'),
 ];
 
 const checkNoTodos = async () => {
