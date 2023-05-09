@@ -7,12 +7,12 @@ pagination:
     alias: data
     addAllPagesToCollections: true
 
-permalink: "docs/api/{{ data.slug }}/"
+permalink: "docs/v2/api/{{ data.slug }}/"
 
 eleventyComputed:
     title: "{{ data.title }}"
     eleventyNavigation:
         key: "{{ data.title }}"
         parent: API
-    apiPath: /docs/api
+    apiPath: /docs/v2/api
 ---
