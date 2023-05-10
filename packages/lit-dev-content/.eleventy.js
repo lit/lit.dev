@@ -183,6 +183,27 @@ ${content}
     }
   );
 
+  /**
+   * All docs/* content on lit.dev is versioned. So all cross links are
+   * versioned. We automatically generate unversioned docs from the latest Lit
+   * version. This filter fixes the cross linking such that links on unversioned
+   * pages link to other unversioned pages.
+   */
+  eleventyConfig.addFilter(
+    'fixUnversionedCrossLinks',
+    function (content, isUnversionedUrl, latestVersion) {
+      if (!isUnversionedUrl) {
+        return content;
+      }
+      if (!latestVersion) {
+        throw new Error(
+          `latestVersion not provided to 'fixUnversionedCrossLinks`
+        );
+      }
+      return content.replaceAll(`/docs/${latestVersion}/`, '/docs/');
+    }
+  );
+
   eleventyConfig.addFilter('removeExtension', function (url) {
     const extension = path.extname(url);
     return url.substring(0, url.length - extension.length);
