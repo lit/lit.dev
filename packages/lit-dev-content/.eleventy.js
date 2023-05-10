@@ -42,6 +42,10 @@ const DEV = ENV.eleventyMode === 'dev';
 
 const cspInlineScriptHashes = new Set();
 
+/**
+ * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
+ * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
+ */
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
   eleventyConfig.addPlugin(pluginTOC, {
@@ -194,7 +198,19 @@ ${content}
 
   eleventyConfig.addCollection('docs-v2', function (collection) {
     const docs = collection
-      .getFilteredByGlob(['site/docs/*', 'site/docs/!(v1)/**'])
+      .getFilteredByGlob(['site/docs/v2/**'])
+      .sort(sortDocs);
+    for (const page of docs) {
+      documentByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
+  // Collection that contains the built duplicate docs for the current
+  // recommended version of Lit.
+  eleventyConfig.addCollection('docs-unversioned', function (collection) {
+    const docs = collection
+      .getFilteredByGlob(['site/docs/unversioned/**'])
       .sort(sortDocs);
     for (const page of docs) {
       documentByUrl.set(page.url, page);
@@ -487,8 +503,10 @@ ${content}
           ENV.eleventyOutDir + '/docs/*/index.html',
           ENV.eleventyOutDir + '/docs/v1/introduction.html',
           ENV.eleventyOutDir + '/docs/v1/*/index.html',
+          ENV.eleventyOutDir + '/docs/v2/introduction.html',
+          ENV.eleventyOutDir + '/docs/v2/*/index.html',
         ],
-        {ignore: ENV.eleventyOutDir + '/docs/v1/index.html'}
+        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2)/index.html'}
       )
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
