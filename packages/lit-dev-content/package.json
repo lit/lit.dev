@@ -144,8 +144,12 @@
       "dependencies": [
         "../lit-dev-tools-esm:build"
       ],
+      "files": [
+        "site/docs/**",
+        "!site/docs/unversioned"
+      ],
       "output": [
-        "site/docs/unversioned"
+        "site/docs/unversioned/**"
       ]
     }
   },

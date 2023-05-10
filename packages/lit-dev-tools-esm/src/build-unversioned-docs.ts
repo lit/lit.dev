@@ -15,21 +15,21 @@ const CONTENT_PKG = pathlib.resolve(REPO_ROOT, 'packages', 'lit-dev-content');
 const SITE_JSON = pathlib.resolve(CONTENT_PKG, 'site', 'site.json');
 
 interface SiteJSON {
-  selectedVersion: 'v1' | 'v2';
+  latestVersion: 'v1' | 'v2';
 }
 
 type EleventyFrontMatterData = string[];
 
-const SITE_SELECTED_VERSION = (
+const SITE_LATEST_VERSION = (
   JSON.parse(fs.readFileSync(SITE_JSON, 'utf8')) as SiteJSON
-).selectedVersion;
-const SELECTED_VERSION_CONTENT = pathlib.resolve(
+).latestVersion;
+const LATEST_VERSION_CONTENT = pathlib.resolve(
   CONTENT_PKG,
   'site',
   'docs',
-  SITE_SELECTED_VERSION
+  SITE_LATEST_VERSION
 );
-console.log(SELECTED_VERSION_CONTENT);
+console.log(LATEST_VERSION_CONTENT);
 const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
   CONTENT_PKG,
   'site',
@@ -39,7 +39,7 @@ const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
 
 /**
  * This script builds our unversioned latest documentation for lit.dev. It
- * locates the current selectedVersion of Lit to show from `site.json`, then
+ * locates the current latestVersion of Lit to show from `site.json`, then
  * copies that documentation from the versioned subdirectory into an unversioned
  * subdirectory.
  *
@@ -64,7 +64,7 @@ const buildAndTransformUnverionedDocs = async () => {
   };
 
   console.log('Starting build-unversioned-docs.js script');
-  await walk(SELECTED_VERSION_CONTENT);
+  await walk(LATEST_VERSION_CONTENT);
   console.log('Completed build-unversioned-docs.js script');
 };
 
@@ -74,7 +74,7 @@ const buildAndTransformUnverionedDocs = async () => {
  */
 function transformFile(path: string) {
   let fileContents = fs.readFileSync(path, {encoding: 'utf8'});
-  const relativeChildPath = pathlib.relative(SELECTED_VERSION_CONTENT, path);
+  const relativeChildPath = pathlib.relative(LATEST_VERSION_CONTENT, path);
   const ext = pathlib.extname(relativeChildPath);
   let unversionedLocation = pathlib.join(
     UNVERSIONED_VERSION_LOCATION,
@@ -105,7 +105,7 @@ function transformFile(path: string) {
     fileContents = writeFrontMatter(frontMatterData) + restOfFile;
   } else if (ext === '.json') {
     if (
-      pathlib.basename(unversionedLocation, '.json') === SITE_SELECTED_VERSION
+      pathlib.basename(unversionedLocation, '.json') === SITE_LATEST_VERSION
     ) {
       unversionedLocation = pathlib.join(
         pathlib.dirname(unversionedLocation),
@@ -113,14 +113,14 @@ function transformFile(path: string) {
       );
       fileContents = JSON.stringify({
         collection: 'docs-unversioned',
-        selectedversion: SITE_SELECTED_VERSION,
+        latestVersion: SITE_LATEST_VERSION,
       });
     }
   } else if (ext === '.html') {
     if (pathlib.basename(unversionedLocation, '.html') === 'api') {
       const [frontMatterData, _] = getFrontMatterData(fileContents);
       const transformedFrontMatter = frontMatterData.map((line) => {
-        return line.replace(`/${SITE_SELECTED_VERSION}/`, '/');
+        return line.replace(`/${SITE_LATEST_VERSION}/`, '/');
       });
       fileContents = writeFrontMatter(transformedFrontMatter);
     } else {
