@@ -80,4 +80,38 @@ test.describe('Unversioned docs', () => {
       '/docs/composition/overview/'
     );
   });
+
+  test('cross-link to correct api URL', async ({browser}) => {
+    const unversionedPage = await browser.newPage({
+      viewport: {width: 1920, height: 1080},
+    });
+    const versionedPage = await browser.newPage({
+      viewport: {width: 1920, height: 1080},
+    });
+    await Promise.all([
+      unversionedPage.goto('/docs/components/decorators/'),
+      versionedPage.goto(`/docs/${SITE_LATEST_VERSION}/components/decorators/`),
+    ]);
+
+    const versionedPropertyDecoratorLink = versionedPage.locator(
+      'article#content table a',
+      {
+        hasText: '@property',
+      }
+    );
+    const unversionedPropertyDecoratorLink = unversionedPage.locator(
+      'article#content table a',
+      {
+        hasText: '@property',
+      }
+    );
+    await expect(versionedPropertyDecoratorLink).toHaveAttribute(
+      'href',
+      `/docs/${SITE_LATEST_VERSION}/api/decorators#property`
+    );
+    await expect(unversionedPropertyDecoratorLink).toHaveAttribute(
+      'href',
+      `/docs/api/decorators#property`
+    );
+  });
 });
