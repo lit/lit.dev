@@ -162,6 +162,27 @@ ${content}
     return content.replace(/<a class="anchor".*<\/a>/g, '');
   });
 
+  /**
+   * For the latest versioned urls, this filter returns the unversioned url
+   * which is used in the rel=canonical link.
+   */
+  eleventyConfig.addFilter(
+    'removeLatestVersionFromUrl',
+    function (url, latestVersion) {
+      if (!latestVersion) {
+        throw new Error(
+          `No latestVersion provided to 'removeLatestVersionFromUrl`
+        );
+      }
+      if (!url.includes(`/${latestVersion}/`)) {
+        throw new Error(
+          `'${url}' does not include the latestVersion versioned path segment`
+        );
+      }
+      return url.replace(`/${latestVersion}/`, '/');
+    }
+  );
+
   eleventyConfig.addFilter('removeExtension', function (url) {
     const extension = path.extname(url);
     return url.substring(0, url.length - extension.length);

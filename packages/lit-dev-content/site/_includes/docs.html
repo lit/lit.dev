@@ -20,6 +20,13 @@
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
   {% endif %}
+  {% if selectedVersion == latestVersion and page.url.includes("/" + latestVersion + "/") %}
+  <!-- We have versioned permalinks for our documentation. E.g., docs/v1/* and
+       docs/v2/*. In addition, the latest documentation also has unversioned
+       duplicate pages, generated under docs/*. The latest versioned docs
+       reference the duplicate unversioned page as the canonical page.  -->
+    <link rel="canonical" href="https://lit.dev{{ page.url | removeLatestVersionFromUrl(latestVersion) }}">
+  {% endif %}
 {% endblock %}
 
 {% block content %}
