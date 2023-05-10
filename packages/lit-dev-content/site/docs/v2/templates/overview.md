@@ -24,12 +24,12 @@ The template syntax might look like you're just doing string interpolation. But 
 
 Lit templates are extremely expressive and allow you to render dynamic content in a variety of ways:
 
- - [Expressions](/docs/templates/expressions/): Templates can include dynamic values called *expressions* that can be used to render attributes, text, properties, event handlers, and even other templates.
- - [Conditionals](/docs/templates/conditionals/): Expressions can render conditional content using standard JavaScript flow control.
- - [Lists](/docs/templates/lists/): Render lists by transforming data into arrays of templates using standard JavaScript looping and array techniques.
- - [Built-in directives](/docs/templates/directives/): Directives are functions that can extend Lit's templating functionality. The library includes a set of built-in directives to help with a variety of rendering needs.
- - [Custom directives](/docs/templates/custom-directives/): You can also write your own directives to customize Lit's rendering as needed.
+ - [Expressions](/docs/v2/templates/expressions/): Templates can include dynamic values called *expressions* that can be used to render attributes, text, properties, event handlers, and even other templates.
+ - [Conditionals](/docs/v2/templates/conditionals/): Expressions can render conditional content using standard JavaScript flow control.
+ - [Lists](/docs/v2/templates/lists/): Render lists by transforming data into arrays of templates using standard JavaScript looping and array techniques.
+ - [Built-in directives](/docs/v2/templates/directives/): Directives are functions that can extend Lit's templating functionality. The library includes a set of built-in directives to help with a variety of rendering needs.
+ - [Custom directives](/docs/v2/templates/custom-directives/): You can also write your own directives to customize Lit's rendering as needed.
 
 ## Standalone templating
 
-You can also use Lit's templating library for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/docs/libraries/standalone-templates).
+You can also use Lit's templating library for standalone templating, outside of a Lit component. For details, see [Standalone lit-html templates](/docs/v2/libraries/standalone-templates).

@@ -23,7 +23,7 @@ When developing an app using Lit, either your target browsers need to support th
 
 This page gives a general overview for how to meet these requirements in your development and productions environments.
 
-See [Development](/docs/tools/development/), [Testing](/docs/tools/testing/), and [Building for Production](/docs/tools/production/) for recommendations on tools and configurations that meet these requirements.
+See [Development](/docs/v2/tools/development/), [Testing](/docs/v2/tools/testing/), and [Building for Production](/docs/v2/tools/production/) for recommendations on tools and configurations that meet these requirements.
 
 ## Requirements for modern browsers {#building-for-modern-browsers}
 

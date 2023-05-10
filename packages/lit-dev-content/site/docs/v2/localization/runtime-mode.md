@@ -11,7 +11,7 @@ for each of your locales. Each generated module contains the localized templates
 for that locale. When your application switches locales, the module for that
 locale is imported, and all localized components are re-rendered.
 
-See [output modes](/docs/localization/overview/#output-modes) for a comparison
+See [output modes](/docs/v2/localization/overview/#output-modes) for a comparison
 of Lit Localize output modes.
 
 #### Example output
@@ -40,7 +40,7 @@ of Lit Localize runtime mode that you can use as templates.
 In your `lit-localize.json` config, set the `output.mode` property to `runtime`,
 and set the `output.outputDir` property to the location where you would like
 your localized template modules to be generated. See [runtime mode
-settings](/docs/localization/cli-and-config#runtime-mode-settings) for more
+settings](/docs/v2/localization/cli-and-config#runtime-mode-settings) for more
 details.
 
 Next, set `output.localeCodesModule` to a filepath of your chosing. Lit Localize

@@ -41,12 +41,12 @@ Here’s a small but non-trivial component (a countdown timer) that illustrates 
 Some things to note:
 
 * Lit's main feature is the `LitElement` base class, a convenient and versatile extension of the native `HTMLElement`. You extend from it to define your own components.
-* Lit’s [expressive, declarative templates](/docs/templates/overview/) (utilizing JavaScript tagged template literals) make it easy to describe how a component should be rendered.
-* [Reactive properties](/docs/components/properties/) represent a component’s public API and/or internal state; your component automatically re-renders whenever a reactive property changes.
-* [Styles](/docs/components/styles) are scoped by default, keeping your CSS selectors simple and ensuring that your component’s styling won’t pollute (or be polluted by) the surrounding context.
+* Lit’s [expressive, declarative templates](/docs/v2/templates/overview/) (utilizing JavaScript tagged template literals) make it easy to describe how a component should be rendered.
+* [Reactive properties](/docs/v2/components/properties/) represent a component’s public API and/or internal state; your component automatically re-renders whenever a reactive property changes.
+* [Styles](/docs/v2/components/styles) are scoped by default, keeping your CSS selectors simple and ensuring that your component’s styling won’t pollute (or be polluted by) the surrounding context.
 * Lit works great in vanilla JavaScript, or you can use TypeScript for even better ergonomics by using decorators and type declarations.
 
-Lit doesn’t require compilation or building during development, so it can be used virtually tool-free if you prefer. First-class [IDE support](/docs/tools/development/#ide-plugins) (code-completion, linting, etc.) and [tooling for production](/docs/tools/production/) (localization, template minification, etc.) are readily available.
+Lit doesn’t require compilation or building during development, so it can be used virtually tool-free if you prefer. First-class [IDE support](/docs/v2/tools/development/#ide-plugins) (code-completion, linting, etc.) and [tooling for production](/docs/v2/tools/production/) (localization, template minification, etc.) are readily available.
 
 ## Why should I choose Lit?
 
@@ -64,7 +64,7 @@ Every Lit feature is carefully designed with web platform evolution in mind; we 
 
 ## Next steps
 
-* [Getting started](/docs/getting-started/): Get set up to start developing with Lit.
-* [Components](/docs/components/overview/): Learn about the Lit component model.
-* [Templates](/docs/templates/overview/): Write templates with lit-html syntax.
-* [Code organization](/docs/composition/overview/): Write reusable, maintainable code.
+* [Getting started](/docs/v2/getting-started/): Get set up to start developing with Lit.
+* [Components](/docs/v2/components/overview/): Learn about the Lit component model.
+* [Templates](/docs/v2/templates/overview/): Write templates with lit-html syntax.
+* [Code organization](/docs/v2/composition/overview/): Write reusable, maintainable code.

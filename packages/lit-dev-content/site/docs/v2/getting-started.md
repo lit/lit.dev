@@ -20,7 +20,7 @@ Take our [step-by-step tutorial](/tutorials/intro-to-lit) to learn how to build 
 
 ## Lit starter kits
 
-We provide TypeScript and JavaScript component starter kits for creating standalone reusable components. See [Starter Kits](/docs/tools/starter-kits/).
+We provide TypeScript and JavaScript component starter kits for creating standalone reusable components. See [Starter Kits](/docs/v2/tools/starter-kits/).
 
 ## Install locally from npm
 
@@ -98,7 +98,7 @@ are two types of bundles:
 
 ## Add Lit to an existing project
 
-See [Adding Lit to an existing project](/docs/tools/adding-lit) for instructions on adding Lit to an existing project or application.
+See [Adding Lit to an existing project](/docs/v2/tools/adding-lit) for instructions on adding Lit to an existing project or application.
 
 ## Open WC project generator
 

@@ -8,11 +8,11 @@ versionLinks:
   v1: tools/build/
 ---
 
-This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to publishing a reusable Lit _component_ to npm, see [Publishing](/docs/tools/publishing/).
+This page focuses on recommendations for building an _application_ that uses Lit components for production.  For recommendations on build steps to perform on source code prior to publishing a reusable Lit _component_ to npm, see [Publishing](/docs/v2/tools/publishing/).
 
 When building an application that includes Lit components, you can use common JavaScript build tools like [Rollup](https://rollupjs.org/) or [webpack](https://webpack.js.org/) to prepare your source code and dependencies for serving in a production environment.
 
-See [Requirements](/docs/tools/requirements/) for a full list of requirements for building Lit code, which apply to both development and production.
+See [Requirements](/docs/v2/tools/requirements/) for a full list of requirements for building Lit code, which apply to both development and production.
 
 In addition to those minimum requirements, this page describes optimizations you should consider when preparing code for production, as well as a concrete Rollup configuration that implements them.
 
@@ -48,7 +48,7 @@ into an easy-to-use package. Example configurations using this plugin are descri
 ### Modern-only build
 
 The annotated `rollup.config.js` file below will build an application that meets
-the [modern browser build requirements](/docs/tools/requirements/#building-for-modern-browsers) and
+the [modern browser build requirements](/docs/v2/tools/requirements/#building-for-modern-browsers) and
 [production optimizations](#preparing-code-for-production) described on this page. This configuration is
 suitable for serving to modern browsers that can run ES2019 JS without
 polyfills.
@@ -116,7 +116,7 @@ The following configuration generates a hybrid build with two sets of JS
 bundles, one for modern browsers, and one for legacy browsers. The modern
 bundles are optimistically pre-fetched, and client-side feature-detection is
 used to determine whether to load the smaller/faster modern builds or the legacy
-build (and any required polyfills), per the [legacy browser build requirements](/docs/tools/requirements/#building-for-legacy-browsers).
+build (and any required polyfills), per the [legacy browser build requirements](/docs/v2/tools/requirements/#building-for-legacy-browsers).
 
 Required node modules:
 ```sh

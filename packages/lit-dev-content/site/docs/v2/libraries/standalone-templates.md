@@ -23,16 +23,16 @@ import {html, render} from 'lit-html';
 
 The standalone `lit-html` package also includes modules for the following features described in the full `Lit` developer guide:
 
-* `lit-html/directives/*` - [Built-in directives](/docs/templates/directives/)
-* `lit-html/directive.js` - [Custom directives](/docs/templates/custom-directives/)
-* `lit-html/async-directive.js` - [Custom async directives](/docs/templates/custom-directives/#async-directives)
-* `lit-html/directive-helpers.js` - [Directive helpers for imperative updates](/docs/templates/custom-directives/#imperative-dom-access:-update())
-* `lit-html/static.js` - [Static html tag](/docs/templates/expressions/#static-expressions)
+* `lit-html/directives/*` - [Built-in directives](/docs/v2/templates/directives/)
+* `lit-html/directive.js` - [Custom directives](/docs/v2/templates/custom-directives/)
+* `lit-html/async-directive.js` - [Custom async directives](/docs/v2/templates/custom-directives/#async-directives)
+* `lit-html/directive-helpers.js` - [Directive helpers for imperative updates](/docs/v2/templates/custom-directives/#imperative-dom-access:-update())
+* `lit-html/static.js` - [Static html tag](/docs/v2/templates/expressions/#static-expressions)
 * `lit-html/polyfill-support.js` - Support for interfacing with the web components polyfills (see [Styles and lit-html templates](#styles-and-lit-html-templates))
 
 ## Rendering lit-html templates
 
-Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/templates/overview/) for a full reference on Lit's templating syntax).
+Lit templates are written using JavaScript template literals tagged with the `html` tag. The contents of the literal are mostly plain, declarative HTML, and may include expressions to insert and update the dynamic parts of a template (see [Templates](/docs/v2/templates/overview/) for a full reference on Lit's templating syntax).
 
 ```html
 html`<h1>Hello ${name}</h1>`
@@ -76,7 +76,7 @@ When you call `render`, **lit-html only updates the parts of the template that h
 
 The `render` method also takes an `options` argument that allows you to specify the following options:
 
-*   `host`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Event listener expressions](/docs/templates/expressions/#event-listener-expressions) for more on event listeners.
+*   `host`: The `this` value to use when invoking event listeners registered with the `@eventName` syntax. This option only applies when you specify an event listener as a plain function. If you specify the event listener using an event listener object, the listener object is used as the `this` value. See [Event listener expressions](/docs/v2/templates/expressions/#event-listener-expressions) for more on event listeners.
 
 *   `renderBefore`: An optional reference node within the `container` before which lit-html will render. By default, lit-html will append to the end of the container. Setting `renderBefore` allows rendering to a specific spot within the container.
 
@@ -117,11 +117,11 @@ In general, how you style HTML will depend on whether you're using shadow DOM:
 
 <div class="alert alert-info">
 
-**Styling shadow roots on legacy browsers requires polyfills.** Using the [ShadyCSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill with standalone `lit-html` requires loading `lit-html/polyfill-support.js` and passing a `scope` option in `RenderOptions` with the host tag name for scoping the rendered content. Although this approach is possible, we recommend using [LitElement](/docs/components/overview/) if you want to support rendering lit-html templates to shadow DOM on legacy browsers.
+**Styling shadow roots on legacy browsers requires polyfills.** Using the [ShadyCSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss) polyfill with standalone `lit-html` requires loading `lit-html/polyfill-support.js` and passing a `scope` option in `RenderOptions` with the host tag name for scoping the rendered content. Although this approach is possible, we recommend using [LitElement](/docs/v2/components/overview/) if you want to support rendering lit-html templates to shadow DOM on legacy browsers.
 
 </div>
 
 To help with dynamic styling, lit-html provides two directives for manipulating an element's `class` and `style` attributes:
 
-*   [`classMap`](/docs/templates/directives/#classmap) sets classes on an element based on the properties of an object.
-*   [`styleMap`](/docs/templates/directives/#stylemap) sets the styles on an element based on a map of style properties and values.
+*   [`classMap`](/docs/v2/templates/directives/#classmap) sets classes on an element based on the properties of an object.
+*   [`styleMap`](/docs/v2/templates/directives/#stylemap) sets the styles on an element based on a map of style properties and values.

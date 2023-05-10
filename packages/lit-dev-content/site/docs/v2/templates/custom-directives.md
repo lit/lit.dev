@@ -19,7 +19,7 @@ html`<div>
      </div>`
 ```
 
-Lit ships with a number of [built-in directives](/docs/templates/directives/) like [`repeat()`](/docs/templates/directives/#repeat) and [`cache()`](/docs/templates/directives/#cache). Users can also write their own custom directives.
+Lit ships with a number of [built-in directives](/docs/v2/templates/directives/) like [`repeat()`](/docs/v2/templates/directives/#repeat) and [`cache()`](/docs/v2/templates/directives/#cache). Users can also write their own custom directives.
 
 There are two kinds of directives:
 

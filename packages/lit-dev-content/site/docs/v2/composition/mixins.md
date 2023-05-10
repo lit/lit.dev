@@ -7,7 +7,7 @@ eleventyNavigation:
 ---
 
 Class mixins are a pattern for sharing code between classes using standard JavaScript. As opposed to "has-a" composition patterns like [reactive
-controllers](/docs/composition/controllers/), where a class can _own_ a controller to add
+controllers](/docs/v2/composition/controllers/), where a class can _own_ a controller to add
 behavior, mixins implement "is-a" composition, where the mixin causes the class
 itself to _be_ an instance of the behavior being shared.
 
@@ -83,9 +83,9 @@ code reuse. For more reading on mixins, here are a few good references:
 ## Creating mixins for LitElement
 
 Mixins applied to LitElement can implement or override any of the standard
-[custom element lifecycle](/docs/components/lifecycle/#custom-element-lifecycle)
+[custom element lifecycle](/docs/v2/components/lifecycle/#custom-element-lifecycle)
 callbacks like the `constructor()` or `connectedCallback()`, as well as any of
-the [reactive update lifecycle](/docs/components/lifecycle/#reactive-update-cycle)
+the [reactive update lifecycle](/docs/v2/components/lifecycle/#reactive-update-cycle)
 callbacks like `render()` or `updated()`.
 
 For example, the following mixin would log when the element is created,
@@ -118,8 +118,8 @@ Also note that mixins can choose to do work either before or after the base
 implementation of the standard lifecycle callbacks via its choice of when to
 make the super call.
 
-Mixins can also add [reactive properties](/docs/components/properties/),
-[styles](/docs/components/styles/), and API to the subclassed element.
+Mixins can also add [reactive properties](/docs/v2/components/properties/),
+[styles](/docs/v2/components/styles/), and API to the subclassed element.
 
 The mixin in the example below adds a `highlight` reactive property to the
 element and a `renderHighlight()` method that the user can call to wrap some

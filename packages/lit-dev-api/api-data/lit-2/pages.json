@@ -12,7 +12,7 @@
         "name": "LitElement",
         "comment": {
           "shortText": "Base element class that manages element properties and attributes, and\nrenders a lit-html template.",
-          "text": "To define a component, subclass `LitElement` and implement a\n`render` method to provide the component's template. Define properties\nusing the [`properties`](/docs/api/LitElement/#LitElement.properties) property or the\n[`property`](/docs/api/decorators/#property) decorator.\n"
+          "text": "To define a component, subclass `LitElement` and implement a\n`render` method to provide the component's template. Define properties\nusing the [`properties`](/docs/v2/api/LitElement/#LitElement.properties) property or the\n[`property`](/docs/v2/api/decorators/#property) decorator.\n"
         },
         "sources": [
           {
@@ -949,7 +949,7 @@
                       "tag": "@nocollapse"
                     }
                   ],
-                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) for the property with the\ngiven options. The property setter calls the property's `hasChanged`\nproperty option or uses a strict identity check to determine whether or not\nto request an update.",
+                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a [`PropertyDeclaration`](/docs/v2/api/ReactiveElement/#PropertyDeclaration) for the property with the\ngiven options. The property setter calls the property's `hasChanged`\nproperty option or uses a strict identity check to determine whether or not\nto request an update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
@@ -1222,7 +1222,7 @@
                     }
                   ],
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a `PropertyDeclaration` via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override\n[`createProperty`](/docs/api/LitElement/#LitElement.createProperty).\n"
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override\n[`createProperty`](/docs/v2/api/LitElement/#LitElement.createProperty).\n"
                 },
                 "sources": [
                   {
@@ -1760,7 +1760,7 @@
                       "tag": "@nocollapse"
                     }
                   ],
-                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function, via constructible stylesheets, or\nimported from native CSS module scripts.",
+                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/v2/api/styles/#css) tag function, via constructible stylesheets, or\nimported from native CSS module scripts.",
                   "text": "Note on Content Security Policy:\nElement styles are implemented with `<style>` tags when the browser doesn't\nsupport adopted StyleSheets. To use such `<style>` tags with the style-src\nCSP directive, the style-src value must either include 'unsafe-inline' or\n`nonce-<base64-value>` with `<base64-value>` replaced be a server-generated\nnonce.\nTo provide a nonce to use on generated `<style>` elements, set\n`window.litNonce` to a server-generated nonce in your page's HTML, before\nloading application code:\n```html\n<script>\n  // Generated and unique per request:\n  window.litNonce = 'a1b2c3d4';\n</script>\n```\n"
                 },
                 "sources": [
@@ -3974,7 +3974,7 @@
                       "tag": "@nocollapse"
                     }
                   ],
-                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) for the property with the\ngiven options. The property setter calls the property's `hasChanged`\nproperty option or uses a strict identity check to determine whether or not\nto request an update.",
+                  "shortText": "Creates a property accessor on the element prototype if one does not exist\nand stores a [`PropertyDeclaration`](/docs/v2/api/ReactiveElement/#PropertyDeclaration) for the property with the\ngiven options. The property setter calls the property's `hasChanged`\nproperty option or uses a strict identity check to determine whether or not\nto request an update.",
                   "text": "This method may be overridden to customize properties; however,\nwhen doing so, it's important to call `super.createProperty` to ensure\nthe property is setup correctly. This method calls\n`getPropertyDescriptor` internally to get a descriptor to install.\nTo customize what properties do when they are get or set, override\n`getPropertyDescriptor`. To customize the options for a property,\nimplement `createProperty` like this:\n```ts\nstatic createProperty(name, options) {\n  options = Object.assign(options, {myOption: true});\n  super.createProperty(name, options);\n}\n```\n"
                 },
                 "sources": [
@@ -4215,7 +4215,7 @@
                     }
                   ],
                   "shortText": "Returns the property options associated with the given property.\nThese options are defined with a `PropertyDeclaration` via the `properties`\nobject or the `@property` decorator and are registered in\n`createProperty(...)`.",
-                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override\n[`createProperty`](/docs/api/ReactiveElement/#ReactiveElement.createProperty).\n"
+                  "text": "Note, this method should be considered \"final\" and not overridden. To\ncustomize the options for a given property, override\n[`createProperty`](/docs/v2/api/ReactiveElement/#ReactiveElement.createProperty).\n"
                 },
                 "sources": [
                   {
@@ -4620,7 +4620,7 @@
                       "tag": "@nocollapse"
                     }
                   ],
-                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/api/styles/#css) tag function, via constructible stylesheets, or\nimported from native CSS module scripts.",
+                  "shortText": "Array of styles to apply to the element. The styles should be defined\nusing the [`css`](/docs/v2/api/styles/#css) tag function, via constructible stylesheets, or\nimported from native CSS module scripts.",
                   "text": "Note on Content Security Policy:\nElement styles are implemented with `<style>` tags when the browser doesn't\nsupport adopted StyleSheets. To use such `<style>` tags with the style-src\nCSP directive, the style-src value must either include 'unsafe-inline' or\n`nonce-<base64-value>` with `<base64-value>` replaced be a server-generated\nnonce.\nTo provide a nonce to use on generated `<style>` elements, set\n`window.litNonce` to a server-generated nonce in your page's HTML, before\nloading application code:\n```html\n<script>\n  // Generated and unique per request:\n  window.litNonce = 'a1b2c3d4';\n</script>\n```\n"
                 },
                 "sources": [
@@ -6963,7 +6963,7 @@
         "name": "css",
         "comment": {
           "shortText": "A template literal tag which can be used with LitElement's\n`styles` property to set element styles.",
-          "text": "For security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values [`unsafeCSS`](/docs/api/styles/#unsafeCSS)\nmay be used inside an expression.\n"
+          "text": "For security reasons, only literal string values and number may be used in\nembedded expressions. To incorporate non-literal values [`unsafeCSS`](/docs/v2/api/styles/#unsafeCSS)\nmay be used inside an expression.\n"
         },
         "sources": [
           {
@@ -7295,7 +7295,7 @@
       {
         "name": "unsafeCSS",
         "comment": {
-          "shortText": "Wrap a value for interpolation in a [`css`](/docs/api/styles/#css) tagged template literal.",
+          "shortText": "Wrap a value for interpolation in a [`css`](/docs/v2/api/styles/#css) tagged template literal.",
           "text": "This is unsafe because untrusted CSS text can be used to phone home\nor exfiltrate data to an attacker controlled site. Take care to only use\nthis with trusted input.\n"
         },
         "sources": [
@@ -7723,7 +7723,7 @@
               "tag": "@ExportDecoratedItems"
             }
           ],
-          "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [`PropertyDeclaration`](/docs/api/ReactiveElement/#PropertyDeclaration) may\noptionally be supplied to configure property features.",
+          "shortText": "A property decorator which creates a reactive property that reflects a\ncorresponding attribute value. When a decorated property is set\nthe element will update and render. A [`PropertyDeclaration`](/docs/v2/api/ReactiveElement/#PropertyDeclaration) may\noptionally be supplied to configure property features.",
           "text": "This decorator should only be used for public fields. As public fields,\nproperties should be considered as primarily settable by element users,\neither via attribute or the property itself.\nGenerally, properties that are changed by the element should be private or\nprotected fields and should use the `state` decorator.\nHowever, sometimes element code does need to set a public property. This\nshould typically only be done in response to user interaction, and an event\nshould be fired informing the user; for example, a checkbox sets its\n`checked` property when clicked and fires a `changed` event. Mutating public\nproperties should typically not be done for non-primitive (object or array)\nproperties. In other cases when an element needs to manage state, a private\nproperty decorated via the `state` decorator should be used. When\nneeded, state properties can be initialized via public properties to\nfacilitate complex interactions.\n```ts\nclass MyElement {\n  @property({ type: Boolean })\n  clicked = false;\n}\n```\n"
         },
         "sources": [
@@ -8082,7 +8082,7 @@
         "name": "queryAssignedElements",
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedElements` of the given `slot`. Provides a declarative\nway to use\n[`HTMLSlotElement.assignedElements`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements).",
-          "text": "Can be passed an optional [`QueryAssignedElementsOptions`](/docs/api/decorators/#QueryAssignedElementsOptions) object.\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
+          "text": "Can be passed an optional [`QueryAssignedElementsOptions`](/docs/v2/api/decorators/#QueryAssignedElementsOptions) object.\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedElements({ slot: 'list' })\n  listItems!: Array<HTMLElement>;\n  @queryAssignedElements()\n  unnamedSlotEls!: Array<HTMLElement>;\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n      <slot></slot>\n    `;\n  }\n}\n```\nNote, the type of this property should be annotated as `Array<HTMLElement>`.\n"
         },
         "sources": [
           {
@@ -8198,7 +8198,7 @@
         "name": "queryAssignedNodes",
         "comment": {
           "shortText": "A property decorator that converts a class property into a getter that\nreturns the `assignedNodes` of the given `slot`.",
-          "text": "Can be passed an optional [`QueryAssignedNodesOptions`](/docs/api/decorators/#QueryAssignedNodesOptions) object.\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<Node>;\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\nNote the type of this property should be annotated as `Array<Node>`.\n"
+          "text": "Can be passed an optional [`QueryAssignedNodesOptions`](/docs/v2/api/decorators/#QueryAssignedNodesOptions) object.\nExample usage:\n```ts\nclass MyElement {\n  @queryAssignedNodes({slot: 'list', flatten: true})\n  listItems!: Array<Node>;\n  render() {\n    return html`\n      <slot name=\"list\"></slot>\n    `;\n  }\n}\n```\nNote the type of this property should be annotated as `Array<Node>`.\n"
         },
         "sources": [
           {
@@ -8709,7 +8709,7 @@
       {
         "name": "QueryAssignedElementsOptions",
         "comment": {
-          "shortText": "Options for the [`queryAssignedElements`](/docs/api/decorators/#queryAssignedElements) decorator. Extends the\noptions that can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
+          "shortText": "Options for the [`queryAssignedElements`](/docs/v2/api/decorators/#queryAssignedElements) decorator. Extends the\noptions that can be passed into\n[HTMLSlotElement.assignedElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedElements)."
         },
         "children": [
           {
@@ -8830,7 +8830,7 @@
       {
         "name": "QueryAssignedNodesOptions",
         "comment": {
-          "shortText": "Options for the [`queryAssignedNodes`](/docs/api/decorators/#queryAssignedNodes) decorator. Extends the options\nthat can be passed into [HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
+          "shortText": "Options for the [`queryAssignedNodes`](/docs/v2/api/decorators/#queryAssignedNodes) decorator. Extends the options\nthat can be passed into [HTMLSlotElement.assignedNodes](https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assignedNodes)."
         },
         "children": [
           {
@@ -28227,7 +28227,7 @@
       {
         "name": "PropertyValueMap",
         "comment": {
-          "shortText": "Do not use, instead prefer [`PropertyValues`](/docs/api/ReactiveElement/#PropertyValues)."
+          "shortText": "Do not use, instead prefer [`PropertyValues`](/docs/v2/api/ReactiveElement/#PropertyValues)."
         },
         "children": [
           {

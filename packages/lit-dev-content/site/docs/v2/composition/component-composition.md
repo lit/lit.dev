@@ -68,7 +68,7 @@ When the user selects an item, the `my-menu` element should update its `selected
 - The `my-menu` element gets the event, and updates its `selectedItem` property. It may also change some state so that the selected item is highlighted.
 - The `my-menu` element fires a semantic event indicating that the selection has changed. This event might be called `selected-item-changed`, for example. Since this event is part of the API for `my-menu`, it should be semantically meaningful in that context.
 
-For more information on dispatching and listening for events, see [Events](/docs/components/events/).
+For more information on dispatching and listening for events, see [Events](/docs/v2/components/events/).
 
 
 ## Passing data across the tree
@@ -105,7 +105,7 @@ Interacting with light DOM children is different from interacting with nodes in 
 
 The component has control over whether and where the child nodes are rendered, using the `<slot>` element in its shadow DOM. And it can receive notifications when child nodes are added and removed by listening for the `slotchange` event.
 
-For more information, see the sections on [rendering children with slots](/docs/components/shadow-dom/#slots) and [accessing slotted children](/docs/components/shadow-dom/#accessing-slotted-children).
+For more information, see the sections on [rendering children with slots](/docs/v2/components/shadow-dom/#slots) and [accessing slotted children](/docs/v2/components/shadow-dom/#accessing-slotted-children).
 
 
 _Meerkat photo by [Anggit Rizkianto](https://unsplash.com/@anggit_mr) on [Unsplash](https://unsplash.com/photos/x3-OP_X0aH0)._

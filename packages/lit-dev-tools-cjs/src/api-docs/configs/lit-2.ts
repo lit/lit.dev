@@ -211,7 +211,7 @@ export const lit2Config: ApiDocsConfig = {
   },
 
   locationToUrl({page, anchor}) {
-    return `/docs/api/${page}/#${anchor}`;
+    return `/docs/v2/api/${page}/#${anchor}`;
   },
 
   fileToImportSpecifier(filename) {
