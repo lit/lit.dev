@@ -496,3 +496,4 @@ https://github.com/webcomponents/template-shadowroot
 https://docs.astro.build/en/guides/integrations-guide/lit/
 https://rocket.modern-web.dev/
 https://stackblitz.com/edit/lit-ssr-global?file=src/server.js
+https://twitter.com/techytacos
