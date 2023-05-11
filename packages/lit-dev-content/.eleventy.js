@@ -248,6 +248,16 @@ ${content}
     return docs;
   });
 
+  eleventyConfig.addCollection('docs-v3', function (collection) {
+    const docs = collection
+      .getFilteredByGlob(['site/docs/v3/**'])
+      .sort(sortDocs);
+    for (const page of docs) {
+      documentByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
   // Collection that contains the built duplicate docs for the current
   // recommended version of Lit.
   eleventyConfig.addCollection('docs-unversioned', function (collection) {

@@ -1,0 +1,4595 @@
+{
+  "$AsyncDirective": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective"
+    }
+  ],
+  "$constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Directive.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "DirectiveClass.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "CacheDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "GuardDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "Keyed.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "LiveDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "Ref.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.constructor"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.constructor"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.constructor"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.constructor"
+    },
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.constructor"
+    }
+  ],
+  "$AsyncDirective.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.constructor"
+    }
+  ],
+  "$isConnected": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.isConnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.isConnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.isConnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.isConnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.isConnected"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.isConnected"
+    }
+  ],
+  "$AsyncDirective.isConnected": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.isConnected"
+    }
+  ],
+  "$disconnected": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.disconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.disconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.disconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.disconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.disconnected"
+    }
+  ],
+  "$AsyncDirective.disconnected": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.disconnected"
+    }
+  ],
+  "$reconnected": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.reconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.reconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.reconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.reconnected"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.reconnected"
+    }
+  ],
+  "$AsyncDirective.reconnected": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.reconnected"
+    }
+  ],
+  "$render": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.render"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Directive.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "CacheDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "GuardDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "Keyed.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "LiveDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.render"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.render"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.render"
+    },
+    {
+      "page": "templates",
+      "anchor": "render"
+    }
+  ],
+  "$AsyncDirective.render": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.render"
+    }
+  ],
+  "$setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.setValue"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.setValue"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.setValue"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.setValue"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.setValue"
+    }
+  ],
+  "$AsyncDirective.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.setValue"
+    }
+  ],
+  "$update": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.update"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Directive.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "CacheDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "GuardDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "Keyed.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "LiveDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "RefDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.update"
+    },
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.update"
+    },
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.update"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.update"
+    }
+  ],
+  "$AsyncDirective.update": [
+    {
+      "page": "custom-directives",
+      "anchor": "AsyncDirective.update"
+    }
+  ],
+  "$AttributePart": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart"
+    }
+  ],
+  "$AttributePart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.constructor"
+    }
+  ],
+  "$element": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.element"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.element"
+    }
+  ],
+  "$AttributePart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.element"
+    }
+  ],
+  "$name": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.name"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.name"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.name"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.name"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.name"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.name"
+    }
+  ],
+  "$AttributePart.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.name"
+    }
+  ],
+  "$options": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.options"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.options"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.options"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.options"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.options"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.options"
+    },
+    {
+      "page": "misc",
+      "anchor": "RootPart.options"
+    }
+  ],
+  "$AttributePart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.options"
+    }
+  ],
+  "$strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.strings"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.strings"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.strings"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.strings"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.strings"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.strings"
+    }
+  ],
+  "$AttributePart.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.strings"
+    }
+  ],
+  "$type": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPartInfo.type"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPartInfo.type"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.type"
+    },
+    {
+      "page": "misc",
+      "anchor": "RootPart.type"
+    }
+  ],
+  "$AttributePart.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.type"
+    }
+  ],
+  "$tagName": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.tagName"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.tagName"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.tagName"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.tagName"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.tagName"
+    }
+  ],
+  "$AttributePart.tagName": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.tagName"
+    }
+  ],
+  "$BooleanAttributePart": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart"
+    }
+  ],
+  "$BooleanAttributePart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.constructor"
+    }
+  ],
+  "$BooleanAttributePart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.element"
+    }
+  ],
+  "$BooleanAttributePart.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.name"
+    }
+  ],
+  "$BooleanAttributePart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.options"
+    }
+  ],
+  "$BooleanAttributePart.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.strings"
+    }
+  ],
+  "$BooleanAttributePart.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.type"
+    }
+  ],
+  "$BooleanAttributePart.tagName": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.tagName"
+    }
+  ],
+  "$ChildPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart"
+    }
+  ],
+  "$ChildPart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.constructor"
+    }
+  ],
+  "$ChildPart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.options"
+    }
+  ],
+  "$ChildPart.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.type"
+    }
+  ],
+  "$endNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.endNode"
+    },
+    {
+      "page": "misc",
+      "anchor": "RootPart.endNode"
+    }
+  ],
+  "$ChildPart.endNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.endNode"
+    }
+  ],
+  "$parentNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.parentNode"
+    },
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.parentNode"
+    },
+    {
+      "page": "misc",
+      "anchor": "RootPart.parentNode"
+    }
+  ],
+  "$ChildPart.parentNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.parentNode"
+    }
+  ],
+  "$startNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.startNode"
+    },
+    {
+      "page": "misc",
+      "anchor": "RootPart.startNode"
+    }
+  ],
+  "$ChildPart.startNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPart.startNode"
+    }
+  ],
+  "$Directive": [
+    {
+      "page": "custom-directives",
+      "anchor": "Directive"
+    }
+  ],
+  "$Directive.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "Directive.constructor"
+    }
+  ],
+  "$Directive.render": [
+    {
+      "page": "custom-directives",
+      "anchor": "Directive.render"
+    }
+  ],
+  "$Directive.update": [
+    {
+      "page": "custom-directives",
+      "anchor": "Directive.update"
+    }
+  ],
+  "$ElementPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart"
+    }
+  ],
+  "$ElementPart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.constructor"
+    }
+  ],
+  "$ElementPart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.element"
+    }
+  ],
+  "$ElementPart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.options"
+    }
+  ],
+  "$ElementPart.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPart.type"
+    }
+  ],
+  "$EventPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart"
+    }
+  ],
+  "$EventPart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.constructor"
+    }
+  ],
+  "$EventPart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.element"
+    }
+  ],
+  "$EventPart.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.name"
+    }
+  ],
+  "$EventPart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.options"
+    }
+  ],
+  "$EventPart.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.strings"
+    }
+  ],
+  "$EventPart.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.type"
+    }
+  ],
+  "$EventPart.tagName": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.tagName"
+    }
+  ],
+  "$handleEvent": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.handleEvent"
+    }
+  ],
+  "$EventPart.handleEvent": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.handleEvent"
+    }
+  ],
+  "$PropertyPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart"
+    }
+  ],
+  "$PropertyPart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.constructor"
+    }
+  ],
+  "$PropertyPart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.element"
+    }
+  ],
+  "$PropertyPart.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.name"
+    }
+  ],
+  "$PropertyPart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.options"
+    }
+  ],
+  "$PropertyPart.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.strings"
+    }
+  ],
+  "$PropertyPart.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.type"
+    }
+  ],
+  "$PropertyPart.tagName": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.tagName"
+    }
+  ],
+  "$AttributePartInfo": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo"
+    }
+  ],
+  "$AttributePartInfo.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.name"
+    }
+  ],
+  "$AttributePartInfo.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.strings"
+    }
+  ],
+  "$AttributePartInfo.tagName": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.tagName"
+    }
+  ],
+  "$AttributePartInfo.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePartInfo.type"
+    }
+  ],
+  "$ChildPartInfo": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPartInfo"
+    }
+  ],
+  "$ChildPartInfo.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "ChildPartInfo.type"
+    }
+  ],
+  "$DirectiveClass": [
+    {
+      "page": "custom-directives",
+      "anchor": "DirectiveClass"
+    }
+  ],
+  "$DirectiveClass.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "DirectiveClass.constructor"
+    }
+  ],
+  "$DirectiveResult": [
+    {
+      "page": "custom-directives",
+      "anchor": "DirectiveResult"
+    }
+  ],
+  "$ElementPartInfo": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPartInfo"
+    }
+  ],
+  "$ElementPartInfo.type": [
+    {
+      "page": "custom-directives",
+      "anchor": "ElementPartInfo.type"
+    }
+  ],
+  "$DirectiveParameters": [
+    {
+      "page": "custom-directives",
+      "anchor": "DirectiveParameters"
+    }
+  ],
+  "$Part": [
+    {
+      "page": "custom-directives",
+      "anchor": "Part"
+    }
+  ],
+  "$PartInfo": [
+    {
+      "page": "custom-directives",
+      "anchor": "PartInfo"
+    }
+  ],
+  "$PartType": [
+    {
+      "page": "custom-directives",
+      "anchor": "PartType"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PartType"
+    }
+  ],
+  "$directive": [
+    {
+      "page": "custom-directives",
+      "anchor": "directive"
+    }
+  ],
+  "$InternalPropertyDeclaration": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration"
+    }
+  ],
+  "$hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.hasChanged"
+    }
+  ],
+  "$InternalPropertyDeclaration.hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    }
+  ],
+  "$QueryAssignedElementsOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions"
+    }
+  ],
+  "$selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$QueryAssignedElementsOptions.selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    },
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$QueryAssignedElementsOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    }
+  ],
+  "$QueryAssignedNodesOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions"
+    }
+  ],
+  "$QueryAssignedNodesOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$customElement": [
+    {
+      "page": "decorators",
+      "anchor": "customElement"
+    }
+  ],
+  "$eventOptions": [
+    {
+      "page": "decorators",
+      "anchor": "eventOptions"
+    }
+  ],
+  "$property": [
+    {
+      "page": "decorators",
+      "anchor": "property"
+    }
+  ],
+  "$query": [
+    {
+      "page": "decorators",
+      "anchor": "query"
+    }
+  ],
+  "$queryAll": [
+    {
+      "page": "decorators",
+      "anchor": "queryAll"
+    }
+  ],
+  "$queryAssignedElements": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedElements"
+    }
+  ],
+  "$queryAssignedNodes": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedNodes"
+    }
+  ],
+  "$queryAsync": [
+    {
+      "page": "decorators",
+      "anchor": "queryAsync"
+    }
+  ],
+  "$state": [
+    {
+      "page": "decorators",
+      "anchor": "state"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.state"
+    }
+  ],
+  "$TemplateResultType": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateResultType"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateResultType"
+    }
+  ],
+  "$clearPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "clearPart"
+    }
+  ],
+  "$getCommittedValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "getCommittedValue"
+    }
+  ],
+  "$getDirectiveClass": [
+    {
+      "page": "custom-directives",
+      "anchor": "getDirectiveClass"
+    }
+  ],
+  "$insertPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "insertPart"
+    }
+  ],
+  "$isDirectiveResult": [
+    {
+      "page": "custom-directives",
+      "anchor": "isDirectiveResult"
+    }
+  ],
+  "$isPrimitive": [
+    {
+      "page": "custom-directives",
+      "anchor": "isPrimitive"
+    }
+  ],
+  "$isSingleExpression": [
+    {
+      "page": "custom-directives",
+      "anchor": "isSingleExpression"
+    }
+  ],
+  "$isTemplateResult": [
+    {
+      "page": "custom-directives",
+      "anchor": "isTemplateResult"
+    }
+  ],
+  "$removePart": [
+    {
+      "page": "custom-directives",
+      "anchor": "removePart"
+    }
+  ],
+  "$setChildPartValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "setChildPartValue"
+    }
+  ],
+  "$setCommittedValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "setCommittedValue"
+    }
+  ],
+  "$AsyncAppendDirective": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$AsyncAppendDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.constructor"
+    }
+  ],
+  "$AsyncAppendDirective.isConnected": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.isConnected"
+    }
+  ],
+  "$commitValue": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.commitValue"
+    },
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.commitValue"
+    }
+  ],
+  "$AsyncAppendDirective.commitValue": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.commitValue"
+    }
+  ],
+  "$AsyncAppendDirective.disconnected": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.disconnected"
+    }
+  ],
+  "$AsyncAppendDirective.reconnected": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.reconnected"
+    }
+  ],
+  "$AsyncAppendDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.render"
+    }
+  ],
+  "$AsyncAppendDirective.setValue": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.setValue"
+    }
+  ],
+  "$AsyncAppendDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "AsyncAppendDirective.update"
+    }
+  ],
+  "$asyncAppend": [
+    {
+      "page": "directives",
+      "anchor": "asyncAppend"
+    }
+  ],
+  "$AsyncReplaceDirective": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$AsyncReplaceDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.constructor"
+    }
+  ],
+  "$AsyncReplaceDirective.isConnected": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.isConnected"
+    }
+  ],
+  "$AsyncReplaceDirective.commitValue": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.commitValue"
+    }
+  ],
+  "$AsyncReplaceDirective.disconnected": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.disconnected"
+    }
+  ],
+  "$AsyncReplaceDirective.reconnected": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.reconnected"
+    }
+  ],
+  "$AsyncReplaceDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.render"
+    }
+  ],
+  "$AsyncReplaceDirective.setValue": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.setValue"
+    }
+  ],
+  "$AsyncReplaceDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "AsyncReplaceDirective.update"
+    }
+  ],
+  "$asyncReplace": [
+    {
+      "page": "directives",
+      "anchor": "asyncReplace"
+    }
+  ],
+  "$CacheDirective": [
+    {
+      "page": "directives",
+      "anchor": "CacheDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$CacheDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "CacheDirective.constructor"
+    }
+  ],
+  "$CacheDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "CacheDirective.render"
+    }
+  ],
+  "$CacheDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "CacheDirective.update"
+    }
+  ],
+  "$cache": [
+    {
+      "page": "directives",
+      "anchor": "cache"
+    }
+  ],
+  "$choose": [
+    {
+      "page": "directives",
+      "anchor": "choose"
+    }
+  ],
+  "$ClassMapDirective": [
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$ClassMapDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective.constructor"
+    }
+  ],
+  "$ClassMapDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective.render"
+    }
+  ],
+  "$ClassMapDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "ClassMapDirective.update"
+    }
+  ],
+  "$ClassInfo": [
+    {
+      "page": "directives",
+      "anchor": "ClassInfo",
+      "excludeFromTOC": true
+    }
+  ],
+  "$classMap": [
+    {
+      "page": "directives",
+      "anchor": "classMap"
+    }
+  ],
+  "$GuardDirective": [
+    {
+      "page": "directives",
+      "anchor": "GuardDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$GuardDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "GuardDirective.constructor"
+    }
+  ],
+  "$GuardDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "GuardDirective.render"
+    }
+  ],
+  "$GuardDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "GuardDirective.update"
+    }
+  ],
+  "$guard": [
+    {
+      "page": "directives",
+      "anchor": "guard"
+    }
+  ],
+  "$ifDefined": [
+    {
+      "page": "directives",
+      "anchor": "ifDefined"
+    }
+  ],
+  "$join": [
+    {
+      "page": "directives",
+      "anchor": "join"
+    }
+  ],
+  "$Keyed": [
+    {
+      "page": "directives",
+      "anchor": "Keyed",
+      "excludeFromTOC": true
+    }
+  ],
+  "$Keyed.constructor": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.constructor"
+    }
+  ],
+  "$key": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.key"
+    }
+  ],
+  "$Keyed.key": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.key"
+    }
+  ],
+  "$Keyed.render": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.render"
+    }
+  ],
+  "$Keyed.update": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.update"
+    }
+  ],
+  "$keyed": [
+    {
+      "page": "directives",
+      "anchor": "keyed"
+    }
+  ],
+  "$LiveDirective": [
+    {
+      "page": "directives",
+      "anchor": "LiveDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$LiveDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "LiveDirective.constructor"
+    }
+  ],
+  "$LiveDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "LiveDirective.render"
+    }
+  ],
+  "$LiveDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "LiveDirective.update"
+    }
+  ],
+  "$live": [
+    {
+      "page": "directives",
+      "anchor": "live"
+    }
+  ],
+  "$map": [
+    {
+      "page": "directives",
+      "anchor": "map"
+    }
+  ],
+  "$range": [
+    {
+      "page": "directives",
+      "anchor": "range"
+    }
+  ],
+  "$Ref": [
+    {
+      "page": "directives",
+      "anchor": "Ref",
+      "excludeFromTOC": true
+    }
+  ],
+  "$Ref.constructor": [
+    {
+      "page": "directives",
+      "anchor": "Ref.constructor"
+    }
+  ],
+  "$value": [
+    {
+      "page": "directives",
+      "anchor": "Ref.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.value"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
+    }
+  ],
+  "$Ref.value": [
+    {
+      "page": "directives",
+      "anchor": "Ref.value"
+    }
+  ],
+  "$RefDirective": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$RefDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.constructor"
+    }
+  ],
+  "$RefDirective.isConnected": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.isConnected"
+    }
+  ],
+  "$RefDirective.disconnected": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.disconnected"
+    }
+  ],
+  "$RefDirective.reconnected": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.reconnected"
+    }
+  ],
+  "$RefDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.render"
+    }
+  ],
+  "$RefDirective.setValue": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.setValue"
+    }
+  ],
+  "$RefDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "RefDirective.update"
+    }
+  ],
+  "$RefOrCallback": [
+    {
+      "page": "directives",
+      "anchor": "RefOrCallback",
+      "excludeFromTOC": true
+    }
+  ],
+  "$createRef": [
+    {
+      "page": "directives",
+      "anchor": "createRef"
+    }
+  ],
+  "$ref": [
+    {
+      "page": "directives",
+      "anchor": "ref"
+    }
+  ],
+  "$RepeatDirective": [
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$RepeatDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective.constructor"
+    }
+  ],
+  "$RepeatDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective.render"
+    }
+  ],
+  "$RepeatDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "RepeatDirective.update"
+    }
+  ],
+  "$RepeatDirectiveFn": [
+    {
+      "page": "directives",
+      "anchor": "RepeatDirectiveFn",
+      "excludeFromTOC": true
+    }
+  ],
+  "$ItemTemplate": [
+    {
+      "page": "directives",
+      "anchor": "ItemTemplate",
+      "excludeFromTOC": true
+    }
+  ],
+  "$KeyFn": [
+    {
+      "page": "directives",
+      "anchor": "KeyFn",
+      "excludeFromTOC": true
+    }
+  ],
+  "$repeat": [
+    {
+      "page": "directives",
+      "anchor": "repeat"
+    }
+  ],
+  "$StyleMapDirective": [
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$StyleMapDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective.constructor"
+    }
+  ],
+  "$StyleMapDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective.render"
+    }
+  ],
+  "$StyleMapDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "StyleMapDirective.update"
+    }
+  ],
+  "$StyleInfo": [
+    {
+      "page": "directives",
+      "anchor": "StyleInfo",
+      "excludeFromTOC": true
+    }
+  ],
+  "$styleMap": [
+    {
+      "page": "directives",
+      "anchor": "styleMap"
+    }
+  ],
+  "$TemplateContentDirective": [
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$TemplateContentDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective.constructor"
+    }
+  ],
+  "$TemplateContentDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective.render"
+    }
+  ],
+  "$TemplateContentDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "TemplateContentDirective.update"
+    }
+  ],
+  "$templateContent": [
+    {
+      "page": "directives",
+      "anchor": "templateContent"
+    }
+  ],
+  "$UnsafeHTMLDirective": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$UnsafeHTMLDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.constructor"
+    }
+  ],
+  "$directiveName": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.directiveName"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.directiveName"
+    }
+  ],
+  "$UnsafeHTMLDirective.directiveName": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.directiveName"
+    }
+  ],
+  "$resultType": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.resultType"
+    },
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.resultType"
+    }
+  ],
+  "$UnsafeHTMLDirective.resultType": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.resultType"
+    }
+  ],
+  "$UnsafeHTMLDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.render"
+    }
+  ],
+  "$UnsafeHTMLDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeHTMLDirective.update"
+    }
+  ],
+  "$unsafeHTML": [
+    {
+      "page": "directives",
+      "anchor": "unsafeHTML"
+    }
+  ],
+  "$UnsafeSVGDirective": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$UnsafeSVGDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.constructor"
+    }
+  ],
+  "$UnsafeSVGDirective.directiveName": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.directiveName"
+    }
+  ],
+  "$UnsafeSVGDirective.resultType": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.resultType"
+    }
+  ],
+  "$UnsafeSVGDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.render"
+    }
+  ],
+  "$UnsafeSVGDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "UnsafeSVGDirective.update"
+    }
+  ],
+  "$unsafeSVG": [
+    {
+      "page": "directives",
+      "anchor": "unsafeSVG"
+    }
+  ],
+  "$UntilDirective": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective",
+      "excludeFromTOC": true
+    }
+  ],
+  "$UntilDirective.constructor": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.constructor"
+    }
+  ],
+  "$UntilDirective.isConnected": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.isConnected"
+    }
+  ],
+  "$UntilDirective.disconnected": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.disconnected"
+    }
+  ],
+  "$UntilDirective.reconnected": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.reconnected"
+    }
+  ],
+  "$UntilDirective.render": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.render"
+    }
+  ],
+  "$UntilDirective.setValue": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.setValue"
+    }
+  ],
+  "$UntilDirective.update": [
+    {
+      "page": "directives",
+      "anchor": "UntilDirective.update"
+    }
+  ],
+  "$until": [
+    {
+      "page": "directives",
+      "anchor": "until"
+    }
+  ],
+  "$when": [
+    {
+      "page": "directives",
+      "anchor": "when"
+    }
+  ],
+  "$LitUnstable": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable"
+    }
+  ],
+  "$DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog"
+    },
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog"
+    },
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog"
+    }
+  ],
+  "$LitUnstable.DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog"
+    }
+  ],
+  "$BeginRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender"
+    }
+  ],
+  "$container": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.container"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.container"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.container": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.container"
+    }
+  ],
+  "$id": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.id"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.id"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.id": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.id"
+    }
+  ],
+  "$kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.kind"
+    },
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.options"
+    }
+  ],
+  "$part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.part"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.part"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.part"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.part"
+    }
+  ],
+  "$LitUnstable.DebugLog.BeginRender.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.BeginRender.value"
+    }
+  ],
+  "$CommitAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.name"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitAttribute.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitAttribute.value"
+    }
+  ],
+  "$CommitBooleanAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.name"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitBooleanAttribute.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitBooleanAttribute.value"
+    }
+  ],
+  "$CommitEventListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener"
+    }
+  ],
+  "$addListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.addListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.addListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.addListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.name"
+    }
+  ],
+  "$oldListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.oldListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.oldListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.oldListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.options"
+    }
+  ],
+  "$removeListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.removeListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.removeListener": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.removeListener"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitEventListener.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitEventListener.value"
+    }
+  ],
+  "$CommitNode": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.options"
+    }
+  ],
+  "$parent": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.parent"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.parent"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.parent": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.parent"
+    }
+  ],
+  "$start": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.start"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.start"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.start": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.start"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNode.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNode.value"
+    }
+  ],
+  "$CommitNothingToChildEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry"
+    }
+  ],
+  "$end": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.end"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.end": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.end"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.parent": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.parent"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitNothingToChildEntry.start": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitNothingToChildEntry.start"
+    }
+  ],
+  "$CommitProperty": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.name": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.name"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitProperty.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitProperty.value"
+    }
+  ],
+  "$CommitText": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.kind"
+    }
+  ],
+  "$node": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.node"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.node": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.node"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitText.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitText.value"
+    }
+  ],
+  "$CommitToElementBinding": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.element": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.element"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitToElementBinding.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitToElementBinding.value"
+    }
+  ],
+  "$EndRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.container": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.container"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.id": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.id"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.part"
+    }
+  ],
+  "$LitUnstable.DebugLog.EndRender.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.EndRender.value"
+    }
+  ],
+  "$SetPartValue": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.part": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.part"
+    }
+  ],
+  "$templateInstance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.templateInstance"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.templateInstance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.templateInstance"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.value": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.value"
+    }
+  ],
+  "$valueIndex": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.valueIndex"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.valueIndex": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.valueIndex"
+    }
+  ],
+  "$values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.values"
+    },
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplateResult.values"
+    }
+  ],
+  "$LitUnstable.DebugLog.SetPartValue.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.SetPartValue.values"
+    }
+  ],
+  "$TemplateInstantiated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated"
+    }
+  ],
+  "$fragment": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.fragment"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.fragment"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.fragment": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.fragment"
+    }
+  ],
+  "$instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.instance"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.instance"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.options"
+    }
+  ],
+  "$parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.parts"
+    }
+  ],
+  "$template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.template"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.template"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.template"
+    },
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiated.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiated.values"
+    }
+  ],
+  "$TemplateInstantiatedAndUpdated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.fragment": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.fragment"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateInstantiatedAndUpdated.values"
+    }
+  ],
+  "$TemplatePrep": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep"
+    }
+  ],
+  "$clonableTemplate": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.clonableTemplate"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.clonableTemplate": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.clonableTemplate"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.strings": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.strings"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplatePrep.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplatePrep.template"
+    }
+  ],
+  "$TemplateUpdating": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.instance": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.instance"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.kind": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.kind"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.options": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.options"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.parts": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.parts"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.template": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.template"
+    }
+  ],
+  "$LitUnstable.DebugLog.TemplateUpdating.values": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.TemplateUpdating.values"
+    }
+  ],
+  "$CommitPartEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitPartEntry"
+    }
+  ],
+  "$LitUnstable.DebugLog.CommitPartEntry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.CommitPartEntry"
+    }
+  ],
+  "$Entry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.Entry"
+    },
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Entry"
+    },
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog.Entry"
+    }
+  ],
+  "$LitUnstable.DebugLog.Entry": [
+    {
+      "page": "misc",
+      "anchor": "LitUnstable.DebugLog.Entry"
+    }
+  ],
+  "$ReactiveUnstable": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog"
+    }
+  ],
+  "$Update": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog.Update": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog.Update.kind": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Update.kind"
+    }
+  ],
+  "$ReactiveUnstable.DebugLog.Entry": [
+    {
+      "page": "misc",
+      "anchor": "ReactiveUnstable.DebugLog.Entry"
+    }
+  ],
+  "$Unstable": [
+    {
+      "page": "misc",
+      "anchor": "Unstable"
+    }
+  ],
+  "$Unstable.DebugLog": [
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog"
+    }
+  ],
+  "$Unstable.DebugLog.Entry": [
+    {
+      "page": "misc",
+      "anchor": "Unstable.DebugLog.Entry"
+    }
+  ],
+  "$CSSResult": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult"
+    }
+  ],
+  "$cssText": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.cssText"
+    }
+  ],
+  "$CSSResult.cssText": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.cssText"
+    }
+  ],
+  "$styleSheet": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.styleSheet"
+    }
+  ],
+  "$CSSResult.styleSheet": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.styleSheet"
+    }
+  ],
+  "$toString": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.toString"
+    }
+  ],
+  "$CSSResult.toString": [
+    {
+      "page": "styles",
+      "anchor": "CSSResult.toString"
+    }
+  ],
+  "$LitElement": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement"
+    }
+  ],
+  "$LitElement.constructor": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.constructor"
+    }
+  ],
+  "$hasUpdated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.hasUpdated"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.hasUpdated"
+    }
+  ],
+  "$LitElement.hasUpdated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.hasUpdated"
+    }
+  ],
+  "$isUpdatePending": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.isUpdatePending"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.isUpdatePending"
+    }
+  ],
+  "$LitElement.isUpdatePending": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.isUpdatePending"
+    }
+  ],
+  "$renderOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.renderOptions"
+    }
+  ],
+  "$LitElement.renderOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.renderOptions"
+    }
+  ],
+  "$renderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.renderRoot"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.renderRoot"
+    }
+  ],
+  "$LitElement.renderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.renderRoot"
+    }
+  ],
+  "$disableWarning": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.disableWarning"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.disableWarning"
+    }
+  ],
+  "$LitElement.disableWarning": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.disableWarning"
+    }
+  ],
+  "$elementProperties": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.elementProperties"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.elementProperties"
+    }
+  ],
+  "$LitElement.elementProperties": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.elementProperties"
+    }
+  ],
+  "$elementStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.elementStyles"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.elementStyles"
+    }
+  ],
+  "$LitElement.elementStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.elementStyles"
+    }
+  ],
+  "$enableWarning": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enableWarning"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.enableWarning"
+    }
+  ],
+  "$LitElement.enableWarning": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enableWarning"
+    }
+  ],
+  "$enabledWarnings": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enabledWarnings"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.enabledWarnings"
+    }
+  ],
+  "$LitElement.enabledWarnings": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enabledWarnings"
+    }
+  ],
+  "$finalized": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalized"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.finalized"
+    }
+  ],
+  "$LitElement.finalized": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalized"
+    }
+  ],
+  "$properties": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.properties"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.properties"
+    }
+  ],
+  "$LitElement.properties": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.properties"
+    }
+  ],
+  "$shadowRootOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shadowRootOptions"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.shadowRootOptions"
+    }
+  ],
+  "$LitElement.shadowRootOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shadowRootOptions"
+    }
+  ],
+  "$styles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.styles"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.styles"
+    }
+  ],
+  "$LitElement.styles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.styles"
+    }
+  ],
+  "$updateComplete": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updateComplete"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.updateComplete"
+    },
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.updateComplete"
+    }
+  ],
+  "$LitElement.updateComplete": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updateComplete"
+    }
+  ],
+  "$observedAttributes": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.observedAttributes"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.observedAttributes"
+    }
+  ],
+  "$LitElement.observedAttributes": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.observedAttributes"
+    }
+  ],
+  "$addController": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.addController"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.addController"
+    },
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.addController"
+    }
+  ],
+  "$LitElement.addController": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.addController"
+    }
+  ],
+  "$attributeChangedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.attributeChangedCallback"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.attributeChangedCallback"
+    }
+  ],
+  "$LitElement.attributeChangedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.attributeChangedCallback"
+    }
+  ],
+  "$connectedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.connectedCallback"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.connectedCallback"
+    }
+  ],
+  "$LitElement.connectedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.connectedCallback"
+    }
+  ],
+  "$createRenderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createRenderRoot"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.createRenderRoot"
+    }
+  ],
+  "$LitElement.createRenderRoot": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createRenderRoot"
+    }
+  ],
+  "$disconnectedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.disconnectedCallback"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.disconnectedCallback"
+    }
+  ],
+  "$LitElement.disconnectedCallback": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.disconnectedCallback"
+    }
+  ],
+  "$enableUpdating": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enableUpdating"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.enableUpdating"
+    }
+  ],
+  "$LitElement.enableUpdating": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.enableUpdating"
+    }
+  ],
+  "$firstUpdated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.firstUpdated"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.firstUpdated"
+    }
+  ],
+  "$LitElement.firstUpdated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.firstUpdated"
+    }
+  ],
+  "$getUpdateComplete": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getUpdateComplete"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.getUpdateComplete"
+    }
+  ],
+  "$LitElement.getUpdateComplete": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getUpdateComplete"
+    }
+  ],
+  "$performUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.performUpdate"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.performUpdate"
+    }
+  ],
+  "$LitElement.performUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.performUpdate"
+    }
+  ],
+  "$removeController": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.removeController"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.removeController"
+    },
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.removeController"
+    }
+  ],
+  "$LitElement.removeController": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.removeController"
+    }
+  ],
+  "$LitElement.render": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.render"
+    }
+  ],
+  "$requestUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.requestUpdate"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.requestUpdate"
+    },
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.requestUpdate"
+    }
+  ],
+  "$LitElement.requestUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.requestUpdate"
+    }
+  ],
+  "$scheduleUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.scheduleUpdate"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.scheduleUpdate"
+    }
+  ],
+  "$LitElement.scheduleUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.scheduleUpdate"
+    }
+  ],
+  "$shouldUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shouldUpdate"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.shouldUpdate"
+    }
+  ],
+  "$LitElement.shouldUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.shouldUpdate"
+    }
+  ],
+  "$LitElement.update": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.update"
+    }
+  ],
+  "$updated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updated"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.updated"
+    }
+  ],
+  "$LitElement.updated": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.updated"
+    }
+  ],
+  "$willUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.willUpdate"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.willUpdate"
+    }
+  ],
+  "$LitElement.willUpdate": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.willUpdate"
+    }
+  ],
+  "$addInitializer": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.addInitializer"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.addInitializer"
+    }
+  ],
+  "$LitElement.addInitializer": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.addInitializer"
+    }
+  ],
+  "$createProperty": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createProperty"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.createProperty"
+    }
+  ],
+  "$LitElement.createProperty": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.createProperty"
+    }
+  ],
+  "$finalize": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalize"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.finalize"
+    }
+  ],
+  "$LitElement.finalize": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalize"
+    }
+  ],
+  "$finalizeStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalizeStyles"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.finalizeStyles"
+    }
+  ],
+  "$LitElement.finalizeStyles": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.finalizeStyles"
+    }
+  ],
+  "$getPropertyDescriptor": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyDescriptor"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.getPropertyDescriptor"
+    }
+  ],
+  "$LitElement.getPropertyDescriptor": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyDescriptor"
+    }
+  ],
+  "$getPropertyOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyOptions"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.getPropertyOptions"
+    }
+  ],
+  "$LitElement.getPropertyOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "LitElement.getPropertyOptions"
+    }
+  ],
+  "$ReactiveElement": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement"
+    }
+  ],
+  "$ReactiveElement.constructor": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.constructor"
+    }
+  ],
+  "$ReactiveElement.hasUpdated": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.hasUpdated"
+    }
+  ],
+  "$ReactiveElement.isUpdatePending": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.isUpdatePending"
+    }
+  ],
+  "$ReactiveElement.renderRoot": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.renderRoot"
+    }
+  ],
+  "$ReactiveElement.disableWarning": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.disableWarning"
+    }
+  ],
+  "$ReactiveElement.elementProperties": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.elementProperties"
+    }
+  ],
+  "$ReactiveElement.elementStyles": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.elementStyles"
+    }
+  ],
+  "$ReactiveElement.enableWarning": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.enableWarning"
+    }
+  ],
+  "$ReactiveElement.enabledWarnings": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.enabledWarnings"
+    }
+  ],
+  "$ReactiveElement.finalized": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.finalized"
+    }
+  ],
+  "$ReactiveElement.properties": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.properties"
+    }
+  ],
+  "$ReactiveElement.shadowRootOptions": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.shadowRootOptions"
+    }
+  ],
+  "$ReactiveElement.styles": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.styles"
+    }
+  ],
+  "$ReactiveElement.updateComplete": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.updateComplete"
+    }
+  ],
+  "$ReactiveElement.observedAttributes": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.observedAttributes"
+    }
+  ],
+  "$ReactiveElement.addController": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.addController"
+    }
+  ],
+  "$ReactiveElement.attributeChangedCallback": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.attributeChangedCallback"
+    }
+  ],
+  "$ReactiveElement.connectedCallback": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.connectedCallback"
+    }
+  ],
+  "$ReactiveElement.createRenderRoot": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.createRenderRoot"
+    }
+  ],
+  "$ReactiveElement.disconnectedCallback": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.disconnectedCallback"
+    }
+  ],
+  "$ReactiveElement.enableUpdating": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.enableUpdating"
+    }
+  ],
+  "$ReactiveElement.firstUpdated": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.firstUpdated"
+    }
+  ],
+  "$ReactiveElement.getUpdateComplete": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.getUpdateComplete"
+    }
+  ],
+  "$ReactiveElement.performUpdate": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.performUpdate"
+    }
+  ],
+  "$ReactiveElement.removeController": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.removeController"
+    }
+  ],
+  "$ReactiveElement.requestUpdate": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.requestUpdate"
+    }
+  ],
+  "$ReactiveElement.scheduleUpdate": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.scheduleUpdate"
+    }
+  ],
+  "$ReactiveElement.shouldUpdate": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.shouldUpdate"
+    }
+  ],
+  "$ReactiveElement.update": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.update"
+    }
+  ],
+  "$ReactiveElement.updated": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.updated"
+    }
+  ],
+  "$ReactiveElement.willUpdate": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.willUpdate"
+    }
+  ],
+  "$ReactiveElement.addInitializer": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.addInitializer"
+    }
+  ],
+  "$ReactiveElement.createProperty": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.createProperty"
+    }
+  ],
+  "$ReactiveElement.finalize": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.finalize"
+    }
+  ],
+  "$ReactiveElement.finalizeStyles": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.finalizeStyles"
+    }
+  ],
+  "$ReactiveElement.getPropertyDescriptor": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.getPropertyDescriptor"
+    }
+  ],
+  "$ReactiveElement.getPropertyOptions": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ReactiveElement.getPropertyOptions"
+    }
+  ],
+  "$TemplateInstance": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance"
+    }
+  ],
+  "$TemplateInstance.constructor": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.constructor"
+    }
+  ],
+  "$TemplateInstance.parentNode": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.parentNode"
+    }
+  ],
+  "$CompiledTemplate": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate"
+    }
+  ],
+  "$el": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.el"
+    }
+  ],
+  "$CompiledTemplate.el": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.el"
+    }
+  ],
+  "$h": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.h"
+    }
+  ],
+  "$CompiledTemplate.h": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.h"
+    }
+  ],
+  "$CompiledTemplate.parts": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.parts"
+    }
+  ],
+  "$CompiledTemplateResult": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplateResult"
+    }
+  ],
+  "$CompiledTemplateResult.values": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplateResult.values"
+    }
+  ],
+  "$ComplexAttributeConverter": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ComplexAttributeConverter"
+    }
+  ],
+  "$fromAttribute": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ComplexAttributeConverter.fromAttribute"
+    }
+  ],
+  "$ComplexAttributeConverter.fromAttribute": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ComplexAttributeConverter.fromAttribute"
+    }
+  ],
+  "$toAttribute": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ComplexAttributeConverter.toAttribute"
+    }
+  ],
+  "$ComplexAttributeConverter.toAttribute": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "ComplexAttributeConverter.toAttribute"
+    }
+  ],
+  "$DirectiveParent": [
+    {
+      "page": "misc",
+      "anchor": "DirectiveParent"
+    }
+  ],
+  "$Disconnectable": [
+    {
+      "page": "misc",
+      "anchor": "Disconnectable"
+    }
+  ],
+  "$HasChanged": [
+    {
+      "page": "misc",
+      "anchor": "HasChanged"
+    }
+  ],
+  "$PropertyDeclaration": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration"
+    }
+  ],
+  "$attribute": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.attribute"
+    }
+  ],
+  "$PropertyDeclaration.attribute": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.attribute"
+    }
+  ],
+  "$converter": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.converter"
+    }
+  ],
+  "$PropertyDeclaration.converter": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.converter"
+    }
+  ],
+  "$noAccessor": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.noAccessor"
+    }
+  ],
+  "$PropertyDeclaration.noAccessor": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.noAccessor"
+    }
+  ],
+  "$reflect": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.reflect"
+    }
+  ],
+  "$PropertyDeclaration.reflect": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.reflect"
+    }
+  ],
+  "$PropertyDeclaration.state": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.state"
+    }
+  ],
+  "$PropertyDeclaration.type": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.type"
+    }
+  ],
+  "$PropertyDeclaration.hasChanged": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.hasChanged"
+    }
+  ],
+  "$PropertyDeclarations": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclarations"
+    }
+  ],
+  "$PropertyValueMap": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap"
+    }
+  ],
+  "$delete": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.delete"
+    }
+  ],
+  "$PropertyValueMap.delete": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.delete"
+    }
+  ],
+  "$get": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.get"
+    }
+  ],
+  "$PropertyValueMap.get": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.get"
+    }
+  ],
+  "$has": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.has"
+    }
+  ],
+  "$PropertyValueMap.has": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.has"
+    }
+  ],
+  "$set": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.set"
+    }
+  ],
+  "$PropertyValueMap.set": [
+    {
+      "page": "misc",
+      "anchor": "PropertyValueMap.set"
+    }
+  ],
+  "$ReactiveController": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController"
+    }
+  ],
+  "$hostConnected": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostConnected"
+    }
+  ],
+  "$ReactiveController.hostConnected": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostConnected"
+    }
+  ],
+  "$hostDisconnected": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostDisconnected"
+    }
+  ],
+  "$ReactiveController.hostDisconnected": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostDisconnected"
+    }
+  ],
+  "$hostUpdate": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostUpdate"
+    }
+  ],
+  "$ReactiveController.hostUpdate": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostUpdate"
+    }
+  ],
+  "$hostUpdated": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostUpdated"
+    }
+  ],
+  "$ReactiveController.hostUpdated": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveController.hostUpdated"
+    }
+  ],
+  "$ReactiveControllerHost": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost"
+    }
+  ],
+  "$ReactiveControllerHost.updateComplete": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.updateComplete"
+    }
+  ],
+  "$ReactiveControllerHost.addController": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.addController"
+    }
+  ],
+  "$ReactiveControllerHost.removeController": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.removeController"
+    }
+  ],
+  "$ReactiveControllerHost.requestUpdate": [
+    {
+      "page": "controllers",
+      "anchor": "ReactiveControllerHost.requestUpdate"
+    }
+  ],
+  "$RenderOptions": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions"
+    }
+  ],
+  "$creationScope": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.creationScope"
+    }
+  ],
+  "$RenderOptions.creationScope": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.creationScope"
+    }
+  ],
+  "$host": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.host"
+    }
+  ],
+  "$RenderOptions.host": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.host"
+    }
+  ],
+  "$RenderOptions.isConnected": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.isConnected"
+    }
+  ],
+  "$renderBefore": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.renderBefore"
+    }
+  ],
+  "$RenderOptions.renderBefore": [
+    {
+      "page": "LitElement",
+      "anchor": "RenderOptions.renderBefore"
+    }
+  ],
+  "$RootPart": [
+    {
+      "page": "misc",
+      "anchor": "RootPart"
+    }
+  ],
+  "$RootPart.options": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.options"
+    }
+  ],
+  "$RootPart.type": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.type"
+    }
+  ],
+  "$RootPart.endNode": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.endNode"
+    }
+  ],
+  "$RootPart.parentNode": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.parentNode"
+    }
+  ],
+  "$RootPart.startNode": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.startNode"
+    }
+  ],
+  "$setConnected": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.setConnected"
+    }
+  ],
+  "$RootPart.setConnected": [
+    {
+      "page": "misc",
+      "anchor": "RootPart.setConnected"
+    }
+  ],
+  "$CSSResultArray": [
+    {
+      "page": "styles",
+      "anchor": "CSSResultArray"
+    }
+  ],
+  "$CSSResultGroup": [
+    {
+      "page": "styles",
+      "anchor": "CSSResultGroup"
+    }
+  ],
+  "$CSSResultOrNative": [
+    {
+      "page": "styles",
+      "anchor": "CSSResultOrNative"
+    }
+  ],
+  "$HTMLTemplateResult": [
+    {
+      "page": "misc",
+      "anchor": "HTMLTemplateResult"
+    }
+  ],
+  "$Initializer": [
+    {
+      "page": "misc",
+      "anchor": "Initializer"
+    }
+  ],
+  "$PropertyValues": [
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyValues"
+    }
+  ],
+  "$SVGTemplateResult": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult"
+    }
+  ],
+  "$SanitizerFactory": [
+    {
+      "page": "templates",
+      "anchor": "SanitizerFactory"
+    }
+  ],
+  "$TemplateResult": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult"
+    }
+  ],
+  "$ValueSanitizer": [
+    {
+      "page": "misc",
+      "anchor": "ValueSanitizer"
+    }
+  ],
+  "$WarningKind": [
+    {
+      "page": "misc",
+      "anchor": "WarningKind"
+    }
+  ],
+  "$defaultConverter": [
+    {
+      "page": "misc",
+      "anchor": "defaultConverter"
+    }
+  ],
+  "$isServer": [
+    {
+      "page": "misc",
+      "anchor": "isServer"
+    }
+  ],
+  "$noChange": [
+    {
+      "page": "custom-directives",
+      "anchor": "noChange"
+    }
+  ],
+  "$nothing": [
+    {
+      "page": "templates",
+      "anchor": "nothing"
+    }
+  ],
+  "$supportsAdoptingStyleSheets": [
+    {
+      "page": "styles",
+      "anchor": "supportsAdoptingStyleSheets"
+    }
+  ],
+  "$adoptStyles": [
+    {
+      "page": "styles",
+      "anchor": "adoptStyles"
+    }
+  ],
+  "$css": [
+    {
+      "page": "styles",
+      "anchor": "css"
+    }
+  ],
+  "$getCompatibleStyle": [
+    {
+      "page": "styles",
+      "anchor": "getCompatibleStyle"
+    }
+  ],
+  "$html": [
+    {
+      "page": "templates",
+      "anchor": "html"
+    },
+    {
+      "page": "static-html",
+      "anchor": "html"
+    }
+  ],
+  "$notEqual": [
+    {
+      "page": "misc",
+      "anchor": "notEqual"
+    }
+  ],
+  "$svg": [
+    {
+      "page": "templates",
+      "anchor": "svg"
+    },
+    {
+      "page": "static-html",
+      "anchor": "svg"
+    }
+  ],
+  "$unsafeCSS": [
+    {
+      "page": "styles",
+      "anchor": "unsafeCSS"
+    }
+  ],
+  "$StaticValue": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue"
+    }
+  ],
+  "$r": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue.r"
+    }
+  ],
+  "$StaticValue.r": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue.r"
+    }
+  ],
+  "$literal": [
+    {
+      "page": "static-html",
+      "anchor": "literal"
+    }
+  ],
+  "$unsafeStatic": [
+    {
+      "page": "static-html",
+      "anchor": "unsafeStatic"
+    }
+  ],
+  "$withStatic": [
+    {
+      "page": "static-html",
+      "anchor": "withStatic"
+    }
+  ]
+}
