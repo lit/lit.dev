@@ -29,7 +29,6 @@ const LATEST_VERSION_CONTENT = pathlib.resolve(
   'docs',
   SITE_LATEST_VERSION
 );
-console.log(LATEST_VERSION_CONTENT);
 const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
   CONTENT_PKG,
   'site',
@@ -46,7 +45,10 @@ const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
  * The following transforms are then applied on the files:
  *   - Permalink frontmatter is added to strip the version from the URL. E.g.,
  *     /docs/v2/* becomes /docs/*.
- *   - Versioned cross links are detected and made unversioned.
+ *  - `api.html` has frontmatter transformed so base api paths become
+ *    unversioned.
+ *  - The latest version `v[N].json` file is renamed `unversioned.json` so it
+ *    matches the directory name which contains it.
  */
 const buildAndTransformUnverionedDocs = async () => {
   const walk = async (dirPath: string): Promise<void> => {
@@ -73,63 +75,80 @@ const buildAndTransformUnverionedDocs = async () => {
  * directory.
  */
 function transformFile(path: string) {
-  let fileContents = fs.readFileSync(path, {encoding: 'utf8'});
   const relativeChildPath = pathlib.relative(LATEST_VERSION_CONTENT, path);
   const ext = pathlib.extname(relativeChildPath);
+  const relativeChildPathWithoutExt = relativeChildPath.slice(0, -ext.length);
+  const fileBasename = pathlib.basename(relativeChildPath, ext);
+
+  let fileContents = fs.readFileSync(path, {encoding: 'utf8'});
   let unversionedLocation = pathlib.join(
     UNVERSIONED_VERSION_LOCATION,
     relativeChildPath
   );
+  switch (ext) {
+    case '.md':
+      const [frontMatterData, restOfFile] = getFrontMatterData(fileContents);
+      const hasExistingPermalink = frontMatterData.find((val) =>
+        val.includes('permalink:')
+      );
+      if (hasExistingPermalink) {
+        throw new Error(
+          `Unhandled case: Handle existing permalink in '${path}'`
+        );
+      }
+      if (fileBasename === 'index') {
+        frontMatterData.push(
+          `permalink: docs/${relativeChildPathWithoutExt}.html`
+        );
+      } else {
+        frontMatterData.push(
+          `permalink: docs/${relativeChildPathWithoutExt}/index.html`
+        );
+      }
 
-  if (ext === '.md') {
-    const fileName = pathlib.basename(unversionedLocation, '.md');
-    const [frontMatterData, restOfFile] = getFrontMatterData(fileContents);
-    const existingPermalink = frontMatterData.findIndex((val) =>
-      val.includes('permalink:')
-    );
-    if (existingPermalink !== -1) {
-      throw new Error(
-        'Unhandled case: Handle this by transforming the permalink here.'
-      );
-    }
-    if (fileName === 'index') {
-      frontMatterData.push(
-        `permalink: docs/${relativeChildPath.slice(0, -3)}.html`
-      );
-    } else {
-      frontMatterData.push(
-        `permalink: docs/${relativeChildPath.slice(0, -3)}/index.html`
-      );
-    }
-
-    fileContents = writeFrontMatter(frontMatterData) + restOfFile;
-  } else if (ext === '.json') {
-    if (
-      pathlib.basename(unversionedLocation, '.json') === SITE_LATEST_VERSION
-    ) {
-      unversionedLocation = pathlib.join(
-        pathlib.dirname(unversionedLocation),
-        'unversioned.json'
-      );
-      fileContents = JSON.stringify({
-        collection: 'docs-unversioned',
-        latestVersion: SITE_LATEST_VERSION,
-      });
-    }
-  } else if (ext === '.html') {
-    if (pathlib.basename(unversionedLocation, '.html') === 'api') {
-      const [frontMatterData, _] = getFrontMatterData(fileContents);
-      const transformedFrontMatter = frontMatterData.map((line) => {
-        return line.replace(`/${SITE_LATEST_VERSION}/`, '/');
-      });
-      fileContents = writeFrontMatter(transformedFrontMatter);
-    } else {
-      throw new Error(`Unhandled html document: '${path}'`);
-    }
-  } else {
-    throw new Error(`Unhandled extension '${ext}' for '${path}'`);
+      fileContents = writeFrontMatter(frontMatterData) + restOfFile;
+      break;
+    case '.json':
+      // Only handle the latest version json file. E.g., `v[N].json` which needs
+      // to match its directory name. Therefore the latest json file will need
+      // to be renamed to `unversioned.json` as it is being moved to the
+      // `unversioned` subdirectory. All other json files will continue to match
+      // their directory name.
+      if (fileBasename === SITE_LATEST_VERSION) {
+        unversionedLocation = pathlib.join(
+          pathlib.dirname(unversionedLocation),
+          'unversioned.json'
+        );
+        fileContents = JSON.stringify({
+          collection: 'docs-unversioned',
+          latestVersion: SITE_LATEST_VERSION,
+        });
+      }
+      break;
+    case '.html':
+      // api.html is an html file containing only front matter data used to
+      // generate the API documentation. It contains the versioned api base
+      // paths. This transform makes the api base path unversioned.
+      if (fileBasename === 'api') {
+        const [frontMatterData] = getFrontMatterData(fileContents);
+        const transformedFrontMatter = frontMatterData.map((line) => {
+          return line.replace(`/${SITE_LATEST_VERSION}/`, '/');
+        });
+        fileContents = writeFrontMatter(transformedFrontMatter);
+      } else {
+        throw new Error(`Unhandled html document: '${path}'`);
+      }
+      break;
+    default:
+      throw new Error(`Unhandled extension '${ext}' for '${path}'`);
   }
 
+  console.log(
+    `Writing: ${pathlib.relative(
+      CONTENT_PKG,
+      unversionedLocation
+    )} from ${pathlib.relative(CONTENT_PKG, path)}`
+  );
   fs.mkdirSync(pathlib.dirname(unversionedLocation), {recursive: true});
   fs.writeFileSync(unversionedLocation, fileContents);
 }
