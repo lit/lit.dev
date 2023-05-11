@@ -20,7 +20,7 @@
   },
   "wireit": {
     "build": {
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy",
+      "command": "LITDEV_ENV=local NODE_OPTIONS=\"--experimental-vm-modules --max_old_space_size=4096\" eleventy",
       "dependencies": [
         "prod:build:assets"
       ],
@@ -55,7 +55,7 @@
       ]
     },
     "prod:build": {
-      "command": "NODE_OPTIONS=--experimental-vm-modules eleventy",
+      "command": "NODE_OPTIONS=\"--experimental-vm-modules --max_old_space_size=4096\" eleventy",
       "dependencies": [
         "prod:build:assets"
       ],
