@@ -557,8 +557,10 @@ ${content}
           ENV.eleventyOutDir + '/docs/v1/*/index.html',
           ENV.eleventyOutDir + '/docs/v2/introduction.html',
           ENV.eleventyOutDir + '/docs/v2/*/index.html',
+          ENV.eleventyOutDir + '/docs/v3/introduction.html',
+          ENV.eleventyOutDir + '/docs/v3/*/index.html',
         ],
-        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2)/index.html'}
+        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2|v3)/index.html'}
       )
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
