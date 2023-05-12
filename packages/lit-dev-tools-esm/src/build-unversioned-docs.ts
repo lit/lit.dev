@@ -6,8 +6,8 @@
 
 import {fileURLToPath} from 'url';
 import * as pathlib from 'path';
-import * as fs from 'fs';
-import * as fsPromise from 'fs/promises';
+import {readFileSync} from 'fs';
+import * as fs from 'fs/promises';
 
 const THIS_DIR = pathlib.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = pathlib.resolve(THIS_DIR, '..', '..', '..');
@@ -21,7 +21,7 @@ interface SiteJSON {
 type EleventyFrontMatterData = string[];
 
 const SITE_LATEST_VERSION = (
-  JSON.parse(fs.readFileSync(SITE_JSON, 'utf8')) as SiteJSON
+  JSON.parse(readFileSync(SITE_JSON, 'utf8')) as SiteJSON
 ).latestVersion;
 const LATEST_VERSION_CONTENT = pathlib.resolve(
   CONTENT_PKG,
@@ -52,14 +52,14 @@ const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
  */
 const buildAndTransformUnverionedDocs = async () => {
   const walk = async (dirPath: string): Promise<void> => {
-    const entries = await fsPromise.readdir(dirPath, {withFileTypes: true});
+    const entries = await fs.readdir(dirPath, {withFileTypes: true});
     await Promise.all(
       entries.map(async (entry) => {
         const childPath = pathlib.join(dirPath, entry.name);
         if (entry.isDirectory()) {
           return walk(childPath);
         } else {
-          transformFile(childPath);
+          return transformFile(childPath);
         }
       })
     );
@@ -74,13 +74,13 @@ const buildAndTransformUnverionedDocs = async () => {
  * Transform the given versioned content file and copy it to the unversioned
  * directory.
  */
-function transformFile(path: string) {
+async function transformFile(path: string) {
   const relativeChildPath = pathlib.relative(LATEST_VERSION_CONTENT, path);
   const ext = pathlib.extname(relativeChildPath);
   const relativeChildPathWithoutExt = relativeChildPath.slice(0, -ext.length);
   const fileBasename = pathlib.basename(relativeChildPath, ext);
 
-  let fileContents = fs.readFileSync(path, {encoding: 'utf8'});
+  let fileContents = await fs.readFile(path, {encoding: 'utf8'});
   let unversionedLocation = pathlib.join(
     UNVERSIONED_VERSION_LOCATION,
     relativeChildPath
@@ -149,8 +149,8 @@ function transformFile(path: string) {
       unversionedLocation
     )} from ${pathlib.relative(CONTENT_PKG, path)}`
   );
-  fs.mkdirSync(pathlib.dirname(unversionedLocation), {recursive: true});
-  fs.writeFileSync(unversionedLocation, fileContents);
+  await fs.mkdir(pathlib.dirname(unversionedLocation), {recursive: true});
+  await fs.writeFile(unversionedLocation, fileContents);
 }
 
 /**
@@ -160,7 +160,7 @@ function transformFile(path: string) {
 function getFrontMatterData(
   fileData: string
 ): [EleventyFrontMatterData, string] {
-  const splitFile = fileData.split('---');
+  const splitFile = fileData.split(/^---$/m);
   const frontMatterData = splitFile[1].split('\n').slice(1, -1);
   const restOfFile = splitFile.slice(2).join('---');
   return [frontMatterData, restOfFile];
