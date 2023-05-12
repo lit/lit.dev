@@ -13,7 +13,7 @@ Lit SSR generates static HTML for the browser to parse and paint without any Jav
 How to re-apply that reactivity client-side depends on whether you are rendering standalone Lit templates or utilizing Lit components.
 
 ## Standalone Lit Templates
-"Hydration" for Lit templates is the process of having Lit re-associate the expressions of Lit templates with the nodes they should update in the DOM as well as adding event listeners. In order to hydrate Lit templates, the `hydrate()` method from the `experimental-hydrate` module is provided in the `lit` package. Before you update a server-rendered container using `render()`, you must first call `hydrate()` on that container using the same template and data that was used to render on the server:
+"Hydration" for Lit templates is the process of having Lit re-associate the expressions of Lit templates with the nodes they should update in the DOM as well as adding event listeners. In order to hydrate Lit templates, the `hydrate()` method is provided in the `@lit-labs/ssr-client` package. Before you update a server-rendered container using `render()`, you must first call `hydrate()` on that container using the same template and data that was used to render on the server:
 
 ```js
 import {render} from 'lit';
@@ -45,8 +45,8 @@ For example:
   <body>
     <!-- App components rendered with declarative shadow DOM placed here. -->
 
-    <!-- exprimental-hydrate-support should be loaded first. -->
-    <script src="/node_modules/lit/exprimental-hydrate-support.js"></script>
+    <!-- ssr-client lit-element-hydrate-support should be loaded first. -->
+    <script src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
 
     <!-- As component definition loads, your pre-rendered components will
         come to life and become interactive. -->
@@ -54,7 +54,7 @@ For example:
   </body>
 ```
 
-If you are [bundling](/docs/v2/tools/production/) your code, make sure the `lit/expriemntal-hydrate-support.js` is imported first:
+If you are [bundling](/docs/v2/tools/production/) your code, make sure the `@lit-labs/ssr-client/lit-element-hydrate-support.js` is imported first:
 ```js
 // index.js
 import '@lit-labs/ssr-client/lit-element-hydrate-support.js';
@@ -119,4 +119,4 @@ The HTML snippet below includes an optional strategy to hide the body until the 
 ### Combined example
 This example shows a strategy that combines both the `@lit-labs/ssr-client/lit-element-hydrate-support.js` and the `template-shadowroot` polyfill loading and serves a page with a SSRed component to hydrate client-side.
 
-[Lit SSR in a Koa server](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
+[Lit SSR in a Koa server](https://stackblitz.com/edit/lit-ssr-global-ptowx2?file=src/server.js)
