@@ -119,4 +119,4 @@ The HTML snippet below includes an optional strategy to hide the body until the 
 ### Combined example
 This example shows a strategy that combines both the `@lit-labs/ssr-client/lit-element-hydrate-support.js` and the `template-shadowroot` polyfill loading and serves a page with a SSRed component to hydrate client-side.
 
-[Lit SSR in a Koa server](https://stackblitz.com/edit/lit-ssr-global-ptowx2?file=src/server.js)
+[Lit SSR in a Koa server](https://stackblitz.com/edit/lit-ssr-global?file=src/server.js)
