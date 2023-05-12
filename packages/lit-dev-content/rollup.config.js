@@ -71,7 +71,8 @@ export default [
           relative.startsWith('lit/') ||
           relative.startsWith('lit-html/') ||
           relative.startsWith('lit-element/') ||
-          relative.startsWith('@lit/reactive-element/')
+          relative.startsWith('@lit/reactive-element/') ||
+          relative.startsWith('@lit-labs/ssr-client/')
         ) {
           return 'lit';
         }
