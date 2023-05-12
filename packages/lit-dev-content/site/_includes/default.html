@@ -28,8 +28,10 @@
     {% endif %}
     {% inlinejs "global/dsd-polyfill.js" %}
 
-    {% if selectedVersion !== latestVersion %}
+    {% if selectedVersion == "v1" %}
       <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+    {% endif %}
+    {% if selectedVersion !== latestVersion or page.url.includes('/v3/') %}
       {% inlinejs "components/litdev-banner.js" %}
     {% endif %}
 
@@ -65,9 +67,16 @@
 
     {% include 'header.html' %}
 
-    {% if selectedVersion !== latestVersion %}
+    {% if selectedVersion !== latestVersion and not page.url.includes('/v3/')  %}
       <litdev-banner>
         You're viewing docs for an older version of Lit. Click
+        <a href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+        here</a> for the latest version.
+      </litdev-banner>
+    {% endif %}
+    {% if page.url.includes('/v3/') %}
+      <litdev-banner>
+        You're viewing docs for a prerelease version of Lit. Click
         <a href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
         here</a> for the latest version.
       </litdev-banner>
