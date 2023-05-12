@@ -41,7 +41,7 @@ A package containing controllers and decorators for using the [Context Protocol]
 </td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](/docs/v2/data/context/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
+[📄&nbsp;Docs](/docs/v3/data/context/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
 
 </td>
 </tr>
@@ -135,7 +135,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>A package for server-side rendering Lit templates and components.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](/docs/v2/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3353 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fssr%5D "Issues")
+[📄&nbsp;Docs](/docs/v3/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3353 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fssr%5D "Issues")
 
 </td>
 </tr>

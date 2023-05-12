@@ -38,7 +38,7 @@ private _handleTouchStart(e) { console.log(e.type) }
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Enabling decorators](/docs/v2/components/decorators/#enabling-decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Enabling decorators](/docs/v3/components/decorators/#enabling-decorators) for details.
 
 </div>
 
@@ -115,7 +115,7 @@ To add an event listener after rendering, use the `firstUpdated` method. This is
 
 The `firstUpdated` callback fires after the first time your component has been updated and called its `render` method, but **before** the browser has had a chance to paint.
 
-See [firstUpdated](/docs/v2/components/lifecycle/#firstupdated) in the Lifecycle documentation for more information.
+See [firstUpdated](/docs/v3/components/lifecycle/#firstupdated) in the Lifecycle documentation for more information.
 
 To ensure the listener is added after the user can see the component, you can await a Promise that resolves after the browser paints.
 

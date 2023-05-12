@@ -8,7 +8,7 @@ versionLinks:
   v1: tools/publish/
 ---
 
-This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of JavaScript libraries and developers. See [Starter Kits](/docs/v2/tools/starter-kits/) for reusable component templates set up for publishing to npm.
+This page provides guidelines for publishing a Lit component to [npm](https://www.npmjs.com/), the package manager used by the vast majority of JavaScript libraries and developers. See [Starter Kits](/docs/v3/tools/starter-kits/) for reusable component templates set up for publishing to npm.
 
 ## Publishing to npm
 
@@ -172,7 +172,7 @@ in TypeScript.
 *   Publish your `.d.ts` typings in your npm package.
 
 
- For more information about `HTMLElementTagNameMap`, see [Providing good TypeScript typings](/docs/v2/components/defining/#typescript-typings).
+ For more information about `HTMLElementTagNameMap`, see [Providing good TypeScript typings](/docs/v3/components/defining/#typescript-typings).
 
 ### Self-define elements
 

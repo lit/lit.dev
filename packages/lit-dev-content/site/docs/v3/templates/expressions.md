@@ -12,7 +12,7 @@ Lit templates can include dynamic values called expressions. An expression can b
 
 Expressions can only be placed in specific locations in the template, and how an expression is interpreted depends on where it appears. Expressions inside the element tag itself affect the element. Expressions inside the element's content, where child nodes go, render child nodes or text.
 
-Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom directives](/docs/v2/templates/custom-directives/) for more information.
+Valid values for expressions differ based on where the expression occurs. Generally all expressions accept primitive values like strings and numbers, and some expressions support additional value types. In addition, all expressions can accept _directives_, which are special functions that customize the way an expression is processed and rendered. See [Custom directives](/docs/v3/templates/custom-directives/) for more information.
 
 Here's a quick reference followed by more detailed information about each expression type.
 
@@ -138,9 +138,9 @@ html`<main>${bodyText}</main>`
 Expressions in the child position can take many kinds of values:
 
 * Primitive values likes strings, numbers, and booleans.
-* `TemplateResult` objects created with the [`html`](/docs/v2/api/templates/#html) function (or the [`svg`](/docs/v2/api/templates/#svg) function, if the expression is inside an `<svg>` element).
+* `TemplateResult` objects created with the [`html`](/docs/v3/api/templates/#html) function (or the [`svg`](/docs/v3/api/templates/#svg) function, if the expression is inside an `<svg>` element).
 * DOM nodes.
-* The sentinel values [`nothing`](/docs/v2/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/v2/templates/custom-directives/#signaling-no-change).
+* The sentinel values [`nothing`](/docs/v3/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/v3/templates/custom-directives/#signaling-no-change).
 * Arrays or iterables of any of the supported types.
 
 ### Primitive values
@@ -149,7 +149,7 @@ Lit can render almost all [primitive values](https://developer.mozilla.org/en-US
 
 Numbers values like `5` will render the string `'5'`. Bigints are treated similarly.
 
-A boolean value `true` will render `'true'`, and `false` will render `'false'`, but rendering a boolean like this is uncommon. Instead booleans are typically used in conditionals to render other appropriate values. For more on conditionals, see [Conditionals](/docs/v2/templates/conditionals/).
+A boolean value `true` will render `'true'`, and `false` will render `'false'`, but rendering a boolean like this is uncommon. Instead booleans are typically used in conditionals to render other appropriate values. For more on conditionals, see [Conditionals](/docs/v3/templates/conditionals/).
 
 The empty string `''`, `null`, and `undefined` are specially treated and render nothing. See [Removing child content](#removing-child) for more information.
 
@@ -159,7 +159,7 @@ Symbol values cannot be converted to strings and throw when placed in child expr
 
 Lit supplies a couple of special sentinel values that can be used in child expressions.
 
-The `noChange` sentinel value does not change the expression's existing value. It is typically used in custom directives. See [Signaling no change](/docs/v2/templates/custom-directives/#signaling-no-change) for more information.
+The `noChange` sentinel value does not change the expression's existing value. It is typically used in custom directives. See [Signaling no change](/docs/v3/templates/custom-directives/#signaling-no-change) for more information.
 
 The `nothing` sentinel renders nothing. See [Removing child content](#removing-child) for more information.
 
@@ -186,9 +186,9 @@ html`
 `;
 ```
 
-For more on conditionals, see [Conditionals](/docs/v2/templates/conditionals/).
+For more on conditionals, see [Conditionals](/docs/v3/templates/conditionals/).
 
-For more on using JavaScript to create repeating templates, see [Lists](/docs/v2/templates/lists/).
+For more on using JavaScript to create repeating templates, see [Lists](/docs/v3/templates/lists/).
 
 ### DOM nodes
 
@@ -204,15 +204,15 @@ const page = html`
 
 ### Arrays or iterables of any of the supported types
 
-An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/v2/templates/lists/).
+An expression can also return an array or iterable of any of the supported types, in any combination. You can use this feature along with standard JavaScript like the Array `map` method to create repeating templates and lists. For examples, see [Lists](/docs/v3/templates/lists/).
 
 ### Removing child content {#removing-child}
 
-The values `null`, `undefined`, the empty string `''`, and Lit's [nothing](/docs/v2/api/templates/#nothing) sentinel value remove any previously rendered content and render no node.
+The values `null`, `undefined`, the empty string `''`, and Lit's [nothing](/docs/v3/api/templates/#nothing) sentinel value remove any previously rendered content and render no node.
 
-Setting or removing child content is often done based on a condition. See [Conditionally rendering nothing](/docs/v2/templates/conditionals/#conditionally-rendering-nothing) for more information.
+Setting or removing child content is often done based on a condition. See [Conditionally rendering nothing](/docs/v3/templates/conditionals/#conditionally-rendering-nothing) for more information.
 
-Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Rendering no node ensures the fallback content is rendered. See [fallback content](/docs/v2/components/shadow-dom/#fallback) for more information.
+Rendering no node can be important when an expression is a child of an element with Shadow DOM that includes a `slot` with fallback content. Rendering no node ensures the fallback content is rendered. See [fallback content](/docs/v3/components/shadow-dom/#fallback) for more information.
 
 ## Attribute expressions {#attribute-expressions }
 
@@ -254,7 +254,7 @@ html`<img src="/images/${this.imagePath}/${this.imageFile}">`;
 
 If `this.imagePath` or `this.imageFile` is not defined, the `src` attribute should not be set or an invalid network request will occur.
 
-Lit's [nothing](/docs/v2/api/templates/#nothing) sentinel value addresses this by removing the attribute when any expression in the attribute value evaluates to `nothing`.
+Lit's [nothing](/docs/v3/api/templates/#nothing) sentinel value addresses this by removing the attribute when any expression in the attribute value evaluates to `nothing`.
 
 ```js
 html`<img src="/images/${this.imagePath ?? nothing}/${this.imageFile ?? nothing}">`;
@@ -262,7 +262,7 @@ html`<img src="/images/${this.imagePath ?? nothing}/${this.imageFile ?? nothing}
 
 In this example **both** the `this.imagePath` and `this.imageFile` properties must be defined for the `src` attribute to be set. The `??` [nullish coalescing operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) returns the right-hand value if the left-hand value is `null` or `undefined`.
 
-Lit also provides an [ifDefined](/docs/v2/api/directives/#ifDefined) directive which is sugar for `value ?? nothing`.
+Lit also provides an [ifDefined](/docs/v3/api/directives/#ifDefined) directive which is sugar for `value ?? nothing`.
 
 ```js
 html`<img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}">`;
@@ -276,7 +276,7 @@ html`<button aria-label="${this.ariaLabel || nothing}"></button>`
 
 In this example the `aria-label` attribute is rendered only if `this.ariaLabel` is not an empty string.
 
-Setting or removing an attribute is often done based on a condition. See [Conditionally rendering nothing](/docs/v2/templates/conditionals/#conditionally-rendering-nothing) for more information.
+Setting or removing an attribute is often done based on a condition. See [Conditionally rendering nothing](/docs/v3/templates/conditionals/#conditionally-rendering-nothing) for more information.
 
 ## Property expressions {#property-expressions}
 
@@ -294,7 +294,7 @@ html`<my-list .listItems=${this.items}></my-list>`;
 
 Note that the property name in this example—`listItems`—is mixed case. Although HTML *attributes* are case-insensitive, Lit preserves the case for property names when it processes the template.
 
-For more information about component properties, see [Reactive properties](/docs/v2/components/properties/).
+For more information about component properties, see [Reactive properties](/docs/v3/components/properties/).
 
 ## Event listener expressions {#event-listener-expressions}
 
@@ -316,7 +316,7 @@ clickHandler() {
 }
 ```
 
-For more information about component events, see [Events](/docs/v2/components/events/).
+For more information about component events, see [Events](/docs/v3/components/events/).
 
 ## Element expressions {#element-expressions}
 
@@ -326,7 +326,7 @@ You can also add an expression that accesses an element instance, instead of a s
 html`<div ${myDirective()}></div>`
 ```
 
-Element expressions only work with [directives](/docs/v2/templates/directives/). Any other value type in an element expression is ignored.
+Element expressions only work with [directives](/docs/v3/templates/directives/). Any other value type in an element expression is ignored.
 
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
@@ -334,7 +334,7 @@ One built-in directive that can be used in an element expression is the `ref` di
 html`<button ${ref(this.myRef)}`;
 ```
 
-See [ref](/docs/v2/templates/directives/#ref) for more information.
+See [ref](/docs/v3/templates/directives/#ref) for more information.
 
 ## Well-formed HTML { #well-formed-html }
 
@@ -433,7 +433,7 @@ Expressions should generally not appear in the following locations:
   <!-- will not update: ${value} -->
   ```
 
-* Inside `<style>` elements when using the ShadyCSS polyfill. See [Expressions and style elements](/docs/v2/components/styles/#style-element) for more details.
+* Inside `<style>` elements when using the ShadyCSS polyfill. See [Expressions and style elements](/docs/v3/components/styles/#style-element) for more details.
 
 Note that expressions in all the invalid cases above are valid when using [static expressions](#static-expressions), although these should not be used for performance-sensitive updates due to the inefficiencies involved (see below).
 

@@ -251,7 +251,7 @@ Lit includes a number of built-in directives to help with a variety of rendering
 
 </div>
 
-You can also build your own directives. For more information, see [Custom directives](/docs/v2/templates/custom-directives/).
+You can also build your own directives. For more information, see [Custom directives](/docs/v3/templates/custom-directives/).
 
 ## Styling
 
@@ -722,7 +722,7 @@ customElements.define('my-element', MyElement);
 If no `keyFn` is provided, `repeat` will perform similar to a simple map of
 items to values, and DOM will be reused against potentially different items.
 
-See [When to use map or repeat](/docs/v2/templates/lists/#when-to-use-map-or-repeat) for a discussion
+See [When to use map or repeat](/docs/v3/templates/lists/#when-to-use-map-or-repeat) for a discussion
 of when to use `repeat` and when to use standard JavaScript flow control.
 
 Explore `repeat` more in the [playground](/playground/#sample=examples/directive-repeat).

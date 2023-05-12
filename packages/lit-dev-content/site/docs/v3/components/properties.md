@@ -40,7 +40,7 @@ Lit manages your reactive properties and their corresponding attributes. In part
 
 Public properties are part of the component's public API. In general, public properties—especially public reactive properties—should be treated as _input_.
 
-The component shouldn't change its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that can be initialized to a given value by the owner of the element, but that is updated by the component itself when the user selects an item. In these instances, the component should dispatch an event to indicate to the component's owner that the `selected` property changed. See [Dispatching events](/docs/v2/components/events/#dispatching-events) for more details.
+The component shouldn't change its own public properties, except in response to user input. For example, a menu component might have a public `selected` property that can be initialized to a given value by the owner of the element, but that is updated by the component itself when the user selects an item. In these instances, the component should dispatch an event to indicate to the component's owner that the `selected` property changed. See [Dispatching events](/docs/v3/components/events/#dispatching-events) for more details.
 
 Lit also supports _internal reactive state_. Internal reactive state refers to reactive properties that _aren't_ part of the component's API. These properties don't have a corresponding attribute, and are typically marked protected or private in TypeScript.
 
@@ -93,7 +93,7 @@ The argument to the `@property`  decorators is an [options object](#property-opt
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a compiler like Babel or the TypeScript compiler to use decorators. See [Enabling decorators](/docs/v2/components/decorators/#enabling-decorators) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you'll need to use a compiler like Babel or the TypeScript compiler to use decorators. See [Enabling decorators](/docs/v3/components/decorators/#enabling-decorators) for details.
 
 </div>
 
@@ -146,7 +146,7 @@ plugins = [
 ];
 ```
 
-For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/v2/components/decorators/#avoiding-issues-with-class-fields).
+For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/v3/components/decorators/#avoiding-issues-with-class-fields).
 
 ### Property options
 
@@ -274,7 +274,7 @@ When a property changes, the following sequence occurs:
 
 Note that if you mutate an object or array property, it won't trigger an update, because the object itself hasn't changed. For more information, see [Mutating object and array properties](#mutating-properties).
 
-There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/docs/v2/components/lifecycle/#reactive-update-cycle).
+There are many ways to hook into and modify the reactive update cycle. For more information, see [Reactive update cycle](/docs/v3/components/lifecycle/#reactive-update-cycle).
 
 For more information about property change detection, see [Customizing change detection](#haschanged).
 
@@ -604,7 +604,7 @@ To use custom property accessors with the `@property` or `@state` decorators, pu
 
 The setters that Lit generates automatically call `requestUpdate()`. If you write your own setter you must call `requestUpdate()` manually, supplying the property name and its old value.
 
-In most cases, **you do not need to create custom property accessors.** To compute values from existing properties, we recommend using the [`willUpdate`](/docs/v2/components/lifecycle/#willupdate) callback, which allows you to set values during the update cycle without triggering an additional update. To perform a custom action after the element updates, we recommend using the [`updated`](/docs/v2/components/lifecycle/#updated) callback. A custom setter can be used in rare cases when it's important to synchronously validate any value the user sets.
+In most cases, **you do not need to create custom property accessors.** To compute values from existing properties, we recommend using the [`willUpdate`](/docs/v3/components/lifecycle/#willupdate) callback, which allows you to set values during the update cycle without triggering an additional update. To perform a custom action after the element updates, we recommend using the [`updated`](/docs/v3/components/lifecycle/#updated) callback. A custom setter can be used in rare cases when it's important to synchronously validate any value the user sets.
 
 If your class defines its own accessors for a property, Lit will not overwrite them with generated accessors. If your class does not define accessors for a property, Lit will generate them, even if a superclass has defined the property or accessors.
 
@@ -626,7 +626,7 @@ You don't need to set `noAccessor` when defining your own accessors.
 
 All reactive properties have a function, `hasChanged()`, which is called when the property is set.
 
-`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged()` returns true, Lit starts an element update if one is not already scheduled. For more information on updates, see [Reactive update cycle](/docs/v2/components/lifecycle/#reactive-update-cycle) .
+`hasChanged` compares the property's old and new values, and evaluates whether or not the property has changed. If `hasChanged()` returns true, Lit starts an element update if one is not already scheduled. For more information on updates, see [Reactive update cycle](/docs/v3/components/lifecycle/#reactive-update-cycle) .
 
 The default implementation of `hasChanged()` uses a strict inequality comparison: `hasChanged()` returns `true` if `newVal !== oldVal`.
 

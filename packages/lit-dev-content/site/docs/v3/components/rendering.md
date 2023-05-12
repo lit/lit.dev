@@ -14,7 +14,7 @@ To define a template for a Lit component, add a `render()` method:
 
 {% playground-example "docs/templates/define" "my-element.ts" %}
 
-Write your template in HTML inside a JavaScript [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) using Lit's [`html`](/docs/v2/api/templates/#html) tag function.
+Write your template in HTML inside a JavaScript [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) using Lit's [`html`](/docs/v3/api/templates/#html) tag function.
 
 Lit templates can include JavaScript _expressions_. You can use expressions to set text content, attributes, properties, and event listeners. The `render()` method can also include any JavaScript—for example, you can create local variables for use in expressions.
 
@@ -25,10 +25,10 @@ Typically, the component's `render()` method returns a single `TemplateResult` o
 *   Primitive values like string, number, or boolean.
 *   `TemplateResult` objects created by the `html` function.
 *   DOM Nodes.
-*   The sentinel values [`nothing`](/docs/v2/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/v2/templates/custom-directives/#signaling-no-change).
+*   The sentinel values [`nothing`](/docs/v3/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/v3/templates/custom-directives/#signaling-no-change).
 *   Arrays or iterables of any of the supported types.
 
-This is *almost identical* to the set of values that can be rendered to a Lit [child expression](/docs/v2/templates/expressions/#child-expressions). The one difference is that a child expression can render an `SVGTemplateResult`, returned by the [`svg`](/docs/v2/api/templates/#svg) function. This kind of template result can only be rendered as the descendant of an `<svg>` element.
+This is *almost identical* to the set of values that can be rendered to a Lit [child expression](/docs/v3/templates/expressions/#child-expressions). The one difference is that a child expression can render an `SVGTemplateResult`, returned by the [`svg`](/docs/v3/api/templates/#svg) function. This kind of template result can only be rendered as the descendant of an `<svg>` element.
 
 ## Writing a good render() method
 
@@ -45,7 +45,7 @@ In most cases you should avoid making DOM updates outside of `render()`. Instead
 
 For example, if your component needs to update its UI when it receives an event, have the event listener set a reactive property that is used in `render()`, rather than manipulate the DOM directly.
 
-For more information, see [Reactive properties](/docs/v2/components/properties/).
+For more information, see [Reactive properties](/docs/v3/components/properties/).
 
 ## Composing templates
 
@@ -74,7 +74,7 @@ Lit batches updates to maximize performance and efficiency. Setting multiple pro
 
 During an update, only the parts of the DOM that change are re-rendered. Although Lit templates look like string interpolation, Lit parses and creates static HTML once, and then only updates changed values in expressions after that, making updates very efficient.
 
-For more information about the update cycle, see [What happens when properties change](/docs/v2/components/properties/#when-properties-change).
+For more information about the update cycle, see [What happens when properties change](/docs/v3/components/properties/#when-properties-change).
 
 ## DOM encapsulation
 
@@ -83,12 +83,12 @@ Lit uses shadow DOM to encapsulate the DOM a component renders. Shadow DOM lets 
 For more information about shadow DOM, see [Shadow DOM v1: Self-Contained Web Components
 ](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
 
-For more information about working with shadow DOM in your component, see [Working with shadow DOM](/docs/v2/components/shadow-dom/).
+For more information about working with shadow DOM in your component, see [Working with shadow DOM](/docs/v3/components/shadow-dom/).
 
 ## See also
 
-* [Shadow DOM](/docs/v2/components/shadow-dom/)
-* [Templates overview](/docs/v2/templates/overview/)
-* [Template expressions](/docs/v2/templates/expressions/)
+* [Shadow DOM](/docs/v3/components/shadow-dom/)
+* [Templates overview](/docs/v3/templates/overview/)
+* [Template expressions](/docs/v3/templates/expressions/)
 
 

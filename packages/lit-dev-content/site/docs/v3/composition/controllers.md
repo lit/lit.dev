@@ -8,7 +8,7 @@ eleventyNavigation:
 
 Lit 2 introduces a new concept for code reuse and composition called _reactive controllers_.
 
-A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/v2/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reusable across multiple component definitions.
+A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/v3/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reusable across multiple component definitions.
 
 You can use controllers to implement features that require their own state and access to the component's lifecycle, such as:
 
@@ -21,7 +21,7 @@ Reactive controllers allow you to build components by composing smaller pieces t
 
 {% playground-ide "docs/controllers/overview" "clock-controller.ts" %}
 
-Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers and mixins](/docs/v2/composition/overview/#controllers-and-mixins) for more details.
+Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers and mixins](/docs/v3/composition/overview/#controllers-and-mixins) for more details.
 
 ## Using a controller
 
@@ -117,7 +117,7 @@ Once your controller is registered with the host component, you can add lifecycl
 
 ### Lifecycle
 
-The reactive controller lifecycle, defined in the {% api "ReactiveController" %} interface, is a subset of the reactive update cycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional.
+The reactive controller lifecycle, defined in the {% api-v3 "ReactiveController" %} interface, is a subset of the reactive update cycle. LitElement calls into any installed controllers during its lifecycle callbacks. These callbacks are optional.
 
 * `hostConnected()`:
   * Called when the host is connected.
@@ -133,7 +133,7 @@ The reactive controller lifecycle, defined in the {% api "ReactiveController" %}
   * Called when the host is disconnected.
   * Useful for cleaning up things added in `hostConnected()`, such as event listeners and observers.
 
-For more information, see [Reactive update cycle](/docs/v2/components/lifecycle/#reactive-update-cycle).
+For more information, see [Reactive update cycle](/docs/v3/components/lifecycle/#reactive-update-cycle).
 ### Controller host API
 
 A reactive controller host implements a small API for adding controllers and requesting updates, and is responsible for calling its controller's lifecycle methods.
@@ -192,7 +192,7 @@ There are two main patterns of using controllers with directives:
 * Controller directives. These are directives that themselves are controllers in order to hook into the host lifecycle.
 * Controllers that own directives. These are controllers that create one or more directives for use in the host's template.
 
-For more information about writing directives, see [Custom directives](/docs/v2/templates/custom-directives/).
+For more information about writing directives, see [Custom directives](/docs/v3/templates/custom-directives/).
 
 #### Controller directives
 
@@ -292,5 +292,5 @@ You can use `Task` to create a custom controller with an API tailored for your s
 
 ## See also
 
-* [Reactive update cycle](/docs/v2/components/lifecycle/#reactive-update-cycle)
+* [Reactive update cycle](/docs/v3/components/lifecycle/#reactive-update-cycle)
 * [@lit-labs/task](https://www.npmjs.com/package/@lit-labs/task)

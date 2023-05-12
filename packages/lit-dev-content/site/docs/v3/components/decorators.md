@@ -45,21 +45,21 @@ customElements.define('my-element', MyElement);
 
 The `@property` decorator declares a reactive property.
 
-See [Reactive properties](/docs/v2/components/properties/) for more information about configuring properties.
+See [Reactive properties](/docs/v3/components/properties/) for more information about configuring properties.
 
 ## Built-in decorators
 
 | Decorator | Summary | More Info |
 |-----------|---------|--------------|
-| {% api "@customElement" "customElement" %} | Defines a custom element | [Above](#custom-element) |
-| {% api "@eventOptions" "eventOptions" %} | Adds event listener options. | [Events](/docs/v2/components/events/#event-options-decorator) |
-| {% api "@property" "property" %} | Defines a public property. | [Properties](/docs/v2/components/properties/#declare-with-decorators) |
-| {% api "@state" "state" %} | Defines a private state property | [Properties](/docs/v2/components/properties/#declare-with-decorators) |
-| {% api "@query" "query" %} | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/v2/components/shadow-dom/#query) |
-| {% api "@queryAll" "queryAll" %} | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/v2/components/shadow-dom/#query-all) |
-| {% api "@queryAsync" "queryAsync" %} | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/v2/components/shadow-dom/#query-async) |
-| {% api "@queryAssignedElements" "queryAssignedElements" %} | Defines a property that returns the child elements assigned to a specific slot. | [Shadow DOM](/docs/v2/components/shadow-dom/#query-assigned-nodes) |
-| {% api "@queryAssignedNodes" "queryAssignedNodes" %} | Defines a property that returns the child nodes assigned to a specific slot. | [Shadow DOM](/docs/v2/components/shadow-dom/#query-assigned-nodes) |
+| {% api-v3 "@customElement" "customElement" %} | Defines a custom element | [Above](#custom-element) |
+| {% api-v3 "@eventOptions" "eventOptions" %} | Adds event listener options. | [Events](/docs/v3/components/events/#event-options-decorator) |
+| {% api-v3 "@property" "property" %} | Defines a public property. | [Properties](/docs/v3/components/properties/#declare-with-decorators) |
+| {% api-v3 "@state" "state" %} | Defines a private state property | [Properties](/docs/v3/components/properties/#declare-with-decorators) |
+| {% api-v3 "@query" "query" %} | Defines a property that returns an element in the component template. | [Shadow DOM](/docs/v3/components/shadow-dom/#query) |
+| {% api-v3 "@queryAll" "queryAll" %} | Defines a property that returns a list of elements in the component template. | [Shadow DOM](/docs/v3/components/shadow-dom/#query-all) |
+| {% api-v3 "@queryAsync" "queryAsync" %} | Defines a property that returns a promise that resolves to an element in the component template. | [Shadow DOM](/docs/v3/components/shadow-dom/#query-async) |
+| {% api-v3 "@queryAssignedElements" "queryAssignedElements" %} | Defines a property that returns the child elements assigned to a specific slot. | [Shadow DOM](/docs/v3/components/shadow-dom/#query-assigned-nodes) |
+| {% api-v3 "@queryAssignedNodes" "queryAssignedNodes" %} | Defines a property that returns the child nodes assigned to a specific slot. | [Shadow DOM](/docs/v3/components/shadow-dom/#query-assigned-nodes) |
 
 ## Importing decorators
 
@@ -162,7 +162,7 @@ constructor() {
 
 ### Avoiding issues with class fields and decorators {#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/v2/components/properties/#avoiding-issues-with-class-fields) for more information.
+[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/v3/components/properties/#avoiding-issues-with-class-fields) for more information.
 
 The current decorators [stage 3 proposal](https://github.com/tc39/proposal-decorators) does not directly address this issue, but it should be solved as the proposal evolves and matures.
 

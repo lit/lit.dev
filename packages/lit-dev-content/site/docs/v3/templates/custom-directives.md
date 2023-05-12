@@ -19,7 +19,7 @@ html`<div>
      </div>`
 ```
 
-Lit ships with a number of [built-in directives](/docs/v2/templates/directives/) like [`repeat()`](/docs/v2/templates/directives/#repeat) and [`cache()`](/docs/v2/templates/directives/#cache). Users can also write their own custom directives.
+Lit ships with a number of [built-in directives](/docs/v3/templates/directives/) like [`repeat()`](/docs/v3/templates/directives/#repeat) and [`cache()`](/docs/v3/templates/directives/#cache). Users can also write their own custom directives.
 
 There are two kinds of directives:
 
@@ -45,8 +45,8 @@ The rest of this page describes class-based directives.
 
 To create a class-based directive:
 
-*   Implement the directive as a class that extends the {% api "Directive" %} class.
-*   Pass your class to the {% api "directive()" "directive" %} factory to create a directive function that can be used in Lit template expressions.
+*   Implement the directive as a class that extends the {% api-v3 "Directive" %} class.
+*   Pass your class to the {% api-v3 "directive()" "directive" %} factory to create a directive function that can be used in Lit template expressions.
 
 ```js
 import {Directive, directive} from 'lit/directive.js';
@@ -186,12 +186,12 @@ Your `update()` method should return something Lit can render, or the special va
 
 Each expression position has its own specific `Part` object:
 
-*   {% api "ChildPart" %} for expressions in HTML child position.
-*   {% api "AttributePart" %} for expressions in HTML attribute value position.
-*   {% api "BooleanAttributePart" %} for expressions in a boolean attribute value (name prefixed with `?`).
-*   {% api "EventPart" %} for expressions in an event listener position (name prefixed with `@`).
-*   {% api "PropertyPart" %} for expressions in property value position (name prefixed with `.`).
-*   {% api "ElementPart" %} for expressions on the element tag.
+*   {% api-v3 "ChildPart" %} for expressions in HTML child position.
+*   {% api-v3 "AttributePart" %} for expressions in HTML attribute value position.
+*   {% api-v3 "BooleanAttributePart" %} for expressions in a boolean attribute value (name prefixed with `?`).
+*   {% api-v3 "EventPart" %} for expressions in an event listener position (name prefixed with `@`).
+*   {% api-v3 "PropertyPart" %} for expressions in property value position (name prefixed with `.`).
+*   {% api-v3 "ElementPart" %} for expressions on the element tag.
 
 In addition to the part-specific metadata contained in `PartInfo`, all `Part` types provide access to the DOM `element` associated with the expression (or `parentNode`, in the case of `ChildPart`), which may be directly accessed in `update()`. For example:
 
@@ -367,7 +367,7 @@ The previous example directives are synchronous: they return values synchronousl
 
 Sometimes, you want a directive to be able to update the DOM asynchronously—for example, if it depends on an asynchronous event like a network request.
 
-To update a directive's result asynchronously, a directive needs to extend the {% api "AsyncDirective" %} base class, which provides a `setValue()` API. `setValue()` allows a directive to "push" a new value into its template expression, outside of the template's normal `update`/`render` cycle.
+To update a directive's result asynchronously, a directive needs to extend the {% api-v3 "AsyncDirective" %} base class, which provides a `setValue()` API. `setValue()` allows a directive to "push" a new value into its template expression, outside of the template's normal `update`/`render` cycle.
 
 Here's an example of a simple async directive that renders a Promise value:
 

@@ -47,7 +47,7 @@ render() {
 In your `lit-localize.json` config, set the `mode` property to `transform`, and
 set the `output.outputDir` property to the location where you would like your
 localized app folders to be generated. See [transform mode
-settings](/docs/v2/localization/cli-and-config#transform-mode-settings) for more
+settings](/docs/v3/localization/cli-and-config#transform-mode-settings) for more
 details.
 
 In your JavaScript or TypeScript project, optionally call

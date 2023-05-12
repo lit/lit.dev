@@ -34,5 +34,5 @@ This library is under active development with some notable limitations we hope t
 - Async component work is not supported. See issues [#3219](https://github.com/lit/lit/issues/3219), [#2469](https://github.com/lit/lit/issues/2469).
 - Only Lit components using shadow DOM is supported. See issue [#3080](https://github.com/lit/lit/issues/3080).
 - Integration with other SSR frameworks are being worked on. See issues for [NextJS](https://github.com/lit/lit/issues/2391) and [Nuxt](https://github.com/lit/lit/issues/3049).
-- Declarative shadow DOM is not implemented in all major browsers yet, though a polyfill is available. Read more about it in [client usage](/docs/v2/ssr/client-usage#lit-components).
+- Declarative shadow DOM is not implemented in all major browsers yet, though a polyfill is available. Read more about it in [client usage](/docs/v3/ssr/client-usage#lit-components).
 - There are also open discussions that need to happen regarding `ElementRendererRegistry` for interop with other custom elements.

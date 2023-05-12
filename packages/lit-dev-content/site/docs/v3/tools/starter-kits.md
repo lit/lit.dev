@@ -112,7 +112,7 @@ A couple of things to look for in the code:
     {% endswitchable-sample %}
 
 
-*   The component's `render` method defines a [template](/docs/v2/templates/overview/) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](/docs/v2/templates/overview/).
+*   The component's `render` method defines a [template](/docs/v3/templates/overview/) that will be rendered as a part of the component. In this case, it includes some text, some data bindings, and a button. For more information, see [Templates](/docs/v3/templates/overview/).
 
     ```js
     export class MyElement extends LitElement {
@@ -129,7 +129,7 @@ A couple of things to look for in the code:
     }
     ```
 
-*   The component defines some properties. The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/v2/components/properties/).
+*   The component defines some properties. The component responds to changes in these properties (for example, by re-rendering the template when necessary). For more information, see [Properties](/docs/v3/components/properties/).
 
     {% switchable-sample %}
 
@@ -198,11 +198,11 @@ You'll probably want to change the component name from "my-element" to something
 
 ### Next steps
 
-Ready to add features to your component? Head over to [Components](/docs/v2/components/overview/) to learn about building your first Lit component, or [Templates](/docs/v2/templates/overview/) for details on writing templates.
+Ready to add features to your component? Head over to [Components](/docs/v3/components/overview/) to learn about building your first Lit component, or [Templates](/docs/v3/templates/overview/) for details on writing templates.
 
 For details on running tests and using other tools, see the starter project README:
 
 *   [TypeScript project README](https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/README.md)
 *   [JavaScript project README](https://github.com/PolymerLabs/lit-element-starter-js/blob/master/README.md)
 
-For a guide on publishing your component to `npm`, see [Publishing](/docs/v2/tools/publishing/).
+For a guide on publishing your component to `npm`, see [Publishing](/docs/v3/tools/publishing/).

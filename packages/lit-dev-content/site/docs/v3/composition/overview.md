@@ -12,13 +12,13 @@ Composition is a strategy for managing complexity and organizing code into reusa
 *   Reactive controllers.
 *   Class mixins.
 
-[_Component composition_](/docs/v2/composition/component-composition/) is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
+[_Component composition_](/docs/v3/composition/component-composition/) is the process of assembling complex components from simpler components. A component can use subcomponents in its template. Components can use standard DOM mechanisms to communicate: setting properties on subcomponents, and listening for events from subcomponents.
 
 Although component composition is the default way to think about breaking a complex Lit project down into smaller units, there are two other notable code patterns useful for factoring your Lit code:
 
-[_Reactive controllers_](/docs/v2/composition/controllers/) are objects that can hook into the update lifecycle of a Lit component, encapsulating state and behavior related to a feature into a separate unit of code.
+[_Reactive controllers_](/docs/v3/composition/controllers/) are objects that can hook into the update lifecycle of a Lit component, encapsulating state and behavior related to a feature into a separate unit of code.
 
-[_Class mixins_](/docs/v2/composition/mixins/) let you write reusable partial component definitions and "mix them in" to a component's inheritance chain.
+[_Class mixins_](/docs/v3/composition/mixins/) let you write reusable partial component definitions and "mix them in" to a component's inheritance chain.
 
 Both mixins and reactive controllers let you factor component logic related to a given feature into a reusable unit. See the next section for a comparison of controllers and mixins.
 

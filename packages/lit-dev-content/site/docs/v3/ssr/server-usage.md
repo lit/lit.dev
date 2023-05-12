@@ -118,7 +118,7 @@ The main options that can be set by callers are:
 
 ## Running SSR in a VM module or the global scope
 
-In order to render custom elements in Node, they must first be defined and registered with the global `customElements` API, which is a browser-only feature. As such, when Lit runs in Node, it automatically uses a set of minimal DOM APIs necessary to render Lit on the server, and defines the `customElements` global. (For a list of emulated APIs, see [DOM emulation](/docs/v2/ssr/dom-emulation).)
+In order to render custom elements in Node, they must first be defined and registered with the global `customElements` API, which is a browser-only feature. As such, when Lit runs in Node, it automatically uses a set of minimal DOM APIs necessary to render Lit on the server, and defines the `customElements` global. (For a list of emulated APIs, see [DOM emulation](/docs/v3/ssr/dom-emulation).)
 
 Lit SSR provides two different ways of rendering custom elements server-side: rendering in the [global scope](#global-scope) or via [VM modules](#vm-module). VM modules utilizes Node's [`vm.Module`](https://nodejs.org/api/vm.html#class-vmmodule) API, which enables running code within V8 Virtual Machine contexts. The two methods differ primarily in how global state, such as the custom elements registry, are shared.
 

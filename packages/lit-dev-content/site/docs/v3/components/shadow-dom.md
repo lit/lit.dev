@@ -26,7 +26,7 @@ For more information on shadow DOM:
 
 <div class="alert alert-info">
 
-**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [Requirements for legacy browsers](/docs/v2/tools/requirements/#building-for-legacy-browsers) for details.
+**Older browsers.** On older browsers where native shadow DOM isn't available, the [web components polyfills](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs) may be used. Please note that Lit's `polyfill-support` module must be loaded along with the web components polyfills. See [Requirements for legacy browsers](/docs/v3/tools/requirements/#building-for-legacy-browsers) for details.
 
 </div>
 
@@ -57,7 +57,7 @@ The `@query`, `@queryAll`, and `@queryAsync` decorators all provide a convenient
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v2/components/decorators/) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v3/components/decorators/) for details.
 
 </div>
 
@@ -169,7 +169,7 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 <div class="alert alert-info">
 
-**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`. When using a Lit expression as a child of a custom element, make sure to use a non-rendering value when appropriate so that any slot fallback content is rendered. See [removing child content](/docs/v2/templates/expressions/#removing-child) for more information.
+**Rendering fallback content.** If any child nodes are assigned to a slot, its fallback content doesn't render. A default slot with no name accepts any child nodes. It won't render fallback content even if the only assigned nodes are text nodes containing whitespace, for example `<example-element> </example-element>`. When using a Lit expression as a child of a custom element, make sure to use a non-rendering value when appropriate so that any slot fallback content is rendered. See [removing child content](/docs/v3/templates/expressions/#removing-child) for more information.
 
 </div>
 
@@ -223,7 +223,7 @@ Deciding which decorator to use depends on whether you want to query for text no
 
 <div class="alert alert-info">
 
-**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v2/components/decorators/) for details.
+**Using decorators.** Decorators are a proposed JavaScript feature, so you’ll need to use a compiler like Babel or TypeScript to use decorators. See [Using decorators](/docs/v3/components/decorators/) for details.
 
 </div>
 
@@ -281,7 +281,7 @@ See [Element.attachShadow()](https://developer.mozilla.org/en-US/docs/Web/API/El
 
 ### Implementing `createRenderRoot`
 
-The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` class field. For more information on styling see [Styles](/docs/v2/components/styles/).
+The default implementation of `createRenderRoot` creates an open shadow root and adds to it any styles set in the `static styles` class field. For more information on styling see [Styles](/docs/v3/components/styles/).
 
 To customize a component's render root, implement `createRenderRoot` and return the node you want the template to render into.
 
