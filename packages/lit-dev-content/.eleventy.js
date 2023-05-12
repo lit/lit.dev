@@ -42,6 +42,10 @@ const DEV = ENV.eleventyMode === 'dev';
 
 const cspInlineScriptHashes = new Set();
 
+/**
+ * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
+ * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
+ */
 module.exports = function (eleventyConfig) {
   // https://github.com/JordanShurmer/eleventy-plugin-toc#readme
   eleventyConfig.addPlugin(pluginTOC, {
@@ -158,6 +162,48 @@ ${content}
     return content.replace(/<a class="anchor".*<\/a>/g, '');
   });
 
+  /**
+   * For the latest versioned urls, this filter returns the unversioned url
+   * which is used in the rel=canonical link.
+   */
+  eleventyConfig.addFilter(
+    'removeLatestVersionFromUrl',
+    function (url, latestVersion) {
+      if (!latestVersion) {
+        throw new Error(
+          `No latestVersion provided to 'removeLatestVersionFromUrl`
+        );
+      }
+      if (!url.includes(`/${latestVersion}/`)) {
+        throw new Error(
+          `'${url}' does not include the latestVersion versioned path segment`
+        );
+      }
+      return url.replace(`/${latestVersion}/`, '/');
+    }
+  );
+
+  /**
+   * All docs/* content on lit.dev is versioned. So all cross links are
+   * versioned. We automatically generate unversioned docs from the latest Lit
+   * version. This filter fixes the cross linking such that links on unversioned
+   * pages link to other unversioned pages.
+   */
+  eleventyConfig.addFilter(
+    'fixUnversionedCrossLinks',
+    function (content, isUnversionedUrl, latestVersion) {
+      if (!isUnversionedUrl) {
+        return content;
+      }
+      if (!latestVersion) {
+        throw new Error(
+          `latestVersion not provided to 'fixUnversionedCrossLinks`
+        );
+      }
+      return content.replaceAll(`/docs/${latestVersion}/`, '/docs/');
+    }
+  );
+
   eleventyConfig.addFilter('removeExtension', function (url) {
     const extension = path.extname(url);
     return url.substring(0, url.length - extension.length);
@@ -194,7 +240,19 @@ ${content}
 
   eleventyConfig.addCollection('docs-v2', function (collection) {
     const docs = collection
-      .getFilteredByGlob(['site/docs/*', 'site/docs/!(v1)/**'])
+      .getFilteredByGlob(['site/docs/v2/**'])
+      .sort(sortDocs);
+    for (const page of docs) {
+      documentByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
+  // Collection that contains the built duplicate docs for the current
+  // recommended version of Lit.
+  eleventyConfig.addCollection('docs-unversioned', function (collection) {
+    const docs = collection
+      .getFilteredByGlob(['site/docs/unversioned/**'])
       .sort(sortDocs);
     for (const page of docs) {
       documentByUrl.set(page.url, page);
@@ -379,7 +437,7 @@ ${content}
 
   addApiShortcode(
     'api',
-    '/docs/api',
+    '/docs/v2/api',
     // Don't use require() because of Node caching in watch mode.
     JSON.parse(
       fsSync.readFileSync('../lit-dev-api/api-data/lit-2/symbols.json', 'utf8')
@@ -487,8 +545,10 @@ ${content}
           ENV.eleventyOutDir + '/docs/*/index.html',
           ENV.eleventyOutDir + '/docs/v1/introduction.html',
           ENV.eleventyOutDir + '/docs/v1/*/index.html',
+          ENV.eleventyOutDir + '/docs/v2/introduction.html',
+          ENV.eleventyOutDir + '/docs/v2/*/index.html',
         ],
-        {ignore: ENV.eleventyOutDir + '/docs/v1/index.html'}
+        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2)/index.html'}
       )
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md

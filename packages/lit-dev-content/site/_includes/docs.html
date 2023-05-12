@@ -7,6 +7,8 @@
 {% if not versionLinks %}
   {% set versionLinks = data.versionLinks %}
 {% endif %}
+{% set isLatestVersionedUrl = selectedVersion == latestVersion and page.url.includes("/" + latestVersion + "/") %}
+{% set isUnversionedPage = page.inputPath.includes("/unversioned/") %}
 
 {% block head %}
   {% include "social-tags.html" %}
@@ -19,6 +21,13 @@
     <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
+  {% endif %}
+  {% if isLatestVersionedUrl %}
+  <!-- We have versioned permalinks for our documentation. E.g., docs/v1/* and
+       docs/v2/*. In addition, the latest documentation also has unversioned
+       duplicate pages, generated under docs/*. The latest versioned docs
+       reference the duplicate unversioned page as the canonical page.  -->
+    <link rel="canonical" href="https://lit.dev{{ page.url | removeLatestVersionFromUrl(latestVersion) }}">
   {% endif %}
 {% endblock %}
 
@@ -56,7 +65,7 @@
         </nav>
       {% endif %}
 
-      {{ content | safe }}
+      {{ content | fixUnversionedCrossLinks(isUnversionedPage, latestVersion) | safe }}
 
       {% set nonEditableDocumentRegex = r/.+\/api\/.+/ %}
       {% if not nonEditableDocumentRegex.test(page.inputPath) %}

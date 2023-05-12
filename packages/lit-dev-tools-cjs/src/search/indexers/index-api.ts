@@ -10,7 +10,7 @@ export const indexApi = async (outputDir: string, idOffset = 0) => {
   // Root path of the starting point for indexing.
   const API_PATH = path.resolve(
     __dirname,
-    // Load the article content itself not the tags pages.
+    // Load the unversioned api content.
     `../../../../lit-dev-content/${outputDir}/docs/api`
   );
 

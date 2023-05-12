@@ -12,6 +12,7 @@
     "build:ts": "wireit",
     "build:rollup": "wireit",
     "build:samples": "wireit",
+    "build:unversioned-docs": "wireit",
     "dev:build": "wireit",
     "dev:serve": "wireit",
     "prod:build": "wireit",
@@ -36,6 +37,7 @@
       "dependencies": [
         "build:ts",
         "fonts:manrope",
+        "build:unversioned-docs",
         {
           "script": "build:samples",
           "cascade": false
@@ -86,7 +88,8 @@
         "build:ts",
         "build:samples",
         "build:rollup",
-        "fonts:manrope"
+        "fonts:manrope",
+        "build:unversioned-docs"
       ]
     },
     "fonts:manrope": {
@@ -134,6 +137,19 @@
       ],
       "output": [
         "samples/js/**"
+      ]
+    },
+    "build:unversioned-docs": {
+      "command": "node ../lit-dev-tools-esm/lib/build-unversioned-docs.js",
+      "dependencies": [
+        "../lit-dev-tools-esm:build"
+      ],
+      "files": [
+        "site/docs/**",
+        "!site/docs/unversioned"
+      ],
+      "output": [
+        "site/docs/unversioned/**"
       ]
     }
   },
