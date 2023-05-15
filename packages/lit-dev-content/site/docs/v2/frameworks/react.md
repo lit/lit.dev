@@ -5,6 +5,8 @@ eleventyNavigation:
   parent: Frameworks
   order: 1
   labs: true
+versionLinks:
+  v3: frameworks/react/
 ---
 
 {% labs-disclaimer %}

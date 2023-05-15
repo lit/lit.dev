@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 4
 versionLinks:
   v1: components/templates/#use-properties-loops-and-conditionals-in-a-template
+  v3: templates/lists/
 ---
 
 You can use standard JavaScript constructs to create repeating templates.

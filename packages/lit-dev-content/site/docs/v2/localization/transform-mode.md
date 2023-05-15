@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Transform mode
   parent: Localization
   order: 3
+versionLinks:
+  v3: localization/transform-mode/
 ---
 
 In Lit Localize transform mode, a separate folder is generated for each locale.

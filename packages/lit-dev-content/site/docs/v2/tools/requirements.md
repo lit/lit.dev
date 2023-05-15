@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 2
 versionLinks:
   v1: tools/build/#build-requirements
+  v3: tools/requirements/
 ---
 
 The most important things to know about Lit in order to work with various browsers and tools are that:

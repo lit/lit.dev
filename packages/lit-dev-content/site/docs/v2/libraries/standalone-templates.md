@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Standalone lit-html
   parent: Related libraries
   order: 1
+versionLinks:
+  v3: libraries/standalone-templates/
 ---
 
 Lit combines the component model of LitElement with JavaScript template literal-based rendering into an easy-to-use package. However, the templating portion of Lit is factored into a standalone library called `lit-html`, which can be used outside of the Lit component model anywhere you need to efficiently render and update HTML.

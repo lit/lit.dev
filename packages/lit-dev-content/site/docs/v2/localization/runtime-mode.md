@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Runtime mode
   parent: Localization
   order: 2
+versionLinks:
+  v3: localization/runtime-mode/
 ---
 
 In Lit Localize runtime mode, one JavaScript or TypeScript module is generated

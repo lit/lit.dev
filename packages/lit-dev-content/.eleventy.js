@@ -446,6 +446,14 @@ ${content}
   };
 
   addApiShortcode(
+    'api-v3',
+    '/docs/v3/api',
+    JSON.parse(
+      fsSync.readFileSync('../lit-dev-api/api-data/lit-3/symbols.json', 'utf8')
+    )
+  );
+
+  addApiShortcode(
     'api',
     '/docs/v2/api',
     // Don't use require() because of Node caching in watch mode.

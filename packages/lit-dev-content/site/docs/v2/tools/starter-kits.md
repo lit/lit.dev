@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 7
 versionLinks:
   v1: getting-started/#component-project
+  v3: tools/starter-kits/
 ---
 
 The Lit Starter Kits are project templates for reusable Lit components that can be published for others to use.
