@@ -24,6 +24,8 @@ export const indexDocs = async (outputDir: string, idOffset = 0) => {
       ['docs', 'v1'],
       // Removed versioned v2 documentation - which currently duplicates all results
       ['docs', 'v2'],
+      // Remove pre-release documentation from search index.
+      ['docs', 'v3'],
       // handled by the api indexer
       ['docs', 'api'],
     ];
