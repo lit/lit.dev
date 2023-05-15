@@ -248,6 +248,16 @@ ${content}
     return docs;
   });
 
+  eleventyConfig.addCollection('docs-v3', function (collection) {
+    const docs = collection
+      .getFilteredByGlob(['site/docs/v3/**'])
+      .sort(sortDocs);
+    for (const page of docs) {
+      documentByUrl.set(page.url, page);
+    }
+    return docs;
+  });
+
   // Collection that contains the built duplicate docs for the current
   // recommended version of Lit.
   eleventyConfig.addCollection('docs-unversioned', function (collection) {
@@ -547,8 +557,10 @@ ${content}
           ENV.eleventyOutDir + '/docs/v1/*/index.html',
           ENV.eleventyOutDir + '/docs/v2/introduction.html',
           ENV.eleventyOutDir + '/docs/v2/*/index.html',
+          ENV.eleventyOutDir + '/docs/v3/introduction.html',
+          ENV.eleventyOutDir + '/docs/v3/*/index.html',
         ],
-        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2)/index.html'}
+        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2|v3)/index.html'}
       )
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
