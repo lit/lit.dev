@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Upgrade guide
   parent: Releases
   order: 3
+versionLinks:
+  v3: releases/upgrade/
 ---
 
 ## Overview

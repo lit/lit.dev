@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Overview
   parent: Server rendering
   order: 1
+versionLinks:
+  v2: ssr/overview/
 ---
 
 {% labs-disclaimer %}

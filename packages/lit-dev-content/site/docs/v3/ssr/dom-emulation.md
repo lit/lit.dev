@@ -4,6 +4,8 @@ eleventyNavigation:
   key: DOM emulation
   parent: Server rendering
   order: 5
+versionLinks:
+  v2: ssr/dom-emulation/
 ---
 
 {% labs-disclaimer %}

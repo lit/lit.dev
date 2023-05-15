@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 4
 versionLinks:
   v1: components/styles/
+  v2: components/styles/
 ---
 
 Your component's template is rendered to its shadow root. The styles you add to your component are automatically _scoped_ to the shadow root and only affect elements in the component's shadow root.

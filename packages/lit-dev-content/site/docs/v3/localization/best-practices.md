@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Best practices
   parent: Localization
   order: 5
+versionLinks:
+  v2: localization/best-practices/
 ---
 
 

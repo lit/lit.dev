@@ -4,6 +4,8 @@ eleventyNavigation:
   key: CLI and config
   parent: Localization
   order: 4
+versionLinks:
+  v2: localization/cli-and-config/
 ---
 
 ## CLI

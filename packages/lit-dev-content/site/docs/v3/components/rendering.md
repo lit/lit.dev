@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 2
 versionLinks:
   v1: components/templates/
+  v2: components/rendering/
 ---
 
 Add a template to your component to define what it should render. Templates can include _expressions_, which are placeholders for dynamic content.

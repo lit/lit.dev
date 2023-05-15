@@ -5,6 +5,8 @@ eleventyNavigation:
   parent: Managing Data
   order: 1
   labs: true
+versionLinks:
+  v2: data/context/
 ---
 
 {% labs-disclaimer %}
