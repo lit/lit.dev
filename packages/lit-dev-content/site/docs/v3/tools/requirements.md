@@ -43,7 +43,7 @@ Webpack automatically handles bare module specifiers; for Rollup, you'll need a 
 
 ### Modern browser breakdown
 
-All modern browsers update automatically and users are highly likely to have a recent version. Lit and related libraries are tested on the latest minus 2 major versions of Chromium and Safari, and Firefox Extended Support Release. Older versions may still work but will be at best efforts without guarantee.
+All modern browsers update automatically and users are highly likely to have a recent version. Lit and related libraries are tested on the current versions of Chromium, Safari, and Firefox as well as two major versions prior for Chromium and Safari, and the Extended Support Release (ESR) for Firefox. Older versions may still work but will be at best efforts without guarantee.
 
 ## Note on legacy browsers {#note-on-legacy-browsers}
 
