@@ -17,7 +17,7 @@ Lit 3.0:
 
 - Drops support for IE11
 - Is published as ES2021
-- Removes a couple deprecated APIs
+- Removes a few deprecated APIs
 
 Lit 3.0 should require no changes to upgrade from Lit 2.0 for the vast majority
 of users. Most apps and libraries should be able to extend their npm version
