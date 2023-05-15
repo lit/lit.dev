@@ -26,10 +26,6 @@ ranges to include both 2.x and 3.x, like `"^2.7.0 || ^3.0.0"`.
 Lit 2.x and 3.0 are _interoperable_: templates, base classes, directives,
 decorators, etc., from one version of Lit will work with those from another.
 
-The following sections will go through each of these changes in detail. Please
-file any issues you find on our [issue
-tracker](https://github.com/lit/lit/issues).
-
 ## List of removed APIs
 
 If your Lit 2.x project does not have deprecation warnings you should not be
