@@ -38,7 +38,7 @@ impacted by this list.
  - [Removed `UpdatingElement` alias for `ReactiveElement`.](#removed-updating-element)
  - [Removed re-export of decorators from main `lit-element` module.](#removed-re-export-decorators)
  - [Removed deprecated call signature for the `queryAssignedNodes` decorator.](#removed-queryassignednodes-non-object)
- - [Moved experimental server side rendering hydrate modules from `lit`, `lit-element`, and `lit-html` to `@lit-labs/ssr-client`.](#moved-experimental-hydration)
+ - [Moved experimental server side rendering hydration modules from `lit`, `lit-element`, and `lit-html` to `@lit-labs/ssr-client`.](#moved-experimental-hydration)
 
 ## Steps to Upgrade
 
