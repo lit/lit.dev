@@ -50,7 +50,7 @@ into an easy-to-use package. Example configurations using this plugin are descri
 The annotated `rollup.config.js` file below will build an application that meets
 the [modern browser build requirements](/docs/v3/tools/requirements/#building-for-modern-browsers) and
 [production optimizations](#preparing-code-for-production) described on this page. This configuration is
-suitable for serving to modern browsers that can run ES2019 JS without
+suitable for serving to modern browsers that can run ES2021 JS without
 polyfills.
 
 Required node modules:
@@ -87,7 +87,7 @@ export default {
     minifyHTML(),
     // Minify JS
     terser({
-      ecma: 2020,
+      ecma: 2021,
       module: true,
       warnings: true,
     }),
@@ -109,159 +109,3 @@ Running the rollup build:
 ```sh
 rollup -c
 ```
-
-### Modern + legacy build
-
-The following configuration generates a hybrid build with two sets of JS
-bundles, one for modern browsers, and one for legacy browsers. The modern
-bundles are optimistically pre-fetched, and client-side feature-detection is
-used to determine whether to load the smaller/faster modern builds or the legacy
-build (and any required polyfills), per the [legacy browser build requirements](/docs/v3/tools/requirements/#building-for-legacy-browsers).
-
-Required node modules:
-```sh
-npm i --save-dev rollup \
-  @web/rollup-plugin-html \
-  @web/rollup-plugin-polyfills-loader \
-  @web/rollup-plugin-copy \
-  @rollup/plugin-node-resolve \
-  @rollup/plugin-babel \
-  @rollup/plugin-terser \
-  rollup-plugin-minify-html-literals \
-  rollup-plugin-summary
-```
-
-`rollup.config.js:`
-```js
-// Import rollup plugins
-import html from '@web/rollup-plugin-html';
-import polyfillsLoader from '@web/rollup-plugin-polyfills-loader';
-import {copy} from '@web/rollup-plugin-copy';
-import resolve from '@rollup/plugin-node-resolve';
-import {getBabelOutputPlugin} from '@rollup/plugin-babel';
-import {terser} from 'rollup-plugin-terser';
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import summary from 'rollup-plugin-summary';
-
-// Configure an instance of @web/rollup-plugin-html
-const htmlPlugin = html({
-  rootDir: './',
-  flattenOutput: false,
-});
-
-export default {
-  // Entry point for application build; can specify a glob to build multiple
-  // HTML files for non-SPA app
-  input: 'index.html',
-  plugins: [
-    htmlPlugin,
-    // Resolve bare module specifiers to relative paths
-    resolve(),
-    // Minify HTML template literals
-    minifyHTML(),
-    // Minify JS
-    terser({
-      module: true,
-      warnings: true,
-    }),
-    // Inject polyfills into HTML (core-js, regnerator-runtime, webcoponents,
-    // lit/polyfill-support) and dynamically loads modern vs. legacy builds
-    polyfillsLoader({
-      modernOutput: {
-        name: 'modern',
-      },
-      // Feature detection for loading legacy bundles
-      legacyOutput: {
-        name: 'legacy',
-        test: '!!Array.prototype.flat',
-        type: 'systemjs',
-      },
-      // List of polyfills to inject (each has individual feature detection)
-      polyfills: {
-        hash: true,
-        coreJs: true,
-        regeneratorRuntime: true,
-        fetch: true,
-        webcomponents: true,
-        // Custom configuration for loading Lit's polyfill-support module,
-        // required for interfacing with the webcomponents polyfills
-        custom: [
-          {
-            name: 'lit-polyfill-support',
-            path: 'node_modules/lit/polyfill-support.js',
-            test: "!('attachShadow' in Element.prototype)",
-            module: false,
-          },
-        ],
-      },
-    }),
-    // Print bundle summary
-    summary(),
-    // Optional: copy any static assets to build directory
-    copy({
-      patterns: ['data/**/*', 'images/**/*'],
-    }),
-  ],
-  // Specifies two JS output configurations, modern and legacy, which the HTML plugin will
-  // automatically choose between; the legacy build is compiled to ES5
-  // and SystemJS modules
-  output: [
-    {
-      // Modern JS bundles (no JS compilation, ES module output)
-      format: 'esm',
-      chunkFileNames: '[name]-[hash].js',
-      entryFileNames: '[name]-[hash].js',
-      dir: 'build',
-      plugins: [htmlPlugin.api.addOutput('modern')],
-    },
-    {
-      // Legacy JS bundles (ES5 compilation and SystemJS module output)
-      format: 'esm',
-      chunkFileNames: 'legacy-[name]-[hash].js',
-      entryFileNames: 'legacy-[name]-[hash].js',
-      dir: 'build',
-      plugins: [
-        htmlPlugin.api.addOutput('legacy'),
-        // Uses babel to compile JS to ES5 and modules to SystemJS
-        getBabelOutputPlugin({
-          compact: true,
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: {
-                  ie: '11',
-                },
-                modules: 'systemjs',
-              },
-            ],
-          ],
-        }),
-      ],
-    },
-  ],
-  preserveEntrySignatures: false,
-};
-```
-
-## Building with standalone lit-html
-
-If you're using lit-html as a standalone templating library, you can follow almost all of the guidance for building with Lit. The only difference is that lit-html doesn't require the full Web Components polyfills. You'll only need the template polyfill.
-
-### Using the template polyfill
-
-To run lit-html on Internet Explorer 11, which doesn't support the `<template>` element, you'll need a polyfill. You can use the template polyfill included with the Web Components polyfills.
-
-Install the template polyfill:
-
-```bash
-npm i @webcomponents/template
-```
-
-Use the template polyfill:
-
-```html
-<script src="./node_modules/@webcomponents/template/template.min.js"></script>
-```
-
-Note: when compiling for IE11, the Babel polyfills need to be bundled separately from the application code, and loaded *before* the template polyfill.

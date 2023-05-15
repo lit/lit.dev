@@ -30,22 +30,22 @@ You should also create a README describing how to consume your component.
 
 ## Publishing modern JavaScript
 
-We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
+We recommend publishing JavaScript modules in standard [ES2021](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
-However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ compile those features to standard ES2019 supported natively in browsers before publishing to npm.
+However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ compile those features to standard ES2021 supported natively in browsers before publishing to npm.
 
 ### Compiling with TypeScript
 
-The following JSON sample is a partial `tsconfig.json` that uses recommended options for targeting ES2019, enables compilation of decorators, and outputs `.d.ts` types for users:
+The following JSON sample is a partial `tsconfig.json` that uses recommended options for targeting ES2021, enables compilation of decorators, and outputs `.d.ts` types for users:
 
 **tsconfig.json**
 
 ```json
 "compilerOptions": {
-  "target": "es2019",
+  "target": "es2021",
   "module": "es2015",
   "moduleResolution": "node",
-  "lib": ["es2019", "dom"],
+  "lib": ["es2021", "dom"],
   "declaration": true,
   "declarationMap": true,
   "experimentalDecorators": true,
@@ -53,7 +53,7 @@ The following JSON sample is a partial `tsconfig.json` that uses recommended opt
 }
 ```
 
-Note, setting `useDefineForClassFields` to `false` should only be required when the `target` is set to `esnext` or greater, but it's recommended to explicitly ensure this setting is `false`.
+Note, setting `useDefineForClassFields` to `false` should only be required when the `target` is set to `es2022` or greater including `esnext`, but it's recommended to explicitly ensure this setting is `false`.
 
 When compiling from TypeScript, you should include declaration files
 (generated based on `declaration: true` above) for your component's types in the
@@ -72,7 +72,7 @@ See the [tsconfig.json documentation](https://www.typescriptlang.org/docs/handbo
 
 ### Compiling with Babel
 
-To compile a Lit component that uses proposed JavaScript features not yet included in ES2019, use Babel.
+To compile a Lit component that uses proposed JavaScript features not yet included in ES2021, use Babel.
 
 Install Babel and the Babel plugins you need. For example:
 
