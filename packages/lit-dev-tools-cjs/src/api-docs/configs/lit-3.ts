@@ -42,6 +42,28 @@ export const lit3Config: ApiDocsConfig = {
     pathlib.join(srcDir, 'static-html.ts'),
   ],
 
+  extraSetupCommands: [
+    {
+      cmd: 'npm',
+      args: ['run', 'build:ts'],
+    },
+    // Apply file patch to fix typedoc errors during docs generation. Because
+    // `npm run build:ts` is run prior to this, the patch file can always be
+    // applied unless a change has occurred in the file being patched.
+    {
+      cmd: 'patch',
+      // directive-helpers contains an import of the private `ChildPart` class
+      // that typedoc cannot resolve. By stripping this import typedoc
+      // successfully generates API docs without changing the generated docs
+      // output.
+      args: [
+        'packages/lit-html/development/directive-helpers.d.ts',
+        '-i',
+        '../../../../../packages/lit-dev-tools-cjs/src/api-docs/lit-3-patches/fix-directive-helpers-declaration.patch',
+      ],
+    },
+  ],
+
   pages: [
     {
       slug: 'LitElement',

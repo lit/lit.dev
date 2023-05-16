@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "LitElement",
@@ -3116,7 +3116,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "ReactiveElement",
@@ -6265,7 +6265,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "html",
@@ -6851,7 +6851,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "adoptStyles",
@@ -7463,7 +7463,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "customElement",
@@ -8768,7 +8768,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "asyncAppend",
@@ -17744,7 +17744,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "AsyncDirective",
@@ -22711,7 +22711,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "html",
@@ -23396,7 +23396,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "ReactiveController",
@@ -23851,7 +23851,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "defaultConverter",

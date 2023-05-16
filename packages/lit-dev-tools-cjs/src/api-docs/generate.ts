@@ -11,17 +11,14 @@ import {execFile} from 'child_process';
 import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
-
-// TODO(https://github.com/lit/lit.dev/issues/1112) Fix automatic generation of
-// Lit 3.0 docs.
-// import {lit3Config} from './configs/lit-3.js';
+import {lit3Config} from './configs/lit-3.js';
 
 import type {ApiDocsConfig} from './types.js';
 
 const execFileAsync = promisify(execFile);
 
 // Only generate documentation for most recent Lit versions.
-const configs = [lit2Config /* , lit3Config */];
+const configs = [lit2Config, lit3Config];
 
 /**
  * Check whether the given file path exists.
