@@ -6,7 +6,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "LitElement",
@@ -3116,7 +3116,7 @@
       "v1": "api/lit-element/UpdatingElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "ReactiveElement",
@@ -6265,7 +6265,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "html",
@@ -6851,7 +6851,7 @@
       "v1": "api/lit-element/styles/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "adoptStyles",
@@ -7463,7 +7463,7 @@
       "v1": "api/lit-element/decorators/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "customElement",
@@ -8768,7 +8768,7 @@
       "v1": "api/lit-html/directives/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "asyncAppend",
@@ -17744,7 +17744,7 @@
       "v1": "api/lit-html/custom-directives/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "AsyncDirective",
@@ -21810,7 +21810,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 226,
+            "line": 215,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21820,7 +21820,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 106
+                "line": 105
               }
             ],
             "parameters": [
@@ -21867,7 +21867,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 208,
+            "line": 207,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21877,7 +21877,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 99
+                "line": 98
               }
             ],
             "parameters": [
@@ -21923,7 +21923,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 67,
+            "line": 66,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21933,7 +21933,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 33
+                "line": 32
               }
             ],
             "parameters": [
@@ -21989,7 +21989,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 96,
+            "line": 95,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21999,7 +21999,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 55
+                "line": 54
               }
             ],
             "parameters": [
@@ -22091,7 +22091,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 60,
+            "line": 59,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22101,7 +22101,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 29
+                "line": 28
               }
             ],
             "parameters": [
@@ -22164,7 +22164,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 34,
+            "line": 33,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22174,7 +22174,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 16
+                "line": 15
               }
             ],
             "parameters": [
@@ -22222,7 +22222,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 79,
+            "line": 78,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22232,7 +22232,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 42
+                "line": 41
               }
             ],
             "parameters": [
@@ -22278,7 +22278,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 48,
+            "line": 47,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22288,7 +22288,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 25
+                "line": 24
               }
             ],
             "parameters": [
@@ -22362,7 +22362,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 215,
+            "line": 214,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22372,7 +22372,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 105
+                "line": 104
               }
             ],
             "parameters": [
@@ -22422,7 +22422,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 167,
+            "line": 166,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22432,7 +22432,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 72
+                "line": 71
               }
             ],
             "typeParameter": [
@@ -22528,7 +22528,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 191,
+            "line": 190,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22538,7 +22538,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 84
+                "line": 83
               }
             ],
             "parameters": [
@@ -22595,12 +22595,12 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 37,
+            "line": 34,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           },
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 42,
+            "line": 40,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22617,7 +22617,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                    "line": 18
+                    "line": 17
                   }
                 ],
                 "type": {
@@ -22634,7 +22634,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                    "line": 19
+                    "line": 18
                   }
                 ],
                 "type": {
@@ -22647,7 +22647,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 17
+                "line": 16
               }
             ],
             "kindString": "Type literal"
@@ -22711,7 +22711,7 @@
       "v1": "api/lit-html/templates/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "html",
@@ -23396,7 +23396,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "ReactiveController",
@@ -23851,7 +23851,7 @@
       "v1": "api/lit-element/LitElement/"
     },
     "repo": "lit/lit",
-    "commit": "d04a3e30eb3ae3520fb0ac163fb5ddbbf6030620",
+    "commit": "12109c25997ef03180d7eefe05c64e0fb20dd2b0",
     "items": [
       {
         "name": "defaultConverter",
