@@ -21810,7 +21810,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 215,
+            "line": 226,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21820,7 +21820,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 105
+                "line": 106
               }
             ],
             "parameters": [
@@ -21867,7 +21867,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 207,
+            "line": 208,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21877,7 +21877,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 98
+                "line": 99
               }
             ],
             "parameters": [
@@ -21923,7 +21923,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 66,
+            "line": 67,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21933,7 +21933,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 32
+                "line": 33
               }
             ],
             "parameters": [
@@ -21989,7 +21989,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 95,
+            "line": 96,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -21999,7 +21999,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 54
+                "line": 55
               }
             ],
             "parameters": [
@@ -22091,7 +22091,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 59,
+            "line": 60,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22101,7 +22101,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 28
+                "line": 29
               }
             ],
             "parameters": [
@@ -22164,7 +22164,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 33,
+            "line": 34,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22174,7 +22174,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 15
+                "line": 16
               }
             ],
             "parameters": [
@@ -22222,7 +22222,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 78,
+            "line": 79,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22232,7 +22232,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 41
+                "line": 42
               }
             ],
             "parameters": [
@@ -22278,7 +22278,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 47,
+            "line": 48,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22288,7 +22288,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 24
+                "line": 25
               }
             ],
             "parameters": [
@@ -22362,7 +22362,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 214,
+            "line": 215,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22372,7 +22372,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 104
+                "line": 105
               }
             ],
             "parameters": [
@@ -22422,7 +22422,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 166,
+            "line": 167,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22432,7 +22432,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 71
+                "line": 72
               }
             ],
             "typeParameter": [
@@ -22528,7 +22528,7 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 190,
+            "line": 191,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22538,7 +22538,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 83
+                "line": 84
               }
             ],
             "parameters": [
@@ -22595,12 +22595,12 @@
         "sources": [
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 34,
+            "line": 37,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           },
           {
             "fileName": "packages/lit-html/src/directive-helpers.ts",
-            "line": 40,
+            "line": 42,
             "moduleSpecifier": "lit-html/directive-helpers.js"
           }
         ],
@@ -22617,7 +22617,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                    "line": 17
+                    "line": 18
                   }
                 ],
                 "type": {
@@ -22634,7 +22634,7 @@
                 "sources": [
                   {
                     "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                    "line": 18
+                    "line": 19
                   }
                 ],
                 "type": {
@@ -22647,7 +22647,7 @@
             "sources": [
               {
                 "fileName": "packages/lit-dev-api/api-data/lit-3/repo/packages/lit-html/development/directive-helpers.d.ts",
-                "line": 16
+                "line": 17
               }
             ],
             "kindString": "Type literal"
