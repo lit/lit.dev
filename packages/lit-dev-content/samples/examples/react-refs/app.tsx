@@ -1,4 +1,5 @@
-import {React, ReactDOM} from './react.js';
+import React, {useCallback, useState, useRef} from 'react';
+import {createRoot} from 'react-dom/client';
 import {createComponent} from '@lit-labs/react';
 import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
 
@@ -17,8 +18,6 @@ import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
   a <flying-triangles> component.
 */
 
-const { useRef, useState, useCallback } = React;
-
 const FlyingTriangles = createComponent({
   react: React,
   tagName: 'flying-triangles',
@@ -27,35 +26,27 @@ const FlyingTriangles = createComponent({
 });
 
 export const App = () => {
-  const ref = useRef(null);
+  const ref = useRef<FlyingTrianglesWC>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Listen for playing-change events
-  const onPlayingChange = useCallback(() => {
-    setIsPlaying(ref.current?.isPlaying);
+  const handlePlayingChange = useCallback(() => {
+    setIsPlaying(!!ref.current?.isPlaying);
   }, []);
-
-  // UI callbacks
-  const onPlay = useCallback(() => ref.current?.play(), []);
-  const onPause = useCallback(() => ref.current?.pause(), []);
 
   return (
     <>
-      <FlyingTriangles
-        ref={ref}
-        onPlayingChange={onPlayingChange}>
-      </FlyingTriangles>
-      <button disabled={isPlaying} onClick={onPlay}>
+      <FlyingTriangles ref={ref} onPlayingChange={handlePlayingChange} />
+      <button disabled={isPlaying} onClick={() => ref.current?.play()}>
         play
       </button>
-      <button disabled={!isPlaying} onClick={onPause}>
+      <button disabled={!isPlaying} onClick={() => ref.current?.pause()}>
         pause
       </button>
     </>
   );
 };
 
-const node = document.querySelector('#app');
-const root = ReactDOM.createRoot(node!);
+const root = createRoot(document.getElementById('app')!);
 
-root.render(<App></App>);
+root.render(<App />);

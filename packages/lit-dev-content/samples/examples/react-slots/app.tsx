@@ -1,25 +1,19 @@
-import {React, ReactDOM} from './react.js';
-import {createComponent} from '@lit-labs/react';
-import {SimpleSlots as SimpleSlotsWC} from './simple-slots.js';
-
-const SimpleSlots = createComponent({
-  react: React,
-  tagName: 'simple-slots',
-  elementClass: SimpleSlotsWC,
-});
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import './simple-slots.js';
 
 export const App = () => (
-  <SimpleSlots>
+  <simple-slots>
     <p slot="head">This element will be projected onto the "head" slot.</p>
     <p slot="tail">This element will be projected onto the "tail" slot.</p>
     <div slot="tail">
-      <Foo></Foo>
+      <Foo />
     </div>
     <p>
       Elements without a slot attribute will be projected onto the default
       slot.
     </p>
-  </SimpleSlots>
+  </simple-slots>
 );
 
 const Foo = () =>
@@ -29,7 +23,6 @@ const Foo = () =>
     onto the default slot.
   </>;
 
-const node = document.querySelector('#app');
-const root = ReactDOM.createRoot(node!);
+const root = createRoot(document.getElementById('app')!);
 
-root.render(<App></App>);
+root.render(<App />);

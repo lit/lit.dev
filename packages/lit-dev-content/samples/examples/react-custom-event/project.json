@@ -7,7 +7,12 @@
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
     "secret-button.ts": {},
-    "react.ts": {},
     "index.html": {}
+  },
+  "importMap": {
+    "imports": {
+      "react": "https://esm.sh/react@18.2.0",
+      "react-dom/": "https://esm.sh/react-dom@18.2.0/"
+    }
   }
 }

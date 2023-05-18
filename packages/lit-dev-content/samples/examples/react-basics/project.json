@@ -7,7 +7,16 @@
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
     "demo-greeting.ts": {},
-    "react.ts": {},
-    "index.html": {}
+    "index.html": {},
+    "package.json": {
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2\",\n    \"@types/react\": \"^18\",\n    \"@types/react-dom\": \"^18\",\n    \"@types/react-dom/client\": \"^18\"\n  }\n}",
+      "hidden": true
+    }
+  },
+  "importMap": {
+    "imports": {
+      "react": "https://esm.sh/react@18.2.0",
+      "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
+    }
   }
 }

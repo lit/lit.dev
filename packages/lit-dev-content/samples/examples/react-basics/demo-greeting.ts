@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {html, LitElement} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('demo-greeting')
 export class DemoGreeting extends LitElement {
@@ -8,7 +8,32 @@ export class DemoGreeting extends LitElement {
   render() {
     return html`
       <p>Hello, ${this.name}!</p>
-      <p>Checkout our <a href="https://lit.dev/docs/frameworks/react/" target="_blank" rel="noopener noreferrer">React framework docs</a>!</p>
+      <p>
+        Checkout our
+        <a
+          href="https://lit.dev/docs/frameworks/react/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >React framework docs</a
+        >!
+      </p>
     `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'demo-greeting': DemoGreeting;
+  }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      'demo-greeting':
+        | React.DetailedHTMLProps<
+            React.HTMLAttributes<DemoGreeting>,
+            DemoGreeting
+          >
+        | Partial<DemoGreeting>;
+    }
   }
 }

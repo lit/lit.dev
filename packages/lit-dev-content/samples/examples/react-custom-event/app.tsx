@@ -1,10 +1,7 @@
-import type {EventName} from '@lit-labs/react';
-
-import {React, ReactDOM} from './react.js';
-import {createComponent} from '@lit-labs/react';
+import React, {useCallback, useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import {createComponent, EventName} from '@lit-labs/react';
 import {SecretButton as SecretButtonWC} from './secret-button.js';
-
-const {useCallback, useState} = React;
 
 const SecretButton = createComponent({
   react: React,
@@ -19,20 +16,19 @@ export const App = () => {
       dispatched by the SecretButton component.`
   );
 
-  const onSecretMessage = useCallback(
+  const handleSecretMessage = useCallback(
     (e: CustomEvent<string>) => setMessage(e.detail),
     []
   );
 
   return (
     <>
-      <SecretButton onSecretMessage={onSecretMessage}></SecretButton>
+      <SecretButton onSecretMessage={handleSecretMessage}></SecretButton>
       <div>{message}</div>
     </>
   );
 };
 
-const node = document.querySelector('#app');
-const root = ReactDOM.createRoot(node!);
+const root = createRoot(document.getElementById('app')!);
 
 root.render(<App></App>);
