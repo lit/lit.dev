@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "Conditional templates",
   "description": "Use conditionals in a template.",
   "section": "Template concepts",

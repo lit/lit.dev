@@ -1,6 +1,6 @@
 {
   "hide": true,
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "_getUpdateComplete()",
   "description": "How to make a parent element wait for an inner child to render.",
   "section": "Specific Solutions",

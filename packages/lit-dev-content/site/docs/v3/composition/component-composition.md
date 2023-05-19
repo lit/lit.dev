@@ -83,7 +83,7 @@ A simple way to implement the mediator pattern is by having the owning component
 
 In the following example, the mediator element listens for events from the input and button elements in its shadow DOM. It controls the enabled state of the button so the user can only click **Submit** when there's text in the input.
 
-{% playground-example "docs/composition/mediator-pattern" "mediator-element.ts" %}
+{% playground-example "v3-docs/composition/mediator-pattern" "mediator-element.ts" %}
 
 Other mediator patterns include flux/Redux-style patterns where a store mediates changes and updates components via subscriptions. Having components directly subscribe to changes can help avoid needing every parent to pass along all data required by its children.
 

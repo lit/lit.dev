@@ -146,8 +146,8 @@ customElements.define('my-element', MyElement);
 
 ## Interactive code snippet
 
-{% playground-example "docs/templates/define" "my-element.ts" %}
+{% playground-example "v3-docs/templates/define" "my-element.ts" %}
 
 ## Full IDE
 
-{% playground-ide "docs/templates/define" %}
+{% playground-ide "v3-docs/templates/define" %}

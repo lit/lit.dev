@@ -323,7 +323,7 @@ export class LitDevPlaygroundPage extends LitElement {
     if (urlFiles) {
       this._hideCodeLanguageSwitch();
       this._playgroundProject.config = {
-        extends: '/samples/base.json',
+        extends: '/samples/v2-base.json',
         files: Object.fromEntries(
           urlFiles.map(({name, content, hidden}) => [name, {content, hidden}])
         ),

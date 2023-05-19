@@ -1,8 +1,0 @@
-{
-  "extends": "/samples/base.json",
-  "files": {
-    "clock-controller.ts": {},
-    "my-element.ts": {},
-    "index.html": {}
-  }
-}

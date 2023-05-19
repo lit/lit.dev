@@ -1,6 +1,6 @@
 {
   "hide": true,
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "Using a LitElement in React",
   "description": "Shows a <chess-board> element, implemented in LitElement (older implementation), used inside React.",
   "section": "Cross-Framework",

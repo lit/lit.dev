@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "files": {
     "_check-code-helpers.ts": {
       "hidden": true

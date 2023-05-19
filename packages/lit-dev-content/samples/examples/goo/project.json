@@ -1,6 +1,6 @@
 {
   "hide": true,
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "LitElement Goo / React Hooks",
   "description": "An example of how to achieve hooks-like \"chaining\" of reactive values through several stateful transforms using a \"controller\" pattern.",
   "section": "Specific Solutions",

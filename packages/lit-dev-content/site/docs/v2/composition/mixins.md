@@ -127,7 +127,7 @@ The mixin in the example below adds a `highlight` reactive property to the
 element and a `renderHighlight()` method that the user can call to wrap some
 content. The wrapped content is styled yellow when the `highlight` property/attribute is set.
 
-{% playground-ide "docs/mixins/highlightable/" "highlightable.ts" %}
+{% playground-ide "v2-docs/mixins/highlightable/" "highlightable.ts" %}
 
 Note in the example above, the user of the mixin is expected to call the
 `renderHighlight()` method from their `render()` method, as well as take care to add

@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "List Item Animation",
   "description": "Animate list items.",
   "section": "Motion",

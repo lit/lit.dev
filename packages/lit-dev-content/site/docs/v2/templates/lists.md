@@ -17,7 +17,7 @@ Lit also provides a `repeat` directive to build certain kinds of dynamic lists m
 
 When an expression in the child position in returns an array or iterable, Lit renders all of the items in the array:
 
-{% playground-example "docs/templates/lists-arrays/" "my-element.ts" %}
+{% playground-example "v2-docs/templates/lists-arrays/" "my-element.ts" %}
 
 In most cases, you'll want to transform the array items into a more useful form.
 
@@ -25,7 +25,7 @@ In most cases, you'll want to transform the array items into a more useful form.
 
 To render lists, you can use `map` to transform a list of data into a list of templates:
 
-{% playground-example "docs/templates/lists-map/" "my-element.ts" %}
+{% playground-example "v2-docs/templates/lists-map/" "my-element.ts" %}
 
 Note that this expression returns an array of `TemplateResult` objects. Lit will render an array or iterable of sub-templates and other values.
 
@@ -68,7 +68,7 @@ Where:
 
 For example:
 
-{% playground-example "docs/templates/lists-repeat/" "my-element.ts" %}
+{% playground-example "v2-docs/templates/lists-repeat/" "my-element.ts" %}
 
 If you re-sort the `employees` array, the `repeat` directive reorders the existing DOM nodes.
 

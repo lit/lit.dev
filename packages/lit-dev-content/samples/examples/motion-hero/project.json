@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "List/Detail Hero Transition",
   "description": "Hero animation.",
   "section": "Motion",

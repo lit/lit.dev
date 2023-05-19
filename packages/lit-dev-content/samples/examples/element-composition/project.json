@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "Element composition",
   "description": "Compose a template from other custom elements.",
   "section": "Template concepts",

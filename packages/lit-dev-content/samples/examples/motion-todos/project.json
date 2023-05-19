@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "Todos List Transitions",
   "description": "Animated list of todos.",
   "section": "Motion",

@@ -1,0 +1,13 @@
+{
+  "extends": "/samples/v2-base.json",
+  "files": {
+    "x-greeter.ts": {},
+    "locale-picker.ts": {},
+    "index.ts": {},
+    "index.html": {},
+    "locales/es-419.ts": {},
+    "locales/zh_CN.ts": {},
+    "localization.ts": {},
+    "locale-codes.ts": {}
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "title": "Full component",
   "description": "Basic example of a Lit component, using TypeScript.",
   "section": "Basics",

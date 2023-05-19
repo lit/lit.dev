@@ -25,4 +25,4 @@ Creating a Lit component involves a number of concepts:
 
 Here's a sample component:
 
-{% playground-example "docs/components/overview/simple-greeting" "simple-greeting.ts" %}
+{% playground-example "v3-docs/components/overview/simple-greeting" "simple-greeting.ts" %}

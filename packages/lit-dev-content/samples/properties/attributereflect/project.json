@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v2-base.json",
   "files": {
     "my-element.ts": {},
     "index.html": {}
