@@ -19,7 +19,7 @@ test.describe('docs/components/styles', () => {
 
     // Wait for the exact playground preview we want to load.
     await page.waitForSelector(
-      'litdev-example[project="docs/components/style/superstyles"] playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
+      'litdev-example[project="v2-docs/components/style/superstyles"] playground-preview [part="preview-loading-indicator"][aria-hidden="true"]'
     );
     // Wait for the loading bar to fade out.
     await page.waitForTimeout(250);
@@ -27,7 +27,7 @@ test.describe('docs/components/styles', () => {
     await expect(
       await page
         .locator(
-          'litdev-example[project="docs/components/style/superstyles"] playground-preview'
+          'litdev-example[project="v2-docs/components/style/superstyles"] playground-preview'
         )
         .screenshot()
     ).toMatchSnapshot('inheritingStylesPlaygroundPreview.png');
