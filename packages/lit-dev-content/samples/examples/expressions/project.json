@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "Expression types",
   "description": "Use expressions to set attributes, boolean attributes, properties, text content, and event handlers in a template.",
   "section": "Template concepts",

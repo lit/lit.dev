@@ -57,6 +57,6 @@ configuration that resolve imports to `lit-next`:
 
 ```json
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/v3-base.json",
 }
 ```

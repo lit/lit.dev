@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "unsafeSVG directive",
   "description": "Demo exploring use of the unsafeSVG directive.",
   "section": "Directives",

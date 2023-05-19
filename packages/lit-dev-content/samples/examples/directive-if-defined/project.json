@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "ifDefined directive",
   "description": "Demo exploring use of the ifDefined directive.",
   "section": "Directives",

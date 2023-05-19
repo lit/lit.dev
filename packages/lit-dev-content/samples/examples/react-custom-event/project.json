@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "order": 2,
   "title": "Custom events",
   "description": "Listen to custom events from web components.",

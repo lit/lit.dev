@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "order": 0,
   "title": "Basics",
   "description": "Render web components in React apps.",

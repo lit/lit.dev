@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "Basic properties",
   "description": "Declaring reactive properties.",
   "section": "Reactive properties",

@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "repeat directive",
   "description": "Demo exploring use of the repeat directive.",
   "section": "Directives",

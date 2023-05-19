@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "files": {
     "index.html": {},
     "date-display.ts": {}

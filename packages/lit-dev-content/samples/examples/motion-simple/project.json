@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "Sliding Circle",
   "description": "Simple `animate()` directive example.",
   "section": "Motion",

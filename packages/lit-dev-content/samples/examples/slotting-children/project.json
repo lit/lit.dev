@@ -1,5 +1,5 @@
 {
-  "extends": "/samples/v2-base.json",
+  "extends": "/samples/base.json",
   "title": "Slotting children",
   "description": "Render children with the <slot> element.",
   "section": "Template concepts",
