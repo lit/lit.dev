@@ -1692,7 +1692,7 @@ will be called bound to the host element automatically.
 class MyElement extends LitElement {
 
   render() {
-    // Passing ref directive a change callback
+    // Passing a change callback to ref directive
     return html`<input ${ref(this.inputChanged)}>`;
   }
 
@@ -1706,7 +1706,7 @@ class MyElement extends LitElement {
 class MyElement extends LitElement {
 
   render() {
-    // Passing ref directive a change callback
+    // Passing a change callback to ref directive
     return html`<input ${ref(this.inputChanged)}>`;
   }
 
