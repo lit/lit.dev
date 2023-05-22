@@ -14,15 +14,4 @@ declare global {
   interface HTMLElementTagNameMap {
     'counter-button': CounterButton;
   }
-
-  namespace JSX {
-    interface IntrinsicElements {
-      'counter-button':
-        | React.DetailedHTMLProps<
-            React.HTMLAttributes<CounterButton>,
-            CounterButton
-          >
-        | Partial<CounterButton>;
-    }
-  }
 }

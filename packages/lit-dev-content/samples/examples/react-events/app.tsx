@@ -1,14 +1,18 @@
-import React, {useCallback, useState} from 'react';
-import {createRoot} from 'react-dom/client';
-import './counter-button.js';
+import React from 'https://esm.sh/react@18';
+import {createRoot} from 'https://esm.sh/react-dom@18/client';
+import {createComponent} from '@lit-labs/react';
+import {CounterButton as CounterButtonWC} from './counter-button.js';
 
-export const App = () => {
-  const [count, setCount] = useState(0);
+const CounterButton = createComponent({
+  react: React,
+  tagName: 'counter-button',
+  elementClass: CounterButtonWC,
+});
 
-  const handleClick = useCallback(() => setCount((c) => c + 1), []);
+const App = () => {
+  const [count, setCount] = React.useState(0);
 
-  // React supports basic events and serializable props for custom elements
-  return <counter-button onClick={handleClick} count={count}></counter-button>;
+  return <CounterButton onClick={() => setCount((c) => c + 1)} count={count} />;
 };
 
 const root = createRoot(document.getElementById('app')!);

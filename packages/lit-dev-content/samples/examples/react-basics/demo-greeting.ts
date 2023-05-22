@@ -25,15 +25,4 @@ declare global {
   interface HTMLElementTagNameMap {
     'demo-greeting': DemoGreeting;
   }
-
-  namespace JSX {
-    interface IntrinsicElements {
-      'demo-greeting':
-        | React.DetailedHTMLProps<
-            React.HTMLAttributes<DemoGreeting>,
-            DemoGreeting
-          >
-        | Partial<DemoGreeting>;
-    }
-  }
 }

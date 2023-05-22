@@ -1,8 +1,14 @@
-import React from 'react';
-import {createRoot} from 'react-dom/client';
-import './demo-greeting.js';
+import React from 'https://esm.sh/react@18';
+import {createRoot} from 'https://esm.sh/react-dom@18/client';
+import {createComponent} from '@lit-labs/react';
+import {DemoGreeting as DemoGreetingWC} from './demo-greeting.js';
+
+const DemoGreeting = createComponent({
+  react: React,
+  tagName: 'demo-greeting',
+  elementClass: DemoGreetingWC,
+});
 
 const root = createRoot(document.getElementById('app')!);
 
-// Custom elements can be used directly in JSX!
-root.render(<demo-greeting name="React"></demo-greeting>);
+root.render(<DemoGreeting name="React" />);

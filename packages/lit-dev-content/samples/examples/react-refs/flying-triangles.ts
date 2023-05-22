@@ -237,3 +237,9 @@ const drawScene = (canvas: HTMLCanvasElement, state: Scene) => {
     ctx.restore();
   }
 };
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'flying-triangles': FlyingTriangles;
+  }
+}

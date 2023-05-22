@@ -39,15 +39,4 @@ declare global {
   interface HTMLElementTagNameMap {
     'simple-slots': SimpleSlots;
   }
-
-  namespace JSX {
-    interface IntrinsicElements {
-      'simple-slots':
-        | React.DetailedHTMLProps<
-            React.HTMLAttributes<SimpleSlots>,
-            SimpleSlots
-          >
-        | Partial<SimpleSlots>;
-    }
-  }
 }

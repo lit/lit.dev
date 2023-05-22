@@ -40,3 +40,9 @@ function randomBucket<T>(messages: T[]): T {
 
   return messages[last];
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'secret-button': SecretButton;
+  }
+}

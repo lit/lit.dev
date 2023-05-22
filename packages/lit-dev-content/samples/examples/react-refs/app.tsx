@@ -1,5 +1,5 @@
-import React, {useCallback, useState, useRef} from 'react';
-import {createRoot} from 'react-dom/client';
+import React from 'https://esm.sh/react@18';
+import {createRoot} from 'https://esm.sh/react-dom@18/client';
 import {createComponent} from '@lit-labs/react';
 import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
 
@@ -25,18 +25,18 @@ const FlyingTriangles = createComponent({
   events: {onPlayingChange: 'playing-change'},
 });
 
-export const App = () => {
-  const ref = useRef<FlyingTrianglesWC>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  // Listen for playing-change events
-  const handlePlayingChange = useCallback(() => {
-    setIsPlaying(!!ref.current?.isPlaying);
-  }, []);
+const App = () => {
+  const ref = React.useRef<FlyingTrianglesWC>(null);
+  const [isPlaying, setIsPlaying] = React.useState(false);
 
   return (
     <>
-      <FlyingTriangles ref={ref} onPlayingChange={handlePlayingChange} />
+      <FlyingTriangles
+        ref={ref}
+        onPlayingChange={() => {
+          setIsPlaying(!!ref.current?.isPlaying);
+        }}
+      />
       <button disabled={isPlaying} onClick={() => ref.current?.play()}>
         play
       </button>
