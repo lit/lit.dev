@@ -3,7 +3,7 @@
   "order": 3,
   "title": "Slots",
   "description": "Project React Components onto web component slots.",
-  "section": "React",
+  "section": "@lit-labs/react",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
     "simple-slots.ts": {},

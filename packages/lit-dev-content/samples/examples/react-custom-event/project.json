@@ -3,7 +3,7 @@
   "order": 2,
   "title": "Custom events",
   "description": "Listen to custom events from web components.",
-  "section": "React",
+  "section": "@lit-labs/react",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
     "secret-button.ts": {},

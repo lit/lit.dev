@@ -3,7 +3,7 @@
   "order": 1,
   "title": "React events",
   "description": "Listen to react events from web components.",
-  "section": "React",
+  "section": "@lit-labs/react",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
     "counter-button.ts": {},

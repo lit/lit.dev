@@ -3,7 +3,7 @@
   "order": 4,
   "title": "Refs",
   "description": "Interact with Web Component APIs via Refs.",
-  "section": "React",
+  "section": "@lit-labs/react",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
     "flying-triangles.ts": {},
