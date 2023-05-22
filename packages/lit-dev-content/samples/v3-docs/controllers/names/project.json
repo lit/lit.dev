@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "names-controller.ts": {},
+    "my-element.ts": {},
+    "names-api.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "150px"
+}

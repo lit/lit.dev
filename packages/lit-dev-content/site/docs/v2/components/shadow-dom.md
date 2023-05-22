@@ -144,7 +144,7 @@ To render children, your template needs to include one or more [`<slot>` element
 
 To render an element's children, create a `<slot>` for them in the element's template. The children aren't _moved_ in the DOM tree, but they're rendered _as if_ they were children of the `<slot>`. For example:
 
-{% playground-ide "docs/components/shadowdom/slots/" %}
+{% playground-ide "v2-docs/components/shadowdom/slots/" %}
 
 ### Using named slots
 
@@ -158,7 +158,7 @@ To assign a child to a specific slot, ensure that the child's `slot` attribute m
 
   For example, `<p slot="one">...</p>` will only be placed in `<slot name="one"></slot>`.
 
-{% playground-ide "docs/components/shadowdom/namedslots/" %}
+{% playground-ide "v2-docs/components/shadowdom/namedslots/" %}
 
 ### Specifying slot fallback content {#fallback}
 
@@ -294,4 +294,4 @@ For example, to render the template into the main DOM tree as your element's chi
 
 </div>
 
-{% playground-ide "docs/components/shadowdom/renderroot/" %}
+{% playground-ide "v2-docs/components/shadowdom/renderroot/" %}

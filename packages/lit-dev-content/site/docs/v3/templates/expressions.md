@@ -118,7 +118,7 @@ html`<button @click=${this._clickHandler}>Go</button>`
 
 This basic example shows a variety of different kinds of expressions.
 
-{% playground-example "docs/templates/expressions" "my-element.ts" %}
+{% playground-example "v3-docs/templates/expressions" "my-element.ts" %}
 
 The following sections describe each kind of expression in more detail. For more information about the structure of templates, see [Well-formed HTML](#well-formed-html) and [Valid expression locations](#expression-locations).
 

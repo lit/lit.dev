@@ -13,7 +13,7 @@ Add a template to your component to define what it should render. Templates can 
 
 To define a template for a Lit component, add a `render()` method:
 
-{% playground-example "docs/templates/define" "my-element.ts" %}
+{% playground-example "v3-docs/templates/define" "my-element.ts" %}
 
 Write your template in HTML inside a JavaScript [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) using Lit's [`html`](/docs/v3/api/templates/#html) tag function.
 
@@ -52,7 +52,7 @@ For more information, see [Reactive properties](/docs/v3/components/properties/)
 
 You can compose Lit templates from other templates. The following example composes a template for a component called `<my-page>` from smaller templates for the page's header, footer, and main content:
 
-{% playground-example "docs/templates/compose" "my-page.ts" %}
+{% playground-example "v3-docs/templates/compose" "my-page.ts" %}
 
 In this example, the individual templates are defined as instance methods, so a subclass could extend this component and override one or more templates.
 
@@ -64,7 +64,7 @@ Move example to composition section, add xref.
 
 You can also compose templates by importing other elements and using them in your template:
 
-{% playground-ide "docs/templates/composeimports" %}
+{% playground-ide "v3-docs/templates/composeimports" %}
 
 
 ## When templates render
