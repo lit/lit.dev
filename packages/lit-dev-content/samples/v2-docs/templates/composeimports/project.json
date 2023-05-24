@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/v2-base.json",
+  "files": {
+    "my-page.ts": {},
+    "my-header.ts": {},
+    "my-article.ts": {},
+    "my-footer.ts": {},
+    "index.html": {}
+  }
+}

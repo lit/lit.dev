@@ -1,0 +1,8 @@
+{
+  "extends": "/samples/v2-base.json",
+  "files": {
+    "index.html": {},
+    "my-element.ts": {}
+  },
+  "previewHeight": "165px"
+}

@@ -30,7 +30,7 @@ export const templates = {
 The following example demonstrates an application built with Lit Localize
 runtime mode:
 
-{% playground-example "docs/libraries/localization/runtime" "x-greeter.ts" %}
+{% playground-example "v2-docs/libraries/localization/runtime" "x-greeter.ts" %}
 
 The Lit GitHub repo includes full working examples
 ([JavaScript](https://github.com/lit/lit/tree/main/packages/localize/examples/runtime-js),

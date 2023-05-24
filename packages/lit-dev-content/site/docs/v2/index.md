@@ -37,7 +37,7 @@ Each Lit component is a self-contained unit of UI, assembled from smaller buildi
 
 Here’s a small but non-trivial component (a countdown timer) that illustrates what Lit code looks like and highlights several key features:
 
-{% playground-ide "docs/what-is-lit/" %}
+{% playground-ide "v2-docs/what-is-lit/" %}
 
 Some things to note:
 

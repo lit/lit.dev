@@ -9,6 +9,7 @@
 {% endif %}
 {% set isLatestVersionedUrl = selectedVersion == latestVersion and page.url.includes("/" + latestVersion + "/") %}
 {% set isUnversionedPage = page.inputPath.includes("/unversioned/") %}
+{% set editableFilePath = page.inputPath.replace("/unversioned/", "/" + selectedVersion + "/") %}
 
 {% block head %}
   {% include "social-tags.html" %}
@@ -49,7 +50,6 @@
         </div>
       </nav>
     {% endif %}
-    <litdev-edit-this-page filepath="{{ page.inputPath }}"></litdev-edit-this-page>
   </div>
 
   <div id="articleWrapper">
@@ -71,7 +71,7 @@
       {% if not nonEditableDocumentRegex.test(page.inputPath) %}
       <p id="edit-page-link">
         <a
-            href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
+            href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ editableFilePath }}">
           Edit this page
           <lazy-svg
               loading="visible"

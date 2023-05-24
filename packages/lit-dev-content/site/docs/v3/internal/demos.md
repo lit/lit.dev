@@ -32,10 +32,10 @@ Additional `project.json` config options:
 - `previewHeight`: Height of the preview in pixels (default `120px`).
 
 ```
-{% raw %}{% playground-example "docs/templates/define" "my-element.ts" %}{% endraw %}
+{% raw %}{% playground-example "v3-docs/templates/define" "my-element.ts" %}{% endraw %}
 ```
 
-{% playground-example "docs/templates/define" "my-element.ts" %}
+{% playground-example "v3-docs/templates/define" "my-element.ts" %}
 
 ## Full IDE
 
@@ -45,10 +45,10 @@ Arguments:
 1. (Required) Path of the project dir from `samples/PATH/project.json`.
 
 ```
-{% raw %}{% playground-ide "docs/templates/define" %}{% endraw %}
+{% raw %}{% playground-ide "v3-docs/templates/define" %}{% endraw %}
 ```
 
-{% playground-ide "docs/templates/define" %}
+{% playground-ide "v3-docs/templates/define" %}
 
 ## Package versions
 
@@ -57,6 +57,6 @@ configuration that resolve imports to `lit-next`:
 
 ```json
 {
-  "extends": "/samples/base.json",
+  "extends": "/samples/v3-base.json",
 }
 ```

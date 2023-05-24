@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/v2-base.json",
+  "title": "repeat directive",
+  "description": "Demo exploring use of the repeat directive.",
+  "section": "Directives",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "50px"
+}

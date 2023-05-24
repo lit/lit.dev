@@ -1,8 +1,0 @@
-{
-  "extends": "/samples/base.json",
-  "files": {
-    "update-properties.ts": {},
-    "index.html": {}
-  },
-  "previewHeight": "80px"
-}

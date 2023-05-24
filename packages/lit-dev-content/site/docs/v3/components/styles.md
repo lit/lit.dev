@@ -17,7 +17,7 @@ Shadow DOM provides strong encapsulation for styling. If Lit did not use Shadow 
 
 You define scoped styles in the static `styles` class field using the tagged template literal `css` function. Defining styles this way results in the most optimal performance:
 
-{% playground-example "docs/components/style/basic" "my-element.ts" %}
+{% playground-example "v3-docs/components/style/basic" "my-element.ts" %}
 
 The styles you add to your component are _scoped_ using shadow DOM. For a quick overview, see [Shadow DOM](#shadow-dom).
 
@@ -76,7 +76,7 @@ static styles = css`
 
 Using an array of tagged template literals, a component can inherit the styles from a superclass, and add its own styles:
 
-{% playground-ide "docs/components/style/superstyles" %}
+{% playground-ide "v3-docs/components/style/superstyles" %}
 
 You can also use `super.styles` to reference the superclass's styles property in JavaScript. If you're using TypeScript, we recommend avoiding `super.styles` since the compiler doesn't always convert it correctly. Explicitly referencing the superclass, as shown in the example, avoids this issue.
 
@@ -161,7 +161,7 @@ To create default styles for the host element, use the `:host` CSS pseudo-class 
 *   `:host` selects the host element.
 *   <code>:host(<var>selector</var>)</code> selects the host element, but only if the host element matches _selector_.
 
-{% playground-example "docs/components/style/host" "my-element.ts" %}
+{% playground-example "v3-docs/components/style/host" "my-element.ts" %}
 
 Note that the host element can be affected by styles from outside the shadow tree, as well, so you should consider the styles you set in `:host` and `:host()` rules as _default styles_ that can be overridden by the user. For example:
 
@@ -183,7 +183,7 @@ Use the `::slotted()` CSS pseudo-element to select children that are included in
 *   `::slotted(p)` matches slotted paragraphs.
 *   `p ::slotted(*)` matches slotted elements where the `<slot>` is a descendant of a paragraph element.
 
-{% playground-example "docs/components/style/slottedselector" "my-element.ts" %}
+{% playground-example "v3-docs/components/style/slottedselector" "my-element.ts" %}
 
 Note that **only direct slotted children** can be styled with `::slotted()`.
 
@@ -310,7 +310,7 @@ To use `styleMap` and/or `classMap`:
 
 2.  Use `classMap` and/or `styleMap` in your element template:
 
-{% playground-example "docs/components/style/maps" "my-element.ts" %}
+{% playground-example "v3-docs/components/style/maps" "my-element.ts" %}
 
 See [classMap](/docs/v3/templates/directives/#classmap) and [styleMap](/docs/v3/templates/directives/#stylemap) for more information.
 
@@ -318,7 +318,7 @@ See [classMap](/docs/v3/templates/directives/#classmap) and [styleMap](/docs/v3/
 
 By using [CSS inheritance](#inheritance) and [CSS variables and custom properties](#customprops) together, it's easy to create themable elements. By applying css selectors to customize CSS custom properties, tree-based and per-instance theming is straightforward to apply. Here's an example:
 
-{% playground-example "docs/components/style/theming" "my-element.ts" %}
+{% playground-example "v3-docs/components/style/theming" "my-element.ts" %}
 
 ### CSS inheritance {#inheritance}
 

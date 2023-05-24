@@ -21,7 +21,7 @@ You can use controllers to implement features that require their own state and a
 
 Reactive controllers allow you to build components by composing smaller pieces that aren't themselves components. They can be thought of as reusable, partial component definitions, with their own identity and state.
 
-{% playground-ide "docs/controllers/overview" "clock-controller.ts" %}
+{% playground-ide "v2-docs/controllers/overview" "clock-controller.ts" %}
 
 Reactive controllers are similar in many ways to class mixins. The main difference is that they have their own identity and don't add to the component's prototype, which helps contain their APIs and lets you use multiple controller instances per host component. See [Controllers and mixins](/docs/v2/composition/overview/#controllers-and-mixins) for more details.
 
@@ -272,7 +272,7 @@ Reactive controllers can be used to connect to external inputs. For example, key
 
 This example shows how a controller can perform setup and cleanup work when its host is connected and disconnected, and request an update when an input changes:
 
-{% playground-ide "docs/controllers/mouse" "my-element.ts" %}
+{% playground-ide "v2-docs/controllers/mouse" "my-element.ts" %}
 
 ### Asynchronous tasks
 
@@ -284,7 +284,7 @@ Controllers are a great way to bundle task execution and state to make it easy t
 
 You can use `Task` to create a custom controller with an API tailored for your specific task. Here we wrap `Task` in a `NamesController` that can fetch one of a specified list of names from a demo REST API. `NameController` exposes a `kind` property as an input, and a `render()` method that can render one of four templates depending on the task state. The task logic, and how it updates the host, are abstracted from the host component.
 
-{% playground-ide "docs/controllers/names" %}
+{% playground-ide "v2-docs/controllers/names" %}
 
 {% todo %}
 
