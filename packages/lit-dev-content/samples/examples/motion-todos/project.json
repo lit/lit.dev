@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "title": "Todos List Transitions",
   "description": "Animated list of todos.",
-  "section": "Motion",
+  "section": "@lit-labs/motion",
   "files": {
     "motion-todos.ts": {},
     "styles.ts": {},
