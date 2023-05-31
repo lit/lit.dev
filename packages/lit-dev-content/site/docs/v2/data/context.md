@@ -129,7 +129,9 @@ class MyElement extends LitElement {
 }
 ```
 
-TypeScript will warn that the type `string` is not assignable to the type `Logger`.
+TypeScript will warn that the type `string` is not assignable to the type `Logger`. Note that this check is currently only for public fields.
+
+<!-- More info on type checking at https://github.com/lit/lit/issues/3926 -->
 
 #### Context equality
 
