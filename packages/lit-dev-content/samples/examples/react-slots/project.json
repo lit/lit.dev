@@ -1,6 +1,6 @@
 {
   "extends": "/samples/base.json",
-  "order": 3,
+  "order": 2,
   "title": "Slots",
   "description": "Project React Components onto web component slots.",
   "section": "@lit-labs/react",

@@ -1,6 +1,6 @@
 {
   "extends": "/samples/base.json",
-  "order": 4,
+  "order": 3,
   "title": "Refs",
   "description": "Interact with Web Component APIs via Refs.",
   "section": "@lit-labs/react",
