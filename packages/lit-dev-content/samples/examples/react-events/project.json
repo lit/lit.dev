@@ -6,7 +6,7 @@
   "section": "@lit-labs/react",
   "files": {
     "app.tsx": {"contentType": "text/typescript-jsx"},
-    "counter-button.ts": {},
+    "click-roulette.ts": {},
     "react.d.ts": {
       "content": "declare module 'https://esm.sh/react@18' {\n  export default React;\n}\n\ndeclare module 'https://esm.sh/react-dom@18/client' {\n  export * from 'react-dom/client';\n}",
       "hidden": true
