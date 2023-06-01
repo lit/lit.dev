@@ -13,7 +13,7 @@
     },
     "index.html": {},
     "package.json": {
-      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2\",\n    \"@lit-labs/react\": \"^1.1.1\",\n    \"@types/react\": \"^18\",\n    \"@types/react-dom\": \"^18\",\n    \"@types/react-dom/client\": \"^18\"\n  }\n}",
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2\",\n    \"@lit-labs/react\": \"^1.1.1\",\n    \"@types/react\": \"18.2.7\",\n    \"@types/react-dom\": \"^18\",\n    \"@types/react-dom/client\": \"^18\"\n  }\n}",
       "hidden": true
     }
   }
