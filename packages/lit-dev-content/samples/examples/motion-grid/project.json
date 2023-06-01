@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "title": "Grid Layout Transitions",
   "description": "Animate css grid layouts.",
-  "section": "Motion",
+  "section": "@lit-labs/motion",
   "files": {
     "motion-grid.ts": {},
     "styles.ts": {},

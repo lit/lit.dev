@@ -12,7 +12,8 @@ const topSectionOrder = [
   'Reactive properties',
   'Template concepts',
   'Directives',
-  'React',
+  '@lit-labs/react',
+  '@lit-labs/motion'
 ];
 
 const orderOf = (section) => {

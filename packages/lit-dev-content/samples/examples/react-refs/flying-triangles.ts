@@ -1,5 +1,5 @@
-import { css, html, LitElement } from 'lit';
-import { customElement, query, state, property } from 'lit/decorators.js';
+import {css, html, LitElement} from 'lit';
+import {customElement, query, state} from 'lit/decorators.js';
 
 /*
   This file is for demo purposes only.
@@ -30,7 +30,7 @@ const styles = css`
   canvas {
     border: 5px solid #343434;
   }
-    
+
   p {
     top: 50%;
     left: 50%;
@@ -47,7 +47,7 @@ export class FlyingTriangles extends LitElement {
 
   @query('canvas') private canvas!: HTMLCanvasElement;
   @state() isPlaying = false;
-  
+
   private scene = createScene();
   private fps: number = 54;
 
@@ -59,7 +59,7 @@ export class FlyingTriangles extends LitElement {
       </div>
     `;
   }
-  
+
   play() {
     if (this.isPlaying) return;
 
@@ -81,18 +81,13 @@ export class FlyingTriangles extends LitElement {
   }
 
   private onPlayingChange() {
-    this.dispatchEvent(
-      new Event(
-        'playing-change', 
-        { composed: true },
-      ),
-    );
+    this.dispatchEvent(new Event('playing-change', {composed: true}));
   }
 
   private renderCanvas = () => {
     this.scene.rafId = requestAnimationFrame(this.renderCanvas);
     renderScene(this.canvas, this.scene, this.fps);
-  }
+  };
 }
 
 /*
@@ -121,22 +116,22 @@ interface Scene {
 
 class Wanderer {
   // target bubble
-  bubbleRadius = 10 + Math.random() * 10 ;
+  bubbleRadius = 10 + Math.random() * 10;
   bubbleDist = 50 + Math.random() * 15;
   wedge = 0.1 + Math.random() * 0.2;
   radians = Math.random() * Math.PI * 2;
-  target: Vector = { x: 0, y: 0 };
+  target: Vector = {x: 0, y: 0};
 
   // vehicle
   mass = 5 + Math.random() * 5;
   velocity = 2 + Math.random() * 3;
-  pos: Vector = { x: 0, y: 0 };
-  theta: Vector = { x: 0, y: 0 };
+  pos: Vector = {x: 0, y: 0};
+  theta: Vector = {x: 0, y: 0};
   color: number[] = [
     100 + Math.floor(Math.random() * 155),
     100 + Math.floor(Math.random() * 155),
     220,
-  ]
+  ];
 }
 
 const createScene = (): Scene => ({
@@ -147,11 +142,7 @@ const createScene = (): Scene => ({
   wanderers: [new Wanderer(), new Wanderer(), new Wanderer()],
 });
 
-const renderScene = (
-  canvas: HTMLCanvasElement,
-  state: Scene,
-  fps: number,
-) => {
+const renderScene = (canvas: HTMLCanvasElement, state: Scene, fps: number) => {
   // throttle renders
   const now = performance.now();
   const delta = now - state.timestamp;
@@ -178,7 +169,7 @@ const renderScene = (
   }
 
   drawScene(canvas, state);
-}
+};
 
 const integrate = (wndr: Wanderer) => {
   // increment chase bubble
@@ -186,10 +177,12 @@ const integrate = (wndr: Wanderer) => {
   wndr.radians %= Math.PI * 2;
 
   // build chase bubble target
-  wndr.target.x = (wndr.theta.x * wndr.bubbleDist) + (Math.cos(wndr.radians) * wndr.bubbleRadius);
-  wndr.target.y = (wndr.theta.y * wndr.bubbleDist) + (Math.sin(wndr.radians) * wndr.bubbleRadius);
+  wndr.target.x =
+    wndr.theta.x * wndr.bubbleDist + Math.cos(wndr.radians) * wndr.bubbleRadius;
+  wndr.target.y =
+    wndr.theta.y * wndr.bubbleDist + Math.sin(wndr.radians) * wndr.bubbleRadius;
 
-  // get orientation 
+  // get orientation
   normalize(wndr.target);
   wndr.theta.x += wndr.target.x / wndr.mass;
   wndr.theta.y += wndr.target.y / wndr.mass;
@@ -198,23 +191,20 @@ const integrate = (wndr: Wanderer) => {
   // add pos
   wndr.pos.x += wndr.theta.x * wndr.velocity;
   wndr.pos.y += wndr.theta.y * wndr.velocity;
-}
+};
 
 const normalize = (vec: Vector, mag: number = 1) => {
-  const sq = Math.sqrt((vec.x * vec.x + vec.y * vec.y));
-  vec.x = vec.x / sq * mag;
-  vec.y = vec.y / sq * mag;
-}
+  const sq = Math.sqrt(vec.x * vec.x + vec.y * vec.y);
+  vec.x = (vec.x / sq) * mag;
+  vec.y = (vec.y / sq) * mag;
+};
 
 const wrapPos = (canvas: HTMLCanvasElement, wndr: Wanderer) => {
   wndr.pos.y = ((wndr.pos.y % canvas.height) + canvas.height) % canvas.height;
   wndr.pos.x = ((wndr.pos.x % canvas.width) + canvas.width) % canvas.width;
-}
+};
 
-const drawScene = (
-  canvas: HTMLCanvasElement,
-  state: Scene,
-) => {
+const drawScene = (canvas: HTMLCanvasElement, state: Scene) => {
   const ctx = canvas.getContext('2d');
   if (ctx === null) return;
 
@@ -245,5 +235,11 @@ const drawScene = (
     ctx.fill();
 
     ctx.restore();
+  }
+};
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'flying-triangles': FlyingTriangles;
   }
 }

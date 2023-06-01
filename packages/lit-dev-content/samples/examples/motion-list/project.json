@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "title": "List Item Animation",
   "description": "Animate list items.",
-  "section": "Motion",
+  "section": "@lit-labs/motion",
   "files": {
     "motion-list.ts": {},
     "styles.ts": {},

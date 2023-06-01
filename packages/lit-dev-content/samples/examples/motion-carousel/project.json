@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "title": "Carousel Transitions",
   "description": "Animated carousel.",
-  "section": "Motion",
+  "section": "@lit-labs/motion",
   "files": {
     "motion-carousel.ts": {},
     "styles.ts": {},

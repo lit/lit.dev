@@ -2,7 +2,7 @@
   "extends": "/samples/base.json",
   "title": "Lit Logo Animation",
   "description": "Animate elements when they go in and out of the page.",
-  "section": "Motion",
+  "section": "@lit-labs/motion",
   "files": {
     "motion-lit.ts": {},
     "styles.ts": {},
