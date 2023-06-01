@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <main>
-      <h1> Let's play Click Roulette!</h1>
+      <h1>Let's play Click Roulette!</h1>
       <ClickRoulette onPop={handlePop} onReset={handleReset} />
       <p>{message}</p>
     </main>

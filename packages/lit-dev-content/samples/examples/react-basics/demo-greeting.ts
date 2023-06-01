@@ -16,7 +16,7 @@ export class DemoGreeting extends LitElement {
   @property() name = 'Somebody';
 
   render() {
-    return html` <p>Hello, ${this.name}!</p> `;
+    return html`<p>Hello, ${this.name}!</p>`;
   }
 }
 
