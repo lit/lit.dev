@@ -9,7 +9,7 @@ const ClickRoulette = createComponent({
   elementClass: ClickRouletteWC,
   // Defines props that will be event handlers for the named events
   events: {
-    onBang: 'bang',
+    onPop: 'pop',
     onReset: 'reset',
   },
 });
@@ -17,8 +17,8 @@ const ClickRoulette = createComponent({
 const App = () => {
   const [message, setMessage] = React.useState('😬');
 
-  const handleBang = () => {
-    setMessage('😵');
+  const handlePop = () => {
+    setMessage('🎉');
   };
 
   const handleReset = () => {
@@ -28,7 +28,7 @@ const App = () => {
   return (
     <main>
       <h1> Let's play Click Roulette!</h1>
-      <ClickRoulette onBang={handleBang} onReset={handleReset} />
+      <ClickRoulette onPop={handlePop} onReset={handleReset} />
       <p>{message}</p>
     </main>
   );

@@ -2,7 +2,7 @@ import {html, css, LitElement} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 
 /**
- * @fires bang Fires when count reaches a random number between 1-6.
+ * @fires pop Fires when count reaches a random number between 1-6.
  * @fires reset Fires when reset button is clicked.
  */
 @customElement('click-roulette')
@@ -29,7 +29,7 @@ export class ClickRoulette extends LitElement {
     e.stopPropagation();
     if (++this.count === this._loadedCount) {
       this.fired = true;
-      this.dispatchEvent(new Event('bang', {bubbles: true, composed: true}));
+      this.dispatchEvent(new Event('pop', {bubbles: true, composed: true}));
     }
   }
 
