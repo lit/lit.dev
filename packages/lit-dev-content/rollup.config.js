@@ -30,7 +30,6 @@ const terserOptions = {
 
 export default [
   {
-    name: 'client',
     input: [
       // lit-hydrate-support MUST be loaded first to make sure lit hydration
       // helpers are bundled before LitElement attempts to use hydration support
@@ -100,14 +99,13 @@ export default [
         showMinifiedSize: false,
       }),
     ],
+    preserveEntrySignatures: false,
   },
+
+  // A separate bundle is made for the server so that we do not modify the
+  // client module graph just to SSR a component.
   {
-    name: 'SSR',
-    input: [
-      // A separate bundle is made for the server so that we do not modify the
-      // client module graph just to SSR a component.
-      'lib/components/ssr.js',
-    ],
+    input: ['lib/components/ssr.js'],
     output: {
       dir: 'rollupout/server',
       format: 'esm',
