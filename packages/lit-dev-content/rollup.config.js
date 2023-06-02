@@ -99,7 +99,7 @@ export default [
         showMinifiedSize: false,
       }),
     ],
-    preserveEntrySignatures: 'strict',
+    preserveEntrySignatures: false,
   },
 
   // A separate bundle is made for the server so that we do not modify the
