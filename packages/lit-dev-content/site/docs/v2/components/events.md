@@ -170,7 +170,7 @@ When listening to events on repeated items, it's often convenient to use [event 
 
 ### Removing event listeners
 
-Passing `null`, `undefined` or `nothing` to an `@` expression will cause any existing listener to be removed, or simply no-op if no listener has been added.
+Passing `null`, `undefined` or `nothing` to an `@` expression will cause any existing listener to be removed.
 
 ## Dispatching events { #dispatching-events }
 
