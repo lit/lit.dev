@@ -168,6 +168,10 @@ When listening to events on repeated items, it's often convenient to use [event 
 
 {% playground-example "v2-docs/components/events/list/" "my-element.ts" %}
 
+### Removing event listeners
+
+Passing `null`, `undefined` or `nothing` to an `@` expression will cause any existing listener to be removed.
+
 ## Dispatching events { #dispatching-events }
 
 All DOM nodes can dispatch events using the `dispatchEvent` method. First, create an event instance, specifying the event type and options. Then pass it to `dispatchEvent` as follows:
