@@ -91,10 +91,11 @@
           }
         ],
         "type": {
-          "type": "reflection",
-          "declaration": {
-            "name": "__type",
-            "kindString": "Type literal"
+          "type": "typeOperator",
+          "operator": "unique",
+          "target": {
+            "type": "intrinsic",
+            "name": "symbol"
           }
         },
         "defaultValue": "{}",
@@ -4467,10 +4468,11 @@
           }
         ],
         "type": {
-          "type": "reflection",
-          "declaration": {
-            "name": "__type",
-            "kindString": "Type literal"
+          "type": "typeOperator",
+          "operator": "unique",
+          "target": {
+            "type": "intrinsic",
+            "name": "symbol"
           }
         },
         "defaultValue": "{}",
