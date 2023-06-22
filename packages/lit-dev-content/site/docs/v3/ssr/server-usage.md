@@ -63,7 +63,7 @@ Allowing Promises in a sync iterable creates a kind of hybrid sync / async itera
 
 `RenderResultReadable` is a Node `Readable` stream implementation that provides values from a `RenderResult`. This can be piped into a `Writable` stream, or passed to web server frameworks like Koa.
 
-This is the preferred way to handle SSR results when integrating with a streaming HTTP server or other stream-supprting API.
+This is the preferred way to handle SSR results when integrating with a streaming HTTP server or other stream-supporting API.
 
 ```ts
 import {render} from '@lit-labs/ssr';
