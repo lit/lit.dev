@@ -377,8 +377,8 @@ blank.
   "sourceLocale": "en",
   "targetLocales": ["es-419", "zh-Hans"],
   "inputFiles": [
-    "src/**/*.js",
-  ]
+    "src/**/*.js"
+  ],
   "output": {
     "mode": "runtime",
     "outputDir": "./src/generated/locales"
