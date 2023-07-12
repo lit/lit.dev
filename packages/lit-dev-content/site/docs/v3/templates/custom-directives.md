@@ -404,7 +404,7 @@ export const resolvePromise = directive(ResolvePromise);
 
 {% endswitchable-sample %}
 
-Here, the rendered template shows "Waiting for promise to resolve," followed by the resolved value of the promise, whenever it resolves.
+Here, the rendered template shows "Waiting for promise to resolve", followed by the resolved value of the promise, whenever it resolves.
 
 Async directives often need to subscribe to external resources. To prevent memory leaks async directives should unsubscribe or dispose of resources when the directive instance is no longer in use.  For this purpose, `AsyncDirective` provides the following extra lifecycle callbacks and API:
 
