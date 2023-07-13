@@ -1,0 +1,63 @@
+{
+  "lit-team": {
+    "name": "Lit Team",
+    "links": {
+      "twitter": "buildWithLit"
+    },
+    "image": {
+      "url": "logo.svg#flame",
+      "alt": "",
+      "class": "flame"
+    }
+  },
+  "gray-norton": {
+    "name": "Gray Norton",
+    "links": {
+      "twitter": "graynorton",
+      "github": "graynorton"
+    },
+    "image": {
+      "url": "authors/gray-norton.jpg"
+    }
+  },
+  "justin-fagnani": {
+    "name": "Justin Fagnani",
+    "links": {
+      "twitter": "justinfagnani",
+      "github": "justinfagnani"
+    },
+    "image": {
+      "url": "authors/justin-fagnani.jpg"
+    }
+  },
+  "arthur-evans": {
+    "name": "Arthur Evans",
+    "links": {
+      "twitter": "devdocdude",
+      "github": "arthurevans"
+    },
+    "image": {
+      "url": "authors/arthur-evans.jpg"
+    }
+  },
+  "al-marks": {
+    "name": "Al Marks",
+    "links": {
+      "twitter": "aomarks",
+      "github": "aomarks"
+    },
+    "image": {
+      "url": "authors/al-marks.jpg"
+    }
+  },
+  "elliott-marquez": {
+    "name": "Elliott Marquez",
+    "links": {
+      "twitter": "techytacos",
+      "github": "e111077"
+    },
+    "image": {
+      "url": "authors/elliott-marquez.webp"
+    }
+  }
+}

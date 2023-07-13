@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "unsafeHTML directive",
+  "description": "Demo exploring use of the unsafeHTML directive.",
+  "section": "Directives",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}

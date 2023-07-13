@@ -1,0 +1,18 @@
+---
+layout: api-v1
+
+pagination:
+    data: api-docs-pages.lit-html-1
+    size: 1
+    alias: data
+    addAllPagesToCollections: true
+
+permalink: "docs/v1/api/lit-html/{{ data.slug }}/"
+
+eleventyComputed:
+    title: "{{ data.title }}"
+    eleventyNavigation:
+        key: "{{ data.title }}"
+        parent: lit-html API
+    apiPath: /docs/v1/api/lit-html
+---

@@ -1,0 +1,81 @@
+#connect {
+  background: url('/images/flame-tile.svg');
+  background-size: 60px;
+  background-repeat: space;
+  background-color: #f4f4f4;
+}
+
+#connectContent {
+  max-width: var(--content-max-width);
+  padding: 60px var(--home-side-margin);
+  margin: auto;
+  display: flex;
+}
+
+#connectLhs {
+  flex: 1;
+  margin-right: 100px;
+}
+
+#connectLhs > h1 {
+  font-size: 24px;
+}
+
+#connectRhs {
+  flex: 1;
+}
+
+#connectList {
+  list-style: none;
+  padding: 0;
+}
+
+#connectList > li {
+  margin-bottom: 40px;
+}
+
+#connectList > li > a {
+  color: var(--color-blue);
+  border-bottom: 2px solid var(--color-blue);
+  padding: 8px 20px 6px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#connectList > li > a:hover,
+#connectList > li > a:focus {
+  background: var(--color-blue);
+  color: white;
+}
+
+#connectList > li > a > .title {
+  font-weight: 700;
+  margin-right: 30px;
+}
+
+#connectList > li > a > .desc {
+  visibility: hidden;
+}
+
+#connectList > li > a:hover > .desc,
+#connectList > li > a:focus > .desc {
+  visibility: visible;
+}
+
+@media (max-width: 860px) {
+  #connectContent {
+    flex-direction: column;
+  }
+
+  #connectLhs {
+    margin-right: 0;
+  }
+
+  #connectList > li {
+    margin-bottom: 20px;
+  }
+
+  #connectList > li > a > .desc {
+    display: none;
+  }
+}

@@ -1,0 +1,95 @@
+---
+defaultAuthor:
+  - lit-team
+splash: lit-shapes.svg
+social:
+  image:
+    url: logo-whitebg-padded-1600x800.png
+    alt: Lit Logo
+---
+
+{% if not author %}
+  {% set author = defaultAuthor %}
+{% endif %}
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "blog-post.css" %}
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
+
+  <!--
+    References:
+      https://ogp.me/
+      https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
+
+    Validators:
+      https://cards-dev.twitter.com/validator
+      https://developers.facebook.com/tools/debug/
+      https://www.linkedin.com/post-inspector
+  -->
+  <meta property="og:url" content="{{ env.MAIN_URL }}{{ page.url }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ summary }}">
+  <meta property="og:site_name" content="lit.dev">
+  <meta property="og:image" content="{{ env.MAIN_URL }}/images/{{ social.image.url }}">
+  <meta property="og:image:alt" content="{{ social.image.alt }}">
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ date | yyyymmdd }}">
+  {% for authorId in author %}
+    {% set authorData = authors[authorId] %}
+    <meta property="article:author" content="{{ authorData.name }}">
+  {% endfor %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@buildWithLit">
+{% endblock %}
+
+{% block content %}
+  <img id="splash" src="{{ site.baseurl }}/images/blog/{{ splash }}">
+
+  <article>
+    <h1>{{ title }}</h1>
+    <p id="summary">{{ summary }}</p>
+
+    <time id="date" datetime="{{ date | yyyymmdd }}">
+      {{ date | readableDate }}
+    </time>
+
+    <div id="authors">
+      {% for authorId in author %}
+        {% set authorData = authors[authorId] %}
+        <div class="author">
+          <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+              width="80" height="80"
+              {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+              alt="{% if authorData.imageAlt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+
+          <div class="authorRhs">
+            <cite class="authorName">{{ authorData.name }}</cite>
+
+            {% if authorData.links %}
+              <ul class="authorLinks">
+                {% if authorData.links.twitter %}
+                  <li><a href="https://twitter.com/{{ authorData.links.twitter }}"
+                        target="_blank" rel="noopener">Twitter</a></li>
+                {% endif %}
+                {% if authorData.links.github %}
+                  <li><a href="https://github.com/{{ authorData.links.github }}"
+                        target="_blank" rel="noopener">GitHub</a></li>
+                {% endif %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div id="blogContent">
+      {{ content | removeHeadingAnchors | safe }}
+    </div>
+
+    <a id="blogIndexLink" href="{{ site.baseurl }}/blog/">Read more posts</a>
+  </article>
+{% endblock %}

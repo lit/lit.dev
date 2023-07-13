@@ -1,0 +1,62 @@
+---
+title: Blog
+splash: lit-shapes.svg
+---
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "blog-index.css" %}
+{% endblock %}
+
+{% block content %}
+  <img id="splash" src="{{ site.baseurl }}/images/blog/{{ splash }}">
+
+  <article>
+    <div id="frontMatter">
+      <h1>Lit Blog</h1>
+
+      <p>Hear from our team on the latest with Lit and the community. Our blog covers
+          major release announcements and showcases cool stuff being built with Lit.</p>
+
+      <p>For updates, follow <a href="https://twitter.com/buildWithLit">@buildWithLit</a>
+      on Twitter or add our <a href="{{ site.baseurl }}/blog/atom.xml">Atom
+      feed</a> to your feed reader.</p>
+    </div>
+
+    <div id="posts">
+      {% for post in collections.blogPosts | reverse %}
+      <div class="post">
+        <h2 class="date">
+            <time datetime="{{ post.data.date | yyyymmdd }}">
+              {{ post.data.date | readableDate }}
+            </time>
+          </h2>
+
+          <div class="details">
+            <h3 class="title">
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+            </h3>
+
+            <p>{{ post.data.summary }}</p>
+
+            <div id="authors">
+              {% for authorId in post.data.author or post.data.defaultAuthor %}
+                {% set authorData = authors[authorId] %}
+                <div class="author">
+                  <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+                      width="80" height="80"
+                      {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+                      alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+
+                  {{ authorData.name }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </article>
+{% endblock %}
+

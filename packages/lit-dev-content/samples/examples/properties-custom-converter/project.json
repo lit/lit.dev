@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Custom attribute converter",
+  "description": "Customizing deserialization of an attribute to a property.",
+  "section": "Reactive properties",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}

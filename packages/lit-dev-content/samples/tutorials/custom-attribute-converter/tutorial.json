@@ -1,0 +1,31 @@
+{
+  "header": "Custom attribute converters",
+  "difficulty": "Intermediate",
+  "size": "small",
+  "duration": 16,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Custom attribute converters",
+      "hasAfter": true
+    },
+    {
+      "title": "Built-in string attribute converter",
+      "checkable": true
+    },
+    {
+      "title": "Built-in attribute converter – synchronization",
+      "hasAfter": true
+    },
+    {
+      "title": "Defining a custom attribute converter"
+    },
+    {
+      "title": "Using a custom attribute converter"
+    },
+    {
+      "title": "Recap",
+      "noSolve": true
+    }
+  ]
+}

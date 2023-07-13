@@ -1,0 +1,280 @@
+body {
+  /* TODO(aomarks) Shouldn't really need this, but when the preview height is
+     dragged too high, it causes extra space to be consumed below, and the
+     entire viewport scrolls. There must be a flexbox configuration that will do
+     the right thing automatically here. */
+  overflow-y: hidden;
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: none
+}
+
+main {
+  display: flex;
+  /* Account for removed footer height. */
+  min-height: calc(100vh - var(--header-height));
+  --litdev-drawer-header-height: 3.4em;
+  --litdev-drawer-open-width: 280px;
+  --litdev-drawer-closed-width: 2.5rem;
+  --example-drawer-padding: 2em;
+  --litdev-drawer-transition-duration: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+footer {
+  /* No footer on full screen UI. */
+  display: none;
+}
+
+body:not(.ready) > main > * {
+  visibility: hidden;
+}
+
+/* example drawer */
+
+litdev-drawer:not(:defined) {
+  width: var(--litdev-drawer-closed-width);
+}
+
+litdev-drawer:not(:defined)[open] {
+  width: var(--litdev-drawer-open-width);
+}
+
+litdev-drawer {
+  background: var(--color-dark-gray);
+  color: white;
+  height: calc(100vh - var(--header-height));
+  z-index: 1;
+}
+
+litdev-drawer:not(:defined) > * {
+  display: none;
+}
+
+litdev-drawer:not([closed])::part(header) {
+  background: #333;
+}
+
+#exampleContent {
+  overflow-y: auto;
+  height: calc(100vh - var(--header-height) - var(--litdev-drawer-header-height));
+}
+
+#exampleHeading {
+  font-size: 1em;
+  font-weight: 500;
+  padding-left: var(--example-drawer-padding);
+}
+
+.exampleSectionHeading {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2em;
+  margin-bottom: 0;
+  padding-left: var(--example-drawer-padding);
+}
+
+.exampleList {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+.exampleItem {
+  font-size: 16px;
+}
+
+.exampleItem > a {
+  display: block;
+  color: white;
+  padding: 6px var(--example-drawer-padding);
+}
+
+.exampleItem > a:hover {
+  text-decoration: underline;
+}
+
+.exampleItem.active > a {
+  position: relative;
+  font-weight: bold;
+}
+
+.exampleItem.active > a::before {
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%2300e8ff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+/* Right side */
+
+#content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Prevent CodeMirror content size from affecting us here. */
+  min-width: 0;
+}
+
+/* Action bar */
+
+#actionBar {
+  flex: 0 0 var(--litdev-drawer-header-height);
+
+  margin-left: -100px;
+  padding: 0 1.3em 0 calc(100px + 1em);
+  box-sizing: border-box;
+
+  background: var(--color-blue);
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#actionBar > * {
+  margin-left: 1em;
+}
+
+#actionBar > button {
+  font-family: "Open Sans", sans-serif;
+  background: transparent;
+  border: 1px solid currentcolor;
+  padding: 0.3em 0.5em;
+  display: flex;
+  color: inherit;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#actionBar > button:hover {
+  background: blue;
+}
+
+#actionBar > button > svg {
+  margin-right: 1em;
+}
+
+#tabsEditorAndPreview {
+  flex: 1;
+  display: flex;
+}
+
+#tabsAndEditor {
+  width: var(--tabs-and-editor-width, 60%);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+/* TODO(aomarks) There is some duplication between this layout and the
+   tutorial. It's very similar, but slightly different in a few places. */
+#tabsAndControls {
+  display: flex;
+  padding-right: 8px;
+  /* Move border from the tab-bar to this wrapping div. */
+  border-bottom: 1px solid #ccc;
+  height: var(--playground-bar-height);
+  box-sizing: border-box;
+}
+
+playground-tab-bar {
+  min-width: 0;
+  border-bottom: none;
+  height: auto;
+}
+
+/* Playground */
+
+playground-file-editor {
+  flex: 1 0 0;
+}
+
+playground-preview {
+  flex: 1;
+  height: unset;
+  min-width: 200px;
+  /* Eat space taken by the resize-bar */
+  margin-left: -3px;
+}
+
+/* Resize bars */
+
+resize-bar {
+  flex: 0 0 auto;
+}
+
+resize-bar[active] {
+  background: var(--color-dark-cyan);
+}
+
+#verticalResizeBar {
+  display: none;
+}
+
+@media (max-width: 864px) {
+  #tabsEditorAndPreview {
+    flex-direction: column;
+  }
+  #tabsAndEditor {
+    width: initial;
+    flex: 1;
+  }
+  playground-file-editor {
+    min-height: 100px;
+  }
+  playground-preview {
+    flex: 0 0 var(--preview-height, 45%);
+    min-height: 200px;
+    /* Eat space taken by the resize-bar */
+    margin-left: 0;
+    margin-top: -3px;
+  }
+  #verticalResizeBar {
+    display: initial;
+  }
+  #horizontalResizeBar {
+    display: none;
+  }
+}
+
+/* Sizes the svgs of the fullscreen button in the blue actionbar */
+#actionBar lazy-svg::part(svg) {
+  width: 24px;
+  height: 24px;
+}
+
+/*
+  Displays the next view mode icon in the view-mode toggle button.
+*/
+litdev-playground-page[view-mode="split"] #actionBar .preview,
+litdev-playground-page[view-mode="preview"] #actionBar .code,
+litdev-playground-page[view-mode="code"] #actionBar .splitscreen {
+  display: contents;
+}
+
+/*
+  Show and hide the editor or preview based on the view mode and hide the resize
+  bars unless we are in split mode.
+*/
+#actionBar lazy-svg,
+litdev-playground-page[view-mode="preview"] #tabsAndEditor,
+litdev-playground-page[view-mode="code"] #preview,
+litdev-playground-page:not([view-mode="split"]) .horizontalResizeBar,
+litdev-playground-page:not([view-mode="split"]) .verticalResizeBar {
+  display: none;
+}
+
+/* Set the height and width of the preview to 100% when fullscreened */
+litdev-playground-page[view-mode="preview"] #preview {
+  --preview-height: 100%;
+  --preview-width: 100%;
+}
+
+/* Make the code editor fullwidth when code is fullscreened. */
+litdev-playground-page[view-mode="code"] #tabsAndEditor {
+  --tabs-and-editor-width: 100%;
+}

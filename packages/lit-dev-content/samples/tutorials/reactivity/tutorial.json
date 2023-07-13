@@ -1,0 +1,37 @@
+{
+  "header": "Reactivity",
+  "difficulty": "Intermediate",
+  "size": "small",
+  "duration": 20,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Introduction",
+      "noSolve": true
+    },
+    {
+      "title": "Adding a reactive property",
+      "hasAfter": true
+    },
+    {
+      "title": "Triggering an update",
+      "hasAfter": true
+    },
+    {
+      "title": "Should the component update?",
+      "hasAfter": true
+    },
+    {
+      "title": "Computing values during an update",
+      "hasAfter": true
+    },
+    {
+      "title": "After the update",
+      "hasAfter": true
+    },
+    {
+      "title": "Recap",
+      "noSolve": true
+    }
+  ]
+}

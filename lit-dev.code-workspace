@@ -1,0 +1,49 @@
+{
+  "folders": [
+    {
+      "name": "lit-dev-content",
+      "path": "packages/lit-dev-content"
+    },
+    {
+      "name": "lit-dev-tools-cjs",
+      "path": "packages/lit-dev-tools-cjs"
+    },
+    {
+      "name": "lit-dev-tools-esm",
+      "path": "packages/lit-dev-tools-esm"
+    },
+    {
+      "name": "lit-dev-tests",
+      "path": "packages/lit-dev-tests"
+    },
+    {
+      "name": "lit-dev-api",
+      "path": "packages/lit-dev-api"
+    },
+    {
+      "name": "lit-dev-server",
+      "path": "packages/lit-dev-server"
+    },
+    {
+      "name": "lit-dev-discord-bot",
+      "path": "packages/lit-dev-discord-bot"
+    },
+    {
+      "name": "lit.dev",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "search.exclude": {
+      "api-data/*/repo": true
+    },
+  },
+  "extensions": {
+    "recommendations": ["esbenp.prettier-vscode"]
+  }
+}

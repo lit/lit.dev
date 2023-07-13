@@ -1,0 +1,83 @@
+@import url('./home/1-splash.css');
+@import url('./home/2-advantages.css');
+@import url('./home/3-tour.css');
+@import url('./home/4-build-anything.css');
+@import url('./home/5-who-is-using.css');
+@import url('./home/6-explore.css');
+@import url('./home/7-connect.css');
+
+html {
+  --home-side-margin: 2rem;
+}
+
+header {
+  background: #f4f4f4;
+}
+
+/* Fading lit-logo (see home.js) */
+
+#headerLogo {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.splashLogoScrolled #headerLogo,
+#homeLink:hover > #headerLogo,
+#homeLink:focus > #headerLogo {
+  opacity: 1;
+}
+
+/* Copy */
+
+p {
+  line-height: 1.7em;
+  font-size: 16px;
+}
+
+/* Large section headings with blue underline */
+
+.homeSectionHeading {
+  font-size: 32px;
+  font-weight: 500;
+  border-bottom: 2px solid var(--color-blue);
+  padding: 0.7em 0;
+  margin: 0;
+}
+
+/* Example code snippets */
+
+.homeExample {
+  background: white;
+}
+
+.homeExample > figcaption {
+  background: var(--color-blue);
+  color: white;
+  margin: 0;
+  font-size: 1.em;
+  font-weight: 500;
+  padding: 0.88em 1.8em;
+  height: 1.4em;
+  display: flex;
+  align-items: center;
+}
+
+.homeExample .CodeMirror {
+  margin: 0;
+  padding: 1.2em 1.3em;
+  border: none;
+  font-size: 0.77778em;
+}
+
+.homeExample .CodeMirror-line {
+  /* TODO(aomarks) This should be done somewhere broader (probably Playground
+     styles). Remove 4px left padding from CodeMirror styles. We have an outer
+     padding in em units. */
+  padding: 0 !important;
+}
+
+.homeExample .divider {
+  border-bottom: 0.08em solid #dfdfdf;
+  margin: 0 1.76em;
+  height: 0;
+}

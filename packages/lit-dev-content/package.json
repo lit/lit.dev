@@ -1,0 +1,216 @@
+{
+  "name": "lit-dev-content",
+  "private": true,
+  "version": "0.0.0",
+  "description": "lit.dev site content",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "main": "_site/index.html",
+  "scripts": {
+    "fonts:manrope": "wireit",
+    "build": "wireit",
+    "build:ts": "wireit",
+    "build:rollup": "wireit",
+    "build:samples": "wireit",
+    "build:unversioned-docs": "wireit",
+    "dev:build": "wireit",
+    "dev:serve": "wireit",
+    "prod:build": "wireit",
+    "prod:build:assets": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "eleventy",
+      "dependencies": [
+        "prod:build:assets"
+      ],
+      "files": [
+        "site/**",
+        ".eleventy.js"
+      ],
+      "output": [
+        "_site"
+      ],
+      "env": {
+        "LITDEV_ENV": "local",
+        "NODE_OPTIONS": "--experimental-vm-modules --max_old_space_size=4096"
+      }
+    },
+    "dev:build": {
+      "command": "eleventy --quiet",
+      "dependencies": [
+        "build:ts",
+        "fonts:manrope",
+        "build:unversioned-docs",
+        {
+          "script": "build:samples",
+          "cascade": false
+        }
+      ],
+      "files": [
+        ".eleventy.js",
+        "site/**",
+        "!site/css/",
+        "!site/fonts/",
+        "!site/images/"
+      ],
+      "output": [
+        "_dev"
+      ],
+      "env": {
+        "LITDEV_ENV": "dev",
+        "NODE_OPTIONS": "--experimental-vm-modules"
+      }
+    },
+    "prod:build": {
+      "command": "eleventy",
+      "dependencies": [
+        "prod:build:assets"
+      ],
+      "files": [
+        "site/**",
+        ".eleventy.js"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--experimental-vm-modules --max_old_space_size=4096"
+      }
+    },
+    "dev:serve": {
+      "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open",
+      "service": {
+        "readyWhen": {
+          "lineMatches": "Web Dev Server started"
+        }
+      },
+      "dependencies": [
+        "../lit-dev-tools-esm:build",
+        {
+          "script": "../../:start:fake-github",
+          "cascade": false
+        },
+        {
+          "script": "dev:build",
+          "cascade": false
+        }
+      ]
+    },
+    "prod:build:assets": {
+      "dependencies": [
+        "build:ts",
+        "build:samples",
+        "build:rollup",
+        "fonts:manrope",
+        "build:unversioned-docs"
+      ]
+    },
+    "fonts:manrope": {
+      "command": "rm -rf temp && mkdir -p site/fonts/manrope && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/manrope/ && cd ../.. && rm -rf temp",
+      "files": [],
+      "output": [
+        "site/fonts/manrope"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc --build --pretty",
+      "dependencies": [
+        "../lit-dev-tools-esm:build:ts"
+      ],
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "build:rollup": {
+      "command": "rollup -c",
+      "dependencies": [
+        "build:ts"
+      ],
+      "files": [
+        "rollup.config.js"
+      ],
+      "output": [
+        "rollupout"
+      ]
+    },
+    "build:samples": {
+      "command": "node ../lit-dev-tools-esm/lib/generate-js-samples.js",
+      "dependencies": [
+        "../lit-dev-tools-esm:build"
+      ],
+      "files": [
+        "samples/**",
+        "!samples/js"
+      ],
+      "output": [
+        "samples/js/**"
+      ]
+    },
+    "build:unversioned-docs": {
+      "command": "node ../lit-dev-tools-esm/lib/build-unversioned-docs.js",
+      "dependencies": [
+        "../lit-dev-tools-esm:build"
+      ],
+      "files": [
+        "site/docs/**",
+        "!site/docs/unversioned"
+      ],
+      "output": [
+        "site/docs/unversioned/**"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "@11ty/eleventy-plugin-rss": "^1.1.2",
+    "@lit-labs/eleventy-plugin-lit": "^1.0.1",
+    "@lit-labs/ssr": "^3.1.2",
+    "@lit-labs/ssr-client": "^1.1.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "clean-css": "^5.1.0",
+    "codemirror": "^5.58.2",
+    "eleventy-plugin-nesting-toc": "^1.3.0",
+    "fast-glob": "^3.2.5",
+    "html-minifier": "^4.0.0",
+    "lit-dev-api": "^0.0.0",
+    "lit-dev-server": "^0.0.0",
+    "lit-dev-tools-cjs": "^0.0.0",
+    "lit-dev-tools-esm": "^0.0.0",
+    "luxon": "^2.0.2",
+    "markdown-it": "^12.0.4",
+    "markdown-it-anchor": "^8.3.0",
+    "markdown-it-attrs": "^4.0.0",
+    "rollup": "^2.23.0",
+    "rollup-plugin-minify-html-literals": "^1.2.6",
+    "rollup-plugin-summary": "^1.2.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "slugify": "^1.3.6"
+  },
+  "dependencies": {
+    "@lit-labs/motion": "^1.0.1",
+    "@lit-labs/react": "^1.0.8",
+    "@lit-labs/task": "^1.0.0",
+    "@lit/localize": "^0.10.0",
+    "@material/mwc-button": "^0.27.0",
+    "@material/mwc-checkbox": "^0.27.0",
+    "@material/mwc-dialog": "^0.27.0",
+    "@material/mwc-drawer": "^0.27.0",
+    "@material/mwc-formfield": "^0.27.0",
+    "@material/mwc-snackbar": "^0.27.0",
+    "@material/mwc-textfield": "^0.27.0",
+    "@webcomponents/template-shadowroot": "^0.2.1",
+    "algoliasearch": "^4.14.2",
+    "lit": "^2.7.4",
+    "postdoc-lib": "^1.0.3",
+    "tarts": "^1.0.0",
+    "timeago.js": "^4.0.2",
+    "tslib": "^2.2.0"
+  }
+}

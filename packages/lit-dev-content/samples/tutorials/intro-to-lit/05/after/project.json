@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "todo-list.ts": {},
+    "index.html": {}
+  }
+}

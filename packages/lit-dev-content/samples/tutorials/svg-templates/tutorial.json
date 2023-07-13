@@ -1,0 +1,39 @@
+{
+  "header": "Repeat patterns with SVG",
+  "difficulty": "Intermediate",
+  "size": "small",
+  "duration": 45,
+  "category": "Build",
+  "steps": [
+    {
+      "title": "Pattern making with SVG",
+      "hasAfter": false,
+      "noSolve": true
+    },
+    {
+      "title": "Create a pattern element",
+      "hasAfter": false
+    },
+    {
+      "title": "Create a pattern with rotation",
+      "hasAfter": false
+    },
+    {
+      "title": "Create a tile with a pattern",
+      "hasAfter": false
+    },
+    {
+      "title": "Repeat a tile with <pattern>",
+      "hasAfter": false
+    },
+    {
+      "title": "Theme a pattern with CSS",
+      "hasAfter": true
+    },
+    {
+      "title": "More advanced topics",
+      "hasAfter": false,
+      "noSolve": true
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+@import url('./blog-common.css');
+
+#frontMatter {
+  padding-bottom: 32px;
+}
+
+.post {
+  display: flex;
+  padding: 1.5em 0;
+  border-top: 1.5px solid #ccc;
+}
+
+@media (max-width: 864px) {
+  .post {
+    display: block;
+  }
+}
+
+.date {
+  color: #666;
+  font-size: 18px;
+  font-weight: 500;
+  flex: 0 0 10em;
+  margin-top: 0;
+}
+
+.title {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.title > a {
+  color: #0043c0;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.author {
+  display: inline-flex;
+  font-weight: 500;
+  align-items: center;
+  color: #555;
+  padding-right: 32px;
+}
+
+.author > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 18px;
+}

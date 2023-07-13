@@ -1,0 +1,15 @@
+node_modules/
+package-lock.json
+/packages/lit-dev-content/site/
+/packages/lit-dev-content/_site/
+/packages/*/lib/
+/packages/lit-dev-server/src/redirects.ts
+/packages/lit-dev-api/
+/packages/lit-dev-content/_dev/
+/packages/lit-dev-content/_site/
+/packages/lit-dev-content/rollupout/
+# TODO(aomarks) Would be nice to format samples, but Prettier doesn't always do
+# a great job compared to our manual formatting.
+/packages/lit-dev-content/samples/
+
+.wireit

@@ -1,0 +1,45 @@
+{
+  "header": "Intro to async directives",
+  "difficulty": "Advanced",
+  "size": "small",
+  "duration": 30,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Introduction",
+      "noSolve": true
+    },
+    {
+      "title": "Make a directive",
+      "hasAfter": true
+    },
+    {
+      "title": "Add the directive to a template",
+      "hasAfter": true
+    },
+    {
+      "title": "Import timeago from npm"
+    },
+    {
+      "title": "Change to AsyncDirective"
+    },
+    {
+      "title": "Add an update method and timer"
+    },
+    {
+      "title": "Update the directive's value"
+    },
+    {
+      "title": "Add a disconnected callback",
+      "hasAfter": true
+    },
+    {
+      "title": "Test disconnection/reconnection",
+      "hasAfter": true
+    },
+    {
+      "title": "Try using the directive",
+      "hasAfter": true
+    }
+  ]
+}

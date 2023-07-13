@@ -1,0 +1,32 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "rootDir": ".",
+    "outDir": "js",
+    "types": [],
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "jsx": "preserve",
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": [
+    // Position of static properties block is imperfect, and this example is
+    // prominent on the homepage. See https://github.com/lit/lit/issues/2159.
+    "examples/hello-world/simple-greeting.ts",
+    // Comments in some locations get lost by TypeScript. See
+    // https://github.com/lit/lit/issues/2158.
+    "v2-docs/templates/lists-arrays/my-element.ts",
+    "v2-docs/templates/lists-map/my-element.ts",
+    "v3-docs/templates/lists-arrays/my-element.ts",
+    "v3-docs/templates/lists-map/my-element.ts",
+    // Mixin sample does not compile: https://github.com/lit/lit/issues/3865
+    "v2-docs/mixins/highlightable/**",
+    "v3-docs/mixins/highlightable/**",
+    // Intentionally doesn't compile for tutorial part.
+    "tutorials/word-viewer/02/before/word-viewer.ts"
+  ]
+}

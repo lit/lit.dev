@@ -1,0 +1,49 @@
+{% extends 'articles.html' %}
+
+{% block articleHeader %}
+  <div class="date">
+    <time datetime="{{ publishDate }}">{{ publishDate | readableDate }}</time>
+    {% if lastUpdated %}
+     — Updated <time datetime="{{ lastUpdated }}">{{ lastUpdated | readableDate }}</time>
+    {% endif %}
+  </div>
+  <div class="tags">
+    {% for tag in tags %}
+      {% if tag != 'articles-nav' %}
+        <a href="{{ site.baseurl }}/articles/tags/{{ tag }}/" aria-label="{{ tag }} tag">{{ tag }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="authors">
+    {% for authorId in author or defaultAuthor %}
+      {% set authorData = authors[authorId] %}
+      <figure class="author">
+        <img src="{{ site.baseurl }}/images/{{ authorData.image.url }}"
+            width="80" height="80"
+            {% if authorData.image.class %}class="{{ authorData.image.class }}"{% endif %}
+            alt="{% if authorData.image.alt !== undefined %}{{ authorData.image.alt }}{% else %}Photo of {{ authorData.name }}{% endif %}">
+          <div>
+            <figcaption>{{ authorData.name }}</figcaption>
+            {% if authorData.links %}
+              <div class="links">
+                {% if authorData.links.twitter %}
+                  <a href="https://twitter.com/{{ authorData.links.twitter }}" target="_blank">
+                    <svg aria-label="{{ authorData.name}}'s Twitter Account">
+                      <use href="{{ site.baseurl }}/images/social/twitter.svg#twitter"></use>
+                    </svg>
+                  </a>
+                {% endif %}
+                {% if authorData.links.github %}
+                  <a href="https://github.com/{{ authorData.links.github }}" target="_blank">
+                    <svg aria-label="{{ authorData.name}}'s Github Account">
+                      <use href="{{ site.baseurl }}/images/social/github.svg#github"></use>
+                    </svg>
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+      </figure>
+    {% endfor %}
+  </div>
+{% endblock %}

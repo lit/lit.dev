@@ -1,0 +1,63 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% inlinecss "tutorial.css" %}
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-tutorial.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/resize-bar.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/ts-js.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<litdev-tutorial
+  id="tutorial"
+  project="tutorialProject"
+  preview="tutorialPreview">
+</litdev-tutorial>
+
+<resize-bar
+   target="tutorial"
+   dimension="width"
+   property="--text-side-width">
+</resize-bar>
+
+<div id="editorAndPreview">
+  <playground-project
+     sandbox-base-url="{{ env.PLAYGROUND_SANDBOX }}"
+     id="tutorialProject">
+  </playground-project>
+
+  <div id="tabsAndControls">
+    <playground-tab-bar
+      project="tutorialProject"
+      editor="tutorialEditor">
+    </playground-tab-bar>
+
+    <litdev-example-controls></litdev-example-controls>
+
+    <litdev-playground-change-guard
+      project="tutorialProject">
+    </litdev-playground-change-guard>
+  </div>
+
+  <playground-file-editor
+    id="tutorialEditor"
+    project="tutorialProject"
+    line-numbers>
+  </playground-file-editor>
+
+  <resize-bar
+     target="tutorialPreview"
+     dimension="height"
+     property="--preview-height">
+  </resize-bar>
+
+  <playground-preview
+    id="tutorialPreview"
+    project="tutorialProject">
+  </playground-preview>
+</div>
+
+{% endblock %}

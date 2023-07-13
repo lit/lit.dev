@@ -1,0 +1,83 @@
+#buildAnythingWrapper {
+  padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
+}
+
+#buildAnythingWrapper > h1 {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0 auto 1em auto;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--color-blue);
+  max-width: var(--content-max-width);
+}
+
+#buildAnything {
+  max-width: var(--content-max-width);
+  margin: auto;
+  display: flex;
+}
+
+#buildAnything > .item {
+  flex: 1;
+  padding: 0 1.5em;
+  border-right: 2px solid #bbb;
+}
+
+#buildAnything > .item:first-of-type {
+  padding-left: 0;
+}
+
+#buildAnything > .item:last-of-type {
+  padding-right: 0;
+  border-right: none;
+}
+
+#buildAnything > .item > .heading {
+  display: flex;
+  align-items: center;
+}
+
+#buildAnything > .item > .heading > h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  margin-left: 1em;
+}
+
+.buildAnythingArt > lazy-svg::part(svg) {
+  width: 66px;
+  height: 66px;
+  margin: 1.8em 0 0.9em 0;
+  color: var(--color-blue);
+}
+
+/* Solid blue rectangle under illustrations */
+.buildAnythingArt {
+  z-index: 1;
+  position: relative;
+}
+.buildAnythingArt:not(.first)::after {
+  background: #D6FDFD;
+  position: absolute;
+  content: '';
+  left: 8px;
+  top: 40px;
+  width: 50px;
+  height: 50px;
+  z-index: -1;
+}
+
+@media (max-width: 1000px) {
+  #buildAnything {
+    flex-direction: column;
+  }
+
+  #buildAnything > .item {
+    padding: 1em 0;
+  }
+
+  #buildAnything > .item:not(:last-of-type) {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+}

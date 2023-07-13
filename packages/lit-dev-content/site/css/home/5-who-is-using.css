@@ -1,0 +1,126 @@
+#whoIsUsing {
+  background: var(--color-blue);
+  padding: 2em var(--home-side-margin);
+  z-index: 0;
+  position: relative;
+}
+
+#whoIsUsingContent {
+  max-width: var(--content-max-width);
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+#whoIsUsingContent > .heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+  padding: 25px 40px 25px 0;
+}
+
+#whoIsUsingContent > .heading > h1 {
+  color: white;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  max-width: 520px;
+  min-width: 200px;
+  margin: 0;
+}
+
+#whoIsUsingContent > .heading > .color {
+  background: #1D3AFF;
+  position: absolute;
+  right: 0;
+  z-index: -2;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+}
+
+#whoIsUsingContent > .heading > .texture {
+  background: url('/images/texture-white.png');
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  opacity: 0.2;
+}
+
+#whoIsUsingLogos {
+  width: 100%;
+  max-width: var(--content-max-width);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: white;
+  margin-top: 3em;
+}
+
+#whoIsUsingLogos > a {
+  max-width: 7em;
+  height: 4.5em;
+  text-align: center;
+  position: relative;
+  margin: 1.5em;
+  color: inherit;
+}
+
+#whoIsUsingLogos lazy-svg::part(svg) {
+  height: 1.82em;
+  width: 7em;
+}
+
+#whoIsUsingLogos div {
+  position: absolute;
+  display: flex;
+  color: #e1e5ff;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  height: 2em;
+  width: 100%;
+  white-space: nowrap;
+}
+
+#whoIsUsingLogos > a[href]:hover > div,
+#whoIsUsingLogos > a[href]:focus > div {
+  color: inherit;
+  text-decoration: underline;
+}
+
+#whoIsUsingLogos span {
+  display: block;
+  font-size: 0.72222em;
+  color: inherit;
+}
+
+@media (max-width: 1250px) {
+  #whoIsUsing {
+    padding: 0 0 40px 0;
+  }
+
+  #whoIsUsingContent {
+    flex-direction: column;
+  }
+
+  #whoIsUsingLogos {
+    margin-top: 0;
+  }
+
+  #whoIsUsingContent > .heading {
+    margin: var(--home-side-margin);
+    margin-bottom: 40px;
+    padding: 20px var(--home-side-margin);
+  }
+
+  #whoIsUsingContent > .heading > h1 {
+    min-width: unset;
+    max-width: unset;
+    margin-right: var(--home-side-margin);
+  }
+}

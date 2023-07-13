@@ -1,0 +1,319 @@
+---
+layout: docs
+---
+
+{% macro importStatement(symbol) -%}
+  import { {{symbol.name}} } from '{{ symbol.entrypointSources[0].moduleSpecifier }}';
+{%- endmacro %}
+
+{% macro locationLink(location, label) -%}
+  <a href="{{ site.baseurl }}{{ apiPath }}/{{ location.page }}#{{ location.anchor }}">{{label}}</a>
+{%- endmacro %}
+
+{%- macro externalLink(url, label) -%}
+  <a href="{{ url }}" target="_blank" rel="noopener">
+    {%- if url.startsWith("https://developer.mozilla.org") -%}
+      <svg class="mdnIcon" role="img" width="16" height="16">
+        <title>MDN</title>
+        <use xlink:href="{{ site.baseurl }}/images/logos/mdn.svg#logo"></use>
+      </svg>
+    {%- endif %}
+    {{ label -}}
+  </a>
+{%- endmacro -%}
+
+{% macro heritageList(node) -%}
+  {%- set arrow = joiner(' → ') %}
+  {%- for super in node.heritage -%}
+    {{- arrow() }}
+    <code>
+      {{- type(super) -}}
+    </code>
+  {%- endfor -%}
+{% endmacro %}
+
+{% macro kind(obj) %}
+  {% if obj.kindString == "Function" and obj.sources[0].fileName.includes('/decorators/') %}
+    decorator
+  {% elif obj.kindString == "Function" and obj.sources[0].fileName.includes('/directives/') %}
+    directive
+  {% elif obj.kindString == "Interface" %}
+    type
+  {% elif obj.kindString == "Type alias" %}
+    type
+  {% elif obj.kindString == "Variable" %}
+    value
+  {% elif obj.kindString == "Accessor" %}
+    property
+  {% else %}
+    {{ obj.kindString | lower }}
+  {% endif %}
+{% endmacro %}
+
+{%- macro type(t) -%}
+  <span class="type">
+    {%- if t.type == 'array' -%}
+      Array&lt;{{- type(t.elementType) -}}&gt;
+
+    {%- elif t.operator == 'readonly' and t.target.type == 'array' -%}
+      ReadonlyArray&lt;{{- type(t.target.elementType) -}}&gt;
+
+    {%- elif t.operator == 'keyof' -%}
+      keyof {{ type(t.target) }}
+
+      {%- elif t.operator == 'unique' and t.target.name == 'symbol' -%}
+      symbol
+
+    {%- elif t.type == 'conditional' -%}
+      {{ type(t.checkType) }} ?
+      {{ type(t.trueType) }} :
+      {{ type(t.falseType) }}
+
+    {%- elif t.type == 'union' -%}
+      {%- set pipe = joiner(' | ') -%}
+      {%- for item in t.types -%}
+        {{- pipe() -}} {{- type(item) -}}
+      {%- endfor -%}
+
+    {%- elif t.type === 'indexedAccess' -%}
+      {{- type(t.objectType) }}[{{ type(t.indexType) }}]
+
+    {%- elif t.type == 'query' -%}
+      {{- type(t.queryType) -}}
+
+    {%- elif t.type == 'tuple' -%}
+      [
+        {%- set comma = joiner(', ') -%}
+        {%- for el in t.elements -%}
+          {{- comma() -}}
+          {{- type(el) -}}
+        {%- endfor -%}
+      ]
+
+    {%- elif t.type == 'reflection' -%}
+      {{- type(t.declaration) -}}
+
+    {%- elif (t.kindString == 'Interface' or t.kindString == 'Type literal') and t.children -%}
+      {
+        {%- set comma = joiner(', ') -%}
+        {%- for prop in t.children -%}
+          {{- comma() -}}
+          {{- prop.name -}}: {{ type(prop) -}}
+        {%- endfor -%}
+      }
+
+    {%- elif t.signatures[0] -%}
+      {{- type(t.signatures[0]) -}}
+
+    {%- elif t.kindString === 'Call signature' -%}
+      (
+        {%- set comma = joiner(', ') -%}
+        {%- for param in t.parameters -%}
+          {{- comma() -}}
+          {%- if param.type.type == 'tuple' -%}
+            {{- type(param.type) -}}
+          {%- else -%}
+            <span class="paramName">
+              {{- param.name -}}
+              {%- if param.flags.isOptional -%} ? {%- endif -%}
+              : {{ type(param.type) -}}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      ) => {{ type(t.type) }}
+
+    {%- elif t.location -%}
+      {{- locationLink(t.location, t.name) -}}
+
+    {%- elif t.externalUrl -%}
+      {{- externalLink(t.externalUrl, t.name) -}}
+
+    {%- elif t.type == "literal" -%}
+      {%- if t.value == null -%}
+        null
+      {%- elif (t.value | typeof) == "string" -%}
+        "{{- t.value -}}"
+      {%- else -%}
+        {{- t.value -}}
+      {%- endif -%}
+
+    {%- elif (t.type | typeof) == "object" -%}
+      {{- type(t.type) -}}
+
+    {%- elif t.name and t.name !== '__type' -%}
+      {{- t.name -}}
+
+    {%- else -%}
+      <span class="error-fallback-todo">TODO</span>
+      {# {{ t | dump }} #}
+    {%- endif -%}
+
+    {%- if t.typeArguments -%}
+      &lt;
+      {%- set comma = joiner(', ') -%}
+      {%- for arg in t.typeArguments -%}
+        {{- comma() -}}
+        {{- type(arg) -}}
+      {%- endfor -%}
+      &gt;
+    {%- endif -%}
+  </span>
+{%- endmacro -%}
+
+{% macro signature(sig) -%}
+  {%- if sig.kindString === "Constructor signature" -%}
+    <span class="newKeyword">new</span>
+    <span class="functionName">{{ sig.type.name -}}</span>
+  {%- else -%}
+    <span class="functionName">{{- sig.name -}}</span>
+  {%- endif -%}
+  (
+    {%- set comma = joiner(', ') -%}
+    {%- for param in sig.parameters -%}
+      {{- comma() -}}
+      <span class="paramName">
+        {{- param.name -}}
+        {%- if param.flags.isOptional -%} ? {%- endif -%}
+      </span>
+    {%- endfor -%}
+  ): {{ type(sig.type) -}}
+{%- endmacro %}
+
+{% macro params(t) %}
+  <dl class="params">
+    {% for param in t.signatures[0].parameters %}
+      <dt class="paramName">
+        {{ param.name -}}
+        {%- if param.flags.isOptional -%} ? {%- endif -%}
+      </dt>
+      <dd class="paramDetails">
+        <code class="paramType">{{ type(param.type) }}</code>
+        {{ param.comment.shortText | markdownWithoutHtml | safe }}
+      </dd>
+    {% endfor %}
+  </dl>
+{% endmacro %}
+
+{% macro viewSourceLink(symbol) %}
+  {% if symbol.sources[0].fileName
+      and not symbol.sources[0].fileName.endsWith('.d.ts') %}
+    <a class="viewSourceLink"
+        href="https://github.com/{{ data.repo }}/blob/{{ data.commit }}/{{ symbol.sources[0].fileName }}#L{{ symbol.sources[0].line }}"
+        target="_blank"
+        rel="noopener">
+      View source
+    </a>
+  {% endif %}
+{% endmacro %}
+
+{% macro anchor(id, name) %}
+  <a class="anchor" href="#{{ id }}">
+    <span aria-hidden="true">#</span>
+    <span class="offscreen">
+      Permalink to {{ name }}
+    </span>
+  </a>
+{% endmacro %}
+
+{% macro properties(arr) %}
+  {% for prop in arr %}
+    <div class="heading h4 property">
+      <h4 id="{{ prop.location.anchor }}">
+        {% if prop.flags.isStatic %}
+          <span class="staticKeyword">static</span>
+        {% endif %}
+        {% if prop.flags.isReadonly %}
+          <span class="readonlyKeyword">readonly</span>
+        {% endif %}
+        {% if prop.signatures[0] %}
+          {{ signature(prop.signatures[0]) }}
+        {% elif prop.type %}
+          <span class="propertyName">{{ prop.name }}</span>
+          {%- if prop.flags.isOptional -%} ? {%- endif -%}
+          : {{ type(prop.type) }}
+        {% else %}
+          {{ prop.name }}
+        {% endif %}
+      </h4>
+      {{ anchor(prop.location.anchor, prop.name) }}
+      {{ viewSourceLink(prop) }}
+    </div>
+
+    <div class="propertyDetails">
+      {{ prop.comment.shortText | markdownWithoutHtml | safe }}
+      {% if prop.signatures[0].parameters.length > 0 %}
+        <h5>Parameters</h5>
+        {{ params(prop) }}
+      {% endif %}
+      {% if prop.comment.text %}
+        <h5>Details</h5>
+        {{ prop.comment.text | markdownWithoutHtml | safe }}
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endmacro %}
+
+{% for item in data.items %}
+  <div class="heading h2">
+    <h2 id="{{ item.location.anchor }}" {{ "data-toc-exclude" if item.location.excludeFromTOC }}>
+      {{ item.name }}
+    </h2>
+    <span class="kindTag {{ kind(item) }}">
+      {{ kind(item) }}
+    </span>
+    {% if item.location.anchor %}
+      {{ anchor(item.location.anchor, item.name) }}
+    {% endif %}
+    {{ viewSourceLink(item) }}
+  </div>
+
+  {{ item.comment.shortText | markdownWithoutHtml | safe }}
+
+  <h3>Import</h3>
+  <div class="import">
+    {% highlight "ts" -%}{{ importStatement(item) }}{%- endhighlight -%}
+    <copy-button text="{{ importStatement(item) }}"></copy-button>
+  </div>
+
+  {% if item.signatures[0] %}
+    <h3>Signature</h3>
+    <p class="signature">
+      <code>{{ signature(item.signatures[0]) }}</code>
+    </p>
+
+    {% if item.signatures[0].parameters.length > 0 %}
+      <h3>Parameters</h3>
+      {{ params(item) }}
+    {% endif %}
+
+  {% elif item.type %}
+    <h3>Type</h3>
+    <code class="typeSignature">{{ type(item.type) }}</code>
+  {% endif %}
+
+
+  {% if item.comment.text %}
+    <h3>Details</h3>
+    {{ item.comment.text | markdownWithoutHtml | safe }}
+  {% endif %}
+
+  {% if item.expandedCategories.length > 0 %}
+    {% for category in item.expandedCategories %}
+      <div class="properties">
+        <div class="heading h3">
+          <h3 id="{{ category.anchor }}">
+            {{ category.title }}
+          </h2>
+          {{ anchor(category.anchor, category.title) }}
+        </div>
+        {{ properties(category.children) }}
+      </div>
+    {% endfor %}
+
+  {% elif item.children.length > 0 %}
+    <div class="properties">
+      <h3>Methods and properties</h3>
+      {{ properties(item.children) }}
+    </div>
+  {% endif %}
+{% endfor %}

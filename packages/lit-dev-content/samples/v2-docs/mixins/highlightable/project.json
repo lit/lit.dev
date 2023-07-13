@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v2-base.json",
+  "files": {
+    "highlightable.ts": {},
+    "element-one.ts": {},
+    "element-two.ts": {},
+    "index.html": {}
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "header": "Build a word viewer!",
+  "difficulty": "Beginner",
+  "size": "small",
+  "duration": 30,
+  "category": "Build",
+  "steps": [
+    {
+      "title": "What you'll build!",
+      "hasAfter": true
+    },
+    {
+      "title": "Defining the word viewer!",
+      "hasAfter": true
+    },
+    {
+      "title": "Passing in properties with attributes!",
+      "hasAfter": true
+    },
+    {
+      "title": "One single word at a time!",
+      "hasAfter": true
+    },
+    {
+      "title": "Lifecycle and cycling the words!",
+      "hasAfter": true
+    },
+    {
+      "title": "Some styles!",
+      "hasAfter": true
+    },
+    {
+      "title": "Some events!",
+      "hasAfter": true
+    },
+    {
+      "title": "Dynamic styles!",
+      "hasAfter": true
+    },
+    {
+      "title": "Conclusion!",
+      "noSolve": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+.codeDark,
+.codeDark .CodeMirror {
+  --playground-code-background: #1e1e1e;
+  --playground-code-default-color: #d4d4d4;
+  --playground-code-keyword-color: #569cd6;
+  --playground-code-atom-color: #569cd6;
+  --playground-code-number-color: #b5cea8;
+  --playground-code-def-color: #9cdcfe;
+  --playground-code-variable-color: #9cdcfe;
+  --playground-code-property-color: #9cdcfe;
+  --playground-code-operator-color: #569cd6;
+  --playground-code-variable-2-color: #9cdcfe;
+  --playground-code-variable-3-color: #d4d4d4;
+  --playground-code-type-color: #4ec9b0;
+  --playground-code-comment-color: #6a9955;
+  --playground-code-string-color: #ce9178;
+  --playground-code-string-2-color: #ce9178;
+  --playground-code-meta-color: #d4d4d4;
+  --playground-code-qualifier-color: #d7ba7d;
+  --playground-code-builtin-color: #d7ba7d;
+  --playground-code-tag-color: #808080;
+  --playground-code-attribute-color: #9cdcfe;
+  --playground-code-callee-color: #dcdcaa;
+}

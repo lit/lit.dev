@@ -1,0 +1,41 @@
+{
+  "header": "Working with lists",
+  "difficulty": "Beginner",
+  "size": "small",
+  "duration": 20,
+  "category": "Learn",
+  "steps": [
+    {
+      "title": "Introduction",
+      "noSolve": true
+    },
+    {
+      "title": "The map() directive",
+      "hasAfter": true
+    },
+    {
+      "title": "Using array methods",
+      "hasAfter": true
+    },
+    {
+      "title": "Building an array of renderables",
+      "hasAfter": true
+    },
+    {
+      "title": "The range() directive",
+      "hasAfter": true
+    },
+    {
+      "title": "The repeat() directive",
+      "hasAfter": true
+    },
+    {
+      "title": "Handling events in lists",
+      "hasAfter": false
+    },
+    {
+      "title": "Recap",
+      "noSolve": true
+    }
+  ]
+}

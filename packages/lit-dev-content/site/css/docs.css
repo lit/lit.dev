@@ -1,0 +1,890 @@
+/* ------------------------------------
+ * Main layout
+ * ------------------------------------ */
+
+main {
+  /* Colors */
+  --docs-h1-underline-color: var(--color-blue);
+  --docs-h2-color: #384861;
+  --docs-h3-color: #5d6c86;
+  --docs-rule-color: #d1d1d1;
+  --docs-table-header-background: #e4e4e4;
+  --docs-table-header-color: rgb(73, 73, 73);
+  --docs-link-color: #005cc5;
+  --docs-nav-color: #242424;
+  --playground-code-background: #fafafa;
+  --code-border: 1px solid #ddd;
+  --docs-on-surface-color: #3e3e3e;
+
+  /* IMPORTANT: If any of the following variables change, one or both of the
+     @media query thresholds below need to be updated. */
+  --docs-nav-min-width: 14em;
+  --docs-nav-max-width: 1fr;
+  --docs-toc-min-width: 5em;
+  --docs-article-min-width: 30em;
+  --docs-article-max-width: 49em;
+  --docs-article-margin-inline: 3em;
+  --docs-margin-block: 32px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(var(--docs-nav-min-width), var(--docs-nav-max-width)) minmax(0, var(--docs-article-max-width)) 1fr;
+  max-width: none;
+  border-bottom: 1px solid var(--color-blue);
+
+  /* Open Sans is more readable than Manrope, so we prefer it for content that
+     users will spend a lot of time reading. */
+  font-family: "Open Sans", sans-serif;
+
+  background: var(--color-light-gray);
+  padding-block: var(--docs-margin-block);
+}
+
+/* ------------------------------------
+ * Article
+ * ------------------------------------ */
+
+article {
+  max-width: var(--docs-article-max-width);
+  padding-block: var(--docs-margin-block);
+  padding-inline: var(--docs-article-margin-inline);
+  line-height: 1.8em;
+  font-size: 0.88889em;
+  /* 16px / 18px basis */
+  color: var(--docs-on-surface-color);
+  background: white;
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
+  margin-right: 2em;
+  /* For when linking to #content via nav bypass. */
+  scroll-margin-top: var(--header-height);
+}
+
+/* ------------------------------------
+ * Exit externally link
+ * ------------------------------------ */
+
+#edit-page-link {
+  height: 24px;
+  margin-block-start: 2rem;
+  margin-block-end: 1rem;
+}
+
+#edit-page-link a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#edit-page-link lazy-svg::part(svg) {
+  height: 24px;
+  width: 24px;
+  margin-inline-start: 8px;
+}
+
+/* ------------------------------------
+ * Body text
+ * ------------------------------------ */
+
+article :not(litdev-aside) p {
+  margin-block-start: 1.5em;
+  margin-block-end: 1.5em;
+}
+
+article a {
+  color: var(--docs-link-color);
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+article li {
+  /* Slightly more space between list items */
+  margin-bottom: 0.8em;
+}
+
+article li>p {
+  margin: 0;
+}
+
+article>p>img.logo {
+  max-width: 30%;
+}
+
+/* ------------------------------------
+ * Code
+ * ------------------------------------ */
+
+/* Inline code */
+article code:not([class]) {
+  background: var(--color-light-gray);
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  font-family: var(--playground-code-font-family, monospace);
+}
+
+/* Non-highlighted code block */
+article pre>code:not([class]) {
+  background: none;
+  padding: 0;
+}
+
+/* Static code snippets */
+.CodeMirror {
+  color: #3c3c3c;
+  border: var(--code-border);
+}
+
+/* With tabs */
+litdev-example:not([filename]) {
+  --litdev-example-bar-height: 45px;
+}
+
+/* Without tabs */
+litdev-example[filename] {
+  --litdev-example-bar-height: 31px;
+}
+
+body[code-language-preference="ts"] litdev-example {
+  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-ts) * 22px + 22px);
+}
+
+body[code-language-preference="js"] litdev-example {
+  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-js) * 22px + 22px);
+}
+
+litdev-example {
+  /* Prevent upgrade layout shift. */
+  display: block;
+  height: calc(var(--litdev-example-bar-height) + var(--litdev-example-editor-height) + var(--litdev-example-preview-height));
+}
+
+.CodeMirror,
+litdev-example {
+  font-size: 0.85em;
+  border-radius: 5px;
+  border: var(--code-border);
+}
+
+figure {
+  /* We put code snippets in figures for improved a11y semantics, but they come
+     with default margins. */
+  margin: 0;
+}
+
+/* ------------------------------------
+ * Headings
+ * ------------------------------------ */
+
+/* Title */
+article h1 {
+  padding: 0.3em 0 0.8em 0;
+  margin-bottom: 1.3em;
+  border-bottom: 2px solid var(--docs-h1-underline-color);
+  font-size: 2.2em;
+  font-weight: 400;
+  /* The default margin of the first heading extends above the article, which
+     complicates layout a bit. We have padding-top on the article itself. */
+  margin-top: 0;
+}
+
+/* Each section heading has a wrapper <span> to allow for accessible anchor
+    links. */
+.heading {
+  display: flex;
+  position: relative;
+}
+
+.heading>[id] {
+  /* Adjust scroll margins of all article headings to account for sticky header.
+     Otherwise, we'll scroll headings underneath the header. Add a little bit
+     more too, for some extra visual breathing room. */
+  scroll-margin-top: calc(var(--header-height) + 1.5em);
+  position: relative;
+  font-size: inherit;
+  margin: 0;
+}
+
+/* "#" anchor links that float in the left margin */
+.anchor {
+  position: absolute;
+  left: -1.5rem;
+  width: 100%;
+  opacity: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin-top: -0.2em;
+}
+
+:hover>.anchor,
+.anchor:hover,
+.anchor:focus {
+  opacity: 1;
+  color: var(--color-medium-gray);
+  ;
+  text-decoration: none;
+}
+
+.heading.h2,
+article>h2 {
+  font-size: 1.8em;
+  margin: 0 0 1.328em 0;
+  padding: 1.5em 0 0.5em 0;
+  border-bottom: 1px solid var(--docs-rule-color);
+}
+
+article h2 {
+  color: var(--docs-h2-color);
+  font-weight: 600;
+}
+
+/* If a page has no introductory content before the first heading, remove the
+   section delineation. */
+#inlineToc+.heading.h2 {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0.5em;
+}
+
+.heading.h3,
+article>h3 {
+  font-size: 1.2em;
+  margin-top: 2.2em;
+  padding-top: 1em;
+}
+
+article h3 {
+  color: var(--docs-h3-color);
+  font-weight: 600;
+}
+
+article h4 {
+  font-size: 0.88889rem;
+  color: var(--docs-h4-color);
+  margin-top: 1.3em;
+}
+
+/* ------------------------------------
+ * Lists
+ * ------------------------------------ */
+
+article li {
+  padding-inline: 0.5em 10%;
+}
+
+/* API parameter lists */
+.params {
+  display: grid;
+  grid-template-columns: minmax(min-content, 12em) 1fr;
+  border-top: 1px solid #ccc;
+}
+
+.params>* {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #ccc;
+}
+
+.params>.paramName {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: var(--playground-code-font-family);
+  background: var(--color-light-gray);
+  border-right: 1px solid rgb(230, 230, 230);
+  color: rgb(37, 37, 37);
+}
+
+.params>.paramDetails> :first-of-type {
+  margin-top: 0;
+}
+
+.params>.paramDetails {
+  margin-left: 0;
+}
+
+/* ------------------------------------
+ * Tables
+ * ------------------------------------ */
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #eaeaea;
+}
+
+th {
+  color: var(--docs-table-header-color);
+  background: var(--docs-table-header-background);
+  text-align: left;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #f6f8fa;
+}
+
+tr {
+  border-bottom: 1px solid #eaeaea;
+}
+
+th,
+td {
+  padding: 0.3em 1em;
+  vertical-align: top;
+}
+
+th:empty {
+  padding: 1px;
+}
+
+.wide-table,
+.wide-cell {
+  width: 100%;
+}
+
+.no-wrap-cell {
+  white-space: nowrap;
+}
+
+.vcenter-cell {
+  vertical-align: middle;
+}
+
+table.directory td>p {
+  margin: 0;
+}
+
+table.directory td code {
+  background: transparent;
+  font-size: inherit;
+  padding: 0;
+}
+
+table.directory tr:not(.subheading) td {
+  padding: 1em 1em;
+}
+
+table.directory tr.subheading {
+  font-weight: bold;
+}
+
+/* -----------------------------------
+/* Notes and warnings
+/* ------------------------------------ */
+
+.alert {
+  position: relative;
+  margin: 1em 0;
+  padding: 1em 1em 1em 3.5em;
+  border: 1px solid #ccc;
+}
+
+.alert>p {
+  margin: 0;
+}
+
+.alert::before {
+  position: absolute;
+  top: 1.15em;
+  left: 1em;
+}
+
+.alert.alert-info::before {
+  content: url(/images/alerts/info.svg);
+}
+
+.alert.alert-warning::before {
+  content: url(/images/alerts/warning.svg);
+}
+
+.alert.alert-labs::before {
+  content: url(/images/alerts/labs.svg);
+}
+
+.alert-todo {
+  display: none;
+}
+
+.alert.alert-todo h3 {
+  color: red;
+}
+
+.pre-release>summary {
+  cursor: pointer;
+}
+
+/* ------------------------------------
+ * Prev/next links
+ * ------------------------------------ */
+
+#prevAndNextLinks {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: 0;
+  padding-top: 1.5em;
+  border-top: 1px solid rgb(223, 223, 223);
+}
+
+#prevLink,
+#nextLink {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-gap: 0em 1.5em;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+}
+
+#nextLink {
+  grid-template-columns: 1fr min-content;
+  text-align: right;
+}
+
+#prevAndNextLinks>span>a>.arrow {
+  grid-row: 1 / 3;
+  color: #757575;
+}
+
+#nextLink>.arrow {
+  grid-column: 2;
+}
+
+#prevAndNextLinks>span>a>.direction {
+  display: block;
+  color: #757575;
+  font-size: 15px;
+}
+
+#prevAndNextLinks>span>a:hover>.direction {
+  color: var(--color-blue);
+}
+
+#prevAndNextLinks>span>a:hover>.arrow {
+  color: var(--color-blue);
+}
+
+#prevAndNextLinks>span>a>.title {
+  font-size: 18px;
+}
+
+#prevAndNextLinks>span>a:hover>.title {
+  color: var(--color-blue);
+}
+
+#prevAndNextLinks>span>a:first-of-type {
+  margin-right: 2em;
+  text-align: left;
+}
+
+/* ------------------------------------
+ * LHS nav (desktop)
+ * ------------------------------------ */
+
+#docsNavWrapper {
+  position: sticky;
+  top: calc(var(--header-height) + var(--docs-margin-block));
+  margin-bottom: 1.5em;
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  background: var(--docs-nav-background);
+  overflow-y: scroll;
+}
+
+#docsNav {
+  background: transparent;
+  color: var(--docs-nav-color);
+  line-height: 1.6em;
+  padding-left: 2em;
+  box-sizing: border-box;
+  width: var(--docs-nav-min-width);
+  --_nav-item-marker-inset: -22px;
+}
+
+/* First level list */
+#docsNav>ol {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  padding-bottom: 1.5em;
+}
+
+#docsNav summary {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#docsNav .marker {
+  position: absolute;
+  font-size: 28px;
+  height: 28px;
+  /* The actual assessed size of the chevron in PX. Required for animation centering */
+  line-height: 20px;
+  transition: transform 0.2s ease-in-out;
+  transform-origin: center;
+  /* 1px makes the dropdown marker line up with the diamond marker */
+  inset-inline-start: calc(var(--_nav-item-marker-inset) + 1px);
+}
+
+#docsNav details[open] .marker {
+  transform: rotate(90deg);
+}
+
+#docsNav summary::marker,
+#docsNav summary::-webkit-details-marker {
+  content: '';
+  display: none;
+}
+
+body #docsNav .sectionHead,
+body #docsNav .wrapper ol {
+  padding-inline-start: 0;
+}
+
+body #docsNav .section-collapse {
+  margin-block: 1rem;
+}
+
+body #docsNav .section-collapse[open] {
+  margin-block-end: 1.25rem;
+}
+
+body #docsNav .section-collapse:first-of-type {
+  margin-block-start: 0rem;
+}
+
+/* Second level list */
+#docsNav .wrapper ol,
+#docsNav>ol>li>ol {
+  list-style: none;
+  /* Space between heading and second level items */
+  padding-top: 0.2em;
+}
+
+/* Second level list */
+#docsNav>ol>li>ol {
+  list-style: none;
+  /* Space between heading and second level items */
+  padding-top: 0.2em;
+  /* Second level indent */
+  padding-left: 0;
+}
+
+/* Active page bullet */
+#docsNav li.active {
+  position: relative;
+  font-weight: 600;
+  color: black;
+}
+
+#docsNav li.active::before {
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  inset-block-start: 10px;
+  inset-inline-start: var(--_nav-item-marker-inset);
+}
+
+/* Page links */
+#docsNav a {
+  color: inherit;
+  font-size: 16px;
+}
+
+#docsNav .sectionHead {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #6e6e6e;
+}
+
+#docsNav a:hover {
+  text-decoration: underline;
+}
+
+#docsNavWrapper:hover::-webkit-scrollbar-thumb {
+  background: #d6d6d6;
+}
+
+/* Labs icon */
+#docsNav img.labs {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: text-bottom;
+}
+
+/* ------------------------------------
+ * Inline TOC
+ * ------------------------------------ */
+
+#inlineToc {
+  /* Only visible in narrow layout. */
+  display: none;
+}
+
+#inlineToc h2 {
+  font-weight: 600;
+}
+
+#inlineToc ol {
+  list-style: none;
+}
+
+/* Top level sections */
+#inlineToc div>ol>li>a {
+  font-weight: bold;
+}
+
+#inlineToc a {
+  color: inherit;
+  color: var(--docs-link-color);
+  display: flex;
+}
+
+/* Set mobile touch target */
+@media(pointer: coarse) {
+  #inlineToc a {
+    min-height: 48px;
+    align-items: center;
+  }
+}
+
+/* ------------------------------------
+* RHS TOC
+* ------------------------------------ */
+
+#rhsTocWrapper {
+  /* For some reason, when the natural DOM order is article > TOC, there is a
+  layout flash (easier to see with CPU throttling on). If we switch the
+  natural order to TOC > article, then change it here with CSS order, the
+  flash goes away. This order is probably better for screen-readers anyway.
+  */
+  order: 2;
+  min-width: var(--docs-toc-min-width);
+  padding-bottom: 1em;
+}
+
+#rhsToc {
+  padding: 10px 1em 0 0;
+  position: sticky;
+  top: calc(var(--header-height) + var(--docs-margin-block));
+}
+
+/* "Contents" heading */
+#rhsToc>h2 {
+  color: #1d1d1d;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+
+#rhsToc>h2>a {
+  color: inherit;
+}
+
+/* Scroller */
+#rhsTocInner {
+  overflow-y: auto;
+  max-height: calc(100vh - var(--header-height) - 7em);
+  padding: 0 1em 0 0.3em;
+}
+
+/* First level */
+#rhsTocInner>div>ol {
+  margin: 0;
+  padding: 0;
+  position: sticky;
+  list-style: none;
+  border-left: 1px solid #d3d3d3;
+}
+
+#rhsTocInner>div>ol>li:not(:first-of-type) {
+  /* Space between top-level lists */
+  margin-top: 0.2em;
+}
+
+/* Second level */
+#rhsTocInner>div>ol>li>ol {
+  list-style: none;
+  /* We move indentation to the anchors so that we can align the bullet
+     consistently to the left, regardless of indentation. */
+  padding-left: 0;
+}
+
+#rhsTocInner>div>ol>li>a {
+  padding-left: 1.5em;
+}
+
+#rhsTocInner>div>ol>li>ol>li>a {
+  /* Second level indent */
+  padding-left: 2.5em;
+}
+
+#rhsTocInner a {
+  color: #6f6f6f;
+  font-size: 0.8em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em;
+  line-height: 1.2em;
+}
+
+#rhsTocInner a.active,
+#rhsTocInner a:hover {
+  color: black;
+}
+
+/* Active section bullet */
+#rhsTocInner a.active::before {
+  content: '';
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 3"><rect style="fill:%23324fff" width="2" height="2" x="1" y="-1" transform="rotate(45)"/></svg>');
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 3px;
+  left: -5px;
+}
+
+/* ------------------------------------
+ * Old version of docs banner
+ * ------------------------------------ */
+
+litdev-banner {
+  display: block;
+  background: #ffe133;
+  padding: 8px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  top: var(--header-nav-height);
+  z-index: 4;
+  box-sizing: border-box;
+}
+
+litdev-banner>a {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* ------------------------------------
+ * Narrow layouts
+ * ------------------------------------ */
+
+/**
+ * Move the TOC inline when slightly narrow.
+ *
+ * (14 + 49 + 5 + (3 * 2)) * 18 = 1332
+ *  |    |    |    |         +--- font-size
+ *  |    |    |    +------------- docs-article-margin-inline
+ *  |    |    +------------------ docs-toc-min-width
+ *  |    +----------------------- docs-article-max-width
+ *  +---------------------------- docs-nav-min-width
+ */
+@media (max-width: 1332px) {
+  main {
+    --docs-article-margin-inline: 2.5em;
+  }
+
+  #rhsTocWrapper {
+    display: none;
+  }
+
+  article {
+    grid-column: 2 / -1;
+  }
+
+  #inlineToc {
+    display: initial;
+  }
+
+  #inlineToc>details {
+    margin-bottom: 2em;
+  }
+
+  #inlineToc summary {
+    cursor: pointer;
+    padding: 0.2em 0;
+  }
+
+  #inlineToc summary::marker {
+    color: var(--docs-h2-color);
+    font-size: 1.25em;
+  }
+
+  #inlineToc h2 {
+    padding: 0;
+    margin: 0;
+    display: inline;
+    font-size: 1.25em;
+  }
+
+  #inlineToc>details[open] {
+    border-bottom: 1px solid var(--docs-rule-color);
+    padding-bottom: 1em;
+  }
+
+  #inlineToc div {
+    font-size: 0.9em;
+  }
+
+  #inlineToc li {
+    margin-bottom: 0;
+    padding-inline: initial;
+  }
+}
+
+/**
+ * Hide the LHS nav when very narrow.
+ *
+ * (14 + 30 + 3) * 18 = 846
+ *  |    |    |    +------------- font-size
+ *  |    |    +------------------ docs-article-margin-inline
+ *  |    +----------------------- docs-article-min-width
+ *  +---------------------------- docs-nav-min-width
+ */
+@media (max-width: 864px) {
+  main {
+    /* Remove grid */
+    display: block;
+    padding-top: 0;
+  }
+
+  #docsNavWrapper {
+    display: none;
+  }
+
+  article {
+    margin: auto;
+    --docs-article-margin-inline: 1.5em;
+  }
+
+  .anchor {
+    left: -1.1rem;
+  }
+
+  .params {
+    display: block;
+    border: none;
+  }
+
+  .params>* {
+    border: none;
+    background: transparent !important;
+  }
+
+  .params>.paramName {
+    font-weight: 600;
+  }
+}
+
+.centered-image {
+  display: block;
+  margin: auto;
+}

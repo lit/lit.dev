@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        --background-color: #7acbf1;
+        --font-color: #ffffff;
+        --font-size: 56px;
+        --stroke-width: 3.5px;
+        --stroke-color: #e3a7b2;
+
+        height: 100vh;
+        margin: 0;
+      }
+
+      repeat-pattern {
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .knobs {
+        background: #efefef;
+        border-bottom-right-radius: 4px;
+        padding: 8px;
+        position: absolute;
+        top: 0;
+      }
+    </style>
+    <script type="module" src="repeat-pattern.js"></script>
+    <script type="module">
+      const body = document.querySelector("body");
+      const pattern = document.querySelector("repeat-pattern");
+
+      function onChars(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        pattern.chars = e.target.value
+      }
+
+      function onNumPrints(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        pattern.numPrints = e.target.valueAsNumber;
+      }
+
+      function onRotationOffset(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        pattern.rotationOffset = e.target.valueAsNumber;
+      }
+
+      function onBackgroundColor(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        body.style.setProperty("--background-color", e.target.value);
+      }
+
+      function onStrokeColor(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        body.style.setProperty("--stroke-color", e.target.value);
+      }
+
+      function onTextColor(e) {
+        if (!(e.target instanceof HTMLInputElement)) return;
+        body.style.setProperty("--font-color", e.target.value);
+      }
+
+      const inputs = document.querySelectorAll("input")
+      inputs[0].addEventListener("input", onChars);
+      inputs[1].addEventListener("input", onNumPrints);
+      inputs[2].addEventListener("input", onRotationOffset);
+      inputs[3].addEventListener("input", onBackgroundColor);
+      inputs[4].addEventListener("input", onStrokeColor);
+      inputs[5].addEventListener("input", onTextColor);
+    </script>
+  </head>
+  <body>
+    <repeat-pattern chars="T" num-prints="8"></repeat-pattern>
+    <div class="knobs">
+      <input value="T">
+      <input type="range" min="2" max="29" value="8">
+      <input type="range" min="0" max="360" value="0">
+      <input type="color" value="#7acbf1">
+      <input type="color" value="#e3a7b2">
+      <input type="color" value="#ffffff">
+    </div>
+  </body>
+</html>

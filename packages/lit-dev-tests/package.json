@@ -1,0 +1,103 @@
+{
+  "name": "lit-dev-tests",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Tests for lit.dev",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "test:integration": "wireit",
+    "test:integration:update-golden-screenshots": "wireit",
+    "test:links": "wireit",
+    "test:links:redirects": "wireit",
+    "test:links:internal-and-external": "wireit",
+    "test:api:no-todos": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --build --pretty",
+      "dependencies": [
+        "../lit-dev-server:build"
+      ],
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "test:integration": {
+      "command": "playwright install && playwright test --config=lib/playwright.config.js",
+      "dependencies": [
+        "build",
+        "../../:start"
+      ],
+      "files": [
+        "src/**/*.png",
+        "lib/**/*.spec.js"
+      ],
+      "output": []
+    },
+    "test:integration:update-golden-screenshots": {
+      "command": "playwright install && playwright test --config=lib/playwright.config.js --update-snapshots",
+      "dependencies": [
+        "build",
+        "../../:start"
+      ],
+      "files": [],
+      "output": [
+        "src/**/*.png"
+      ]
+    },
+    "test:links": {
+      "dependencies": [
+        "test:links:redirects",
+        "test:links:internal-and-external"
+      ]
+    },
+    "test:links:internal-and-external": {
+      "command": "node lib/check-broken-links.js",
+      "dependencies": [
+        "build",
+        "../../:start"
+      ],
+      "files": [
+        "known-good-urls.txt"
+      ],
+      "output": []
+    },
+    "test:links:redirects": {
+      "command": "node lib/check-redirects.js",
+      "dependencies": [
+        "build",
+        "../lit-dev-content:build"
+      ],
+      "files": [],
+      "output": []
+    },
+    "test:api:no-todos": {
+      "command": "node lib/check-no-todos.js",
+      "dependencies": [
+        "build",
+        "../lit-dev-content:build"
+      ]
+    }
+  },
+  "dependencies": {
+    "@playwright/test": "~1.26.1",
+    "@types/ansi-escape-sequences": "^4.0.0",
+    "@types/node": "^16.0.0",
+    "ansi-escape-sequences": "^6.2.1",
+    "broken-link-checker": "^0.7.8",
+    "lit-dev-server": "^0.0.0",
+    "node-fetch": "^3.2.10"
+  },
+  "devDependencies": {
+    "@types/broken-link-checker": "^0.7.1"
+  }
+}

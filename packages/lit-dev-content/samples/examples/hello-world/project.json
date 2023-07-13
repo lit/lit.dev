@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Hello World",
+  "description": "Basic example of a Lit component.",
+  "section": "Basics",
+  "files": {
+    "simple-greeting.ts": {},
+    "index.html": {}
+  },
+  "order": 0
+}

@@ -1,0 +1,8 @@
+{
+  "extends": "/samples/checkable-tutorial-base.json",
+  "files": {
+    "index.html": {},
+    "date-display.ts": {"selected": true},
+    "_check-code.js": {"hidden": true}
+  }
+}

@@ -1,0 +1,26 @@
+# This action fails if the API docs JSON data files have changed but have not
+# been committed.
+
+# We check generated API data into the Git repo because otherwise it is very
+# difficult to tell when something has changed or broken in them. It also makes
+# deploying faster, since we don't need to clone and analyze repos every time.
+
+name: Check API data in sync
+on: [push, pull_request]
+
+jobs:
+  check-api-data-in-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - uses: google/wireit@setup-github-actions-caching/v1
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+      - run: npm run build --workspace=lit-dev-api
+      - run: command test -z "$(git status --porcelain)"

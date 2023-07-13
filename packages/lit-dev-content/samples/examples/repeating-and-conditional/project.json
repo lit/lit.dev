@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Repeating templates",
+  "description": "Create a repeating template from an array of data.",
+  "section": "Template concepts",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  },
+  "order": 2
+}

@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "more-expressions.ts": {},
+    "index.html": {}
+  }
+}

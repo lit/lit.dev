@@ -1,0 +1,73 @@
+/* TODO(aomarks) This should be published by playground-elements. It
+   externalizes the styles that are shared between scoped and SSR playgrounds */
+
+.CodeMirror {
+  font-size: var(--playground-code-font-size, inherit);
+  color: var(--playground-code-default-color, #000);
+  background: var(--playground-code-background, #fff);
+  padding: var(--litdev-code-padding);
+}
+
+.CodeMirror pre.CodeMirror-line {
+  margin: 0;
+  font-family: var(--playground-code-font-family, monospace);
+  line-height: var(--playground-code-line-height, 1.7em);
+}
+
+.cm-keyword {
+  color: var(--playground-code-keyword-color, #708);
+}
+.cm-atom {
+  color: var(--playground-code-atom-color, #219);
+}
+.cm-number {
+  color: var(--playground-code-number-color, #164);
+}
+.cm-def {
+  color: var(--playground-code-def-color, #00f);
+}
+.cm-variable {
+  color: var(--playground-code-variable-color, #000);
+}
+.cm-property {
+  color: var(--playground-code-property-color, #000);
+}
+.cm-operator {
+  color: var(--playground-code-operator-color, #000);
+}
+.cm-variable-2 {
+  color: var(--playground-code-variable-2-color, #05a);
+}
+.cm-variable-3 {
+  color: var(--playground-code-variable-3-color, #085);
+}
+.cm-type {
+  color: var(--playground-code-type-color, #085);
+}
+.cm-comment {
+  color: var(--playground-code-comment-color, #a50);
+}
+.cm-string {
+  color: var(--playground-code-string-color, #a11);
+}
+.cm-string-2 {
+  color: var(--playground-code-string-2-color, #f50);
+}
+.cm-meta {
+  color: var(--playground-code-meta-color, #555);
+}
+.cm-qualifier {
+  color: var(--playground-code-qualifier-color, #555);
+}
+.cm-builtin {
+  color: var(--playground-code-builtin-color, #30a);
+}
+.cm-tag {
+  color: var(--playground-code-tag-color, #170);
+}
+.cm-attribute {
+  color: var(--playground-code-attribute-color, #00c);
+}
+.cm-callee {
+  color: var(--playground-code-callee-color, #000);
+}

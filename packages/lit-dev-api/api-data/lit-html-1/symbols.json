@@ -1,0 +1,1250 @@
+{
+  "$asyncAppend": [
+    {
+      "page": "directives",
+      "anchor": "asyncAppend"
+    }
+  ],
+  "$asyncReplace": [
+    {
+      "page": "directives",
+      "anchor": "asyncReplace"
+    }
+  ],
+  "$cache": [
+    {
+      "page": "directives",
+      "anchor": "cache"
+    }
+  ],
+  "$ClassInfo": [
+    {
+      "page": "directives",
+      "anchor": "ClassInfo"
+    }
+  ],
+  "$classMap": [
+    {
+      "page": "directives",
+      "anchor": "classMap"
+    }
+  ],
+  "$guard": [
+    {
+      "page": "directives",
+      "anchor": "guard"
+    }
+  ],
+  "$ifDefined": [
+    {
+      "page": "directives",
+      "anchor": "ifDefined"
+    }
+  ],
+  "$live": [
+    {
+      "page": "directives",
+      "anchor": "live"
+    }
+  ],
+  "$ItemTemplate": [
+    {
+      "page": "directives",
+      "anchor": "ItemTemplate"
+    }
+  ],
+  "$KeyFn": [
+    {
+      "page": "directives",
+      "anchor": "KeyFn"
+    }
+  ],
+  "$repeat": [
+    {
+      "page": "directives",
+      "anchor": "repeat"
+    }
+  ],
+  "$StyleInfo": [
+    {
+      "page": "directives",
+      "anchor": "StyleInfo"
+    }
+  ],
+  "$styleMap": [
+    {
+      "page": "directives",
+      "anchor": "styleMap"
+    }
+  ],
+  "$templateContent": [
+    {
+      "page": "directives",
+      "anchor": "templateContent"
+    }
+  ],
+  "$unsafeHTML": [
+    {
+      "page": "directives",
+      "anchor": "unsafeHTML"
+    }
+  ],
+  "$unsafeSVG": [
+    {
+      "page": "directives",
+      "anchor": "unsafeSVG"
+    }
+  ],
+  "$until": [
+    {
+      "page": "directives",
+      "anchor": "until"
+    }
+  ],
+  "$ShadyRenderOptions": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions"
+    }
+  ],
+  "$eventContext": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions.eventContext"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.eventContext"
+    },
+    {
+      "page": "templates",
+      "anchor": "RenderOptions.eventContext"
+    }
+  ],
+  "$ShadyRenderOptions.eventContext": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions.eventContext"
+    }
+  ],
+  "$scopeName": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions.scopeName"
+    }
+  ],
+  "$ShadyRenderOptions.scopeName": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions.scopeName"
+    }
+  ],
+  "$templateFactory": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions.templateFactory"
+    },
+    {
+      "page": "templates",
+      "anchor": "RenderOptions.templateFactory"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "templateFactory"
+    }
+  ],
+  "$ShadyRenderOptions.templateFactory": [
+    {
+      "page": "shady",
+      "anchor": "ShadyRenderOptions.templateFactory"
+    }
+  ],
+  "$render": [
+    {
+      "page": "shady",
+      "anchor": "render"
+    },
+    {
+      "page": "templates",
+      "anchor": "render"
+    }
+  ],
+  "$shadyTemplateFactory": [
+    {
+      "page": "shady",
+      "anchor": "shadyTemplateFactory"
+    }
+  ],
+  "$AttributeCommitter": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter"
+    }
+  ],
+  "$constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.constructor"
+    },
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Template.constructor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.constructor"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.constructor"
+    }
+  ],
+  "$AttributeCommitter.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.constructor"
+    }
+  ],
+  "$dirty": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.dirty"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.dirty"
+    }
+  ],
+  "$AttributeCommitter.dirty": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.dirty"
+    }
+  ],
+  "$element": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.element"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Template.element"
+    }
+  ],
+  "$AttributeCommitter.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.element"
+    }
+  ],
+  "$name": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.name"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.name"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.name"
+    }
+  ],
+  "$AttributeCommitter.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.name"
+    }
+  ],
+  "$parts": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.parts"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.parts"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Template.parts"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "parts"
+    }
+  ],
+  "$AttributeCommitter.parts": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.parts"
+    }
+  ],
+  "$strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.strings"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.strings"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.strings"
+    },
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.strings"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.strings"
+    }
+  ],
+  "$AttributeCommitter.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.strings"
+    }
+  ],
+  "$commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.commit"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Part.commit"
+    }
+  ],
+  "$AttributeCommitter.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributeCommitter.commit"
+    }
+  ],
+  "$AttributePart": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart"
+    }
+  ],
+  "$AttributePart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.constructor"
+    }
+  ],
+  "$committer": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.committer"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.committer"
+    }
+  ],
+  "$AttributePart.committer": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.committer"
+    }
+  ],
+  "$value": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.value"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.value"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.value"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.value"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.value"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Part.value"
+    }
+  ],
+  "$AttributePart.value": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.value"
+    }
+  ],
+  "$AttributePart.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.commit"
+    }
+  ],
+  "$setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.setValue"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.setValue"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.setValue"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.setValue"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.setValue"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "Part.setValue"
+    }
+  ],
+  "$AttributePart.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "AttributePart.setValue"
+    }
+  ],
+  "$BooleanAttributePart": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart"
+    }
+  ],
+  "$BooleanAttributePart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.constructor"
+    }
+  ],
+  "$BooleanAttributePart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.element"
+    }
+  ],
+  "$BooleanAttributePart.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.name"
+    }
+  ],
+  "$BooleanAttributePart.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.strings"
+    }
+  ],
+  "$BooleanAttributePart.value": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.value"
+    }
+  ],
+  "$BooleanAttributePart.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.commit"
+    }
+  ],
+  "$BooleanAttributePart.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "BooleanAttributePart.setValue"
+    }
+  ],
+  "$DefaultTemplateProcessor": [
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor"
+    }
+  ],
+  "$DefaultTemplateProcessor.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor.constructor"
+    }
+  ],
+  "$handleAttributeExpressions": [
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor.handleAttributeExpressions"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateProcessor.handleAttributeExpressions"
+    }
+  ],
+  "$DefaultTemplateProcessor.handleAttributeExpressions": [
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor.handleAttributeExpressions"
+    }
+  ],
+  "$handleTextExpression": [
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor.handleTextExpression"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateProcessor.handleTextExpression"
+    }
+  ],
+  "$DefaultTemplateProcessor.handleTextExpression": [
+    {
+      "page": "custom-directives",
+      "anchor": "DefaultTemplateProcessor.handleTextExpression"
+    }
+  ],
+  "$EventPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart"
+    }
+  ],
+  "$EventPart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.constructor"
+    }
+  ],
+  "$EventPart.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.element"
+    }
+  ],
+  "$EventPart.eventContext": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.eventContext"
+    }
+  ],
+  "$eventName": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.eventName"
+    }
+  ],
+  "$EventPart.eventName": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.eventName"
+    }
+  ],
+  "$EventPart.value": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.value"
+    }
+  ],
+  "$EventPart.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.commit"
+    }
+  ],
+  "$handleEvent": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.handleEvent"
+    }
+  ],
+  "$EventPart.handleEvent": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.handleEvent"
+    }
+  ],
+  "$EventPart.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "EventPart.setValue"
+    }
+  ],
+  "$NodePart": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart"
+    }
+  ],
+  "$NodePart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.constructor"
+    }
+  ],
+  "$endNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.endNode"
+    }
+  ],
+  "$NodePart.endNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.endNode"
+    }
+  ],
+  "$options": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.options"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.options"
+    }
+  ],
+  "$NodePart.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.options"
+    }
+  ],
+  "$startNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.startNode"
+    }
+  ],
+  "$NodePart.startNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.startNode"
+    }
+  ],
+  "$NodePart.value": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.value"
+    }
+  ],
+  "$appendInto": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.appendInto"
+    }
+  ],
+  "$NodePart.appendInto": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.appendInto"
+    }
+  ],
+  "$appendIntoPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.appendIntoPart"
+    }
+  ],
+  "$NodePart.appendIntoPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.appendIntoPart"
+    }
+  ],
+  "$clear": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.clear"
+    }
+  ],
+  "$NodePart.clear": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.clear"
+    }
+  ],
+  "$NodePart.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.commit"
+    }
+  ],
+  "$insertAfterNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.insertAfterNode"
+    }
+  ],
+  "$NodePart.insertAfterNode": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.insertAfterNode"
+    }
+  ],
+  "$insertAfterPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.insertAfterPart"
+    }
+  ],
+  "$NodePart.insertAfterPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.insertAfterPart"
+    }
+  ],
+  "$NodePart.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "NodePart.setValue"
+    }
+  ],
+  "$PropertyCommitter": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter"
+    }
+  ],
+  "$PropertyCommitter.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.constructor"
+    }
+  ],
+  "$PropertyCommitter.dirty": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.dirty"
+    }
+  ],
+  "$PropertyCommitter.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.element"
+    }
+  ],
+  "$PropertyCommitter.name": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.name"
+    }
+  ],
+  "$PropertyCommitter.parts": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.parts"
+    }
+  ],
+  "$single": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.single"
+    }
+  ],
+  "$PropertyCommitter.single": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.single"
+    }
+  ],
+  "$PropertyCommitter.strings": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.strings"
+    }
+  ],
+  "$PropertyCommitter.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyCommitter.commit"
+    }
+  ],
+  "$PropertyPart": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart"
+    }
+  ],
+  "$PropertyPart.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.constructor"
+    }
+  ],
+  "$PropertyPart.committer": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.committer"
+    }
+  ],
+  "$PropertyPart.value": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.value"
+    }
+  ],
+  "$PropertyPart.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.commit"
+    }
+  ],
+  "$PropertyPart.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "PropertyPart.setValue"
+    }
+  ],
+  "$SVGTemplateResult": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult"
+    }
+  ],
+  "$SVGTemplateResult.constructor": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.constructor"
+    }
+  ],
+  "$processor": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.processor"
+    },
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.processor"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.processor"
+    }
+  ],
+  "$SVGTemplateResult.processor": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.processor"
+    }
+  ],
+  "$SVGTemplateResult.strings": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.strings"
+    }
+  ],
+  "$type": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.type"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.type"
+    }
+  ],
+  "$SVGTemplateResult.type": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.type"
+    }
+  ],
+  "$values": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.values"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.values"
+    }
+  ],
+  "$SVGTemplateResult.values": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.values"
+    }
+  ],
+  "$getHTML": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.getHTML"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.getHTML"
+    }
+  ],
+  "$SVGTemplateResult.getHTML": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.getHTML"
+    }
+  ],
+  "$getTemplateElement": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.getTemplateElement"
+    },
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.getTemplateElement"
+    }
+  ],
+  "$SVGTemplateResult.getTemplateElement": [
+    {
+      "page": "templates",
+      "anchor": "SVGTemplateResult.getTemplateElement"
+    }
+  ],
+  "$Template": [
+    {
+      "page": "custom-directives",
+      "anchor": "Template"
+    }
+  ],
+  "$Template.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "Template.constructor"
+    }
+  ],
+  "$Template.element": [
+    {
+      "page": "custom-directives",
+      "anchor": "Template.element"
+    }
+  ],
+  "$Template.parts": [
+    {
+      "page": "custom-directives",
+      "anchor": "Template.parts"
+    }
+  ],
+  "$TemplateInstance": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance"
+    }
+  ],
+  "$TemplateInstance.constructor": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.constructor"
+    }
+  ],
+  "$TemplateInstance.options": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.options"
+    }
+  ],
+  "$TemplateInstance.processor": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.processor"
+    }
+  ],
+  "$template": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.template"
+    }
+  ],
+  "$TemplateInstance.template": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.template"
+    }
+  ],
+  "$update": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.update"
+    }
+  ],
+  "$TemplateInstance.update": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateInstance.update"
+    }
+  ],
+  "$TemplateResult": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult"
+    }
+  ],
+  "$TemplateResult.constructor": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.constructor"
+    }
+  ],
+  "$TemplateResult.processor": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.processor"
+    }
+  ],
+  "$TemplateResult.strings": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.strings"
+    }
+  ],
+  "$TemplateResult.type": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.type"
+    }
+  ],
+  "$TemplateResult.values": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.values"
+    }
+  ],
+  "$TemplateResult.getHTML": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.getHTML"
+    }
+  ],
+  "$TemplateResult.getTemplateElement": [
+    {
+      "page": "templates",
+      "anchor": "TemplateResult.getTemplateElement"
+    }
+  ],
+  "$Part": [
+    {
+      "page": "custom-directives",
+      "anchor": "Part"
+    }
+  ],
+  "$Part.value": [
+    {
+      "page": "custom-directives",
+      "anchor": "Part.value"
+    }
+  ],
+  "$Part.commit": [
+    {
+      "page": "custom-directives",
+      "anchor": "Part.commit"
+    }
+  ],
+  "$Part.setValue": [
+    {
+      "page": "custom-directives",
+      "anchor": "Part.setValue"
+    }
+  ],
+  "$RenderOptions": [
+    {
+      "page": "templates",
+      "anchor": "RenderOptions"
+    }
+  ],
+  "$RenderOptions.eventContext": [
+    {
+      "page": "templates",
+      "anchor": "RenderOptions.eventContext"
+    }
+  ],
+  "$RenderOptions.templateFactory": [
+    {
+      "page": "templates",
+      "anchor": "RenderOptions.templateFactory"
+    }
+  ],
+  "$TemplateProcessor": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateProcessor"
+    }
+  ],
+  "$TemplateProcessor.handleAttributeExpressions": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateProcessor.handleAttributeExpressions"
+    }
+  ],
+  "$TemplateProcessor.handleTextExpression": [
+    {
+      "page": "custom-directives",
+      "anchor": "TemplateProcessor.handleTextExpression"
+    }
+  ],
+  "$DirectiveFn": [
+    {
+      "page": "custom-directives",
+      "anchor": "DirectiveFn"
+    }
+  ],
+  "$defaultTemplateProcessor": [
+    {
+      "page": "custom-directives",
+      "anchor": "defaultTemplateProcessor"
+    }
+  ],
+  "$noChange": [
+    {
+      "page": "custom-directives",
+      "anchor": "noChange"
+    }
+  ],
+  "$nothing": [
+    {
+      "page": "templates",
+      "anchor": "nothing"
+    }
+  ],
+  "$templateCaches": [
+    {
+      "page": "custom-directives",
+      "anchor": "templateCaches"
+    }
+  ],
+  "$createMarker": [
+    {
+      "page": "custom-directives",
+      "anchor": "createMarker"
+    }
+  ],
+  "$directive": [
+    {
+      "page": "custom-directives",
+      "anchor": "directive"
+    }
+  ],
+  "$html": [
+    {
+      "page": "templates",
+      "anchor": "html"
+    }
+  ],
+  "$isDirective": [
+    {
+      "page": "custom-directives",
+      "anchor": "isDirective"
+    }
+  ],
+  "$isIterable": [
+    {
+      "page": "custom-directives",
+      "anchor": "isIterable"
+    }
+  ],
+  "$isPrimitive": [
+    {
+      "page": "custom-directives",
+      "anchor": "isPrimitive"
+    }
+  ],
+  "$isTemplatePartActive": [
+    {
+      "page": "custom-directives",
+      "anchor": "isTemplatePartActive"
+    }
+  ],
+  "$removeNodes": [
+    {
+      "page": "custom-directives",
+      "anchor": "removeNodes"
+    }
+  ],
+  "$reparentNodes": [
+    {
+      "page": "custom-directives",
+      "anchor": "reparentNodes"
+    }
+  ],
+  "$svg": [
+    {
+      "page": "templates",
+      "anchor": "svg"
+    }
+  ]
+}

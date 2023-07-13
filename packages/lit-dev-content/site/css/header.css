@@ -1,0 +1,81 @@
+.pageHeader {
+  position: sticky;
+  top: 0;
+  height: var(--header-nav-height);
+  /* CodeMirrors have a very high z-index for some reason. */
+  z-index: 4;
+  background: white;
+  display: flex;
+  padding: 0 1.5em;
+  justify-content: stretch;
+  border-bottom: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
+}
+
+#headerLogo {
+  height: 2em;
+  width: auto;
+  padding: 0.1em 0.5em;
+}
+
+.pageHeader > nav {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--header-footer-max-width, unset);
+  margin: var(--header-footer-margin, unset);
+}
+
+.navItem > a > svg {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+}
+
+#desktopNav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#desktopNav > .navItem > a,
+#desktopNav > .navItem > litdev-search-modal {
+  color: #6f6f6f;
+  font-weight: 600;
+  padding: 0.3em 0.5em;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+}
+
+@supports not selector(:modal) {
+  litdev-search-modal {
+      display: none !important;
+  }
+}
+
+#desktopNav > .navItem > *:hover,
+#desktopNav > .navItem.active > a {
+  color: var(--color-blue);
+}
+
+#mobileMenuButton {
+  display: none;
+}
+
+@media (max-width: 864px) {
+  #desktopNav {
+    display: none;
+  }
+
+  #mobileMenuButton {
+    display: flex;
+  }
+
+  .pageHeader {
+    padding: 0 0.5em;
+  }
+}

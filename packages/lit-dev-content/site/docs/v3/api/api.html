@@ -1,0 +1,18 @@
+---
+layout: api
+
+pagination:
+    data: api-docs-pages.lit-3
+    size: 1
+    alias: data
+    addAllPagesToCollections: true
+
+permalink: "docs/v3/api/{{ data.slug }}/"
+
+eleventyComputed:
+    title: "{{ data.title }}"
+    eleventyNavigation:
+        key: "{{ data.title }}"
+        parent: API
+    apiPath: /docs/v3/api
+---

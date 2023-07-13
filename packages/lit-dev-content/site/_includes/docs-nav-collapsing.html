@@ -1,0 +1,41 @@
+{% set navSection = eleventyNavigation.parent or eleventyNavigation.key %}
+{%- set navSections = collections[collection] | eleventyNavigation -%}
+
+{%- for section in navSections %}
+
+  {# Are any children in this section active? #}
+  {% set sectionActive = false %}
+  {%- for child in section.children %}
+    {% if child.url == page.url %}
+      {% set sectionActive = true %}
+    {% endif %}
+  {%- endfor %}
+
+  <li{% if sectionActive %} class="activeSection"{% endif %}>
+    {%- if section.children | length %}
+      <details>
+        <summary>
+          <span class="sectionHead
+                       {% if section.url == page.url %}active{% endif %}">
+            {{ section.title }}
+            {% if section.labs == true %}
+              <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
+            {% endif %}
+          </span>
+        </summary>
+        <ol>
+          {%- for child in section.children %}
+            <li{% if child.url == page.url %} class="active"{% endif %}>
+              <a href="{{ child.url | url }}">
+                {{ child.title }}
+                {% if child.labs == true %}
+                  <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
+                {% endif %}
+              </a>
+            </li>
+          {%- endfor %}
+        </ol>
+      </details>
+    {%- endif %}
+  </li>
+{%- endfor %}

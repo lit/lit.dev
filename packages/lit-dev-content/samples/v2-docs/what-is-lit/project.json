@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v2-base.json",
+  "files": {
+    "my-timer.ts": {},
+    "index.html": {},
+    "icons.ts": {}
+  },
+  "previewHeight": "125px"
+}

@@ -1,0 +1,7 @@
+{
+  "extends": "/samples/base.json",
+  "files": {
+    "date-display.ts": {},
+    "index.html": {}
+  }
+}

@@ -1,0 +1,27 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  {% include "social-tags.html" %}
+  {% inlinecss "home.css" %}
+  {% inlinejs "pages/home.js" %}
+  <script type="module" src="{{ site.baseurl }}/js/pages/home-components.js"></script>
+
+  {% if env.DEV %}
+    <!-- HACK: In dev mode, the logo renders before the stylesheet loads, so it
+    is initially visible, and then immediately fades away. This doesn't affect
+    prod because the whole stylesheet is inlined. -->
+    <style>.menu-button-and-logo { opacity: 0; }</style
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% include "./home/1-splash.html" %}
+{% include "./home/2-advantages.html" %}
+{% include "./home/3-tour.html" %}
+{% include "./home/4-build-anything.html" %}
+{% include "./home/5-who-is-using.html" %}
+{% include "./home/6-explore.html" %}
+{% include "./home/7-connect.html" %}
+
+{% endblock %}

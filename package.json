@@ -1,0 +1,69 @@
+{
+  "name": "lit.dev",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Monorepo root package for lit.dev",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "wireit",
+    "start": "wireit",
+    "start:fake-github": "wireit",
+    "dev": "npm run dev:serve --workspace lit-dev-content --watch",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "nuke": "rm -rf node_modules packages/*/node_modules && npm ci",
+    "upgrade": "rm -rf node_modules package-lock.json packages/*/node_modules && npm i",
+    "test:unit": "npm run test -w lit-dev-tools-cjs",
+    "test:integration": "npm run test:integration -w lit-dev-tests",
+    "test:integration:update-golden-screenshots": "npm run test:integration:update-golden-screenshots -w lit-dev-tests",
+    "test:links": "npm run test:links -w lit-dev-tests",
+    "test:generated-api": "npm run test:api:no-todos -w lit-dev-tests",
+    "publish-search-index": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "./packages/lit-dev-api:build",
+        "./packages/lit-dev-content:build",
+        "./packages/lit-dev-server:build",
+        "./packages/lit-dev-tests:build",
+        "./packages/lit-dev-tools-cjs:build",
+        "./packages/lit-dev-tools-esm:build"
+      ]
+    },
+    "start": {
+      "dependencies": [
+        "./packages/lit-dev-server:start:local:main",
+        "./packages/lit-dev-server:start:local:playground",
+        "start:fake-github"
+      ]
+    },
+    "start:fake-github": {
+      "command": "LITDEV_ENV=local node packages/lit-dev-tools-esm/lib/fake-github-server.js",
+      "dependencies": [
+        "./packages/lit-dev-tools-esm:build"
+      ],
+      "files": [],
+      "service": {
+        "readyWhen": {
+          "lineMatches": "server listening"
+        }
+      }
+    },
+    "publish-search-index": {
+      "dependencies": [
+        "./packages/lit-dev-tools-esm:publish-search-index"
+      ]
+    }
+  },
+  "devDependencies": {
+    "playground-elements": "^0.18.0",
+    "prettier": "^2.1.2",
+    "typescript": "~4.7.4",
+    "wireit": "^0.9.4"
+  }
+}

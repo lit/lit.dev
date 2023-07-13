@@ -1,0 +1,50 @@
+#explore {
+  padding:4em var(--home-side-margin) 5em var(--home-side-margin);
+  background: black;
+  color: white;
+}
+
+#explore > h1 {
+  margin-bottom: 1em;
+  max-width: var(--content-max-width);
+  margin: auto;
+}
+
+#exploreItems {
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--content-max-width);
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+#exploreItems > div {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  margin: 0 0.5em;
+}
+
+#exploreItems > div > a {
+  background: #324FFF;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 0;
+  width: 150px;
+  text-align: center;
+}
+
+#exploreItems > div > a:hover,
+#exploreItems > div > a:focus {
+  background: blue;
+}
+
+#exploreItems > div > h2 {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 40px 0 25px 0;
+}

@@ -1,0 +1,20 @@
+name: Unit tests
+
+on: [push, pull_request]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+      - run: npm run test:unit
+      - run: npm run test:generated-api

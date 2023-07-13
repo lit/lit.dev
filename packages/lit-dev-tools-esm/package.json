@@ -1,0 +1,60 @@
+{
+  "name": "lit-dev-tools-esm",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Misc tools for lit.dev (ES Modules)",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "build": "wireit",
+    "build:ts": "wireit",
+    "publish-search-index": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc --build --pretty",
+      "dependencies": [
+        "../lit-dev-server:build",
+        "../lit-dev-tools-cjs:build"
+      ],
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "publish-search-index": {
+      "command": "node lib/upload-algolia-index.js",
+      "dependencies": [
+        "../lit-dev-content:build",
+        "build"
+      ],
+      "files": [
+        "lib/upload-algolia-index.js",
+        "../lit-dev-content/_site/searchIndex.json"
+      ]
+    }
+  },
+  "dependencies": {
+    "@lit/ts-transformers": "^1.1.1",
+    "@types/co-body": "^6.1.0",
+    "@types/prettier": "^2.3.2",
+    "@web/dev-server": "^0.1.6",
+    "algoliasearch": "^4.14.2",
+    "co-body": "^6.1.0",
+    "fast-glob": "^3.2.9",
+    "lit-dev-server": "^0.0.0",
+    "lit-dev-tools-cjs": "^0.0.0",
+    "prettier": "^2.3.2"
+  }
+}

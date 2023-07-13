@@ -1,0 +1,16 @@
+--- packages/lit-html/development/directive-helpers.d.ts	2023-05-15 17:13:11
++++ packages/lit-html/development/directive-helpers_new.d.ts	2023-05-16 13:31:18
+@@ -5,9 +5,9 @@
+  */
+ import { Part, DirectiveParent, TemplateResult } from './lit-html.js';
+ import { DirectiveResult, DirectiveClass, PartInfo } from './directive.js';
+-type Primitive = null | undefined | boolean | number | string | symbol | bigint;
+-declare const ChildPart: typeof import("./lit-html.js").ChildPart;
+-type ChildPart = InstanceType<typeof ChildPart>;
++type Primitive = null | undefined | boolean | number | string | symbol | bigint; 
++type ChildPart = import("./lit-html.js").ChildPart;
++ 
+ /**
+  * Tests if a value is a primitive value.
+  *
+\ No newline at end of file

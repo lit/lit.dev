@@ -1,0 +1,140 @@
+#new-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  background: #5865F2;
+  color: white;
+}
+
+#new-banner > p {
+  text-align: center;
+  padding: 2px 5px 2px 5px;
+  margin: 0px;
+  font-size: 18px;
+}
+
+#new-banner a {
+  color: white;
+  font-weight: 800;
+}
+
+#new-banner a:hover {
+  text-decoration: underline;
+}
+
+#new-banner .emoji {
+  margin-right: 10px;
+}
+
+#intro {
+  display: flex;
+  align-items: center;
+  padding: 120px 0 140px 0;
+  position: relative;
+  z-index: 0;
+  background: white;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#splashLogo {
+  margin-right: 60px;
+}
+
+#splashLogo > img {
+  display: block;
+  width: 286.875px;
+  height: 135px;
+}
+
+#splashLogoHeaderOffset {
+  margin-top: calc(-1 * var(--header-height));
+  position: absolute;
+}
+
+#tagline {
+  color: rgb(48, 48, 48);
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 60px -9px 0;
+  width: 182px;
+}
+
+#tagline > span {
+  display: block;
+}
+
+#splashButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+#splashButtons > * {
+  width: 200px;
+  height: 37px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#npmInstall {
+  font-family: var(--playground-code-font-family);
+  background: #757575;
+  color: white;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+#npmInstall:hover,
+#npmInstall:focus {
+  background: #575757;
+}
+
+#npmInstall > .prompt {
+  margin-right: 10px;
+  user-select: none;
+}
+
+#getStartedLink {
+  background: #325cff;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+#getStartedLink:hover,
+#getStartedLink:focus {
+  background: blue;
+}
+
+@media (max-width: 900px) {
+  #new-banner > p {
+    font-size: 16px;
+  }
+
+  #intro {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #splashLogo {
+    margin: 0;
+  }
+
+  #tagline {
+    margin: 40px 0;
+    text-align: center;
+    font-size: 20px;
+    width: auto;
+  }
+
+  #tagline > span {
+    display: inline;
+  }
+
+  #npmInstall {
+    margin-bottom: 15px;
+  }
+}

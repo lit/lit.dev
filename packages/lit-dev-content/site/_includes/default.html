@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, {% if page.url.includes('/playground') %}maximum-scale=1.0, {% endif %}user-scalable={% if page.url.includes('/playground') %}no{% else %}yes{% endif %}">
+    <title>{% if title %}{{ title }} &ndash;{% endif %} Lit</title>
+    <meta name="description" content="Simple. Fast. Web Components.">
+    <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
+    <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
+    {% if not env.DEV %}
+    <link rel="modulepreload" href="{{ site.baseurl }}/js/tslib.js">
+    <link rel="modulepreload" href="{{ site.baseurl }}/js/lit.js">
+    {% endif %}
+    <link rel="modulepreload" href="{{ site.baseurl }}/js/global/hydrate-common-components.js">
+
+    {% inlinecss "global.css" %}
+
+    {% inlinecss "mods.css" %}
+    {% inlinejs "global/apply-mods.js" %}
+    {% inlinejs "global/initialize-typescript-attribute.js" %}
+    {% inlinejs "global/mobile-drawer.js" %}
+    {% if env.DEV %}
+      <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
+    {% else %}
+      <!-- Loads lit-hydration since we manually chunk this -->
+      <script type="module" href="{{ site.baseurl }}/js/lit.js"></script>
+    {% endif %}
+    {% inlinejs "global/dsd-polyfill.js" %}
+
+    {% if selectedVersion == "v1" %}
+      <link rel="canonical" href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+    {% endif %}
+    {% if selectedVersion !== latestVersion %}
+      {% inlinejs "components/litdev-banner.js" %}
+    {% endif %}
+
+    <script type="module" src="{{ site.baseurl }}/js/global/hydrate-common-components.js"></script>
+
+    <!-- Preload common chunks we always need. Note <link rel="modulepreload">
+         isn't yet supported in Firefox or Safari. -->
+    {% if not env.DEV %}
+      <script type="module" src="{{ site.baseurl }}/js/tslib.js"></script>
+    {% endif %}
+
+    <link rel="preconnect" href="https://{% algoliaid %}-dsn.algolia.net/" crossorigin>
+
+    <link href="/blog/atom.xml" rel="alternate" type="application/atom+xml" title="Lit Blog feed">
+    <noscript><style>body[dsd-pending] {display: block !important;}</style></noscript>
+    {% block head %}{% endblock %}
+  </head>
+  <body dsd-pending>
+    <litdev-cookie-banner></litdev-cookie-banner>
+    <mwc-drawer type="modal" id="mobileDrawer">
+      <nav>
+        <div id="mobileSiteNav">
+          <img src="{{ site.baseurl }}/images/flame-white.svg" alt="" width="24" height="30">
+          <ol>
+            {% include 'site-nav.html' %}
+          </ol>
+        </div>
+        <ol id="mobileDocsNav">
+          {% include 'docs-nav-collapsing.html' %}
+        </ol>
+      </nav>
+    </mwc-drawer>
+
+    {% include 'header.html' %}
+
+    {% if selectedVersion !== latestVersion and selectedVersion !== "v3"  %}
+      <litdev-banner>
+        You're viewing docs for an older version of Lit. Click
+        <a href="{{ versions[latestVersion].path }}/{{ versionLinks[latestVersion] }}">
+        here</a> for the latest version.
+      </litdev-banner>
+    {% elif selectedVersion === "v3" %}
+      <litdev-banner>
+        You're viewing docs for a pre-release version of Lit. Read the Lit 3.0 pre-releases
+        announcement <a href="/blog/2023-05-15-lit-3.0-prerelease/">here</a>.
+      </litdev-banner>
+    {% endif %}
+
+    <main {% if not page.url.includes('/docs/')
+            and not page.url.includes('/playground/')
+            and not page.url.includes('/articles/') %}
+              id="content" {% endif %}>
+      {% block content %}{{ content | safe }}{% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+
+    {% if env.GOOGLE_ANALYTICS_ID %}
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{ env.GOOGLE_ANALYTICS_ID }}"></script>
+      <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date);gtag("config","{{ env.GOOGLE_ANALYTICS_ID }}");</script>
+    {% endif %}
+  </body>
+</html>

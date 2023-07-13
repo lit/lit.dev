@@ -1,0 +1,8 @@
+{
+  "extends": "../../carousel-base.json",
+  "files": {
+    "motion-carousel.ts": {},
+    "index.html": {"selected": true},
+    "styles.ts": {}
+  }
+}

@@ -1,0 +1,68 @@
+html {
+  --playground-code-font-family: 'Roboto Mono', monospace;
+  --playground-code-font-size: 14px;
+  --playground-code-line-height: 1.6em;
+  --litdev-code-padding: 0.5em 0 0.5em 1em;
+  --playground-bar-height: 44px;
+  --playground-code-gutter-background: white;
+  --playground-code-gutter-border-right: none;
+
+  --playground-highlight-color: var(--color-blue);
+  --playground-code-keyword-color: #d92f3f;
+  --playground-code-atom-color: #005cc5;
+  --playground-code-number-color: #005cc5;
+  --playground-code-def-color: #6f42c1;
+  --playground-code-variable-color: #6f42c1;
+  --playground-code-property-color: #008176;
+  --playground-code-operator-color: #d92f3f;
+  --playground-code-variable-2-color: #000000;
+  --playground-code-variable-3-color: #000000;
+  --playground-code-type-color: #005cc5;
+  --playground-code-comment-color: #6a737d;
+  --playground-code-string-color: #032f62;
+  --playground-code-string-2-color: #032f62;
+  --playground-code-meta-color: #000000;
+  --playground-code-qualifier-color: #6f42c1;
+  --playground-code-builtin-color: #6f42c1;
+  --playground-code-tag-color: #032f62;
+  --playground-code-attribute-color: #6f42c1;
+  --playground-code-callee-color: #005cc5;
+}
+
+.CodeMirror {
+  overflow-y: auto;
+}
+
+playground-preview {
+  background: var(--color-light-gray);
+}
+
+playground-preview::part(preview-toolbar) {
+  background: var(--color-light-gray);
+  border-bottom: 1px solid #ccc;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+playground-tab-bar {
+  background: white;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+playground-file-editor {
+  background: white;
+}
+
+body[code-language-preference="ts"] litdev-switchable-sample > pre > code.language-js {
+  /* Hide JS samples when preference is TS. */
+  display: none;
+}
+
+body[code-language-preference="js"] litdev-switchable-sample > pre > code.language-ts {
+  /* Hide TS samples when preference is JS. */
+  display: none;
+}

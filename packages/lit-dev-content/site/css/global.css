@@ -1,0 +1,100 @@
+@import url('./fonts/manrope.css');
+@import url('./fonts/roboto-mono.css');
+@import url('./fonts/open-sans.css');
+@import url('./header.css');
+@import url('./footer.css');
+@import url('./mobile-nav.css');
+@import url('./colors.css');
+@import url('./codemirror.css');
+@import url('./code.css');
+@import url('./version-selector.css');
+
+body[dsd-pending] {
+  display: none;
+}
+
+html {
+  font-size: 18px;
+  --header-nav-height: 60px;
+  /* The litdev-banner component will automatically update this variable if
+     there is a banner present. */
+  --banner-height: 0px;
+  /* It's helpful to consider the banner part of the header, because the
+     --header-height variable is used in many places to determine where the main
+     content begins (e.g. other sticky elements, scroll-margin-top). */
+  --header-height: calc(var(--header-nav-height) + var(--banner-height));
+  --footer-top-height: 12rem;
+  --footer-bottom-height: 6rem;
+  --content-max-width: 76rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+code {
+  font-family: "Roboto Mono", monospace;
+}
+
+@media (max-width: 864px) {
+  html {
+    --footer-top-height: 20rem;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Manrope, sans-serif;
+}
+
+main {
+  /* Ensures that the footer never floats above the bottom of the viewport on
+     short pages. */
+  min-height: calc(100vh - var(--header-height) - var(--footer-top-height) -
+    var(--footer-bottom-height)
+  );
+  scroll-margin-top: var(--header-height);
+}
+
+a {
+  text-decoration: none;
+  color: #1879cd;
+}
+
+/* On some platforms like Linux, a traditional scrollbar will be always visible
+   on the nav, which is quite distracting. This reproduces something similar to
+   macOS style on all platforms. */
+.minimalScroller::-webkit-scrollbar {
+  width: 15px;
+}
+.minimalScroller:hover::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.3);
+  background-clip: content-box !important;
+  border: 4px solid transparent;
+  border-radius: 10px;
+}
+
+/* Hide something visually in a way that screen readers will read. */
+.offscreen {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+#bypassNavLink {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 100ms;
+  font-size: 18px;
+  padding: 8px 14px;
+  color: var(--color-blue);
+  background: white;
+  z-index: 5;
+}
+#bypassNavLink:focus {
+  transform: translateX(10px);
+}
+#bypassNavLink:hover {
+  text-decoration: underline;
+}

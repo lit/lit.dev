@@ -1,0 +1,29 @@
+#splash {
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 5px 2px;
+  display: block;
+  height: 80px;
+  object-fit: cover;
+  width: 100%;
+}
+
+article {
+  max-width: 800px;
+  margin: auto;
+  padding: 0 24px 32px 24px;
+}
+
+h1 {
+  color: #555;
+  font-size: 42px;
+  font-weight: 400;
+}
+
+img.flame {
+  background: #eee;
+  box-sizing: border-box;
+  padding: 5%;
+}
+
+#footerTop {
+  border-top: 1px solid var(--color-blue);
+}

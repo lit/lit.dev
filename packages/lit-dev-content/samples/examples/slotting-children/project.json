@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Slotting children",
+  "description": "Render children with the <slot> element.",
+  "section": "Template concepts",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  },
+  "order": 3
+}

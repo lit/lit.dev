@@ -1,0 +1,53 @@
+{
+  "header": "From Web Component to Lit Element",
+  "difficulty": "Beginner",
+  "size": "small",
+  "duration": 43,
+  "category": "Draft",
+  "steps": [
+    {
+      "title": "Introduction",
+      "noSolve": true
+    },
+    {
+      "title": "Define a custom element"
+    },
+    {
+      "title": "Custom element lifecycle & rendering"
+    },
+    {
+      "title": "Shadow DOM"
+    },
+    {
+      "title": "HTML Templates"
+    },
+    {
+      "title": "Adding Functionality - Properties"
+    },
+    {
+      "title": "Adding Functionality - Attributes"
+    },
+    {
+      "title": "Adding Functionality - Attribute Styling"
+    },
+    {
+      "title": "Adding Functionality - Listeners"
+    },
+    {
+      "title": "Lit Templates"
+    },
+    {
+      "title": "Declarative Event Listeners"
+    },
+    {
+      "title": "LitElement"
+    },
+    {
+      "title": "LitElement - Lifecycle and Properties"
+    },
+    {
+      "title": "Recap",
+      "noSolve": true
+    }
+  ]
+}

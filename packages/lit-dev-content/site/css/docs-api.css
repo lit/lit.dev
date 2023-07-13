@@ -1,0 +1,132 @@
+.kindTag {
+  order: -1;
+  margin-right: 1em;
+  padding: 0 0.5em;
+  color: white !important;
+  background: var(--color-dark-gray);
+  font-size: 0.88889rem;
+}
+.kindTag.class {
+  background: #d73a49;
+}
+.kindTag.function {
+  background: green;
+}
+.kindTag.decorator {
+  background: rgb(165, 5, 165);
+}
+.kindTag.directive {
+  background: teal;
+}
+.kindTag.type {
+  background: #005cc5;
+}
+.kindTag.value {
+  background: rgb(255, 123, 0);
+}
+
+/* Import statements */
+.import {
+  display: flex;
+  background: var(--playground-code-background);
+  border: var(--code-border);
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+.import > figure {
+  border: none;
+  margin: 0;
+}
+copy-button {
+  height: 48px;
+  opacity: 0.75;
+  padding: 0.2em;
+}
+copy-button:hover {
+  opacity: 1;
+}
+
+/* Methods and properties */
+.propertyDetails {
+  padding-left: 1.5em;
+}
+.heading.property {
+  margin-top: 2em;
+}
+.heading.property > h4 {
+  font-family: var(--playground-code-font-family);
+  font-weight: normal;
+}
+
+/* Types and keywords */
+.staticKeyword, .newKeyword, .readonlyKeyword {
+  font-style: italic;
+}
+.functionName, .propertyName {
+  font-weight: bold;
+}
+.type, .paramName, .staticKeyword, .newKeyword {
+  color: rgb(102, 102, 102);
+}
+
+/* Top-level function signatures */
+.signature > code,
+.typeSignature > code {
+  font-size: 1em !important;
+  background: transparent !important;
+  padding-left: 0 !important;
+}
+
+/* View source links */
+.viewSourceLink {
+  font-size: 13px;
+  padding: 0em 0.5em;
+  margin-left: auto;
+  flex-shrink: 0;
+  /* Above full width anchor link */
+  z-index: 1;
+}
+.viewSourceLink:hover {
+  background: var(--docs-link-color);
+  color: white;
+  text-decoration: none;
+}
+
+/* Misc */
+h3 {
+  /* Less space between sections than on guide */
+  padding-top: 0 !important;
+}
+.mdnIcon {
+  opacity: 60%;
+  vertical-align: middle;
+}
+.heading.h4 .anchor {
+  /* Property h4s can have links in them. This doesn't interact well with the
+     anchor link, which is positioned absolutely and full width. Hacky, but just
+     shrink the anchor width in these cases.
+     TODO(aomarks) Another implementation that works better? */
+  width: 3em;
+}
+
+/* Mobile layout */
+@media (max-width: 864px) {
+  a {
+    /* Allow long URLs to break */
+    word-break: break-all;
+  }
+  .heading {
+    display: block;
+  }
+  .kindTag {
+    display: inline-block;
+    margin-top: 1em;
+  }
+  .heading.h2 .anchor {
+    top: 0.5em;
+  }
+  .heading.h4 .anchor {
+    top: 0;
+  }
+}

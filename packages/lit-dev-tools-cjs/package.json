@@ -1,0 +1,56 @@
+{
+  "name": "lit-dev-tools-cjs",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Misc tools for lit.dev (CommonJS)",
+  "author": "Google LLC",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "build": "wireit",
+    "build:ts": "wireit",
+    "test": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "dependencies": [
+        "build:ts"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc --build --pretty",
+      "files": [
+        "src/**",
+        "tsconfig.json",
+        "../../tsconfig.base.json"
+      ],
+      "output": [
+        "lib"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "test": {
+      "command": "uvu ./lib \".spec.js$\"",
+      "dependencies": [
+        "build"
+      ],
+      "files": [],
+      "output": []
+    }
+  },
+  "dependencies": {
+    "@types/jsdom": "^16.2.13",
+    "@types/strip-comments": "^2.0.1",
+    "@web/dev-server": "^0.1.6",
+    "@web/dev-server-core": "^0.3.5",
+    "fast-glob": "^3.2.5",
+    "jsdom": "^17.0.0",
+    "minisearch": "^3.0.4",
+    "outdent": "^0.8.0",
+    "playwright": "^1.28.1",
+    "source-map": "^0.8.0-beta.0",
+    "strip-comments": "^2.0.1",
+    "striptags": "^3.2.0",
+    "typedoc": "^0.24.6",
+    "uvu": "^0.5.1"
+  }
+}

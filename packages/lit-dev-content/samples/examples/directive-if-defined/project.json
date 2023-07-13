@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "ifDefined directive",
+  "description": "Demo exploring use of the ifDefined directive.",
+  "section": "Directives",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}

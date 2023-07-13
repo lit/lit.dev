@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "templateContent directive",
+  "description": "Demo exploring use of the templateContent directive.",
+  "section": "Directives",
+  "files": {
+    "my-element.ts": {},
+    "index.html": {}
+  }
+}

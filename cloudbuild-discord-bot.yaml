@@ -1,0 +1,57 @@
+# lit.dev Cloud Build config for discord bot deployment.
+# This is triggered manually.
+#
+# https://cloud.google.com/cloud-build/docs/build-config
+
+steps:
+  # Build Docker image.
+  #
+  # https://docs.docker.com/engine/reference/commandline/build/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  # https://cloud.google.com/build/docs/kaniko-cache
+  - id: build
+    # Kaniko pinned to earlier version due to
+    # https://github.com/GoogleContainerTools/kaniko/issues/1786
+    name: gcr.io/kaniko-project/executor:v1.6.0
+    args:
+      - --dockerfile=./Dockerfile-discord-bot
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev-discord-bot:$COMMIT_SHA
+      - --cache=true
+      - --cache-ttl=168h # 1 week
+
+  # Create a new Cloud Run revision for the discord bot.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: deploy-discord-bot
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - beta
+      - run
+      - deploy
+      - lit-dev-discord-bot # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev-discord-bot:$COMMIT_SHA'
+      - '--quiet'
+      - '--tag=main-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile-discord-bot, and this same flag in
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=default' # unlimited
+      - '--min-instances=1'
+      - '--max-instances=1'
+      - '--set-secrets=BOT_CLIENT_SECRET=lit-dev-discord-bot-token:1'
+
+# TODO(augustjk) Consider adding a step here to delete the old revision
+
+tags:
+  - lit-dev
+  - discord-bot
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+timeout: 45m

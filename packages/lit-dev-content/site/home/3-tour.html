@@ -1,0 +1,59 @@
+<section id="tour">
+  <div id="tourCodeAndNotes">
+    <div id="tourCode">
+      <litdev-code-language-switch>
+      </litdev-code-language-switch>
+      <div id="tourTsCode">
+        {% highlight 'ts' %}{% include '../../samples/examples/hello-world/simple-greeting.ts' %}{% endhighlight %}
+      </div>
+      <div id="tourJsCode">
+        {% highlight 'js' %}{% include '../../samples/js/examples/hello-world/simple-greeting.js' %}{% endhighlight %}
+      </div>
+      <div id="tourHtmlCode">
+        {% highlight 'html' %}<simple-greeting name="World"></simple-greeting>{% endhighlight %}
+      </div>
+      <a id="playgroundLink" href="{{ url.baseurl }}/playground/">
+        Edit this example in the Lit Playground
+      </a>
+    </div>
+
+    <div id="tourNotes">
+      <div id="tourNoteCustomElements" tabindex="0">
+        <h1>Custom Elements</h1>
+        <p>
+          Lit components are standard <em>custom elements</em>, so the browser treats
+          them exactly like built-in elements. Use them in hand-written HTML or framework
+          code, output them from your CMS or static site builder, even create instances
+          in JavaScript — they just work!
+        </p>
+      </div>
+
+      <div id="tourNoteStyles" tabindex="0">
+        <h1>Scoped styles</h1>
+        <p>
+          Lit scopes your styles by default, using <em>Shadow DOM</em>. This keeps your CSS
+          selectors simple and ensures that your component’s styles don't affect — and
+          aren't affected by — any other styles on the page.
+        </p>
+      </div>
+
+      <div id="tourNoteProperties" tabindex="0">
+        <h1>Reactive properties</h1>
+        <p>
+          Declare <em>reactive properties</em> to model your component’s API and internal
+          state. A Lit component efficiently re-renders whenever a reactive property (or
+          corresponding HTML attribute) changes.
+        </p>
+      </div>
+
+      <div id="tourNoteTemplates" tabindex="0">
+        <h1>Declarative templates</h1>
+        <p>
+          Lit templates, based on <em>tagged template literals</em>, are simple,
+          expressive and fast, featuring HTML markup with native JavaScript expressions
+          inline. No custom syntax to learn, no compilation required.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

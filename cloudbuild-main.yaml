@@ -1,0 +1,138 @@
+# lit.dev Cloud Build config for main branch auto deployment.
+#
+# https://cloud.google.com/cloud-build/docs/build-config
+
+steps:
+  # Build Docker image.
+  #
+  # https://docs.docker.com/engine/reference/commandline/build/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  # https://cloud.google.com/build/docs/kaniko-cache
+  - id: build
+    name: gcr.io/kaniko-project/executor:latest
+    args:
+      - --dockerfile=./Dockerfile
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA
+      - --cache=true
+      - --cache-ttl=168h # 1 week
+      - --build-arg=LITDEV_ENV=prod
+      - --build-arg=SHORT_SHA=$SHORT_SHA
+
+  # Create a new Cloud Run revision for the main site.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: deploy-main
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - beta
+      - run
+      - deploy
+      - lit-dev # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      # If this tag format changes, also update route-traffic- steps below and
+      # the cleanup script in packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
+      - '--tag=main-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-pr.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=200'
+      - '--min-instances=1'
+      - '--max-instances=1000'
+      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-prod:1'
+      # Serve the main site
+      - '--update-env-vars=LITDEV_ENV=prod,MODE=main'
+
+  # Create a new Cloud Run revision for the Playground sandbox.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: deploy-playground
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    waitFor:
+      # Don't wait for main site deploy
+      - build
+    args:
+      - beta
+      - run
+      - deploy
+      - lit-dev-playground # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      # If this tag format changes, also update route-traffic- steps below and
+      # the cleanup script in packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
+      - '--tag=main-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-pr.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=200'
+      - '--min-instances=1'
+      - '--max-instances=1000'
+      # Serve the playground files
+      - '--update-env-vars=LITDEV_ENV=prod,MODE=playground'
+
+  # Route traffic to new revision for the playground.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/services
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: route-traffic-main
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    waitFor:
+      # Route traffic simultaneously once both deploys are done
+      - deploy-main
+      - deploy-playground
+    args:
+      - beta
+      - run
+      - services
+      - update-traffic
+      - lit-dev # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--quiet'
+      - '--to-tags=main-$SHORT_SHA=100'
+
+  # Route traffic to new revision for the main site.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/services
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: route-traffic-playground
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    waitFor:
+      # Route traffic simultaneously once both deploys are done
+      - deploy-main
+      - deploy-playground
+    args:
+      - beta
+      - run
+      - services
+      - update-traffic
+      - lit-dev-playground # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--quiet'
+      - '--to-tags=main-$SHORT_SHA=100'
+
+tags:
+  - lit-dev
+  - cloudbuild-main
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+timeout: 45m

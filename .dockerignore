@@ -1,0 +1,7 @@
+Dockerfile
+.dockerignore
+**/node_modules
+npm-debug.log
+**/tsconfig.tsbuildinfo
+/packages/lit-dev-api/api-data/*/repo/
+/packages/lit-dev-tests/

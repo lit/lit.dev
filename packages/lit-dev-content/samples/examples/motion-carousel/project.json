@@ -1,0 +1,16 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Carousel Transitions",
+  "description": "Animated carousel.",
+  "section": "@lit-labs/motion",
+  "files": {
+    "motion-carousel.ts": {},
+    "styles.ts": {},
+    "index.html": {},
+    "package.json": {
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.7.4\",\n    \"@lit-labs/motion\": \"^1.0.3\"\n  }\n}",
+      "hidden": true
+    }
+  },
+  "order": 4
+}

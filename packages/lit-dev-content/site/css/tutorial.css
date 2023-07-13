@@ -1,0 +1,347 @@
+main {
+  display: flex;
+  /* Remove space usually allotted to the footer. */
+  min-height: calc(100vh - var(--header-height));
+}
+
+footer {
+  /* No footer on full screen UI. */
+  display: none;
+}
+
+litdev-tutorial {
+  flex: 0 0 var(--text-side-width, 45%);
+  background: var(--color-dark-gray);
+  color: white;
+  line-height: 1.5em;
+  min-width: 18em;
+  max-width: 60em;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height));
+}
+
+/* Content */
+
+#tutorialContent {
+  font-size: 0.88889em;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  padding: 0 3em 1em 2em;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#tutorialContent[loading] {
+  visibility: hidden;
+}
+
+#tutorialContent > h1 {
+  font-weight: 500;
+  border-bottom: 2px solid #666;
+  padding-bottom: 0.5em;
+  font-size: 1.8em;
+  line-height: 1.3em;
+  font-family: 'Manrope', sans-serif;
+}
+
+#tutorialContent a {
+  color: var(--color-dark-cyan);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#tutorialContent a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-dark-cyan);
+}
+
+#tutorialContent figure {
+  margin: 2em 0;
+  padding: 1em 1.5em;
+}
+
+#tutorialContent img {
+  max-width: 100%;
+}
+
+#tutorialContent code:not([class]) {
+  background: rgb(0 0 0 / 25%);
+  font-size: 0.85em;
+  padding: 0.2em 0.4em;
+  font-family: var(--playground-code-font-family, monospace);
+}
+
+#tutorialContent ul,
+#tutorialContent ol {
+  padding-left: 1em;
+}
+
+/* Tutorial header */
+
+#tutorialHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  padding: 0.5em calc(3em - 16px) 0.3em 2em;
+  /* Disabled buttons are very dark by default, lighten a bit. */
+  --mdc-theme-text-disabled-on-light: #777;
+  --diamond-icon-color: currentcolor;
+  /* need to reduce padding to account for the 16px of whitespace around icon */
+  padding-inline-start: calc(2em - 16px);
+}
+
+#tutorialHeader .lhs {
+  display: flex;
+  align-items: center;
+}
+
+#tutorialHeader .tutorial-metadata {
+  display: flex;
+  align-items: center;
+}
+
+#tutorialHeader .lhs litdev-ripple-icon-button {
+  margin-inline-end: .5em;
+}
+
+#tutorialHeader .lhs .tutorial-title {
+  font-weight: bold;
+}
+
+#tutorialHeader .lhs .title-separator {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-inline: .5em;
+}
+
+#tutorialHeader .lhs .title-separator > svg {
+  height: .5em;
+}
+
+#tutorialHeader .step-text {
+  margin-inline-end: .25em;
+}
+
+#tutorialHeader a {
+  color: currentColor;
+}
+
+#tutorialHeader nav {
+  display: flex;
+}
+
+#tutorialHeader nav > * {
+  width: 48px;
+  display: inline-flex;
+}
+
+#tutorialHeader .number {
+  font-weight: bold;
+}
+
+#tutorialHeader .number:first-of-type {
+  margin-left: 0.3em;
+}
+
+/* Solve/Reset/Next buttons */
+
+#tutorialFooter {
+  border-top: 2px solid #666;
+  padding-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5em;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#tutorialFooter > litdev-icon-button {
+  margin-right: 1em;
+}
+
+#tutorialFooter > litdev-icon-button > svg {
+  margin-right: 0.5em;
+}
+
+#tutorialFooter > litdev-icon-button:hover {
+  background: #2a2a2a;
+}
+
+#tutorialFooter > #nextStep {
+  display: block;
+  text-align: right;
+  flex: 1;
+}
+
+#tutorialFooter > #nextStep > a {
+  margin-left: 0.25em;
+  color: var(--color-dark-cyan);
+}
+
+/* Editor and preview */
+
+#editorAndPreview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Eat space taken by the resize-bar */
+  margin-left: -3px;
+  /* Prevent flex layout problems when typing long lines in CodeMirror. */
+  min-width: 0;
+}
+
+#tabsAndControls {
+  display: flex;
+  padding-right: 8px;
+  /* Move border from the tab-bar to this wrapping div. */
+  border-bottom: 1px solid #ccc;
+  height: var(--playground-bar-height);
+  box-sizing: border-box;
+}
+
+playground-tab-bar {
+  flex: 1 0;
+  min-width: 0;
+  border-bottom: none;
+  height: auto;
+}
+
+playground-file-editor {
+  flex: 1 0 0;
+  height: 0;
+}
+
+playground-preview {
+  flex: 0 0 var(--preview-height, 45%);
+  height: unset;
+  min-height: 8em;
+  max-height: calc(100vh - var(--header-height) - 8em);
+  overflow-y: hidden;
+  /* Eat space taken by the resize-bar */
+  margin-top: -3px;
+}
+
+playground-preview::part(preview-toolbar) {
+  padding-left: 0.8em;
+}
+
+/* Resize bars */
+
+resize-bar {
+  flex: 0 0 auto;
+}
+
+resize-bar[active] {
+  background: var(--color-dark-cyan);
+}
+
+/** Mobile layout */
+
+@media (max-width: 864px) {
+  main {
+    flex-direction: column;
+  }
+
+  #tutorialContent {
+    overflow-y: visible;
+  }
+
+  litdev-tutorial,
+  #editorAndPreview {
+    flex-basis: initial;
+  }
+
+  litdev-tutorial {
+    height: unset;
+  }
+
+  #tutorialFooter > #nextStep {
+    text-align: center;
+    min-width: 100vw;
+  }
+
+  playground-file-editor {
+    flex-basis: auto;
+    height: 350px;
+  }
+
+  playground-preview {
+    flex-basis: auto;
+    height: 200px;
+  }
+
+  resize-bar {
+    display: none;
+  }
+}
+
+/* Anchors point to wrong links in tutorials */
+.anchor {
+  display: none;
+}
+
+.checkButton.checking svg {
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* -----------------------------------
+/* Notes and warnings
+/* ------------------------------------ */
+
+#tutorialContent litdev-aside {
+  --lit-dev-aside-border-color: #ccc;
+}
+
+#tutorialContent aside {
+  position: relative;
+  margin: 1em 0;
+  padding: 1em 1em 1em 3.5em;
+  border: 1px solid #ccc;
+}
+
+#tutorialContent aside > p {
+  margin: 0;
+}
+
+#tutorialContent aside::before {
+  position: absolute;
+  top: 1.15em;
+  left: 1em;
+}
+
+#tutorialContent aside.info::before {
+  content: url(/images/alerts/info.svg);
+}
+
+#tutorialContent aside.warning::before {
+  content: url(/images/alerts/warning-yellow.svg);
+}
+
+#tutorialContent aside.labs::before {
+  content: url(/images/alerts/labs.svg);
+}
+
+#tutorialContent aside.positive::before {
+  content: url(/images/alerts/positive.svg);
+}
+
+#tutorialContent aside.negative::before {
+  content: url(/images/alerts/negative.svg);
+}
+
+#tutorialContent details summary {
+  cursor: pointer;
+}

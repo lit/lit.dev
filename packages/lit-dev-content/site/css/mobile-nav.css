@@ -1,0 +1,60 @@
+/* Don't render drawer slotted children before it upgrades. */
+mwc-drawer:not(:defined) {
+  display: none;
+}
+
+#mobileDrawer ol {
+  margin: 0;
+  padding: 0;
+}
+
+#mobileDrawer li {
+  list-style-type: none;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#mobileDrawer a {
+  color: inherit;
+}
+
+#mobileDrawer .active {
+  font-weight: 700;
+}
+
+#mobileSiteNav {
+  background: var(--color-blue);
+  color: white;
+  padding: 20px;
+}
+
+#mobileDocsNav {
+  padding: 20px !important;
+}
+
+#mobileDocsNav ol {
+  margin-left: 30px;
+}
+
+#mobileDocsNav>li:first-of-type {
+  margin-top: 0;
+}
+
+#mobileDocsNav .sectionHead {
+  padding-left: 5px;
+}
+
+#mobileDocsNav details {
+  cursor: pointer;
+}
+
+#mobileDocsNav summary::marker {
+  font-size: 13px;
+}
+
+/* Labs icon */
+#mobileDocsNav img.labs {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: text-bottom;
+}

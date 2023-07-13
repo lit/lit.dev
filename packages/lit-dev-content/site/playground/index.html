@@ -1,0 +1,138 @@
+---
+title: Playground
+---
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% include "social-tags.html" %}
+  {% inlinecss "playground.css" %}
+  {% inlinejs "pages/playground-inline.js" %}
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-playground-page.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/litdev-drawer.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
+  <script type="module" src="{{ site.baseurl }}/js/components/resize-bar.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<litdev-playground-page
+  githubApiUrl="{{ env.GITHUB_API_URL }}">
+
+<litdev-drawer>
+  <h1 id="exampleHeading" slot="header">Examples</h1>
+
+  <div id="exampleContent" slot="content" class="minimalScroller">
+    {% for section in playground_examples %}
+      <div class="exampleSection">
+        <h2 class="exampleSectionHeading">{{ section.name }}</h2>
+        <ul class="exampleList">
+          {% for file in section.files %}
+            <li class="exampleItem"
+                data-sample="{{ file.project }}">
+              <a href="#sample={{ file.project }}"
+                 title="{{ file.description }}">
+                {{ file.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</litdev-drawer>
+
+<div id="content">
+  <div id="actionBar">
+    <litdev-playground-download-button>
+    </litdev-playground-download-button>
+
+    <litdev-playground-share-button
+      clientId="{{ env.GITHUB_CLIENT_ID }}"
+      authorizeUrl="{{ env.GITHUB_AUTHORIZE_URL }}"
+      githubApiUrl="{{ env.GITHUB_API_URL }}"
+      githubAvatarUrl="{{ env.GITHUB_AVATAR_URL }}">
+    </litdev-playground-share-button>
+
+    <litdev-ripple-icon-button
+        button-title="Toggle view mode"
+        id="view-mode-button">
+      <lazy-svg
+        class="preview"
+        label="Show Only Preview"
+        href="{{ site.baseurl }}/images/icons/preview.svg#icon"
+        loading="eager"></lazy-svg>
+      <lazy-svg
+        class="code"
+        label="Show Only Code"
+        href="{{ site.baseurl }}/images/icons/code.svg#icon"
+        loading="eager"></lazy-svg>
+      <lazy-svg
+          class="splitscreen"
+          label="Show Split View"
+          href="{{ site.baseurl }}/images/icons/splitscreen.svg#icon"
+          loading="eager"></lazy-svg>
+    </litdev-ripple-icon-button>
+  </div>
+
+  <playground-project
+     sandbox-base-url="{{ env.PLAYGROUND_SANDBOX }}"
+     id="project">
+  </playground-project>
+
+  <div id="tabsEditorAndPreview">
+    <div id="tabsAndEditor">
+
+      <div id="tabsAndControls">
+        <playground-tab-bar
+          editable-file-system
+          project="project"
+          editor="editor">
+        </playground-tab-bar>
+
+        <litdev-example-controls></litdev-example-controls>
+
+        <litdev-playground-change-guard
+          project="project">
+        </litdev-playground-change-guard>
+      </div>
+
+      <playground-file-editor
+        id="editor"
+        project="project"
+        pragmas="off"
+        line-numbers>
+      </playground-file-editor>
+    </div>
+
+    <resize-bar
+      id="horizontalResizeBar"
+      target="tabsAndEditor"
+      dimension="width"
+      property="--tabs-and-editor-width">
+    </resize-bar>
+
+    <resize-bar
+      id="verticalResizeBar"
+      target="preview"
+      dimension="height"
+      property="--preview-height">
+    </resize-bar>
+
+    <playground-preview
+      id="preview"
+      project="project">
+    </playground-preview>
+  </div>
+</div>
+
+<mwc-snackbar
+  id="shareSnackbar"
+  labelText="URL copied to clipboard">
+</mwc-snackbar>
+
+<litdev-error-notifier siteVersion="{{ env.SITE_VERSION }}"></litdev-error-notifier>
+
+</litdev-playground-page>
+
+{% endblock %}

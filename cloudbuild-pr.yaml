@@ -1,0 +1,101 @@
+# lit.dev Cloud Build config for PR auto deployment.
+#
+# This differs from ./cloudbuild-main.yaml in these ways:
+#   - It's accessible only with its custom URL.
+#   - It isn't kept warm, and never scales above 1 instance.
+#
+# https://cloud.google.com/cloud-build/docs/build-config
+
+steps:
+  # Build Docker image.
+  #
+  # https://docs.docker.com/engine/reference/commandline/build/
+  # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
+  # https://cloud.google.com/build/docs/kaniko-cache
+  - id: build
+    name: gcr.io/kaniko-project/executor:latest
+    args:
+      - --dockerfile=./Dockerfile
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA
+      - --cache=true
+      - --cache-ttl=168h # 1 week
+      - --build-arg=LITDEV_ENV=pr
+      # If this tag format changes, also update the cleanup script in
+      # packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
+      - --build-arg=REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA
+      - --build-arg=SHORT_SHA=$SHORT_SHA
+
+  # Create a new Cloud Run revision for the main site.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: deploy-main
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - beta
+      - run
+      - deploy
+      - lit-dev # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      # If this tag format changes, also update the cleanup script in
+      # packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
+      - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-main.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=default' # unlimited
+      - '--min-instances=0'
+      - '--max-instances=1'
+      - '--set-secrets=GITHUB_CLIENT_SECRET=lit-dev-playground-github-oauth-client-secret-test:1'
+      # Serve the main site
+      - '--update-env-vars=LITDEV_ENV=pr,REVISION_TAG=pr$_PR_NUMBER-$SHORT_SHA,MODE=main'
+
+  # Create a new Cloud Run revision for the playground sandbox.
+  #
+  # https://cloud.google.com/sdk/gcloud/reference/beta/run/deploy
+  # https://github.com/GoogleCloudPlatform/cloud-sdk-docker
+  - id: deploy-playground
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    waitFor:
+      # Don't wait for main site to deploy
+      - build
+    args:
+      - beta
+      - run
+      - deploy
+      - lit-dev-playground # Service name
+      - '--region=$_DEPLOY_REGION'
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA'
+      - '--quiet'
+      - '--no-traffic'
+      # If this tag format changes, also update the cleanup script in
+      # packages/lit-dev-cloudbuild-cleanup/src/cleanup.ts
+      - '--tag=pr$_PR_NUMBER-$SHORT_SHA'
+      # IMPORTANT: If you change --memory, be sure to also change
+      # --max-old-space-size in ./Dockerfile, and this same flag in
+      # ./cloudbuild-main.yaml
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--concurrency=default' # unlimited
+      - '--min-instances=0'
+      - '--max-instances=1'
+      # Serve the playground
+      - '--update-env-vars=LITDEV_ENV=pr,MODE=playground'
+
+tags:
+  - lit-dev
+  - cloudbuild-pr
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+
+timeout: 45m

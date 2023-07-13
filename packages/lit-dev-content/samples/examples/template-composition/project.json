@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/base.json",
+  "title": "Template composition",
+  "description": "Compose a template from other templates by calling methods in a template expression.",
+  "section": "Template concepts",
+  "files": {
+    "my-page.ts": {},
+    "index.html": {}
+  }
+}

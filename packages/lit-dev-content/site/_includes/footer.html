@@ -1,0 +1,107 @@
+<footer>
+  <div id="footerTop">
+    <div id="footerNameAndLogo">
+      <img loading="lazy" id="footerName" src="{{ site.baseurl }}/images/logo.svg#name" alt="" />
+      <img loading="lazy" fetchpriority="high" id="footerFlame" src="{{ site.baseurl }}/images/logo.svg#flame" alt="" />
+    </div>
+
+    <!-- TODO(aomarks) Combine SVG symbols into a single sprite sheet at prod
+         build time. -->
+
+    <div id="footerSocialLinks">
+      <a
+        href="/discord/"
+        target="_blank"
+        rel="noopener"
+        title="Discord"
+        aria-label="Discord"
+      >
+        <lazy-svg
+          href="{{ site.baseurl }}/images/social/discord.svg#discord"
+          label="Discord"
+          loading="visible">
+        </lazy-svg>
+      </a>
+
+      <a
+        href="https://twitter.com/buildWithLit"
+        target="_blank"
+        rel="noopener"
+        title="Twitter"
+        aria-label="Twitter"
+      >
+        <lazy-svg
+          href="{{ site.baseurl }}/images/social/twitter.svg#twitter"
+          label="Twitter"
+          loading="visible">
+        </lazy-svg>
+      </a>
+
+      <a
+        href="https://github.com/lit/lit/"
+        target="_blank"
+        rel="noopener"
+        title="GitHub"
+        aria-label="GitHub"
+        >
+          <lazy-svg
+              href="{{ site.baseurl }}/images/social/github.svg#github"
+              label="GitHub"
+              loading="visible">
+          </lazy-svg>
+      </a>
+
+      <a
+        href="/youtube/"
+        target="_blank"
+        rel="noopener"
+        title="YouTube"
+        aria-label="YouTube"
+        >
+          <lazy-svg
+            href="{{ site.baseurl }}/images/social/youtube.svg#youtube"
+            label="YouTube"
+            loading="visible">
+          </lazy-svg>
+        </svg>
+      </a>
+
+      <a
+        href="https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element"
+        target="_blank"
+        rel="noopener"
+        title="Stack Overflow"
+        aria-label="Stack Overflow"
+        >
+          <lazy-svg
+            href="{{ site.baseurl }}/images/social/stackoverflow.svg#stackoverflow"
+            label="Stack Overflow"
+            loading="visible">
+          </lazy-svg>
+      </a>
+
+      <a
+        href="/community-calendar/"
+        target="_blank"
+        rel="noopener"
+        title="Community Calendar"
+        aria-label="Community Calendar"
+        >
+          <lazy-svg
+            href="{{ site.baseurl }}/images/icons/calendar-month.svg#icon"
+            label="Community Calendar"
+            loading="visible">
+          </lazy-svg>
+      </a>
+    </div>
+  </div>
+
+  <div id="footerBottom">
+    <p>
+      Copyright Google LLC. Code licensed under
+      <a href="https://spdx.org/licenses/BSD-3-Clause.html">BSD-3-Clause</a>.
+      Documentation licensed under
+      <a href="https://spdx.org/licenses/CC-BY-3.0">CC-BY-3.0</a>.
+    </p>
+  </div>
+</footer>
