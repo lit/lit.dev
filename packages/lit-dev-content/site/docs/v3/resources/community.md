@@ -24,6 +24,8 @@ excellent to each other!
 
 *   **Talk about Lit on [GitHub Discussions](https://github.com/lit/lit/discussions).** For longer questions or ideas about Lit, or to see what others are talking about, GitHub discussions are a great way to connect with the team and community.
 
+*   **Import the [Lit Community Calendar](/community-calendar/)** to keep up to date on official community events like the weekly Open Eng Meeting and Community Calls. Add it to your Google Calendar by pressing the "+ Google Calendar" button at the bottom right corner of the calendar page.
+
 *   **Find answers on [StackOverflow](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element).**
     Search the [`lit`, `lit-element`, and `lit-html`](https://stackoverflow.com/questions/tagged/lit+or+lit-html+or+lit-element) tags when
     looking for answers. You can also find help on underlying web standards with
