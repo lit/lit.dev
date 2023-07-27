@@ -1,0 +1,21 @@
+---
+title: Learn
+---
+
+{% extends 'default.html' %}
+
+{% block head %}
+  {% include "social-tags.html" %}
+  {% inlinecss "learn-catalog.css" %}
+{% endblock %}
+
+{% block content %}
+
+<section>
+{% for content in learn %}
+  <p>{{content | dump }}</p>
+{% endfor %}
+</section>
+
+
+{% endblock %}

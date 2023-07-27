@@ -1,0 +1,30 @@
+
+.card-grid {
+  --tutorial-card-width: 300px;
+  --_unit: calc(var(--tutorial-card-width) / 10);
+  padding: var(--_unit);
+  display: grid;
+  gap: var(--_unit);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.featured,
+.not-featured {
+  padding-block: 2em;
+}
+
+.not-featured {
+  background-color: var(--color-light-gray);
+}
+
+@media (max-width: 1021px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 690px) {
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
