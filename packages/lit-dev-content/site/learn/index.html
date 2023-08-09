@@ -11,10 +11,35 @@ title: Learn
 
 {% block content %}
 
-<section>
-{% for content in learn %}
-  <p>{{content | dump }}</p>
-{% endfor %}
+<div id="hero">
+  <div id="hero-contents">
+    <h1>Learn</h1>
+    <p>Here's a brief introductory sentence or two about the learn section and what value it has for users.</p>
+  </div>
+</div>
+<section id="learn-catalog">
+  <div class="center">
+    <div class="card-grid">
+      {% for content in learn %}
+        <a class="card" href="#">
+          <div class="learn-kind-row">
+            <span class="learn-kind">{{content.kind}}</span>
+            {% if content.kind == "tutorial" %}
+            <span>&nbsp;/ {{content.difficulty}}</span>
+            <span class="duration">{{content.duration}} Min</span>
+            {% endif %}
+          </div>
+          <h1>{{content.title}}</h1>
+          {% if content.kind == "video" %}
+          <img src="https://i.ytimg.com/vi/{{ content.youtubeId }}/mqdefault.jpg">
+          {% else %}
+          <p>{{content.summary|markdownWithoutHtml|safe}}</p>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
 </section>
 
 
