@@ -22,6 +22,17 @@ title: Learn
     <div class="card-grid">
       {% for content in learn %}
         <a class="card" href="#">
+          <div class="card-header {{content.kind}}">
+            {% if content.kind == "video" %}
+            <img
+              src="https://i.ytimg.com/vi/{{ content.youtubeId }}/mqdefault.jpg"
+              alt="Video thumbnail for '{{content.title}}'"
+              title="{{content.title}}"
+            >
+            {% else %}
+            <h1>{{content.title}}</h1>
+            {% endif %}
+          </div>
           <div class="learn-kind-row">
             <span class="learn-kind">{{content.kind}}</span>
             {% if content.kind == "tutorial" %}
@@ -29,12 +40,8 @@ title: Learn
             <span class="duration">{{content.duration}} Min</span>
             {% endif %}
           </div>
-          <h1>{{content.title}}</h1>
-          {% if content.kind == "video" %}
-          <img src="https://i.ytimg.com/vi/{{ content.youtubeId }}/mqdefault.jpg">
-          {% else %}
-          <p>{{content.summary|markdownWithoutHtml|safe}}</p>
-          {% endif %}
+
+          <p>{{content.summary|markdown}}</p>
         </a>
       {% endfor %}
     </div>
