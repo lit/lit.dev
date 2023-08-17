@@ -7,6 +7,9 @@
 {% if not versionLinks %}
   {% set versionLinks = data.versionLinks %}
 {% endif %}
+{% set isLatestVersionedUrl = selectedVersion == latestVersion and page.url.includes("/" + latestVersion + "/") %}
+{% set isUnversionedPage = page.inputPath.includes("/unversioned/") %}
+{% set editableFilePath = page.inputPath.replace("/unversioned/", "/" + selectedVersion + "/") %}
 
 {% block head %}
   {% include "social-tags.html" %}
@@ -19,6 +22,13 @@
     <script type="module" src="{{ site.baseurl }}/js/components/playground-elements.js"></script>
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-example.js"></script>
     <script type="module" src="{{ site.baseurl }}/js/components/litdev-switchable-sample.js"></script>
+  {% endif %}
+  {% if isLatestVersionedUrl %}
+  <!-- We have versioned permalinks for our documentation. E.g., docs/v1/* and
+       docs/v2/*. In addition, the latest documentation also has unversioned
+       duplicate pages, generated under docs/*. The latest versioned docs
+       reference the duplicate unversioned page as the canonical page.  -->
+    <link rel="canonical" href="https://lit.dev{{ page.url | removeLatestVersionFromUrl(latestVersion) }}">
   {% endif %}
 {% endblock %}
 
@@ -40,7 +50,6 @@
         </div>
       </nav>
     {% endif %}
-    <litdev-edit-this-page filepath="{{ page.inputPath }}"></litdev-edit-this-page>
   </div>
 
   <div id="articleWrapper">
@@ -56,12 +65,13 @@
         </nav>
       {% endif %}
 
-      {{ content | safe }}
+      {{ content | fixUnversionedCrossLinks(isUnversionedPage, latestVersion) | safe }}
 
-
+      {% set nonEditableDocumentRegex = r/.+\/api\/.+/ %}
+      {% if not nonEditableDocumentRegex.test(page.inputPath) %}
       <p id="edit-page-link">
         <a
-            href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ page.inputPath }}">
+            href="https://github.com/lit/lit.dev/edit/main/packages/lit-dev-content/{{ editableFilePath }}">
           Edit this page
           <lazy-svg
               loading="visible"
@@ -70,6 +80,7 @@
           </lazy-svg>
         </a>
       </p>
+      {% endif %}
 
       {% set navItems = collections[collection] | eleventyNavigation | flattenNavigationAndAddNextPrev %}
       {% for item in navItems %}

@@ -5,6 +5,7 @@
  */
 
 export const pageRedirects = new Map([
+  ['/community-calendar',             'https://calendar.google.com/calendar/u/0/embed?src=c_5f73b3899868341aa19ebd1d8fcd2c49b884cfbcbe7f8e655227c5a7905c0692@group.calendar.google.com'],
   ['/discord',                        'https://discord.com/invite/buildWithLit'],
   ['/slack-invite',                   'https://discord.com/invite/buildWithLit'],
   ['/youtube',                        'https://www.youtube.com/@buildWithLit'],

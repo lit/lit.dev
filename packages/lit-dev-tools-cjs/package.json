@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@types/jsdom": "^16.2.13",
-    "@types/source-map": "^0.5.7",
     "@types/strip-comments": "^2.0.1",
     "@web/dev-server": "^0.1.6",
     "@web/dev-server-core": "^0.3.5",
@@ -51,7 +50,7 @@
     "source-map": "^0.8.0-beta.0",
     "strip-comments": "^2.0.1",
     "striptags": "^3.2.0",
-    "typedoc": "^0.21.9",
+    "typedoc": "^0.24.6",
     "uvu": "^0.5.1"
   }
 }

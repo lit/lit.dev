@@ -89,9 +89,6 @@ export const contentSecurityPolicyMiddleware = (
     // es-module-lexer for doing an eval (see next comment for more on that).
     `script-src ${[
       `'self'`,
-      // TODO(aomarks) Remove unsafe-eval when https://crbug.com/1253267 is fixed.
-      // See comment below about playgroundWorkerCsp.
-      `'unsafe-eval'`,
       `https://www.googletagmanager.com/`,
       GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH,
       ...(opts.inlineScriptHashes?.map((hash) => `'${hash}'`) ?? []),
@@ -100,14 +97,10 @@ export const contentSecurityPolicyMiddleware = (
       ...(opts.devMode ? [`data:`] : []),
     ].join(' ')}`,
 
-    // TODO(aomarks) Remove unpkg.com when https://crbug.com/1253267 is fixed.
-    // See comment below about playgroundWorkerCsp.
-    //
     // In dev mode, ws: connections are required because @web/dev-server uses
     // them for automatic reloads.
     `connect-src ${[
       `'self'`,
-      'https://unpkg.com/',
       'https://www.google-analytics.com/',
       'https://*.algolia.net/',
       'https://*.algolianet.com/',
@@ -153,12 +146,6 @@ export const contentSecurityPolicyMiddleware = (
   );
 
   // Policy for the playground-elements web worker script.
-  //
-  // TODO(aomarks) Currently this worker CSP will take effect in Firefox and
-  // Safari, but not Chrome. Chrome does not currently follow the CSP spec for
-  // workers; instead workers inherit the CSP policy of their parent context.
-  // This is being actively fixed (https://crbug.com/1253267), and once it ships
-  // we can remove unsafe-eval and unpkg.com from the main CSP above.
   const playgroundWorkerCsp = makePolicy(
     // unsafe-eval is needed because we use es-module-lexer to parse import
     // statements in modules. es-module-lexer needs unsafe-eval because:

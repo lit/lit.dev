@@ -13,9 +13,7 @@ steps:
   # https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker
   # https://cloud.google.com/build/docs/kaniko-cache
   - id: build
-    # Kaniko pinned to earlier version due to
-    # https://github.com/GoogleContainerTools/kaniko/issues/1786
-    name: gcr.io/kaniko-project/executor:v1.6.0
+    name: gcr.io/kaniko-project/executor:latest
     args:
       - --dockerfile=./Dockerfile
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/lit-dev:$COMMIT_SHA

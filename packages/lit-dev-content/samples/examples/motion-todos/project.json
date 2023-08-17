@@ -2,13 +2,13 @@
   "extends": "/samples/base.json",
   "title": "Todos List Transitions",
   "description": "Animated list of todos.",
-  "section": "Motion",
+  "section": "@lit-labs/motion",
   "files": {
     "motion-todos.ts": {},
     "styles.ts": {},
     "index.html": {},
     "package.json": {
-      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit-labs/motion\": \"^1.0.1\",\n    \"@material/mwc-textfield\": \"^0.25.1\",\n    \"@material/mwc-checkbox\": \"^0.25.1\",\n    \"@material/mwc-button\": \"^0.25.1\",\n    \"@material/mwc-formfield\": \"^0.25.1\"  }\n}",
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2.0.0\",\n    \"@lit-labs/motion\": \"^1.0.1\",\n    \"@material/mwc-textfield\": \"^0.25.1\",\n    \"@material/mwc-checkbox\": \"^0.25.1\",\n    \"@material/mwc-button\": \"^0.25.1\",\n    \"@material/mwc-formfield\": \"^0.25.1\"\n  }\n}",
       "hidden": true
     }
   },

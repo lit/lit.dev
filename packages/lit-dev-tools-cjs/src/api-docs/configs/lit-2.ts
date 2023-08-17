@@ -5,6 +5,7 @@
  */
 
 import * as pathlib from 'path';
+import {ReflectionKind} from 'typedoc';
 
 import type {ApiDocsConfig} from '../types.js';
 
@@ -20,7 +21,7 @@ const srcDir = pathlib.join(litDir, 'src');
  */
 export const lit2Config: ApiDocsConfig = {
   repo: 'lit/lit',
-  commit: 'df67769d3b7c5b699d8c1dc57e15c3e91fe296c6',
+  commit: 'c134604f178e36444261d83eabe9e578c1ed90c4',
   workDir,
   gitDir,
   tsConfigPath: pathlib.join(litDir, 'tsconfig.json'),
@@ -30,22 +31,8 @@ export const lit2Config: ApiDocsConfig = {
 
   extraSetupCommands: [
     {
-      cmd: 'npx',
-      // Only install lit and its dependencies, so that we don't waste time
-      // installing dependencies for packages we don't generate API docs for
-      // (like tests).
-      args: ['lerna', 'bootstrap', '--scope', 'lit', '--include-dependencies'],
-    },
-    {
-      cmd: 'npx',
-      args: [
-        'lerna',
-        'run',
-        'build:ts',
-        '--scope',
-        'lit',
-        '--include-dependencies',
-      ],
+      cmd: 'npm',
+      args: ['run', 'build:ts'],
     },
   ],
 
@@ -107,7 +94,7 @@ export const lit2Config: ApiDocsConfig = {
     {
       slug: 'directives',
       title: 'Directives',
-      tocFilter: (node) => node.kindString === 'Function',
+      tocFilter: (node) => node.kind === ReflectionKind.Function,
       versionLinks: {
         v1: 'api/lit-html/directives/',
       },
@@ -224,7 +211,7 @@ export const lit2Config: ApiDocsConfig = {
   },
 
   locationToUrl({page, anchor}) {
-    return `/docs/api/${page}/#${anchor}`;
+    return `/docs/v2/api/${page}/#${anchor}`;
   },
 
   fileToImportSpecifier(filename) {

@@ -5,15 +5,16 @@
  */
 
 import {LitElement, html, css, nothing} from 'lit';
-import {state, customElement, query} from 'lit/decorators.js';
+import {state, customElement, query, property} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {live} from 'lit/directives/live.js';
-import type {Drawer} from '@material/mwc-drawer';
 import {AgloliaSearchController} from './algolia-search-controller.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {searchIcon} from '../icons/search-icon.js';
-import './litdev-search-option.js';
+import type {Drawer} from '@material/mwc-drawer';
 import type {LitdevSearchOption} from './litdev-search-option.js';
+
+import './litdev-search-option.js';
+import './lazy-svg.js';
 
 /**
  * Generic that denotes the type of document.
@@ -158,6 +159,11 @@ class SuggestionGroups {
 @customElement('litdev-search')
 export class LitDevSearch extends LitElement {
   /**
+   * The search icon to display in the textfield
+   */
+  @property() searchIconSrc = '/images/search.svg';
+
+  /**
    * Text value in search input.
    */
   @state()
@@ -211,14 +217,30 @@ export class LitDevSearch extends LitElement {
           @input=${this._onInput}
           @keydown=${this._onKeydown}
         />
-        ${searchIcon}
+        <div class="icon">
+          <lazy-svg loading="eager" href=${this.searchIconSrc}></lazy-svg>
+        </div>
         <button @click=${() => this.dispatchEvent(new Event('close'))}>
           Cancel
         </button>
       </div>
-      <ul id="items" role="listbox" class=${classMap({expanded: items.length})}>
-        ${this._renderGroups()}
-      </ul>
+      ${this._searchText.length < 2 || items.length > 0
+        ? html`
+            <ul
+              id="items"
+              role="listbox"
+              class=${classMap({expanded: items.length})}
+            >
+              ${this._renderGroups()}
+            </ul>
+          `
+        : html`<div id="no-items">
+            No results (<a
+              href="${this.getGithubIssueUrl(this._searchText)}"
+              target="_blank"
+              >open issue</a
+            >)
+          </div>`}
     `;
   }
 
@@ -405,11 +427,25 @@ export class LitDevSearch extends LitElement {
     this._inputEl.focus();
   }
 
+  getGithubIssueUrl(searchText: string) {
+    const githubIssueUrl = new URL('https://github.com/lit/lit.dev/issues/new');
+    githubIssueUrl.searchParams.append(
+      'title',
+      `[docs] No search results for \`${searchText}\``
+    );
+    githubIssueUrl.searchParams.append(
+      'body',
+      `<!-- What type of content did you expect to see on lit.dev and explain why it should be on lit.dev -->`
+    );
+    githubIssueUrl.searchParams.append('labels', `Area: docs`);
+    return githubIssueUrl.href;
+  }
+
   static styles = css`
     :host {
       --_cancel-button-width: 70px;
       --_input-height: 50px;
-      --_input-padding: 12px;
+      --_input-padding: 4px;
       --_input-border-width: 1px;
       --_input-border-width-focus: 2px;
       --_items-margin-block-start: 16px;
@@ -427,34 +463,17 @@ export class LitDevSearch extends LitElement {
       display: none;
     }
 
-    svg {
-      position: absolute;
-      inset-inline-end: var(--_input-padding);
-      inset-block-start: 0;
-      /* If you press the search icon you will focus the input behind it. */
-      pointer-events: none;
-      height: 100%;
-      aspect-ratio: 1/1;
-
-      transition: opacity 1s;
-      color: var(--color-blue);
-    }
-
-    input:focus ~ svg {
-      opacity: 0;
-    }
-
     #items {
       display: block;
       z-index: 1;
       padding: 0;
       max-height: 488px;
       overflow: auto;
-      margin-inline: calc(-1 * var(--search-modal-padding));
+      margin-inline: calc(-1 * var(--search-modal-padding-inline));
       margin-block-start: var(--_items-margin-block-start);
-      margin-block-end: calc(-1 * var(--search-modal-padding));
-      padding-block-end: var(--search-modal-padding);
-      padding-inline: var(--search-modal-padding);
+      margin-block-end: calc(-1 * var(--search-modal-padding-block));
+      padding-block-end: var(--search-modal-padding-block);
+      padding-inline: var(--search-modal-padding-inline);
       scrollbar-color: auto var(--color-light-gray);
       scrollbar-width: thin;
     }
@@ -478,30 +497,56 @@ export class LitDevSearch extends LitElement {
       padding-block-end: 0;
     }
 
+    #no-items {
+      margin: 17px 0 6px;
+      color: var(--color-dark-gray);
+      text-align: center;
+    }
+
     input {
       width: 100%;
       height: 100%;
-      margin: calc(
-        var(--_input-border-width-focus) - var(--_input-border-width)
-      );
       padding: var(--_input-padding);
       box-sizing: border-box;
       background-color: transparent;
       color: currentColor;
+      font-size: 1.5em;
       font-family: inherit;
-      font-size: inherit;
       font-weight: inherit;
-      border: solid var(--_input-border-width) var(--color-blue);
+      border-style: solid;
+      border-color: var(--color-blue);
+      border-width: 0 0 var(--_input-border-width) 0;
       outline: none;
     }
 
     input:focus {
-      border-width: var(--_input-border-width-focus);
-      margin: 0;
+      border-width: 0 0 var(--_input-border-width-focus) 0;
+      padding-block-end: calc(
+        var(--_input-padding) -
+          (var(--_input-border-width-focus) - var(--_input-border-width))
+      );
     }
 
-    input::placeholder {
-      color: currentColor;
+    .icon {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      inset-inline-end: var(--_input-padding);
+    }
+
+    input:focus ~ .icon lazy-svg::part(svg) {
+      opacity: 1;
+    }
+
+    lazy-svg::part(svg) {
+      color: var(--color-blue);
+      inset-block-start: 0;
+      pointer-events: none;
+      opacity: 0.5;
+      width: 32px;
+      height: 32px;
+      transition: opacity 0.5s;
     }
 
     .group {
@@ -510,7 +555,7 @@ export class LitDevSearch extends LitElement {
 
     .group .descriptor {
       color: var(--color-blue);
-      font-size: 0.9rem;
+      font-size: 20px;
 
       display: flex;
       justify-content: space-between;
@@ -524,8 +569,9 @@ export class LitDevSearch extends LitElement {
     .group .tag {
       color: white;
       background-color: #6e6e6e;
+      border-radius: 2px;
+      font-size: 16px;
       padding: 0 0.5em;
-      font-weight: 600;
     }
 
     .group .tag.article {
@@ -555,7 +601,7 @@ export class LitDevSearch extends LitElement {
         padding: 0;
       }
 
-      svg {
+      .icon {
         inset-inline-end: calc(
           var(--_input-padding) + var(--_cancel-button-width)
         );
@@ -563,7 +609,7 @@ export class LitDevSearch extends LitElement {
 
       #items {
         max-height: calc(
-          100vh - var(--_input-height) - 2 * var(--search-modal-padding) -
+          100dvh - var(--_input-height) - 2 * var(--search-modal-padding-block) -
             var(--_items-margin-block-start)
         );
       }

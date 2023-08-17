@@ -6,7 +6,7 @@
 
 import {css, html, LitElement, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
-import {searchIcon} from '../icons/search-icon.js';
+import './lazy-svg.js';
 import './litdev-search.js';
 import type {LitDevSearch} from './litdev-search.js';
 
@@ -21,6 +21,11 @@ export class LitDevSearchModal extends LitElement {
    * Whether or not the dialog is open.
    */
   @property({type: Boolean}) open = false;
+
+  /**
+   * The src of the icon to use for the search button.
+   */
+  @property({type: String}) iconSrc = '/images/icons/lit-search.svg#icon';
 
   @query('dialog', true) dialogEl!: DialogWithModal;
   @query('#content', true) contentWrapper!: HTMLElement;
@@ -54,12 +59,15 @@ export class LitDevSearchModal extends LitElement {
         title="Site search"
         @click=${this.showOnClick(true)}
       >
-        ${searchIcon}
+        <lazy-svg loading="eager" href=${this.iconSrc}></lazy-svg>
         <span>Search</span>
       </button>
       <dialog @click=${this.showOnClick(false)}>
         <div id="content" @click=${(e: Event) => e.stopPropagation()}>
-          <litdev-search @close=${() => (this.open = false)}></litdev-search>
+          <litdev-search
+            .searchIconSrc=${this.iconSrc}
+            @close=${() => (this.open = false)}
+          ></litdev-search>
         </div>
       </dialog>
     `;
@@ -74,6 +82,11 @@ export class LitDevSearchModal extends LitElement {
     const body = this.getBody();
     if (show) {
       this.dialogEl.showModal();
+      // TODO: Line below is a temporary fix
+      // In FF and Safari, the input does not automatically focus
+      // when the dialog opens.
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=1826911
+      this.searchEl.focus();
       if (body) {
         body.style.overflow = 'hidden';
       }
@@ -116,7 +129,14 @@ export class LitDevSearchModal extends LitElement {
 
   static styles = css`
     :host {
-      --search-modal-padding: 16px;
+      --search-modal-padding-inline: 25px;
+      --search-modal-padding-block: 15px;
+      --_button-block-padding: 4px;
+      --_button-content-height: 24px;
+      /* (content height + total block padding) / 2 */
+      --_button-radius: calc(
+        (var(--_button-content-height) + var(--_button-block-padding) * 2) / 2
+      );
       display: block;
     }
 
@@ -134,9 +154,18 @@ export class LitDevSearchModal extends LitElement {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px 12px 4px 8px;
+      padding-block: var(--_button-block-padding);
+      /* must be same as block to make icon co-centric */
+      padding-inline-start: var(--_button-block-padding);
+      padding-inline-end: var(--_button-radius);
       border: 1px solid currentColor;
-      border-radius: 20px;
+      /* idk what it is but the +1 makes it much rounder */
+      border-radius: calc(var(--_button-radius) + 1px);
+    }
+
+    lazy-svg::part(svg) {
+      width: var(--_button-content-height);
+      height: var(--_button-content-height);
     }
 
     button span {
@@ -158,11 +187,13 @@ export class LitDevSearchModal extends LitElement {
     }
 
     #content {
-      padding: var(--search-modal-padding);
+      padding: var(--search-modal-padding-block)
+        var(--search-modal-padding-inline);
       box-sizing: border-box;
-      width: 560px;
-      max-width: 560px;
+      width: 745px;
+      max-width: 745px;
       background-color: var(--color-light-gray);
+      border-radius: 5px;
     }
 
     @media (max-width: 864px) {

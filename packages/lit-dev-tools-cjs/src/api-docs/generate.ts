@@ -11,14 +11,14 @@ import {execFile} from 'child_process';
 import {promisify} from 'util';
 import {ApiDocsTransformer} from './transformer.js';
 import {lit2Config} from './configs/lit-2.js';
-import {litElement2Config} from './configs/lit-element-2.js';
-import {litHtml1Config} from './configs/lit-html-1.js';
+import {lit3Config} from './configs/lit-3.js';
 
 import type {ApiDocsConfig} from './types.js';
 
 const execFileAsync = promisify(execFile);
 
-const configs = [lit2Config, litElement2Config, litHtml1Config];
+// Only generate documentation for most recent Lit versions.
+const configs = [lit2Config, lit3Config];
 
 /**
  * Check whether the given file path exists.
@@ -95,13 +95,17 @@ const analyze = async (config: ApiDocsConfig) => {
   app.bootstrap({
     tsconfig: config.tsConfigPath,
     entryPoints: config.entrypointModules,
+    entryPointStrategy: typedoc.EntryPointStrategy.Expand,
   });
   const root = app.convert();
   if (!root) {
     throw new Error('TypeDoc.Application.convert() returned undefined');
   }
 
-  const json = await app.serializer.projectToObject(root);
+  const json = await app.serializer.projectToObject(
+    root,
+    pathlib.resolve(config.tsConfigPath, '..')
+  );
   const transformer = new ApiDocsTransformer(json, config);
   const {pages, symbolMap} = await transformer.transform();
 

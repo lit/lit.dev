@@ -78,6 +78,8 @@ test.describe('Playground', () => {
   test('updating the example code updates the preview', async ({page}) => {
     await page.goto(`/playground`);
 
+    await waitForPlaygroundPreviewToLoad(page);
+
     // Double click text=blue
     await page.dblclick('text=blue');
 

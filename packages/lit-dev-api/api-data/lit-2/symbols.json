@@ -64,6 +64,10 @@
     },
     {
       "page": "directives",
+      "anchor": "Keyed.constructor"
+    },
+    {
+      "page": "directives",
       "anchor": "LiveDirective.constructor"
     },
     {
@@ -105,6 +109,10 @@
     {
       "page": "ReactiveElement",
       "anchor": "ReactiveElement.constructor"
+    },
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.constructor"
     }
   ],
   "$AsyncDirective.constructor": [
@@ -232,6 +240,10 @@
     },
     {
       "page": "directives",
+      "anchor": "Keyed.render"
+    },
+    {
+      "page": "directives",
       "anchor": "LiveDirective.render"
     },
     {
@@ -336,6 +348,10 @@
     },
     {
       "page": "directives",
+      "anchor": "Keyed.update"
+    },
+    {
+      "page": "directives",
       "anchor": "LiveDirective.update"
     },
     {
@@ -379,138 +395,6 @@
     {
       "page": "custom-directives",
       "anchor": "AsyncDirective.update"
-    }
-  ],
-  "$directive": [
-    {
-      "page": "custom-directives",
-      "anchor": "directive"
-    }
-  ],
-  "$InternalPropertyDeclaration": [
-    {
-      "page": "decorators",
-      "anchor": "InternalPropertyDeclaration"
-    }
-  ],
-  "$hasChanged": [
-    {
-      "page": "decorators",
-      "anchor": "InternalPropertyDeclaration.hasChanged"
-    },
-    {
-      "page": "ReactiveElement",
-      "anchor": "PropertyDeclaration.hasChanged"
-    }
-  ],
-  "$InternalPropertyDeclaration.hasChanged": [
-    {
-      "page": "decorators",
-      "anchor": "InternalPropertyDeclaration.hasChanged"
-    }
-  ],
-  "$QueryAssignedElementsOptions": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions"
-    }
-  ],
-  "$selector": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.selector"
-    }
-  ],
-  "$QueryAssignedElementsOptions.selector": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.selector"
-    }
-  ],
-  "$slot": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.slot"
-    },
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedNodesOptions.slot"
-    }
-  ],
-  "$QueryAssignedElementsOptions.slot": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedElementsOptions.slot"
-    }
-  ],
-  "$QueryAssignedNodesOptions": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedNodesOptions"
-    }
-  ],
-  "$QueryAssignedNodesOptions.slot": [
-    {
-      "page": "decorators",
-      "anchor": "QueryAssignedNodesOptions.slot"
-    }
-  ],
-  "$customElement": [
-    {
-      "page": "decorators",
-      "anchor": "customElement"
-    }
-  ],
-  "$eventOptions": [
-    {
-      "page": "decorators",
-      "anchor": "eventOptions"
-    }
-  ],
-  "$property": [
-    {
-      "page": "decorators",
-      "anchor": "property"
-    }
-  ],
-  "$query": [
-    {
-      "page": "decorators",
-      "anchor": "query"
-    }
-  ],
-  "$queryAll": [
-    {
-      "page": "decorators",
-      "anchor": "queryAll"
-    }
-  ],
-  "$queryAssignedElements": [
-    {
-      "page": "decorators",
-      "anchor": "queryAssignedElements"
-    }
-  ],
-  "$queryAssignedNodes": [
-    {
-      "page": "decorators",
-      "anchor": "queryAssignedNodes"
-    }
-  ],
-  "$queryAsync": [
-    {
-      "page": "decorators",
-      "anchor": "queryAsync"
-    }
-  ],
-  "$state": [
-    {
-      "page": "decorators",
-      "anchor": "state"
-    },
-    {
-      "page": "ReactiveElement",
-      "anchor": "PropertyDeclaration.state"
     }
   ],
   "$AttributePart": [
@@ -912,6 +796,10 @@
     },
     {
       "page": "misc",
+      "anchor": "TemplateInstance.parentNode"
+    },
+    {
+      "page": "misc",
       "anchor": "RootPart.parentNode"
     }
   ],
@@ -1197,6 +1085,138 @@
     {
       "page": "custom-directives",
       "anchor": "PartType"
+    }
+  ],
+  "$directive": [
+    {
+      "page": "custom-directives",
+      "anchor": "directive"
+    }
+  ],
+  "$InternalPropertyDeclaration": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration"
+    }
+  ],
+  "$hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.hasChanged"
+    }
+  ],
+  "$InternalPropertyDeclaration.hasChanged": [
+    {
+      "page": "decorators",
+      "anchor": "InternalPropertyDeclaration.hasChanged"
+    }
+  ],
+  "$QueryAssignedElementsOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions"
+    }
+  ],
+  "$selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$QueryAssignedElementsOptions.selector": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.selector"
+    }
+  ],
+  "$slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    },
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$QueryAssignedElementsOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedElementsOptions.slot"
+    }
+  ],
+  "$QueryAssignedNodesOptions": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions"
+    }
+  ],
+  "$QueryAssignedNodesOptions.slot": [
+    {
+      "page": "decorators",
+      "anchor": "QueryAssignedNodesOptions.slot"
+    }
+  ],
+  "$customElement": [
+    {
+      "page": "decorators",
+      "anchor": "customElement"
+    }
+  ],
+  "$eventOptions": [
+    {
+      "page": "decorators",
+      "anchor": "eventOptions"
+    }
+  ],
+  "$property": [
+    {
+      "page": "decorators",
+      "anchor": "property"
+    }
+  ],
+  "$query": [
+    {
+      "page": "decorators",
+      "anchor": "query"
+    }
+  ],
+  "$queryAll": [
+    {
+      "page": "decorators",
+      "anchor": "queryAll"
+    }
+  ],
+  "$queryAssignedElements": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedElements"
+    }
+  ],
+  "$queryAssignedNodes": [
+    {
+      "page": "decorators",
+      "anchor": "queryAssignedNodes"
+    }
+  ],
+  "$queryAsync": [
+    {
+      "page": "decorators",
+      "anchor": "queryAsync"
+    }
+  ],
+  "$state": [
+    {
+      "page": "decorators",
+      "anchor": "state"
+    },
+    {
+      "page": "ReactiveElement",
+      "anchor": "PropertyDeclaration.state"
     }
   ],
   "$TemplateResultType": [
@@ -1523,6 +1543,43 @@
     {
       "page": "directives",
       "anchor": "join"
+    }
+  ],
+  "$Keyed": [
+    {
+      "page": "directives",
+      "anchor": "Keyed",
+      "excludeFromTOC": true
+    }
+  ],
+  "$Keyed.constructor": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.constructor"
+    }
+  ],
+  "$key": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.key"
+    }
+  ],
+  "$Keyed.key": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.key"
+    }
+  ],
+  "$Keyed.render": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.render"
+    }
+  ],
+  "$Keyed.update": [
+    {
+      "page": "directives",
+      "anchor": "Keyed.update"
     }
   ],
   "$keyed": [
@@ -2767,6 +2824,10 @@
     {
       "page": "misc",
       "anchor": "LitUnstable.DebugLog.TemplateUpdating.parts"
+    },
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.parts"
     }
   ],
   "$LitUnstable.DebugLog.TemplateInstantiated.parts": [
@@ -3923,6 +3984,24 @@
       "anchor": "ReactiveElement.getPropertyOptions"
     }
   ],
+  "$TemplateInstance": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance"
+    }
+  ],
+  "$TemplateInstance.constructor": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.constructor"
+    }
+  ],
+  "$TemplateInstance.parentNode": [
+    {
+      "page": "misc",
+      "anchor": "TemplateInstance.parentNode"
+    }
+  ],
   "$CompiledTemplate": [
     {
       "page": "misc",
@@ -3951,6 +4030,12 @@
     {
       "page": "misc",
       "anchor": "CompiledTemplate.h"
+    }
+  ],
+  "$CompiledTemplate.parts": [
+    {
+      "page": "misc",
+      "anchor": "CompiledTemplate.parts"
     }
   ],
   "$CompiledTemplateResult": [
@@ -4403,6 +4488,12 @@
       "anchor": "defaultConverter"
     }
   ],
+  "$isServer": [
+    {
+      "page": "misc",
+      "anchor": "isServer"
+    }
+  ],
   "$noChange": [
     {
       "page": "custom-directives",
@@ -4469,6 +4560,24 @@
     {
       "page": "styles",
       "anchor": "unsafeCSS"
+    }
+  ],
+  "$StaticValue": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue"
+    }
+  ],
+  "$r": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue.r"
+    }
+  ],
+  "$StaticValue.r": [
+    {
+      "page": "static-html",
+      "anchor": "StaticValue.r"
     }
   ],
   "$literal": [

@@ -12,7 +12,8 @@
     "test:integration:update-golden-screenshots": "wireit",
     "test:links": "wireit",
     "test:links:redirects": "wireit",
-    "test:links:internal-and-external": "wireit"
+    "test:links:internal-and-external": "wireit",
+    "test:api:no-todos": "wireit"
   },
   "wireit": {
     "build": {
@@ -78,6 +79,13 @@
       ],
       "files": [],
       "output": []
+    },
+    "test:api:no-todos": {
+      "command": "node lib/check-no-todos.js",
+      "dependencies": [
+        "build",
+        "../lit-dev-content:build"
+      ]
     }
   },
   "dependencies": {

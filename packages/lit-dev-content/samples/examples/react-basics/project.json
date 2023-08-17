@@ -3,11 +3,20 @@
   "order": 0,
   "title": "Basics",
   "description": "Render web components in React apps.",
-  "section": "React",
+  "section": "@lit-labs/react",
   "files": {
-    "app.tsx": {"contentType": "text/typescript-jsx"},
+    "app.tsx": {
+      "contentType": "text/typescript-jsx"
+    },
     "demo-greeting.ts": {},
-    "react.ts": {},
-    "index.html": {}
+    "react.d.ts": {
+      "content": "declare module 'https://esm.sh/react@18' {\n  export default React;\n}\n\ndeclare module 'https://esm.sh/react-dom@18/client' {\n  export * from 'react-dom/client';\n}",
+      "hidden": true
+    },
+    "index.html": {},
+    "package.json": {
+      "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2\",\n    \"@types/react\": \"18.2.7\",\n    \"@types/react-dom\": \"^18\",\n    \"@types/react-dom/client\": \"^18\"\n  }\n}",
+      "hidden": true
+    }
   }
 }

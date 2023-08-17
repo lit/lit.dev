@@ -12,6 +12,7 @@
     "build:ts": "wireit",
     "build:rollup": "wireit",
     "build:samples": "wireit",
+    "build:unversioned-docs": "wireit",
     "dev:build": "wireit",
     "dev:serve": "wireit",
     "prod:build": "wireit",
@@ -19,7 +20,7 @@
   },
   "wireit": {
     "build": {
-      "command": "LITDEV_ENV=local NODE_OPTIONS=--experimental-vm-modules eleventy",
+      "command": "eleventy",
       "dependencies": [
         "prod:build:assets"
       ],
@@ -29,13 +30,18 @@
       ],
       "output": [
         "_site"
-      ]
+      ],
+      "env": {
+        "LITDEV_ENV": "local",
+        "NODE_OPTIONS": "--experimental-vm-modules --max_old_space_size=4096"
+      }
     },
     "dev:build": {
-      "command": "LITDEV_ENV=dev NODE_OPTIONS=--experimental-vm-modules eleventy --quiet",
+      "command": "eleventy --quiet",
       "dependencies": [
         "build:ts",
         "fonts:manrope",
+        "build:unversioned-docs",
         {
           "script": "build:samples",
           "cascade": false
@@ -50,17 +56,24 @@
       ],
       "output": [
         "_dev"
-      ]
+      ],
+      "env": {
+        "LITDEV_ENV": "dev",
+        "NODE_OPTIONS": "--experimental-vm-modules"
+      }
     },
     "prod:build": {
-      "command": "NODE_OPTIONS=--experimental-vm-modules eleventy",
+      "command": "eleventy",
       "dependencies": [
         "prod:build:assets"
       ],
       "files": [
         "site/**",
         ".eleventy.js"
-      ]
+      ],
+      "env": {
+        "NODE_OPTIONS": "--experimental-vm-modules --max_old_space_size=4096"
+      }
     },
     "dev:serve": {
       "command": "node ../lit-dev-tools-esm/lib/dev-server.js --open",
@@ -86,7 +99,8 @@
         "build:ts",
         "build:samples",
         "build:rollup",
-        "fonts:manrope"
+        "fonts:manrope",
+        "build:unversioned-docs"
       ]
     },
     "fonts:manrope": {
@@ -135,15 +149,31 @@
       "output": [
         "samples/js/**"
       ]
+    },
+    "build:unversioned-docs": {
+      "command": "node ../lit-dev-tools-esm/lib/build-unversioned-docs.js",
+      "dependencies": [
+        "../lit-dev-tools-esm:build"
+      ],
+      "files": [
+        "site/docs/**",
+        "!site/docs/unversioned"
+      ],
+      "output": [
+        "site/docs/unversioned/**"
+      ]
     }
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-navigation": "^0.3.2",
     "@11ty/eleventy-plugin-rss": "^1.1.2",
-    "@lit-labs/eleventy-plugin-lit": "^0.1.1",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@webcomponents/template-shadowroot": "^0.1.0",
+    "@lit-labs/eleventy-plugin-lit": "^1.0.1",
+    "@lit-labs/ssr": "^3.1.2",
+    "@lit-labs/ssr-client": "^1.1.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "clean-css": "^5.1.0",
     "codemirror": "^5.58.2",
     "eleventy-plugin-nesting-toc": "^1.3.0",
@@ -175,9 +205,9 @@
     "@material/mwc-formfield": "^0.27.0",
     "@material/mwc-snackbar": "^0.27.0",
     "@material/mwc-textfield": "^0.27.0",
-    "@types/react": "^18.0.17",
+    "@webcomponents/template-shadowroot": "^0.2.1",
     "algoliasearch": "^4.14.2",
-    "lit": "^2.1.0",
+    "lit": "^2.7.4",
     "postdoc-lib": "^1.0.3",
     "tarts": "^1.0.0",
     "timeago.js": "^4.0.2",

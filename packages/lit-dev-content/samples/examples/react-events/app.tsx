@@ -1,24 +1,39 @@
-import {React, ReactDOM} from './react.js';
+import React from 'https://esm.sh/react@18';
+import {createRoot} from 'https://esm.sh/react-dom@18/client';
 import {createComponent} from '@lit-labs/react';
-import {CounterButton as CounterButtonWC} from './counter-button.js';
+import {ClickRoulette as ClickRouletteWC} from './click-roulette.js';
 
-const CounterButton = createComponent({
+const ClickRoulette = createComponent({
   react: React,
-  tagName: 'counter-button',
-  elementClass: CounterButtonWC,
+  tagName: 'click-roulette',
+  elementClass: ClickRouletteWC,
+  // Defines props that will be event handlers for the named events
+  events: {
+    onPop: 'pop',
+    onReset: 'reset',
+  },
 });
 
-const {useCallback, useState} = React;
+const App = () => {
+  const [message, setMessage] = React.useState('😬');
 
-export const App = () => {
-  const [count, setCount] = useState(0);
+  const handlePop = () => {
+    setMessage('🎉');
+  };
 
-  const onClick = useCallback(() => setCount(count + 1), [count]);
+  const handleReset = () => {
+    setMessage('😬');
+  };
 
-  return <CounterButton onClick={onClick} count={count}></CounterButton>;
+  return (
+    <main>
+      <h1>Let's play Click Roulette!</h1>
+      <ClickRoulette onPop={handlePop} onReset={handleReset} />
+      <p>{message}</p>
+    </main>
+  );
 };
 
-const node = document.querySelector('#app');
-const root = ReactDOM.createRoot(node!);
+const root = createRoot(document.getElementById('app')!);
 
-root.render(<App></App>);
+root.render(<App />);

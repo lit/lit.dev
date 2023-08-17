@@ -1,8 +1,0 @@
-{
-  "extends": "/samples/base.json",
-  "files": {
-    "my-page.ts": {},
-    "index.html": {}
-  },
-  "previewHeight": "90px"
-}

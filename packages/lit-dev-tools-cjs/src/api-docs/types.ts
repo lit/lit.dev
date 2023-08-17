@@ -6,11 +6,28 @@
 
 import type * as typedoc from 'typedoc';
 
+/**
+ * The data on each declaration node.
+ */
 export type DeclarationReflection = typedoc.JSONOutput.DeclarationReflection;
+
+/**
+ * The data on each comment node.
+ *
+ * To ease migration of TypeDoc, it currently contains some optional fields that
+ * reflect properties in earlier versions of TypeDoc. `shortText` and `text` are
+ * no longer emitted by TypeDoc, thus we manually create them. They are required
+ * by our API html generation.
+ */
+export interface MigrationComment
+  extends Omit<typedoc.JSONOutput.Comment, 'summary'> {
+  shortText?: string;
+  text?: string;
+  summary?: typedoc.JSONOutput.CommentDisplayPart[];
+}
 
 export interface ExtendedDeclarationReflection extends DeclarationReflection {
   location?: Location;
-  externalLocation?: ExternalLocation;
   entrypointSources?: Array<ExtendedSourceReference>;
   heritage?: Array<{name: string; location?: Location}>;
   expandedCategories?: Array<{
@@ -18,6 +35,7 @@ export interface ExtendedDeclarationReflection extends DeclarationReflection {
     anchor: string;
     children: Array<DeclarationReflection>;
   }>;
+  kindString?: string;
 }
 
 export type SourceReference = typedoc.JSONOutput.SourceReference;
@@ -37,11 +55,6 @@ export interface Location {
    * See https://github.com/JordanShurmer/eleventy-plugin-nesting-toc
    */
   excludeFromTOC?: boolean;
-}
-
-/** A link to e.g. MDN. */
-export interface ExternalLocation {
-  url: string;
 }
 
 export interface ApiDocsConfig {
