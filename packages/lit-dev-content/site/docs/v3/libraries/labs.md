@@ -65,6 +65,20 @@ A package containing controllers and decorators for using the [Context Protocol]
 <tr>
 <td>
 
+[task](https://www.npmjs.com/package/@lit-labs/task)
+
+</td>
+<td>A reactive controller for handling asynchronous tasks.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](/docs/v3/data/task/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3361 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftask%5D "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 [scoped-registry-mixin](https://www.npmjs.com/package/@lit-labs/scoped-registry-mixin)
 
 </td>
@@ -138,20 +152,6 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td class="labs-table-links">
 
 [📄&nbsp;Docs](/docs/v3/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3353 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fssr%5D "Issues")
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-[task](https://www.npmjs.com/package/@lit-labs/task)
-
-</td>
-<td>A reactive controller for handling asynchronous tasks.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3361 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftask%5D "Issues")
 
 </td>
 </tr>
