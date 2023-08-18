@@ -11,9 +11,16 @@ versionLinks:
 
 Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide declarative APIs for things like registering elements, reactive properties, and queries.
 
-Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. Currently no browsers implement decorators, but compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for an earlier version of the decorators proposal. Lit decorators work with Babel and TypeScript, and will be updated to work with the final specification when it's implemented in browsers.
+Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. Currently no browsers implement decorators, but compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for standard decorators, as well as an earlier version of the decorators proposal.
 
-See the [Enabling decorators](#enabling-decorators) section for more information.
+Lit provides two implementations of decorators:
+
+* **Standard Decorators**: Standard decorators are the Stage 3 specification that has been agreed up by the JavaScript standards body (TC39), browsers, and JavaScript compilers. This is the version that browsers will implement, and the ecosystem will migrate to over time. TypeScript and Babel have new implementations of this specification.
+* **Legacy Decorators**: Legacy decorators implement a previous version of the specification, but are currently the most popular and best supported version of the specification.
+
+Because the implementations of "standard decorators" are new, this documented focuses on what we're calling "legacy" decorators, which we will refer to here as just "decorators". Future versions of Lit will migrate to standard decorators as the default.
+
+See the [Enabling decorators](#enabling-decorators) section for more information on configuring compilers, and [Standard decorators](#standard-decorators) for information on the new decorators implementations.
 
 {% aside "info" %}
 
