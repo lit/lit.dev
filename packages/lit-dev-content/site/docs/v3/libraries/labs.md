@@ -223,7 +223,7 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <td>Preact Signals integration for Lit.</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/preact-signals#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/4115 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fpreact-signals%5D "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/3.0/packages/labs/preact-signals#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/4115 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fpreact-signals%5D "Issues")
 
 </td>
 </tr>
