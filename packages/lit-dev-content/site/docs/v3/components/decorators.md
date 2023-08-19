@@ -176,14 +176,15 @@ The current decorators [stage 3 proposal](https://github.com/tc39/proposal-decor
 
 When using decorators, transpiler settings for Babel and TypeScript must be configured correctly as shown in the sections above for [TypeScript](#decorators-typescript) and [Babel](#decorators-babel).
 
-## Standard decorators
+## Standard decorators {#standard-decorators}
 
 _TODO: This section is just notes / draft_
 
 ### Status
 
 * The emit is large
-* Requires TypeScript 5.2 or Babel (v?)
+* Requires TypeScript 5.2 or Babel (which plugin)
+* Can't mix legacy and standard decorators
 
 ### Importing
 
