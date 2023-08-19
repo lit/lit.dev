@@ -175,3 +175,25 @@ constructor() {
 The current decorators [stage 3 proposal](https://github.com/tc39/proposal-decorators) does not directly address this issue, but it should be solved as the proposal evolves and matures.
 
 When using decorators, transpiler settings for Babel and TypeScript must be configured correctly as shown in the sections above for [TypeScript](#decorators-typescript) and [Babel](#decorators-babel).
+
+## Standard decorators
+
+_TODO: This section is just notes / draft_
+
+### Status
+
+* The emit is large
+* Requires TypeScript 5.2 or Babel (v?)
+
+### Importing
+
+### Difference from legacy decorators
+
+The standard decorators are a breaking change from the legacy decorators. Partially because of changes required by the new spec, like `accessor` and partially because the new spec allows us to implement behavior that wasn't possible before.
+
+* Import from `lit/std-decorators.js`, etc
+* Reactive properties require the `accessor` keyword
+* Setters are wrapped with a setter than calls `requestUpdate()` for you? (todo)
+* You can decorate private fields
+* queryAsync is removed
+* Initial values are not reflected
