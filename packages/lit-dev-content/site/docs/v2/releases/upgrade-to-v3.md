@@ -5,8 +5,15 @@ eleventyNavigation:
   parent: Releases
   order: 3
 versionLinks:
-  v2: releases/upgrade-to-v3/
+  v3: releases/upgrade/
 ---
+
+<div class="alert alert-warning">
+
+Lit 3 is currently in pre-release. See [Announcing Lit 3.0
+Pre-release](/blog/2023-05-15-lit-3.0-prerelease/) blog post.
+
+</div>
 
 ## Overview
 

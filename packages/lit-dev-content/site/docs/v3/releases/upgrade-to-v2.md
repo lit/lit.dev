@@ -5,7 +5,7 @@ eleventyNavigation:
   parent: Releases
   order: 3
 versionLinks:
-  v3: releases/upgrade-to-v2/
+  v2: releases/upgrade/
 ---
 
 ## Overview
