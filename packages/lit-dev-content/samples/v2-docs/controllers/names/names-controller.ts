@@ -6,7 +6,7 @@ export class NamesController {
   host: ReactiveControllerHost;
   value?: string[];
   readonly kinds = Names.kinds;
-  private task!: Task;
+  private task!: Task<[Names.Kind], Names.Result>;
   private _kind: Names.Kind = '';
 
   constructor(host: ReactiveControllerHost) {
