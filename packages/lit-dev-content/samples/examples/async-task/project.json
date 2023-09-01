@@ -5,6 +5,7 @@
   "section": "Managing Data",
   "files": {
     "npm-info.ts": {},
+    "npm.ts": {},
     "index.html": {}
   }
 }
