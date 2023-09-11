@@ -70,7 +70,7 @@ Because class mixins are a standard JavaScript pattern and not Lit-specific,
 there is a good deal of information in the community on leveraging mixins for
 code reuse. For more reading on mixins, here are a few good references:
 
-* [Class mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#mix-ins) on MDN
+* [Class mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends#mix-ins) on MDN
 * [Real Mixins with JavaScript
   Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-JavaScript-classes/)
   by Justin Fagnani
