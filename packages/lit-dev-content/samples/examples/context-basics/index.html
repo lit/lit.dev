@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-<head>
-  <script type="module" src="./elements.js"></script>
-  <style>
-    :root {
-      font-family: sans-serif;
-    }
-  </style>
-  <body>
-    <h3>Basic Context Example</h3>
-    <p>
-      The <code>consumer-el</code> receieves its data from the
-      <code>provider-el</code>.
-    </p>
-    <hr />
+<script type="module" src="./elements.js"></script>
+<style>
+  :root {
+    font-family: sans-serif;
+  }
+</style>
 
-    <provider-el>
-      <consumer-el></consumer-el>
-    </provider-el>
+<h3>Basic Context Example</h3>
+<p>
+  The <code>&lt;consumer-el></code> receieves its data from
+  <code>&lt;provider-el></code>.
+</p>
+<hr>
 
-    <hr />
+<provider-el>
+  <consumer-el></consumer-el>
+</provider-el>
+<hr>
 
-    <provider-el data="specified from attribute">
-      <consumer-el></consumer-el>
-    </provider-el>
+<provider-el data="specified from attribute">
+  <consumer-el></consumer-el>
+</provider-el>
+<hr>
 
-    <hr />
-
-    <p>
-      Checkout our
-      <a
-        href="https://lit.dev/docs/data/context/"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Context documentation</a
-      >!
-    </p>
-  </body>
-</head>
+<p>
+  Checkout our
+  <a
+    href="https://lit.dev/docs/data/context/"
+    target="_blank"
+    rel="noopener noreferrer"
+    >Context documentation</a
+  >!
+</p>

@@ -5,14 +5,18 @@ import {provide, consume, createContext} from '@lit-labs/context';
 import {providerStyles} from './styles.js';
 
 const contextKey = Symbol('contextKey');
+// The value type for the context.
 type ContextValue = string;
-// Context object, which is the key for the context.
+// Context object, which acts like a key for the context.
 const context = createContext<ContextValue>(contextKey);
 
 @customElement('provider-el')
 export class ProviderEl extends LitElement {
   static styles = providerStyles;
 
+  /**
+   * `data` will be provided to any consumer that is in the DOM tree below it.
+   */
   @provide({context})
   @property()
   data = 'Initial';
@@ -27,10 +31,21 @@ export class ProviderEl extends LitElement {
 
 @customElement('consumer-el')
 export class ConsumerEl extends LitElement {
+  /**
+   * `providedData` will be populated by the first ancestor element which
+   * provides a value for `context`.
+   */
   @consume({context})
   providedData = '';
 
   render() {
     return html` <h3>Consumer data: <code>${this.providedData}</code></h3> `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'provider-el': ProviderEl;
+    'consumer-el': ConsumerEl;
   }
 }
