@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+  <script type="module" src="./elements.js"></script>
+  <style>
+    :root {
+      font-family: sans-serif;
+    }
+  </style>
+  <body>
+    <h3>Basic Context Example</h3>
+    <p>
+      The <code>consumer-el</code> receieves its data from the
+      <code>provider-el</code>.
+    </p>
+    <hr />
+
+    <provider-el>
+      <consumer-el></consumer-el>
+    </provider-el>
+
+    <hr />
+
+    <provider-el data="specified from attribute">
+      <consumer-el></consumer-el>
+    </provider-el>
+
+    <hr />
+
+    <p>
+      Checkout our
+      <a
+        href="https://lit.dev/docs/data/context/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Context documentation</a
+      >!
+    </p>
+  </body>
+</head>

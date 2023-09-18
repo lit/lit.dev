@@ -194,6 +194,7 @@
     "slugify": "^1.3.6"
   },
   "dependencies": {
+    "@lit-labs/context": "^0.4.1",
     "@lit-labs/motion": "^1.0.1",
     "@lit-labs/react": "^1.0.8",
     "@lit-labs/task": "^3.0.2",
