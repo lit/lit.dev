@@ -9,7 +9,10 @@ const contextKey = Symbol('contextKey');
 // be strings.
 type ContextValue = string;
 // Context object, which acts like a key for the context.
-const context = createContext<ContextValue>(contextKey);
+// The context object acts as a key. A consumer will only receive
+// values from a provider if their contexts match. A Symbol ensures
+// that this context will be unique.
+const context = createContext<ContextValue>(Symbol());
 
 @customElement('provider-el')
 export class ProviderEl extends LitElement {
