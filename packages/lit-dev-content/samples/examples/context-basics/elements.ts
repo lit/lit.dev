@@ -5,7 +5,8 @@ import {provide, consume, createContext} from '@lit-labs/context';
 import {providerStyles} from './styles.js';
 
 const contextKey = Symbol('contextKey');
-// The value type for the context.
+// The values that will be provided and consumed in this demo will
+// be strings.
 type ContextValue = string;
 // Context object, which acts like a key for the context.
 const context = createContext<ContextValue>(contextKey);
