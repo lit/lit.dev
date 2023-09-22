@@ -1,8 +1,8 @@
 {
   "extends": "/samples/base.json",
-  "title": "Basics",
+  "title": "Context Basics",
   "description": "Share data from a provider element with Context.",
-  "section": "@lit-labs/context",
+  "section": "Managing Data",
   "files": {
     "elements.ts": {},
     "index.html": {},
