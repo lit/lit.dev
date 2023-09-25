@@ -15,7 +15,7 @@ const CONTENT_PKG = pathlib.resolve(REPO_ROOT, 'packages', 'lit-dev-content');
 const SITE_JSON = pathlib.resolve(CONTENT_PKG, 'site', 'site.json');
 
 interface SiteJSON {
-  latestVersion: 'v1' | 'v2';
+  latestVersion: 'v1' | 'v2' | 'v3';
 }
 
 type EleventyFrontMatterData = string[];
@@ -44,7 +44,7 @@ const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
  *
  * The following transforms are then applied on the files:
  *   - Permalink frontmatter is added to strip the version from the URL. E.g.,
- *     /docs/v2/* becomes /docs/*.
+ *     /docs/v3/* becomes /docs/*.
  *  - `api.html` has frontmatter transformed so base api paths become
  *    unversioned.
  *  - The latest version `v[N].json` file is renamed `unversioned.json` so it

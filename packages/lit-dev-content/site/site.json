@@ -1,13 +1,13 @@
 {
-  "selectedVersion": "v2",
-  "latestVersion": "v2",
+  "selectedVersion": "v3",
+  "latestVersion": "v3",
   "versions": {
     "v3": {
-      "path": "/docs/v3",
+      "path": "/docs",
       "label": "v3"
     },
     "v2": {
-      "path": "/docs",
+      "path": "/docs/v2",
       "label": "v2"
     },
     "v1": {
