@@ -4,20 +4,15 @@ eleventyNavigation:
   key: Async Tasks
   parent: Managing Data
   order: 2
-  labs: true
 ---
-
-**DRAFT**
-
-{% labs-disclaimer %}
 
 ## Overview
 
 Sometimes a component needs to render data that is only available _asynchronously_. Such data might be fetched from a server, a database, or in general retrieved or computed from an async API.
 
-While Lit's reactive update lifecycle is batched and asynchronous, Lit templates always render _synchronously_. The data used in a template must be readable at the time of rendering. To render async data in a Lit component, you must wait for the data to be ready, store it so that's it's readable, then trigger a new render which can use the data synchronously.
+While Lit's reactive update lifecycle is batched and asynchronous, Lit templates always render _synchronously_. The data used in a template must be readable at the time of rendering. To render async data in a Lit component, you must wait for the data to be ready, store it so that it's readable, then trigger a new render which can use the data synchronously. Considerations must often be made on what to render while the data is being fetched, or when the data fetch fails as well.
 
-The `@lit-labs/task` package provides a `Task` reactive controller to help manage this async data workflow.
+The `@lit/task` package provides a `Task` reactive controller to help manage this async data workflow.
 
 `Task` is a controller that takes an async task function and runs it either manually or automatically when its arguments change. Task stores the result of the task function and updates the host element when the task function completes so the result can be used in rendering.
 
@@ -31,13 +26,13 @@ This is an example of using `Task` to call an HTTP API via [`fetch()`](https://d
 import {Task} from '@lit-labs/task';
 
 class MyElement extends LitElement {
-  @property() productId?: number;
+  @property() productId?: string;
 
   private _productTask = new Task(this, {
     task: async ([productId], {signal}) => {
       const response = await fetch(`http://example.com/product/${productId}`, {signal});
       if (!response.ok) { throw new Error(response.status); }
-      return response.json();
+      return response.json() as Product;
     },
     args: () => [this.productId]
   });
@@ -63,7 +58,7 @@ class MyElement extends LitElement {
     productId: {},
   };
 
-  private _productTask = new Task(this, {
+  _productTask = new Task(this, {
     task: async ([productId], {signal}) => {
       const response = await fetch(`http://example.com/product/${productId}`, {signal});
       if (!response.ok) { throw new Error(response.status); }
@@ -97,7 +92,7 @@ Task takes care of a number of things needed to properly manage async work:
 - Triggers a host update when the task changes status
 - Handles race conditions, ensuring that only the latest task invocation completes the task
 - Renders the correct template for the current task status
-- Aborting tasks with an AbortController
+- Allows aborting tasks with an `AbortController`
 
 This removes most of the boilerplate for correctly using async data from your code, and ensures robust handling of race conditions and other edge-cases.
 
@@ -108,7 +103,7 @@ Async data is data that's not available immediately, but may be available at som
 Async data is usually returned from an async API, which can come in a few forms:
 - Promises and async functions which return Promises
 - Functions that accept callbacks
-- Object that emit events
+- Objects that emit events
 - Various async patterns libraries like observables and signals
 
 ## What is a task?
@@ -122,7 +117,7 @@ A task is a generic concept and could represent any async operation. They apply 
 ## Installation
 
 ```bash
-npm i @lit-labs/task
+npm i @lit/task
 ```
 
 ## Usage
@@ -173,7 +168,7 @@ new Task(this, {
 
 The task function's args array and the args callback should be the same length.
 
-{% aside "positive" %}
+{% aside "positive" "no-header" %}
 
 Write the `task` and `args` functions as arrow function so that the `this` reference points to the host element.
 
@@ -187,15 +182,30 @@ Tasks can be in one of four states:
 - COMPLETE: The task completed successfully
 - ERROR: The task errored
 
-The Task status is available at the `status` field of the Task controller, and is represented by the `TaskStatus` object enum-like object, which has properties `INITIAL`, `PENDING`, `COMPLETE`, and `ERROR`.
+The Task status is available at the `status` field of the Task controller, and is represented by the `TaskStatus` enum-like object, which has properties `INITIAL`, `PENDING`, `COMPLETE`, and `ERROR`.
+
+```ts
+import {TaskStatus} from '@lit-labs/task';
+
+// ...
+  if (this.task.status === TaskStatus.ERROR) {
+    // ...
+  }
+```
 
 Usually a Task will proceed from INITIAL to PENDING to one of COMPLETE or ERROR, and then back to PENDING if the task is re-run. When a task changes status it triggers a host update so the host element can handle the new task status and render if needed.
 
-There are a few members on Task that related to the state of the task:
+{% aside "info" "no-header" %}
+
+It's important to understand the status a task can be in, but it's not usually necessary to access it directly.
+
+{% endaside %}
+
+There are a few members on the Task controller that relate to the state of the task:
 - `status`: the status of the task.
 - `value`: the current value of the task, if it has completed.
 - `error`: the current error of the task, if it has errored.
-- `render()`: A method that chooses a callback to run based on the current status.
+- `render()`: a method that chooses a callback to run based on the current status.
 
 ### Rendering Tasks
 
@@ -234,10 +244,12 @@ In auto-run mode, the task will call the `args` function when the host has updat
 
 If `autoRun` is set to false, the task will be in _manual_ mode. In manual mode you can run the task by calling the `.run()` method, possibly from an event handler:
 
+{% switchable-sample %}
+
 ```ts
 class MyElement extends LitElement {
 
-  private _getData = new Task(
+  private _getDataTask = new Task(
     this,
     {
       task: async () =>
@@ -255,48 +267,54 @@ class MyElement extends LitElement {
   }
 
   private _onClick() {
-    this._getData.run();
+    this._getDataTask.run();
   }
 }
 ```
 
+```js
+class MyElement extends LitElement {
+
+  _getDataTask = new Task(
+    this,
+    {
+      task: async () =>
+        const response = await fetch(`example.com/data/`);
+        return response.json();
+      ),
+      args: () => []
+    }
+  );
+
+  render() {
+    return html`
+      <button @click=${this._onClick}>Get Data</button>
+    `;
+  }
+
+  _onClick() {
+    this._getDataTask.run();
+  }
+}
+```
+
+{% endswitchable-sample %}
+
 In manual mode you can provide new arguments directly to `run()`:
 
 ```ts
-this._myTask.run('arg1', 'arg2');
+this._task.run('arg1', 'arg2');
 ```
 
 If arguments are not provided to `run()`, they are gathered from the `args` callback.
 
-### Task status
-
-Tasks can be in one of four states:
-- `INITIAL`: The task has not been run
-- `PENDING`: The task is running and awaiting a new value
-- `COMPLETE`: The task completed successfully
-- `ERROR`: The task errored
-
-Usually a Task will proceed from INITIAL to PENDING to one of COMPLETE or ERROR, and then back to PENDING if the task is re-run.
-
-Task status is available at the `status` field of the Task controller, and is represented by the `TaskStatus` object.
-
-It's important to understand the status a task can be in, but it's not usually necessary to access it directly.
-
-
-```ts
-import {TaskStatus} from '@lit-labs/task';
-
-// ...
-  if (this.task.status === TaskStatus.ERROR) {
-    // ...
-  }
-```
-
 ### Aborting tasks
 
-The second argument to the `Task` constructor is an options object that carries an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) in the `signal` property. This can be used to cancel a pending task because a new task run has started.
+The second argument to the task function is an options object that carries an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) in the `signal` property. This can be used to cancel a pending task because a new task run has started.
 
 The easiest way to use a signal is to forward it to an API that accepts it, like `fetch()`.
+
+{% switchable-sample %}
 
 ```ts
   private _task = new Task(this, {
@@ -307,9 +325,22 @@ The easiest way to use a signal is to forward it to an API that accepts it, like
   });
 ```
 
+```js
+  _task = new Task(this, {
+    task: async (args, {signal}) => {
+      const response = await fetch(someUrl, {signal});
+      // ...
+    },
+  });
+```
+
+{% endswitchable-sample %}
+
 Forwarding the signal to `fetch()` will cause the browser to cancel the network request if the signal is aborted.
 
 You can also check if a signal has been aborted in your task function. It's often useful to race a Promise against a signal:
+
+{% switchable-sample %}
 
 ```ts
   private _task = new Task(this, {
@@ -323,9 +354,24 @@ You can also check if a signal has been aborted in your task function. It's ofte
   });
 ```
 
+```js
+  _task = new Task(this, {
+    task: async ([arg1], {signal}) => {
+      const firstResult = await doSomeWork(arg1);
+      signal.throwIfAborted();
+      const secondResult = await doMoreWork(firstResult);
+      signal.throwIfAborted();
+      return secondResult;
+    },
+  });
+```
+
+{% endswitchable-sample %}
 ### Task chaining
 
 Sometimes you want to run one task when another task completes. To do this you can use the value of a task as an argument to the other:
+
+{% switchable-sample %}
 
 ```ts
 class MyElement extends LitElement {
@@ -341,9 +387,27 @@ class MyElement extends LitElement {
 }
 ```
 
+```js
+class MyElement extends LitElement {
+  _getDataTask = new Task(this, {
+    task: ([dataId]) => getData(dataId),
+    args: () => [this.dataId],
+  });
+
+  _processDataTask = new Task(this, {
+    task: ([data, param]) => processData(data, param),
+    args: () => [this._getDataTask.value, this.param],
+  });
+}
+```
+
+{% endswitchable-sample %}
+
 This can be useful if the tasks have different arguments so that the chained task may run without the first task running again. In this case it'll use the first task like a cache.
 
 You can also often use one task function and await intermediate results:
+
+{% switchable-sample %}
 
 ```ts
 class MyElement extends LitElement {
@@ -357,7 +421,20 @@ class MyElement extends LitElement {
 }
 ```
 
+```js
+class MyElement extends LitElement {
+  _getDataTask = new Task(this, {
+    task: ([dataId, param]) => {
+      const data = await getData(dataId);
+      return processData(data, param);
+    },
+    args: () => [this.dataId, this.param],
+  });
+}
+```
+
+{% endswitchable-sample %}
+
 ### Race conditions
 
-A task function can be called while previous task calls are still pending. In this case the AbortSignal passed to previous runs will be aborted and the Task controller will ignore the result of the previous task runs and only handle the most recent run.
-
+A task function can be called while previous task calls are still pending. In this case the `AbortSignal` passed to previous runs will be aborted and the `Task` controller will ignore the result of the previous task runs and only handle the most recent run.
