@@ -4,6 +4,8 @@ on: [push, pull_request]
 
 jobs:
   unit-tests:
+    env:
+      WIREIT_LOGGER: simple
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
