@@ -50,7 +50,7 @@ const onHandshake = (msg: HandshakeMessage) => {
 
 const onRender = async (msg: Render) => {
   console.log(`rendering ${msg.code.slice(0, 20)}`);
-  console.time(`render ${msg.code.slice(0, 20)}`);
+  console.time(`rendered ${msg.code.slice(0, 20)}`);
   const renderer = await rendererPromise;
   const {html} = await renderer.render(msg.lang, msg.code);
   const shared = await sharedDataPromise;
@@ -63,8 +63,8 @@ const onRender = async (msg: Render) => {
   }
   shared.htmlBufferLength[0] = length;
   encoder.encodeInto(html, shared.htmlBuffer);
-  console.timeEnd(`render ${msg.code.slice(0, 20)}`);
   Atomics.notify(shared.notify, 0);
+  console.timeEnd(`rendered ${msg.code.slice(0, 20)}`);
 };
 
 const onShutdown = async (_msg: Shutdown) => {

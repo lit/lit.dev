@@ -87,6 +87,7 @@ export class BlockingRenderer {
       throw new Error('BlockingRenderer worker has already exited');
     }
     this.workerPost({type: 'render', lang, code});
+    console.log(`posted ${code.slice(0, 20)}`);
     if (
       Atomics.wait(this.sharedNotify, 0, 0, this.renderTimeout) === 'timed-out'
     ) {
