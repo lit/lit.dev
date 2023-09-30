@@ -4,7 +4,12 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import * as workerthreads from 'worker_threads';
+import {
+  Worker,
+  MessageChannel,
+  MessagePort,
+  receiveMessageOnPort,
+} from 'worker_threads';
 import * as pathlib from 'path';
 
 export type WorkerMessage = HandshakeMessage | Render | Shutdown;
@@ -20,6 +25,7 @@ export interface HandshakeMessage {
    * each render is done, and the value will always be 0.
    */
   notify: Int32Array;
+  port: MessagePort;
 }
 
 export interface Render {
@@ -34,21 +40,22 @@ export interface Shutdown {
 
 export class BlockingRenderer {
   /** Worker that performs rendering. */
-  private worker: workerthreads.Worker;
+  private worker: Worker;
   /** Shared memory that the worker will write render results into. */
   private sharedHtml: Uint8Array;
   /** Shared memory that the worker will set to the result length. */
   private sharedLength = new Int32Array(new SharedArrayBuffer(4));
   /* Shared memory for done notifications. */
   private sharedNotify = new Int32Array(new SharedArrayBuffer(4));
-  private decoder = new TextDecoder();
+  // private decoder = new TextDecoder();
   private exited = false;
   private renderTimeout: number;
+  private port: MessagePort;
 
   constructor({renderTimeout = 60_000, maxHtmlBytes = 1024 * 1024} = {}) {
     this.renderTimeout = renderTimeout;
     this.sharedHtml = new Uint8Array(new SharedArrayBuffer(maxHtmlBytes));
-    this.worker = new workerthreads.Worker(
+    this.worker = new Worker(
       pathlib.join(__dirname, 'blocking-renderer-worker.js')
     );
     this.worker.on('error', (error) => {
@@ -64,12 +71,25 @@ export class BlockingRenderer {
         );
       }
     });
-    this.workerPost({
-      type: 'handshake',
-      htmlBufferLength: this.sharedLength,
-      htmlBuffer: this.sharedHtml,
-      notify: this.sharedNotify,
-    });
+    const {port1, port2} = new MessageChannel();
+    this.port = port1;
+    // this.workerPost({
+    //   type: 'handshake',
+    //   htmlBufferLength: this.sharedLength,
+    //   htmlBuffer: this.sharedHtml,
+    //   notify: this.sharedNotify,
+    //   port: port2
+    // });
+    this.worker.postMessage(
+      {
+        type: 'handshake',
+        htmlBufferLength: this.sharedLength,
+        htmlBuffer: this.sharedHtml,
+        notify: this.sharedNotify,
+        port: port2,
+      },
+      [port2]
+    );
   }
 
   async stop(): Promise<void> {
@@ -86,7 +106,8 @@ export class BlockingRenderer {
     if (this.exited) {
       throw new Error('BlockingRenderer worker has already exited');
     }
-    this.workerPost({type: 'render', lang, code});
+    this.port.postMessage({type: 'render', lang, code});
+    // this.workerPost({type: 'render', lang, code});
     console.log(`posted ${code.slice(0, 20)}`);
     if (
       Atomics.wait(this.sharedNotify, 0, 0, this.renderTimeout) === 'timed-out'
@@ -95,10 +116,11 @@ export class BlockingRenderer {
         `BlockingRenderer timed out waiting for worker to render ${lang}`
       );
     }
-    const raw = this.decoder.decode(this.sharedHtml);
-    const length = this.sharedLength[0];
-    const html = raw.substring(0, length);
-    return {html};
+    const {message} = receiveMessageOnPort(this.port)!;
+    // const raw = this.decoder.decode(this.sharedHtml);
+    // const length = this.sharedLength[0];
+    // const html = raw.substring(0, length);
+    return {html: message};
   }
 
   private workerPost(message: WorkerMessage) {
