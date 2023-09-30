@@ -73,6 +73,7 @@ export class BlockingRenderer {
     });
     const {port1, port2} = new MessageChannel();
     this.port = port1;
+    this.port.start();
     // this.workerPost({
     //   type: 'handshake',
     //   htmlBufferLength: this.sharedLength,

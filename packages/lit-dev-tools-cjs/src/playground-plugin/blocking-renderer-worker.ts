@@ -46,6 +46,7 @@ parentPort.on('message', (msg: WorkerMessage) => {
 
 const onHandshake = (msg: HandshakeMessage) => {
   sharedDataResolve(msg);
+  msg.port.start();
   msg.port.on('message', (msg: Render) => {
     return onRender(msg);
   });
