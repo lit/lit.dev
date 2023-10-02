@@ -156,6 +156,7 @@ export const playgroundPlugin = (
 
   eleventyConfig.addPairedShortcode(
     'highlight',
+    // TODO(ajakubowicz): this can be made async as of 11ty 2.0
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 
