@@ -156,8 +156,14 @@ export const playgroundPlugin = (
 
   eleventyConfig.addPairedShortcode(
     'highlight',
-    // TODO(ajakubowicz): this can be made async as of 11ty 2.0
-    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+    async (code: string, lang: 'js' | 'ts' | 'html' | 'css'): Promise<string> => {
+      // Add a 2 -> 10 second jitter, so that we don't overload the blocking
+      // renderer. This is a hack to work around blocking code that can be made
+      // async now that 11ty supports async shortcodes.
+      // TODO: Add a non blocking render alternative.
+      await new Promise(resolve => setTimeout(resolve, Math.random() * 10_000 + 2_000))
+      return render(code, lang)
+    }
   );
 
   eleventyConfig.addMarkdownHighlighter(
