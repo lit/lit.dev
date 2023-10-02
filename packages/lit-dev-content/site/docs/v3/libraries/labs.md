@@ -217,6 +217,20 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <tr>
 <td>
 
+[compiler](https://www.npmjs.com/package/@lit-labs/compiler)
+
+</td>
+<td>A compiler for optimizing Lit templates.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/compiler#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/4117 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcompiler%5D "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 [preact-signals](https://www.npmjs.com/package/@lit-labs/preact-signals)
 
 </td>
