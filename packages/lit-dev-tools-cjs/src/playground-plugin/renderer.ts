@@ -28,9 +28,9 @@ export class Renderer {
     this.page = page;
   }
 
-  static async start(): Promise<Renderer> {
+  static async start(port = 8005): Promise<Renderer> {
     return new Promise(async (resolve) => {
-      const serverPromise = RendererServer.start();
+      const serverPromise = RendererServer.start(port);
 
       const browser = await playwright.chromium.launch();
       const context = await browser.newContext();
@@ -177,7 +177,7 @@ class RendererServer {
     this.bodyMap = bodyMap;
   }
 
-  static async start(): Promise<RendererServer> {
+  static async start(port = 8005): Promise<RendererServer> {
     const bodyMap = new Map<string, string>();
     return new Promise(async (resolve) => {
       // Stop Web Dev Server from taking over the whole terminal.
@@ -190,6 +190,7 @@ class RendererServer {
           rootDir: pathlib.resolve(__dirname, '..', '..', '..', '..'),
           preserveSymlinks: true, // Needed when a dependency is NPM linked
           nodeResolve: true,
+          port,
           middleware: [
             async (ctx, next) => {
               if (ctx.URL.pathname !== '/') {

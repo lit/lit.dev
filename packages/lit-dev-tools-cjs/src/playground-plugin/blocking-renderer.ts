@@ -34,8 +34,46 @@ export interface Shutdown {
 
 // This is the max number of active workers that are allowed.
 const MAX_WORKERS = 10;
+const PORT = 8005;
 
 export class BlockingRenderer {
+  private pool = Array.from(new Array(MAX_WORKERS)).map(
+    (_, idx) =>
+      new BlockingRenderer_instance({
+        renderTimeout: 60_000,
+        maxHtmlBytes: 1024 * 1024,
+        port: PORT + idx,
+      })
+  );
+  // The number of active renders being calculated.
+  private sharedActiveWorkers = new Int32Array(new SharedArrayBuffer(4));
+
+  render(lang: 'js' | 'ts' | 'html' | 'css', code: string): {html: string} {
+    const sharedActiveWorkers = this.sharedActiveWorkers;
+    // Block more than 10 concurrent active renders.
+    while (Atomics.load(sharedActiveWorkers, 0) >= MAX_WORKERS) {
+      Atomics.wait(sharedActiveWorkers, 0, MAX_WORKERS);
+    }
+    Atomics.add(sharedActiveWorkers, 0, 1);
+
+    const idleWorker = this.pool.find((worker) => worker.state === 'idle');
+    if (!idleWorker) {
+      throw new Error(`BlockingRenderer worker pool exhausted.`);
+    }
+    const result = idleWorker.render(lang, code);
+
+    // Worker has completed, so subtract the number of active workers.
+    Atomics.sub(sharedActiveWorkers, 0, 1);
+    Atomics.notify(sharedActiveWorkers, 0, 1);
+    return result;
+  }
+
+  async stop(): Promise<void[]> {
+    return Promise.all(this.pool.map((w) => w.stop()));
+  }
+}
+
+class BlockingRenderer_instance {
   /** Worker that performs rendering. */
   private worker: workerthreads.Worker;
   /** Shared memory that the worker will write render results into. */
@@ -48,14 +86,24 @@ export class BlockingRenderer {
   private exited = false;
   private renderTimeout: number;
 
-  // The number of active renders being calculated.
-  private sharedActiveWorkers = new Int32Array(new SharedArrayBuffer(4));
+  #state: 'idle' | 'busy' = 'idle';
+  get state(): 'idle' | 'busy' | 'stopped' {
+    if (this.exited) {
+      return 'stopped';
+    }
+    return this.#state;
+  }
 
-  constructor({renderTimeout = 60_000, maxHtmlBytes = 1024 * 1024} = {}) {
+  constructor({
+    renderTimeout = 60_000,
+    maxHtmlBytes = 1024 * 1024,
+    port = 8005,
+  } = {}) {
     this.renderTimeout = renderTimeout;
     this.sharedHtml = new Uint8Array(new SharedArrayBuffer(maxHtmlBytes));
     this.worker = new workerthreads.Worker(
-      pathlib.join(__dirname, 'blocking-renderer-worker.js')
+      pathlib.join(__dirname, 'blocking-renderer-worker.js'),
+      {workerData: {port}}
     );
     this.worker.on('error', (error) => {
       throw new Error(
@@ -92,12 +140,7 @@ export class BlockingRenderer {
     if (this.exited) {
       throw new Error('BlockingRenderer worker has already exited');
     }
-    const sharedActiveWorkers = this.sharedActiveWorkers;
-    // Block more than 10 concurrent active renders.
-    while (Atomics.load(sharedActiveWorkers, 0) >= MAX_WORKERS) {
-      Atomics.wait(sharedActiveWorkers, 0, MAX_WORKERS);
-    }
-    Atomics.add(sharedActiveWorkers, 0, 1);
+    this.#state = 'busy';
     this.workerPost({type: 'render', lang, code});
     if (
       Atomics.wait(this.sharedNotify, 0, 0, this.renderTimeout) === 'timed-out'
@@ -106,12 +149,10 @@ export class BlockingRenderer {
         `BlockingRenderer timed out waiting for worker to render ${lang}`
       );
     }
-    // Worker has completed, so subtract the number of active workers.
-    Atomics.sub(sharedActiveWorkers, 0, 1);
-    Atomics.notify(sharedActiveWorkers, 0, 1);
     const raw = this.decoder.decode(this.sharedHtml);
     const length = this.sharedLength[0];
     const html = raw.substring(0, length);
+    this.#state = 'idle';
     return {html};
   }
 

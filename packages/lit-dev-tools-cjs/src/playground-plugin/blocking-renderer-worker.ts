@@ -17,7 +17,9 @@ if (workerthreads.isMainThread || !workerthreads.parentPort) {
   throw new Error('BlockingRenderer worker must be spawned in a worker thread');
 }
 
-const rendererPromise = Renderer.start();
+const {port} = workerthreads.workerData as {port: number};
+
+const rendererPromise = Renderer.start(port);
 const encoder = new TextEncoder();
 let shuttingDown = false;
 
@@ -62,6 +64,7 @@ const onRender = async (msg: Render) => {
   shared.htmlBufferLength[0] = length;
   encoder.encodeInto(html, shared.htmlBuffer);
   Atomics.notify(shared.notify, 0);
+  console.log('completed');
 };
 
 const onShutdown = async (_msg: Shutdown) => {
