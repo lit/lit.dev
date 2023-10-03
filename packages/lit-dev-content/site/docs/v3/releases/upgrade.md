@@ -33,17 +33,16 @@ Lit 2.x and 3.0 are _interoperable_: templates, base classes, and directives fro
 
 ## Decorator behavior has been unified
 
-To make the upgrade path from experimental decorators to standard decorators as
-smooth as possible, existing experimental decorators now support the standard
-spec, and work with the new `accessor` keyword. This is to make incremental
-migration to standard decorators possible.
+In Lit 3.0 our decorators support running in three configurations:
 
-Once all decorator call sites in your project use the `accessor` keyword, you can
-build with `experimentalDecorators` set to `true` or `false` without a change in
-behavior.
+1. With the TypeScript `experimentalDecorators` flag and properties without the `accessor` keyword. This is backwards compatible with Lit 2 users. As standard decorators are still immature, this is the most performant option that we recommend for production for the time being.
+2. With the TypeScript `experimentalDecorators` flag and with the `accessor` keyword. This aids migration to standard decorators. Code can add the `accessor` keyword one decorator at a time to migrate gradually.
+3. As standard decorators, which need the `accessor` keyword, and TypeScript 5.2 (without the `experimentalDecorators` flag), or Babel 7.23.0.
+
+Each of these configurations is self contained. An application can mix and match libraries written in each of these configurations, and it is not generally a breaking change for a library to switch from one decorator configuration to another.
 
 To make Lit decorators consistent between both decorator modes there have been some minor breaking
-changes to the experimental decorators:
+changes to experimental decorators:
 
 - `@property` and `@state` must be used on the setter for hand-written accessors. The getter no longer works.
 - `requestUpdate()` is called automatically for `@property` and `@state` decorated
