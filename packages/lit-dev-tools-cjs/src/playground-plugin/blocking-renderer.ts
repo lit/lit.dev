@@ -33,7 +33,7 @@ export interface Shutdown {
 }
 
 // This is the max number of active workers that are allowed.
-const MAX_WORKERS = 10;
+const MAX_WORKERS = 50;
 const PORT = 8005;
 
 export class BlockingRenderer {

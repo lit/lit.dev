@@ -64,7 +64,6 @@ const onRender = async (msg: Render) => {
   shared.htmlBufferLength[0] = length;
   encoder.encodeInto(html, shared.htmlBuffer);
   Atomics.notify(shared.notify, 0);
-  console.log('completed');
 };
 
 const onShutdown = async (_msg: Shutdown) => {
