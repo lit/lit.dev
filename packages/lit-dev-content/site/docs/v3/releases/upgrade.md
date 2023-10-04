@@ -1,7 +1,7 @@
 ---
-title: Upgrade to Lit 3.x guide
+title: Lit 3 upgrade guide
 eleventyNavigation:
-  key: Upgrade to Lit 3.x guide
+  key: Lit 3 upgrade guide
   parent: Releases
   order: 3
 versionLinks:
@@ -10,22 +10,22 @@ versionLinks:
 
 <div class="alert alert-info">
 
-If you are looking to migrate from Lit 1.x to Lit 2.x, see the [Lit 2.0 upgrade guide](/docs/v2/releases/upgrade/).
+If you are looking to migrate from Lit 1.x to Lit 2.x, see the [Lit 2 upgrade guide](/docs/v2/releases/upgrade/).
 
 </div>
 
 ## Overview
 
-Lit 3.0 has very few breaking changes from Lit 2.0:
+Lit 3.0 has very few breaking changes from Lit 2.x:
 
 - IE11 is no longer supported.
 - Lit's npm modules are now published as ES2021.
-- APIs deprecated with the Lit 2.0 release have been removed.
+- APIs marked deprecated in Lit 2.x releases have been removed.
 - SSR hydration support modules have moved to the `@lit-labs/ssr-client` package.
 - Decorator behavior has been unified between TypeScript experimental decorators and standard decorators.
 - Support was removed for Babel decorators version "2018-09"
 
-Lit 3.0 should require no changes to upgrade from Lit 2.0 for the vast majority
+Lit 3.0 should require no changes to upgrade from Lit 2.x for the vast majority
 of users. Most apps and libraries should be able to extend their npm version
 ranges to include both 2.x and 3.x, like `"^2.7.0 || ^3.0.0"`.
 
