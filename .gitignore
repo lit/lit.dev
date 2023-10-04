@@ -22,6 +22,9 @@ packages/lit-dev-api/api-data/*/INSTALLED
 # We only want to keep '-linux' screenshots which are tested by Github Actions.
 packages/lit-dev-tests/src/playwright/**/*.png
 !packages/lit-dev-tests/src/playwright/**/*-linux.png
+# We are also keeping '-darwin' screenshots as we switch to macos runners in
+# Github Actions as a fix for https://github.com/lit/lit.dev/issues/1201
+!packages/lit-dev-tests/src/playwright/**/*-darwin.png
 test-results
 
 *.tsbuildinfo
