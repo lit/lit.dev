@@ -152,6 +152,7 @@ test.describe('Playground', () => {
 
   test('share gist', async ({page}) => {
     await page.goto('/playground/');
+    await waitForPlaygroundPreviewToLoad(page);
 
     // Type some new content
     await page.click('playground-code-editor');
