@@ -287,7 +287,13 @@ You can set a JavaScript property on an element using the `.` prefix and the pro
 html`<input .value=${this.itemCount}>`;
 ```
 
-You can use this syntax to pass complex data down the tree to subcomponents. For example, if you have a `my-list` component with a `listItems` property, you could pass it an array of objects:
+The behavior of the code above is the same as directly setting the `value` property on the `input` element, e.g.:
+
+```js
+inputEl.value = this.itemCount;
+```
+
+You can use the property expression syntax to pass complex data down the tree to subcomponents. For example, if you have a `my-list` component with a `listItems` property, you could pass it an array of objects:
 
 ```js
 html`<my-list .listItems=${this.items}></my-list>`;
