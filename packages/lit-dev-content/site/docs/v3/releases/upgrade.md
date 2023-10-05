@@ -35,25 +35,13 @@ Lit 2.x and 3.0 are _interoperable_: templates, base classes, and directives fro
 
 The Lit 3 decorators are largely backwards compatible. If you've been using them with TypeScript, **most likely no changes are needed**. We've added forward compatibility with standard decorators, but the legacy `experimentalDecorators: true` without the `accessor` keyword is currently the more performant option.
 
-In Lit 3.0 there are three supported ways to use our decorators:
-
-1. With the TypeScript `experimentalDecorators` flag, and no `accessor` keyword. This is backwards compatible with Lit 2.
-2. With the TypeScript `experimentalDecorators` flag and using the `accessor` keyword. This aids migration to standard decorators. [Code can add the `accessor` keyword one decorator at a time to migrate gradually](#standard-decorator-migration).
-3. As standard decorators, which need the `accessor` keyword, and TypeScript 5.2 (without the `experimentalDecorators` flag), or Babel 7.23.0.
-
-Each supported way of using decorators is self contained. An application can mix and match libraries written in each of these configurations, and it is not generally a breaking change for a library to switch from one decorator configuration to another.
-
-To make Lit decorators consistent between both decorator modes there have been some minor breaking
-changes to Lit decorator behavior:
+To make the Lit 2.x decorators consistent between both decorator modes there have been some minor breaking
+changes to Lit decorator behavior in Lit 3.0:
 
 - `@property()` and `@state()` must be used on the setter for hand-written accessors. [Decorating the getter no longer works](#decorated-getter).
-- `requestUpdate()` is called automatically for `@property()` and `@state()` decorated
-  accessors where previously that was the setters responsibility.
+- `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
 - The value of an accessor is read on first render and used as the initial value for `changedProperties` and attribute reflection.
 - Lit 3 decorators do not support Babel (`@babel/plugin-proposal-decorators`) with `version: "2018-09"`.
-
-To use the standard decorator configuration, your decorated class fields **must** include the `accessor` keyword.
-To aid in migration from experimental decorators to standard decorators, decorated class fields with the `accessor` keyword will also work with the `experimentalDecorators` flag set to `true`. So users can start migrating code without changing the TS configuration.
 
 ## List of removed APIs
 
@@ -130,29 +118,6 @@ import {hydrate} from 'lit/experimental-hydrate.js';
 // Updated
 import '@lit-labs/ssr-client/lit-element-hydrate-support.js';
 import {hydrate} from '@lit-labs/ssr-client';
-```
-
-### Optional upgrade to standard decorators  {#standard-decorator-migration}
-
-To use standard decorators, your decorators should add the `accessor` keyword.
-Lit 3 decorators are flexible and work as both experimental decorators, and as
-standard decorators.
-
-```ts
-class MyElement extends LitElement {
-  // Lit 3.0 experimental decorators, which are backwards compatible with Lit 2.0
-  @property()
-  myProperty = "initial value"
-
-  // Lit 3.0 adds support for standard decorators.
-  // When using TypeScript:
-  //  - `accessor` keyword is optional when `experimentalDecorators: true`.
-  //  - `accessor` keyword is required when `experimentalDecorators: false`.
-  @property()
-  accessor myProperty = "initial value"
-
-...
-}
 ```
 
 ### Hand written getters can no longer be reactive properties {#decorated-getter}
