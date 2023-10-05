@@ -40,7 +40,7 @@ changes to Lit decorator behavior in Lit 3.0:
 
 - `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
 - The value of an accessor is read on first render and used as the initial value for `changedProperties` and attribute reflection.
-- Lit 3 decorators do not support Babel (`@babel/plugin-proposal-decorators`) with `version: "2018-09"`.
+- Lit 3 decorators no longer support `version: "2018-09"` option of `@babel/plugin-proposal-decorators`. Babel users should instead [migrate](#standard-decorator-migration) to use `version: "2023-05"` with plugin version greater than `7.23.0` which follows the TC39 standard decorator spec.
 - [optional]: [We recommend migrating `@property()` and `@state()` the the setter for hand-written accessors to aid in migrating to standard decorators.](#decorated-getter)
 
 ## List of removed APIs
@@ -138,4 +138,26 @@ get myProperty () { ... }
 
 @property()
 set myProperty (val) { ... }
+```
+
+### Optional: upgrade to standard decorators {#standard-decorator-migration}
+
+To use standard decorators, your decorators should add the `accessor` keyword.
+Lit 3 decorators are flexible and work as both experimental decorators, and as
+standard decorators.
+
+```ts
+class MyElement extends LitElement {
+  // Lit 3.0 experimental decorators, which are backwards compatible with Lit 2.0
+  @property()
+  myProperty = "initial value"
+
+  // Lit 3.0 adds support for standard decorators.
+  // When using TypeScript:
+  //  - `accessor` keyword is optional when `experimentalDecorators: true`.
+  //  - `accessor` keyword is required when `experimentalDecorators: false`.
+  @property()
+  accessor myProperty = "initial value"
+...
+}
 ```
