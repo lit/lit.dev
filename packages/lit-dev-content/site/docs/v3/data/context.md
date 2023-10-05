@@ -4,16 +4,13 @@ eleventyNavigation:
   key: Context
   parent: Managing Data
   order: 1
-  labs: true
 versionLinks:
   v2: data/context/
 ---
 
-{% labs-disclaimer %}
-
 Context is a way of making data available to entire component subtrees without having to manually bind properties to every component. The data is "contextually" available, such that ancestor elements in between a provider of data and consumer of data aren't even aware of it.
 
-Lit's context implementation is part of [Lit Labs](/docs/v3/libraries/labs/) and available in the `@lit/context` package:
+Lit's context implementation is available in the `@lit/context` package:
 
 ```bash
 npm i @lit/context
