@@ -38,10 +38,10 @@ The Lit 3 decorators are largely backwards compatible. If you've been using them
 To make the Lit 2.x decorators consistent between both decorator modes there have been some minor breaking
 changes to Lit decorator behavior in Lit 3.0:
 
-- `@property()` and `@state()` must be used on the setter for hand-written accessors. [Decorating the getter no longer works](#decorated-getter).
 - `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
 - The value of an accessor is read on first render and used as the initial value for `changedProperties` and attribute reflection.
 - Lit 3 decorators do not support Babel (`@babel/plugin-proposal-decorators`) with `version: "2018-09"`.
+- [optional]: [We recommend migrating `@property()` and `@state()` the the setter for hand-written accessors to aid in migrating to standard decorators.](#decorated-getter)
 
 ## List of removed APIs
 
@@ -120,19 +120,20 @@ import '@lit-labs/ssr-client/lit-element-hydrate-support.js';
 import {hydrate} from '@lit-labs/ssr-client';
 ```
 
-### Hand written getters can no longer be reactive properties {#decorated-getter}
+### Optional: To aid migration to standard decorators, decorate hand written setters {#decorated-getter}
 
-`@property()` and `@state()` must be used on the setter for hand-written accessors,
-and will throw a type error when applied on a hand written getter.
+When using standard decorators, `@property()` and `@state()` must be used on the
+setter for hand-written accessors, and will throw a type error when applied on a
+hand written getter. Thus we recommend incrementally migrating.
 
 ```ts
-// This will throw a type error.
+// This will throw a type error if using standard decorators.
 @property()
 get myProperty () { ... }
 
 set myProperty (val) { ... }
 
-// Instead decorate the setter.
+// Becomes:
 get myProperty () { ... }
 
 @property()
