@@ -4,7 +4,6 @@ eleventyNavigation:
   key: React
   parent: Frameworks
   order: 1
-  labs: true
 versionLinks:
   v2: frameworks/react/
 ---
