@@ -13,10 +13,10 @@ versionLinks:
 
 Context is a way of making data available to entire component subtrees without having to manually bind properties to every component. The data is "contextually" available, such that ancestor elements in between a provider of data and consumer of data aren't even aware of it.
 
-Lit's context implementation is part of [Lit Labs](/docs/v3/libraries/labs/) and available in the `@lit-labs/context` package:
+Lit's context implementation is part of [Lit Labs](/docs/v3/libraries/labs/) and available in the `@lit/context` package:
 
 ```bash
-npm i @lit-labs/context
+npm i @lit/context
 ```
 
 Context is useful for data that needs to be consumed by a wide variety and large number of components - things like an app's data store, the current user, a UI theme - or when data-binding isn't an option, such as when an element needs to provide data to its light DOM children.
@@ -29,7 +29,7 @@ Using context involves a _context object_ (sometimes called a key), a _provider_
 
 Context definition (`logger-context.ts`):
 ```ts
-import {createContext} from '@lit-labs/context';
+import {createContext} from '@lit/context';
 import type {Logger} from 'my-logging-library';
 export type {Logger} from 'my-logging-library';
 export const loggerContext = createContext<Logger>('logger');
@@ -38,7 +38,7 @@ export const loggerContext = createContext<Logger>('logger');
 Provider:
 ```ts
 import {LitElement, property, html} from 'lit';
-import {provide} from '@lit-labs/context';
+import {provide} from '@lit/context';
 
 import {Logger} from 'my-logging-library';
 import {loggerContext} from './logger-context.js';
@@ -58,7 +58,7 @@ class MyApp extends LitElement {
 Consumer:
 ```ts
 import {LitElement, property} from 'lit';
-import {consume} from '@lit-labs/context';
+import {consume} from '@lit/context';
 
 import {type Logger, loggerContext} from './logger-context.js';
 
@@ -83,7 +83,7 @@ This protocol enables interoperability between elements (or even non-element cod
 
 The Context Protocol is based on DOM events. A consumer fires a `context-request` event that carries the context key that it wants, and any element above it can listen for the `context-request` event and provide data for that context key.
 
-`@lit-labs/context` implements this event-based protocol and makes it available via a few reactive controllers and decorators.
+`@lit/context` implements this event-based protocol and makes it available via a few reactive controllers and decorators.
 
 ### Context Objects
 
@@ -157,7 +157,7 @@ Usually it's best to use a globally unique context object. Symbols are one of th
 
 ### Providing a context
 
-There are two ways in `@lit-labs/context` to provide a context value: the ContextProvider controller and the `@provide()` decorator.
+There are two ways in `@lit/context` to provide a context value: the ContextProvider controller and the `@provide()` decorator.
 
 #### `@provide()`
 
@@ -167,7 +167,7 @@ Decorate a property with `@provide()` and give it the context key:
 ```ts
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
-import {provide} from '@lit-labs/context';
+import {provide} from '@lit/context';
 import {myContext, MyData} from './my-context.js';
 
 class MyApp extends LitElement {
@@ -204,7 +204,7 @@ Making a context property public lets an element provide a public field to its c
 
 ```ts
 import {LitElement, html} from 'lit';
-import {ContextProvider} from '@lit-labs/context';
+import {ContextProvider} from '@lit/context';
 import {myContext, MyData} from './my-context.js';
 
 export class MyApp extends LitElement {
@@ -232,7 +232,7 @@ The `@consume()` decorator is the easiest way to consume a value if you're using
 Decorate a property with `@consume()` and give it the context key:
 ```ts
 import {LitElement, html} from 'lit';
-import {consume} from '@lit-labs/context';
+import {consume} from '@lit/context';
 import {myContext, MyData} from './my-context.js';
 
 class MyElement extends LitElement {
@@ -249,7 +249,7 @@ ContextConsumer is a reactive controller that manages dispatching the `context-r
 
 ```ts
 import {LitElement, property} from 'lit';
-import {ContextConsumer} from '@lit-labs/context';
+import {ContextConsumer} from '@lit/context';
 import {Logger, loggerContext} from './logger.js';
 
 export class MyElement extends LitElement {
@@ -335,7 +335,7 @@ Creates a typed Context object
 **Import**:
 
 ```ts
-import {property} from '@lit-labs/context';
+import {property} from '@lit/context';
 ```
 
 **Signature**:
@@ -374,7 +374,7 @@ A property decorator that adds a ContextConsumer controller to the component whi
 **Import**:
 
 ```ts
-import {provide} from '@lit-labs/context';
+import {provide} from '@lit/context';
 ```
 
 **Signature**:
@@ -390,7 +390,7 @@ A property decorator that adds a ContextConsumer controller to the component whi
 **Import**:
 
 ```ts
-import {consume} from '@lit-labs/context';
+import {consume} from '@lit/context';
 ```
 
 **Signature**:
@@ -408,7 +408,7 @@ A ReactiveController which adds context provider behavior to a custom element by
 **Import**:
 
 ```ts
-import {ContextProvider} from '@lit-labs/context';
+import {ContextProvider} from '@lit/context';
 ```
 
 **Constructor**:
@@ -435,7 +435,7 @@ A ReactiveController which adds context consuming behavior to a custom element b
 **Import**:
 
 ```ts
-import {ContextConsumer} from '@lit-labs/context';
+import {ContextConsumer} from '@lit/context';
 ```
 
 **Constructor**:
@@ -465,7 +465,7 @@ A ContextRoot can be used to gather unsatisfied context requests and re-dispatch
 **Import**:
 
 ```ts
-import {ContextRoot} from '@lit-labs/context';
+import {ContextRoot} from '@lit/context';
 ```
 
 **Constructor**:
@@ -490,7 +490,7 @@ The event fired by consumers to request a context value. The API and behavior of
 **Import**:
 
 ```ts
-import {ContextRequestEvent} from '@lit-labs/context';
+import {ContextRequestEvent} from '@lit/context';
 ```
 
 The `context-request` bubbles and is composed.
@@ -518,7 +518,7 @@ This callback can be called multiple times by context providers as the requested
 **Import**:
 
 ```ts
-import {type ContextCallback} from '@lit-labs/context';
+import {type ContextCallback} from '@lit/context';
 ```
 
 **Signature**:

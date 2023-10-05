@@ -14,7 +14,7 @@ Lit Labs is an umbrella for Lit packages under development that we are actively 
 - Lit Labs projects are published under the `@lit-labs` npm scope.
 - Breaking changes are likely to occur more frequently than in non-labs packages, but they will still respect standard semantic versioning guildelines and all changes will be published to the CHANGELOG files.
 - While we strive to address all bugs in a timely fashion, bugs in non-labs projects typically receive higher priority than bugs in labs projects.
-- When a Lit Labs project is ready to graduate out of labs, we'll begin publishing it under the `@lit` scope. (For example, `@lit-labs/task` might graduate to `@lit/task`.) Once a package graduates, its first version under the `@lit` scope will match that of the latest in `@lit-labs`—but only the `@lit` version will receive subsequent updates.
+- When a Lit Labs project is ready to graduate out of labs, we'll begin publishing it under the `@lit` scope. (For example, `@lit-labs/task` graduated to `@lit/task`.) Once a package graduates, its first version under the `@lit` scope will match that of the latest in `@lit-labs`—but only the `@lit` version will receive subsequent updates.
 - We may decide to deprecate a Lit Labs project. In such cases, we will notify the community, and a deprecation warning will be added to the npm package. The deprecated package will receive bug fix support for at least 6 months. A record of historical labs packages will be kept on this page.
 
 Feedback is currently being solicited on the following Labs packages:
@@ -30,37 +30,6 @@ Feedback is currently being solicited on the following Labs packages:
 <thead><tr><th>Package</th><th>Description</th><th>Links</th></tr></thead>
 <tbody>
 <tr class="subheading"><td colspan=3>Near graduation</td></tr>
-<tr>
-<td>
-
-[context](https://www.npmjs.com/package/@lit-labs/context)
-
-</td>
-<td>
-
-A package containing controllers and decorators for using the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
-
-</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](/docs/v3/data/context/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-[react](https://www.npmjs.com/package/@lit-labs/react)
-
-</td>
-<td>React integration helpers for custom elements and reactive controllers.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/react#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3358 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Freact%5D "Issues")
-
-</td>
-</tr>
 
 <tr>
 <td>
@@ -142,19 +111,6 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 </td>
 </tr>
 
-<tr>
-<td>
-
-[task](https://www.npmjs.com/package/@lit-labs/task)
-
-</td>
-<td>A reactive controller for handling asynchronous tasks.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3361 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftask%5D "Issues")
-
-</td>
-</tr>
 
 <tr>
 <td>
