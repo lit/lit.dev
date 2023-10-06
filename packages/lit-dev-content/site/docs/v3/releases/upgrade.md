@@ -182,14 +182,6 @@ Example:
 
 ```ts
 class MyElement extends LitElement {
-  // Lit 3.0 experimental decorators, which are backwards compatible with Lit 2.0
-  @property()
-  myProperty = "initial value"
-
-  // Lit 3.0 adds support for standard decorators.
-  // When using TypeScript:
-  //  - `accessor` keyword is optional when `experimentalDecorators: true`.
-  //  - `accessor` keyword is required when `experimentalDecorators: false`.
   @property()
   accessor myProperty = "initial value"
 ...
