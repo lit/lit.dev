@@ -47,7 +47,7 @@ Changes to Lit decorator behavior in Lit 3.0:
 - `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
 - The value of an accessor is read on first render and used as the initial value for `changedProperties` and attribute reflection.
 - Lit 3 decorators no longer support the `version: "2018-09"` option of `@babel/plugin-proposal-decorators`. Babel users should [migrate to standard decorators](#standard-decorator-migration).
-- [optional]: [We recommend migrating `@property()` and `@state()` to the setter for hand-written accessors to aid in migrating to standard decorators.](#decorated-getter)
+- [Optional]: [We recommend migrating `@property()` and `@state()` to the setter for hand-written accessors to aid in migrating to standard decorators.](#decorated-getter)
 
 ## List of removed APIs
 
