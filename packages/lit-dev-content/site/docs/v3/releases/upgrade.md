@@ -45,7 +45,7 @@ changes to Lit decorator behavior in Lit 3.0:
 
 - `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
 - The value of an accessor is read on first render and used as the initial value for `changedProperties` and attribute reflection.
-- Lit 3 decorators no longer support the `version: "2018-09"` option of `@babel/plugin-proposal-decorators`. Babel users should [migrate to standard decorators](#standard-decorator-migration).
+- Lit 3 decorators no longer support the `version: "2018-09"` option of `@babel/plugin-proposal-decorators`. Babel users should [migrate to standard decorators](#add-accessor-to-decorated-fields).
 - [optional]: [We recommend migrating `@property()` and `@state()` the the setter for hand-written accessors to aid in migrating to standard decorators.](#decorated-getter)
 
 ## List of removed APIs
@@ -166,7 +166,7 @@ Install Babel 7.23 or later, and [`@babel/plugin-proposal-decorators`](https://b
 
 ### Source updates
 
-#### Add the `accessor` keyword to decorated fields.
+#### Add the `accessor` keyword to decorated fields. {#add-accessor-to-decorated-fields}
 
 Standard decorators are not allowed to change the _kind_ of class member they decorate. Decorators that need to create getters and setters must be applied to existing getters and setters. To make this more ergonomic the decorators standard adds the `accessor` keyword which creates "auto accessors" when applied to a class field. Auto accessors look and act much like class fields, but create accessors on the prototype backed by private storage.
 
@@ -174,7 +174,7 @@ Standard decorators are not allowed to change the _kind_ of class member they de
 class A {
   accessor foo = 42;
 }
-```ts
+```
 
 The `@property()`, `@state()`, `@query()`, `@queryAll()`, `@queryAssignedElements()` and `@queryAssignedNode()` decorators require the `accessor` keyword.
 
@@ -186,8 +186,9 @@ class MyElement extends LitElement {
   accessor myProperty = "initial value"
 ...
 }
-\```
-#### Move decorators from getters to setters
+```
+
+#### Move decorators from getters to setters {#decorated-getter}
 
 Standard decorators can only replace the class member they're directly applied to. Lit decorators need to intercept property setting, so the decorators must be applied to setters. This is different from the Lit 2 recommendation of applying decorators to getters.
 
@@ -196,6 +197,7 @@ For `@property()` and `@state()` you should also remove any `this.requestUpdate(
 Note that for `@property()` and `@state()` the _getter_ will be called by the decorator when setting the property to retrieve the old value. This means that you _must_ define both a getter and a setter.
 
 Before:
+
 ```ts
 class MyElement extends LitElement {
   private _foo = 42;
@@ -209,9 +211,10 @@ class MyElement extends LitElement {
     return this._foo;
   }
 }
-\```
+```
 
 After:
+
 ```ts
 class MyElement extends LitElement {
   private _foo = 42;
@@ -223,4 +226,4 @@ class MyElement extends LitElement {
     return this._foo;
   }
 }
-\```
+```
