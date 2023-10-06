@@ -33,7 +33,14 @@ Lit 2.x and 3.0 are _interoperable_: templates, base classes, and directives fro
 
 ## Updates to Lit decorators
 
-The Lit 3 decorators are largely backwards compatible. If you've been using them with TypeScript, **most likely no changes are needed**. We've added forward compatibility with standard decorators, but the legacy `experimentalDecorators: true` without the `accessor` keyword is currently the more performant option.
+
+JavaScript decorators have recently been standardized by TC39 and are at Stage 3 of the four-stage standardization process. Stage 3 is when JavaScript implementations such as VMs and compilers start implementing the stable specification. TypeScript 5.2 and Babel 7.23 have implemented the standard recently.
+
+This means that there is more than one version of the decorator API in existence: standard decorators, TypeScript's experimental decorators, and previous proposals that Babel has implemented, such as version "2018-09".
+
+While Lit 2 supported TypeScript experimental decorators and Babel's "2018-09" decorators, Lit 3 now supports standard decorators and TypeScript experimental decorators.
+
+The Lit 3 decorators are mostly backwards compatible with the Lit 2 TypeScript decorators - **most likely no changes are needed**.
 
 To make the Lit 2.x decorators consistent between both decorator modes there have been some minor breaking
 changes to Lit decorator behavior in Lit 3.0:
