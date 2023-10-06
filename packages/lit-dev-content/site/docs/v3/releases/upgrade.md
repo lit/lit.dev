@@ -42,7 +42,7 @@ While Lit 2 supported TypeScript experimental decorators and Babel's "2018-09" d
 
 The Lit 3 decorators are mostly backwards compatible with the Lit 2 TypeScript decorators - **most likely no changes are needed**.
 
-To make the Lit 2.x decorators consistent between both decorator modes there have been some minor breaking
+Some minor breaking changes were necessary to make the Lit decorators behave consistently between both experimental and standard decorator modes:
 changes to Lit decorator behavior in Lit 3.0:
 
 - `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
