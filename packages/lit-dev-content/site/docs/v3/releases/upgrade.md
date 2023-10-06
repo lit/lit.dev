@@ -186,4 +186,41 @@ class MyElement extends LitElement {
   accessor myProperty = "initial value"
 ...
 }
-```
+\```
+#### Move decorators from getters to setters
+
+Standard decorators can only replace the class member they're directly applied to. Lit decorators need to intercept property setting, so the decorators must be applied to setters. This is different from the Lit 2 recommendation of applying decorators to getters.
+
+For `@property()` and `@state()` you should also remove any `this.requestUpdate()` calls in the setter since this is done automatically now. If you need to _not_ have `requestUpdate()` called, you'll have to use the `hasChanged` property option.
+
+Note that for `@property()` and `@state()` the _getter_ will be called by the decorator when setting the property to retrieve the old value. This means that you _must_ define both a getter and a setter.
+
+Before:
+```ts
+class MyElement extends LitElement {
+  private _foo = 42;
+  set(v) {
+    const oldValue = this._foo;
+    this._foo = v;
+    this.requestUpdate('foo', oldValue);
+  }
+  @property()
+  get() {
+    return this._foo;
+  }
+}
+\```
+
+After:
+```ts
+class MyElement extends LitElement {
+  private _foo = 42;
+  @property()
+  set(v) {
+    this._foo = v;
+  }
+  get() {
+    return this._foo;
+  }
+}
+\```
