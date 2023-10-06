@@ -27,7 +27,7 @@ Lit 3.0 has very few breaking changes from Lit 2.x:
 
 For the vast majority of users there should be no required code changes to upgrade from Lit 2 to Lit 3. Most apps and libraries should be able to extend their npm version ranges to include both 2.x and 3.x, like `"^2.7.0 || ^3.0.0"`.
 
-Lit 2.x and 3.0 are _interoperable_: templates, base classes, and directives from one version of Lit will work with those from another.
+Lit 2.x and 3.0 are _interoperable_ – templates, base classes, and directives from one version of Lit will work with those from another.
 
 ## Updates to Lit decorators
 
