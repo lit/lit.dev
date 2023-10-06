@@ -125,26 +125,6 @@ import '@lit-labs/ssr-client/lit-element-hydrate-support.js';
 import {hydrate} from '@lit-labs/ssr-client';
 ```
 
-### Optional: To aid migration to standard decorators, decorate hand written setters {#decorated-getter}
-
-When using standard decorators, `@property()` and `@state()` must be used on the
-setter for hand-written accessors, and will throw a type error when applied on a
-hand written getter. Thus we recommend incrementally migrating.
-
-```ts
-// This will throw a type error if using standard decorators.
-@property()
-get myProperty () { ... }
-
-set myProperty (val) { ... }
-
-// Becomes:
-get myProperty () { ... }
-
-@property()
-set myProperty (val) { ... }
-```
-
 ### Optional: upgrade to standard decorators {#standard-decorator-migration}
 
 
