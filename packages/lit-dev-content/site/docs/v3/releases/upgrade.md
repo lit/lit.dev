@@ -147,9 +147,38 @@ set myProperty (val) { ... }
 
 ### Optional: upgrade to standard decorators {#standard-decorator-migration}
 
-To use standard decorators, your decorators should add the `accessor` keyword.
-Lit 3 decorators are flexible and work as both experimental decorators, and as
-standard decorators.
+
+While Lit 3 adds support for standard decorators, we still recommend that TypeScript users stay with experimental decorators. This is because the emitted code for standard decorators from the TypeScript and Babel compilers is quite large at the moment.
+
+We will recommend standard decorators for production when browsers support them, or when we release decorator transform support in our new Lit compiler.
+
+But you can try standard decorators now, and they work in TypeScript 5.2 and above and Babel 7.23 with the `@babel/plugin-proposal-decorators` plugin.
+
+### Configuration
+
+#### TypeScript
+
+Install TypeScript 5.2 or later, and _remove_ the `"experimentalDecorators"` setting from your tsconfig if it's present.
+
+#### Babel
+
+Install Babel 7.23 or later, and [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/babel-plugin-proposal-decorators). Be sure to pass the `"version": "2023-05"` option to the plugin.
+
+### Source updates
+
+#### Add the `accessor` keyword to decorated fields.
+
+Standard decorators are not allowed to change the _kind_ of class member they decorate. Decorators that need to create getters and setters must be applied to existing getters and setters. To make this more ergonomic the decorators standard adds the `accessor` keyword which creates "auto accessors" when applied to a class field. Auto accessors look and act much like class fields, but create accessors on the prototype backed by private storage.
+
+```ts
+class A {
+  accessor foo = 42;
+}
+```ts
+
+The `@property()`, `@state()`, `@query()`, `@queryAll()`, `@queryAssignedElements()` and `@queryAssignedNode()` decorators require the `accessor` keyword.
+
+Example:
 
 ```ts
 class MyElement extends LitElement {
