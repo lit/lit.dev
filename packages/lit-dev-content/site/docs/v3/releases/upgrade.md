@@ -40,8 +40,9 @@ While Lit 2 supported TypeScript experimental decorators and Babel's "2018-09" d
 
 The Lit 3 decorators are mostly backwards compatible with the Lit 2 TypeScript decorators - **most likely no changes are needed**.
 
-Some minor breaking changes were necessary to make the Lit decorators behave consistently between both experimental and standard decorator modes:
-changes to Lit decorator behavior in Lit 3.0:
+Some minor breaking changes were necessary to make the Lit decorators behave consistently between both experimental and standard decorator modes.
+
+Changes to Lit decorator behavior in Lit 3.0:
 
 - `requestUpdate()` is called automatically for `@property()` and `@state()` decorated accessors where previously that was the setters responsibility.
 - The value of an accessor is read on first render and used as the initial value for `changedProperties` and attribute reflection.
@@ -58,7 +59,7 @@ impacted by this list.
 - [Removed deprecated call signature for the `queryAssignedNodes` decorator.](#removed-queryassignednodes-non-object)
 - [Moved experimental server side rendering hydration modules from `lit`, `lit-element`, and `lit-html` to `@lit-labs/ssr-client`.](#moved-experimental-hydration)
 
-## Steps to Upgrade
+## Steps to upgrade
 
 ### Removed `UpdatingElement` alias for `ReactiveElement` {#removed-updating-element}
 
@@ -88,7 +89,7 @@ import {customElement, property, state} from 'lit-element';
 import {customElement, property, state} from 'lit/decorators.js';
 ```
 
-### Deprecated `queryAssignedNodes(slot: string, flatten: bool, selector: string)` decorator removed {#removed-queryassignednodes-non-object}
+### Deprecated `queryAssignedNodes(slot: string, flatten: bool, selector: string)` decorator signature removed {#removed-queryassignednodes-non-object}
 
 Migrate any usage of `queryAssignedNodes` taking a selector to use `queryAssignedElements`.
 
@@ -125,7 +126,7 @@ import '@lit-labs/ssr-client/lit-element-hydrate-support.js';
 import {hydrate} from '@lit-labs/ssr-client';
 ```
 
-## Optional: upgrade to standard decorators {#standard-decorator-migration}
+## Optional: Upgrade to standard decorators {#standard-decorator-migration}
 
 While Lit 3 adds support for standard decorators, we still recommend that TypeScript users stay with experimental decorators. This is because the emitted code for standard decorators from the TypeScript and Babel compilers is quite large at the moment.
 
@@ -143,17 +144,11 @@ Install TypeScript 5.2 or later, and _remove_ the `"experimentalDecorators"` set
 
 Install Babel 7.23 or later, and [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/babel-plugin-proposal-decorators). Be sure to pass the `"version": "2023-05"` option to the plugin.
 
-### Source updates
+### Code changes
 
-#### Add the `accessor` keyword to decorated fields. {#add-accessor-to-decorated-fields}
+#### Add the `accessor` keyword to decorated fields {#add-accessor-to-decorated-fields}
 
-Standard decorators are not allowed to change the _kind_ of class member they decorate. Decorators that need to create getters and setters must be applied to existing getters and setters. To make this more ergonomic the decorators standard adds the `accessor` keyword which creates "auto accessors" when applied to a class field. Auto accessors look and act much like class fields, but create accessors on the prototype backed by private storage.
-
-```ts
-class A {
-  accessor foo = 42;
-}
-```
+Standard decorators are not allowed to change the _kind_ of class member they decorate. Decorators that need to create getters and setters must be applied to existing getters and setters. To make this more ergonomic, the decorators standard adds the `accessor` keyword which creates "auto accessors" when applied to a class field. Auto accessors look and act much like class fields, but create accessors on the prototype backed by private storage.
 
 The `@property()`, `@state()`, `@query()`, `@queryAll()`, `@queryAssignedElements()` and `@queryAssignedNode()` decorators require the `accessor` keyword.
 
@@ -171,7 +166,7 @@ class MyElement extends LitElement {
 
 Standard decorators can only replace the class member they're directly applied to. Lit decorators need to intercept property setting, so the decorators must be applied to setters. This is different from the Lit 2 recommendation of applying decorators to getters.
 
-For `@property()` and `@state()` you should also remove any `this.requestUpdate()` calls in the setter since this is done automatically now. If you need to _not_ have `requestUpdate()` called, you'll have to use the `hasChanged` property option.
+For `@property()` and `@state()` you can also remove any `this.requestUpdate()` calls in the setter since this is done automatically now. If you need to _not_ have `requestUpdate()` called, you'll have to use the `noAccessor` property option.
 
 Note that for `@property()` and `@state()` the _getter_ will be called by the decorator when setting the property to retrieve the old value. This means that you _must_ define both a getter and a setter.
 
