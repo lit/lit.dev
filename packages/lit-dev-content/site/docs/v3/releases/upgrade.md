@@ -29,6 +29,66 @@ For the vast majority of users there should be no required code changes to upgra
 
 Lit 2.x and 3.0 are _interoperable_ – templates, base classes, and directives from one version of Lit will work with those from another.
 
+## Lit is now published as ES2021
+
+Lit 2 was published as ES2019, and Lit 3 is now published as ES2021. ES2021 is supported by modern browsers.
+This may be a breaking change for your tooling if it can't parse ES2021, for example in the case of Webpack 4.
+
+### Using Lit 3 with Webpack 4
+
+Webpack 4's internal parser doesn't support nullish coalescing (`??=`), or optional chaining (`?.`), which are features of ES2021.
+When Webpack 4 parses Lit 3, or other modern packages, it'll throw a `Module parse failed: Unexpected token` on parsing `??=` or `?.`.
+
+There are two possible solutions:
+
+ 1. Upgrade to Webpack 5, which has updated its internal parser to support ES2021 syntax.
+ 2. Transpile Lit 3 to ES2019 syntax using `babel-loader` so Webpack 4 can parse Lit 3.
+
+Upgrading to Webpack 5 is preferred, otherwise your build system is dictating what target JavaScript you can build.
+Transpiling JavaScript unnecessarily results in a larger bundle with less efficient code.
+
+As a temporary workaround, to transpile Lit 3 in Webpack 4, install the required babel packages: `npm install --save-dev babel-loader@8 @babel/core @babel/preset-env`.
+
+And add a new Webpack 4 rule that is similar to the following (you may need to modify it based on your specific project):
+
+```js
+// In webpack.config.js
+
+module.exports = {
+  // ...
+
+  module: {
+    rules: [
+      // ... your other rules
+
+      // Add a babel-loader rule to downlevel Lit's ES2021 syntax so Webpack 4 can parse it.
+      // TODO: Once on Webpack 5, this rule can be deleted.
+      {
+        test: /\.js$/,
+        include: ['@lit', 'lit-element', 'lit-html'].map((p) =>
+          path.resolve(__dirname, 'node_modules/' + p)
+        ),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: ['last 1 version'],
+                },
+              ],
+            ],
+          },
+        },
+      },
+    ],
+  }
+}
+```
+
+This config transpiles the Lit 3 packages within `node_modules` so Webpack 4 can parse them.
+
 ## Updates to Lit decorators
 
 
