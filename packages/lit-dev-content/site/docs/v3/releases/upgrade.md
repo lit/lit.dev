@@ -29,6 +29,61 @@ For the vast majority of users there should be no required code changes to upgra
 
 Lit 2.x and 3.0 are _interoperable_ – templates, base classes, and directives from one version of Lit will work with those from another.
 
+## Lit is now published as ES2021
+
+Lit 2 was published as ES2019, and Lit 3 is now published as ES2021 which has wide support in modern browsers and build tools.
+This may be a breaking change if you need to support older browser versions and your current tooling can't parse ES2021.
+
+### Using Lit 3 with Webpack 4
+
+Webpack 4's internal parser doesn't support nullish coalescing (`??`), logical assignment (`??=`), or optional chaining (`?.`), which are syntaxes introduced in ES2021 so will throw a `Module parse failed: Unexpected token` when encountering those.
+
+The preferred solution is to upgrade to Webpack 5 which does support parsing these newer JS syntax. However if you are unable to do so, it is possible to use `babel-loader` to transform Lit 3 code to work with Webpack 5.
+
+To transpile Lit 3 in Webpack 4, install the following required babel packages:
+
+```sh
+> npm i -D babel-loader@8 \
+    @babel/plugin-transform-optional-chaining \
+    @babel/plugin-transform-nullish-coalescing-operator \
+    @babel/plugin-transform-logical-assignment-operators
+```
+
+And add a new rule that is similar to the following (you may need to modify it based on your specific project):
+
+```js
+// In webpack.config.js
+
+module.exports = {
+  // ...
+
+  module: {
+    rules: [
+      // ... your other rules
+
+      // Add a babel-loader rule to downlevel Lit's ES2021 syntax so Webpack 4 can parse it.
+      // TODO: Once on Webpack 5, this rule can be deleted.
+      {
+        test: /\.js$/,
+        include: ['@lit', 'lit-element', 'lit-html'].map((p) =>
+          path.resolve(__dirname, 'node_modules/' + p)
+        ),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              '@babel/plugin-transform-optional-chaining',
+              '@babel/plugin-transform-nullish-coalescing-operator',
+              '@babel/plugin-transform-logical-assignment-operators'
+            ],
+          },
+        },
+      },
+    ],
+  }
+}
+```
+
 ## Updates to Lit decorators
 
 
