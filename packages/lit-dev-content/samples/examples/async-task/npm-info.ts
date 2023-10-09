@@ -44,7 +44,7 @@ export class NpmInfo extends LitElement {
         ${this._npmInfoTask.render({
           initial: () =>
             html`<span class="initial">
-              Enter a package name to display it's npm info
+              Enter a package name to display its npm info
             </span>`,
           pending: () =>
             html`Loading npm info for <code>${this._packageName}</code>`,
