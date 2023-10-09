@@ -98,19 +98,21 @@ This removes most of the boilerplate for correctly using async data from your co
 
 ## What is async data?
 
-Async data is data that's not available immediately, but may be available at some time in the future. For example, instead of a value like a string or an object that's usable synchronously, a Promise provides a value in the future.
+Async data is data that's not available immediately, but may be available at some time in the future. For example, instead of a value like a string or an object that's usable synchronously, a promise provides a value in the future.
 
 Async data is usually returned from an async API, which can come in a few forms:
-- Promises and async functions which return Promises
+- Promises or async functions, like `fetch()`
 - Functions that accept callbacks
-- Objects that emit events
-- Various async patterns libraries like observables and signals
+- Objects that emit events, such as DOM events
+- Libraries like observables and signals
+
+The Task controller deals in promises, so no matter the shape of your async API you'll adapt it to promises to use with Task.
 
 ## What is a task?
 
 At the core of the Task controller is the concept of a "task" itself.
 
-A task is an async operation which does some work to produce data. A task can be in a few different states (initial, pending, complete, and error) and can take parameters.
+A task is an async operation which does some work to produce data and return it in a Promise. A task can be in a few different states (initial, pending, complete, and error) and can take parameters.
 
 A task is a generic concept and could represent any async operation. They apply best when there is a request/response structure, such as a network fetch, database query, or waiting for a single event in response to some action. They're less applicable to spontaneous or streaming operations like an open-ended stream of events, a streaming database response, etc.
 
@@ -311,9 +313,11 @@ If arguments are not provided to `run()`, they are gathered from the `args` call
 
 ### Aborting tasks
 
-The second argument to the task function is an options object that carries an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) in the `signal` property. 
+A task function can be called while previous task runs are still pending. In these cases the result of the pending task runs will be ignored, and you should try to cancel any outstanding work or network I/O in order to save resources.
 
-A task function can be called while previous task calls are still pending. In this case the `AbortSignal` passed to previous runs will be aborted and the `Task` controller will ignore the previous task results.
+You can do with with the [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that is passed in the `signal` property of the second argument to the task function. When a pending task run is superseded by a new run, the `AbortSignal` that was passed to the pending run is aborted to signal the task run to cancel any pending work.
+
+`AbortSignal` doesn't cancel any work automatically - it is just a signal. To cancel some work you must either do it yourself by checking the signal, or forward the signal to another API that accepts `AbortSignal`s like [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) or [`addEventListner()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 
 The easiest way to use the `AbortSignal` is to forward it to an API that accepts it, like `fetch()`.
 
@@ -341,7 +345,7 @@ The easiest way to use the `AbortSignal` is to forward it to an API that accepts
 
 Forwarding the signal to `fetch()` will cause the browser to cancel the network request if the signal is aborted.
 
-You can also check if a signal has been aborted in your task function. It's often useful to race a Promise against a signal:
+You can also check if a signal has been aborted in your task function. You should check the signal after returning to a task function from an async call. `throwIfAborted()` is a convenient way to do this:
 
 {% switchable-sample %}
 
