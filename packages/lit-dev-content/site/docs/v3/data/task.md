@@ -106,7 +106,7 @@ Async data is usually returned from an async API, which can come in a few forms:
 - Objects that emit events, such as DOM events
 - Libraries like observables and signals
 
-The Task controller deals in promises, so no matter the shape of your async API you'll adapt it to promises to use with Task.
+The Task controller deals in promises, so no matter the shape of your async API you can adapt it to promises to use with Task.
 
 ## What is a task?
 
@@ -317,7 +317,7 @@ A task function can be called while previous task runs are still pending. In the
 
 You can do with with the [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) that is passed in the `signal` property of the second argument to the task function. When a pending task run is superseded by a new run, the `AbortSignal` that was passed to the pending run is aborted to signal the task run to cancel any pending work.
 
-`AbortSignal` doesn't cancel any work automatically - it is just a signal. To cancel some work you must either do it yourself by checking the signal, or forward the signal to another API that accepts `AbortSignal`s like [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) or [`addEventListner()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+`AbortSignal` doesn't cancel any work automatically - it is just a signal. To cancel some work you must either do it yourself by checking the signal, or forward the signal to another API that accepts `AbortSignal`s like [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) or [`addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 
 The easiest way to use the `AbortSignal` is to forward it to an API that accepts it, like `fetch()`.
 
