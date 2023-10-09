@@ -25,5 +25,6 @@ const config: PlaywrightTestConfig = {
   //    committing the snapshot to the repository.
   //  * `npm run test:integration:update-golden-screenshots` for local testing.
   updateSnapshots: 'none',
+  workers: process.env.CI ? 1 : 2,
 };
 export default config;

@@ -16,6 +16,9 @@ import {
 
 import type {Page, Browser} from '@playwright/test';
 
+const isMacOS = process.platform === 'darwin';
+const modifierKey = isMacOS ? 'Meta' : 'Control';
+
 const signInToGithub = async (page: Page): Promise<void> => {
   const [popup] = await Promise.all([
     page.waitForEvent('popup'),
@@ -118,7 +121,7 @@ test.describe('Playground', () => {
 
     // Type some new content
     await page.click('playground-code-editor');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"my long url content";');
     await waitForPlaygroundPreviewToLoad(page);
 
@@ -149,10 +152,11 @@ test.describe('Playground', () => {
 
   test('share gist', async ({page}) => {
     await page.goto('/playground/');
+    await waitForPlaygroundPreviewToLoad(page);
 
     // Type some new content
     await page.click('playground-code-editor');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"my gist content";');
     await waitForPlaygroundPreviewToLoad(page);
 
@@ -194,7 +198,7 @@ test.describe('Playground', () => {
 
     // Type some more content
     await page.click('playground-code-editor');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"my updated gist content";');
 
     // Rename a file
@@ -202,7 +206,7 @@ test.describe('Playground', () => {
     await page.click('text=simple-greeting.ts >> .menu-button');
     await page.click('#renameButton');
     await page.click('.filename-input');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('new-name.ts');
     await expect(await page.screenshot()).toMatchSnapshot(
       'shareGist-5-renamingFile.png'
@@ -254,7 +258,7 @@ test.describe('Playground', () => {
     await waitForPlaygroundPreviewToLoad(page);
 
     // On the first Ctrl+S, the share menu opens and we click the copy button
-    await page.keyboard.press('Control+S');
+    await page.keyboard.press(`${modifierKey}+S`);
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
       state: 'visible',
     });
@@ -265,12 +269,12 @@ test.describe('Playground', () => {
 
     // Change the content
     await page.click('playground-code-editor');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"new content";');
     await waitForPlaygroundPreviewToLoad(page);
 
     // On the next Ctrl+S, the long URL share should happen automatically
-    await page.keyboard.press('Control+S');
+    await page.keyboard.press(`${modifierKey}+S`);
     await page.waitForURL(
       (url) => url.href.match(/#project=/) !== null && url.href !== firstUrl
     );
@@ -282,7 +286,7 @@ test.describe('Playground', () => {
     await waitForPlaygroundPreviewToLoad(page);
 
     // On the first Ctrl+S, the share menu opens and we click the new gist button
-    await page.keyboard.press('Control+S');
+    await page.keyboard.press(`${modifierKey}+S`);
     await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
       state: 'visible',
     });
@@ -295,12 +299,12 @@ test.describe('Playground', () => {
 
     // Change the content
     await page.click('playground-code-editor');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"new content";');
     await waitForPlaygroundPreviewToLoad(page);
 
     // On the next Ctrl+S, the new gist should be updated automatically
-    await page.keyboard.press('Control+S');
+    await page.keyboard.press(`${modifierKey}+S`);
     expect(page.url()).toEqual(firstUrl);
     expect(await readClipboardText(page)).toMatch(firstUrl);
   });
@@ -375,7 +379,7 @@ test.describe('Playground', () => {
 
     // Type some new content
     await page.click('playground-code-editor');
-    await page.keyboard.press('Control+A');
+    await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"my gist content";');
     await waitForPlaygroundPreviewToLoad(page);
 
