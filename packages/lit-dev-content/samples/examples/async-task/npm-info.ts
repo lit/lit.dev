@@ -1,31 +1,39 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
-import {Task} from '@lit-labs/task';
+import {map} from 'lit/directives/map.js';
+import {Task, initialState} from '@lit/task';
 import {fetchPackageInfo} from './npm.js';
 
 @customElement('npm-info')
 export class NpmInfo extends LitElement {
   @state()
-  private _package = 'lit';
+  private _packageName = 'lit';
 
-  private _fetchNpmInfoTask = new Task(this, {
+  /*
+   * This is the async Task that fetches data from npm.
+   *
+   * The current state of the task is rendered below with
+   * `this._npmInfoTask.render()`.
+   */
+  private _npmInfoTask = new Task(this, {
     task: async ([pkgName], {signal}) => {
       if (pkgName === undefined || pkgName === '') {
-        throw new Error('Empty package name');
+        // This puts the task back into the INITIAL state
+        return initialState;
       }
       return await fetchPackageInfo(pkgName, signal);
     },
-    args: () => [this._package],
+    args: () => [this._packageName],
   });
 
   render() {
     return html`
       <label>
         Enter a package name:
-        <input .value=${this._package} @change=${this._onChange} />
+        <input .value=${this._packageName} @change=${this._onChange} />
       </label>
       <header>
-        <h1>${this._package}</h1>
+        <h1>${this._packageName}</h1>
         <img
           id="logo"
           src="https://raw.githubusercontent.com/npm/logos/master/npm%20logo/npm-logo-red.svg"
@@ -33,25 +41,33 @@ export class NpmInfo extends LitElement {
         />
       </header>
       <div>
-        ${this._fetchNpmInfoTask.render({
-          pending: () => 'Loading...',
+        ${this._npmInfoTask.render({
+          initial: () =>
+            html`<span class="initial">
+              Enter a package name to display its npm info
+            </span>`,
+          pending: () =>
+            html`Loading npm info for <code>${this._packageName}</code>`,
           complete: (pkg) => html`
             <h3>${pkg.description}</h3>
             <h4>dist-tags:</h4>
             <ul>
-              ${Array.from(Object.entries(pkg['dist-tags'])).map(
+              ${map(
+                Object.entries(pkg['dist-tags']),
                 ([tag, version]) => html`<li><pre>${tag}: ${version}</pre></li>`
               )}
             </ul>
           `,
-          error: (e) => `Error: ${(e as Error).message}`,
+          error: (e) => html`<span class="error">
+            Error: ${(e as Error).message}
+              </span>`,
         })}
       </div>
     `;
   }
 
   private _onChange(e: Event) {
-    this._package = (e.target as HTMLInputElement).value;
+    this._packageName = (e.target as HTMLInputElement).value;
   }
 
   static styles = css`
@@ -72,6 +88,11 @@ export class NpmInfo extends LitElement {
       height: 38px;
       width: auto;
     }
+    .initial {
+      font-style: italic;
+    }
+    .error {
+      color: red;
+    }
   `;
 }
-

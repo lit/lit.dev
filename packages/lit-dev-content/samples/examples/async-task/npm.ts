@@ -7,7 +7,7 @@ export const fetchPackageInfo = async (
   pkgName: string,
   signal: AbortSignal
 ): Promise<NpmPackage> => {
-  // Artifical delay for demo purposes
+  // Artificial delay for demo purposes
   await new Promise((r) => setTimeout(r, 1000));
   const response = await fetch(`https://registry.npmjs.org/${pkgName}`, {
     signal,
