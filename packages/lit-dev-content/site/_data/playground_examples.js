@@ -12,6 +12,7 @@ const topSectionOrder = [
   'Reactive properties',
   'Template concepts',
   'Directives',
+  'Managing Data',
   '@lit-labs/react',
   '@lit-labs/motion'
 ];

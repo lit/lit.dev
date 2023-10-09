@@ -573,13 +573,11 @@ To specify how getting and setting works for a property, you can define your own
 ```ts
 private _prop = 0;
 
+@property()
 set prop(val: number) {
-  let oldVal = this._prop;
   this._prop = Math.floor(val);
-  this.requestUpdate('prop', oldVal);
 }
 
-@property()
 get prop() { return this._prop; }
 ```
 
@@ -591,9 +589,7 @@ static properties = {
 _prop = 0;
 
 set prop(val) {
-  let oldVal = this._prop;
   this._prop = Math.floor(val);
-  this.requestUpdate('prop', oldVal);
 }
 
 get prop() { return this._prop; }
@@ -601,9 +597,7 @@ get prop() { return this._prop; }
 
 {% endswitchable-sample %}
 
-To use custom property accessors with the `@property` or `@state` decorators, put the decorator on the getter, as shown above.
-
-The setters that Lit generates automatically call `requestUpdate()`. If you write your own setter you must call `requestUpdate()` manually, supplying the property name and its old value.
+To use custom property accessors with the `@property` or `@state` decorators, put the decorator on the setter, as shown above. `@property` or `@state` decorated setters call `requestUpdate()`.
 
 In most cases, **you do not need to create custom property accessors.** To compute values from existing properties, we recommend using the [`willUpdate`](/docs/v3/components/lifecycle/#willupdate) callback, which allows you to set values during the update cycle without triggering an additional update. To perform a custom action after the element updates, we recommend using the [`updated`](/docs/v3/components/lifecycle/#updated) callback. A custom setter can be used in rare cases when it's important to synchronously validate any value the user sets.
 

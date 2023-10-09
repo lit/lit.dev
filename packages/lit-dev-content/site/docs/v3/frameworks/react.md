@@ -4,14 +4,11 @@ eleventyNavigation:
   key: React
   parent: Frameworks
   order: 1
-  labs: true
 versionLinks:
   v2: frameworks/react/
 ---
 
-{% labs-disclaimer %}
-
-The [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../../composition/controllers/).
+The [@lit/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../../composition/controllers/).
 
 The React component wrapper enables setting properties on custom elements (instead of just attributes), mapping DOM events to React-style callbacks, and enables correct type-checking in JSX by TypeScript.
 
@@ -27,7 +24,7 @@ For instance, React assumes that all JSX properties map to HTML element attribut
 
 React is working on fixes to these issues, but in the meantime, our wrappers take care of setting properties and listening to events for you.
 
-The `@lit-labs/react` package provides two main exports:
+The `@lit/react` package provides two main exports:
 
 -   `createComponent()` creates a React component that _wraps_ an existing web component. The wrapper allows you to set props on the component and add event listeners to the component like you would any other React component.
 
@@ -43,7 +40,7 @@ Import `React`, a custom element class, and `createComponent`.
 
 ```js
 import React from 'react';
-import {createComponent} from '@lit-labs/react';
+import {createComponent} from '@lit/react';
 import {MyElement} from './my-element.js';
 
 export const MyElementComponent = createComponent({
@@ -129,7 +126,7 @@ The `EventName` type is a string that takes an event interface as a type paramet
 ```ts
 
 import React from 'react';
-import {createComponent} from '@lit-labs/react';
+import {createComponent} from '@lit/react';
 import {MyElement, type EventName} from './my-element.js';
 
 export const MyElementComponent = createComponent({
@@ -177,7 +174,7 @@ instead of functions with hidden state.
 
 ```jsx
 import React from 'react';
-import {useController} from '@lit-labs/react/use-controller.js';
+import {useController} from '@lit/react/use-controller.js';
 import {MouseController} from '@example/mouse-controller';
 
 // Write a custom React hook function:
