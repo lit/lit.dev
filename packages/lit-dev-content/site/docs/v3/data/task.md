@@ -370,6 +370,7 @@ You can also check if a signal has been aborted in your task function. It's ofte
 ```
 
 {% endswitchable-sample %}
+
 ### Task chaining
 
 Sometimes you want to run one task when another task completes.
