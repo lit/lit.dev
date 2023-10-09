@@ -23,7 +23,7 @@ This is an example of using `Task` to call an HTTP API via [`fetch()`](https://d
 {% switchable-sample %}
 
 ```ts
-import {Task} from '@lit-labs/task';
+import {Task} from '@lit/task';
 
 class MyElement extends LitElement {
   @property() productId?: string;
@@ -51,7 +51,7 @@ class MyElement extends LitElement {
 ```
 
 ```js
-import {Task} from '@lit-labs/task';
+import {Task} from '@lit/task';
 
 class MyElement extends LitElement {
   static properties = {
@@ -92,7 +92,7 @@ Task takes care of a number of things needed to properly manage async work:
 - Triggers a host update when the task changes status
 - Handles race conditions, ensuring that only the latest task invocation completes the task
 - Renders the correct template for the current task status
-- Allows aborting tasks with an `AbortController`
+- Allows aborting tasks with an [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
 
 This removes most of the boilerplate for correctly using async data from your code, and ensures robust handling of race conditions and other edge-cases.
 
@@ -117,12 +117,12 @@ A task is a generic concept and could represent any async operation. They apply 
 ## Installation
 
 ```bash
-npm i @lit/task
+npm install @lit/task
 ```
 
 ## Usage
 
-`Task` is a [reactive controller](../../composition/controllers/), so it can respond to and trigger updates to Lit's reactive update lifecycle.
+`Task` is a [reactive controller](/docs/v3/composition/controllers/), so it can respond to and trigger updates to Lit's reactive update lifecycle.
 
 You'll generally have one Task object for each logical task that your component needs to perform. Install tasks as fields on your class:
 
@@ -146,7 +146,8 @@ class MyElement extends LitElement {
 As a class field, the task status and value are easily available:
 
 ```ts
-this._task.value
+this._task.status;
+this._task.value;
 ```
 
 ### The task function
@@ -170,22 +171,22 @@ The task function's args array and the args callback should be the same length.
 
 {% aside "positive" "no-header" %}
 
-Write the `task` and `args` functions as arrow function so that the `this` reference points to the host element.
+Write the `task` and `args` functions as arrow functions so that the `this` reference points to the host element.
 
 {% endaside %}
 
 ### Task status
 
 Tasks can be in one of four states:
-- INITIAL: The task has not been run
-- PENDING: The task is running and awaiting a new value
-- COMPLETE: The task completed successfully
-- ERROR: The task errored
+- `INITIAL`: The task has not been run
+- `PENDING`: The task is running and awaiting a new value
+- `COMPLETE`: The task completed successfully
+- `ERROR`: The task errored
 
 The Task status is available at the `status` field of the Task controller, and is represented by the `TaskStatus` enum-like object, which has properties `INITIAL`, `PENDING`, `COMPLETE`, and `ERROR`.
 
 ```ts
-import {TaskStatus} from '@lit-labs/task';
+import {TaskStatus} from '@lit/task';
 
 // ...
   if (this.task.status === TaskStatus.ERROR) {
@@ -193,7 +194,7 @@ import {TaskStatus} from '@lit-labs/task';
   }
 ```
 
-Usually a Task will proceed from INITIAL to PENDING to one of COMPLETE or ERROR, and then back to PENDING if the task is re-run. When a task changes status it triggers a host update so the host element can handle the new task status and render if needed.
+Usually a Task will proceed from `INITIAL` to `PENDING` to one of `COMPLETE` or `ERROR`, and then back to `PENDING` if the task is re-run. When a task changes status it triggers a host update so the host element can handle the new task status and render if needed.
 
 {% aside "info" "no-header" %}
 
@@ -238,7 +239,7 @@ By default, Tasks will run any time the arguments change. This is controlled by 
 
 #### Auto-run
 
-In auto-run mode, the task will call the `args` function when the host has updated, compare the args to the previous args, and invoke the task function if they have changed.
+In _auto-run_ mode, the task will call the `args` function when the host has updated, compare the args to the previous args, and invoke the task function if they have changed. A task without `args` defined is in manual mode.
 
 #### Manual mode
 
@@ -310,9 +311,11 @@ If arguments are not provided to `run()`, they are gathered from the `args` call
 
 ### Aborting tasks
 
-The second argument to the task function is an options object that carries an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) in the `signal` property. This can be used to cancel a pending task because a new task run has started.
+The second argument to the task function is an options object that carries an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) in the `signal` property. 
 
-The easiest way to use a signal is to forward it to an API that accepts it, like `fetch()`.
+A task function can be called while previous task calls are still pending. In this case the `AbortSignal` passed to previous runs will be aborted and the `Task` controller will ignore the previous task results.
+
+The easiest way to use the `AbortSignal` is to forward it to an API that accepts it, like `fetch()`.
 
 {% switchable-sample %}
 
@@ -369,7 +372,9 @@ You can also check if a signal has been aborted in your task function. It's ofte
 {% endswitchable-sample %}
 ### Task chaining
 
-Sometimes you want to run one task when another task completes. To do this you can use the value of a task as an argument to the other:
+Sometimes you want to run one task when another task completes.
+This can be useful if the tasks have different arguments so that the chained task may run without the first task running again.
+In this case it'll use the first task like a cache. To do this you can use the value of a task as an argument to another task:
 
 {% switchable-sample %}
 
@@ -403,8 +408,6 @@ class MyElement extends LitElement {
 
 {% endswitchable-sample %}
 
-This can be useful if the tasks have different arguments so that the chained task may run without the first task running again. In this case it'll use the first task like a cache.
-
 You can also often use one task function and await intermediate results:
 
 {% switchable-sample %}
@@ -434,7 +437,3 @@ class MyElement extends LitElement {
 ```
 
 {% endswitchable-sample %}
-
-### Race conditions
-
-A task function can be called while previous task calls are still pending. In this case the `AbortSignal` passed to previous runs will be aborted and the `Task` controller will ignore the result of the previous task runs and only handle the most recent run.
