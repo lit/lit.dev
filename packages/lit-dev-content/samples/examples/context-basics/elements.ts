@@ -1,6 +1,6 @@
 import {html, LitElement} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import {provide, consume, createContext} from '@lit-labs/context';
+import {provide, consume, createContext} from '@lit/context';
 
 import {providerStyles} from './styles.js';
 

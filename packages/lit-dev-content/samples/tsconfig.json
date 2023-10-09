@@ -11,6 +11,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "jsx": "preserve",
+    "skipLibCheck": true
   },
   "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": [

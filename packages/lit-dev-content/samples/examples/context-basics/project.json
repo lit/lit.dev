@@ -7,9 +7,5 @@
     "elements.ts": {},
     "index.html": {},
     "styles.ts": {}
-  },
-  "package.json": {
-    "content": "{\n  \"dependencies\": {\n    \"lit\": \"^2\",\n    \"@lit-labs/context\": \"^0.4\"\n}\n}",
-    "hidden": true
   }
 }
