@@ -23,11 +23,6 @@ export const pageRedirects = new Map([
   ['/msg/request-update-promise',     '/docs/v2/releases/upgrade/#litelement'],
   ['/msg/expression-in-template',     '/docs/templates/expressions/#invalid-locations'],
   ['/msg/expression-in-textarea',     '/docs/templates/expressions/#invalid-locations'],
-  // Redirect old hash links to v2 location
-  ['/docs/tools/requirements/#polyfills', '/docs/v2/tools/requirements/#polyfills'],
-  ['/docs/releases/upgrade/#update-packages-and-import-paths', '/docs/v2/releases/upgrade/#update-packages-and-import-paths'],
-  ['/docs/releases/upgrade/#litelement', '/docs/v2/releases/upgrade/#litelement'],
-  ['/docs/releases/upgrade/#update-to-renamed-apis', '/docs/v2/releases/upgrade/#update-to-renamed-apis'],
   // Relocated pages
   ['/docs/libraries/localization',    '/docs/localization/overview/'],
   ['/blog/feed.xml',                  '/blog/atom.xml'],
