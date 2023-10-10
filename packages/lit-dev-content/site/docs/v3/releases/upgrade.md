@@ -22,7 +22,7 @@ Lit 3.0 has very few breaking changes from Lit 2.x:
 - Lit's npm modules are now published as ES2021.
 - APIs marked deprecated in Lit 2.x releases have been removed.
 - SSR hydration support modules have moved to the `@lit-labs/ssr-client` package.
-- Type only: type of `renderRoot` has been made more correct.
+- Type only: Type of `ReactiveElement`'s `renderRoot` and `createRenderRoot()` have been updated.
 - Decorator behavior has been unified between TypeScript experimental decorators and standard decorators.
 - Support was removed for Babel decorators version "2018-09".
 
@@ -183,12 +183,13 @@ import {hydrate} from '@lit-labs/ssr-client';
 ```
 
 
-## [Type only]: `renderRoot` has been 
+## [Type only]: Type of `renderRoot` and `createRenderRoot()` have been updated {#render-root-type-update}
 
-This is a type only change, which means if you encounter this type error, you may assert the types such that TypeScript is satisfied.
+This is a type only change with no runtime effect.
 
-In Lit 3, the type of `ReactiveElement.prototype.renderRoot` was changed from `Element | ShadowRoot` to `HTMLElement | DocumentFragment`. And, the return type of `ReactiveElement.prototype.createRenderRoot()` was changed from `HTMLElement | ShadowRoot` to `HTMLElement | DocumentFragment`. `renderRoot` and `createRenderRoot` now have matching types, and their return is compatible with lit-html's `render()` method.
+The type of `ReactiveElement.renderRoot` was changed from `Element | ShadowRoot` to `HTMLElement | DocumentFragment` and the return type of `ReactiveElement.createRenderRoot()` was changed from `HTMLElement | ShadowRoot` to `HTMLElement | DocumentFragment`. This makes them congruent with each other, as well as lit-html's `render()`.
 
+This change generally should not affect code that simply accesses `this.renderRoot`. However, any code that had explicit type annotations for their former types should be updated.
 
 ## Optional: Upgrade to standard decorators {#standard-decorator-migration}
 
