@@ -76,7 +76,7 @@ are two types of bundles:
   <dt class="paramName">core</dt>
   <dd class="paramDetails">
     <a href="https://cdn.jsdelivr.net/gh/lit/dist@3.0.0/core/lit-core.min.js">
-      https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js
+      https://cdn.jsdelivr.net/gh/lit/dist@3.0.0/core/lit-core.min.js
     </a>
     <br>
     <code>core</code> exports the same items as
@@ -87,7 +87,7 @@ are two types of bundles:
   <dt class="paramName">all</dt>
   <dd class="paramDetails">
     <a href="https://cdn.jsdelivr.net/gh/lit/dist@3.0.0/all/lit-all.min.js">
-      https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js
+      https://cdn.jsdelivr.net/gh/lit/dist@3.0.0/all/lit-all.min.js
     </a>
     <br>
     <code>all</code> exports everything in <code>core</code> plus
