@@ -12,26 +12,29 @@ export const pageRedirects = new Map([
   ['/msg/dev-mode',                   '/docs/tools/development/#development-and-production-builds'],
   // TODO(sorvell) https://github.com/lit/lit.dev/issues/455
   ['/msg/multiple-versions',          '/docs/tools/requirements/'],
-  ['/msg/polyfill-support-missing',   '/docs/tools/requirements/#polyfills'],
+  ['/msg/polyfill-support-missing',   '/docs/v2/tools/requirements/#polyfills'],
   ['/msg/class-field-shadowing',      '/docs/components/properties/#avoiding-issues-with-class-fields'],
   // TODO(aomarks) Should we add something specifically about this issue?
   ['/msg/change-in-update',           '/docs/components/properties/#when-properties-change'],
-  ['/msg/deprecated-import-path',     '/docs/releases/upgrade/#update-packages-and-import-paths'],
-  ['/msg/removed-api',                '/docs/releases/upgrade/#litelement'],
-  ['/msg/renamed-api',                '/docs/releases/upgrade/#update-to-renamed-apis'],
-  ['/msg/undefined-attribute-value',  '/docs/releases/upgrade/#litelement'],
-  ['/msg/request-update-promise',     '/docs/releases/upgrade/#litelement'],
+  ['/msg/deprecated-import-path',     '/docs/v2/releases/upgrade/#update-packages-and-import-paths'],
+  ['/msg/removed-api',                '/docs/v2/releases/upgrade/#litelement'],
+  ['/msg/renamed-api',                '/docs/v2/releases/upgrade/#update-to-renamed-apis'],
+  ['/msg/undefined-attribute-value',  '/docs/v2/releases/upgrade/#litelement'],
+  ['/msg/request-update-promise',     '/docs/v2/releases/upgrade/#litelement'],
   ['/msg/expression-in-template',     '/docs/templates/expressions/#invalid-locations'],
   ['/msg/expression-in-textarea',     '/docs/templates/expressions/#invalid-locations'],
   // Relocated pages
   ['/docs/libraries/localization',    '/docs/localization/overview/'],
   ['/blog/feed.xml',                  '/blog/atom.xml'],
   // Urls not ending with '/' violate CSP policies.
-  ['/docs/releases/release-notes/1.3.0.html', '/docs/releases/release-notes/1.3.0/'],
-  ['/docs/releases/release-notes/1.2.0.html', '/docs/releases/release-notes/1.2.0/'],
+  ['/docs/releases/release-notes/1.3.0.html', '/docs/v2/releases/release-notes/1.3.0/'],
+  ['/docs/releases/release-notes/1.2.0.html', '/docs/v2/releases/release-notes/1.2.0/'],
   // `.0` is treated as a file extension, ensure it resolves correctly.
-  ['/docs/releases/release-notes/1.3.0',      '/docs/releases/release-notes/1.3.0/'],
-  ['/docs/releases/release-notes/1.2.0',      '/docs/releases/release-notes/1.2.0/'],
+  ['/docs/releases/release-notes/1.3.0',      '/docs/v2/releases/release-notes/1.3.0/'],
+  ['/docs/releases/release-notes/1.2.0',      '/docs/v2/releases/release-notes/1.2.0/'],
+  // Old release-notes redirects to new v2 location.
+  ['/docs/releases/release-notes/1.3.0/',      '/docs/v2/releases/release-notes/1.3.0/'],
+  ['/docs/releases/release-notes/1.2.0/',      '/docs/v2/releases/release-notes/1.2.0/'],
   // Old Lit tutorial redirect to new tutorial catalog
   ['/tutorial/', '/tutorials/'],
 ].map(([path, redir]) => [
