@@ -514,3 +514,5 @@ https://devblogs.microsoft.com/typescript/announcing-typescript-5-2/#decorator-m
 https://preactjs.com/guide/v10/signals/
 https://www.youtube.com/watch?v=l6Gn5uV83sw
 https://github.com/e111077
+https://cdn.jsdelivr.net/gh/lit/dist@3.0.0/core/lit-core.min.js
+https://cdn.jsdelivr.net/gh/lit/dist@3.0.0/all/lit-all.min.js
