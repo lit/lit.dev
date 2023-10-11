@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 1
 versionLinks:
   v2: resources/community/
+  v3: resources/community/
 ---
 
 There are many great resources and locations to learn about LitElement and web components,

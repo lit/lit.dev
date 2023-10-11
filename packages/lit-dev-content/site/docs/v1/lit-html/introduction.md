@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 1
 versionLinks:
   v2: libraries/standalone-templates/
+  v3: libraries/standalone-templates/
 ---
 
 ## What is lit-html?

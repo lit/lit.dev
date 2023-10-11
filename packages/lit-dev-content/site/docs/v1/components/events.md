@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 4
 versionLinks:
   v2: components/events/
+  v3: components/events/
 ---
 
 ## Where to add your event listeners

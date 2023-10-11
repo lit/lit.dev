@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 2
 versionLinks:
   v2: getting-started/
+  v3: getting-started/
 ---
 
 ## Installation
