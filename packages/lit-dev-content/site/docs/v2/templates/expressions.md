@@ -571,7 +571,7 @@ class MyButton extends LitElement {
     const tag = getTagName();
     const activeAttribute = getActiveAttribute();
     return html`
-      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}?=${this.active}>
+      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}=${this.active}>
         <p>${this.caption}</p>
       </${unsafeStatic(tag)}>`;
   }
