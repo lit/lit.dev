@@ -13,7 +13,7 @@ const topSectionOrder = [
   'Template concepts',
   'Directives',
   'Managing Data',
-  '@lit-labs/react',
+  '@lit/react',
   '@lit-labs/motion'
 ];
 
