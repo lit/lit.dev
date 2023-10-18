@@ -38,12 +38,10 @@ export interface Shutdown {
   type: 'shutdown';
 }
 
-const highlightKey = (lang: string, code: string) => `[${lang}]:${code}`;
-
 // Create a cache key for the highlighted strings. This is a
 // simple digest build from a DJB2-ish hash modified from:
 // https://github.com/darkskyapp/string-hash/blob/master/index.js
-// It is modified from @lit-labs/ssr-client.
+// This is modified from @lit-labs/ssr-client.
 // Goals:
 //  - Extremely low collision rate. We may not be able to detect collisions.
 //  - Extremely fast.
@@ -51,7 +49,7 @@ const highlightKey = (lang: string, code: string) => `[${lang}]:${code}`;
 //  - Safe to include in HTML comment text or attribute value.
 //  - Easily specifiable and implementable in multiple languages.
 // We don't care about cryptographic suitability.
-export const digestToFileName = (stringToDigest: string) => {
+const digestToFileName = (stringToDigest: string) => {
   // Number of 32 bit elements to use to create template digests
   const digestSize = 5;
   const hashes = new Uint32Array(digestSize).fill(5381);
@@ -60,10 +58,17 @@ export const digestToFileName = (stringToDigest: string) => {
       (hashes[i % digestSize] * 33) ^ stringToDigest.charCodeAt(i);
   }
   const str = String.fromCharCode(...new Uint8Array(hashes.buffer));
-  return Buffer.from(str, 'binary')
-    .toString('base64')
-    .replace(/[<>:"'/\\|?*]/g, '_');
+  return (
+    Buffer.from(str, 'binary')
+      .toString('base64')
+      // These characters do not play well in file names. Replace with
+      // underscores.
+      .replace(/[<>:"'/\\|?*]/g, '_')
+  );
 };
+
+const createUniqueFileNameKey = (lang: string, code: string) =>
+  digestToFileName(`[${lang}]:${code}`);
 
 export class BlockingRenderer {
   /** Worker that performs rendering. */
@@ -77,6 +82,13 @@ export class BlockingRenderer {
   private decoder = new TextDecoder();
   private exited = false;
   private renderTimeout: number;
+
+  /**
+   * Spawning a headless browser to syntax highlight code is expensive and slows
+   * down the edit/refresh loop during development. When developing, cache the
+   * syntax highlighted DOM in the filesystem so it can be retrieved if
+   * previously seen.
+   */
   private isDevMode = false;
 
   constructor({
@@ -130,7 +142,7 @@ export class BlockingRenderer {
     if (!this.isDevMode) {
       return null;
     }
-    const fileName = digestToFileName(highlightKey(lang, code));
+    const fileName = createUniqueFileNameKey(lang, code);
     const absoluteFilePath = pathlib.resolve(cachedHighlightsDir, fileName);
     if (fs.existsSync(absoluteFilePath)) {
       return fs.readFileSync(absoluteFilePath, {encoding: 'utf8'});
@@ -139,22 +151,33 @@ export class BlockingRenderer {
   }
 
   private writeCachedRender(lang: string, code: string, html: string) {
-    if (!this.isDevMode) {
-      // In production mode, don't write out cached files.
-      return;
-    }
-    const fileName = digestToFileName(highlightKey(lang, code));
+    const fileName = createUniqueFileNameKey(lang, code);
     const absoluteFilePath = pathlib.resolve(cachedHighlightsDir, fileName);
     fs.writeFileSync(absoluteFilePath, html);
   }
 
   render(lang: 'js' | 'ts' | 'html' | 'css', code: string): {html: string} {
-    if (this.exited) {
-      throw new Error('BlockingRenderer worker has already exited');
+    if (!this.isDevMode) {
+      // In production, skip all caching.
+      return this.renderWithWorker(lang, code);
     }
+    // In dev mode, speed up the edit-refresh loop by caching the syntax
+    // highlighted code.
     const cachedResult = this.getCachedRender(lang, code);
     if (cachedResult !== null) {
       return {html: cachedResult};
+    }
+    const {html} = this.renderWithWorker(lang, code);
+    this.writeCachedRender(lang, code, html);
+    return {html};
+  }
+
+  private renderWithWorker(
+    lang: 'js' | 'ts' | 'html' | 'css',
+    code: string
+  ): {html: string} {
+    if (this.exited) {
+      throw new Error('BlockingRenderer worker has already exited');
     }
     this.workerPost({type: 'render', lang, code});
     if (
@@ -167,7 +190,6 @@ export class BlockingRenderer {
     const raw = this.decoder.decode(this.sharedHtml);
     const length = this.sharedLength[0];
     const html = raw.substring(0, length);
-    this.writeCachedRender(lang, code, html);
     return {html};
   }
 
