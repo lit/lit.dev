@@ -138,21 +138,22 @@ export class BlockingRenderer {
     });
   }
 
-  private getCachedRender(lang: string, code: string): string | null {
-    if (!this.isDevMode) {
-      return null;
-    }
-    const fileName = createUniqueFileNameKey(lang, code);
-    const absoluteFilePath = pathlib.resolve(cachedHighlightsDir, fileName);
+  private getCachedRender(cachedFileName: string): string | null {
+    const absoluteFilePath = pathlib.resolve(
+      cachedHighlightsDir,
+      cachedFileName
+    );
     if (fs.existsSync(absoluteFilePath)) {
       return fs.readFileSync(absoluteFilePath, {encoding: 'utf8'});
     }
     return null;
   }
 
-  private writeCachedRender(lang: string, code: string, html: string) {
-    const fileName = createUniqueFileNameKey(lang, code);
-    const absoluteFilePath = pathlib.resolve(cachedHighlightsDir, fileName);
+  private writeCachedRender(cachedFileName: string, html: string) {
+    const absoluteFilePath = pathlib.resolve(
+      cachedHighlightsDir,
+      cachedFileName
+    );
     fs.writeFileSync(absoluteFilePath, html);
   }
 
@@ -163,12 +164,13 @@ export class BlockingRenderer {
     }
     // In dev mode, speed up the edit-refresh loop by caching the syntax
     // highlighted code.
-    const cachedResult = this.getCachedRender(lang, code);
+    const cachedFileName = createUniqueFileNameKey(lang, code);
+    const cachedResult = this.getCachedRender(cachedFileName);
     if (cachedResult !== null) {
       return {html: cachedResult};
     }
     const {html} = this.renderWithWorker(lang, code);
-    this.writeCachedRender(lang, code, html);
+    this.writeCachedRender(cachedFileName, html);
     return {html};
   }
 
