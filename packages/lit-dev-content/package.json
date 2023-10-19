@@ -156,8 +156,7 @@
         "../lit-dev-tools-esm:build"
       ],
       "files": [
-        "site/docs/**",
-        "!site/docs/unversioned"
+        "site/docs/v3/**"
       ],
       "output": [
         "site/docs/unversioned/**"
