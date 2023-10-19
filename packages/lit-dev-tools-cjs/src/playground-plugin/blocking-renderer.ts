@@ -123,8 +123,12 @@ export class BlockingRenderer {
     });
     try {
       fs.mkdirSync(cachedHighlightsDir);
-    } catch {
-      // Directory already exists.
+    } catch (error) {
+      if ((error as {code: string}).code === 'EEXIST') {
+        // Directory already exists.
+      } else {
+        throw error;
+      }
     }
   }
 
