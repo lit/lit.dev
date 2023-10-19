@@ -30,3 +30,4 @@ test-results
 *.tsbuildinfo
 
 .wireit
+.highlights_cache

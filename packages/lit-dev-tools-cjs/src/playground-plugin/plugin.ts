@@ -89,12 +89,12 @@ const countVisibleLines = (filename: string, code: string): number => {
  */
 export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
-  {sandboxUrl}: {sandboxUrl: string}
+  {sandboxUrl, isDevMode}: {sandboxUrl: string; isDevMode: boolean}
 ) => {
   let renderer: BlockingRenderer | undefined;
 
   eleventyConfig.on('eleventy.before', () => {
-    renderer = new BlockingRenderer();
+    renderer = new BlockingRenderer({isDevMode});
   });
 
   eleventyConfig.on('eleventy.after', async () => {

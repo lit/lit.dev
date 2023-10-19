@@ -56,6 +56,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin, {
     sandboxUrl: ENV.playgroundSandboxUrl,
+    isDevMode: DEV,
   });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
