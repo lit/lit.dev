@@ -205,14 +205,14 @@ import {ContextProvider} from '@lit/context';
 import {myContext, MyData} from './my-context.js';
 
 export class MyApp extends LitElement {
-  private _provider = new ContextProvider(this, myContext);
+  private _provider = new ContextProvider(this, {context: myContext});
 }
 ```
 
-ContextProvider can take an initial value in its constructor:
+ContextProvider can take an initial value as an option in the constructor:
 
 ```ts
-  private _provider = new ContextProvider(this, myContext, initialData);
+  private _provider = new ContextProvider(this, {context: myContext, initialValue: myData});
 ```
 
 Or you can call `setValue()`:
@@ -250,7 +250,7 @@ import {ContextConsumer} from '@lit/context';
 import {Logger, loggerContext} from './logger.js';
 
 export class MyElement extends LitElement {
-  private _myData = new ContextConsumer(this, myContext);
+  private _myData = new ContextConsumer(this, {context: myContext});
 
   render() {
     const myData = this._myData.value;
@@ -274,9 +274,10 @@ and the ContextConsumer controller:
 
 ```ts
   private _myData = new ContextConsumer(this,
-    myContext,
-    undefined, /* callback */
-    true /* subscribe */
+    {
+      context: myContext,
+      subscribe: true,
+    }
   );
 ```
 
@@ -413,8 +414,10 @@ import {ContextProvider} from '@lit/context';
 ```ts
 ContextProvider(
   host: ReactiveElement,
-  context: T,
-  initialValue?: ContextType<T>
+  options: {
+    context: T,
+    initialValue?: ContextType<T>
+  }
 )
 ```
 
@@ -439,9 +442,11 @@ import {ContextConsumer} from '@lit/context';
 ```ts
 ContextConsumer(
   host: HostElement,
-  context: C,
-  callback?: (value: ContextType<C>, dispose?: () => void) => void,
-  subscribe: boolean = false
+  options: {
+    context: C,
+    callback?: (value: ContextType<C>, dispose?: () => void) => void,
+    subscribe?: boolean = false
+  }
 )
 ```
 
