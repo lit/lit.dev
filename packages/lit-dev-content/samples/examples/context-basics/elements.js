@@ -30,7 +30,6 @@ export class ProviderEl extends LitElement {
   set data(value) {
     this._data = value;
     this._provider.setValue(value);
-    this.requestUpdate();
   }
 
   get data() {
