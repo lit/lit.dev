@@ -12,7 +12,7 @@ type ContextValue = string;
 // The context object acts as a key. A consumer will only receive
 // values from a provider if their contexts match. A Symbol ensures
 // that this context will be unique.
-const context = createContext<ContextValue>(Symbol());
+const context = createContext<ContextValue>(contextKey);
 
 @customElement('provider-el')
 export class ProviderEl extends LitElement {
@@ -43,7 +43,7 @@ export class ConsumerEl extends LitElement {
   providedData = '';
 
   render() {
-    return html` <h3>Consumer data: <code>${this.providedData}</code></h3> `;
+    return html`<h3>Consumer data: <code>${this.providedData}</code></h3>`;
   }
 }
 
