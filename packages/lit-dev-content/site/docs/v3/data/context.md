@@ -202,7 +202,7 @@ Making a context property public lets an element provide a public field to its c
 ```ts
 import {LitElement, html} from 'lit';
 import {ContextProvider} from '@lit/context';
-import {myContext, MyData} from './my-context.js';
+import {myContext} from './my-context.js';
 
 export class MyApp extends LitElement {
   private _provider = new ContextProvider(this, {context: myContext});
@@ -247,7 +247,7 @@ ContextConsumer is a reactive controller that manages dispatching the `context-r
 ```ts
 import {LitElement, property} from 'lit';
 import {ContextConsumer} from '@lit/context';
-import {Logger, loggerContext} from './logger.js';
+import {myContext} from './my-context.js';
 
 export class MyElement extends LitElement {
   private _myData = new ContextConsumer(this, {context: myContext});
