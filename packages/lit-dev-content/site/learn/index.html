@@ -41,7 +41,7 @@ title: Learn
             {% endif %}
           </div>
 
-          <p>{{content.summary|markdown}}</p>
+          <p>{{content.summary|markdownWithoutHtml|safe}}</p>
         </a>
       {% endfor %}
     </div>
