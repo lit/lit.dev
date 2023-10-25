@@ -80,6 +80,14 @@ main {
   max-width: 360px;
 }
 
+#chips {
+  & > span {
+    display: inline-block;
+    background-color: gray;
+    border: 1px solid black;
+  }
+}
+
 #learn-catalog {
   margin: 0 auto;
 }
