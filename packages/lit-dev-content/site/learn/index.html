@@ -29,10 +29,10 @@ title: Learn
               alt="Video thumbnail for '{{content.title}}'"
               title="{{content.title}}"
             >
-            {% else %}
-            <h1>{{content.title}}</h1>
             {% endif %}
           </div>
+          <h1>{{content.title}}</h1>
+          <p>{{content.summary|markdownWithoutHtml|safe}}</p>
           <div class="learn-kind-row">
             <span class="learn-kind">{{content.kind}}</span>
             {% if content.kind == "tutorial" %}
@@ -40,8 +40,6 @@ title: Learn
             <span class="duration">{{content.duration}} Min</span>
             {% endif %}
           </div>
-
-          <p>{{content.summary|markdownWithoutHtml|safe}}</p>
         </a>
       {% endfor %}
     </div>

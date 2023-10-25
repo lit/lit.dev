@@ -153,9 +153,11 @@ module.exports = async () => {
   const videos = loadVideoData();
 
   const learn = [tutorials, articles, videos].flat()
+  // TODO: DO NOT SUBMIT with randomized order!
+  // Instead order in a reasonable way.
+  learn.sort(() => Math.random() < 0.5 ? 1 : -1)
 
   // TODO: Validate data here to ensure shape of data for each kind is correct.
-  // TODO: How do we order the content?
 
   /*
    * All the content to put on the learn page.
