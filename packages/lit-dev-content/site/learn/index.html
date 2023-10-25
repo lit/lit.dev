@@ -14,17 +14,16 @@ title: Learn
     </p>
   </div>
 </div>
-<div id="chips">
-  <span data-value="all">All</span>
-  <span data-value="articles">Articles</span>
-  <span data-value="videos">Videos</span>
-  <span data-value="tutorials">Tutorials</span>
-</div>
 <section id="learn-catalog">
   <div class="center">
+    <md-chip-set id="chips" aria-label="Filter content by:">
+      <md-filter-chip data-value="article" label="Articles" selected></md-filter-chip>
+      <md-filter-chip data-value="video" label="Videos" selected></md-filter-chip>
+      <md-filter-chip data-value="tutorial" label="Tutorials" selected></md-filter-chip>
+    </md-chip-set>
     <div class="card-grid">
       {% for content in learn %}
-      <a class="card {{ content.kind }}" href="#">
+      <a class="card" data-content-kind="{{ content.kind }}" href="#">
         <div class="card-header">
           {% if content.kind == "video" %}
           <img

@@ -16,7 +16,6 @@ main {
   padding: 67px 0;
   padding-left: calc(var(--_unit) + 40px);
 
-  margin-bottom: 50px;
   position: relative;
 }
 
@@ -80,37 +79,51 @@ main {
   max-width: 360px;
 }
 
+md-chip-set {
+  --md-filter-chip-label-text-font: Manrope;
+  --md-filter-chip-container-shape: 16px;
+  /* Colors were generated using Lit's Indigo 2 brand color: #2a2c9d */
+  --md-sys-color-outline: #777680;
+  --md-sys-color-on-surface: #1b1b21;
+  --md-sys-color-primary: #575992;
+  --md-sys-color-secondary: #5b5d72;
+  --md-sys-color-on-secondary: white;
+  --md-sys-color-primary-container: #e1e0ff;
+  --md-sys-color-secondary-container: #e2e0f9;
+  --md-sys-color-surface-variant: #e4e1ec;
+  --md-sys-color-on-surface-variant: #46464f;
+}
+
 #chips {
-  & > span {
-    display: inline-block;
-    background-color: gray;
-    border: 1px solid black;
-  }
+  margin: var(--_unit);
 }
 
 #learn-catalog {
-  margin: 0 auto;
+  --_unit: 36px;
+
+  /* Prevent a large view shift if content is empty */
+  min-height: 400px;
+  width: 100%;
 }
 
 .center {
-  display: flex;
-  justify-content: center;
   max-width: 1224px;
+  margin: 0 auto;
 }
 
 .card-grid {
-  --card-width: 360px;
-  --_unit: calc(var(--card-width) / 10);
   padding: var(--_unit);
   display: grid;
   gap: var(--_unit);
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr) minmax(360px, 1fr);
+
+  align-items: stretch;
+  justify-items: stretch;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 10px;
 
   /* Undo anchor tag typography */
   font-family: Manrope;
@@ -138,8 +151,8 @@ main {
 
 .card-header {
   aspect-ratio: 16/9;
-
   background: url(/images/learn/banner-blue.png) rgba(50, 79, 255, 1);
+  overflow: hidden;
 }
 
 .learn-kind-row {

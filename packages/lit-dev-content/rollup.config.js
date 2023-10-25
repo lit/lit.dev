@@ -48,6 +48,7 @@ export default [
       'lib/global/hydrate-common-components.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
+      'lib/pages/learn.js',
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
     ],
