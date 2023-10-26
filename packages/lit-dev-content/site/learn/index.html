@@ -4,6 +4,7 @@ title: Learn
 
 {% extends 'default.html' %} {% block head %} {% include "social-tags.html" %}
 {% inlinecss "learn-catalog.css" %} {% endblock %} {% block content %}
+<script type="module" src="{{ site.baseurl }}/js/pages/learn.js"></script>
 
 <div id="hero">
   <div id="hero-contents">
@@ -47,7 +48,5 @@ title: Learn
     </div>
   </div>
 </section>
-
-{% inlinejs "pages/learn.js" %}
 
 {% endblock %}
