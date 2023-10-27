@@ -1,6 +1,6 @@
 import React from 'https://esm.sh/react@18';
 import {createRoot} from 'https://esm.sh/react-dom@18/client';
-import {createComponent} from '@lit-labs/react';
+import {createComponent} from '@lit/react';
 import {FlyingTriangles as FlyingTrianglesWC} from './flying-triangles.js';
 
 /*

@@ -55,7 +55,7 @@ standard JavaScript modules with no dependencies - any modern browser should be
 able to import and run the bundles from within a `<script type="module">` like this:
 
 ```js
-import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 ```
 
 <div class="alert alert-warning">
@@ -75,8 +75,8 @@ are two types of bundles:
 <dl class="params">
   <dt class="paramName">core</dt>
   <dd class="paramDetails">
-    <a href="https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js">
-      https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js
+    <a href="https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js">
+      https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js
     </a>
     <br>
     <code>core</code> exports the same items as
@@ -86,8 +86,8 @@ are two types of bundles:
 
   <dt class="paramName">all</dt>
   <dd class="paramDetails">
-    <a href="https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js">
-      https://cdn.jsdelivr.net/gh/lit/dist@2/all/lit-all.min.js
+    <a href="https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js">
+      https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js
     </a>
     <br>
     <code>all</code> exports everything in <code>core</code> plus

@@ -1,29 +1,40 @@
 import {html, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
-import {provide, consume, createContext} from '@lit/context';
+import {ContextProvider, ContextConsumer, createContext} from '@lit/context';
 
 import {providerStyles} from './styles.js';
 
 const contextKey = Symbol('contextKey');
-// The values that will be provided and consumed in this demo will
-// be strings.
-type ContextValue = string;
+
 // Context object, which acts like a key for the context.
 // The context object acts as a key. A consumer will only receive
 // values from a provider if their contexts match. A Symbol ensures
 // that this context will be unique.
-const context = createContext<ContextValue>(contextKey);
+const context = createContext(contextKey);
 
-@customElement('provider-el')
 export class ProviderEl extends LitElement {
   static styles = providerStyles;
+
+  static properties = {
+    data: {},
+  };
+
+  constructor() {
+    super();
+    this._provider = new ContextProvider(this, {context});
+    this.data = 'Initial';
+  }
 
   /**
    * `data` will be provided to any consumer that is in the DOM tree below it.
    */
-  @provide({context})
-  @property()
-  data = 'Initial';
+  set data(value) {
+    this._data = value;
+    this._provider.setValue(value);
+  }
+
+  get data() {
+    return this._data;
+  }
 
   render() {
     return html`
@@ -32,24 +43,21 @@ export class ProviderEl extends LitElement {
     `;
   }
 }
+customElements.define('provider-el', ProviderEl);
 
-@customElement('consumer-el')
 export class ConsumerEl extends LitElement {
+  _consumer = new ContextConsumer(this, {context});
+
   /**
    * `providedData` will be populated by the first ancestor element which
    * provides a value for `context`.
    */
-  @consume({context})
-  providedData = '';
+  get providedData() {
+    return this._consumer.value;
+  }
 
   render() {
     return html`<h3>Consumer data: <code>${this.providedData}</code></h3>`;
   }
 }
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'provider-el': ProviderEl;
-    'consumer-el': ConsumerEl;
-  }
-}
+customElements.define('consumer-el', ConsumerEl);

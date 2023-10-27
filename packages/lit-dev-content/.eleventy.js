@@ -56,6 +56,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin, {
     sandboxUrl: ENV.playgroundSandboxUrl,
+    isDevMode: DEV,
   });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
@@ -580,7 +581,11 @@ ${content}
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
-    await createSearchIndex(ENV.eleventyOutDir);
+    if (!DEV) {
+      // Only create the search index in production when we'll be uploading it
+      // to algolia.
+      await createSearchIndex(ENV.eleventyOutDir);
+    }
 
     if (DEV) {
       // Symlink css, images, and playground projects. We do this in dev mode

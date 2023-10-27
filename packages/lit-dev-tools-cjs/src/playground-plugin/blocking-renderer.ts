@@ -6,6 +6,12 @@
 
 import * as workerthreads from 'worker_threads';
 import * as pathlib from 'path';
+import * as fs from 'fs';
+
+const cachedHighlightsDir = pathlib.resolve(
+  __dirname,
+  '../../.highlights_cache/'
+);
 
 export type WorkerMessage = HandshakeMessage | Render | Shutdown;
 
@@ -32,6 +38,38 @@ export interface Shutdown {
   type: 'shutdown';
 }
 
+// Create a cache key for the highlighted strings. This is a
+// simple digest build from a DJB2-ish hash modified from:
+// https://github.com/darkskyapp/string-hash/blob/master/index.js
+// This is modified from @lit-labs/ssr-client.
+// Goals:
+//  - Extremely low collision rate. We may not be able to detect collisions.
+//  - Extremely fast.
+//  - Extremely small code size.
+//  - Safe to include in HTML comment text or attribute value.
+//  - Easily specifiable and implementable in multiple languages.
+// We don't care about cryptographic suitability.
+const digestToFileName = (stringToDigest: string) => {
+  // Number of 32 bit elements to use to create template digests
+  const digestSize = 5;
+  const hashes = new Uint32Array(digestSize).fill(5381);
+  for (let i = 0; i < stringToDigest.length; i++) {
+    hashes[i % digestSize] =
+      (hashes[i % digestSize] * 33) ^ stringToDigest.charCodeAt(i);
+  }
+  const str = String.fromCharCode(...new Uint8Array(hashes.buffer));
+  return (
+    Buffer.from(str, 'binary')
+      .toString('base64')
+      // These characters do not play well in file names. Replace with
+      // underscores.
+      .replace(/[<>:"'/\\|?*]/g, '_')
+  );
+};
+
+const createUniqueFileNameKey = (lang: string, code: string) =>
+  digestToFileName(`[${lang}]:${code}`);
+
 export class BlockingRenderer {
   /** Worker that performs rendering. */
   private worker: workerthreads.Worker;
@@ -45,7 +83,20 @@ export class BlockingRenderer {
   private exited = false;
   private renderTimeout: number;
 
-  constructor({renderTimeout = 60_000, maxHtmlBytes = 1024 * 1024} = {}) {
+  /**
+   * Spawning a headless browser to syntax highlight code is expensive and slows
+   * down the edit/refresh loop during development. When developing, cache the
+   * syntax highlighted DOM in the filesystem so it can be retrieved if
+   * previously seen.
+   */
+  private isDevMode = false;
+
+  constructor({
+    renderTimeout = 60_000,
+    maxHtmlBytes = 1024 * 1024,
+    isDevMode = false,
+  } = {}) {
+    this.isDevMode = isDevMode;
     this.renderTimeout = renderTimeout;
     this.sharedHtml = new Uint8Array(new SharedArrayBuffer(maxHtmlBytes));
     this.worker = new workerthreads.Worker(
@@ -70,6 +121,15 @@ export class BlockingRenderer {
       htmlBuffer: this.sharedHtml,
       notify: this.sharedNotify,
     });
+    try {
+      fs.mkdirSync(cachedHighlightsDir);
+    } catch (error) {
+      if ((error as {code: string}).code === 'EEXIST') {
+        // Directory already exists.
+      } else {
+        throw error;
+      }
+    }
   }
 
   async stop(): Promise<void> {
@@ -82,7 +142,46 @@ export class BlockingRenderer {
     });
   }
 
+  private getCachedRender(cachedFileName: string): string | null {
+    const absoluteFilePath = pathlib.resolve(
+      cachedHighlightsDir,
+      cachedFileName
+    );
+    if (fs.existsSync(absoluteFilePath)) {
+      return fs.readFileSync(absoluteFilePath, {encoding: 'utf8'});
+    }
+    return null;
+  }
+
+  private writeCachedRender(cachedFileName: string, html: string) {
+    const absoluteFilePath = pathlib.resolve(
+      cachedHighlightsDir,
+      cachedFileName
+    );
+    fs.writeFileSync(absoluteFilePath, html);
+  }
+
   render(lang: 'js' | 'ts' | 'html' | 'css', code: string): {html: string} {
+    if (!this.isDevMode) {
+      // In production, skip all caching.
+      return this.renderWithWorker(lang, code);
+    }
+    // In dev mode, speed up the edit-refresh loop by caching the syntax
+    // highlighted code.
+    const cachedFileName = createUniqueFileNameKey(lang, code);
+    const cachedResult = this.getCachedRender(cachedFileName);
+    if (cachedResult !== null) {
+      return {html: cachedResult};
+    }
+    const {html} = this.renderWithWorker(lang, code);
+    this.writeCachedRender(cachedFileName, html);
+    return {html};
+  }
+
+  private renderWithWorker(
+    lang: 'js' | 'ts' | 'html' | 'css',
+    code: string
+  ): {html: string} {
     if (this.exited) {
       throw new Error('BlockingRenderer worker has already exited');
     }

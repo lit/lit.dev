@@ -255,10 +255,10 @@ class MyElement extends LitElement {
   private _getDataTask = new Task(
     this,
     {
-      task: async () =>
+      task: async () => {
         const response = await fetch(`example.com/data/`);
         return response.json();
-      ),
+      },
       args: () => []
     }
   );
@@ -281,10 +281,10 @@ class MyElement extends LitElement {
   _getDataTask = new Task(
     this,
     {
-      task: async () =>
+      task: async () => {
         const response = await fetch(`example.com/data/`);
         return response.json();
-      ),
+      },
       args: () => []
     }
   );

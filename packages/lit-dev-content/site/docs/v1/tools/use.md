@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 2
 versionLinks:
   v2: tools/overview/
+  v3: tools/overview/
 ---
 
 This page describes how to [use a LitElement component in your application](#use). It also describes how to make sure your deployed code is browser-ready by [building it for production](#build) and [loading the Web Components polyfills](#polyfills).

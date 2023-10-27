@@ -2,7 +2,7 @@
    <a href="{{ site.baseurl }}/docs/">Documentation</a>
 
    <litdev-version-selector>
-      <select name="version">
+      <select name="version" autocomplete="off">
         {% for version, versionData in versions %}
           <option value="{{ version }}"
             {% if version == selectedVersion %}
