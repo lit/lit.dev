@@ -76,7 +76,7 @@ main {
 }
 
 #hero p {
-  max-width: 360px;
+  max-width: 25em;
 }
 
 md-chip-set {
