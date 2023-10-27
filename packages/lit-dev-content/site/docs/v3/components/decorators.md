@@ -147,7 +147,9 @@ Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 #### Migrating TypeScript experimental decorators to standard decorators
 
-Standard decorator syntax (using `accessor` on class field decorators) is designed to be compatible with TypeScript's experimental decorator mode.
+Lit decorators have been designed to support standard decorator syntax (using
+`accessor` on class field decorators) with TypeScript's experimental decorator
+mode.
 
 This allows incremental migration off experimental decorators by incrementally
 adding the `accessor` keyword without a change of behavior.
