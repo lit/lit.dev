@@ -112,8 +112,8 @@ md-chip-set {
 }
 
 .card-grid {
-  padding: var(--_unit);
   display: grid;
+  padding: var(--_unit);
   gap: var(--_unit);
   grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr) minmax(360px, 1fr);
 
@@ -140,7 +140,7 @@ md-chip-set {
 .card h1 {
   font-size: 26px;
   font-weight: 400;
-  margin: 10px 0 -10px 0;
+  margin: 10px 0 -8px 0;
 }
 
 .card p {
@@ -161,8 +161,8 @@ md-chip-set {
   font-weight: 400;
   font-size: 16px;
   text-transform: uppercase;
-  /* Place learn catalog row along bottom. */
-  margin-top: auto;
+  margin-top: 10px;
+  margin-bottom: -5px;
 }
 
 .learn-kind-row span:first-child {
@@ -172,6 +172,11 @@ md-chip-set {
 /* This is the span containing the tutorial duration */
 .learn-kind-row span:nth-child(3) {
   margin-left: auto;
+}
+
+#intentionally-blank {
+  text-align: center;
+  color: #5b5d72;
 }
 
 @media (max-width: 1260px) {

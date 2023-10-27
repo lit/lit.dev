@@ -8,8 +8,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const matter = require('gray-matter');
 
-
-const loadTutorialData = async (dirname,) => {
+const loadTutorialData = async (dirname) => {
   const tutorialDir = path.resolve(
     __dirname,
     '../../samples/tutorials',
@@ -33,7 +32,7 @@ const loadTutorialData = async (dirname,) => {
     kind: 'tutorial',
     ...JSON.parse(manifest),
     description,
-    location: dirname,
+    url: `/tutorials/${dirname}/`,
   };
 
   // Clean up the data
@@ -65,14 +64,20 @@ const loadArticleData = async () => {
   const markdownArticles = files.filter((filename) => filename.endsWith('.md'));
 
   const articleData = Promise.all(
-    markdownArticles.map((articleFileName) =>
-      fs
-        .readFile(path.resolve(articlesDir, articleFileName), {
+    markdownArticles.map(async (articleFileName) => {
+      const contents = await fs.readFile(
+        path.resolve(articlesDir, articleFileName),
+        {
           encoding: 'utf8',
-        })
-        .then((contents) => matter(contents))
-        .then((parsedContent) => ({kind: 'article', ...parsedContent.data}))
-    )
+        }
+      );
+      const frontMatter = matter(contents);
+      return {
+        kind: 'article',
+        url: `/articles/${articleFileName.slice(0, -3)}/`,
+        ...frontMatter.data,
+      };
+    })
   );
   return articleData;
 };
@@ -122,7 +127,11 @@ const loadVideoData = () =>
       summary: `Learn all about the Lit library in this beginner-friendly Lit University episode! We will cover all of the essentials, including custom elements, declarative templates, scoped styles, and reactive properties. Find out why Lit is so awesome for creating shareable components, design systems, and full-fledged applications. `,
       youtubeId: 'uzFakwHaSmw',
     },
-  ].map((videoData) => ({kind: 'video', ...videoData}));
+  ].map((videoData) => ({
+    kind: 'video',
+    url: `https://www.youtube.com/watch?v=${videoData.youtubeId}`,
+    ...videoData,
+  }));
 
 /**
  * 11ty data JS loader.
@@ -152,10 +161,10 @@ module.exports = async () => {
   const articles = await loadArticleData();
   const videos = loadVideoData();
 
-  const learn = [tutorials, articles, videos].flat()
+  const learn = [tutorials, articles, videos].flat();
   // TODO: DO NOT SUBMIT with randomized order!
   // Instead order in a reasonable way.
-  learn.sort(() => Math.random() < 0.5 ? 1 : -1)
+  learn.sort(() => (Math.random() < 0.5 ? 1 : -1));
 
   // TODO: Validate data here to ensure shape of data for each kind is correct.
 

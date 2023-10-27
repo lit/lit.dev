@@ -1,8 +1,25 @@
+/**
+ * @license
+ * Copyright 2023 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+// This is a small script to orchestrate the client side behavior of the
+// lit.dev/learn page.This behavior involves filtering content based on which
+// `md-filter-chip`s are selected by the user.
 import '@material/web/chips/chip-set.js';
 import '@material/web/chips/filter-chip.js';
 
 import type {MdChipSet} from '@material/web/chips/chip-set.js';
 import {FilterChip} from '@material/web/chips/internal/filter-chip.js';
+
+const intentionallyBlank = document.querySelector<HTMLElement>(
+  '#intentionally-blank'
+);
+if (!intentionallyBlank) {
+  throw new Error(`Internal Error: no intentionally blank element.`);
+}
+intentionallyBlank.style.display = 'none';
 
 /**
  * Show only the necessary content on the learn page by toggling display
@@ -19,6 +36,7 @@ chipSet.addEventListener('click', async () => {
       .map((el) => el.dataset['value'])
   );
 
+  intentionallyBlank.style.display = keepKinds.size === 0 ? 'block' : 'none';
   for (const card of Array.from(
     document.querySelectorAll<HTMLDivElement>('.card-grid > .card')
   )) {
