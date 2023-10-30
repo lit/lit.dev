@@ -50,9 +50,9 @@ It means that the specification text is complete, and ready for browsers to impl
 
 Previous versions of the decorators proposal are also supported by some compilers, most notably TypeScript's "experimental decorators" which Lit has supported since its inception.
 
-Lit decorators work as both TypeScript experimental decorators _and_ standard decorators meaning they work with either configuration set in tsconfig. However, we currently recommend that TypeScript users use experimental decorator mode, i.e. projects should set `"experimentalDecorators": true`, because the emitted JavaScript is much smaller than in standard decorator mode. As such, all of the TypeScript code samples in our documentation reflect the syntax that works with this mode, namely, we omit the `accessor` keyword on class fields that's required for standard decorators.
+Lit decorators work as both TypeScript experimental decorators _and_ standard decorators meaning they work with either configuration set in tsconfig. However, we currently recommend that TypeScript users use experimental decorator mode, i.e. projects should set `"experimentalDecorators": true`, because the emitted JavaScript is much smaller than in standard decorator mode. As such, all of the TypeScript code samples in our documentation reflect the syntax that works with this mode – namely, we omit the `accessor` keyword on class fields that's required for [standard decorators](#standard-decorators).
 
-If you are working in a TypeScript project that requires `"experimentalDecorators": false` or `useDefineForClassFields: true`, consult the [standard decorators](#standard-decorators) section of this page.
+If you are working in a TypeScript project that requires `"experimentalDecorators": false` or `useDefineForClassFields: true`, consult the [Migrating TypeScript to standard decorators](#migrating-typescript-standard-decorators) section of this page.
 
 ## Enabling decorators { #enabling-decorators }
 
