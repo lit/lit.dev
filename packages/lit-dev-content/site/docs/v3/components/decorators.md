@@ -11,7 +11,7 @@ versionLinks:
 
 Decorators are functions that can be used to declaratively annotate and modify the behavior of classes.
 
-Lit provides a set of decorators that enable declarative APIs for things like registering elements, defining reactive properties and query properties, or adding event options to event handler methods.
+Lit provides a set of optional decorators that enable declarative APIs for things like registering elements, defining reactive properties and query properties, or adding event options to event handler methods.
 
 For example, the `@customElement` and `@property()` decorators let you register a custom element and define a reactive property in a compact, declarative way:
 
