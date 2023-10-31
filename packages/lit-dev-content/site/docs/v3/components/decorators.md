@@ -39,7 +39,7 @@ See [Decorator versions](#decorator-versions) for more details.
 
 | Decorator | Summary | More Info |
 |-----------|---------|--------------|
-| {% api-v3 "@customElement" "customElement" %} | Defines a custom element | [Defining](/docs/v3/components/defining/) |
+| {% api-v3 "@customElement" "customElement" %} | Defines a custom element. | [Defining](/docs/v3/components/defining/) |
 | {% api-v3 "@eventOptions" "eventOptions" %} | Adds event listener options. | [Events](/docs/v3/components/events/#event-options-decorator) |
 | {% api-v3 "@property" "property" %} | Defines a public property. | [Properties](/docs/v3/components/properties/#declare-with-decorators) |
 | {% api-v3 "@state" "state" %} | Defines a private state property | [Properties](/docs/v3/components/properties/#declare-with-decorators) |
@@ -72,11 +72,11 @@ In the future when decorators are supported natively in browsers, this will no l
 
 ### Using decorators with TypeScript { #decorators-typescript }
 
-TypeScript supports both experimental decorators and standard decorators. We recommend that TypeScript developers use experimental decorators for now for [optimal compiler output](#compiler-output-considerations).
+TypeScript supports both experimental decorators and standard decorators. We recommend that TypeScript developers use experimental decorators for now for [optimal compiler output](#compiler-output-considerations). If your project requires using standard decorators or setting `"useDefineForClassFields": true`, skip down to [migrating to standard decorators](#migrating-typescript-standard-decorators).
 
 To use experimental decorators you must enable the `experimentalDecorators` compiler option.
 
-You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this is only be required when the `target` is set to `ES2022` or greater, but it is recommended to explicitly set this to `false`.
+You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this is only required when the `target` is set to `ES2022` or greater, but it is recommended to explicitly set this to `false`.
 
 ```json
 // tsconfig.json
@@ -92,15 +92,15 @@ Enabling `emitDecoratorMetadata` is not required and not recommended.
 
 #### Migrating TypeScript experimental decorators to standard decorators { #migrating-typescript-standard-decorators }
 
-Lit decorators have been designed to support standard decorator syntax (using `accessor` on class field decorators) with TypeScript's experimental decorator mode.
+Lit decorators are designed to support [standard decorator syntax](#standard-decorators) (using `accessor` on class field decorators) with TypeScript's experimental decorator mode.
 
-This allows incremental migration off of experimental decorators by adding the `accessor` keyword to decorated properties without a change of behavior. Once all class field decorators use the `accessor` keyword, you can change your `tsconfig.json` completing the migration to standard decorators:
+This allows incremental migration off of experimental decorators starting with the addition of the `accessor` keyword to decorated properties without a change of behavior. Once all decorated class field use the `accessor` keyword, you can change your compiler options to complete the migration to standard decorators:
 
 ```json
 // tsconfig.json
 {
   "compilerOptions": {
-    "experimentalDecorators": false, // default for TS 5.0 and up
+    "experimentalDecorators": false, // default for TypeScript 5.0 and up
     "useDefineForClassFields": true, // default when "target" is "ES2022" or higher
   }
 }
@@ -108,20 +108,19 @@ This allows incremental migration off of experimental decorators by adding the `
 
 Note: The `accessor` keyword was introduced in TypeScript 4.9 and full standard decorator with metadata support requires TypeScript 5.2 or greater.
 
-Read more about the code changes required to migrate to standard decorators in [the upgrade guide](/docs/v3/releases/upgrade/#standard-decorator-migration).
-
 ### Using decorators with Babel { #decorators-babel }
 
-[Babel](https://babeljs.io/docs/en/) supports standard decorators with the [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) plugin as of version 7.23. Babel does not support TypeScript experimental decorators, so you must use Lit decorators in [standard decorator mode with the `accessor` keyword](#standard-decorators) on decorated class fields.
+[Babel](https://babeljs.io/docs/en/) supports standard decorators with the [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) plugin as of version 7.23. Babel does not support TypeScript experimental decorators, so you must use Lit decorators with [standard decorator syntax](#standard-decorators) using the `accessor` keyword on decorated class fields.
 
-You can enable decorators by adding [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) with these Babel configuration settings:
+Enable decorators by adding [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) with these Babel configuration settings:
 
 ```json
-"plugins": [
-  ["@babel/plugin-proposal-decorators", {
-    "version": "2023-05"
-  }]
-]
+// babel.config.json
+{
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", {"version": "2023-05"}]
+  ]
+}
 ```
 
 Note: Lit decorators only work with `"version": "2023-05"`. Other versions, including the formerly supported `"2018-09"`, are not supported.
@@ -186,7 +185,7 @@ export class MyElement extends LitElement {
 
 ### Compiler output considerations
 
-Compiler output for standard decorators is unfortunately large due to the need to generate the accessors, private storage and other objects that are part of the decorators API.
+Compiler output for standard decorators is unfortunately large due to the need to generate the accessors, private storage, and other objects that are part of the decorators API.
 
 So we recommend that users who wish to use decorators, if possible, use TypeScript experimental decorators for now.
 
