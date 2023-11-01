@@ -143,6 +143,10 @@ md-chip-set {
   margin: 10px 0 -8px 0;
 }
 
+.card:hover h1 {
+  text-decoration: underline;
+}
+
 .card p {
   font-size: 20px;
   color: #646464;
