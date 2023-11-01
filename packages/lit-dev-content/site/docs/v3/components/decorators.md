@@ -9,50 +9,37 @@ versionLinks:
   v2: components/decorators/
 ---
 
-Decorators are special functions that can modify the behavior of classes, class methods, and class fields. Lit uses decorators to provide declarative APIs for things like registering elements, reactive properties, and queries.
+Decorators are functions that can be used to declaratively annotate and modify the behavior of classes.
 
-Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. Currently no browsers implement decorators, but compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) provide support for an earlier version of the decorators proposal. Lit decorators work with Babel and TypeScript, and will be updated to work with the final specification when it's implemented in browsers.
+Lit provides a set of optional decorators that enable declarative APIs for things like registering elements, defining reactive properties and query properties, or adding event options to event handler methods.
 
-See the [Enabling decorators](#enabling-decorators) section for more information.
-
-{% aside "info" %}
-
-What does stage 3 mean?
-
-Stage 3 means that the specification text is complete, and ready for browsers to implement. Once the specification has been implemented in multiple browsers, it can move to the final stage, stage 4, and be added to the ECMAScript standard. A stage 3 proposal can still change, but only if critical issues are discovered during implementation.
-
-{% endaside %}
-
-
-
-Lit supplies a set of decorators that reduce the amount of boilerplate code you need to write when defining a component. For example, the `@customElement` and `@property` decorators make a basic element definition more compact:
+For example, the `@customElement` and `@property()` decorators let you register a custom element and define a reactive property in a compact, declarative way:
 
 ```ts
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @property() greeting = "Welcome";
-  @property() name = "Sally";
-  @property({type: Boolean}) emphatic = true;
-  //...
+
+  @property()
+  greeting = 'Welcome';
+
 }
 ```
-{#custom-element}
 
-The `@customElement` decorator defines a custom element, equivalent to calling:
+{% aside "info" "no-header"%}
 
-```js
-customElements.define('my-element', MyElement);
-```
+Lit supports two different versions of the JavaScript decorators proposal – an early version supported by TypeScript that we refer to as _experimental decorators_ and a new and final version we refer to as _standard decorators_.
+ 
+There are some small differences in usage between the two proposals (standard decorators often require the `accessor` keyword). Our code samples are written for experimental decorators because we recommend them for production at the moment.
+ 
+See [Decorator versions](#decorator-versions) for more details.
 
-The `@property` decorator declares a reactive property.
-
-See [Reactive properties](/docs/v3/components/properties/) for more information about configuring properties.
+{% endaside %}
 
 ## Built-in decorators
 
 | Decorator | Summary | More Info |
 |-----------|---------|--------------|
-| {% api-v3 "@customElement" "customElement" %} | Defines a custom element | [Above](#custom-element) |
+| {% api-v3 "@customElement" "customElement" %} | Defines a custom element. | [Defining](/docs/v3/components/defining/) |
 | {% api-v3 "@eventOptions" "eventOptions" %} | Adds event listener options. | [Events](/docs/v3/components/events/#event-options-decorator) |
 | {% api-v3 "@property" "property" %} | Defines a public property. | [Properties](/docs/v3/components/properties/#declare-with-decorators) |
 | {% api-v3 "@state" "state" %} | Defines a private state property | [Properties](/docs/v3/components/properties/#declare-with-decorators) |
@@ -64,7 +51,7 @@ See [Reactive properties](/docs/v3/components/properties/) for more information 
 
 ## Importing decorators
 
-You can import all the lit decorators via the `lit/decorators.js` module:
+You can import all of the Lit decorators via the `lit/decorators.js` module:
 
 ```js
 import {customElement, property, eventOptions, query} from 'lit/decorators.js';
@@ -81,90 +68,125 @@ import {eventOptions} from 'lit/decorators/event-options.js';
 
 To use decorators, you need to build your code with a compiler such as [TypeScript](#decorators-typescript) or [Babel](#decorators-babel).
 
-In the future when decorators become a native web platform feature, this may no longer be necessary.
+In the future when decorators are supported natively in browsers, this will no longer be necessary
 
 ### Using decorators with TypeScript { #decorators-typescript }
 
-To use decorators with [TypeScript](https://www.typescriptlang.org/docs/handbook/decorators.html), enable the `experimentalDecorators` compiler option.
+TypeScript supports both experimental decorators and standard decorators. We recommend that TypeScript developers use experimental decorators for now for [optimal compiler output](#compiler-output-considerations). If your project requires using standard decorators or setting `"useDefineForClassFields": true`, skip down to [migrating to standard decorators](#migrating-typescript-standard-decorators).
 
-You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this should only be required when the `target` is set to `esnext` or greater, but it's recommended to explicitly ensure this setting is `false`.
+To use experimental decorators you must enable the `experimentalDecorators` compiler option.
+
+You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this is only required when the `target` is set to `ES2022` or greater, but it is recommended to explicitly set this to `false`.
 
 ```json
-"experimentalDecorators": true,
-"useDefineForClassFields": false,
+// tsconfig.json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+  }
+}
 ```
 
 Enabling `emitDecoratorMetadata` is not required and not recommended.
 
-### Using decorators with Babel  { #decorators-babel }
+#### Migrating TypeScript experimental decorators to standard decorators { #migrating-typescript-standard-decorators }
 
-If you're compiling JavaScript with [Babel](https://babeljs.io/docs/en/), you can enable decorators by adding the following plugins and settings:
+Lit decorators are designed to support [standard decorator syntax](#standard-decorators) (using `accessor` on class field decorators) with TypeScript's experimental decorator mode.
 
-*   [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)
-*   [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
-
-Note, the `@babel/plugin-proposal-class-properties` may not be required with the latest versions of Babel.
-
-To set up the plugins, add code like this to your Babel configuration:
+This allows incremental migration off of experimental decorators starting with the addition of the `accessor` keyword to decorated properties without a change of behavior. Once all decorated class field use the `accessor` keyword, you can change your compiler options to complete the migration to standard decorators:
 
 ```json
-"assumptions": {
-  "setPublicClassFields": true
-},
-"plugins": [
-  ["@babel/plugin-proposal-decorators", {
-    "version": "2018-09",
-    "decoratorsBeforeExport": true
-  }],
-  ["@babel/plugin-proposal-class-properties"]
-]
+// tsconfig.json
+{
+  "compilerOptions": {
+    "experimentalDecorators": false, // default for TypeScript 5.0 and up
+    "useDefineForClassFields": true, // default when "target" is "ES2022" or higher
+  }
+}
 ```
 
-<div class="alert alert-info">
+Note: The `accessor` keyword was introduced in TypeScript 4.9 and standard decorators with metadata require TypeScript ≥5.2.
 
-Babel decorator support has been tested with `version: '2018-09'`. This is currently the default, but we recommend setting the version explicitly in case the default changes. Other versions ('2021-12' or 'legacy') are not supported, but this may change as Babel evolves. See the [Babel documentation](https://babeljs.io/docs/en/babel-plugin-proposal-decorators#options) if you want to experiment.
+### Using decorators with Babel { #decorators-babel }
 
-</div>
+[Babel](https://babeljs.io/docs/en/) supports standard decorators with the [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) plugin as of version 7.23. Babel does not support TypeScript experimental decorators, so you must use Lit decorators with [standard decorator syntax](#standard-decorators) using the `accessor` keyword on decorated class fields.
 
-### Using decorators with TypeScript and Babel
-
-When using TypeScript with Babel, it's important to order the TypeScript transform before the decorators transform in your Babel config as follows:
+Enable decorators by adding [`@babel/plugin-proposal-decorators`](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) with these Babel configuration settings:
 
 ```json
+// babel.config.json
 {
-  "assumptions": {
-    "setPublicClassFields": true
-  },
   "plugins": [
-    ["@babel/plugin-transform-typescript", {
-      "allowDeclareFields": true
-    }],
-    ["@babel/plugin-proposal-decorators", {
-      "version": "2018-09",
-      "decoratorsBeforeExport": true
-    }],
-    ["@babel/plugin-proposal-class-properties"]
+    ["@babel/plugin-proposal-decorators", {"version": "2023-05"}]
   ]
 }
 ```
 
-The `allowDeclareFields` setting is generally not needed, but it can be useful if you want to define a reactive property without using a decorator. For example,
-
-```ts
-static properties = { foo: {} };
-
-declare foo: string;
-
-constructor() {
-  super();
-  this.foo = 'bar';
-}
-```
+Note: Lit decorators only work with `"version": "2023-05"`. Other versions, including the formerly supported `"2018-09"`, are not supported.
 
 ### Avoiding issues with class fields and decorators {#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/v3/components/properties/#avoiding-issues-with-class-fields) for more information.
-
-The current decorators [stage 3 proposal](https://github.com/tc39/proposal-decorators) does not directly address this issue, but it should be solved as the proposal evolves and matures.
+Standard [class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/v3/components/properties/#avoiding-issues-with-class-fields) for more information.
 
 When using decorators, transpiler settings for Babel and TypeScript must be configured correctly as shown in the sections above for [TypeScript](#decorators-typescript) and [Babel](#decorators-babel).
+
+## Decorator versions
+
+Decorators are a [stage 3 proposal](https://github.com/tc39/proposal-decorators) for addition to the ECMAScript standard. Compilers like [Babel](https://babeljs.io/) and [TypeScript](https://www.typescriptlang.org/) support decorators, though no browsers have implemented them yet. Lit decorators work with Babel and TypeScript, and will work in browsers when they implement them natively.
+
+{% aside "info" %}
+
+What does stage 3 mean?
+
+It means that the specification text is complete, and ready for browsers to implement. Once the specification has been implemented in multiple browsers, it can move to the final stage, stage 4, and be added to the ECMAScript standard. A stage 3 proposal will only change if critical issues are discovered during implementation.
+
+{% endaside %}
+
+### Earlier decorator proposals
+
+Before the TC39 proposal reached stage 3, compilers implemented earlier versions of the decorator specification.
+
+Most notable of these is [TypeScript's _experimental decorators_](https://www.typescriptlang.org/docs/handbook/decorators.html) which Lit has supported since its inception and is our current recommendation for use.
+
+Babel has also supported different versions of the specification over time as can be seen from the [`"version"` option of the decorator plugin](https://babeljs.io/docs/babel-plugin-proposal-decorators#version). In the past, Lit 2 has supported the `"2018-09"` version for Babel users but that has now been dropped in favor of the _standard_ `"2023-05"` version described below.
+
+### Standard decorators { #standard-decorators }
+
+_Standard decorators_ is the version of decorators that has reached Stage 3 consensus at TC39, the body that defines ECMAScript/JavaScript.
+
+Standard decorators are supported in TypeScript and Babel, with native browser coming in the near future.
+
+The biggest difference between standard decorators and experimental decorators is that, for performance reasons, standard decorators cannot change the _kind_ of a class member – fields, accessors, and methods – being decorated and replaced, and will only produce the same kind of member.
+
+Since many Lit decorators generate accessors, this means that the decorators need to be applied to accessors, not class fields.
+
+To make this convenient, the standard decorator specification adds the `accessor` keyword to declare "auto-accessors":
+
+```ts
+class MyClass {
+  accessor foo = 42;
+}
+```
+
+Auto-accessors create a getter and setter pair that read and write from a private field. Decorators can then wrap these getters and setters.
+
+Lit decorators that work on class fields with experimental decorators – such as `@property()`, `@state()`, `@query()`, etc. – must be applied to accessors or auto-accessors with standard decorators:
+
+```ts
+@customElement('my-element')
+export class MyElement extends LitElement {
+
+  @property()
+  accessor greeting = 'Welcome';
+
+}
+```
+
+### Compiler output considerations
+
+Compiler output for standard decorators is unfortunately large due to the need to generate the accessors, private storage, and other objects that are part of the decorators API.
+
+So we recommend that users who wish to use decorators, if possible, use TypeScript experimental decorators for now.
+
+In the future the Lit team plans on adding decorator transforms to our optional Lit Compiler in order to compile standard decorators to a more compact compiler output. Native browser support will also eliminate the need for any compiler transforms at all.
