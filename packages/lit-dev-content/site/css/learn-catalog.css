@@ -15,7 +15,7 @@ main {
   font-size: 20px;
   padding: 67px 0;
   padding-left: calc(var(--_unit) + 40px);
-
+  height: 160px; /* Explicitly declared to fix layout shift as font loads */
   position: relative;
 }
 
