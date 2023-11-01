@@ -45,6 +45,7 @@ const loadTutorialData = async (dirname) => {
   data.title = data.header;
   data.summary = data.description;
   data.date = new Date(data.date);
+  data.thumbnail = data.thumbnail ?? '/images/learn/tutorial_default_thumbnail';
   delete data.description;
   delete data.header;
   delete data.steps;
@@ -191,11 +192,11 @@ module.exports = async () => {
         throw new Error(`Invalid tutorial shape. Missing difficulty or duration in '${JSON.stringify(content)}'`);
       }
     }
-    if (kind === "article") {
+    if (kind === "article" || kind === "tutorial") {
       const { thumbnail } = content;
       if (thumbnail) {
-        // An article can optionally provide an image thumbnail (without a
-        // suffix).
+        // An article or tutorial can optionally provide an image thumbnail
+        // (without a suffix).
         const expectedImages = [
           `${thumbnail}_2x.jpg`,
           `${thumbnail}.jpg`

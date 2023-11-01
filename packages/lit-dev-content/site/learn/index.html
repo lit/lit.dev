@@ -46,6 +46,16 @@ title: Learn
             title="{{ content.title }}"
             loading="lazy"
           />
+          {% elif content.kind == "tutorial" and content.thumbnail %}
+          <img
+            srcset="{{ content.thumbnail }}.jpg, {{ content.thumbnail }}_2x.jpg 2x"
+            width="1280"
+            height="720"
+            src="{{ content.thumbnail }}.jpg"
+            alt="Tutorial thumbnail for '{{ content.title }}'"
+            title="{{ content.title }}"
+            loading="lazy"
+          />
           {% endif %}
         </div>
         <div class="learn-kind-row">
