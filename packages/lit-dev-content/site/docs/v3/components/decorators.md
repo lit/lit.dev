@@ -29,7 +29,7 @@ export class MyElement extends LitElement {
 
 Lit supports two different versions of the JavaScript decorators proposal – an early version supported by TypeScript that we refer to as _experimental decorators_ and a new and final version we refer to as _standard decorators_.
  
-There are some small differences in usage between the two proposals (standard decorators sometimes require the `accessor` keyword). Our code samples are written for experimental decorators because we recommend them for production at the moment.
+There are some small differences in usage between the two proposals (standard decorators often require the `accessor` keyword). Our code samples are written for experimental decorators because we recommend them for production at the moment.
  
 See [Decorator versions](#decorator-versions) for more details.
 
@@ -106,7 +106,7 @@ This allows incremental migration off of experimental decorators starting with t
 }
 ```
 
-Note: The `accessor` keyword was introduced in TypeScript 4.9 and full standard decorator with metadata support requires TypeScript 5.2 or greater.
+Note: The `accessor` keyword was introduced in TypeScript 4.9 and standard decorators with metadata require TypeScript ≥5.2.
 
 ### Using decorators with Babel { #decorators-babel }
 
