@@ -94,6 +94,15 @@ md-chip-set {
   --md-sys-color-on-surface-variant: #46464f;
 }
 
+md-chip-set:not(:defined) {
+  /*
+  Prevent layout shift by defining the exact height of the chip-set before the
+  component has been defined.
+  */
+  display: block;
+  height: 32px;
+}
+
 #chips {
   margin: var(--_unit);
 }
@@ -126,10 +135,11 @@ md-chip-set {
   flex-direction: column;
 
   /* Undo anchor tag typography */
-  font-family: Manrope;
-  color: black;
+  font-family: Manrope,sans-serif;
+  color: #646464;
   text-decoration: none;
   font-weight: 400;
+  font-size: 18px;
 }
 
 .card img {
@@ -138,9 +148,10 @@ md-chip-set {
 }
 
 .card h1 {
-  font-size: 26px;
-  font-weight: 400;
-  margin: 10px 0 -8px 0;
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
 }
 
 .card:hover h1 {
@@ -148,8 +159,6 @@ md-chip-set {
 }
 
 .card p {
-  font-size: 20px;
-  color: #646464;
   margin: 10px 0;
 }
 
@@ -161,8 +170,6 @@ md-chip-set {
 
 .learn-kind-row {
   display: flex;
-  color: #9e9e9e;
-  font-weight: 400;
   font-size: 16px;
   text-transform: uppercase;
   margin-top: 10px;
@@ -180,7 +187,7 @@ md-chip-set {
 
 #intentionally-blank {
   text-align: center;
-  color: #5b5d72;
+  color: #646464;
 }
 
 @media (max-width: 1260px) {

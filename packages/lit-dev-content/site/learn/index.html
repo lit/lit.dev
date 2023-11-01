@@ -27,8 +27,15 @@ title: Learn
       <a class="card" data-content-kind="{{ content.kind }}" href="{{ content.url }}">
         <div class="card-header">
           {% if content.kind == "video" %}
-          <img src="https://i.ytimg.com/vi/{{ content.youtubeId }}/mqdefault.jpg"
-            alt="Video thumbnail for '{{ content.title }}'" title="{{ content.title }}" />
+          <img
+            srcset="{{ site.baseurl }}/images/videos/{{ content.youtubeId }}.jpg, {{ site.baseurl }}/images/videos/{{ content.youtubeId }}.jpeg 2x"
+            width="1280"
+            height="720"
+            src="{{ site.baseurl }}/images/videos/{{ content.youtubeId }}.jpg"
+            alt="Video thumbnail for '{{ content.title }}'"
+            title="{{ content.title }}"
+            loading="lazy"
+          />
           {% endif %}
         </div>
         <div class="learn-kind-row">
