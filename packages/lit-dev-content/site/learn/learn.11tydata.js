@@ -70,8 +70,13 @@ const loadArticleData = async () => {
   return articleData;
 };
 
-// Note: Img can be obtained with: https://i.ytimg.com/vi_webp/<video id>/mqdefault.webp
-// or https://i.ytimg.com/vi/<video id>/mqdefault.jpg
+// Note: YouTube thumbnail images can be obtained with
+// https://i.ytimg.com/vi/<video id>/maxresdefault.jpg It should then be checked
+// into the GitHub repository at the native size 1280px by 720px, under the name
+// `images/videos/<video id>_2x.jpg`. Then also check-in a halved resolution
+// 640px by 360px image under the name `images/videos/<video id>.jpg`.
+//
+// Use https://squoosh.app/ to create the halved resolution image.
 const loadVideoData = () =>
   [
     {
@@ -87,7 +92,7 @@ const loadVideoData = () =>
       date: "Apr 25 2022",
     },
     {
-      title: 'What are elements - Lit University (Basics)',
+      title: 'What are elements?',
       summary: `Software Engineer Elliott Marquez shares what elements are, how to make, and interact with them. Learn about the basic building block of the web in this video!`,
       youtubeId: 'x_mixcGEia4',
       date: "Apr 27 2022",
@@ -100,7 +105,7 @@ const loadVideoData = () =>
     },
     {
       title:
-        'Event communication between web components - Lit University (Advanced)',
+        'Event communication between web components',
       summary: `Follow along as Lit Software Engineer Elliott Marquez shares the pros, cons, and use cases of communicating with events.`,
       youtubeId: 'T9mxtnoy9Qw',
       date: "May 5 2022",
@@ -112,7 +117,7 @@ const loadVideoData = () =>
       date: "Oct 3 2022",
     },
     {
-      title: 'Introduction to Lit - Lit University (Basics)',
+      title: 'Introduction to Lit',
       summary: `Learn all about the Lit library in this beginner-friendly Lit University episode! We will cover all of the essentials, including custom elements, declarative templates, scoped styles, and reactive properties.`,
       youtubeId: 'uzFakwHaSmw',
       date: "Nov 2 2022",
@@ -154,7 +159,6 @@ module.exports = async () => {
     // Draft
     // loadTutorialData('wc-to-lit'),
   ]);
-
   const articles = await loadArticleData();
   const videos = loadVideoData();
 
