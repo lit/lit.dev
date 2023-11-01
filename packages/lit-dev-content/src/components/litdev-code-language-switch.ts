@@ -134,8 +134,8 @@ export class LitDevCodeLanguageSwitch extends LitElement {
         title=${mode === 'ts' ? 'Disable TypeScript' : 'Enable TypeScript'}
         @click=${this._toggleLanguageAndAdjustScroll}
       >
-        <span id="jsLabel">JS</span>
-        <span id="tsLabel">TS</span>
+        <span id="jsLabel" aria-hidden="true">JS</span>
+        <span id="tsLabel" aria-hidden="true">TS</span>
         <span id="toggle"></span>
       </button>
     `;
