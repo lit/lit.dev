@@ -120,34 +120,77 @@ An empty option object is equivalent to specifying the default value for all opt
 
 ### Avoiding issues with class fields when declaring properties {#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance. Reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used. When a property is set, the element does not update.
-
-In **JavaScript** you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance whereas reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used such that setting the property won't trigger an element update.
 
 ```js
-constructor() {
-  super();
-  this.data = {};
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  foo = 'Default'; // ❌ this will make `foo` not reactive
+}
+```
+
+In **JavaScript**, you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+```js
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  constructor() {
+    super();
+    this.foo = 'Default';
+  }
+}
+```
+
+Alternatively, you may use [standard decorators with Babel](/docs/v3/components/decorators/#decorators-babel) to declare reactive properties.
+```ts
+class MyElement extends LitElement {
+  @property()
+  accessor foo = 'Default';
 }
 ```
 
 For **TypeScript**, you **may use class fields** for declaring reactive properties as long as you use one of these patterns:
-* Set the `useDefineForClassFields` setting in your `tsconfig` to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
-* Add the `declare` keyword on the field, and put the field's initializer in the constructor.
+* Set the `useDefineForClassFields` compiler option to `false`. This is already the recommendation when [using decorators with TypeScript](/docs/v3/components/decorators/#decorators-typescript).
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true, // If using decorators
+    "useDefineForClassFields": false,
+  }
+}
+```
+```ts
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  foo = 'Default';
 
-When compiling JavaScript with **Babel**, you **may use class fields** for declaring reactive properties as long as you set `setPublicClassFields` to `true` in the `assumptions` config of your `babelrc`. Note, for older versions of Babel, you also need to include the plugin `@babel/plugin-proposal-class-properties`:
-
-```js
-assumptions = {
-  "setPublicClassFields": true
-};
-
-plugins = [
-  ["@babel/plugin-proposal-class-properties"],
-];
+  @property()
+  bar = 'Default';
+}
 ```
 
-For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/v3/components/decorators/#avoiding-issues-with-class-fields).
+* Add the `declare` keyword on the field, and put the field's initializer in the constructor.
+```ts
+class MyElement extends LitElement {
+  declare foo: string;
+  static properties = {foo: {type: String}}
+  constructor() {
+    super();
+    this.foo = 'Default';
+  }
+}
+```
+
+* Add the `accessor` keyword on the field to use [auto-accessors](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#auto-accessors-in-classes).
+```ts
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  accessor foo = 'Default';
+
+  @property()
+  accessor bar = 'Default';
+}
+```
 
 ### Property options
 

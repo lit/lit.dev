@@ -76,7 +76,7 @@ TypeScript supports both experimental decorators and standard decorators. We rec
 
 To use experimental decorators you must enable the `experimentalDecorators` compiler option.
 
-You should also ensure that the `useDefineForClassFields` setting is `false`. Note, this is only required when the `target` is set to `ES2022` or greater, but it is recommended to explicitly set this to `false`.
+You should also ensure that the `useDefineForClassFields` setting is `false`. This is only required when `target` is set to `ES2022` or greater, but it is recommended to explicitly set this to `false`. This is needed to [avoid issues with class fields when declaring properties](/docs/v3/components/properties/#avoiding-issues-with-class-fields).
 
 ```json
 // tsconfig.json
@@ -124,12 +124,6 @@ Enable decorators by adding [`@babel/plugin-proposal-decorators`](https://babelj
 ```
 
 Note: Lit decorators only work with `"version": "2023-05"`. Other versions, including the formerly supported `"2018-09"`, are not supported.
-
-### Avoiding issues with class fields and decorators {#avoiding-issues-with-class-fields}
-
-Standard [class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with declaring reactive properties. See [Avoiding issues with class fields when declaring properties](/docs/v3/components/properties/#avoiding-issues-with-class-fields) for more information.
-
-When using decorators, transpiler settings for Babel and TypeScript must be configured correctly as shown in the sections above for [TypeScript](#decorators-typescript) and [Babel](#decorators-babel).
 
 ## Decorator versions
 
