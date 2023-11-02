@@ -1,0 +1,205 @@
+main {
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
+#hero {
+  --card-width: 360px;
+  --_unit: calc(var(--card-width) / 10);
+
+  background-color: black;
+  color: #cfcfcf;
+  font-family: Manrope;
+  font-weight: 200;
+  font-size: 20px;
+  padding: 67px 0;
+  padding-left: calc(var(--_unit) + 40px);
+  height: 160px; /* Explicitly declared to fix layout shift as font loads */
+  position: relative;
+}
+
+/* The diagonal blue lines in the hero image */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1000px;
+  --_hero-diagonal-distance: 80px;
+  background: repeating-linear-gradient(
+    30deg,
+    transparent,
+    transparent calc(var(--_hero-diagonal-distance) - 1px),
+    rgba(42,44,157,0.8) var(--_hero-diagonal-distance),
+    rgba(42,44,157,0.8) calc(var(--_hero-diagonal-distance) + 1px),
+    transparent calc(var(--_hero-diagonal-distance) + 1px)
+  );
+  clip-path: polygon(0% 0%, 50% 100%, 100% 100%, 100% 0%);
+}
+
+/* The vertical blue lines in the hero image */
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 100px;
+  bottom: 0;
+  width: 648px;
+  --_hero-vertical-distance: 80px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent calc(var(--_hero-vertical-distance) - 1px),
+    rgba(42,44,157,0.8) var(--_hero-vertical-distance),
+    rgba(42,44,157,0.8) calc(var(--_hero-vertical-distance) + 1px),
+    transparent calc(var(--_hero-vertical-distance) + 1px)
+  );
+}
+
+#hero-contents {
+  max-width: 1224px;
+  width: 100%;
+
+  margin: 0 auto;
+  position: relative;
+  /* Place hero contents above the blue line graphics. */
+  z-index: 1;
+}
+
+#hero h1 {
+  color: rgb(0, 255, 255);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+#hero p {
+  max-width: 25em;
+}
+
+md-chip-set {
+  --md-filter-chip-label-text-font: Manrope;
+  --md-filter-chip-container-shape: 16px;
+  /* Colors were generated using Lit's Indigo 2 brand color: #2a2c9d */
+  --md-sys-color-outline: #777680;
+  --md-sys-color-on-surface: #1b1b21;
+  --md-sys-color-primary: #575992;
+  --md-sys-color-secondary: #5b5d72;
+  --md-sys-color-on-secondary: white;
+  --md-sys-color-primary-container: #e1e0ff;
+  --md-sys-color-secondary-container: #e2e0f9;
+  --md-sys-color-surface-variant: #e4e1ec;
+  --md-sys-color-on-surface-variant: #46464f;
+}
+
+md-chip-set:not(:defined) {
+  /*
+  Prevent layout shift by defining the exact height of the chip-set before the
+  component has been defined.
+  */
+  display: block;
+  height: 32px;
+}
+
+#chips {
+  margin: var(--_unit);
+}
+
+#learn-catalog {
+  --_unit: 36px;
+
+  /* Prevent a large view shift if content is empty */
+  min-height: 400px;
+  width: 100%;
+}
+
+.center {
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+.card-grid {
+  display: grid;
+  padding: var(--_unit);
+  gap: var(--_unit);
+  grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr) minmax(360px, 1fr);
+
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  /* Undo anchor tag typography */
+  font-family: Manrope,sans-serif;
+  color: #646464;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card h1 {
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+}
+
+.card:hover h1 {
+  text-decoration: underline;
+}
+
+.card p {
+  margin: 10px 0;
+}
+
+.card-header {
+  aspect-ratio: 16/9;
+  background: url(/images/learn/banner-blue.png) rgba(50, 79, 255, 1);
+  overflow: hidden;
+}
+
+.learn-kind-row {
+  display: flex;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: -5px;
+}
+
+.learn-kind-row span:first-child {
+  color: #3456f5;
+}
+
+/* This is the span containing the tutorial duration */
+.learn-kind-row span:nth-child(3) {
+  margin-left: auto;
+}
+
+#intentionally-blank {
+  text-align: center;
+  color: #646464;
+}
+
+@media (max-width: 1260px) {
+  .card-grid {
+    --card-width: 300px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 690px) {
+  .card-grid {
+    --card-width: 300px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

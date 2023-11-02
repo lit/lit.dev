@@ -1,0 +1,77 @@
+---
+title: Learn
+---
+
+{% extends 'default.html' %} {% block head %} {% include "social-tags.html" %}
+{% inlinecss "learn-catalog.css" %} {% endblock %} {% block content %}
+<script type="module" src="{{ site.baseurl }}/js/pages/learn.js"></script>
+
+<div id="hero">
+  <div id="hero-contents">
+    <h1>Learn</h1>
+    <p>
+      Explore a curated list of videos, articles, and tutorials tailored for all
+      experience levels. Unlock the full potential of Lit.
+    </p>
+  </div>
+</div>
+<section id="learn-catalog">
+  <div class="center">
+    <md-chip-set id="chips" aria-label="Filter content by:">
+      <md-filter-chip data-value="article" label="Articles" selected></md-filter-chip>
+      <md-filter-chip data-value="video" label="Videos" selected></md-filter-chip>
+      <md-filter-chip data-value="tutorial" label="Tutorials" selected></md-filter-chip>
+    </md-chip-set>
+    <div class="card-grid">
+      {% for content in learn %}
+      <a class="card" data-content-kind="{{ content.kind }}" href="{{ content.url }}">
+        <div class="card-header">
+          {% if content.kind == "video" %}
+          <img
+            srcset="/images/videos/{{ content.youtubeId }}.jpg, /images/videos/{{ content.youtubeId }}_2x.jpg 2x"
+            width="1280"
+            height="720"
+            src="{{ site.baseurl }}/images/videos/{{ content.youtubeId }}.jpg"
+            alt="Video thumbnail for '{{ content.title }}'"
+            title="{{ content.title }}"
+            loading="lazy"
+          />
+          {% elif content.kind == "article" and content.thumbnail %}
+          <img
+            srcset="{{ content.thumbnail }}.jpg, {{ content.thumbnail }}_2x.jpg 2x"
+            width="1280"
+            height="720"
+            src="{{ content.thumbnail }}.jpg"
+            alt="Article thumbnail for '{{ content.title }}'"
+            title="{{ content.title }}"
+            loading="lazy"
+          />
+          {% elif content.kind == "tutorial" and content.thumbnail %}
+          <img
+            srcset="{{ content.thumbnail }}.jpg, {{ content.thumbnail }}_2x.jpg 2x"
+            width="1280"
+            height="720"
+            src="{{ content.thumbnail }}.jpg"
+            alt="Tutorial thumbnail for '{{ content.title }}'"
+            title="{{ content.title }}"
+            loading="lazy"
+          />
+          {% endif %}
+        </div>
+        <div class="learn-kind-row">
+          <span class="learn-kind">{{ content.kind }}</span>
+          {% if content.kind == "tutorial" %}
+          <span>&nbsp;/ {{ content.difficulty }}</span>
+          <span class="duration">{{ content.duration }} Min</span>
+          {% endif %}
+        </div>
+        <h1>{{ content.title }}</h1>
+        {{ content.summary | markdownWithoutHtml | safe }}
+      </a>
+      {% endfor %}
+    </div>
+    <h1 id="intentionally-blank">You left this page intentionally blank.</h1>
+  </div>
+</section>
+
+{% endblock %}

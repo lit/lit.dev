@@ -4,6 +4,7 @@
   "size": "small",
   "duration": 16,
   "category": "Learn",
+  "date": "2022-05-22",
   "steps": [
     {
       "title": "Custom attribute converters",
