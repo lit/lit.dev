@@ -1,0 +1,14 @@
+{
+  "extends": "/samples/base.json",
+  "hide": true,
+  "title": "ResizeController",
+  "description": "@lit-labs/observers ResizeController example",
+  "section": "Observers",
+  "files": {
+    "resize-demo.ts": {},
+    "styles.ts": {},
+    "mock-drawer.ts": {},
+    "index.html": {}
+  },
+  "order": 0
+}

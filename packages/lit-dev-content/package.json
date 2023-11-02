@@ -195,6 +195,7 @@
   "dependencies": {
     "@lit-labs/context": "^0.4.1",
     "@lit-labs/motion": "^1.0.1",
+    "@lit-labs/observers": "1.1.0",
     "@lit-labs/react": "^1.0.8",
     "@lit-labs/task": "^3.0.2",
     "@lit/localize": "^0.10.0",
