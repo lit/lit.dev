@@ -88,7 +88,7 @@ const loadVideoData = () =>
   [
     {
       title: 'Declarative Reactive Web Components with Justin Fagnani',
-      summary: `Justin Fagnani's talk covering the fundamental ideas of lit-html and LitElement. This talk introduces why Lit is architected the way it is.`,
+      summary: `Justin covers what Web Components are and how LitElement and lit-html add value on top of the native APIs. This talk covers the fundamentals of how and why Lit is architected the way it is.`,
       youtubeId: '9FB0GSOAESo',
       date: "Jun 22 2019",
     },
@@ -100,7 +100,7 @@ const loadVideoData = () =>
     },
     {
       title: 'Lit 2.0 Release Livestream',
-      summary: `Lit 2.0 has officially landed! Here we talk about Lit 2.0, what we've been doing, what it means to Google, and what's new.`,
+      summary: `Lit 2.0 has officially landed! Here we talk about Lit 2.0, what we've been doing, what it means to Google, and what's new. Stay tuned for a panel discussion with Lit users in the industry!`,
       youtubeId: 'nfb779XIhsU',
       date: "Sep 21 2021",
     },
