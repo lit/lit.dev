@@ -164,7 +164,6 @@ md-chip-set:not(:defined) {
 
 .card-header {
   aspect-ratio: 16/9;
-  background: url(/images/learn/banner-blue.png) rgba(50, 79, 255, 1);
   overflow: hidden;
 }
 
