@@ -87,10 +87,22 @@ const loadArticleData = async () => {
 const loadVideoData = () =>
   [
     {
-      title: 'Chat with Lit #1 – Westbrook Johnson (Adobe) ',
+      title: 'Declarative Reactive Web Components with Justin Fagnani',
+      summary: `Justin covers what Web Components are and how LitElement and lit-html add value on top of the native APIs. This talk covers the fundamentals of how and why Lit is architected the way it is.`,
+      youtubeId: '9FB0GSOAESo',
+      date: "Jun 22 2019",
+    },
+    {
+      title: 'Chat with Lit #1 – Westbrook Johnson (Adobe)',
       summary: `Listen in on this live-recorded Twitter Space episode, hosted by Rody Davis (@rodydavis) and Elliott Marquez (@techytacos), with guest Westbrook Johnson (@WestbrookJ) from Adobe.`,
       youtubeId: 'it-NXhxkOJo',
       date: "Jul 23 2021",
+    },
+    {
+      title: 'Lit 2.0 Release Livestream',
+      summary: `Lit 2.0 has officially landed! Here we talk about Lit 2.0, what we've been doing, what it means to Google, and what's new. Stay tuned for a panel discussion with Lit users in the industry!`,
+      youtubeId: 'nfb779XIhsU',
+      date: "Sep 21 2021",
     },
     {
       title: 'How to build your first Lit component',
