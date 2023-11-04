@@ -19,7 +19,7 @@ npm ci
 ```
 
 ### Develop site content
-
+Starting on mac or linux distros works out of the box, windows requires some extra [setup](WINDOWS.md)
 ```sh
 npm run dev
 ```
