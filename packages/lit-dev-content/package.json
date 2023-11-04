@@ -6,7 +6,6 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "main": "_site/index.html",
-  "type": "module",
   "scripts": {
     "fonts:manrope": "wireit",
     "build": "wireit",
