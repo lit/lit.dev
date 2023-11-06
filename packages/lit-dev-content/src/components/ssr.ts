@@ -13,3 +13,5 @@ import './litdev-version-selector.js';
 import './litdev-ripple-icon-button.js';
 import './litdev-aside.js';
 import '../components/litdev-search-modal.js';
+import '@material/web/chips/chip-set.js';
+import '@material/web/chips/filter-chip.js';

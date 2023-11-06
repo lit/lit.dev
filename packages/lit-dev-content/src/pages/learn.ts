@@ -28,8 +28,43 @@ const chipSet = document.querySelector<MdChipSet>('#chips');
 if (!chipSet) {
   throw new Error(`Internal Error: no filter chips rendered`);
 }
-chipSet.addEventListener('click', async () => {
-  await new Promise((resolve) => setTimeout(resolve, 0)); // Wait for filter chips to be completely updated.
+
+/**
+ * Updates the URL Hash based on the current state of the filter chips. If all
+ * chips on the page are selected, then clears the hash.
+ */
+const updateUrlFromChips = () => {
+  const chips = Array.from(chipSet.chips as FilterChip[]);
+  let allSelected = true;
+  const filters = [];
+
+  for (const chip of chips) {
+    if (chip.selected) {
+      filters.push(chip.dataset.value!);
+    } else {
+      allSelected = false;
+    }
+  }
+
+  // Save it as a query param in the hash to prevent page reload
+  const queryParams = new URLSearchParams(window.location.hash.slice(1) ?? '');
+  if (allSelected) {
+    queryParams.delete('filter');
+  } else {
+    queryParams.set('filter', filters.join(','));
+  }
+
+  window.location.hash = queryParams.toString();
+};
+
+const updateContentFromChips = async (updateHash = true) => {
+  // Wait for filter chips to be completely updated.
+  await new Promise((resolve) => setTimeout(resolve, 0));
+
+  if (updateHash) {
+    updateUrlFromChips();
+  }
+
   const keepKinds = new Set(
     (chipSet.chips as FilterChip[])
       .filter((el) => el.selected)
@@ -44,4 +79,40 @@ chipSet.addEventListener('click', async () => {
     card.style.display =
       keepKinds.has(cardKind) || cardKind === 'always-show' ? 'flex' : 'none';
   }
+};
+
+/**
+ * Initialize the filter chips based on the URL hash.
+ */
+const initChipsFromURL = async (hash = window.location.hash) => {
+  const queryParams = new URLSearchParams(hash.slice(1) ?? '');
+  const kinds = Array.from(queryParams.get('filter')?.split(',') ?? []);
+
+  chipSet.chips.forEach(async (chip) => {
+    // Wait for filter chips to be completely updated to not compete with SSR.
+    await chip.updateComplete;
+    const chipKind = chip.dataset.value!;
+    (chip as FilterChip).selected =
+      kinds.length === 0 || kinds.includes(chipKind);
+  });
+};
+
+// Handles forwads and back navigation between hashes
+window.addEventListener('hashchange', async (event: HashChangeEvent) => {
+  await initChipsFromURL(new URL(event.newURL).hash);
+  // Do not update hash to prevent an infinite loop.
+  await updateContentFromChips(false);
 });
+
+// Handles clicking a filter chip.
+chipSet.addEventListener('click', () => updateContentFromChips());
+
+const isChipDefined = !!customElements.get('md-filter-chip');
+
+if (!isChipDefined) {
+  // Wait for SSR hydration to complete before initializing the chips.
+  customElements.whenDefined('md-filter-chip').then(() => initChipsFromURL());
+} else {
+  // Hydration has completed, initialize the chips immediately.
+  initChipsFromURL();
+}
