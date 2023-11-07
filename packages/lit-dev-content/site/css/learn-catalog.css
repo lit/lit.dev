@@ -94,15 +94,6 @@ md-chip-set {
   --md-sys-color-on-surface-variant: #46464f;
 }
 
-md-chip-set:not(:defined) {
-  /*
-  Prevent layout shift by defining the exact height of the chip-set before the
-  component has been defined.
-  */
-  display: block;
-  height: 32px;
-}
-
 #chips {
   margin: var(--_unit);
 }
