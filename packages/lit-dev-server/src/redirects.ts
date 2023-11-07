@@ -37,6 +37,7 @@ export const pageRedirects = new Map([
   ['/docs/releases/release-notes/1.2.0/',      '/docs/v2/releases/release-notes/1.2.0/'],
   // Old Lit tutorial redirect to new learn catalog
   ['/tutorial/', '/learn/'],
+  ['/tutorials/', '/learn/'],
 ].map(([path, redir]) => [
   // Trailing slashes are required because this redirect map is consulted after
   // standard lit.dev path canonicalization.
