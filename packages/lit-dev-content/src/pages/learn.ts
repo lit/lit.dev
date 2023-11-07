@@ -95,13 +95,14 @@ const initChipsFromURL = async (hash = window.location.hash) => {
     (chip as FilterChip).selected =
       kinds.length === 0 || kinds.includes(chipKind);
   });
+
+  // Do not update hash to prevent an infinite loop.
+  updateContentFromChips(false);
 };
 
-// Handles forwads and back navigation between hashes
+// Handle forwards and back navigation between hashes
 window.addEventListener('hashchange', async (event: HashChangeEvent) => {
   await initChipsFromURL(new URL(event.newURL).hash);
-  // Do not update hash to prevent an infinite loop.
-  await updateContentFromChips(false);
 });
 
 // Handles clicking a filter chip.
