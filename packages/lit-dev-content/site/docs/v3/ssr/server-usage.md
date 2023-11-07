@@ -192,6 +192,7 @@ app.use(async (ctx) => {
 ```js
 // server.js
 import {ModuleLoader} from '@lit-labs/ssr/lib/module-loader.js';
+import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
 
 // ...
 
@@ -205,7 +206,7 @@ app.use(async (ctx) => {
   const {renderTemplate} = importResult.module.namespace;
   const ssrResult = await renderTemplate({some: "data"});
   ctx.type = 'text/html';
-  ctx.body = Readable.from(ssrResult);
+  ctx.body = new RenderResultReadable(ssrResult);
 });
 ```
 
