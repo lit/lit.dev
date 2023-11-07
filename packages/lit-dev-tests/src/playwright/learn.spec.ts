@@ -12,8 +12,6 @@ test.describe('Learn catalog page', () => {
     const page = await browser.newPage({viewport: {width: 1920, height: 1080}});
     await preventGDPRBanner(page);
     await page.goto('/learn/');
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'learnCatalog.png'
-    );
+    await expect(await page.screenshot()).toMatchSnapshot('learnCatalog.png');
   });
 });

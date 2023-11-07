@@ -200,8 +200,6 @@ article {
 
 .articleHeader .tags {
   display: flex;
-  /* TODO(emarquez): remove once we launch tags */
-  display: none;
 }
 
 .articleHeader .tags a {

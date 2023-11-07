@@ -7,6 +7,7 @@
      — Updated <time datetime="{{ lastUpdated }}">{{ lastUpdated | readableDate }}</time>
     {% endif %}
   </div>
+  <!-- TODO: Remove comment once tag support is enabled
   <div class="tags">
     {% for tag in tags %}
       {% if tag != 'articles-nav' %}
@@ -14,6 +15,7 @@
       {% endif %}
     {% endfor %}
   </div>
+  -->
   <div class="authors">
     {% for authorId in author or defaultAuthor %}
       {% set authorData = authors[authorId] %}
