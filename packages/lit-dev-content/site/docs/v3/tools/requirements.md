@@ -49,3 +49,22 @@ All modern browsers update automatically and users are highly likely to have a r
 ## Note on legacy browsers {#note-on-legacy-browsers}
 
 Lit 3 is not tested on legacy browsers, specifically Internet Explorer 11 and Classic Edge are not supported due to non-standard DOM behavior. If you must support legacy browsers, consider using Lit 2 with additional compilation and/or polyfills as described in [Building for legacy browsers](/docs/v2/tools/requirements#building-for-legacy-browsers).
+
+## Multiple versions of Lit {#multiple-lit-versions}
+
+If Lit is being used as an internal dependency of elements, elements can use different versions of Lit.
+We also take care to ensure that Lit 2 and Lit 3 are mostly interoperable with each other. For example, you can pass a Lit 2 template into a Lit 3 render function and vice-versa.
+
+Because having multiple compatible versions of Lit loaded is non-optimal, due to shipping extra duplicated bytes to the user, we raise a development mode warning.
+
+### Resolving multiple versions of Lit
+
+If you’re publishing a library that uses Lit, follow our [publishing best practices](https://lit.dev/docs/tools/publishing/#don't-bundle-minify-or-optimize-modules) so consumers of your library are able to de-duplicate Lit in their projects.
+
+If you’re seeing a `Multiple versions of Lit loaded` development mode warning, there are a couple things you can try.
+
+1. Find out which Lit libraries have multiple versions loaded by checking the following variables in your browser console: `window.litElementVersions`, `window.reactiveElementVersions`, and `window.litHtmlVersions`.
+
+2. Use `npm ls` (note, you can specify exact libraries to look for, e.g. `npm ls @lit/reactive-element`) to narrow down which dependencies are loading multiple different versions of Lit.
+
+3. Try to use `npm dedupe` to de-duplicate Lit. Use `npm ls` to verify if the duplicated Lit package was successfully de-duped.
