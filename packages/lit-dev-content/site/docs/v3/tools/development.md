@@ -107,17 +107,6 @@ If you’re seeing a `Multiple versions of Lit loaded` development mode warning,
 
 5. If there is still duplication, you may need to delete your package lock and `node_modules`. Then install the version of `lit` you want explicitly, followed by your dependencies.
 
-If you want to silence the warning, add the following code early in your application before Lit has been loaded to initialize the global `litIssuedWarnings` set, and preemptively add the warning to the set.
-
-```html
-<script>
-  window.litIssuedWarnings = new Set();
-  // By adding the Lit warning to this global set, Lit will no longer emit the multiple versions warning.
-  window.litIssuedWarnings.add(
-    'Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.'
-  );
-</script>
-```
 
 ## Local dev servers { #devserver }
 
