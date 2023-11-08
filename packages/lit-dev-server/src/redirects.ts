@@ -10,7 +10,7 @@ export const pageRedirects = new Map([
   ['/slack-invite',                   'https://discord.com/invite/buildWithLit'],
   ['/youtube',                        'https://www.youtube.com/@buildWithLit'],
   ['/msg/dev-mode',                   '/docs/tools/development/#development-and-production-builds'],
-  ['/msg/multiple-versions',          '/docs/tools/requirements/#multiple-lit-versions'],
+  ['/msg/multiple-versions',          '/docs/tools/development/#multiple-lit-versions'],
   ['/msg/polyfill-support-missing',   '/docs/v2/tools/requirements/#polyfills'],
   ['/msg/class-field-shadowing',      '/docs/components/properties/#avoiding-issues-with-class-fields'],
   // TODO(aomarks) Should we add something specifically about this issue?

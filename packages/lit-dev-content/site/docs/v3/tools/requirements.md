@@ -50,37 +50,3 @@ All modern browsers update automatically and users are highly likely to have a r
 
 Lit 3 is not tested on legacy browsers, specifically Internet Explorer 11 and Classic Edge are not supported due to non-standard DOM behavior. If you must support legacy browsers, consider using Lit 2 with additional compilation and/or polyfills as described in [Building for legacy browsers](/docs/v2/tools/requirements#building-for-legacy-browsers).
 
-## Multiple versions of Lit {#multiple-lit-versions}
-
-If Lit is being used as an internal dependency of elements, elements can use different versions of Lit.
-We also take care to ensure that Lit 2 and Lit 3 are mostly interoperable with each other. For example, you can pass a Lit 2 template into a Lit 3 render function and vice-versa.
-
-Because having multiple compatible versions of Lit loaded is non-optimal, due to shipping extra duplicated bytes to the user, we raise a development mode warning.
-
-If you’re publishing a library that uses Lit, follow our [publishing best practices](https://lit.dev/docs/tools/publishing/#don't-bundle-minify-or-optimize-modules) so consumers of your library are able to de-duplicate Lit in their projects.
-
-### Resolving multiple versions of Lit
-
-If you’re seeing a `Multiple versions of Lit loaded` development mode warning, there are a couple things you can try.
-
-1. Find out which Lit libraries have multiple versions loaded by checking the following variables in your browser console: `window.litElementVersions`, `window.reactiveElementVersions`, and `window.litHtmlVersions`.
-
-2. Use `npm ls` (note, you can specify exact libraries to look for, e.g. `npm ls @lit/reactive-element`) to narrow down which dependencies are loading multiple different versions of Lit.
-
-3. Try to use `npm dedupe` to de-duplicate Lit. Use `npm ls` to verify if the duplicated Lit package was successfully de-duped.
-
-4. If there is still duplication, you may need to delete your package lock and `node_modules`. Then install the version of `lit` you want explicitly, followed by your dependencies.
-
-It is possible to follow these steps, and not be able to de-duplicate Lit. For example, a library you depend on may bundle a specific version of Lit in a way that cannot be de-duplicated. In these cases the warning can be ignored.
-
-If the warning is distracting and you want to silence it, add the following code early in your application before Lit has been loaded to initialize the global `litIssuedWarnings` set, and preemptively add the warning to the set.
-
-```html
-<script>
-  window.litIssuedWarnings = new Set();
-  // By adding the Lit warning to this global set, Lit will no longer emit the multiple versions warning.
-  window.litIssuedWarnings.add(
-    'Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.'
-  );
-</script>
-```
