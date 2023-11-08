@@ -57,9 +57,9 @@ We also take care to ensure that Lit 2 and Lit 3 are mostly interoperable with e
 
 Because having multiple compatible versions of Lit loaded is non-optimal, due to shipping extra duplicated bytes to the user, we raise a development mode warning.
 
-### Resolving multiple versions of Lit
-
 If you’re publishing a library that uses Lit, follow our [publishing best practices](https://lit.dev/docs/tools/publishing/#don't-bundle-minify-or-optimize-modules) so consumers of your library are able to de-duplicate Lit in their projects.
+
+### Resolving multiple versions of Lit
 
 If you’re seeing a `Multiple versions of Lit loaded` development mode warning, there are a couple things you can try.
 
