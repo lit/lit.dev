@@ -80,6 +80,8 @@ It's best for code size if the code to control warnings is eliminated in your ow
 
 #### Multiple versions of Lit warning {#multiple-lit-versions}
 
+A dev mode only warning is triggered when multiple versions, or even multiple copies of the same version, of any of the Lit core packages – `lit-html`, `lit-element`, `@lit/reactive-element` – are detected.
+
 If Lit is being used as an internal dependency of elements, elements can use different versions of Lit and are completely interoperable.
 We also take care to ensure that Lit 2 and Lit 3 are mostly compatible with each other. For example, you can pass a Lit 2 template into a Lit 3 render function and vice-versa.
 
