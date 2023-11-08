@@ -68,3 +68,19 @@ If you’re seeing a `Multiple versions of Lit loaded` development mode warning,
 2. Use `npm ls` (note, you can specify exact libraries to look for, e.g. `npm ls @lit/reactive-element`) to narrow down which dependencies are loading multiple different versions of Lit.
 
 3. Try to use `npm dedupe` to de-duplicate Lit. Use `npm ls` to verify if the duplicated Lit package was successfully de-duped.
+
+4. If there is still duplication, you may need to delete your package lock and `node_modules`. Then install the version of `lit` you want explicitly, followed by your dependencies.
+
+It is possible to follow these steps, and not be able to de-duplicate Lit. For example, a library you depend on may bundle a specific version of Lit in a way that cannot be de-duplicated. In these cases the warning can be ignored.
+
+If the warning is distracting and you want to silence it, add the following code early in your application before Lit has been loaded to initialize the global `litIssuedWarnings` set, and preemptively add the warning to the set.
+
+```html
+<script>
+  window.litIssuedWarnings = new Set();
+  // By adding the Lit warning to this global set, Lit will no longer emit the multiple versions warning.
+  window.litIssuedWarnings.add(
+    'Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.'
+  );
+</script>
+```
