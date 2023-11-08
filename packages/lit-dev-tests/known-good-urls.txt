@@ -464,6 +464,7 @@ https://lit.dev/docs/tools/development/#development-and-production-builds
 https://lit.dev/docs/getting-started/
 https://lit.dev/tutorials/
 https://lit.dev/learn/
+https://lit.dev/learn/#filter=tutorial
 https://lit.dev/playground/
 https://github.com/lit/lit/pull/2034
 https://github.com/lit/lit/blob/main/packages/lit/CHANGELOG.md
