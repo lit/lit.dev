@@ -49,3 +49,4 @@ All modern browsers update automatically and users are highly likely to have a r
 ## Note on legacy browsers {#note-on-legacy-browsers}
 
 Lit 3 is not tested on legacy browsers, specifically Internet Explorer 11 and Classic Edge are not supported due to non-standard DOM behavior. If you must support legacy browsers, consider using Lit 2 with additional compilation and/or polyfills as described in [Building for legacy browsers](/docs/v2/tools/requirements#building-for-legacy-browsers).
+

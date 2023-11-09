@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   min-height: 50px;
-  background: #5865F2;
+  background: var(--color-blue);
   color: white;
 }
 
