@@ -81,6 +81,9 @@ const checkRedirect = async (
 Searched for file ${indexHtmlPath} or ${directPath}`;
     }
     if (hash) {
+      if (pathname === '/learn/' && hash.includes('filter')) {
+        return OK;
+      }
       // Another hack. Just do a regexp search for e.g. id="somesection" instead
       // of DOM parsing. Should be good enough, especially given how regular our
       // Markdown generated HTML is.
