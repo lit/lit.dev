@@ -81,7 +81,7 @@ const checkRedirect = async (
 Searched for file ${indexHtmlPath} or ${directPath}`;
     }
     if (hash) {
-      if (pathname === "/learn/" && hash.includes("filter")) {
+      if (pathname === '/learn/' && hash.includes('filter')) {
         return OK;
       }
       // Another hack. Just do a regexp search for e.g. id="somesection" instead
