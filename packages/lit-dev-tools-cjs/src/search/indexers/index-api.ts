@@ -7,6 +7,9 @@ import {docIndexer, UrlToFile, walkDir} from './utils.js';
 import path from 'path';
 
 export const indexApi = async (outputDir: string, idOffset = 0) => {
+  if (outputDir === '_dev') {
+    return [];
+  }
   // Root path of the starting point for indexing.
   const API_PATH = path.resolve(
     __dirname,

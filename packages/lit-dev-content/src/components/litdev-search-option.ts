@@ -8,6 +8,7 @@ import {LitElement, html, css, PropertyValues} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
 import {hashtagIcon} from '../icons/hashtag-icon.js';
 import {paperDocumentIcon} from '../icons/paper-document-icon.js';
+import {openInNewIcon} from '../icons/open-in-new-icon.js';
 import {renderAlgoliaSnippet} from '../util/render-algolia-suggestions.js';
 
 /**
@@ -32,6 +33,9 @@ export class LitdevSearchOption extends LitElement {
 
   @property({type: Boolean, attribute: true})
   checked = false;
+
+  @property({type: Boolean})
+  isExternal = false;
 
   static styles = css`
     :host {
@@ -107,21 +111,29 @@ export class LitdevSearchOption extends LitElement {
   `;
 
   render() {
+    const showText = this.isSubsection || (this.isExternal && this.text);
     return html`
       <div class="suggestion">
         <div class="icon-wrapper" aria-hidden="true">
           ${this.isSubsection ? hashtagIcon : paperDocumentIcon}
         </div>
-        <div class="title-and-text ${this.isSubsection ? 'has-text' : ''}">
-          ${this.isSubsection
+        <div class="title-and-text ${showText ? 'has-text' : ''}">
+          ${showText
             ? html`<span class="title">
-                  ${renderAlgoliaSnippet(this.heading)}
+                  ${renderAlgoliaSnippet(this.heading || this.title)}
                 </span>
                 <span class="text"> ${renderAlgoliaSnippet(this.text)} </span>`
             : html`<span class="title">
                 ${renderAlgoliaSnippet(this.title)}
               </span>`}
         </div>
+        ${this.isExternal
+          ? html`
+              <div class="icon-wrapper end" aria-hidden="true">
+                ${openInNewIcon}
+              </div>
+            `
+          : ''}
       </div>
     `;
   }

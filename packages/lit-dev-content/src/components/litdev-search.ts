@@ -33,6 +33,8 @@ type DocTypes =
   | DocType<'Tutorial', 'tutorial'>
   | DocType<'Docs', 'docs'>
   | DocType<'API', 'api'>
+  | DocType<'Video', 'video'>
+  | DocType<'MDN', 'other'>
   | DocType<'Other', 'other'>;
 
 /**
@@ -49,6 +51,7 @@ interface UserFacingPageData {
   text: string;
   parentID?: string;
   docType: DocTypes;
+  isExternal?: boolean;
 }
 
 /**
@@ -269,7 +272,13 @@ export class LitDevSearch extends LitElement {
           ${repeat(
             suggestionGroup.suggestions,
             ({objectID}) => objectID,
-            ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
+            ({
+              relativeUrl,
+              _highlightResult,
+              _snippetResult,
+              parentID,
+              isExternal,
+            }) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
               const text = _snippetResult.text.value;
@@ -284,6 +293,7 @@ export class LitDevSearch extends LitElement {
                   .heading="${heading}"
                   .text="${text}"
                   .isSubsection="${!!parentID}"
+                  .isExternal="${!!isExternal}"
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
                   @click="${() => this._navigate(relativeUrl)}"
@@ -581,6 +591,11 @@ export class LitDevSearch extends LitElement {
     .group .tag.docs {
       color: white;
       background-color: #324fff;
+    }
+
+    .group .tag.video {
+      color: white;
+      background-color: #eb0000;
     }
 
     .group .tag.tutorial {

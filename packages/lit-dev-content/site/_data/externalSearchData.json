@@ -9,5 +9,49 @@
       "tag": "other"
     },
     "isExternal": true
+  },
+  {
+    "relativeUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/attachInternals",
+    "title": "HTMLElement: attachInternals() method",
+    "heading": "",
+    "text": "The HTMLElement.attachInternals() method returns an ElementInternals object. This method allows a custom element to participate in HTML forms. The ElementInternals interface provides utilities for working with these elements in the same way you would work with any standard HTML form element, and also exposes the Accessibility Object Model to the element.",
+    "docType": {
+      "type": "MDN",
+      "tag": "other"
+    },
+    "isExternal": true
+  },
+  {
+    "relativeUrl": "https://webkit.org/blog/13711/elementinternals-and-form-associated-custom-elements/",
+    "title": "ElementInternals and Form-Associated Custom Elements",
+    "heading": "",
+    "text": "In Safari Technology Preview 162 we enabled the support for ElementInternals and the form-associated custom elements by default. Custom elements is a feature which lets web developers create reusable components by defining their own HTML elements without relying on a JavaScript framework. ElementInternals is a new addition to custom elements API, which allows developers to manage a custom element’s internal states such as default ARIA role or ARIA label as well as having custom elements participate in form submissions and validations.",
+    "docType": {
+      "type": "WebKit",
+      "tag": "other"
+    },
+    "isExternal": true
+  },
+  {
+    "relativeUrl": "https://web.dev/articles/more-capable-form-controls",
+    "title": "More capable form controls",
+    "heading": "",
+    "text": "With a new event, and custom elements APIs, participating in forms just got a lot easier. Many developers build custom form controls, either to provide controls that aren't built in to the browser, or to customize the look and feel beyond what's possible with the built-in form controls. However, it can be difficult to replicate the features of built-in HTML form controls. Consider some of the features an <input> element gets automatically when you add it to a form: The input is automatically added to the form's list of controls. The input's value is automatically submitted with the form. The input participates in form validation. You can style the input using the :valid and :invalid pseudoclasses. The input is notified when the form is reset, when the form is reloaded, or when the browser tries to autofill form entries. Custom form controls typically have few of these features. Developers can work around some of the limitations in JavaScript, like adding a hidden <input> to a form to participate in form submission. But other features just can't be replicated in JavaScript alone. Two new web features make it easier to build custom form controls, and remove the limitations of current custom controls: The formdata event lets an arbitrary JavaScript object participate in form submission, so you can add form data without using a hidden <input>. The Form-associated custom elements API lets custom elements act more like built-in form controls. These two features can be used to create new kinds of controls that work better.",
+    "docType": {
+      "type": "Web.dev",
+      "tag": "other"
+    },
+    "isExternal": true
+  },
+  {
+    "relativeUrl": "https://stackblitz.com/edit/stackblitz-starters-bdtxdy?file=stories%2FButton.js,components%2Fmy-button.js",
+    "title": "Lit + Storybook Example",
+    "heading": "",
+    "text": "Using npx storybook@latest init and following the prompts for web components, you can generate a Storybook project for your Lit Elements like this project!",
+    "docType": {
+      "type": "StackBlitz",
+      "tag": "other"
+    },
+    "isExternal": true
   }
 ]

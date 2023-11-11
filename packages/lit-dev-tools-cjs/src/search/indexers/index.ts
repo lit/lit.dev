@@ -8,3 +8,5 @@ export {indexDocs} from './index-docs.js';
 export {indexArticles} from './index-articles.js';
 export {indexApi} from './index-api.js';
 export {indexTutorials} from './index-tutorials.js';
+export {indexVideos} from './index-videos.js';
+export {indexExternalData} from './index-external-data.js';

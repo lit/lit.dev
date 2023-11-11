@@ -10,6 +10,8 @@ import {
   indexArticles,
   indexApi,
   indexTutorials,
+  indexVideos,
+  indexExternalData,
 } from './indexers/index.js';
 
 /**
@@ -29,6 +31,8 @@ type DocTypes =
   | DocType<'Tutorial', 'tutorial'>
   | DocType<'Docs', 'docs'>
   | DocType<'API', 'api'>
+  | DocType<'Video', 'video'>
+  | DocType<'MDN', 'other'>
   | DocType<'Other', 'other'>;
 
 /**
@@ -41,6 +45,7 @@ export interface UserFacingPageData {
   heading: string;
   text: string;
   parentID?: string;
+  isExternal?: boolean;
   docType: DocTypes;
 }
 
@@ -55,17 +60,30 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     `../../../lit-dev-content/${outputDir}/searchIndex.json`
   );
   const docs: UserFacingPageData[] = await indexDocs(outputDir);
-  let idOffset = Number(docs[docs.length - 1].objectID);
+  let idOffset = Number(docs[docs.length - 1]?.objectID);
   const articles: UserFacingPageData[] = await indexArticles(
     outputDir,
     idOffset
   );
 
-  idOffset = Number(articles[articles.length - 1].objectID);
+  let lastId = Number(articles[articles.length - 1]?.objectID);
+  idOffset = isNaN(lastId) ? idOffset : lastId;
   const api: UserFacingPageData[] = await indexApi(outputDir, idOffset);
 
-  idOffset = Number(api[api.length - 1].objectID);
+  lastId = Number(api[api.length - 1]?.objectID);
+  idOffset = isNaN(lastId) ? idOffset : lastId;
   const tutorials: UserFacingPageData[] = await indexTutorials(
+    outputDir,
+    idOffset
+  );
+
+  lastId = Number(tutorials[tutorials.length - 1]?.objectID);
+  idOffset = isNaN(lastId) ? idOffset : lastId;
+  const videos: UserFacingPageData[] = await indexVideos(outputDir, idOffset);
+
+  lastId = Number(videos[videos.length - 1]?.objectID);
+  idOffset = isNaN(lastId) ? idOffset : lastId;
+  const externalSearchData: UserFacingPageData[] = await indexExternalData(
     outputDir,
     idOffset
   );
@@ -75,6 +93,8 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     ...articles,
     ...api,
     ...tutorials,
+    ...videos,
+    ...externalSearchData,
   ];
 
   fs.writeFileSync(OUT_PATH, JSON.stringify(searchIndex));
