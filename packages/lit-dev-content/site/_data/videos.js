@@ -94,9 +94,5 @@ const loadVideoData = () =>
  *   To be consumed by the tutorials catalog (/tutorials/index.html).
  */
 module.exports = async () => {
-  const videos = loadVideoData();
-  /*
-   * All the content to put on the learn page.
-   */
-  return videos;
+  return loadVideoData();
 };

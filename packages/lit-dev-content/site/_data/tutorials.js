@@ -82,6 +82,6 @@ module.exports = async () => {
     loadTutorialData('word-viewer'),
 
     // Draft
-    loadTutorialData('wc-to-lit'),
+    // loadTutorialData('wc-to-lit'),
   ]);
 };
