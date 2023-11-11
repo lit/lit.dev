@@ -18,7 +18,7 @@ const path = require('path');
  * @typedef {{
  *  featured: FeaturedOptions,
  * }} LoadDataOptions
-*/
+ */
 
 /** @type{LoadDataOptions} */
 const defaultOptions = {featured: {position: undefined}};
@@ -33,7 +33,7 @@ const defaultOptions = {featured: {position: undefined}};
  *     /tutorials/index.html
  */
 const loadTutorialData = async (dirname, options = defaultOptions) => {
-  options = {...defaultOptions, ...options}
+  options = {...defaultOptions, ...options};
   const tutorialDir = path.resolve(
     __dirname,
     '../../samples/tutorials',
@@ -63,14 +63,17 @@ const loadTutorialData = async (dirname, options = defaultOptions) => {
  *   To be consumed by the tutorials catalog (/tutorials/index.html).
  */
 module.exports = async () => {
-  const tutorials = await Promise.all([
+  /*
+   * tutorial data in order of rendering on the page plus stringified JSON for
+   * search indexing.
+   */
+  return await Promise.all([
     // Learn
     loadTutorialData('intro-to-lit', {featured: {position: 0}}),
     loadTutorialData('working-with-lists', {featured: {position: 1}}),
     loadTutorialData('reactivity'),
     loadTutorialData('custom-attribute-converter'),
     loadTutorialData('async-directive'),
-
 
     // Build
     loadTutorialData('svg-templates'),
@@ -79,11 +82,6 @@ module.exports = async () => {
     loadTutorialData('word-viewer'),
 
     // Draft
-    loadTutorialData('wc-to-lit'),
+    // loadTutorialData('wc-to-lit'),
   ]);
-  /*
-   * tutorial data in order of rendering on the page plus stringified JSON for
-   * search indexing.
-   */
-  return {eleventyComputed: {tutorials}};
 };
