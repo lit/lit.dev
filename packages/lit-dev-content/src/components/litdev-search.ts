@@ -34,7 +34,6 @@ type DocTypes =
   | DocType<'docs'>
   | DocType<'api'>
   | DocType<'video'>
-  | DocType<'other'>
   | DocType<'other'>;
 
 /**
