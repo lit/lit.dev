@@ -1,0 +1,5 @@
+---
+permalink: external-search-data/data.json
+---
+
+{% if not env.DEV %}{{ externalSearchData | dump | safe }}{% endif %}

@@ -1,0 +1,7 @@
+---
+permalink: external-search-data/videos.json
+---
+
+{% if not env.DEV %}
+{{ videos | videosToAlgoliaRecords | dump | safe }}
+{% endif %}

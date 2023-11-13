@@ -29,6 +29,10 @@ export const indexTutorials = async (
   outputDir: string,
   idOffset = 0
 ): Promise<UserFacingPageData[]> => {
+  if (outputDir === '_dev') {
+    return [];
+  }
+
   const TUTORIAL_PATH = path.resolve(
     __dirname,
     `../../../../lit-dev-content/${outputDir}/tutorials`

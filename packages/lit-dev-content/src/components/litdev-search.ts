@@ -19,8 +19,8 @@ import './lazy-svg.js';
 /**
  * Generic that denotes the type of document.
  */
-interface DocType<T extends string, U extends string> {
-  type: T;
+interface DocType<U extends string> {
+  type: string;
   tag: U;
 }
 
@@ -29,11 +29,12 @@ interface DocType<T extends string, U extends string> {
  * frontend and used to re-rank results on the frontend.
  */
 type DocTypes =
-  | DocType<'Article', 'article'>
-  | DocType<'Tutorial', 'tutorial'>
-  | DocType<'Docs', 'docs'>
-  | DocType<'API', 'api'>
-  | DocType<'Other', 'other'>;
+  | DocType<'article'>
+  | DocType<'tutorial'>
+  | DocType<'docs'>
+  | DocType<'api'>
+  | DocType<'video'>
+  | DocType<'other'>;
 
 /**
  * Representation of each record indexed by our PageChunker which is published
@@ -49,6 +50,7 @@ interface UserFacingPageData {
   text: string;
   parentID?: string;
   docType: DocTypes;
+  isExternal?: boolean;
 }
 
 /**
@@ -269,7 +271,13 @@ export class LitDevSearch extends LitElement {
           ${repeat(
             suggestionGroup.suggestions,
             ({objectID}) => objectID,
-            ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
+            ({
+              relativeUrl,
+              _highlightResult,
+              _snippetResult,
+              parentID,
+              isExternal,
+            }) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
               const text = _snippetResult.text.value;
@@ -284,6 +292,7 @@ export class LitDevSearch extends LitElement {
                   .heading="${heading}"
                   .text="${text}"
                   .isSubsection="${!!parentID}"
+                  .isExternal="${!!isExternal}"
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
                   @click="${() => this._navigate(relativeUrl)}"
@@ -581,6 +590,11 @@ export class LitDevSearch extends LitElement {
     .group .tag.docs {
       color: white;
       background-color: #324fff;
+    }
+
+    .group .tag.video {
+      color: white;
+      background-color: #eb0000;
     }
 
     .group .tag.tutorial {

@@ -216,6 +216,22 @@ ${content}
     return value;
   });
 
+  eleventyConfig.addFilter('videosToAlgoliaRecords', function (videos) {
+    return videos.map((video) => {
+      return {
+        relativeUrl: video.url,
+        title: video.title,
+        heading: '',
+        text: video.summary,
+        docType: {
+          type: 'Video',
+          tag: 'video',
+        },
+        isExternal: true,
+      };
+    });
+  });
+
   const sortDocs = (a, b) => {
     if (a.fileSlug == 'docs') {
       return -1;
