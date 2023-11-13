@@ -59,25 +59,25 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     `../../../lit-dev-content/${outputDir}/searchIndex.json`
   );
   const docs: UserFacingPageData[] = await indexDocs(outputDir);
-  let idOffset = Number(docs[docs.length - 1]?.objectID);
+  let idOffset = Number(docs[docs.length - 1].objectID);
   const articles: UserFacingPageData[] = await indexArticles(
     outputDir,
     idOffset
   );
 
-  idOffset = Number(articles[articles.length - 1]?.objectID);
+  idOffset = Number(articles[articles.length - 1].objectID);
   const api: UserFacingPageData[] = await indexApi(outputDir, idOffset);
 
-  idOffset = Number(api[api.length - 1]?.objectID);
+  idOffset = Number(api[api.length - 1].objectID);
   const tutorials: UserFacingPageData[] = await indexTutorials(
     outputDir,
     idOffset
   );
 
-  idOffset = Number(tutorials[tutorials.length - 1]?.objectID);
+  idOffset = Number(tutorials[tutorials.length - 1].objectID);
   const videos: UserFacingPageData[] = await indexVideos(outputDir, idOffset);
 
-  idOffset = Number(videos[videos.length - 1]?.objectID);
+  idOffset = Number(videos[videos.length - 1].objectID);
   const externalSearchData: UserFacingPageData[] = await indexExternalData(
     outputDir,
     idOffset
