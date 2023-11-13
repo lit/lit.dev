@@ -19,8 +19,8 @@ import './lazy-svg.js';
 /**
  * Generic that denotes the type of document.
  */
-interface DocType<T extends string, U extends string> {
-  type: T;
+interface DocType<U extends string> {
+  type: string;
   tag: U;
 }
 
@@ -29,13 +29,13 @@ interface DocType<T extends string, U extends string> {
  * frontend and used to re-rank results on the frontend.
  */
 type DocTypes =
-  | DocType<'Article', 'article'>
-  | DocType<'Tutorial', 'tutorial'>
-  | DocType<'Docs', 'docs'>
-  | DocType<'API', 'api'>
-  | DocType<'Video', 'video'>
-  | DocType<'MDN', 'other'>
-  | DocType<'Other', 'other'>;
+  | DocType<'article'>
+  | DocType<'tutorial'>
+  | DocType<'docs'>
+  | DocType<'api'>
+  | DocType<'video'>
+  | DocType<'other'>
+  | DocType<'other'>;
 
 /**
  * Representation of each record indexed by our PageChunker which is published

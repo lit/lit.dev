@@ -3,6 +3,7 @@
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
+
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import type {UserFacingPageData} from '../plugin';
@@ -15,10 +16,9 @@ export async function indexExternalData(
     return [];
   }
 
-  // Path of the video index.
+  // Path of the external data index.
   const EXTERNAL_DATA_INDEX_PATH = path.resolve(
     __dirname,
-    // Load the article content itself not the tags pages.
     `../../../../lit-dev-content/${outputDir}/external-search-data/data.json`
   );
 

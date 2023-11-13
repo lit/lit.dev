@@ -2,5 +2,6 @@
 permalink: external-search-data/videos.json
 ---
 
-{% if not env.DEV %}{{ videos | videosToAlgoliaRecords | dump | safe }}{%endif
-%}
+{% if not env.DEV %}
+{{ videos | videosToAlgoliaRecords | dump | safe }}
+{% endif %}

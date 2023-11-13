@@ -17,8 +17,8 @@ import {
 /**
  * Generic that describes the type of document.
  */
-export interface DocType<T extends string, U extends string> {
-  type: T;
+export interface DocType<U extends string> {
+  type: string;
   tag: U;
 }
 
@@ -27,13 +27,13 @@ export interface DocType<T extends string, U extends string> {
  * frontend and used to re-rank results on the frontend.
  */
 type DocTypes =
-  | DocType<'Article', 'article'>
-  | DocType<'Tutorial', 'tutorial'>
-  | DocType<'Docs', 'docs'>
-  | DocType<'API', 'api'>
-  | DocType<'Video', 'video'>
-  | DocType<'MDN', 'other'>
-  | DocType<'Other', 'other'>;
+  | DocType<'article'>
+  | DocType<'tutorial'>
+  | DocType<'docs'>
+  | DocType<'api'>
+  | DocType<'video'>
+  | DocType<'other'>
+  | DocType<'other'>;
 
 /**
  * Shape of an Algolia search index record.
@@ -66,23 +66,19 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     idOffset
   );
 
-  let lastId = Number(articles[articles.length - 1]?.objectID);
-  idOffset = isNaN(lastId) ? idOffset : lastId;
+  idOffset = Number(articles[articles.length - 1]?.objectID);
   const api: UserFacingPageData[] = await indexApi(outputDir, idOffset);
 
-  lastId = Number(api[api.length - 1]?.objectID);
-  idOffset = isNaN(lastId) ? idOffset : lastId;
+  idOffset = Number(api[api.length - 1]?.objectID);
   const tutorials: UserFacingPageData[] = await indexTutorials(
     outputDir,
     idOffset
   );
 
-  lastId = Number(tutorials[tutorials.length - 1]?.objectID);
-  idOffset = isNaN(lastId) ? idOffset : lastId;
+  idOffset = Number(tutorials[tutorials.length - 1]?.objectID);
   const videos: UserFacingPageData[] = await indexVideos(outputDir, idOffset);
 
-  lastId = Number(videos[videos.length - 1]?.objectID);
-  idOffset = isNaN(lastId) ? idOffset : lastId;
+  idOffset = Number(videos[videos.length - 1]?.objectID);
   const externalSearchData: UserFacingPageData[] = await indexExternalData(
     outputDir,
     idOffset

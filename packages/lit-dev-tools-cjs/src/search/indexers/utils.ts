@@ -67,9 +67,9 @@ export const walkDir = async (
 export const docIndexer = async (
   relativeLinksToHTMLFile: UrlToFile,
   docType:
-    | DocType<'Docs', 'docs'>
-    | DocType<'API', 'api'>
-    | DocType<'Article', 'article'>,
+    | DocType<'docs'>
+    | DocType<'api'>
+    | DocType<'article'>,
   idOffset: number
 ) => {
   let id = idOffset;
