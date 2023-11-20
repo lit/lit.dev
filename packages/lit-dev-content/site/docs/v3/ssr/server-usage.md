@@ -26,7 +26,7 @@ Typically `value` is a `TemplateResult` produced by a Lit template expression, l
 html`<h1>Hello</h1>`
 ```
 
-The template can contain custom elements. If they are defined on the server, they'll be rendered in turn, along with their templates.
+The template can contain custom elements. If the custom elements are defined on the server, they'll be rendered in turn, along with their templates.
 
 ```ts
 import {render} from '@lit-labs/ssr';
