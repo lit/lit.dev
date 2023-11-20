@@ -26,10 +26,12 @@ Typically `value` is a `TemplateResult` produced by a Lit template expression, l
 html`<h1>Hello</h1>`
 ```
 
-The template can contain custom elements, which are rendered in turn, along with their templates.
+The template can contain custom elements. If the custom elements are defined on the server, they'll be rendered in turn, along with their templates.
 
 ```ts
 import {render} from '@lit-labs/ssr';
+// Import `my-element` on the server to server render it.
+import './my-element.js';
 
 const result = render(html`
   <h1>Hello SSR!</h1>
@@ -40,6 +42,8 @@ const result = render(html`
 To render a single element, you render a template that only contains that element:
 
 ```ts
+import './my-element.js';
+
 const result = render(html`<my-element></my-element>`);
 ```
 
