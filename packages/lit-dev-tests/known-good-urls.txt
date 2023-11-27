@@ -118,7 +118,6 @@ https://jasmine.github.io/
 https://modern-web.dev/guides/test-runner/getting-started
 https://www.npmjs.com/
 https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
-https://kangax.github.io/compat-table/es2016plus/
 https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md
 https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry
 https://github.com/webcomponents/gold-standard/wiki
