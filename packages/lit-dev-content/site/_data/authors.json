@@ -59,5 +59,15 @@
     "image": {
       "url": "authors/elliott-marquez.webp"
     }
+  },
+  "james-garbutt": {
+    "name": "James Garbutt",
+    "links": {
+      "twitter": "43081j",
+      "github": "43081j"
+    },
+    "image": {
+      "url": "authors/james-garbutt.jpg"
+    }
   }
 }
