@@ -333,7 +333,7 @@ Creates a typed Context object
 **Import**:
 
 ```ts
-import {property} from '@lit/context';
+import {createContext} from '@lit/context';
 ```
 
 **Signature**:
