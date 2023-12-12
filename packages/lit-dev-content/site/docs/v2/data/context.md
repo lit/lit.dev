@@ -335,7 +335,7 @@ Creates a typed Context object
 **Import**:
 
 ```ts
-import {property} from '@lit-labs/context';
+import {createContext} from '@lit-labs/context';
 ```
 
 **Signature**:
