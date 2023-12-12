@@ -27,7 +27,7 @@ Out of the box, tailwind basically provides some global CSS classes and injects
 the associated CSS at build time (via postcss).
 
 This conflicts with how web components work, since each web component has its
-own natively scoped stylesheet rather than inherting any global styles. This
+own natively scoped stylesheet rather than inheriting any global styles. This
 is why Tailwind will not be much use to us without further setup.
 
 ## Overview of solution
@@ -84,7 +84,7 @@ class MyElement extends LitElement {
 }
 ```
 
-As you can see, we want to our `my-element.css` file to contain tailwind
+As you can see, we want our `my-element.css` file to contain tailwind
 mixins, and we want to use the resulting classes in our element's `render`
 method.
 
@@ -119,11 +119,9 @@ export default {
 }
 ```
 
-In our case, our sources are TypeScript, so we have the initial `@type` comment
-to give us auto-completion for the object's properties.
-
-The rest of this file is straight forward. The important part is `content`,
-specifying where our sources are so tailwind can detect which classes we have
+Tailwind [configuration](https://tailwindcss.com/docs/configuration) can be
+modified to fit your use case. The important part is for `content` to specify
+where our component sources are so tailwind can detect which classes we have
 used.
 
 In our `postcss.config.js`, we simply want to tell postcss to use tailwind
