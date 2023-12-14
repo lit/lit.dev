@@ -362,7 +362,8 @@ blank.
   "tsConfig": "./tsconfig.json",
   "output": {
     "mode": "runtime",
-    "outputDir": "./src/generated/locales"
+    "outputDir": "./src/generated/locales",
+    "localeCodesModule": "./src/generated/locale-codes.ts"
   },
   "interchange": {
     "format": "xliff",
@@ -381,7 +382,8 @@ blank.
   ],
   "output": {
     "mode": "runtime",
-    "outputDir": "./src/generated/locales"
+    "outputDir": "./src/generated/locales",
+    "localeCodesModule": "./src/generated/locale-codes.js"
   },
   "interchange": {
     "format": "xliff",
