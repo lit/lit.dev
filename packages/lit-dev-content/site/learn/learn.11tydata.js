@@ -77,13 +77,13 @@ module.exports = {eleventyComputed: {learn: async (data) => {
       }
     }
     if (kind === "article" || kind === "tutorial") {
-      const { thumbnail } = content;
+      const { thumbnail, thumbnailExtension } = content;
       if (thumbnail) {
         // An article or tutorial can optionally provide an image thumbnail
         // (without a suffix).
         const expectedImages = [
-          `${thumbnail}_2x.jpg`,
-          `${thumbnail}.jpg`
+          `${thumbnail}_2x.${thumbnailExtension || 'jpg'}`,
+          `${thumbnail}.${thumbnailExtension || 'jpg'}`
         ];
         expectedImages.forEach(validateImageExists);
       }

@@ -59,5 +59,15 @@
     "image": {
       "url": "authors/elliott-marquez.webp"
     }
+  },
+  "brian-vann": {
+    "name": "Brian Taylor Vann",
+    "links": {
+      "github": "taylor-vann",
+      "linkedin": "brian-vann"
+    },
+    "image": {
+      "url": "authors/brian-vann.webp"
+    }
   }
 }

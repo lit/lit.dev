@@ -42,6 +42,13 @@
                     </svg>
                   </a>
                 {% endif %}
+                {% if authorData.links.linkedin %}
+                  <a href="https://www.linkedin.com/in/brian-vann/{{ authorData.links.linkedin }}" target="_blank">
+                    <svg aria-label="{{ authorData.name}}'s LinkedIn Account">
+                      <use href="{{ site.baseurl }}/images/social/linkedin.svg#linkedin"></use>
+                    </svg>
+                  </a>
+                {% endif %}
               </div>
             {% endif %}
           </div>
