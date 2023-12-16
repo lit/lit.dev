@@ -18,7 +18,7 @@ author:
 
 Lit makes it easy to create web components – reusable HTML elements with shared logic. However, different elements often have similar behaviors, and creating another element just for sharing a behavior may be excessive.
 
-[Reactive Controllers](/docs/composition/controllers/) can help the problem of sharing logic across components without having to create a new web component. They are similar to custom hooks in React, and in this article, we will use them to integrate the state manager Redux with Lit's rendering lifecycle for a more self-contained, composable, idiomatic Lit experience.
+[Reactive Controllers](/docs/composition/controllers/) can help with the problem of sharing logic across components without having to create a new web component. They are similar to custom hooks in React, and in this article, we will use them to integrate the state manager Redux with Lit's rendering lifecycle for a more self-contained, composable, idiomatic Lit experience.
 
 By the end of this article, you will learn how to use Reactive Controllers to integrate third party libraries into Lit by integrating Redux into Lit. To do this, we will create a Reactive Controller that selects part of a Redux state and updates a component whenever the state updates.
 
