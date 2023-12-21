@@ -513,7 +513,7 @@ export class ShapeCount extends LitElement {
 }
 ```
 
-Pressing the buttons in `shape-dials` should now update the count!
+The counts are now pulled from the state in Redux and any updates to the state will update the component!
 
 To accomplish this, we initialized the `SelectorController` with the shared Redux store and rendered the entire state.
 
