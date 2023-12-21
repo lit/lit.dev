@@ -24,7 +24,8 @@ By the end of this article, you will learn how to use Reactive Controllers to in
 
 ## What is a Reactive Controller?
 
-Reactive Controllers are a programming pattern that makes it easy to share logic between components by hooking into a component’s reactive update lifecycle. They achieve this by expecting an object that exposes an interface rather than having to create a new component or subclassing like you would with a mixin.
+Reactive Controllers are a programming pattern that makes it easy to share logic between components by hooking into a component’s reactive update lifecycle. They achieve this by expecting an object that exposes an interface rather than having to create a new component or subclassing like you would with a mixin. For those familiar with React, Reactive Controllers are similar to custom hooks,
+while mixins are analogous to higher-order components.
 
 One advantage of the Reactive Controller pattern is that it creates a **with** relationship rather than an **is** relationship. For example, a component that uses a Reactive Controller that incorporates Redux logic is a **component with Redux selector abilities**, whereas a mixin that does the same would mean that the **component is a Redux selector component**. This type of composability results in code that is more portable, self-contained, and easier to refactor. This is because components that inherit via subclassing are more closely coupled with the logic they inherit.
 
@@ -38,15 +39,15 @@ Reactive Controllers are just an interface – a pattern, which makes them easie
 
 ## What is Redux?
 
-[Redux](https://redux.js.org/) is a mature library that introduces patterns to manage state across a JavaScript application. Redux currently does not have much new adoption and is not endorsed by the Lit team as a solution for all state management needs. Despite this, we will be using Redux as an example for creating a Reactive Controller, because the patterns used in integrating Redux into Lit with a Reactive Controller may be used to integrate for other popular libraries.
+[Redux](https://redux.js.org/) is a mature library that introduces patterns to manage state across a JavaScript application. The Lit team does not have a particular endorsement for a single state management library, but we will be using Redux as an example for creating a Reactive Controller, because the patterns used in integrating Redux into Lit with a Reactive Controller may be used to integrate for other popular libraries.
 
-There are generally three concepts that Redux introduces:
+There are three general concepts that Redux describes:
 
 1. Stores
 2. Actions
 3. Reducers
 
-Stores are essentially stores of your current state. Actions are actions you would like to perform on the state, and reducers take actions and apply them to the current state to return a new state. Here is a diagram derived from the [official Redux documentation](https://redux.js.org/) that depicts the interaction pattern between these concepts:
+Stores contain the current application state. Actions describe what kind of change to make to the state, and reducers take actions and apply them to the current state to return a new state. Here is a diagram derived from the [official Redux documentation](redux.js.org/tutorials/essentials/part-1-overview-concepts#redux-application-data-flow ?) that depicts the interaction pattern between these concepts:
 
 <img
     srcset="/images/articles/redux-reactive-controllers/redux-cycle.webp 1x, /images/articles/redux-reactive-controllers/redux-cycle-2x.webp 2x"
@@ -76,17 +77,17 @@ The `ReactiveController` interface exposes four methods:
 - [`hostUpdate()`](/docs/api/controllers/#ReactiveController.hostUpdate)
 - [`hostUpdated()`](/docs/api/controllers/#ReactiveController.hostUpdated)
 
-In Lit `hostConnected()` is called when the host component is placed in the DOM or if the element is already placed in the DOM and the Reactive Controller was just attached. This is a good place to do initialization work when the host component is ready to be used such as adding event listeners.
+In Lit, `hostConnected()` is called when the host component is placed in the DOM, or, if the component is already placed in the DOM, when the Reactive Controller is attached to the component. This is a good place to do initialization work when the host component is ready to be used such as adding event listeners.
 
-Similarly `hostDisconnected()` is called when the element is removed from the DOM. This is a good place to do some cleanup work such as removing event listeners.
+Similarly, `hostDisconnected()` is called when the element is removed from the DOM. This is a good place to do some cleanup work such as removing event listeners.
 
 `hostUpdate()` is called before the element is about to render or re-render. This is a good place to synchronize or compute state before rendering.
 
-`hostUpdated()` is called after an element has just rendered or re-rendered. This is a good place to synchronize or compute a state that is reliant on rendered DOM. It is often discouraged to request an update to the host in this part of the lifecycle unless absolutely necessary as it may cause an unnecessary re-render of the component just after it has already rendered. Request host updates in `hostUpdated()` only when `hostUpdate()` cannot be utilized.
+`hostUpdated()` is called after an element has just rendered or re-rendered. This is a good place to synchronize or compute a state that is reliant on rendered DOM. It is often discouraged to request an update to the host in this part of the lifecycle unless absolutely necessary as it may cause an unnecessary re-render of the component just after it has already rendered. Request host updates in `hostUpdated()` only when `hostUpdate()` cannot be utilized and add guards against infinite re-renders.
 
 ### ReactiveControllerHost
 
-Reactive Controllers typically have access to an instance of an object that implements the `ReactiveControllerHost` interface, which is often passed to them upon initialization. This allows the Reactive Controller to attach itself to the host and request that it update and re-render.
+Reactive Controllers typically have access to an instance of an object that implements the `ReactiveControllerHost` interface, which is often passed to them upon initialization. This allows the Reactive Controller to attach itself to the host and request that it update and re-render. Lit elements implement this so they can serve as Reactive Controller hosts, but the Reactive Controller pattern is not exclusive to Lit.
 
 The `ReactiveControllerHost` interface exposes three methods and one property:
 
@@ -99,7 +100,7 @@ The `addController()` method takes in the controller that you want to hook into 
 
 {% aside "info" "no-header" %}
 
-If the host is already attached to the DOM or rendered onto the page, then `hostConnected()` will be called after attaching the Reactive Controller via `addController()`.
+If the host is already attached to the DOM or rendered onto the page – it is recommended that implementations of `ReactiveControllerHost` call `hostConnected()` after attaching the Reactive Controller via `addController()`.
 
 {% endaside %}
 
@@ -116,7 +117,7 @@ export class MyController implements ReactiveController {
 }
 ```
 
-The `removeController()` method is used less frequently than the other callbacks. It is useful when you do not want the controller to update with the host, such as: the host updates too often, the `hostUpdate[d]()` methods have slow or expensive logic, or you do not need the controller to run its updates while the component has been removed from the document.
+The `removeController()` method is used less frequently than the other callbacks. It is useful when you do not want the controller to update with the host, such as: the host updates too often, the `hostUpdate()` or `hostUpdated()` methods have slow or expensive logic, or you do not need the controller to run its updates while the component has been removed from the document.
 
 The `requestUpdate()` method is used to request the host component to re-run its update lifecycle and re-render. This is often called when the controller has a value that updates and should be reflected in the DOM. For example, the `@lit/task` package’s `Task` controller will do asynchronous work like fetching data or asynchronous rendering, and it calls the host’s `requestUpdate()` method to reflect that the state of the task has changed to pending, in progress, completed, or error which should be rendered in the component.
 
@@ -138,12 +139,9 @@ Redux has a bit of verbosity associated with it in order to enforce the Redux st
 We need to define an initial state, so in a <code>store.<ts-js></ts-js></code> file we will give the initial state the following shape:
 
 ```ts
-type Shape = 'square' | 'circle';
-interface State {
-  circles: number;
-  squares: number;
-  shapeList: Shape[];
-}
+export type Shape = 'square' | 'circle';
+export type State = Record<`${Shape}s`, number> & {shapeList: Shape[]};
+
 const initialState: State = {
   squares: 0,
   circles: 0,
@@ -155,93 +153,60 @@ const initialState: State = {
 
 Next we will write the reducer which will define which types of actions this store will be able to accept as well as determine how to update the state. Our reducer will have the following actions:
 
-- `increment_circles`
-- `increment_squares`
-- `decrement_circles`
-- `decrement_squares`
-- `reset`
+- `incrementShape()`
+- `decrementShape()`
+- `resetShapes()`
 
 Here is how the reducer could look like in the <code>store.<ts-js></ts-js></code> file:
 
 ```ts
-import type { Reducer, Action } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 ...
 
-const CIRCLE = 'circle';
-const SQUARE = 'square';
-const INCREMENT_CIRCLES = 'increment_circles';
-const DECREMENT_CIRCLES = 'decrement_circles';
-const INCREMENT_SQUARES = 'increment_squares';
-const DECREMENT_SQUARES = 'decrement_squares';
-const RESET = 'reset';
+const initialState: ShapesState = {squares: 0, circles: 0, shapeList: []};
 
-/**
- * The reducer for the shape store.
- */
-const countStoreReducer: Reducer<State, Action> = (
-  state = initialState,
-  action,
-) => {
-  switch (action.type) {
-    case RESET:
-      return {circles: 0, squares: 0, shapeList: []};
-    case INCREMENT_CIRCLES:
-      return {
-        ...state,
-        circles: state.circles + 1,
-        shapeList:  [...state.shapeList, CIRCLE],
-      };
-    case DECREMENT_CIRCLES:
-      return {
-        ...state,
-        circles: Math.max(state.circles - 1, 0),
-        shapeList: removeShape(state, CIRCLE),
-      };
-    case INCREMENT_SQUARES:
-      return {
-        ...state,
-        squares: state.squares + 1,
-        shapeList:  [...state.shapeList, SQUARE],
-      };
-    case DECREMENT_SQUARES:
-      return {
-        ...state,
-        squares: Math.max(state.squares - 1, 0),
-        shapeList: removeShape(state, SQUARE),
-      };
-    default:
-      return state;
+const shapeSlice = createSlice({
+  name: 'shapes',
+  initialState,
+  reducers: {
+    incrementShape: (state, action: PayloadAction<Shape>) => {
+      const shape = action.payload;
+      state[`${shape}s`] += 1;
+      state.shapeList.push(shape);
+    },
+    decrementShape: (state, action: PayloadAction<Shape>) => {
+      const shape = action.payload;
+      const index = state.shapeList.lastIndexOf(shape);
+      if (index > -1) {
+        state[`${shape}s`] -= 1;
+        state.shapeList.splice(index, 1);
+      }
+    },
+    resetShapes: (state) => {
+      state.circles = 0;
+      state.squares = 0;
+      state.shapeList = [];
+    }
   }
-}
+});
 
-/**
- * A helper function that removes the last index of a
- * given shape from the current state's `shapeList`.
- */
-const removeShape = (state: State, shape: Shape): Shape[] => {
-  const shapes = [...state.shapeList];
-  const index = shapes.lastIndexOf(shape);
-  if (index > -1) {
-    shapes.splice(index, 1);
-  }
-
-  return shapes;
-};
+export const {
+  incrementShape, decrementShape, resetShapes
+} = shapeSlice.actions
 ```
 
 ### Store
 
-Next we will create the store and initialize it with the `RESET` action:
+Next we will create the store and initialize it with the reducer created by the `shapeSlice`:
 
 ```ts
 import { configureStore } from '@reduxjs/toolkit';
 
-// The countStoreReducer is the reducer we made in the last section
-const store = configureStore({reducer: countStoreReducer});
-store.dispatch({type: RESET});
+// The shapeSlice.reducer is the reducer we made in the last section
+const store = configureStore({reducer: shapeSlice.reducer});
 ```
 
-We have not successfully created a Redux store that has an initial state and can update its state using the reducer.
+We have now successfully created a Redux store that has an initial state and can update its state using the reducer.
 
 <img
     srcset="/images/articles/redux-reactive-controllers/redux-completed.webp 1x, /images/articles/redux-reactive-controllers/redux-completed-2x.webp 2x"
@@ -253,7 +218,7 @@ We have not successfully created a Redux store that has an initial state and can
 
 ### Actions
 
-As demonstrated when initializing the state of the store, we can dispatch actions to the store using the [`store.dispatch(action)`](https://redux.js.org/api/store#dispatchaction) method. Let us create a `shape-dials` element that has circle and square increment buttons as well as a reset button. And upon click, will dispatch the appropriate actions:
+We can dispatch actions to the store using the [`store.dispatch(action)`](https://redux.js.org/api/store#dispatchaction) method. Let us create a `shape-dials` element that has circle and square increment buttons as well as a reset button. And upon click, will dispatch the appropriate actions:
 
 <img
     src="/images/articles/redux-reactive-controllers/shape-dials.webp"
@@ -266,11 +231,9 @@ As demonstrated when initializing the state of the store, we can dispatch action
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import {
-  DECREMENT_SQUARES,
-  INCREMENT_SQUARES,
-  DECREMENT_CIRCLES,
-  INCREMENT_CIRCLES,
-  RESET,
+  incrementShape,
+  decrementShape,
+  resetShapes
 } from './store.js';
 
 
@@ -299,23 +262,23 @@ export class ShapeDials extends LitElement {
     own dispatch method.
   */
   private decrementCircles() {
-    store.dispatch({type: DECREMENT_CIRCLES});
+    store.dispatch(decrementShape('circle'));
   }
 
   private incrementCircles() {
-    store.dispatch({type: INCREMENT_CIRCLES});
+    store.dispatch(incrementShape('circle'));
   }
 
   private decrementSquares() {
-    store.dispatch({type: DECREMENT_SQUARES});
+    store.dispatch(decrementShape('square'));
   }
 
   private incrementSquares() {
-    store.dispatch({type: INCREMENT_SQUARES});
+    store.dispatch(incrementShape('square'));
   }
 
   private reset() {
-     store.dispatch({type: RESET});
+     store.dispatch(resetShapes());
   }
 }
 ```
@@ -351,7 +314,7 @@ export class SelectorController implements ReactiveController {
 }
 ```
 
-Next, let's accept the following options: the Redux store in which we would like to subscribe to, as well as the Selector we would like to use to select what data we would like to render from the store:
+Next, let's accept the following options: the Redux store in which we would like to subscribe to, as well as the Selector we would like to use to select what data we would like to pick out from the store:
 
 ```ts
 import type { Store, Action as RAction } from '@reduxjs/toolkit';
@@ -364,25 +327,25 @@ export class SelectorController<
     Action extends RAction,
     Result = unknown
 > implements ReactiveController {
-  host: ReactiveControllerHost;
-  store: Store<State, Action>;
-  selector: Selector<State, Result>;
+  private _host: ReactiveControllerHost;
+  private _store: Store<State, Action>;
+  private _selector: Selector<State, Result>;
 
   constructor(
     host: ReactiveControllerHost,
     store: Store<State, Action>,
     selector: Selector<State, Result>,
   ) {
-    this.host = host;
+    this._host = host;
     host.addController(this);
 
-    this.store = store;
-    this.selector = selector;
+    this._store = store;
+    this._selector = selector;
   }
 }
 ```
 
-Now let’s initialize the initially selected value so that the user can access the state’s initial value with `selectorController.selected` using the user's selector:
+Now let’s initialize the initially selected value so that the user can access the state’s initial value with `selectorController.value` using the user's selector:
 
 ```ts
 ...
@@ -392,7 +355,7 @@ export class SelectorController<
     Result = unknown
 > implements ReactiveController {
   ...
-  selected: Result;
+  value: Result;
 
   constructor(
     host: ReactiveControllerHost,
@@ -400,16 +363,16 @@ export class SelectorController<
     selector: Selector<State, Result>,
   ) {
     ...
-    this.selected = selector(store.getState());
+    this.value = selector(store.getState());
   }
 }
 ```
 
 ### Updating the Component on Store Update
 
-We now have a controller that initializes to the initial state of the store, next let’s update `this.selected` when the state updates and then tell the host element to re-render when we have detected a change in the selected value.
+We now have a controller that initializes to the initial state of the store, next let’s update `this.value` when the state updates and then tell the host element to re-render when we have detected a change in the selected value.
 
-Redux stores have a [`Store.subscribe(listener)`](https://redux.js.org/api/store#subscribelistener) method which will call a given callback whenever the state of the store updates. Let's hook into this, update `this.selected`, and tell the host to update when the component is connected to the DOM:
+Redux stores have a [`Store.subscribe(listener)`](https://redux.js.org/api/store#subscribelistener) method which will call a given callback whenever the state of the store updates. Let's hook into this, update `this.value`, and tell the host to update when the component is connected to the DOM:
 
 ```ts
 ...
@@ -422,52 +385,17 @@ export class SelectorController<
 
   hostConnected() {
     this.store.subscribe(() => {
-      const selected = this.selector(this.store.getState());
-      this.selected = selected;
-      this.host.requestUpdate();
-    });
-  }
-}
-```
-
-Great! Now the controller will update its value and tell the host element to update whenever the state changes. A problem we may encounter here is that we will call `host.requestUpdate()` whenever *any* state changes and not specifically when our selected value changes. In this case, we should do an equality check and let the user decide if they would like to implement their own equality check:
-
-```ts
-...
-export type EqualityCheck = (a: unknown, b: unknown) => boolean;
-const tripleEquals: EqualityCheck = (a, b) => a === b;
-
-export class SelectorController<
-    State,
-    Action extends RAction,
-    Result = unknown
-> implements ReactiveController {
-  ...
-  equalityCheck : EqualityCheck;
-
-  constructor(
-    host: ReactiveControllerHost,
-    store: Store<State, Action>,
-    selector: Selector<State, Result>,
-    equalityCheck = tripleEquals
-  ) {
-    ...
-    this.equalityCheck = equalityCheck;
-  }
-
-  hostConnected() {
-    this.store.subscribe(() => {
-      const selected = this.selector(this.store.getState());
-      if (!this.equalityCheck(this.selected, selected)) {
-        this.selected = selected;
-        this.host.requestUpdate();
+      const selected = this._selector(this._store.getState());
+      if (selected !== this.value) {
+        this.value = selected;
+        this._host.requestUpdate();
       }
     });
   }
 }
 ```
 
-By first comparing the previous state to the current state, we can avoid re-rendering components that don't need to be re-rendered which can improve performance. Nice!
+Great! Now the controller will update its value and tell the host element to update whenever the state changes. Additionally, by first comparing the previous state to the current state, we can avoid re-rendering components that don't need to be re-rendered which can improve performance. Nice!
 
 In conclusion, we need to improve our component so that it does not re-render when the component is disconnected from the page and the store’s state changes. Redux’s `Store.subscribe()` method returns an `unsubscribe()` function. Let’s keep track of this and unsubscribe from the store’s changes when the component disconnects.
 
@@ -479,17 +407,17 @@ export class SelectorController<
     Result = unknown
 > implements ReactiveController {
   ...
-  unsubscribe: () => void;
+  private _unsubscribe: () => void;
   ...
 
   hostConnected() {
-    this.unsubscribe = this.store.subscribe(() => {
+    this._unsubscribe = this._store.subscribe(() => {
       ...
     });
   }
 
   hostDisconnected() {
-    this.unsubscribe();
+    this._unsubscribe();
   }
 }
 ```
@@ -563,7 +491,7 @@ export class ShapeCount extends LitElement {
   private sc = new SelectorController(this, store, (state) => state);
 
   render() {
-    const {circles, squares, shapeList} = this.sc.selected;
+    const {circles, squares, shapeList} = this.sc.value;
 
     return html`
       <table>
@@ -591,7 +519,7 @@ To accomplish this, we initialized the `SelectorController` with the shared Redu
 
 ### shape-list
 
-`shape-list` should be a component that only subscribes and reads the `state.shapeList` state from the store. Let's create a custom element with boilerplate, and render an array of `<div>`s with classes set to the shape name. Our pre-provided CSS styles will render the squares and circles based on the class name.
+`shape-list` should be a component that only subscribes and reads the `state.shapeList` state from the store. Let's create a custom element with boilerplate, and render an array of `<div>` elements with classes set to the shape name. Our pre-provided CSS styles will render the squares and circles based on the class name.
 
 ```ts
 import { customElement } from 'lit/decorators.js';
@@ -621,35 +549,9 @@ export class ShapeList extends LitElement {
   private sc = new SelectorController(this, store, (state) => state.shapeList);
 
   render() {
-    const shapeList = this.sc.selected;
+    const shapeList = this.sc.value;
     ...
   }
-}
-```
-
-Finally, let’s give it an equality check to only update the render when the values have changed.
-
-```ts
-...
-
-@customElement('shape-list')
-export class ShapeList extends LitElement {
-  private sc = new SelectorController(
-    this,
-    store,
-    (state) => state.shapeList,
-    (oldVal, newVal) => {
-      if (oldVal.length !== newVal.length) {
-        return false;
-      }
-
-      return !oldVal.some((old, i) => {
-        return old !== newVal[i];
-      });
-    }
-  );
-
-  ...
 }
 ```
 
@@ -676,7 +578,7 @@ export class ShapeDials extends LitElement {
   private sc = new SelectorController(this, store, (state) => state);
 
   render() {
-    const {circles, squares, shapeList} = this.sc.selected;
+    const {circles, squares, shapeList} = this.sc.value;
 
     return html`
       <div id="circles">
