@@ -3,6 +3,7 @@ title: Lit components with tailwind styles
 publishDate: 2023-12-10
 lastUpdated: 2023-12-10
 summary: Using tailwind styles inside Lit components
+thumbnail: /images/articles/lit_with_tailwind
 tags:
   - web-components
   - tailwind
