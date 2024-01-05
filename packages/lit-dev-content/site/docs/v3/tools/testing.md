@@ -15,7 +15,7 @@ See the [Starter Kits](/docs/v3/tools/starter-kits/) documentation for an easy t
 
 ## Selecting a test framework
 
-Lit is a standard modern Javascript library, and you can use virtually any Javascript testing framework to test your Lit code. There are many popular options, including [Jest](https://jestjs.io/), [Karma](https://karma-runner.github.io/), [Mocha](https://mochajs.org/), [Jasmine](https://jasmine.github.io/), and [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/).
+Lit is a standard modern Javascript library, and you can use virtually any Javascript testing framework to test your Lit code. There are many popular options, including [Jest](https://jestjs.io/), [Karma](https://karma-runner.github.io/), [Mocha](https://mochajs.org/), [Jasmine](https://jasmine.github.io/), [WebdriverIO](https://webdriver.io) and [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/).
 
 There are a few things you'll want to make sure your testing environment supports to effectively test your Lit code.
 
@@ -75,3 +75,48 @@ export default {
 };
 ```
 
+## Using WebdriverIO
+
+We also recommend [WebdriverIO](https://webdriver.io) as a very good alternative for your component or end-to-end tests. It has very compelling advantages like support for [mocking](https://webdriver.io/docs/component-testing/mocking) and [code coverage](https://webdriver.io/docs/component-testing/coverage) reporting.
+
+You can set up WebdriverIO in your project via:
+
+```bash
+npm init wdio@latest ./
+```
+
+It will start a configuration wizard that will guide you through some questions. Make sure select the following:
+
+- __What type of testing would you like to do?__:<br />Component or Unit Testing - in the browser
+- __Which framework do you use for building components?__:<br />Lit
+
+The remaining questions can be answered as desired.
+
+In order test the component you have to render it into the test page before the test starts and ensure it gets cleaned up afterwards:
+
+```ts
+import { expect, $ } from '@wdio/globals'
+
+// import simple-greeting component from https://lit.dev/docs/components/overview/
+import './components/Component.ts'
+
+describe('Lit Component testing', () => {
+    let elem: HTMLElement
+
+    beforeEach(() => {
+        elem = document.createElement('simple-greeting')
+    })
+
+    it('should render component', async () => {
+        elem.setAttribute('name', 'WebdriverIO')
+        document.body.appendChild(elem)
+        await expect($(elem)).toHaveText('Hello, WebdriverIO!')
+    })
+
+    afterEach(() => {
+        elem.remove()
+    })
+})
+```
+
+Find more information on [element assertions](https://webdriver.io/docs/api/expect-webdriverio), [finding elements](https://webdriver.io/docs/selectors#deep-selectors) within the Shadow DOM and [more](https://webdriver.io/docs/component-testing) in the WebdriverIO documentation.
