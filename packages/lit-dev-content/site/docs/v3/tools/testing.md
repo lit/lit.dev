@@ -77,7 +77,7 @@ export default {
 
 ## Using WebdriverIO
 
-[WebdriverIO](https://webdriver.io) is a good alternative for your component or end-to-end tests. It has very compelling advantages like support for [mocking](https://webdriver.io/docs/component-testing/mocking) and [code coverage](https://webdriver.io/docs/component-testing/coverage) reporting.
+[WebdriverIO](https://webdriver.io) is a good option for your component or end-to-end tests. It has very compelling advantages like support for [mocking](https://webdriver.io/docs/component-testing/mocking) and [code coverage](https://webdriver.io/docs/component-testing/coverage) reporting.
 
 You can set up WebdriverIO in your project via:
 
@@ -97,7 +97,8 @@ In order test the component you have to render it into the test page before the 
 ```ts
 import { expect, $ } from '@wdio/globals'
 
-// import simple-greeting component from https://lit.dev/docs/components/overview/
+// Component.ts contains the <simple-greeting> component implemented the same as:
+// https://lit.dev/docs/components/overview/
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {
