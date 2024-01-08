@@ -87,8 +87,8 @@ npm init wdio@latest ./
 
 It will start a configuration wizard that will guide you through some questions. Make sure select the following:
 
-- __What type of testing would you like to do?__:<br />Component or Unit Testing - in the browser
-- __Which framework do you use for building components?__:<br />Lit
+- __What type of testing would you like to do?__:<br>Component or Unit Testing - in the browser
+- __Which framework do you use for building components?__:<br>Lit
 
 The remaining questions can be answered as desired.
 
