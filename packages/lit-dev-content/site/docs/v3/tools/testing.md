@@ -37,7 +37,7 @@ To test on older browsers, your test environment will need to load some polyfill
 
 ## Using Web Test Runner { #web-test-runner }
 
-We recommend using [Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) since it is specifically designed to test modern web libraries like Lit using modern web features like custom elements and shadow DOM. See the [Getting Started](https://modern-web.dev/guides/test-runner/getting-started) documentation for Web Test Runner.
+[Web Test Runner](https://modern-web.dev/docs/test-runner/overview/) is specifically designed to test modern web libraries like Lit using modern web features like custom elements and shadow DOM. See the [Getting Started](https://modern-web.dev/guides/test-runner/getting-started) documentation for Web Test Runner.
 
 In order to support older browsers, you need to configure Web Test Runner as follows:
 
@@ -77,7 +77,7 @@ export default {
 
 ## Using WebdriverIO
 
-We also recommend [WebdriverIO](https://webdriver.io) as a very good alternative for your component or end-to-end tests. It has very compelling advantages like support for [mocking](https://webdriver.io/docs/component-testing/mocking) and [code coverage](https://webdriver.io/docs/component-testing/coverage) reporting.
+[WebdriverIO](https://webdriver.io) is a good alternative for your component or end-to-end tests. It has very compelling advantages like support for [mocking](https://webdriver.io/docs/component-testing/mocking) and [code coverage](https://webdriver.io/docs/component-testing/coverage) reporting.
 
 You can set up WebdriverIO in your project via:
 
