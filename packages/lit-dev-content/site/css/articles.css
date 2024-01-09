@@ -7,6 +7,16 @@ main {
   padding-block-start: 0;
 }
 
+article img {
+  max-width: 100%;
+  display: block;
+  margin-inline: auto;
+}
+
+article img:not([width]) {
+  width: 100%;
+}
+
 /* ------------------------------------
  * Header Section
  * ------------------------------------ */
@@ -74,7 +84,6 @@ main {
  * ------------------------------------ */
 article {
   font-size: 1rem;
-  font-family: 'Manrope', sans-serif;
 }
 
 .articleFeedList {
