@@ -136,6 +136,13 @@ md-chip-set {
 .card img {
   width: 100%;
   height: auto;
+  transition: border-radius 0.3s cubic-bezier(0.2, 0, 1, 1);
+}
+
+.card:hover img,
+.card:focus img,
+.card:active img {
+  border-radius: 24px;
 }
 
 .card h1 {
@@ -145,7 +152,8 @@ md-chip-set {
   margin: 10px 0 0 0;
 }
 
-.card:hover h1 {
+.card:hover h1,
+.card:focus h1 {
   text-decoration: underline;
 }
 
