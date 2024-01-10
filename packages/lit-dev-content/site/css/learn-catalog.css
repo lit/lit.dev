@@ -193,8 +193,8 @@ md-chip-set {
 }
 
 /* This is the span containing the tutorial duration */
-.learn-kind-row span:nth-child(3) {
-  margin-left: auto;
+.learn-kind-row .end {
+  margin-inline-start: auto;
 }
 
 #intentionally-blank {

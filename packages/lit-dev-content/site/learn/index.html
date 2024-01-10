@@ -60,9 +60,11 @@ title: Learn
         </div>
         <div class="learn-kind-row">
           <span class="learn-kind">{{ content.kind }}</span>
-          {% if content.kind == "tutorial" %}
+          {% if content.difficulty != null  %}
           <span>&nbsp;/ {{ content.difficulty }}</span>
-          <span class="duration">{{ content.duration }} Min</span>
+          {% endif %}
+          {% if content.duration != null  %}
+          <span class="duration end">{{ content.duration }} Min</span>
           {% endif %}
         </div>
         <h1>{{ content.title }}</h1>
