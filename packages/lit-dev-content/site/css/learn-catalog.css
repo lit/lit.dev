@@ -4,17 +4,21 @@ main {
   z-index: 0;
 }
 
-#hero {
-  --card-width: 360px;
-  --_unit: calc(var(--card-width) / 10);
+:root {
+  --learn-card-width: 360px;
+  --_learn-unit: calc(var(--learn-card-width) / 10);
+  --_learn-card-padding: calc(var(--_learn-unit) / 2);
+  --_learn-card-border-radius: var(--_learn-unit);
+}
 
+#hero {
   background-color: black;
   color: #cfcfcf;
   font-family: Manrope;
   font-weight: 200;
   font-size: 20px;
   padding: 67px 0;
-  padding-left: calc(var(--_unit) + 40px);
+  padding-left: calc(var(--_learn-unit) + 40px);
   height: 160px; /* Explicitly declared to fix layout shift as font loads */
   position: relative;
 }
@@ -95,12 +99,10 @@ md-chip-set {
 }
 
 #chips {
-  margin: var(--_unit);
+  margin: var(--_learn-unit);
 }
 
 #learn-catalog {
-  --_unit: 36px;
-
   /* Prevent a large view shift if content is empty */
   min-height: 400px;
   width: 100%;
@@ -113,8 +115,8 @@ md-chip-set {
 
 .card-grid {
   display: grid;
-  padding: var(--_unit);
-  gap: var(--_unit);
+  padding: var(--_learn-unit);
+  gap: calc(var(--_learn-unit) / 2);
   grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr) minmax(360px, 1fr);
 
   align-items: stretch;
@@ -127,22 +129,34 @@ md-chip-set {
 
   /* Undo anchor tag typography */
   font-family: Manrope,sans-serif;
-  color: #646464;
+  color: #454545;
   text-decoration: none;
   font-weight: 400;
   font-size: 18px;
+  background-color: #f4f4f4;
+  padding: var(--_learn-card-padding);
 }
 
+.card,
 .card img {
-  width: 100%;
-  height: auto;
   transition: border-radius 0.3s cubic-bezier(0.2, 0, 1, 1);
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  border-radius: var(--_learn-card-border-radius);
 }
 
 .card:hover img,
 .card:focus img,
 .card:active img {
-  border-radius: 24px;
+  border-radius: calc(var(--_learn-card-border-radius) - var(--_learn-card-padding));
+}
+
+.card img {
+  width: 100%;
+  height: auto;
 }
 
 .card h1 {
@@ -190,14 +204,16 @@ md-chip-set {
 
 @media (max-width: 1260px) {
   .card-grid {
-    --card-width: 300px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 690px) {
+  :root {
+    --learn-card-width: 300px;
+  }
+
   .card-grid {
-    --card-width: 300px;
     grid-template-columns: repeat(1, 1fr);
   }
 }
