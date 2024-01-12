@@ -1832,8 +1832,8 @@ import {asyncAppend} from 'lit/directives/async-append.js';
 
 ```ts
 asyncAppend(
-  iterable: AsyncIterable<Item>,
-  mapper?: (item: Item, index?: number) => unknown
+  iterable: AsyncIterable<I>,
+  mapper?: (item: I, index?: number) => unknown
 )
 ```
 
@@ -1928,8 +1928,8 @@ import {asyncReplace} from 'lit/directives/async-replace.js';
 
 ```ts
 asyncReplace(
-  iterable: AsyncIterable<Item>,
-  mapper?: (item: Item, index?: number) => unknown
+  iterable: AsyncIterable<I>,
+  mapper?: (item: I, index?: number) => unknown
 )
 ```
 
