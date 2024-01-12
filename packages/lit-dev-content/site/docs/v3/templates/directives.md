@@ -1831,7 +1831,7 @@ import {asyncAppend} from 'lit/directives/async-append.js';
 <td class="wide-cell">
 
 ```ts
-asyncAppend(iterable: AsyncIterable, mapper?: (item: Item, index?: number) => unknown)
+asyncAppend(iterable: AsyncIterable, mapper?: Function)
 ```
 
 </td>
@@ -1924,7 +1924,7 @@ import {asyncReplace} from 'lit/directives/async-replace.js';
 <td class="wide-cell">
 
 ```ts
-asyncReplace(iterable: AsyncIterable, mapper?: (item: Item, index?: number) => unknown)
+asyncReplace(iterable: AsyncIterable, mapper?: Function)
 ```
 
 </td>
