@@ -306,7 +306,7 @@ class MyElement extends LitElement {
 In manual mode you can provide new arguments directly to `run()`:
 
 ```ts
-this._task.run('arg1', 'arg2');
+this._task.run(['arg1', 'arg2']);
 ```
 
 If arguments are not provided to `run()`, they are gathered from the `args` callback.
