@@ -1933,7 +1933,7 @@ asyncReplace(iterable: AsyncIterable, mapper?: Function)
 <td class="no-wrap-cell vcenter-cell">Usable location</td>
 <td class="wide-cell">
 
-Child expression
+Any expression
 
 </td>
 </tr>
