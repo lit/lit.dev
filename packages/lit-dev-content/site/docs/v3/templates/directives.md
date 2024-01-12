@@ -1832,7 +1832,7 @@ import {asyncAppend} from 'lit/directives/async-append.js';
 
 ```ts
 asyncAppend(
-  iterable: AsyncIterable,
+  iterable: AsyncIterable<Item>,
   mapper?: (item: Item, index?: number) => unknown
 )
 ```
@@ -1928,7 +1928,7 @@ import {asyncReplace} from 'lit/directives/async-replace.js';
 
 ```ts
 asyncReplace(
-  iterable: AsyncIterable,
+  iterable: AsyncIterable<Item>,
   mapper?: (item: Item, index?: number) => unknown
 )
 ```
