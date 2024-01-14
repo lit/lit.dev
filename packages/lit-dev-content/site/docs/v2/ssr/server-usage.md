@@ -30,6 +30,7 @@ The template can contain custom elements, which are rendered in turn, along with
 
 ```ts
 import {render} from '@lit-labs/ssr';
+import {html} from 'lit';
 
 const result = render(html`
   <h1>Hello SSR!</h1>
@@ -68,6 +69,7 @@ This is the preferred way to handle SSR results when integrating with a streamin
 ```ts
 import {render} from '@lit-labs/ssr';
 import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
+import {html} from 'lit';
 
 // Using Koa to stream
 app.use(async (ctx) => {
@@ -87,9 +89,10 @@ app.use(async (ctx) => {
 ```ts
 import {render} from '@lit-labs/ssr';
 import {collectResult} from '@lit-labs/ssr/lib/render-result.js';
+import {html} from 'lit';
 
 const result = render(html`<my-element></my-element>`);
-const html = await collectResult(result);
+const contents = await collectResult(result);
 ```
 
 #### `collectResultSync()`
@@ -103,10 +106,11 @@ Because this function doesn't support async rendering, it's recommended to only 
 ```ts
 import {render} from '@lit-labs/ssr';
 import {collectResultSync} from '@lit-labs/ssr/lib/render-result.js';
+import {html} from 'lit';
 
 const result = render(html`<my-element></my-element>`);
 // Throws if `result` contains a Promise!
-const html = collectResultSync(result);
+const contents = collectResultSync(result);
 ```
 
 ### Render options
