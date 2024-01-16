@@ -93,6 +93,8 @@ are two types of bundles:
     <code>all</code> exports everything in <code>core</code> plus
     <a href="https://github.com/lit/lit/blob/main/packages/lit/src/index.all.ts">
     most other modules in <code>lit</code></a>.
+    <br>
+    Note that <code>html</code> and <code>svg</code> exports from <code>lit/static-html.js</code> are aliased to <code>staticHtml</code> and <code>staticSvg</code>, respectively, to avoid collision.
   </dd>
   </dd>
 </dl>
