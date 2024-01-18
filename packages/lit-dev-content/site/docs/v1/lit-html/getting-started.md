@@ -19,12 +19,12 @@ lit-html is distributed on npm, in the [lit-html package].
 npm install lit-html
 ```
 
-### unpkg.com
+### CDNs
 
-You can also load lit-html directly from the unpkg.com CDN:
+You can also load lit-html directly from CDNs with good module support like [esm.run](https://esm.run) or [esm.sh](https://esm.sh):
 
 ```js
-import {html, render} from 'https://unpkg.com/lit-html?module';
+import {html, render} from 'https://esm.run/lit-html';
 ```
 
 ### Online editors
