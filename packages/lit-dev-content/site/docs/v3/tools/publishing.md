@@ -78,28 +78,25 @@ To compile a Lit component that uses proposed JavaScript features not yet includ
 Install Babel and the Babel plugins you need. For example:
 
 ```sh
-npm install --save-dev @babel/core
-npm install --save-dev @babel/plugin-proposal-class-properties
-npm install --save-dev @babel/plugin-proposal-decorators
+npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/plugin-proposal-decorators
 ```
 
 Configure Babel. For example:
 
-**babel.config.js**
+**babel.config.json**
 
-```js
-const assumptions = {
-  "setPublicClassFields": true
-};
-
-const plugins = [
-  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true } ],
-  ["@babel/plugin-proposal-class-properties"],
-
-];
-
-module.exports = { assumptions, plugins };
+```json
+{
+  "presets": [
+    ["@babel/preset-env", {"targets": "defaults"}]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", {"version": "2023-05"}]
+  ]
+}
 ```
+
+You can adjust the `"targets"` option to target browsers you wish to support. See [`@babel/preset-env`](https://babeljs.io/docs/babel-preset-env) for available options.
 
 You can run Babel via a bundler plugin such as [@rollup/plugin-babel](https://www.npmjs.com/package/@rollup/plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
 
