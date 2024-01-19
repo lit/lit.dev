@@ -24,7 +24,7 @@ npm install lit-html
 You can also load lit-html directly from CDNs with good module support like [esm.run](https://esm.run) or [esm.sh](https://esm.sh):
 
 ```js
-import {html, render} from 'https://esm.run/lit-html';
+import {html, render} from 'https://esm.run/lit-html@1';
 ```
 
 ### Online editors
