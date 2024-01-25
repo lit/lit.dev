@@ -78,7 +78,11 @@ To compile a Lit component that uses proposed JavaScript features not yet includ
 Install Babel and the Babel plugins you need. For example:
 
 ```sh
-npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/plugin-proposal-decorators
+npm install --save-dev \
+  @babel/core \
+  @babel/cli \
+  @babel/preset-env \
+  @babel/plugin-proposal-decorators
 ```
 
 Configure Babel. For example:
