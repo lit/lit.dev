@@ -502,7 +502,7 @@ Descriptions are represented in XLIFF files using `<note>` elements.
 ```xml
 <trans-unit id="s512957aa09384646">
   <source>Launch</source>
-  <note>Button that begins rocket launch sequence.</note>
+  <note from="lit-localize">Button that begins rocket launch sequence.</note>
 </trans-unit>
 ```
 
@@ -520,10 +520,10 @@ have the same content they will be treated as one message:
 
 ```js
 // file1.js
-msg('Hello World')
+msg('Hello World');
 
 // file2.js
-msg('Hello World')
+msg('Hello World');
 ```
 
 ### ID generation
@@ -539,7 +539,6 @@ The following content **does not** affect ID generation:
 
 - The code inside an expression
 - The computed value of an expression
-- Descriptions
 - File location
 
 For example, all of these messages share the same ID:
@@ -547,7 +546,6 @@ For example, all of these messages share the same ID:
 ```js
 msg(html`Hello <b>${name}</b>`);
 msg(html`Hello <b>${this.name}</b>`);
-msg(html`Hello <b>${this.name}</b>`, {desc: 'A friendly greeting'});
 ```
 
 But this message has a different ID:
@@ -555,6 +553,18 @@ But this message has a different ID:
 ```js
 msg(html`Hello <i>${name}</i>`);
 ```
+
+Note, while providing a [description](#message-descriptions) does not affect ID
+generation, multiple messages with the same ID but different description will
+produce an error during analysis to avoid ambiguity in the extracted translation
+unit. The following is considered **invalid**:
+
+```js
+msg(html`Hello <b>${name}</b>`);
+msg(html`Hello <b>${name}</b>`, {desc: 'A friendly greeting'});
+```
+
+Make sure that all messages with the same ID also have the same description.
 
 ### Overriding IDs
 
