@@ -39,7 +39,7 @@ This may be a breaking change if you need to support older browser versions and 
 
 Webpack 4's internal parser doesn't support nullish coalescing (`??`), logical assignment (`??=`), or optional chaining (`?.`), which are syntaxes introduced in ES2021 so will throw a `Module parse failed: Unexpected token` when encountering those.
 
-The preferred solution is to upgrade to Webpack 5 which does support parsing these newer JS syntax. However if you are unable to do so, it is possible to use `babel-loader` to transform Lit 3 code to work with Webpack 5.
+The preferred solution is to upgrade to Webpack 5 which does support parsing these newer JS syntax. However if you are unable to do so, it is possible to use `babel-loader` to transform Lit 3 code to work with Webpack 4.
 
 To transpile Lit 3 in Webpack 4, install the following required babel packages:
 
