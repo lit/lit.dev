@@ -38,7 +38,7 @@ test.describe('Home page', () => {
     expect(await page.locator('#splashLogo').getAttribute('role')).toBe(
       'heading'
     );
-    const homePageImg = page.locator('#splashLogo > img');
+    const homePageImg = page.locator('#splashLogo > svg');
     expect(await homePageImg.getAttribute('aria-label')).toBe('Lit');
   });
 

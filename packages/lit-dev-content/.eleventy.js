@@ -504,8 +504,10 @@ ${content}
   /**
    * Inlines an SVG file.
    */
-  eleventyConfig.addShortcode('inlineSvg', async (src) => {
-    return fsSync.readFileSync(`./site/${src}`, 'utf8');
+  eleventyConfig.addShortcode('inlineSvg', async (src, label) => {
+    const text = fsSync.readFileSync(`./site/${src}`, 'utf8');
+    const ariaLabel = label !== undefined ? ` aria-label="${label}"` : '';
+    return text.replace('<svg', `<svg${ariaLabel}`);
   });
 
   /**
