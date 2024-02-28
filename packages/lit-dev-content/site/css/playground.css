@@ -214,7 +214,7 @@ resize-bar {
 }
 
 resize-bar[active] {
-  background-color: var(--color-dark-cyan);
+  background-color: var(--sys-color-secondary-container);
 }
 
 #verticalResizeBar {
