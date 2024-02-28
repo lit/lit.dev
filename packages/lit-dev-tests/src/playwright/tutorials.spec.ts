@@ -24,7 +24,7 @@ function runScreenshotTests(dark: boolean) {
       await waitForPlaygroundPreviewToLoad(page);
       await waitForTheme(page);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `introToLitTutorialFirstStep.png`
+        `introToLitTutorialFirstStep${dark ? '-dark' : ''}.png`
       );
     });
   });
