@@ -2,16 +2,16 @@
   <defs>
     <symbol id="Snoo" viewBox="0 0 432.21 377.72">
       <g>
-        <circle fill="var(--sys-color-primary, white)" cx="369.16" cy="188.55" r="63.05"/>
-        <circle fill="var(--sys-color-primary, white)" cx="63.05" cy="188.55" r="63.05"/>
-        <ellipse fill="var(--sys-color-primary, white)" cx="216.26" cy="242.72" rx="180" ry="135"/>
+        <circle fill="var(--sys-color-primary-container, white)" cx="369.16" cy="188.55" r="63.05"/>
+        <circle fill="var(--sys-color-primary-container, white)" cx="63.05" cy="188.55" r="63.05"/>
+        <ellipse fill="var(--sys-color-primary-container, white)" cx="216.26" cy="242.72" rx="180" ry="135"/>
         <g>
           <path fill="currentColor" d="m163.04,229.59c-1.05,22.87-16.23,31.17-33.91,31.17s-31.15-11.71-30.09-34.58c1.05-22.87,16.23-38.01,33.91-38.01s31.15,18.54,30.09,41.42Z"/>
           <path fill="currentColor" d="m333.48,226.18c1.05,22.87-12.42,34.58-30.09,34.58s-32.85-8.3-33.91-31.17c-1.05-22.87,12.42-41.42,30.09-41.42s32.85,15.13,33.91,38.01Z"/>
         </g>
         <path fill="currentColor" d="m216.26,276.02c-22.32,0-43.71,1.08-63.49,3.04-3.38.34-5.52,3.78-4.21,6.86,11.08,25.97,37.22,44.21,67.7,44.21s56.62-18.24,67.7-44.21c1.31-3.08-.83-6.52-4.21-6.86-19.78-1.97-41.17-3.04-63.49-3.04Z"/>
-        <circle fill="var(--sys-color-primary, white)" cx="314.84" cy="44.68" r="44.68"/>
-        <path fill="var(--sys-color-primary, white)" d="m215.62,113.41c-5.35,0-9.69-2.24-9.69-5.69,0-40.03,32.56-72.59,72.59-72.59,5.35,0,9.69,4.34,9.69,9.69s-4.34,9.69-9.69,9.69c-29.34,0-53.22,23.87-53.22,53.22,0,3.45-4.34,5.69-9.69,5.69Z"/>
+        <circle fill="var(--sys-color-primary-container, white)" cx="314.84" cy="44.68" r="44.68"/>
+        <path fill="var(--sys-color-primary-container, white)" d="m215.62,113.41c-5.35,0-9.69-2.24-9.69-5.69,0-40.03,32.56-72.59,72.59-72.59,5.35,0,9.69,4.34,9.69,9.69s-4.34,9.69-9.69,9.69c-29.34,0-53.22,23.87-53.22,53.22,0,3.45-4.34,5.69-9.69,5.69Z"/>
       </g>
     </symbol>
   </defs>
