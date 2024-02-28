@@ -39,7 +39,7 @@ const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
   await page.close();
 };
 
-test.describe.configure({ mode: 'parallel' });
+test.describe.configure({mode: 'parallel'});
 
 function runScreenshotTests(dark: boolean) {
   test.describe('Playground screenshots', () => {
