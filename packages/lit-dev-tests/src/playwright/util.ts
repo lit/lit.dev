@@ -12,9 +12,9 @@ export const preventGDPRBanner = async (page: Page) => {
   });
 };
 
-export const waitForTheme = async(page: Page) => {
+export const waitForTheme = async (page: Page) => {
   await page.waitForSelector('body.light,body.dark');
-}
+};
 
 export const setDarkMode = async (page: Page, dark: boolean) => {
   if (dark) {
