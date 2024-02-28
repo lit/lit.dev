@@ -13,7 +13,7 @@ const config: PlaywrightTestConfig = {
   // version control. Default `config.testDir` generates snapshots into the
   // built `lib` directory which is ignored.
   snapshotDir: '../src/playwright',
-  retries: 3,
+  retries: 0,
   use: {
     screenshot: 'off',
     baseURL: 'http://localhost:6415/',
@@ -25,6 +25,6 @@ const config: PlaywrightTestConfig = {
   //    committing the snapshot to the repository.
   //  * `npm run test:integration:update-golden-screenshots` for local testing.
   updateSnapshots: 'none',
-  workers: process.env.CI ? 1 : 2,
+  workers: process.env.CI ? 1 : 20,
 };
 export default config;
