@@ -11,10 +11,10 @@ function runScreenshotTests(dark: boolean) {
   test.describe('Home page screenshots', () => {
     test.beforeEach(async ({page}) => {
       await setDarkMode(page, dark);
-      await preventGDPRBanner(page);
     });
 
     test(`intro section golden${dark ? ' - dark' : ''}`, async ({page}) => {
+      await preventGDPRBanner(page);
       await page.goto('/');
       await waitForTheme(page);
       await expect(await page.locator('#intro').screenshot()).toMatchSnapshot(
