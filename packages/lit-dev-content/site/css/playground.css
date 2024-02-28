@@ -10,6 +10,7 @@ body {
   --mdc-theme-text-primary-on-background: var(--sys-color-on-surface);
   --mdc-theme-text-icon-on-background: var(--sys-color-on-surface);
   --mdc-theme-surface: var(--sys-color-surface-container-high);
+  --mdc-theme-primary: var(--sys-color-primary);
   --mdc-theme-on-primary: var(--sys-color-on-primary);
   --mdc-button-outline-color: var(--sys-color-outline);
   --mdc-text-field-ink-color: var(--sys-color-on-surface);
@@ -18,6 +19,8 @@ body {
   --mdc-text-field-idle-line-color: var(--sys-color-outline);
   --mdc-button-disabled-fill-color: var(--sys-color-surface-container-dim);
   --mdc-button-disabled-ink-color: var(--sys-color-on-background-dim);
+  --mdc-dialog-content-ink-color: var(--sys-color-on-surface);
+  --mdc-dialog-heading-ink-color: var(--sys-color-on-background-emphasis);
 }
 
 main {
