@@ -7,7 +7,6 @@
 import {test, expect} from '@playwright/test';
 import {
   preventGDPRBanner,
-  setDarkMode,
   waitForPlaygroundPreviewToLoad,
   waitForTheme,
 } from './util.js';
@@ -19,10 +18,9 @@ function runScreenshotTests(dark: boolean) {
         viewport: {width: 1920, height: 1080},
       });
       await preventGDPRBanner(page);
-      await setDarkMode(page, dark);
       await page.goto('/tutorials/intro-to-lit');
       await waitForPlaygroundPreviewToLoad(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `introToLitTutorialFirstStep${dark ? '-dark' : ''}.png`
       );

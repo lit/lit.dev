@@ -5,12 +5,11 @@
  */
 
 import {test, expect} from '@playwright/test';
-import {preventGDPRBanner, setDarkMode} from './util.js';
+import {preventGDPRBanner, waitForTheme} from './util.js';
 
 function runTests(dark: boolean) {
   test.describe('docs/components/styles', () => {
     test.beforeEach(async ({page}) => {
-      await setDarkMode(page, dark);
       await preventGDPRBanner(page);
     });
 
@@ -27,6 +26,8 @@ function runTests(dark: boolean) {
       );
       // Wait for the loading bar to fade out.
       await page.waitForTimeout(250);
+
+      await waitForTheme(page, dark);
 
       await expect(
         await page

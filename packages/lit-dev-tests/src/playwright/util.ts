@@ -12,20 +12,22 @@ export const preventGDPRBanner = async (page: Page) => {
   });
 };
 
-export const waitForTheme = async (page: Page) => {
-  await page.waitForSelector('body.light,body.dark');
-};
+export const waitForTheme = async (page: Page, dark: boolean) => {
+  await page.waitForSelector('body.auto');
 
-export const setDarkMode = async (page: Page, dark: boolean) => {
   if (dark) {
-    await page.addInitScript(() => {
-      window.localStorage.setItem('color-mode', 'dark');
+    await page.locator('body').evaluate((body) => {
+      body.classList.remove('light', 'dark', 'auto');
+      body.classList.add('dark');
     });
-  } else {
-    await page.addInitScript(() => {
-      window.localStorage.setItem('color-mode', 'light');
-    });
+
+    return;
   }
+
+  await page.locator('body').evaluate((body) => {
+    body.classList.remove('light', 'dark', 'auto');
+    body.classList.add('light');
+  });
 };
 
 export async function waitForPlaygroundPreviewToLoad(page: Page) {

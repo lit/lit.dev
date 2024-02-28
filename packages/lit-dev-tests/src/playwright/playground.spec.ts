@@ -12,7 +12,6 @@ import {
   closeSnackbars,
   readClipboardText,
   preventGDPRBanner,
-  setDarkMode,
   waitForTheme,
 } from './util.js';
 
@@ -46,7 +45,6 @@ function runScreenshotTests(dark: boolean) {
     test.beforeEach(async ({browser, page}) => {
       const browserPage = await browser.newPage();
       await preventGDPRBanner(page);
-      await setDarkMode(page, dark);
       await browserPage.goto('http://localhost:6417/reset');
       expect(await browserPage.textContent('body')).toEqual(
         'fake github successfully reset'
@@ -59,7 +57,7 @@ function runScreenshotTests(dark: boolean) {
     }) => {
       await page.goto('/playground');
       await waitForPlaygroundPreviewToLoad(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       // Because of shadow dom piercing, Playwright finds multiple '#content'
       // nodes, i.e. the page, and within the playground shadow DOM.
       await expect(
@@ -83,7 +81,7 @@ function runScreenshotTests(dark: boolean) {
 
       // Open the share menu
       await page.click('litdev-playground-share-button');
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareLongUrl-1-shareMenuOpen${dark ? '-dark' : ''}.png`
       );
@@ -98,7 +96,7 @@ function runScreenshotTests(dark: boolean) {
           state: 'hidden',
         }
       );
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareLongUrl-2-snackbarOpen${dark ? '-dark' : ''}.png`
       );
@@ -106,7 +104,7 @@ function runScreenshotTests(dark: boolean) {
       // Reload the page to confirm the new content is still there
       await page.reload();
       await waitForPlaygroundPreviewToLoad(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareLongUrl-3-pageReloaded${dark ? '-dark' : ''}.png`
       );
@@ -130,7 +128,7 @@ function runScreenshotTests(dark: boolean) {
           state: 'visible',
         }
       );
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-1-shareMenuOpen${dark ? '-dark' : ''}.png`
       );
@@ -138,7 +136,7 @@ function runScreenshotTests(dark: boolean) {
       // Sign in to GitHub
       await signInToGithub(page);
       await page.waitForSelector('#createNewGistButton', {state: 'visible'});
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-2-signedIn${dark ? '-dark' : ''}.png`
       );
@@ -155,7 +153,7 @@ function runScreenshotTests(dark: boolean) {
         }
       );
       await freezeSnackbars(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-3-snackbarOpen${dark ? '-dark' : ''}.png`
       );
@@ -163,7 +161,7 @@ function runScreenshotTests(dark: boolean) {
       // Reload the page to confirm the new content is still there
       await page.reload();
       await waitForPlaygroundPreviewToLoad(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-4-pageReloaded${dark ? '-dark' : ''}.png`
       );
@@ -180,7 +178,7 @@ function runScreenshotTests(dark: boolean) {
       await page.click('.filename-input');
       await page.keyboard.press(`${modifierKey}+A`);
       await page.keyboard.type('new-name.ts');
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-5-renamingFile${dark ? '-dark' : ''}.png`
       );
@@ -190,7 +188,7 @@ function runScreenshotTests(dark: boolean) {
       await page.click('.add-file-button');
       await page.click('.filename-input');
       await page.keyboard.type('empty.txt');
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-6-addingFile${dark ? '-dark' : ''}.png`
       );
@@ -205,7 +203,7 @@ function runScreenshotTests(dark: boolean) {
           state: 'visible',
         }
       );
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-7-shareMenuOpenAgain${dark ? '-dark' : ''}.png`
       );
@@ -222,7 +220,7 @@ function runScreenshotTests(dark: boolean) {
           state: 'hidden',
         }
       );
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-8-gistUpdated${dark ? '-dark' : ''}.png`
       );
@@ -230,7 +228,7 @@ function runScreenshotTests(dark: boolean) {
       // Reload the page again to confirm the updated content is there
       await page.reload();
       await waitForPlaygroundPreviewToLoad(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `shareGist-9-pageReloadedAgain${dark ? '-dark' : ''}.png`
       );
@@ -262,7 +260,7 @@ function runScreenshotTests(dark: boolean) {
       // An informative dialog should display
       await page.waitForSelector('[role=alertdialog]');
       await freezeDialogs(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `userDeclinesGithubAuth${dark ? '-dark' : ''}.png`
       );
@@ -293,7 +291,7 @@ function runScreenshotTests(dark: boolean) {
       // An informative dialog should display
       await page.waitForSelector('[role=alertdialog]');
       await freezeDialogs(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `userClosesGitHubAuthWindowTooEarly${dark ? '-dark' : ''}.png`
       );
@@ -306,7 +304,7 @@ function runScreenshotTests(dark: boolean) {
       // An informative dialog should display
       await page.waitForSelector('[role=alertdialog]');
       await freezeDialogs(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `gistDoesNotExist${dark ? '-dark' : ''}.png`
       );
@@ -342,7 +340,7 @@ function runScreenshotTests(dark: boolean) {
       await page.waitForSelector('[role=alertdialog]');
       await freezeDialogs(page);
       await closeSnackbars(page);
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
         `backendErrorWritingGist${dark ? '-dark' : ''}.png`
       );

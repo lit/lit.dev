@@ -5,18 +5,14 @@
  */
 
 import {test, expect} from '@playwright/test';
-import {preventGDPRBanner, setDarkMode, waitForTheme} from './util.js';
+import {preventGDPRBanner, waitForTheme} from './util.js';
 
 function runScreenshotTests(dark: boolean) {
   test.describe('Home page screenshots', () => {
-    test.beforeEach(async ({page}) => {
-      await setDarkMode(page, dark);
-    });
-
     test(`intro section golden${dark ? ' - dark' : ''}`, async ({page}) => {
       await preventGDPRBanner(page);
       await page.goto('/');
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(await page.locator('#intro').screenshot()).toMatchSnapshot(
         `homePageIntroSection${dark ? '-dark' : ''}.png`
       );
@@ -24,7 +20,7 @@ function runScreenshotTests(dark: boolean) {
 
     test(`Cookies banner golden${dark ? ' - dark' : ''}`, async ({page}) => {
       await page.goto('/');
-      await waitForTheme(page);
+      await waitForTheme(page, dark);
       await expect(
         await page.locator('litdev-cookie-banner').screenshot()
       ).toMatchSnapshot(`homePageCookiesBanner${dark ? '-dark' : ''}.png`);
