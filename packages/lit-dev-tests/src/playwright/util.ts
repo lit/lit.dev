@@ -13,7 +13,7 @@ export const preventGDPRBanner = async (page: Page) => {
 };
 
 export const waitForTheme = async (page: Page, dark: boolean) => {
-  await page.waitForSelector('body.auto');
+  await page.waitForSelector('body.auto,body.light,body.dark');
 
   if (dark) {
     await page.locator('body').evaluate((body) => {
