@@ -98,14 +98,12 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       display: inline-flex;
       z-index: 1;
       padding: 0 0 calc(1em / 13) calc(3em / 13);
-      opacity: 60%;
-      transition: color 100ms, opacity 100ms;
+      transition: color 100ms;
     }
 
     [aria-checked='true'] > #tsLabel,
     [aria-checked='false'] > #jsLabel {
       font-weight: 600;
-      opacity: 100%;
     }
   `;
 

@@ -103,7 +103,7 @@ body.dark {
     --sys-color-on-tertiary: #003824;
     --sys-color-tertiary-container: #006a47;
     --sys-color-on-tertiary-container: #ffffff;
-    --sys-color-on-primary: hsl(242, 100%, 34%);
+    --sys-color-on-primary: hsl(242, 100%, 12%);
     --sys-color-surface: hsl(0, 0%, 7%);
     --sys-color-background: hsl(0, 0%, 7%);
     --sys-color-on-background: hsl(0, 0%, 89%);
@@ -190,7 +190,7 @@ body.dark {
     --sys-color-on-tertiary: #003824;
     --sys-color-tertiary-container: #006a47;
     --sys-color-on-tertiary-container: #ffffff;
-    --sys-color-on-primary: hsl(242, 100%, 34%);
+    --sys-color-on-primary: hsl(242, 100%, 12%);
     --sys-color-surface: hsl(0, 0%, 7%);
     --sys-color-background: hsl(0, 0%, 7%);
     --sys-color-on-background: hsl(0, 0%, 89%);

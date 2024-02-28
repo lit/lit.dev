@@ -65,6 +65,7 @@
 
 #footerBottom > p > a {
   color: var(--sys-color-primary);
+  font-weight: 600;
 }
 
 #footerBottom > p > a:hover {
