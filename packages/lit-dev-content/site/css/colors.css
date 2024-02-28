@@ -80,7 +80,7 @@ body.light {
   --playground-code-attribute-color: #6f42c1;
   --playground-code-callee-color: #005cc5;
   --playground-highlight-color: var(--sys-color-primary);
-  --playground-code-gutter-background: var(--sys-color-surface);
+  --playground-code-gutter-background: var(--playground-code-background);
   --playground-code-cursor-color: var(--sys-color-on-surface);
   --playground-code-selection-background: var(--sys-color-primary-transparent);
 }
