@@ -5,16 +5,30 @@
  */
 
 import {test, expect} from '@playwright/test';
-import {preventGDPRBanner, waitForPlaygroundPreviewToLoad} from './util.js';
+import {
+  preventGDPRBanner,
+  setDarkMode,
+  waitForPlaygroundPreviewToLoad,
+  waitForTheme,
+} from './util.js';
 
-test.describe('Tutorial page', () => {
-  test('intro first step', async ({browser}) => {
-    const page = await browser.newPage({viewport: {width: 1920, height: 1080}});
-    await preventGDPRBanner(page);
-    await page.goto('/tutorials/intro-to-lit');
-    await waitForPlaygroundPreviewToLoad(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'introToLitTutorialFirstStep.png'
-    );
+function runScreenshotTests(dark: boolean) {
+  test.describe('Tutorial page', () => {
+    test(`intro first step${dark ? ' - dark' : ''}`, async ({browser}) => {
+      const page = await browser.newPage({
+        viewport: {width: 1920, height: 1080},
+      });
+      await preventGDPRBanner(page);
+      await setDarkMode(page, dark);
+      await page.goto('/tutorials/intro-to-lit');
+      await waitForPlaygroundPreviewToLoad(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `introToLitTutorialFirstStep.png`
+      );
+    });
   });
-});
+}
+
+runScreenshotTests(false);
+runScreenshotTests(true);

@@ -5,6 +5,32 @@
  */
 
 import {test, expect} from '@playwright/test';
+import {preventGDPRBanner, setDarkMode, waitForTheme} from './util.js';
+
+function runScreenshotTests(dark: boolean) {
+  test.describe('Home page screenshots', () => {
+    test.beforeEach(async ({page}) => {
+      await setDarkMode(page, dark);
+      await preventGDPRBanner(page);
+    });
+
+    test(`intro section golden${dark ? ' - dark' : ''}`, async ({page}) => {
+      await page.goto('/');
+      await waitForTheme(page);
+      await expect(await page.locator('#intro').screenshot()).toMatchSnapshot(
+        `homePageIntroSection${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`Cookies banner golden${dark ? ' - dark' : ''}`, async ({page}) => {
+      await page.goto('/');
+      await waitForTheme(page);
+      await expect(
+        await page.locator('litdev-cookie-banner').screenshot()
+      ).toMatchSnapshot(`homePageCookiesBanner${dark ? '-dark' : ''}.png`);
+    });
+  });
+}
 
 test.describe('Home page', () => {
   test('splashLogo accessible.', async ({page}) => {
@@ -79,18 +105,7 @@ test.describe('Home page', () => {
     await expect(page.locator('#reactive-update-cycle')).toBeVisible();
     expect(page.url().includes('/docs/components/lifecycle')).toBe(true);
   });
-
-  test('intro section golden', async ({page}) => {
-    await page.goto('/');
-    await expect(await page.locator('#intro').screenshot()).toMatchSnapshot(
-      'homePageIntroSection.png'
-    );
-  });
-
-  test('Cookies banner golden', async ({page}) => {
-    await page.goto('/');
-    await expect(
-      await page.locator('litdev-cookie-banner').screenshot()
-    ).toMatchSnapshot('homePageCookiesBanner.png');
-  });
 });
+
+runScreenshotTests(false);
+runScreenshotTests(true);

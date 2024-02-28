@@ -12,6 +12,8 @@ import {
   closeSnackbars,
   readClipboardText,
   preventGDPRBanner,
+  setDarkMode,
+  waitForTheme,
 } from './util.js';
 
 import type {Page, Browser} from '@playwright/test';
@@ -37,11 +39,318 @@ const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
   await page.close();
 };
 
+function runScreenshotTests(dark: boolean) {
+  test.describe('Playground screenshots', () => {
+    test.beforeEach(async ({browser, page}) => {
+      const browserPage = await browser.newPage();
+      await preventGDPRBanner(page);
+      await setDarkMode(page, dark);
+      await browserPage.goto('http://localhost:6417/reset');
+      expect(await browserPage.textContent('body')).toEqual(
+        'fake github successfully reset'
+      );
+      await browserPage.close();
+    });
+
+    test(`Hello world project golden${dark ? ' - dark' : ''}`, async ({
+      page,
+    }) => {
+      await page.goto('/playground');
+      await waitForPlaygroundPreviewToLoad(page);
+      await waitForTheme(page);
+      // Because of shadow dom piercing, Playwright finds multiple '#content'
+      // nodes, i.e. the page, and within the playground shadow DOM.
+      await expect(
+        await page
+          .locator('main > litdev-playground-page > #content')
+          .screenshot()
+      ).toMatchSnapshot(
+        `helloWorldPlaygroundProject${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`share long url${dark ? ' - dark' : ''}`, async ({page}) => {
+      await page.goto('/playground/');
+      await freezeSnackbars(page);
+
+      // Type some new content
+      await page.click('playground-code-editor');
+      await page.keyboard.press(`${modifierKey}+A`);
+      await page.keyboard.type('"my long url content";');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // Open the share menu
+      await page.click('litdev-playground-share-button');
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareLongUrl-1-shareMenuOpen${dark ? '-dark' : ''}.png`
+      );
+
+      // Save the long URL
+      await page.click('litdev-playground-share-long-url copy-button');
+      await page.waitForURL(/#project=/);
+      expect(await readClipboardText(page)).toMatch(page.url());
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout',
+        {
+          state: 'hidden',
+        }
+      );
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareLongUrl-2-snackbarOpen${dark ? '-dark' : ''}.png`
+      );
+
+      // Reload the page to confirm the new content is still there
+      await page.reload();
+      await waitForPlaygroundPreviewToLoad(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareLongUrl-3-pageReloaded${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`share gist${dark ? ' - dark' : ''}`, async ({page}) => {
+      await page.goto('/playground/');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // Type some new content
+      await page.click('playground-code-editor');
+      await page.keyboard.press(`${modifierKey}+A`);
+      await page.keyboard.type('"my gist content";');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // Open the share menu
+      await page.click('litdev-playground-share-button');
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout',
+        {
+          state: 'visible',
+        }
+      );
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-1-shareMenuOpen${dark ? '-dark' : ''}.png`
+      );
+
+      // Sign in to GitHub
+      await signInToGithub(page);
+      await page.waitForSelector('#createNewGistButton', {state: 'visible'});
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-2-signedIn${dark ? '-dark' : ''}.png`
+      );
+
+      // Save the gist
+      await page.click('#createNewGistButton');
+      await page.waitForURL(/#gist=/);
+      expect(await readClipboardText(page)).toMatch(page.url());
+      const firstUrl = page.url();
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout',
+        {
+          state: 'hidden',
+        }
+      );
+      await freezeSnackbars(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-3-snackbarOpen${dark ? '-dark' : ''}.png`
+      );
+
+      // Reload the page to confirm the new content is still there
+      await page.reload();
+      await waitForPlaygroundPreviewToLoad(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-4-pageReloaded${dark ? '-dark' : ''}.png`
+      );
+
+      // Type some more content
+      await page.click('playground-code-editor');
+      await page.keyboard.press(`${modifierKey}+A`);
+      await page.keyboard.type('"my updated gist content";');
+
+      // Rename a file
+      await page.hover('text=simple-greeting.ts');
+      await page.click('text=simple-greeting.ts >> .menu-button');
+      await page.click('#renameButton');
+      await page.click('.filename-input');
+      await page.keyboard.press(`${modifierKey}+A`);
+      await page.keyboard.type('new-name.ts');
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-5-renamingFile${dark ? '-dark' : ''}.png`
+      );
+      await page.keyboard.press('Enter');
+
+      // Add a new empty file
+      await page.click('.add-file-button');
+      await page.click('.filename-input');
+      await page.keyboard.type('empty.txt');
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-6-addingFile${dark ? '-dark' : ''}.png`
+      );
+      await page.keyboard.press('Enter');
+
+      // Open the share menu again
+      await waitForPlaygroundPreviewToLoad(page);
+      await page.click('litdev-playground-share-button');
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout',
+        {
+          state: 'visible',
+        }
+      );
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-7-shareMenuOpenAgain${dark ? '-dark' : ''}.png`
+      );
+
+      // Update the gist
+      await freezeSnackbars(page);
+      await page.click('#updateGistButton');
+      await page.waitForURL(/#gist=/);
+      expect(page.url()).toEqual(firstUrl);
+      expect(await readClipboardText(page)).toMatch(firstUrl);
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout',
+        {
+          state: 'hidden',
+        }
+      );
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-8-gistUpdated${dark ? '-dark' : ''}.png`
+      );
+
+      // Reload the page again to confirm the updated content is there
+      await page.reload();
+      await waitForPlaygroundPreviewToLoad(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `shareGist-9-pageReloadedAgain${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`user declines github auth${dark ? ' - dark' : ''}`, async ({
+      page,
+    }) => {
+      await page.goto('/playground/');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // Open the share menu
+      await page.click('litdev-playground-share-button');
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout'
+      );
+
+      // Click share
+      const [popup] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.click('#signInButton'),
+      ]);
+      await popup.waitForLoadState();
+
+      // Decline authorization
+      await popup.click('text=Cancel');
+      await popup.waitForEvent('close');
+
+      // An informative dialog should display
+      await page.waitForSelector('[role=alertdialog]');
+      await freezeDialogs(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `userDeclinesGithubAuth${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`user closes github auth window early${
+      dark ? ' - dark' : ''
+    }`, async ({page}) => {
+      await page.goto('/playground/');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // Open the share menu
+      await page.click('litdev-playground-share-button');
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout'
+      );
+
+      // Click share
+      const [popup] = await Promise.all([
+        page.waitForEvent('popup'),
+        page.click('#signInButton'),
+      ]);
+      await popup.waitForLoadState();
+
+      // Close the window
+      await popup.close();
+
+      // An informative dialog should display
+      await page.waitForSelector('[role=alertdialog]');
+      await freezeDialogs(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `userClosesGitHubAuthWindowTooEarly${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`gist does not exist${dark ? ' - dark' : ''}`, async ({page}) => {
+      await page.goto('/playground/#gist=not-a-real-gist');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // An informative dialog should display
+      await page.waitForSelector('[role=alertdialog]');
+      await freezeDialogs(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `gistDoesNotExist${dark ? '-dark' : ''}.png`
+      );
+    });
+
+    test(`backend error writing gist${dark ? ' - dark' : ''}`, async ({
+      page,
+      browser,
+    }) => {
+      await page.goto('/playground/');
+
+      // Type some new content
+      await page.click('playground-code-editor');
+      await page.keyboard.press(`${modifierKey}+A`);
+      await page.keyboard.type('"my gist content";');
+      await waitForPlaygroundPreviewToLoad(page);
+
+      // Open the share menu
+      await page.click('litdev-playground-share-button');
+      await page.waitForSelector(
+        'litdev-playground-share-button litdev-flyout'
+      );
+
+      // Sign in to GitHub
+      await signInToGithub(page);
+
+      // Try to save the gist
+      await page.waitForSelector('#createNewGistButton');
+      await failNextGitHubRequest(browser);
+      await page.click('#createNewGistButton');
+
+      // An informative dialog should display
+      await page.waitForSelector('[role=alertdialog]');
+      await freezeDialogs(page);
+      await closeSnackbars(page);
+      await waitForTheme(page);
+      await expect(await page.screenshot()).toMatchSnapshot(
+        `backendErrorWritingGist${dark ? '-dark' : ''}.png`
+      );
+    });
+  });
+}
+
 test.describe('Playground', () => {
-  test.beforeEach(async ({browser, page}) => {
+  test.beforeEach(async ({browser}) => {
     const browserPage = await browser.newPage();
-    await preventGDPRBanner(page);
-    await preventGDPRBanner(browserPage);
     await browserPage.goto('http://localhost:6417/reset');
     expect(await browserPage.textContent('body')).toEqual(
       'fake github successfully reset'
@@ -103,156 +412,6 @@ test.describe('Playground', () => {
     );
   });
 
-  test('Hello world project golden', async ({page}) => {
-    await page.goto('/playground');
-    await waitForPlaygroundPreviewToLoad(page);
-    // Because of shadow dom piercing, Playwright finds multiple '#content'
-    // nodes, i.e. the page, and within the playground shadow DOM.
-    await expect(
-      await page
-        .locator('main > litdev-playground-page > #content')
-        .screenshot()
-    ).toMatchSnapshot('helloWorldPlaygroundProject.png');
-  });
-
-  test('share long url', async ({page}) => {
-    await page.goto('/playground/');
-    await freezeSnackbars(page);
-
-    // Type some new content
-    await page.click('playground-code-editor');
-    await page.keyboard.press(`${modifierKey}+A`);
-    await page.keyboard.type('"my long url content";');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // Open the share menu
-    await page.click('litdev-playground-share-button');
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareLongUrl-1-shareMenuOpen.png'
-    );
-
-    // Save the long URL
-    await page.click('litdev-playground-share-long-url copy-button');
-    await page.waitForURL(/#project=/);
-    expect(await readClipboardText(page)).toMatch(page.url());
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
-      state: 'hidden',
-    });
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareLongUrl-2-snackbarOpen.png'
-    );
-
-    // Reload the page to confirm the new content is still there
-    await page.reload();
-    await waitForPlaygroundPreviewToLoad(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareLongUrl-3-pageReloaded.png'
-    );
-  });
-
-  test('share gist', async ({page}) => {
-    await page.goto('/playground/');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // Type some new content
-    await page.click('playground-code-editor');
-    await page.keyboard.press(`${modifierKey}+A`);
-    await page.keyboard.type('"my gist content";');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // Open the share menu
-    await page.click('litdev-playground-share-button');
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
-      state: 'visible',
-    });
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-1-shareMenuOpen.png'
-    );
-
-    // Sign in to GitHub
-    await signInToGithub(page);
-    await page.waitForSelector('#createNewGistButton', {state: 'visible'});
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-2-signedIn.png'
-    );
-
-    // Save the gist
-    await page.click('#createNewGistButton');
-    await page.waitForURL(/#gist=/);
-    expect(await readClipboardText(page)).toMatch(page.url());
-    const firstUrl = page.url();
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
-      state: 'hidden',
-    });
-    await freezeSnackbars(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-3-snackbarOpen.png'
-    );
-
-    // Reload the page to confirm the new content is still there
-    await page.reload();
-    await waitForPlaygroundPreviewToLoad(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-4-pageReloaded.png'
-    );
-
-    // Type some more content
-    await page.click('playground-code-editor');
-    await page.keyboard.press(`${modifierKey}+A`);
-    await page.keyboard.type('"my updated gist content";');
-
-    // Rename a file
-    await page.hover('text=simple-greeting.ts');
-    await page.click('text=simple-greeting.ts >> .menu-button');
-    await page.click('#renameButton');
-    await page.click('.filename-input');
-    await page.keyboard.press(`${modifierKey}+A`);
-    await page.keyboard.type('new-name.ts');
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-5-renamingFile.png'
-    );
-    await page.keyboard.press('Enter');
-
-    // Add a new empty file
-    await page.click('.add-file-button');
-    await page.click('.filename-input');
-    await page.keyboard.type('empty.txt');
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-6-addingFile.png'
-    );
-    await page.keyboard.press('Enter');
-
-    // Open the share menu again
-    await waitForPlaygroundPreviewToLoad(page);
-    await page.click('litdev-playground-share-button');
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
-      state: 'visible',
-    });
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-7-shareMenuOpenAgain.png'
-    );
-
-    // Update the gist
-    await freezeSnackbars(page);
-    await page.click('#updateGistButton');
-    await page.waitForURL(/#gist=/);
-    expect(page.url()).toEqual(firstUrl);
-    expect(await readClipboardText(page)).toMatch(firstUrl);
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout', {
-      state: 'hidden',
-    });
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-8-gistUpdated.png'
-    );
-
-    // Reload the page again to confirm the updated content is there
-    await page.reload();
-    await waitForPlaygroundPreviewToLoad(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'shareGist-9-pageReloadedAgain.png'
-    );
-  });
-
   test('share long URL with keyboard shortcuts', async ({page}) => {
     await page.goto('/playground/');
     await waitForPlaygroundPreviewToLoad(page);
@@ -309,101 +468,6 @@ test.describe('Playground', () => {
     expect(await readClipboardText(page)).toMatch(firstUrl);
   });
 
-  test('user declines github auth', async ({page}) => {
-    await page.goto('/playground/');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // Open the share menu
-    await page.click('litdev-playground-share-button');
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout');
-
-    // Click share
-    const [popup] = await Promise.all([
-      page.waitForEvent('popup'),
-      page.click('#signInButton'),
-    ]);
-    await popup.waitForLoadState();
-
-    // Decline authorization
-    await popup.click('text=Cancel');
-    await popup.waitForEvent('close');
-
-    // An informative dialog should display
-    await page.waitForSelector('[role=alertdialog]');
-    await freezeDialogs(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'userDeclinesGithubAuth.png'
-    );
-  });
-
-  test('user closes github auth window early', async ({page}) => {
-    await page.goto('/playground/');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // Open the share menu
-    await page.click('litdev-playground-share-button');
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout');
-
-    // Click share
-    const [popup] = await Promise.all([
-      page.waitForEvent('popup'),
-      page.click('#signInButton'),
-    ]);
-    await popup.waitForLoadState();
-
-    // Close the window
-    await popup.close();
-
-    // An informative dialog should display
-    await page.waitForSelector('[role=alertdialog]');
-    await freezeDialogs(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'userClosesGitHubAuthWindowTooEarly.png'
-    );
-  });
-
-  test('gist does not exist', async ({page}) => {
-    await page.goto('/playground/#gist=not-a-real-gist');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // An informative dialog should display
-    await page.waitForSelector('[role=alertdialog]');
-    await freezeDialogs(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'gistDoesNotExist.png'
-    );
-  });
-
-  test('backend error writing gist', async ({page, browser}) => {
-    await page.goto('/playground/');
-
-    // Type some new content
-    await page.click('playground-code-editor');
-    await page.keyboard.press(`${modifierKey}+A`);
-    await page.keyboard.type('"my gist content";');
-    await waitForPlaygroundPreviewToLoad(page);
-
-    // Open the share menu
-    await page.click('litdev-playground-share-button');
-    await page.waitForSelector('litdev-playground-share-button litdev-flyout');
-
-    // Sign in to GitHub
-    await signInToGithub(page);
-
-    // Try to save the gist
-    await page.waitForSelector('#createNewGistButton');
-    await failNextGitHubRequest(browser);
-    await page.click('#createNewGistButton');
-
-    // An informative dialog should display
-    await page.waitForSelector('[role=alertdialog]');
-    await freezeDialogs(page);
-    await closeSnackbars(page);
-    await expect(await page.screenshot()).toMatchSnapshot(
-      'backendErrorWritingGist.png'
-    );
-  });
-
   test('close share flyout by clicking outside of the flyout', async ({
     page,
   }) => {
@@ -434,3 +498,6 @@ test.describe('Playground', () => {
     });
   });
 });
+
+runScreenshotTests(false);
+runScreenshotTests(true);
