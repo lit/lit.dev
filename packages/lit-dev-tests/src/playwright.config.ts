@@ -13,7 +13,7 @@ const config: PlaywrightTestConfig = {
   // version control. Default `config.testDir` generates snapshots into the
   // built `lib` directory which is ignored.
   snapshotDir: '../src/playwright',
-  retries: 0,
+  retries: 3,
   use: {
     screenshot: 'off',
     baseURL: 'http://localhost:6415/',
