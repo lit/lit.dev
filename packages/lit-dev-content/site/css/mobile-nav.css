@@ -3,6 +3,10 @@ mwc-drawer:not(:defined) {
   display: none;
 }
 
+mwc-drawer {
+  --mdc-theme-surface: var(--sys-color-surface-container-highest);
+}
+
 #mobileDrawer ol {
   margin: 0;
   padding: 0;
@@ -23,8 +27,9 @@ mwc-drawer:not(:defined) {
 }
 
 #mobileSiteNav {
-  background: var(--color-blue);
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
+  --lit-logo-flame-light: currentColor;
   padding: 20px;
 }
 
@@ -53,7 +58,7 @@ mwc-drawer:not(:defined) {
 }
 
 /* Labs icon */
-#mobileDocsNav img.labs {
+#mobileDocsNav .labs::part(svg) {
   width: 1.25rem;
   height: 1.25rem;
   vertical-align: text-bottom;

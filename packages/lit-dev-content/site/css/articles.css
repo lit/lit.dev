@@ -1,5 +1,7 @@
-main {
-  background: var(--docs-background-color);
+main,
+article {
+  background-color: var(--sys-color-surface-container-lowest);
+  border: none;
 }
 
 #articleWrapper>article {
@@ -18,7 +20,6 @@ main {
 
 .articleHeader {
   margin-block-end: 1.3rem;
-  border-block-end: 1px solid var(--docs-rule-color);
 }
 
 .articleHeader>* {
@@ -44,7 +45,7 @@ main {
 
 
 #prevAndNextLinks a {
-  border: 1px solid var(--color-medium-gray);
+  border: 1px solid var(--sys-color-on-background-dim);
   border-radius: .5rem;
   padding: 1rem;
   height: 100%;
@@ -57,12 +58,12 @@ main {
 
 #prevAndNextLinks a:hover,
 #prevAndNextLinks a:focus {
-  border: 1px solid var(--color-blue);
-  color: var(--color-blue);
+  border: 1px solid var(--sys-color-primary);
+  color: var(--sys-color-primary);
 }
 
 #prevAndNextLinks>span>a:focus> :is(.direction, .arrow) {
-  color: var(--color-blue);
+  color: var(--sys-color-primary);
 }
 
 #prevAndNextLinks>span>a:first-of-type {
@@ -83,7 +84,7 @@ article {
 
 .feedItem {
   list-style-type: none;
-  border-block-start: 1.5px solid #ccc;
+  border-block-start: 1.5px solid var(--sys-color-outline-variant);
 }
 
 .feedItem:first-of-type {
@@ -103,14 +104,14 @@ article {
 }
 
 .feedItem a .date {
-  color: #666;
+  color: var(--sys-color-on-background-dim);
   font-size: 1em;
   flex-basis: 180px;
 }
 
 .feedItem a .title {
   font-size: 1.5rem;
-  color: #0043c0;
+  color: var(--sys-color-primary-variant);
   margin-block-start: 0
 }
 
@@ -130,7 +131,7 @@ article {
 }
 
 #content a .authors {
-  color: #555;
+  color: var(--sys-color-on-background-dim);
 }
 
 #content .authors {
@@ -159,7 +160,8 @@ article {
 #content .author .links a {
   display: flex;
   margin-inline: .25rem;
-  color: #6f6f6f;
+  color: var(--sys-color-primary-variant);
+  opacity: 0.7;
 }
 
 #content .author .links a:hover,
@@ -167,7 +169,8 @@ article {
 #content .author .links a:active {
   text-decoration: none;
   margin-inline: .25rem;
-  color: var(--color-blue);
+  opacity: 1;
+  color: var(--sys-color-primary);
 }
 
 #content .author .links a svg {
@@ -190,15 +193,15 @@ article {
  * ------------------------------------ */
 
 #content .articleHeader .date {
-  color: var(--color-medium-gray);
+  color: var(--sys-color-on-background-dim);
   font-weight: 600;
 }
 
 /* ------------------------------------
-  * article tags
+  * article tags - View pages not implemented
   * ------------------------------------ */
 
-.articleHeader .tags {
+/* .articleHeader .tags {
   display: flex;
 }
 
@@ -223,7 +226,7 @@ article {
 
 .articleHeader .tags a:active {
   background-color: var(--chips-background-color-press);
-}
+} */
 
 /* ------------------------------------
  * inline toc

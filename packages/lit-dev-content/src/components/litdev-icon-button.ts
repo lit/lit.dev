@@ -40,7 +40,9 @@ export class LitDevIconButton extends LitElement {
     }
 
     :host(:hover) {
-      background-color: rgba(0, 0, 0, 0.25);
+      background-color: var(--sys-color-primary-container);
+      color: var(--sys-color-on-primary-container);
+      border-color: var(--sys-color-on-primary-container);
     }
 
     button {

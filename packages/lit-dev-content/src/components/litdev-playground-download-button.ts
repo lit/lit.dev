@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css} from 'lit';
+import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {downloadIcon} from '../icons/download-icon.js';
 import Tar from 'tarts';
@@ -20,12 +20,6 @@ import type {SampleFile} from 'playground-elements/shared/worker-api.js';
  */
 @customElement('litdev-playground-download-button')
 export class LitDevPlaygroundDownloadButton extends LitElement {
-  static styles = css`
-    litdev-icon-button:hover {
-      background: blue;
-    }
-  `;
-
   /**
    * A function to allow this component to access the project upon download.
    */

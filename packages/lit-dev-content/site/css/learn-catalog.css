@@ -73,7 +73,7 @@ main {
 }
 
 #hero h1 {
-  color: rgb(0, 255, 255);
+  color: var(--color-cyan);
   text-transform: uppercase;
   font-weight: 400;
   font-size: 18px;
@@ -87,15 +87,13 @@ md-chip-set {
   --md-filter-chip-label-text-font: Manrope;
   --md-filter-chip-container-shape: 16px;
   /* Colors were generated using Lit's Indigo 2 brand color: #2a2c9d */
-  --md-sys-color-outline: #777680;
-  --md-sys-color-on-surface: #1b1b21;
-  --md-sys-color-primary: #575992;
-  --md-sys-color-secondary: #5b5d72;
-  --md-sys-color-on-secondary: white;
-  --md-sys-color-primary-container: #e1e0ff;
-  --md-sys-color-secondary-container: #e2e0f9;
-  --md-sys-color-surface-variant: #e4e1ec;
-  --md-sys-color-on-surface-variant: #46464f;
+  --md-sys-color-outline: var(--sys-color-outline);
+  --md-sys-color-on-surface: var(--sys-color-on-surface);
+  --md-sys-color-secondary: var(--sys-color-primary);
+  --md-sys-color-on-secondary-container: var(--sys-color-on-primary-container);
+  --md-sys-color-secondary-container: var(--sys-color-primary-container);
+  --md-sys-color-surface-variant: var(--sys-color-surface-variant);
+  --md-sys-color-on-surface-variant: var(--sys-color-on-surface-variant);
 }
 
 #chips {
@@ -104,8 +102,9 @@ md-chip-set {
 
 #learn-catalog {
   /* Prevent a large view shift if content is empty */
-  min-height: 400px;
+  min-height: 461px;
   width: 100%;
+  background-color: var(--sys-color-surface-container-lowest);
 }
 
 .center {
@@ -129,11 +128,12 @@ md-chip-set {
 
   /* Undo anchor tag typography */
   font-family: Manrope,sans-serif;
-  color: #454545;
   text-decoration: none;
   font-weight: 400;
   font-size: 18px;
-  background-color: #f4f4f4;
+  background-color: var(--sys-color-background);
+  color: var(--sys-color-on-background);
+  border: var(--litdev-dark-border);
   padding: var(--_learn-card-padding);
 }
 
@@ -160,7 +160,7 @@ md-chip-set {
 }
 
 .card h1 {
-  color: black;
+  color: var(--sys-color-on-background-emphasis);
   font-size: 24px;
   font-weight: 500;
   margin: 10px 0 0 0;
@@ -189,7 +189,7 @@ md-chip-set {
 }
 
 .learn-kind-row span:first-child {
-  color: #3456f5;
+  color: var(--sys-color-primary);
 }
 
 /* This is the span containing the tutorial duration */
@@ -199,7 +199,7 @@ md-chip-set {
 
 #intentionally-blank {
   text-align: center;
-  color: #646464;
+  color: var(--sys-color-on-background-dim);
 }
 
 @media (max-width: 1260px) {

@@ -502,6 +502,13 @@ ${content}
   );
 
   /**
+   * Inlines an SVG file.
+   */
+  eleventyConfig.addShortcode('inlineSvg', async (src) => {
+    return fsSync.readFileSync(`./site/${src}`, 'utf8');
+  });
+
+  /**
    * Bundle, minify, and inline a CSS file. Path is relative to ./site/css/.
    *
    * In dev mode, instead import the CSS file directly.

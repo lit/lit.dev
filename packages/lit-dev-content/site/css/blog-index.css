@@ -7,7 +7,7 @@
 .post {
   display: flex;
   padding: 1.5em 0;
-  border-top: 1.5px solid #ccc;
+  border-top: 1.5px solid var(--sys-color-outline);
 }
 
 @media (max-width: 864px) {
@@ -17,7 +17,7 @@
 }
 
 .date {
-  color: #666;
+  color: var(--sys-color-on-background-dim);
   font-size: 18px;
   font-weight: 500;
   flex: 0 0 10em;
@@ -30,7 +30,7 @@
 }
 
 .title > a {
-  color: #0043c0;
+  color: var(--sys-color-primary);
   font-weight: 500;
 }
 
@@ -42,7 +42,7 @@ a:hover {
   display: inline-flex;
   font-weight: 500;
   align-items: center;
-  color: #555;
+  color: var(--sys-color-on-background-dim);
   padding-right: 32px;
 }
 

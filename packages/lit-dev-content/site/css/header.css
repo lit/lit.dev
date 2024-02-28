@@ -4,18 +4,18 @@
   height: var(--header-nav-height);
   /* CodeMirrors have a very high z-index for some reason. */
   z-index: 4;
-  background: white;
+  background-color: var(--sys-color-surface-container-lowest);
   display: flex;
   padding: 0 1.5em;
   justify-content: stretch;
-  border-bottom: 1px solid #d1d1d1;
+  border-bottom: 1px solid var(--sys-color-outline-variant);
   box-sizing: border-box;
   box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
 }
 
-#headerLogo {
+#headerLogo::part(svg) {
   height: 2em;
-  width: auto;
+  width: 76.5px;
   padding: 0.1em 0.5em;
 }
 
@@ -28,7 +28,7 @@
   margin: var(--header-footer-margin, unset);
 }
 
-.navItem > a > svg {
+.navItem a svg {
   width: 1.5em;
   height: 1.5em;
   vertical-align: middle;
@@ -42,13 +42,39 @@
   margin: 0;
 }
 
-#desktopNav > .navItem > a,
-#desktopNav > .navItem > litdev-search-modal {
-  color: #6f6f6f;
+#desktopNav .navItem a,
+#desktopNav .navItem litdev-search-modal {
   font-weight: 600;
   padding: 0.3em 0.5em;
-  margin-left: 0.5em;
+  margin-inline-start: 0.5em;
   font-size: 0.9em;
+}
+
+#desktopNav .icons .navItem > *{
+  margin-inline-start: 0;
+}
+
+#desktopNav .navItem litdev-version-selector,
+#desktopNav .navItem a,
+#desktopNav .navItem litdev-search-modal,
+#desktopNav .navItem theme-switcher {
+  color: var(--sys-color-on-background-dim);
+}
+
+#desktopNav .icons,
+#mobile-site-controls .icons,
+#desktopNav .icons .navItem,
+#mobile-site-controls .icons .navItem,
+#desktopNav .icons .navItem > *,
+#mobile-site-controls .icons .navItem > * {
+  display: flex;
+  align-items: center;
+}
+
+#mobile-site-controls .icons .navItem > * {
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 @supports not selector(:modal) {
@@ -57,9 +83,9 @@
   }
 }
 
-#desktopNav > .navItem > *:hover,
-#desktopNav > .navItem.active > a {
-  color: var(--color-blue);
+#desktopNav .navItem > *:hover,
+#desktopNav .navItem.active a {
+  color: var(--sys-color-primary);
 }
 
 #mobileMenuButton {

@@ -19,7 +19,7 @@
                        {% if section.url == page.url %}active{% endif %}">
             {{ section.title }}
             {% if section.labs == true %}
-              <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
+              <lazy-svg class="labs" href="/images/alerts/labs.svg#full" label="labs" visible="lazy"></lazy-svg>
             {% endif %}
           </span>
         </summary>
@@ -29,7 +29,7 @@
               <a href="{{ child.url | url }}">
                 {{ child.title }}
                 {% if child.labs == true %}
-                  <img class="labs" src="/images/alerts/labs.svg" alt="labs" loading="lazy" fetchpriority="low" />
+                  <lazy-svg class="labs" href="/images/alerts/labs.svg#full" label="labs" visible="lazy"></lazy-svg>
                 {% endif %}
               </a>
             </li>

@@ -127,7 +127,7 @@ export class LitDevDrawer extends LitElement {
     }
 
     #content:hover::-webkit-scrollbar-thumb {
-      background: #999;
+      background-color: var(--sys-color-on-background-dimmest);
       background-clip: content-box;
       border: 4px solid transparent;
       border-radius: 10px;

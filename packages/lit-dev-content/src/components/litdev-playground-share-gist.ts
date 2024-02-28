@@ -58,12 +58,13 @@ const writeToHash = (gistId: string) => {
 export class LitDevPlaygroundShareGist extends LitElement {
   static styles = css`
     litdev-icon-button {
-      background: var(--color-blue);
-      color: white;
+      background-color: var(--sys-color-primary);
+      color: var(--sys-color-on-primary);
     }
 
     litdev-icon-button:hover {
-      background: blue;
+      background-color: var(--sys-color-primary-container);
+      color: var(--sys-color-on-primary-container);
     }
 
     #signInStatus {
@@ -81,11 +82,12 @@ export class LitDevPlaygroundShareGist extends LitElement {
 
     #avatar {
       margin-left: 8px;
+      border: 1px solid var(--sys-color-outline);
       border-radius: 50%;
     }
 
     #signOutButton:visited {
-      color: currentcolor;
+      color: currentColor;
     }
 
     #signOutButton:hover {

@@ -483,7 +483,7 @@ export class LitDevSearch extends LitElement {
       margin-block-end: calc(-1 * var(--search-modal-padding-block));
       padding-block-end: var(--search-modal-padding-block);
       padding-inline: var(--search-modal-padding-inline);
-      scrollbar-color: auto var(--color-light-gray);
+      scrollbar-color: auto var(--sys-color-background);
       scrollbar-width: thin;
     }
 
@@ -492,9 +492,9 @@ export class LitDevSearch extends LitElement {
     }
 
     #items::-webkit-scrollbar-thumb {
-      background-color: rgba(60, 60, 60, 0.7);
+      background-color: var(--sys-color-on-background-dimmest);
       border-radius: 6px;
-      border: 3px solid var(--color-light-gray);
+      border: 3px solid var(--sys-color-outline-variant);
     }
 
     #items::-webkit-scrollbar-track {
@@ -508,8 +508,12 @@ export class LitDevSearch extends LitElement {
 
     #no-items {
       margin: 17px 0 6px;
-      color: var(--color-dark-gray);
+      color: var(--sys-color-on-surface);
       text-align: center;
+    }
+
+    #no-items a {
+      color: var(--sys-color-primary);
     }
 
     input {
@@ -523,9 +527,14 @@ export class LitDevSearch extends LitElement {
       font-family: inherit;
       font-weight: inherit;
       border-style: solid;
-      border-color: var(--color-blue);
+      border-color: var(--sys-color-primary);
       border-width: 0 0 var(--_input-border-width) 0;
       outline: none;
+    }
+
+    input::placeholder {
+      color: currentColor;
+      opacity: 0.5;
     }
 
     input:focus {
@@ -549,7 +558,7 @@ export class LitDevSearch extends LitElement {
     }
 
     lazy-svg::part(svg) {
-      color: var(--color-blue);
+      color: var(--sys-color-primary);
       inset-block-start: 0;
       pointer-events: none;
       opacity: 0.5;
@@ -563,7 +572,7 @@ export class LitDevSearch extends LitElement {
     }
 
     .group .descriptor {
-      color: var(--color-blue);
+      color: var(--sys-color-primary);
       font-size: 20px;
 
       display: flex;
@@ -576,30 +585,31 @@ export class LitDevSearch extends LitElement {
     }
 
     .group .tag {
-      color: white;
-      background-color: #6e6e6e;
+      color: var(--sys-color-inverse-on-surface);
+      background-color: var(--sys-color-inverse-surface);
       border-radius: 2px;
       font-size: 16px;
       padding: 0 0.5em;
     }
 
     .group .tag.article {
-      background-color: #f9a012;
+      color: var(--sys-color-on-tertiary-container);
+      background-color: var(--sys-color-tertiary-container);
     }
 
     .group .tag.docs {
-      color: white;
-      background-color: #324fff;
+      color: var(--sys-color-on-primary-container);
+      background-color: var(--sys-color-primary-container);
     }
 
     .group .tag.video {
-      color: white;
-      background-color: #eb0000;
+      color: var(--sys-color-on-error-container);
+      background-color: var(--sys-color-error-container);
     }
 
     .group .tag.tutorial {
-      color: black;
-      background-color: #40dcff;
+      color: var(--sys-color-on-secondary-container);
+      background-color: var(--sys-color-secondary-container);
     }
 
     @media (max-width: 864px) {
@@ -607,7 +617,7 @@ export class LitDevSearch extends LitElement {
         display: block;
         background-color: transparent;
         border: none;
-        color: var(--color-blue);
+        color: var(--sys-color-primary);
         cursor: pointer;
         font-size: 18px;
         min-width: var(--_cancel-button-width);

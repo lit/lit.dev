@@ -8,17 +8,19 @@
     <meta name="description" content="Simple. Fast. Web Components.">
     <link rel="icon" href="{{ site.baseurl }}/images/flame-favicon.svg">
     <link rel="mask-icon" href="{{ site.baseurl }}/images/flame-favicon.svg" color="#324fff">
+    {% block preload %}{% endblock %}
     {% if not env.DEV %}
     <link rel="modulepreload" href="{{ site.baseurl }}/js/tslib.js">
     <link rel="modulepreload" href="{{ site.baseurl }}/js/lit.js">
     {% endif %}
     <link rel="modulepreload" href="{{ site.baseurl }}/js/global/hydrate-common-components.js">
 
+    {% inlinejs "global/apply-saved-theme.js" %}
+    {% inlinecss "colors.css" %}
     {% inlinecss "global.css" %}
 
-    {% inlinecss "mods.css" %}
     {% inlinejs "global/apply-mods.js" %}
-    {% inlinejs "global/initialize-typescript-attribute.js" %}
+    {% inlinejs "global/initialize-typescript-mode.js" %}
     {% inlinejs "global/mobile-drawer.js" %}
     {% if env.DEV %}
       <script type="module" src="{{ site.baseurl }}/js/global/lit-hydrate-support.js"></script>
@@ -49,13 +51,19 @@
     <noscript><style>body[dsd-pending] {display: block !important;}</style></noscript>
     {% block head %}{% endblock %}
   </head>
-  <body dsd-pending>
+  <body dsd-pending class="auto">
     <litdev-cookie-banner></litdev-cookie-banner>
     <mwc-drawer type="modal" id="mobileDrawer">
       <nav>
         <div id="mobileSiteNav">
-          <img src="{{ site.baseurl }}/images/flame-white.svg" alt="" width="24" height="30">
-          <ol>
+          <lazy-svg
+            loading="visible"
+            href="{{ site.baseurl }}/images/flame-white.svg#full"
+            svg-aria-hidden
+            width="24"
+            height="30">
+          </lazy-svg>
+          <ol id="mobile-site-controls">
             {% include 'site-nav.html' %}
           </ol>
         </div>

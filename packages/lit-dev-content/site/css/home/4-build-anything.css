@@ -1,5 +1,6 @@
 #buildAnythingWrapper {
   padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
+  background-color: var(--sys-color-surface-container-lowest);
 }
 
 #buildAnythingWrapper > h1 {
@@ -7,7 +8,7 @@
   font-weight: 500;
   margin: 0 auto 1em auto;
   padding-bottom: 0.5em;
-  border-bottom: 2px solid var(--color-blue);
+  border-bottom: 2px solid var(--sys-color-primary);
   max-width: var(--content-max-width);
 }
 
@@ -20,7 +21,7 @@
 #buildAnything > .item {
   flex: 1;
   padding: 0 1.5em;
-  border-right: 2px solid #bbb;
+  border-right: 2px solid var(--sys-color-outline);
 }
 
 #buildAnything > .item:first-of-type {
@@ -57,7 +58,7 @@
   position: relative;
 }
 .buildAnythingArt:not(.first)::after {
-  background: #D6FDFD;
+  background-color: var(--color-cyan);
   position: absolute;
   content: '';
   left: 8px;
@@ -78,6 +79,6 @@
 
   #buildAnything > .item:not(:last-of-type) {
     border-right: none;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--sys-color-outline);
   }
 }

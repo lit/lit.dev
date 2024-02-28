@@ -16,6 +16,12 @@ export class LitDevRippleIconButton extends LitElement {
   label = '';
 
   /**
+   * Sets aria-live for the button.
+   */
+  @property({type: String})
+  live = '';
+
+  /**
    * Aria label for the button.
    */
   @property({attribute: 'button-title'})
@@ -134,6 +140,7 @@ export class LitDevRippleIconButton extends LitElement {
       <button
         class="root"
         part="root button"
+        aria-live=${this.live ? this.live : nothing}
         aria-label=${this.label ? this.label : nothing}
         ?disabled=${this.disabled}
         title=${this.buttonTitle ?? (nothing as unknown as string)}

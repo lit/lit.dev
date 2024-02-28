@@ -5,7 +5,19 @@ body {
      the right thing automatically here. */
   overflow-y: hidden;
   touch-action: pan-x pan-y;
-  -webkit-text-size-adjust: none
+  -webkit-text-size-adjust: none;
+  --mdc-ripple-color: var(--sys-color-on-surface);
+  --mdc-theme-text-primary-on-background: var(--sys-color-on-surface);
+  --mdc-theme-text-icon-on-background: var(--sys-color-on-surface);
+  --mdc-theme-surface: var(--sys-color-surface-container-high);
+  --mdc-theme-on-primary: var(--sys-color-on-primary);
+  --mdc-button-outline-color: var(--sys-color-outline);
+  --mdc-text-field-ink-color: var(--sys-color-on-surface);
+  --mdc-text-field-fill-color: var(--sys-color-surface-container-highest);
+  --mdc-text-field-label-ink-color: var(--sys-color-on-surface);
+  --mdc-text-field-idle-line-color: var(--sys-color-outline);
+  --mdc-button-disabled-fill-color: var(--sys-color-surface-container-dim);
+  --mdc-button-disabled-ink-color: var(--sys-color-on-background-dim);
 }
 
 main {
@@ -40,8 +52,8 @@ litdev-drawer:not(:defined)[open] {
 }
 
 litdev-drawer {
-  background: var(--color-dark-gray);
-  color: white;
+  background-color: var(--sys-color-dark-surface);
+  color: var(--sys-color-on-dark-surface);
   height: calc(100vh - var(--header-height));
   z-index: 1;
 }
@@ -51,7 +63,7 @@ litdev-drawer:not(:defined) > * {
 }
 
 litdev-drawer:not([closed])::part(header) {
-  background: #333;
+  background-color: var(--sys-color-dark-surface-dim);
 }
 
 #exampleContent {
@@ -86,7 +98,7 @@ litdev-drawer:not([closed])::part(header) {
 
 .exampleItem > a {
   display: block;
-  color: white;
+  color: var(--sys-color-on-dark-surface-emphasis);
   padding: 6px var(--example-drawer-padding);
 }
 
@@ -128,8 +140,8 @@ litdev-drawer:not([closed])::part(header) {
   padding: 0 1.3em 0 calc(100px + 1em);
   box-sizing: border-box;
 
-  background: var(--color-blue);
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -141,7 +153,7 @@ litdev-drawer:not([closed])::part(header) {
 
 #actionBar > button {
   font-family: "Open Sans", sans-serif;
-  background: transparent;
+  background-color: transparent;
   border: 1px solid currentcolor;
   padding: 0.3em 0.5em;
   display: flex;
@@ -149,14 +161,6 @@ litdev-drawer:not([closed])::part(header) {
   align-items: center;
   font-size: 16px;
   cursor: pointer;
-}
-
-#actionBar > button:hover {
-  background: blue;
-}
-
-#actionBar > button > svg {
-  margin-right: 1em;
 }
 
 #tabsEditorAndPreview {
@@ -176,7 +180,6 @@ litdev-drawer:not([closed])::part(header) {
   display: flex;
   padding-right: 8px;
   /* Move border from the tab-bar to this wrapping div. */
-  border-bottom: 1px solid #ccc;
   height: var(--playground-bar-height);
   box-sizing: border-box;
 }
@@ -208,7 +211,7 @@ resize-bar {
 }
 
 resize-bar[active] {
-  background: var(--color-dark-cyan);
+  background-color: var(--color-dark-cyan);
 }
 
 #verticalResizeBar {

@@ -24,12 +24,12 @@ export class LitDevExampleControls extends LitElement {
       display: flex;
       color: inherit;
       opacity: 70%;
-      fill: #5f5f5f;
+      fill: var(--sys-color-on-surface-variant);
     }
 
     #openInPlayground:hover {
-      opacity: 100%;
-      fill: #005cc5bd;
+      opacity: 74%;
+      fill: var(--sys-color-primary);
     }
 
     litdev-code-language-switch {

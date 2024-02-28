@@ -1,3 +1,8 @@
+#content {
+  background-color: var(--sys-color-surface-container-lowest);
+  color: var(--sys-color-on-surface);
+}
+
 #splash {
   box-shadow: rgb(0 0 0 / 20%) 0px 2px 5px 2px;
   display: block;
@@ -13,17 +18,21 @@ article {
 }
 
 h1 {
-  color: #555;
+  color: var(--sys-color-on-background-emphasis);
   font-size: 42px;
   font-weight: 400;
 }
 
+.author img {
+  border: 1px solid var(--sys-color-outline);
+}
+
 img.flame {
-  background: #eee;
+  background-color: var(--sys-color-surface-container);
   box-sizing: border-box;
   padding: 5%;
 }
 
 #footerTop {
-  border-top: 1px solid var(--color-blue);
+  border-top: 1px solid var(--sys-color-primary);
 }

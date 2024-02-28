@@ -26,7 +26,7 @@ export class LitDevAside extends LitElement {
       display: flex;
       border-style: solid;
       border-width: 1px;
-      border-color: var(--lit-dev-aside-border-color, #ccc);
+      border-color: var(--sys-color-outline-variant);
       padding: 1em 1em 1em 0em;
     }
 

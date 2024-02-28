@@ -20,12 +20,12 @@ export class LitDevFlyout extends LitElement {
 
   static override styles = css`
     :host {
-      background: white;
+      background-color: var(--sys-color-surface-container-high);
       border-radius: 5px;
       border: 1px solid #ccc;
       box-shadow: rgb(0 0 0 / 20%) 0 0 3px 1px;
       box-sizing: border-box;
-      color: black;
+      color: var(--sys-color-on-surface);
       margin-top: 10px;
       max-width: calc(100vw - var(--litdev-flyout-right, 0));
       position: fixed;
@@ -38,7 +38,7 @@ export class LitDevFlyout extends LitElement {
     }
 
     [part='arrow'] {
-      background: inherit;
+      background-color: inherit;
       border: inherit;
       border-bottom: none;
       border-right: none;
