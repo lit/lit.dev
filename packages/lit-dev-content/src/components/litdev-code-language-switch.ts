@@ -64,6 +64,7 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       top: 0;
       transition: left 100ms;
       background-color: var(--sys-color-surface-container-highest);
+      border: 1px solid var(--sys-color-outline);
       z-index: -1;
       border-radius: 1em;
       opacity: 0.8;
