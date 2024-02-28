@@ -1,6 +1,6 @@
 #buildAnythingWrapper {
   padding: 3em var(--home-side-margin) 2.5em var(--home-side-margin);
-  background-color: var(--sys-color-surface-container-lowest);
+  background-color: var(--sys-color-surface-container);
 }
 
 #buildAnythingWrapper > h1 {

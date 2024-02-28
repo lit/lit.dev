@@ -33,7 +33,7 @@
   padding: 120px 0 140px 0;
   position: relative;
   z-index: 0;
-  background-color: var(--sys-color-surface-container-lowest);
+  background-color: var(--sys-color-surface-container);
   color: var(--sys-color-on-surface);
   justify-content: center;
   align-items: flex-end;

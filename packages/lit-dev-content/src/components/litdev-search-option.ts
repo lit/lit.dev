@@ -54,7 +54,7 @@ export class LitdevSearchOption extends LitElement {
       height: 50px;
       padding: 12px 20px;
       margin-block: 10px;
-      background-color: var(--sys-color-surface-container-lowest);
+      background-color: var(--sys-color-surface-container);
       font-size: 20px;
       cursor: pointer;
       border-radius: 4px;

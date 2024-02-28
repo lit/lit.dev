@@ -1,6 +1,6 @@
 main,
 article {
-  background-color: var(--sys-color-surface-container-lowest);
+  background-color: var(--sys-color-surface-container);
   border: none;
 }
 

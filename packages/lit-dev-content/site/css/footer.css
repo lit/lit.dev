@@ -1,6 +1,6 @@
 #footerTop {
   height: var(--footer-top-height);
-  background-color: var(--sys-color-surface-container-lowest);
+  background-color: var(--sys-color-surface-container);
   color: var(--sys-color-on-surface);
   padding: 0 2em;
   display: flex;

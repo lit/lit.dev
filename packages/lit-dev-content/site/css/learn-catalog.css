@@ -104,7 +104,7 @@ md-chip-set {
   /* Prevent a large view shift if content is empty */
   min-height: 461px;
   width: 100%;
-  background-color: var(--sys-color-surface-container-lowest);
+  background-color: var(--sys-color-surface-container);
 }
 
 .center {

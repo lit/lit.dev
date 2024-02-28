@@ -1,5 +1,5 @@
 #advantages {
-  background: var(--sys-color-surface-container-lowest);
+  background: var(--sys-color-surface-container);
   color: var(--sys-color-on-surface-container);
   padding: 0 var(--home-side-margin);
 }
