@@ -83,6 +83,7 @@ article :not(litdev-aside) p {
 
 article a {
   color: var(--sys-color-primary-variant);
+  font-weight: 600;
 }
 
 article a:hover {

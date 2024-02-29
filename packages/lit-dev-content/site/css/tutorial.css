@@ -47,6 +47,7 @@ litdev-tutorial {
 
 #tutorialContent a {
   color: var(--color-dark-cyan);
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 }

@@ -62,6 +62,11 @@
 }
 
 #desktopNav .icons,
+#mobile-site-controls .icons {
+  padding-inline-start: 0;
+}
+
+#desktopNav .icons,
 #mobile-site-controls .icons,
 #desktopNav .icons .navItem,
 #mobile-site-controls .icons .navItem,

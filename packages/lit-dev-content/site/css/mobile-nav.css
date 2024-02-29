@@ -15,7 +15,11 @@ mwc-drawer {
 #mobileDrawer li {
   list-style-type: none;
   font-size: 16px;
-  margin-top: 10px;
+  margin-block-start: 10px;
+}
+
+#mobile-site-controls .icons li {
+  margin-block-start: 0;
 }
 
 #mobileDrawer a {
@@ -27,8 +31,8 @@ mwc-drawer {
 }
 
 #mobileSiteNav {
-  background-color: var(--sys-color-primary);
-  color: var(--sys-color-on-primary);
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
   --lit-logo-flame-light: currentColor;
   padding: 20px;
 }

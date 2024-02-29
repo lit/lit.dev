@@ -42,7 +42,7 @@
 
 #advantagesItems > .item > .heading > h1 {
   color: var(--sys-color-primary);
-  font-weight: 600;
+  font-weight: 800;
   font-size: 20px;
   margin: 0;
 }

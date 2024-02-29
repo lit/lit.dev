@@ -17,6 +17,10 @@ article {
   padding: 0 24px 32px 24px;
 }
 
+a {
+  font-weight: 600;
+}
+
 h1 {
   color: var(--sys-color-on-background-emphasis);
   font-size: 42px;

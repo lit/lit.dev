@@ -1,10 +1,13 @@
-html {
+body {
   --playground-code-font-family: 'Roboto Mono', monospace;
   --playground-code-font-size: 14px;
   --playground-code-line-height: 1.6em;
   --litdev-code-padding: 0.5em 0 0.5em 1em;
   --playground-bar-height: 44px;
   --playground-code-gutter-border-right: none;
+  --playground-tab-bar-active-color: var(--sys-color-on-primary-container);
+  --playground-tab-bar-active-background: var(--sys-color-primary-container);
+  --playground-tab-bar-indicator-color: transparent;
 }
 
 .CodeMirror {
