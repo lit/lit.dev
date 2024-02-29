@@ -13,6 +13,8 @@ function runScreenshotTests(dark: boolean) {
       const page = await browser.newPage({
         viewport: {width: 1920, height: 1080},
       });
+      // stop animations for fewer flakes
+      page.emulateMedia({'reducedMotion': 'reduce'});
 
       await preventGDPRBanner(page);
       await page.goto('/learn/');
