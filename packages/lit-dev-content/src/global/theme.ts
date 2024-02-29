@@ -38,6 +38,36 @@ function saveColorMode(mode: ColorMode) {
 }
 
 /**
+ * Updates the `<meta name="theme-color">` tag to match the current color mode.
+ *
+ * @param mode Mode from which to update the meta color.
+ */
+export function updateMetaColor(mode: ColorMode) {
+  const meta = document.head.querySelector(
+    'meta[name="theme-color"]:not([media])'
+  );
+  if (!meta) {
+    return;
+  }
+
+  let isLight = mode === 'light';
+
+  if (mode === 'auto') {
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    isLight = !prefersDark;
+  }
+
+  if (isLight) {
+    meta?.setAttribute('content', '#fff');
+    return;
+  }
+
+  meta?.setAttribute('content', '#121212');
+}
+
+/**
  * Applies theme-based event listeners such as changing color mode.
  */
 export function applyColorThemeListeners() {
@@ -46,5 +76,13 @@ export function applyColorThemeListeners() {
   }
   document.body.addEventListener('change-color-mode', (event) => {
     applyColorMode(event.mode);
+    updateMetaColor(event.mode);
   });
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', (event) => {
+      if (getCurrentMode() === 'auto') {
+        updateMetaColor(event.matches ? 'dark' : 'light');
+      }
+    });
 }
