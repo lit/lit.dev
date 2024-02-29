@@ -11,65 +11,109 @@ main {
   --_learn-card-border-radius: var(--_learn-unit);
 }
 
+/* Begin hero section */
 #hero {
   background-color: black;
   color: #cfcfcf;
   font-family: Manrope;
   font-weight: 200;
   font-size: 20px;
-  padding: 67px 0;
-  padding-left: calc(var(--_learn-unit) + 40px);
-  height: 160px; /* Explicitly declared to fix layout shift as font loads */
+  padding: 67px calc(var(--_learn-unit) + 40px);
   position: relative;
+  overflow: hidden;
 }
 
-/* The diagonal blue lines in the hero image */
-#hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 1000px;
-  --_hero-diagonal-distance: 80px;
-  background: repeating-linear-gradient(
-    30deg,
-    transparent,
-    transparent calc(var(--_hero-diagonal-distance) - 1px),
-    rgba(42,44,157,0.8) var(--_hero-diagonal-distance),
-    rgba(42,44,157,0.8) calc(var(--_hero-diagonal-distance) + 1px),
-    transparent calc(var(--_hero-diagonal-distance) + 1px)
-  );
-  clip-path: polygon(0% 0%, 50% 100%, 100% 100%, 100% 0%);
+@media (max-width: 731px) {
+  #hero {
+    padding-inline: var(--_learn-unit);
+  }
 }
 
-/* The vertical blue lines in the hero image */
-#hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 100px;
-  bottom: 0;
-  width: 648px;
-  --_hero-vertical-distance: 80px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent calc(var(--_hero-vertical-distance) - 1px),
-    rgba(42,44,157,0.8) var(--_hero-vertical-distance),
-    rgba(42,44,157,0.8) calc(var(--_hero-vertical-distance) + 1px),
-    transparent calc(var(--_hero-vertical-distance) + 1px)
+#hero .bg {
+  background-color: transparent;
+  animation: slide 17s ease-in-out infinite alternate;
+  background-image: linear-gradient(
+    -60deg,
+    var(--color-blue) 50%,
+    var(--color-cyan) 50%
   );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: absolute;
+  right: -50%;
+  top: 0;
+  filter: blur(100px);
+}
+
+#hero .bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 19s;
+  background-image: linear-gradient(
+    60deg,
+    var(--color-blue) 50%,
+    var(--color-cyan) 50%
+  );
+}
+
+#hero .bg3 {
+  animation-duration: 23s;
+  animation-name: slide;
+  animation-timing-function: ease;
+  background-image: linear-gradient(
+    60deg,
+    var(--color-blue) 50%,
+    var(--color-cyan) 50%
+  );
+}
+
+/* End hero section */
+
+
+#hero .bg4 {
+  animation-direction: alternate-reverse;
+  animation-duration: 29s;
+  animation-name: slide;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion) {
+  .bg {
+    animation-name: none !important;
+  }
+
+  .card,
+  .card img {
+    transition: none !important;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
 }
 
 #hero-contents {
   max-width: 1224px;
   width: 100%;
-
+  display: flex;
   margin: 0 auto;
   position: relative;
   /* Place hero contents above the blue line graphics. */
   z-index: 1;
+}
+
+#hero-contents > div {
+  box-sizing: border-box;
+  min-height: 190px; /* Explicitly declared to fix layout shift as font loads */
+  padding: 16px 32px;
+  border-radius: 16px;
+  /* --sys-color-dark-surface with opacity */
+  background-color: rgba(48, 48, 48, .75);
 }
 
 #hero h1 {
