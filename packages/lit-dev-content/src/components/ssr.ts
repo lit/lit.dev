@@ -15,3 +15,4 @@ import './litdev-aside.js';
 import '../components/litdev-search-modal.js';
 import '@material/web/chips/chip-set.js';
 import '@material/web/chips/filter-chip.js';
+import '../components/litdev-design-section.js';

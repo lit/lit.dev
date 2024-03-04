@@ -29,13 +29,31 @@ main {
   }
 }
 
+body,
+body.light {
+  --_hero-blue: var(--color-blue);
+  --_hero-cyan: var(--color-cyan);
+}
+
+body.dark {
+  --_hero-blue: var(--color-indigo);
+  --_hero-cyan: var(--color-dark-cyan);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) {
+    --_hero-blue: var(--color-indigo);
+    --_hero-cyan: var(--color-dark-cyan);
+  }
+}
+
 #hero .bg {
   background-color: transparent;
   animation: slide 17s ease-in-out infinite alternate;
   background-image: linear-gradient(
     -60deg,
-    var(--color-blue) 50%,
-    var(--color-cyan) 50%
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
   );
   bottom: 0;
   left: -50%;
@@ -51,8 +69,8 @@ main {
   animation-duration: 19s;
   background-image: linear-gradient(
     60deg,
-    var(--color-blue) 50%,
-    var(--color-cyan) 50%
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
   );
 }
 
@@ -62,8 +80,8 @@ main {
   animation-timing-function: ease;
   background-image: linear-gradient(
     60deg,
-    var(--color-blue) 50%,
-    var(--color-cyan) 50%
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
   );
 }
 
@@ -117,7 +135,7 @@ main {
 }
 
 #hero h1 {
-  color: var(--color-cyan);
+  color: var(--_hero-cyan);
   text-transform: uppercase;
   font-weight: 400;
   font-size: 18px;

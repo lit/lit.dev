@@ -1,9 +1,11 @@
+section.light,
 body,
 body.light {
   --color-light-gray: #f4f4f4;
   --color-medium-gray: #949494;
   --color-dark-gray: #454545;
   --color-blue: #334eff;
+  --color-indigo: #2a2c9d;
   --color-cyan: #91ffff;
   --color-dark-cyan: #00e8ff;
 
@@ -17,7 +19,6 @@ body.light {
   --sys-color-primary-variant-dimmest: #6c7689;
   --sys-color-primary-container: #4d63ff;
   --sys-color-on-primary-container: #ffffff;
-  --sys-color-inverse-primary: #bcc2ff;
   --sys-color-secondary: #006a6a;
   --sys-color-on-secondary: #ffffff;
   --sys-color-secondary-container: #74fbfc;
@@ -85,8 +86,9 @@ body.light {
   --playground-code-selection-background: var(--sys-color-primary-transparent);
 }
 
+section.dark,
 body.dark {
-  --sys-color-primary: hsl(232, 100%, 68%);
+  --sys-color-primary: #4D64FF;
   --sys-color-primary-transparent: hsla(238, 100%, 87%, 30%);
   --sys-color-primary-variant: hsl(216, 100%, 80%);
   --sys-color-primary-variant-dim: hsl(216, 27%, 70%);
@@ -94,7 +96,6 @@ body.dark {
   --sys-color-primary-variant-dimmest: hsl(216, 12%, 59%);
   --sys-color-primary-container: hsl(232, 92%, 56%);
   --sys-color-on-primary-container: hsl(0, 0%, 100%);
-  --sys-color-inverse-primary: hsl(232, 93%, 56%);
   --sys-color-secondary: hsl(180, 66%, 58%);
   --sys-color-on-secondary: hsl(180, 100%, 11%);
   --sys-color-secondary-container: hsl(180, 100%, 34%);
@@ -103,9 +104,9 @@ body.dark {
   --sys-color-on-tertiary: #003824;
   --sys-color-tertiary-container: #006a47;
   --sys-color-on-tertiary-container: #ffffff;
-  --sys-color-on-primary: hsl(242, 100%, 12%);
+  --sys-color-on-primary: #FFFFFF;
   --sys-color-surface: hsl(0, 0%, 7%);
-  --sys-color-background: hsl(0, 0%, 7%);
+  --sys-color-background: #030303;
   --sys-color-on-background: hsl(0, 0%, 89%);
   --sys-color-on-background-emphasis: hsl(0, 0%, 100%);
   --sys-color-on-background-dim: hsl(0, 0%, 63%);
@@ -113,7 +114,7 @@ body.dark {
   --sys-color-surface: hsl(0, 0%, 7%);
   --sys-color-surface-dim: hsl(0, 0%, 7%);
   --sys-color-surface-bright: hsl(0, 0%, 22%);
-  --sys-color-surface-container-lowest: hsl(0, 0%, 5%);
+  --sys-color-surface-container-lowest: #0d0d0d;
   --sys-color-surface-container-low: hsl(0, 0%, 11%);
   --sys-color-surface-container: hsl(0, 0%, 12%);
   --sys-color-surface-container-high: hsl(0, 0%, 16%);
@@ -181,7 +182,6 @@ body.dark {
     --sys-color-primary-variant-dimmest: hsl(216, 12%, 59%);
     --sys-color-primary-container: hsl(232, 92%, 56%);
     --sys-color-on-primary-container: hsl(0, 0%, 100%);
-    --sys-color-inverse-primary: hsl(232, 93%, 56%);
     --sys-color-secondary: hsl(180, 66%, 58%);
     --sys-color-on-secondary: hsl(180, 100%, 11%);
     --sys-color-secondary-container: hsl(180, 100%, 34%);

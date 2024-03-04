@@ -31,8 +31,8 @@ mwc-drawer {
 }
 
 #mobileSiteNav {
-  background-color: var(--sys-color-primary-container);
-  color: var(--sys-color-on-primary-container);
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
   --lit-logo-flame-light: currentColor;
   padding: 20px;
 }

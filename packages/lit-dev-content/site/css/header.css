@@ -46,19 +46,29 @@
 #desktopNav .navItem litdev-search-modal {
   font-weight: 600;
   padding: 0.3em 0.5em;
-  margin-inline-start: 0.5em;
   font-size: 0.9em;
+}
+
+#desktopNav .navItem a {
+  margin-inline: 0.25em;
+}
+#desktopNav .navItem litdev-version-selector {
+  margin-inline-end: 0.25em;
 }
 
 #desktopNav .icons .navItem > *{
   margin-inline-start: 0;
 }
 
-#desktopNav .navItem litdev-version-selector,
-#desktopNav .navItem a,
-#desktopNav .navItem litdev-search-modal,
-#desktopNav .navItem theme-switcher {
+#desktopNav .navItem,
+#desktopNav .navItem a {
   color: var(--sys-color-on-background-dim);
+}
+
+#desktopNav .navItem {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
 }
 
 #desktopNav .icons,
@@ -88,9 +98,17 @@
   }
 }
 
-#desktopNav .navItem > *:hover,
-#desktopNav .navItem.active a {
-  color: var(--sys-color-primary);
+#desktopNav .navItem *:hover {
+  color: var(--sys-color-primary-variant);
+}
+
+#desktopNav .navItem.active {
+  background-color: var(--sys-color-primary);
+  border-radius: 12px;
+}
+
+#desktopNav .navItem.active * {
+  color: var(--sys-color-on-primary);
 }
 
 #mobileMenuButton {
