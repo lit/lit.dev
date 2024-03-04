@@ -54,6 +54,7 @@ export const tokens = [
   '--sys-color-on-dark-surface-emphasis',
   '--sys-color-dark-surface',
   '--sys-color-dark-surface-dim',
+  '--sys-color-light-surface',
 ];
 
 export const defaultPalette = [

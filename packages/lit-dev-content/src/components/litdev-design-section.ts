@@ -49,6 +49,7 @@ export class LitDevDesignSection extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-block: 16px;
     }
 
     #controls {
