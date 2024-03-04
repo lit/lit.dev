@@ -102,7 +102,7 @@ export class LitDevDesignSection extends LitElement {
             <select @change=${this.onBackgroundChange}>
               ${tokens.map(
                 (token) => html`
-                  <option value=${token} ?selected=${this.foreground === token}>
+                  <option value=${token} ?selected=${this.background === token}>
                     ${token.replace('--sys-color-', '').replaceAll('-', ' ')}
                   </option>
                 `
