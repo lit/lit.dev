@@ -11,7 +11,6 @@ export const tokens = [
   '--sys-color-primary-variant',
   '--sys-color-primary-variant-dim',
   '--sys-color-primary-variant-dimmer',
-  '--sys-color-primary-variant-dimmest',
   '--sys-color-primary-container',
   '--sys-color-on-primary-container',
   '--sys-color-secondary',

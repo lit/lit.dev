@@ -16,7 +16,6 @@ body.light {
   --sys-color-primary-variant: #005dc7;
   --sys-color-primary-variant-dim: #384861;
   --sys-color-primary-variant-dimmer: #4d5a6f;
-  --sys-color-primary-variant-dimmest: #6c7689;
   --sys-color-primary-container: #4d63ff;
   --sys-color-on-primary-container: #ffffff;
   --sys-color-secondary: #006a6a;
@@ -94,7 +93,6 @@ body.dark {
   --sys-color-primary-variant: hsl(216, 100%, 80%);
   --sys-color-primary-variant-dim: hsl(216, 27%, 70%);
   --sys-color-primary-variant-dimmer: hsl(216, 18%, 65%);
-  --sys-color-primary-variant-dimmest: hsl(216, 12%, 59%);
   --sys-color-primary-container: hsl(232, 92%, 56%);
   --sys-color-on-primary-container: hsl(0, 0%, 100%);
   --sys-color-secondary: hsl(180, 66%, 58%);
@@ -180,7 +178,6 @@ body.dark {
     --sys-color-primary-variant: hsl(216, 100%, 80%);
     --sys-color-primary-variant-dim: hsl(216, 27%, 70%);
     --sys-color-primary-variant-dimmer: hsl(216, 18%, 65%);
-    --sys-color-primary-variant-dimmest: hsl(216, 12%, 59%);
     --sys-color-primary-container: hsl(232, 92%, 56%);
     --sys-color-on-primary-container: hsl(0, 0%, 100%);
     --sys-color-secondary: hsl(180, 66%, 58%);

@@ -250,7 +250,7 @@ article h3 {
 
 article h4 {
   font-size: 0.88889rem;
-  color: var(--sys-color-primary-variant-dimmest);
+  color: var(--sys-color-primary-variant-dimmer);
   margin-top: 1.3em;
 }
 
