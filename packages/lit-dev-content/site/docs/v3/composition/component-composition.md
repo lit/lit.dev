@@ -62,7 +62,7 @@ A few implications of this model:
 Consider a menu component that includes a set of menu items and exposes `items` and `selectedItem` properties as part of its public API. Its DOM structure might look like this:
 
 
-![A hierarchy of DOM nodes representing a menu. The top node, my-menu, has a ShadowRoot, which contains three my-item elements.](/images/docs/composition/composition-menu-component.png)
+![A hierarchy of DOM nodes representing a menu. The top node, my-menu, has a ShadowRoot, which contains three my-item elements.](/images/docs/composition/composition-menu-component.png){.light-bg}
 
 When the user selects an item, the `my-menu` element should update its `selectedItem` property. It should also fire an event to notify any owning component that the selection has changed. The complete sequence would be something like this:
 

@@ -59,6 +59,7 @@ body.light {
   --sys-color-on-dark-surface-emphasis: #fff;
   --sys-color-dark-surface: #303030;
   --sys-color-dark-surface-dim: #222;
+  --sys-color-light-surface: #f9f9f9;
 
   --playground-code-background: var(--sys-color-surface);
   --playground-code-keyword-color: #d92f3f;

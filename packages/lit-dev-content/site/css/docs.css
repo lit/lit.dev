@@ -254,6 +254,10 @@ article h4 {
   margin-top: 1.3em;
 }
 
+article .light-bg {
+  background-color: var(--sys-color-light-surface);
+}
+
 /* ------------------------------------
  * Lists
  * ------------------------------------ */
