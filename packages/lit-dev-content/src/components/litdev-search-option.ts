@@ -100,7 +100,7 @@ export class LitdevSearchOption extends LitElement {
     }
 
     em {
-      color: var(--sys-color-primary);
+      color: var(--sys-color-primary-variant);
       font-style: normal;
       text-decoration: underline;
     }

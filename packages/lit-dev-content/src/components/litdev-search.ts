@@ -572,7 +572,7 @@ export class LitDevSearch extends LitElement {
     }
 
     .group .descriptor {
-      color: var(--sys-color-primary);
+      color: var(--sys-color-primary-variant);
       font-size: 20px;
 
       display: flex;
