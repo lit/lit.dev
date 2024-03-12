@@ -21,6 +21,10 @@ export class LitDevErrorNotifier extends LitElement {
     a {
       color: var(--sys-color-primary-variant);
     }
+
+    :host {
+      --mdc-theme-primary: var(--sys-color-primary-variant);
+    }
   `;
   /**
    * The SHA or version number identifying the version of lit.dev, used for
