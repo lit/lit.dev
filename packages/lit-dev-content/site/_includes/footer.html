@@ -1,8 +1,18 @@
 <footer>
   <div id="footerTop">
     <div id="footerNameAndLogo">
-      <img loading="lazy" id="footerName" src="{{ site.baseurl }}/images/logo.svg#name" alt="" />
-      <img loading="lazy" fetchpriority="high" id="footerFlame" src="{{ site.baseurl }}/images/logo.svg#flame" alt="" />
+      <lazy-svg
+          loading="visible"
+          id="footerName"
+          href="{{ site.baseurl }}/images/logo.svg#name-symbol"
+          label="Lit">
+      </lazy-svg>
+      <lazy-svg
+          loading="visible"
+          id="footerFlame"
+          href="{{ site.baseurl }}/images/logo.svg#flame-symbol"
+          label="Lit logo">
+      </lazy-svg>
     </div>
 
     <!-- TODO(aomarks) Combine SVG symbols into a single sprite sheet at prod

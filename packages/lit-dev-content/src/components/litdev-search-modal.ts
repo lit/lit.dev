@@ -183,7 +183,8 @@ export class LitDevSearchModal extends LitElement {
     }
 
     dialog::backdrop {
-      background-color: rgba(0, 0, 0, 0.32);
+      background-color: var(--sys-color-scrim);
+      opacity: 0.32;
     }
 
     #content {
@@ -192,7 +193,8 @@ export class LitDevSearchModal extends LitElement {
       box-sizing: border-box;
       width: 745px;
       max-width: 745px;
-      background-color: var(--color-light-gray);
+      background-color: var(--sys-color-surface-container-high);
+      color: var(--sys-color-on-surface);
       border-radius: 5px;
     }
 

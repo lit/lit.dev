@@ -43,8 +43,8 @@ export class LitdevSearchOption extends LitElement {
     }
 
     :host([checked]) :is(.suggestion, svg) {
-      background-color: var(--color-blue);
-      color: white;
+      background-color: var(--sys-color-primary-container);
+      color: var(--sys-color-on-primary-container);
     }
 
     .suggestion {
@@ -54,7 +54,7 @@ export class LitdevSearchOption extends LitElement {
       height: 50px;
       padding: 12px 20px;
       margin-block: 10px;
-      background-color: white;
+      background-color: var(--sys-color-surface-container);
       font-size: 20px;
       cursor: pointer;
       border-radius: 4px;
@@ -96,17 +96,17 @@ export class LitdevSearchOption extends LitElement {
     }
 
     svg {
-      color: var(--color-dark-gray);
+      color: var(--sys-color-on-surface);
     }
 
     em {
-      color: var(--color-blue);
+      color: var(--sys-color-primary-variant);
       font-style: normal;
       text-decoration: underline;
     }
 
     :host([checked]) .suggestion em {
-      color: var(--color-white);
+      color: var(--sys-color-on-primary-container);
     }
   `;
 

@@ -25,6 +25,14 @@ export default class LazySvg extends LitElement {
     :host {
       display: contents;
     }
+    svg {
+      width: inherit;
+      height: inherit;
+      min-width: inherit;
+      min-height: inherit;
+      max-width: inherit;
+      max-height: inherit;
+    }
   `;
 
   /**
@@ -52,6 +60,18 @@ export default class LazySvg extends LitElement {
    */
   @property({attribute: 'svg-role'})
   svgRole = '';
+
+  /**
+   * The `width` to apply to the SVG.
+   */
+  @property()
+  width = '';
+
+  /**
+   * The `height` to apply to the SVG.
+   */
+  @property()
+  height = '';
 
   /**
    * Strategies for loading the SVG:
@@ -91,6 +111,8 @@ export default class LazySvg extends LitElement {
     return html`<svg
       aria-hidden=${this.svgAriaHidden ? 'true' : nothing}
       aria-label=${this.label ? this.label : nothing}
+      width=${this.width ? this.width : nothing}
+      height=${this.height ? this.height : nothing}
       role=${this.svgRole ? this.svgRole : nothing}
       part="svg"
     >

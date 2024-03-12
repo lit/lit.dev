@@ -12,6 +12,24 @@ export const preventGDPRBanner = async (page: Page) => {
   });
 };
 
+export const waitForTheme = async (page: Page, dark: boolean) => {
+  await page.waitForSelector('body.auto,body.light,body.dark');
+
+  if (dark) {
+    await page.locator('body').evaluate((body) => {
+      body.classList.remove('light', 'dark', 'auto');
+      body.classList.add('dark');
+    });
+
+    return;
+  }
+
+  await page.locator('body').evaluate((body) => {
+    body.classList.remove('light', 'dark', 'auto');
+    body.classList.add('light');
+  });
+};
+
 export async function waitForPlaygroundPreviewToLoad(page: Page) {
   // We could get a series of iframe reloads, e.g. if we're typing multiple
   // characters, then there could be enough time for multiple previews to get

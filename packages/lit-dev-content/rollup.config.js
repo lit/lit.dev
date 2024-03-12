@@ -46,6 +46,7 @@ export default [
       'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
       'lib/global/hydrate-common-components.js',
+      'lib/pages/design.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
       'lib/pages/learn.js',
@@ -131,8 +132,9 @@ export default [
   // the asynchronously-loaded module bundles above.
   {
     input: [
+      'lib/global/apply-saved-theme.js',
       'lib/global/apply-mods.js',
-      'lib/global/initialize-typescript-attribute.js',
+      'lib/global/initialize-typescript-mode.js',
       'lib/global/mobile-drawer.js',
       'lib/global/dsd-polyfill.js',
     ],

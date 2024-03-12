@@ -60,7 +60,7 @@ export class LitDevExample extends LitElement {
     }
 
     playground-tab-bar {
-      background: #fff;
+      background-color: var(--sys-color-surface-high);
       font-family: 'Open Sans', sans-serif;
       height: var(--litdev-example-tab-bar-height);
       /* Allow the tab bar to shrink below its content size so that when an

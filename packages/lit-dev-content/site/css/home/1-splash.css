@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   min-height: 50px;
-  background: var(--color-blue);
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
 }
 
 #new-banner > p {
@@ -15,7 +15,7 @@
 }
 
 #new-banner a {
-  color: white;
+  color: var(--sys-color-on-primary);
   font-weight: 800;
 }
 
@@ -33,7 +33,8 @@
   padding: 120px 0 140px 0;
   position: relative;
   z-index: 0;
-  background: white;
+  background-color: var(--sys-color-surface-container);
+  color: var(--sys-color-on-surface);
   justify-content: center;
   align-items: flex-end;
 }
@@ -42,7 +43,7 @@
   margin-right: 60px;
 }
 
-#splashLogo > img {
+#splashLogo > svg {
   display: block;
   width: 286.875px;
   height: 135px;
@@ -54,7 +55,7 @@
 }
 
 #tagline {
-  color: rgb(48, 48, 48);
+  color: var(--sys-color-on-background-dim);
   font-size: 20px;
   font-weight: 800;
   margin: 0 60px -9px 0;
@@ -80,15 +81,16 @@
 
 #npmInstall {
   font-family: var(--playground-code-font-family);
-  background: #757575;
-  color: white;
+  background-color: var(--sys-color-surface-container-highest);
+  color: var(--sys-color-on-surface);
+  border: var(--litdev-dark-border);
   margin-bottom: 8px;
   font-size: 16px;
 }
 
 #npmInstall:hover,
 #npmInstall:focus {
-  background: #575757;
+  background-color: var(--sys-color-surface-container-low);
 }
 
 #npmInstall > .prompt {
@@ -97,8 +99,8 @@
 }
 
 #getStartedLink {
-  background: #325cff;
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
   text-align: center;
   font-weight: 600;
   font-size: 16px;
@@ -106,7 +108,8 @@
 
 #getStartedLink:hover,
 #getStartedLink:focus {
-  background: blue;
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
 }
 
 @media (max-width: 900px) {

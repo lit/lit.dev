@@ -4,9 +4,8 @@
 @import url('./header.css');
 @import url('./footer.css');
 @import url('./mobile-nav.css');
-@import url('./colors.css');
-@import url('./codemirror.css');
 @import url('./code.css');
+@import url('./codemirror.css');
 @import url('./version-selector.css');
 
 body[dsd-pending] {
@@ -42,6 +41,8 @@ code {
 body {
   margin: 0;
   font-family: Manrope, sans-serif;
+  background-color: var(--sys-color-background);
+  color: var(--sys-color-on-background);
 }
 
 main {
@@ -55,7 +56,7 @@ main {
 
 a {
   text-decoration: none;
-  color: #1879cd;
+  color: var(--sys-color-primary-variant);
 }
 
 /* On some platforms like Linux, a traditional scrollbar will be always visible
@@ -65,7 +66,7 @@ a {
   width: 15px;
 }
 .minimalScroller:hover::-webkit-scrollbar-thumb {
-  background: rgb(255 255 255 / 0.3);
+  background-color: rgb(255 255 255 / 0.3);
   background-clip: content-box !important;
   border: 4px solid transparent;
   border-radius: 10px;
@@ -78,23 +79,4 @@ a {
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-#bypassNavLink {
-  position: fixed;
-  top: 10px;
-  left: 0;
-  transform: translateX(-100%);
-  transition: transform 100ms;
-  font-size: 18px;
-  padding: 8px 14px;
-  color: var(--color-blue);
-  background: white;
-  z-index: 5;
-}
-#bypassNavLink:focus {
-  transform: translateX(10px);
-}
-#bypassNavLink:hover {
-  text-decoration: underline;
 }

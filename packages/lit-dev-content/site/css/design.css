@@ -1,0 +1,13 @@
+section {
+  background-color: var(--sys-color-background);
+  color: var(--sys-color-background);
+}
+
+section.light {
+  /* unset lit logo colors */
+  --lit-logo-text-color: initial;
+  --lit-logo-dark-cyan: initial;
+  --lit-logo-cyan: initial;
+  --lit-logo-blue: initial;
+  --lit-logo-dark-blue: initial;
+}

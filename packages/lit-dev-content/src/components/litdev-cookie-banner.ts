@@ -19,11 +19,11 @@ export default class LitdevCookieBanner extends LitElement {
       inset-block-end: var(--_inset);
       inset-inline-start: var(--_inset);
       z-index: 10;
-      background-color: var(--color-dark-gray);
-      color: white;
+      background-color: var(--sys-color-dark-surface);
+      color: var(--sys-color-on-dark-surface);
       padding: 0.88rem;
       padding-block-end: 0.5rem;
-      border: 1px solid white;
+      border: 1px solid var(--sys-color-outline);
       border-radius: 8px;
       max-width: 430px;
       box-sizing: border-box;
@@ -51,7 +51,7 @@ export default class LitdevCookieBanner extends LitElement {
       width: auto;
       height: 36px;
       margin-inline: 0.5rem;
-      color: var(--color-dark-cyan);
+      color: var(--color-cyan);
     }
 
     litdev-ripple-icon-button::part(root) {

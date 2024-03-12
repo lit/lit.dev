@@ -39,9 +39,12 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
       height: 24px;
       min-width: 50px;
       width: 275px;
+      background-color: var(--sys-color-surface-container-lowest);
+      color: var(--sys-color-on-surface);
+      border: 1px solid var(--sys-color-outline-variant);
+      opacity: 0.5;
     }
     copy-button {
-      color: #3e3e3e;
       margin: 0 -5px 0 10px;
       opacity: 0.75;
     }

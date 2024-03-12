@@ -1,0 +1,15 @@
+{% extends 'default.html' %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ site.baseUrl }}/css/design.css" >
+  <script type="module" defer src="{{ site.baseUrl }}/js/pages/design.js"></script>
+{% endblock %}
+
+{% block content %}
+  <section class="light">
+    <litdev-design-section></litdev-design-section>
+  </section>
+  <section class="dark">
+    <litdev-design-section mode="dark"></litdev-design-section>
+  </section>
+{% endblock %}

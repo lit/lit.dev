@@ -1,7 +1,13 @@
 <header class="pageHeader">
   <nav>
     <a id="homeLink" href="{{ site.baseurl }}/" aria-label="Home">
-      <img id="headerLogo" class="black" src="{{ site.baseurl }}/images/logo.svg" alt="Lit Home" width="425" height="200" />
+      <lazy-svg
+        id="headerLogo"
+        svg-role="img"
+        href="{{ site.baseurl }}/images/logo.svg#full"
+        label="Lit Home"
+        loading="eager">
+      </lazy-svg>
     </a>
 
     <ol id="desktopNav">

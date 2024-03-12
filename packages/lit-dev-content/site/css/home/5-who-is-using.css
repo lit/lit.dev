@@ -1,5 +1,5 @@
 #whoIsUsing {
-  background: var(--color-blue);
+  background-color: var(--sys-color-primary-container);
   padding: 2em var(--home-side-margin);
   z-index: 0;
   position: relative;
@@ -21,7 +21,7 @@
 }
 
 #whoIsUsingContent > .heading > h1 {
-  color: white;
+  color: var(--sys-color-on-primary);
   font-size: 20px;
   line-height: 40px;
   font-weight: 700;
@@ -31,7 +31,7 @@
 }
 
 #whoIsUsingContent > .heading > .color {
-  background: #1D3AFF;
+  background-color: var(--sys-color-primary);
   position: absolute;
   right: 0;
   z-index: -2;
@@ -57,11 +57,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: white;
+  color: var(--sys-color-on-primary-container);
   margin-top: 3em;
 }
 
-#whoIsUsingLogos > a {
+#whoIsUsingLogos > :is(a,.fakeAnchor) {
   max-width: 7em;
   height: 4.5em;
   text-align: center;
@@ -78,7 +78,7 @@
 #whoIsUsingLogos div {
   position: absolute;
   display: flex;
-  color: #e1e5ff;
+  color: var(--sys-color-on-primary-container);
   justify-content: center;
   align-items: center;
   bottom: 0;
@@ -93,7 +93,7 @@
   text-decoration: underline;
 }
 
-#whoIsUsingLogos span {
+#whoIsUsingLogos span:not(.fakeAnchor) {
   display: block;
   font-size: 0.72222em;
   color: inherit;

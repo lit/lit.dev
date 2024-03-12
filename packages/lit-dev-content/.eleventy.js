@@ -502,6 +502,15 @@ ${content}
   );
 
   /**
+   * Inlines an SVG file.
+   */
+  eleventyConfig.addShortcode('inlineSvg', async (src, label) => {
+    const text = fsSync.readFileSync(`./site/${src}`, 'utf8');
+    const ariaLabel = label !== undefined ? ` aria-label="${label}"` : '';
+    return text.replace('<svg', `<svg${ariaLabel}`);
+  });
+
+  /**
    * Bundle, minify, and inline a CSS file. Path is relative to ./site/css/.
    *
    * In dev mode, instead import the CSS file directly.

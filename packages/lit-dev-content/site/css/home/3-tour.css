@@ -1,6 +1,5 @@
 #tour {
   padding: 7em var(--home-side-margin) 6em var(--home-side-margin);
-  background: #f4f4f4;
 }
 
 #tour > * {
@@ -16,7 +15,6 @@
 
 #tourCode {
   width: 620px;
-  --playground-code-background: #fdfdfd;
   --litdev-code-padding: 1.5em 2em;
   --playground-code-font-size: 16px;
   position: sticky;
@@ -56,21 +54,35 @@ litdev-code-language-switch {
   position: absolute;
   transition: width 300ms;
   transform: skew(-6deg);
+  z-index: -1;
 }
 
 #tourCode .tourHighlight:hover,
 #tourCode .tourHighlight.active {
   cursor: pointer;
-  background: #ffe950;
+  background-color: #ffe950;
+}
+
+body.dark .tourHighlight:hover,
+body.dark #tourCode .tourHighlight.active {
+  background-color: var(--sys-color-tertiary-container);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) .tourHighlight:hover,
+  body:not(.light) #tourCode .tourHighlight.active {
+    background-color: var(--sys-color-tertiary-container);
+  }
 }
 
 #tourCode .CodeMirror-line,
 #tourCode .CodeMirror-line > span {
+  z-index: 0;
   position: relative;
 }
 
 #tourNotes {
-  margin-left: 2em;
+  margin-inline-start: calc(2em - 18px);
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -81,23 +93,26 @@ litdev-code-language-switch {
 
 #tourNotes > div {
   max-width: 680px;
-  border-left: 4px solid transparent;
   margin-bottom: 19px;
+  padding-inline: 18px;
+  padding-block: 1px;
 }
 
 #tourNotes > div > h1 {
   font-size: 20px;
   font-weight: 700;
-  color: #454545;
+  color: var(--sys-color-on-background-emphasis);
   margin: 12px 0 0 0;
 }
 
 #tourNotes > div.active {
-  background: white;
-  border-color: #325cff;
+  background-color: var(--sys-color-surface-container);
+  border: 1px solid var(--sys-color-outline-variant);
+  border-inline-start: 4px solid var(--sys-color-primary);
+  padding-inline-start: 14px;
+  padding-inline-end: 17px;
+  padding-block: 0px;
   box-shadow: rgb(0 0 0 / 20%) 0 0 5px 0;
-  margin: 0 -18px 19px -18px;
-  padding: 0 18px 0 18px;
   cursor: pointer;
   outline: none;
 }
@@ -108,8 +123,8 @@ litdev-code-language-switch {
 
 #playgroundLink {
   display: block;
-  background: #325cff;
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
   padding: 10px 30px;
   text-align: center;
   margin-top: 2em;
@@ -118,7 +133,8 @@ litdev-code-language-switch {
 
 #playgroundLink:hover,
 #playgroundLink:focus {
-  background: blue;
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
 }
 
 @media (max-width: 1200px) {

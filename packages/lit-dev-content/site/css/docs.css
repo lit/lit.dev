@@ -4,17 +4,7 @@
 
 main {
   /* Colors */
-  --docs-h1-underline-color: var(--color-blue);
-  --docs-h2-color: #384861;
-  --docs-h3-color: #5d6c86;
-  --docs-rule-color: #d1d1d1;
-  --docs-table-header-background: #e4e4e4;
-  --docs-table-header-color: rgb(73, 73, 73);
-  --docs-link-color: #005cc5;
-  --docs-nav-color: #242424;
-  --playground-code-background: #fafafa;
-  --code-border: 1px solid #ddd;
-  --docs-on-surface-color: #3e3e3e;
+  --code-border: 1px solid var(--sys-color-outline-variant);
 
   /* IMPORTANT: If any of the following variables change, one or both of the
      @media query thresholds below need to be updated. */
@@ -30,13 +20,13 @@ main {
   grid-template-columns:
     minmax(var(--docs-nav-min-width), var(--docs-nav-max-width)) minmax(0, var(--docs-article-max-width)) 1fr;
   max-width: none;
-  border-bottom: 1px solid var(--color-blue);
+  border-bottom: 1px solid var(--sys-color-primary);
 
   /* Open Sans is more readable than Manrope, so we prefer it for content that
      users will spend a lot of time reading. */
   font-family: "Open Sans", sans-serif;
 
-  background: var(--color-light-gray);
+  background-color: var(--sys-color-background);
   padding-block: var(--docs-margin-block);
 }
 
@@ -51,9 +41,10 @@ article {
   line-height: 1.8em;
   font-size: 0.88889em;
   /* 16px / 18px basis */
-  color: var(--docs-on-surface-color);
-  background: white;
+  color: var(--sys-color-on-surface);
+  background-color: var(--sys-color-surface-container);
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
+  border: var(--litdev-dark-border);
   margin-right: 2em;
   /* For when linking to #content via nav bypass. */
   scroll-margin-top: var(--header-height);
@@ -91,7 +82,8 @@ article :not(litdev-aside) p {
 }
 
 article a {
-  color: var(--docs-link-color);
+  color: var(--sys-color-primary-variant);
+  font-weight: 600;
 }
 
 article a:hover {
@@ -107,7 +99,7 @@ article li>p {
   margin: 0;
 }
 
-article>p>img.logo {
+article>p>.logo {
   max-width: 30%;
 }
 
@@ -117,7 +109,7 @@ article>p>img.logo {
 
 /* Inline code */
 article code:not([class]) {
-  background: var(--color-light-gray);
+  background-color: var(--sys-color-surface-container-highest);
   font-size: 0.85em;
   padding: 0.2em 0.4em;
   font-family: var(--playground-code-font-family, monospace);
@@ -125,14 +117,13 @@ article code:not([class]) {
 
 /* Non-highlighted code block */
 article pre>code:not([class]) {
-  background: none;
+  background-color: none;
   padding: 0;
 }
 
 /* Static code snippets */
 .CodeMirror {
-  color: #3c3c3c;
-  border: var(--code-border);
+  border: var(--sys-color-outline-variant);
 }
 
 /* With tabs */
@@ -180,7 +171,7 @@ figure {
 article h1 {
   padding: 0.3em 0 0.8em 0;
   margin-bottom: 1.3em;
-  border-bottom: 2px solid var(--docs-h1-underline-color);
+  border-bottom: 2px solid var(--sys-color-primary);
   font-size: 2.2em;
   font-weight: 400;
   /* The default margin of the first heading extends above the article, which
@@ -220,8 +211,7 @@ article h1 {
 .anchor:hover,
 .anchor:focus {
   opacity: 1;
-  color: var(--color-medium-gray);
-  ;
+  color: var(--sys-color-primary-variant-dimmer);
   text-decoration: none;
 }
 
@@ -230,11 +220,11 @@ article>h2 {
   font-size: 1.8em;
   margin: 0 0 1.328em 0;
   padding: 1.5em 0 0.5em 0;
-  border-bottom: 1px solid var(--docs-rule-color);
+  border-bottom: 1px solid var(--sys-color-outline);
 }
 
 article h2 {
-  color: var(--docs-h2-color);
+  color: var(--sys-color-primary-variant-dim);
   font-weight: 600;
 }
 
@@ -254,14 +244,18 @@ article>h3 {
 }
 
 article h3 {
-  color: var(--docs-h3-color);
+  color: var(--sys-color-primary-variant-dimmer);
   font-weight: 600;
 }
 
 article h4 {
   font-size: 0.88889rem;
-  color: var(--docs-h4-color);
+  color: var(--sys-color-primary-variant-dimmer);
   margin-top: 1.3em;
+}
+
+article .light-bg {
+  background-color: var(--sys-color-light-surface);
 }
 
 /* ------------------------------------
@@ -289,9 +283,9 @@ article li {
   font-size: 1em;
   font-weight: 500;
   font-family: var(--playground-code-font-family);
-  background: var(--color-light-gray);
-  border-right: 1px solid rgb(230, 230, 230);
-  color: rgb(37, 37, 37);
+  background-color: var(--sys-color-background);
+  border-right: 1px solid var(--sys-color-outline);
+  color: var(--sys-color-on-background-emphasis);
 }
 
 .params>.paramDetails> :first-of-type {
@@ -308,22 +302,22 @@ article li {
 
 table {
   border-collapse: collapse;
-  border: 1px solid #eaeaea;
+  border: 1px solid var(--sys-color-surface-container-highest);
+  background-color: var(--sys-color-surface-container-dim);
 }
 
 th {
-  color: var(--docs-table-header-color);
-  background: var(--docs-table-header-background);
+  background-color: var(--sys-color-surface-container-highest);
   text-align: left;
   font-weight: 600;
 }
 
 tr:nth-child(even) {
-  background: #f6f8fa;
+  background-color: var(--sys-color-surface-bright);
 }
 
 tr {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--sys-color-surface-container-highest);
 }
 
 th,
@@ -354,7 +348,7 @@ table.directory td>p {
 }
 
 table.directory td code {
-  background: transparent;
+  background-color: transparent;
   font-size: inherit;
   padding: 0;
 }
@@ -375,7 +369,7 @@ table.directory tr.subheading {
   position: relative;
   margin: 1em 0;
   padding: 1em 1em 1em 3.5em;
-  border: 1px solid #ccc;
+  border: 1px solid var(--sys-color-outline);
 }
 
 .alert>p {
@@ -390,6 +384,7 @@ table.directory tr.subheading {
 
 .alert.alert-info::before {
   content: url(/images/alerts/info.svg);
+  color: var(--sys-color-error);
 }
 
 .alert.alert-warning::before {
@@ -405,7 +400,7 @@ table.directory tr.subheading {
 }
 
 .alert.alert-todo h3 {
-  color: red;
+  color: var(--sys-color-error);
 }
 
 .pre-release>summary {
@@ -430,7 +425,7 @@ table.directory tr.subheading {
   grid-template-columns: min-content 1fr;
   grid-gap: 0em 1.5em;
   align-items: center;
-  color: black;
+  color: var(--sys-color-on-background-emphasis);
   text-decoration: none;
 }
 
@@ -441,7 +436,7 @@ table.directory tr.subheading {
 
 #prevAndNextLinks>span>a>.arrow {
   grid-row: 1 / 3;
-  color: #757575;
+  color: var(--sys-color-on-background-dim);
 }
 
 #nextLink>.arrow {
@@ -450,16 +445,16 @@ table.directory tr.subheading {
 
 #prevAndNextLinks>span>a>.direction {
   display: block;
-  color: #757575;
+  color: var(--sys-color-on-background-dim);
   font-size: 15px;
 }
 
 #prevAndNextLinks>span>a:hover>.direction {
-  color: var(--color-blue);
+  color: var(--sys-color-primary);
 }
 
 #prevAndNextLinks>span>a:hover>.arrow {
-  color: var(--color-blue);
+  color: var(--sys-color-primary);
 }
 
 #prevAndNextLinks>span>a>.title {
@@ -467,7 +462,7 @@ table.directory tr.subheading {
 }
 
 #prevAndNextLinks>span>a:hover>.title {
-  color: var(--color-blue);
+  color: var(--sys-color-primary);
 }
 
 #prevAndNextLinks>span>a:first-of-type {
@@ -487,13 +482,12 @@ table.directory tr.subheading {
   display: flex;
   justify-content: flex-end;
   box-sizing: border-box;
-  background: var(--docs-nav-background);
   overflow-y: scroll;
 }
 
 #docsNav {
-  background: transparent;
-  color: var(--docs-nav-color);
+  background-color: transparent;
+  color: var(--sys-color-on-background);
   line-height: 1.6em;
   padding-left: 2em;
   box-sizing: border-box;
@@ -577,7 +571,7 @@ body #docsNav .section-collapse:first-of-type {
 #docsNav li.active {
   position: relative;
   font-weight: 600;
-  color: black;
+  color: var(--sys-color-on-background-emphasis);
 }
 
 #docsNav li.active::before {
@@ -600,7 +594,7 @@ body #docsNav .section-collapse:first-of-type {
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 600;
-  color: #6e6e6e;
+  color: var(--sys-color-on-background-dim);
 }
 
 #docsNav a:hover {
@@ -608,7 +602,7 @@ body #docsNav .section-collapse:first-of-type {
 }
 
 #docsNavWrapper:hover::-webkit-scrollbar-thumb {
-  background: #d6d6d6;
+  background-color: var(--sys-color-on-background-dimmest);
 }
 
 /* Labs icon */
@@ -642,7 +636,7 @@ body #docsNav .section-collapse:first-of-type {
 
 #inlineToc a {
   color: inherit;
-  color: var(--docs-link-color);
+  color: var(--sys-color-primary-variant);
   display: flex;
 }
 
@@ -677,7 +671,7 @@ body #docsNav .section-collapse:first-of-type {
 
 /* "Contents" heading */
 #rhsToc>h2 {
-  color: #1d1d1d;
+  color: var(--sys-color-on-background-emphasis);
   font-weight: 600;
   font-size: 0.9em;
   margin-bottom: 1em;
@@ -727,7 +721,7 @@ body #docsNav .section-collapse:first-of-type {
 }
 
 #rhsTocInner a {
-  color: #6f6f6f;
+  color: var(--sys-color-on-background-dim);
   font-size: 0.8em;
   position: relative;
   display: inline-block;
@@ -737,7 +731,7 @@ body #docsNav .section-collapse:first-of-type {
 
 #rhsTocInner a.active,
 #rhsTocInner a:hover {
-  color: black;
+  color: var(--sys-color-on-background-emphasis);
 }
 
 /* Active section bullet */
@@ -757,7 +751,8 @@ body #docsNav .section-collapse:first-of-type {
 
 litdev-banner {
   display: block;
-  background: #ffe133;
+  background-color: var(--sys-color-tertiary-container);
+  color: var(--sys-color-on-tertiary-container);
   padding: 8px 24px;
   font-size: 16px;
   font-weight: 600;
@@ -769,7 +764,10 @@ litdev-banner {
 }
 
 litdev-banner>a {
-  color: blue;
+  background-color: var(--sys-color-secondary-container);
+  color: var(--sys-color-on-secondary-container);
+  padding: 2px 4px;
+  border-radius: 4px;
   text-decoration: underline;
 }
 
@@ -814,7 +812,7 @@ litdev-banner>a {
   }
 
   #inlineToc summary::marker {
-    color: var(--docs-h2-color);
+    color: var(--sys-color-primary-variant-dim);
     font-size: 1.25em;
   }
 
@@ -826,7 +824,7 @@ litdev-banner>a {
   }
 
   #inlineToc>details[open] {
-    border-bottom: 1px solid var(--docs-rule-color);
+    border-bottom: 1px solid var(--sys-color-outline);
     padding-bottom: 1em;
   }
 
@@ -876,7 +874,7 @@ litdev-banner>a {
 
   .params>* {
     border: none;
-    background: transparent !important;
+    background-color: transparent !important;
   }
 
   .params>.paramName {

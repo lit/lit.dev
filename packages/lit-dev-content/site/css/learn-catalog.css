@@ -11,69 +11,131 @@ main {
   --_learn-card-border-radius: var(--_learn-unit);
 }
 
+/* Begin hero section */
 #hero {
   background-color: black;
   color: #cfcfcf;
   font-family: Manrope;
   font-weight: 200;
   font-size: 20px;
-  padding: 67px 0;
-  padding-left: calc(var(--_learn-unit) + 40px);
-  height: 160px; /* Explicitly declared to fix layout shift as font loads */
+  padding: 67px calc(var(--_learn-unit) + 40px);
   position: relative;
+  overflow: hidden;
 }
 
-/* The diagonal blue lines in the hero image */
-#hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 1000px;
-  --_hero-diagonal-distance: 80px;
-  background: repeating-linear-gradient(
-    30deg,
-    transparent,
-    transparent calc(var(--_hero-diagonal-distance) - 1px),
-    rgba(42,44,157,0.8) var(--_hero-diagonal-distance),
-    rgba(42,44,157,0.8) calc(var(--_hero-diagonal-distance) + 1px),
-    transparent calc(var(--_hero-diagonal-distance) + 1px)
-  );
-  clip-path: polygon(0% 0%, 50% 100%, 100% 100%, 100% 0%);
+@media (max-width: 731px) {
+  #hero {
+    padding-inline: var(--_learn-unit);
+  }
 }
 
-/* The vertical blue lines in the hero image */
-#hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 100px;
-  bottom: 0;
-  width: 648px;
-  --_hero-vertical-distance: 80px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent calc(var(--_hero-vertical-distance) - 1px),
-    rgba(42,44,157,0.8) var(--_hero-vertical-distance),
-    rgba(42,44,157,0.8) calc(var(--_hero-vertical-distance) + 1px),
-    transparent calc(var(--_hero-vertical-distance) + 1px)
+body,
+body.light {
+  --_hero-blue: var(--color-blue);
+  --_hero-cyan: var(--color-cyan);
+}
+
+body.dark {
+  --_hero-blue: var(--color-indigo);
+  --_hero-cyan: var(--color-dark-cyan);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) {
+    --_hero-blue: var(--color-indigo);
+    --_hero-cyan: var(--color-dark-cyan);
+  }
+}
+
+#hero .bg {
+  background-color: transparent;
+  animation: slide 17s ease-in-out infinite alternate;
+  background-image: linear-gradient(
+    -60deg,
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
   );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: absolute;
+  right: -50%;
+  top: 0;
+  filter: blur(100px);
+}
+
+#hero .bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 19s;
+  background-image: linear-gradient(
+    60deg,
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
+  );
+}
+
+#hero .bg3 {
+  animation-duration: 23s;
+  animation-name: slide;
+  animation-timing-function: ease;
+  background-image: linear-gradient(
+    60deg,
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
+  );
+}
+
+/* End hero section */
+
+
+#hero .bg4 {
+  animation-direction: alternate-reverse;
+  animation-duration: 29s;
+  animation-name: slide;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion) {
+  .bg {
+    animation-name: none !important;
+  }
+
+  .card,
+  .card img {
+    transition: none !important;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
 }
 
 #hero-contents {
   max-width: 1224px;
   width: 100%;
-
+  display: flex;
   margin: 0 auto;
   position: relative;
   /* Place hero contents above the blue line graphics. */
   z-index: 1;
 }
 
+#hero-contents > div {
+  box-sizing: border-box;
+  min-height: 190px; /* Explicitly declared to fix layout shift as font loads */
+  padding: 16px 32px;
+  border-radius: 16px;
+  /* --sys-color-dark-surface with opacity */
+  background-color: rgba(48, 48, 48, .75);
+}
+
 #hero h1 {
-  color: rgb(0, 255, 255);
+  color: var(--_hero-cyan);
   text-transform: uppercase;
   font-weight: 400;
   font-size: 18px;
@@ -87,15 +149,13 @@ md-chip-set {
   --md-filter-chip-label-text-font: Manrope;
   --md-filter-chip-container-shape: 16px;
   /* Colors were generated using Lit's Indigo 2 brand color: #2a2c9d */
-  --md-sys-color-outline: #777680;
-  --md-sys-color-on-surface: #1b1b21;
-  --md-sys-color-primary: #575992;
-  --md-sys-color-secondary: #5b5d72;
-  --md-sys-color-on-secondary: white;
-  --md-sys-color-primary-container: #e1e0ff;
-  --md-sys-color-secondary-container: #e2e0f9;
-  --md-sys-color-surface-variant: #e4e1ec;
-  --md-sys-color-on-surface-variant: #46464f;
+  --md-sys-color-outline: var(--sys-color-outline);
+  --md-sys-color-on-surface: var(--sys-color-on-surface);
+  --md-sys-color-secondary: var(--sys-color-primary);
+  --md-sys-color-on-secondary-container: var(--sys-color-on-primary-container);
+  --md-sys-color-secondary-container: var(--sys-color-primary-container);
+  --md-sys-color-surface-variant: var(--sys-color-surface-variant);
+  --md-sys-color-on-surface-variant: var(--sys-color-on-surface-variant);
 }
 
 #chips {
@@ -104,8 +164,9 @@ md-chip-set {
 
 #learn-catalog {
   /* Prevent a large view shift if content is empty */
-  min-height: 400px;
+  min-height: 461px;
   width: 100%;
+  background-color: var(--sys-color-surface-container);
 }
 
 .center {
@@ -129,11 +190,12 @@ md-chip-set {
 
   /* Undo anchor tag typography */
   font-family: Manrope,sans-serif;
-  color: #454545;
   text-decoration: none;
   font-weight: 400;
   font-size: 18px;
-  background-color: #f4f4f4;
+  background-color: var(--sys-color-background);
+  color: var(--sys-color-on-background);
+  border: var(--litdev-dark-border);
   padding: var(--_learn-card-padding);
 }
 
@@ -160,7 +222,7 @@ md-chip-set {
 }
 
 .card h1 {
-  color: black;
+  color: var(--sys-color-on-background-emphasis);
   font-size: 24px;
   font-weight: 500;
   margin: 10px 0 0 0;
@@ -189,7 +251,7 @@ md-chip-set {
 }
 
 .learn-kind-row span:first-child {
-  color: #3456f5;
+  color: var(--sys-color-primary);
 }
 
 /* This is the span containing the tutorial duration */
@@ -199,7 +261,7 @@ md-chip-set {
 
 #intentionally-blank {
   text-align: center;
-  color: #646464;
+  color: var(--sys-color-on-background-dim);
 }
 
 @media (max-width: 1260px) {

@@ -1,0 +1,155 @@
+/**
+ * @license
+ * Copyright 2024 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+export const tokens = [
+  '--sys-color-primary',
+  '--sys-color-primary-transparent',
+  '--sys-color-on-primary',
+  '--sys-color-primary-variant',
+  '--sys-color-primary-variant-dim',
+  '--sys-color-primary-variant-dimmer',
+  '--sys-color-primary-container',
+  '--sys-color-on-primary-container',
+  '--sys-color-secondary',
+  '--sys-color-on-secondary',
+  '--sys-color-secondary-container',
+  '--sys-color-on-secondary-container',
+  '--sys-color-tertiary',
+  '--sys-color-tertiary',
+  '--sys-color-on-tertiary',
+  '--sys-color-tertiary-container',
+  '--sys-color-on-tertiary-container',
+  '--sys-color-background',
+  '--sys-color-on-background',
+  '--sys-color-on-background-emphasis',
+  '--sys-color-on-background-dim',
+  '--sys-color-on-background-dimmest',
+  '--sys-color-surface',
+  '--sys-color-surface-dim',
+  '--sys-color-surface-bright',
+  '--sys-color-surface-container-lowest',
+  '--sys-color-surface-container-low',
+  '--sys-color-surface-container',
+  '--sys-color-surface-container-high',
+  '--sys-color-surface-container-highest',
+  '--sys-color-on-surface',
+  '--sys-color-surface-variant',
+  '--sys-color-on-surface-variant',
+  '--sys-color-inverse-surface',
+  '--sys-color-inverse-on-surface',
+  '--sys-color-outline',
+  '--sys-color-outline-variant',
+  '--sys-color-shadow',
+  '--sys-color-scrim',
+  '--sys-color-surface-tint',
+  '--sys-color-error',
+  '--sys-color-on-error',
+  '--sys-color-error-container',
+  '--sys-color-on-error-container',
+  '--sys-color-on-dark-surface',
+  '--sys-color-on-dark-surface-emphasis',
+  '--sys-color-dark-surface',
+  '--sys-color-dark-surface-dim',
+  '--sys-color-light-surface',
+];
+
+export const defaultPalette = [
+  {
+    text: 'Primary',
+    color: '--sys-color-on-primary',
+    contrast: '--sys-color-primary',
+  },
+  {
+    text: 'Primary Container',
+    color: '--sys-color-on-primary-container',
+    contrast: '--sys-color-primary-container',
+  },
+  {
+    text: 'Secondary',
+    color: '--sys-color-on-secondary',
+    contrast: '--sys-color-secondary',
+  },
+  {
+    text: 'Secondary Container',
+    color: '--sys-color-on-secondary-container',
+    contrast: '--sys-color-secondary-container',
+  },
+  {
+    text: 'Tertiary',
+    color: '--sys-color-on-tertiary',
+    contrast: '--sys-color-tertiary',
+  },
+  {
+    text: 'Tertiary Container',
+    color: '--sys-color-on-tertiary-container',
+    contrast: '--sys-color-tertiary-container',
+  },
+  {
+    text: 'Error',
+    color: '--sys-color-on-error',
+    contrast: '--sys-color-error',
+  },
+  {
+    text: 'Error Container',
+    color: '--sys-color-on-error-container',
+    contrast: '--sys-color-error-container',
+  },
+  {
+    text: 'Background',
+    color: '--sys-color-on-background',
+    contrast: '--sys-color-background',
+  },
+  {
+    text: 'Surface Dim',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-dim',
+  },
+  {
+    text: 'Surface',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface',
+  },
+  {
+    text: 'Surface Bright',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-bright',
+  },
+  {
+    text: 'Surface Variant',
+    color: '--sys-color-on-surface-variant',
+    contrast: '--sys-color-surface-variant',
+  },
+  {
+    text: 'Surface Container Lowest',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-container-lowest',
+  },
+  {
+    text: 'Surface Container Low',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-container-low',
+  },
+  {
+    text: 'Surface Container',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-container',
+  },
+  {
+    text: 'Surface Container High',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-container-high',
+  },
+  {
+    text: 'Surface Container Highest',
+    color: '--sys-color-on-surface',
+    contrast: '--sys-color-surface-container-highest',
+  },
+  {
+    text: 'Inverse Surface',
+    color: '--sys-color-inverse-on-surface',
+    contrast: '--sys-color-inverse-surface',
+  },
+];
