@@ -111,6 +111,12 @@
   color: var(--sys-color-on-primary);
 }
 
+#desktopNav .navItem.active option,
+#desktopNav .navItem option {
+  /* Chrome linux allows setting colors so let's leave as-is */
+  color: initial;
+}
+
 #mobileMenuButton {
   display: none;
 }
