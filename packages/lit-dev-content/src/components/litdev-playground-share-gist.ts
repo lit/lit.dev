@@ -86,17 +86,14 @@ export class LitDevPlaygroundShareGist extends LitElement {
       border-radius: 50%;
     }
 
-    #signOutButton:visited {
-      color: currentColor;
-    }
-
-    #signOutButton:hover {
-      color: blue;
-    }
-
     #gistActions {
       display: flex;
       justify-content: space-between;
+    }
+
+    a,
+    a:hover {
+      color: var(--sys-color-primary-variant);
     }
   `;
 
