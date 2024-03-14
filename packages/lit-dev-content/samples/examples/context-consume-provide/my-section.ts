@@ -5,20 +5,36 @@ import {levelContext} from './level-context.js';
 
 @customElement('my-section')
 export class MySection extends LitElement {
-  // Serve as a context provider with an initial value of 1.
+  // Serve as a context provider with an initial level 1 and numbering prefix
+  // based on its numbering among siblings.
   private _provider = new ContextProvider(this, {
     context: levelContext,
-    initialValue: 1,
+    initialValue: {
+      level: 1,
+      prefix: String(this._siblingNumber) + '.',
+    },
   });
 
   // Consumes level context from a parent provider. If a parent provider is
-  // found, update own provider value to be 1 greater than provided value.
+  // found, update own provider level to be 1 greater than provided value and
+  // append its sibling number.
   private _consumer = new ContextConsumer(this, {
     context: levelContext,
-    callback: (value) => {
-      this._provider.setValue(value + 1);
+    callback: ({level, prefix}) => {
+      this._provider.setValue({
+        level: level + 1,
+        prefix: prefix + String(this._siblingNumber) + '.',
+      });
     },
   });
+
+  private get _siblingNumber() {
+    return (
+      Array.from(this.parentNode!.children)
+        .filter((el) => el instanceof MySection)
+        .indexOf(this) + 1
+    );
+  }
 
   render() {
     return html`<section><slot></slot></section>`;
@@ -27,8 +43,7 @@ export class MySection extends LitElement {
   static styles = css`
     :host {
       display: block;
-      border: 1px solid black;
-      padding: 1rem;
+      margin-left: 1rem;
     }
   `;
 }

@@ -2,15 +2,15 @@ import {LitElement} from 'lit';
 import {html, literal} from 'lit/static-html.js';
 import {customElement} from 'lit/decorators.js';
 import {consume} from '@lit/context';
-import {levelContext} from './level-context.js';
+import {levelContext, type Level} from './level-context.js';
 
 @customElement('my-heading')
 export class MyHeading extends LitElement {
   @consume({context: levelContext})
-  private _level: number | undefined;
+  private _level?: Level;
 
   private get _tag() {
-    switch (this._level) {
+    switch (this._level?.level) {
       case 1:
         return literal`h1`;
       case 2:
@@ -29,6 +29,6 @@ export class MyHeading extends LitElement {
   }
 
   render() {
-    return html`<${this._tag}><slot></slot></${this._tag}>`;
+    return html`<${this._tag}>${this._level?.prefix} <slot></slot></${this._tag}>`;
   }
 }

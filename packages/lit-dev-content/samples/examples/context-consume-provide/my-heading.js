@@ -7,7 +7,7 @@ export class MyHeading extends LitElement {
   _levelContext = new ContextConsumer(this, {context: levelContext});
 
   get _tag() {
-    switch (this._levelContext.value) {
+    switch (this._levelContext.value.level) {
       case 1:
         return literal`h1`;
       case 2:
@@ -29,5 +29,4 @@ export class MyHeading extends LitElement {
     return html`<${this._tag}><slot></slot></${this._tag}>`;
   }
 }
-
 customElements.define('my-heading', MyHeading);

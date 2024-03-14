@@ -1,3 +1,5 @@
 import {createContext} from '@lit/context';
 
-export const levelContext = createContext<number>(Symbol('level'));
+export type Level = {level: number; prefix: string};
+
+export const levelContext = createContext<Level>(Symbol('prefix'));
