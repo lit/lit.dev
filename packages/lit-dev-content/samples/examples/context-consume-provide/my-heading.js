@@ -8,21 +8,11 @@ export class MyHeading extends LitElement {
   _levelContext = new ContextConsumer(this, {context: levelContext});
 
   get _tag() {
-    switch (this._levelContext.value?.level) {
-      case 0:
-        return literal`h1`;
-      case 1:
-        return literal`h2`;
-      case 2:
-        return literal`h3`;
-      case 3:
-        return literal`h4`;
-      case 4:
-        return literal`h5`;
-      case 5:
-        return literal`h6`;
-      default:
-        return literal`p`;
+    const level = this._levelContext.value?.level;
+    if (typeof level === 'number' && level >= 0 && level <= 5) {
+      return unsafeStatic(`h${level + 1}`);
+    } else {
+      return literal`p`;
     }
   }
 
