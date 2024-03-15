@@ -3,38 +3,29 @@ import {customElement} from 'lit/decorators.js';
 import {ContextProvider, ContextConsumer} from '@lit/context';
 import {levelContext} from './level-context.js';
 
+const COLORS = ['blue', 'orange', 'green', 'purple'];
+
 @customElement('my-section')
 export class MySection extends LitElement {
-  // Serve as a context provider with an initial level 1 and numbering prefix
-  // based on its numbering among siblings.
+  // Serve as a context provider with an initial level 1 and the color for that
+  // level
   private _provider = new ContextProvider(this, {
     context: levelContext,
-    initialValue: {
-      level: 1,
-      prefix: String(this._siblingNumber) + '.',
-    },
+    initialValue: {level: 0, color: COLORS[0]},
   });
 
   // Consumes level context from a parent provider. If a parent provider is
   // found, update own provider level to be 1 greater than provided value and
-  // append its sibling number.
+  // its corresponding color.
   private _consumer = new ContextConsumer(this, {
     context: levelContext,
-    callback: ({level, prefix}) => {
+    callback: ({level}) => {
       this._provider.setValue({
         level: level + 1,
-        prefix: prefix + String(this._siblingNumber) + '.',
+        color: COLORS[(level + 1) % COLORS.length],
       });
     },
   });
-
-  private get _siblingNumber() {
-    return (
-      Array.from(this.parentNode!.children)
-        .filter((el) => el instanceof MySection)
-        .indexOf(this) + 1
-    );
-  }
 
   render() {
     return html`<section><slot></slot></section>`;
@@ -43,7 +34,7 @@ export class MySection extends LitElement {
   static styles = css`
     :host {
       display: block;
-      margin-left: 1rem;
+      text-align: center;
     }
   `;
 }
