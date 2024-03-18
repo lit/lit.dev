@@ -1,7 +1,7 @@
 export type Result = Array<{name: string}>;
 export type Kind = typeof kinds[number];
 
-export const baseUrl = 'https://swapi.dev/api/';
+export const baseUrl = 'https://swapi.py4e.com/api/';
 
 export const kinds = [
   '',
