@@ -9,7 +9,7 @@ There are many ways to contribute to the Lit project, and we have many different
 We have a [Code of Conduct](https://github.com/lit/lit/blob/main/CODE_OF_CONDUCT.md), please follow it in all interactions with project maintainers and fellow users.
 
 ## Set up
-
+Starting on mac or linux distros works out of the box, windows requires some extra [setup](WINDOWS.md)
 ```bash
 git clone https://github.com/lit/lit.dev.git
 cd lit.dev

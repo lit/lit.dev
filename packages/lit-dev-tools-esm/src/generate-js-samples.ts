@@ -138,7 +138,7 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
     const playgroundCommentRegexp =
       /\/\*\s*(playground-(fold|hide)(-end)?)\s\*\//g;
     const tsPath = jsPath
-      .replace(/^samples\/js\//, 'samples/')
+      .replace(/^samples\/js\/|^samples\\js\\/, `samples${pathlib.sep}`)
       .replace(/\.js$/, '.ts')
       .replace(/\.jsx$/, '.tsx');
     const ts = fsSync.readFileSync(tsPath, 'utf8');

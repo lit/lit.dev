@@ -15,6 +15,8 @@ import {lit3Config} from './configs/lit-3.js';
 
 import type {ApiDocsConfig} from './types.js';
 
+const isWindows = /^win/.test(process.platform)
+
 const execFileAsync = promisify(execFile);
 
 // Only generate documentation for most recent Lit versions.
@@ -61,9 +63,10 @@ const INSTALLED_FILE = 'INSTALLED';
  */
 const setup = async (config: ApiDocsConfig) => {
   console.log(`running npm ci in ${config.gitDir}`);
-  await execFileAsync('npm', ['ci'], {cwd: config.gitDir});
-  for (const {cmd, args} of config.extraSetupCommands ?? []) {
+  await execFileAsync(isWindows ? 'npm.cmd' : 'npm', ['ci'], {cwd: config.gitDir});
+  for (let {cmd, args} of config.extraSetupCommands ?? []) {
     console.log(`running ${cmd} ${args.join(' ')} in ${config.gitDir}`);
+    if (cmd === 'npm' && isWindows) cmd = 'npm.cmd'
     await execFileAsync(cmd, args, {cwd: config.gitDir});
   }
   await fs.writeFile(pathlib.join(config.workDir, INSTALLED_FILE), '', 'utf8');

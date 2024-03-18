@@ -8,6 +8,11 @@ import resolve from '@rollup/plugin-node-resolve';
 import summary from 'rollup-plugin-summary';
 import {terser} from 'rollup-plugin-terser';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
+import { dirname, sep} from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const terserOptions = {
   warnings: true,
@@ -58,7 +63,7 @@ export default [
       format: 'esm',
       // Preserve directory structure for entrypoints.
       entryFileNames: ({facadeModuleId}) =>
-        facadeModuleId.replace(`${__dirname}/lib/`, ''),
+        facadeModuleId.replace(`${__dirname}${sep}lib${sep}`, ''),
       manualChunks: (id) => {
         // Create some more logical shared chunks. In particular, people will
         // probably be looking for lit.js in devtools!
@@ -143,7 +148,7 @@ export default [
       format: 'esm',
       // Preserve directory structure for entrypoints.
       entryFileNames: ({facadeModuleId}) =>
-        facadeModuleId.replace(`${__dirname}/lib/`, ''),
+        facadeModuleId.replace(`${__dirname}${sep}lib${sep}`, ''),
     },
     plugins: [
       resolve(),

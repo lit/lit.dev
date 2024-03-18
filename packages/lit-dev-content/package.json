@@ -104,7 +104,7 @@
       ]
     },
     "fonts:manrope": {
-      "command": "rm -rf temp && mkdir -p site/fonts/manrope && git clone https://github.com/sharanda/manrope.git temp/manrope && cd temp/manrope && git checkout 9ffbc349f4659065b62f780fe6e9d5a93518bd95 && cp fonts/web/*.woff2 ../../site/fonts/manrope/ && cd ../.. && rm -rf temp",
+      "command": "node scripts/fonts.js",
       "files": [],
       "output": [
         "site/fonts/manrope"
