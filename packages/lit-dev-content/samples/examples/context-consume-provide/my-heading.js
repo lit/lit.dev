@@ -1,5 +1,5 @@
 import {LitElement} from 'lit';
-import {html, literal} from 'lit/static-html.js';
+import {html, literal, unsafeStatic} from 'lit/static-html.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {ContextConsumer} from '@lit/context';
 import {levelContext} from './level-context.js';
