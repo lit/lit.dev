@@ -159,7 +159,7 @@ export const contentSecurityPolicyMiddleware = (
     //      Firefox: <not yet filed>
     //
     // 2. It uses eval() to parse JavaScript string literals
-    //    (https://github.com/guybedford/es-module-lexer/blob/91964da6b086dc5029091eeef481180a814ce24a/src/lexer.js#L32).
+    //    (https://github.com/guybedford/es-module-lexer/blob/6ec22206c8747deab06387324b3328d4ebbe4f3f/src/lexer.ts#L195).
     //    This is theoretically a safe use of eval because it's only used to
     //    process strings that have already been lexed as single or double quote
     //    strings. Trusted types could be used to isolate the exact eval() call.
