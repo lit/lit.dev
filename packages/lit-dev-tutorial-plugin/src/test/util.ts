@@ -198,7 +198,9 @@ export const prepopulateTutorial = async (
 
   for (let i = options.tutorials.length - 1; i >= 0; i--) {
     const tutorial = options.tutorials[i];
-    const tutorialSection = (tutorial as typeof tutorial & {category ?: 'Learn'|'Build'}).category ?? 'Learn';
+    const tutorialSection =
+      (tutorial as typeof tutorial & {category?: 'Learn' | 'Build'}).category ??
+      'Learn';
     const tutorialIndex = dataFileLines.findIndex((line) =>
       line.includes(`// ${tutorialSection}`)
     );

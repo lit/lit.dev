@@ -8,6 +8,9 @@ package-lock.json
 /packages/lit-dev-content/_dev/
 /packages/lit-dev-content/_site/
 /packages/lit-dev-content/rollupout/
+/packages/lit-dev-tutorial-plugin/.vscode-test/
+/packages/lit-dev-tutorial-plugin/.test-bin/
+/packages/lit-dev-tutorial-plugin/out/
 # TODO(aomarks) Would be nice to format samples, but Prettier doesn't always do
 # a great job compared to our manual formatting.
 /packages/lit-dev-content/samples/

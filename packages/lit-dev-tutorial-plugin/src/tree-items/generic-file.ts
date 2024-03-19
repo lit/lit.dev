@@ -72,6 +72,8 @@ export class GenericFile extends vscode.TreeItem {
 
   revealInSidebar() {
     vscode.commands.executeCommand('vscode.open', vscode.Uri.file(this.path));
-    vscode.commands.executeCommand('workbench.files.action.showActiveFileInExplorer');
+    vscode.commands.executeCommand(
+      'workbench.files.action.showActiveFileInExplorer'
+    );
   }
 }

@@ -13,7 +13,7 @@ import {TutorialStep} from './tree-items/tutorial-step';
 import {getJson} from './fs-helpers';
 import {BeforeAfterDir} from './tree-items/before-after-dir';
 import {PlaygroundFile} from './tree-items/playground-file';
-import { TutorialJson } from './types';
+import {TutorialJson} from './types';
 
 interface PackageJson {
   name?: string;
@@ -140,15 +140,15 @@ export class LitDevTutorialTreeProvider
       file.isFile()
     );
 
-    const tutorialJson = getJson<TutorialJson>(path.join(element.path, 'tutorial.json'))!;
+    const tutorialJson = getJson<TutorialJson>(
+      path.join(element.path, 'tutorial.json')
+    )!;
     const jsonSteps = tutorialJson.steps;
 
-    const steps = tutorialStepEntries.map(
-      (step, index) => {
-        const jsonStep = jsonSteps[index];
-        return new TutorialStep(this, element, step.name, !jsonStep.noSolve)
-      }
-    );
+    const steps = tutorialStepEntries.map((step, index) => {
+      const jsonStep = jsonSteps[index];
+      return new TutorialStep(this, element, step.name, !jsonStep.noSolve);
+    });
     const files = tutorialFileEntries.map(
       (file) => new GenericFile(this, path.join(tutorialPath, file.name))
     );
@@ -158,23 +158,28 @@ export class LitDevTutorialTreeProvider
   private onTutorialStep(element: TutorialStep) {
     const tutorialPath = element.path;
     const tutorialEntries = fs.readdirSync(tutorialPath, {withFileTypes: true});
-    const tutorialDirEntries = tutorialEntries.filter(
-      (file) =>
-        (file.isDirectory() && file.name === 'before') || file.name === 'after'
-    ).reverse();
+    const tutorialDirEntries = tutorialEntries
+      .filter(
+        (file) =>
+          (file.isDirectory() && file.name === 'before') ||
+          file.name === 'after'
+      )
+      .reverse();
 
-    const beforeAfterDirs = tutorialDirEntries.map(
-      (entry) => {
-        const dir = new BeforeAfterDir(this, element, entry.name as 'before' | 'after')
-        if (entry.name === 'before') {
-          element.beforeDir = dir;
-        } else if (entry.name === 'after') {
-          element.afterDir = dir;
-        }
-
-        return dir;
+    const beforeAfterDirs = tutorialDirEntries.map((entry) => {
+      const dir = new BeforeAfterDir(
+        this,
+        element,
+        entry.name as 'before' | 'after'
+      );
+      if (entry.name === 'before') {
+        element.beforeDir = dir;
+      } else if (entry.name === 'after') {
+        element.afterDir = dir;
       }
-    );
+
+      return dir;
+    });
 
     const stepInstructionsMdFile = new GenericFile(
       this,
@@ -206,7 +211,9 @@ export class LitDevTutorialTreeProvider
     });
 
     const projectJsonFile = files.find((file) => file instanceof GenericFile)!;
-    const playgroundFiles = files.filter((file) => !(file instanceof GenericFile));
+    const playgroundFiles = files.filter(
+      (file) => !(file instanceof GenericFile)
+    );
 
     return [...playgroundFiles, projectJsonFile];
   }

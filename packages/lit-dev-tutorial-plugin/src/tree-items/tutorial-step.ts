@@ -18,7 +18,7 @@ export class TutorialStep extends vscode.TreeItem {
   private _hasAfter = false;
   checkable = false;
   beforeDir!: BeforeAfterDir;
-  afterDir: BeforeAfterDir|undefined = undefined;
+  afterDir: BeforeAfterDir | undefined = undefined;
 
   get dirName() {
     return `${this.step}`.padStart(2, '0');
@@ -68,10 +68,7 @@ export class TutorialStep extends vscode.TreeItem {
 
     this._hasAfter = value;
 
-    const tutorialJsonPath = path.join(
-      this.tutorial.path,
-      'tutorial.json'
-    );
+    const tutorialJsonPath = path.join(this.tutorial.path, 'tutorial.json');
     let tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
 
     if (value) {
@@ -97,15 +94,11 @@ export class TutorialStep extends vscode.TreeItem {
     }
 
     this._solvable = solvable;
-    const tutorialJsonPath = path.join(
-      this.tutorial.path,
-      'tutorial.json'
-    );
+    const tutorialJsonPath = path.join(this.tutorial.path, 'tutorial.json');
     let tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
 
     if (solvable) {
       delete tutorialJson.steps[this.step].noSolve;
-
     } else {
       this.hasAfter = false;
       tutorialJson = getJson<TutorialJson>(tutorialJsonPath)!;
@@ -219,7 +212,7 @@ export class TutorialStep extends vscode.TreeItem {
       return;
     }
 
-    const isSolvableStr = await vscode.window.showQuickPick(['Yes', 'No'],{
+    const isSolvableStr = await vscode.window.showQuickPick(['Yes', 'No'], {
       title: 'Should this step have a "solve" button?',
     });
 
@@ -231,7 +224,7 @@ export class TutorialStep extends vscode.TreeItem {
     let hasAfter = false;
 
     if (!hideSolve) {
-      const hasAfterStr = await vscode.window.showQuickPick(['Yes', 'No'],{
+      const hasAfterStr = await vscode.window.showQuickPick(['Yes', 'No'], {
         title: 'Is "after" step the "before" of the next step?',
       });
 

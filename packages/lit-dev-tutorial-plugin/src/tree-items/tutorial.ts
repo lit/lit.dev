@@ -171,7 +171,9 @@ export class Tutorial extends vscode.TreeItem {
     } catch (_e) {}
 
     const dateObj = new Date();
-    const date = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+    const date = `${dateObj.getFullYear()}-${
+      dateObj.getMonth() + 1
+    }-${dateObj.getDate()}`;
 
     const tutorialJson: TutorialJson = {
       header: name,

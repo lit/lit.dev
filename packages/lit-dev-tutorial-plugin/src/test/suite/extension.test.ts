@@ -30,7 +30,10 @@ suite('Tutorial Extension', () => {
 
   suite('startup', () => {
     test('recognizes lit.dev repo', async () => {
-      await vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(litDevPath));
+      await vscode.commands.executeCommand(
+        'vscode.openFolder',
+        vscode.Uri.file(litDevPath)
+      );
       console.log('opened!');
     });
   });
