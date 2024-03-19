@@ -288,7 +288,7 @@ export class TutorialStep extends vscode.TreeItem {
     const step = new TutorialStep(provider, tutorial, dirName, hideSolve);
     tutorial.pushStep(step);
 
-    const beforeStep = BeforeAfterDir.create(step, 'before');
+    const beforeStep = BeforeAfterDir.create(step, 'before', checkable);
     step.beforeDir = beforeStep;
 
     if (hasAfter && !hideSolve) {

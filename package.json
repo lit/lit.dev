@@ -32,7 +32,8 @@
         "./packages/lit-dev-server:build",
         "./packages/lit-dev-tests:build",
         "./packages/lit-dev-tools-cjs:build",
-        "./packages/lit-dev-tools-esm:build"
+        "./packages/lit-dev-tools-esm:build",
+        "./packages/lit-dev-tutorial-plugin:build"
       ]
     },
     "start": {

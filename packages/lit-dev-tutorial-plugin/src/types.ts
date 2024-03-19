@@ -18,10 +18,9 @@ export interface TutorialJsonStep {
 export interface TutorialJson {
   header: string;
   difficulty: TutorialDifficulty;
-  size: TutorialCardSize;
   duration: number;
-  category: TutorialCategory;
   imgSrc?: string;
   imgAlt?: string;
   steps: TutorialJsonStep[];
+  date: string;
 }

@@ -67,7 +67,7 @@ module.exports = {eleventyComputed: {learn: async (data) => {
       url,
       date
     } = content;
-    if (!title || !summary || !['article', 'tutorial', 'video'].includes(kind) || !url || !date) {
+    if (!title || summary === undefined || !['article', 'tutorial', 'video'].includes(kind) || !url || !date) {
       throw new Error(`Invalid content shape for: ${JSON.stringify(content)}`);
     }
     if (kind === "tutorial") {

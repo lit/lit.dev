@@ -47,6 +47,10 @@ export class LitDevTutorialTreeProvider
     return path.join(this.contentPath, 'site', 'tutorials');
   }
 
+  get site11tyDataPath() {
+    return path.join(this.contentPath, 'site', '_data', 'tutorials.js');
+  }
+
   get siteTutorialsContentPath() {
     return path.join(this.contentPath, 'site', 'tutorials', 'content');
   }
@@ -224,10 +228,7 @@ export class LitDevTutorialTreeProvider
         dir.name !== 'tsconfig.json'
     );
 
-    const tutorialDataFilePath = path.join(
-      this.siteTutorialsPath,
-      'tutorials.11tydata.js'
-    );
+    const tutorialDataFilePath = this.site11tyDataPath;
 
     const tutorials: Tutorial[] = [];
 

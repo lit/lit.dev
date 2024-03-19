@@ -61,7 +61,11 @@ export class BeforeAfterDir extends vscode.TreeItem {
     }
   }
 
-  static create(tutorialStep: TutorialStep, name: 'before' | 'after') {
+  static create(
+    tutorialStep: TutorialStep,
+    name: 'before' | 'after',
+    checkable?: boolean
+  ) {
     const provider = tutorialStep.provider;
     const newDir = new BeforeAfterDir(provider, tutorialStep, name);
     newDir.contextValue = `${name}Dir`;
@@ -89,6 +93,9 @@ export class BeforeAfterDir extends vscode.TreeItem {
       extends: '/samples/base.json',
       files: {},
     };
+    if (checkable) {
+      projectJson.extends = '/samples/checkable-tutorial-base.json';
+    }
     GenericFile.create(
       provider,
       path.join(newDir.path, 'project.json'),
@@ -103,11 +110,31 @@ export class BeforeAfterDir extends vscode.TreeItem {
 <html>
   <head>
     <script type="module" src=""></script>
-  </head>
+${
+  checkable
+    ? '    <!-- playground-hide --><script type="module" src="./_check-code.js"></script><!-- playground-hide-end -->\n'
+    : ''
+}  </head>
   <body>
   </body>
 </html>`
     );
+    if (checkable) {
+      PlaygroundFile.create(
+        newDir,
+        '_check-code.js',
+        {hidden: true},
+        `import {installCodeChecker} from './_check-code-helpers.js';
+
+installCodeChecker(async () => {
+  let passed = true;
+  let message = '';
+
+  window.location.reload();
+  return {passed, message};
+});`
+      );
+    }
 
     provider.refresh();
 

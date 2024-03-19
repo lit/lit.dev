@@ -26,6 +26,12 @@ export const createEmptyLitDevRepo = async () => {
     'site',
     'tutorials'
   );
+  const litDevSite11tydataPath = path.join(
+    litDevContentPath,
+    'site',
+    '_data',
+    'tutorials.js'
+  );
   const litDevSiteTutorialContentPath = path.join(
     litDevSiteTutorialPath,
     'content'
@@ -76,10 +82,7 @@ export const createEmptyLitDevRepo = async () => {
       path.join(litDevSampleTutorialPath, 'base.json'),
       JSON.stringify(baseJson, null, 2)
     ),
-    fs.writeFile(
-      path.join(litDevSiteTutorialPath, 'tutorials.11tydata.js'),
-      tutorials11tyData
-    ),
+    fs.writeFile(litDevSite11tydataPath, tutorials11tyData),
   ]);
 
   return {litDevPath, litDevContentPath};
@@ -110,17 +113,19 @@ export const prepopulateTutorial = async (
     'site',
     'tutorials'
   );
+  const litDevSite11tydataPath = path.join(
+    litDevContentPath,
+    'site',
+    '_data',
+    'tutorials.js'
+  );
   const litDevSiteTutorialContentPath = path.join(
     litDevSiteTutorialPath,
     'content'
   );
 
   const promises: Promise<unknown>[] = [];
-  const dataFile = await (
-    await fs.readFile(
-      path.join(litDevSiteTutorialPath, 'tutorials.11tydata.js')
-    )
-  ).toString();
+  const dataFile = await (await fs.readFile(litDevSite11tydataPath)).toString();
   const dataFileLines = dataFile.split('\n');
 
   for (const tutorial of options.tutorials) {
@@ -193,7 +198,7 @@ export const prepopulateTutorial = async (
 
   for (let i = options.tutorials.length - 1; i >= 0; i--) {
     const tutorial = options.tutorials[i];
-    const tutorialSection = tutorial.category;
+    const tutorialSection = (tutorial as typeof tutorial & {category ?: 'Learn'|'Build'}).category ?? 'Learn';
     const tutorialIndex = dataFileLines.findIndex((line) =>
       line.includes(`// ${tutorialSection}`)
     );
@@ -202,12 +207,7 @@ export const prepopulateTutorial = async (
     dataFileLines.splice(tutorialIndex + 1, 0, tutorialLine);
   }
 
-  promises.push(
-    fs.writeFile(
-      path.join(litDevSiteTutorialPath, 'tutorials.11tydata.js'),
-      dataFileLines.join('\n')
-    )
-  );
+  promises.push(fs.writeFile(litDevSite11tydataPath, dataFileLines.join('\n')));
   await Promise.all(promises);
 };
 

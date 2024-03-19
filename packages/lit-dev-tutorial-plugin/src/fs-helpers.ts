@@ -37,9 +37,12 @@ export const addTutorialTo11tyData = (
   let categoryLines: {cat: TutorialCategory; line: number}[] = [];
 
   for (const [i, line] of lines.entries()) {
-    if (line.includes(`const tutorials = await Promise.all([`)) {
+    if (line.includes(`return await Promise.all([`)) {
       arrayStartLine = i;
     } else if (line.includes(`  ]);`)) {
+      if (arrayStartLine === -1) {
+        continue;
+      }
       arrayEndLine = i;
       break;
     } else if (
@@ -54,7 +57,7 @@ export const addTutorialTo11tyData = (
   }
 
   if (arrayStartLine === -1 || arrayEndLine === -1) {
-    vscode.window.showErrorMessage('Malformed tutorials.11tydata.js');
+    vscode.window.showErrorMessage('Malformed _data/tutorials.js');
     return;
   }
 
@@ -71,7 +74,7 @@ export const addTutorialTo11tyData = (
 
   if (line === -1) {
     vscode.window.showErrorMessage(
-      'Cannot find category ${category} in tutorials.11tydata.js'
+      'Cannot find category ${category} in _data/tutorials.js'
     );
     return;
   }

@@ -3,7 +3,7 @@
   "private": true,
   "displayName": "lit.dev Tutorial Editor",
   "description": "Helps you create tutorials for lit.dev",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "main": "./out/extension.js",
@@ -180,21 +180,42 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run build",
-    "test": "node ./out/test/runTest.js",
-    "clean": "rm -rf out .vscode-test .test-bin"
+    "build": "wireit",
+    "test": "wireit"
   },
   "devDependencies": {
-    "@types/glob": "^7.2.0",
-    "@types/mocha": "^9.1.0",
-    "@types/node": "14.x",
-    "@types/vscode": "^1.65.0",
-    "@vscode/test-electron": "^2.1.2",
-    "glob": "^7.2.0",
-    "mocha": "^9.2.1",
-    "playground-elements": "^0.15.2",
-    "typescript": "^4.5.5"
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^16.0.0",
+    "@types/vscode": "^1.87.0",
+    "@vscode/test-electron": "^2.3.9",
+    "glob": "^10.3.0",
+    "mocha": "^10.0.6"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsc --build --pretty --incremental",
+      "files": [
+        "./src/**/*.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "./out/",
+        "./tsconfig.tsbuildinfo"
+      ],
+      "clean": "if-file-deleted"
+    },
+    "test": {
+      "command": "node ./out/test/runTest.js",
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "./out/test/"
+      ],
+      "output": [
+        "./.vscode-test",
+        "./.test-bin"
+      ]
+    }
   }
 }

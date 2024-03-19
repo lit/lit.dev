@@ -110,20 +110,9 @@ export class Tutorial extends vscode.TreeItem {
       {
         placeHolder: 'Difficulty',
       }
-    )) as TutorialDifficulty|undefined;
+    )) as TutorialDifficulty | undefined;
 
     if (difficulty === undefined) {
-      return;
-    }
-
-    const size = (await vscode.window.showQuickPick(
-      ['tiny', 'small', 'medium', 'large'],
-      {
-        title: 'Card size',
-      }
-    )) as TutorialCardSize|undefined;
-
-    if (size === undefined) {
       return;
     }
 
@@ -143,20 +132,9 @@ export class Tutorial extends vscode.TreeItem {
 
         return null;
       },
-    })) as unknown as number|undefined;
+    })) as unknown as number | undefined;
 
     if (duration === undefined) {
-      return;
-    }
-
-    const category = (await vscode.window.showQuickPick(
-      ['Learn', 'Build', 'Draft'],
-      {
-        title: 'Catalog Category',
-      }
-    )) as TutorialCategory|undefined;
-
-    if (category === undefined) {
       return;
     }
 
@@ -192,14 +170,16 @@ export class Tutorial extends vscode.TreeItem {
       fs.mkdirSync(tutorialContentPath);
     } catch (_e) {}
 
+    const dateObj = new Date();
+    const date = `${dateObj.getFullYear()}-${dateObj.getMonth() + 1}-${dateObj.getDate()}`;
+
     const tutorialJson: TutorialJson = {
       header: name,
       difficulty: difficulty,
-      size: size,
       duration: duration,
-      category: category,
       imgSrc,
       imgAlt,
+      date,
       steps: [],
     };
 
@@ -210,11 +190,7 @@ export class Tutorial extends vscode.TreeItem {
 
     fs.writeFileSync(path.join(tutorialPath, 'description.md'), '');
 
-    await addTutorialTo11tyData(
-      dirName,
-      category,
-      path.join(provider.siteTutorialsPath, 'tutorials.11tydata.js')
-    );
+    await addTutorialTo11tyData(dirName, 'Learn', provider.site11tyDataPath);
 
     provider.refresh();
 
@@ -223,14 +199,10 @@ export class Tutorial extends vscode.TreeItem {
 
   delete() {
     fs.rmSync(this.path, {recursive: true});
-    fs.rmSync(
-      path.join(this.provider.siteTutorialsContentPath, this.dirName),
-      {recursive: true}
-    );
-    removeTutorialFrom11tyData(
-      this.dirName,
-      path.join(this.provider.siteTutorialsPath, 'tutorials.11tydata.js')
-    );
+    fs.rmSync(path.join(this.provider.siteTutorialsContentPath, this.dirName), {
+      recursive: true,
+    });
+    removeTutorialFrom11tyData(this.dirName, this.provider.site11tyDataPath);
     this.provider.refresh();
   }
 

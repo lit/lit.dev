@@ -15,6 +15,7 @@ import {beforeEach, afterEach, before} from 'mocha';
 
 suite('Tutorial Extension', () => {
   vscode.window.showInformationMessage('Start all tests.');
+
   let litDevPath: string;
   let litDevContentPath!: string;
   before(async () => {
