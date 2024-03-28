@@ -7,7 +7,6 @@ packages/*/lib/
 packages/lit-dev-content/_site
 packages/lit-dev-content/_dev
 packages/lit-dev-content/rollupout
-packages/lit-dev-content/site/fonts/manrope
 packages/lit-dev-content/temp
 packages/lit-dev-content/samples/js
 packages/lit-dev-content/src/public-vars.ts
