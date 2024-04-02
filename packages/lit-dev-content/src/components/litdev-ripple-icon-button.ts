@@ -174,7 +174,7 @@ export class LitDevRippleIconButton extends LitElement {
         aria-live=${this.live ? this.live : nothing}
         aria-label=${this.label ? this.label : nothing}
         aria-haspopup=${this.haspopup ? this.haspopup : nothing}
-        aria-describedby=${this.describedby ? "ripple" : nothing}
+        aria-describedby=${this.describedby ? 'ripple' : nothing}
         aria-expanded=${this.expanded ? this.expanded : nothing}
         aria-controls=${this.controls ? this.controls : nothing}
         ?disabled=${this.disabled}
