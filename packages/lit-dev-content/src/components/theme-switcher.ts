@@ -250,6 +250,10 @@ export class ThemeSwitcher extends LitElement {
       min-width: 208px;
     }
 
+    #button > span {
+      display: flex;
+    }
+
     [slot='end'] {
       width: 24px;
       height: 24px;
