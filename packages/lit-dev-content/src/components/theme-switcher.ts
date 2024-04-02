@@ -254,6 +254,10 @@ export class ThemeSwitcher extends LitElement {
       width: 24px;
       height: 24px;
     }
+
+    [slot='headline'] {
+      font-family: Manrope, sans-serif;
+    }
   `;
 }
 
