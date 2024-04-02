@@ -34,12 +34,6 @@ export class LitDevRippleIconButton extends LitElement {
   haspopup = '';
 
   /**
-   * Whether or not the contents describe the button with aria-describedby.
-   */
-  @property({type: Boolean})
-  describedby = false;
-
-  /**
    * Aria expanded for the button.
    */
   @property()
@@ -174,7 +168,6 @@ export class LitDevRippleIconButton extends LitElement {
         aria-live=${this.live ? this.live : nothing}
         aria-label=${this.label ? this.label : nothing}
         aria-haspopup=${this.haspopup ? this.haspopup : nothing}
-        aria-describedby=${this.describedby ? 'ripple' : nothing}
         aria-expanded=${this.expanded ? this.expanded : nothing}
         aria-controls=${this.controls ? this.controls : nothing}
         ?disabled=${this.disabled}
