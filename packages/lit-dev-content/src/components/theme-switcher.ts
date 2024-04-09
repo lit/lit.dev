@@ -247,7 +247,7 @@ export class ThemeSwitcher extends LitElement {
     }
 
     md-menu {
-      min-width: 208px;
+      min-width: 0px;
     }
 
     #button > span {
@@ -276,6 +276,7 @@ export class ThemeSwitcher extends LitElement {
 
     [slot='headline'] {
       font-family: Manrope, sans-serif;
+      text-wrap: nowrap;
     }
   `;
 }
