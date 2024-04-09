@@ -254,9 +254,24 @@ export class ThemeSwitcher extends LitElement {
       display: flex;
     }
 
-    [slot='end'] {
+    [slot='end'],
+    [slot='start'] {
       width: 24px;
       height: 24px;
+    }
+
+    :host([desktop]) {
+      --md-menu-item-label-text-size: 0.9em;
+      --md-menu-item-one-line-container-height: 40px;
+      --md-menu-item-top-space: 8px;
+      --md-menu-item-bottom-space: 8px;
+      --md-menu-item-label-text-line-height: 24px;
+    }
+
+    :host([desktop]) [slot='start'],
+    :host([desktop]) [slot='end'] {
+      width: 20px;
+      height: 20px;
     }
 
     [slot='headline'] {
