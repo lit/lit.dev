@@ -443,8 +443,8 @@ class MyElement extends LitElement {
 
 {% endswitchable-sample %}
 
-### TypeScript Tips
-
+### More accurate argument types in TypeScript
+Task argument types can sometimes be inferred too loosely by TypeScript. This can be fixed by casting argument arrays with `as const`.
 Consider the following task, with two arguments.
 
 ```ts
