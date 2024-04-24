@@ -442,3 +442,41 @@ class MyElement extends LitElement {
 ```
 
 {% endswitchable-sample %}
+
+### More accurate argument types in TypeScript
+Task argument types can sometimes be inferred too loosely by TypeScript. This can be fixed by casting argument arrays with `as const`.
+Consider the following task, with two arguments.
+
+```ts
+class MyElement extends LitElement {
+  @property() myNumber = 10;
+  @property() myText = "Hello world";
+
+  _myTask = new Task(this, {
+    args: () => [this.myNumber, this.myText],
+    task: ([number, text]) => {
+      // implementation omitted
+    }
+  });
+}
+```
+
+As written, the type of the argument list to the task function is inferred as `Array<number | string>`.
+
+But ideally this would be typed as a tuple `[number, string]` because the size and position of the args is fixed.
+
+The return value of `args` can be written as `args: () => [this.myNumber, this.myText] as const`, which will result in a tuple type for the args list to the `task` function.
+
+```ts
+class MyElement extends LitElement {
+  @property() myNumber = 10;
+  @property() myText = "Hello world";
+
+  _myTask = new Task(this, {
+    args: () => [this.myNumber, this.myText] as const,
+    task: ([number, text]) => {
+      // implementation omitted
+    }
+  });
+}
+```
