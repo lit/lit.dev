@@ -15,7 +15,7 @@ Lit also provides a `repeat` directive to build certain kinds of dynamic lists m
 
 ## Rendering arrays
 
-When an expression in the child position in returns an array or iterable, Lit renders all of the items in the array:
+When an expression in the child position returns an array or iterable, Lit renders all of the items in the array:
 
 {% playground-example "v3-docs/templates/lists-arrays/" "my-element.ts" %}
 
