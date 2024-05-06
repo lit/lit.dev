@@ -86,7 +86,7 @@ For example:
 ```js
 import {configureLocalization} from '@lit/localize';
 // Generated via output.localeCodesModule
-import {sourceLocale, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locale-codes.js';
 
 export const {getLocale, setLocale} = configureLocalization({
   sourceLocale,
@@ -242,7 +242,7 @@ it minimizes the amount of code that your users will download and execute.
 
 ```js
 import {configureLocalization} from '@lit/localize';
-import {sourceLocale, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locale-codes.js';
 
 const {getLocale, setLocale} = configureLocalization({
   sourceLocale,
@@ -259,7 +259,7 @@ locale modules are being fetched.
 
 ```js
 import {configureLocalization} from '@lit/localize';
-import {sourceLocale, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locale-codes.js';
 
 const localizedTemplates = new Map(
   targetLocales.map((locale) => [locale, import(`/locales/${locale}.js`)])
@@ -290,7 +290,7 @@ some other restriction that prevents the use of dynamic imports.
 
 ```js
 import {configureLocalization} from '@lit/localize';
-import {sourceLocale, targetLocales} from './generated/locales.js';
+import {sourceLocale, targetLocales} from './generated/locale-codes.js';
 
 import * as templates_es_419 from './locales/es-419.js';
 import * as templates_zh_hans from './locales/zh-Hans.js';
