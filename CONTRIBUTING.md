@@ -65,6 +65,36 @@ We use TypeScript on Lit in order to automatically check the code for type error
 
 TypeScript is hopefully relatively easy to pick up, but if you have any problems we're more than happy to help. You can submit a pull request with type warnings and we'll either help you fix them, or if you allow commits to your PR branch, fix them for you. VS Code is a very nice IDE for TypeScript development if you care to try it.
 
+## Algolia Search
+
+The search on lit.dev is powered by Algolia. The [`.github/workflows/build-and-publish-search-index.yml`](./.github/workflows/build-and-publish-search-index.yml) GitHub Actions workflow is responsible for building the the search index and publishing it to Algolia completely replacing our previous search index on each push to the `main` branch. The workflow build crawls the allowlisted parts of the site, cuts it up into chunks based on header `<h1><h2>...` tags, gets its content as its description, and sends it to Algolia. There is also some manual crwaling and chunking done for sections such as the tutorials.
+
+### How To add a custom link to the search index
+
+Sometimes we want to include something that is not on lit.dev in the search index. We can do this by modifying the `packages/lit-dev-content/site/_data/externalSearchData.json` file. This file is a JSON array of objects with the following shape:
+
+```json
+{
+    "relativeUrl": "https://url-to-the-page.com",
+    "title": "Search Item group title (the text above a group of search results)",
+    "heading": "Search Item Option Heading Line (defaults to the title of the page if this is empty string but must be defined)",
+    "text": "A description of the search item's context. Algolia uses this as well to ",
+    "docType": {
+      "type": "Colored Tag", // keep this short this is the gray tag to the right of the group title
+      "tag": "other" // keep this "other". This determines the color and other defaults to gray
+    },
+    "isExternal": true // whether or not this is a link external to lit.dev and should have the external link icon
+  }
+```
+
+### How to administer the Algolia search index
+
+To administer the search index to add, remove, delete, enable Algolia features, etc., you must be a part of the Algolia team which has limited space and is currently limited to the Lit team. Contact Elliott on the Lit team if you need access. We do not use Algolia Analytics as we have not had the time to go through Google's privacy review + privacy policy / cookie process for storing user data in Algolia.
+
+### How the Crawler Works
+
+The search indexer plugin is located in [`packages/lit-dev-tools-cjs/src/search/plugin.ts`](./packages/lit-dev-tools-cjs/src/search/plugin.ts). It uses a common indexer API which under the hood uses JSDOM to extract metadata and [creates chunks using `PageSearchChunker`](./packages/lit-dev-tools-cjs/src/search/indexers/PageSearchChunker.ts) from the given pages based on header tags and the text content following each header tag. Each of these chunks is then formatted into a [`UserFacingPageData`](./packages/lit-dev-tools-cjs/src/search/plugin.ts#L40) object ready to be written out into a giant JSON file which is consumed by Algolia.
+
 ## Contributor License Agreement
 
 You might notice our friendly CLA-bot commenting on a pull request you open if you haven't yet signed our CLA. We use the same CLA for all open-source Google projects, so you only have to sign it once. Once you complete the CLA, all your pull-requests will automatically get the `cla: yes` tag.
