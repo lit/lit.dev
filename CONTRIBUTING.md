@@ -75,16 +75,16 @@ Sometimes we want to include something that is not on lit.dev in the search inde
 
 ```json
 {
-    "relativeUrl": "https://url-to-the-page.com",
-    "title": "Search Item group title (the text above a group of search results)",
-    "heading": "Search Item Option Heading Line (defaults to the title of the page if this is empty string but must be defined)",
-    "text": "A description of the search item's context. Algolia uses this as well to ",
-    "docType": {
-      "type": "Colored Tag", // keep this short this is the gray tag to the right of the group title
-      "tag": "other" // keep this "other". This determines the color and other defaults to gray
-    },
-    "isExternal": true // whether or not this is a link external to lit.dev and should have the external link icon
-  }
+  "relativeUrl": "https://url-to-the-page.com",
+  "title": "Search Item group title (the text above a group of search results)",
+  "heading": "Search Item Option Heading Line (defaults to the title of the page if this is empty string but must be defined)",
+  "text": "A description of the search item's context. Algolia uses this as well to ",
+  "docType": {
+    "type": "Colored Tag", // keep this short this is the gray tag to the right of the group title
+    "tag": "other" // keep this "other". This determines the color and other defaults to gray
+  },
+  "isExternal": true // whether or not this is a link external to lit.dev and should have the external link icon
+}
 ```
 
 ### How to administer the Algolia search index
