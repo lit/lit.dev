@@ -12,6 +12,9 @@ versionLinks:
 Define a Lit component by creating a class extending `LitElement` and registering your class with the browser:
 
 ```ts
+import {LitElement}    from 'lit'
+import {customElement} from 'lit/decorators.js'
+
 @customElement('simple-greeting')
 export class SimpleGreeting extends LitElement { /* ... */ }
 ```
