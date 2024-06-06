@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html} from 'lit';
+import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
 /**
@@ -12,6 +12,12 @@ import {customElement} from 'lit/decorators.js';
  */
 @customElement('litdev-version-selector')
 export class LitDevVersionSelector extends LitElement {
+  static styles = css`
+    :host {
+      display: flex;
+    }
+  `;
+
   override render() {
     return html`<slot @change=${this._onSelect}></slot>`;
   }
