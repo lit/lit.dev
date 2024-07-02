@@ -80,3 +80,13 @@ a {
   height: 1px;
   overflow: hidden;
 }
+
+body[code-language-preference="ts"] [code-language]:not([code-language="ts"]) {
+  /* Hide JS content when preference is TS. */
+  display: none;
+}
+
+body[code-language-preference="js"] [code-language]:not([code-language="js"]) {
+  /* Hide TS content when preference is JS. */
+  display: none;
+}

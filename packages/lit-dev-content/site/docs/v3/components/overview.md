@@ -26,3 +26,16 @@ Creating a Lit component involves a number of concepts:
 Here's a sample component:
 
 {% playground-example "v3-docs/components/overview/simple-greeting" "simple-greeting.ts" %}
+
+<div code-language="ts">
+
+{% aside "info"%}
+
+This example uses TypeScript decorators.
+
+See the [Decorators](/docs/components/decorators) documentation for more information on configuring TypeScript for decorators.
+
+{% endaside %}
+
+</div>
+
