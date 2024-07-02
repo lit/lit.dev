@@ -202,12 +202,23 @@ For full installation and usage instructions, see the [Web Dev Server documentat
 
 ## TypeScript { #typescript }
 
-TypeScript extends the Javascript language by adding support for types. Types are useful for catching errors early and making code more readable and understandable.
+Lit support developing components in TypeScript, including full type declarations for the Lit APIs, standard and experimental decorators, and community tools for template type-checking and linting.
+
+Because Lit is just a library, and doesn't require a compiler or use non-standard langauge syntax, there are no specific TypeScript tools that are required. Lit works with the official TypeScript compiler, `tsc`, with TypeScript wrappers such as those for Rollup, Vite, or Webpack, and alternate compilers like `esbuild`.
+
+The main requirements of a TypeScript project are:
+- Enabling a modern JavaScript language level, like with the `"ES2021"` [lib](https://www.typescriptlang.org/tsconfig/#lib).
+- Enabling the DOM types with the `"DOM"` [lib](https://www.typescriptlang.org/tsconfig/#lib).
+- Optionally [enabling experimental decorators](https://www.typescriptlang.org/tsconfig/#experimentalDecorators) and [disabling "define" semantics for class fields](https://www.typescriptlang.org/tsconfig/#useDefineForClassFields), if you choose to use TypeScript's experimental decorators.
+
+These options are generally set in your project's tsconfig.
+
+### Installation
 
 To install TypeScript in your project:
 
 ```bash
-npm install typescript --save-dev
+npm i -D typescript
 ```
 
 To build the code:
@@ -217,6 +228,10 @@ npx tsc --watch
 ```
 
 For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
+
+### Decorators
+
+TypeScript supports two versions of decorators: experimental and standard. See our [Decorators](/docs/v3/components/decorators/#decorators-typescript) documentation for more information.
 
 ## JavaScript and TypeScript linting { #linting }
 
