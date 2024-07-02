@@ -33,9 +33,8 @@ Here's a sample component:
 
 This example uses TypeScript decorators.
 
-See the [Decorators](/docs/components/decorators) documentation for more information on configuring TypeScript for decorators.
+See the [Decorators](/docs/v3/components/decorators) documentation for more information on configuring TypeScript for decorators.
 
 {% endaside %}
 
 </div>
-
