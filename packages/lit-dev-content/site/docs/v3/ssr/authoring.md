@@ -44,13 +44,48 @@ if (isServer) {
 
 For more complex uses cases, consider utilizing [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) in Node that specifically match for `"node"` environments so you could have different code depending on whether the module is being imported for use in Node or in the browser. Users would get the appropriate version of the package depending on whether it was imported from Node or the browser. Export conditions are also supported by popular bundling tools like [rollup](https://github.com/rollup/plugins/tree/master/packages/node-resolve#exportconditions) and [webpack](https://webpack.js.org/configuration/resolve/#resolveconditionnames) so users can bring in the appropriate code for your bundle.
 
+## Bundlers 
+
 {% aside "warn" %}
 
-Don't bundle Lit into published components.
+Don't bundle (inline) Lit into published components.
 
 Because Lit packages use conditional exports to provide different modules to Node and browser environments, we strongly discourage bundling `lit` into your packages being published to NPM. If you do, your bundle will only include `lit` modules meant for the environment you bundled, and won't automatically switch based on environment.
 
 {% endaside %}
+
+If you are using a bundler (like ESBuild) to transform TypeScript into JavaScript you can set `packages: "external"` to not bundle any dependencies and leave it to users to bundle / resolve node entrypoints.
+
+In other bundlers like Rollup, this may be called marking a dependency as "external" <https://rollupjs.org/configuration-options/#external>
+
+It is also recommended to create 2 entrypoints.
+
+One for the browser, one for Node. 
+
+In ESBuild for example, this can be done by setting `platform: "node"`. This is important for getting the platform-appriopriate version of Lit.
+
+### Exportmaps
+
+If you are transforming source code in your library, make sure to define exportmaps for your components. 1 for Node, and 1 for the browser so environments can properly determine which to use.
+
+Like so:
+
+```json
+// package.json
+{
+  "name": "my-awesome-lit-components",
+  "exports": {
+    "./button.js": {
+      "node": "./button-node.js",
+      "default": "./button.js"
+    }
+  }
+}
+```
+
+
+For more on "Conditional Exports" checkout the Node documentation. <https://nodejs.org/api/packages.html#conditional-exports>
+
 
 ## Lifecycle
 
