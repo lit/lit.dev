@@ -42,34 +42,11 @@ if (isServer) {
 }
 ```
 
-For more complex uses cases, consider utilizing [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) in Node that specifically match for `"node"` environments so you could have different code depending on whether the module is being imported for use in Node or in the browser. Users would get the appropriate version of the package depending on whether it was imported from Node or the browser. Export conditions are also supported by popular bundling tools like [rollup](https://github.com/rollup/plugins/tree/master/packages/node-resolve#exportconditions) and [webpack](https://webpack.js.org/configuration/resolve/#resolveconditionnames) so users can bring in the appropriate code for your bundle.
+### Conditional exports
 
-## Bundlers 
+For more complex uses cases, consider utilizing [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) that specifically match for `"node"` environments so you could have different code depending on whether the module is being imported for use in Node or in the browser. Users would get the appropriate version of the package depending on whether it was imported from Node or the browser. Export conditions are also supported by popular bundling tools like [rollup](https://github.com/rollup/plugins/tree/master/packages/node-resolve#exportconditions) and [webpack](https://webpack.js.org/configuration/resolve/#resolveconditionnames) so users can bring in the appropriate code for your bundle.
 
-{% aside "warn" %}
-
-Don't bundle (inline) Lit into published components.
-
-Because Lit packages use conditional exports to provide different modules to Node and browser environments, we strongly discourage bundling `lit` into your packages being published to NPM. If you do, your bundle will only include `lit` modules meant for the environment you bundled, and won't automatically switch based on environment.
-
-{% endaside %}
-
-If you are using a bundler (like ESBuild) to transform TypeScript into JavaScript you can set `packages: "external"` to not bundle any dependencies and leave it to users to bundle / resolve node entrypoints.
-
-In other bundlers like Rollup, this may be called marking a dependency as "external" <https://rollupjs.org/configuration-options/#external>
-
-It is also recommended to create 2 entrypoints.
-
-One for the browser, one for Node. 
-
-In ESBuild for example, this can be done by setting `platform: "node"`. This is important for getting the platform-appriopriate version of Lit.
-
-### Exportmaps
-
-If you are transforming source code in your library, make sure to define exportmaps for your components. 1 for Node, and 1 for the browser so environments can properly determine which to use.
-
-Like so:
-
+An example configuration might look like below:
 ```json
 // package.json
 {
@@ -83,9 +60,25 @@ Like so:
 }
 ```
 
+The Node entrypoint file can be made manually, or you might use a bundler to generate those.
 
-For more on "Conditional Exports" checkout the Node documentation. <https://nodejs.org/api/packages.html#conditional-exports>
+### Bundlers 
 
+{% aside "warn" %}
+
+Avoid bundling Lit inline into published components if possible.
+
+Because Lit packages use conditional exports to provide different modules to Node and browser environments, we strongly discourage bundling `lit` into your packages being published to NPM. If you do, your bundle will only include `lit` modules meant for the environment you bundled, and won't automatically switch based on environment.
+
+{% endaside %}
+
+If you are using a bundler like ESBuild or Rollup to transform your code, you can mark packages as _external_ so they will not be bundled into your component. ESBuild has a [`packages`](https://esbuild.github.io/api/#packages) option to externalize all dependencies, or you can mark only `lit` and related packages in the [external](https://esbuild.github.io/api/#external) option. Similarly, Rollup also has an equivalent ["external"](https://rollupjs.org/configuration-options/#external) configuration option.
+
+If you must bundle Lit library code into your component (e.g. for distribution via a CDN), we recommended creating two entrypoints: one for the browser, and one for Node. Bundlers will have options to either select a target platform like browser or Node, or allow you to explicitly specify the export condition used for resolving modules.
+
+For example, ESBuild has the [`platform`](https://esbuild.github.io/api/#platform) option, and in Rollup you can provide `"node"` to `@rollup/plugin-node-resolve`'s [`exportConditions`](https://github.com/rollup/plugins/tree/master/packages/node-resolve#exportconditions) option.
+
+These entrypoints for browser and Node targets must then be specified in your component library's `package.json` file. See [Conditional exports](#conditional-exports) for more details.
 
 ## Lifecycle
 
