@@ -198,6 +198,15 @@ Lit includes a number of built-in directives to help with a variety of rendering
   <tr>
   <td>
 
+  [`unsafeMathML`](#unsafemathml)
+
+  </td>
+  <td>Renders a string as MathML rather than text.</td>
+  </tr>
+
+  <tr>
+  <td>
+
   [`unsafeSVG`](#unsafesvg)
 
   </td>
@@ -1436,20 +1445,26 @@ Child expression
 </tbody>
 </table>
 
-A key feature of Lit's templating syntax is that only strings originating in
-template literals are parsed as HTML. Because template literals can only be
-authored in trusted script files, this acts as a natural safeguard against XSS
-attacks injecting untrusted HTML. However, there may be cases when HTML not
-originating in script files needs to be rendered in a Lit template, for example
-trusted HTML content fetched from a database. The `unsafeHTML` directive will
-parse such a string as HTML and render it in a Lit template.
+A key security feature of Lit's templating syntax is that only strings
+originating in Lit's tagged template literals are parsed as HTML. Because these
+tagged template literals can only be contained in trusted script files, this
+acts as a natural safeguard against XSS attacks injecting untrusted HTML. All
+other strings strings, including user controlled content, are treated as plain
+text and cannot create HTML.
+
+However, there may be cases when HTML text not authored directly in script files
+needs to be rendered in a Lit template, for example trusted HTML content fetched
+from a database. The `unsafeHTML` directive will parse such a string as HTML and
+render it in a Lit template expression.
 
 <div class="alert alert-warning">
 
-Note, the string passed to `unsafeHTML` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+Note, the string passed to `unsafeHTML` must be developer-controlled or
+sanitized and not include untrusted content. Examples of untrusted content
+include query string parameters, values from user inputs, or user-controlled and
+unsanitized data. Untrusted content rendered with this directive could lead to
+[cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting)
+vulnerabilities.
 
 </div>
 
@@ -1490,6 +1505,99 @@ customElements.define('my-element', MyElement);
 
 Explore `unsafeHTML` more in the [playground](/playground/#sample=examples/directive-unsafe-html).
 
+### unsafeMathML
+
+Renders a string as MathML rather than text.
+
+<table>
+<thead><tr><th></th><th></th></tr></thead>
+<tbody>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Import</td>
+<td class="wide-cell">
+
+```js
+import {unsafeMathML} from 'lit/directives/unsafe-mathml.js';
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Signature</td>
+<td class="wide-cell">
+
+```ts
+unsafeMathML(value: string | typeof nothing | typeof noChange)
+```
+
+</td>
+</tr>
+<tr>
+<td class="no-wrap-cell vcenter-cell">Usable location</td>
+<td class="wide-cell">
+
+Child expression
+
+</td>
+</tr>
+</tbody>
+</table>
+
+The `unsafeMathML` directive will parse a string as MathML and render it in a
+Lit template expression.
+
+Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when MathML content
+not originating in script files needs to be rendered in a Lit template, for
+example trusted MathML content fetched from a database. 
+
+<div class="alert alert-warning">
+
+Note, the string passed to `unsafeMathML` must be developer-controlled or
+sanitized and not include untrusted content. Examples of untrusted content
+include query string parameters, values from user inputs, or user-controlled and
+unsanitized data. Untrusted content rendered with this directive could lead to
+[cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting)
+vulnerabilities.
+
+</div>
+
+{% switchable-sample %}
+
+```ts
+const mathmlString = '<mn>1</mn>';
+
+@customElement('my-element')
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe MathML ahead:
+      <math>
+        ${unsafeMathML(mathmlString)}
+      </math> `;
+  }
+}
+```
+
+```js
+const mathmlString = '<mn>1</mn>';
+
+class MyElement extends LitElement {
+
+  render() {
+    return html`
+      Look out, potentially unsafe MathML ahead:
+      <math>
+        ${unsafeMathML(mathmlString)}
+      </math> `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+{% endswitchable-sample %}
+
+
 ### unsafeSVG
 
 Renders a string as SVG rather than text.
@@ -1528,17 +1636,21 @@ Child expression
 </tbody>
 </table>
 
+The `unsafeSVG` directive will parse a string as SVG and render it in a Lit
+template expression.
+
 Similar to with [`unsafeHTML`](#unsafeHTML), there may be cases when SVG content
 not originating in script files needs to be rendered in a Lit template, for
-example trusted SVG content fetched from a database. The `unsafeSVG` directive
-will parse such a string as SVG and render it in a Lit template.
+example trusted SVG content fetched from a database.
 
 <div class="alert alert-warning">
 
-Note, the string passed to `unsafeSVG` must be developer-controlled and not
-include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+Note, the string passed to `unsafeSVG` must be developer-controlled or
+sanitized and not include untrusted content. Examples of untrusted content
+include query string parameters, values from user inputs, or user-controlled and
+unsanitized data. Untrusted content rendered with this directive could lead to
+[cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting)
+vulnerabilities.
 
 </div>
 
