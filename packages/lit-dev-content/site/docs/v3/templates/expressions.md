@@ -139,7 +139,7 @@ html`<main>${bodyText}</main>`
 Expressions in the child position can take many kinds of values:
 
 * Primitive values likes strings, numbers, and booleans.
-* `TemplateResult` objects created with the [`html`](/docs/v3/api/templates/#html) function (or the [`svg`](/docs/v3/api/templates/#svg) function, if the expression is inside an `<svg>` element).
+* `TemplateResult` objects created with the [`html`](/docs/v3/api/templates/#html) function (or the [`svg`](/docs/v3/api/templates/#svg) or [`mathml`](/docs/v3/api/templates/#mathml)functions, if the expression is inside an `<svg>` or `<mathml>` element).
 * DOM nodes.
 * The sentinel values [`nothing`](/docs/v3/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/v3/templates/custom-directives/#signaling-no-change).
 * Arrays or iterables of any of the supported types.
@@ -448,13 +448,13 @@ Note that expressions in all the invalid cases above are valid when using [stati
 
 Static expressions return special values that are interpolated into the template _before_ the template is processed as HTML by Lit. Because they become part of the template's static HTML, they can be placed anywhere in the template - even where expressions would normally be disallowed, such as in attribute and tag names.
 
-To use static expressions, you must import a special version of the `html` or `svg` template tags from Lit's `static-html` module:
+To use static expressions, you must import a special version of the `html`, `svg`, or `mathml` template tags from Lit's `static-html` module:
 
 ```ts
 import {html, literal} from 'lit/static-html.js';
 ```
 
-The `static-html` module contains `html` and `svg` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `literal` tag function to create static expressions.
+The `static-html` module contains `html`, `svg`, and `mathml` tag functions which support static expressions and should be used instead of the standard versions provided in the `lit` module. Use the `literal` tag function to create static expressions.
 
 You can use static expressions for configuration options that are unlikely to change or for customizing parts of the template you cannot with normal expressions - see the section on [Valid expression locations](#expression-locations) for details. For example, a `my-button` component might render a `<button>` tag, but a subclass might render an `<a>` tag, instead. This is a good place to use a static expression because the setting does not change frequently and customizing an HTML tag cannot be done with a normal expression.
 

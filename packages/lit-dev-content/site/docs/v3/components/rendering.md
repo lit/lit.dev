@@ -29,7 +29,7 @@ Typically, the component's `render()` method returns a single `TemplateResult` o
 *   The sentinel values [`nothing`](/docs/v3/templates/conditionals/#conditionally-rendering-nothing) and [`noChange`](/docs/v3/templates/custom-directives/#signaling-no-change).
 *   Arrays or iterables of any of the supported types.
 
-This is *almost identical* to the set of values that can be rendered to a Lit [child expression](/docs/v3/templates/expressions/#child-expressions). The one difference is that a child expression can render an `SVGTemplateResult`, returned by the [`svg`](/docs/v3/api/templates/#svg) function. This kind of template result can only be rendered as the descendant of an `<svg>` element.
+This is *almost identical* to the set of values that can be rendered to a Lit [child expression](/docs/v3/templates/expressions/#child-expressions). The one difference is that a child expression can render an `SVGTemplateResult` or `MathMLTemplateResult`, returned by the [`svg`](/docs/v3/api/templates/#svg) or [`mathml`](/docs/v3/api/templates/#mathml) functions. These kind of template results can only be rendered as the descendant of `<svg>` or `<math>` elements.
 
 ## Writing a good render() method
 
