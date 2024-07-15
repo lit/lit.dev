@@ -1454,7 +1454,7 @@ Untrusted content rendered with this directive could lead to [cross-site
 scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting), CSS
 injection, data exfiltration, etc. vulnerabilities. `unsafeHTML` uses
 `innerHTML` to parse the HTML string, so the security implications are the same
-`innerHTML`, [as documented on
+ as `innerHTML`, [as documented on
 MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations).
 
 </div>
