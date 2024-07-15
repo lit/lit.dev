@@ -338,7 +338,7 @@ Element expressions only work with [directives](/docs/v3/templates/directives/).
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
 ```js
-html`<button ${ref(this.myRef)}`;
+html`<button ${ref(this.myRef)}></button>`;
 ```
 
 See [ref](/docs/v3/templates/directives/#ref) for more information.
