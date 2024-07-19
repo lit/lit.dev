@@ -22,7 +22,6 @@ body.light {
   --sys-color-on-secondary: #ffffff;
   --sys-color-secondary-container: #74fbfc;
   --sys-color-on-secondary-container: #005454;
-  --sys-color-tertiary: #6a5f00;
   --sys-color-tertiary: #005d3e;
   --sys-color-on-tertiary: #ffffff;
   --sys-color-tertiary-container: #00865b;
@@ -84,6 +83,9 @@ body.light {
   --playground-code-gutter-background: var(--playground-code-background);
   --playground-code-cursor-color: var(--sys-color-on-surface);
   --playground-code-selection-background: var(--sys-color-primary-transparent);
+
+  --primary-contrast: oklch(19.37% .006 300.98);
+  --octonary-contrast: oklch(98.81% 0 0);
 }
 
 section.dark,
@@ -169,6 +171,8 @@ body.dark {
   --playground-tab-bar-foreground-color: var(--sys-color-on-surface);
 
   --litdev-dark-border: 1px solid var(--sys-color-outline-variant);
+  --primary-contrast: oklch(98.81% 0 0);
+  --octonary-contrast: oklch(19.37% .006 300.98)
 }
 
 @media (prefers-color-scheme: dark) {
@@ -254,5 +258,7 @@ body.dark {
     --playground-tab-bar-foreground-color: var(--sys-color-on-surface);
 
     --litdev-dark-border: 1px solid var(--sys-color-outline-variant);
+    --primary-contrast: oklch(98.81% 0 0);
+    --octonary-contrast: oklch(19.37% .006 300.98)
   }
 }
