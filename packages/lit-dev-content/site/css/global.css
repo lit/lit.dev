@@ -90,3 +90,25 @@ body[code-language-preference="js"] [code-language]:not([code-language="js"]) {
   /* Hide TS content when preference is JS. */
   display: none;
 }
+
+:nth-child(4n+1) {
+  --selection-background: var(--sys-color-primary-container);
+  --selection-color: var(--sys-color-primary-container);
+}
+:nth-child(4n+2) {
+  --selection-background: var(--color-indigo);
+  --selection-color: var(--color-indigo)
+}
+:nth-child(4n+3) {
+  --selection-background: var(--sys-color-tertiary-container);
+  --selection-color: var(--sys-color-tertiary-container)
+}
+:nth-child(4n+4) {
+  --selection-background: var(--sys-color-secondary-container);
+  --selection-color: var(--sys-color-secondary-container)
+}
+
+::selection {
+  background: color-mix(in srgb, var(--selection-background) 10%, var(--octonary-contrast));
+  color: color-mix(in srgb, var(--selection-color) 40%, var(--primary-contrast));
+}
