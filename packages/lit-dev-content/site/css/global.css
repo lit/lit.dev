@@ -109,6 +109,6 @@ body[code-language-preference="js"] [code-language]:not([code-language="js"]) {
 }
 
 ::selection {
-  background: rgb(from color-mix(in srgb, var(--selection-background) 10%, var(--octonary-contrast)) r g b / .8);
+  background: color-mix(in srgb, var(--selection-background) 10%, var(--octonary-contrast));
   color: color-mix(in srgb, var(--selection-color) 40%, var(--primary-contrast));
 }
