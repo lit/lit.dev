@@ -497,8 +497,9 @@ It's recommended to override the `getUpdateComplete()` method instead of the `up
 ```js
 class MyElement extends LitElement {
   async getUpdateComplete() {
-    await super.getUpdateComplete();
+    const result = await super.getUpdateComplete();
     await this._myChild.updateComplete;
+    return result;
   }
 }
 ```
