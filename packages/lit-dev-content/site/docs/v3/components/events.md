@@ -98,6 +98,32 @@ disconnectedCallback() {
 
 See the MDN documentation on using custom elements [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks) for more information on `connectedCallback` and `disconnectedCallback`.
 
+### Avoiding Memory Leaks
+
+Avoid mixing and matching adding and removing event listeners between the [Lit reactive lifecycle methods](/docs/components/lifecycle/#reactive-update-cycle) and custom element [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#Using_the_lifecycle_callbacks).  These two lifecycles, in some cases, operate independently of one another.  For example, just because `disconnectedCallback` has been called does not mean that `shouldUpdate`, `willUpdate`, `update`, `render`, and `updated` will not be called again if a [reactive property](/docs/components/properties/) is changed after the element is removed from the DOM.  This can result in memory leaks when listeners attached to active objects contain back references to the component that set them.
+
+```js
+connectedCallback () {
+  super.connectedCallback();
+  this.listeningForResize = false;
+}
+disconnectedCallback() {
+  window.removeEventListener("resize", this.handleWindowResize);
+  super.disconnectedCallback();
+}
+handleWindowResize = (event) => {
+  this.style.width = "880px";
+}
+willUpdate(changedProperties) {
+  if (!this.listeningForResize) {
+    window.addEventListener("resize", this.handleWindowResize);
+    this.listeningForResize = true;
+  }
+}
+```
+
+The above example creates a memory leak if the reactive update cycle triggers again and holds the element (and its subtree) in memory as a Detached HTMLElement because `window` now has a reference to this element class through the event handler.
+
 ### Optimizing for performance
 
 Adding event listeners is extremely fast and typically not a performance concern. However, for components that are used in high frequency and need a lot of event listeners, you can optimize first render performance by reducing the number of listeners used via [event delegation](#event-delegation) and adding listeners [asynchronously](#async-events) after rendering.
