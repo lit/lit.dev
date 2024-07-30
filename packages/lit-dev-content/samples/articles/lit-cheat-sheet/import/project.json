@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "hello-world.ts": {},
+    "another-component.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "100px"
+}
