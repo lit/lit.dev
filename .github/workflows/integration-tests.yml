@@ -24,7 +24,7 @@ jobs:
       # below, since that will delete the output files.
       - name: Upload screenshot-diffs.zip artifact
         if: ${{ always() && steps.test.outcome == 'failure' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: screenshot-diffs
           path: packages/lit-dev-tests/test-results/**/*.png
@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload screenshot-goldens.zip artifact
         if: ${{ always() && steps.test.outcome == 'failure' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: screenshot-goldens
           path: packages/lit-dev-tests/src/playwright/**/**.png
