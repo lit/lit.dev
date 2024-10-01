@@ -244,12 +244,12 @@ The performance savings of `watch()` will tend to scale with the amount of
 template logic and the number of bindings that can be skipped in an update, so
 this will be more significant in templates with lots of logic and bindings.
 
-> [!NOTE]
->
-> <!-- keep Prettier at bay -->
->
-> `@lit-labs/signals` does not contain a signal-aware `repeat()` directive yet.
-> Changes to the contents arrays will perform a full render until then.
+<div class="alert alert-info">
+
+`@lit-labs/signals` does not contain a signal-aware `repeat()` directive yet.
+Changes to the contents arrays will perform a full render until then.
+
+</div>
 
 #### Auto-pinpoint updates with the signals `html` template tag
 
@@ -275,11 +275,13 @@ import {SignalWatcher, html, signal} from '@lit-labs/signals';
   }
 ```
 
-> [!WARNING]
-> <!-- Keep Prettier at bay -->
-> The signals `html` tag doesn't yet work well with lit-analyzer. The analyzer
-> will report type errors on bindings that use signals becuase it sees an
-> assigment of `Signal<T>` to `T`.
+<div class="alert alert-warning">
+
+The signals `html` tag doesn't yet work well with lit-analyzer. The analyzer
+will report type errors on bindings that use signals becuase it sees an
+assigment of `Signal<T>` to `T`.
+
+</div>
 
 ## Ensuring proper polyfill installation
 
