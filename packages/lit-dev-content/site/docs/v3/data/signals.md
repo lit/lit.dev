@@ -158,7 +158,7 @@ all update when the value changes.
 
 ```ts
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import {SignalWatcher, signal} from '@lit-labs/signals';
 
 const count = signal(0);
@@ -174,7 +174,7 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
   render() {
     return html`
       <p>The count is ${count.get()}</p>
-      <button @click=${this.#onClick}>Increment<button></button></button>
+      <button @click=${this.#onClick}>Increment</button>
     `;
   }
 
@@ -206,7 +206,7 @@ This examples is the same as the previous, but only the DOM controlled by the
 
 ```ts
 import {LitElement, html} from 'lit';
-import {customElement, property} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import {SignalWatcher, watch, signal} from '@lit-labs/signals';
 
 const count = signal(0);
@@ -222,7 +222,7 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
   render() {
     return html`
       <p>The count is ${watch(count)}</p>
-      <button @click=${this.#onClick}>Increment<button></button></button>
+      <button @click=${this.#onClick}>Increment</button>
     `;
   }
 
@@ -269,8 +269,8 @@ import {SignalWatcher, html, signal} from '@lit-labs/signals';
 // SharedCounterComponent ...
   render() {
     return html`
-      <p>The count is ${watch(count)}</p>
-      <button @click=${this.#onClick}>Increment<button></button></button>
+      <p>The count is ${count}</p>
+      <button @click=${this.#onClick}>Increment</button>
     `;
   }
 ```
