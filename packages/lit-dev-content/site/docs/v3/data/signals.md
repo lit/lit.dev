@@ -21,20 +21,21 @@ a consumer can be notified when they change. Because they form a dependency
 graph, computed signals will re-compute and notify consumers when their
 dependencies change.
 
-Signals are very useful for modelling and managing shared observable state - for
-UI components, that is state that many different components may access and/or
-modify. When a signal is updated, every component that uses and watches that
-signal, or any signals that depend on it, will update.
+Signals are very useful for modeling and managing **shared observable state**—state
+that many different components may access and/or modify. When a signal is updated,
+every component that uses and watches that signal, or any signals that depend on
+it, will update.
 
-Signals is a general concept, with many different implementations and variations
+Signals are a general concept, with many different implementations and variations
 on the idea found in JavaScript libraries and frameworks. There is also now a
-TC39 proposal to standardize them as part of JavaScript.
+[TC39 proposal](https://github.com/tc39/proposal-signals) to standardize signals
+as part of JavaScript.
 
 Signal APIs typically have three main concepts:
 
 - State signals, which hold a single value
-- Computed signals, which wrap a computation that may depend on other signals.
-- Watchers or effects, which run side-effectful code when signal values change.
+- Computed signals, which wrap a computation that may depend on other signals
+- Watchers or effects, which run side-effectful code when signal values change
 
 ### Example
 
@@ -73,26 +74,29 @@ doubleCount.get();
 
 ### Signal Libraries
 
-There are many signal implementations build in JavaScript. Many are tightly
+There are many signal implementations built in JavaScript. Many are tightly
 integrated into frameworks and only usable from within those frameworks, and
 some are standalone libraries that are usable from any other code.
 
 While there are some differences in the specific signals APIs, they are quite
 similar.
 
-Preact's signal library, `@preact/signals`, is a standalone library that is
-relatively fast and small, so we built our first Lit Labs signals integration
-package around it: `@lit-labs/preact-signals`.
+Preact's signal library,
+[`@preact/signals`](https://preactjs.com/guide/v10/signals/), is a standalone
+library that is relatively fast and small, so we built our first Lit Labs
+signals integration package around it:
+[`@lit-labs/preact-signals`](https://www.npmjs.com/package/@lit-labs/preact-signals).
 
 ### Signals Proposal for JavaScript
 
 Because of the strong similarities between signal APIs, the growing use of
 signals to implement reactivity in frameworks, and the desire for
 interoperability between signal-using systems, a proposal for standardizing
-signals is now underway in TC39 at https://github.com/tc39/proposal-signals
+signals is now underway in TC39 at https://github.com/tc39/proposal-signals.
 
-Lit provides the `@lit-labs/signals` package to integrate with the official
-polyfill for this proposal.
+Lit provides the
+[`@lit-labs/signals`](https://www.npmjs.com/package/@lit-labs/signals) package
+to integrate with the official polyfill for this proposal.
 
 This proposal is very exciting for the web components ecosystem. It means that
 different web components don't have to use the same signals library to
@@ -102,14 +106,16 @@ Standardized signals have the potential to replace or be the foundation for many
 existing state management systems and observability libraries. Each of these
 libraries, like MobX or Redux, currently require their own adapters to
 ergonomically integrate with the Lit lifecycle. Signals standardization could
-mean we need only one Lit adapter, and eventually no adapter at all as support
-for signals is directly added to Lit
+mean we need only one Lit adapter, and eventually no adapter at all (when support
+for signals is built into Lit).
 
 ## Signals and Lit
 
-Lit provides two signals integration packages: `@lit-labs/signals` for
-integration with the TC39 Signals Proposal, and `@lit-labs/preact-signals` for
-integration with Preact Signals.
+Lit provides two signals integration packages:
+[`@lit-labs/signals`](https://www.npmjs.com/package/@lit-labs/signals) for
+integration with the TC39 Signals Proposal, and
+[`@lit-labs/preact-signals`](https://www.npmjs.com/package/@lit-labs/preact-signals)
+for integration with Preact Signals.
 
 Because the TC39 Signals Proposal promises to be the one signal API that
 JavaScript systems converge on, we reccomend using it, and will focus on its
@@ -130,10 +136,8 @@ npm i @lit-labs/signals
 - The `SignalWatcher` mixin to apply to all classes using signals
 - The `watch()` template directive to watch individual signals with pinpoint
   updates
-- The `html` template tag, and `withWatch()` template tag factory, to apply the
-  watch directive automatically to template bindings.
-
-`@lit-labs/signals` also exports some of the signals API for convenience.
+- The `html` template tag to apply the watch directive automatically to template
+  bindings
 
 Import these like so:
 
@@ -141,14 +145,25 @@ Import these like so:
 import {SignalWatcher, watch, signal} from '@lit-labs/signals';
 ```
 
+<div class="alert alert-info">
+
+`@lit-labs/signals` also exports some of the signals API for convenience, and
+a `withWatch()` template tag factory so that developers who need custom template
+tags can easily add signal-watching functionality.
+
+</div>
+
+
 #### Auto-watching with SignalWatcher
 
-This simplest way to use signals is to apply the `SignalWatcher` mixins and read
-and write any signals from withing the Lit lifecycle, such as in the `render()`
-method.
+This simplest way to use signals is to apply the `SignalWatcher` mixin when
+defining your Custom Element class. With the mixin applied, you can read
+signals in Lit lifecycle methods (like `render()`); any changes to the
+values of those signals will automatically initiate an update. You can write
+signals wherever it makes sense—for example, in event handlers.
 
 In this example, the `SharedCounterComponent` reads and writes to a shared
-signal. Every instance on the component will show the same value, and they will
+signal. Every instance of the component will show the same value, and they will
 all update when the value changes.
 
 <!--
@@ -192,17 +207,18 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
 
 #### Pinpoint Updates with `watch()`
 
-Signals can be used to acheive more targeted, "pinpoint", DOM updates than a
-full Lit component re-render. To do this we need to watch signals individually
-with the `watch()` directive.
+Signals can also be used to achieve "pinpoint" DOM updates targeting individual
+bindings rather than an entire component. To do this, we need to watch signals
+individually with the `watch()` directive.
 
-DOM updates performed by the `watch()` directive are batched and still use the
-Lit reactive update lifecycle, but when the current Lit update has only been
-triggered by `watch()` directives, the full template render is skipped and only
-the directives with changed signals have their DOM updated.
+For coordination purposes, updates triggered by the `watch()` directive are
+batched and still participate in the Lit reactive update lifecycle. However,
+when a given Lit update has been triggered purely by `watch()` directives, the
+only bindings updated are those with changed signals; the rest of the bindings
+in the template are skipped.
 
-This examples is the same as the previous, but only the DOM controlled by the
-`${watch(count)}` binding is updated when the `count` signal changes:
+This example is the same as the previous, but only the `${watch(count)}` binding
+is updated when the `count` signal changes:
 
 ```ts
 import {LitElement, html} from 'lit';
@@ -232,13 +248,13 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
 }
 ```
 
-In most cases `watch()` will _not_ be a significant performance improvement over
-plain Lit template renders. This is because Lit already only updates the DOM for
-bindings that have changed values.
+Note that the work avoided by this pinpoint update is actually very little:
+the only things skipped are the identity check for the template returned by
+`render()` and the value check for the `@click` binding, both of which are cheap.
 
-In this example, the work skipped by a pinpoint update is the identity check for
-the template returned by `render()` and the value check for the `@click`
-binding, both of which are cheap.
+In fact, in most cases `watch()` will _not_ result in a significant performance
+improvement over "plain" Lit template renders. This is because Lit already only
+updates the DOM for bindings that have changed values.
 
 The performance savings of `watch()` will tend to scale with the amount of
 template logic and the number of bindings that can be skipped in an update, so
@@ -247,7 +263,7 @@ this will be more significant in templates with lots of logic and bindings.
 <div class="alert alert-info">
 
 `@lit-labs/signals` does not contain a signal-aware `repeat()` directive yet.
-Changes to the contents arrays will perform a full render until then.
+Changes to the contents of arrays will perform full renders until then.
 
 </div>
 
@@ -285,11 +301,11 @@ assigment of `Signal<T>` to `T`.
 
 ## Ensuring proper polyfill installation
 
-`@lit-labs/signals` depends on the `signal-polyfill` package, so you don't need
-to install anything else to start using signals.
+`@lit-labs/signals` includes the `signal-polyfill` package as a dependency, so
+you don't need to explicitly install anything else to start using signals.
 
 But since signals rely on a shared global data structure (the signal dependency
-graph), it's critically important that the polyfill is installed properly -
+graph), it's critically important that the polyfill is installed properly:
 there can be only one copy of the polyfill package in any page or app.
 
 If more than one copy of the polyfill is installed (either because of
@@ -313,7 +329,7 @@ You can usually fix this by running:
 npm dedupe
 ```
 
-If that doesn't work you may have to update dependencies until you get a single
+If that doesn't work, you may have to update dependencies until you get a single
 compatible version of `signal-polyfill` across your package installation.
 
 ## Missing Features
@@ -335,15 +351,15 @@ that will make working with signals in Lit more viable and performant:
 
 ### `signal-utils`
 
-The `signal-utils` npm package contains a number of utilities working with the
-TC39 Signals Proposal, including:
+The `signal-utils` npm package contains a number of utilities for working with
+the TC39 Signals Proposal, including:
 
-- Signal-backed, observable, collections like Array, Map, Set, WeakMap, WeakSet,
-  and Object.
-- Decorators for building classes with signal-backed fields.
+- Signal-backed, observable, collections like `Array`, `Map`, `Set`, `WeakMap`,
+  `WeakSet`, and `Object`
+- Decorators for building classes with signal-backed fields
 - Effects and reactions
 
-The collections and decorators are useful for building observable data models
+These collections and decorators are useful for building observable data models
 from signals, where you will often need to manage values more complicated than a
 primitive.
 
