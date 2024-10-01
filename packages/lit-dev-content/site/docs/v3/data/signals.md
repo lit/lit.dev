@@ -256,7 +256,7 @@ this will be more significant in templates with lots of logic and bindings.
 `@lit-labs/signals` also exports an `html` template tag that will apply the
 `watch()` directive automatically to any signal value passed to a binding.
 
-This can be conveient to avoid the extra characters of the `watch()` directive
+This can be convenient to avoid the extra characters of the `watch()` directive
 or the `signal.get()` calls required without `watch()`.
 
 If you import `html` from `@lit-labs/signals` instead of from `lit`, you will
