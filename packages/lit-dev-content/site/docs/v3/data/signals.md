@@ -355,7 +355,7 @@ tracked as signal access, and mutations of the array, like from `.push()` or
 
 #### Decorators
 
-The decorators like you model a class with observable fields, much like a
+The decorators let you model a class with observable fields, much like a
 `LitElement`:
 
 ```ts
