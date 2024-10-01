@@ -316,7 +316,7 @@ that will make working with signals in Lit more viable and performant:
 - [ ] A signal-aware `repeat()` directive. This will make incremental updates to
       arrays more efficient.
 - [ ] A `@property()` decorator that uses signals for storage, to unify reactive
-      properties and signals. THis will make it easier to use generic signal
+      properties and signals. This will make it easier to use generic signal
       utilities with Lit reactive properties.
 - [ ] A `@computed()` decorator for marking methods as computed signals. Since
       computed signals are memoized, this can help with expensive computations.
