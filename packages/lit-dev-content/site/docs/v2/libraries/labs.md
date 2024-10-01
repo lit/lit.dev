@@ -30,37 +30,6 @@ Feedback is currently being solicited on the following Labs packages:
 <thead><tr><th>Package</th><th>Description</th><th>Links</th></tr></thead>
 <tbody>
 <tr class="subheading"><td colspan=3>Near graduation</td></tr>
-<tr>
-<td>
-
-[context](https://www.npmjs.com/package/@lit-labs/context)
-
-</td>
-<td>
-
-A package containing controllers and decorators for using the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
-
-</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](/docs/v2/data/context/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3302 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fcontext%5D "Issues")
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-[react](https://www.npmjs.com/package/@lit-labs/react)
-
-</td>
-<td>React integration helpers for custom elements and reactive controllers.</td>
-<td class="labs-table-links">
-
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/react#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3358 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Freact%5D "Issues")
-
-</td>
-</tr>
 
 <tr>
 <td>
@@ -131,13 +100,13 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <tr>
 <td>
 
-[ssr](https://www.npmjs.com/package/@lit-labs/ssr)
+[preact-signals](https://www.npmjs.com/package/@lit-labs/preact-signals)
 
 </td>
-<td>A package for server-side rendering Lit templates and components.</td>
+<td>Preact Signals integration for Lit..</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](/docs/v2/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3353 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fssr%5D "Issues")
+[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/preact-signals#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/4115 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fpreact-signals%5D "Issues")
 
 </td>
 </tr>
@@ -145,13 +114,27 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <tr>
 <td>
 
-[task](https://www.npmjs.com/package/@lit-labs/task)
+[signals](https://www.npmjs.com/package/@lit-labs/signals)
 
 </td>
-<td>A reactive controller for handling asynchronous tasks.</td>
+<td>TC39 Signals Proposal polyfill integration for Lit..</td>
 <td class="labs-table-links">
 
-[📄&nbsp;Docs](https://github.com/lit/lit/tree/main/packages/labs/task#readme "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3361 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Ftask%5D "Issues")
+[📄&nbsp;Docs](https://lit.dev/docs/data/signals/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/4779 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fsignals%5D "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+[ssr](https://www.npmjs.com/package/@lit-labs/ssr)
+
+</td>
+<td>A package for server-side rendering Lit templates and components.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](/docs/v2/ssr/overview "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/3353 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fssr%5D "Issues")
 
 </td>
 </tr>
