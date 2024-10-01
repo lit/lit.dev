@@ -81,8 +81,8 @@ While there are some differences in the specific signals APIs, they are quite
 similar.
 
 Preact's signal library, `@preact/signals`, is a standalone library that is
-relatively fast and small, so we built our first Lit Labs signals
-integration package around it: `@lit-labs/preact-signals`.
+relatively fast and small, so we built our first Lit Labs signals integration
+package around it: `@lit-labs/preact-signals`.
 
 ### Signals Proposal for JavaScript
 
@@ -143,9 +143,9 @@ import {SignalWatcher, watch, signal} from '@lit-labs/signals';
 
 #### Auto-watching with SignalWatcher
 
-This simplest way to use signals is to apply the `SignalWatcher` mixins and
-read and write any signals from withing the Lit lifecycle, such as in the
-`render()` method.
+This simplest way to use signals is to apply the `SignalWatcher` mixins and read
+and write any signals from withing the Lit lifecycle, such as in the `render()`
+method.
 
 In this example, the `SharedCounterComponent` reads and writes to a shared
 signal. Every instance on the component will show the same value, and they will
@@ -233,11 +233,11 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
 ```
 
 In most cases `watch()` will _not_ be a significant performance improvement over
-plain Lit template renders. This is because Lit already only updates the DOM
-for bindings that have changed values.
+plain Lit template renders. This is because Lit already only updates the DOM for
+bindings that have changed values.
 
-In this example, the work skipped by a pinpoint update is the identity check
-for the template returned by `render()` and the value check for the `@click`
+In this example, the work skipped by a pinpoint update is the identity check for
+the template returned by `render()` and the value check for the `@click`
 binding, both of which are cheap.
 
 The performance savings of `watch()` will tend to scale with the amount of
@@ -274,6 +274,12 @@ import {SignalWatcher, html, signal} from '@lit-labs/signals';
     `;
   }
 ```
+
+> [!WARNING]
+> <!-- Keep Prettier at bay -->
+> The signals `html` tag doesn't yet work well with lit-analyzer. The analyzer
+> will report type errors on bindings that use signals becuase it sees an
+> assigment of `Signal<T>` to `T`.
 
 ## Ensuring proper polyfill installation
 
@@ -336,15 +342,15 @@ TC39 Signals Proposal, including:
 - Effects and reactions
 
 The collections and decorators are useful for building observable data models
-from signals, where you will often need to manage values more complicated than
-a primitive.
+from signals, where you will often need to manage values more complicated than a
+primitive.
 
 #### Collections
 
 For instance, you can make an observable array:
 
 ```ts
-import { SignalArray } from 'signal-utils/array';
+import {SignalArray} from 'signal-utils/array';
 
 const numbers = new SignalArray([1, 2, 3]);
 ```
@@ -377,7 +383,7 @@ class GameState {
     this.playerOneTotal += playerOneScore;
     this.playerTwoTotal += playerTwoScore;
     this.rounds.push([playerOneScore, playerTwoScore]);
-  }  
+  }
 }
 ```
 
