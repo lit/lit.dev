@@ -15,11 +15,10 @@ eleventyNavigation:
 
 Signals are data structures for managing observable state.
 
-A signal can hold either a single value (a state signal) or a computation (a
-computed signal) that depends on other signals. Signals are observable, so that
-a consumer can be notified when they change. Because they form a dependency
-graph, computed signals will re-compute and notify consumers when their
-dependencies change.
+A signal can hold either a single value or a computed value that depends on other
+signals. Signals are observable, so that a consumer can be notified when they
+change. Because they form a dependency graph, computed signals will re-compute and
+notify consumers when their dependencies change.
 
 Signals are very useful for modeling and managing **shared observable state**—state
 that many different components may access and/or modify. When a signal is updated,
@@ -27,7 +26,7 @@ every component that uses and watches that signal, or any signals that depend on
 it, will update.
 
 Signals are a general concept, with many different implementations and variations
-on the idea found in JavaScript libraries and frameworks. There is also now a
+found in JavaScript libraries and frameworks. There is also now a
 [TC39 proposal](https://github.com/tc39/proposal-signals) to standardize signals
 as part of JavaScript.
 
@@ -89,7 +88,7 @@ signals integration package around it:
 
 ### Signals Proposal for JavaScript
 
-Because of the strong similarities between signal APIs, the growing use of
+Because of the strong similarities between signal APIs, the increasing use of
 signals to implement reactivity in frameworks, and the desire for
 interoperability between signal-using systems, a proposal for standardizing
 signals is now underway in TC39 at https://github.com/tc39/proposal-signals.
@@ -98,27 +97,28 @@ Lit provides the
 [`@lit-labs/signals`](https://www.npmjs.com/package/@lit-labs/signals) package
 to integrate with the official polyfill for this proposal.
 
-This proposal is very exciting for the web components ecosystem. It means that
-different web components don't have to use the same signals library to
-interoperably consume and produce signals.
+This proposal is very exciting for the web components ecosystem. Because all
+libraries and frameworks that adpot the standard will produce compatible signals,
+different web components won't have to use the same library to interoperably
+consume and produce signals.
 
-Standardized signals have the potential to replace or be the foundation for many
-existing state management systems and observability libraries. Each of these
-libraries, like MobX or Redux, currently require their own adapters to
+What's more, signals have the potential to become the foundation for a wide range
+of state management systems and observability libraries, new or existing. Each of
+these libraries, like MobX or Redux, currently requires a specific adapter to
 ergonomically integrate with the Lit lifecycle. Signals standardization could
-mean we need only one Lit adapter, and eventually no adapter at all (when support
-for signals is built into Lit).
+mean we eventually need only one Lit adapter (or no adapter at all, when support
+for signals is built into the core Lit library).
 
 ## Signals and Lit
 
-Lit provides two signals integration packages:
+Lit currently provides two signals integration packages:
 [`@lit-labs/signals`](https://www.npmjs.com/package/@lit-labs/signals) for
 integration with the TC39 Signals Proposal, and
 [`@lit-labs/preact-signals`](https://www.npmjs.com/package/@lit-labs/preact-signals)
 for integration with Preact Signals.
 
 Because the TC39 Signals Proposal promises to be the one signal API that
-JavaScript systems converge on, we reccomend using it, and will focus on its
+JavaScript systems converge on, we recommend using it, and will focus on its
 usage in this document.
 
 ### Installation
@@ -147,9 +147,9 @@ import {SignalWatcher, watch, signal} from '@lit-labs/signals';
 
 <div class="alert alert-info">
 
-`@lit-labs/signals` also exports some of the signals API for convenience, and
-a `withWatch()` template tag factory so that developers who need custom template
-tags can easily add signal-watching functionality.
+`@lit-labs/signals` also exports some of the polyfilled signals API for
+convenience, and a `withWatch()` template tag factory so that developers who need
+custom template tags can easily add signal-watching functionality.
 
 </div>
 
@@ -258,19 +258,20 @@ updates the DOM for bindings that have changed values.
 
 The performance savings of `watch()` will tend to scale with the amount of
 template logic and the number of bindings that can be skipped in an update, so
-this will be more significant in templates with lots of logic and bindings.
+savings will be more significant in templates with lots of logic and bindings.
 
 <div class="alert alert-info">
 
-`@lit-labs/signals` does not contain a signal-aware `repeat()` directive yet.
+`@lit-labs/signals` does not yet contain a signal-aware `repeat()` directive.
 Changes to the contents of arrays will perform full renders until then.
 
 </div>
 
 #### Auto-pinpoint updates with the signals `html` template tag
 
-`@lit-labs/signals` also exports an `html` template tag that will apply the
-`watch()` directive automatically to any signal value passed to a binding.
+`@lit-labs/signals` also exports a special version of Lit's `html` template tag
+that automatically applies the `watch()` directive to any signal value passed
+to a binding.
 
 This can be convenient to avoid the extra characters of the `watch()` directive
 or the `signal.get()` calls required without `watch()`.
