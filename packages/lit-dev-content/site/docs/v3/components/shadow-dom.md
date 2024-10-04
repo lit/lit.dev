@@ -187,7 +187,9 @@ get _slottedChildren() {
 }
 ```
 
-You can also use the `slotchange` event to take action when the assigned nodes change.
+The nodes are assigned after the slot is rendered, so you need to check them in `updated`, or if you want to use them in rendering, you can use `slotchange`.
+
+You can use the `slotchange` event to take action when nodes are first assigned or change.
 The following example extracts the text content of all of the slotted children.
 
 ```js
