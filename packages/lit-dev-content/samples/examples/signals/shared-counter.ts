@@ -12,12 +12,18 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
       display: block;
       border: solid 1px lightgray;
       margin: 8px;
+      padding: 8px;
+    }
+
+    button {
+      background: lightgreen
     }
   `;
 
   render() {
     return html`
-      <p>The count is ${watch(count)}</p>
+      <slot></slot>
+      <p>count = ${watch(count)}</p>
       <button @click=${this.#onClick}>Increment</button>
     `;
   }
