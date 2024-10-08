@@ -100,6 +100,20 @@ A plugin for [Eleventy](https://www.11ty.dev) that pre-renders Lit components at
 <tr>
 <td>
 
+[signals](https://www.npmjs.com/package/@lit-labs/signals)
+
+</td>
+<td>TC39 Signals Proposal polyfill integration for Lit.</td>
+<td class="labs-table-links">
+
+[📄&nbsp;Docs](/docs/data/signals/ "Docs")<br>[💬&nbsp;Feedback](https://github.com/lit/lit/discussions/4779 "Feedback")<br>[🐞&nbsp;Issues](https://github.com/lit/lit/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+%5Blabs%2Fsignals%5D "Issues")
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 [ssr](https://www.npmjs.com/package/@lit-labs/ssr)
 
 </td>

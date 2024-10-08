@@ -187,6 +187,7 @@
     "@lit-labs/motion": "^1.0.1",
     "@lit-labs/react": "^1.0.8",
     "@lit-labs/task": "^3.0.2",
+    "@lit-labs/signals": "^0.1.1",
     "@lit/context": "^1.1.0",
     "@lit/localize": "^0.10.0",
     "@lit/react": "^1.0.0 || 1.0.0-pre.0",
