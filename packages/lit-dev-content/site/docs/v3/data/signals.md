@@ -172,7 +172,7 @@ all update when the value changes.
 -->
 
 ```ts
-import {LitElement, html} from 'lit';
+import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
 import {SignalWatcher, signal} from '@lit-labs/signals';
 
