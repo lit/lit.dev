@@ -9,5 +9,6 @@
     "my-heading.ts": {},
     "level-context.ts": {},
     "index.html": {}
-  }
+  },
+  "previewHeight": "120px"
 }
