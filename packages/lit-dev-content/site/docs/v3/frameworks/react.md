@@ -126,8 +126,8 @@ The `EventName` type is a string that takes an event interface as a type paramet
 ```ts
 
 import React from 'react';
-import {createComponent} from '@lit/react';
-import {MyElement, type EventName} from './my-element.js';
+import {createComponent, type EventName} from '@lit/react';
+import {MyElement, MyEvent} from './my-element.js';
 
 export const MyElementComponent = createComponent({
   tagName: 'my-element',
