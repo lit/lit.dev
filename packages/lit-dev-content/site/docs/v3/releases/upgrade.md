@@ -23,8 +23,9 @@ Lit 3.0 has very few breaking changes from Lit 2.x:
 - APIs marked deprecated in Lit 2.x releases have been removed.
 - SSR hydration support modules have moved to the `@lit-labs/ssr-client` package.
 - Type only: Type of `ReactiveElement`'s `renderRoot` and `createRenderRoot()` have been updated.
-- Decorator behavior has been unified between TypeScript experimental decorators and standard decorators.
 - Support was removed for Babel decorators version "2018-09".
+- Decorator behavior has been unified between TypeScript experimental decorators and standard decorators.
+  - As a consequence, if you use TypeScript you'll need to upgrade to at least TypeScript v5.2, to get the updated types for both kinds of decorators.
 
 For the vast majority of users there should be no required code changes to upgrade from Lit 2 to Lit 3. Most apps and libraries should be able to extend their npm version ranges to include both 2.x and 3.x, like `"^2.7.0 || ^3.0.0"`.
 
