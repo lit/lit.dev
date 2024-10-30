@@ -204,7 +204,7 @@ For full installation and usage instructions, see the [Web Dev Server documentat
 
 Lit support developing components in TypeScript, including full type declarations for the Lit APIs, standard and experimental decorators, and community tools for template type-checking and linting.
 
-Because Lit is just a library, and doesn't require a compiler or use non-standard langauge syntax, there are no specific TypeScript tools that are required. Lit works with the official TypeScript compiler, `tsc`, with TypeScript wrappers such as those for Rollup, Vite, or Webpack, and alternate compilers like `esbuild`.
+Because Lit is just a library, and doesn't require a compiler or use non-standard language syntax, there are no specific TypeScript tools that are required. Lit works with the official TypeScript compiler, `tsc`, with TypeScript wrappers such as those for Rollup, Vite, or Webpack, and alternate compilers like `esbuild`.
 
 The main requirements of a TypeScript project are:
 - Enabling a modern JavaScript language level, like with the `"ES2021"` [lib](https://www.typescriptlang.org/tsconfig/#lib).
