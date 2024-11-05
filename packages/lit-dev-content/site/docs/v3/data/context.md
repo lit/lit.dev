@@ -28,7 +28,6 @@ Context definition (`logger-context.ts`):
 ```ts
 import {createContext} from '@lit/context';
 import type {Logger} from 'my-logging-library';
-export type {Logger} from 'my-logging-library';
 export const loggerContext = createContext<Logger>('logger');
 ```
 
