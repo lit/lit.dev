@@ -72,7 +72,7 @@ code reuse. For more reading on mixins, here are a few good references:
 
 * [Class mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends#mix-ins) on MDN
 * [Real Mixins with JavaScript
-  Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-JavaScript-classes/)
+  Classes](https://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
   by Justin Fagnani
 * [Mixins](https://www.TypeScriptlang.org/docs/handbook/mixins.html) in the TypeScript handbook.
 * [Dedupe mixin library](https://open-wc.org/docs/development/dedupe-mixin/) by
