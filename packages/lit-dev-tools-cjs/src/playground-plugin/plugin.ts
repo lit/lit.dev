@@ -163,31 +163,37 @@ export const playgroundPlugin = (
     (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
   );
 
-  eleventyConfig.addShortcode('playground-ide', async (project: string) => {
-    if (!project) {
-      throw new Error(
-        `Invalid playground-ide invocation.` +
-          `Usage {% playground-ide "path/to/project" %}`
+  eleventyConfig.addShortcode(
+    'playground-ide',
+    async (project: string, lazy = false) => {
+      if (!project) {
+        throw new Error(
+          `Invalid playground-ide invocation.` +
+            `Usage {% playground-ide "path/to/project" %}`
+        );
+      }
+      project = trimTrailingSlash(project);
+      const config = await readProjectConfig(project);
+      const firstFilename = Object.keys(config.files ?? {})[0];
+      const numVisibleLines = await getNumVisibleLinesForProjectFile(
+        project,
+        firstFilename
       );
-    }
-    project = trimTrailingSlash(project);
-    const config = await readProjectConfig(project);
-    const firstFilename = Object.keys(config.files ?? {})[0];
-    const numVisibleLines = await getNumVisibleLinesForProjectFile(
-      project,
-      firstFilename
-    );
-    const previewHeight = config.previewHeight ?? '120px';
-    return `
-    <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
+      const previewHeight = config.previewHeight ?? '120px';
+      // in the case `lazy` is false, we need to keep the ">" character on the
+      // line right after the last attribute or else markdown will not render
+      // the closing tag correctly because it will be in a  `<p>></p>`.
+      return `
+    <litdev-example ${sandboxUrl ? `sandbox-base-url="${sandboxUrl}"` : ''}
       style="--litdev-example-editor-lines-ts:${numVisibleLines.ts};
              --litdev-example-editor-lines-js:${numVisibleLines.js};
-             --litdev-example-preview-height:${previewHeight}"
-      project=${project}
-    >
+             --litdev-example-preview-height:${previewHeight};"
+      project="${project}"
+      ${lazy ? 'lazy' : ''}>
     </litdev-example>
   `.trim();
-  });
+    }
+  );
 
   type LitProjectConfig = ProjectManifest & {
     previewHeight?: string;

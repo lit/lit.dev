@@ -245,7 +245,7 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 
 ### Removing an attribute { #removing-attribute }
 
-Sometimes you want to set an attribute only under certain conditions, and otherwise remove the attribute. For common "boolean attributes" like `disabled` and `hidden` where you want to set the attribute to an empty string for a truthy value and remove it otherwise, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, you might require a different condition for adding or removing an attribute. 
+Sometimes you want to set an attribute only under certain conditions, and otherwise remove the attribute. For common "boolean attributes" like `disabled` and `hidden` where you want to set the attribute to an empty string for a truthy value and remove it otherwise, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, you might require a different condition for adding or removing an attribute.
 
 For example, consider:
 
@@ -570,6 +570,7 @@ class MyButton extends LitElement {
     // These strings MUST be trusted, otherwise this is an XSS vulnerability
     const tag = getTagName();
     const activeAttribute = getActiveAttribute();
+    // html should be imported from `lit/static-html.js`
     return html`
       <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}=${this.active}>
         <p>${this.caption}</p>
@@ -595,6 +596,7 @@ class MyButton extends LitElement {
     // These strings MUST be trusted, otherwise this is an XSS vulnerability
     const tag = getTagName();
     const activeAttribute = getActiveAttribute();
+    // html should be imported from `lit/static-html.js`
     return html`
       <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}=${this.active}>
         <p>${this.caption}</p>

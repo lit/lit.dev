@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "my-element.js": {},
+    "styles.css": {},
+    "index.html": {}
+  },
+  "previewHeight": "100px"
+}
