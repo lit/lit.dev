@@ -1,0 +1,20 @@
+<script type="module" src="./my-element.js"></script>
+<style>
+  #child {
+    border: var(--my-element-child-border, none);
+    margin-block-start: 1em;
+    padding: .5em;
+  }
+</style>
+
+<my-element>
+  <div>
+    This is a direct child and should have a solid border styled with
+    <code>::slotted(*)</code>.
+
+    <div id="child">
+      This is a child of a direct child and cannot be styled directly with
+      <code>::slotted(*)</code>. Therefore <code>my-element</code> should
+      style known CSS custom properties which should be applied in the light DOM.
+    </div>
+</my-element>

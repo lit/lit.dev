@@ -9,6 +9,13 @@ article {
   padding-block-start: 0;
 }
 
+/*
+  this is not visible in articles, but the scrollbar is on FF.
+*/
+#docsNavWrapper {
+  overflow-y: auto;
+}
+
 /* ------------------------------------
  * Header Section
  * ------------------------------------ */

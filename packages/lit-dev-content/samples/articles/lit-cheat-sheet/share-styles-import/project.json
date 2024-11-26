@@ -1,0 +1,11 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "my-element.ts": {},
+    "another-element.ts": {},
+    "shared-styles.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "150px"
+}
+
