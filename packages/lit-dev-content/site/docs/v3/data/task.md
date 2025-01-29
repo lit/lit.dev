@@ -241,7 +241,7 @@ By default, Tasks will run any time the arguments change. This is controlled by 
 
 #### Auto-run
 
-In _auto-run_ mode, the task will call the `args` function when the host has updated, compare the args to the previous args, and invoke the task function if they have changed. A task without `args` defined is in manual mode.
+In _auto-run_ mode, the task will call the `args` function when the host has updated, compare the args to the previous args, and invoke the task function if they have changed. A task with an empty `args` array runs once. A task without `args` defined is in manual mode.
 
 #### Manual mode
 
