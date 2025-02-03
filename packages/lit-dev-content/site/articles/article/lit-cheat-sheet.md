@@ -1,7 +1,7 @@
 ---
 title: The Lit Cheat Sheet
-publishDate: 2024-05-10
-lastUpdated: 2024-05-10
+publishDate: 2025-02-03
+lastUpdated: 2025-02-03
 summary: A quick reference for the basics of Lit
 thumbnail: /images/articles/lit_cheat_sheet
 tags:
