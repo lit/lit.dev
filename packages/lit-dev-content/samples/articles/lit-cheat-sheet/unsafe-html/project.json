@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "my-element.ts": {},
+    "trusted-rendering-library.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "100px"
+}
