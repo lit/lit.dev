@@ -37,6 +37,9 @@ export class LitdevSearchOption extends LitElement {
   @property({type: Boolean})
   isExternal = false;
 
+  position = 0;
+  objectID = '';
+
   static styles = css`
     :host {
       display: block;
