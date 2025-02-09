@@ -4,17 +4,28 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, nothing} from 'lit';
+import {LitElement, html, css, nothing, isServer} from 'lit';
 import {state, customElement, query, property} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {live} from 'lit/directives/live.js';
-import {AgloliaSearchController} from './algolia-search-controller.js';
 import {classMap} from 'lit/directives/class-map.js';
 import type {Drawer} from '@material/mwc-drawer';
 import type {LitdevSearchOption} from './litdev-search-option.js';
 
 import './litdev-search-option.js';
 import './lazy-svg.js';
+
+let AgloliaSearchController:
+  | typeof import('./algolia-search-controller.js').AgloliaSearchController
+  | undefined = undefined;
+
+if (!isServer) {
+  // Package exports will load nodejs bundle in SSR. We don't need it in SSR and
+  // it throws SSR errors that I don't care to fix since we don't even use this
+  // in SSR.
+  AgloliaSearchController = (await import('./algolia-search-controller.js'))
+    .AgloliaSearchController;
+}
 
 /**
  * Generic that denotes the type of document.
@@ -48,6 +59,7 @@ interface UserFacingPageData {
   title: string;
   heading: string;
   text: string;
+  position: number;
   parentID?: string;
   docType: DocTypes;
   isExternal?: boolean;
@@ -183,23 +195,21 @@ export class LitDevSearch extends LitElement {
   @state()
   private _selectedIndex = -1;
 
-  private _searchController = new AgloliaSearchController<Suggestion>(
-    this,
-    () => this._searchText,
-    {
-      // Algolia _highlightResult adds a lot to response size
-      attributesToHighlight: ['heading', 'title'],
-      // We don't need to return the full text of result so don't request it
-      attributesToRetrieve: ['*', '-text', '-heading'],
-      attributesToSnippet: ['text'],
-    }
-  );
+  private _searchController = AgloliaSearchController
+    ? new AgloliaSearchController<Suggestion>(this, () => this._searchText, {
+        // Algolia _highlightResult adds a lot to response size
+        attributesToHighlight: ['heading', 'title'],
+        // We don't need to return the full text of result so don't request it
+        attributesToRetrieve: ['*', '-text', '-heading'],
+        attributesToSnippet: ['text'],
+      })
+    : undefined;
 
   render() {
     const activeDescendant =
       this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
 
-    const items = this._searchController.value;
+    const items = this._searchController?.value ?? [];
 
     return html`
       <div id="root">
@@ -254,7 +264,7 @@ export class LitDevSearch extends LitElement {
     // once we release that feature in @lit-labs/task so that we don't do this
     // needlessly every render.
     const groupedSuggestions = new SuggestionGroups(
-      this._searchController.value
+      this._searchController?.value ?? []
     );
 
     // for aria-activedescendant we need each item in each group to have a
@@ -277,6 +287,8 @@ export class LitDevSearch extends LitElement {
               _snippetResult,
               parentID,
               isExternal,
+              objectID,
+              position,
             }) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
@@ -293,9 +305,16 @@ export class LitDevSearch extends LitElement {
                   .text="${text}"
                   .isSubsection="${!!parentID}"
                   .isExternal="${!!isExternal}"
+                  .position="${position}"
+                  .objectId="${objectID}"
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
-                  @click="${() => this._navigate(relativeUrl)}"
+                  @click="${() =>
+                    this._navigate({
+                      url: relativeUrl,
+                      id: objectID,
+                      position,
+                    })}"
                 ></litdev-search-option>
               `;
             }
@@ -368,7 +387,7 @@ export class LitDevSearch extends LitElement {
    * Selects the next item on the list or wraps around if at end.
    */
   private _selectNext() {
-    const numItems = this._searchController.value.length;
+    const numItems = this._searchController?.value.length ?? 0;
     this._selectedIndex++;
     if (this._selectedIndex >= numItems) {
       this._selectedIndex = 0;
@@ -379,7 +398,7 @@ export class LitDevSearch extends LitElement {
    * Selects the previous item on the list or wraps around if at start.
    */
   private _selectPrevious() {
-    const numItems = this._searchController.value.length;
+    const numItems = this._searchController?.value.length ?? 0;
     this._selectedIndex--;
     if (this._selectedIndex < 0) {
       this._selectedIndex = numItems - 1;
@@ -390,6 +409,10 @@ export class LitDevSearch extends LitElement {
    * Handles the enter keypress and navigates accordingly.
    */
   private _select() {
+    if (!this._searchController) {
+      return;
+    }
+
     const numItems = this._searchController.value.length;
     if (numItems === 0) {
       return;
@@ -399,7 +422,11 @@ export class LitDevSearch extends LitElement {
 
     // Navigate to checked element.
     if (checkedEl) {
-      this._navigate(checkedEl.relativeUrl);
+      this._navigate({
+        url: checkedEl.relativeUrl,
+        position: checkedEl.position,
+        id: checkedEl.objectID,
+      });
       return;
     }
 
@@ -407,7 +434,11 @@ export class LitDevSearch extends LitElement {
     // suggestion.
     const firstSuggestion = this._searchController.value[0];
     this._selectedIndex = 0;
-    this._navigate(firstSuggestion.relativeUrl);
+    this._navigate({
+      url: firstSuggestion.relativeUrl,
+      position: firstSuggestion.position,
+      id: firstSuggestion.objectID,
+    });
   }
 
   /**
@@ -415,7 +446,16 @@ export class LitDevSearch extends LitElement {
    * default behavior when navigating to a fragment on the page is not
    * refreshing the UI.
    */
-  private async _navigate(url: string) {
+  private async _navigate({
+    url,
+    id,
+    position,
+  }: {
+    url: string;
+    id: string;
+    position: number;
+  }) {
+    this._searchController?.objectClicked(id, position);
     const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
     document.location = addModsParameterToUrlIfNeeded(url);
     this._searchText = '';
