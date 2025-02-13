@@ -35,6 +35,13 @@
                     </svg>
                   </a>
                 {% endif %}
+                {% if authorData.links.bluesky %}
+                  <a href="https://bsky.app/profile/{{ authorData.links.bluesky }}" target="_blank">
+                    <svg aria-label="{{ authorData.name}}'s bluesky Account">
+                      <use href="{{ site.baseurl }}/images/social/bluesky.svg#bluesky"></use>
+                    </svg>
+                  </a>
+                {% endif %}
                 {% if authorData.links.github %}
                   <a href="https://github.com/{{ authorData.links.github }}" target="_blank">
                     <svg aria-label="{{ authorData.name}}'s Github Account">
