@@ -505,7 +505,7 @@ The `context-request` bubbles and is composed.
 
 - `readonly contextTarget: Element`
 
-    The original context target of the requester
+    The DOM element that initiated the context request
 
 - `readonly callback: ContextCallback<ContextType<C>>`
 
