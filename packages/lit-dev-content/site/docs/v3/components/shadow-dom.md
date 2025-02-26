@@ -187,9 +187,11 @@ get _slottedChildren() {
 }
 ```
 
-{% aside "info" "no-header" %}
+{% aside "info" %}
 
-The elements are assigned only after the slot is rendered, so if you need to access assigned elements at startup, you need to wait for `firstUpdated` or `updated`. If you want to access assigned elements when your render changes, you can use `slotchange`.
+The elements are assigned only after the slot is rendered.
+
+If you need to access assigned elements at startup, you need to wait for `firstUpdated` or `updated`. If you want to access assigned elements when your render changes, you can use `slotchange`.
 
 {% endaside %}
 
