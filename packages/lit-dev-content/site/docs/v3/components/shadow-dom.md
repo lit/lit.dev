@@ -187,7 +187,15 @@ get _slottedChildren() {
 }
 ```
 
-You can also use the `slotchange` event to take action when the assigned nodes change.
+{% aside "info" %}
+
+The elements are assigned only after the slot is rendered.
+
+If you need to access assigned elements at startup, you need to wait for `firstUpdated` or `updated`. If you want to access assigned elements when your render changes, you can use `slotchange`.
+
+{% endaside %}
+
+You can use the `slotchange` event to take action when nodes are first assigned or change.
 The following example extracts the text content of all of the slotted children.
 
 ```js
