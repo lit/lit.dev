@@ -503,6 +503,10 @@ The `context-request` bubbles and is composed.
 
     The context object this event is requesting a value for
 
+- `readonly contextTarget: Element`
+
+    The original context target of the requester
+
 - `readonly callback: ContextCallback<ContextType<C>>`
 
     The function to call to provide a context value
