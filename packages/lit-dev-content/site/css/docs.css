@@ -137,11 +137,11 @@ litdev-example[filename] {
 }
 
 body[code-language-preference="ts"] litdev-example {
-  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-ts) * 22px + 22px);
+  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-ts) * 22.4px + 22px);
 }
 
 body[code-language-preference="js"] litdev-example {
-  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-js) * 22px + 22px);
+  --litdev-example-editor-height: calc(var(--litdev-example-editor-lines-js) * 22.4px + 22px);
 }
 
 litdev-example {

@@ -102,6 +102,7 @@ export const contentSecurityPolicyMiddleware = (
     `connect-src ${[
       `'self'`,
       'https://www.google-analytics.com/',
+      'https://*.algolia.io/',
       'https://*.algolia.net/',
       'https://*.algolianet.com/',
       opts.githubApiOrigin,

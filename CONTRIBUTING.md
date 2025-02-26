@@ -87,6 +87,30 @@ Sometimes we want to include something that is not on lit.dev in the search inde
 }
 ```
 
+### How to associate keywords to a search item
+
+Sometimes the text of a search item does not include certain keywords you'd like to
+associate with that URL. e.g. If someone searches for a react term like `componentDidMount`, or `onMounted` in Vue,
+the text for `connectedCallback` did not include `componentDidMount` or `onMounted` in the text. To associate that term with `connectedCallback` you would modify the `packages/lit-dev-content/site/_data/keywords.json` file to include associate keywords with a set of URLs like so:
+
+```json
+{
+  "keywords": [
+    {
+      "keywords": ["componentDidMount", "onMounted"],
+      "urls": [
+        "/docs/components/lifecycle/#connectedcallback",
+        "/articles/lit-cheat-sheet/#connectedcallback"
+      ]
+    }
+  ]
+}
+```
+
+This will add some more context for algolia to search on when a user searches
+for `componentDidMount` or `onMounted`. The keywords will not be rendered in the
+UI, but the results should be.
+
 ### How to administer the Algolia search index
 
 To administer the search index to add, remove, delete, enable Algolia features, etc., you must be a part of the Algolia team which has limited space and is currently limited to the Lit team. Contact Elliott on the Lit team if you need access. We do not use Algolia Analytics as we have not had the time to go through Google's privacy review + privacy policy / cookie process for storing user data in Algolia.

@@ -53,5 +53,27 @@
       "tag": "other"
     },
     "isExternal": true
+  },
+  {
+    "relativeUrl": "https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts",
+    "title": "exportparts",
+    "heading": "",
+    "text": "The exportparts global attribute allows you to select and style elements existing in nested shadow trees, by exporting their part names.",
+    "docType": {
+      "type": "MDN",
+      "tag": "other"
+    },
+    "isExternal": true
+  },
+  {
+    "relativeUrl": "https://www.npmjs.com/package/postcss-lit",
+    "title": "postcss-lit",
+    "heading": "",
+    "text": "A PostCSS and stylelint custom syntax for parsing CSS inside lit templates. You must specify all tailwind directives you intend to use in your CSS, otherwise their replacement CSS will be incorrectly appended to the end of the document. For example, in the code above, @tailwind base and @tailwind utilities were specified to make text-xs available. Without them, the code would not build.",
+    "docType": {
+      "type": "npm",
+      "tag": "other"
+    },
+    "isExternal": true
   }
 ]

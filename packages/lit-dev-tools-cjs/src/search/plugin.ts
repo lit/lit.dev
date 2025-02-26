@@ -13,6 +13,7 @@ import {
   indexVideos,
   indexExternalData,
 } from './indexers/index.js';
+import {addKeywords} from './indexers/keywords.js';
 
 /**
  * Generic that describes the type of document.
@@ -46,6 +47,7 @@ export interface UserFacingPageData {
   parentID?: string;
   isExternal?: boolean;
   docType: DocTypes;
+  keywords?: string[];
 }
 
 /**
@@ -91,6 +93,8 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
     ...videos,
     ...externalSearchData,
   ];
+
+  await addKeywords(outputDir, searchIndex);
 
   fs.writeFileSync(OUT_PATH, JSON.stringify(searchIndex));
 }
