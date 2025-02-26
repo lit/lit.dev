@@ -176,7 +176,11 @@ You can specify fallback content for a slot. The fallback content is shown when 
 
 ## Accessing slotted children { #accessing-slotted-children }
 
+{% aside "info" %}
+
 To access children assigned to slots in your shadow root, you can use the standard `slot.assignedNodes` or `slot.assignedElements` methods with the `slotchange` event.
+
+{% endaside %}
 
 For example, you can create a getter to access assigned elements for a particular slot:
 
@@ -187,7 +191,7 @@ get _slottedChildren() {
 }
 ```
 
-The nodes are assigned after the slot is rendered, so you need to check them in `updated`, or if you want to use them in rendering, you can use `slotchange`.
+The elements are assigned only after the slot is rendered, so if you need to access assigned elements at startup, you need to wait for `firstUpdated` or `updated`. If you want to access assigned elements when your render changes, you can use `slotchange`.
 
 You can use the `slotchange` event to take action when nodes are first assigned or change.
 The following example extracts the text content of all of the slotted children.
