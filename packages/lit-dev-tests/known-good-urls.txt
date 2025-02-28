@@ -9,7 +9,7 @@ https://core.clarity.design/
 https://auro.alaskaair.com/#:~:text=Using%20LitElement%20as%20a%20base
 https://spdx.org/licenses/CC-BY-3.0
 https://www.npmjs.com/package/lit
-https://lion-web.netlify.app/#:~:text=LitElement
+https://lion.js.org/#:~:text=LitElement
 https://hilla.dev/#:~:text=Lit
 https://github.com/lit/lit/
 https://opensource.adobe.com/spectrum-web-components/#:~:text=LitElement
