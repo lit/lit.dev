@@ -129,10 +129,13 @@ class MyElement extends LitElement {
 }
 ```
 
-In **JavaScript**, you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+In **JavaScript**, you **must not use class fields** when declaring reactive properties. Instead, properties must be either initialized in the element constructor or set with the `defaultValue` option:
 ```js
 class MyElement extends LitElement {
-  static properties = {foo: {type: String}}
+  static properties = {
+    foo: {type: String},
+    bar: {type: String, defaultValue: 'Default'}
+  }
   constructor() {
     super();
     this.foo = 'Default';
@@ -215,6 +218,18 @@ Whether the property is associated with an attribute, or a custom name for the a
 <dd>
 
 A [custom converter](#conversion-converter) for converting between properties and attributes. If unspecified, use the [default attribute converter](#conversion-type).
+
+</dd>
+<dt>
+
+`defaultValue`
+
+</dt>
+<dd>
+
+When set, the property is initialized to this value and if the `reflect` option is `true`, the initial default value does *not* reflect. Subsequent changes to the property will reflect, even if they are equal to the default value.
+
+Avoid setting both a default value and defining a field initializer or setting the property in the constructor or connectedCallback.
 
 </dd>
 <dt>
@@ -553,11 +568,16 @@ If this behavior doesn't fit your use case, there are a couple of options:
 
 You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
 
+Note, if you set a `defaultValue` for the property, this value will *not* be initially reflected to the corresponding attribute. All subsequent changes will be reflected. This matches web platform behavior for attributes like `id`. For example, the default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected.
+
 For example:
 
 ```js
 // Value of property "active" will reflect to attribute "active"
 active: {reflect: true}
+// Value of property "variant" will reflect except that it will not
+// be initialized to the default value of `normal`.
+variant: {reflect: true, defaultValue: 'normal'}
 ```
 
 When the property changes, Lit sets the corresponding attribute value as described in [Using the default converter](#conversion-type) or [Providing a custom converter](#conversion-converter).
