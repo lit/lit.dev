@@ -61,7 +61,7 @@
     }
   },
   "dependencies": {
-    "koa": "^2.13.0",
+    "koa": "^2.15.4",
     "koa-conditional-get": "^3.0.0",
     "koa-etag": "^4.0.0",
     "koa-send": "^5.0.0",
