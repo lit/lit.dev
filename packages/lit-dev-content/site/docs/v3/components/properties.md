@@ -129,12 +129,11 @@ class MyElement extends LitElement {
 }
 ```
 
-In **JavaScript**, you **must not use class fields** when declaring reactive properties. Instead, properties must be either initialized in the element constructor or set with the `defaultValue` option:
+In **JavaScript**, you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
 ```js
 class MyElement extends LitElement {
   static properties = {
-    foo: {type: String},
-    bar: {type: String, defaultValue: 'Default'}
+    foo: {type: String}
   }
   constructor() {
     super();
@@ -222,18 +221,6 @@ A [custom converter](#conversion-converter) for converting between properties an
 </dd>
 <dt>
 
-`defaultValue`
-
-</dt>
-<dd>
-
-When set, the property is initialized to this value and if the `reflect` option is `true`, the initial default value does *not* reflect. Subsequent changes to the property will reflect, even if they are equal to the default value.
-
-Avoid setting both a default value and defining a field initializer or setting the property in the constructor or connectedCallback.
-
-</dd>
-<dt>
-
 `hasChanged`
 
 </dt>
@@ -283,6 +270,17 @@ Set to true to declare the property as _internal reactive state_. Internal react
 When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is passed to the converter. If `type` is unspecified, the default converter treats it as `type: String`. See [Using the default converter](#conversion-type).
 
 When using TypeScript, this field should generally match the TypeScript type declared for the field. However, the `type` option is used by the Lit's _runtime_ for string serialization/deserialization, and should not be confused with a _type-checking_ mechanism.
+
+</dd>
+<dt id="use-default">
+
+`useDefault`
+
+</dt>
+<dd>
+
+Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true. Setting `useDefault` also resets the property to its default value when its corresponding attribute is removed. For more information, see [Enabling attribute reflection](#reflected-attributes).
+
 
 </dd>
 
@@ -568,16 +566,16 @@ If this behavior doesn't fit your use case, there are a couple of options:
 
 You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
 
-Note, if you set a `defaultValue` for the property, this value will *not* be initially reflected to the corresponding attribute. All subsequent changes will be reflected. This matches web platform behavior for attributes like `id`. For example, the default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected.
+Setting `useDefault` to true prevents the property's default value from initially reflecting to the corresponding attribute. All subsequent changes will be reflected. This matches web platform behavior for attributes like `id`. For example, the default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. In addition, if the attribute is removed, the property will be reset to its default value.
 
 For example:
 
 ```js
 // Value of property "active" will reflect to attribute "active"
 active: {reflect: true}
-// Value of property "variant" will reflect except that it will not
-// be initialized to the default value of `normal`.
-variant: {reflect: true, defaultValue: 'normal'}
+// Value of property "variant" will reflect except that the "variant"
+// attribute will not be iniitally set to the property's default value.
+variant: {reflect: true, useDefault: true}
 ```
 
 When the property changes, Lit sets the corresponding attribute value as described in [Using the default converter](#conversion-type) or [Providing a custom converter](#conversion-converter).
