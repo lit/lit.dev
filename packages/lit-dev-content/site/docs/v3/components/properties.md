@@ -564,9 +564,9 @@ If this behavior doesn't fit your use case, there are a couple of options:
 
 ### Enabling attribute reflection {#reflected-attributes}
 
-You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
+Setting `reflect` to true configures a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful for serializing element state and because they are visible to CSS and DOM APIs like `querySelector`.
 
-Setting `useDefault` to true prevents the property's default value from initially reflecting to the corresponding attribute. All subsequent changes will be reflected. This matches web platform behavior for attributes like `id`. For example, the default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. In addition, if the attribute is removed, the property will be reset to its default value.
+Setting `useDefault` to true prevents the property's default value from initially reflecting to its [corresponding attribute](#observed-attributes). All subsequent changes are reflected; and if the attribute is removed, the property is reset to its default value. This matches web platform behavior for attributes like `id`. The default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. If the `id` attribute is removed, the element's `id` property is set back to its initial value of `''`.
 
 For example:
 
