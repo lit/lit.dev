@@ -6,7 +6,7 @@ class MyElement extends LitElement {
   @property({type: Boolean, reflect: true})
   active: boolean = false;
 
-  @property({type: String, reflect: true, useDefault: true})
+  @property({type: String, reflect: true, useDefault: true} as PropertyDeclaration)
   variant = 'normal';
 
   static styles = css`

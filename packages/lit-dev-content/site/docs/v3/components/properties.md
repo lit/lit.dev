@@ -566,7 +566,9 @@ If this behavior doesn't fit your use case, there are a couple of options:
 
 Setting `reflect` to true configures a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful for serializing element state and because they are visible to CSS and DOM APIs like `querySelector`.
 
-Setting `useDefault` to true prevents the property's default value from initially reflecting to its [corresponding attribute](#observed-attributes). All subsequent changes are reflected; and if the attribute is removed, the property is reset to its default value. This matches web platform behavior for attributes like `id`. The default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. If the `id` attribute is removed, the element's `id` property is set back to its initial value of `''`.
+Setting `useDefault` to true prevents the property's default value from initially reflecting to its [corresponding attribute](#observed-attributes). All subsequent changes are reflected; and if the attribute is removed, the property is reset to its default value. 
+
+This matches web platform behavior for attributes like `id`. The default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. If the `id` attribute is removed, the element's `id` property is set back to its initial value of `''`.
 
 For example:
 
@@ -582,15 +584,23 @@ When the property changes, Lit sets the corresponding attribute value as describ
 
 {% playground-example "properties/attributereflect" "my-element.ts" %}
 
-Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. It's necessary today for cases like styling and accessibility, but this is likely to change as the platform adds features like the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/), which fill these gaps.
-
-Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance.
-
 <div class="alert alert-info">
 
 **Lit tracks reflection state during updates.** You may have realized that if property changes are reflected to an attribute and attribute changes update the property, it has the potential to create an infinite loop. However, Lit tracks when properties and attributes are set specifically to prevent this from happening
 
 </div>
+
+### Best practices when reflecting attributes
+
+To ensure elements behave as expected and perform well, try to follow these best practices when reflecting attributes:
+
+* Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. Consider instead using the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/) where possible.
+
+* Reflecting properties should typically also set `useDefault` since this helps match expected platform behavior.
+
+* Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance and consume excess memory when `useDefault` is used.
+  
+* In general user property settings should not be changed, but if you want to do so, define a property setter. Setting `useDefault` will only reset the property value to the default when the corresponding attribute is removed.
 
 ## Custom property accessors {#accessors}
 
