@@ -279,7 +279,7 @@ When using TypeScript, this field should generally match the TypeScript type dec
 </dt>
 <dd>
 
-Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true. Setting `useDefault` also resets the property to its default value when its corresponding attribute is removed. For more information, see [Enabling attribute reflection](#reflected-attributes).
+Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true, and to reset the property to its default value when its corresponding attribute is removed. For more information, see [Enabling attribute reflection](#reflected-attributes).
 
 
 </dd>
