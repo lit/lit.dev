@@ -596,7 +596,7 @@ To ensure elements behave as expected and perform well, try to follow these best
 
 * Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. Consider instead using the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/) where possible.
 
-* Reflecting properties should typically also set `useDefault` since this helps match expected platform behavior.
+* Reflecting properties should typically also set `useDefault: true` since this keeps the element from spontaneously spawning attributes that the user didn't set, and helps match expected platform behavior.
 
 * Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance and consume excess memory when `useDefault` is used.
   
