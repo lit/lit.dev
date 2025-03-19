@@ -279,7 +279,7 @@ When using TypeScript, this field should generally match the TypeScript type dec
 </dt>
 <dd>
 
-Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true. Setting `useDefault` also resets the property to its default value when its corresponding attribute is removed. For more information, see [Enabling attribute reflection](#reflected-attributes).
+Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true, and to reset the property to its default value when its corresponding attribute is removed. For more information, see [Enabling attribute reflection](#reflected-attributes).
 
 
 </dd>
@@ -596,11 +596,11 @@ To ensure elements behave as expected and perform well, try to follow these best
 
 * Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. Consider instead using the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/) where possible.
 
-* Reflecting properties should typically also set `useDefault` since this helps match expected platform behavior.
+* Reflecting properties should typically also set `useDefault: true` since this keeps the element from spontaneously spawning attributes that the user didn't set, and helps match expected platform behavior.
 
 * Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance and consume excess memory when `useDefault` is used.
   
-* In general user property settings should not be changed, but if you want to do so, define a property setter. Setting `useDefault` will only reset the property value to the default when the corresponding attribute is removed.
+* The property decorator does not alter any values assigned to the reactive property, which is considered a best practice for custom accessors. Sometimes native elements restrict properties to certain valid values, for instance, and if an invalid value is assigned to a property, the property will be set to a default instead. `useDefault: true` does not do this - it only restores the default when the attribute is removed. If you'd like to alter the property value on property assignments, define and decorate a custom property setter.
 
 ## Custom property accessors {#accessors}
 
