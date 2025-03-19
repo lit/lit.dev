@@ -600,7 +600,7 @@ To ensure elements behave as expected and perform well, try to follow these best
 
 * Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance and consume excess memory when `useDefault` is used.
   
-* In general user property settings should not be changed, but if you want to do so, define a property setter. Setting `useDefault` will only reset the property value to the default when the corresponding attribute is removed.
+* The property decorator does not alter any values assigned to the reactive property, which is considered a best practice for custom accessors. Sometimes native elements restrict properties to certain valid values, for instance, and if an invalid value is assigned to a property, the property will be set to a default instead. `useDefault: true` does not do this - it only restores the default when the attribute is removed. If you'd like to alter the property value on property assignments, define and decorate a custom property setter.
 
 ## Custom property accessors {#accessors}
 
