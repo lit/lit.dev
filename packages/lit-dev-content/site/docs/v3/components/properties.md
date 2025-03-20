@@ -279,8 +279,9 @@ When using TypeScript, this field should generally match the TypeScript type dec
 </dt>
 <dd>
 
-Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true, and to reset the property to its default value when its corresponding attribute is removed. For more information, see [Enabling attribute reflection](#reflected-attributes).
+Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true, and to reset the property to its default value when its corresponding attribute is removed.
 
+The default value is the property's initial value set in the constructor or with an [auto-accessor](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#auto-accessors-in-classes). This value is retained in memory so it's a good practice to avoid setting `useDefault: true` for non-primitive Object/Array properties. For more information, see [Enabling attribute reflection](#reflected-attributes) and [Best practices when reflecting attributes](#best-practices-when-reflecting-attributes).
 
 </dd>
 
@@ -590,7 +591,7 @@ When the property changes, Lit sets the corresponding attribute value as describ
 
 </div>
 
-### Best practices when reflecting attributes
+### Best practices when reflecting attributes {#best-practices-when-reflecting-attributes}
 
 To ensure elements behave as expected and perform well, try to follow these best practices when reflecting attributes:
 
