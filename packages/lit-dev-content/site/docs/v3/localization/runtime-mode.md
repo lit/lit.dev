@@ -140,6 +140,40 @@ customElements.define('my-element', MyElement);
 
 {% endswitchable-sample %}
 
+## Working with Variables in Templates
+
+When working with templates in runtime mode, remember that variables in locale files use positional references:
+
+```js
+// In your component
+msg(html`<div>User ${userName} made ${count} commits</div>`, {id: 'user_activity'});
+
+// In your locale file (e.g., locales/en.js)
+export const templates = {
+  user_activity: html`<div>User ${0} made ${1} commits</div>`
+}
+
+// In another locale file (e.g., locales/ja.js) - order can change if needed
+export const templates = {
+  user_activity: html`<div>${0}さんは${1}回コミットしました</div>`
+}
+```
+
+This numeric referencing system becomes especially important when:
+
+1. Translating to languages with different word orders
+2. Working with formats that have placeholders in different positions
+3. Implementing plural forms that may rearrange variables
+
+For more complex templates with many variables, consider adding descriptive comments in your locale files to help translators understand which position corresponds to which variable:
+
+```js
+export const templates = {
+  // ${0} = userName, ${1} = count
+  user_activity: html`<div>User ${0} made ${1} commits</div>`
+}
+```
+
 ## Status event
 
 The `lit-localize-status` event fires on `window` whenever a locale switch
