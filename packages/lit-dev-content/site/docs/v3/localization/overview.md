@@ -135,6 +135,51 @@ Localized messages can also be nested inside HTML templates:
 html`<button>${msg('Hello World')}</button>`;
 ```
 
+### Template Variable References in Locale Files
+
+While template expressions in your component code use named variables (e.g., `${name}`, `${count}`),
+templates within locale files use **positional parameters** (`${0}`, `${1}`, etc.) rather than variable names.
+
+When a template with an `id` is processed, variables are passed to the localized template in the
+order they appear in the original template, and are referenced by their index:
+
+```js
+/* In your component */
+const address = 'user@host';
+msg(str`checking...${address}`, {id: 'check_email'});
+
+/* In your locale file (e.g., locales/en.js) */
+export const templates = {
+  check_email: html`checking ${0}`
+}
+```
+
+This positional referencing allows translators to reorder variables when needed for different languages:
+
+```js
+/* In your component */
+const name = 'Maria';
+const count = 42;
+msg(str`${name} has ${count} messages`, {id: 'user_messages'});
+
+/* In your locale file */
+export const templates = {
+  user_messages: html`${0} has ${1} messages`,
+  // For languages where order might need to change:
+  user_messages_reordered: html`Messages (${1}) for ${0}`
+}
+```
+
+<div class="alert alert-info">
+
+Note that the numeric references (${0}, ${1}, etc.) correspond to the order of variables
+in the original template, not their position in the resulting string.
+
+</div>
+
+For more examples of localized templates, see the [runtime mode](/docs/v3/localization/runtime-mode) page.
+
+
 ### Strings with expressions
 
 Strings that contain an expression must be tagged with either `html` or `str` in
@@ -237,7 +282,9 @@ compared to transform mode.
 ```js
 // locales/es-419.ts
 export const templates = {
+  // These IDs are automatically generated from template content
   hf71d669027554f48: html`Hola <b>Mundo</b>`,
+  saed7d3734ce7f09d: html`Hola ${0}`, // Note: Variable references use numeric positions
 };
 ```
 
