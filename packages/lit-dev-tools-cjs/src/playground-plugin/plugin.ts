@@ -89,7 +89,11 @@ const countVisibleLines = (filename: string, code: string): number => {
  */
 export const playgroundPlugin = (
   eleventyConfig: EleventyConfig,
-  {sandboxUrl, isDevMode}: {sandboxUrl: string; isDevMode: boolean}
+  {
+    sandboxUrl,
+    isDevMode,
+    cdnBaseUrl,
+  }: {sandboxUrl: string; isDevMode: boolean; cdnBaseUrl: string}
 ) => {
   let renderer: BlockingRenderer | undefined;
 
@@ -185,6 +189,7 @@ export const playgroundPlugin = (
       // the closing tag correctly because it will be in a  `<p>></p>`.
       return `
     <litdev-example ${sandboxUrl ? `sandbox-base-url="${sandboxUrl}"` : ''}
+      ${cdnBaseUrl ? `cdn-base-url="${cdnBaseUrl}"` : ''}
       style="--litdev-example-editor-lines-ts:${numVisibleLines.ts};
              --litdev-example-editor-lines-js:${numVisibleLines.js};
              --litdev-example-preview-height:${previewHeight};"
@@ -227,6 +232,7 @@ export const playgroundPlugin = (
       const previewHeight = config.previewHeight ?? '120px';
       return `
       <litdev-example ${sandboxUrl ? `sandbox-base-url='${sandboxUrl}'` : ''}
+        ${cdnBaseUrl ? `cdn-base-url="${cdnBaseUrl}"` : ''}
         style="--litdev-example-editor-lines-ts:${numVisibleLines.ts};
                --litdev-example-editor-lines-js:${numVisibleLines.js};
                --litdev-example-preview-height:${previewHeight}"
