@@ -18,7 +18,7 @@ jobs:
 
       # https://github.com/peter-evans/find-comment
       - name: Find existing comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v3
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -28,7 +28,7 @@ jobs:
       # https://github.com/peter-evans/create-or-update-comment
       - name: Create comment (if new)
         if: ${{ steps.find-comment.outputs.comment-id == 0 }}
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
@@ -43,7 +43,7 @@ jobs:
 
       - name: Update comment (if existing)
         if: ${{ steps.find-comment.outputs.comment-id != 0 }}
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
