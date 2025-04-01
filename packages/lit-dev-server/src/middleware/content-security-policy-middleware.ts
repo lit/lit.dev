@@ -171,7 +171,7 @@ export const contentSecurityPolicyMiddleware = (
     // Allow bare module specifiers to be fetched from unpkg. Note this does not
     // restrict the user from directly importing from arbitrary other URLs in
     // their import statements when using the Playground.
-    `connect-src https://unpkg.com/`,
+    `connect-src https://unpkg.com/ https://cdn.jsdelivr.net/`,
 
     // Disallow everything else.
     `default-src 'none'`

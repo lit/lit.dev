@@ -104,6 +104,24 @@ export default [
     preserveEntrySignatures: false,
   },
 
+  // Bundle the TS worker so that we don't have to deal with passing through
+  // the the worker's deps. Make sure there is only one input in this config.
+  {
+    input: ['lib/components/playground-typescript-worker.js'],
+    output: {
+      dir: 'rollupout',
+      format: 'esm',
+    },
+    plugins: [
+      resolve(),
+      terser(terserOptions),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
+    ],
+  },
+
   // A separate bundle is made for the server so that we do not modify the
   // client module graph just to SSR a component.
   {
