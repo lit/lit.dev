@@ -64,7 +64,7 @@ How you use a component depends on your project and the libraries or frameworks 
 
 ### Plain HTML
 ```html
-<script type="module" src="/lib/components/my-elements.js">
+<script type="module" src="/lib/components/my-element.js">
 <my-element></my-element>
 ```
 
@@ -73,7 +73,7 @@ How you use a component depends on your project and the libraries or frameworks 
 JSX is a very common templating language. In JSX, lower-case element names create HTML elements, which is what Lit components are. Use the tag name you specified in the `@customElement()` decorator:
 
 ```tsx
-import './components/my-elements.js';
+import './components/my-element.js';
 
 export const App = () => (
   <h1>My App</h1>
