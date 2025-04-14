@@ -14,7 +14,7 @@ import {html, TemplateResult} from 'lit';
  * @returns A sanitized lit template.
  */
 export const renderAlgoliaSnippet = (
-  snippet: string
+  snippet: string,
 ): TemplateResult | string => {
   // Algloia snippets have stringified HTML like so:
   // 'Baz <em>Foo</em> bar <em>Foo</em>z'.

@@ -21,7 +21,7 @@ import {ReflectionKind} from 'typedoc';
 
 const findIndexOrInfinity = <T>(
   array: ReadonlyArray<T>,
-  match: (el: T) => boolean
+  match: (el: T) => boolean,
 ) => {
   const idx = array.findIndex(match);
   return idx === -1 ? Infinity : idx;
@@ -96,7 +96,7 @@ export class ApiDocsTransformer {
 
   constructor(
     project: typedoc.JSONOutput.ProjectReflection,
-    config: ApiDocsConfig
+    config: ApiDocsConfig,
   ) {
     this.project = project;
     this.config = config;
@@ -132,7 +132,7 @@ export class ApiDocsTransformer {
         this.replaceCommentNodesWithLegacyCommentFields(node);
         this.reflectionById.set(node.id, node);
         node.children = (node.children ?? []).filter((child) =>
-          this.filter(child)
+          this.filter(child),
         );
         ancestry.push(node);
         for (const child of node.children) {
@@ -217,7 +217,7 @@ export class ApiDocsTransformer {
       this.expandAndMergeCategoryReferences(node);
       this.linkifySymbolsInComments(node);
       node.children = (node.children ?? []).filter(
-        (child) => !duplicateExportIdsToRemove.has(child.id)
+        (child) => !duplicateExportIdsToRemove.has(child.id),
       );
       for (const child of node.children) {
         secondPassVisit(child);
@@ -258,7 +258,7 @@ export class ApiDocsTransformer {
    */
   private choosePageLocation(
     node: DeclarationReflection,
-    ancestry: Array<DeclarationReflection>
+    ancestry: Array<DeclarationReflection>,
   ) {
     if (!node.kind || node.kind === typedoc.ReflectionKind.Module) {
       return;
@@ -522,7 +522,7 @@ export class ApiDocsTransformer {
    * mixed types, and with fully expanded reflections.
    */
   private expandAndMergeCategoryReferences(
-    node: ExtendedDeclarationReflection
+    node: ExtendedDeclarationReflection,
   ) {
     for (const group of node.groups ?? []) {
       for (const category of group.categories ?? []) {
@@ -532,7 +532,7 @@ export class ApiDocsTransformer {
         const anchor = node.name + '/' + name;
         node.expandedCategories ??= [];
         let cat = node.expandedCategories.find(
-          (category) => category.anchor === anchor
+          (category) => category.anchor === anchor,
         );
         if (cat === undefined) {
           cat = {
@@ -555,7 +555,7 @@ export class ApiDocsTransformer {
     }
     if (node.expandedCategories) {
       node.expandedCategories.sort(({title: a}, {title: b}) =>
-        a.localeCompare(b)
+        a.localeCompare(b),
       );
       for (const category of node.expandedCategories) {
         category.children.sort(this.symbolSortFn);
@@ -569,7 +569,7 @@ export class ApiDocsTransformer {
    */
   symbolSortFn = (
     a: DeclarationReflection,
-    b: DeclarationReflection
+    b: DeclarationReflection,
   ): number => {
     // By entrypoint (e.g. a type from a directive module should be adjacent to
     // the directive function).
@@ -587,12 +587,12 @@ export class ApiDocsTransformer {
     const idxA = findIndexOrInfinity(
       this.config.symbolOrder,
       (s) =>
-        s === (a as ExtendedDeclarationReflection).location?.anchor ?? a.name
+        s === (a as ExtendedDeclarationReflection).location?.anchor ?? a.name,
     );
     const idxB = findIndexOrInfinity(
       this.config.symbolOrder,
       (s) =>
-        s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name
+        s === (b as ExtendedDeclarationReflection).location?.anchor ?? b.name,
     );
     if (idxA !== idxB) {
       return idxA - idxB;
@@ -615,7 +615,7 @@ export class ApiDocsTransformer {
    * our HTML template understands.
    */
   private replaceCommentNodesWithLegacyCommentFields(
-    node: DeclarationReflection
+    node: DeclarationReflection,
   ) {
     if (node.comment) {
       this.replaceCommentNodeForLegacyFormat(node.comment);
@@ -670,7 +670,7 @@ export class ApiDocsTransformer {
           throw new Error(
             `Unhandled inline-tag format: '${
               part.tag
-            }' for part: ${JSON.stringify(part)}`
+            }' for part: ${JSON.stringify(part)}`,
           );
         }
       }
@@ -759,7 +759,7 @@ export class ApiDocsTransformer {
   private async makeSourceRelativeToMonorepoRoot(source: SourceReference) {
     source.fileName = pathlib.relative(
       this.config.gitDir,
-      pathlib.resolve(this.config.typedocRoot, '..', source.fileName)
+      pathlib.resolve(this.config.typedocRoot, '..', source.fileName),
     );
   }
 
@@ -776,7 +776,7 @@ export class ApiDocsTransformer {
       }
       const mapFilename = pathlib.join(
         this.config.gitDir,
-        source.fileName + '.map'
+        source.fileName + '.map',
       );
       let mapStr;
       try {
@@ -799,7 +799,7 @@ export class ApiDocsTransformer {
     }
     source.fileName = pathlib.join(
       pathlib.dirname(source.fileName),
-      pos.source
+      pos.source,
     );
     source.line = pos.line ?? 0;
     source.character = pos.column ?? 0;
@@ -841,7 +841,7 @@ export class ApiDocsTransformer {
         let page = slugToPage.get(location.page);
         if (page === undefined) {
           const match = this.config.pages.find(
-            ({slug}) => slug === location.page
+            ({slug}) => slug === location.page,
           );
           if (!match) {
             throw new Error(`No page definition for ${location.page}`);
@@ -864,11 +864,11 @@ export class ApiDocsTransformer {
     pagesArray.sort(({slug: a}, {slug: b}) => {
       const idxA = findIndexOrInfinity(
         this.config.pages,
-        ({slug}) => slug === a
+        ({slug}) => slug === a,
       );
       const idxB = findIndexOrInfinity(
         this.config.pages,
-        ({slug}) => slug === b
+        ({slug}) => slug === b,
       );
       if (idxA !== idxB) {
         return idxA - idxB;
@@ -939,7 +939,7 @@ export function linkifySymbolsInCommentsBuilder({
 
     if (results && results.length === 1) {
       return `[${hyperlinkTextFormat(label || symbol)}](${locationToUrl(
-        results[0]
+        results[0],
       )})`;
     }
     return hyperlinkTextFormat(label || symbol);
@@ -950,6 +950,6 @@ export function linkifySymbolsInCommentsBuilder({
       .replace(/\[\[[\s`]*(.+?)(?:[\s`]*\|[\s`]*(.+?))?[\s`]*\]\]/g, replacer)
       .replace(
         /\{\@(?:link\b|linkcode\b)[\s`]*(.+?)(?:[\s`]*[\|\s][\s`]*(.+?))?[\s`]*\}/g,
-        replacer
+        replacer,
       );
 }

@@ -11,18 +11,18 @@ export const indexApi = async (outputDir: string, idOffset = 0) => {
   const API_PATH = path.resolve(
     __dirname,
     // Load the unversioned api content.
-    `../../../../lit-dev-content/${outputDir}/docs/api`
+    `../../../../lit-dev-content/${outputDir}/docs/api`,
   );
 
   const relativeLinksToHTMLFile: UrlToFile = await walkDir(
     API_PATH,
     new Map(),
-    outputDir
+    outputDir,
   );
 
   return await docIndexer(
     relativeLinksToHTMLFile,
     {tag: 'api', type: 'API'},
-    idOffset
+    idOffset,
   );
 };

@@ -39,7 +39,7 @@ async function main() {
   if (!PROJECT_ID || !REPO_NAME || !_DEPLOY_REGION) {
     console.log({PROJECT_ID, REPO_NAME, _DEPLOY_REGION});
     throw new Error(
-      'Missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION'
+      'Missing one or more required environment variables: PROJECT_ID, REPO_NAME, _DEPLOY_REGION',
     );
   }
 
@@ -98,7 +98,7 @@ async function main() {
       !rev.metadata.name
     ) {
       throw new Error(
-        `Found revision with missing necessary metadata: ${JSON.stringify(rev)}`
+        `Found revision with missing necessary metadata: ${JSON.stringify(rev)}`,
       );
     }
 
@@ -160,7 +160,7 @@ async function main() {
         } else if (!t.tag.startsWith('main')) {
           // Unrecognized tags are kept just in case
           console.log(
-            `Found unrecognized tag "${t.tag}". This will not be deleted.`
+            `Found unrecognized tag "${t.tag}". This will not be deleted.`,
           );
           revisionsToKeep.add(t.revisionName);
           return true;

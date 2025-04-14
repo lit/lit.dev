@@ -31,7 +31,7 @@ export interface GistFile {
  */
 export const getGist = async (
   gistId: string,
-  opts: GitHubApiOptions
+  opts: GitHubApiOptions,
 ): Promise<Gist> => {
   // https://docs.github.com/en/rest/reference/gists#get-a-gist
   const url = new URL(`/gists/${gistId}`, opts.apiBaseUrl);
@@ -47,7 +47,7 @@ export const getGist = async (
  */
 export const createGist = async (
   files: GistFiles,
-  opts: AuthenticatedGitHubApiOptions
+  opts: AuthenticatedGitHubApiOptions,
 ): Promise<Gist> => {
   // https://docs.github.com/en/rest/reference/gists#create-a-gist
   const url = new URL('/gists', opts.apiBaseUrl);
@@ -67,7 +67,7 @@ export const createGist = async (
 export const updateGist = async (
   gistId: string,
   files: GistFiles,
-  opts: AuthenticatedGitHubApiOptions
+  opts: AuthenticatedGitHubApiOptions,
 ): Promise<Gist> => {
   // https://docs.github.com/en/rest/reference/gists#update-a-gist
   const url = new URL(`/gists/${gistId}`, opts.apiBaseUrl);

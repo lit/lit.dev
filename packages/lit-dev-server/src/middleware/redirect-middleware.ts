@@ -31,7 +31,7 @@ export const redirectMiddleware = (): Koa.Middleware => async (ctx, next) => {
       // of as an escaped path component.
       url = new URL(
         oldLitHtmlSiteRedirects.get(url.pathname) ?? '/404-not-found/',
-        url
+        url,
       );
       break;
     }
@@ -39,7 +39,7 @@ export const redirectMiddleware = (): Koa.Middleware => async (ctx, next) => {
       url.hostname = 'lit.dev';
       url = new URL(
         oldLitElementSiteRedirects.get(url.pathname) ?? '/404-not-found/',
-        url
+        url,
       );
       break;
     }

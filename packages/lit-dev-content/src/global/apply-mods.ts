@@ -10,7 +10,7 @@ if (MODS) {
   document.body.classList.add(
     ...MODS.split(' ')
       .map((v) => v.trim())
-      .filter((v) => v !== '')
+      .filter((v) => v !== ''),
   );
   window.addEventListener('click', (event) => {
     for (const el of event.composedPath()) {

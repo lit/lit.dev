@@ -14,7 +14,7 @@ function runScreenshotTests(dark: boolean) {
       await page.goto('/');
       await waitForTheme(page, dark);
       await expect(await page.locator('#intro').screenshot()).toMatchSnapshot(
-        `homePageIntroSection${dark ? '-dark' : ''}.png`
+        `homePageIntroSection${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -22,7 +22,7 @@ function runScreenshotTests(dark: boolean) {
       await page.goto('/');
       await waitForTheme(page, dark);
       await expect(
-        await page.locator('litdev-cookie-banner').screenshot()
+        await page.locator('litdev-cookie-banner').screenshot(),
       ).toMatchSnapshot(`homePageCookiesBanner${dark ? '-dark' : ''}.png`);
     });
   });
@@ -32,7 +32,7 @@ test.describe('Home page', () => {
   test('splashLogo accessible.', async ({page}) => {
     await page.goto('/');
     expect(await page.locator('#splashLogo').getAttribute('role')).toBe(
-      'heading'
+      'heading',
     );
     const homePageImg = page.locator('#splashLogo > svg');
     expect(await homePageImg.getAttribute('aria-label')).toBe('Lit');
@@ -41,7 +41,7 @@ test.describe('Home page', () => {
   test('search site input basic functionality works', async ({page}) => {
     await page.goto('/');
     const searchButton = page.locator(
-      '#desktopNav litdev-search-modal > button'
+      '#desktopNav litdev-search-modal > button',
     );
     const searchInput = page.locator('#desktopNav litdev-search input');
 
@@ -58,44 +58,44 @@ test.describe('Home page', () => {
 
     // Playwright pierces shadow dom by default.
     await page.waitForSelector(
-      '.group:nth-of-type(1) litdev-search-option:nth-of-type(1)'
+      '.group:nth-of-type(1) litdev-search-option:nth-of-type(1)',
     );
 
     // section title and type should be correct
     await expect(
-      page.locator('.group:nth-of-type(1) .descriptor:nth-of-type(1) .title')
+      page.locator('.group:nth-of-type(1) .descriptor:nth-of-type(1) .title'),
     ).toHaveText('Lifecycle');
     await expect(
-      page.locator('.group:nth-of-type(1) .descriptor:nth-of-type(1) .tag')
+      page.locator('.group:nth-of-type(1) .descriptor:nth-of-type(1) .tag'),
     ).toHaveText('Docs');
 
     // First Result should be a document title not a subsection
     await expect(
       page.locator(
-        '.group:nth-of-type(1) litdev-search-option:nth-of-type(1) .title'
-      )
+        '.group:nth-of-type(1) litdev-search-option:nth-of-type(1) .title',
+      ),
     ).toHaveText('Lifecycle');
     await expect(
       page.locator(
-        '.group:nth-of-type(1) litdev-search-option:nth-of-type(1) .text'
-      )
+        '.group:nth-of-type(1) litdev-search-option:nth-of-type(1) .text',
+      ),
     ).toHaveCount(0);
 
     // Second result should be a subsection
     await expect(
       page.locator(
-        '.group:nth-of-type(1) litdev-search-option:nth-of-type(2) .title'
-      )
+        '.group:nth-of-type(1) litdev-search-option:nth-of-type(2) .title',
+      ),
     ).toHaveText('Reactive update cycle');
     await expect(
       page.locator(
-        '.group:nth-of-type(1) litdev-search-option:nth-of-type(2) .text'
-      )
+        '.group:nth-of-type(1) litdev-search-option:nth-of-type(2) .text',
+      ),
     ).not.toBeEmpty();
 
     // click on the subsection
     await page.click(
-      '.group:nth-of-type(1) litdev-search-option:nth-of-type(2)'
+      '.group:nth-of-type(1) litdev-search-option:nth-of-type(2)',
     );
 
     await expect(page.locator('#reactive-update-cycle')).toBeVisible();

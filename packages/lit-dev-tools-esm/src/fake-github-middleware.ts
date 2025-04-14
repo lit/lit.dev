@@ -42,7 +42,7 @@ export interface FakeGitHubMiddlewareOptions {
  * used by the lit.dev Playground.
  */
 export const fakeGitHubMiddleware = (
-  options: FakeGitHubMiddlewareOptions
+  options: FakeGitHubMiddlewareOptions,
 ): Koa.Middleware => {
   let fake = new FakeGitHub(options);
   let failNextRequest = false;
@@ -123,7 +123,7 @@ interface UserDetails {
 const jsonResponse = (
   ctx: Koa.Context,
   status: number,
-  response: any
+  response: any,
 ): void => {
   ctx.status = status;
   ctx.type = 'application/json';
@@ -174,7 +174,7 @@ class FakeGitHub {
 
   private _checkAuthentication(ctx: Koa.Context): UserAndScope | undefined {
     const match = (ctx.get('authorization') ?? '').match(
-      /^\s*(?:token|bearer)\s(?<token>.+)$/
+      /^\s*(?:token|bearer)\s(?<token>.+)$/,
     );
     const token = match?.groups?.token?.trim() ?? '';
     const userAndScope = this._accessTokens.get(token);
@@ -383,8 +383,8 @@ class FakeGitHub {
     // given.
     gist.files = Object.fromEntries(
       Object.entries(gist.files).sort(([aName], [bName]) =>
-        aName.localeCompare(bName)
-      )
+        aName.localeCompare(bName),
+      ),
     );
     return jsonResponse(ctx, 200, gist);
   }

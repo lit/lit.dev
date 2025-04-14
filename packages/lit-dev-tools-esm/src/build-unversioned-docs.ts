@@ -27,13 +27,13 @@ const LATEST_VERSION_CONTENT = pathlib.resolve(
   CONTENT_PKG,
   'site',
   'docs',
-  SITE_LATEST_VERSION
+  SITE_LATEST_VERSION,
 );
 const UNVERSIONED_VERSION_LOCATION = pathlib.resolve(
   CONTENT_PKG,
   'site',
   'docs',
-  'unversioned'
+  'unversioned',
 );
 
 /**
@@ -61,7 +61,7 @@ const buildAndTransformUnverionedDocs = async () => {
         } else {
           return transformFile(childPath);
         }
-      })
+      }),
     );
   };
 
@@ -83,26 +83,26 @@ async function transformFile(path: string) {
   let fileContents = await fs.readFile(path, {encoding: 'utf8'});
   let unversionedLocation = pathlib.join(
     UNVERSIONED_VERSION_LOCATION,
-    relativeChildPath
+    relativeChildPath,
   );
   switch (ext) {
     case '.md':
       const [frontMatterData, restOfFile] = getFrontMatterData(fileContents);
       const hasExistingPermalink = frontMatterData.find((val) =>
-        val.includes('permalink:')
+        val.includes('permalink:'),
       );
       if (hasExistingPermalink) {
         throw new Error(
-          `Unhandled case: Handle existing permalink in '${path}'`
+          `Unhandled case: Handle existing permalink in '${path}'`,
         );
       }
       if (fileBasename === 'index') {
         frontMatterData.push(
-          `permalink: docs/${relativeChildPathWithoutExt}.html`
+          `permalink: docs/${relativeChildPathWithoutExt}.html`,
         );
       } else {
         frontMatterData.push(
-          `permalink: docs/${relativeChildPathWithoutExt}/index.html`
+          `permalink: docs/${relativeChildPathWithoutExt}/index.html`,
         );
       }
 
@@ -117,7 +117,7 @@ async function transformFile(path: string) {
       if (fileBasename === SITE_LATEST_VERSION) {
         unversionedLocation = pathlib.join(
           pathlib.dirname(unversionedLocation),
-          'unversioned.json'
+          'unversioned.json',
         );
         fileContents = JSON.stringify({
           collection: 'docs-unversioned',
@@ -146,8 +146,8 @@ async function transformFile(path: string) {
   console.log(
     `Writing: ${pathlib.relative(
       CONTENT_PKG,
-      unversionedLocation
-    )} from ${pathlib.relative(CONTENT_PKG, path)}`
+      unversionedLocation,
+    )} from ${pathlib.relative(CONTENT_PKG, path)}`,
   );
   await fs.mkdir(pathlib.dirname(unversionedLocation), {recursive: true});
   await fs.writeFile(unversionedLocation, fileContents);
@@ -158,7 +158,7 @@ async function transformFile(path: string) {
  * parser.
  */
 function getFrontMatterData(
-  fileData: string
+  fileData: string,
 ): [EleventyFrontMatterData, string] {
   const splitFile = fileData.split(/^---$/m);
   const frontMatterData = splitFile[1].split('\n').slice(1, -1);

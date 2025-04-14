@@ -30,14 +30,14 @@ export interface GitHubSigninOptions {
  * https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#web-application-flow.
  */
 export const signInToGithub = async (
-  options: GitHubSigninOptions
+  options: GitHubSigninOptions,
 ): Promise<string> => {
   const url = new URL(options.authorizeUrl);
   url.searchParams.set('client_id', options.clientId);
   url.searchParams.set('scope', 'gist');
   url.searchParams.set(
     'redirect_uri',
-    new URL('/playground/signin/', document.location.href).href
+    new URL('/playground/signin/', document.location.href).href,
   );
 
   // Width and height found empirically.
@@ -49,7 +49,7 @@ export const signInToGithub = async (
   const popup = window.open(
     url,
     '_blank',
-    `width=${width},height=${height},top=${top},left=${left}`
+    `width=${width},height=${height},top=${top},left=${left}`,
   );
   if (popup === null) {
     // Disabling popups in Chrome and Firefox doesn't seem to prevent
@@ -110,7 +110,7 @@ export const signInToGithub = async (
  * can be used to clean up this event listener if we need to end early.
  */
 const receiveCodeFromPopup = (
-  popup: Window
+  popup: Window,
 ): {
   promise: Promise<GitHubSigninReceiverMessage>;
   abort: () => void;
@@ -131,7 +131,7 @@ const receiveCodeFromPopup = (
           abort();
         }
       },
-      {signal: abortController.signal}
+      {signal: abortController.signal},
     );
   });
   return {promise, abort};
@@ -143,7 +143,7 @@ const receiveCodeFromPopup = (
  */
 const pollForPopupClosed = (
   popup: Window,
-  pollInterval: number
+  pollInterval: number,
 ): Promise<'closed'> => {
   return new Promise((resolve) => {
     const id = setInterval(() => {
@@ -174,7 +174,7 @@ const exchangeCodeForAccessToken = async (code: string): Promise<string> => {
     throw new Error(
       `/api/github-token-exchange error [${httpResp.status}]: ${
         jsonResp.error ?? '<unknown>'
-      }`
+      }`,
     );
   }
   return jsonResp.accessToken;

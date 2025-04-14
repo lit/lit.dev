@@ -16,7 +16,7 @@ export async function indexVideos(outputDir: '_dev' | '_site', idOffset = 0) {
   // Path of the video index.
   const VIDEO_INDEX_PATH = path.resolve(
     __dirname,
-    `../../../../lit-dev-content/${outputDir}/search-modifiers/videos.json`
+    `../../../../lit-dev-content/${outputDir}/search-modifiers/videos.json`,
   );
 
   const fileContents = await fs.readFile(VIDEO_INDEX_PATH, 'utf-8');

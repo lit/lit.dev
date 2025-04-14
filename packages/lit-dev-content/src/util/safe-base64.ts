@@ -31,7 +31,7 @@ export const encodeSafeBase64 = (str: string): string => {
   //       to base64 encode: {F0 9F 98 83}
   const percentEscaped = encodeURIComponent(str);
   const utf8 = percentEscaped.replace(/%([0-9A-F]{2})/g, (_, hex) =>
-    String.fromCharCode(parseInt(hex, 16))
+    String.fromCharCode(parseInt(hex, 16)),
   );
   const base64 = btoa(utf8);
   const base64url = base64.replace(/\+/g, '-').replace(/\//g, '_');

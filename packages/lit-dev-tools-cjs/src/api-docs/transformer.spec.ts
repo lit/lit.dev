@@ -112,7 +112,7 @@ const simpleTests: Array<[TestLabel, Input, Expected]> = [
 ];
 
 simpleTests.forEach(([label, input, expected]: [TestLabel, Input, Expected]) =>
-  test(label, () => assert.equal(simpleReplacer(input), expected))
+  test(label, () => assert.equal(simpleReplacer(input), expected)),
 );
 
 test('[[`symbol`]] hyperlink with node context', () => {
@@ -128,7 +128,7 @@ test('[[`symbol`]] hyperlink with node context', () => {
 
   assert.equal(
     r('[[`attributeChangedCallback`]]'),
-    '[`attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)'
+    '[`attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)',
   );
 });
 
@@ -145,7 +145,7 @@ test('@linkcode hyperlink with node context', () => {
 
   assert.equal(
     r('{@linkcode attributeChangedCallback}'),
-    '[`attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)'
+    '[`attributeChangedCallback`](LitElement#LitElement.attributeChangedCallback)',
   );
 });
 

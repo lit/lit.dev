@@ -20,7 +20,7 @@ function runScreenshotTests(dark: boolean) {
       await page.goto('/learn/');
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `learnCatalog${dark ? '-dark' : ''}.png`
+        `learnCatalog${dark ? '-dark' : ''}.png`,
       );
     });
   });

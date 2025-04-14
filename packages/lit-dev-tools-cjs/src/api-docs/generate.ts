@@ -46,7 +46,7 @@ const clone = async ({repo, gitDir, commit}: ApiDocsConfig) => {
   await execFileAsync(
     'git',
     ['remote', 'add', 'origin', `https://github.com/${repo}`],
-    {cwd: gitDir}
+    {cwd: gitDir},
   );
   await execFileAsync('git', ['fetch', 'origin', '--depth=1', commit], {
     cwd: gitDir,
@@ -104,7 +104,7 @@ const analyze = async (config: ApiDocsConfig) => {
 
   const json = await app.serializer.projectToObject(
     root,
-    pathlib.resolve(config.tsConfigPath, '..')
+    pathlib.resolve(config.tsConfigPath, '..'),
   );
   const transformer = new ApiDocsTransformer(json, config);
   const {pages, symbolMap} = await transformer.transform();
@@ -113,7 +113,7 @@ const analyze = async (config: ApiDocsConfig) => {
   await fs.writeFile(
     config.pagesOutPath,
     JSON.stringify(pages, null, 2),
-    'utf8'
+    'utf8',
   );
   console.log(`Wrote ${config.pagesOutPath}`);
 
@@ -121,7 +121,7 @@ const analyze = async (config: ApiDocsConfig) => {
   await fs.writeFile(
     config.symbolsOutPath,
     JSON.stringify(symbolMap, null, 2),
-    'utf8'
+    'utf8',
   );
   console.log(`Wrote ${config.symbolsOutPath}`);
 };

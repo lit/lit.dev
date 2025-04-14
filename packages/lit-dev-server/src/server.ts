@@ -51,9 +51,9 @@ if (mode === 'playground') {
       path.join(
         contentPackage,
         ENV.eleventyOutDir,
-        'csp-inline-script-hashes.txt'
+        'csp-inline-script-hashes.txt',
       ),
-      'utf8'
+      'utf8',
     )
     .trim()
     .split('\n');
@@ -65,14 +65,14 @@ if (mode === 'playground') {
       reportViolations: ENV.reportCspViolations,
       githubApiOrigin: ENV.githubApiUrl,
       githubAvatarOrigin: ENV.githubAvatarUrl,
-    })
+    }),
   );
   app.use(
     createGitHubTokenExchangeMiddleware({
       githubMainUrl: ENV.githubMainUrl,
       clientId: ENV.githubClientId,
       clientSecret: ENV.githubClientSecret,
-    })
+    }),
   );
   app.use(redirectMiddleware());
   app.use(notFoundMiddleware(staticRoot));
@@ -99,11 +99,11 @@ app.use(
         // day while it revalidates the cache in the background.
         res.setHeader(
           'Cache-Control',
-          'max-age=120, stale-while-revalidate=86400'
+          'max-age=120, stale-while-revalidate=86400',
         );
       }
     },
-  })
+  }),
 );
 
 const server = app.listen(port);

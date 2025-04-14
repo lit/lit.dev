@@ -45,7 +45,7 @@ function runScreenshotTests(dark: boolean) {
       await preventGDPRBanner(page);
       await browserPage.goto('http://localhost:6417/reset');
       expect(await browserPage.textContent('body')).toEqual(
-        'fake github successfully reset'
+        'fake github successfully reset',
       );
       await browserPage.close();
     });
@@ -61,9 +61,9 @@ function runScreenshotTests(dark: boolean) {
       await expect(
         await page
           .locator('main > litdev-playground-page > #content')
-          .screenshot()
+          .screenshot(),
       ).toMatchSnapshot(
-        `helloWorldPlaygroundProject${dark ? '-dark' : ''}.png`
+        `helloWorldPlaygroundProject${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -81,7 +81,7 @@ function runScreenshotTests(dark: boolean) {
       await page.click('litdev-playground-share-button');
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareLongUrl-1-shareMenuOpen${dark ? '-dark' : ''}.png`
+        `shareLongUrl-1-shareMenuOpen${dark ? '-dark' : ''}.png`,
       );
 
       // Save the long URL
@@ -92,11 +92,11 @@ function runScreenshotTests(dark: boolean) {
         'litdev-playground-share-button litdev-flyout',
         {
           state: 'hidden',
-        }
+        },
       );
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareLongUrl-2-snackbarOpen${dark ? '-dark' : ''}.png`
+        `shareLongUrl-2-snackbarOpen${dark ? '-dark' : ''}.png`,
       );
 
       // Reload the page to confirm the new content is still there
@@ -104,7 +104,7 @@ function runScreenshotTests(dark: boolean) {
       await waitForPlaygroundPreviewToLoad(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareLongUrl-3-pageReloaded${dark ? '-dark' : ''}.png`
+        `shareLongUrl-3-pageReloaded${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -124,11 +124,11 @@ function runScreenshotTests(dark: boolean) {
         'litdev-playground-share-button litdev-flyout',
         {
           state: 'visible',
-        }
+        },
       );
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-1-shareMenuOpen${dark ? '-dark' : ''}.png`
+        `shareGist-1-shareMenuOpen${dark ? '-dark' : ''}.png`,
       );
 
       // Sign in to GitHub
@@ -136,7 +136,7 @@ function runScreenshotTests(dark: boolean) {
       await page.waitForSelector('#createNewGistButton', {state: 'visible'});
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-2-signedIn${dark ? '-dark' : ''}.png`
+        `shareGist-2-signedIn${dark ? '-dark' : ''}.png`,
       );
 
       // Save the gist
@@ -148,12 +148,12 @@ function runScreenshotTests(dark: boolean) {
         'litdev-playground-share-button litdev-flyout',
         {
           state: 'hidden',
-        }
+        },
       );
       await freezeSnackbars(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-3-snackbarOpen${dark ? '-dark' : ''}.png`
+        `shareGist-3-snackbarOpen${dark ? '-dark' : ''}.png`,
       );
 
       // Reload the page to confirm the new content is still there
@@ -161,7 +161,7 @@ function runScreenshotTests(dark: boolean) {
       await waitForPlaygroundPreviewToLoad(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-4-pageReloaded${dark ? '-dark' : ''}.png`
+        `shareGist-4-pageReloaded${dark ? '-dark' : ''}.png`,
       );
 
       // Type some more content
@@ -178,7 +178,7 @@ function runScreenshotTests(dark: boolean) {
       await page.keyboard.type('new-name.ts');
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-5-renamingFile${dark ? '-dark' : ''}.png`
+        `shareGist-5-renamingFile${dark ? '-dark' : ''}.png`,
       );
       await page.keyboard.press('Enter');
 
@@ -188,7 +188,7 @@ function runScreenshotTests(dark: boolean) {
       await page.keyboard.type('empty.txt');
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-6-addingFile${dark ? '-dark' : ''}.png`
+        `shareGist-6-addingFile${dark ? '-dark' : ''}.png`,
       );
       await page.keyboard.press('Enter');
 
@@ -199,11 +199,11 @@ function runScreenshotTests(dark: boolean) {
         'litdev-playground-share-button litdev-flyout',
         {
           state: 'visible',
-        }
+        },
       );
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-7-shareMenuOpenAgain${dark ? '-dark' : ''}.png`
+        `shareGist-7-shareMenuOpenAgain${dark ? '-dark' : ''}.png`,
       );
 
       // Update the gist
@@ -216,11 +216,11 @@ function runScreenshotTests(dark: boolean) {
         'litdev-playground-share-button litdev-flyout',
         {
           state: 'hidden',
-        }
+        },
       );
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-8-gistUpdated${dark ? '-dark' : ''}.png`
+        `shareGist-8-gistUpdated${dark ? '-dark' : ''}.png`,
       );
 
       // Reload the page again to confirm the updated content is there
@@ -228,7 +228,7 @@ function runScreenshotTests(dark: boolean) {
       await waitForPlaygroundPreviewToLoad(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `shareGist-9-pageReloadedAgain${dark ? '-dark' : ''}.png`
+        `shareGist-9-pageReloadedAgain${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -241,7 +241,7 @@ function runScreenshotTests(dark: boolean) {
       // Open the share menu
       await page.click('litdev-playground-share-button');
       await page.waitForSelector(
-        'litdev-playground-share-button litdev-flyout'
+        'litdev-playground-share-button litdev-flyout',
       );
 
       // Click share
@@ -260,7 +260,7 @@ function runScreenshotTests(dark: boolean) {
       await freezeDialogs(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `userDeclinesGithubAuth${dark ? '-dark' : ''}.png`
+        `userDeclinesGithubAuth${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -273,7 +273,7 @@ function runScreenshotTests(dark: boolean) {
       // Open the share menu
       await page.click('litdev-playground-share-button');
       await page.waitForSelector(
-        'litdev-playground-share-button litdev-flyout'
+        'litdev-playground-share-button litdev-flyout',
       );
 
       // Click share
@@ -291,7 +291,7 @@ function runScreenshotTests(dark: boolean) {
       await freezeDialogs(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `userClosesGitHubAuthWindowTooEarly${dark ? '-dark' : ''}.png`
+        `userClosesGitHubAuthWindowTooEarly${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -304,7 +304,7 @@ function runScreenshotTests(dark: boolean) {
       await freezeDialogs(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `gistDoesNotExist${dark ? '-dark' : ''}.png`
+        `gistDoesNotExist${dark ? '-dark' : ''}.png`,
       );
     });
 
@@ -323,7 +323,7 @@ function runScreenshotTests(dark: boolean) {
       // Open the share menu
       await page.click('litdev-playground-share-button');
       await page.waitForSelector(
-        'litdev-playground-share-button litdev-flyout'
+        'litdev-playground-share-button litdev-flyout',
       );
 
       // Sign in to GitHub
@@ -340,7 +340,7 @@ function runScreenshotTests(dark: boolean) {
       await closeSnackbars(page);
       await waitForTheme(page, dark);
       await expect(await page.screenshot()).toMatchSnapshot(
-        `backendErrorWritingGist${dark ? '-dark' : ''}.png`
+        `backendErrorWritingGist${dark ? '-dark' : ''}.png`,
       );
     });
   });
@@ -351,7 +351,7 @@ test.describe('Playground', () => {
     const browserPage = await browser.newPage();
     await browserPage.goto('http://localhost:6417/reset');
     expect(await browserPage.textContent('body')).toEqual(
-      'fake github successfully reset'
+      'fake github successfully reset',
     );
     await browserPage.close();
   });
@@ -362,26 +362,26 @@ test.describe('Playground', () => {
     await waitForPlaygroundPreviewToLoad(page);
 
     const greetingExample = page.locator(
-      '#exampleContent > div:nth-child(1) > ul > li:nth-child(1)'
+      '#exampleContent > div:nth-child(1) > ul > li:nth-child(1)',
     );
     await expect(greetingExample).toHaveClass('exampleItem active');
 
     const codeEditor = page.locator('playground-code-editor #focusContainer');
     expect(
       ((await codeEditor.textContent()) ?? '').includes(
-        `@customElement('simple-greeting')`
-      )
+        `@customElement('simple-greeting')`,
+      ),
     ).toBe(true);
 
     const playgroundPreviewFrame = (await (await page
       .locator('playground-preview iframe')
       .elementHandle())!.contentFrame())!;
     await expect(
-      playgroundPreviewFrame.locator('simple-greeting p')!
+      playgroundPreviewFrame.locator('simple-greeting p')!,
     ).toHaveText('Hello, World!');
     await expect(playgroundPreviewFrame.locator('simple-greeting p')).toHaveCSS(
       'color',
-      'rgb(0, 0, 255)'
+      'rgb(0, 0, 255)',
     );
   });
 
@@ -402,11 +402,11 @@ test.describe('Playground', () => {
       .locator('playground-preview iframe')
       .elementHandle())!.contentFrame())!;
     await expect(
-      playgroundPreviewFrame.locator('simple-greeting p')
+      playgroundPreviewFrame.locator('simple-greeting p'),
     ).toHaveText('Hello, World!');
     await expect(playgroundPreviewFrame.locator('simple-greeting p')).toHaveCSS(
       'color',
-      'rgb(255, 0, 0)'
+      'rgb(255, 0, 0)',
     );
   });
 
@@ -433,7 +433,7 @@ test.describe('Playground', () => {
     // On the next Ctrl+S, the long URL share should happen automatically
     await page.keyboard.press(`${modifierKey}+S`);
     await page.waitForURL(
-      (url) => url.href.match(/#project=/) !== null && url.href !== firstUrl
+      (url) => url.href.match(/#project=/) !== null && url.href !== firstUrl,
     );
     expect(await readClipboardText(page)).toMatch(page.url());
   });

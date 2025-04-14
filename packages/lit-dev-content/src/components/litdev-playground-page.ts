@@ -136,7 +136,7 @@ export class LitDevPlaygroundPage extends LitElement {
       this.viewMode =
         (getHashSearchParam(
           PLAYGROUND_FULLSCREEN_HASH_PARAM,
-          hashSearchParams
+          hashSearchParams,
         ) as null | ViewMode) ?? 'split';
     } else if (changed.has('viewMode')) {
       // if previewFullscreen has changed, update the hash in the URL but not on
@@ -145,12 +145,12 @@ export class LitDevPlaygroundPage extends LitElement {
         setHashSearchParam(
           PLAYGROUND_FULLSCREEN_HASH_PARAM,
           this.viewMode,
-          hashSearchParams
+          hashSearchParams,
         );
       } else {
         deleteHashSearchParam(
           PLAYGROUND_FULLSCREEN_HASH_PARAM,
-          hashSearchParams
+          hashSearchParams,
         );
       }
 
@@ -198,8 +198,8 @@ export class LitDevPlaygroundPage extends LitElement {
   private async _discoverChildElements() {
     // TODO(aomarks) This is very unconventional. We should be rendering these
     // elements ourselves, or slotting them in with names.
-    const mustFindChild: typeof this['querySelector'] = (
-      selector: string
+    const mustFindChild: (typeof this)['querySelector'] = (
+      selector: string,
     ): HTMLElement => {
       const el = this.querySelector(selector);
       if (el === null) {
@@ -215,13 +215,13 @@ export class LitDevPlaygroundPage extends LitElement {
     this._examplesDrawer = mustFindChild('litdev-drawer')!;
     this._exampleControls = mustFindChild('litdev-example-controls')!;
     this._examplesDrawerScroller = mustFindChild(
-      'litdev-drawer .minimalScroller'
+      'litdev-drawer .minimalScroller',
     )!;
     // Unforuntately, the file editor does not emit a change event, so we reach
     // into the shadow root and find the code editor that does.
     await this._fileEditor.updateComplete;
     this._codeEditor = this._fileEditor.shadowRoot!.querySelector(
-      'playground-code-editor'
+      'playground-code-editor',
     )!;
   }
 
@@ -287,7 +287,7 @@ export class LitDevPlaygroundPage extends LitElement {
 
     this.viewMode =
       (getHashSearchParam(
-        PLAYGROUND_FULLSCREEN_HASH_PARAM
+        PLAYGROUND_FULLSCREEN_HASH_PARAM,
       ) as ViewMode | null) || 'split';
     let urlFiles: Array<CompactProjectFile> | undefined;
     const gist = getHashSearchParam('gist');
@@ -325,7 +325,7 @@ export class LitDevPlaygroundPage extends LitElement {
       this._playgroundProject.config = {
         extends: '/samples/base.json',
         files: Object.fromEntries(
-          urlFiles.map(({name, content, hidden}) => [name, {content, hidden}])
+          urlFiles.map(({name, content, hidden}) => [name, {content, hidden}]),
         ),
       };
     } else {
@@ -340,7 +340,7 @@ export class LitDevPlaygroundPage extends LitElement {
       this._playgroundProject.projectSrc = `${samplesRoot}/${sample}/project.json`;
 
       const link = this._examplesDrawer.querySelector(
-        `.exampleItem[data-sample="${sample}"]`
+        `.exampleItem[data-sample="${sample}"]`,
       );
       if (link) {
         link.classList.add('active');

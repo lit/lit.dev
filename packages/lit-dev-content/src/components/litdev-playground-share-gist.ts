@@ -169,7 +169,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
     const avatarSize = 24;
     const avatarUrl = new URL(
       `/u/${id}?s=${/* double for high dpi */ avatarSize * 2}`,
-      this.githubAvatarUrl
+      this.githubAvatarUrl,
     ).href;
     return html`<div id="signInStatus">
       <span>
@@ -247,7 +247,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       });
       localStorage.setItem(
         GITHUB_USER_LOCALSTORAGE_KEY,
-        JSON.stringify({id, login})
+        JSON.stringify({id, login}),
       );
       // Render share button.
       this.requestUpdate();
@@ -285,7 +285,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
         new CustomEvent('status', {
           detail: {text: 'Creating gist ...'},
           bubbles: true,
-        })
+        }),
       );
 
       let token = tokenCache.get(this);
@@ -305,7 +305,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       });
 
       this.dispatchEvent(
-        new Event('will-hashchange', {bubbles: true, composed: true})
+        new Event('will-hashchange', {bubbles: true, composed: true}),
       );
       writeToHash(gist.id);
       let statusText = 'Gist created';
@@ -323,7 +323,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
         new CustomEvent('status', {
           detail: {text: statusText},
           bubbles: true,
-        })
+        }),
       );
     } finally {
       this._pending = false;
@@ -347,7 +347,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
         new CustomEvent('status', {
           detail: {text: 'Updating gist ...'},
           bubbles: true,
-        })
+        }),
       );
 
       let token = tokenCache.get(this);
@@ -378,7 +378,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
       });
 
       this.dispatchEvent(
-        new Event('will-hashchange', {bubbles: true, composed: true})
+        new Event('will-hashchange', {bubbles: true, composed: true}),
       );
       writeToHash(gist.id);
       let statusText = 'Gist updated';
@@ -391,7 +391,7 @@ export class LitDevPlaygroundShareGist extends LitElement {
         new CustomEvent('status', {
           detail: {text: statusText},
           bubbles: true,
-        })
+        }),
       );
     } finally {
       this._pending = false;

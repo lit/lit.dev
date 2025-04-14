@@ -44,7 +44,7 @@ const fadeHeaderOnScroll = () => {
       const entry = entries[0];
       document.body.classList.toggle('introScrolled', !entry.isIntersecting);
     },
-    {rootMargin: '-60px'}
+    {rootMargin: '-60px'},
   );
   const splashLogo = document.body.querySelector('#intro')!;
   observer.observe(splashLogo);
@@ -120,7 +120,7 @@ const activateTourRegions = () => {
     position: {
       start: {line: number; char: number};
       end: {line: number; char: number};
-    }
+    },
   ) => {
     const line = code.childNodes[position.start.line];
     if (line === undefined) {
