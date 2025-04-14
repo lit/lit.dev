@@ -29,6 +29,6 @@ export class RatingElement extends HTMLElement {
       </button>
     `;
   }
- }
+}
 
- customElements.define('rating-element', RatingElement);
+customElements.define('rating-element', RatingElement);

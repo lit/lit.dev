@@ -1,16 +1,14 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-
 @customElement('my-page')
 class MyPage extends LitElement {
-
   @property({attribute: false})
   article = {
     title: 'Template composition',
     text: `Defining partial templates as instance methods
            breaks the template into manageable pieces—and
-           allows a subclass to override individual parts of the template.`
+           allows a subclass to override individual parts of the template.`,
   };
 
   headerTemplate() {
@@ -22,9 +20,6 @@ class MyPage extends LitElement {
   }
 
   render() {
-    return html`
-      ${this.headerTemplate()}
-      ${this.articleTemplate()}
-    `;
+    return html` ${this.headerTemplate()} ${this.articleTemplate()} `;
   }
 }

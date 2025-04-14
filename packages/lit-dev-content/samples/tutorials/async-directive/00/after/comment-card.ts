@@ -4,7 +4,6 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('comment-card')
 export class CommentCard extends LitElement {
-
   static styles = css`
     :host {
       border: 1px solid #666;
@@ -42,7 +41,7 @@ export class CommentCard extends LitElement {
 
   render() {
     return html`
-      <img class="avatar" src=${this.avatar}>
+      <img class="avatar" src=${this.avatar} />
       <div class="body">
         <div class="header">
           <span class="subject">${this.subject}</span>
@@ -52,5 +51,4 @@ export class CommentCard extends LitElement {
       </div>
     `;
   }
-
 }

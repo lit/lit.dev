@@ -1,7 +1,6 @@
 import {LitElement, html} from 'lit';
 
 export class MyElement extends LitElement {
-
   constructor() {
     super();
     this.result = '';

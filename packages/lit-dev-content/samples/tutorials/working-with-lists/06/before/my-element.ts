@@ -6,10 +6,10 @@ import {map} from 'lit/directives/map.js';
 class MyElement extends LitElement {
   @state()
   things = [
-    "Raindrops on roses",
-    "Whiskers on kittens",
-    "Bright copper kettles",
-    "Warm woolen mittens",
+    'Raindrops on roses',
+    'Whiskers on kittens',
+    'Bright copper kettles',
+    'Warm woolen mittens',
   ];
 
   render() {
@@ -24,7 +24,7 @@ class MyElement extends LitElement {
               ${thing}
               <button>Delete</button>
             </li>
-          `
+          `,
         )}
       </ul>
     `;

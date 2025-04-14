@@ -5,7 +5,7 @@ import {customElement, state} from 'lit/decorators.js';
 @customElement('my-element')
 class MyElement extends LitElement {
   @state()
-  items = new Set(['Apple', 'Banana', 'Grape', 'Orange', 'Lime'])
+  items = new Set(['Apple', 'Banana', 'Grape', 'Orange', 'Lime']);
 
   render() {
     return html`

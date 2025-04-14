@@ -9,14 +9,16 @@ export class MyElement extends LitElement {
 
   removeItem(item: string) {
     const indexToRemove = this.groceries.indexOf(item);
-    this.groceries =
-        this.groceries.filter((_, i) => i !== indexToRemove);
+    this.groceries = this.groceries.filter((_, i) => i !== indexToRemove);
   }
 
   render() {
     return html`
-      ${map(this.groceries, (item) =>
-        html`<button @click=${() => this.removeItem(item)}>x</button>  ${item}<br>`
+      ${map(
+        this.groceries,
+        (item) =>
+          html`<button @click=${() => this.removeItem(item)}>x</button>
+            ${item}<br />`,
       )}
     `;
   }

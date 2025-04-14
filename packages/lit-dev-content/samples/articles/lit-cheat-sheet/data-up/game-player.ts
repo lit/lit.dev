@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import {html, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
 export type ScoreEvent = CustomEvent<number>;
 
@@ -13,6 +13,8 @@ export class GamePlayer extends LitElement {
   }
 
   handleScore(points: number) {
-    this.dispatchEvent(new CustomEvent('score', { detail: points, bubbles: true }));
+    this.dispatchEvent(
+      new CustomEvent('score', {detail: points, bubbles: true}),
+    );
   }
 }

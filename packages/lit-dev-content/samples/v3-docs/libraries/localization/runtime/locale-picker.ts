@@ -11,7 +11,7 @@ import {allLocales} from './locale-codes.js';
 import {localized} from '@lit/localize';
 
 const localeNames: {
-  [L in typeof allLocales[number]]: string;
+  [L in (typeof allLocales)[number]]: string;
 } = {
   en: 'English',
   'es-419': 'Español (Latinoamérica)‎',
@@ -31,7 +31,7 @@ export class LocalePicker extends LitElement {
           (locale) =>
             html`<option value=${locale} ?selected=${locale === getLocale()}>
               ${localeNames[locale]}
-            </option>`
+            </option>`,
         )}
       </select>
     `;

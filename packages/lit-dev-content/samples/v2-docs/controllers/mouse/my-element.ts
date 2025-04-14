@@ -12,7 +12,8 @@ class MyElement extends LitElement {
       <pre>
         x: ${this.mouse.pos.x as number}
         y: ${this.mouse.pos.y as number}
-      </pre>
+      </pre
+      >
     `;
   }
 }

@@ -1,5 +1,5 @@
-import { html, LitElement, isServer, css } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import {html, LitElement, isServer, css} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -7,8 +7,12 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      ${!this.clickedOutside ? html`<p>Something was clicked INSIDE this component</p>` : ''}
-      ${this.clickedOutside ? html`<p>Something was clicked OUTSIDE this component</p>` : ''}
+      ${!this.clickedOutside
+        ? html`<p>Something was clicked INSIDE this component</p>`
+        : ''}
+      ${this.clickedOutside
+        ? html`<p>Something was clicked OUTSIDE this component</p>`
+        : ''}
     `;
   }
 
@@ -38,11 +42,13 @@ export class MyElement extends LitElement {
     this.clickedOutside = !path.includes(this);
   };
 
-  static styles = css`/* playground-fold */
+  static styles = css`
+    /* playground-fold */
 
     :host {
       display: inline-flex;
       border: 1px solid black;
     }
-    /* playground-fold-end */`;
+    /* playground-fold-end */
+  `;
 }

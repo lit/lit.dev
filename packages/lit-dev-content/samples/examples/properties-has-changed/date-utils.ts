@@ -11,5 +11,9 @@ export function isSameDate(date1?: Date, date2?: Date) {
  * in the local time zone, given a UTC Date object as returned by input type="date".
  */
 export function localDateFromUTC(utcDate: Date) {
-  return new Date(utcDate.getUTCFullYear(), utcDate.getUTCMonth(), utcDate.getUTCDate());
+  return new Date(
+    utcDate.getUTCFullYear(),
+    utcDate.getUTCMonth(),
+    utcDate.getUTCDate(),
+  );
 }

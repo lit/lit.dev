@@ -1,5 +1,5 @@
-import { css, html, LitElement } from 'lit';
-import { customElement, query, state } from 'lit/decorators.js';
+import {css, html, LitElement} from 'lit';
+import {customElement, query, state} from 'lit/decorators.js';
 import {styleMap} from 'lit/directives/style-map.js';
 
 @customElement('my-element')

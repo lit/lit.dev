@@ -17,16 +17,17 @@ export class MotionGrid extends LitElement {
         class="container layout${this.layout}"
       >
         ${a.map(
-          (v, i) => html`<div
-            class="item${i}"
-            ${animate({
-              keyframeOptions: {
-                delay: (i * d) / (a.length * 2),
-                duration: d,
-                fill: 'both',
-              },
-            })}
-          ></div>`
+          (v, i) =>
+            html`<div
+              class="item${i}"
+              ${animate({
+                keyframeOptions: {
+                  delay: (i * d) / (a.length * 2),
+                  duration: d,
+                  fill: 'both',
+                },
+              })}
+            ></div>`,
         )}
       </section>
       <span class="message">click</span>`;

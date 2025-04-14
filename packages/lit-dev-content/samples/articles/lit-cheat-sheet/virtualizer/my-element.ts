@@ -14,8 +14,9 @@ export class MyItems extends LitElement {
           have the lit-virtualizer element as a wrapper
         -->
         <lit-virtualizer
-            .items=${this.data}
-            .renderItem=${(i: {text: string}) => html`<li>${i.text}</li>`}>
+          .items=${this.data}
+          .renderItem=${(i: {text: string}) => html`<li>${i.text}</li>`}
+        >
         </lit-virtualizer>
       </ul>
     `;

@@ -13,5 +13,4 @@ export class MotionCarousel extends LitElement {
       </div>
     `;
   }
-
 }

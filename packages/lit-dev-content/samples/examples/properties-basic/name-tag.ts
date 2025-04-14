@@ -1,4 +1,4 @@
-import { LitElement, html} from "lit";
+import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
 @customElement('name-tag')
@@ -13,12 +13,10 @@ class NameTag extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'name-tag': NameTag
+    'name-tag': NameTag;
   }
 }
 
 const tag = document.createElement('name-tag');
 tag.name = 'dynamically created';
 document.body.appendChild(tag);
-
-

@@ -1,5 +1,5 @@
-import { html, LitElement, isServer } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import {html, LitElement, isServer} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -8,7 +8,9 @@ export class MyElement extends LitElement {
   render() {
     return html`
       <button>Focus me!</button>
-      ${this.focusedWithin ? html`<p>Something in this component was focused</p>` : ''}
+      ${this.focusedWithin
+        ? html`<p>Something in this component was focused</p>`
+        : ''}
     `;
   }
 

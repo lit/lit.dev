@@ -30,7 +30,6 @@ class MyElement extends LitElement {
       background: white;
     }
     /* playground-fold-end */
-
   `;
 
   render() {
@@ -41,9 +40,9 @@ class MyElement extends LitElement {
           map(
             range(8),
             (col) => html`
-          <div class="${getColor(row, col)}">${getLabel(row, col)}</div>
-        `
-          )
+              <div class="${getColor(row, col)}">${getLabel(row, col)}</div>
+            `,
+          ),
         )}
       </div>
     `;

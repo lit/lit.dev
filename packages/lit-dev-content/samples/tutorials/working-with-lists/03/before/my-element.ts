@@ -9,9 +9,9 @@ class MyElement extends LitElement {
 
   @state()
   pets = [
-    { name: "Hedwig", species: "Owl" },
-    { name: "Scabbers", species: "Rat" },
-    { name: "Crookshanks", species: "Cat" },
+    {name: 'Hedwig', species: 'Owl'},
+    {name: 'Scabbers', species: 'Rat'},
+    {name: 'Crookshanks', species: 'Cat'},
   ];
 
   @state()

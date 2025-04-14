@@ -10,7 +10,7 @@ export class NameTag extends LitElement {
     // TODO: Add declarative event listener to input.
     return html`
       <p>Hello, ${this.name}</p>
-      <input placeholder="Enter your name">
+      <input placeholder="Enter your name" />
     `;
   }
 

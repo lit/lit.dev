@@ -7,11 +7,6 @@ export class MotionCarousel extends LitElement {
   static styles = styles;
 
   render() {
-    return html`
-      <div class="fit">
-
-      </div>
-    `;
+    return html` <div class="fit"></div> `;
   }
-
 }

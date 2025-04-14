@@ -9,13 +9,20 @@ class MyDispatcher extends LitElement {
   private _resetMessage?: ReturnType<typeof setTimeout>;
   protected render() {
     return html`
-      <label><input type="checkbox" @click=${this._tryChange}>${this.label}</label>
+      <label
+        ><input type="checkbox" @click=${this._tryChange} />${this.label}</label
+      >
       <div>${this.message}</div>
     `;
   }
   private _tryChange(e: Event) {
     const detail = {message: this.message};
-    const event = new CustomEvent('checked', {detail, bubbles: true, composed: true, cancelable: true});
+    const event = new CustomEvent('checked', {
+      detail,
+      bubbles: true,
+      composed: true,
+      cancelable: true,
+    });
     this.dispatchEvent(event);
     if (event.defaultPrevented) {
       e.preventDefault();
@@ -24,7 +31,9 @@ class MyDispatcher extends LitElement {
   }
   protected updated() {
     clearTimeout(this._resetMessage);
-    this._resetMessage =
-      setTimeout(() => this.message = this.defaultMessage, 1000);
+    this._resetMessage = setTimeout(
+      () => (this.message = this.defaultMessage),
+      1000,
+    );
   }
 }

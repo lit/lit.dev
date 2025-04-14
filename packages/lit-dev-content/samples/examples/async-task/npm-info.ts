@@ -54,13 +54,13 @@ export class NpmInfo extends LitElement {
             <ul>
               ${map(
                 Object.entries(pkg['dist-tags']),
-                ([tag, version]) => html`<li><pre>${tag}: ${version}</pre></li>`
+                ([tag, version]) =>
+                  html`<li><pre>${tag}: ${version}</pre></li>`,
               )}
             </ul>
           `,
-          error: (e) => html`<span class="error">
-            Error: ${(e as Error).message}
-              </span>`,
+          error: (e) =>
+            html`<span class="error"> Error: ${(e as Error).message} </span>`,
         })}
       </div>
     `;

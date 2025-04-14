@@ -8,20 +8,15 @@ class MyElement extends LitElement {
       <h1>Rendering lists with Lit</h1>
       <p>Lit has built-in support for any iterables!</p>
       <h2>Array</h2>
-      <p>
-        ${['✨', '🔥', '❤️']}
-      </p>
+      <p>${['✨', '🔥', '❤️']}</p>
       <h2>Set</h2>
-      <p>
-        ${new Set(['A', 'B', 'C'])}
-      </p>
+      <p>${new Set(['A', 'B', 'C'])}</p>
       <h2>Generator</h2>
       <p>
         ${(function* () {
-            for (let i = 1; i < 4; i++) yield i;
+          for (let i = 1; i < 4; i++) yield i;
         })()}
       </p>
     `;
   }
 }
-

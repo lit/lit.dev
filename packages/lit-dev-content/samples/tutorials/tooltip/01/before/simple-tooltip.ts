@@ -3,7 +3,6 @@ import {customElement} from 'lit/decorators.js';
 
 @customElement('simple-tooltip')
 export class SimpleTooltip extends LitElement {
-
   static styles = css`
     :host {
     }
@@ -12,6 +11,4 @@ export class SimpleTooltip extends LitElement {
   render() {
     return html`<slot></slot>`;
   }
-
-
 }

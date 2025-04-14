@@ -15,5 +15,7 @@ class MyElement extends LitElement {
 }
 
 const timeFormat = new Intl.DateTimeFormat('en-US', {
-  hour: 'numeric', minute: 'numeric', second: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
 });

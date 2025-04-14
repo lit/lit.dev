@@ -2,22 +2,21 @@
 import {LitElement, html} from 'lit';
 
 class MyElement extends LitElement {
-/* playground-fold-end */
+  /* playground-fold-end */
 
-static properties = {
-  colors: {},
-};
+  static properties = {
+    colors: {},
+  };
 
-constructor() {
-  super();
-  this.colors = ['red', 'green', 'blue'];
-}
+  constructor() {
+    super();
+    this.colors = ['red', 'green', 'blue'];
+  }
 
-render() {
-  return html`<p>Colors: ${this.colors}</p>`;
-}
-/* playground-fold */
-
+  render() {
+    return html`<p>Colors: ${this.colors}</p>`;
+  }
+  /* playground-fold */
 }
 customElements.define('my-element', MyElement);
 /* playground-fold-end */

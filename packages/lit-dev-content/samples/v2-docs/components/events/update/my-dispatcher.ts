@@ -6,7 +6,9 @@ class MyDispatcher extends LitElement {
   @property({type: Boolean}) open = true;
   protected render() {
     return html`
-      <p><button @click=${this._notify}>${this.open ? 'Close' : 'Open'}</button></p>
+      <p>
+        <button @click=${this._notify}>${this.open ? 'Close' : 'Open'}</button>
+      </p>
       <p ?hidden=${!this.open}>Content!</p>
     `;
   }
