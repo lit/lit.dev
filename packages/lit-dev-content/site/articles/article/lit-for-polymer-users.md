@@ -577,10 +577,10 @@ When migrating a Polymer `dom-if` to Lit, you have several choices:
 
 - Use a simple JavaScript conditional. Lit removes and discards the conditional DOM when a condition changes to falsy. `dom-if` does the same thing if you set the `restamp` property to `true`.
 
-- Use the standard `hidden` attribute to hide the content without removing it from the page.
+- Use the standard `hidden` attribute to hide the content without removing it from the page. Note the use here of the `?` prefix that causes boolean attributes to be added or removed rather than simply set (because `hidden="false"` is still hidden).
 
     ```html
-    <header hidden=${this.headerHidden}>
+    <header ?hidden=${this.headerHidden}>
     ```
 
   This is quite lightweight. However, the DOM is created on first render even if the condition is false.
