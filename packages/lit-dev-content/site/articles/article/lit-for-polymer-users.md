@@ -580,10 +580,10 @@ When migrating a Polymer `dom-if` to Lit, you have several choices:
 - Use the standard `hidden` attribute to hide the content without removing it from the page.
 
     ```html
-    <header hidden=${this.headerHidden}>
+    <header ?hidden=${this.headerHidden}>
     ```
 
-  This is quite lightweight. However, the DOM is created on first render even if the condition is false.
+  Note that you must use a [boolean attribute binding](/docs/templates/expressions/#boolean-attribute-expressions) so that the `hidden` attribute is removed when the condition is falsey. A regular attribute binding will set the `hidden` attribute to the string `"false"`, which [in HTML is an invalid value that keeps the element hidden](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/hidden).
 
 - Wrap a conditional in the `cache` directive to avoid discarding and re-creating the DOM when the condition changes.
 
