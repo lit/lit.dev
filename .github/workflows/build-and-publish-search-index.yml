@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 10
     steps:
-      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: google/wireit@setup-github-actions-caching/v2
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
