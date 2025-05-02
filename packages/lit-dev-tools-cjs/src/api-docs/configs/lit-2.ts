@@ -33,6 +33,8 @@ export const lit2Config: ApiDocsConfig = {
     {
       cmd: 'npm',
       args: ['run', 'build:ts'],
+      // disable wireit cache for to avoid caching errors in Github Actions
+      env: {WIREIT_CACHE: 'none'},
     },
   ],
 

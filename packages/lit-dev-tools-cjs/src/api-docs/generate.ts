@@ -62,9 +62,12 @@ const INSTALLED_FILE = 'INSTALLED';
 const setup = async (config: ApiDocsConfig) => {
   console.log(`running npm ci in ${config.gitDir}`);
   await execFileAsync('npm', ['ci'], {cwd: config.gitDir});
-  for (const {cmd, args} of config.extraSetupCommands ?? []) {
+  for (const {cmd, args, env} of config.extraSetupCommands ?? []) {
     console.log(`running ${cmd} ${args.join(' ')} in ${config.gitDir}`);
-    await execFileAsync(cmd, args, {cwd: config.gitDir});
+    await execFileAsync(cmd, args, {
+      cwd: config.gitDir,
+      env: {...process.env, ...env},
+    });
   }
   await fs.writeFile(pathlib.join(config.workDir, INSTALLED_FILE), '', 'utf8');
 };
