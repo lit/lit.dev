@@ -17,10 +17,13 @@ excellent to each other!
 *   **Join us on [Discord](/discord/)!**
     Chat about Lit, get help, or share your project in the Lit Discord server.
 
-*   **Follow us at [@buildWithLit  on Twitter](https://twitter.com/buildWithLit)**
+*   **Follow us at [@buildWithLit on X (formerly Twitter)](https://twitter.com/buildWithLit)**
     for the latest on Lit and web components. Many
     of our team members can also be found tweeting about Lit,
     and the latest developments in the web platform.
+
+*   **Follow us on [Bluesky](https://bsky.app/profile/lit.dev)**
+    for updates and news from the Lit team.
 
 *   **Talk about Lit on [GitHub Discussions](https://github.com/lit/lit/discussions).** For longer questions or ideas about Lit, or to see what others are talking about, GitHub discussions are a great way to connect with the team and community.
 
