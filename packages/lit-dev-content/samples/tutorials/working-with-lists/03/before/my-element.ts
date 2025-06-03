@@ -5,13 +5,13 @@ import type {TemplateResult} from 'lit';
 @customElement('my-element')
 class MyElement extends LitElement {
   @state()
-  friends = ['Harry', 'Ron', 'Hermione'];
+  friends = ['Fern', 'Dorothy', 'Kiki'];
 
   @state()
   pets = [
-    { name: "Hedwig", species: "Owl" },
-    { name: "Scabbers", species: "Rat" },
-    { name: "Crookshanks", species: "Cat" },
+    { name: "Wilbur", species: "Pig" },
+    { name: "Toto", species: "Dog" },
+    { name: "Jiji", species: "Cat" },
   ];
 
   @state()
