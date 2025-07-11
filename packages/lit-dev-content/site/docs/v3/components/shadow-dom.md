@@ -5,7 +5,7 @@ eleventyNavigation:
   parent: Components
   order: 6
 versionLinks:
-  v1: components/templates/#accessing-nodes-in-the-shadow-dom
+  v1: components/templates/#accessizng-nodes-in-the-shadow-dom
   v2: components/shadow-dom/
 ---
 
