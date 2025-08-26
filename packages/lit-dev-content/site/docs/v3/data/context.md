@@ -281,6 +281,21 @@ and the ContextConsumer controller:
   );
 ```
 
+### SSR
+
+Basic support for server side rendering can be enabled by assigning
+`globalThis.litSsrCallConnectedCallback = true`. This will configure `@lit-labs/ssr` to call
+`connectedCallback()` and `ReactiveController.hostConnected()`, which allows `@lit/context`
+to register the necessary event handlers for SSR.
+
+As an alternative to `document.documentElement` or `document.body` (which are expected to be undefined
+in the server environment) for global event listeners (e.g. for `@lit/context ContextProvider`), you can
+use the global variable `globalThis.litServerRoot` which is (only) available during SSR.
+
+```ts
+  new ContextProvider(isServer ? globalThis.litServerRoot : document.body, {...});
+```
+
 ## Example Use Cases
 
 ### Current user, locale, etc.
