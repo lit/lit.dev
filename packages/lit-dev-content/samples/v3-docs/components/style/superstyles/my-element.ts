@@ -6,8 +6,10 @@ import {SuperElement} from './super-element.js';
 export class MyElement extends SuperElement {
   static styles = [
     SuperElement.styles,
-    css`div {
-      color: red;
-    }`
+    css`
+      div {
+        color: red;
+      }
+    `,
   ];
 }

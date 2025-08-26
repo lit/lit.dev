@@ -2,8 +2,8 @@ import {LitElement, html, css} from 'lit';
 import {customElement, state, property, query} from 'lit/decorators.js';
 
 type ToDoItem = {
-  text: string,
-  completed: boolean
+  text: string;
+  completed: boolean;
 };
 
 @customElement('todo-list')
@@ -17,8 +17,8 @@ export class ToDoList extends LitElement {
 
   @state()
   private _listItems = [
-    { text: 'Make to-do list', completed: true },
-    { text: 'Complete Lit tutorial', completed: false }
+    {text: 'Make to-do list', completed: true},
+    {text: 'Complete Lit tutorial', completed: false},
   ];
   @property()
   hideCompleted = false;
@@ -28,13 +28,14 @@ export class ToDoList extends LitElement {
     const items = this._listItems;
     const todos = html`
       <ul>
-        ${items.map((item) =>
-          html`
-            <li
-                class=${item.completed ? 'completed' : ''}
-                @click=${() => this.toggleCompleted(item)}>
+        ${items.map(
+          (item) =>
+            html` <li
+              class=${item.completed ? 'completed' : ''}
+              @click=${() => this.toggleCompleted(item)}
+            >
               ${item.text}
-            </li>`
+            </li>`,
         )}
       </ul>
     `;
@@ -43,17 +44,17 @@ export class ToDoList extends LitElement {
       <h2>To Do</h2>
       <!-- TODO: Update expression. -->
       ${todos}
-      <input id="newitem" aria-label="New item">
+      <input id="newitem" aria-label="New item" />
       <button @click=${this.addToDo}>Add</button>
-      <br>
+      <br />
       <label>
-        <input type="checkbox"
+        <input
+          type="checkbox"
           @change=${this.setHideCompleted}
-          ?checked=${this.hideCompleted}>
+          ?checked=${this.hideCompleted}
+        />
         Hide completed
       </label>
-
-
     `;
   }
 
@@ -70,9 +71,10 @@ export class ToDoList extends LitElement {
   input!: HTMLInputElement;
 
   addToDo() {
-    this._listItems = [...this._listItems,
-        {text: this.input.value, completed: false}];
+    this._listItems = [
+      ...this._listItems,
+      {text: this.input.value, completed: false},
+    ];
     this.input.value = '';
   }
 }
-

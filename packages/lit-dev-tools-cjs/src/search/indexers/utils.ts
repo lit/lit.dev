@@ -27,7 +27,7 @@ export const walkDir = async (
   dir: string,
   results: UrlToFile,
   projectDir: string,
-  shouldSkip = (_path: string) => false
+  shouldSkip = (_path: string) => false,
 ): Promise<UrlToFile> => {
   const dirContents = await fs.readdir(dir);
   for (const contents of dirContents) {
@@ -37,7 +37,7 @@ export const walkDir = async (
     if (path.extname(contents) === '.html') {
       const basePath = path.resolve(
         __dirname,
-        `../../../../lit-dev-content/${projectDir}`
+        `../../../../lit-dev-content/${projectDir}`,
       );
       const relPathBase = path.relative(basePath, dir);
       const relPath = path.join(relPathBase, contents);
@@ -47,7 +47,7 @@ export const walkDir = async (
         path.resolve(dir, contents),
         results,
         projectDir,
-        shouldSkip
+        shouldSkip,
       );
     }
   }
@@ -67,7 +67,7 @@ export const walkDir = async (
 export const docIndexer = async (
   relativeLinksToHTMLFile: UrlToFile,
   docType: DocType<'docs'> | DocType<'api'> | DocType<'article'>,
-  idOffset: number
+  idOffset: number,
 ) => {
   let id = idOffset;
   const searchIndex: UserFacingPageData[] = [];
@@ -88,7 +88,7 @@ export const docIndexer = async (
       // the search interface.
       if (parents.length !== 1) {
         throw new Error(
-          `Error finding parent page chunk for ${relUrl}. Potential parent chunks found: ${parents.length}`
+          `Error finding parent page chunk for ${relUrl}. Potential parent chunks found: ${parents.length}`,
         );
       }
 
@@ -99,7 +99,7 @@ export const docIndexer = async (
       // parentID is indeed the current id.
       if (parent !== sanitizedPageChunks[0]) {
         throw new Error(
-          `Parent page chunk for ${relUrl} was not the first chunk.`
+          `Parent page chunk for ${relUrl} was not the first chunk.`,
         );
       }
 
@@ -133,7 +133,7 @@ export const docIndexer = async (
     } catch (e: unknown) {
       throw new Error(
         `Failure while creating search index for page ` +
-          `'${relUrl}': ${(e as Error).message}`
+          `'${relUrl}': ${(e as Error).message}`,
       );
     }
   }

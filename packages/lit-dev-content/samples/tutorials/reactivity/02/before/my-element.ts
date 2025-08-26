@@ -14,8 +14,11 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      ${map(this.groceries, (item) =>
-        html`<button @click=${() => this.removeItem(item)}>x</button> ${item}<br>`
+      ${map(
+        this.groceries,
+        (item) =>
+          html`<button @click=${() => this.removeItem(item)}>x</button>
+            ${item}<br />`,
       )}
     `;
   }

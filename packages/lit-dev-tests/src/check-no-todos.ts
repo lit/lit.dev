@@ -27,7 +27,7 @@ const siteOutputDir = pathLib.resolve(
   '../',
   '../',
   'lit-dev-content',
-  '_site'
+  '_site',
 );
 
 const api_pages_to_check = [
@@ -63,12 +63,12 @@ const checkNoTodos = async () => {
   console.log();
   if (fail) {
     console.log(
-      `${bold + red}Found TODOs in generated  API documentation!${reset}`
+      `${bold + red}Found TODOs in generated  API documentation!${reset}`,
     );
     process.exit(1);
   } else {
     console.error(
-      `${bold + green}Generated API does not contain any TODOs!${reset}`
+      `${bold + green}Generated API does not contain any TODOs!${reset}`,
     );
   }
 };

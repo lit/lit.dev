@@ -32,22 +32,26 @@ class MyElement extends LitElement {
       background: white;
     }
     /* playground-fold-end */
-
   `;
 
   render() {
     return html`
       <p>Let's play a game!</p>
       <div id="board">
-        ${map(range(8), (row) => map(range(8), (col) => html`
-          <div class="${getColor(row, col)}">${getLabel(row, col)}</div>
-        `))}
+        ${map(range(8), (row) =>
+          map(
+            range(8),
+            (col) => html`
+              <div class="${getColor(row, col)}">${getLabel(row, col)}</div>
+            `,
+          ),
+        )}
       </div>
     `;
   }
 }
 
 const getColor = (row: number, col: number) =>
-  (row + col) % 2 ? "black" : "white";
+  (row + col) % 2 ? 'black' : 'white';
 const getLabel = (row: number, col: number) =>
   `${String.fromCharCode(65 + col)}${8 - row}`;

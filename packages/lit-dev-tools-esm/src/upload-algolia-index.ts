@@ -10,7 +10,7 @@ import {publicVars} from './configs.js';
 
 const searchIndexRaw = fs.readFileSync(
   '../lit-dev-content/_site/searchIndex.json',
-  'utf8'
+  'utf8',
 );
 const searchIndex = JSON.parse(searchIndexRaw);
 const ALGOLIA_WRITE_KEY = process.env.ALGOLIA_WRITE_KEY;

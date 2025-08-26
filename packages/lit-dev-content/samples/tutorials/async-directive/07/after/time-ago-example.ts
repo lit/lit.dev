@@ -7,11 +7,7 @@ const timeCreated = new Date();
 
 @customElement('time-ago-example')
 export class TimeAgoExample extends LitElement {
-
   render() {
-    return html`
-      <p>This page was rendered ${timeAgo(timeCreated)}.</p>
-    `;
+    return html` <p>This page was rendered ${timeAgo(timeCreated)}.</p> `;
   }
-
 }

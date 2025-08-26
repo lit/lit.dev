@@ -153,7 +153,7 @@ export class LitDevTutorial extends LitElement {
    *     validation message
    */
   private readonly onPlaygroundMessage = (
-    e: MessageEvent<{status: string; message?: string}>
+    e: MessageEvent<{status: string; message?: string}>,
   ) => {
     if (this._checkStatus !== 'CHECKING') {
       return;
@@ -203,7 +203,7 @@ export class LitDevTutorial extends LitElement {
       return undefined;
     }
     return (this.getRootNode() as ShadowRoot | Document).getElementById(
-      this.project
+      this.project,
     ) as PlaygroundProject | undefined;
   }
 
@@ -215,7 +215,7 @@ export class LitDevTutorial extends LitElement {
       return undefined;
     }
     return (this.getRootNode() as ShadowRoot | Document).getElementById(
-      this.preview
+      this.preview,
     ) as PlaygroundPreview | undefined;
   }
 
@@ -254,7 +254,7 @@ export class LitDevTutorial extends LitElement {
     this,
     async ([projectLocation]) => {
       const manifestRes = await fetch(
-        `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`
+        `${this._samplesRoot}/tutorials/${projectLocation}/tutorial.json`,
       );
 
       if (manifestRes.ok) {
@@ -263,7 +263,7 @@ export class LitDevTutorial extends LitElement {
         throw new Error('Manifest fetch was unsuccessful');
       }
     },
-    () => [this._projectLocation]
+    () => [this._projectLocation],
   );
 
   /**
@@ -288,7 +288,7 @@ export class LitDevTutorial extends LitElement {
 
       return html;
     },
-    () => [this._idx]
+    () => [this._idx],
   );
 
   createRenderRoot() {
@@ -369,13 +369,12 @@ export class LitDevTutorial extends LitElement {
         </a>
         <span class="tutorial-metadata">
           ${this._manifestTask.render({
-            complete: (manifest) => html` <span class="tutorial-title"
-                >${manifest?.header}</span
-              >
-              <span class="title-separator">${diamondIcon}</span>
-              <span class="step-text">Step</span>
-              <span class="number">${this._idx + 1}</span>
-              / <span class="number">${manifest?.steps.length}</span>`,
+            complete: (manifest) =>
+              html` <span class="tutorial-title">${manifest?.header}</span>
+                <span class="title-separator">${diamondIcon}</span>
+                <span class="step-text">Step</span>
+                <span class="number">${this._idx + 1}</span>
+                / <span class="number">${manifest?.steps.length}</span>`,
           })}
         </span>
       </div>
@@ -416,7 +415,7 @@ export class LitDevTutorial extends LitElement {
       <h1>
         ${when(
           this._idx < this._manifest.steps.length,
-          () => this._manifest.steps[this._idx].title
+          () => this._manifest.steps[this._idx].title,
         )}
       </h1>
       ${this._manifestTask.render({
@@ -440,7 +439,7 @@ export class LitDevTutorial extends LitElement {
             const domResponse = (domParser.parseFromString as any)(
               response,
               'text/html',
-              {includeShadowRoots: true}
+              {includeShadowRoots: true},
             );
             const body = domResponse.body;
             if (needsDSDPolyfill) {
@@ -464,9 +463,10 @@ export class LitDevTutorial extends LitElement {
     return html`<div id="tutorialFooter">
         ${when(
           !this._manifest.steps[this._idx].noSolve,
-          () => html`<litdev-icon-button @click=${this._onClickSolve}>
-            ${solveIcon} Solve
-          </litdev-icon-button>`
+          () =>
+            html`<litdev-icon-button @click=${this._onClickSolve}>
+              ${solveIcon} Solve
+            </litdev-icon-button>`,
         )}
         ${this._manifestTask.render({
           complete: (manifest) => this._renderCodeCheckButton(manifest),
@@ -536,7 +536,7 @@ export class LitDevTutorial extends LitElement {
     window.addEventListener('hashchange', this._readUrl);
     window.addEventListener(
       CODE_LANGUAGE_CHANGE,
-      this._onCodeLanguagePreferenceChanged
+      this._onCodeLanguagePreferenceChanged,
     );
 
     const previewElement = this._preview!;
@@ -557,7 +557,7 @@ export class LitDevTutorial extends LitElement {
     window.removeEventListener('hashchange', this._readUrl);
     window.removeEventListener(
       CODE_LANGUAGE_CHANGE,
-      this._onCodeLanguagePreferenceChanged
+      this._onCodeLanguagePreferenceChanged,
     );
 
     const iframe = this._preview!.iframe!;
@@ -596,7 +596,7 @@ export class LitDevTutorial extends LitElement {
       this._requestSolvedCode
         ? this._info.projectSrcAfter
         : this._info.projectSrcBefore,
-      true
+      true,
     );
   };
 
@@ -681,7 +681,7 @@ export class LitDevTutorial extends LitElement {
     if (hash.startsWith('#')) {
       hash = hash.slice(1);
     }
-    this._idx = hash === '' ? 0 : this._slugToIdx(hash) ?? this._idx;
+    this._idx = hash === '' ? 0 : (this._slugToIdx(hash) ?? this._idx);
     if (hash.startsWith('0')) {
       // In an earlier URL scheme, we indexed steps from 0, and left-padded with
       // "0"s. Now we index from 1, and conveniently use the fact that we also
@@ -705,7 +705,7 @@ export class LitDevTutorial extends LitElement {
     window.history.pushState(
       null,
       '',
-      addModsParameterToUrlIfNeeded(this._info.url)
+      addModsParameterToUrlIfNeeded(this._info.url),
     );
   }
 

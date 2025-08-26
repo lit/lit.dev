@@ -150,7 +150,7 @@ export class LitDevExample extends LitElement {
     super.connectedCallback();
     window.addEventListener(
       CODE_LANGUAGE_CHANGE,
-      this._onCodeLanguagePreferenceChanged
+      this._onCodeLanguagePreferenceChanged,
     );
   }
 
@@ -158,7 +158,7 @@ export class LitDevExample extends LitElement {
     super.disconnectedCallback();
     window.removeEventListener(
       CODE_LANGUAGE_CHANGE,
-      this._onCodeLanguagePreferenceChanged
+      this._onCodeLanguagePreferenceChanged,
     );
   }
 
@@ -243,7 +243,7 @@ export class LitDevExample extends LitElement {
         },
         {
           rootMargin: '40px',
-        }
+        },
       );
 
       io.observe(this);

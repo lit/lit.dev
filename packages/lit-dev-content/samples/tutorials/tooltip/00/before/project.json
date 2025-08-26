@@ -1,7 +1,7 @@
 {
   "extends": "../../tooltip-base.json",
   "files": {
-    "simple-tooltip.ts": {"hidden":true},
+    "simple-tooltip.ts": {"hidden": true},
     "my-content.ts": {"selected": true},
     "index.html": {"hidden": true}
   }

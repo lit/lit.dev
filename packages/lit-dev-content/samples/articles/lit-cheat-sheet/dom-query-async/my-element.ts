@@ -1,12 +1,12 @@
-import { html, LitElement, css, PropertyValues } from 'lit';
-import { customElement, state, property, queryAsync } from 'lit/decorators.js';
+import {html, LitElement, css, PropertyValues} from 'lit';
+import {customElement, state, property, queryAsync} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
   @property({type: Boolean}) showCanvas = false;
   @state() private canvasText = 'Hello World!';
   // You can use any querySelector selector
-  @queryAsync('#canvasId') private canvasEl!: Promise<HTMLCanvasElement|null>;
+  @queryAsync('#canvasId') private canvasEl!: Promise<HTMLCanvasElement | null>;
 
   protected update(changed: PropertyValues<this>) {
     if (changed.has('showCanvas')) {
@@ -19,14 +19,14 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      ${
-        this.showCanvas ?
-        html`<canvas id="canvasId"></canvas>` :
-        html`<button @click=${() => this.showCanvas = true}>Show Canvas</button>`
-      }
+      ${this.showCanvas
+        ? html`<canvas id="canvasId"></canvas>`
+        : html`<button @click=${() => (this.showCanvas = true)}>
+            Show Canvas
+          </button>`}
       <label>
         Enter text to draw in canvas:
-        <input @input=${this.handleInput} .value=${this.canvasText}>
+        <input @input=${this.handleInput} .value=${this.canvasText} />
       </label>
     `;
   }
@@ -40,22 +40,23 @@ export class MyElement extends LitElement {
       return;
     }
 
-    const ctx = canvasEl?.getContext("2d");
+    const ctx = canvasEl?.getContext('2d');
 
     if (!ctx) {
       return;
     }
 
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-    ctx.font = "50px Arial";
-    ctx.fillText(this.canvasText,10,80);
+    ctx.font = '50px Arial';
+    ctx.fillText(this.canvasText, 10, 80);
   }
 
   private handleInput(event: Event) {
     this.setCanvasText((event.target as HTMLInputElement).value);
   }
 
-  static styles = css`/* playground-fold */
+  static styles = css`
+    /* playground-fold */
     canvas {
       border: 1px solid black;
     }
@@ -64,5 +65,6 @@ export class MyElement extends LitElement {
       display: block;
       margin-block-start: 1em;
     }
-  /* playground-fold-end */`;
+    /* playground-fold-end */
+  `;
 }

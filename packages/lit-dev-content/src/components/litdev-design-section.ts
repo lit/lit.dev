@@ -92,7 +92,7 @@ export class LitDevDesignSection extends LitElement {
                   <option value=${token} ?selected=${this.foreground === token}>
                     ${token.replace('--sys-color-', '').replaceAll('-', ' ')}
                   </option>
-                `
+                `,
               )}
             </select>
           </label>
@@ -105,7 +105,7 @@ export class LitDevDesignSection extends LitElement {
                   <option value=${token} ?selected=${this.background === token}>
                     ${token.replace('--sys-color-', '').replaceAll('-', ' ')}
                   </option>
-                `
+                `,
               )}
             </select>
           </label>
@@ -120,7 +120,7 @@ export class LitDevDesignSection extends LitElement {
             >
               ${config.text}
             </div>
-          `
+          `,
         )}
       </div>
     `;

@@ -1,7 +1,7 @@
-import { html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { renderLibrary } from './trusted-rendering-library.js';
+import {html, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {renderLibrary} from './trusted-rendering-library.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {

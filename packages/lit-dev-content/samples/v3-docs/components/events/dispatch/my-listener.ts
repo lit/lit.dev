@@ -4,8 +4,7 @@ import {customElement, property} from 'lit/decorators.js';
 class MyListener extends LitElement {
   @property() name = '';
   protected render() {
-    return html`
-      <p @mylogin=${this._loginListener}><slot></slot></p>
+    return html` <p @mylogin=${this._loginListener}><slot></slot></p>
       <p>Login: ${this.name}</p>`;
   }
   private _loginListener(e: CustomEvent) {

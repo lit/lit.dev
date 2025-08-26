@@ -6,7 +6,7 @@ class MyDispatcher extends LitElement {
   @query('input', true) _input!: HTMLInputElement;
   protected render() {
     return html`
-      <p>Name: <input></p>
+      <p>Name: <input /></p>
       <p><button @click=${this._dispatchLogin}>Login</button></p>
     `;
   }
@@ -16,7 +16,7 @@ class MyDispatcher extends LitElement {
       const options = {
         detail: {name},
         bubbles: true,
-        composed: true
+        composed: true,
       };
       this.dispatchEvent(new CustomEvent('mylogin', options));
     }

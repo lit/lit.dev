@@ -1,6 +1,8 @@
 import {PostDoc} from 'postdoc-lib';
 
-export const installCodeChecker = async (checkCode: () => Promise<{passed: boolean, message?: string}>) => {
+export const installCodeChecker = async (
+  checkCode: () => Promise<{passed: boolean; message?: string}>,
+) => {
   const postDoc = new PostDoc({
     messageTarget: window.top!,
     messageReceiver: window,
@@ -15,9 +17,9 @@ export const installCodeChecker = async (checkCode: () => Promise<{passed: boole
           postDoc.postMessage({status, message});
           break;
       }
-    }
+    },
   });
 
   await postDoc.handshake;
   postDoc.postMessage({status: 'READY'});
-}
+};

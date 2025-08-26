@@ -24,4 +24,3 @@ export class MyElement extends SignalWatcher(LitElement) {
     count.set(count.get() + 1);
   }
 }
-

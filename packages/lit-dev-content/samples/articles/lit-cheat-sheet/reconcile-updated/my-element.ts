@@ -1,5 +1,5 @@
-import { html, LitElement, PropertyValues } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import {html, LitElement, PropertyValues} from 'lit';
+import {customElement, property, query} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -17,11 +17,11 @@ export class MyElement extends LitElement {
 
   #updateIframeContents(newContents: string) {
     const iframeDocument = this.iframeEl.contentDocument;
-      if (!iframeDocument) {
-        return;
-      }
+    if (!iframeDocument) {
+      return;
+    }
 
-      iframeDocument.querySelector('div')!.textContent = newContents;
+    iframeDocument.querySelector('div')!.textContent = newContents;
   }
 
   render() {

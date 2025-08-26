@@ -21,7 +21,7 @@ export class Renderer {
   private constructor(
     server: RendererServer,
     browser: playwright.Browser,
-    page: playwright.Page
+    page: playwright.Page,
   ) {
     this.server = server;
     this.browser = browser;
@@ -41,7 +41,7 @@ export class Renderer {
         if (status < 200 || status >= 300) {
           console.error(
             `ERROR: playground-plugin renderer encountered HTTP ` +
-              `${status} error fetching ${response.url()}`
+              `${status} error fetching ${response.url()}`,
           );
         }
       });
@@ -49,7 +49,7 @@ export class Renderer {
       page.on('pageerror', (error) => {
         console.error(
           `ERROR: playground-plugin renderer encountered page error: ` +
-            error.message
+            error.message,
         );
       });
 
@@ -79,7 +79,7 @@ export class Renderer {
 
   async render(
     lang: 'html' | 'css' | 'js' | 'ts',
-    code: string
+    code: string,
   ): Promise<{html: string}> {
     if (this.stopped) {
       throw new Error('Renderer has already stopped');
@@ -110,7 +110,7 @@ export class Renderer {
           const cm = editor.shadowRoot.querySelector('.CodeMirror-code');
           if (cm === null) {
             throw new Error(
-              '<codemirror-editor> did not render a ".CodeMirror-code" element'
+              '<codemirror-editor> did not render a ".CodeMirror-code" element',
             );
           }
           // The final line is sometimes (always?) an empty line containing just
@@ -124,7 +124,7 @@ export class Renderer {
           // Replace zero width newlines that don't copy paste well with a line
           // feed unicode character that pastes correctly.
           const codeLines = cm.querySelectorAll(
-            '.CodeMirror-line > span > span[cm-text]'
+            '.CodeMirror-line > span > span[cm-text]',
           );
           for (const line of codeLines) {
             if (line?.textContent?.match(/^[\u200B]*$/)) {
@@ -134,7 +134,7 @@ export class Renderer {
 
           return cm.innerHTML;
         },
-        [lang, code]
+        [lang, code],
       );
       const html = `<figure class="CodeMirror cm-s-default">${codemirrorHtml}</figure>`;
       return {html};

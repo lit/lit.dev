@@ -8,8 +8,12 @@ export class DateDisplay extends LitElement {
 
   render() {
     const locale = 'en-US';
-    const options: Intl.DateTimeFormatOptions =
-        {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
     return html`
       <p>The given date is: ${this.date.toLocaleDateString(locale, options)}</p>
     `;

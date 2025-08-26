@@ -102,24 +102,24 @@ export const preCompress = async (opts: {glob: string}) => {
   const mib = (b: number) => (b / 1024 / 1024).toFixed(2) + ' MiB';
   console.log(
     `[Compress] Processed ${stats.numFiles} files (${mib(
-      stats.inBytes
-    )}) in ${seconds.toFixed(1)} seconds`
+      stats.inBytes,
+    )}) in ${seconds.toFixed(1)} seconds`,
   );
 
   const brSaved = stats.brInBytes - stats.brOutBytes;
   const brRatio = stats.brInBytes / stats.brOutBytes;
   console.log(
     `[Compress] Created ${stats.brNumFiles} .br files / Ratio ${brRatio.toFixed(
-      1
-    )} to 1 / Saved ${mib(brSaved)}`
+      1,
+    )} to 1 / Saved ${mib(brSaved)}`,
   );
 
   const gzSaved = stats.gzInBytes - stats.gzOutBytes;
   const gzRatio = stats.gzInBytes / stats.gzOutBytes;
   console.log(
     `[Compress] Created ${stats.gzNumFiles} .gz files / Ratio ${gzRatio.toFixed(
-      1
-    )} to 1 / Saved ${mib(gzSaved)}`
+      1,
+    )} to 1 / Saved ${mib(gzSaved)}`,
   );
 };
 

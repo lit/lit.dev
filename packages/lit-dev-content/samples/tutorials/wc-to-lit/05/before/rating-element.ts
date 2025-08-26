@@ -7,12 +7,15 @@ export class RatingElement extends HTMLElement {
   }
   connectedCallback() {
     const shadowRoot = this.attachShadow({mode: 'open'});
-    const templateContent = document.querySelector<HTMLTemplateElement>('#rating-element-template')!.content;
+    const templateContent = document.querySelector<HTMLTemplateElement>(
+      '#rating-element-template',
+    )!.content;
     const clonedContent = templateContent.cloneNode(true);
     shadowRoot.appendChild(clonedContent);
 
-    this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText = `${this.rating}`;
+    this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText =
+      `${this.rating}`;
   }
- }
+}
 
- customElements.define('rating-element', RatingElement);
+customElements.define('rating-element', RatingElement);

@@ -1,5 +1,5 @@
-import { css, html, LitElement, PropertyValues } from 'lit';
-import { customElement, query, state } from 'lit/decorators.js';
+import {css, html, LitElement, PropertyValues} from 'lit';
+import {customElement, query, state} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -14,7 +14,8 @@ export class MyElement extends LitElement {
       <input
         ?disabled=${this.disabled}
         aria-label=${this.label}
-        .value=${this.value}>
+        .value=${this.value}
+      />
       <div>
         Renders to:
         <pre>${this.htmlText}</pre>
@@ -25,20 +26,26 @@ export class MyElement extends LitElement {
           disabled:
           <input
             type="checkbox"
-            @change=${(e: Event) => (this.disabled = (e.target as HTMLInputElement).checked)}
-            .checked=${this.disabled}>
+            @change=${(e: Event) =>
+              (this.disabled = (e.target as HTMLInputElement).checked)}
+            .checked=${this.disabled}
+          />
         </label>
         <label>
           aria-label:
           <input
-            @input=${(e: Event) => (this.label = (e.target as HTMLInputElement).value)}
-            .value=${this.label}>
+            @input=${(e: Event) =>
+              (this.label = (e.target as HTMLInputElement).value)}
+            .value=${this.label}
+          />
         </label>
         <label>
           value:
           <input
-            @input=${(e: Event) => (this.value = (e.target as HTMLInputElement).value)}
-            .value=${this.value}>
+            @input=${(e: Event) =>
+              (this.value = (e.target as HTMLInputElement).value)}
+            .value=${this.value}
+          />
         </label>
       </div>
       <!-- /* playground-fold-end */ -->
@@ -52,10 +59,10 @@ export class MyElement extends LitElement {
   }
 
   static styles = css`
-  /* playground-fold */
+    /* playground-fold */
     label {
       display: block;
     }
-  /* playground-fold-end */
+    /* playground-fold-end */
   `;
 }

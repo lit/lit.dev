@@ -3,10 +3,11 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('my-listener')
 class MyListener extends LitElement {
-  @property({type: Number}) height: number|null = null;
+  @property({type: Number}) height: number | null = null;
   protected render() {
-    return html`
-      <p @opened=${this._listener} @closed=${this._listener}><slot></slot></p>
+    return html` <p @opened=${this._listener} @closed=${this._listener}>
+        <slot></slot>
+      </p>
       <p>Height: ${this.height}px</p>`;
   }
   private _listener() {
@@ -14,7 +15,9 @@ class MyListener extends LitElement {
   }
   protected updated() {
     if (this.height === null) {
-      requestAnimationFrame(() => this.height = this.getBoundingClientRect().height);
+      requestAnimationFrame(
+        () => (this.height = this.getBoundingClientRect().height),
+      );
     }
   }
 }

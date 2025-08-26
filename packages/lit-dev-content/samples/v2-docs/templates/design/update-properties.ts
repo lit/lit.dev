@@ -3,19 +3,16 @@ import {customElement, property} from 'lit/decorators.js';
 
 @customElement('update-properties')
 class UpdateProperties extends LitElement {
-
   @property()
   message: string = 'Loading...';
 
   constructor() {
     super();
-    this.loadStuff().then((content) => this.message = content);
+    this.loadStuff().then((content) => (this.message = content));
   }
 
   render() {
-    return html`
-      <p>${this.message}</p>
-    `;
+    return html` <p>${this.message}</p> `;
   }
 
   loadStuff() {

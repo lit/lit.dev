@@ -6,14 +6,20 @@ const HighlightableLitElement = Highlightable(LitElement);
 export class ElementTwo extends HighlightableLitElement {
   static styles = [
     HighlightableLitElement.styles || [],
-    css`:host { display: block; }`,
+    css`
+      :host {
+        display: block;
+      }
+    `,
   ];
   render() {
     return this.renderHighlight(html`
       <label>
-        <input type="checkbox"
+        <input
+          type="checkbox"
           .checked=${this.highlight}
-          @change=${this.toggleHighlight}>
+          @change=${this.toggleHighlight}
+        />
         Toggleable highlight
       </label>
     `);

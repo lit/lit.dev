@@ -92,7 +92,7 @@ Site version: \`${this.siteVersion}\`
 Browser: \`${navigator.userAgent}\`
 
 <!-- Please add any additional information here. -->
-`
+`,
     );
     return url.href;
   }

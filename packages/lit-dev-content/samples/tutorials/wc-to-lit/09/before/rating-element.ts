@@ -1,45 +1,56 @@
 export class RatingElement extends HTMLElement {
   private _rating = 0;
-  private _vote: 'up'|'down'|null = null;
+  private _vote: 'up' | 'down' | null = null;
   private _boundOnUpClick = this._onUpClick.bind(this);
   private _boundOnDownClick = this._onDownClick.bind(this);
 
   connectedCallback() {
     const shadowRoot = this.attachShadow({mode: 'open'});
-    const templateContent = document.querySelector<HTMLTemplateElement>('#rating-element-template')!.content;
+    const templateContent = document.querySelector<HTMLTemplateElement>(
+      '#rating-element-template',
+    )!.content;
     const clonedContent = templateContent.cloneNode(true);
     shadowRoot.appendChild(clonedContent);
 
-    this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText = `${this.rating}`;
+    this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText =
+      `${this.rating}`;
 
-    this.shadowRoot!
-      .querySelector('.thumb_up')!
-      .addEventListener('click', this._boundOnUpClick);
-    this.shadowRoot!
-      .querySelector('.thumb_down')!
-      .addEventListener('click', this._boundOnDownClick);
+    this.shadowRoot!.querySelector('.thumb_up')!.addEventListener(
+      'click',
+      this._boundOnUpClick,
+    );
+    this.shadowRoot!.querySelector('.thumb_down')!.addEventListener(
+      'click',
+      this._boundOnDownClick,
+    );
   }
 
   disconnectedCallback() {
-    this.shadowRoot!
-      .querySelector('.thumb_up')!
-      .removeEventListener('click', this._boundOnUpClick);
-    this.shadowRoot!
-      .querySelector('.thumb_down')!
-      .removeEventListener('click', this._boundOnDownClick);
+    this.shadowRoot!.querySelector('.thumb_up')!.removeEventListener(
+      'click',
+      this._boundOnUpClick,
+    );
+    this.shadowRoot!.querySelector('.thumb_down')!.removeEventListener(
+      'click',
+      this._boundOnDownClick,
+    );
   }
 
   static get observedAttributes() {
     return ['rating', 'vote'];
   }
 
-  attributeChangedCallback(attributeName: string, _oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    attributeName: string,
+    _oldValue: string,
+    newValue: string,
+  ) {
     if (attributeName === 'rating') {
       const newRating = Number(newValue);
 
       this.rating = newRating;
     } else if (attributeName === 'vote') {
-      this.vote = newValue as 'up'|'down';
+      this.vote = newValue as 'up' | 'down';
     }
   }
 
@@ -96,6 +107,6 @@ export class RatingElement extends HTMLElement {
   _onDownClick() {
     this.vote = 'down';
   }
- }
+}
 
- customElements.define('rating-element', RatingElement);
+customElements.define('rating-element', RatingElement);

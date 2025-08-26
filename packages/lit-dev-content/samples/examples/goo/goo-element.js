@@ -1,24 +1,24 @@
-import { LitElement, html, css } from 'lit';
-import { styleMap } from 'lit/directives/style-map.js';
+import {LitElement, html, css} from 'lit';
+import {styleMap} from 'lit/directives/style-map.js';
 
-import { styles } from './styles.css.js';
-import { SpringController2D } from './spring-controller.js';
-import { MouseController } from './mouse-controller.js';
+import {styles} from './styles.css.js';
+import {SpringController2D} from './spring-controller.js';
+import {MouseController} from './mouse-controller.js';
 
 const slow = {
   stiffness: 400,
   damping: 500,
-  mass: 10
+  mass: 10,
 };
 
 const fast = {
   stiffness: 1200,
-  damping: 400
+  damping: 400,
 };
 
 const positionStyle = ([x, y]) =>
   styleMap({
-    transform: `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`
+    transform: `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`,
   });
 
 /**
@@ -83,4 +83,4 @@ class GooElement extends LitElement {
     `;
   }
 }
-customElements.define("goo-element", GooElement);
+customElements.define('goo-element', GooElement);

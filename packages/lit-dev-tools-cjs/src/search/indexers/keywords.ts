@@ -27,7 +27,7 @@ interface KeywordModifiers {
  */
 export async function addKeywords(
   outputDir: '_dev' | '_site',
-  index: UserFacingPageData[]
+  index: UserFacingPageData[],
 ) {
   if (outputDir === '_dev') {
     return index;
@@ -36,7 +36,7 @@ export async function addKeywords(
   // Path to the keyword modifiers JSON file.
   const KEYWORD_MODIFIERS_PATH = path.resolve(
     __dirname,
-    `../../../../lit-dev-content/${outputDir}/search-modifiers/keywords.json`
+    `../../../../lit-dev-content/${outputDir}/search-modifiers/keywords.json`,
   );
 
   const fileContents = await fs.readFile(KEYWORD_MODIFIERS_PATH, 'utf-8');

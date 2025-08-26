@@ -1,5 +1,5 @@
-import { css, html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import {css, html, LitElement} from 'lit';
+import {customElement, property, state} from 'lit/decorators.js';
 
 @customElement('word-viewer')
 class WordViewer extends LitElement {
@@ -40,8 +40,9 @@ class WordViewer extends LitElement {
     return html`<pre>${word}</pre>`;
   }
   // TODO: Increment by `this.playDirection`
-  tickToNextWord = () => { this.idx += 1; };
+  tickToNextWord = () => {
+    this.idx += 1;
+  };
 
   // TODO: Add switchPlayDirection method.
 }
-

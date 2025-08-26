@@ -34,7 +34,7 @@ export class TsJsLanguageDisplay extends LitElement {
     super.disconnectedCallback();
     window.removeEventListener(
       CODE_LANGUAGE_CHANGE,
-      this._onCodeLanguageChange
+      this._onCodeLanguageChange,
     );
   }
 

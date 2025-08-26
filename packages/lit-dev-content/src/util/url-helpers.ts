@@ -15,7 +15,7 @@
  */
 export const getHashSearchParam = (
   name: string,
-  hashParams = getHashSearchParams()
+  hashParams = getHashSearchParams(),
 ): string | null => {
   return hashParams.get(name);
 };
@@ -33,7 +33,7 @@ export const getHashSearchParam = (
 export const setHashSearchParam = (
   name: string,
   value: string,
-  hashParams = getHashSearchParams()
+  hashParams = getHashSearchParams(),
 ): URLSearchParams => {
   hashParams.set(name, value);
   return hashParams;
@@ -50,7 +50,7 @@ export const setHashSearchParam = (
  */
 export const deleteHashSearchParam = (
   name: string,
-  hashParams = getHashSearchParams()
+  hashParams = getHashSearchParams(),
 ): URLSearchParams => {
   hashParams.delete(name);
   return hashParams;

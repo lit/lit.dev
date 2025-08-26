@@ -32,8 +32,11 @@ export class MotionCarousel extends LitElement {
   private clickHandler(e: MouseEvent) {
     const i = this.selected + (Number(!e.shiftKey) || -1);
     this.selected = i > this.maxSelected ? 0 : i < 0 ? this.maxSelected : i;
-    const change = new CustomEvent('change',
-      {detail: this.selected, bubbles: true, composed: true});
+    const change = new CustomEvent('change', {
+      detail: this.selected,
+      bubbles: true,
+      composed: true,
+    });
     this.dispatchEvent(change);
   }
 
@@ -49,5 +52,4 @@ export class MotionCarousel extends LitElement {
     this.children[this.previous]?.removeAttribute('slot');
     this.children[this.selected]?.setAttribute('slot', 'selected');
   }
-
 }

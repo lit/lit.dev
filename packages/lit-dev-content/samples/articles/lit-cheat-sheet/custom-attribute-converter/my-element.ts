@@ -1,5 +1,6 @@
-import { html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';import {ComplexAttributeConverter} from 'lit';
+import {html, LitElement} from 'lit';
+import {customElement, property, state} from 'lit/decorators.js';
+import {ComplexAttributeConverter} from 'lit';
 
 /**
  * Bidirectionally converts an array from an attribute to a property of the
@@ -17,17 +18,15 @@ export const arrayConverter: ComplexAttributeConverter<Array<unknown>> = {
     } catch {
       return [];
     }
-  }
+  },
 };
 
 @customElement('my-element')
 export class MyElement extends LitElement {
-  @property({ converter: arrayConverter, reflect: true })
-  array: Array<number|string> = [];
+  @property({converter: arrayConverter, reflect: true})
+  array: Array<number | string> = [];
 
   render() {
-    return this.array.map((item) =>
-      html`<div>${typeof item}: ${item}</div>`
-    );
+    return this.array.map((item) => html`<div>${typeof item}: ${item}</div>`);
   }
 }

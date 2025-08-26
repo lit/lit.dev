@@ -62,4 +62,4 @@ export const data = [
   {id: 8, value: 'Cows', summary: 'Cows make good hamburgers.'},
 ];
 
-export type DataItem = typeof data[number];
+export type DataItem = (typeof data)[number];

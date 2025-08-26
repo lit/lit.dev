@@ -68,7 +68,7 @@ const GOOGLE_ANALYTICS_INLINE_SCRIPT_HASH =
  * https://csp-evaluator.withgoogle.com/
  */
 export const contentSecurityPolicyMiddleware = (
-  opts: ContentSecurityPolicyMiddlewareOptions
+  opts: ContentSecurityPolicyMiddlewareOptions,
 ): Koa.Middleware => {
   const makePolicy = (...directives: string[]) =>
     [
@@ -143,7 +143,7 @@ export const contentSecurityPolicyMiddleware = (
     // is no other directive to use. See
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1303364#c4 and
     // https://github.com/w3c/webappsec-csp/issues/199.
-    `default-src 'self'`
+    `default-src 'self'`,
   );
 
   // Policy for the playground-elements web worker script.
@@ -174,7 +174,7 @@ export const contentSecurityPolicyMiddleware = (
     `connect-src https://unpkg.com/ https://cdn.jsdelivr.net/`,
 
     // Disallow everything else.
-    `default-src 'none'`
+    `default-src 'none'`,
   );
 
   // For all other responses, set the strictest possible CSP, just in case a
@@ -191,7 +191,7 @@ export const contentSecurityPolicyMiddleware = (
   const atomXmlFeedCsp = makePolicy(
     `style-src 'unsafe-inline'`,
     `img-src data:`,
-    `default-src 'none'`
+    `default-src 'none'`,
   );
 
   return async (ctx, next) => {

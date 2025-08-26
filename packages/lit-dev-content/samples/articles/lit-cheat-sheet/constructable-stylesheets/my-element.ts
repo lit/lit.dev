@@ -1,6 +1,9 @@
-import { html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { trustedStyles, type CSSStyleSheet } from './trusted-stringified-css-source.js';
+import {html, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {
+  trustedStyles,
+  type CSSStyleSheet,
+} from './trusted-stringified-css-source.js';
 
 // Use constructable stylesheets on TRUSTED CSS strings to use them in a LitElement
 const styles = new CSSStyleSheet();
@@ -11,10 +14,6 @@ const styles = new CSSStyleSheet();
 export class MyElement extends LitElement {
   static styles = styles;
   render() {
-    return html`
-      <div>
-        This should be red!
-      </div>
-    `;
+    return html` <div>This should be red!</div> `;
   }
 }

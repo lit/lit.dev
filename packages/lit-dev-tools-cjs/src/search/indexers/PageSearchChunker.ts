@@ -45,7 +45,7 @@ interface PageDataChunk {
  */
 function dataChunktoSearchChunk(
   {heading, fragment, nodeCollection, isParent}: PageDataChunk,
-  title: string
+  title: string,
 ): PageSearchDataChunk {
   const withoutComments = stripcomments(nodeCollection.outerHTML);
   // Leave a space when removing tags so we don't accidentally concat text from
@@ -105,11 +105,11 @@ export class PageSearchChunker {
       this.parsedPage.window.document.querySelector('article#content');
     if (!article) {
       throw new Error(
-        `Expect every lit.dev page to have an article#content element.`
+        `Expect every lit.dev page to have an article#content element.`,
       );
     }
     const removedSections = article.querySelectorAll(
-      'nav#inlineToc, header.articleHeader'
+      'nav#inlineToc, header.articleHeader',
     );
     [...removedSections].forEach((section) => section.remove());
     return article;
@@ -165,7 +165,7 @@ export class PageSearchChunker {
       const headerText = possibleHeading.textContent;
       if (!headerText) {
         throw new Error(
-          `No textContent on header with fragment: '${fragment}'`
+          `No textContent on header with fragment: '${fragment}'`,
         );
       }
       return this.newPageDataChunk({

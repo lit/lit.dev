@@ -48,6 +48,7 @@ export const styles = css`
     width: 8px;
     border-radius: 8px;
     background: #eee;
-  }`;
+  }
+`;
 
 /* playground-fold-end */

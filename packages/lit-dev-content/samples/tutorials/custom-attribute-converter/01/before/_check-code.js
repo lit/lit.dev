@@ -27,7 +27,9 @@ installCodeChecker(async () => {
     passed = false;
   }
 
-  message = passed ? `'dateStr' is now a reactive property that accepts strings!` : message;
+  message = passed
+    ? `'dateStr' is now a reactive property that accepts strings!`
+    : message;
 
   window.location.reload();
   return {passed, message};

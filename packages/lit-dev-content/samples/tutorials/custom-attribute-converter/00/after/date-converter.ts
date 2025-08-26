@@ -6,5 +6,5 @@ export const dateConverter: ComplexAttributeConverter<Date> = {
   },
   fromAttribute: (value: string) => {
     return new Date(value);
-  }
+  },
 };

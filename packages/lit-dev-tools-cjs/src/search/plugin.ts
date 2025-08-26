@@ -58,13 +58,13 @@ export interface UserFacingPageData {
 export async function createSearchIndex(outputDir: '_dev' | '_site') {
   const OUT_PATH = path.resolve(
     __dirname,
-    `../../../lit-dev-content/${outputDir}/searchIndex.json`
+    `../../../lit-dev-content/${outputDir}/searchIndex.json`,
   );
   const docs: UserFacingPageData[] = await indexDocs(outputDir);
   let idOffset = Number(docs[docs.length - 1].objectID);
   const articles: UserFacingPageData[] = await indexArticles(
     outputDir,
-    idOffset
+    idOffset,
   );
 
   idOffset = Number(articles[articles.length - 1].objectID);
@@ -73,7 +73,7 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   idOffset = Number(api[api.length - 1].objectID);
   const tutorials: UserFacingPageData[] = await indexTutorials(
     outputDir,
-    idOffset
+    idOffset,
   );
 
   idOffset = Number(tutorials[tutorials.length - 1].objectID);
@@ -82,7 +82,7 @@ export async function createSearchIndex(outputDir: '_dev' | '_site') {
   idOffset = Number(videos[videos.length - 1].objectID);
   const externalSearchData: UserFacingPageData[] = await indexExternalData(
     outputDir,
-    idOffset
+    idOffset,
   );
 
   const searchIndex: UserFacingPageData[] = [

@@ -40,11 +40,11 @@ const siteOutputDir = pathLib.resolve(
   '../',
   '../',
   'lit-dev-content',
-  '_site'
+  '_site',
 );
 
 const checkRedirect = async (
-  redirect: string
+  redirect: string,
 ): Promise<ErrorMessage | typeof OK> => {
   if (isAbsoluteUrl(redirect)) {
     // Remote URLs.
@@ -64,11 +64,11 @@ const checkRedirect = async (
     const {pathname, hash} = new URL(redirect, 'http://lit.dev');
     const indexHtmlPath = pathLib.relative(
       process.cwd(),
-      pathLib.join(siteOutputDir, trimTrailingSlash(pathname), 'index.html')
+      pathLib.join(siteOutputDir, trimTrailingSlash(pathname), 'index.html'),
     );
     const directPath = pathLib.relative(
       process.cwd(),
-      pathLib.join(siteOutputDir, trimTrailingSlash(pathname))
+      pathLib.join(siteOutputDir, trimTrailingSlash(pathname)),
     );
     let data;
     try {
@@ -119,13 +119,13 @@ const checkAllRedirects = async () => {
         } else {
           console.log();
           console.log(
-            `${bold + red}BROKEN REDIRECT${reset} ${yellow + target + reset}`
+            `${bold + red}BROKEN REDIRECT${reset} ${yellow + target + reset}`,
           );
           console.log(result);
           console.log();
           fail = true;
         }
-      })()
+      })(),
     );
   }
   await Promise.all(promises);

@@ -21,7 +21,7 @@ const data = [
   {id: 7, value: 'BBQ!', completed: false},
 ];
 
-type DataItem = typeof data[number];
+type DataItem = (typeof data)[number];
 
 @customElement('motion-todos')
 export class MotionTodos extends LitElement {
@@ -70,41 +70,41 @@ export class MotionTodos extends LitElement {
       duration: 500,
       fill: 'both' as FillMode,
     };
-    const list = (completed = false) => html`<div
-      class="list ${classMap({completed})}"
-    >
-      <h3>${completed ? `Completed` : `Todos`}</h3>
-      <ul tabindex="-1">
-        ${repeat(
-          this.data.filter((item) =>
-            completed ? item.completed : !item.completed
-          ),
-          (item) => item.id,
-          (item) => html`<li
-            ${animate({
-              keyframeOptions,
-              in: flyBelow,
-              out: fadeOut,
-              stabilizeOut: true,
-              id: `${item.id}:${completed ? 'right' : 'left'}`,
-              inId: `${item.id}:${completed ? 'left' : 'right'}`,
-              skipInitial: true,
-            })}
-          >
-            <mwc-formfield label="${item.id}. ${item.value}"
-              ><mwc-checkbox
-                type="checkbox"
-                ?checked=${completed}
-                @change=${(e: Event) =>
-                  this.updateItem(item, (e.target! as Checkbox).checked)}
-              ></mwc-checkbox></mwc-formfield
-            ><button @click=${() => this.removeItem(item)}>
-              remove_circle_outline
-            </button>
-          </li>`
-        )}
-      </ul>
-    </div>`;
+    const list = (completed = false) =>
+      html`<div class="list ${classMap({completed})}">
+        <h3>${completed ? `Completed` : `Todos`}</h3>
+        <ul tabindex="-1">
+          ${repeat(
+            this.data.filter((item) =>
+              completed ? item.completed : !item.completed,
+            ),
+            (item) => item.id,
+            (item) =>
+              html`<li
+                ${animate({
+                  keyframeOptions,
+                  in: flyBelow,
+                  out: fadeOut,
+                  stabilizeOut: true,
+                  id: `${item.id}:${completed ? 'right' : 'left'}`,
+                  inId: `${item.id}:${completed ? 'left' : 'right'}`,
+                  skipInitial: true,
+                })}
+              >
+                <mwc-formfield label="${item.id}. ${item.value}"
+                  ><mwc-checkbox
+                    type="checkbox"
+                    ?checked=${completed}
+                    @change=${(e: Event) =>
+                      this.updateItem(item, (e.target! as Checkbox).checked)}
+                  ></mwc-checkbox></mwc-formfield
+                ><button @click=${() => this.removeItem(item)}>
+                  remove_circle_outline
+                </button>
+              </li>`,
+          )}
+        </ul>
+      </div>`;
     return html`
       <mwc-textfield outlined label="Enter a todo..."></mwc-textfield>
       <div class="controls">

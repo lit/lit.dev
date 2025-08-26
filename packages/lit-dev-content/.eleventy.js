@@ -71,7 +71,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addWatchTarget('../lit-dev-api/api-data/*/*.json');
   eleventyConfig.addWatchTarget(
-    '../lit-dev-content/samples/tutorials/**/tutorial.json'
+    '../lit-dev-content/samples/tutorials/**/tutorial.json',
   );
   eleventyConfig.addWatchTarget('../lit-dev-content/samples/tutorials/**/*.md');
   eleventyConfig.addWatchTarget('../lit-dev-content/rollupout/server/*');
@@ -119,14 +119,14 @@ ${content}
       Object.assign(new state.Token('div_open', 'div', 1), {
         attrs: [['class', `heading ${headingTag}`]],
         block: true,
-      })
+      }),
     );
     state.tokens.splice(
       idx + 4,
       0,
       Object.assign(new state.Token('div_close', 'div', -1), {
         block: true,
-      })
+      }),
     );
     linkAfterHeaderBase(slug, opts, state, idx + 1);
   };
@@ -165,16 +165,16 @@ ${content}
     function (url, latestVersion) {
       if (!latestVersion) {
         throw new Error(
-          `No latestVersion provided to 'removeLatestVersionFromUrl`
+          `No latestVersion provided to 'removeLatestVersionFromUrl`,
         );
       }
       if (!url.includes(`/${latestVersion}/`)) {
         throw new Error(
-          `'${url}' does not include the latestVersion versioned path segment`
+          `'${url}' does not include the latestVersion versioned path segment`,
         );
       }
       return url.replace(`/${latestVersion}/`, '/');
-    }
+    },
   );
 
   /**
@@ -191,11 +191,11 @@ ${content}
       }
       if (!latestVersion) {
         throw new Error(
-          `latestVersion not provided to 'fixUnversionedCrossLinks`
+          `latestVersion not provided to 'fixUnversionedCrossLinks`,
         );
       }
       return content.replaceAll(`/docs/${latestVersion}/`, '/docs/');
-    }
+    },
   );
 
   eleventyConfig.addFilter('removeExtension', function (url) {
@@ -446,7 +446,7 @@ ${content}
       if (location === undefined) {
         throw new Error(
           `Ambiguous symbol ${symbol}. ` +
-            `Options: ${locations.map((l) => l.anchor).join(', ')}`
+            `Options: ${locations.map((l) => l.anchor).join(', ')}`,
         );
       }
 
@@ -459,8 +459,8 @@ ${content}
     'api-v3',
     '/docs/v3/api',
     JSON.parse(
-      fsSync.readFileSync('../lit-dev-api/api-data/lit-3/symbols.json', 'utf8')
-    )
+      fsSync.readFileSync('../lit-dev-api/api-data/lit-3/symbols.json', 'utf8'),
+    ),
   );
 
   addApiShortcode(
@@ -468,8 +468,8 @@ ${content}
     '/docs/v2/api',
     // Don't use require() because of Node caching in watch mode.
     JSON.parse(
-      fsSync.readFileSync('../lit-dev-api/api-data/lit-2/symbols.json', 'utf8')
-    )
+      fsSync.readFileSync('../lit-dev-api/api-data/lit-2/symbols.json', 'utf8'),
+    ),
   );
 
   addApiShortcode(
@@ -478,9 +478,9 @@ ${content}
     JSON.parse(
       fsSync.readFileSync(
         '../lit-dev-api/api-data/lit-html-1/symbols.json',
-        'utf8'
-      )
-    )
+        'utf8',
+      ),
+    ),
   );
 
   addApiShortcode(
@@ -489,9 +489,9 @@ ${content}
     JSON.parse(
       fsSync.readFileSync(
         '../lit-dev-api/api-data/lit-element-2/symbols.json',
-        'utf8'
-      )
-    )
+        'utf8',
+      ),
+    ),
   );
 
   /**
@@ -520,7 +520,7 @@ ${content}
         `CleanCSS errors/warnings on file ${path}:\n\n${[
           ...result.errors,
           ...result.warnings,
-        ].join('\n')}`
+        ].join('\n')}`,
       );
     }
     return `<style>${result.styles}</style>`;
@@ -554,14 +554,14 @@ ${content}
   // Source: https://github.com/11ty/eleventy-base-blog/blob/master/.eleventy.js
   eleventyConfig.addFilter('readableDate', (dateObj) => {
     return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
-      'LLL d, yyyy'
+      'LLL d, yyyy',
     );
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('yyyymmdd', (dateObj) => {
     return luxon.DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(
-      'yyyy-LL-dd'
+      'yyyy-LL-dd',
     );
   });
 
@@ -587,7 +587,7 @@ ${content}
           ENV.eleventyOutDir + '/docs/v3/introduction.html',
           ENV.eleventyOutDir + '/docs/v3/*/index.html',
         ],
-        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2|v3)/index.html'}
+        {ignore: ENV.eleventyOutDir + '/docs/(v1|v2|v3)/index.html'},
       )
     ).filter(
       // TODO(aomarks) This is brittle, we need a way to annotate inside an md
@@ -595,7 +595,7 @@ ${content}
       (file) =>
         !file.includes('why-lit') &&
         !file.includes('getting-started') &&
-        !file.includes('browser-support')
+        !file.includes('browser-support'),
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
@@ -611,32 +611,32 @@ ${content}
       // immediately, instead of triggering an Eleventy build.
       await symlinkForce(
         path.join(__dirname, 'site', 'css'),
-        path.join(__dirname, ENV.eleventyOutDir, 'css')
+        path.join(__dirname, ENV.eleventyOutDir, 'css'),
       );
       await symlinkForce(
         path.join(__dirname, 'site', 'images'),
-        path.join(__dirname, ENV.eleventyOutDir, 'images')
+        path.join(__dirname, ENV.eleventyOutDir, 'images'),
       );
       await symlinkForce(
         path.join(__dirname, 'site', 'fonts'),
-        path.join(__dirname, ENV.eleventyOutDir, 'fonts')
+        path.join(__dirname, ENV.eleventyOutDir, 'fonts'),
       );
       await symlinkForce(
         path.join(__dirname, 'samples'),
-        path.join(__dirname, ENV.eleventyOutDir, 'samples')
+        path.join(__dirname, ENV.eleventyOutDir, 'samples'),
       );
 
       // Symlink lib -> _dev/js. This lets us directly reference tsc outputs in
       // dev mode, instead of the Rollup bundles we use for production.
       await symlinkForce(
         path.join(__dirname, 'lib'),
-        path.join(__dirname, ENV.eleventyOutDir, 'js')
+        path.join(__dirname, ENV.eleventyOutDir, 'js'),
       );
     } else {
       // Inline all Playground project files directly into their manifests, to
       // cut down on requests per project.
       await inlinePlaygroundFilesIntoManifests(
-        `${ENV.eleventyOutDir}/samples/**/project.json`
+        `${ENV.eleventyOutDir}/samples/**/project.json`,
       );
 
       // Pre-compress all outputs as .br and .gz files so the server can read
@@ -649,7 +649,7 @@ ${content}
       await fs.writeFile(
         path.join(ENV.eleventyOutDir, 'csp-inline-script-hashes.txt'),
         [...cspInlineScriptHashes].join('\n'),
-        'utf8'
+        'utf8',
       );
     }
   });
@@ -676,7 +676,7 @@ ${content}
   // In prod SSR should use the lit templates run through the minifier.
   if (!DEV) {
     componentModules = componentModules.map((componentPath) =>
-      componentPath.replace('lib/components', 'rollupout/server')
+      componentPath.replace('lib/components', 'rollupout/server'),
     );
   }
 

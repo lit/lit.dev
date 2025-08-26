@@ -1,10 +1,8 @@
 import {LitElement, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-
 @customElement('my-page')
 class MyPage extends LitElement {
-
   @property({attribute: false})
   article = {
     title: 'My Nifty Article',
@@ -25,8 +23,7 @@ class MyPage extends LitElement {
 
   render() {
     return html`
-      ${this.headerTemplate()}
-      ${this.articleTemplate()}
+      ${this.headerTemplate()} ${this.articleTemplate()}
       ${this.footerTemplate()}
     `;
   }

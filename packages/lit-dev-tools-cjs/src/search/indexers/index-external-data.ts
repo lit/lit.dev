@@ -10,7 +10,7 @@ import type {UserFacingPageData} from '../plugin';
 
 export async function indexExternalData(
   outputDir: '_dev' | '_site',
-  idOffset = 0
+  idOffset = 0,
 ) {
   if (outputDir === '_dev') {
     return [];
@@ -19,7 +19,7 @@ export async function indexExternalData(
   // Path of the external data index.
   const EXTERNAL_DATA_INDEX_PATH = path.resolve(
     __dirname,
-    `../../../../lit-dev-content/${outputDir}/search-modifiers/external-data.json`
+    `../../../../lit-dev-content/${outputDir}/search-modifiers/external-data.json`,
   );
 
   const fileContents = await fs.readFile(EXTERNAL_DATA_INDEX_PATH, 'utf-8');

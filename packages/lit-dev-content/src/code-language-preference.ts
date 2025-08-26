@@ -64,7 +64,7 @@ export const getCodeLanguagePreference = (): CodeLanguagePreference =>
  */
 export const setCodeLanguagePreference = (
   preference: CodeLanguagePreference,
-  force = false
+  force = false,
 ): void => {
   if (!force) {
     let cancelled = false;
@@ -75,7 +75,7 @@ export const setCodeLanguagePreference = (
       },
     };
     window.dispatchEvent(
-      new CustomEvent(BEFORE_CODE_LANGUAGE_CHANGE, {detail})
+      new CustomEvent(BEFORE_CODE_LANGUAGE_CHANGE, {detail}),
     );
     if (cancelled) {
       return;

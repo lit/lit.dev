@@ -1,6 +1,6 @@
-import { html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
-import { playerOneScore, playerTwoScore } from './game-state.js';
+import {html, LitElement} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
+import {playerOneScore, playerTwoScore} from './game-state.js';
 
 export type ScoreEvent = CustomEvent<number>;
 

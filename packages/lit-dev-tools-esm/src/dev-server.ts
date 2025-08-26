@@ -65,7 +65,7 @@ const removeWatchScriptFromPlaygroundFiles: DevServerPlugin = {
       return {
         body: (ctx.body as string).replace(
           /<!-- injected by web-dev-server.*<\/script>/gs,
-          ''
+          '',
         ),
       };
     }

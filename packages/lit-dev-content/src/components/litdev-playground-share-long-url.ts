@@ -75,7 +75,7 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
       return;
     }
     const base64 = encodeSafeBase64(
-      JSON.stringify(files.map(compactPlaygroundFile))
+      JSON.stringify(files.map(compactPlaygroundFile)),
     );
     // We have to use these util functions so that we do not accidentally
     // overwrite any existing query parameters in the hash like `#view-mode=...`
@@ -114,7 +114,7 @@ export class LitDevPlaygroundShareLongUrl extends LitElement {
       new CustomEvent('status', {
         detail: {text: statusText},
         bubbles: true,
-      })
+      }),
     );
   }
 }

@@ -22,10 +22,10 @@ export class ByeElement extends LitElement {
 
   render() {
     return html`
-      <button @click=${() => this._showMessage = !this._showMessage}>Click me</button>
-      <div id="message" ?hidden=${!this._showMessage}>
-        That's all folks!
-      </div>
+      <button @click=${() => (this._showMessage = !this._showMessage)}>
+        Click me
+      </button>
+      <div id="message" ?hidden=${!this._showMessage}>That's all folks!</div>
     `;
   }
 
@@ -33,13 +33,16 @@ export class ByeElement extends LitElement {
     if (changedProperties.has('_showMessage')) {
       const rect = this._message.getBoundingClientRect();
       const startingX = 0 - rect.width;
-      this._message.animate([
-        { transform: `translateX(${startingX}px) scale(0.1)` },
-        { transform: `translateX(0) translateY(0) scale(1)` }
-      ], {
-        duration: 500,
-        easing: 'ease-out',
-      });
+      this._message.animate(
+        [
+          {transform: `translateX(${startingX}px) scale(0.1)`},
+          {transform: `translateX(0) translateY(0) scale(1)`},
+        ],
+        {
+          duration: 500,
+          easing: 'ease-out',
+        },
+      );
     }
   }
 }

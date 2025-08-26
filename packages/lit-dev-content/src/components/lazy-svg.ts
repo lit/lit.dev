@@ -147,7 +147,7 @@ export default class LazySvg extends LitElement {
       },
       {
         rootMargin: this.rootMargin,
-      }
+      },
     );
     observer.observe(this._svgEl);
   }

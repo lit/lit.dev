@@ -1,5 +1,4 @@
-import { html, LitElement } from 'lit';
-
+import {html, LitElement} from 'lit';
 
 class WordViewer extends LitElement {
   // TODO: Declare a reactive property `words`.

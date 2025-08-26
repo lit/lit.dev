@@ -17,7 +17,7 @@ export interface UserInfo {
  * Get details about the authenticated user.
  */
 export const getAuthenticatedUser = async (
-  opts: AuthenticatedGitHubApiOptions
+  opts: AuthenticatedGitHubApiOptions,
 ): Promise<UserInfo> => {
   // https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
   const url = new URL('/user', opts.apiBaseUrl);

@@ -41,7 +41,7 @@ export class MotionLit extends LitElement {
               out: flyBelow,
             })}
             >${letter}</span
-          >`
+          >`,
       )}
     `;
   }

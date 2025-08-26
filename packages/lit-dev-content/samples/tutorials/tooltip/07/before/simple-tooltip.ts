@@ -8,7 +8,6 @@ const leaveEvents = ['pointerleave', 'blur', 'keydown', 'click'];
 
 @customElement('simple-tooltip')
 export class SimpleTooltip extends LitElement {
-
   static styles = css`
     :host {
       display: inline-block;
@@ -22,7 +21,7 @@ export class SimpleTooltip extends LitElement {
       opacity: 0;
       transform: scale(0.75);
       transition: opacity, transform;
-      transition-duration:  0.33s;
+      transition-duration: 0.33s;
     }
 
     :host([showing]) {
@@ -38,25 +37,25 @@ export class SimpleTooltip extends LitElement {
   @property({reflect: true, type: Boolean})
   showing = false;
 
-  _target: Element|null = null;
+  _target: Element | null = null;
 
   get target() {
     return this._target;
   }
-  set target(target: Element|null) {
+  set target(target: Element | null) {
     // Remove events from existing target
     if (this.target) {
-      enterEvents.forEach(name =>
-        this.target!.removeEventListener(name, this.show));
-      leaveEvents.forEach(name =>
-        this.target!.removeEventListener(name, this.hide));
+      enterEvents.forEach((name) =>
+        this.target!.removeEventListener(name, this.show),
+      );
+      leaveEvents.forEach((name) =>
+        this.target!.removeEventListener(name, this.hide),
+      );
     }
     // Add events to new target
     if (target) {
-      enterEvents.forEach(name =>
-        target!.addEventListener(name, this.show));
-      leaveEvents.forEach(name =>
-        target!.addEventListener(name, this.hide));
+      enterEvents.forEach((name) => target!.addEventListener(name, this.show));
+      leaveEvents.forEach((name) => target!.addEventListener(name, this.hide));
     }
     this._target = target;
   }
@@ -84,9 +83,9 @@ export class SimpleTooltip extends LitElement {
       middleware: [
         offset(this.offset),
         shift(),
-        autoPlacement({allowedPlacements: ['top', 'bottom']})
+        autoPlacement({allowedPlacements: ['top', 'bottom']}),
       ],
-    }).then(({x, y}: {x: number, y: number}) => {
+    }).then(({x, y}: {x: number; y: number}) => {
       this.style.left = `${x}px`;
       this.style.top = `${y}px`;
     });
@@ -102,11 +101,10 @@ export class SimpleTooltip extends LitElement {
       this.style.display = 'none';
     }
   };
-
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "simple-tooltip": SimpleTooltip;
+    'simple-tooltip': SimpleTooltip;
   }
 }

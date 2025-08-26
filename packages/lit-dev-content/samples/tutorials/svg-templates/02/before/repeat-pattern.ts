@@ -1,7 +1,7 @@
-import type { SVGTemplateResult } from "lit";
+import type {SVGTemplateResult} from 'lit';
 
-import { LitElement, html, svg } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {LitElement, html, svg} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 const createElement = (chars: string): SVGTemplateResult => svg`
   <text
@@ -13,14 +13,12 @@ const createElement = (chars: string): SVGTemplateResult => svg`
 `;
 
 @customElement('repeat-pattern')
-export class RepeatPattern extends LitElement {    
-  @property({type: String}) chars = "lit";
-  
+export class RepeatPattern extends LitElement {
+  @property({type: String}) chars = 'lit';
+
   render() {
     return html`
-      <svg height="100%" width="100%">
-        ${createElement(this.chars)}
-      </svg>
+      <svg height="100%" width="100%">${createElement(this.chars)}</svg>
     `;
   }
 }

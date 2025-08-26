@@ -21,7 +21,7 @@ export interface CompactPlaygroundFile {
  * false.
  */
 export const compactPlaygroundFile = (
-  file: SampleFile
+  file: SampleFile,
 ): CompactPlaygroundFile => {
   const compact: CompactPlaygroundFile = {
     name: file.name,

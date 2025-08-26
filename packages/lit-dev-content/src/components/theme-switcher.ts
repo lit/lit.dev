@@ -93,7 +93,7 @@ export class ThemeSwitcher extends LitElement {
 
           (
             this.shadowRoot?.querySelector?.(
-              'md-menu-item[selected]'
+              'md-menu-item[selected]',
             ) as HTMLElement
           )?.focus?.();
         }}
@@ -115,7 +115,7 @@ export class ThemeSwitcher extends LitElement {
                 ? checkIcon('end')
                 : html`<span slot="end"></span>`}
             </md-menu-item>
-          `
+          `,
         )}
       </md-menu>
     `;

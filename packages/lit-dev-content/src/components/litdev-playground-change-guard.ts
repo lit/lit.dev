@@ -60,7 +60,7 @@ export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
     super.connectedCallback();
     window.addEventListener(
       BEFORE_CODE_LANGUAGE_CHANGE,
-      this._onBeforeCodeLanguageChange
+      this._onBeforeCodeLanguageChange,
     );
   }
 
@@ -68,7 +68,7 @@ export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
     super.disconnectedCallback();
     window.removeEventListener(
       BEFORE_CODE_LANGUAGE_CHANGE,
-      this._onBeforeCodeLanguageChange
+      this._onBeforeCodeLanguageChange,
     );
   }
 
@@ -76,7 +76,7 @@ export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
   private _pendingLanguage: CodeLanguagePreference | undefined = undefined;
 
   private _onBeforeCodeLanguageChange = (
-    event: WindowEventMap[typeof BEFORE_CODE_LANGUAGE_CHANGE]
+    event: WindowEventMap[typeof BEFORE_CODE_LANGUAGE_CHANGE],
   ) => {
     if (this._project?.modified) {
       event.detail.cancel();
@@ -85,7 +85,7 @@ export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
   };
 
   private _onDialogClosed(
-    event: CustomEvent<{action: 'cancel' | 'continue' | 'close'}>
+    event: CustomEvent<{action: 'cancel' | 'continue' | 'close'}>,
   ) {
     if (
       event.detail.action === 'continue' &&

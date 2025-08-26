@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {html, LitElement} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 @customElement('word-viewer')
 class WordViewer extends LitElement {
@@ -9,4 +9,3 @@ class WordViewer extends LitElement {
     return html`<pre>${this.words}</pre>`;
   }
 }
-

@@ -1,5 +1,5 @@
-import { html, LitElement, css } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import {html, LitElement, css} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -15,7 +15,7 @@ export class MyElement extends LitElement {
         its shadow root thanks to <code>delegatesFocus: true</code>. Just try
         clicking on this text and see how the input is focused instead.
       </p>
-      <input placeholder="The first focusable element">
+      <input placeholder="The first focusable element" />
     `;
   }
 

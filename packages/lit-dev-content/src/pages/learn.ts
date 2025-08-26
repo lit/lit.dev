@@ -14,7 +14,7 @@ import type {MdChipSet} from '@material/web/chips/chip-set.js';
 import {FilterChip} from '@material/web/chips/internal/filter-chip.js';
 
 const intentionallyBlank = document.querySelector<HTMLElement>(
-  '#intentionally-blank'
+  '#intentionally-blank',
 );
 if (!intentionallyBlank) {
   throw new Error(`Internal Error: no intentionally blank element.`);
@@ -68,12 +68,12 @@ const updateContentFromChips = async (updateHash = true) => {
   const keepKinds = new Set(
     (chipSet.chips as FilterChip[])
       .filter((el) => el.selected)
-      .map((el) => el.dataset['value'])
+      .map((el) => el.dataset['value']),
   );
 
   intentionallyBlank.style.display = keepKinds.size === 0 ? 'block' : 'none';
   for (const card of Array.from(
-    document.querySelectorAll<HTMLDivElement>('.card-grid > .card')
+    document.querySelectorAll<HTMLDivElement>('.card-grid > .card'),
   )) {
     const cardKind = card.dataset['contentKind'] ?? 'always-show';
     card.style.display =

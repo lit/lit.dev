@@ -27,8 +27,14 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      <label>Forward: <input id="forward" @input=${this.onInput} .value=${this.forward}></label>
-      <label>Backward: <input id="backward" @input=${this.onInput} .value=${this.backward}></label>
+      <label
+        >Forward:
+        <input id="forward" @input=${this.onInput} .value=${this.forward}
+      /></label>
+      <label
+        >Backward:
+        <input id="backward" @input=${this.onInput} .value=${this.backward}
+      /></label>
       <div>Forward text: ${this.forward}</div>
       <div>Backward text: ${this.backward}</div>
     `;

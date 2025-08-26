@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import {html, LitElement} from 'lit';
+import {customElement, property, state} from 'lit/decorators.js';
 
 @customElement('word-viewer')
 class WordViewer extends LitElement {
@@ -7,7 +7,7 @@ class WordViewer extends LitElement {
   @property() words = 'initial value';
 
   // TODO: Define a `connectedCallback` which sets an interval.
-  // TODO: Define a `disconnectedCallback` which clears the interval.  
+  // TODO: Define a `disconnectedCallback` which clears the interval.
 
   render() {
     const splitWords = this.words.split('.');
@@ -17,4 +17,3 @@ class WordViewer extends LitElement {
 
   // TODO: Define `tickToNextWord`.
 }
-

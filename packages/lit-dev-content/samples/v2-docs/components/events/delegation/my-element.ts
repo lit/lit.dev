@@ -15,7 +15,9 @@ class MyElement extends LitElement {
     `;
   }
   private _clickHandler(e: Event) {
-    this.clicked = e.target === e.currentTarget ?
-      'container' : (e.target as HTMLDivElement).textContent!;
+    this.clicked =
+      e.target === e.currentTarget
+        ? 'container'
+        : (e.target as HTMLDivElement).textContent!;
   }
 }

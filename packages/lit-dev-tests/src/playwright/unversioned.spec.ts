@@ -62,7 +62,7 @@ test.describe('Unversioned docs', () => {
 
     // unversioned page should not have a canonical link.
     await expect(unversionedPage.locator('link[rel="canonical"]')).toHaveCount(
-      0
+      0,
     );
   });
 
@@ -77,7 +77,7 @@ test.describe('Unversioned docs', () => {
     });
     await expect(gettingStartedLocator).toHaveAttribute(
       'href',
-      '/docs/composition/overview/'
+      '/docs/composition/overview/',
     );
   });
 
@@ -97,21 +97,21 @@ test.describe('Unversioned docs', () => {
       'article#content table a',
       {
         hasText: '@property',
-      }
+      },
     );
     const unversionedPropertyDecoratorLink = unversionedPage.locator(
       'article#content table a',
       {
         hasText: '@property',
-      }
+      },
     );
     await expect(versionedPropertyDecoratorLink).toHaveAttribute(
       'href',
-      `/docs/${SITE_LATEST_VERSION}/api/decorators#property`
+      `/docs/${SITE_LATEST_VERSION}/api/decorators#property`,
     );
     await expect(unversionedPropertyDecoratorLink).toHaveAttribute(
       'href',
-      `/docs/api/decorators#property`
+      `/docs/api/decorators#property`,
     );
   });
 });

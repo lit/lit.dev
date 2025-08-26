@@ -40,7 +40,7 @@ const integerEnv = (name: string): number => {
   if (!val || val.match(/^\d+$/) === null) {
     throw new Error(
       `Expected environment variable ${name} to be an integer` +
-        ` but was ${JSON.stringify(val)}.`
+        ` but was ${JSON.stringify(val)}.`,
     );
   }
   return Number(val);
@@ -55,7 +55,7 @@ const stringEnv = (name: string): string => {
   if (!val) {
     throw new Error(
       `Expected environment variable ${name} to be set and non-empty` +
-        ` but was ${JSON.stringify(val)}.`
+        ` but was ${JSON.stringify(val)}.`,
     );
   }
   return val;
@@ -226,7 +226,7 @@ export const getEnvironment = (): LitDevEnvironment => {
     throw new Error(
       `Expected environment variable LITDEV_ENV to be` +
         ` one of ${Object.keys(environments).join(', ')},` +
-        ` but was ${JSON.stringify(name)}.`
+        ` but was ${JSON.stringify(name)}.`,
     );
   }
   return env;

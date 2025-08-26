@@ -28,10 +28,12 @@ export class MediatorElement extends LitElement {
 
   render() {
     return html`<p>Nickname: ${this.name}</p>
-        <label>Enter new nickname:
-          <input @input=${this._inputChanged}>
-        </label>
-        <button @click=${this._updateName}
-                .disabled=${!this._submitEnabled}>Submit</button>`;
+      <label
+        >Enter new nickname:
+        <input @input=${this._inputChanged} />
+      </label>
+      <button @click=${this._updateName} .disabled=${!this._submitEnabled}>
+        Submit
+      </button>`;
   }
 }

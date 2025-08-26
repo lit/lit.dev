@@ -1,27 +1,34 @@
 export class RatingElement extends HTMLElement {
   private _rating = 0;
-  private _vote: 'up'|'down'|null = null;
+  private _vote: 'up' | 'down' | null = null;
 
   connectedCallback() {
     const shadowRoot = this.attachShadow({mode: 'open'});
-    const templateContent = document.querySelector<HTMLTemplateElement>('#rating-element-template')!.content;
+    const templateContent = document.querySelector<HTMLTemplateElement>(
+      '#rating-element-template',
+    )!.content;
     const clonedContent = templateContent.cloneNode(true);
     shadowRoot.appendChild(clonedContent);
 
-    this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText = `${this.rating}`;
+    this.shadowRoot!.querySelector<HTMLElement>('.rating')!.innerText =
+      `${this.rating}`;
   }
 
   static get observedAttributes() {
     return ['rating', 'vote'];
   }
 
-  attributeChangedCallback(attributeName: string, _oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    attributeName: string,
+    _oldValue: string,
+    newValue: string,
+  ) {
     if (attributeName === 'rating') {
       const newRating = Number(newValue);
 
       this.rating = newRating;
     } else if (attributeName === 'vote') {
-      this.vote = newValue as 'up'|'down';
+      this.vote = newValue as 'up' | 'down';
     }
   }
 
@@ -70,6 +77,6 @@ export class RatingElement extends HTMLElement {
   get vote() {
     return this._vote;
   }
- }
+}
 
- customElements.define('rating-element', RatingElement);
+customElements.define('rating-element', RatingElement);

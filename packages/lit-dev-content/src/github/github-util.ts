@@ -21,12 +21,12 @@ export class GitHubError extends Error {
     method: string,
     status: number | undefined,
     message?: string,
-    stack?: string
+    stack?: string,
   ) {
     super(
       `Error calling GitHub API ${method} ${url.pathname}` +
         (status ? ` (HTTP status ${status})` : '') +
-        (message ? `: ${message}` : '')
+        (message ? `: ${message}` : ''),
     );
     this.url = url;
     this.status = status;
@@ -42,7 +42,7 @@ export class GitHubError extends Error {
  */
 export const fetchGitHubJson = async <T>(
   url: URL,
-  init: RequestInit
+  init: RequestInit,
 ): Promise<T> => {
   try {
     const res = await fetch(url.href, init);
@@ -58,7 +58,7 @@ export const fetchGitHubJson = async <T>(
         init?.method ?? 'GET',
         undefined,
         (error as Error).message,
-        (error as Error).stack
+        (error as Error).stack,
       );
     }
     throw error;

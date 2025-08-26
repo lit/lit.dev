@@ -31,7 +31,7 @@ const TS_SAMPLES_DIR = pathlib.join(
   REPO_DIR,
   'packages',
   'lit-dev-content',
-  'samples'
+  'samples',
 );
 const JS_SAMPLES_DIR = pathlib.join(TS_SAMPLES_DIR, 'js');
 
@@ -41,7 +41,7 @@ const JS_SAMPLES_DIR = pathlib.join(TS_SAMPLES_DIR, 'js');
  */
 const updateAndWriteProjectConfig = async (
   relPath: string,
-  ignoreJsonError = false
+  ignoreJsonError = false,
 ) => {
   const absPath = pathlib.join(TS_SAMPLES_DIR, relPath);
   const oldJson = await fs.readFile(absPath, 'utf8');
@@ -143,10 +143,10 @@ const tsCompileOpts: InvokeTypeScriptOpts = {
       .replace(/\.jsx$/, '.tsx');
     const ts = fsSync.readFileSync(tsPath, 'utf8');
     const tsPlaygroundComments = [...ts.matchAll(playgroundCommentRegexp)].map(
-      ([, kind]) => kind
+      ([, kind]) => kind,
     );
     const jsPlaygroundComments = [...js.matchAll(playgroundCommentRegexp)].map(
-      ([, kind]) => kind
+      ([, kind]) => kind,
     );
     if (tsPlaygroundComments.join(';') !== jsPlaygroundComments.join(';')) {
       const msg =

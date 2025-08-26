@@ -1,9 +1,8 @@
-import { html, LitElement, css } from 'lit';
-import { customElement} from 'lit/decorators.js';
+import {html, LitElement, css} from 'lit';
+import {customElement} from 'lit/decorators.js';
 
 @customElement('my-card')
 export class MyElement extends LitElement {
-
   render() {
     return html`
       <div id="vertical">
@@ -34,7 +33,8 @@ export class MyElement extends LitElement {
       margin: 0;
     }
 
-    #vertical, #content {
+    #vertical,
+    #content {
       display: flex;
       flex-direction: column;
     }
@@ -48,7 +48,7 @@ export class MyElement extends LitElement {
       max-height: 300px;
     }
 
-    [name="image"]::slotted(*) {
+    [name='image']::slotted(*) {
       aspect-ratio: 16/9;
       height: 100%;
       width: 100%;
@@ -56,13 +56,13 @@ export class MyElement extends LitElement {
       object-position: center center;
     }
 
-    [name="title"]::slotted(*) {
+    [name='title']::slotted(*) {
       font-size: 1.5em;
       font-weight: bold;
       margin-block-end: 0.5em;
     }
 
-    [name="subtitle"]::slotted(*) {
+    [name='subtitle']::slotted(*) {
       font-size: 1em;
       color: gray;
       margin-block-end: 1em;

@@ -7,8 +7,6 @@ export class MyElement extends LitElement {
   message: string = 'Hello again.';
 
   render() {
-    return html`
-      <p>${this.message}</p>
-    `;
+    return html` <p>${this.message}</p> `;
   }
 }

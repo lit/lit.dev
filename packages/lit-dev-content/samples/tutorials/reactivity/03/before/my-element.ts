@@ -26,23 +26,28 @@ export class MyElement extends LitElement {
     this.duration = Number.parseInt(v);
   }
 
-
   render() {
     this._renderCount++;
-    const keyframeOptions = { duration: this.duration };
+    const keyframeOptions = {duration: this.duration};
 
     return html`
       <p>
         <button @click=${() => (this.big = !this.big)}>Animate</button>
       </p>
       <p>
-        <label>Speed <select @change=${this.setDuration}>
-          <option value="250" selected>Fast</option>
-          <option value="1500">Slow</option>
-        </select></label>
+        <label
+          >Speed
+          <select @change=${this.setDuration}>
+            <option value="250" selected>Fast</option>
+            <option value="1500">Slow</option>
+          </select></label
+        >
         Render count: ${this._renderCount}
       </p>
-      <p class="bar ${classMap({big: this.big})}" ${animate({keyframeOptions})}></p>
+      <p
+        class="bar ${classMap({big: this.big})}"
+        ${animate({keyframeOptions})}
+      ></p>
     `;
   }
 }

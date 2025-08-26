@@ -30,15 +30,16 @@ export class MotionCarousel extends LitElement {
 
   render() {
     const p = this.selectedInternal;
-    const s = (this.selectedInternal =
-      this.hasValidSelected() ? this.selected : this.selectedInternal);
+    const s = (this.selectedInternal = this.hasValidSelected()
+      ? this.selected
+      : this.selectedInternal);
     const shouldMove = this.hasUpdated && s !== p;
     const atStart = p === 0;
     const toStart = s === 0;
     const atEnd = p === this.maxSelected;
     const toEnd = s === this.maxSelected;
-    const shouldAdvance = shouldMove &&
-      (atEnd ? toStart : atStart ? !toEnd : s > p);
+    const shouldAdvance =
+      shouldMove && (atEnd ? toStart : atStart ? !toEnd : s > p);
     const delta = (shouldMove ? Number(shouldAdvance) || -1 : 0) * 100;
     this.left -= delta;
     const animateLeft = `${this.left}%`;
@@ -48,30 +49,41 @@ export class MotionCarousel extends LitElement {
     const indicatorLeft = `${w * s}%`;
     const indicatorWidth = `${w}%`;
     return html`
-      <div class="fit"
+      <div
+        class="fit"
         ${animate()}
         @click=${this.clickHandler}
-        style=${styleMap({left: animateLeft})}>
-        <div class="fit" style=${
-          shouldMove ? styleMap({left: previousLeft}) : noChange
-        }>
+        style=${styleMap({left: animateLeft})}
+      >
+        <div
+          class="fit"
+          style=${shouldMove ? styleMap({left: previousLeft}) : noChange}
+        >
           <slot name="previous"></slot>
         </div>
-        <div class="fit selected" style=${
-          shouldMove ? styleMap({left: selectedLeft}) : noChange
-        }>
+        <div
+          class="fit selected"
+          style=${shouldMove ? styleMap({left: selectedLeft}) : noChange}
+        >
           <slot name="selected"></slot>
         </div>
       </div>
-      <div class="bar"><div class="indicator"
+      <div class="bar">
+        <div
+          class="indicator"
           ${animate()}
-          style=${styleMap({left: indicatorLeft, width: indicatorWidth})}></div></div>
+          style=${styleMap({left: indicatorLeft, width: indicatorWidth})}
+        ></div>
+      </div>
     `;
   }
 
   private previous = -1;
   protected async updated(changedProperties: PropertyValues) {
-    if ((changedProperties.has('selected') || this.previous === -1) && this.hasValidSelected()) {
+    if (
+      (changedProperties.has('selected') || this.previous === -1) &&
+      this.hasValidSelected()
+    ) {
       this.updateSlots();
       this.previous = this.selected;
     }
@@ -89,9 +101,11 @@ export class MotionCarousel extends LitElement {
   private clickHandler(e: MouseEvent) {
     const i = this.selected + (Number(!e.shiftKey) || -1);
     this.selected = i > this.maxSelected ? 0 : i < 0 ? this.maxSelected : i;
-    const change = new CustomEvent('change',
-      {detail: this.selected, bubbles: true, composed: true});
+    const change = new CustomEvent('change', {
+      detail: this.selected,
+      bubbles: true,
+      composed: true,
+    });
     this.dispatchEvent(change);
   }
-
 }

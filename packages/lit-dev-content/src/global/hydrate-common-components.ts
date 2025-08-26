@@ -32,7 +32,7 @@ const hydrateMobileNav = () => {
 const activateMobileDetails = async () => {
   // Expand the current section in the mobile nav.
   const activeDetails = document.querySelector(
-    '#mobileDocsNav > li.activeSection details'
+    '#mobileDocsNav > li.activeSection details',
   ) as HTMLDetailsElement | null;
   if (activeDetails === null) {
     return;
@@ -52,7 +52,7 @@ const activateMobileDetails = async () => {
         activeDetails.scrollIntoView({block: 'end'});
       });
     },
-    {once: true}
+    {once: true},
   );
 };
 
@@ -62,7 +62,7 @@ const activateMobileDetails = async () => {
 // We need to open the one in the current view or else it'll open a hidden
 // modal that makes the dom inert.
 const searchModals = document.querySelectorAll(
-  'litdev-search-modal'
+  'litdev-search-modal',
 ) as NodeListOf<LitDevSearchModal>;
 let modalHydrated = false;
 
@@ -88,7 +88,7 @@ for (const searchModal of searchModals) {
     },
     {
       once: true,
-    }
+    },
   );
 }
 
@@ -107,7 +107,7 @@ const hydrateAndOpenOnCMDK = async (e: KeyboardEvent) => {
     // We need to make sure we open the currently visible modal or else it'll
     // open a hidden modal that makes the dom inert.
     const searchModal = document.querySelector(
-      `#${navBar} litdev-search-modal`
+      `#${navBar} litdev-search-modal`,
     ) as LitDevSearchModal;
     const drawer = document.body.querySelector('mwc-drawer');
 
@@ -135,7 +135,7 @@ const onMobileView = () => {
   }
 
   const activeDetails = document.querySelector(
-    '#mobileDocsNav > li.activeSection details'
+    '#mobileDocsNav > li.activeSection details',
   );
 
   if (activeDetails) {

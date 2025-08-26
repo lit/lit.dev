@@ -10,7 +10,7 @@ export const indexDocs = async (outputDir: string, idOffset = 0) => {
   // Root path of the starting point for indexing.
   const DOCS_PATH = path.resolve(
     __dirname,
-    `../../../../lit-dev-content/${outputDir}/docs`
+    `../../../../lit-dev-content/${outputDir}/docs`,
   );
 
   /**
@@ -45,12 +45,12 @@ export const indexDocs = async (outputDir: string, idOffset = 0) => {
     DOCS_PATH,
     new Map(),
     outputDir,
-    skipFiles
+    skipFiles,
   );
 
   return await docIndexer(
     relativeLinksToHTMLFile,
     {tag: 'docs', type: 'Docs'},
-    idOffset
+    idOffset,
   );
 };

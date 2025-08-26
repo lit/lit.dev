@@ -8,9 +8,11 @@ class MyElement extends LitElement {
   protected render() {
     return html`
       <div key="container" @click=${this._clickHandler}>
-        ${this.data.map(i => html`
-          <button key=${i} @focus=${this._focusHandler}>Item ${i}</button>
-        `)}
+        ${this.data.map(
+          (i) => html`
+            <button key=${i} @focus=${this._focusHandler}>Item ${i}</button>
+          `,
+        )}
       </div>
       <p>Clicked: ${this.clicked}</p>
       <p>Focused: ${this.focused}</p>

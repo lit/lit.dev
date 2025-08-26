@@ -9,7 +9,7 @@ export class NameTag extends LitElement {
   render() {
     return html`
       <p>Hello, ${this.name}</p>
-      <input @input=${this.changeName} placeholder="Enter your name">
+      <input @input=${this.changeName} placeholder="Enter your name" />
     `;
   }
 

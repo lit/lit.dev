@@ -3,7 +3,7 @@ export interface PokedexEntry {
   cries: {
     latest: string;
     legacy: string;
-  }
+  };
   height: number;
   weight: number;
   types: {type: {name: string}}[];

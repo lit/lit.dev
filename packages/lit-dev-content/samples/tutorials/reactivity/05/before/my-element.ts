@@ -22,10 +22,10 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      <button @click=${() => this._showMessage = !this._showMessage}>Click me</button>
-      <div id="message" ?hidden=${!this._showMessage}>
-        TADA
-      </div>
+      <button @click=${() => (this._showMessage = !this._showMessage)}>
+        Click me
+      </button>
+      <div id="message" ?hidden=${!this._showMessage}>TADA</div>
     `;
   }
 }

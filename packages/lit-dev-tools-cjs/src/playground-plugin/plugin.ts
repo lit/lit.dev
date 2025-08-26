@@ -17,11 +17,11 @@ export type AsideVariant = 'positive' | 'negative' | 'warn' | 'info' | 'labs';
 interface EleventyConfig {
   addShortcode(
     name: string,
-    shortcode: (...args: any[]) => string | Promise<string>
+    shortcode: (...args: any[]) => string | Promise<string>,
   ): void | Promise<string>;
   addPairedShortcode(
     name: string,
-    shortcode: (content: string, ...args: any[]) => string | Promise<string>
+    shortcode: (content: string, ...args: any[]) => string | Promise<string>,
   ): void;
   addMarkdownHighlighter(fn: (content: string, lang: any) => string): void;
   on(name: string, fn: () => void): void;
@@ -33,7 +33,7 @@ interface EleventyConfig {
  */
 const getNumVisibleLinesForProjectFile = async (
   project: string,
-  filename: string
+  filename: string,
 ): Promise<{ts: number; js: number}> => {
   const tsData = await fs.readFile(`samples/${project}/${filename}`, 'utf8');
   const tsLines = countVisibleLines(filename, tsData);
@@ -42,7 +42,7 @@ const getNumVisibleLinesForProjectFile = async (
     const jsFilename = filename.replace(/\.ts$/, '.js');
     const jsData = await fs.readFile(
       `samples/js/${project}/${jsFilename}`,
-      'utf8'
+      'utf8',
     );
     jsLines = countVisibleLines(jsFilename, jsData);
   } else {
@@ -93,7 +93,7 @@ export const playgroundPlugin = (
     sandboxUrl,
     isDevMode,
     cdnBaseUrl,
-  }: {sandboxUrl: string; isDevMode: boolean; cdnBaseUrl: string}
+  }: {sandboxUrl: string; isDevMode: boolean; cdnBaseUrl: string},
 ) => {
   let renderer: BlockingRenderer | undefined;
 
@@ -113,7 +113,7 @@ export const playgroundPlugin = (
     if (!renderer) {
       throw new Error(
         'Internal error: expected Playground renderer to have been ' +
-          'initialized in "eleventy.before" event.'
+          'initialized in "eleventy.before" event.',
       );
     }
     const {html} = renderer.render(lang, outdent`${code}`);
@@ -121,7 +121,7 @@ export const playgroundPlugin = (
   };
 
   const readProjectConfig = async (
-    project: string
+    project: string,
   ): Promise<LitProjectConfig> => {
     const path = `samples/${project}/project.json`;
 
@@ -131,7 +131,7 @@ export const playgroundPlugin = (
     } catch (e) {
       throw new Error(
         `Invalid playground project "${project}". ` +
-          `Could not read file "${path}": ${e}`
+          `Could not read file "${path}": ${e}`,
       );
     }
 
@@ -140,7 +140,7 @@ export const playgroundPlugin = (
       parsed = JSON.parse(json);
     } catch (e) {
       throw new Error(
-        `Invalid JSON in playground project config "${path}": ${e}`
+        `Invalid JSON in playground project config "${path}": ${e}`,
       );
     }
 
@@ -150,7 +150,7 @@ export const playgroundPlugin = (
         await fs.readFile(filepath, 'utf8');
       } catch (e) {
         throw new Error(
-          `Missing playground file "${filename}" in project "${project}": ${e}`
+          `Missing playground file "${filename}" in project "${project}": ${e}`,
         );
       }
     }
@@ -160,11 +160,11 @@ export const playgroundPlugin = (
 
   eleventyConfig.addPairedShortcode(
     'highlight',
-    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang),
   );
 
   eleventyConfig.addMarkdownHighlighter(
-    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang),
   );
 
   eleventyConfig.addShortcode(
@@ -173,7 +173,7 @@ export const playgroundPlugin = (
       if (!project) {
         throw new Error(
           `Invalid playground-ide invocation.` +
-            `Usage {% playground-ide "path/to/project" %}`
+            `Usage {% playground-ide "path/to/project" %}`,
         );
       }
       project = trimTrailingSlash(project);
@@ -181,7 +181,7 @@ export const playgroundPlugin = (
       const firstFilename = Object.keys(config.files ?? {})[0];
       const numVisibleLines = await getNumVisibleLinesForProjectFile(
         project,
-        firstFilename
+        firstFilename,
       );
       const previewHeight = config.previewHeight ?? '120px';
       // in the case `lazy` is false, we need to keep the ">" character on the
@@ -197,7 +197,7 @@ export const playgroundPlugin = (
       ${lazy ? 'lazy' : ''}>
     </litdev-example>
   `.trim();
-    }
+    },
   );
 
   type LitProjectConfig = ProjectManifest & {
@@ -215,19 +215,19 @@ export const playgroundPlugin = (
       if (!project || !filename) {
         throw new Error(
           `Invalid playground-example invocation.` +
-            `Usage {% playground-example "project/dir" "filename.js" %}`
+            `Usage {% playground-example "project/dir" "filename.js" %}`,
         );
       }
       project = trimTrailingSlash(project);
       const config = await readProjectConfig(project);
       if (!config.files?.[filename]) {
         throw new Error(
-          `Could not find file "${filename}" in playground project "${project}"`
+          `Could not find file "${filename}" in playground project "${project}"`,
         );
       }
       const numVisibleLines = await getNumVisibleLinesForProjectFile(
         project,
-        filename
+        filename,
       );
       const previewHeight = config.previewHeight ?? '120px';
       return `
@@ -241,7 +241,7 @@ export const playgroundPlugin = (
       >
       </litdev-example>
     `.trim();
-    }
+    },
   );
 
   /**
@@ -264,13 +264,13 @@ export const playgroundPlugin = (
    */
   eleventyConfig.addPairedShortcode('switchable-sample', (content: string) => {
     const match = content.match(
-      /^\s*\n\n\s*```ts\n(.+)\n\s*```\s+```js\n(.+)\n\s*```\s*$/s
+      /^\s*\n\n\s*```ts\n(.+)\n\s*```\s+```js\n(.+)\n\s*```\s*$/s,
     );
     if (match === null) {
       throw new Error(
         'Invalid {% switchable-sample %}.' +
           ' Expected one ```ts block followed by one ```js block.' +
-          ' There also must be a blank line between the {% switchable-sample %} and the ```ts block.'
+          ' There also must be a blank line between the {% switchable-sample %} and the ```ts block.',
       );
     }
     return `<litdev-switchable-sample>${content}</litdev-switchable-sample>`;
@@ -327,7 +327,7 @@ export const playgroundPlugin = (
           variant,
           `Invalid {% aside ${variant} %}.` +
             ` variant "${variant}" is not an acceptable variant of:` +
-            ` ${acceptableVariants.join(', ')}.`
+            ` ${acceptableVariants.join(', ')}.`,
         );
       }
 
@@ -347,7 +347,7 @@ export const playgroundPlugin = (
         `\n\n${contentIndent}<!-- htmlmin:ignore -->` +
         `\n${contentIndent}</litdev-aside>`
       );
-    }
+    },
   );
 
   eleventyConfig.addShortcode('labs-disclaimer', () => {
@@ -357,7 +357,7 @@ export const playgroundPlugin = (
   });
 
   eleventyConfig.addMarkdownHighlighter(
-    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang),
   );
 };
 

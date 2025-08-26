@@ -1,5 +1,10 @@
-import { html, LitElement, css } from 'lit';
-import { customElement, property, queryAssignedElements, state } from 'lit/decorators.js';
+import {html, LitElement, css} from 'lit';
+import {
+  customElement,
+  property,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 
 @customElement('my-pretty-input')
 export class MyPrettyInput extends LitElement {
@@ -43,24 +48,28 @@ export class MyPrettyInput extends LitElement {
     // get the array of assigned elements and pick the first one
     const input = this.inputs[0];
 
-    input?.animate?.([
-      { 'transform': 'scale(1)', easing: 'ease-out' },
-      { 'transform': 'scale(2)', easing: 'ease-in' },
-      { 'transform': 'scale(1)' }
-    ],
-    1000);
+    input?.animate?.(
+      [
+        {transform: 'scale(1)', easing: 'ease-out'},
+        {transform: 'scale(2)', easing: 'ease-in'},
+        {transform: 'scale(1)'},
+      ],
+      1000,
+    );
   };
 
   #onInputBlur = () => {
     this.inputFocused = false;
     const input = this.inputs[0];
 
-    input?.animate?.([
-      { 'transform': 'scale(1)', easing: 'ease-out' },
-      { 'transform': 'scale(.75)', easing: 'ease-in' },
-      { 'transform': 'scale(1)' }
-    ],
-    1000);
+    input?.animate?.(
+      [
+        {transform: 'scale(1)', easing: 'ease-out'},
+        {transform: 'scale(.75)', easing: 'ease-in'},
+        {transform: 'scale(1)'},
+      ],
+      1000,
+    );
   };
 
   #clearListeners() {
@@ -72,7 +81,8 @@ export class MyPrettyInput extends LitElement {
     this.#lastInput = null;
   }
 
-  static styles = css`/* playground-fold */
+  static styles = css`
+    /* playground-fold */
     canvas {
       border: 1px solid black;
     }
@@ -81,5 +91,6 @@ export class MyPrettyInput extends LitElement {
       display: block;
       margin-block-start: 1em;
     }
-  /* playground-fold-end */`;
+    /* playground-fold-end */
+  `;
 }

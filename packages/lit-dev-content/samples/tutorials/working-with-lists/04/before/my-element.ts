@@ -31,7 +31,6 @@ class MyElement extends LitElement {
       background: white;
     }
     /* playground-fold-end */
-
   `;
 
   render() {

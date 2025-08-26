@@ -1,7 +1,7 @@
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-@customElement("my-element")
+@customElement('my-element')
 export class MyElement extends LitElement {
   // Styles are scoped to this element: they won't conflict with styles
   // on the main page or in other components. Styling API can be exposed
@@ -17,11 +17,10 @@ export class MyElement extends LitElement {
     }
   `;
 
-
   // Define reactive properties--updating a reactive property causes
   // the component to update.
-  @property() greeting = "Hello";
-  @property() planet = "World";
+  @property() greeting = 'Hello';
+  @property() planet = 'World';
 
   // The render() method is called any time reactive properties change.
   // Return HTML in a string template literal tagged with the `html`
@@ -40,6 +39,6 @@ export class MyElement extends LitElement {
   // Event handlers can update the state of @properties on the element
   // instance, causing it to re-render
   togglePlanet() {
-    this.planet = this.planet === "World" ? "Mars" : "World";
+    this.planet = this.planet === 'World' ? 'Mars' : 'World';
   }
 }

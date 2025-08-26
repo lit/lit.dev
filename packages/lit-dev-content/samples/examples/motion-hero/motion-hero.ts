@@ -81,7 +81,7 @@ export class MotionHero extends LitElement {
                   <div>${i.summary}</div>
                 </div>
               </div>
-            </li>`
+            </li>`,
         )}
       </ul>
       ${this.detail

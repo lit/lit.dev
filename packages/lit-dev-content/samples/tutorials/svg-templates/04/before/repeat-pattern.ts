@@ -1,4 +1,4 @@
-import type {SVGTemplateResult} from "lit";
+import type {SVGTemplateResult} from 'lit';
 
 import {LitElement, html, svg} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
@@ -58,25 +58,22 @@ const createTile = () => svg`
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-  @property({type: String}) chars = "lit";
-  @property({type: Number, attribute: "num-prints"}) numPrints = 7;
+  @property({type: String}) chars = 'lit';
+  @property({type: Number, attribute: 'num-prints'}) numPrints = 7;
   @property({
     type: Number,
-    attribute: "rotation-offset",
-  }) rotationOffset = 0;
+    attribute: 'rotation-offset',
+  })
+  rotationOffset = 0;
 
   render() {
     return html`
       <svg height="100%" width="100%">
         <defs>
-          ${createTileBoundary()}
-          ${createElement(this.chars)}
-          ${createMotif(
-            this.numPrints,
-            this.rotationOffset,
-          )}
+          ${createTileBoundary()} ${createElement(this.chars)}
+          ${createMotif(this.numPrints, this.rotationOffset)}
         </defs>
-            ${createTile()}
+        ${createTile()}
       </svg>
     `;
   }

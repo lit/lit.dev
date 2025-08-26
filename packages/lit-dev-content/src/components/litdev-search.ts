@@ -264,7 +264,7 @@ export class LitDevSearch extends LitElement {
     // once we release that feature in @lit-labs/task so that we don't do this
     // needlessly every render.
     const groupedSuggestions = new SuggestionGroups(
-      this._searchController?.value ?? []
+      this._searchController?.value ?? [],
     );
 
     // for aria-activedescendant we need each item in each group to have a
@@ -317,10 +317,10 @@ export class LitDevSearch extends LitElement {
                     })}"
                 ></litdev-search-option>
               `;
-            }
+            },
           )}
         </section>`;
-      }
+      },
     );
   }
 
@@ -463,7 +463,7 @@ export class LitDevSearch extends LitElement {
     // On mobile we manually close the nav drawer, otherwise the drawer remains
     // open when navigating between fragment identifiers.
     const navDrawer = document.querySelector(
-      'mwc-drawer#mobileDrawer'
+      'mwc-drawer#mobileDrawer',
     ) as Drawer;
     if (navDrawer) {
       navDrawer.open = false;
@@ -480,11 +480,11 @@ export class LitDevSearch extends LitElement {
     const githubIssueUrl = new URL('https://github.com/lit/lit.dev/issues/new');
     githubIssueUrl.searchParams.append(
       'title',
-      `[docs] No search results for \`${searchText}\``
+      `[docs] No search results for \`${searchText}\``,
     );
     githubIssueUrl.searchParams.append(
       'body',
-      `<!-- What type of content did you expect to see on lit.dev and explain why it should be on lit.dev -->`
+      `<!-- What type of content did you expect to see on lit.dev and explain why it should be on lit.dev -->`,
     );
     githubIssueUrl.searchParams.append('labels', `Area: docs`);
     return githubIssueUrl.href;
@@ -673,8 +673,8 @@ export class LitDevSearch extends LitElement {
 
       #items {
         max-height: calc(
-          100dvh - var(--_input-height) - 2 * var(--search-modal-padding-block) -
-            var(--_items-margin-block-start)
+          100dvh - var(--_input-height) - 2 *
+            var(--search-modal-padding-block) - var(--_items-margin-block-start)
         );
       }
     }

@@ -3,7 +3,6 @@ import {directive, AsyncDirective} from 'lit/async-directive.js';
 import type {Part, DirectiveParameters} from 'lit/directive.js';
 
 class TimeAgoDirective extends AsyncDirective {
-
   timer: number | undefined;
   time!: Date;
 
@@ -39,7 +38,6 @@ class TimeAgoDirective extends AsyncDirective {
   reconnected() {
     this.ensureTimerStarted();
   }
-
 }
 
 export const timeAgo = directive(TimeAgoDirective);

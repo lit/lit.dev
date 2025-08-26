@@ -21,7 +21,7 @@ import {publicVars} from 'lit-dev-tools-esm/lib/configs.js';
 // set up algolia search
 const algClient = algolia(
   publicVars.algolia.appId,
-  publicVars.algolia.searchOnlyKey
+  publicVars.algolia.searchOnlyKey,
 );
 const index = algClient.initIndex(publicVars.algolia.index);
 
@@ -55,7 +55,7 @@ const docsSlashCommand = new SlashCommandBuilder()
       .setName('query')
       .setDescription('The text to search for.')
       .setRequired(true)
-      .setAutocomplete(true)
+      .setAutocomplete(true),
   );
 
 /**
@@ -87,7 +87,7 @@ const publishDiscordCommands = async (commands: PublishableCommand[]) => {
  * @param interaction The Autocomplete interaction to be handled.
  */
 const handleDocsAutocompleteInteraction = async (
-  interaction: AutocompleteInteraction
+  interaction: AutocompleteInteraction,
 ) => {
   const focusedValue = interaction.options.getFocused();
   // Do not waste a query if the user has fewer than 3 chars.
@@ -129,7 +129,7 @@ const handleDocsAutocompleteInteraction = async (
  * @param interaction The /docs command interaction to be handled.
  */
 const handleDocsSubmissionInteraction = async (
-  interaction: ChatInputCommandInteraction
+  interaction: ChatInputCommandInteraction,
 ) => {
   const value = interaction.options.data[0].value as string;
 
@@ -165,14 +165,14 @@ const startClientWebsocketServer = () => {
       // SlashCommandBuilder's .setAutocomplete(true) option.
       if (interaction.type === InteractionType.ApplicationCommandAutocomplete) {
         handleDocsAutocompleteInteraction(interaction).catch((error) =>
-          console.error(error)
+          console.error(error),
         );
       }
 
       // This is true when the user finally returns a command. (a lit.dev url)
       if (interaction.isChatInputCommand()) {
         handleDocsSubmissionInteraction(interaction).catch((error) =>
-          console.error(error)
+          console.error(error),
         );
       }
     }

@@ -1,5 +1,5 @@
-import { html, LitElement } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import {html, LitElement} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
 
 @customElement('my-element')
 export class MyElement extends LitElement {
@@ -14,18 +14,15 @@ export class MyElement extends LitElement {
 
   render() {
     const min = Math.floor(this._duration / 60000);
-    const sec = pad(min, Math.floor(this._duration / 1000 % 60));
-    const hun = pad(true, Math.floor(this._duration % 1000 / 10));
+    const sec = pad(min, Math.floor((this._duration / 1000) % 60));
+    const hun = pad(true, Math.floor((this._duration % 1000) / 10));
 
     return html`
+      <div>${min ? `${min}:${sec}.${hun}` : `${sec}.${hun}`}</div>
       <div>
-        ${min ? `${min}:${sec}.${hun}` : `${sec}.${hun}`}
-      </div>
-      <div>
-        ${this._isPlaying ?
-        html`<button @click=${this.pause}>Pause</button>` :
-        html`<button @click=${this.start}>Play</button>`
-      }
+        ${this._isPlaying
+          ? html`<button @click=${this.pause}>Pause</button>`
+          : html`<button @click=${this.start}>Play</button>`}
         <button @click=${this.reset}>Reset</button>
       </div>
     `;

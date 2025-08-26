@@ -1,23 +1,21 @@
-import { LitElement, html, css } from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 
 class OuterElement extends LitElement {
   render() {
-    return html`
-      <inner-element></inner-element>
-    `;
+    return html` <inner-element></inner-element> `;
   }
 
   async firstUpdated() {
     const innerEl = this.shadowRoot.querySelector('inner-element');
-    console.log('awaiting inner updateComplete...')
+    console.log('awaiting inner updateComplete...');
 
     await innerEl.updateComplete;
-    console.log('inner updateComplete awaited!')
+    console.log('inner updateComplete awaited!');
   }
 
   _getUpdateComplete() {
     const innerEl = this.shadowRoot.querySelector('inner-element');
-    return Promise.all[this._updatePromise, innerEl.updateComplete];
+    return Promise.all[(this._updatePromise, innerEl.updateComplete)];
   }
 }
 
@@ -35,5 +33,5 @@ const outerEl = document.body.querySelector('outer-element');
 (async () => {
   console.log('awaiting outer updateComplete...');
   await outerEl.updateComplete;
-  console.log('outer updateComplete awaited!')
-})()
+  console.log('outer updateComplete awaited!');
+})();

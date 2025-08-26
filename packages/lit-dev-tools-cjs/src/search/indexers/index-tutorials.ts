@@ -27,7 +27,7 @@ interface Tutorial {
 
 export const indexTutorials = async (
   outputDir: string,
-  idOffset = 0
+  idOffset = 0,
 ): Promise<UserFacingPageData[]> => {
   if (outputDir === '_dev') {
     return [];
@@ -35,12 +35,12 @@ export const indexTutorials = async (
 
   const TUTORIAL_PATH = path.resolve(
     __dirname,
-    `../../../../lit-dev-content/${outputDir}/tutorials`
+    `../../../../lit-dev-content/${outputDir}/tutorials`,
   );
 
   // Pulls the metadata from all the tutorials rendered by 11ty.
   const tutorialJson: {tutorials: Tutorial[]} = JSON.parse(
-    await fs.readFile(path.join(TUTORIAL_PATH, 'tutorials.json'), 'utf-8')
+    await fs.readFile(path.join(TUTORIAL_PATH, 'tutorials.json'), 'utf-8'),
   );
 
   let id = idOffset;
@@ -82,7 +82,7 @@ export const indexTutorials = async (
       // Get the step's description HTML content.
       const stepContent = await fs.readFile(
         path.join(tutorialPath, stepDir.name, 'index.html'),
-        'utf-8'
+        'utf-8',
       );
 
       const jsdoc = new JSDOM(stepContent, {contentType: 'text/html'});

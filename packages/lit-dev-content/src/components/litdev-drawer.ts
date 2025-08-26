@@ -57,7 +57,8 @@ export class LitDevDrawer extends LitElement {
   static styles = css`
     :host {
       width: var(--litdev-drawer-open-width);
-      transition: transform var(--litdev-drawer-transition-duration),
+      transition:
+        transform var(--litdev-drawer-transition-duration),
         margin-right var(--litdev-drawer-transition-duration);
       display: flex;
       flex-direction: column;
@@ -69,15 +70,21 @@ export class LitDevDrawer extends LitElement {
          way there is no content reflow within the drawer during animation. */
       transform: translateX(
         calc(
-          -1 * calc(var(--litdev-drawer-open-width) -
-                var(--litdev-drawer-closed-width))
+          -1 *
+            calc(
+              var(--litdev-drawer-open-width) - var(
+                  --litdev-drawer-closed-width
+                )
+            )
         )
       );
       /* We also apply a negative margin, so that we don't take up the extra
          space. */
       margin-right: calc(
-        -1 * calc(var(--litdev-drawer-open-width) -
-              var(--litdev-drawer-closed-width))
+        -1 *
+          calc(
+            var(--litdev-drawer-open-width) - var(--litdev-drawer-closed-width)
+          )
       );
       overflow-y: hidden !important;
     }
@@ -173,7 +180,7 @@ export class LitDevDrawer extends LitElement {
       () => {
         this.removeAttribute('transitioning');
       },
-      {once: true}
+      {once: true},
     );
   }
 }

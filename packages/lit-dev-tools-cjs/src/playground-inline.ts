@@ -15,7 +15,7 @@ import {ProjectManifest} from 'playground-elements/shared/worker-api.js';
  * original project files.
  */
 export const inlinePlaygroundFilesIntoManifests = async (
-  globPattern: string
+  globPattern: string,
 ) => {
   const files = (await glob(globPattern)) as string[];
   const toDelete = new Set<string>();
@@ -37,7 +37,7 @@ export const inlinePlaygroundFilesIntoManifests = async (
       if (updated !== manifestStr) {
         await fs.writeFile(manifestPath, updated, 'utf8');
       }
-    })
+    }),
   );
 
   // Delete files after inlining, in case two manifests referenced the same file
