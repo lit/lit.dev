@@ -98,7 +98,7 @@ Lit provides the
 to integrate with the official polyfill for this proposal.
 
 This proposal is very exciting for the web components ecosystem. Because all
-libraries and frameworks that adpot the standard will produce compatible signals,
+libraries and frameworks that adopt the standard will produce compatible signals,
 different web components won't have to use the same library to interoperably
 consume and produce signals.
 
