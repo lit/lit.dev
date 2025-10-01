@@ -75,8 +75,8 @@ body.dark #tourCode .tourHighlight.active {
   }
 }
 
-#tourCode .CodeMirror-line,
-#tourCode .CodeMirror-line > span {
+#tourCode .cm-line,
+#tourCode .cm-line > span {
   z-index: 0;
   position: relative;
 }

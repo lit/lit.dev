@@ -90,7 +90,7 @@ export const indexTutorials = async (
       // Remove all code samples from the description – they might pollute
       // the search results.
       jsdoc.window.document
-        .querySelectorAll('figure.CodeMirror')
+        .querySelectorAll('figure.cm-editor')
         .forEach((el) => {
           el.remove();
         });

@@ -400,7 +400,7 @@ Some better-supported alternatives to this approach may include:
 - [Import Attributes](https://v8.dev/features/import-attributes) (external)
 - [Import Attributes Browser Compatiblity Table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import/with#browser_compatibility) (external)
 - [Proposal Import Attributes](https://github.com/tc39/proposal-import-attributes) (external)
-- [Import JSON, CSS and more with import attributes](https://fullystacked.net/import-attributes/) (external)
+- [Import JSON, CSS and more with import attributes](https://olliewilliams.xyz/blog/import-attributes/) (external)
 - [Using CSS Module Scripts to import stylesheets](https://web.dev/articles/constructable-stylesheets) (external)
   - **NOTE:** The syntax of the import assertions proposal in this article was
     deprecated in favor of import attribtues which uses `with` rather than
