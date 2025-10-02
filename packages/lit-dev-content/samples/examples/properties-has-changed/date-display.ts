@@ -1,4 +1,4 @@
-import { LitElement, html, PropertyValues} from "lit";
+import {LitElement, html, PropertyValues} from 'lit';
 import {customElement, property, query} from 'lit/decorators.js';
 import {isSameDate} from './date-utils.js';
 
@@ -9,7 +9,7 @@ class DateDisplay extends LitElement {
     // each Date is a new object
     hasChanged: (value?: Date, oldValue?: Date) => {
       return !isSameDate(value, oldValue);
-    }
+    },
   })
   date?: Date;
 
@@ -18,8 +18,8 @@ class DateDisplay extends LitElement {
 
   frames = [
     {backgroundColor: '#fff'},
-    {backgroundColor: '#324fff' },
-    {backgroundColor: '#fff'}
+    {backgroundColor: '#324fff'},
+    {backgroundColor: '#fff'},
   ];
 
   render() {

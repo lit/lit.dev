@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
 import 'chessboard-element';
 
@@ -22,11 +22,13 @@ class App extends Component {
           position="start"
           orientation={this.state.flipped ? 'black' : 'white'}
           draggable-pieces
-          ref={(e) => this.state.board = e}>
-        </chess-board>
+          ref={(e) => (this.state.board = e)}
+        ></chess-board>
         <button onClick={() => this.state.board.flip()}>Flip Board</button>
         <button onClick={() => this.state.board.clear()}>Clear Board</button>
-        <button onClick={() => this.state.board.setPosition('start')}>Start Position</button>
+        <button onClick={() => this.state.board.setPosition('start')}>
+          Start Position
+        </button>
       </div>
     );
   }

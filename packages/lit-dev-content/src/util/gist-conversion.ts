@@ -48,7 +48,7 @@ export const playgroundToGist = (playgroundFiles: SampleFile[]): GistFiles => {
           entry.hidden = true;
         }
         return [name, entry];
-      })
+      }),
     ),
   };
   const gistFiles: GistFiles = Object.fromEntries(
@@ -56,7 +56,7 @@ export const playgroundToGist = (playgroundFiles: SampleFile[]): GistFiles => {
       // Gist files can't be empty. But because an empty file will still have a
       // metadata entry, we'll still know it exists when we load it later.
       .filter(({content}) => content !== '')
-      .map(({name, content}) => [name, {content}])
+      .map(({name, content}) => [name, {content}]),
   );
   gistFiles[METADATA_FILENAME] = {
     content: JSON.stringify(metadata, null, 2),
@@ -74,7 +74,7 @@ export const gistToPlayground = (gistFiles: GistFiles): SampleFile[] => {
     try {
       metadata =
         (JSON.parse(
-          metadataFile.content
+          metadataFile.content,
         ) as GistPlaygroundMetadata) /* in case it is null */ || {};
     } catch (error) {
       console.warn('Failed to JSON parse playground metadata file in gist');

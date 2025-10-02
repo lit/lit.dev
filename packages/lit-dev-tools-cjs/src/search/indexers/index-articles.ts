@@ -11,7 +11,7 @@ export const indexArticles = async (outputDir: string, idOffset = 0) => {
   const ARTICLES_PATH = path.resolve(
     __dirname,
     // Load the article content itself not the tags pages.
-    `../../../../lit-dev-content/${outputDir}/articles`
+    `../../../../lit-dev-content/${outputDir}/articles`,
   );
 
   /**
@@ -43,12 +43,12 @@ export const indexArticles = async (outputDir: string, idOffset = 0) => {
     ARTICLES_PATH,
     new Map(),
     outputDir,
-    skipFiles
+    skipFiles,
   );
 
   return await docIndexer(
     relativeLinksToHTMLFile,
     {tag: 'article', type: 'Article'},
-    idOffset
+    idOffset,
   );
 };

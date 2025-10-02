@@ -62,7 +62,7 @@ export class AgloliaSearchController<T extends {}> {
   constructor(
     host: ReactiveControllerHost,
     argsFn: () => string,
-    options?: Partial<AlgoliaSearchControllerOptions>
+    options?: Partial<AlgoliaSearchControllerOptions>,
   ) {
     const opts = {...agloliaSearchControllerDefaultOptions, ...options};
     this._indexName = opts.index;
@@ -75,7 +75,7 @@ export class AgloliaSearchController<T extends {}> {
     this._task = new Task(
       host,
       ([text]) => this._querySearch(text),
-      () => [argsFn()]
+      () => [argsFn()],
     );
 
     aa('init', {

@@ -10,13 +10,15 @@ export class MyElement extends LitElement {
     return html`
       <p>Render content conditionally:</p>
       ${this.condition
-        ? html`
-            <p>Render some HTML if condition is true.</p>
-          `
-        : html`
-            <p>Render some other HTML if condition is false.</p>
-          `}
-      <button @click=${() => {this.condition = !this.condition}}>Toggle condition</button>
+        ? html` <p>Render some HTML if condition is true.</p> `
+        : html` <p>Render some other HTML if condition is false.</p> `}
+      <button
+        @click=${() => {
+          this.condition = !this.condition;
+        }}
+      >
+        Toggle condition
+      </button>
     `;
   }
 }

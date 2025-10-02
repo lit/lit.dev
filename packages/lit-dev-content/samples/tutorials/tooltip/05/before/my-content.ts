@@ -20,7 +20,8 @@ export class MyContent extends LitElement {
       right: 16px;
     }
 
-    .container, #greeting {
+    .container,
+    #greeting {
       display: inline-flex;
       align-items: center;
     }
@@ -40,16 +41,21 @@ export class MyContent extends LitElement {
   render() {
     return html`
       <h3>Welcome</h3>
-      <p>Who are you?
+      <p>
+        Who are you?
         <span class="container">
-          <input .value=${this.name} @input=${this._inputChange}>
+          <input .value=${this.name} @input=${this._inputChange} />
           <span class="icon">help_outline</span>
         </span>
         <simple-tooltip>Enter your name...</simple-tooltip>
       </p>
       <p>
-        <span id="greeting">Hello, ${this.name}! <span class="icon">info_outline</span></span>
-        <simple-tooltip>${this.name}, there's coffee available in the lounge.</simple-tooltip>
+        <span id="greeting"
+          >Hello, ${this.name}! <span class="icon">info_outline</span></span
+        >
+        <simple-tooltip
+          >${this.name}, there's coffee available in the lounge.</simple-tooltip
+        >
       </p>
 
       <h3>Some boxes hinted with tooltips</h3>
@@ -59,7 +65,9 @@ export class MyContent extends LitElement {
         <div class="box">2</div>
         <simple-tooltip>This is box 2.</simple-tooltip>
         <div class="box right">3</div>
-        <simple-tooltip>This is box 3 and it's way off on its own.</simple-tooltip>
+        <simple-tooltip
+          >This is box 3 and it's way off on its own.</simple-tooltip
+        >
       </section>
     `;
   }

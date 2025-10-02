@@ -11,7 +11,11 @@ export const Highlightable = (superClass) => {
     // Adds some styles...
     static styles = [
       superClass.styles ?? [],
-      css`.highlight { background: yellow; }`,
+      css`
+        .highlight {
+          background: yellow;
+        }
+      `,
     ];
 
     constructor() {
@@ -22,10 +26,9 @@ export const Highlightable = (superClass) => {
 
     // ...and a helper render method:
     renderHighlight(content) {
-      return html`
-          <div class=${classMap({highlight: this.highlight})}>
-            ${content}
-          </div>`;
+      return html` <div class=${classMap({highlight: this.highlight})}>
+        ${content}
+      </div>`;
     }
   }
   return HighlightableElement;

@@ -1,8 +1,8 @@
-import { LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import {LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
 import './game-player.js';
-import { SignalWatcher, html } from '@lit-labs/signals';
-import { playerOneScore, playerTwoScore } from './game-state.js';
+import {SignalWatcher, html} from '@lit-labs/signals';
+import {playerOneScore, playerTwoScore} from './game-state.js';
 
 @customElement('score-board')
 export class ScoreBoard extends SignalWatcher(LitElement) {

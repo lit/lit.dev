@@ -20,15 +20,13 @@ export class ToDoList extends LitElement {
       <h2>To Do</h2>
       <ul>
         ${this._listItems.map(
-          (item) => html`
-            <li
-                class="TODO"
-                @click=${() => this.toggleCompleted(item)}>
+          (item) =>
+            html` <li class="TODO" @click=${() => this.toggleCompleted(item)}>
               ${item.text}
-            </li>`
+            </li>`,
         )}
       </ul>
-      <input id="newitem" aria-label="New item">
+      <input id="newitem" aria-label="New item" />
       <button @click=${this.addToDo}>Add</button>
     `;
   }
@@ -43,8 +41,10 @@ export class ToDoList extends LitElement {
   }
 
   addToDo() {
-    this._listItems = [...this._listItems,
-        {text: this.input.value, completed: false}];
+    this._listItems = [
+      ...this._listItems,
+      {text: this.input.value, completed: false},
+    ];
     this.input.value = '';
   }
 }

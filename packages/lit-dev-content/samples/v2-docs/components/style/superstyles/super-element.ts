@@ -10,8 +10,6 @@ export class SuperElement extends LitElement {
     }
   ` as CSSResultGroup;
   protected render() {
-    return html`
-      <div>Content</div>
-    `;
+    return html` <div>Content</div> `;
   }
 }

@@ -23,4 +23,5 @@ export const styles = css`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-  }`;
+  }
+`;

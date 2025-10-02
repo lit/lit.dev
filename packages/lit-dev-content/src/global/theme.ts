@@ -44,7 +44,7 @@ function saveColorMode(mode: ColorMode) {
  */
 export function updateMetaColor(mode: ColorMode) {
   const meta = document.head.querySelector(
-    'meta[name="theme-color"]:not([media])'
+    'meta[name="theme-color"]:not([media])',
   );
   if (!meta) {
     return;
@@ -54,7 +54,7 @@ export function updateMetaColor(mode: ColorMode) {
 
   if (mode === 'auto') {
     const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)'
+      '(prefers-color-scheme: dark)',
     ).matches;
     isLight = !prefersDark;
   }

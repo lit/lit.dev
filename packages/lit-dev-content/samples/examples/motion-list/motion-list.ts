@@ -48,7 +48,7 @@ export class MotionList extends LitElement {
               })}
             >
               ${item.value}
-            </li>`
+            </li>`,
         )}
       </ul>
     `;

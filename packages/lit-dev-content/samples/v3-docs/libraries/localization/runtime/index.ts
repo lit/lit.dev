@@ -30,7 +30,7 @@ window.addEventListener(LOCALE_STATUS_EVENT, ({detail}) => {
     spinner.setAttribute('hidden', '');
   } else if (detail.status === 'error') {
     console.error(
-      `Error loading locale ${detail.errorLocale}: ` + detail.errorMessage
+      `Error loading locale ${detail.errorLocale}: ` + detail.errorMessage,
     );
     spinner.setAttribute('hidden', '');
   }

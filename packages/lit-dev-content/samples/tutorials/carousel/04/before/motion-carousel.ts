@@ -41,5 +41,4 @@ export class MotionCarousel extends LitElement {
     this.children[this.previous]?.removeAttribute('slot');
     this.children[this.selected]?.setAttribute('slot', 'selected');
   }
-
 }

@@ -26,7 +26,7 @@ export const onIdle = (hydrationCallback: () => void) => {
  */
 export const onMediaQueryOnce = (
   queryString: string,
-  hydrationCallback: () => void
+  hydrationCallback: () => void,
 ) => {
   const query = window.matchMedia(queryString);
   const onQuery = (e: MediaQueryList | MediaQueryListEvent) => {

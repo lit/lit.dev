@@ -48,9 +48,15 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
     return true;
   }, iframe);
   // Hide the animated loading indicator.
-  await page.evaluate((el) => {
-    el.style.visibility = 'hidden';
-  }, await page.waitForSelector('playground-preview [part="preview-loading-indicator"]', {state: 'attached'}));
+  await page.evaluate(
+    (el) => {
+      el.style.visibility = 'hidden';
+    },
+    await page.waitForSelector(
+      'playground-preview [part="preview-loading-indicator"]',
+      {state: 'attached'},
+    ),
+  );
 }
 
 interface MwcSnackbar extends HTMLElement {
@@ -67,7 +73,7 @@ export async function freezeSnackbars(page: Page) {
     await page.evaluate((snackbar) => {
       (snackbar as MwcSnackbar).timeoutMs = -1;
       const surface = snackbar.shadowRoot?.querySelector(
-        '.mdc-snackbar__surface'
+        '.mdc-snackbar__surface',
       );
       if (surface) {
         (surface as HTMLElement).style.transition = 'none';

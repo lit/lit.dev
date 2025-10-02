@@ -10,7 +10,7 @@ import * as fs from 'fs';
 
 const cachedHighlightsDir = pathlib.resolve(
   __dirname,
-  '../../.highlights_cache/'
+  '../../.highlights_cache/',
 );
 
 export type WorkerMessage = HandshakeMessage | Render | Shutdown;
@@ -100,18 +100,18 @@ export class BlockingRenderer {
     this.renderTimeout = renderTimeout;
     this.sharedHtml = new Uint8Array(new SharedArrayBuffer(maxHtmlBytes));
     this.worker = new workerthreads.Worker(
-      pathlib.join(__dirname, 'blocking-renderer-worker.js')
+      pathlib.join(__dirname, 'blocking-renderer-worker.js'),
     );
     this.worker.on('error', (error) => {
       throw new Error(
-        `BlockingRenderer worker encountered error: ${error.message}`
+        `BlockingRenderer worker encountered error: ${error.message}`,
       );
     });
     this.worker.on('exit', (code) => {
       this.exited = true;
       if (code !== 0) {
         throw new Error(
-          `BlockingRenderer worker unexpectedly exited with code ${code}`
+          `BlockingRenderer worker unexpectedly exited with code ${code}`,
         );
       }
     });
@@ -145,7 +145,7 @@ export class BlockingRenderer {
   private getCachedRender(cachedFileName: string): string | null {
     const absoluteFilePath = pathlib.resolve(
       cachedHighlightsDir,
-      cachedFileName
+      cachedFileName,
     );
     if (fs.existsSync(absoluteFilePath)) {
       return fs.readFileSync(absoluteFilePath, {encoding: 'utf8'});
@@ -156,7 +156,7 @@ export class BlockingRenderer {
   private writeCachedRender(cachedFileName: string, html: string) {
     const absoluteFilePath = pathlib.resolve(
       cachedHighlightsDir,
-      cachedFileName
+      cachedFileName,
     );
     fs.writeFileSync(absoluteFilePath, html);
   }
@@ -180,7 +180,7 @@ export class BlockingRenderer {
 
   private renderWithWorker(
     lang: 'js' | 'ts' | 'html' | 'css',
-    code: string
+    code: string,
   ): {html: string} {
     if (this.exited) {
       throw new Error('BlockingRenderer worker has already exited');
@@ -190,7 +190,7 @@ export class BlockingRenderer {
       Atomics.wait(this.sharedNotify, 0, 0, this.renderTimeout) === 'timed-out'
     ) {
       throw new Error(
-        `BlockingRenderer timed out waiting for worker to render ${lang}`
+        `BlockingRenderer timed out waiting for worker to render ${lang}`,
       );
     }
     const raw = this.decoder.decode(this.sharedHtml);

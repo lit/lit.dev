@@ -13,7 +13,7 @@ const goodUrlsFilename = pathLib.join(
   url.fileURLToPath(import.meta.url),
   '..',
   '..',
-  'known-good-urls.txt'
+  'known-good-urls.txt',
 );
 
 /**
@@ -107,7 +107,7 @@ async function main() {
             return;
           }
           console.log(
-            `BROKEN LINK: ${result.url.resolved} found on page ${result.base.resolved}`
+            `BROKEN LINK: ${result.url.resolved} found on page ${result.base.resolved}`,
           );
           console.log(result.brokenReason);
           console.log();
@@ -125,7 +125,7 @@ async function main() {
         // Ok, this is a non-broken, external, not-excluded link. Let's cache it.
         knownGoodUrls.add(result.url.resolved);
       },
-    }
+    },
   );
   checker.enqueue('http://localhost:6415', {});
   return donePromise;

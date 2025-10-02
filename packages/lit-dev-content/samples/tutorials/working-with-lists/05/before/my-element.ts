@@ -1,17 +1,17 @@
 import {LitElement, html} from 'lit';
 import {customElement, state} from 'lit/decorators.js';
-import {map} from 'lit/directives/map.js'
+import {map} from 'lit/directives/map.js';
 // TODO: import repeat directive.
 
 @customElement('my-element')
 class MyElement extends LitElement {
   @state()
   tasks = [
-    { id: 'a', label: 'Learn Lit'},
-    { id: 'b', label: 'Feed the cat'},
-    { id: 'c', label: 'Go for a walk'},
-    { id: 'd', label: 'Take a nap'},
-  ]
+    {id: 'a', label: 'Learn Lit'},
+    {id: 'b', label: 'Feed the cat'},
+    {id: 'c', label: 'Go for a walk'},
+    {id: 'd', label: 'Take a nap'},
+  ];
 
   render() {
     return html`
@@ -26,7 +26,7 @@ class MyElement extends LitElement {
             <li>
               <label><input type="checkbox" />${task.id}) ${task.label}</label>
             </li>
-          `
+          `,
         )}
       </ul>
     `;

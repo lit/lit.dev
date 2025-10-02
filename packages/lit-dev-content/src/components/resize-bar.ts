@@ -113,7 +113,7 @@ export class ResizeBar extends LitElement {
       return;
     }
     const target = (this.getRootNode() as ShadowRoot | Document).getElementById(
-      this.target
+      this.target,
     );
     if (!target) {
       return;
@@ -146,11 +146,13 @@ export class ResizeBar extends LitElement {
         // underneath the bar.
         const newSize = Math.max(
           0,
-          isWidthDimension ? oldSize + clientX - right : oldSize - clientY + top
+          isWidthDimension
+            ? oldSize + clientX - right
+            : oldSize - clientY + top,
         );
         document.documentElement.style.setProperty(
           this.property,
-          `${newSize}px`
+          `${newSize}px`,
         );
       });
     };
@@ -167,7 +169,7 @@ export class ResizeBar extends LitElement {
         this.active = false;
         this.resizing = false;
       },
-      {once: true}
+      {once: true},
     );
   }
 }

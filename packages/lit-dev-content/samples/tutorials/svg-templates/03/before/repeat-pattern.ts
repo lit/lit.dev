@@ -1,7 +1,7 @@
-import type { SVGTemplateResult } from "lit";
+import type {SVGTemplateResult} from 'lit';
 
-import { LitElement, html, svg } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {LitElement, html, svg} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 
 const createElement = (chars: string): SVGTemplateResult => svg`
   <text
@@ -36,23 +36,19 @@ const createMotif = (
 
 @customElement('repeat-pattern')
 export class RepeatPattern extends LitElement {
-  @property({type: String}) chars = "lit";
-  @property({type: Number, attribute: "num-prints"}) numPrints = 7;
+  @property({type: String}) chars = 'lit';
+  @property({type: Number, attribute: 'num-prints'}) numPrints = 7;
   @property({
     type: Number,
-    attribute: "rotation-offset",
-  }) rotationOffset = 0;
+    attribute: 'rotation-offset',
+  })
+  rotationOffset = 0;
 
   render() {
     return html`
       <svg height="100%" width="100%">
-        <defs>
-          ${createElement(this.chars)}
-        </defs>
-        ${createMotif(
-          this.numPrints,
-          this.rotationOffset,
-        )}
+        <defs>${createElement(this.chars)}</defs>
+        ${createMotif(this.numPrints, this.rotationOffset)}
       </svg>
     `;
   }

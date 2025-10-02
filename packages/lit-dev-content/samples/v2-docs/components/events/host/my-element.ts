@@ -6,13 +6,17 @@ class MyElement extends LitElement {
   @property() shadowName = '';
   constructor() {
     super();
-    this.addEventListener('click',
-      (e: Event) => this.hostName = (e.target as Element).localName);
+    this.addEventListener(
+      'click',
+      (e: Event) => (this.hostName = (e.target as Element).localName),
+    );
   }
   protected createRenderRoot() {
     const root = super.createRenderRoot();
-    root.addEventListener('click',
-      (e: Event) => this.shadowName = (e.target as Element).localName);
+    root.addEventListener(
+      'click',
+      (e: Event) => (this.shadowName = (e.target as Element).localName),
+    );
     return root;
   }
   protected render() {

@@ -7,7 +7,6 @@ const leaveEvents = ['pointerleave', 'blur', 'keydown', 'click'];
 
 @customElement('simple-tooltip')
 export class SimpleTooltip extends LitElement {
-
   static styles = css`
     :host {
       display: inline-block;
@@ -24,25 +23,25 @@ export class SimpleTooltip extends LitElement {
   @property({type: Number})
   offset = 4;
 
-  _target: Element|null = null;
+  _target: Element | null = null;
 
   get target() {
     return this._target;
   }
-  set target(target: Element|null) {
+  set target(target: Element | null) {
     // Remove events from existing target
     if (this.target) {
-      enterEvents.forEach(name =>
-        this.target!.removeEventListener(name, this.show));
-      leaveEvents.forEach(name =>
-        this.target!.removeEventListener(name, this.hide));
+      enterEvents.forEach((name) =>
+        this.target!.removeEventListener(name, this.show),
+      );
+      leaveEvents.forEach((name) =>
+        this.target!.removeEventListener(name, this.hide),
+      );
     }
     // Add events to new target
     if (target) {
-      enterEvents.forEach(name =>
-        target!.addEventListener(name, this.show));
-      leaveEvents.forEach(name =>
-        target!.addEventListener(name, this.hide));
+      enterEvents.forEach((name) => target!.addEventListener(name, this.show));
+      leaveEvents.forEach((name) => target!.addEventListener(name, this.hide));
     }
     this._target = target;
   }
@@ -63,10 +62,9 @@ export class SimpleTooltip extends LitElement {
     const {x, y, height} = this.target!.getBoundingClientRect();
     this.style.left = `${x}px`;
     this.style.top = `${y + height + this.offset}px`;
-  }
+  };
 
   hide = () => {
     this.style.display = 'none';
   };
-
 }

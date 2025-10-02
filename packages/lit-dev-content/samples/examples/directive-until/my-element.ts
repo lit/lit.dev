@@ -5,11 +5,10 @@ import {until} from 'lit/directives/until.js';
 const fetchData = async () => {
   await new Promise<void>((r) => setTimeout(() => r(), 2000));
   return 'Lorem Ipsum';
-}
+};
 
 @customElement('my-element')
 class MyElement extends LitElement {
-
   @state()
   private content: Promise<string> = fetchData();
 

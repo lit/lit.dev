@@ -5,7 +5,7 @@ export interface NpmPackage {
 
 export const fetchPackageInfo = async (
   pkgName: string,
-  signal: AbortSignal
+  signal: AbortSignal,
 ): Promise<NpmPackage> => {
   // Artificial delay for demo purposes
   await new Promise((r) => setTimeout(r, 1000));

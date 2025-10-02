@@ -1,5 +1,5 @@
-import { html, LitElement, PropertyValues } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {html, LitElement, PropertyValues} from 'lit';
+import {customElement, property} from 'lit/decorators.js';
 import {live} from 'lit/directives/live.js';
 
 @customElement('my-element')
@@ -22,9 +22,7 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
-      <div>
-        The string saved in localstorage is: ${this.savedString}
-      </div>
+      <div>The string saved in localstorage is: ${this.savedString}</div>
       ${this.#renderSavedStringControls()}
     `;
   }
@@ -41,6 +39,5 @@ export class MyElement extends LitElement {
       />
     `;
     /* playground-fold-end */
-
   }
 }

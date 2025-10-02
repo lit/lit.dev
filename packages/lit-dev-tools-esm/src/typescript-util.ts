@@ -40,7 +40,7 @@ export const compileTypeScriptOnce = (opts: InvokeTypeScriptOpts): boolean => {
   const config = ts.parseJsonConfigFileContent(
     rawConfig.config,
     ts.sys,
-    pathlib.dirname(opts.tsConfigPath)
+    pathlib.dirname(opts.tsConfigPath),
   );
   const program = ts.createProgram(config.fileNames, config.options);
   const emitResult = program.emit(
@@ -48,7 +48,7 @@ export const compileTypeScriptOnce = (opts: InvokeTypeScriptOpts): boolean => {
     wrapWriteFile(opts),
     undefined,
     undefined,
-    opts.transformersFactory?.(program)
+    opts.transformersFactory?.(program),
   );
   const diagnostics = [
     ...ts.getPreEmitDiagnostics(program),
@@ -69,7 +69,7 @@ const formatHost: ts.FormatDiagnosticsHost = {
 
 const logDiagnostic = (diagnostic: ts.Diagnostic) =>
   console.error(
-    ts.formatDiagnosticsWithColorAndContext([diagnostic], formatHost)
+    ts.formatDiagnosticsWithColorAndContext([diagnostic], formatHost),
   );
 
 const wrapWriteFile =
@@ -78,5 +78,5 @@ const wrapWriteFile =
     ts.sys.writeFile(
       path,
       opts.transformJs ? opts.transformJs(data, path) : data,
-      byteOrderMark
+      byteOrderMark,
     );

@@ -1,7 +1,12 @@
-import { html, LitElement } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
-import { getTagName, getActiveAttribute, getClasses, getPluginStyles } from './trusted-rendering-library.js';
-import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
+import {html, LitElement} from 'lit';
+import {customElement, state} from 'lit/decorators.js';
+import {
+  getTagName,
+  getActiveAttribute,
+  getClasses,
+  getPluginStyles,
+} from './trusted-rendering-library.js';
+import {html as staticHtml, unsafeStatic} from 'lit/static-html.js';
 
 @customElement('my-button')
 export class MyButton extends LitElement {
@@ -13,20 +18,22 @@ export class MyButton extends LitElement {
     const activeAttribute = getActiveAttribute();
     const classes = getClasses();
 
-    return html`
-      ${staticHtml`
+    return html` ${staticHtml`
         <${unsafeStatic(tag)}
             tabindex="0"
             class=${unsafeStatic(classes)}
             ?${unsafeStatic(activeAttribute)}=${this.active}>
           <p>Hello static!</p>
-        </${unsafeStatic(tag)}>`
-      }
+        </${unsafeStatic(tag)}>`}
       <!-- /* playground-fold */ -->
       <fieldset>
         <legend>Toggle fancy button active state</legend>
         <label>
-          <input type="checkbox" @change=${this.#toggleActive} .checked=${this.active}>
+          <input
+            type="checkbox"
+            @change=${this.#toggleActive}
+            .checked=${this.active}
+          />
           Active
         </label>
       </fieldset>
@@ -35,9 +42,8 @@ export class MyButton extends LitElement {
 
   /* playground-fold */
   #toggleActive(e: InputEvent) {
-    this.active = (e.target as HTMLInputElement).checked
+    this.active = (e.target as HTMLInputElement).checked;
   }
-
 
   constructor() {
     super();

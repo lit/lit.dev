@@ -1,5 +1,5 @@
-import { css, html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import {css, html, LitElement} from 'lit';
+import {customElement, property, state} from 'lit/decorators.js';
 
 @customElement('word-viewer')
 class WordViewer extends LitElement {
@@ -34,17 +34,17 @@ class WordViewer extends LitElement {
 
   render() {
     const splitWords = this.words.split('.');
-    const idx = ((this.idx % splitWords.length) + splitWords.length) % splitWords.length;
+    const idx =
+      ((this.idx % splitWords.length) + splitWords.length) % splitWords.length;
     const word = splitWords[idx];
-    return html`<pre
-      @click=${this.switchPlayDirection}
-    >${word}</pre>`;
+    return html`<pre @click=${this.switchPlayDirection}>${word}</pre>`;
   }
 
-  tickToNextWord = () => { this.idx += this.playDirection; };
+  tickToNextWord = () => {
+    this.idx += this.playDirection;
+  };
 
   switchPlayDirection() {
     this.playDirection *= -1;
   }
 }
-

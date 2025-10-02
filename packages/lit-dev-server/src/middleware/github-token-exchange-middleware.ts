@@ -69,7 +69,7 @@ export const createGitHubTokenExchangeMiddleware =
     const errorResponse = (
       status: number,
       externalMessage: string,
-      internalMessage?: string
+      internalMessage?: string,
     ): void => {
       ctx.status = status;
       ctx.type = 'application/json';
@@ -80,7 +80,7 @@ export const createGitHubTokenExchangeMiddleware =
       console.error(
         `GitHub token exchange middleware error [${status}]\n${externalMessage}${
           internalMessage ? '\n' + internalMessage : ''
-        }`
+        }`,
       );
     };
 
@@ -89,7 +89,7 @@ export const createGitHubTokenExchangeMiddleware =
     if (!code) {
       return errorResponse(
         400,
-        'The "code" query parameter is missing or malformed.'
+        'The "code" query parameter is missing or malformed.',
       );
     }
 
@@ -108,7 +108,7 @@ export const createGitHubTokenExchangeMiddleware =
       return errorResponse(
         500,
         `An HTTP ${tokenHttpResp.status} error was returned by the GitHub API.`,
-        await safelyGetHttpBody(tokenHttpResp)
+        await safelyGetHttpBody(tokenHttpResp),
       );
     }
 
@@ -123,7 +123,7 @@ export const createGitHubTokenExchangeMiddleware =
       return errorResponse(
         500,
         'Error parsing JSON response from GitHub API.',
-        (error as Error).message
+        (error as Error).message,
       );
     }
 
@@ -134,7 +134,7 @@ export const createGitHubTokenExchangeMiddleware =
         return errorResponse(
           401,
           'The code passed is incorrect or expired.',
-          JSON.stringify(tokenResp)
+          JSON.stringify(tokenResp),
         );
       } else if (tokenResp.error === 'incorrect_client_credentials') {
         // This error could happen if our GitHub app ID or secret is set
@@ -142,13 +142,13 @@ export const createGitHubTokenExchangeMiddleware =
         return errorResponse(
           500,
           'The GitHub client credentials are invalid.',
-          JSON.stringify(tokenResp)
+          JSON.stringify(tokenResp),
         );
       }
       return errorResponse(
         500,
         'An unexpected GitHub API error occured.',
-        JSON.stringify(tokenResp)
+        JSON.stringify(tokenResp),
       );
     }
 
@@ -157,7 +157,7 @@ export const createGitHubTokenExchangeMiddleware =
       return errorResponse(
         500,
         'Unexpected GitHub API response format.',
-        JSON.stringify(tokenResp)
+        JSON.stringify(tokenResp),
       );
     }
 

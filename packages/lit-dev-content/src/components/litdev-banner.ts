@@ -33,7 +33,7 @@ export class LitDevBanner extends HTMLElement {
       if (size) {
         document.documentElement.style.setProperty(
           '--banner-height',
-          `${size.blockSize}px`
+          `${size.blockSize}px`,
         );
       }
     });

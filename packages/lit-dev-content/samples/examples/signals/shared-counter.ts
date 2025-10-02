@@ -16,7 +16,7 @@ export class SharedCounterComponent extends SignalWatcher(LitElement) {
     }
 
     button {
-      background: lightgreen
+      background: lightgreen;
     }
   `;
 

@@ -13,12 +13,7 @@ export class MyElement extends LitElement {
     return html`
       <p>Render a list:</p>
       <ul>
-        ${this.list.map(
-          (item, index) =>
-            html`
-              <li>${index}: ${item}</li>
-            `
-        )}
+        ${this.list.map((item, index) => html` <li>${index}: ${item}</li> `)}
       </ul>
     `;
   }

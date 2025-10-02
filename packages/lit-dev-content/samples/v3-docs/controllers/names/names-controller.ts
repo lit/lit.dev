@@ -11,7 +11,8 @@ export class NamesController {
 
   constructor(host: ReactiveControllerHost) {
     this.host = host;
-    this.task = new Task<[Names.Kind], Names.Result>(host,
+    this.task = new Task<[Names.Kind], Names.Result>(
+      host,
       async ([kind]: [Names.Kind]) => {
         if (!kind?.trim()) {
           return initialState;
@@ -23,7 +24,8 @@ export class NamesController {
         } catch {
           throw new Error(`Failed to fetch "${kind}"`);
         }
-      }, () => [this.kind]
+      },
+      () => [this.kind],
     );
   }
 
@@ -31,7 +33,9 @@ export class NamesController {
     this._kind = value;
     this.host.requestUpdate();
   }
-  get kind() { return this._kind; }
+  get kind() {
+    return this._kind;
+  }
 
   render(renderFunctions: StatusRenderer<Names.Result>) {
     return this.task.render(renderFunctions);

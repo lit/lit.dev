@@ -10,13 +10,16 @@ class MyElement extends LitElement {
   /* playground-fold-end */
 
   render() {
-    return html`
-      <p>
+    return html` <p>
         ${this.greeting}
-        <button @click=${() => this.show = !this.show}>Todos</button>
+        <button @click=${() => (this.show = !this.show)}>Todos</button>
       </p>
-      ${this.show ? html`
-          <ul>${this.todos.map(i => html`<li>${i}</li>`)}</ul>
-        ` : ''}`;
-  }/* playground-fold */
+      ${this.show
+        ? html`
+            <ul>
+              ${this.todos.map((i) => html`<li>${i}</li>`)}
+            </ul>
+          `
+        : ''}`;
+  } /* playground-fold */
 }

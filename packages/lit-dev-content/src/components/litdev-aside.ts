@@ -90,7 +90,7 @@ export class LitDevAside extends LitElement {
       default:
         const exhaustiveCheck: never = this.type;
         console.warn(
-          `Received unexpected type for <litdev-aside>: ${exhaustiveCheck}`
+          `Received unexpected type for <litdev-aside>: ${exhaustiveCheck}`,
         );
         return nothing;
     }

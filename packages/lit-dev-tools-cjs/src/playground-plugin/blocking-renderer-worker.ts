@@ -39,7 +39,7 @@ workerthreads.parentPort.on('message', (msg: WorkerMessage) => {
     default:
       throw unreachable(
         msg,
-        `Unknown or missing message type: ${(msg as WorkerMessage).type}`
+        `Unknown or missing message type: ${(msg as WorkerMessage).type}`,
       );
   }
 });
@@ -56,7 +56,7 @@ const onRender = async (msg: Render) => {
   if (length > shared.htmlBuffer.length) {
     throw new Error(
       `Shared HTML buffer was too short ` +
-        `(${shared.htmlBuffer.length} < ${html.length} bytes)`
+        `(${shared.htmlBuffer.length} < ${html.length} bytes)`,
     );
   }
   shared.htmlBufferLength[0] = length;
