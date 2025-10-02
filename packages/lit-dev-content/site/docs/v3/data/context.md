@@ -485,14 +485,14 @@ ContextRoot()
 
     Detaches the ContextRoot from this element, stops listening to `context-request` events.
 
-### `ContextRequestEvent`
+### `ContextEvent`
 
 The event fired by consumers to request a context value. The API and behavior of this event is specified by the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
 
 **Import**:
 
 ```ts
-import {ContextRequestEvent} from '@lit/context';
+import {ContextEvent} from '@lit/context';
 ```
 
 The `context-request` bubbles and is composed.
