@@ -10,7 +10,7 @@ body {
   --playground-tab-bar-indicator-color: transparent;
 }
 
-.CodeMirror {
+.cm-editor {
   overflow-y: auto;
 }
 

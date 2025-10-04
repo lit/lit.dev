@@ -1,73 +1,78 @@
 /* TODO(aomarks) This should be published by playground-elements. It
    externalizes the styles that are shared between scoped and SSR playgrounds */
 
-.CodeMirror {
+.cm-editor {
   font-size: var(--playground-code-font-size, inherit);
   color: var(--playground-code-default-color, #000);
   background: var(--playground-code-background, #fff);
   padding: var(--litdev-code-padding);
 }
 
-.CodeMirror pre.CodeMirror-line {
+.cm-editor .cm-line {
   margin: 0;
+  white-space: pre;
   font-family: var(--playground-code-font-family, monospace);
   line-height: var(--playground-code-line-height, 1.7em);
 }
 
-.cm-keyword {
+/* CodeMirror 6 token-based classes */
+.tok-keyword {
   color: var(--playground-code-keyword-color, #708);
 }
-.cm-atom {
+.tok-atom,
+.tok-literal {
   color: var(--playground-code-atom-color, #219);
 }
-.cm-number {
+.tok-number {
   color: var(--playground-code-number-color, #164);
 }
-.cm-def {
+.tok-bool {
+  color: var(--playground-code-bool-color, var(--playground-code-atom-color, #219));
+}
+.tok-definition {
   color: var(--playground-code-def-color, #00f);
 }
-.cm-variable {
+.tok-variableName {
   color: var(--playground-code-variable-color, #000);
 }
-.cm-property {
+.tok-propertyName {
   color: var(--playground-code-property-color, #000);
 }
-.cm-operator {
+.tok-operator {
   color: var(--playground-code-operator-color, #000);
 }
-.cm-variable-2 {
+.tok-variableName2 {
   color: var(--playground-code-variable-2-color, #05a);
 }
-.cm-variable-3 {
+.tok-namespace {
   color: var(--playground-code-variable-3-color, #085);
 }
-.cm-type {
+.tok-typeName,
+.tok-className {
   color: var(--playground-code-type-color, #085);
 }
-.cm-comment {
+.tok-comment {
   color: var(--playground-code-comment-color, #a50);
 }
-.cm-string {
+.tok-string {
   color: var(--playground-code-string-color, #a11);
 }
-.cm-string-2 {
+.tok-string2 {
   color: var(--playground-code-string-2-color, #f50);
 }
-.cm-meta {
+.tok-meta {
   color: var(--playground-code-meta-color, #555);
 }
-.cm-qualifier {
+.tok-modifier {
   color: var(--playground-code-qualifier-color, #555);
 }
-.cm-builtin {
+.tok-standard,
+.tok-labelName {
   color: var(--playground-code-builtin-color, #30a);
 }
-.cm-tag {
+.tok-tagName {
   color: var(--playground-code-tag-color, #170);
 }
-.cm-attribute {
+.tok-attributeName {
   color: var(--playground-code-attribute-color, #00c);
-}
-.cm-callee {
-  color: var(--playground-code-callee-color, #000);
 }

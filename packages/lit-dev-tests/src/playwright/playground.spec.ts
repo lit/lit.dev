@@ -25,9 +25,17 @@ const signInToGithub = async (page: Page): Promise<void> => {
     page.waitForEvent('popup'),
     page.click('#signInButton'),
   ]);
-  await popup.waitForLoadState();
-  await popup.click('text=Authorize lit');
-  await popup.waitForEvent('close');
+  await popup.waitForLoadState('domcontentloaded');
+
+  // Wait for the authorize button to be ready and click it
+  const authorizeButton = popup.locator('button:has-text("Authorize lit")');
+  await authorizeButton.waitFor({state: 'visible'});
+
+  // Start waiting for close event before clicking to avoid race condition
+  const closePromise = popup.waitForEvent('close', {timeout: 10000});
+  await authorizeButton.click();
+
+  await closePromise;
 };
 
 const failNextGitHubRequest = async (browser: Browser): Promise<void> => {
@@ -72,7 +80,7 @@ function runScreenshotTests(dark: boolean) {
       await freezeSnackbars(page);
 
       // Type some new content
-      await page.click('playground-code-editor');
+      await page.locator('playground-code-editor .cm-content').click();
       await page.keyboard.press(`${modifierKey}+A`);
       await page.keyboard.type('"my long url content";');
       await waitForPlaygroundPreviewToLoad(page);
@@ -113,7 +121,7 @@ function runScreenshotTests(dark: boolean) {
       await waitForPlaygroundPreviewToLoad(page);
 
       // Type some new content
-      await page.click('playground-code-editor');
+      await page.locator('playground-code-editor .cm-content').click();
       await page.keyboard.press(`${modifierKey}+A`);
       await page.keyboard.type('"my gist content";');
       await waitForPlaygroundPreviewToLoad(page);
@@ -165,7 +173,7 @@ function runScreenshotTests(dark: boolean) {
       );
 
       // Type some more content
-      await page.click('playground-code-editor');
+      await page.locator('playground-code-editor .cm-content').click();
       await page.keyboard.press(`${modifierKey}+A`);
       await page.keyboard.type('"my updated gist content";');
 
@@ -252,8 +260,9 @@ function runScreenshotTests(dark: boolean) {
       await popup.waitForLoadState();
 
       // Decline authorization
+      const closePromise = popup.waitForEvent('close', {timeout: 10000});
       await popup.click('text=Cancel');
-      await popup.waitForEvent('close');
+      await closePromise;
 
       // An informative dialog should display
       await page.waitForSelector('[role=alertdialog]');
@@ -315,7 +324,7 @@ function runScreenshotTests(dark: boolean) {
       await page.goto('/playground/');
 
       // Type some new content
-      await page.click('playground-code-editor');
+      await page.locator('playground-code-editor .cm-content').click();
       await page.keyboard.press(`${modifierKey}+A`);
       await page.keyboard.type('"my gist content";');
       await waitForPlaygroundPreviewToLoad(page);
@@ -366,7 +375,7 @@ test.describe('Playground', () => {
     );
     await expect(greetingExample).toHaveClass('exampleItem active');
 
-    const codeEditor = page.locator('playground-code-editor #focusContainer');
+    const codeEditor = page.locator('playground-code-editor .cm-content');
     expect(
       ((await codeEditor.textContent()) ?? '').includes(
         `@customElement('simple-greeting')`
@@ -425,7 +434,7 @@ test.describe('Playground', () => {
     const firstUrl = page.url();
 
     // Change the content
-    await page.click('playground-code-editor');
+    await page.locator('playground-code-editor .cm-content').click();
     await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"new content";');
     await waitForPlaygroundPreviewToLoad(page);
@@ -455,7 +464,7 @@ test.describe('Playground', () => {
     const firstUrl = page.url();
 
     // Change the content
-    await page.click('playground-code-editor');
+    await page.locator('playground-code-editor .cm-content').click();
     await page.keyboard.press(`${modifierKey}+A`);
     await page.keyboard.type('"new content";');
     await waitForPlaygroundPreviewToLoad(page);

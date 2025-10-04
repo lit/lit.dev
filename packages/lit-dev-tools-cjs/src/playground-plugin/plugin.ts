@@ -109,7 +109,11 @@ export const playgroundPlugin = (
     }
   });
 
-  const render = (code: string, lang: 'js' | 'ts' | 'html' | 'css') => {
+  const render = (
+    code: string,
+    lang: 'js' | 'ts' | 'html' | 'css',
+    makePre = false
+  ) => {
     if (!renderer) {
       throw new Error(
         'Internal error: expected Playground renderer to have been ' +
@@ -117,6 +121,15 @@ export const playgroundPlugin = (
       );
     }
     const {html} = renderer.render(lang, outdent`${code}`);
+
+    // need to turn lines into pre tags to prevent minification in prod build
+    if (makePre) {
+      return html.replace(
+        /<div class="cm-line">(.*?)<\/div>/g,
+        '<pre class="cm-line">$1</pre>'
+      );
+    }
+
     return html;
   };
 
@@ -160,7 +173,8 @@ export const playgroundPlugin = (
 
   eleventyConfig.addPairedShortcode(
     'highlight',
-    (code: string, lang: 'js' | 'ts' | 'html' | 'css') => render(code, lang)
+    (code: string, lang: 'js' | 'ts' | 'html' | 'css', makePre = false) =>
+      render(code, lang, makePre)
   );
 
   eleventyConfig.addMarkdownHighlighter(

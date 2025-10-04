@@ -107,36 +107,26 @@ export class Renderer {
           editor.type = lang;
           editor.value = code;
           await editor.updateComplete;
-          const cm = editor.shadowRoot.querySelector('.CodeMirror-code');
+          const cm = editor.shadowRoot.querySelector('.cm-content');
           if (cm === null) {
             throw new Error(
-              '<codemirror-editor> did not render a ".CodeMirror-code" element'
+              '<codemirror-editor> did not render a ".cm-content" element'
             );
           }
+
           // The final line is sometimes (always?) an empty line containing just
           // a zero width space. Remove any final line that's only whitespace.
           // Note that RegExp "\s" doesn't include zero width spaces.
-          const lastLine = cm.querySelector('.CodeMirror-line:last-of-type');
-          if (lastLine?.textContent?.match(/^[\s\u200B]*$/)) {
+          const lastLine = cm.querySelector('.cm-line:last-of-type');
+          if (lastLine?.textContent === '') {
             lastLine.remove();
-          }
-
-          // Replace zero width newlines that don't copy paste well with a line
-          // feed unicode character that pastes correctly.
-          const codeLines = cm.querySelectorAll(
-            '.CodeMirror-line > span > span[cm-text]'
-          );
-          for (const line of codeLines) {
-            if (line?.textContent?.match(/^[\u200B]*$/)) {
-              line.textContent = `\u000A`;
-            }
           }
 
           return cm.innerHTML;
         },
         [lang, code]
       );
-      const html = `<figure class="CodeMirror cm-s-default">${codemirrorHtml}</figure>`;
+      const html = `<figure class="cm-editor">${codemirrorHtml}</figure>`;
       return {html};
     } finally {
       this.releasePageLock();

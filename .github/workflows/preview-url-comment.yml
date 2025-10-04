@@ -10,6 +10,9 @@ jobs:
   preview-url-comment:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      issues: write
+      pull-requests: write
 
     steps:
       - name: Generate preview URL
@@ -28,11 +31,9 @@ jobs:
       # https://github.com/peter-evans/create-or-update-comment
       - name: Create comment (if new)
         if: ${{ steps.find-comment.outputs.comment-id == 0 }}
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
-          edit-mode: replace
           body: |
             A live preview of this PR will be available at the URL(s) below.
             The latest URL will be appended to this comment on each push.
@@ -43,9 +44,8 @@ jobs:
 
       - name: Update comment (if existing)
         if: ${{ steps.find-comment.outputs.comment-id != 0 }}
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: append
           body: ${{ steps.gen-url.outputs.url }}
