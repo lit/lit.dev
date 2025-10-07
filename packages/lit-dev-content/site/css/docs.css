@@ -122,7 +122,7 @@ article pre>code:not([class]) {
 }
 
 /* Static code snippets */
-.CodeMirror {
+.cm-editor {
   border: var(--sys-color-outline-variant);
 }
 
@@ -150,7 +150,7 @@ litdev-example {
   height: calc(var(--litdev-example-bar-height) + var(--litdev-example-editor-height) + var(--litdev-example-preview-height));
 }
 
-.CodeMirror,
+.cm-editor,
 litdev-example {
   font-size: 0.85em;
   border-radius: 5px;
