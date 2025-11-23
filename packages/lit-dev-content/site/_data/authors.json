@@ -2,7 +2,8 @@
   "lit-team": {
     "name": "Lit Team",
     "links": {
-      "twitter": "buildWithLit"
+      "twitter": "buildWithLit",
+      "bluesky": "lit.dev"
     },
     "image": {
       "url": "logo.svg#flame",

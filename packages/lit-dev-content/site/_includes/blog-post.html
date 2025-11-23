@@ -80,6 +80,9 @@ social:
                   <li><a href="https://twitter.com/{{ authorData.links.twitter }}"
                         target="_blank" rel="noopener">Twitter</a></li>
                 {% endif %}
+                {% if authorData.links.bluesky %}
+                  <li><a href="https://bsky.app/profile/{{ authorData.links.bluesky }}" target="_blank" rel="noopener">Bluesky</a></li>
+                {% endif %}
                 {% if authorData.links.github %}
                   <li><a href="https://github.com/{{ authorData.links.github }}"
                         target="_blank" rel="noopener">GitHub</a></li>
