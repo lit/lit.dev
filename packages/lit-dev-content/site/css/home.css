@@ -5,6 +5,7 @@
 @import url('./home/5-who-is-using.css');
 @import url('./home/6-explore.css');
 @import url('./home/7-connect.css');
+@import url('./home/8-open-governance.css');
 
 html {
   --home-side-margin: 2rem;

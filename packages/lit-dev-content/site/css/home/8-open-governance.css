@@ -1,0 +1,86 @@
+#open-governance {
+  padding: 4em var(--home-side-margin) 5em var(--home-side-margin);
+  background-color: black;
+  color: white;
+}
+
+#open-governance > h1 {
+  margin-bottom: 1em;
+  max-width: var(--content-max-width);
+  margin: auto;
+}
+
+#openGovernanceContent {
+  max-width: var(--content-max-width);
+  margin: auto;
+  margin-top: 2.5em;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+#openGovernanceLogo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#openGovernanceLogo lazy-svg {
+  width: 100%;
+  max-width: 320px;
+}
+
+#openGovernanceText {
+  flex: 1;
+}
+
+#openGovernanceText h2 {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+#openGovernanceText a {
+  color: white;
+  text-decoration: underline;
+}
+
+#openGovernanceText a:hover,
+#openGovernanceText a:focus {
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
+}
+
+#open-governance .openGovernanceLink {
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 25px;
+}
+
+#open-governance .openGovernanceLink:hover,
+#open-governance .openGovernanceLink:focus {
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
+}
+
+@media (max-width: 860px) {
+  #openGovernanceContent {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  #openGovernanceLogo {
+    order: -1;
+  }
+
+  #openGovernanceLogo lazy-svg {
+    max-width: 280px;
+  }
+}
