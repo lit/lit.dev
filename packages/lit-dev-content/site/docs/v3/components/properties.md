@@ -569,7 +569,7 @@ Setting `reflect` to true configures a property so that whenever it changes, its
 
 Setting `useDefault` to true prevents the property's default value from initially reflecting to its [corresponding attribute](#observed-attributes). All subsequent changes are reflected; and if the attribute is removed, the property is reset to its default value. 
 
-This matches web platform behavior for attributes like `id`. The default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. If the `id` attribute is removed, the element's `id` property is set back to its initial value of `''`.
+This matches web platform behavior for attributes like `id`. The default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropriate `id` attribute is reflected. If the `id` attribute is removed, the element's `id` property is set back to its initial value of `''`.
 
 For example:
 
