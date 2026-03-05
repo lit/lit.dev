@@ -10,29 +10,24 @@
   margin: var(--header-footer-margin, unset);
 }
 
-#footerNameAndLogo lazy-svg {
-  display: flex;
+#footerTop > * {
+  flex: 0;
 }
 
-#footerNameAndLogo {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+#footerLitLogoWrapper {
+  /* Push the logo up a bit to visually align with the other logos */
+  padding-bottom: 1em;
 }
 
-#footerFlame {
-  height: 3.5em;
-  width: 2.8em;
+#footerLitLogo {
+  height: 4em;
 }
 
-#footerName {
-  height: 2.14em;
-  width: 3.24em;
+#footerOpenJSLogo {
+  height: 2.5em;
 }
 
 #footerSocialLinks {
-  flex: 1;
   display: flex;
   justify-content: flex-end;
 }

@@ -1,17 +1,29 @@
 <footer>
   <div id="footerTop">
-    <div id="footerNameAndLogo">
+    <a
+      href="https://openjsf.org/"
+      target="_blank"
+      rel="noopener"
+      title="OpenJS Foundation"
+    >
       <lazy-svg
-          loading="visible"
-          id="footerName"
-          href="{{ site.baseurl }}/images/logo.svg#name-symbol"
-          label="Lit">
+        loading="visible"
+        id="footerOpenJSLogo"
+        href="{{
+          site.baseurl
+        }}/images/openjs_foundation-logo-horizontal-color.svg"
+        label="OpenJS logo"
+      >
       </lazy-svg>
+    </a>
+
+    <div id="footerLitLogoWrapper">
       <lazy-svg
-          loading="visible"
-          id="footerFlame"
-          href="{{ site.baseurl }}/images/logo.svg#flame-symbol"
-          label="Lit logo">
+        loading="visible"
+        id="footerLitLogo"
+        href="{{ site.baseurl }}/images/logo.svg"
+        label="Lit"
+      >
       </lazy-svg>
     </div>
 
@@ -29,7 +41,8 @@
         <lazy-svg
           href="{{ site.baseurl }}/images/social/discord.svg#discord"
           label="Discord"
-          loading="visible">
+          loading="visible"
+        >
         </lazy-svg>
       </a>
 
@@ -43,7 +56,8 @@
         <lazy-svg
           href="{{ site.baseurl }}/images/social/bluesky.svg#bluesky"
           label="Bluesky"
-          loading="visible">
+          loading="visible"
+        >
         </lazy-svg>
       </a>
 
@@ -57,7 +71,8 @@
         <lazy-svg
           href="{{ site.baseurl }}/images/social/x.svg#x"
           label="X"
-          loading="visible">
+          loading="visible"
+        >
         </lazy-svg>
       </a>
 
@@ -67,12 +82,13 @@
         rel="noopener"
         title="GitHub"
         aria-label="GitHub"
+      >
+        <lazy-svg
+          href="{{ site.baseurl }}/images/social/github.svg#github"
+          label="GitHub"
+          loading="visible"
         >
-          <lazy-svg
-              href="{{ site.baseurl }}/images/social/github.svg#github"
-              label="GitHub"
-              loading="visible">
-          </lazy-svg>
+        </lazy-svg>
       </a>
 
       <a
@@ -81,13 +97,13 @@
         rel="noopener"
         title="YouTube"
         aria-label="YouTube"
+      >
+        <lazy-svg
+          href="{{ site.baseurl }}/images/social/youtube.svg#youtube"
+          label="YouTube"
+          loading="visible"
         >
-          <lazy-svg
-            href="{{ site.baseurl }}/images/social/youtube.svg#youtube"
-            label="YouTube"
-            loading="visible">
-          </lazy-svg>
-        </svg>
+        </lazy-svg>
       </a>
 
       <a
@@ -96,12 +112,15 @@
         rel="noopener"
         title="Stack Overflow"
         aria-label="Stack Overflow"
+      >
+        <lazy-svg
+          href="{{
+            site.baseurl
+          }}/images/social/stackoverflow.svg#stackoverflow"
+          label="Stack Overflow"
+          loading="visible"
         >
-          <lazy-svg
-            href="{{ site.baseurl }}/images/social/stackoverflow.svg#stackoverflow"
-            label="Stack Overflow"
-            loading="visible">
-          </lazy-svg>
+        </lazy-svg>
       </a>
 
       <a
@@ -110,19 +129,20 @@
         rel="noopener"
         title="Community Calendar"
         aria-label="Community Calendar"
+      >
+        <lazy-svg
+          href="{{ site.baseurl }}/images/icons/calendar-month.svg#icon"
+          label="Community Calendar"
+          loading="visible"
         >
-          <lazy-svg
-            href="{{ site.baseurl }}/images/icons/calendar-month.svg#icon"
-            label="Community Calendar"
-            loading="visible">
-          </lazy-svg>
+        </lazy-svg>
       </a>
     </div>
   </div>
 
   <div id="footerBottom">
     <p>
-      Copyright Google LLC. Code licensed under
+      Copyright (c) The Lit Project. Code licensed under
       <a href="https://spdx.org/licenses/BSD-3-Clause.html">BSD-3-Clause</a>.
       Documentation licensed under
       <a href="https://spdx.org/licenses/CC-BY-3.0">CC-BY-3.0</a>.
