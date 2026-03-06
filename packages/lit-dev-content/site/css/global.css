@@ -23,7 +23,7 @@ html {
      content begins (e.g. other sticky elements, scroll-margin-top). */
   --header-height: calc(var(--header-nav-height) + var(--banner-height));
   --footer-top-height: 12rem;
-  --footer-bottom-height: 6rem;
+  --footer-bottom-height: 10rem;
   --content-max-width: 76rem;
   -webkit-font-smoothing: antialiased;
 }

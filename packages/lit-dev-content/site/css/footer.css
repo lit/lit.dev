@@ -24,7 +24,8 @@
 }
 
 #footerOpenJSLogo {
-  height: 2.5em;
+  width: 10rem;
+  height: 6rem;
 }
 
 #footerSocialLinks {
@@ -49,22 +50,37 @@
 }
 
 #footerBottom {
-  height: var(--footer-bottom-height);
-  padding: 0 0.5em;
-  display: flex;
+  /* height: var(--footer-bottom-height); */
+  font-size: .825rem;
+  padding: 2rem 4rem;
   align-items: center;
   justify-content: center;
-  text-align: center;
   line-height: 1.7em;
 }
 
-#footerBottom > p > a {
-  color: var(--sys-color-primary);
+#footerBottom p {
+  font-size: inherit;
+  margin-top: 0;
+}
+
+#footerBottom a {
+  /* color: var(--sys-color-primary); */
   font-weight: 600;
 }
 
-#footerBottom > p > a:hover {
+#footerBottom a:hover {
   text-decoration: underline;
+}
+
+#footerCopyright {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#footerCopyright > * {
+  margin: 0;
 }
 
 @media (max-width: 864px) {
