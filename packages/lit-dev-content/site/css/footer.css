@@ -49,7 +49,6 @@
 }
 
 #footerBottom {
-  height: var(--footer-bottom-height);
   padding: 0 0.5em;
   display: flex;
   align-items: center;
@@ -59,7 +58,7 @@
 }
 
 #footerBottom > p > a {
-  color: var(--sys-color-primary);
+  color: var(--sys-color-primary-variant-dimmer);
   font-weight: 600;
 }
 
