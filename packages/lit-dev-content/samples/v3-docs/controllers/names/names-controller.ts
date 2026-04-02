@@ -11,6 +11,7 @@ export class NamesController {
 
   constructor(host: ReactiveControllerHost) {
     this.host = host;
+    host.addController(this);
     this.task = new Task<[Names.Kind], Names.Result>(host,
       async ([kind]: [Names.Kind]) => {
         if (!kind?.trim()) {
