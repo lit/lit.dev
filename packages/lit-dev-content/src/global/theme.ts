@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
