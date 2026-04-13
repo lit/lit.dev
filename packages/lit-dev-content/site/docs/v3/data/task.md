@@ -241,7 +241,7 @@ By default, Tasks will run any time the arguments change. This is controlled by 
 
 #### Auto-run
 
-In _auto-run_ mode, the task will call the `args` function when the host has updated, compare the args to the previous args, and invoke the task function if they have changed. A task without `args` defined is in manual mode.
+In _auto-run_ mode, the task will call the `args` function when the host has updated, compare the args to the previous args, and invoke the task function if they have changed. A task with an empty `args` array runs once. A task without `args` defined is in manual mode.
 
 #### Manual mode
 
@@ -255,10 +255,10 @@ class MyElement extends LitElement {
   private _getDataTask = new Task(
     this,
     {
-      task: async () =>
+      task: async () => {
         const response = await fetch(`example.com/data/`);
         return response.json();
-      ),
+      },
       args: () => []
     }
   );
@@ -281,10 +281,10 @@ class MyElement extends LitElement {
   _getDataTask = new Task(
     this,
     {
-      task: async () =>
+      task: async () => {
         const response = await fetch(`example.com/data/`);
         return response.json();
-      ),
+      },
       args: () => []
     }
   );
@@ -306,7 +306,7 @@ class MyElement extends LitElement {
 In manual mode you can provide new arguments directly to `run()`:
 
 ```ts
-this._task.run('arg1', 'arg2');
+this._task.run(['arg1', 'arg2']);
 ```
 
 If arguments are not provided to `run()`, they are gathered from the `args` callback.
@@ -442,3 +442,41 @@ class MyElement extends LitElement {
 ```
 
 {% endswitchable-sample %}
+
+### More accurate argument types in TypeScript
+Task argument types can sometimes be inferred too loosely by TypeScript. This can be fixed by casting argument arrays with `as const`.
+Consider the following task, with two arguments.
+
+```ts
+class MyElement extends LitElement {
+  @property() myNumber = 10;
+  @property() myText = "Hello world";
+
+  _myTask = new Task(this, {
+    args: () => [this.myNumber, this.myText],
+    task: ([number, text]) => {
+      // implementation omitted
+    }
+  });
+}
+```
+
+As written, the type of the argument list to the task function is inferred as `Array<number | string>`.
+
+But ideally this would be typed as a tuple `[number, string]` because the size and position of the args is fixed.
+
+The return value of `args` can be written as `args: () => [this.myNumber, this.myText] as const`, which will result in a tuple type for the args list to the `task` function.
+
+```ts
+class MyElement extends LitElement {
+  @property() myNumber = 10;
+  @property() myText = "Hello world";
+
+  _myTask = new Task(this, {
+    args: () => [this.myNumber, this.myText] as const,
+    task: ([number, text]) => {
+      // implementation omitted
+    }
+  });
+}
+```

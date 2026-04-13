@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -9,6 +10,24 @@ import type {Page} from '@playwright/test';
 export const preventGDPRBanner = async (page: Page) => {
   await page.addInitScript(() => {
     window.localStorage.setItem('gtag-banner-shown', 'true');
+  });
+};
+
+export const waitForTheme = async (page: Page, dark: boolean) => {
+  await page.waitForSelector('body.auto,body.light,body.dark');
+
+  if (dark) {
+    await page.locator('body').evaluate((body) => {
+      body.classList.remove('light', 'dark', 'auto');
+      body.classList.add('dark');
+    });
+
+    return;
+  }
+
+  await page.locator('body').evaluate((body) => {
+    body.classList.remove('light', 'dark', 'auto');
+    body.classList.add('light');
   });
 };
 

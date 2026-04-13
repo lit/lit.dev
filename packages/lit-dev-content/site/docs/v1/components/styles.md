@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 2
 versionLinks:
   v2: components/styles/
+  v3: components/styles/
 ---
 
 This page describes how to add styles to your component.

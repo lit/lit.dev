@@ -1,0 +1,24 @@
+<script type="module" src="./my-element.js"></script>
+<style>
+  .styled my-element::part(paragraph) {
+    color: yellow;
+    border-color: white;
+    padding: 8px;
+    margin: 2px;
+  }
+
+  .styled {
+    background-color: black;
+  }
+
+  div {
+    padding: 4px;
+  }
+</style>
+
+<div class="styled">
+  <my-element></my-element>
+</div>
+<div>
+  <my-element></my-element>
+</div>

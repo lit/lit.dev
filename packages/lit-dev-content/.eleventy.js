@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -56,6 +57,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(playgroundPlugin, {
     sandboxUrl: ENV.playgroundSandboxUrl,
+    cdnBaseUrl: ENV.playgroundCdnBaseUrl,
+    isDevMode: DEV,
   });
   if (!DEV) {
     // In dev mode, we symlink these directly to source.
@@ -64,14 +67,6 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy('site/fonts');
     eleventyConfig.addPassthroughCopy('site/images');
     eleventyConfig.addPassthroughCopy('samples');
-    // The Playground web worker is loaded directly from the main origin, so it
-    // should be in our js directory. We don't need the service worker, though,
-    // because that will be served directly out of node_modules/ by the
-    // dedicated Playground sandbox server.
-    eleventyConfig.addPassthroughCopy({
-      [require.resolve('playground-elements/playground-typescript-worker.js')]:
-        './js/playground-typescript-worker.js',
-    });
   }
   eleventyConfig.addPassthroughCopy('api/**/*');
 
@@ -213,6 +208,22 @@ ${content}
   eleventyConfig.addFilter('debug', function (value) {
     console.log(value);
     return value;
+  });
+
+  eleventyConfig.addFilter('videosToAlgoliaRecords', function (videos) {
+    return videos.map((video) => {
+      return {
+        relativeUrl: video.url,
+        title: video.title,
+        heading: '',
+        text: video.summary,
+        docType: {
+          type: 'Video',
+          tag: 'video',
+        },
+        isExternal: true,
+      };
+    });
   });
 
   const sortDocs = (a, b) => {
@@ -485,6 +496,15 @@ ${content}
   );
 
   /**
+   * Inlines an SVG file.
+   */
+  eleventyConfig.addShortcode('inlineSvg', async (src, label) => {
+    const text = fsSync.readFileSync(`./site/${src}`, 'utf8');
+    const ariaLabel = label !== undefined ? ` aria-label="${label}"` : '';
+    return text.replace('<svg', `<svg${ariaLabel}`);
+  });
+
+  /**
    * Bundle, minify, and inline a CSS file. Path is relative to ./site/css/.
    *
    * In dev mode, instead import the CSS file directly.
@@ -580,7 +600,11 @@ ${content}
     );
     await Promise.all(emptyDocsIndexFiles.map((path) => fs.unlink(path)));
 
-    await createSearchIndex(ENV.eleventyOutDir);
+    if (!DEV) {
+      // Only create the search index in production when we'll be uploading it
+      // to algolia.
+      await createSearchIndex(ENV.eleventyOutDir);
+    }
 
     if (DEV) {
       // Symlink css, images, and playground projects. We do this in dev mode

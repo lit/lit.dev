@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -10,8 +11,7 @@ export const pageRedirects = new Map([
   ['/slack-invite',                   'https://discord.com/invite/buildWithLit'],
   ['/youtube',                        'https://www.youtube.com/@buildWithLit'],
   ['/msg/dev-mode',                   '/docs/tools/development/#development-and-production-builds'],
-  // TODO(sorvell) https://github.com/lit/lit.dev/issues/455
-  ['/msg/multiple-versions',          '/docs/tools/requirements/'],
+  ['/msg/multiple-versions',          '/docs/tools/development/#multiple-lit-versions'],
   ['/msg/polyfill-support-missing',   '/docs/v2/tools/requirements/#polyfills'],
   ['/msg/class-field-shadowing',      '/docs/components/properties/#avoiding-issues-with-class-fields'],
   // TODO(aomarks) Should we add something specifically about this issue?
@@ -35,8 +35,9 @@ export const pageRedirects = new Map([
   // Old release-notes redirects to new v2 location.
   ['/docs/releases/release-notes/1.3.0/',      '/docs/v2/releases/release-notes/1.3.0/'],
   ['/docs/releases/release-notes/1.2.0/',      '/docs/v2/releases/release-notes/1.2.0/'],
-  // Old Lit tutorial redirect to new tutorial catalog
-  ['/tutorial/', '/tutorials/'],
+  // Old Lit tutorial redirect to new learn catalog
+  ['/tutorial/', '/learn/#filter=tutorial'],
+  ['/tutorials/', '/learn/#filter=tutorial'],
 ].map(([path, redir]) => [
   // Trailing slashes are required because this redirect map is consulted after
   // standard lit.dev path canonicalization.
@@ -97,12 +98,12 @@ export const oldLitElementSiteRedirects = new Map([
   ['/guide/build',      '/docs/v1/tools/build/'],
   ['/guide/community',  '/docs/v1/resources/community/'],
 
-  ['/try',              '/tutorials/'],
-  ['/try/create',       '/tutorials/'],
-  ['/try/properties',   '/tutorials/'],
-  ['/try/logic',        '/tutorials/'],
-  ['/try/events',       '/tutorials/'],
-  ['/try/style',        '/tutorials/'],
+  ['/try',              '/learn/#filter=tutorial'],
+  ['/try/create',       '/learn/#filter=tutorial'],
+  ['/try/properties',   '/learn/#filter=tutorial'],
+  ['/try/logic',        '/learn/#filter=tutorial'],
+  ['/try/events',       '/learn/#filter=tutorial'],
+  ['/try/style',        '/learn/#filter=tutorial'],
 
   ['/api/index.html',                                                       '/docs/v1/api/lit-element/LitElement/'],
   ['/api/globals.html',                                                     '/docs/v1/api/lit-element/LitElement/'],

@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -25,6 +26,6 @@ const config: PlaywrightTestConfig = {
   //    committing the snapshot to the repository.
   //  * `npm run test:integration:update-golden-screenshots` for local testing.
   updateSnapshots: 'none',
-  workers: process.env.CI ? 1 : 2,
+  workers: process.env.CI ? 2 : 20,
 };
 export default config;

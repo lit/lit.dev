@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "poke-dex.ts": {},
+    "poke-types.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "300px"
+}

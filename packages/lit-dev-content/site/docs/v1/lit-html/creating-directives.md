@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 6
 versionLinks:
   v2: templates/custom-directives/
+  v3: templates/custom-directives/
 ---
 
 Directives are functions that can customize how lit-html renders values. Template authors can use directives in their templates like other functions:

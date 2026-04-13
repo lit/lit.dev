@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -35,8 +36,8 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       height: calc(27em / 13);
       border-radius: 1em;
       padding: calc(2em / 13);
-      border: calc(1.5em / 13) solid #ccc;
-      background: white;
+      border: calc(1.5em / 13) solid var(--sys-color-outline);
+      background-color: var(--sys-color-surface-container-lowest);
       font-family: 'Open Sans', sans-serif;
     }
 
@@ -47,13 +48,14 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       position: relative;
       font-size: inherit;
       font-family: inherit;
-      background: transparent;
+      background-color: transparent;
       border: none;
       align-items: center;
       justify-content: space-around;
       cursor: pointer;
       padding: 0;
       z-index: 0;
+      color: var(--sys-color-on-surface);
     }
 
     #toggle {
@@ -62,9 +64,11 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       height: 100%;
       top: 0;
       transition: left 100ms;
-      background: #767676;
+      background-color: var(--sys-color-surface-container-highest);
+      border: 1px solid var(--sys-color-outline);
       z-index: -1;
       border-radius: 1em;
+      opacity: 0.8;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -74,7 +78,12 @@ export class LitDevCodeLanguageSwitch extends LitElement {
     }
 
     button:hover > #toggle {
-      background: #005cc5bd;
+      background-color: var(--sys-color-primary-container);
+    }
+
+    button.js:hover #jsLabel,
+    button.ts:hover #tsLabel {
+      color: var(--sys-color-on-primary-container);
     }
 
     [aria-checked='false'] > #toggle {
@@ -90,15 +99,12 @@ export class LitDevCodeLanguageSwitch extends LitElement {
       display: inline-flex;
       z-index: 1;
       padding: 0 0 calc(1em / 13) calc(3em / 13);
-      opacity: 60%;
-      transition: color 100ms, opacity 100ms;
+      transition: color 100ms;
     }
 
     [aria-checked='true'] > #tsLabel,
     [aria-checked='false'] > #jsLabel {
-      color: white;
       font-weight: 600;
-      opacity: 100%;
     }
   `;
 
@@ -129,13 +135,14 @@ export class LitDevCodeLanguageSwitch extends LitElement {
     return html`
       <button
         role="switch"
+        class="${mode}"
         aria-checked=${mode == 'ts' ? 'true' : 'false'}
         aria-label="Toggle TypeScript"
         title=${mode === 'ts' ? 'Disable TypeScript' : 'Enable TypeScript'}
         @click=${this._toggleLanguageAndAdjustScroll}
       >
-        <span id="jsLabel">JS</span>
-        <span id="tsLabel">TS</span>
+        <span id="jsLabel" aria-hidden="true">JS</span>
+        <span id="tsLabel" aria-hidden="true">TS</span>
         <span id="toggle"></span>
       </button>
     `;

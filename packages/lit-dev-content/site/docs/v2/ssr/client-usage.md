@@ -48,7 +48,7 @@ For example:
     <!-- App components rendered with declarative shadow DOM placed here. -->
 
     <!-- ssr-client lit-element-hydrate-support should be loaded first. -->
-    <script src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
+    <script type="module" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
 
     <!-- As component definition loads, your pre-rendered components will
         come to life and become interactive. -->

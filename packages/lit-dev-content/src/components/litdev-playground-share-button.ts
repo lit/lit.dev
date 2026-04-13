@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -35,7 +36,7 @@ export class LitDevPlaygroundShareButton extends LitElement {
       padding: 15px;
     }
     section:not(:last-of-type) {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid var(--sys-color-outline-variant);
     }
     section > h3 {
       margin: 0 0 10px 0;

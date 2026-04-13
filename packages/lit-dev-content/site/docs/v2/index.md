@@ -9,7 +9,7 @@ versionLinks:
   v3:
 ---
 
-![Lit Logo]({{ site.baseurl }}/images/logo.svg){.logo width="425" height="200"}
+<lazy-svg class="logo" width="425" height="200" href="{{ site.baseurl }}/images/logo.svg#full" loading="eager"></lazy-svg>
 
 Lit is a simple library for building fast, lightweight web components.
 

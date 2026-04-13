@@ -8,7 +8,7 @@ versionLinks:
   v2: frameworks/react/
 ---
 
-The [@lit/react](https://github.com/lit/lit/tree/main/packages/labs/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../../composition/controllers/).
+The [@lit/react](https://github.com/lit/lit/tree/main/packages/react) package provides utilities to create React wrapper components for web components, and custom hooks from [reactive controllers](../../composition/controllers/).
 
 The React component wrapper enables setting properties on custom elements (instead of just attributes), mapping DOM events to React-style callbacks, and enables correct type-checking in JSX by TypeScript.
 
@@ -117,7 +117,7 @@ Try it out in the [React slots playground example](/playground/#sample=examples/
 
 The `events` option takes an object that maps React prop names to event names. When a component user passes a callback prop with one of the event prop names, the wrapper will add it as an event handler for the corresponding event.
 
-While the the React prop name can be whatever you want, the recommended convention is to add `on` in front of the event name. This matches how React is planning to implement event support for custom elements. You should also make sure this prop name does not collide with any existing properties on the element.
+While the React prop name can be whatever you want, the recommended convention is to add `on` in front of the event name. This matches how React is planning to implement event support for custom elements. You should also make sure this prop name does not collide with any existing properties on the element.
 
 In TypeScript, the event type can be specified by casting the event name to the `EventName` utility type. This is a good practice to do so that React users will get the most accurate types for their event callbacks.
 
@@ -126,8 +126,8 @@ The `EventName` type is a string that takes an event interface as a type paramet
 ```ts
 
 import React from 'react';
-import {createComponent} from '@lit/react';
-import {MyElement, type EventName} from './my-element.js';
+import {createComponent, type EventName} from '@lit/react';
+import {MyElement, MyEvent} from './my-element.js';
 
 export const MyElementComponent = createComponent({
   tagName: 'my-element',

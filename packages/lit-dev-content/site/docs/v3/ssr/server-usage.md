@@ -26,10 +26,13 @@ Typically `value` is a `TemplateResult` produced by a Lit template expression, l
 html`<h1>Hello</h1>`
 ```
 
-The template can contain custom elements, which are rendered in turn, along with their templates.
+The template can contain custom elements. If the custom elements are defined on the server, they'll be rendered in turn, along with their templates.
 
 ```ts
 import {render} from '@lit-labs/ssr';
+import {html} from 'lit';
+// Import `my-element` on the server to server render it.
+import './my-element.js';
 
 const result = render(html`
   <h1>Hello SSR!</h1>
@@ -40,6 +43,9 @@ const result = render(html`
 To render a single element, you render a template that only contains that element:
 
 ```ts
+import {html} from 'lit';
+import './my-element.js';
+
 const result = render(html`<my-element></my-element>`);
 ```
 
@@ -68,6 +74,7 @@ This is the preferred way to handle SSR results when integrating with a streamin
 ```ts
 import {render} from '@lit-labs/ssr';
 import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
+import {html} from 'lit';
 
 // Using Koa to stream
 app.use(async (ctx) => {
@@ -87,9 +94,10 @@ app.use(async (ctx) => {
 ```ts
 import {render} from '@lit-labs/ssr';
 import {collectResult} from '@lit-labs/ssr/lib/render-result.js';
+import {html} from 'lit';
 
 const result = render(html`<my-element></my-element>`);
-const html = await collectResult(result);
+const contents = await collectResult(result);
 ```
 
 #### `collectResultSync()`
@@ -103,10 +111,11 @@ Because this function doesn't support async rendering, it's recommended to only 
 ```ts
 import {render} from '@lit-labs/ssr';
 import {collectResultSync} from '@lit-labs/ssr/lib/render-result.js';
+import {html} from 'lit';
 
 const result = render(html`<my-element></my-element>`);
 // Throws if `result` contains a Promise!
-const html = collectResultSync(result);
+const contents = collectResultSync(result);
 ```
 
 ### Render options
@@ -192,6 +201,7 @@ app.use(async (ctx) => {
 ```js
 // server.js
 import {ModuleLoader} from '@lit-labs/ssr/lib/module-loader.js';
+import {RenderResultReadable} from '@lit-labs/ssr/lib/render-result-readable.js';
 
 // ...
 
@@ -205,7 +215,7 @@ app.use(async (ctx) => {
   const {renderTemplate} = importResult.module.namespace;
   const ssrResult = await renderTemplate({some: "data"});
   ctx.type = 'text/html';
-  ctx.body = Readable.from(ssrResult);
+  ctx.body = new RenderResultReadable(ssrResult);
 });
 ```
 

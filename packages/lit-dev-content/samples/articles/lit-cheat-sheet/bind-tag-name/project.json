@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "input-or-textfield.ts": {},
+    "my-element.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "175px"
+}

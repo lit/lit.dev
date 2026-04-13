@@ -245,7 +245,7 @@ html`<div ?hidden=${!this.showAdditional}>This text may be hidden.</div>`;
 
 ### Removing an attribute { #removing-attribute }
 
-Sometimes you want to set an attribute only under certain conditions, and otherwise remove the attribute. For common "boolean attributes" like `disabled` and `hidden` where you want to set the attribute to an empty string for a truthy value and remove it otherwise, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, you might require a different condition for adding or removing an attribute. 
+Sometimes you want to set an attribute only under certain conditions, and otherwise remove the attribute. For common "boolean attributes" like `disabled` and `hidden` where you want to set the attribute to an empty string for a truthy value and remove it otherwise, use a [boolean attribute](#boolean-attribute-expressions). Sometimes, however, you might require a different condition for adding or removing an attribute.
 
 For example, consider:
 
@@ -338,7 +338,7 @@ Element expressions only work with [directives](/docs/v3/templates/directives/).
 One built-in directive that can be used in an element expression is the `ref` directive. It provides a reference to the rendered element.
 
 ```js
-html`<button ${ref(this.myRef)}`;
+html`<button ${ref(this.myRef)}></button>`;
 ```
 
 See [ref](/docs/v3/templates/directives/#ref) for more information.
@@ -474,7 +474,7 @@ class MyButton extends LitElement {
 
   render() {
     return html`
-      <${this.tag} ${this.activeAttribute}?=${this.active}>
+      <${this.tag} ${this.activeAttribute}=${this.active}>
         <p>${this.caption}</p>
       </${this.tag}>`;
   }
@@ -502,7 +502,7 @@ class MyButton extends LitElement {
 
   render() {
     return html`
-      <${this.tag} ${this.activeAttribute}?=${this.active}>
+      <${this.tag} ${this.activeAttribute}=${this.active}>
         <p>${this.caption}</p>
       </${this.tag}>`;
   }
@@ -570,8 +570,9 @@ class MyButton extends LitElement {
     // These strings MUST be trusted, otherwise this is an XSS vulnerability
     const tag = getTagName();
     const activeAttribute = getActiveAttribute();
+    // html should be imported from `lit/static-html.js`
     return html`
-      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}?=${this.active}>
+      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}=${this.active}>
         <p>${this.caption}</p>
       </${unsafeStatic(tag)}>`;
   }
@@ -595,8 +596,9 @@ class MyButton extends LitElement {
     // These strings MUST be trusted, otherwise this is an XSS vulnerability
     const tag = getTagName();
     const activeAttribute = getActiveAttribute();
+    // html should be imported from `lit/static-html.js`
     return html`
-      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}?=${this.active}>
+      <${unsafeStatic(tag)} ${unsafeStatic(activeAttribute)}=${this.active}>
         <p>${this.caption}</p>
       </${unsafeStatic(tag)}>`;
   }

@@ -31,7 +31,7 @@ You should also create a README describing how to consume your component.
 
 ## Publishing modern JavaScript
 
-We recommend publishing JavaScript modules in standard [ES2019](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
+We recommend publishing JavaScript modules in standard [ES2019](https://compat-table.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
 However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ compile those features to standard ES2019 supported natively in browsers before publishing to npm.
 

@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -16,10 +17,40 @@ export class LitDevRippleIconButton extends LitElement {
   label = '';
 
   /**
+   * Sets aria-live for the button.
+   */
+  @property({type: String})
+  live = '';
+
+  /**
    * Aria label for the button.
    */
   @property({attribute: 'button-title'})
   buttonTitle = '';
+
+  /**
+   * Aria haspopup for the button.
+   */
+  @property()
+  haspopup = '';
+
+  /**
+   * Aria expanded for the button.
+   */
+  @property()
+  expanded = '';
+
+  /**
+   * Aria controls for the button.
+   */
+  @property()
+  controls = '';
+
+  /**
+   * Sets the role for the inner button.
+   */
+  @property({attribute: 'button-role'})
+  buttonRole = '';
 
   /**
    * Href for the link button. If defined, this component switches to using an
@@ -134,7 +165,12 @@ export class LitDevRippleIconButton extends LitElement {
       <button
         class="root"
         part="root button"
+        role=${this.buttonRole ? this.buttonRole : nothing}
+        aria-live=${this.live ? this.live : nothing}
         aria-label=${this.label ? this.label : nothing}
+        aria-haspopup=${this.haspopup ? this.haspopup : nothing}
+        aria-expanded=${this.expanded ? this.expanded : nothing}
+        aria-controls=${this.controls ? this.controls : nothing}
         ?disabled=${this.disabled}
         title=${this.buttonTitle ?? (nothing as unknown as string)}
       >
@@ -158,7 +194,7 @@ export class LitDevRippleIconButton extends LitElement {
   }
 
   protected renderContent() {
-    return html` <div id="ripple"></div>
+    return html`<div id="ripple"></div>
       <slot></slot>`;
   }
 }

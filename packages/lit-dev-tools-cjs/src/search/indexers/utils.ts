@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -66,10 +67,7 @@ export const walkDir = async (
  */
 export const docIndexer = async (
   relativeLinksToHTMLFile: UrlToFile,
-  docType:
-    | DocType<'Docs', 'docs'>
-    | DocType<'API', 'api'>
-    | DocType<'Article', 'article'>,
+  docType: DocType<'docs'> | DocType<'api'> | DocType<'article'>,
   idOffset: number
 ) => {
   let id = idOffset;

@@ -9,11 +9,11 @@ h1 {
 }
 
 #date {
-  color: #666;
+  color: var(--sys-color-on-background-dim);
 }
 
 #authors {
-  border-bottom: 1.5px solid var(--color-blue);
+  border-bottom: 1.5px solid var(--sys-color-primary);
   margin: 32px 0;
 }
 
@@ -37,7 +37,7 @@ h1 {
 
 cite.authorName {
   font-style: normal;
-  color: #222;
+  color: var(--sys-color-on-background);
   font-weight: 500;
 }
 
@@ -65,7 +65,7 @@ ul.authorLinks > li > a {
 h2 {
   font-size: 26px;
   font-weight: 400;
-  color: #0043c0;
+  color: var(--sys-color-primary-variant-dim);
   margin-top: 38px;
 }
 
@@ -79,29 +79,29 @@ p strong {
 
 code {
   font-size: 16px;
-  background-color: #f5f5f5;
+  background-color: var(--sys-color-surface-container-highest);;
+  color: var(--sys-color-on-surface);
   padding: 4px 8px;
 }
 
 pre > code {
-  background: none;
+  background-color: none;
   padding: 0;
 }
 
 code > figure {
-  --playground-code-background: #fafafa;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--sys-color-outline-variant);
   margin: 0;
 }
 
 #blogIndexLink {
   display: block;
   padding: 16px;
-  color: #0043c0;
+  color: var(--sys-color-primary-variant);
   font-weight: 500;
   font-size: 24px;
-  border: 1px solid gray;
+  border: 1px solid var(--sys-color-outline);
   text-align: center;
   margin-top: 64px;
   margin-bottom: 32px;
@@ -112,8 +112,8 @@ code > figure {
 }
 
 aside {
-  border-left: 8px solid #999;
-  background: #f4f4f4;
+  border-left: 8px solid var(--sys-color-outline);
+  background-color: var(--sys-color-surface-container-high);
   padding: 18px 24px;
   margin: 32px 0;
 }
@@ -124,7 +124,7 @@ aside > p:last-of-type {
   margin-bottom: 0;
 }
 aside.warning {
-  border-color: #ffe133
+  border-color: var(--sys-color-error);
 }
 
 .block {

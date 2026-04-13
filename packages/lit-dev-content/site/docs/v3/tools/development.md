@@ -78,6 +78,36 @@ class MyElement extends LitElement {
 
 It's best for code size if the code to control warnings is eliminated in your own production builds.
 
+#### Multiple versions of Lit warning {#multiple-lit-versions}
+
+A dev mode only warning is triggered when multiple versions, or even multiple copies of the same version, of any of the Lit core packages – `lit-html`, `lit-element`, `@lit/reactive-element` – are detected.
+
+If Lit is being used as an internal dependency of elements, elements can use different versions of Lit and are completely interoperable.
+We also take care to ensure that Lit 2 and Lit 3 are mostly compatible with each other. For example, you can pass a Lit 2 template into a Lit 3 render function and vice-versa.
+
+So, why the warning? Lit is sometimes compared to frameworks which often break if components using different framework versions are mixed together. Thus, it's easier to accidentally install multiple duplicated versions of Lit without realizing.
+
+Loading multiple compatible versions of Lit is non-optimal because extra duplicated bytes must be sent to the user.
+
+If you’re publishing a library that uses Lit, follow our [publishing best practices](https://lit.dev/docs/tools/publishing/#don't-bundle-minify-or-optimize-modules) so consumers of your library are able to de-duplicate Lit in their projects.
+
+##### Resolving multiple versions of Lit
+
+It is possible to follow the steps below, and not be able to de-duplicate Lit, e.g., a library you depend on is bundling a specific version of Lit. In these cases the warning can be ignored.
+
+If you’re seeing a `Multiple versions of Lit loaded` development mode warning, there are a couple things you can try:
+
+1. Find out which Lit libraries have multiple versions loaded by checking the following variables in your browser console: `window.litElementVersions`, `window.reactiveElementVersions`, and `window.litHtmlVersions`.
+
+2. Use `npm ls` (note, you can specify exact libraries to look for, e.g. `npm ls @lit/reactive-element`) to narrow down which dependencies are loading multiple different versions of Lit.
+
+3. Try to use `npm dedupe` to de-duplicate Lit. Use `npm ls` to verify if the duplicated Lit package was successfully de-duped.
+
+4. It is possible to nudge `npm` to hoist particular versions of the core Lit packages by installing them as direct dependencies of your project with `npm i @lit/reactive-element@latest lit-element@latest lit-html@latest`. Replace `latest` with the version you want to de-dupe to.
+
+5. If there is still duplication, you may need to delete your package lock and `node_modules`. Then install the version of `lit` you want explicitly, followed by your dependencies.
+
+
 ## Local dev servers { #devserver }
 
 Lit is packaged as JavaScript modules, and it uses bare module specifiers that are not yet natively supported in most browsers. Bare specifiers are commonly used, and you may want to use them in your own code as well. For example:
@@ -172,12 +202,23 @@ For full installation and usage instructions, see the [Web Dev Server documentat
 
 ## TypeScript { #typescript }
 
-TypeScript extends the Javascript language by adding support for types. Types are useful for catching errors early and making code more readable and understandable.
+Lit support developing components in TypeScript, including full type declarations for the Lit APIs, standard and experimental decorators, and community tools for template type-checking and linting.
+
+Because Lit is just a library, and doesn't require a compiler or use non-standard language syntax, there are no specific TypeScript tools that are required. Lit works with the official TypeScript compiler, `tsc`, with TypeScript wrappers such as those for Rollup, Vite, or Webpack, and alternate compilers like `esbuild`.
+
+The main requirements of a TypeScript project are:
+- Enabling a modern JavaScript language level, like with the `"ES2021"` [lib](https://www.typescriptlang.org/tsconfig/#lib).
+- Enabling the DOM types with the `"DOM"` [lib](https://www.typescriptlang.org/tsconfig/#lib).
+- Optionally [enabling experimental decorators](https://www.typescriptlang.org/tsconfig/#experimentalDecorators) and [disabling "define" semantics for class fields](https://www.typescriptlang.org/tsconfig/#useDefineForClassFields), if you choose to use TypeScript's experimental decorators.
+
+These options are generally set in your project's tsconfig.
+
+### Installation
 
 To install TypeScript in your project:
 
 ```bash
-npm install typescript --save-dev
+npm i -D typescript
 ```
 
 To build the code:
@@ -187,6 +228,10 @@ npx tsc --watch
 ```
 
 For full installation and usage instructions, see the [TypeScript site](https://www.typescriptlang.org/). To get started, the sections on [installing TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html) and [using its features](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) are particularly helpful.
+
+### Decorators
+
+TypeScript supports two versions of decorators: experimental and standard. See our [Decorators](/docs/v3/components/decorators/#decorators-typescript) documentation for more information.
 
 ## JavaScript and TypeScript linting { #linting }
 

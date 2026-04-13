@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -13,7 +14,7 @@ const topSectionOrder = [
   'Template concepts',
   'Directives',
   'Managing Data',
-  '@lit-labs/react',
+  '@lit/react',
   '@lit-labs/motion'
 ];
 

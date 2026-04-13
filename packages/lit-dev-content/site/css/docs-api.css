@@ -2,33 +2,53 @@
   order: -1;
   margin-right: 1em;
   padding: 0 0.5em;
-  color: white !important;
-  background: var(--color-dark-gray);
+  color: var(--sys-color-on-surface);
+  background-color: var(--sys-color-surface-container-highest);
   font-size: 0.88889rem;
 }
 .kindTag.class {
-  background: #d73a49;
+  background-color: var(--sys-color-error-container);
+  color: var(--sys-color-on-error-container);
 }
 .kindTag.function {
-  background: green;
-}
-.kindTag.decorator {
-  background: rgb(165, 5, 165);
+  background-color: var(--sys-color-tertiary-container);
+  color: var(--sys-color-on-tertiary-container);
 }
 .kindTag.directive {
-  background: teal;
+  background-color: var(--sys-color-secondary-container);
+  color: var(--sys-color-on-secondary-container);
 }
 .kindTag.type {
-  background: #005cc5;
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
 }
 .kindTag.value {
-  background: rgb(255, 123, 0);
+  background-color: #fcae1d;
+  color: black;
+}
+.kindTag.decorator {
+  background-color: #7e34ff;
+  color: white;
+}
+
+/* attempt an auto dark mode lighten & desaturate */
+body.dark .kindTag.value,
+body.dark .kindTag.decorator {
+  filter: hue-rotate(180deg) invert(1);
+}
+
+/* attempt an auto dark mode lighten & desaturate */
+@media (prefers-color-scheme: dark) {
+  body:not(.light) .kindTag.value,
+  body:not(.light) .kindTag.decorator {
+    filter: hue-rotate(180deg) invert(1);
+  }
 }
 
 /* Import statements */
 .import {
   display: flex;
-  background: var(--playground-code-background);
+  background-color: var(--playground-code-background);
   border: var(--code-border);
   border-radius: 5px;
   align-items: center;
@@ -67,14 +87,14 @@ copy-button:hover {
   font-weight: bold;
 }
 .type, .paramName, .staticKeyword, .newKeyword {
-  color: rgb(102, 102, 102);
+  color: var(--sys-color-on-surface);
 }
 
 /* Top-level function signatures */
 .signature > code,
 .typeSignature > code {
   font-size: 1em !important;
-  background: transparent !important;
+  background-color: transparent !important;
   padding-left: 0 !important;
 }
 
@@ -88,7 +108,7 @@ copy-button:hover {
   z-index: 1;
 }
 .viewSourceLink:hover {
-  background: var(--docs-link-color);
+  background-color: var(--docs-link-color);
   color: white;
   text-decoration: none;
 }

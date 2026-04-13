@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "my-wallet.ts": {},
+    "id-card.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "170px"
+}

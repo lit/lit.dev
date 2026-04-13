@@ -16,7 +16,7 @@ Lit components receive input and store their state as JavaScript class fields or
 ```ts
 class MyElement extends LitElement {
   @property()
-  name: string;
+  name?: string;
 }
 ```
 
@@ -83,7 +83,7 @@ Use the `@property` decorator with a class field declaration to declare a reacti
 ```ts
 class MyElement extends LitElement {
   @property({type: String})
-  mode: string;
+  mode?: string;
 
   @property({attribute: false})
   data = {};

@@ -9,7 +9,7 @@ https://core.clarity.design/
 https://auro.alaskaair.com/#:~:text=Using%20LitElement%20as%20a%20base
 https://spdx.org/licenses/CC-BY-3.0
 https://www.npmjs.com/package/lit
-https://lion-web.netlify.app/#:~:text=LitElement
+https://lion.js.org/#:~:text=LitElement
 https://hilla.dev/#:~:text=Lit
 https://github.com/lit/lit/
 https://opensource.adobe.com/spectrum-web-components/#:~:text=LitElement
@@ -118,7 +118,6 @@ https://jasmine.github.io/
 https://modern-web.dev/guides/test-runner/getting-started
 https://www.npmjs.com/
 https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
-https://kangax.github.io/compat-table/es2016plus/
 https://github.com/WICG/webcomponents/blob/gh-pages/proposals/Scoped-Custom-Element-Registries.md
 https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry
 https://github.com/webcomponents/gold-standard/wiki
@@ -463,6 +462,7 @@ https://lit.dev/docs/templates/expressions/#static-expressions
 https://lit.dev/docs/tools/development/#development-and-production-builds
 https://lit.dev/docs/getting-started/
 https://lit.dev/tutorials/
+https://lit.dev/learn/
 https://lit.dev/playground/
 https://github.com/lit/lit/pull/2034
 https://github.com/lit/lit/blob/main/packages/lit/CHANGELOG.md
@@ -514,3 +514,6 @@ https://devblogs.microsoft.com/typescript/announcing-typescript-5-2/#decorator-m
 https://preactjs.com/guide/v10/signals/
 https://www.youtube.com/watch?v=l6Gn5uV83sw
 https://github.com/e111077
+https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js
+https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js
+https://reddit.com/

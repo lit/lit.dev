@@ -31,7 +31,7 @@ You should also create a README describing how to consume your component.
 
 ## Publishing modern JavaScript
 
-We recommend publishing JavaScript modules in standard [ES2021](https://kangax.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
+We recommend publishing JavaScript modules in standard [ES2021](https://compat-table.github.io/compat-table/es2016plus/) syntax, as this is supported on all evergreen browsers and results in the fastest and smallest JavaScript. Users of your package can always use a compiler to support older browsers, but they can't transform legacy JavaScript to modern syntax if you pre-compile your code before publishing.
 
 However, it is important that if you are using newly proposed or non-standard JavaScript features such as TypeScript, decorators, and class fields, you _should_ compile those features to standard ES2021 supported natively in browsers before publishing to npm.
 
@@ -78,28 +78,29 @@ To compile a Lit component that uses proposed JavaScript features not yet includ
 Install Babel and the Babel plugins you need. For example:
 
 ```sh
-npm install --save-dev @babel/core
-npm install --save-dev @babel/plugin-proposal-class-properties
-npm install --save-dev @babel/plugin-proposal-decorators
+npm install --save-dev \
+  @babel/core \
+  @babel/cli \
+  @babel/preset-env \
+  @babel/plugin-proposal-decorators
 ```
 
 Configure Babel. For example:
 
-**babel.config.js**
+**babel.config.json**
 
-```js
-const assumptions = {
-  "setPublicClassFields": true
-};
-
-const plugins = [
-  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true } ],
-  ["@babel/plugin-proposal-class-properties"],
-
-];
-
-module.exports = { assumptions, plugins };
+```json
+{
+  "presets": [
+    ["@babel/preset-env", {"targets": "defaults"}]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", {"version": "2023-05"}]
+  ]
+}
 ```
+
+You can adjust the `"targets"` option to target browsers you wish to support. See [`@babel/preset-env`](https://babeljs.io/docs/babel-preset-env) for available options.
 
 You can run Babel via a bundler plugin such as [@rollup/plugin-babel](https://www.npmjs.com/package/@rollup/plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
 

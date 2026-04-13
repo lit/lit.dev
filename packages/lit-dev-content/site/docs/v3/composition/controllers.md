@@ -8,8 +8,6 @@ versionLinks:
   v2: composition/controllers/
 ---
 
-Lit 2 introduces a new concept for code reuse and composition called _reactive controllers_.
-
 A reactive controller is an object that can hook into a component's [reactive update cycle](/docs/v3/components/lifecycle/#reactive-update-cycle). Controllers can bundle state and behavior related to a feature, making it reusable across multiple component definitions.
 
 You can use controllers to implement features that require their own state and access to the component's lifecycle, such as:

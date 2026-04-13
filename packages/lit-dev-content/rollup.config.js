@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -46,8 +47,10 @@ export default [
       'lib/components/litdev-playground-page.js',
       'lib/github/github-signin-receiver-page.js',
       'lib/global/hydrate-common-components.js',
+      'lib/pages/design.js',
       'lib/pages/docs.js',
       'lib/pages/home.js',
+      'lib/pages/learn.js',
       'lib/pages/home-components.js',
       'lib/pages/playground-inline.js',
     ],
@@ -102,6 +105,24 @@ export default [
     preserveEntrySignatures: false,
   },
 
+  // Bundle the TS worker so that we don't have to deal with passing through
+  // the the worker's deps. Make sure there is only one input in this config.
+  {
+    input: ['lib/components/playground-typescript-worker.js'],
+    output: {
+      dir: 'rollupout',
+      format: 'esm',
+    },
+    plugins: [
+      resolve(),
+      terser(terserOptions),
+      summary({
+        // Already minified.
+        showMinifiedSize: false,
+      }),
+    ],
+  },
+
   // A separate bundle is made for the server so that we do not modify the
   // client module graph just to SSR a component.
   {
@@ -130,8 +151,9 @@ export default [
   // the asynchronously-loaded module bundles above.
   {
     input: [
+      'lib/global/apply-saved-theme.js',
       'lib/global/apply-mods.js',
-      'lib/global/initialize-typescript-attribute.js',
+      'lib/global/initialize-typescript-mode.js',
       'lib/global/mobile-drawer.js',
       'lib/global/dsd-polyfill.js',
     ],

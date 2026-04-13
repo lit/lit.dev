@@ -202,17 +202,17 @@ Making a context property public lets an element provide a public field to its c
 ```ts
 import {LitElement, html} from 'lit';
 import {ContextProvider} from '@lit/context';
-import {myContext, MyData} from './my-context.js';
+import {myContext} from './my-context.js';
 
 export class MyApp extends LitElement {
-  private _provider = new ContextProvider(this, myContext);
+  private _provider = new ContextProvider(this, {context: myContext});
 }
 ```
 
-ContextProvider can take an initial value in its constructor:
+ContextProvider can take an initial value as an option in the constructor:
 
 ```ts
-  private _provider = new ContextProvider(this, myContext, initialData);
+  private _provider = new ContextProvider(this, {context: myContext, initialValue: myData});
 ```
 
 Or you can call `setValue()`:
@@ -247,10 +247,10 @@ ContextConsumer is a reactive controller that manages dispatching the `context-r
 ```ts
 import {LitElement, property} from 'lit';
 import {ContextConsumer} from '@lit/context';
-import {Logger, loggerContext} from './logger.js';
+import {myContext} from './my-context.js';
 
 export class MyElement extends LitElement {
-  private _myData = new ContextConsumer(this, myContext);
+  private _myData = new ContextConsumer(this, {context: myContext});
 
   render() {
     const myData = this._myData.value;
@@ -274,9 +274,10 @@ and the ContextConsumer controller:
 
 ```ts
   private _myData = new ContextConsumer(this,
-    myContext,
-    undefined, /* callback */
-    true /* subscribe */
+    {
+      context: myContext,
+      subscribe: true,
+    }
   );
 ```
 
@@ -332,7 +333,7 @@ Creates a typed Context object
 **Import**:
 
 ```ts
-import {property} from '@lit/context';
+import {createContext} from '@lit/context';
 ```
 
 **Signature**:
@@ -366,7 +367,7 @@ The `ValueType` type parameter is the type of value that can be provided by this
 
 ### `@provide()`
 
-A property decorator that adds a ContextConsumer controller to the component which will try and retrieve a value for the property via the Context API.
+A property decorator that adds a ContextProvider controller to the component making it respond to any `context-request` events from its children consumer.
 
 **Import**:
 
@@ -413,8 +414,10 @@ import {ContextProvider} from '@lit/context';
 ```ts
 ContextProvider(
   host: ReactiveElement,
-  context: T,
-  initialValue?: ContextType<T>
+  options: {
+    context: T,
+    initialValue?: ContextType<T>
+  }
 )
 ```
 
@@ -439,9 +442,11 @@ import {ContextConsumer} from '@lit/context';
 ```ts
 ContextConsumer(
   host: HostElement,
-  context: C,
-  callback?: (value: ContextType<C>, dispose?: () => void) => void,
-  subscribe: boolean = false
+  options: {
+    context: C,
+    callback?: (value: ContextType<C>, dispose?: () => void) => void,
+    subscribe?: boolean = false
+  }
 )
 ```
 
@@ -480,14 +485,14 @@ ContextRoot()
 
     Detaches the ContextRoot from this element, stops listening to `context-request` events.
 
-### `ContextRequestEvent`
+### `ContextEvent`
 
 The event fired by consumers to request a context value. The API and behavior of this event is specified by the [Context Protocol](https://github.com/webcomponents-cg/community-protocols/blob/main/proposals/context.md).
 
 **Import**:
 
 ```ts
-import {ContextRequestEvent} from '@lit/context';
+import {ContextEvent} from '@lit/context';
 ```
 
 The `context-request` bubbles and is composed.
@@ -497,6 +502,10 @@ The `context-request` bubbles and is composed.
 - `readonly context: C`
 
     The context object this event is requesting a value for
+
+- `readonly contextTarget: Element`
+
+    The DOM element that initiated the context request
 
 - `readonly callback: ContextCallback<ContextType<C>>`
 

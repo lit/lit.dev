@@ -1,0 +1,9 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "my-element.ts": {},
+    "another-element.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "120px"
+}

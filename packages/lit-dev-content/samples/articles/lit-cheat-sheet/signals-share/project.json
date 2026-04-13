@@ -1,0 +1,10 @@
+{
+  "extends": "/samples/v3-base.json",
+  "files": {
+    "score-board.ts": {},
+    "game-player.ts": {},
+    "game-state.ts": {},
+    "index.html": {}
+  },
+  "previewHeight": "250px"
+}

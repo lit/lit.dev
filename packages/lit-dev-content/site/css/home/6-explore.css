@@ -1,6 +1,6 @@
 #explore {
   padding:4em var(--home-side-margin) 5em var(--home-side-margin);
-  background: black;
+  background-color: black;
   color: white;
 }
 
@@ -28,8 +28,8 @@
 }
 
 #exploreItems > div > a {
-  background: #324FFF;
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
   font-size: 14px;
   font-weight: 700;
   padding: 8px 0;
@@ -39,7 +39,8 @@
 
 #exploreItems > div > a:hover,
 #exploreItems > div > a:focus {
-  background: blue;
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
 }
 
 #exploreItems > div > h2 {

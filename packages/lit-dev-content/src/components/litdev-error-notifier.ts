@@ -1,10 +1,11 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, nothing} from 'lit';
+import {LitElement, html, css, nothing} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 
 import '@material/mwc-dialog';
@@ -17,6 +18,15 @@ import type {LitDevError} from '../errors.js';
  */
 @customElement('litdev-error-notifier')
 export class LitDevErrorNotifier extends LitElement {
+  static styles = css`
+    a {
+      color: var(--sys-color-primary-variant);
+    }
+
+    :host {
+      --mdc-theme-primary: var(--sys-color-primary-variant);
+    }
+  `;
   /**
    * The SHA or version number identifying the version of lit.dev, used for
    * error reports.

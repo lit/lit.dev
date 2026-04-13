@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 3
 versionLinks:
   v2: tools/production/
+  v3: tools/production/
 ---
 
 When building an app that includes LitElement components, you can use common JavaScript build tools like <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a> or <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a>.

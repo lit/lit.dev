@@ -16,7 +16,7 @@ Lit components receive input and store their state as JavaScript class fields or
 ```ts
 class MyElement extends LitElement {
   @property()
-  name: string;
+  name?: string;
 }
 ```
 
@@ -54,7 +54,7 @@ private _counter = 0;
 
 ```js
 static properties = {
-  _counter: {state: true};
+  _counter: {state: true}
 };
 
 constructor() {
@@ -83,7 +83,7 @@ Use the `@property` decorator with a class field declaration to declare a reacti
 ```ts
 class MyElement extends LitElement {
   @property({type: String})
-  mode: string;
+  mode?: string;
 
   @property({attribute: false})
   data = {};
@@ -120,34 +120,79 @@ An empty option object is equivalent to specifying the default value for all opt
 
 ### Avoiding issues with class fields when declaring properties {#avoiding-issues-with-class-fields}
 
-[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance. Reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used. When a property is set, the element does not update.
-
-In **JavaScript** you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+[Class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) have a problematic interaction with reactive properties. Class fields are defined on the element instance whereas reactive properties are defined as accessors on the element prototype. According to the rules of JavaScript, an instance property takes precedence over and effectively hides a prototype property. This means that reactive property accessors do not function when class fields are used such that setting the property won't trigger an element update.
 
 ```js
-constructor() {
-  super();
-  this.data = {};
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  foo = 'Default'; // ❌ this will make `foo` not reactive
+}
+```
+
+In **JavaScript**, you **must not use class fields** when declaring reactive properties. Instead, properties must be initialized in the element constructor:
+```js
+class MyElement extends LitElement {
+  static properties = {
+    foo: {type: String}
+  }
+  constructor() {
+    super();
+    this.foo = 'Default';
+  }
+}
+```
+
+Alternatively, you may use [standard decorators with Babel](/docs/v3/components/decorators/#decorators-babel) to declare reactive properties.
+```ts
+class MyElement extends LitElement {
+  @property()
+  accessor foo = 'Default';
 }
 ```
 
 For **TypeScript**, you **may use class fields** for declaring reactive properties as long as you use one of these patterns:
-* Set the `useDefineForClassFields` setting in your `tsconfig` to `false`. Note, this is not required for some configurations of TypeScript, but it's recommended to explicitly set it to `false`.
-* Add the `declare` keyword on the field, and put the field's initializer in the constructor.
+* Set the `useDefineForClassFields` compiler option to `false`. This is already the recommendation when [using decorators with TypeScript](/docs/v3/components/decorators/#decorators-typescript).
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true, // If using decorators
+    "useDefineForClassFields": false,
+  }
+}
+```
+```ts
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  foo = 'Default';
 
-When compiling JavaScript with **Babel**, you **may use class fields** for declaring reactive properties as long as you set `setPublicClassFields` to `true` in the `assumptions` config of your `babelrc`. Note, for older versions of Babel, you also need to include the plugin `@babel/plugin-proposal-class-properties`:
-
-```js
-assumptions = {
-  "setPublicClassFields": true
-};
-
-plugins = [
-  ["@babel/plugin-proposal-class-properties"],
-];
+  @property()
+  bar = 'Default';
+}
 ```
 
-For information about using class fields with **decorators**, see [Avoiding issues with class fields and decorators](/docs/v3/components/decorators/#avoiding-issues-with-class-fields).
+* Add the `declare` keyword on the field, and put the field's initializer in the constructor.
+```ts
+class MyElement extends LitElement {
+  declare foo: string;
+  static properties = {foo: {type: String}}
+  constructor() {
+    super();
+    this.foo = 'Default';
+  }
+}
+```
+
+* Add the `accessor` keyword on the field to use [auto-accessors](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#auto-accessors-in-classes).
+```ts
+class MyElement extends LitElement {
+  static properties = {foo: {type: String}}
+  accessor foo = 'Default';
+
+  @property()
+  accessor bar = 'Default';
+}
+```
 
 ### Property options
 
@@ -225,6 +270,18 @@ Set to true to declare the property as _internal reactive state_. Internal react
 When converting a string-valued attribute into a property, Lit's default attribute converter will parse the string into the type given, and vice-versa when reflecting a property to an attribute. If `converter` is set, this field is passed to the converter. If `type` is unspecified, the default converter treats it as `type: String`. See [Using the default converter](#conversion-type).
 
 When using TypeScript, this field should generally match the TypeScript type declared for the field. However, the `type` option is used by the Lit's _runtime_ for string serialization/deserialization, and should not be confused with a _type-checking_ mechanism.
+
+</dd>
+<dt id="use-default">
+
+`useDefault`
+
+</dt>
+<dd>
+
+Set to true to prevent initial attribute reflection for the default value when `reflect` is set to true, and to reset the property to its default value when its corresponding attribute is removed.
+
+The default value is the property's initial value set in the constructor or with an [auto-accessor](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html#auto-accessors-in-classes). This value is retained in memory so it's a good practice to avoid setting `useDefault: true` for non-primitive Object/Array properties. For more information, see [Enabling attribute reflection](#reflected-attributes) and [Best practices when reflecting attributes](#best-practices-when-reflecting-attributes).
 
 </dd>
 
@@ -508,28 +565,43 @@ If this behavior doesn't fit your use case, there are a couple of options:
 
 ### Enabling attribute reflection {#reflected-attributes}
 
-You can configure a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful because attributes are visible to CSS, and to DOM APIs like `querySelector`.
+Setting `reflect` to true configures a property so that whenever it changes, its value is reflected to its [corresponding attribute](#observed-attributes). Reflected attributes are useful for serializing element state and because they are visible to CSS and DOM APIs like `querySelector`.
+
+Setting `useDefault` to true prevents the property's default value from initially reflecting to its [corresponding attribute](#observed-attributes). All subsequent changes are reflected; and if the attribute is removed, the property is reset to its default value. 
+
+This matches web platform behavior for attributes like `id`. The default value of an element's `id` property is `''` (an empty string) and initially it does not have an `id` attribute, but if the `id` property is set (even to an empty string), the appropirate `id` attribute is reflected. If the `id` attribute is removed, the element's `id` property is set back to its initial value of `''`.
 
 For example:
 
 ```js
 // Value of property "active" will reflect to attribute "active"
 active: {reflect: true}
+// Value of property "variant" will reflect except that the "variant"
+// attribute will not be iniitally set to the property's default value.
+variant: {reflect: true, useDefault: true}
 ```
 
 When the property changes, Lit sets the corresponding attribute value as described in [Using the default converter](#conversion-type) or [Providing a custom converter](#conversion-converter).
 
 {% playground-example "properties/attributereflect" "my-element.ts" %}
 
-Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. It's necessary today for cases like styling and accessibility, but this is likely to change as the platform adds features like the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/), which fill these gaps.
-
-Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance.
-
 <div class="alert alert-info">
 
 **Lit tracks reflection state during updates.** You may have realized that if property changes are reflected to an attribute and attribute changes update the property, it has the potential to create an infinite loop. However, Lit tracks when properties and attributes are set specifically to prevent this from happening
 
 </div>
+
+### Best practices when reflecting attributes {#best-practices-when-reflecting-attributes}
+
+To ensure elements behave as expected and perform well, try to follow these best practices when reflecting attributes:
+
+* Attributes should generally be considered input to the element from its owner, rather than under control of the element itself, so reflecting properties to attributes should be done sparingly. Consider instead using the [`:state` pseudo selector](https://wicg.github.io/custom-state-pseudo-class/) and the [Accessibility Object Model](https://wicg.github.io/aom/spec/) where possible.
+
+* Reflecting properties should typically also set `useDefault: true` since this keeps the element from spontaneously spawning attributes that the user didn't set, and helps match expected platform behavior.
+
+* Reflecting properties of type object or array is not recommended. This can cause large objects to serialize to the DOM which can result in poor performance and consume excess memory when `useDefault` is used.
+  
+* The property decorator does not alter any values assigned to the reactive property, which is considered a best practice for custom accessors. Sometimes native elements restrict properties to certain valid values, for instance, and if an invalid value is assigned to a property, the property will be set to a default instead. `useDefault: true` does not do this - it only restores the default when the attribute is removed. If you'd like to alter the property value on property assignments, define and decorate a custom property setter.
 
 ## Custom property accessors {#accessors}
 

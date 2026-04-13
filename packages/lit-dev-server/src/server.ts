@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -91,6 +92,16 @@ app.use(
       // This `path` is the path on disk. Works for now, though.
       if (path.includes('/fonts/')) {
         res.setHeader('Cache-Control', 'max-age=31536000');
+      }
+      if (path.includes('/playground-typescript-worker.js')) {
+        // This is a huge file, so we want to cache the request for 2 minutes
+        // which should basically handle a page with multiple playgrounds.
+        // Then after those two minutes, it will use the same cached file for a
+        // day while it revalidates the cache in the background.
+        res.setHeader(
+          'Cache-Control',
+          'max-age=120, stale-while-revalidate=86400'
+        );
       }
     },
   })

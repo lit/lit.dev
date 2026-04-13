@@ -1831,7 +1831,10 @@ import {asyncAppend} from 'lit/directives/async-append.js';
 <td class="wide-cell">
 
 ```ts
-asyncAppend(iterable: AsyncIterable)
+asyncAppend(
+  iterable: AsyncIterable<I>,
+  mapper?: (item: I, index?: number) => unknown
+)
 ```
 
 </td>
@@ -1924,7 +1927,10 @@ import {asyncReplace} from 'lit/directives/async-replace.js';
 <td class="wide-cell">
 
 ```ts
-asyncReplace(iterable: AsyncIterable)
+asyncReplace(
+  iterable: AsyncIterable<I>,
+  mapper?: (item: I, index?: number) => unknown
+)
 ```
 
 </td>
@@ -1933,7 +1939,7 @@ asyncReplace(iterable: AsyncIterable)
 <td class="no-wrap-cell vcenter-cell">Usable location</td>
 <td class="wide-cell">
 
-Child expression
+Any expression
 
 </td>
 </tr>

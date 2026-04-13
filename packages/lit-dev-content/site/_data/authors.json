@@ -2,7 +2,8 @@
   "lit-team": {
     "name": "Lit Team",
     "links": {
-      "twitter": "buildWithLit"
+      "twitter": "buildWithLit",
+      "bluesky": "lit.dev"
     },
     "image": {
       "url": "logo.svg#flame",
@@ -53,6 +54,7 @@
   "elliott-marquez": {
     "name": "Elliott Marquez",
     "links": {
+      "bluesky": "techytacos.dev",
       "twitter": "techytacos",
       "github": "e111077"
     },

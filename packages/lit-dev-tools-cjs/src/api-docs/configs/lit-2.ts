@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -33,6 +34,8 @@ export const lit2Config: ApiDocsConfig = {
     {
       cmd: 'npm',
       args: ['run', 'build:ts'],
+      // disable wireit cache for to avoid caching errors in Github Actions
+      env: {WIREIT_CACHE: 'none'},
     },
   ],
 

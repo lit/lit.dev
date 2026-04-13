@@ -11,8 +11,8 @@ footer {
 
 litdev-tutorial {
   flex: 0 0 var(--text-side-width, 45%);
-  background: var(--color-dark-gray);
-  color: white;
+  background-color: var(--sys-color-dark-surface);
+  color: var(--sys-color-on-dark-surface);
   line-height: 1.5em;
   min-width: 18em;
   max-width: 60em;
@@ -38,7 +38,7 @@ litdev-tutorial {
 
 #tutorialContent > h1 {
   font-weight: 500;
-  border-bottom: 2px solid #666;
+  border-bottom: 2px solid var(--sys-color-outline);
   padding-bottom: 0.5em;
   font-size: 1.8em;
   line-height: 1.3em;
@@ -47,6 +47,7 @@ litdev-tutorial {
 
 #tutorialContent a {
   color: var(--color-dark-cyan);
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
 }
@@ -66,10 +67,16 @@ litdev-tutorial {
 }
 
 #tutorialContent code:not([class]) {
-  background: rgb(0 0 0 / 25%);
+  background-color: var(--sys-color-dark-surface-dim);
   font-size: 0.85em;
   padding: 0.2em 0.4em;
   font-family: var(--playground-code-font-family, monospace);
+}
+
+body[code-language-preference="js"] #tutorialContent pre > code.language-js > figure,
+body[code-language-preference="ts"] #tutorialContent pre > code.language-ts > figure {
+  border: 1px solid var(--sys-color-outline-variant);
+  border-radius: 5px;
 }
 
 #tutorialContent ul,
@@ -86,7 +93,6 @@ litdev-tutorial {
   flex: 0 0 auto;
   padding: 0.5em calc(3em - 16px) 0.3em 2em;
   /* Disabled buttons are very dark by default, lighten a bit. */
-  --mdc-theme-text-disabled-on-light: #777;
   --diamond-icon-color: currentcolor;
   /* need to reduce padding to account for the 16px of whitespace around icon */
   padding-inline-start: calc(2em - 16px);
@@ -149,7 +155,7 @@ litdev-tutorial {
 /* Solve/Reset/Next buttons */
 
 #tutorialFooter {
-  border-top: 2px solid #666;
+  border-top: 2px solid var(--sys-color-outline-variant);
   padding-top: 2em;
   display: flex;
   flex-wrap: wrap;
@@ -167,7 +173,7 @@ litdev-tutorial {
 }
 
 #tutorialFooter > litdev-icon-button:hover {
-  background: #2a2a2a;
+  background-color: var(--sys-color-dark-surface-dim);
 }
 
 #tutorialFooter > #nextStep {
@@ -197,7 +203,7 @@ litdev-tutorial {
   display: flex;
   padding-right: 8px;
   /* Move border from the tab-bar to this wrapping div. */
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--sys-color-outline-variant);
   height: var(--playground-bar-height);
   box-sizing: border-box;
 }
@@ -235,7 +241,7 @@ resize-bar {
 }
 
 resize-bar[active] {
-  background: var(--color-dark-cyan);
+  background-color: var(--color-dark-cyan);
 }
 
 /** Mobile layout */
@@ -301,15 +307,11 @@ resize-bar[active] {
 /* Notes and warnings
 /* ------------------------------------ */
 
-#tutorialContent litdev-aside {
-  --lit-dev-aside-border-color: #ccc;
-}
-
 #tutorialContent aside {
   position: relative;
   margin: 1em 0;
   padding: 1em 1em 1em 3.5em;
-  border: 1px solid #ccc;
+  border: 1px solid var(--sys-color-outline-variant);
 }
 
 #tutorialContent aside > p {

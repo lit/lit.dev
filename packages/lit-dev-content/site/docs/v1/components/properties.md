@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 3
 versionLinks:
   v2: components/properties/
+  v3: components/properties/
 ---
 
 ## Overview {#overview}

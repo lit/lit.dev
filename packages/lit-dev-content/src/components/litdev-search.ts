@@ -1,14 +1,14 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, nothing} from 'lit';
+import {LitElement, html, css, nothing, isServer} from 'lit';
 import {state, customElement, query, property} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {live} from 'lit/directives/live.js';
-import {AgloliaSearchController} from './algolia-search-controller.js';
 import {classMap} from 'lit/directives/class-map.js';
 import type {Drawer} from '@material/mwc-drawer';
 import type {LitdevSearchOption} from './litdev-search-option.js';
@@ -16,11 +16,23 @@ import type {LitdevSearchOption} from './litdev-search-option.js';
 import './litdev-search-option.js';
 import './lazy-svg.js';
 
+let AgloliaSearchController:
+  | typeof import('./algolia-search-controller.js').AgloliaSearchController
+  | undefined = undefined;
+
+if (!isServer) {
+  // Package exports will load nodejs bundle in SSR. We don't need it in SSR and
+  // it throws SSR errors that I don't care to fix since we don't even use this
+  // in SSR.
+  AgloliaSearchController = (await import('./algolia-search-controller.js'))
+    .AgloliaSearchController;
+}
+
 /**
  * Generic that denotes the type of document.
  */
-interface DocType<T extends string, U extends string> {
-  type: T;
+interface DocType<U extends string> {
+  type: string;
   tag: U;
 }
 
@@ -29,11 +41,12 @@ interface DocType<T extends string, U extends string> {
  * frontend and used to re-rank results on the frontend.
  */
 type DocTypes =
-  | DocType<'Article', 'article'>
-  | DocType<'Tutorial', 'tutorial'>
-  | DocType<'Docs', 'docs'>
-  | DocType<'API', 'api'>
-  | DocType<'Other', 'other'>;
+  | DocType<'article'>
+  | DocType<'tutorial'>
+  | DocType<'docs'>
+  | DocType<'api'>
+  | DocType<'video'>
+  | DocType<'other'>;
 
 /**
  * Representation of each record indexed by our PageChunker which is published
@@ -47,8 +60,10 @@ interface UserFacingPageData {
   title: string;
   heading: string;
   text: string;
+  position: number;
   parentID?: string;
   docType: DocTypes;
+  isExternal?: boolean;
 }
 
 /**
@@ -181,23 +196,21 @@ export class LitDevSearch extends LitElement {
   @state()
   private _selectedIndex = -1;
 
-  private _searchController = new AgloliaSearchController<Suggestion>(
-    this,
-    () => this._searchText,
-    {
-      // Algolia _highlightResult adds a lot to response size
-      attributesToHighlight: ['heading', 'title'],
-      // We don't need to return the full text of result so don't request it
-      attributesToRetrieve: ['*', '-text', '-heading'],
-      attributesToSnippet: ['text'],
-    }
-  );
+  private _searchController = AgloliaSearchController
+    ? new AgloliaSearchController<Suggestion>(this, () => this._searchText, {
+        // Algolia _highlightResult adds a lot to response size
+        attributesToHighlight: ['heading', 'title'],
+        // We don't need to return the full text of result so don't request it
+        attributesToRetrieve: ['*', '-text', '-heading'],
+        attributesToSnippet: ['text'],
+      })
+    : undefined;
 
   render() {
     const activeDescendant =
       this._selectedIndex !== -1 ? `${this._selectedIndex}` : nothing;
 
-    const items = this._searchController.value;
+    const items = this._searchController?.value ?? [];
 
     return html`
       <div id="root">
@@ -252,7 +265,7 @@ export class LitDevSearch extends LitElement {
     // once we release that feature in @lit-labs/task so that we don't do this
     // needlessly every render.
     const groupedSuggestions = new SuggestionGroups(
-      this._searchController.value
+      this._searchController?.value ?? []
     );
 
     // for aria-activedescendant we need each item in each group to have a
@@ -269,7 +282,15 @@ export class LitDevSearch extends LitElement {
           ${repeat(
             suggestionGroup.suggestions,
             ({objectID}) => objectID,
-            ({relativeUrl, _highlightResult, _snippetResult, parentID}) => {
+            ({
+              relativeUrl,
+              _highlightResult,
+              _snippetResult,
+              parentID,
+              isExternal,
+              objectID,
+              position,
+            }) => {
               const title = _highlightResult.title.value;
               const heading = _highlightResult.heading.value;
               const text = _snippetResult.text.value;
@@ -284,9 +305,17 @@ export class LitDevSearch extends LitElement {
                   .heading="${heading}"
                   .text="${text}"
                   .isSubsection="${!!parentID}"
+                  .isExternal="${!!isExternal}"
+                  .position="${position}"
+                  .objectId="${objectID}"
                   role="option"
                   @pointerenter=${this._onSuggestionHover(suggestionIndex)}
-                  @click="${() => this._navigate(relativeUrl)}"
+                  @click="${() =>
+                    this._navigate({
+                      url: relativeUrl,
+                      id: objectID,
+                      position,
+                    })}"
                 ></litdev-search-option>
               `;
             }
@@ -359,7 +388,7 @@ export class LitDevSearch extends LitElement {
    * Selects the next item on the list or wraps around if at end.
    */
   private _selectNext() {
-    const numItems = this._searchController.value.length;
+    const numItems = this._searchController?.value.length ?? 0;
     this._selectedIndex++;
     if (this._selectedIndex >= numItems) {
       this._selectedIndex = 0;
@@ -370,7 +399,7 @@ export class LitDevSearch extends LitElement {
    * Selects the previous item on the list or wraps around if at start.
    */
   private _selectPrevious() {
-    const numItems = this._searchController.value.length;
+    const numItems = this._searchController?.value.length ?? 0;
     this._selectedIndex--;
     if (this._selectedIndex < 0) {
       this._selectedIndex = numItems - 1;
@@ -381,6 +410,10 @@ export class LitDevSearch extends LitElement {
    * Handles the enter keypress and navigates accordingly.
    */
   private _select() {
+    if (!this._searchController) {
+      return;
+    }
+
     const numItems = this._searchController.value.length;
     if (numItems === 0) {
       return;
@@ -390,7 +423,11 @@ export class LitDevSearch extends LitElement {
 
     // Navigate to checked element.
     if (checkedEl) {
-      this._navigate(checkedEl.relativeUrl);
+      this._navigate({
+        url: checkedEl.relativeUrl,
+        position: checkedEl.position,
+        id: checkedEl.objectID,
+      });
       return;
     }
 
@@ -398,7 +435,11 @@ export class LitDevSearch extends LitElement {
     // suggestion.
     const firstSuggestion = this._searchController.value[0];
     this._selectedIndex = 0;
-    this._navigate(firstSuggestion.relativeUrl);
+    this._navigate({
+      url: firstSuggestion.relativeUrl,
+      position: firstSuggestion.position,
+      id: firstSuggestion.objectID,
+    });
   }
 
   /**
@@ -406,7 +447,16 @@ export class LitDevSearch extends LitElement {
    * default behavior when navigating to a fragment on the page is not
    * refreshing the UI.
    */
-  private async _navigate(url: string) {
+  private async _navigate({
+    url,
+    id,
+    position,
+  }: {
+    url: string;
+    id: string;
+    position: number;
+  }) {
+    this._searchController?.objectClicked(id, position);
     const {addModsParameterToUrlIfNeeded} = await import('../mods.js');
     document.location = addModsParameterToUrlIfNeeded(url);
     this._searchText = '';
@@ -474,7 +524,7 @@ export class LitDevSearch extends LitElement {
       margin-block-end: calc(-1 * var(--search-modal-padding-block));
       padding-block-end: var(--search-modal-padding-block);
       padding-inline: var(--search-modal-padding-inline);
-      scrollbar-color: auto var(--color-light-gray);
+      scrollbar-color: auto var(--sys-color-background);
       scrollbar-width: thin;
     }
 
@@ -483,9 +533,9 @@ export class LitDevSearch extends LitElement {
     }
 
     #items::-webkit-scrollbar-thumb {
-      background-color: rgba(60, 60, 60, 0.7);
+      background-color: var(--sys-color-on-background-dimmest);
       border-radius: 6px;
-      border: 3px solid var(--color-light-gray);
+      border: 3px solid var(--sys-color-outline-variant);
     }
 
     #items::-webkit-scrollbar-track {
@@ -499,8 +549,12 @@ export class LitDevSearch extends LitElement {
 
     #no-items {
       margin: 17px 0 6px;
-      color: var(--color-dark-gray);
+      color: var(--sys-color-on-surface);
       text-align: center;
+    }
+
+    #no-items a {
+      color: var(--sys-color-primary);
     }
 
     input {
@@ -514,9 +568,14 @@ export class LitDevSearch extends LitElement {
       font-family: inherit;
       font-weight: inherit;
       border-style: solid;
-      border-color: var(--color-blue);
+      border-color: var(--sys-color-primary);
       border-width: 0 0 var(--_input-border-width) 0;
       outline: none;
+    }
+
+    input::placeholder {
+      color: currentColor;
+      opacity: 0.5;
     }
 
     input:focus {
@@ -540,7 +599,7 @@ export class LitDevSearch extends LitElement {
     }
 
     lazy-svg::part(svg) {
-      color: var(--color-blue);
+      color: var(--sys-color-primary);
       inset-block-start: 0;
       pointer-events: none;
       opacity: 0.5;
@@ -554,7 +613,7 @@ export class LitDevSearch extends LitElement {
     }
 
     .group .descriptor {
-      color: var(--color-blue);
+      color: var(--sys-color-primary-variant);
       font-size: 20px;
 
       display: flex;
@@ -567,25 +626,31 @@ export class LitDevSearch extends LitElement {
     }
 
     .group .tag {
-      color: white;
-      background-color: #6e6e6e;
+      color: var(--sys-color-inverse-on-surface);
+      background-color: var(--sys-color-inverse-surface);
       border-radius: 2px;
       font-size: 16px;
       padding: 0 0.5em;
     }
 
     .group .tag.article {
-      background-color: #f9a012;
+      color: var(--sys-color-on-tertiary-container);
+      background-color: var(--sys-color-tertiary-container);
     }
 
     .group .tag.docs {
-      color: white;
-      background-color: #324fff;
+      color: var(--sys-color-on-primary-container);
+      background-color: var(--sys-color-primary-container);
+    }
+
+    .group .tag.video {
+      color: var(--sys-color-on-error-container);
+      background-color: var(--sys-color-error-container);
     }
 
     .group .tag.tutorial {
-      color: black;
-      background-color: #40dcff;
+      color: var(--sys-color-on-secondary-container);
+      background-color: var(--sys-color-secondary-container);
     }
 
     @media (max-width: 864px) {
@@ -593,7 +658,7 @@ export class LitDevSearch extends LitElement {
         display: block;
         background-color: transparent;
         border: none;
-        color: var(--color-blue);
+        color: var(--sys-color-primary);
         cursor: pointer;
         font-size: 18px;
         min-width: var(--_cancel-button-width);

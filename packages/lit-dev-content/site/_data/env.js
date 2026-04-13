@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -18,6 +19,7 @@ module.exports = {
   DEV: ENV.eleventyMode === 'dev',
   MAIN_URL: ENV.mainUrl,
   PLAYGROUND_SANDBOX: ENV.playgroundSandboxUrl,
+  PLAYGROUND_CDN_BASE_URL: ENV.playgroundCdnBaseUrl,
   GOOGLE_ANALYTICS_ID: ENV.googleAnalyticsId,
   GITHUB_CLIENT_ID: ENV.githubClientId,
   GITHUB_AUTHORIZE_URL: `${trimTrailingSlash(ENV.githubMainUrl)}/login/oauth/authorize`,

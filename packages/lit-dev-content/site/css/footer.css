@@ -1,5 +1,7 @@
 #footerTop {
   height: var(--footer-top-height);
+  background-color: var(--sys-color-surface-container);
+  color: var(--sys-color-on-surface);
   padding: 0 2em;
   display: flex;
   align-items: center;
@@ -8,25 +10,24 @@
   margin: var(--header-footer-margin, unset);
 }
 
-#footerNameAndLogo {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+#footerTop > * {
+  flex: 0;
 }
 
-#footerFlame {
-  height: 3.5em;
-  width: 2.8em;
+#footerLitLogoWrapper {
+  /* Push the logo up a bit to visually align with the other logos */
+  padding-bottom: 1em;
 }
 
-#footerName {
-  height: 2.14em;
-  width: 3.24em;
+#footerLitLogo {
+  height: 4em;
+}
+
+#footerOpenJSLogo {
+  height: 2.5em;
 }
 
 #footerSocialLinks {
-  flex: 1;
   display: flex;
   justify-content: flex-end;
 }
@@ -35,11 +36,11 @@
   padding: 0.5em;
   width: 1.67em;
   height: 1.67em;
-  color: var(--color-medium-gray);
+  color: var(--sys-color-on-background-dim);
 }
 
 #footerSocialLinks > a:hover {
-  color: black;
+  color: var(--sys-color-on-background-emphasized);
 }
 
 #footerSocialLinks > a > lazy-svg::part(svg) {
@@ -49,7 +50,6 @@
 
 #footerBottom {
   height: var(--footer-bottom-height);
-  background: var(--color-light-gray);
   padding: 0 0.5em;
   display: flex;
   align-items: center;
@@ -59,7 +59,8 @@
 }
 
 #footerBottom > p > a {
-  color: var(--color-blue);
+  color: var(--sys-color-primary);
+  font-weight: 600;
 }
 
 #footerBottom > p > a:hover {

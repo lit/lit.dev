@@ -58,7 +58,7 @@ In `connectedCallback()` you should setup tasks that should only occur when the 
 ```js
 connectedCallback() {
   super.connectedCallback()
-  addEventListener('keydown', this._handleKeydown);
+  window.addEventListener('keydown', this._handleKeydown);
 }
 ```
 ### disconnectedCallback() {#disconnectedcallback}

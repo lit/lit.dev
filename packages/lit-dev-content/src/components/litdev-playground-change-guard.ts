@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -24,9 +25,6 @@ import type {CodeLanguagePreference} from '../code-language-preference.js';
 @customElement('litdev-playground-change-guard')
 export class LitDevPlaygroundChangeGuard extends PlaygroundConnectedElement {
   static styles = css`
-    :host {
-      --mdc-theme-primary: var(--color-blue);
-    }
     p {
       /* The built-in mwc-dialog styles have a lot of padding above the action
          buttons which looks a bit odd here. This is a hacky way to reduce it,

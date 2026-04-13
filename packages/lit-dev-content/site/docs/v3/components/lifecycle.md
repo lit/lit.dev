@@ -58,7 +58,7 @@ In `connectedCallback()` you should setup tasks that should only occur when the 
 ```js
 connectedCallback() {
   super.connectedCallback()
-  addEventListener('keydown', this._handleKeydown);
+  window.addEventListener('keydown', this._handleKeydown);
 }
 ```
 ### disconnectedCallback() {#disconnectedcallback}
@@ -497,8 +497,9 @@ It's recommended to override the `getUpdateComplete()` method instead of the `up
 ```js
 class MyElement extends LitElement {
   async getUpdateComplete() {
-    await super.getUpdateComplete();
+    const result = await super.getUpdateComplete();
     await this._myChild.updateComplete;
+    return result;
   }
 }
 ```

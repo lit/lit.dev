@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -93,7 +94,11 @@ export interface ApiDocsConfig {
    * Extra setup/build commands to run after NPM install and before running
    * TypeDoc.
    */
-  extraSetupCommands?: Array<{cmd: string; args: string[]}>;
+  extraSetupCommands?: Array<{
+    cmd: string;
+    args: string[];
+    env?: Record<string, string>;
+  }>;
 
   /**
    * Entrypoint TypeScript modules for TypeDoc to analyze.

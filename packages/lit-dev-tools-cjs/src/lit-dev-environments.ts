@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -14,6 +15,7 @@ interface LitDevEnvironment {
   googleAnalyticsId: string;
   reportCspViolations: boolean;
   playgroundSandboxUrl: string;
+  playgroundCdnBaseUrl: string;
   mainUrl: string;
   githubMainUrl: string;
   githubApiUrl: string;
@@ -74,6 +76,7 @@ export const dev = environment({
   eleventyOutDir: '_dev',
   googleAnalyticsId: TEST_GOOGLE_ANALYTICS_ID,
   reportCspViolations: false,
+  playgroundCdnBaseUrl: 'https://cdn.jsdelivr.net/npm',
   get mainUrl() {
     return `http://localhost:${this.mainPort}`;
   },
@@ -110,6 +113,7 @@ const local = environment({
   eleventyOutDir: '_site',
   googleAnalyticsId: TEST_GOOGLE_ANALYTICS_ID,
   reportCspViolations: false,
+  playgroundCdnBaseUrl: 'https://cdn.jsdelivr.net/npm',
   get mainUrl() {
     return `http://localhost:${this.mainPort}`;
   },
@@ -154,6 +158,7 @@ const pr = environment({
   eleventyOutDir: '_site',
   googleAnalyticsId: TEST_GOOGLE_ANALYTICS_ID,
   reportCspViolations: false,
+  playgroundCdnBaseUrl: 'https://cdn.jsdelivr.net/npm',
   get mainUrl() {
     const tag = stringEnv('REVISION_TAG');
     return `https://${tag}---lit-dev-5ftespv5na-uc.a.run.app`;
@@ -196,6 +201,7 @@ const prod = environment({
   eleventyOutDir: '_site',
   googleAnalyticsId: 'G-FTZ6CJP9F3',
   reportCspViolations: true,
+  playgroundCdnBaseUrl: 'https://cdn.jsdelivr.net/npm',
   mainUrl: 'https://lit.dev',
   playgroundSandboxUrl: 'https://playground.lit.dev/',
   githubMainUrl: 'https://github.com/',

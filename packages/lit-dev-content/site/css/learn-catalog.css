@@ -1,0 +1,281 @@
+main {
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+}
+
+:root {
+  --learn-card-width: 360px;
+  --_learn-unit: calc(var(--learn-card-width) / 10);
+  --_learn-card-padding: calc(var(--_learn-unit) / 2);
+  --_learn-card-border-radius: var(--_learn-unit);
+}
+
+/* Begin hero section */
+#hero {
+  background-color: black;
+  color: #cfcfcf;
+  font-family: Manrope;
+  font-weight: 200;
+  font-size: 20px;
+  padding: 67px calc(var(--_learn-unit) + 40px);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 731px) {
+  #hero {
+    padding-inline: var(--_learn-unit);
+  }
+}
+
+body,
+body.light {
+  --_hero-blue: var(--color-blue);
+  --_hero-cyan: var(--color-cyan);
+}
+
+body.dark {
+  --_hero-blue: var(--color-indigo);
+  --_hero-cyan: var(--color-dark-cyan);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) {
+    --_hero-blue: var(--color-indigo);
+    --_hero-cyan: var(--color-dark-cyan);
+  }
+}
+
+#hero .bg {
+  background-color: transparent;
+  animation: slide 17s ease-in-out infinite alternate;
+  background-image: linear-gradient(
+    -60deg,
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
+  );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: absolute;
+  right: -50%;
+  top: 0;
+  filter: blur(100px);
+}
+
+#hero .bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 19s;
+  background-image: linear-gradient(
+    60deg,
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
+  );
+}
+
+#hero .bg3 {
+  animation-duration: 23s;
+  animation-name: slide;
+  animation-timing-function: ease;
+  background-image: linear-gradient(
+    60deg,
+    var(--_hero-blue) 50%,
+    var(--_hero-cyan) 50%
+  );
+}
+
+/* End hero section */
+
+
+#hero .bg4 {
+  animation-direction: alternate-reverse;
+  animation-duration: 29s;
+  animation-name: slide;
+  animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion) {
+  .bg {
+    animation-name: none !important;
+  }
+
+  .card,
+  .card img {
+    transition: none !important;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
+}
+
+#hero-contents {
+  max-width: 1224px;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  /* Place hero contents above the blue line graphics. */
+  z-index: 1;
+}
+
+#hero-contents > div {
+  box-sizing: border-box;
+  min-height: 190px; /* Explicitly declared to fix layout shift as font loads */
+  padding: 16px 32px;
+  border-radius: 16px;
+  /* --sys-color-dark-surface with opacity */
+  background-color: rgba(48, 48, 48, .75);
+}
+
+#hero h1 {
+  color: var(--_hero-cyan);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+#hero p {
+  max-width: 25em;
+}
+
+md-chip-set {
+  --md-filter-chip-label-text-font: Manrope;
+  --md-filter-chip-container-shape: 16px;
+  /* Colors were generated using Lit's Indigo 2 brand color: #2a2c9d */
+  --md-sys-color-outline: var(--sys-color-outline);
+  --md-sys-color-on-surface: var(--sys-color-on-surface);
+  --md-sys-color-secondary: var(--sys-color-primary);
+  --md-sys-color-on-secondary-container: var(--sys-color-on-primary-container);
+  --md-sys-color-secondary-container: var(--sys-color-primary-container);
+  --md-sys-color-surface-variant: var(--sys-color-surface-variant);
+  --md-sys-color-on-surface-variant: var(--sys-color-on-surface-variant);
+}
+
+#chips {
+  margin: var(--_learn-unit);
+}
+
+#learn-catalog {
+  /* Prevent a large view shift if content is empty */
+  min-height: 461px;
+  width: 100%;
+  background-color: var(--sys-color-surface-container);
+}
+
+.center {
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+.card-grid {
+  display: grid;
+  padding: var(--_learn-unit);
+  gap: calc(var(--_learn-unit) / 2);
+  grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr) minmax(360px, 1fr);
+
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  /* Undo anchor tag typography */
+  font-family: Manrope,sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: var(--sys-color-background);
+  color: var(--sys-color-on-background);
+  border: var(--litdev-dark-border);
+  padding: var(--_learn-card-padding);
+}
+
+.card,
+.card img {
+  transition: border-radius 0.3s cubic-bezier(0.2, 0, 1, 1);
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  border-radius: var(--_learn-card-border-radius);
+}
+
+.card:hover img,
+.card:focus img,
+.card:active img {
+  border-radius: calc(var(--_learn-card-border-radius) - var(--_learn-card-padding));
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card h1 {
+  color: var(--sys-color-on-background-emphasis);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+}
+
+.card:hover h1,
+.card:focus h1 {
+  text-decoration: underline;
+}
+
+.card p {
+  margin: 10px 0;
+}
+
+.card-header {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.learn-kind-row {
+  display: flex;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: -5px;
+}
+
+.learn-kind-row span:first-child {
+  color: var(--sys-color-primary);
+}
+
+/* This is the span containing the tutorial duration */
+.learn-kind-row .end {
+  margin-inline-start: auto;
+}
+
+#intentionally-blank {
+  text-align: center;
+  color: var(--sys-color-on-background-dim);
+}
+
+@media (max-width: 1260px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 690px) {
+  :root {
+    --learn-card-width: 300px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

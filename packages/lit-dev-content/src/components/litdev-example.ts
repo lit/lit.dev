@@ -1,11 +1,12 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
 import {LitElement, html, css, nothing} from 'lit';
-import {property} from 'lit/decorators.js';
+import {property, state} from 'lit/decorators.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {
@@ -60,7 +61,7 @@ export class LitDevExample extends LitElement {
     }
 
     playground-tab-bar {
-      background: #fff;
+      background-color: var(--sys-color-surface-high);
       font-family: 'Open Sans', sans-serif;
       height: var(--litdev-example-tab-bar-height);
       /* Allow the tab bar to shrink below its content size so that when an
@@ -111,6 +112,23 @@ export class LitDevExample extends LitElement {
   project?: string;
 
   /**
+   * Whether to load the project on intersection with the viewport.
+   */
+  @property({type: Boolean})
+  lazy = false;
+
+  /**
+   * Whether or not to load the project. Setting Lazy to true will re-initialize
+   * this value to `false`. We would want to do this so that we do not load the
+   * large TS worker file until the user has scrolled to the example. This is
+   * something we would want to do if we want to have the server cache the
+   * worker. Otherwise every example on the page would load the worker at the
+   * same time and none of them would be cached.
+   */
+  @state()
+  private loadProject = true;
+
+  /**
    * Name of file in project to display.
    * If no file is provided, we show the tab-bar with all project files.
    */
@@ -122,6 +140,12 @@ export class LitDevExample extends LitElement {
    */
   @property({attribute: 'sandbox-base-url'})
   sandboxBaseUrl?: string;
+
+  /**
+   * Base URL for CDN.
+   */
+  @property({attribute: 'cdn-base-url'})
+  cdnBaseUrl?: string;
 
   override connectedCallback() {
     super.connectedCallback();
@@ -143,6 +167,12 @@ export class LitDevExample extends LitElement {
     this.requestUpdate();
   };
 
+  willUpdate() {
+    if (!this.hasUpdated) {
+      this.loadProject = !this.lazy;
+    }
+  }
+
   render() {
     if (!this.project) {
       return nothing;
@@ -162,17 +192,24 @@ export class LitDevExample extends LitElement {
       mode === 'ts' ? this.filename : this.filename?.replace(/.ts$/, '.js');
 
     return html`
-      <playground-project
-        sandbox-base-url=${ifDefined(this.sandboxBaseUrl)}
-        id="project"
-        project-src=${projectSrc}
-      >
-      </playground-project>
+      ${this.loadProject
+        ? // We need to conditionally render this because playground-project
+          // will load its serviceworker on firstUpdated
+          html`<playground-project
+            sandbox-base-url=${ifDefined(this.sandboxBaseUrl)}
+            cdn-base-url=${ifDefined(this.cdnBaseUrl)}
+            id="project"
+            project-src=${projectSrc}
+          >
+          </playground-project>`
+        : nothing}
 
       <div id="bar">
         ${showTabBar
           ? html`<playground-tab-bar
-              project="project"
+              project=${this.loadProject
+                ? 'project'
+                : (nothing as unknown as string)}
               editor="project-file-editor"
             ></playground-tab-bar>`
           : nothing}
@@ -184,14 +221,34 @@ export class LitDevExample extends LitElement {
 
       <playground-file-editor
         id="project-file-editor"
-        project="project"
+        project=${this.loadProject ? 'project' : (nothing as unknown as string)}
         filename="${ifDefined(filename)}"
         style=${styleMap(fileEditorOverrideStyles)}
       >
       </playground-file-editor>
 
-      <playground-preview project="project"></playground-preview>
+      <playground-preview
+        project=${this.loadProject ? 'project' : (nothing as unknown as string)}
+      ></playground-preview>
     `;
+  }
+
+  firstUpdated() {
+    if (this.lazy) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            this.loadProject = true;
+            io.disconnect();
+          }
+        },
+        {
+          rootMargin: '40px',
+        }
+      );
+
+      io.observe(this);
+    }
   }
 }
 

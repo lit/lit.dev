@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -46,6 +47,8 @@ export const lit3Config: ApiDocsConfig = {
     {
       cmd: 'npm',
       args: ['run', 'build:ts'],
+      // disable wireit cache for to avoid caching errors in Github Actions
+      env: {WIREIT_CACHE: 'none'},
     },
     // Apply file patch to fix typedoc errors during docs generation. Because
     // `npm run build:ts` is run prior to this, the patch file can always be

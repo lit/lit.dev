@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 8
 versionLinks:
   v2: templates/overview/
+  v3: templates/overview/
 ---
 
 lit-html utilizes some unique properties of JavaScript template literals and HTML `<template>` elements to function and achieve fast performance. So it's helpful to understand them first.

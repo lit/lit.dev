@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 1
 versionLinks:
   v2: tools/publishing/
+  v3: tools/publishing/
 ---
 
 This page describes how to publish a LitElement component to npm.

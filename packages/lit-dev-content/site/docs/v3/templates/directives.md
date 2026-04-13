@@ -1448,8 +1448,14 @@ parse such a string as HTML and render it in a Lit template.
 
 Note, the string passed to `unsafeHTML` must be developer-controlled and not
 include untrusted content. Examples of untrusted content include query string
-parameters and values from user inputs. Untrusted content rendered with this
-directive could lead to [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerabilities.
+parameters and values from user inputs.
+
+Untrusted content rendered with this directive could lead to [cross-site
+scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting), CSS
+injection, data exfiltration, etc. vulnerabilities. `unsafeHTML` uses
+`innerHTML` to parse the HTML string, so the security implications are the same
+ as `innerHTML`, [as documented on
+MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML#security_considerations).
 
 </div>
 
@@ -1831,7 +1837,10 @@ import {asyncAppend} from 'lit/directives/async-append.js';
 <td class="wide-cell">
 
 ```ts
-asyncAppend(iterable: AsyncIterable)
+asyncAppend(
+  iterable: AsyncIterable<I>,
+  mapper?: (item: I, index?: number) => unknown
+)
 ```
 
 </td>
@@ -1924,7 +1933,10 @@ import {asyncReplace} from 'lit/directives/async-replace.js';
 <td class="wide-cell">
 
 ```ts
-asyncReplace(iterable: AsyncIterable)
+asyncReplace(
+  iterable: AsyncIterable<I>,
+  mapper?: (item: I, index?: number) => unknown
+)
 ```
 
 </td>
@@ -1933,7 +1945,7 @@ asyncReplace(iterable: AsyncIterable)
 <td class="no-wrap-cell vcenter-cell">Usable location</td>
 <td class="wide-cell">
 
-Child expression
+Any expression
 
 </td>
 </tr>

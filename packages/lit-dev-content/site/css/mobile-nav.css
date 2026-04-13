@@ -3,6 +3,10 @@ mwc-drawer:not(:defined) {
   display: none;
 }
 
+mwc-drawer {
+  --mdc-theme-surface: var(--sys-color-surface-container-highest);
+}
+
 #mobileDrawer ol {
   margin: 0;
   padding: 0;
@@ -11,7 +15,11 @@ mwc-drawer:not(:defined) {
 #mobileDrawer li {
   list-style-type: none;
   font-size: 16px;
-  margin-top: 10px;
+  margin-block-start: 10px;
+}
+
+#mobile-site-controls .icons li {
+  margin-block-start: 0;
 }
 
 #mobileDrawer a {
@@ -23,8 +31,9 @@ mwc-drawer:not(:defined) {
 }
 
 #mobileSiteNav {
-  background: var(--color-blue);
-  color: white;
+  background-color: var(--sys-color-primary);
+  color: var(--sys-color-on-primary);
+  --lit-logo-flame-light: currentColor;
   padding: 20px;
 }
 
@@ -53,7 +62,7 @@ mwc-drawer:not(:defined) {
 }
 
 /* Labs icon */
-#mobileDocsNav img.labs {
+#mobileDocsNav .labs::part(svg) {
   width: 1.25rem;
   height: 1.25rem;
   vertical-align: text-bottom;

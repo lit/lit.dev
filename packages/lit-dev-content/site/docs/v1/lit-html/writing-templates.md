@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 3
 versionLinks:
   v2: templates/overview/
+  v3: templates/overview/
 ---
 
 lit-html is a templating library that provides fast, efficient rendering and updating of HTML. It lets you express web UI as a function of data.

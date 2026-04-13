@@ -1,0 +1,7 @@
+---
+permalink: search-modifiers/keywords.json
+---
+
+{% if not env.DEV %}
+{{ searchKeywords | dump | safe }}
+{% endif %}

@@ -335,7 +335,7 @@ Creates a typed Context object
 **Import**:
 
 ```ts
-import {property} from '@lit-labs/context';
+import {createContext} from '@lit-labs/context';
 ```
 
 **Signature**:
@@ -369,7 +369,7 @@ The `ValueType` type parameter is the type of value that can be provided by this
 
 ### `@provide()`
 
-A property decorator that adds a ContextConsumer controller to the component which will try and retrieve a value for the property via the Context API.
+A property decorator that adds a ContextProvider controller to the component making it respond to any `context-request` events from its children consumer.
 
 **Import**:
 

@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -8,6 +9,7 @@ import {LitElement, html, css, PropertyValues} from 'lit';
 import {property, customElement} from 'lit/decorators.js';
 import {hashtagIcon} from '../icons/hashtag-icon.js';
 import {paperDocumentIcon} from '../icons/paper-document-icon.js';
+import {openInNewIcon} from '../icons/open-in-new-icon.js';
 import {renderAlgoliaSnippet} from '../util/render-algolia-suggestions.js';
 
 /**
@@ -33,14 +35,20 @@ export class LitdevSearchOption extends LitElement {
   @property({type: Boolean, attribute: true})
   checked = false;
 
+  @property({type: Boolean})
+  isExternal = false;
+
+  position = 0;
+  objectID = '';
+
   static styles = css`
     :host {
       display: block;
     }
 
     :host([checked]) :is(.suggestion, svg) {
-      background-color: var(--color-blue);
-      color: white;
+      background-color: var(--sys-color-primary-container);
+      color: var(--sys-color-on-primary-container);
     }
 
     .suggestion {
@@ -50,7 +58,7 @@ export class LitdevSearchOption extends LitElement {
       height: 50px;
       padding: 12px 20px;
       margin-block: 10px;
-      background-color: white;
+      background-color: var(--sys-color-surface-container);
       font-size: 20px;
       cursor: pointer;
       border-radius: 4px;
@@ -92,36 +100,44 @@ export class LitdevSearchOption extends LitElement {
     }
 
     svg {
-      color: var(--color-dark-gray);
+      color: var(--sys-color-on-surface);
     }
 
     em {
-      color: var(--color-blue);
+      color: var(--sys-color-primary-variant);
       font-style: normal;
       text-decoration: underline;
     }
 
     :host([checked]) .suggestion em {
-      color: var(--color-white);
+      color: var(--sys-color-on-primary-container);
     }
   `;
 
   render() {
+    const showText = this.isSubsection || (this.isExternal && this.text);
     return html`
       <div class="suggestion">
         <div class="icon-wrapper" aria-hidden="true">
           ${this.isSubsection ? hashtagIcon : paperDocumentIcon}
         </div>
-        <div class="title-and-text ${this.isSubsection ? 'has-text' : ''}">
-          ${this.isSubsection
+        <div class="title-and-text ${showText ? 'has-text' : ''}">
+          ${showText
             ? html`<span class="title">
-                  ${renderAlgoliaSnippet(this.heading)}
+                  ${renderAlgoliaSnippet(this.heading || this.title)}
                 </span>
                 <span class="text"> ${renderAlgoliaSnippet(this.text)} </span>`
             : html`<span class="title">
                 ${renderAlgoliaSnippet(this.title)}
               </span>`}
         </div>
+        ${this.isExternal
+          ? html`
+              <div class="icon-wrapper end" aria-hidden="true">
+                ${openInNewIcon}
+              </div>
+            `
+          : ''}
       </div>
     `;
   }

@@ -6,6 +6,7 @@ eleventyNavigation:
   order: 5
 versionLinks:
   v2: components/lifecycle/
+  v3: components/lifecycle/
 ---
 
 ## Overview

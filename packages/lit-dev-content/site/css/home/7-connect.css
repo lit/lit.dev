@@ -1,8 +1,17 @@
 #connect {
-  background: url('/images/flame-tile.svg');
+  background-image: url('/images/flame-tile.svg');
   background-size: 60px;
   background-repeat: space;
-  background-color: #f4f4f4;
+}
+
+body.dark #connect {
+  background-image: url('/images/flame-tile-dark.svg');
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) #connect{
+  background-image: url('/images/flame-tile-dark.svg');
+  }
 }
 
 #connectContent {
@@ -35,8 +44,8 @@
 }
 
 #connectList > li > a {
-  color: var(--color-blue);
-  border-bottom: 2px solid var(--color-blue);
+  color: var(--sys-color-primary);
+  border-block-end: 2px solid var(--sys-color-primary-container);
   padding: 8px 20px 6px 15px;
   display: flex;
   justify-content: space-between;
@@ -44,8 +53,8 @@
 
 #connectList > li > a:hover,
 #connectList > li > a:focus {
-  background: var(--color-blue);
-  color: white;
+  background-color: var(--sys-color-primary-container);
+  color: var(--sys-color-on-primary-container);
 }
 
 #connectList > li > a > .title {

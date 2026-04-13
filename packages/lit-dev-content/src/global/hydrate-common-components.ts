@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2022 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -17,6 +18,7 @@ if (!localStorage.getItem('gtag-banner-shown')) {
 const hydrateCommonComponents = () => {
   import('../components/lazy-svg.js');
   import('../components/litdev-version-selector.js');
+  import('../components/theme-switcher.js');
 };
 
 // hydrates on mobile

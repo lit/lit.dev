@@ -1,5 +1,6 @@
 /**
  * @license
+ * Copyright The Lit Project
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -40,7 +41,9 @@ export class LitDevIconButton extends LitElement {
     }
 
     :host(:hover) {
-      background-color: rgba(0, 0, 0, 0.25);
+      background-color: var(--sys-color-primary-container);
+      color: var(--sys-color-on-primary-container);
+      border-color: var(--sys-color-on-primary-container);
     }
 
     button {

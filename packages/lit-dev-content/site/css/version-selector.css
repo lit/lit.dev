@@ -1,8 +1,8 @@
 litdev-version-selector > select {
   background: transparent;
   border-radius: 8px;
-  border: 1.5px solid #cacaca;
-  color: #636363;
+  border: 1.5px solid var(--sys-color-outline-variant);
+  color: currentColor;
   cursor: pointer;
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
@@ -13,16 +13,11 @@ litdev-version-selector > select {
 litdev-version-selector > select:hover,
 litdev-version-selector > select:focus,
 .active > litdev-version-selector > select {
-  color: var(--color-blue);
+  color: var(--sys-color-primary);
 }
 
 #mobileSiteNav litdev-version-selector > select {
-  border-color: #fff;
-  color: #fff;
+  border-color: currentColor;
+  color: currentColor;
   margin-left: 5px;
-}
-
-#mobileSiteNav litdev-version-selector > select > option {
-  background: #fff;
-  color: #000;
 }

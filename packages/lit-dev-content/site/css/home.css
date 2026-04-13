@@ -10,20 +10,16 @@ html {
   --home-side-margin: 2rem;
 }
 
-header {
-  background: #f4f4f4;
-}
-
 /* Fading lit-logo (see home.js) */
 
-#headerLogo {
+#headerLogo::part(svg) {
   opacity: 0;
   transition: opacity 500ms;
 }
 
-.splashLogoScrolled #headerLogo,
-#homeLink:hover > #headerLogo,
-#homeLink:focus > #headerLogo {
+.splashLogoScrolled #headerLogo::part(svg),
+#homeLink:hover > #headerLogo::part(svg),
+#homeLink:focus > #headerLogo::part(svg) {
   opacity: 1;
 }
 
@@ -39,45 +35,8 @@ p {
 .homeSectionHeading {
   font-size: 32px;
   font-weight: 500;
-  border-bottom: 2px solid var(--color-blue);
+  border-bottom: 2px solid var(--sys-color-primary);
   padding: 0.7em 0;
   margin: 0;
 }
 
-/* Example code snippets */
-
-.homeExample {
-  background: white;
-}
-
-.homeExample > figcaption {
-  background: var(--color-blue);
-  color: white;
-  margin: 0;
-  font-size: 1.em;
-  font-weight: 500;
-  padding: 0.88em 1.8em;
-  height: 1.4em;
-  display: flex;
-  align-items: center;
-}
-
-.homeExample .CodeMirror {
-  margin: 0;
-  padding: 1.2em 1.3em;
-  border: none;
-  font-size: 0.77778em;
-}
-
-.homeExample .CodeMirror-line {
-  /* TODO(aomarks) This should be done somewhere broader (probably Playground
-     styles). Remove 4px left padding from CodeMirror styles. We have an outer
-     padding in em units. */
-  padding: 0 !important;
-}
-
-.homeExample .divider {
-  border-bottom: 0.08em solid #dfdfdf;
-  margin: 0 1.76em;
-  height: 0;
-}
