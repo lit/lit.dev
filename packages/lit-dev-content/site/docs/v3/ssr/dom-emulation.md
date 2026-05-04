@@ -17,7 +17,8 @@ When running in Node, Lit automatically imports and uses a set of DOM shims, and
 <!-- TODO(augustinekim) Consider replacing emojis below with icons https://github.com/lit/lit.dev/pull/880#discussion_r944821511 -->
 | Property | Notes |
 |-|-|
-| `Element` | ⚠️ Partial <table><tbody><tr><td>`attributes`</td><td>✅</td><tr><td>`shadowRoot`</td><td>⚠️ Returns `{host: this}` if `attachShadow()` was called with `{mode: 'open'}`</td><tr><td>`setAttribute()`</td><td>✅</td><tr><td>`removeAttribute()`</td><td>✅</td><tr><td>`hasAttribute()`</td><td>✅</td><tr><td>`attachShadow()`</td><td>⚠️ Returns `{host: this}`</td><tr><td>`getAttribute()`</td><td>✅</td></tr></tbody></table> |
-| `HTMLElement` | ⚠️ Empty class |
+| `EventTarget` | ⚠️ Partial <table><tbody><tr><td>`addEventListener()`</td><td>✅</td><tr><td>`removeEventListener()`</td><td>✅</td><tr><td>`dispatchEvent()`</td><td>✅</td></tr></tbody></table> |
+| `Element` | Inherits `EventTarget`<br> ⚠️ Partial <table><tbody><tr><td>`attributes`</td><td>✅</td><tr><td>`shadowRoot`</td><td>⚠️ Returns `{host: this}` if `attachShadow()` was called with `{mode: 'open'}`</td><tr><td>`setAttribute()`</td><td>✅</td><tr><td>`removeAttribute()`</td><td>✅</td><tr><td>`hasAttribute()`</td><td>✅</td><tr><td>`attachShadow()`</td><td>⚠️ Returns `{host: this}`</td><tr><td>`getAttribute()`</td><td>✅</td></tr></tbody></table> |
+| `HTMLElement` | Inherits `Element`<br> ⚠️ Empty class |
 | `CustomElementRegistry` | <table><tbody><tr><td>`define()`</td><td>✅</td></tr><tr><td>`get()`</td><td>✅</td></tr></tbody></table> |
 | `customElements` | Instance of `CustomElementRegistry` |

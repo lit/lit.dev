@@ -103,7 +103,7 @@ Whether a method is called on the server is subject to change while Lit SSR is p
 | Method | Called on server | Notes |
 |-|-|-|
 | `constructor()` | Yes ⚠️ | |
-| `connectedCallback()` | No | |
+| `connectedCallback()` | No | Can be enabled with `globalThis.litSsrCallConnectedCallback = true` |
 | `disconnectedCallback()` | No | |
 | `attributeChangedCallback()` | No | |
 | `adoptedCallback()` | No | |
@@ -119,7 +119,7 @@ Whether a method is called on the server is subject to change while Lit SSR is p
 | Method | Called on server | Notes |
 |-|-|-|
 | `constructor()` | Yes ⚠️ | |
-| `hostConnected()` | No | |
+| `hostConnected()` | No | Can be enabled with `globalThis.litSsrCallConnectedCallback = true` |
 | `hostDisconnected()` | No | |
 | `hostUpdate()` | No | |
 | `hostUpdated()` | No | |
