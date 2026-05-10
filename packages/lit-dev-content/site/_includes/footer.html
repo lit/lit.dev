@@ -4,7 +4,7 @@
       <lazy-svg
         loading="visible"
         id="footerLitLogo"
-        href="{{ site.baseurl }}/images/logo.svg"
+        href="{{ site.baseurl }}/images/logo.svg#full"
         label="Lit"
       >
       </lazy-svg>
@@ -126,19 +126,12 @@
   <div id="footerBottom">
     <div id="footerCopyright">
       <a
+        id="footerOpenJSLogo"
         href="https://openjsf.org/"
         target="_blank"
         rel="noopener"
         title="OpenJS Foundation"
-        ><lazy-svg
-          loading="visible"
-          id="footerOpenJSLogo"
-          href="{{
-            site.baseurl
-          }}/images/openjs_foundation-logo-horizontal-color.svg"
-          label="OpenJS logo"
-        ></lazy-svg
-      ></a>
+        >{% inlineSvg 'images/openjs_foundation-logo-horizontal-color.svg', 'OpenJS logo' %}</a>
       <p>
         <a href="https://openjsf.org">The OpenJS Foundation</a> |
         <a href="https://terms-of-use.openjsf.org">Terms of Use</a> |
