@@ -113,4 +113,9 @@
   #footerBottom {
     font-size: 0.8em;
   }
+
+  #footerCopyright {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
 }
