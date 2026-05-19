@@ -21,7 +21,7 @@ Creating a Lit component involves a number of concepts:
 
 *   [Styles](/docs/v3/components/styles/). A component can define _encapsulated styles_ to control its own appearance.
 
-*   [Lifecycle](/docs/v3/components/lifecycle/). Lit defines a set of callbacks that you can override to hook into the component's lifecycle—for example, to run code when the element's added to a page, or whenever the component updates.
+*   [Lifecycle](/docs/v3/components/lifecycle/). Lit defines a set of callbacks that you can override to hook into the component's lifecycle—for example, to run code when the element is added to a page, or whenever the component updates.
 
 Here's a sample component:
 
