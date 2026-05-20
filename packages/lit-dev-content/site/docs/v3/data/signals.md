@@ -60,7 +60,7 @@ const doubleCount = new Signal.Computed(() => count.get() * 2);
 const watcher = new Signal.subtle.Watcher(async () => {
   // Notify callbacks are not allowed to access signals synchronously
   await 0;
-  console.log('doubleCount is', doubleCount);
+  console.log('doubleCount is', doubleCount.get());
   // Watchers have to be re-enabled after they run:
   watcher.watch();
 });
