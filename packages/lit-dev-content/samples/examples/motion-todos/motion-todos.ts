@@ -4,12 +4,6 @@ import {classMap} from 'lit/directives/class-map.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {animate, fadeOut, flyBelow} from '@lit-labs/motion';
 import {styles} from './styles.js';
-import {TextField} from '@material/mwc-textfield';
-import {Checkbox} from '@material/mwc-checkbox';
-import '@material/mwc-textfield';
-import '@material/mwc-button';
-import '@material/mwc-checkbox';
-import '@material/mwc-formfield';
 
 const data = [
   {id: 1, value: 'Go running.', completed: false},
@@ -34,7 +28,7 @@ export class MotionTodos extends LitElement {
 
   @property({type: Array}) data = data;
 
-  @query('mwc-textfield') textField!: TextField;
+  @query('input[type="text"]') textField!: HTMLInputElement;
 
   addItem() {
     if (!this.textField.value) {
@@ -91,24 +85,22 @@ export class MotionTodos extends LitElement {
               skipInitial: true,
             })}
           >
-            <mwc-formfield label="${item.id}. ${item.value}"
-              ><mwc-checkbox
+            <label>
+              ${item.id}. ${item.value}
+              <input
                 type="checkbox"
                 ?checked=${completed}
                 @change=${(e: Event) =>
-                  this.updateItem(item, (e.target! as Checkbox).checked)}
-              ></mwc-checkbox></mwc-formfield
-            ><button @click=${() => this.removeItem(item)}>
-              remove_circle_outline
-            </button>
+                  this.updateItem(item, (e.target! as HTMLInputElement).checked)}
+              ></label><button @click=${() => this.removeItem(item)}>x</button>
           </li>`
         )}
       </ul>
     </div>`;
     return html`
-      <mwc-textfield outlined label="Enter a todo..."></mwc-textfield>
+      <input type="text" placeholder="Enter a todo...">
       <div class="controls">
-        <mwc-button @click=${this.addItem} raised>Add Todo</mwc-button>
+        <button @click=${this.addItem}>Add Todo</button>
       </div>
       <div class="lists">${list()} ${list(true)}</div>
     `;
