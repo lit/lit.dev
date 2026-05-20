@@ -31,6 +31,7 @@
 #footerSocialLinks {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 #footerSocialLinks > a {
@@ -103,7 +104,8 @@
   }
 
   #footerSocialLinks {
-    flex: unset;
+    flex-grow: 0;
+    justify-content: space-evenly;
   }
 
   #footerSocialLinks > a {
