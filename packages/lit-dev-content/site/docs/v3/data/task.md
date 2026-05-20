@@ -259,7 +259,8 @@ class MyElement extends LitElement {
         const response = await fetch(`example.com/data/`);
         return response.json();
       },
-      args: () => []
+      args: () => [],
+      autoRun: false,
     }
   );
 
@@ -285,7 +286,8 @@ class MyElement extends LitElement {
         const response = await fetch(`example.com/data/`);
         return response.json();
       },
-      args: () => []
+      args: () => [],
+      autoRun: false,
     }
   );
 
