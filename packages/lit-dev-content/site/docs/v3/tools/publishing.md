@@ -104,6 +104,101 @@ You can adjust the `"targets"` option to target browsers you wish to support. Se
 
 You can run Babel via a bundler plugin such as [@rollup/plugin-babel](https://www.npmjs.com/package/@rollup/plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
 
+### Bundling with Rollup
+
+While the TypeScript compiler (or Babel) transforms your source code into JavaScript, the output remains a collection of individual files. Bundling with Rollup takes those compiled files and produces a build - combining modules and generating distributable formats (such as ES modules). This process ensures your Lit components are easy to consume, efficient in the browser, and ready to publish.
+
+Rollup is a module bundler for JavaScript which compiles small pieces of code into something larger and more complex, such as a library or application.
+
+First, install Rollup along with the plugins needed for TypeScript and Node-style module resolution:
+
+```sh
+npm install --save-dev \
+  rollup \
+  @rollup/plugin-node-resolve \
+  @rollup/plugin-typescript
+```
+
+When using `@rollup/plugin-typescript` tslib may be required:
+
+```sh
+npm install tslib
+```
+
+> `tslib` is a runtime helper library for TypeScript. When TypeScript transpiles modern JavaScript/TypeScript features like classes, decorators, extends, async/await, or object spread - it sometimes needs helper functions.
+
+Other rollup plugins you might find helpful, depending on use case:
+
+| Name                  | Use Case                                                               |
+|-----------------------|------------------------------------------------------------------------|
+| [rollup-plugin-cleanup](https://www.npmjs.com/package/rollup-plugin-cleanup) | Trims trailing spaces, compact empty lines, and normalize line endings |
+| [rollup-plugin-delete](https://www.npmjs.com/package/rollup-plugin-delete)  | Delete files and folders using Rollup                                  |
+| [rollup-plugin-dts](https://www.npmjs.com/package/rollup-plugin-dts)     | Bundles up your `.d.ts` definition files                               |
+
+Then create a Rollup configuration file. For example:
+
+**rollup.config.js**
+
+```javaScript
+import resolve from "@rollup/plugin-node-resolve";
+import typescript from "@rollup/plugin-typescript";
+
+export default [
+  // Browser build (ESM)
+  {
+    input: "my-element.ts",
+    external: ["lit", "lit/decorators.js", "tslib"],
+    // ^ Exclude Lit, tslib and other external dpendencies from the bundle so it isn't duplicated.
+    // consumers should install and import their own Lit version.
+    output: {
+      file: "dist/my-element.js", // Output folder for compiled bundle files
+      format: "esm",
+    },
+    plugins: [
+      resolve(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+      }),
+    ],
+  },
+];
+```
+
+Also, update your `package.json` and `tsconfig.json` to ensure compatibility with Rollup bundling.
+
+**package.json**
+
+```json
+  "type": "module",
+  "main": "dist/my-element.js",
+  "module": "dist/my-element.js",
+  "types": "dist/my-element.d.ts",
+  "scripts": {
+    "build": "rollup -c"
+  }
+```
+
+**tsconfig.json**
+
+```jsonc
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "lib": ["es2021", "dom"],
+    "declaration": true,
+    "declarationMap": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "outDir": "dist"
+  },
+  "exclude": ["dist", "node_modules"]
+}
+```
+
+Now, running `npm run build` will output your compiled files to the `dist/` folder. This is a minimal setup - see the [Rollup documentation](https://rollupjs.org/configuration-options/) for additional configuration options.
+
 ## Publishing best practices
 
 The following are other good practices to follow when publishing reusable Web Components.
@@ -153,6 +248,12 @@ could greatly bloat the import map.
 
 Thus, to prepare your source now to be optimally compatible with import maps, we
 recommend authoring with file extensions on imports.
+
+### Include and mark peer dependencies
+
+Including peer dependencies specifies packages that are required by your library but are expected to be provided by the consumer.
+
+For example, you should mark Lit (and, in most cases, any other runtime dependency) as a peer dependency in your `package.json`. See the [npm documentation on peerDependencies](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#peerdependencies) for more details.
 
 ### Publish TypeScript typings
 
