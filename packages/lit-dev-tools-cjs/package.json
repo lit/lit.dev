@@ -43,7 +43,7 @@
     "@web/dev-server": "^0.1.6",
     "@web/dev-server-core": "^0.3.5",
     "fast-glob": "^3.2.5",
-    "jsdom": "^17.0.0",
+    "jsdom": "^29.1.1",
     "minisearch": "^3.0.4",
     "outdent": "^0.8.0",
     "playwright": "^1.28.1",
