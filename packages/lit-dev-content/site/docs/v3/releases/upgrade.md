@@ -216,7 +216,7 @@ Install Babel 7.23 or later, and [`@babel/plugin-proposal-decorators`](https://b
 
 Standard decorators are not allowed to change the _kind_ of class member they decorate. Decorators that need to create getters and setters must be applied to existing getters and setters. To make this more ergonomic, the decorators standard adds the `accessor` keyword which creates "auto accessors" when applied to a class field. Auto accessors look and act much like class fields, but create accessors on the prototype backed by private storage.
 
-The `@property()`, `@state()`, `@query()`, `@queryAll()`, `@queryAssignedElements()` and `@queryAssignedNode()` decorators require the `accessor` keyword.
+The `@property()`, `@state()`, `@query()`, `@queryAll()`, `@queryAssignedElements()` and `@queryAssignedNodes()` decorators require the `accessor` keyword.
 
 Example:
 
