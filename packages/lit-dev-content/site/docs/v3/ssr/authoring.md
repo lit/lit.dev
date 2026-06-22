@@ -103,16 +103,16 @@ Whether a method is called on the server is subject to change while Lit SSR is p
 | Method | Called on server | Notes |
 |-|-|-|
 | `constructor()` | Yes ⚠️ | |
-| `connectedCallback()` | No | |
+| `connectedCallback()` | No ⚠️ | Called when `renderOptions.connectedCallback === true` |
 | `disconnectedCallback()` | No | |
 | `attributeChangedCallback()` | No | |
 | `adoptedCallback()` | No | |
 | `hasChanged()` | Yes ⚠️ | Called when property is set |
 | `shouldUpdate()` | No | |
 | `willUpdate()` | Yes ⚠️ | Called before `render()` |
-| `update()` | No | |
+| `update()` | Yes | |
 | `render()` | Yes ⚠️ | |
-| `firstUpdate()` | No | |
+| `firstUpdated()` | No | |
 | `updated()` | No | |
 
 ### ReactiveController
