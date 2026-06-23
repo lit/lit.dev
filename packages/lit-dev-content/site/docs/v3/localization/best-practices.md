@@ -164,6 +164,56 @@ render() {
 }
 ```
 
+## Document Variable Positions in Locale Files
+
+When working with templates containing multiple variables, it's important to remember that locale files use positional references (`${0}`, `${1}`, etc.) rather than variable names. Consider adding comments to your locale files to make variable positions clear:
+
+```js
+export const templates = {
+  // ${0} = username, ${1} = count, ${2} = repo name
+  commit_message: html`${0} made ${1} commits to ${2}`,
+
+  // ${0} = error code, ${1} = error message
+  error_template: html`Error ${0}: ${1}`
+}
+```
+
+This documentation helps translators understand the context of each variable and reduces errors when working with complex templates across multiple locales.
+
+### Consider Variable Order in Your Template Design
+
+When designing localizable templates, be mindful that different languages may require different variable orders. To make localization easier:
+
+1. Design templates with clear, separable variables
+2. Avoid grammatical constructions that rely on specific word order
+3. Use IDs for templates that may need reordering of variables
+4. Test your UI with locales that have very different grammar structures
+
+For example, this approach gives translators maximum flexibility:
+
+```js
+/* In your component */
+msg(html`${username} sent ${fileCount} files to ${recipient}`, {
+  id: 'file_transfer',
+  desc: 'Message displayed after a successful file transfer'
+});
+
+/* In your locale files */
+// English (follows Subject-Verb-Object order)
+export const templates = {
+  file_transfer: html`${0} sent ${1} files to ${2}`
+}
+
+// Japanese (follows Subject-Object-Verb order)
+export const templates = {
+  file_transfer: html`${0}が${2}に${1}個のファイルを送信しました`
+}
+```
+
+In this example, the variables can be placed in whatever order is grammatically correct for each language, making for a more natural user experience across different locales.
+
+These practices make your application more resilient to the linguistic variations across different locales.
+
 ## Safely re-exporting or re-assigning localize APIs
 
 Static analysis is used to determine when you are calling the `@lit/localize`
