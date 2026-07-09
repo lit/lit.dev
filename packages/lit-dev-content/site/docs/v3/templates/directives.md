@@ -474,11 +474,11 @@ import {when} from 'lit/directives/when.js';
 <td class="wide-cell">
 
 ```ts
-when<T, F>(
-  condition: boolean,
-  trueCase: () => T,
-  falseCase?: () => F
-)
+when<C, T, F = undefined>(
+  condition: C,
+  trueCase: (c: Exclude<C, Falsy>) => T,
+  falseCase?: (c: Extract<C, Falsy>) => F
+): C extends Falsy ? F : T
 ```
 </td>
 </tr>
@@ -493,7 +493,7 @@ Any
 </tbody>
 </table>
 
-When `condition` is true, returns the result of calling `trueCase()`, else returns the result of calling `falseCase()` if `falseCase` is defined.
+When `condition` is truthy, returns the result of calling `trueCase()`, else returns the result of calling `falseCase()` if `falseCase` is defined. The (type-narrowed) `condition` value is passed to both case functions.
 
 This is a convenience wrapper around a ternary expression that makes it a
 little nicer to write an inline conditional without an else.
@@ -502,7 +502,7 @@ little nicer to write an inline conditional without an else.
 class MyElement extends LitElement {
   render() {
     return html`
-      ${when(this.user, () => html`User: ${this.user.username}`, () => html`Sign In...`)}
+      ${when(this.user, (user) => html`User: ${user.username}`, () => html`Sign In...`)}
     `;
   }
 }
