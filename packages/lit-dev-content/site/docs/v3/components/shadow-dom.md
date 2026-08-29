@@ -23,6 +23,7 @@ For more information on shadow DOM:
 
 * [Shadow DOM v1: Self-Contained Web Components](https://developers.google.com/web/fundamentals/web-components/shadowdom) on Web Fundamentals.
 * [Using shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) on MDN.
+* [Shadow DOM encapsulation and practical trade-offs](https://frontendatlas.com/html/trivia/html-shadow-dom), including theming, testing, focus, and accessibility considerations.
 
 
 <div class="alert alert-info">
