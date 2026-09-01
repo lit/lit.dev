@@ -75,6 +75,7 @@
     </mwc-drawer>
 
     {% include 'header.html' %}
+    {% inlineclassicjs "global/apply-session-theme.js" %}
 
     {% if selectedVersion !== latestVersion %}
       <litdev-banner>

@@ -80,6 +80,23 @@ test.describe('Home page', () => {
     await context.close();
   });
 
+  test('stored theme icon is applied before hydration', async ({page}) => {
+    await page.emulateMedia({colorScheme: 'light'});
+    await page.addInitScript(() => {
+      sessionStorage.setItem('color-mode', 'dark');
+    });
+    await page.route('**/js/theme-switcher.js', (route) => route.abort());
+    await page.goto('/');
+
+    const switcher = page.locator('#desktopNav theme-switcher');
+    await expect(switcher).toHaveAttribute('mode', 'dark');
+    await expect(switcher.locator('.light-mode')).toBeHidden();
+    await expect(switcher.locator('.dark-mode')).toBeVisible();
+    await expect(
+      switcher.locator('button[aria-label="Dark mode"]')
+    ).toHaveAttribute('aria-pressed', 'true');
+  });
+
   test('theme follows the system and syncs across tabs', async ({
     context,
     page,

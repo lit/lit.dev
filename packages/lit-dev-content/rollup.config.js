@@ -152,6 +152,7 @@ export default [
   // the asynchronously-loaded module bundles above.
   {
     input: [
+      'lib/global/apply-session-theme.js',
       'lib/global/initialize-theme.js',
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-mode.js',
