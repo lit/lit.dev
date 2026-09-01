@@ -39,6 +39,136 @@ test.describe('Home page', () => {
     expect(await homePageImg.getAttribute('aria-label')).toBe('Lit');
   });
 
+  test('mobile navigation button exposes disclosure state', async ({page}) => {
+    await preventGDPRBanner(page);
+    await page.setViewportSize({width: 500, height: 800});
+    await page.goto('/');
+
+    const button = page.locator(
+      '#mobileMenuButton button[aria-label="Navigation menu"]'
+    );
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+    await expect(button).toHaveAttribute('aria-controls', 'mobileDrawer');
+
+    await button.click();
+    await expect(button).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#mobileDrawer')).toHaveAttribute('open', '');
+    await expect(
+      page.locator('#mobileDrawer aside.mdc-drawer--modal')
+    ).toHaveClass(/mdc-drawer--open/);
+
+    await page.locator('#mobileDrawer').evaluate((drawer) => {
+      (drawer as HTMLElement & {open: boolean}).open = false;
+      drawer.dispatchEvent(new Event('MDCDrawer:closed'));
+    });
+    await expect(button).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  test('server-rendered theme icon follows the system', async ({browser}) => {
+    const context = await browser.newContext({
+      colorScheme: 'dark',
+      javaScriptEnabled: false,
+    });
+    const page = await context.newPage();
+    await page.goto('/');
+
+    const switcher = page.locator('#desktopNav theme-switcher');
+    await expect(switcher.locator('.mode-icon')).toHaveCount(2);
+    await expect(switcher.locator('.light-mode')).toBeHidden();
+    await expect(switcher.locator('.dark-mode')).toBeVisible();
+
+    await context.close();
+  });
+
+  test('theme follows the system and syncs across tabs', async ({
+    context,
+    page,
+  }) => {
+    await page.emulateMedia({colorScheme: 'dark'});
+    await page.goto('/');
+
+    const firstBody = page.locator('body');
+    const firstToggle = page.locator(
+      '#desktopNav theme-switcher button[aria-label="Dark mode"]'
+    );
+
+    await expect(firstBody).toHaveClass(/\bdark\b/);
+    await expect(firstToggle).toHaveAttribute('type', 'button');
+    await expect(firstToggle).toHaveAttribute('aria-pressed', 'true');
+    expect(await firstToggle.getAttribute('aria-expanded')).toBe(null);
+    expect(await firstToggle.getAttribute('aria-haspopup')).toBe(null);
+
+    await firstToggle.press('Space');
+    await expect(firstBody).toHaveClass(/\blight\b/);
+    await expect(firstToggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(firstToggle).toHaveAttribute('aria-label', 'Dark mode');
+
+    const secondPage = await context.newPage();
+    await secondPage.emulateMedia({colorScheme: 'dark'});
+    await secondPage.goto('/');
+
+    const secondBody = secondPage.locator('body');
+    const secondToggle = secondPage.locator(
+      '#desktopNav theme-switcher button[aria-label="Dark mode"]'
+    );
+
+    await expect(secondBody).toHaveClass(/\blight\b/);
+    await expect(secondToggle).toHaveAttribute('aria-pressed', 'false');
+
+    await secondPage.evaluate(() => {
+      const testWindow = window as typeof window & {
+        themeMediaChangeCount: number;
+        themeMediaQuery: MediaQueryList;
+      };
+      testWindow.themeMediaChangeCount = 0;
+      testWindow.themeMediaQuery = matchMedia('(prefers-color-scheme: dark)');
+      testWindow.themeMediaQuery.addEventListener('change', () => {
+        testWindow.themeMediaChangeCount++;
+      });
+    });
+    const waitForMediaChangeCount = async (expected: number) => {
+      let actual = 0;
+      for (let attempt = 0; attempt < 50; attempt++) {
+        actual = await secondPage.evaluate(
+          () =>
+            (
+              window as typeof window & {
+                themeMediaChangeCount?: number;
+              }
+            ).themeMediaChangeCount ?? 0
+        );
+        if (actual === expected) {
+          return;
+        }
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+      expect(actual).toBe(expected);
+    };
+    await secondPage.emulateMedia({colorScheme: 'light'});
+    await waitForMediaChangeCount(1);
+    await secondPage.emulateMedia({colorScheme: 'dark'});
+    await waitForMediaChangeCount(2);
+    await expect(firstBody).toHaveClass(/\bdark\b/);
+    await expect(secondBody).toHaveClass(/\bdark\b/);
+
+    await secondToggle.click();
+    await expect(firstBody).toHaveClass(/\blight\b/);
+    await expect(secondBody).toHaveClass(/\blight\b/);
+
+    await secondPage.close();
+    await page.close();
+
+    const resetPage = await context.newPage();
+    await resetPage.emulateMedia({colorScheme: 'dark'});
+    await resetPage.goto('/');
+    await expect(resetPage.locator('body')).toHaveClass(/\bdark\b/);
+    await expect(
+      resetPage.locator(
+        '#desktopNav theme-switcher button[aria-label="Dark mode"]'
+      )
+    ).toHaveAttribute('aria-pressed', 'true');
+  });
+
   test('search site input basic functionality works', async ({page}) => {
     await page.goto('/');
     const searchButton = page.locator(

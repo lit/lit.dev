@@ -55,21 +55,22 @@ title: Playground
     </litdev-playground-share-button>
 
     <litdev-ripple-icon-button
-        button-title="Toggle view mode"
+        label="Show preview only"
+        button-title="Show preview only"
         id="view-mode-button">
       <lazy-svg
         class="preview"
-        label="Show Only Preview"
+        svg-aria-hidden
         href="{{ site.baseurl }}/images/icons/preview.svg#icon"
         loading="eager"></lazy-svg>
       <lazy-svg
         class="code"
-        label="Show Only Code"
+        svg-aria-hidden
         href="{{ site.baseurl }}/images/icons/code.svg#icon"
         loading="eager"></lazy-svg>
       <lazy-svg
           class="splitscreen"
-          label="Show Split View"
+          svg-aria-hidden
           href="{{ site.baseurl }}/images/icons/splitscreen.svg#icon"
           loading="eager"></lazy-svg>
     </litdev-ripple-icon-button>

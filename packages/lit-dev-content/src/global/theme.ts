@@ -5,37 +5,82 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/** Color mode, either overriding light/dark or the user's preference. */
-export type ColorMode = 'light' | 'dark' | 'auto';
+/** The effective color mode rendered by the page. */
+export type ColorMode = 'light' | 'dark';
+
+export const COLOR_MODE_CHANGE_EVENT = 'litdev-color-mode-change';
+
+interface ThemeState {
+  mode: ColorMode;
+  mediaQuery: MediaQueryList;
+  worker?: SharedWorker;
+  port?: MessagePort;
+}
+
+interface ThemeWorkerModeMessage {
+  type: 'mode';
+  mode: ColorMode;
+}
+
+const THEME_STATE_KEY = Symbol.for('lit.dev.theme-state');
+const THEME_WORKER_PATH = '/js/global/theme-worker.js';
+
+const isColorMode = (value: unknown): value is ColorMode =>
+  value === 'light' || value === 'dark';
+
+const getThemeState = () =>
+  (
+    window as unknown as {
+      [THEME_STATE_KEY]?: ThemeState;
+    }
+  )[THEME_STATE_KEY];
+
+const setThemeState = (state: ThemeState) => {
+  (
+    window as unknown as {
+      [THEME_STATE_KEY]?: ThemeState;
+    }
+  )[THEME_STATE_KEY] = state;
+};
 
 /**
  * Sets the theme on the page given a color mode.
  *
  * @param mode The source color to generate the theme.
- * @param isDark Whether or not the theme should be in dark mode.
  */
-function applyColorMode(mode: ColorMode) {
-  saveColorMode(mode);
+function applyColorMode(state: ThemeState, mode: ColorMode) {
+  const modeChanged = state.mode !== mode;
+  state.mode = mode;
   document.body.classList.remove('light', 'dark', 'auto');
   document.body.classList.add(mode);
+  updateMetaColor(mode);
+
+  if (modeChanged) {
+    window.dispatchEvent(
+      new CustomEvent<ColorMode>(COLOR_MODE_CHANGE_EVENT, {detail: mode})
+    );
+  }
 }
 
 /**
- * Gets the current color mode from localstorage.
+ * Gets the current effective color mode.
  *
  * @return The current color mode.
  */
 export function getCurrentMode(): ColorMode {
-  return localStorage.getItem('color-mode') as ColorMode;
+  return typeof window === 'undefined'
+    ? 'light'
+    : getThemeState()?.mode ?? getSystemMode();
 }
 
 /**
- * Saves the given color mode to localstorage.
- *
- * @param mode The color mode to save to localstorage.
+ * Gets the light or dark mode that the system preference resolves to.
  */
-function saveColorMode(mode: ColorMode) {
-  localStorage.setItem('color-mode', mode);
+export function getSystemMode(): ColorMode {
+  return typeof window !== 'undefined' &&
+    window.matchMedia?.('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
 }
 
 /**
@@ -51,16 +96,7 @@ export function updateMetaColor(mode: ColorMode) {
     return;
   }
 
-  let isLight = mode === 'light';
-
-  if (mode === 'auto') {
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches;
-    isLight = !prefersDark;
-  }
-
-  if (isLight) {
+  if (mode === 'light') {
     meta?.setAttribute('content', '#fff');
     return;
   }
@@ -69,21 +105,81 @@ export function updateMetaColor(mode: ColorMode) {
 }
 
 /**
- * Applies theme-based event listeners such as changing color mode.
+ * Initializes the page theme and connects it to the ephemeral shared state.
  */
-export function applyColorThemeListeners() {
-  if (!document?.body?.addEventListener) {
+export function initializeTheme() {
+  if (
+    typeof window === 'undefined' ||
+    typeof document === 'undefined' ||
+    !document.body ||
+    getThemeState()
+  ) {
     return;
   }
-  document.body.addEventListener('change-color-mode', (event) => {
-    applyColorMode(event.mode);
-    updateMetaColor(event.mode);
+
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const state: ThemeState = {
+    mode: mediaQuery.matches ? 'dark' : 'light',
+    mediaQuery,
+  };
+  setThemeState(state);
+  applyColorMode(state, state.mode);
+
+  mediaQuery.addEventListener('change', ({matches}) => {
+    const mode = matches ? 'dark' : 'light';
+    if (state.port) {
+      state.port.postMessage({type: 'system-mode', mode});
+    } else {
+      applyColorMode(state, mode);
+    }
   });
-  window
-    .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', (event) => {
-      if (getCurrentMode() === 'auto') {
-        updateMetaColor(event.matches ? 'dark' : 'light');
+
+  if (!('SharedWorker' in window)) {
+    return;
+  }
+
+  try {
+    const worker = new SharedWorker(THEME_WORKER_PATH, {
+      name: 'lit-dev-theme',
+      type: 'module',
+    });
+    const {port} = worker;
+    state.worker = worker;
+    state.port = port;
+
+    worker.addEventListener('error', () => {
+      if (state.worker === worker) {
+        state.worker = undefined;
+        state.port = undefined;
       }
     });
+
+    port.addEventListener('message', ({data}: MessageEvent<unknown>) => {
+      const message = data as Partial<ThemeWorkerModeMessage>;
+      if (message.type !== 'mode' || !isColorMode(message.mode)) {
+        return;
+      }
+
+      applyColorMode(state, message.mode);
+    });
+    port.start();
+    port.postMessage({type: 'connect', mode: state.mode});
+  } catch {
+    state.worker = undefined;
+    state.port = undefined;
+  }
+}
+
+/**
+ * Sets an explicit mode for the lifetime of the current group of open tabs.
+ */
+export function setColorMode(mode: ColorMode) {
+  initializeTheme();
+  const state = getThemeState();
+  if (!state) {
+    return;
+  }
+
+  applyColorMode(state, mode);
+  state.port?.postMessage({type: 'set-mode', mode});
 }

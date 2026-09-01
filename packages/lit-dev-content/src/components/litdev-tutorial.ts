@@ -363,11 +363,9 @@ export class LitDevTutorial extends LitElement {
   protected renderHeader() {
     return html`<div id="tutorialHeader">
       <div class="lhs">
-        <a href="/tutorials/" tabindex="-1">
-          <litdev-ripple-icon-button label="Tutorial Catalog">
-            ${catalogIcon}
-          </litdev-ripple-icon-button>
-        </a>
+        <litdev-ripple-icon-button label="Tutorial Catalog" href="/tutorials/">
+          ${catalogIcon}
+        </litdev-ripple-icon-button>
         <span class="tutorial-metadata">
           ${this._manifestTask.render({
             complete: (manifest) => html` <span class="tutorial-title"
