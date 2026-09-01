@@ -11,46 +11,34 @@ import {customElement, property} from 'lit/decorators.js';
 @customElement('litdev-ripple-icon-button')
 export class LitDevRippleIconButton extends LitElement {
   /**
-   * Aria label for the button.
+   * Accessible label for the button.
    */
   @property()
   label = '';
 
   /**
-   * Sets aria-live for the button.
-   */
-  @property({type: String})
-  live = '';
-
-  /**
-   * Aria label for the button.
+   * Tooltip text for the button.
    */
   @property({attribute: 'button-title'})
   buttonTitle = '';
 
   /**
-   * Aria haspopup for the button.
+   * ARIA pressed state for toggle buttons.
    */
-  @property()
-  haspopup = '';
+  @property({attribute: false})
+  pressed?: boolean;
 
   /**
-   * Aria expanded for the button.
+   * ARIA expanded state for disclosure buttons.
    */
   @property()
-  expanded = '';
+  expanded: '' | 'true' | 'false' = '';
 
   /**
-   * Aria controls for the button.
+   * ID of the element controlled by a disclosure button.
    */
   @property()
   controls = '';
-
-  /**
-   * Sets the role for the inner button.
-   */
-  @property({attribute: 'button-role'})
-  buttonRole = '';
 
   /**
    * Href for the link button. If defined, this component switches to using an
@@ -105,7 +93,13 @@ export class LitDevRippleIconButton extends LitElement {
       -webkit-tap-highlight-color: transparent;
     }
 
-    .root:disabled {
+    .root:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    .root:disabled,
+    .root[aria-disabled='true'] {
       cursor: default;
       pointer-events: none;
       opacity: 0.38;
@@ -160,17 +154,33 @@ export class LitDevRippleIconButton extends LitElement {
     return this.href ? this.renderAnchorRoot() : this.renderButtonRoot();
   }
 
+  protected override firstUpdated() {
+    // Lit hydration adopts server attributes without patching client-only
+    // state, so reconcile ARIA state once after the initial hydration pass.
+    const button = this.renderRoot.querySelector('button');
+    if (this.pressed !== undefined) {
+      button?.setAttribute('aria-pressed', String(this.pressed));
+    }
+    if (this.expanded) {
+      button?.setAttribute('aria-expanded', this.expanded);
+    }
+    if (this.controls) {
+      button?.setAttribute('aria-controls', this.controls);
+    }
+  }
+
   protected renderButtonRoot() {
     return html`
       <button
+        type="button"
         class="root"
         part="root button"
-        role=${this.buttonRole ? this.buttonRole : nothing}
-        aria-live=${this.live ? this.live : nothing}
         aria-label=${this.label ? this.label : nothing}
-        aria-haspopup=${this.haspopup ? this.haspopup : nothing}
-        aria-expanded=${this.expanded ? this.expanded : nothing}
-        aria-controls=${this.controls ? this.controls : nothing}
+        aria-pressed=${this.pressed === undefined
+          ? nothing
+          : String(this.pressed)}
+        aria-expanded=${this.expanded || nothing}
+        aria-controls=${this.controls || nothing}
         ?disabled=${this.disabled}
         title=${this.buttonTitle ?? (nothing as unknown as string)}
       >
@@ -184,9 +194,13 @@ export class LitDevRippleIconButton extends LitElement {
       <a
         class="root"
         part="root anchor"
-        href=${this.href}
+        href=${this.disabled ? nothing : this.href}
+        role=${this.disabled ? 'link' : nothing}
         aria-label=${this.label ? this.label : nothing}
-        ?disabled=${this.disabled}
+        aria-disabled=${this.disabled ? 'true' : nothing}
+        tabindex=${this.disabled ? '-1' : nothing}
+        title=${this.buttonTitle || nothing}
+        @click=${this._handleAnchorClick}
       >
         ${this.renderContent()}
       </a>
@@ -196,5 +210,12 @@ export class LitDevRippleIconButton extends LitElement {
   protected renderContent() {
     return html`<div id="ripple"></div>
       <slot></slot>`;
+  }
+
+  private _handleAnchorClick(event: MouseEvent) {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
   }
 }

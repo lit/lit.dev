@@ -32,6 +32,7 @@ import type {LitDevPlaygroundShareButton} from './litdev-playground-share-button
 import type {LitDevPlaygroundDownloadButton} from './litdev-playground-download-button.js';
 import type {LitDevDrawer} from './litdev-drawer.js';
 import type {LitDevExampleControls} from './litdev-example-controls.js';
+import type {LitDevRippleIconButton} from './litdev-ripple-icon-button.js';
 import type {PlaygroundProject} from 'playground-elements/playground-project.js';
 import type {PlaygroundPreview} from 'playground-elements/playground-preview.js';
 import type {PlaygroundFileEditor} from 'playground-elements/playground-file-editor.js';
@@ -115,7 +116,9 @@ export class LitDevPlaygroundPage extends LitElement {
   firstUpdated(changed: PropertyValues<this>) {
     super.firstUpdated(changed);
     // toggle previewFullscreen when the fullscreen button is clicked
-    const iconButton = this.querySelector('#view-mode-button');
+    const iconButton = this.querySelector(
+      '#view-mode-button'
+    ) as LitDevRippleIconButton | null;
     iconButton?.addEventListener('click', () => {
       const lastMode = this.viewMode;
       if (lastMode === 'split') {
@@ -126,6 +129,7 @@ export class LitDevPlaygroundPage extends LitElement {
         this.viewMode = 'split';
       }
     });
+    this._syncViewModeButton();
   }
 
   update(changed: PropertyValues<this>) {
@@ -159,6 +163,31 @@ export class LitDevPlaygroundPage extends LitElement {
       window.location.hash = hashSearchParams.toString();
     }
     super.update(changed);
+  }
+
+  updated(changed: PropertyValues<this>) {
+    if (changed.has('viewMode')) {
+      this._syncViewModeButton();
+    }
+    super.updated(changed);
+  }
+
+  private _syncViewModeButton() {
+    const button = this.querySelector(
+      '#view-mode-button'
+    ) as LitDevRippleIconButton | null;
+    if (!button) {
+      return;
+    }
+
+    const label =
+      this.viewMode === 'split'
+        ? 'Show preview only'
+        : this.viewMode === 'preview'
+        ? 'Show code only'
+        : 'Show split view';
+    button.label = label;
+    button.buttonTitle = label;
   }
 
   /**

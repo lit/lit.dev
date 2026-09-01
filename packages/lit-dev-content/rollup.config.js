@@ -35,6 +35,7 @@ export default [
       // lit-hydrate-support MUST be loaded first to make sure lit hydration
       // helpers are bundled before LitElement attempts to use hydration support
       'lib/global/lit-hydrate-support.js',
+      'lib/global/theme-worker.js',
       'lib/components/copy-button.js',
       'lib/components/litdev-banner.js',
       'lib/components/litdev-drawer.js',
@@ -151,7 +152,8 @@ export default [
   // the asynchronously-loaded module bundles above.
   {
     input: [
-      'lib/global/apply-saved-theme.js',
+      'lib/global/apply-session-theme.js',
+      'lib/global/initialize-theme.js',
       'lib/global/apply-mods.js',
       'lib/global/initialize-typescript-mode.js',
       'lib/global/mobile-drawer.js',

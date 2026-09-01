@@ -357,6 +357,33 @@ function runScreenshotTests(dark: boolean) {
 }
 
 test.describe('Playground', () => {
+  test('view and examples drawer controls expose their semantics', async ({
+    page,
+  }) => {
+    await preventGDPRBanner(page);
+    await page.goto('/playground/');
+
+    const viewButton = page.locator('#view-mode-button button');
+    await expect(viewButton).toHaveAttribute('aria-label', 'Show preview only');
+    expect(await viewButton.getAttribute('aria-pressed')).toBe(null);
+
+    await viewButton.click();
+    await expect(viewButton).toHaveAttribute('aria-label', 'Show code only');
+    await viewButton.click();
+    await expect(viewButton).toHaveAttribute('aria-label', 'Show split view');
+
+    const drawerButton = page.locator(
+      'litdev-drawer #openCloseButton button[aria-label="Examples drawer"]'
+    );
+    await expect(drawerButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(drawerButton).toHaveAttribute('aria-controls', 'content');
+
+    await drawerButton.click();
+    await expect(drawerButton).toHaveAttribute('aria-expanded', 'false');
+    await drawerButton.click();
+    await expect(drawerButton).toHaveAttribute('aria-expanded', 'true');
+  });
+
   test.beforeEach(async ({browser}) => {
     const browserPage = await browser.newPage();
     await browserPage.goto('http://localhost:6417/reset');

@@ -527,6 +527,20 @@ ${content}
     return `<style>${result.styles}</style>`;
   });
 
+  const inlineJs = (path, type) => {
+    const typeAttribute = type ? ` type="${type}"` : '';
+    if (DEV) {
+      return `<script${typeAttribute} src="/js/${path}"></script>`;
+    }
+    // Note we must trim before hashing, because our html-minifier will trim
+    // inline script trailing newlines, and otherwise our hash will be wrong.
+    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
+    const hash =
+      'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
+    cspInlineScriptHashes.add(hash);
+    return `<script${typeAttribute}>${script}</script>`;
+  };
+
   /**
    * Inline the Rollup-bundled version of a JavaScript module. Path is relative
    * to ./rollupout.
@@ -535,16 +549,14 @@ ${content}
    * symlinked directly to the TypeScript output directory.
    */
   eleventyConfig.addShortcode('inlinejs', (path) => {
-    if (DEV) {
-      return `<script type="module" src="/js/${path}"></script>`;
-    }
-    // Note we must trim before hashing, because our html-minifier will trim
-    // inline script trailing newlines, and otherwise our hash will be wrong.
-    const script = fsSync.readFileSync(`rollupout/${path}`, 'utf8').trim();
-    const hash =
-      'sha256-' + crypto.createHash('sha256').update(script).digest('base64');
-    cspInlineScriptHashes.add(hash);
-    return `<script type="module">${script}</script>`;
+    return inlineJs(path, 'module');
+  });
+
+  /**
+   * Inline a parser-blocking classic script.
+   */
+  eleventyConfig.addShortcode('inlineclassicjs', (path) => {
+    return inlineJs(path);
   });
 
   eleventyConfig.addNunjucksAsyncShortcode('algoliaid', async () => {
