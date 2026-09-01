@@ -102,6 +102,16 @@ test.describe('Home page', () => {
     await expect(firstBody).toHaveClass(/\blight\b/);
     await expect(firstToggle).toHaveAttribute('aria-pressed', 'false');
     await expect(firstToggle).toHaveAttribute('aria-label', 'Dark mode');
+    expect(
+      await page.evaluate(() => sessionStorage.getItem('color-mode'))
+    ).toBe('light');
+
+    await page.goto('/docs/');
+    await expect(firstBody).toHaveClass(/\blight\b/);
+    await expect(firstToggle).toHaveAttribute('aria-pressed', 'false');
+    expect(
+      await page.evaluate(() => sessionStorage.getItem('color-mode'))
+    ).toBe('light');
 
     const secondPage = await context.newPage();
     await secondPage.emulateMedia({colorScheme: 'dark'});
@@ -150,6 +160,9 @@ test.describe('Home page', () => {
     await waitForMediaChangeCount(2);
     await expect(firstBody).toHaveClass(/\bdark\b/);
     await expect(secondBody).toHaveClass(/\bdark\b/);
+    expect(
+      await secondPage.evaluate(() => sessionStorage.getItem('color-mode'))
+    ).toBe(null);
 
     await secondToggle.click();
     await expect(firstBody).toHaveClass(/\blight\b/);
@@ -162,6 +175,9 @@ test.describe('Home page', () => {
     await resetPage.emulateMedia({colorScheme: 'dark'});
     await resetPage.goto('/');
     await expect(resetPage.locator('body')).toHaveClass(/\bdark\b/);
+    expect(
+      await resetPage.evaluate(() => sessionStorage.getItem('color-mode'))
+    ).toBe(null);
     await expect(
       resetPage.locator(
         '#desktopNav theme-switcher button[aria-label="Dark mode"]'

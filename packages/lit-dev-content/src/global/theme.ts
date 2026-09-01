@@ -12,6 +12,7 @@ export const COLOR_MODE_CHANGE_EVENT = 'litdev-color-mode-change';
 
 interface ThemeState {
   mode: ColorMode;
+  overridden: boolean;
   mediaQuery: MediaQueryList;
   worker?: SharedWorker;
   port?: MessagePort;
@@ -20,10 +21,12 @@ interface ThemeState {
 interface ThemeWorkerModeMessage {
   type: 'mode';
   mode: ColorMode;
+  overridden: boolean;
 }
 
 const THEME_STATE_KEY = Symbol.for('lit.dev.theme-state');
 const THEME_WORKER_PATH = '/js/global/theme-worker.js';
+const COLOR_MODE_STORAGE_KEY = 'color-mode';
 
 const isColorMode = (value: unknown): value is ColorMode =>
   value === 'light' || value === 'dark';
@@ -43,14 +46,41 @@ const setThemeState = (state: ThemeState) => {
   )[THEME_STATE_KEY] = state;
 };
 
+const getStoredColorMode = (): ColorMode | undefined => {
+  try {
+    const mode = sessionStorage.getItem(COLOR_MODE_STORAGE_KEY);
+    return isColorMode(mode) ? mode : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+const storeColorMode = (mode: ColorMode | undefined) => {
+  try {
+    if (mode) {
+      sessionStorage.setItem(COLOR_MODE_STORAGE_KEY, mode);
+    } else {
+      sessionStorage.removeItem(COLOR_MODE_STORAGE_KEY);
+    }
+  } catch {
+    // Theme switching still works within this document when storage is blocked.
+  }
+};
+
 /**
  * Sets the theme on the page given a color mode.
  *
  * @param mode The source color to generate the theme.
  */
-function applyColorMode(state: ThemeState, mode: ColorMode) {
+function applyColorMode(
+  state: ThemeState,
+  mode: ColorMode,
+  overridden: boolean
+) {
   const modeChanged = state.mode !== mode;
   state.mode = mode;
+  state.overridden = overridden;
+  storeColorMode(overridden ? mode : undefined);
   document.body.classList.remove('light', 'dark', 'auto');
   document.body.classList.add(mode);
   updateMetaColor(mode);
@@ -118,20 +148,19 @@ export function initializeTheme() {
   }
 
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const storedMode = getStoredColorMode();
   const state: ThemeState = {
-    mode: mediaQuery.matches ? 'dark' : 'light',
+    mode: storedMode ?? (mediaQuery.matches ? 'dark' : 'light'),
+    overridden: storedMode !== undefined,
     mediaQuery,
   };
   setThemeState(state);
-  applyColorMode(state, state.mode);
+  applyColorMode(state, state.mode, state.overridden);
 
   mediaQuery.addEventListener('change', ({matches}) => {
     const mode = matches ? 'dark' : 'light';
-    if (state.port) {
-      state.port.postMessage({type: 'system-mode', mode});
-    } else {
-      applyColorMode(state, mode);
-    }
+    applyColorMode(state, mode, false);
+    state.port?.postMessage({type: 'system-mode', mode});
   });
 
   if (!('SharedWorker' in window)) {
@@ -160,10 +189,14 @@ export function initializeTheme() {
         return;
       }
 
-      applyColorMode(state, message.mode);
+      applyColorMode(state, message.mode, message.overridden === true);
     });
     port.start();
-    port.postMessage({type: 'connect', mode: state.mode});
+    port.postMessage({
+      type: 'connect',
+      mode: state.mode,
+      overridden: state.overridden,
+    });
   } catch {
     state.worker = undefined;
     state.port = undefined;
@@ -180,6 +213,6 @@ export function setColorMode(mode: ColorMode) {
     return;
   }
 
-  applyColorMode(state, mode);
+  applyColorMode(state, mode, true);
   state.port?.postMessage({type: 'set-mode', mode});
 }

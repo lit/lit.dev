@@ -8,11 +8,12 @@ type ColorMode = 'light' | 'dark';
 
 type ThemeWorkerMessage =
   | {
-      type: 'connect' | 'system-mode';
+      type: 'connect';
       mode: ColorMode;
+      overridden: boolean;
     }
   | {
-      type: 'set-mode';
+      type: 'system-mode' | 'set-mode';
       mode: ColorMode;
     };
 
@@ -22,6 +23,7 @@ interface SharedWorkerScope {
 
 const ports = new Set<MessagePort>();
 let mode: ColorMode | undefined;
+let overridden = false;
 
 const isColorMode = (value: unknown): value is ColorMode =>
   value === 'light' || value === 'dark';
@@ -33,7 +35,7 @@ const publishMode = () => {
 
   for (const port of ports) {
     try {
-      port.postMessage({type: 'mode', mode});
+      port.postMessage({type: 'mode', mode, overridden});
     } catch {
       ports.delete(port);
     }
@@ -57,13 +59,16 @@ const publishMode = () => {
         case 'connect':
           if (mode === undefined) {
             mode = data.mode;
+            overridden = data.overridden === true;
           }
           break;
         case 'system-mode':
           mode = data.mode;
+          overridden = false;
           break;
         case 'set-mode':
           mode = data.mode;
+          overridden = true;
           break;
       }
 
