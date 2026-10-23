@@ -6,17 +6,11 @@ export const styles = [
       display: inline-block;
       outline: none;
       padding: 8px;
-      --mdc-theme-primary: #0069c0;
-      --mdc-theme-secondary: #1b5e20;
-      --mdc-typography-body2-font-size: 1.1rem;
-      --mdc-typography-body2-font-weight: 600;
-      --mdc-checkbox-unchecked-color: black;
     }
 
-    mwc-textfield {
+    input[type='text'] {
       display: block;
       margin-top: 16px;
-      --mdc-shape-small: 12px;
     }
 
     .controls {
@@ -54,12 +48,11 @@ export const styles = [
       border: none;
       background: none;
       outline: none;
-      font-family: 'Material Icons';
       font-size: 24px;
       cursor: pointer;
     }
 
-    li > mwc-formfield {
+    li > label {
       flex: 1;
     }
 
