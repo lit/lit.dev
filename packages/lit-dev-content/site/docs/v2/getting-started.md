@@ -19,9 +19,9 @@ Get started right away with the interactive playground and examples. Start with 
 
 Take our [step-by-step tutorial](/tutorials/intro-to-lit) to learn how to build a Lit component in minutes.
 
-## Lit starter kit
+## Lit starter kits
 
-We provide a TypeScript component starter kit for creating standalone reusable components. See [Starter Kits](/docs/v2/tools/starter-kits/).
+We provide TypeScript and JavaScript component starter kits for creating standalone reusable components. See [Starter Kits](/docs/v2/tools/starter-kits/).
 
 ## Install locally from npm
 

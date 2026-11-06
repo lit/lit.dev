@@ -129,9 +129,15 @@ https://modern-web.dev/docs/building/rollup-plugin-html/
 https://web.dev/love-your-cache/#fingerprinted-urls
 https://web.dev/reduce-network-payloads-using-text-compression/#data-compression
 https://www.11ty.dev/
+https://github.com/lit/lit-element-starter-js
 https://github.com/lit/lit-element-starter-ts
+https://github.com/lit/lit-element-starter-js/archive/main.zip
 https://github.com/lit/lit-element-starter-ts/archive/main.zip
 https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template
+https://github.com/PolymerLabs/lit-element-starter-js
+https://github.com/PolymerLabs/lit-element-starter-ts
+https://github.com/PolymerLabs/lit-element-starter-ts/blob/master/README.md
+https://github.com/PolymerLabs/lit-element-starter-js/blob/master/README.md
 https://github.com/lit/lit-element-starter-ts/blob/main/README.md
 https://custom-elements-everywhere.com/
 https://docs.npmjs.com/cli/v7/configuring-npm/install
