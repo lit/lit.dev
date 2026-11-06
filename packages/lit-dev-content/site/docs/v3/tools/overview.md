@@ -20,5 +20,5 @@ The tools and workflows docs cover the different phases of development:
 * [Testing](/docs/v3/tools/testing/): Recommendations for testing Lit projects in modern and legacy browsers.
 * [Publishing](/docs/v3/tools/publishing/): Guidelines for publishing your component packages to npm.
 * [Building for production](/docs/v3/tools/production/): Building applications for production, including bundling, optimizations, and differential serving for modern and legacy browsers.
-* [Starter Kits](/docs/v3/tools/starter-kits): Instructions on using our Lit component starter kits for JavaScript and TypeScript.
+* [Starter Kits](/docs/v3/tools/starter-kits): Instructions on using our Lit component starter kit for TypeScript.
 * [Adding Lit](/docs/v3/tools/adding-lit): Installing and adding Lit to an existing project.
