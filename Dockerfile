@@ -29,6 +29,7 @@ COPY packages/lit-dev-tools-esm/package*.json ./packages/lit-dev-tools-esm/
 COPY packages/lit-dev-server/package*.json ./packages/lit-dev-server/
 COPY packages/lit-dev-api/package*.json ./packages/lit-dev-api/
 COPY packages/lit-dev-content/package*.json ./packages/lit-dev-content/
+COPY vendor/ ./vendor/
 RUN npm ci
 
 # Tooling code

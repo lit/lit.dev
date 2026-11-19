@@ -30,6 +30,16 @@ const terserOptions = {
 };
 
 export default [
+  // The preview loads the bridge by URL as a classic script so it can capture
+  // startup output before the project's own scripts run.
+  {
+    input: 'lib/pages/playground-preview-bridge.js',
+    output: {
+      file: 'rollupout/pages/playground-preview-bridge.js',
+      format: 'iife',
+    },
+    plugins: [terser(terserOptions)],
+  },
   {
     input: [
       // lit-hydrate-support MUST be loaded first to make sure lit hydration
