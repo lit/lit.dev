@@ -27,6 +27,7 @@ import {decodeSafeBase64} from '../util/safe-base64.js';
 import {compactPlaygroundFile} from '../util/compact-playground-file.js';
 import {LitDevError, showError} from '../errors.js';
 import {gistToPlayground} from '../util/gist-conversion.js';
+import {connectPlaygroundTools} from '../util/playground-tools.js';
 
 import type {LitDevPlaygroundShareButton} from './litdev-playground-share-button.js';
 import type {LitDevPlaygroundDownloadButton} from './litdev-playground-download-button.js';
@@ -80,6 +81,7 @@ export class LitDevPlaygroundPage extends LitElement {
   private _exampleControls!: LitDevExampleControls;
   private _hasUnsavedChanges = false;
   private _hashChangedByViewMode = false;
+  private _disconnectTools?: () => void;
 
   /**
    * Base URL for the GitHub API.
@@ -106,6 +108,12 @@ export class LitDevPlaygroundPage extends LitElement {
     this._shareButton.addEventListener('save', this._onSaveEvent);
     this._shareButton.addEventListener('will-hashchange', this._onSaveEvent);
     window.addEventListener('beforeunload', this._beforeUnload);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._disconnectTools?.();
+    this._disconnectTools = undefined;
   }
 
   render() {
@@ -243,6 +251,16 @@ export class LitDevPlaygroundPage extends LitElement {
     });
 
     this._downloadButton.getProjectFiles = () => this._playgroundProject.files;
+    this._disconnectTools?.();
+    this._disconnectTools = connectPlaygroundTools({
+      project: this._playgroundProject,
+      preview: this._playgroundPreview,
+      bridgeUrl: new URL(
+        '../pages/playground-preview-bridge.js',
+        import.meta.url
+      ).href,
+      markUnsaved: this._onEditorChange,
+    });
   }
 
   private _loadBase64(base64: string): Array<CompactProjectFile> | undefined {
