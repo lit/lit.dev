@@ -306,6 +306,23 @@ table {
   background-color: var(--sys-color-surface-container-dim);
 }
 
+/* Tables can contain content that can't wrap (e.g. code), so let them scroll
+   horizontally instead of overflowing the article on narrow viewports. Sizing
+   to max-content keeps tables that fit as wide as their content. Tables nested
+   inside another table's cell are left alone. */
+table:not(:is(td, th) table) {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Tables with a .wide-cell fill the article, as they do without the rule
+   above. */
+table:has(.wide-cell) {
+  width: 100%;
+}
+
 th {
   background-color: var(--sys-color-surface-container-highest);
   text-align: left;
